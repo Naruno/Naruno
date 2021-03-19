@@ -15,7 +15,6 @@ from wallet.wallet import *
 
 
 
-from func.send_message import send_message
 from func.send_coin import send_coin
 from func.node_connection import *
 

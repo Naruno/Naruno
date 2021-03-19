@@ -7,15 +7,15 @@ def messages_main_tx(tx): #important defination for apps
     dprint("Messages TX: "+str(tx))
 
 
-def messages_main_gui(main_gui,column,row,path,import_arguments): #important defination for apps
+def messages_main_gui(main_gui,column,row): #important defination for apps
     print("gui sending")
 
 
     main_gui.send_message_button = ttk.Button(main_gui.frame)
-    main_gui.emails_65x50_png = tk.PhotoImage(file=path+"/emails_65x50.png")
+    main_gui.emails_65x50_png = tk.PhotoImage(file="apps/Messages/icons/emails_65x50.png")
     main_gui.send_message_button.configure(compound='top', image=main_gui.emails_65x50_png, text='Send Message')
     main_gui.send_message_button.grid(column=str(column), padx='25', pady='20', row=str(row), sticky='n')
-    import_arguments = f"{import_arguments} send_message_gui"
+    import_arguments = f"from apps.Messages.messages_main import send_message_gui"
     func_name = "send_message_gui"
     main_gui.send_message_button.configure(command= lambda: main_gui.apps_func(import_arguments,func_name))
 
@@ -51,7 +51,7 @@ def send_message_gui(main_gui):
     okey = messagebox.askokcancel("Okey",("Receiver adress: "+received_adress+"\n"+"Message: "+message))
 
     if okey:
-        from send_message import send_message
+        from apps.Messages.send_message import send_message
         send_message(message,received_adress)
 
 
@@ -67,7 +67,7 @@ def messages_main_cli_command(choices_input):
     print("cli command")
 
     if choices_input == "sm":
-        from send_message import send_message
+        from apps.Messages.send_message import send_message
         send_message(input("Message: "),input("Please write receiver adress: "))
 
 

@@ -138,9 +138,7 @@ class main_gui:
                 if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
                     print(entry.name)
                     import_command = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_gui" 
-                    path = "apps/"+folder_entry.name
-                    import_arguments = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import"
-                    tx_command = f"{entry.name.replace('.py','')}_gui(self,column,row,path,import_arguments)"
+                    tx_command = f"{entry.name.replace('.py','')}_gui(self,column,row)"
                     exec (import_command)
                     exec (tx_command)
 
