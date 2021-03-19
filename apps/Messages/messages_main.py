@@ -51,7 +51,7 @@ def send_message_gui(main_gui):
     okey = messagebox.askokcancel("Okey",("Receiver adress: "+received_adress+"\n"+"Message: "+message))
 
     if okey:
-        from func.send_message import send_message
+        from send_message import send_message
         send_message(message,received_adress)
 
 
@@ -67,7 +67,7 @@ def messages_main_cli_command(choices_input):
     print("cli command")
 
     if choices_input == "sm":
-        from func.send_message import send_message
+        from send_message import send_message
         send_message(input("Message: "),input("Please write receiver adress: "))
 
 
