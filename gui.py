@@ -27,7 +27,7 @@ import pickle
 
 
 
-from ledger.ledger_main import get_ledger , create_ledger, sendme_full_chain
+from ledger.ledger_main import get_ledger , create_ledger, get_ledger
 
 from lib.settings import the_settings
 
@@ -48,15 +48,26 @@ class main_gui:
         self.create_ledger_button.configure(compound='top', image=self.ledger_44x50_png, text='Create ledger')
         self.create_ledger_button.grid(column='0', padx='25', pady='20', row='1', sticky='n')
         self.create_ledger_button.configure(command=self.create_ledger)
+
+
+
+        self.get_ledger_button = ttk.Button(self.frame)
+        self.get_ledger_button.configure(compound='top', image= self.ledger_44x50_png, text='Get ledger')
+        self.get_ledger_button.grid(column='0', padx='25', pady='20', row='2', sticky='n')
+        self.get_ledger_button.configure(command=self.get_ledger_command)
+
+
         self.create_wallet_button = ttk.Button(self.frame)
         self.wallet_60x50_png = tk.PhotoImage(file='gui/icons/wallet_60x50.png')
         self.create_wallet_button.configure(compound='top', image=self.wallet_60x50_png, text='Create Wallet')
         self.create_wallet_button.grid(column='2', padx='25', pady='20', row='1', sticky='n')
         self.create_wallet_button.configure(command=self.Wallet_Create)
+
+
         self.send_coin_button = ttk.Button(self.frame)
         self.money_67x50_png = tk.PhotoImage(file='gui/icons/money_67x50.png')
         self.send_coin_button.configure(compound='top', image=self.money_67x50_png, text='Send Coin')
-        self.send_coin_button.grid(column='0', padx='25', pady='20', row='2', sticky='n')
+        self.send_coin_button.grid(column='3', padx='25', pady='20', row='3', sticky='n')
         self.send_coin_button.configure(command=self.send_coin)
 
         
@@ -168,6 +179,10 @@ class main_gui:
     def create_ledger(self):
         create_ledger()
         messagebox.showinfo('Wallet', 'ledger are created.')
+
+    def get_ledger_command(self):
+        get_ledger()
+        messagebox.showinfo('Wallet', 'ledger are geted.')
 
     def Wallet_Create(self):
         Wallet_Create()

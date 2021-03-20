@@ -254,7 +254,7 @@ def sendme_full_node_list():
     node.send_to_node(node.nodes_outbound[0],"sendmefullnodelist")  
 
 
-def sendme_full_chain():
+def get_ledger():
     from node.myownp2pn import MyOwnPeer2PeerNode
     node = MyOwnPeer2PeerNode.main_node
     try:
@@ -275,4 +275,4 @@ def create_ledger():
         MyOwnPeer2PeerNode.main_node.send_full_chain()
     else:
         dprint("Getting ledger from nodes")
-        sendme_full_chain()
+        get_ledger()
