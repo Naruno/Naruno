@@ -47,7 +47,7 @@ def show_menu():
     print(banner_maker(sc_name="Decentra Network",description="This is an open source ledger network project. It exists for people to build and use their own ledger networks. Or to join the network created by others.",author="Onur Atakan ULUSOY",email="atadogan06@gmail.com") + \
        menu_space() + \
        menu_maker(menu_number="cbl",menu_text="Create ledger")+ \
-	   menu_maker(menu_number="cw",menu_text="Create wallet.wallet")+ \
+	   menu_maker(menu_number="cw",menu_text="Create wallet")+ \
 	   menu_space() + \
 	   menu_maker(menu_number="sc",menu_text="Send Coin")+ \
        menu_space() + \
