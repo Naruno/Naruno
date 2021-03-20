@@ -3,6 +3,6 @@
 # Introducing
 This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.
 
-# Wiki
-[Downloading](https://github.com/onuratakan/Decentra-Network/wiki/Downloading)
-[Using](https://github.com/onuratakan/Decentra-Network/wiki/Using)
+# Getting Started
+* [Downloading](https://github.com/onuratakan/Decentra-Network/wiki/Downloading)
+* [Using](https://github.com/onuratakan/Decentra-Network/wiki/Using)
