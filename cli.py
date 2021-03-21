@@ -26,7 +26,7 @@ import pickle
 
 
 
-from ledger.ledger_main import get_ledger , create_ledger, get_ledger
+from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node
 
 from lib.settings import the_settings
 
@@ -127,7 +127,7 @@ def menu():
         if choices_input == "getfullnodelist":
             sendme_full_node_list()
         if choices_input == "getfullledger":
-            get_ledger()
+            get_ledger_from_other_node()
         
         for folder_entry in os.scandir('apps'):
             if not ".md" in folder_entry.name:

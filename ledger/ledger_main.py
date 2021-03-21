@@ -16,6 +16,9 @@ from lib.mixlib import dprint
 
 import os
 
+
+import time
+
 class Account:
     def __init__(self, PublicKey,balance):
         self.PublicKey = PublicKey
@@ -39,11 +42,13 @@ class ledger:
         dprint("Validating transactions number: "+str(len(self.validating_list)))
         if len(self.pendingTransaction) > 2 and not len(self.validating_list) > 2:
           for tx in self.pendingTransaction:
+              tx.time_to_be_verified = int(time.time())
               self.validating_list.append(tx)
           self.pendingTransaction.clear()
 
 
         for trans in self.validating_list:
+         if not (int(time.time()) - trans.time_to_be_verified)  > 60:
           dprint("Transaction")
           if self.tx_verification(trans) == True:
 
@@ -75,6 +80,8 @@ class ledger:
                         exec (import_command)
                         dprint(tx_command)
                         exec (tx_command)
+         else:
+             self.validating_list.remove(trans)
 
         dprint("End mining pending transactions number: "+str(len(self.pendingTransaction)))
         dprint("End mining validating transactions number: "+str(len(self.validating_list)))
@@ -232,6 +239,8 @@ class Transaction:
         self.already_asked_nodes = []
         self.invalid = []
 
+        self.time_to_be_verified = None
+
 
 
 
@@ -254,7 +263,7 @@ def sendme_full_node_list():
     node.send_to_node(node.nodes_outbound[0],"sendmefullnodelist")  
 
 
-def get_ledger():
+def get_ledger_from_other_node():
     from node.myownp2pn import MyOwnPeer2PeerNode
     node = MyOwnPeer2PeerNode.main_node
     try:

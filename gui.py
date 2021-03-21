@@ -27,7 +27,7 @@ import pickle
 
 
 
-from ledger.ledger_main import get_ledger , create_ledger, get_ledger
+from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node
 
 from lib.settings import the_settings
 
@@ -181,7 +181,7 @@ class main_gui:
         messagebox.showinfo('Wallet', 'ledger are created.')
 
     def get_ledger_command(self):
-        get_ledger()
+        get_ledger_from_other_node()
         messagebox.showinfo('Wallet', 'ledger are geted.')
 
     def Wallet_Create(self):
