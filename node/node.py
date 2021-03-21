@@ -1,3 +1,5 @@
+#https://github.com/macsnoeren/python-p2p-network was used for infrastructure
+
 import socket
 import sys
 import time
