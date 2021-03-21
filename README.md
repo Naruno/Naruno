@@ -26,7 +26,7 @@ This is an open source decentralized application network. In this network, you c
 * [Decentra Network Nedir ?](https://www.youtube.com/watch?v=XUNz5Fb_ZeY&ab_channel=DecentraNetworkT%C3%BCrkiyeToplulu%C4%9Fu)
 * [Decentra Network Çalışma Mantığı ?](https://www.youtube.com/watch?v=3WohnI_VOrc&ab_channel=DecentraNetworkT%C3%BCrkiyeToplulu%C4%9Fu)
 
-# Telegra
+# Telegram
 ## In Turkish
 ### Decentra Network Türkiye Topluluğu
 * [Kanal](https://t.me/joinchat/PnstgE9yipkwYmVk)
