@@ -1,3 +1,5 @@
+#https://github.com/macsnoeren/python-p2p-network was used for infrastructure
+
 from node.node import *
 import pickle
 
