@@ -1,3 +1,5 @@
+#This project (https://github.com/starkbank/ecdsa-python) was used for infrastructure
+
 from hashlib import sha256
 
 
