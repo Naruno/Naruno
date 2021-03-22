@@ -192,13 +192,17 @@ class ledger:
         balance = 0
         user = user.replace('\n', '')
         for Accounts in self.Accounts:
-            if Accounts.PublicKey in user:
+            temp_pubkey = Accounts.PublicKey.replace('\n', '')
+            dprint(Accounts.PublicKey)
+            dprint(user)
+            dprint(temp_pubkey in user)
+            if temp_pubkey in user or temp_pubkey == user:
                 balance = Accounts.balance
                 for trans in self.pendingTransaction:
                     for Accounts in self.Accounts:
-                        if Accounts.PublicKey in trans.fromUser:
+                        if temp_pubkey in trans.fromUser or temp_pubkey == trans.fromUser:
                             balance -= (float(trans.amount)-trans.transaction_fee)
-                        elif Accounts.PublicKey in trans.toUser:
+                        elif temp_pubkey in trans.toUser or temp_pubkey == trans.toUser:
                             balance += float(trans.amount)
                 return balance
         return balance
@@ -206,11 +210,12 @@ class ledger:
         sequance_number = 0
         user = user.replace('\n', '')
         for Accounts in self.Accounts:
-            if Accounts.PublicKey in user:
+            temp_pubkey = Accounts.PublicKey.replace('\n', '')
+            if temp_pubkey in user or temp_pubkey == user:
                 sequance_number = Accounts.sequance_number
                 for trans in self.pendingTransaction:
                     for Accounts in self.Accounts:
-                        if Accounts.PublicKey in trans.fromUser:
+                        if temp_pubkey in trans.fromUser or temp_pubkey == trans.fromUser:
                             sequance_number += 1
                 return sequance_number
         return sequance_number
