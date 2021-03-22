@@ -56,11 +56,11 @@ class ledger:
             touser_inlist = False
             for Accounts in self.Accounts:
                 dprint("Accounts")
-                if trans.fromUser in Accounts.PublicKey:
+                if Accounts.PublicKey in trans.fromUser:
                     dprint("Sender")
                     Accounts.balance -= (float(trans.amount)+trans.transaction_fee)
                     Accounts.sequance_number += 1
-                elif trans.toUser in Accounts.PublicKey:
+                elif Accounts.PublicKey in trans.toUser:
                     dprint("Touser")
                     Accounts.balance += float(trans.amount)
                     touser_inlist = True
@@ -190,25 +190,27 @@ class ledger:
  
     def getBalance(self,user):
         balance = 0
+        user = user.replace('\n', '')
         for Accounts in self.Accounts:
-            if user in Accounts.PublicKey:
+            if Accounts.PublicKey in user:
                 balance = Accounts.balance
                 for trans in self.pendingTransaction:
                     for Accounts in self.Accounts:
-                        if trans.fromUser in Accounts.PublicKey:
+                        if Accounts.PublicKey in trans.fromUser:
                             balance -= (float(trans.amount)-trans.transaction_fee)
-                        elif trans.toUser in Accounts.PublicKey:
+                        elif Accounts.PublicKey in trans.toUser:
                             balance += float(trans.amount)
                 return balance
         return balance
     def getSequanceNumber(self,user):
         sequance_number = 0
+        user = user.replace('\n', '')
         for Accounts in self.Accounts:
-            if user in Accounts.PublicKey:
+            if Accounts.PublicKey in user:
                 sequance_number = Accounts.sequance_number
                 for trans in self.pendingTransaction:
                     for Accounts in self.Accounts:
-                        if trans.fromUser in Accounts.PublicKey:
+                        if Accounts.PublicKey in trans.fromUser:
                             sequance_number += 1
                 return sequance_number
         return sequance_number
