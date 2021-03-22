@@ -3,14 +3,15 @@ import pickle
 from lib.mixlib import dprint
 
 def save_new_unl_node(id):
+    id = id.replace('\n', '')
     node = None
 
     from node.myownp2pn import MyOwnPeer2PeerNode
     for inbound_node in MyOwnPeer2PeerNode.main_node.nodes_inbound:
-        if id in inbound_node.id:
+        if id in (inbound_node.id).replace('\n', ''):
             node = inbound_node
     for outbound_node in MyOwnPeer2PeerNode.main_node.nodes_outbound:
-        if id in outbound_node.id:
+        if id in (outbound_node.id).replace('\n', ''):
             node = outbound_node
     if node != None:
         nodes_list = get_unl_nodes()
@@ -68,7 +69,9 @@ def get_as_node_type(id_list):
 
 
 def node_is_unl(node_id):
+    node_id = node_id.replace('\n', '')
     for unl in get_unl_nodes():
-        if node_id in unl:
+        temp_unl = unl.replace('\n', '')
+        if node_id in temp_unl:
             return True
     return False
