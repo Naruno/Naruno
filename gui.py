@@ -41,9 +41,16 @@ import os
 class main_gui:
     def __init__(self, master=None):
         # build ui
+
+
         self.toplevel = tk.Tk() if master is None else tk.Toplevel(master)
         self.frame = ttk.Frame(self.toplevel)
-        
+
+
+        self.style = ttk.Style()
+
+        #self.style.theme_use("clam")
+
         self.ledger_44x50_png = tk.PhotoImage(file='gui/icons/ledger_38x50.png')
         self.cellmolecule_50x50_png = tk.PhotoImage(file='gui/icons/cell-molecule_50x50.png')
         self.computerinternetnetwork_68x50_png = tk.PhotoImage(file='gui/icons/computer-internet-network_68x50.png')
@@ -177,6 +184,8 @@ class main_gui:
 
         # Main widget
         self.mainwindow = self.toplevel
+
+
 
 
 

@@ -42,15 +42,13 @@ class ledger:
         dprint("Validating transactions number: "+str(len(self.validating_list)))
         if len(self.pendingTransaction) > 2 and not len(self.validating_list) > 2:
           for tx in self.pendingTransaction:
-              tx.time_to_be_verified = int(time.time())
               self.validating_list.append(tx)
           self.pendingTransaction.clear()
 
 
         for trans in self.validating_list:
-         if not (int(time.time()) - trans.time_to_be_verified)  > 60:
           dprint("Transaction")
-          if self.tx_verification(trans) == True:
+          if self.tx_verification(trans):
 
             dprint("tx_verification true")
             touser_inlist = False
@@ -80,8 +78,8 @@ class ledger:
                         exec (import_command)
                         dprint(tx_command)
                         exec (tx_command)
-         else:
-             self.validating_list.remove(trans)
+          else:
+              self.validating_list.remove(trans)
 
         dprint("End mining pending transactions number: "+str(len(self.pendingTransaction)))
         dprint("End mining validating transactions number: "+str(len(self.validating_list)))
@@ -94,10 +92,11 @@ class ledger:
         if len(tx.valid) >= (len(tx.total_validators) / 3):
             dprint("tx_verification okey")
             return True
+        elif len(tx.invalid) >= (len(tx.total_validators) / 3):
+            return False
         else:
             if (len(tx.valid) + len(tx.invalid)) != len(tx.total_validators):
              dprint("sending response request to unl nodes")
-             #burda sadece istediğimiz daha doğrusu unl listemizdeki adamlara mesaj atacağız. ayrıca valid veya invalid kararını vermemişlere atacağız sadece
              from node.myownp2pn import MyOwnPeer2PeerNode
              exclude_list = []
              dprint("tx_valid_in ledger"+str(tx.valid))
@@ -119,9 +118,6 @@ class ledger:
                  if not node in get_as_node_type(exclude_list):
                     tx.already_asked_nodes.append(node.id)
                     MyOwnPeer2PeerNode.main_node.send_to_node(node,{"transactionrequest" : 1,"sequance_number": tx.sequance_number, "signature" : tx.signature, "fromUser" : tx.fromUser , "to_user" : tx.toUser, "data" : tx.data, "amount" : tx.amount,"transaction_fee":tx.transaction_fee,"response":True})
-
-
-            return False
 
     def createTrans(self,sequance_number,signature, fromUser,toUser,transaction_fee,data = None, amount = None,transaction_sender = None,response = False):
 
@@ -245,8 +241,6 @@ class Transaction:
         self.total_validators = get_unl_nodes()
         self.already_asked_nodes = []
         self.invalid = []
-
-        self.time_to_be_verified = None
 
 
 
