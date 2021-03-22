@@ -18,10 +18,8 @@ def ndconnectmixdb():
     connectionfrommixdb()
 
 def connect_to_main_network():
-    import requests
-    
-    url = 'https://raw.githubusercontent.com/onuratakan/Decentra-Network/master/connected_node.decentra_network'
-    r = requests.get(url, allow_redirects=True)
-    open('connected_node.decentra_network', 'wb').write(r.content)  
+
+    import urllib.request
+    urllib.request.urlretrieve('https://raw.githubusercontent.com/onuratakan/Decentra-Network/master/connected_node.decentra_network', 'connected_node.decentra_network')  
 
     ndconnectmixdb()
