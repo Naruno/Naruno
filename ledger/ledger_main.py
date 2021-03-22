@@ -78,8 +78,6 @@ class ledger:
                         exec (import_command)
                         dprint(tx_command)
                         exec (tx_command)
-          else:
-              self.validating_list.remove(trans)
 
         dprint("End mining pending transactions number: "+str(len(self.pendingTransaction)))
         dprint("End mining validating transactions number: "+str(len(self.validating_list)))
@@ -93,22 +91,23 @@ class ledger:
             dprint("tx_verification okey")
             return True
         elif len(tx.invalid) >= (len(tx.total_validators) / 3):
-            return False
+            self.validating_list.remove(trans)
         else:
             if (len(tx.valid) + len(tx.invalid)) != len(tx.total_validators):
              dprint("sending response request to unl nodes")
              from node.myownp2pn import MyOwnPeer2PeerNode
              exclude_list = []
-             dprint("tx_valid_in ledger"+str(tx.valid))
-             dprint("tx_invalid_in ledger"+str(tx.invalid))
-             for validators in tx.valid:
-                 dprint("validators_in ledger"+str(validators))
-                 exclude_list.append(validators["node"])
-             for invalidators in tx.invalid:
-                 dprint("invalidators_in ledger"+str(invalidators))
-                 exclude_list.append(invalidators["node"])
              for already_asked in tx.already_asked_nodes:
-                 exclude_list.append(already_asked)
+                 already_responsed = False
+                 for sended_response_node in (tx.valid + tx.invalid):
+                     if already_asked[1] == sended_response_node[1]:
+                         already_responsed = True  
+
+                 if not already_responsed:               
+                     if (int(time.time()) - already_asked[0]) <= 60:
+                         exclude_list.append(already_asked[1])
+                 else:
+                     exclude_list.append(already_asked[1])
 
              dprint("exclude list_in ledger"+str(exclude_list))
              from node.unl import get_as_node_type
@@ -116,7 +115,10 @@ class ledger:
              dprint("Nodes list: "+str(nodes_list))
              for node in nodes_list:
                  if not node in get_as_node_type(exclude_list):
-                    tx.already_asked_nodes.append(node.id)
+                    temp_already_asked = []
+                    temp_already_asked.append(int(time.time()))
+                    temp_already_asked.append(node.id)
+                    tx.already_asked_nodes.append(temp_already_asked)
                     MyOwnPeer2PeerNode.main_node.send_to_node(node,{"transactionrequest" : 1,"sequance_number": tx.sequance_number, "signature" : tx.signature, "fromUser" : tx.fromUser , "to_user" : tx.toUser, "data" : tx.data, "amount" : tx.amount,"transaction_fee":tx.transaction_fee,"response":True})
 
     def createTrans(self,sequance_number,signature, fromUser,toUser,transaction_fee,data = None, amount = None,transaction_sender = None,response = False):
@@ -135,13 +137,11 @@ class ledger:
       
       temp_signature = signature_class.toBase64()
       already_in_pending = False
-      for pendingtx in self.pendingTransaction:
-          if pendingtx.signature == temp_signature:
+      for already_tx in (self.pendingTransaction + self.validating_list):
+          if already_tx.signature == temp_signature:
               already_in_pending = True
-      for validatingtx in self.validating_list:
-          if validatingtx.signature == temp_signature:
-              already_in_pending = True
-      if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)) and (sequance_number == (self.getSequanceNumber(fromUser)+1) or already_in_pending):
+      if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)):
+        if sequance_number == (self.getSequanceNumber(fromUser)+1) or already_in_pending:
           dprint("Sign verify is true.")
           if (self.getBalance(fromUser) >= (float(amount)+float(transaction_fee)) and float(amount) != float(0)) or response == False: #burası sadece response true ise değerlendirilecek şekilde yenilenebilir
                temp_transaction = Transaction(sequance_number=sequance_number,signature=signature_class.toBase64(),fromUser=fromUser,toUser=toUser,data = data,amount = amount,transaction_fee = transaction_fee)
@@ -194,11 +194,11 @@ class ledger:
             dprint(temp_pubkey in user)
             if temp_pubkey in user or temp_pubkey == user:
                 balance = Accounts.balance
-                for trans in self.pendingTransaction:
+                for trans in self.pendingTransaction + self.validating_list:
                     for Accounts in self.Accounts:
-                        if temp_pubkey in trans.fromUser or temp_pubkey == trans.fromUser:
+                        if temp_pubkey in trans.fromUser.replace('\n', '') or temp_pubkey == trans.fromUser.replace('\n', ''):
                             balance -= (float(trans.amount)-trans.transaction_fee)
-                        elif temp_pubkey in trans.toUser or temp_pubkey == trans.toUser:
+                        elif temp_pubkey in trans.toUser.replace('\n', '') or temp_pubkey == trans.toUser.replace('\n', ''):
                             balance += float(trans.amount)
                 return balance
         return balance
@@ -206,16 +206,23 @@ class ledger:
         sequance_number = 0
         user = user.replace('\n', '')
         for Accounts in self.Accounts:
+            dprint("user: "+user)
+            
             temp_pubkey = Accounts.PublicKey.replace('\n', '')
+            dprint("accounts: "+temp_pubkey)
             if temp_pubkey in user or temp_pubkey == user:
+                
                 sequance_number = Accounts.sequance_number
-                for trans in self.pendingTransaction:
-                    for Accounts in self.Accounts:
-                        if temp_pubkey in trans.fromUser or temp_pubkey == trans.fromUser:
-                            sequance_number += 1
+                dprint("sequance number 1: "+str(sequance_number))
+                for trans in self.pendingTransaction + self.validating_list:
+                    dprint("getsequance trans: "+str(trans))
+                    dprint("user: "+user)
+                    dprint("transfromuser: "+trans.fromUser)
+                    if user in trans.fromUser.replace('\n', '') or user == trans.fromUser.replace('\n', ''):
+                        dprint("seaunce number adding")
+                        sequance_number += 1
                 return sequance_number
         return sequance_number
-
     def save_ledger(self):
         from config import get_config
         import os
