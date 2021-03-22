@@ -265,15 +265,11 @@ def sendme_full_node_list():
 
 def get_ledger_from_other_node():
     from node.myownp2pn import MyOwnPeer2PeerNode
+    from node.unl import get_unl_nodes, get_as_node_type
     node = MyOwnPeer2PeerNode.main_node
-    try:
-        node.send_to_node(node.nodes_outbound[0],"sendmefullledger")   
-    except:
-        pass
-    try:
-        node.send_to_node(node.nodes_inbound[0],"sendmefullledger")   
-    except:
-        pass
+    unl_list = get_as_node_type(get_unl_nodes())
+    node.send_to_node(unl_list[0],"sendmefullledger")   
+
 
 def create_ledger():
     

@@ -44,9 +44,16 @@ import os
 
 def show_menu():
 	
-    print(banner_maker(sc_name="Decentra Network",description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",author="Onur Atakan ULUSOY",email="atadogan06@gmail.com") + \
-       menu_space() + \
-       menu_maker(menu_number="cbl",menu_text="Create ledger")+ \
+
+    print(banner_maker(sc_name="Decentra Network",description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",author="Onur Atakan ULUSOY",email="atadogan06@gmail.com"))
+
+    from lib.settings import the_settings
+    if the_settings().test_mode() == True:
+        print(menu_maker(menu_number="cbl",menu_text="Create ledger"))
+    else:
+        print(menu_maker(menu_number="connectmainnetwork",menu_text="Connect to Main Network"))
+
+    print(menu_space() + \
 	   menu_maker(menu_number="cw",menu_text="Create wallet")+ \
 	   menu_space() + \
 	   menu_maker(menu_number="sc",menu_text="Send Coin")+ \
@@ -56,6 +63,7 @@ def show_menu():
 	   menu_maker(menu_number="ndstart",menu_text="Node Start")+ \
        menu_maker(menu_number="ndstop",menu_text="Node Stop")+ \
        menu_maker(menu_number="ndconnect",menu_text="Node Connect")+ \
+       menu_maker(menu_number="connectmainnetwork",menu_text="Connect to Main Network")+ \
        menu_maker(menu_number="ndconnectmixdb",menu_text="Node Connect from mixdb")+ \
        menu_maker(menu_number="ndnewunl",menu_text="Add new UNL node")+ \
        menu_space() + \
@@ -65,9 +73,10 @@ def show_menu():
        menu_maker(menu_number="debugmodeoff",menu_text="Debug mode OF")+ \
        menu_space() + \
        menu_maker(menu_number="getfullnodelist",menu_text="Get Full Node List")+ \
-       menu_maker(menu_number="getledger",menu_text="Get Ledger")+ \
+       menu_maker(menu_number="getledger",menu_text="Get Ledger From Other Nodes")+ \
        menu_space())
     
+
     for folder_entry in os.scandir('apps'):
         if not ".md" in folder_entry.name:
             for entry in os.scandir("apps/"+folder_entry.name):
@@ -88,9 +97,14 @@ def menu():
         show_menu()
         choices_input = question_maker(mode="main")
 
-
-        if choices_input == "cbl":
-            create_ledger()
+        from lib.settings import the_settings
+        if the_settings().test_mode() == True:
+         if choices_input == "cbl":
+             create_ledger()
+        else:
+            if choices_input == "connectmainnetwork":
+                from func.node_connection import connect_to_main_network
+                connect_to_main_network()
         if choices_input == "cw":
             Wallet_Create()
         if choices_input == "sc":
@@ -105,6 +119,10 @@ def menu():
             ndstop()
         if choices_input == "ndconnect":
             ndconnect(str(input("node ip: ")),int(input("node port: ")))
+        
+
+
+
         if choices_input == "ndconnectmixdb":
             ndconnectmixdb()
         if choices_input == "ndnewunl":

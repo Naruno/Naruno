@@ -43,18 +43,31 @@ class main_gui:
         # build ui
         self.toplevel = tk.Tk() if master is None else tk.Toplevel(master)
         self.frame = ttk.Frame(self.toplevel)
-        self.create_ledger_button = ttk.Button(self.frame)
+        
         self.ledger_44x50_png = tk.PhotoImage(file='gui/icons/ledger_38x50.png')
-        self.create_ledger_button.configure(compound='top', image=self.ledger_44x50_png, text='Create ledger')
-        self.create_ledger_button.grid(column='0', padx='25', pady='20', row='1', sticky='n')
-        self.create_ledger_button.configure(command=self.create_ledger)
-
-
+        self.cellmolecule_50x50_png = tk.PhotoImage(file='gui/icons/cell-molecule_50x50.png')
+        self.computerinternetnetwork_68x50_png = tk.PhotoImage(file='gui/icons/computer-internet-network_68x50.png')
+        self.money_67x50_png = tk.PhotoImage(file='gui/icons/money_67x50.png')
 
         self.get_ledger_button = ttk.Button(self.frame)
-        self.get_ledger_button.configure(compound='top', image= self.ledger_44x50_png, text='Get ledger')
-        self.get_ledger_button.grid(column='0', padx='25', pady='20', row='2', sticky='n')
+        self.get_ledger_button.configure(compound='top', image= self.ledger_44x50_png, text='Get Ledger From Other Nodes')
+        self.get_ledger_button.grid(column='0', padx='25', pady='20', row='1', sticky='n')
         self.get_ledger_button.configure(command=self.get_ledger_command)
+
+        self.button2 = ttk.Button(self.frame)
+        self.button2.configure(compound='top', image=self.computerinternetnetwork_68x50_png, text='Start Node Server')
+        self.button2.grid(column='0', padx='25', pady='20', row='2', sticky='n')
+        self.button2.configure(command=self.start_node_server)
+
+        self.button3 = ttk.Button(self.frame)
+        self.button3.configure(compound='top', image=self.cellmolecule_50x50_png, text='Connect Node \nfrom MIX Database')
+        self.button3.grid(column='0', padx='25', pady='20', row='3', sticky='n')
+        self.button3.configure(command=self.connect_node_fba_algorithm_infrustructure)
+
+        self.send_coin_button = ttk.Button(self.frame)
+        self.send_coin_button.configure(compound='top', image=self.money_67x50_png, text='Send Coin')
+        self.send_coin_button.grid(column='2', padx='25', pady='20', row='3', sticky='n')
+        self.send_coin_button.configure(command=self.send_coin)
 
 
         self.create_wallet_button = ttk.Button(self.frame)
@@ -64,11 +77,7 @@ class main_gui:
         self.create_wallet_button.configure(command=self.Wallet_Create)
 
 
-        self.send_coin_button = ttk.Button(self.frame)
-        self.money_67x50_png = tk.PhotoImage(file='gui/icons/money_67x50.png')
-        self.send_coin_button.configure(compound='top', image=self.money_67x50_png, text='Send Coin')
-        self.send_coin_button.grid(column='3', padx='25', pady='20', row='3', sticky='n')
-        self.send_coin_button.configure(command=self.send_coin)
+
 
         
 
@@ -81,7 +90,7 @@ class main_gui:
         self.reflesh_balance_button.grid(column='0', padx='25', pady='20', row='5', sticky='n')
         self.reflesh_balance_button.configure(command=self.reflesh_balance)
         self.button1 = ttk.Button(self.frame)
-        self.cellmolecule_50x50_png = tk.PhotoImage(file='gui/icons/cell-molecule_50x50.png')
+        
 
         self.button1.configure(compound='top', image=self.cellmolecule_50x50_png, text='Connect Node')
         self.button1.grid(column='3', padx='25', pady='20', row='1', sticky='n')
@@ -94,15 +103,8 @@ class main_gui:
         self.buttonunl.configure(command=self.add_new_unl)
 
 
-        self.button2 = ttk.Button(self.frame)
-        self.computerinternetnetwork_68x50_png = tk.PhotoImage(file='gui/icons/computer-internet-network_68x50.png')
-        self.button2.configure(compound='top', image=self.computerinternetnetwork_68x50_png, text='Start Node Server')
-        self.button2.grid(column='0', padx='25', pady='20', row='3', sticky='w')
-        self.button2.configure(command=self.start_node_server)
-        self.button3 = ttk.Button(self.frame)
-        self.button3.configure(compound='top', image=self.cellmolecule_50x50_png, text='Connect Node \nfrom MIX Database')
-        self.button3.grid(column='2', padx='25', pady='20', row='3', sticky='n')
-        self.button3.configure(command=self.connect_node_fba_algorithm_infrustructure)
+        # TODO adding the get full node list button and func in here
+
 
         self.button4 = ttk.Button(self.frame)
         self.button4.configure(compound='top', text='Test Mode ON')
@@ -138,25 +140,36 @@ class main_gui:
         self.toplevel.resizable(True, True)
         self.toplevel.title('Decentra Network')
 
+        from lib.settings import the_settings
+        if the_settings().test_mode() == True:
+         self.Test_Mode_Menu_Label  = ttk.Label(self.frame, text="Test Mode Menu").grid(column='4', padx='25', pady='20', row='1', sticky='n')
+         self.create_ledger_button = ttk.Button(self.frame)
+         self.create_ledger_button.configure(compound='top', image=self.ledger_44x50_png, text='Create ledger')
+         self.create_ledger_button.grid(column='4', padx='25', pady='20', row='2', sticky='n')
+         self.create_ledger_button.configure(command=self.create_ledger)
+        else:
+         self.connect_to_main_network = ttk.Button(self.frame)
+         self.connect_to_main_network.configure(compound='top', image=self.computerinternetnetwork_68x50_png, text='Connect to Main Network')
+         self.connect_to_main_network.grid(column='4', padx='25', pady='20', row='1', sticky='n')
+         self.connect_to_main_network.configure(command=self.connect_to_main_network_command)           
+
 
         print("nice")
-        column = 0
-        row = 6
+        row = 7
         for folder_entry in os.scandir('apps'):
          if not ".md" in folder_entry.name:
           for entry in os.scandir("apps/"+folder_entry.name):
             if entry.is_file():
                 if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
+                    self.App_Menu_Label = ttk.Label(self.frame, text="APP Menu").grid(column='0', padx='25', pady='20', row='6', sticky='n')
                     print(entry.name)
                     import_command = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_gui" 
-                    tx_command = f"{entry.name.replace('.py','')}_gui(self,column,row)"
+                    tx_command = f"{entry.name.replace('.py','')}_gui(self,0,row)"
                     exec (import_command)
                     exec (tx_command)
 
                     row += 1
-                    if row == 6:
-                        column +=1
-                        row = 1
+
 
 
 
@@ -166,6 +179,10 @@ class main_gui:
         self.mainwindow = self.toplevel
 
 
+
+    def connect_to_main_network_command(self):
+        from func.node_connection import connect_to_main_network
+        connect_to_main_network()
 
 
     def apps_func(self,import_arguments,func_name):
@@ -182,7 +199,7 @@ class main_gui:
 
     def get_ledger_command(self):
         get_ledger_from_other_node()
-        messagebox.showinfo('Wallet', 'ledger are geted.')
+        messagebox.showinfo('Wallet', 'Taked the ledger.')
 
     def Wallet_Create(self):
         Wallet_Create()
@@ -306,36 +323,3 @@ def start():
 
 if __name__ == '__main__':
     start()
-    
-
-
-
-
-
-
-
-"""
-messagebox.showerror("Answer", "Sorry, no answer available")
-
-messagebox.showwarning('Yes', 'Not yet implemented')
-messagebox.showinfo('Wallet', 'Wallet are created.')
-
-
-answer = simpledialog.askinteger("Input", "What is your age?",
-                                 parent=application_window,
-                                 minvalue=0, maxvalue=100)
-if answer is not None:
-    print("Your age is ", answer)
-else:
-    print("You don't have an age?")
-"""
-
-
-
-
-
-"""
-answer = messagebox.askretrycancel("Question", "Do you want to try that again?")
-answer = messagebox.askyesno("Question","Do you like Python?")
-answer = messagebox.askyesnocancel("Question", "Continue playing?")
-"""

@@ -14,7 +14,59 @@ import json
 
 import pickle
 
+def get_connected_node():
+        try:
+         import os
+         import sys
+         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+         from config import get_config
+         old_cwd = os.getcwd()
+         os.chdir(get_config().main_folder)
+         with open('connected_node.decentra_network', 'rb') as connected_node_file:
+             node_list = pickle.load(connected_node_file)
+         os.chdir(old_cwd)
 
+        except:
+            node_list = [] 
+        return node_list
+
+def save_connected_node(host,port):
+        print("hello from def")
+        node_list = get_connected_node()
+
+        already_in_list = False
+
+        for element in node_list:
+            if element[0] == host and element[1] == port:
+                already_in_list = True
+
+        if not already_in_list:
+         new_node_list = []
+
+         new_node_list.append(host)
+         new_node_list.append(port)
+
+         node_list.append(new_node_list)
+
+         
+         import os
+         import sys
+         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+         from config import get_config
+         old_cwd = os.getcwd()
+         os.chdir(get_config().main_folder)
+         with open('connected_node.decentra_network', 'wb') as connected_node_file:
+             pickle.dump(node_list, connected_node_file)
+         os.chdir(old_cwd)
+
+
+
+def connectionfrommixdb():
+        node_list = get_connected_node()
+        from node.myownp2pn import MyOwnPeer2PeerNode
+        for element in node_list:
+            print(element)
+            MyOwnPeer2PeerNode.main_node.connect_with_node(element[0], element[1])
 
 class NodeConnection(threading.Thread):
     """The class NodeConnection is used by the class Node and represent the TCP/IP socket connection with another node. 
@@ -57,6 +109,9 @@ class NodeConnection(threading.Thread):
         self.info = {}
 
         self.main_node.debug_print("NodeConnection.send: Started with client (" + self.id + ") '" + self.host + ":" + str(self.port) + "'")
+
+        print("save connected node returning")
+        save_connected_node(host,port)
 
     def send(self, data, encoding_type='utf-8'):
         """Send the data to the connected node. The data can be pure text (str), dict object (send as json) and bytes object.
@@ -337,59 +392,8 @@ class Node(threading.Thread):
         except Exception as e:
             self.debug_print("TcpServer.connect_with_node: Could not connect with node. (" + str(e) + ")")
         
-        print("save connected node returning")
-        self.save_connected_node(host,port)
-    def save_connected_node(self,host,port):
-        print("hello from def")
-        node_list = self.get_connected_node()
 
-        already_in_list = False
 
-        for element in node_list:
-            if element[0] == host and element[1] == port:
-                already_in_list = True
-
-        if not already_in_list:
-         new_node_list = []
-
-         new_node_list.append(host)
-         new_node_list.append(port)
-
-         node_list.append(new_node_list)
-
-         
-         import os
-         import sys
-         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-         from config import get_config
-         old_cwd = os.getcwd()
-         os.chdir(get_config().main_folder)
-         with open('connected_node.decentra_network', 'wb') as connected_node_file:
-             pickle.dump(node_list, connected_node_file)
-         os.chdir(old_cwd)
-
-    def get_connected_node(self):
-        try:
-         import os
-         import sys
-         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-         from config import get_config
-         old_cwd = os.getcwd()
-         os.chdir(get_config().main_folder)
-         with open('connected_node.decentra_network', 'rb') as connected_node_file:
-             node_list = pickle.load(connected_node_file)
-         os.chdir(old_cwd)
-
-        except:
-            node_list = [] 
-        return node_list
-
-    def connectionfrommixdb(self):
-        node_list = self.get_connected_node()
-
-        for element in node_list:
-            print(element)
-            self.connect_with_node(element[0], element[1])
 
 
     def disconnect_with_node(self, node):

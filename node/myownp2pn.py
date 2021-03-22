@@ -3,7 +3,7 @@
 from node.node import *
 import pickle
 
-from wallet.wallet import Signature , Ecdsa , PublicKey , Wallet_Import
+from wallet.wallet import Signature , Ecdsa , PublicKey , PrivateKey , Wallet_Import
 
 from lib.mixlib import dprint
 
@@ -38,6 +38,8 @@ class MyOwnPeer2PeerNode (Node):
         print("outbound_node_disconnected: " + node.id)
 
     def node_message(self, node, data):
+        from node.unl import get_unl_nodes, get_as_node_type
+    
         if str(data) == "sendmefullledger":
             self.send_full_chain(node)
         print("Data Type: "+str(type(data))+"\n")
@@ -47,14 +49,16 @@ class MyOwnPeer2PeerNode (Node):
         print("Data Type: "+str(type(data))+"\n")
 
         try:
-            if data["fullledger"] == 1:
+            from node.unl import node_is_unl
+            if data["fullledger"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullledger"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 print("getting chain")
                 self.get_full_chain(data["byte"])
         except:
             pass
 
         try:
-            if data["fullnodelist"] == 1:
+            from node.unl import node_is_unl
+            if data["fullnodelist"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullnodelist"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 print("getting node list")
                 self.get_full_node_list(data["byte"])
         except:
@@ -87,7 +91,7 @@ class MyOwnPeer2PeerNode (Node):
         SendData = file.read(1024)
         while SendData:
 
-            data = {"fullledger" : 1,"byte" : (SendData.decode(encoding='iso-8859-1'))}
+            data = {"fullledger" : 1,"byte" : (SendData.decode(encoding='iso-8859-1')),"signature" : Ecdsa.sign("fullledger"+str((SendData.decode(encoding='iso-8859-1'))), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()}
             if not node == None:
                 self.send_to_node(node,data)
             else:
@@ -108,7 +112,7 @@ class MyOwnPeer2PeerNode (Node):
         SendData = file.read(1024)
         while SendData:
 
-            data = {"fullledger" : 1,"byte" : (SendData.decode(encoding='iso-8859-1'))}
+            data = {"fullnodelist" : 1,"byte" : (SendData.decode(encoding='iso-8859-1')),"signature": Ecdsa.sign("fullnodelist"+str((SendData.decode(encoding='iso-8859-1'))), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()}
             print(data)
             print(type(data))
             if not node == None:
