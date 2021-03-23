@@ -44,6 +44,10 @@ class main_gui:
 
 
         self.toplevel = tk.Tk() if master is None else tk.Toplevel(master)
+        
+        self.toplevel.columnconfigure(0, weight=1)
+        self.toplevel.rowconfigure(0, weight=1)
+
         self.frame = ttk.Frame(self.toplevel)
 
 
@@ -157,7 +161,8 @@ class main_gui:
          self.connect_to_main_network.configure(command=self.connect_to_main_network_command)           
 
 
-        print("nice")
+        
+
         row = 7
         for folder_entry in os.scandir('apps'):
          if not ".md" in folder_entry.name:
