@@ -26,7 +26,7 @@ import pickle
 
 
 
-from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node
+from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node, sendme_full_node_list
 
 from lib.settings import the_settings
 

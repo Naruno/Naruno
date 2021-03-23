@@ -27,7 +27,7 @@ import pickle
 
 
 
-from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node
+from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node, sendme_full_node_list
 
 from lib.settings import the_settings
 
@@ -110,7 +110,10 @@ class main_gui:
         self.buttonunl.configure(command=self.add_new_unl)
 
 
-        # TODO adding the get full node list button and func in here
+        self.button_get_node_list = ttk.Button(self.frame)
+        self.button_get_node_list.configure(compound='top', image=self.cellmolecule_50x50_png, text='Get Full Node List')
+        self.button_get_node_list.grid(column='3', padx='25', pady='20', row='3', sticky='n')
+        self.button_get_node_list.configure(command=self.get_node_list_command)
 
 
         self.button4 = ttk.Button(self.frame)
@@ -275,6 +278,12 @@ class main_gui:
         save_new_unl_node(id)        
 
         messagebox.showinfo('Node', ("Added new node. "+"ID: "+id))
+
+
+    def get_node_list_command(self):
+        sendme_full_node_list()
+
+        messagebox.showinfo('Node', "Ok")
 
     def start_node_server(self):
         ip = simpledialog.askstring("Input", "IP: ",

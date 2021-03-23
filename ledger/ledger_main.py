@@ -267,8 +267,10 @@ def get_ledger():
 
 def sendme_full_node_list():
     from node.myownp2pn import MyOwnPeer2PeerNode
+    from node.unl import get_unl_nodes, get_as_node_type
     node = MyOwnPeer2PeerNode.main_node
-    node.send_to_node(node.nodes_outbound[0],"sendmefullnodelist")  
+    unl_list = get_as_node_type(get_unl_nodes())
+    node.send_to_node(unl_list[0],"sendmefullnodelist")  
 
 
 def get_ledger_from_other_node():
