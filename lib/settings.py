@@ -24,7 +24,7 @@ class settings_class:
     def save_settings(self):
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
-        with open('settings.decentra_network', 'wb') as settings_file:
+        with open('db/settings.decentra_network', 'wb') as settings_file:
             pickle.dump(self, settings_file,protocol=2)
         os.chdir(old_cwd)
 
@@ -34,7 +34,7 @@ def the_settings():
     try:
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
-        with open('settings.decentra_network', 'rb') as settings_file:
+        with open('db/settings.decentra_network', 'rb') as settings_file:
             return pickle.load(settings_file)  
         os.chdir(old_cwd)
     except:

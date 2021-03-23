@@ -1,20 +1,8 @@
-# Local files
-settings.decentra_network
-ledger.decentra_network
-config.decentra_network
-wallet_list.decentra_network
-connected_node.decentra_network
-unl_nodes.decentra_network
-
-#Some developer files
-exe_installer.ifp
-auto_py_to_exe.json
+# Local db
+db/
 
 #apps
 apps/
-
-# Todo
-TODO
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

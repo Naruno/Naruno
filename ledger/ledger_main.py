@@ -228,7 +228,7 @@ class ledger:
         import os
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
-        with open('ledger.decentra_network', 'wb') as ledger_file:
+        with open('db/ledger.decentra_network', 'wb') as ledger_file:
             pickle.dump(self, ledger_file,protocol=2)
         os.chdir(old_cwd)
 
@@ -258,7 +258,7 @@ def get_ledger():
         import os
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
-        with open('ledger.decentra_network', 'rb') as ledger_file:
+        with open('db/ledger.decentra_network', 'rb') as ledger_file:
             return pickle.load(ledger_file)
         os.chdir(old_cwd)
 

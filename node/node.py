@@ -22,7 +22,7 @@ def get_connected_node():
          from config import get_config
          old_cwd = os.getcwd()
          os.chdir(get_config().main_folder)
-         with open('connected_node.decentra_network', 'rb') as connected_node_file:
+         with open('db/connected_node.decentra_network', 'rb') as connected_node_file:
              node_list = pickle.load(connected_node_file)
          os.chdir(old_cwd)
 
@@ -55,7 +55,7 @@ def save_connected_node(host,port):
          from config import get_config
          old_cwd = os.getcwd()
          os.chdir(get_config().main_folder)
-         with open('connected_node.decentra_network', 'wb') as connected_node_file:
+         with open('db/connected_node.decentra_network', 'wb') as connected_node_file:
              pickle.dump(node_list, connected_node_file)
          os.chdir(old_cwd)
 

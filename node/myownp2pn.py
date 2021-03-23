@@ -87,7 +87,7 @@ class MyOwnPeer2PeerNode (Node):
 
     def send_full_chain(self,node = None):
         dprint("Sending full chain to node or nodes."+" Node: "+ str(node))
-        file = open("ledger.decentra_network", "rb")
+        file = open("db/ledger.decentra_network", "rb")
         SendData = file.read(1024)
         while SendData:
 
@@ -100,7 +100,7 @@ class MyOwnPeer2PeerNode (Node):
             SendData = file.read(1024) 
     def get_full_chain(self,data):
         
-        file = open("ledger.decentra_network", "ab")
+        file = open("db/ledger.decentra_network", "ab")
 
         file.write((data.encode(encoding='iso-8859-1')))
 
@@ -108,7 +108,7 @@ class MyOwnPeer2PeerNode (Node):
 
     def send_full_node_list(self,node = None):
         print("nice")
-        file = open("connected_node.decentra_network", "rb")
+        file = open("db/connected_node.decentra_network", "rb")
         SendData = file.read(1024)
         while SendData:
 
@@ -123,7 +123,7 @@ class MyOwnPeer2PeerNode (Node):
             SendData = file.read(1024) 
     def get_full_node_list(self,data):
         
-        file = open("connected_node.decentra_network", "ab")
+        file = open("db/connected_node.decentra_network", "ab")
 
         file.write((data.encode(encoding='iso-8859-1')))
 

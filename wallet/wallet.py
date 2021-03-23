@@ -939,7 +939,7 @@ def save_wallet_list(publicKey,privateKey):
     import os
     old_cwd = os.getcwd()
     os.chdir(get_config().main_folder)
-    with open('wallet_list.decentra_network', 'wb') as wallet_list_file:
+    with open('db/wallet_list.decentra_network', 'wb') as wallet_list_file:
         pickle.dump(wallet_list, wallet_list_file)
     os.chdir(old_cwd)
 
@@ -950,7 +950,7 @@ def get_saved_wallet():
         import os
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)  
-        with open('wallet_list.decentra_network', 'rb') as wallet_list_file:
+        with open('db/wallet_list.decentra_network', 'rb') as wallet_list_file:
             wallet_list = pickle.load(wallet_list_file)
         os.chdir(old_cwd)
     except:
@@ -958,7 +958,7 @@ def get_saved_wallet():
     return wallet_list
 
 
-def Wallet_Create():
+def Wallet_Create(save = True):
 
     my_private_key = PrivateKey()
     my_public_key = my_private_key.publicKey()
@@ -967,9 +967,9 @@ def Wallet_Create():
     print(my_private_key.toPem())
     print(my_public_key.toPem())
 
-    
-    save_wallet_list(my_public_key.toPem(),my_private_key.toPem())
-    return True
+    if save == True:
+        save_wallet_list(my_public_key.toPem(),my_private_key.toPem())
+    return (my_private_key.toPem()).replace('\n', '')
 
 def Wallet_Import(account,mode):
 
@@ -981,6 +981,18 @@ def Wallet_Import(account,mode):
         my_private_key = get_saved_wallet()[account][1]
         print(my_private_key)
         return my_private_key
+    
+def Wallet_Delete(account):
+    saved_wallet = get_saved_wallet()
+    if len(saved_wallet) != 0:
+        saved_wallet.remove(account)
+        from config import get_config
+        import os
+        old_cwd = os.getcwd()
+        os.chdir(get_config().main_folder)
+        with open('db/wallet_list.decentra_network', 'wb') as wallet_list_file:
+            pickle.dump(saved_wallet, wallet_list_file)
+        os.chdir(old_cwd)
     
 
 
