@@ -136,7 +136,7 @@ class MyOwnPeer2PeerNode (Node):
         system = get_ledger()
         dprint(system)
         system.createTrans(sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node,response=data["response"])
-        system.minePendingTrans(Wallet_Import(0,0))
+        system.Verificate_Pending_Trans(Wallet_Import(0,0))
 
 
     def get_transaction_response(self,data,node):
@@ -156,10 +156,10 @@ class MyOwnPeer2PeerNode (Node):
                     if data["response"] == "TRUE":
                         tx.valid.append({"data":data,"node":node.id})
                         dprint("valid in myown"+str(tx.valid))
-                        system.minePendingTrans()
+                        system.Verificate_Pending_Trans()
                     elif data["response"] == "FALSE":
                         tx.invalid.append({"data":data,"node":node.id})
                         dprint("invalid in my own"+str(tx.invalid))
-                        system.minePendingTrans()
+                        system.Verificate_Pending_Trans()
 
 #burada birşeyler var içlere prin koyarak neresi olmuyor kontorl et

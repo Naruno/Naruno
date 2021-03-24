@@ -37,7 +37,7 @@ class ledger:
 
  
 
-    def minePendingTrans(self):
+    def Verificate_Pending_Trans(self):
         dprint("Pending transactions number: "+str(len(self.pendingTransaction)))
         dprint("Validating transactions number: "+str(len(self.validating_list)))
         if len(self.pendingTransaction) > 2 and not len(self.validating_list) > 2:
@@ -165,7 +165,7 @@ class ledger:
                    if already_in_pending == False:
                        MyOwnPeer2PeerNode.main_node.send_to_nodes({"transactionrequest" : 1,"sequance_number": sequance_number, "signature" : signature, "fromUser" : fromUser , "to_user" : toUser, "data" : data, "amount" : amount,"transaction_fee":transaction_fee,"response":False},exclude=[transaction_sender])
                #if already_in_pending == False: #burası sanırım olmamamlı çöünkü olduğu zaman karşı taraf bu sorgulandığı zaman herhangi bir tepki vermiyor burdan dolayı yani sorgulandığı zamanda bence gönderen node harici diğer nodelara gönderim sağlanacak şekilde istekler oluşturulabilir.
-               self.minePendingTrans()
+               self.Verificate_Pending_Trans()
                return True
           else:
               if transaction_sender != None and response == True:

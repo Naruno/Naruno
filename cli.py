@@ -37,11 +37,6 @@ import os
 
 
 
-
-"""
-       menu_maker(menu_number="ss",menu_text="Send Message")+ \
-"""
-
 def show_menu():
 	
 

@@ -969,7 +969,7 @@ def Wallet_Create(save = True):
 
     if save == True:
         save_wallet_list(my_public_key.toPem(),my_private_key.toPem())
-    return (my_private_key.toPem()).replace('\n', '')
+    return (my_private_key)
 
 def Wallet_Import(account,mode):
 
