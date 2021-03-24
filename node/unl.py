@@ -55,7 +55,6 @@ def get_unl_nodes():
         return nodes_list
 
 def get_as_node_type(id_list):
-        dprint(id_list)
         temp_list = []
         from node.myownp2pn import MyOwnPeer2PeerNode
         for list_node in id_list:

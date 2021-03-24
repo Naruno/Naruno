@@ -31,7 +31,6 @@ def get_connected_node():
         return node_list
 
 def save_connected_node(host,port):
-        print("hello from def")
         node_list = get_connected_node()
 
         already_in_list = False
@@ -65,7 +64,6 @@ def connectionfrommixdb():
         node_list = get_connected_node()
         from node.myownp2pn import MyOwnPeer2PeerNode
         for element in node_list:
-            print(element)
             MyOwnPeer2PeerNode.main_node.connect_with_node(element[0], element[1])
 
 class NodeConnection(threading.Thread):
@@ -110,7 +108,6 @@ class NodeConnection(threading.Thread):
 
         self.main_node.debug_print("NodeConnection.send: Started with client (" + self.id + ") '" + self.host + ":" + str(self.port) + "'")
 
-        print("save connected node returning")
         save_connected_node(host,port)
 
     def send(self, data, encoding_type='utf-8'):

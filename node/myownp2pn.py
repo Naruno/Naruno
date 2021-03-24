@@ -132,9 +132,8 @@ class MyOwnPeer2PeerNode (Node):
 
     def get_transaction(self,data,node):
         from ledger.ledger_main import get_ledger
-        dprint("getting transactions")
+        dprint("Getting the transactions")
         system = get_ledger()
-        dprint(system)
         system.createTrans(sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node,response=data["response"])
         system.Verificate_Pending_Trans(Wallet_Import(0,0))
 
@@ -142,24 +141,18 @@ class MyOwnPeer2PeerNode (Node):
     def get_transaction_response(self,data,node):
       #burada bu mesaj gönderen adamın bizim istediğimiz node ve pub key olup olmadığına bakacağız. ayrıca eğer unl listemizdeki bir adamdan evet oyu aldıysak o oyu hayıra çeviremeyiz
       from ledger.ledger_main import get_ledger
-      dprint("getting transactions response")
+      dprint("Getting the transactions response")
       system = get_ledger()
       from node.unl import node_is_unl
       if node_is_unl(node.id):
         for tx in system.validating_list:
-            dprint(node.id)
-            dprint(data["fromUser"])
+
             if node.id in data["fromUser"] and Ecdsa.verify(data["response"]+str(data["transaction_signature"]), Signature.fromBase64(data["signature"]), PublicKey.fromPem(data["fromUser"])):
-                dprint("Response Signature is true")
+
                 if data["transaction_signature"] == tx.signature:
-                    dprint("transaction signature and response transaction response equal")
                     if data["response"] == "TRUE":
                         tx.valid.append({"data":data,"node":node.id})
-                        dprint("valid in myown"+str(tx.valid))
                         system.Verificate_Pending_Trans()
                     elif data["response"] == "FALSE":
                         tx.invalid.append({"data":data,"node":node.id})
-                        dprint("invalid in my own"+str(tx.invalid))
                         system.Verificate_Pending_Trans()
-
-#burada birşeyler var içlere prin koyarak neresi olmuyor kontorl et

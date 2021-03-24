@@ -957,15 +957,15 @@ def get_saved_wallet():
         wallet_list = [] 
     return wallet_list
 
-
+from lib.mixlib import dprint
 def Wallet_Create(save = True):
 
     my_private_key = PrivateKey()
     my_public_key = my_private_key.publicKey()
 
-    print("Please save this codes: ")
-    print(my_private_key.toPem())
-    print(my_public_key.toPem())
+    dprint("Please save this codes: ")
+    dprint(my_private_key.toPem())
+    dprint(my_public_key.toPem())
 
     if save == True:
         save_wallet_list(my_public_key.toPem(),my_private_key.toPem())
@@ -975,11 +975,11 @@ def Wallet_Import(account,mode):
 
     if mode == 0:
         my_public_key = get_saved_wallet()[account][0]
-        print(my_public_key)
+        dprint(my_public_key)
         return my_public_key
     elif mode == 1:
         my_private_key = get_saved_wallet()[account][1]
-        print(my_private_key)
+        dprint(my_private_key)
         return my_private_key
     
 def Wallet_Delete(account):
