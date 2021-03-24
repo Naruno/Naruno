@@ -234,11 +234,13 @@ class main_gui:
             print("Coin Amount: ", amount)
         else:
             print("You don't write a coin amount ?")
-        
-        okey = messagebox.askokcancel("Okey",("Receiver adress: "+received_adress+"\n"+"Amount: "+str(amount)))
 
-        if okey:
-            send_coin(amount,received_adress)
+        if amount > 0:
+            okey = messagebox.askokcancel("Okey",("Receiver adress: "+received_adress+"\n"+"Amount: "+str(amount)))
+            if okey:
+                send_coin(amount,received_adress)
+        else:
+            messagebox.showinfo('Send Coin', "This is negative coin amount.")
 
 
 
