@@ -7,7 +7,7 @@ def send_coin(coin_amount,to_user):
   my_private_key = Wallet_Import(0,1)
 
   if not isinstance(coin_amount, float):
-    print("aThis is not float coin amount.")
+    print("This is not float coin amount.")
     return None
 
   if coin_amount < 0:
