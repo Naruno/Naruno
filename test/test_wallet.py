@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 import unittest
 
 
@@ -8,7 +10,7 @@ class Test_Wallet(unittest.TestCase):
         temp_private_key = temp_private_key_class.toPem().replace('\n', '')
 
         saved_wallets = get_saved_wallet()
-        
+
         result = False
         for each_wallet in saved_wallets:
             if temp_private_key == (each_wallet[1]).replace('\n', ''):
@@ -20,16 +22,12 @@ class Test_Wallet(unittest.TestCase):
         result = True if "PRIVATE" in temp_private_key else False
         self.assertEqual(result, True, "A problem on the saving and importing the wallet.")
 
-
-
     def test_Private_Pem_Conversion(self):
         temp_private_key_class = Wallet_Create(save=False)
         pem = temp_private_key_class.toPem()
         privateKey2 = PrivateKey.fromPem(pem)
         self.assertEqual(temp_private_key_class.secret, privateKey2.secret)
         self.assertEqual(temp_private_key_class.curve, privateKey2.curve)
-
-
 
     def test_Public_Conversion(self):
         privateKey = Wallet_Create(save=False)

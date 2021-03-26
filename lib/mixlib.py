@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 def starting_text_centered():
 	print(" ")
 	print(" STARTING \n")
@@ -7,17 +9,20 @@ def ended_text_centered():
 	print(" ")
 	print(" ENDED \n")
 
+
 def printcentertext(text):
 	print(" ")
 	print(text)
 	print(" ")
 
-def banner_maker(sc_name,description,author,email):
+
+def banner_maker(sc_name, description, author, email):
 	return("""Script Name    : """+sc_name+"""\n"""+"""Description    : """+description+"""\n"""+"""Author         : """+author+"""\n"""+"""Email          : """+email+"\n")
 
-def question_maker(question_text=None,mode=None):
+
+def question_maker(question_text=None, mode=None):
 	
-	if question_text == None:
+	if question_text is None:
 		if mode == "main":
 			question_text = "Please enter main option: "
 		elif mode == "sub":
@@ -28,7 +33,7 @@ def question_maker(question_text=None,mode=None):
 	return(input(question_text))
 
 
-def menu_maker(menu_number,menu_text):
+def menu_maker(menu_number, menu_text):
 	return(str(menu_number)+") "+menu_text+"\n")
 	
 
@@ -43,24 +48,20 @@ def quit_menu_maker(mode):
 def menu_space():
 	return("\n")
 
+
 def menu_seperator():
 	return("\n"+"*** \n"+"\n")
 
+
 def menu_title(menu_title_text):
 	return("\n"+"*** "+menu_title_text+" ***"+" \n"+"\n")
-
-
-
 
 
 def clear():
 	os.system("clear")
 
 
-
-
-
 def dprint(text):
-	from lib.settings import the_settings
-	if the_settings().debug_mode():
-		print("DEBUG: "+str(text))
+    from lib.settings import the_settings
+    if the_settings().debug_mode():
+        print("DEBUG: "+str(text))

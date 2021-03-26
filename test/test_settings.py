@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 import unittest
 
 
@@ -32,7 +34,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(temp_test_settings.debug_mode(), False, "A problem on the saving the settings.")
 
         temp_settings.test_mode(temp_test_mode)
-        temp_settings.debug_mode(temp_debug_mode)        
+        temp_settings.debug_mode(temp_debug_mode)
 
 
 if __name__ == '__main__':
