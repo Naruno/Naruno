@@ -12,7 +12,7 @@ This is an open source decentralized application network. In this network, you c
 ## Apps
 
 * [Introducing](https://github.com/onuratakan/Decentra-Network/wiki/Introducing-to-App-Development)
-
+* [How to Install the App ?](https://github.com/onuratakan/Decentra-Network/wiki/How-to-Install-the-App-%3F)
 ### App Development
 * [Creating the App](https://github.com/onuratakan/Decentra-Network/wiki/Creating-the-App)
 * [Definition For App](https://github.com/onuratakan/Decentra-Network/wiki/Definition-for-App)
@@ -31,4 +31,4 @@ This is an open source decentralized application network. In this network, you c
 ### Decentra Network Türkiye Topluluğu
 * [Kanal](https://t.me/joinchat/PnstgE9yipkwYmVk)
 * [Gurup](https://t.me/joinchat/bg-TLUNojKJkYjY0)
-* [Uygulama Gelistirme Gurubu](https://t.me/joinchat/y1ggYuGP_0pjNjI0) 
+* [Uygulama Gelistirme Gurubu](https://t.me/joinchat/y1ggYuGP_0pjNjI0)
