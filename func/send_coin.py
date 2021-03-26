@@ -14,5 +14,5 @@ def send_coin(coin_amount,to_user):
     print("This is negative coin amount.")
     return None
 
-   print("sendcoin"+str(coin_amount))
-   send(my_public_key=my_public_key,my_private_key=my_private_key,to_user=to_user, amount = coin_amount)
+  print("sendcoin"+str(coin_amount))
+  send(my_public_key=my_public_key,my_private_key=my_private_key,to_user=to_user, amount = coin_amount)
