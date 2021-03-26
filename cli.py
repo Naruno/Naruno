@@ -103,7 +103,18 @@ def menu():
         if choices_input == "cw":
             Wallet_Create()
         if choices_input == "sc":
-            send_coin(input("Coin Amount: "),input("Please write receiver adress: "))
+            temp_coin_amount = input("Coin Amount (ex. 1.0): ")
+            type_control = False
+            try:
+                float(temp_coin_amount)
+                type_control = True
+            except:
+                print("This is not float coin amount.")
+            
+            
+            if type_control:
+                send_coin(float(temp_coin_amount),input("Please write receiver adress: "))
+            
         if choices_input == "gb":
             print(get_ledger().getBalance(Wallet_Import(0,0)))
         if choices_input == "help":

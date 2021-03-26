@@ -231,13 +231,17 @@ class main_gui:
                                parent=self.toplevel)
         
         if amount is not None:
-            print("Coin Amount: ", amount)
+            print("Coin Amount (ex. 1.0): ", amount)
         else:
             print("You don't write a coin amount ?")
 
+        try:
+            float(amount)
+        except:
+            messagebox.showinfo('Send Coin',"This is not float coin amount.")
+            return None
         if amount > 0:
-            okey = messagebox.askokcancel("Okey",("Receiver adress: "+received_adress+"\n"+"Amount: "+str(amount)))
-            if okey:
+            if messagebox.askokcancel("Okey",("Receiver adress: "+received_adress+"\n"+"Amount: "+str(amount))):
                 send_coin(amount,received_adress)
         else:
             messagebox.showinfo('Send Coin', "This is negative coin amount.")
