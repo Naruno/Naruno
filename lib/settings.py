@@ -37,10 +37,10 @@ class settings_class:
 
 
 def the_settings():
-    try:
-        old_cwd = os.getcwd()
-        os.chdir(get_config().main_folder)
-        with open('db/settings.decentra_network', 'rb') as settings_file:
-            return pickle.load(settings_file)
-    except:
+    os.chdir(get_config().main_folder)
+
+    if not os.path.exists('db/settings.decentra_network'):
         return settings_class()
+
+    with open('db/settings.decentra_network', 'rb') as settings_file:
+        return pickle.load(settings_file)
