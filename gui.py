@@ -63,13 +63,13 @@ class main_gui:
 
         self.send_coin_button = ttk.Button(self.frame)
         self.send_coin_button.configure(compound='top', image=self.money_67x50_png, text='Send Coin')
-        self.send_coin_button.grid(column='2', padx='25', pady='20', row='3', sticky='n')
+        self.send_coin_button.grid(column='1', padx='25', pady='20', row='3', sticky='n')
         self.send_coin_button.configure(command=self.send_coin)
 
         self.create_wallet_button = ttk.Button(self.frame)
         self.wallet_60x50_png = tk.PhotoImage(file='gui/icons/wallet_60x50.png')
         self.create_wallet_button.configure(compound='top', image=self.wallet_60x50_png, text='Create Wallet')
-        self.create_wallet_button.grid(column='2', padx='25', pady='20', row='1', sticky='n')
+        self.create_wallet_button.grid(column='1', padx='25', pady='20', row='1', sticky='n')
         self.create_wallet_button.configure(command=self.Wallet_Create)
 
         self.balance_label = ttk.Label(self.frame)
@@ -82,40 +82,40 @@ class main_gui:
         self.button1 = ttk.Button(self.frame)
 
         self.button1.configure(compound='top', image=self.cellmolecule_50x50_png, text='Connect Node')
-        self.button1.grid(column='3', padx='25', pady='20', row='1', sticky='n')
+        self.button1.grid(column='2', padx='25', pady='20', row='1', sticky='n')
         self.button1.configure(command=self.connect_node)
 
         self.buttonunl = ttk.Button(self.frame)
         self.buttonunl.configure(compound='top', image=self.cellmolecule_50x50_png, text='Add New UNL')
-        self.buttonunl.grid(column='3', padx='25', pady='20', row='2', sticky='n')
+        self.buttonunl.grid(column='2', padx='25', pady='20', row='2', sticky='n')
         self.buttonunl.configure(command=self.add_new_unl)
 
         self.button_get_node_list = ttk.Button(self.frame)
         self.button_get_node_list.configure(compound='top', image=self.cellmolecule_50x50_png, text='Get Full Node List')
-        self.button_get_node_list.grid(column='3', padx='25', pady='20', row='3', sticky='n')
+        self.button_get_node_list.grid(column='2', padx='25', pady='20', row='3', sticky='n')
         self.button_get_node_list.configure(command=self.get_node_list_command)
 
         self.button4 = ttk.Button(self.frame)
         self.button4.configure(compound='top', text='Test Mode ON')
-        self.button4.grid(column='3', padx='25', pady='20', row='4', sticky='n')
+        self.button4.grid(column='2', padx='25', pady='20', row='4', sticky='n')
         self.button4.configure(command=self.test_mode_on)
         self.button6 = ttk.Button(self.frame)
         self.button6.configure(compound='top', text='Test Mode OFF')
-        self.button6.grid(column='3', padx='25', pady='20', row='5', sticky='n')
+        self.button6.grid(column='2', padx='25', pady='20', row='5', sticky='n')
         self.button6.configure(command=self.test_mode_off)
 
         self.buttondebugmodeon = ttk.Button(self.frame)
         self.buttondebugmodeon.configure(compound='top', text='Debug Mode ON')
-        self.buttondebugmodeon.grid(column='2', padx='25', pady='20', row='4', sticky='n')
+        self.buttondebugmodeon.grid(column='1', padx='25', pady='20', row='4', sticky='n')
         self.buttondebugmodeon.configure(command=self.debug_mode_on)
         self.buttondebugmodeoff = ttk.Button(self.frame)
         self.buttondebugmodeoff.configure(compound='top', text='Debug Mode OFF')
-        self.buttondebugmodeoff.grid(column='2', padx='25', pady='20', row='5', sticky='n')
+        self.buttondebugmodeoff.grid(column='1', padx='25', pady='20', row='5', sticky='n')
         self.buttondebugmodeoff.configure(command=self.debug_mode_off)
 
         self.button7 = ttk.Button(self.frame)
         self.button7.configure(compound='top', image=self.computerinternetnetwork_68x50_png, text='Stop Node Server')
-        self.button7.grid(column='2', padx='25', pady='20', row='2', sticky='n')
+        self.button7.grid(column='1', padx='25', pady='20', row='2', sticky='n')
         self.button7.configure(command=self.stop_node_server)
         self.frame.configure(height='200', width='200')
         self.frame.grid(column='0', row='0')
@@ -127,15 +127,15 @@ class main_gui:
 
         from lib.settings import the_settings
         if the_settings().test_mode():
-            self.Test_Mode_Menu_Label = ttk.Label(self.frame, text="Test Mode Menu").grid(column='4', padx='25', pady='20', row='1', sticky='n')
+            self.Test_Mode_Menu_Label = ttk.Label(self.frame, text="Test Mode Menu").grid(column='3', padx='25', pady='20', row='1', sticky='n')
             self.create_ledger_button = ttk.Button(self.frame)
             self.create_ledger_button.configure(compound='top', image=self.ledger_44x50_png, text='Create ledger')
-            self.create_ledger_button.grid(column='4', padx='25', pady='20', row='2', sticky='n')
+            self.create_ledger_button.grid(column='3', padx='25', pady='20', row='2', sticky='n')
             self.create_ledger_button.configure(command=self.create_ledger)
         else:
             self.connect_to_main_network = ttk.Button(self.frame)
             self.connect_to_main_network.configure(compound='top', image=self.computerinternetnetwork_68x50_png, text='Connect to Main Network')
-            self.connect_to_main_network.grid(column='4', padx='25', pady='20', row='1', sticky='n')
+            self.connect_to_main_network.grid(column='3', padx='25', pady='20', row='1', sticky='n')
             self.connect_to_main_network.configure(command=self.connect_to_main_network_command)
 
         row = 7
