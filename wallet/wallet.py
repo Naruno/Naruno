@@ -948,19 +948,19 @@ def save_wallet_list(publicKey,privateKey):
 
 
 def get_saved_wallet():
-    try:
         from lib.config_system import get_config
     
-
         import os
-        old_cwd = os.getcwd()
+        
+        if not os.path.exists(WALLETS_PATH):
+            return [] 
+        
         os.chdir(get_config().main_folder)  
         with open(WALLETS_PATH, 'rb') as wallet_list_file:
-            wallet_list = pickle.load(wallet_list_file)
-        os.chdir(old_cwd)
-    except:
-        wallet_list = [] 
-    return wallet_list
+            return pickle.load(wallet_list_file)
+
+
+
 
 from lib.mixlib import dprint
 def Wallet_Create(save = True):
@@ -995,12 +995,6 @@ def Wallet_Delete(account):
     
 
         import os
-        old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
         with open(WALLETS_PATH, 'wb') as wallet_list_file:
             pickle.dump(saved_wallet, wallet_list_file)
-        os.chdir(old_cwd)
-    
-
-
-    

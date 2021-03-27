@@ -43,24 +43,23 @@ def save_new_unl_node(id):
          os.chdir(old_cwd)
 
 def get_unl_nodes():
-        try:
-         import os
-         import sys
-         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+        import os
+        import sys
+        sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 
-         from lib.config_system import get_config
+        from lib.config_system import get_config
+        
+        if not os.path.exists(UNL_NODES_PATH):
+            return []
  
 
-         old_cwd = os.getcwd()
-         os.chdir(get_config().main_folder)
-         with open(UNL_NODES_PATH, 'rb') as unl_nodes_file:
-             nodes_list = pickle.load(unl_nodes_file)
-         os.chdir(old_cwd)
 
-        except:
-            nodes_list = [] 
-        return nodes_list
+        os.chdir(get_config().main_folder)
+        with open(UNL_NODES_PATH, 'rb') as unl_nodes_file:
+            return pickle.load(unl_nodes_file)
+
+
 
 def get_as_node_type(id_list):
         temp_list = []

@@ -32,11 +32,11 @@ class settings_class:
             return self.debug_mode_settings
 
     def save_settings(self):
-        old_cwd = os.getcwd()
+
         os.chdir(get_config().main_folder)
         with open(SETTING_PATH, 'wb') as settings_file:
             pickle.dump(self, settings_file, protocol= 2)
-        os.chdir(old_cwd)
+
 
 
 def the_settings():

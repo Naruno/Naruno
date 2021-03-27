@@ -18,23 +18,21 @@ import pickle
 from config import *
 
 def get_connected_node():
-        try:
-         import os
-         import sys
-         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-         from lib.config_system import get_config
+        import os
+        import sys
+        sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+        from lib.config_system import get_config
+
+        if not os.path.exists(CONNECTED_NODE_PATH):
+            return []
 
 
-         old_cwd = os.getcwd()
-         os.chdir(get_config().main_folder)
-         with open(CONNECTED_NODE_PATH, 'rb') as connected_node_file:
-             node_list = pickle.load(connected_node_file)
-         os.chdir(old_cwd)
+        os.chdir(get_config().main_folder)
+        with open(CONNECTED_NODE_PATH, 'rb') as connected_node_file:
+            return pickle.load(connected_node_file)
 
-        except:
-            node_list = [] 
-        return node_list
 
 def save_connected_node(host,port):
         node_list = get_connected_node()

@@ -195,11 +195,11 @@ class ledger:
         from lib.config_system import get_config
         import os
 
-        old_cwd = os.getcwd()
+
         os.chdir(get_config().main_folder)
         with open(LEDGER_PATH, 'wb') as ledger_file:
             pickle.dump(self, ledger_file, protocol=2)
-        os.chdir(old_cwd)
+
 
 
 class Transaction:
@@ -222,11 +222,11 @@ def get_ledger():
         from lib.config_system import get_config
         import os
 
-        old_cwd = os.getcwd()
+
         os.chdir(get_config().main_folder)
         with open(LEDGER_PATH, 'rb') as ledger_file:
             return pickle.load(ledger_file)
-        os.chdir(old_cwd)
+
 
 
 def sendme_full_node_list():
