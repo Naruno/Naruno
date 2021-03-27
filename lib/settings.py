@@ -42,6 +42,5 @@ def the_settings():
         os.chdir(get_config().main_folder)
         with open('db/settings.decentra_network', 'rb') as settings_file:
             return pickle.load(settings_file)
-        os.chdir(old_cwd)
     except:
         return settings_class()
