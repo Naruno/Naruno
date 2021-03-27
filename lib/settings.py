@@ -7,6 +7,9 @@ from config import get_config
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 
+SETTING_PATH = 'db/settings.decentra_network'
+
+
 class settings_class:
     def __init__(self, test_mode_settings= False, debug= False):
         self.test_mode_settings = test_mode_settings
@@ -31,17 +34,16 @@ class settings_class:
     def save_settings(self):
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
-        with open('db/settings.decentra_network', 'wb') as settings_file:
+        with open(SETTING_PATH, 'wb') as settings_file:
             pickle.dump(self, settings_file, protocol= 2)
         os.chdir(old_cwd)
 
 
 def the_settings():
-    try:
-        old_cwd = os.getcwd()
-        os.chdir(get_config().main_folder)
-        with open('db/settings.decentra_network', 'rb') as settings_file:
-            return pickle.load(settings_file)
-        os.chdir(old_cwd)
-    except:
+    os.chdir(get_config().main_folder)
+
+    if not os.path.exists(SETTING_PATH):
         return settings_class()
+
+    with open(SETTING_PATH, 'rb') as settings_file:
+        return pickle.load(settings_file)
