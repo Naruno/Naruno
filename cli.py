@@ -23,7 +23,7 @@ import pickle
 
 from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node, sendme_full_node_list
 
-from lib.settings import the_settings
+from lib.settings_system import the_settings
 
 
 import os
@@ -33,7 +33,7 @@ def show_menu():
 
     print(banner_maker(sc_name="Decentra Network", description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.", author="Onur Atakan ULUSOY", email="atadogan06@gmail.com"))
 
-    from lib.settings import the_settings
+    from lib.settings_system import the_settings
     if the_settings().test_mode():
         print(menu_maker(menu_number="cbl", menu_text="Create ledger"))
     else:
@@ -81,7 +81,7 @@ def menu():
         show_menu()
         choices_input = question_maker(mode="main")
 
-        from lib.settings import the_settings
+        from lib.settings_system import the_settings
         if the_settings().test_mode():
             if choices_input == "cbl":
                 create_ledger()

@@ -3,11 +3,11 @@
 import pickle
 import sys
 import os
-from config import get_config
+from lib.config_system import get_config
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 
-SETTING_PATH = 'db/settings.decentra_network'
+from config import *
 
 
 class settings_class:

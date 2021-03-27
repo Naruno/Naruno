@@ -23,7 +23,7 @@ import pickle
 
 from ledger.ledger_main import get_ledger, create_ledger, get_ledger_from_other_node, sendme_full_node_list
 
-from lib.settings import the_settings
+from lib.settings_system import the_settings
 
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -125,7 +125,7 @@ class main_gui:
         self.toplevel.resizable(True, True)
         self.toplevel.title('Decentra Network')
 
-        from lib.settings import the_settings
+        from lib.settings_system import the_settings
         if the_settings().test_mode():
             self.Test_Mode_Menu_Label = ttk.Label(self.frame, text="Test Mode Menu").grid(column='3', padx='25', pady='20', row='1', sticky='n')
             self.create_ledger_button = ttk.Button(self.frame)

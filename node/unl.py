@@ -1,6 +1,7 @@
 import pickle
 
 from lib.mixlib import dprint
+from config import *
 
 def save_new_unl_node(id):
     id = id.replace('\n', '')
@@ -31,10 +32,13 @@ def save_new_unl_node(id):
          import os
          import sys
          sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-         from config import get_config
+
+         from lib.config_system import get_config
+
+
          old_cwd = os.getcwd()
          os.chdir(get_config().main_folder)
-         with open('db/unl_nodes.decentra_network', 'wb') as unl_nodes_file:
+         with open(UNL_NODES_PATH, 'wb') as unl_nodes_file:
              pickle.dump(nodes_list, unl_nodes_file)
          os.chdir(old_cwd)
 
@@ -43,10 +47,14 @@ def get_unl_nodes():
          import os
          import sys
          sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-         from config import get_config
+
+
+         from lib.config_system import get_config
+ 
+
          old_cwd = os.getcwd()
          os.chdir(get_config().main_folder)
-         with open('db/unl_nodes.decentra_network', 'rb') as unl_nodes_file:
+         with open(UNL_NODES_PATH, 'rb') as unl_nodes_file:
              nodes_list = pickle.load(unl_nodes_file)
          os.chdir(old_cwd)
 

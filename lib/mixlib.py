@@ -65,6 +65,6 @@ def clear():
 
 
 def dprint(text):
-    from lib.settings import the_settings
+    from lib.settings_system import the_settings
     if the_settings().debug_mode():
         print("DEBUG: "+str(text))

@@ -41,5 +41,5 @@ if __name__ == '__main__':
     import os
     import sys
     sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-    from lib.settings import the_settings
+    from lib.settings_system import the_settings
     unittest.main()

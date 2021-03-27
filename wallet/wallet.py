@@ -922,6 +922,7 @@ class PublicKey:
 
 
 
+from config import *
 
 def save_wallet_list(publicKey,privateKey):
     wallet_list = get_saved_wallet()
@@ -935,22 +936,26 @@ def save_wallet_list(publicKey,privateKey):
     wallet_list.append(new_wallet_list)
 
 
-    from config import get_config
+    from lib.config_system import get_config
+
+
     import os
     old_cwd = os.getcwd()
     os.chdir(get_config().main_folder)
-    with open('db/wallet_list.decentra_network', 'wb') as wallet_list_file:
+    with open(WALLETS_PATH, 'wb') as wallet_list_file:
         pickle.dump(wallet_list, wallet_list_file)
     os.chdir(old_cwd)
 
 
 def get_saved_wallet():
     try:
-        from config import get_config
+        from lib.config_system import get_config
+    
+
         import os
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)  
-        with open('db/wallet_list.decentra_network', 'rb') as wallet_list_file:
+        with open(WALLETS_PATH, 'rb') as wallet_list_file:
             wallet_list = pickle.load(wallet_list_file)
         os.chdir(old_cwd)
     except:
@@ -986,11 +991,13 @@ def Wallet_Delete(account):
     saved_wallet = get_saved_wallet()
     if len(saved_wallet) != 0:
         saved_wallet.remove(account)
-        from config import get_config
+        from lib.config_system import get_config
+    
+
         import os
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
-        with open('db/wallet_list.decentra_network', 'wb') as wallet_list_file:
+        with open(WALLETS_PATH, 'wb') as wallet_list_file:
             pickle.dump(saved_wallet, wallet_list_file)
         os.chdir(old_cwd)
     

@@ -10,7 +10,7 @@ from wallet.wallet import Ecdsa, PrivateKey, PublicKey, Wallet_Import, Signature
 import pickle
 
 
-from lib.settings import the_settings
+from lib.settings_system import the_settings
 from lib.mixlib import dprint
 
 import os
@@ -18,6 +18,8 @@ import os
 
 import time
 
+
+from config import *
 
 class Account:
     def __init__(self, PublicKey, balance):
@@ -190,11 +192,12 @@ class ledger:
         return sequance_number
 
     def save_ledger(self):
-        from config import get_config
+        from lib.config_system import get_config
         import os
+
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
-        with open('db/ledger.decentra_network', 'wb') as ledger_file:
+        with open(LEDGER_PATH, 'wb') as ledger_file:
             pickle.dump(self, ledger_file, protocol=2)
         os.chdir(old_cwd)
 
@@ -216,11 +219,12 @@ class Transaction:
 
 
 def get_ledger():
-        from config import get_config
+        from lib.config_system import get_config
         import os
+
         old_cwd = os.getcwd()
         os.chdir(get_config().main_folder)
-        with open('db/ledger.decentra_network', 'rb') as ledger_file:
+        with open(LEDGER_PATH, 'rb') as ledger_file:
             return pickle.load(ledger_file)
         os.chdir(old_cwd)
 

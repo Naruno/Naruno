@@ -1,41 +1,13 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-import pickle
-import os
 
 
-class config_class:
-    def __init__(self):
-        self.main_folder = None
+CONFIG_PATH = 'db/config.decentra_network'
+SETTING_PATH = 'db/settings.decentra_network'
 
+CONNECTED_NODE_PATH = 'db/connected_node.decentra_network'
+UNL_NODES_PATH = 'db/unl_nodes.decentra_network'
 
-def get_config():
-    try:
-        old_cwd = os.getcwd()
-        os.chdir(os.path.dirname(os.path.realpath(__file__)))
-        with open('db/config.decentra_network', 'rb') as config_file:
-            return pickle.load(config_file)
-        os.chdir(old_cwd)
+LEDGER_PATH = 'db/ledger.decentra_network'
 
-    except:
-        save_folder()
-        old_cwd = os.getcwd()
-        os.chdir(os.path.dirname(os.path.realpath(__file__)))
-        with open('db/config.decentra_network', 'rb') as config_file:
-            return pickle.load(config_file)
-        os.chdir(old_cwd)
-
-
-def save_folder():
-    config = config_class()
-    config.main_folder = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(config.main_folder)
-    with open('db/config.decentra_network', 'wb') as config_file:
-        pickle.dump(config, config_file)
-
-
-if __name__ == '__main__':
-    try:
-        get_config()
-    except:
-        save_folder()
+WALLETS_PATH = 'db/wallet_list.decentra_network'

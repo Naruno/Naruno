@@ -86,8 +86,9 @@ class MyOwnPeer2PeerNode (Node):
         print("node is requested to stop!")
 
     def send_full_chain(self,node = None):
+        from config import LEDGER_PATH
         dprint("Sending full chain to node or nodes."+" Node: "+ str(node))
-        file = open("db/ledger.decentra_network", "rb")
+        file = open(LEDGER_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
 
@@ -99,16 +100,16 @@ class MyOwnPeer2PeerNode (Node):
 
             SendData = file.read(1024) 
     def get_full_chain(self,data):
-        
-        file = open("db/ledger.decentra_network", "ab")
+        from config import LEDGER_PATH
+        file = open(LEDGER_PATH, "ab")
 
         file.write((data.encode(encoding='iso-8859-1')))
 
         file.close()
 
     def send_full_node_list(self,node = None):
-        print("nice")
-        file = open("db/connected_node.decentra_network", "rb")
+        from config import CONNECTED_NODE_PATH
+        file = open(CONNECTED_NODE_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
 
@@ -122,8 +123,8 @@ class MyOwnPeer2PeerNode (Node):
 
             SendData = file.read(1024) 
     def get_full_node_list(self,data):
-        
-        file = open("db/connected_node.decentra_network", "ab")
+        from config import CONNECTED_NODE_PATH
+        file = open(CONNECTED_NODE_PATH, "ab")
 
         file.write((data.encode(encoding='iso-8859-1')))
 

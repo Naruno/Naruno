@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from node.myownp2pn import MyOwnPeer2PeerNode, connectionfrommixdb
-from lib.settings import the_settings
+from lib.settings_system import the_settings
 
+from config import *
 
 def ndstart(ip, port):
     node = MyOwnPeer2PeerNode(ip, port)
@@ -24,6 +25,6 @@ def ndconnectmixdb():
 
 def connect_to_main_network():
     import urllib.request
-    urllib.request.urlretrieve('https://raw.githubusercontent.com/onuratakan/Decentra-Network/master/connected_node.decentra_network', 'db/connected_node.decentra_network')
+    urllib.request.urlretrieve('https://raw.githubusercontent.com/onuratakan/Decentra-Network/master/connected_node.decentra_network', CONNECTED_NODE_PATH)
 
     ndconnectmixdb()
