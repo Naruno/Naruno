@@ -6,7 +6,7 @@ from node.myownp2pn import MyOwnPeer2PeerNode
 
 
 def send(my_public_key, my_private_key, to_user, data = None, amount = None):
-    from ledger.ledger_main import get_ledge
+    from ledger.ledger_main import get_ledger
     system = get_ledger()
     sequance_number = (system.getSequanceNumber(my_public_key))+1
     transaction_fee = 0.02
