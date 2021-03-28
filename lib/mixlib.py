@@ -32,6 +32,8 @@ def question_maker(question_text=None, mode=None):
 			question_text = "Please enter sub option: "
 		elif mode == "anykeytocontinue":
 			question_text = "Press any key to continue..."
+		else:
+			raise ValueError("the mode variable contains an unplanned value")
 	
 	return(input(question_text))
 
