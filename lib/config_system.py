@@ -39,4 +39,4 @@ if __name__ == '__main__':
     try:
         get_config()
     except:
-        save_folder()
+        save_folder(config_class())
