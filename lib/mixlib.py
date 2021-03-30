@@ -68,5 +68,5 @@ def clear():
 
 def dprint(text):
     from lib.settings_system import the_settings
-    if the_settings().debug_mode():
+    if the_settings()["debug_mode"]:
         print("DEBUG: "+str(text))

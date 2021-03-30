@@ -23,18 +23,16 @@ import pickle
 
 from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node, sendme_full_node_list
 
-from lib.settings_system import the_settings
 
 
 import os
-
+from lib.settings_system import the_settings, test_mode, debug_mode
 
 def show_menu():
 
     print(banner_maker(sc_name="Decentra Network", description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.", author="Onur Atakan ULUSOY", email="atadogan06@gmail.com"))
 
-    from lib.settings_system import the_settings
-    if the_settings().test_mode():
+    if the_settings()["test_mode"]:
         print(menu_maker(menu_number="cbl", menu_text="Create ledger"))
     else:
         print(menu_maker(menu_number="connectmainnetwork", menu_text="Connect to Main Network"))
@@ -81,8 +79,7 @@ def menu():
         show_menu()
         choices_input = question_maker(mode="main")
 
-        from lib.settings_system import the_settings
-        if the_settings().test_mode():
+        if the_settings()["test_mode"]:
             if choices_input == "cbl":
                 create_ledger()
         else:
@@ -120,15 +117,15 @@ def menu():
             from node.unl import save_new_unl_node
             save_new_unl_node(input("Please write ID of the node: "))
         if choices_input == "testmodeon":
-            the_settings().test_mode(True)
+            test_mode(True)
         if choices_input == "testmodeoff":
-            the_settings().test_mode(False)
+            test_mode(False)
         if choices_input == "debugmodeon":
-            the_settings().debug_mode(True)
+            debug_mode(True)
             # from node.myownp2pn import MyOwnPeer2PeerNode
             # MyOwnPeer2PeerNode.main_node.debug = True
         if choices_input == "debugmodeoff":
-            the_settings().debug_mode(False)
+            debug_mode(False)
             # from node.myownp2pn import MyOwnPeer2PeerNode
             # MyOwnPeer2PeerNode.main_node.debug = False
 

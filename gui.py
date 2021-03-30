@@ -23,7 +23,7 @@ import pickle
 
 from ledger.ledger_main import get_ledger, create_ledger, get_ledger_from_other_node, sendme_full_node_list
 
-from lib.settings_system import the_settings
+from lib.settings_system import the_settings, test_mode, debug_mode
 
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -126,7 +126,7 @@ class main_gui:
         self.toplevel.title('Decentra Network')
 
         from lib.settings_system import the_settings
-        if the_settings().test_mode():
+        if the_settings()["test_mode"]:
             self.Test_Mode_Menu_Label = ttk.Label(self.frame, text="Test Mode Menu").grid(column='3', padx='25', pady='20', row='1', sticky='n')
             self.create_ledger_button = ttk.Button(self.frame)
             self.create_ledger_button.configure(compound='top', image=self.ledger_44x50_png, text='Create ledger')
@@ -259,19 +259,19 @@ class main_gui:
         messagebox.showinfo('Node', 'Connected Node or Nodes from decentra_network database.')
 
     def test_mode_on(self):
-        the_settings().test_mode(True)
+        test_mode(True)
         messagebox.showinfo('System', 'Test mode is ON')
 
     def test_mode_off(self):
-        the_settings().test_mode(False)
+        test_mode(False)
         messagebox.showinfo('System', 'Test mode is OFF')
 
     def debug_mode_on(self):
-        the_settings().debug_mode(True)
+        debug_mode(True)
         messagebox.showinfo('System', 'Debug mode is ON')
 
     def debug_mode_off(self):
-        the_settings().debug_mode(False)
+        debug_mode(False)
         messagebox.showinfo('System', 'Debug mode is OFF')
 
     def stop_node_server(self):

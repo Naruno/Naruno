@@ -12,58 +12,58 @@ import json
 
 
 
-import pickle
-
-
 from config import *
+
+import os
+import sys
 
 def get_connected_node():
 
-        import os
-        import sys
+
         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
         from lib.config_system import get_config
 
         if not os.path.exists(CONNECTED_NODE_PATH):
-            return []
+            temp_json = {}
+            return temp_json
 
 
-        os.chdir(get_config().main_folder)
+        os.chdir(get_config()["main_folder"])
         with open(CONNECTED_NODE_PATH, 'rb') as connected_node_file:
-            return pickle.load(connected_node_file)
+            return json.load(connected_node_file)
 
 
-def save_connected_node(host,port):
+def save_connected_node(host,port,id):
+
         node_list = get_connected_node()
 
         already_in_list = False
 
         for element in node_list:
-            if element[0] == host and element[1] == port:
+            if node_list[element]["host"] == host and node_list[element]["port"] == port:
                 already_in_list = True
 
         if not already_in_list:
-         new_node_list = []
+         node_list[id] = {}
+         node_list[id]["host"] = host
+         node_list[id]["port"] = port
 
-         new_node_list.append(host)
-         new_node_list.append(port)
 
-         node_list.append(new_node_list)
+
 
          
-         import os
-         import sys
+
          sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
          
          from lib.config_system import get_config
 
 
-         old_cwd = os.getcwd()
-         os.chdir(get_config().main_folder)
-         with open(CONNECTED_NODE_PATH, 'wb') as connected_node_file:
-             pickle.dump(node_list, connected_node_file)
-         os.chdir(old_cwd)
+
+         os.chdir(get_config()["main_folder"])
+         with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
+             json.dump(node_list, connected_node_file)
+
 
 
 
@@ -71,7 +71,20 @@ def connectionfrommixdb():
         node_list = get_connected_node()
         from node.myownp2pn import MyOwnPeer2PeerNode
         for element in node_list:
-            MyOwnPeer2PeerNode.main_node.connect_with_node(element[0], element[1])
+            MyOwnPeer2PeerNode.main_node.connect_with_node(node_list[element]["host"], node_list[element]["port"])
+
+
+def connected_node_delete(node):
+    saved_nodes = get_connected_node()
+    if node in saved_nodes:
+        del saved_nodes[node]
+        from lib.config_system import get_config
+    
+
+        os.chdir(get_config()["main_folder"])
+        with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
+            json.dump(saved_nodes, connected_node_file)
+
 
 class NodeConnection(threading.Thread):
     """The class NodeConnection is used by the class Node and represent the TCP/IP socket connection with another node. 
@@ -115,7 +128,7 @@ class NodeConnection(threading.Thread):
 
         self.main_node.debug_print("NodeConnection.send: Started with client (" + self.id + ") '" + self.host + ":" + str(self.port) + "'")
 
-        save_connected_node(host,port)
+        save_connected_node(host,port,id)
 
     def send(self, data, encoding_type='utf-8'):
         """Send the data to the connected node. The data can be pure text (str), dict object (send as json) and bytes object.
