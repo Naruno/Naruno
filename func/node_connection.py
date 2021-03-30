@@ -7,8 +7,9 @@ from config import *
 
 def ndstart(ip, port):
     node = MyOwnPeer2PeerNode(ip, port)
-    # node.debug = the_settings().debug_mode()
+    # node.debug = the_settings()["debug_mode"]
     node.start()
+    return node
 
 
 def ndstop():

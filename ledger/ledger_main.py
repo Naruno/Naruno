@@ -196,7 +196,7 @@ class ledger:
         import os
 
 
-        os.chdir(get_config().main_folder)
+        os.chdir(get_config()["main_folder"])
         with open(LEDGER_PATH, 'wb') as ledger_file:
             pickle.dump(self, ledger_file, protocol=2)
 
@@ -223,7 +223,7 @@ def get_ledger():
         import os
 
 
-        os.chdir(get_config().main_folder)
+        os.chdir(get_config()["main_folder"])
         with open(LEDGER_PATH, 'rb') as ledger_file:
             return pickle.load(ledger_file)
 
@@ -247,7 +247,7 @@ def get_ledger_from_other_node():
 
 def create_ledger():
 
-    if the_settings().test_mode():
+    if the_settings()["test_mode"]:
         dprint("Creating new ledger")
         system = ledger(Wallet_Import(0,0))
         from node.myownp2pn import MyOwnPeer2PeerNode

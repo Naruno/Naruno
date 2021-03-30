@@ -7,7 +7,6 @@ from sys import version_info as pyVersion
 from binascii import hexlify, unhexlify
 
 
-import pickle
 
 
 if pyVersion.major == 3:
@@ -923,41 +922,38 @@ class PublicKey:
 
 
 from config import *
-
+import json
+import os
 def save_wallet_list(publicKey,privateKey):
     wallet_list = get_saved_wallet()
 
 
-    new_wallet_list = []
+    wallet_list[publicKey] = {}
 
-    new_wallet_list.append(publicKey)
-    new_wallet_list.append(privateKey)
-
-    wallet_list.append(new_wallet_list)
+    wallet_list[publicKey]["publickey"] = publicKey
+    wallet_list[publicKey]["privatekey"] = privateKey
 
 
     from lib.config_system import get_config
 
 
-    import os
     old_cwd = os.getcwd()
-    os.chdir(get_config().main_folder)
-    with open(WALLETS_PATH, 'wb') as wallet_list_file:
-        pickle.dump(wallet_list, wallet_list_file)
+    os.chdir(get_config()["main_folder"])
+    with open(WALLETS_PATH, 'w') as wallet_list_file:
+        json.dump(wallet_list, wallet_list_file)
     os.chdir(old_cwd)
 
 
 def get_saved_wallet():
         from lib.config_system import get_config
     
-        import os
-        
+      
         if not os.path.exists(WALLETS_PATH):
-            return [] 
+            return {}
         
-        os.chdir(get_config().main_folder)  
+        os.chdir(get_config()["main_folder"])  
         with open(WALLETS_PATH, 'rb') as wallet_list_file:
-            return pickle.load(wallet_list_file)
+            return json.load(wallet_list_file)
 
 
 
@@ -977,24 +973,26 @@ def Wallet_Create(save = True):
     return (my_private_key)
 
 def Wallet_Import(account,mode):
+    temp_saved_wallet = get_saved_wallet()
+    if isinstance(account,int):
+        account = list(temp_saved_wallet)[account]
 
     if mode == 0:
-        my_public_key = get_saved_wallet()[account][0]
+        my_public_key = temp_saved_wallet[account]["publickey"]
         dprint(my_public_key)
         return my_public_key
     elif mode == 1:
-        my_private_key = get_saved_wallet()[account][1]
+        my_private_key = temp_saved_wallet[account]["privatekey"]
         dprint(my_private_key)
         return my_private_key
-    
+    else:
+        raise ValueError("the mode variable contains an unplanned value")
 def Wallet_Delete(account):
     saved_wallet = get_saved_wallet()
-    if len(saved_wallet) != 0:
-        saved_wallet.remove(account)
+    if account in saved_wallet:
+        del saved_wallet[account]
         from lib.config_system import get_config
     
-
-        import os
-        os.chdir(get_config().main_folder)
-        with open(WALLETS_PATH, 'wb') as wallet_list_file:
-            pickle.dump(saved_wallet, wallet_list_file)
+        os.chdir(get_config()["main_folder"])
+        with open(WALLETS_PATH, 'w') as wallet_list_file:
+            json.dump(saved_wallet, wallet_list_file)
