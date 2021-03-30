@@ -6,17 +6,17 @@ This is an open source decentralized application network. In this network, you c
 # Wiki
 ## Getting Started
 
-* [Downloading](https://github.com/onuratakan/Decentra-Network/wiki/Downloading)
-* [Using](https://github.com/onuratakan/Decentra-Network/wiki/Using)
+* [Downloading](https://github.com/Decentra-Network/Decentra-Network/wiki/Downloading)
+* [Using](https://github.com/Decentra-Network/Decentra-Network/wiki/Using)
 
 ## Apps
 
-* [Introducing](https://github.com/onuratakan/Decentra-Network/wiki/Introducing-to-App-Development)
-* [How to Install the App ?](https://github.com/onuratakan/Decentra-Network/wiki/How-to-Install-the-App-%3F)
+* [Introducing](https://github.com/Decentra-Network/Decentra-Network/wiki/Introducing-to-App-Development)
+* [How to Install the App ?](https://github.com/Decentra-Network/Decentra-Network/wiki/How-to-Install-the-App-%3F)
 ### App Development
-* [Creating the App](https://github.com/onuratakan/Decentra-Network/wiki/Creating-the-App)
-* [Definition For App](https://github.com/onuratakan/Decentra-Network/wiki/Definition-for-App)
-* [Question and answer](https://github.com/onuratakan/Decentra-Network/wiki/Questions-and-Answer-for-App-Development)
+* [Creating the App](https://github.com/Decentra-Network/Decentra-Network/wiki/Creating-the-App)
+* [Definition For App](https://github.com/Decentra-Network/Decentra-Network/wiki/Definition-for-App)
+* [Question and answer](https://github.com/Decentra-Network/Decentra-Network/wiki/Questions-and-Answer-for-App-Development)
 
 # Videos
 ## In Turkish

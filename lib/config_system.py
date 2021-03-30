@@ -38,6 +38,3 @@ def get_config():
     
     with open(CONFIG_PATH, 'rb') as config_file:
         return json.load(config_file)
-
-
-
