@@ -208,8 +208,27 @@ class ledger:
 
 
         os.chdir(get_config()["main_folder"])
-        with open(LEDGER_PATH, 'wb') as ledger_file:
-            pickle.dump(self, ledger_file, protocol=2)
+        with open(LEDGER_PATH, 'w') as ledger_file:
+            json.dump(self.dump_json(), ledger_file)
+
+    def get_account_json_list(self):
+        account_json_list = []
+
+        for account in self.Accounts:
+            account_json_list.append(account.dump_json())
+
+        return account_json_list
+
+    def dump_json(self):
+        account_json_list = self.get_account_json_list()
+
+        data = {
+            "acconut_list": account_json_list,
+            "pending_transaction": self.pendingTransaction,
+            "validating_list": self.validating_list
+        }
+
+        return data
 
 
 
