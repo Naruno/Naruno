@@ -947,11 +947,12 @@ def save_wallet_list(publicKey,privateKey):
 def get_saved_wallet():
         from lib.config_system import get_config
     
-      
+        os.chdir(get_config()["main_folder"])
+
         if not os.path.exists(WALLETS_PATH):
             return {}
         
-        os.chdir(get_config()["main_folder"])  
+
         with open(WALLETS_PATH, 'rb') as wallet_list_file:
             return json.load(wallet_list_file)
 
