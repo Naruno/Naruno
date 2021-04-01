@@ -8,6 +8,7 @@ import pprint
 from wallet.wallet import Ecdsa, PrivateKey, PublicKey, Wallet_Import, Signature
 
 import pickle
+import json
 
 
 from lib.settings_system import the_settings
