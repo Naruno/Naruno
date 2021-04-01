@@ -27,6 +27,17 @@ class Account:
         self.sequance_number = 0
         self.balance = balance
 
+    def dump_json(self):
+        data = {
+            "public_key": self.PublicKey,
+            "balance": self.balance
+        }
+        return data
+
+    @staticmethod
+    def load_json(data):
+        return Account(data["public_key"], data["balance"])
+
 
 class ledger:
     def __init__(self, creator):
