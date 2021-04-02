@@ -224,13 +224,12 @@ class Transaction:
 
 
 def get_ledger():
-        from lib.config_system import get_config
-        import os
+    from lib.config_system import get_config
+    import os
 
-
-        os.chdir(get_config()["main_folder"])
-        with open(LEDGER_PATH, 'rb') as ledger_file:
-            return pickle.load(ledger_file)
+    os.chdir(get_config()["main_folder"])
+    with open(LEDGER_PATH, 'rb') as ledger_file:
+        return pickle.load(ledger_file)
 
 
 
