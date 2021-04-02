@@ -23,9 +23,9 @@ import time
 from config import *
 
 class Account:
-    def __init__(self, PublicKey, balance):
+    def __init__(self, PublicKey, balance, sequance_number=0):
         self.PublicKey = PublicKey
-        self.sequance_number = 0
+        self.sequance_number = sequance_number
         self.balance = balance
 
     def dump_json(self):
@@ -38,7 +38,7 @@ class Account:
 
     @staticmethod
     def load_json(data):
-        return Account(data["public_key"], data["balance"])
+        return Account(data["public_key"], data["balance"], data["sequance_number"])
 
 
 class ledger:
