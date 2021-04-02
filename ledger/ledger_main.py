@@ -142,7 +142,7 @@ class ledger:
       if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)):
         if sequance_number == (self.getSequanceNumber(fromUser, my_tx)+1) or already_in_pending or response == False:
           dprint("Sign verify is true.")
-          if self.getBalance(fromUser, my_tx) >= (float(amount)+float(transaction_fee)) or response == False:
+          if self.getBalance(fromUser) >= (float(amount)+float(transaction_fee)) or response == False:
                dprint("Balance controll is true.")
                if already_in_pending == False:
                    self.pendingTransaction.append(temp_transaction)
@@ -171,30 +171,20 @@ class ledger:
         from node.myownp2pn import MyOwnPeer2PeerNode
         MyOwnPeer2PeerNode.main_node.send_to_node(transaction_sender, {"transactionresponse": 1, "fromUser": MyOwnPeer2PeerNode.main_node.id, "response": response, "transaction_signature": temp_transaction.signature, "signature": Ecdsa.sign(response+str(temp_transaction.signature), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()})
 
-    def getBalance(self, user, my_tx = False):
+    def getBalance(self, user):
         balance = 0
-        user = user.replace('\n', '')
         for Accounts in self.Accounts:
-            temp_pubkey = Accounts.PublicKey.replace('\n', '')
+            temp_pubkey = Accounts.PublicKey
             if temp_pubkey in user or temp_pubkey == user:
                 balance = Accounts.balance
-                if my_tx:
-                 for trans in self.pendingTransaction + self.validating_list:
-                    for Accounts in self.Accounts:
-                        if temp_pubkey in trans.fromUser.replace('\n', '') or temp_pubkey == trans.fromUser.replace('\n', ''):
-                            balance -= (float(trans.amount)-trans.transaction_fee)
-                        elif temp_pubkey in trans.toUser.replace('\n', '') or temp_pubkey == trans.toUser.replace('\n', ''):
-                            balance += float(trans.amount)
-
                 return balance
         return balance
         
     def getSequanceNumber(self, user, my_tx = False):
         sequance_number = 0
-        user = user.replace('\n', '')
         for Accounts in self.Accounts:
 
-            temp_pubkey = Accounts.PublicKey.replace('\n', '')
+            temp_pubkey = Accounts.PublicKey
 
             if temp_pubkey in user or temp_pubkey == user:
   
@@ -203,7 +193,7 @@ class ledger:
                 if my_tx:
                  for trans in self.pendingTransaction + self.validating_list:
 
-                    if user in trans.fromUser.replace('\n', '') or user == trans.fromUser.replace('\n', ''):
+                    if user in trans.fromUser or user == trans.fromUser:
                         sequance_number += 1
 
                 return sequance_number
@@ -266,7 +256,11 @@ def create_ledger():
 
     if the_settings()["test_mode"]:
         dprint("Creating new ledger")
-        system = ledger(Wallet_Import(0,0))
+        pubkey = "".join([
+            l.strip() for l in Wallet_Import(0,0).splitlines()
+            if l and not l.startswith("-----")
+        ])        
+        system = ledger(pubkey)
         from node.myownp2pn import MyOwnPeer2PeerNode
         MyOwnPeer2PeerNode.main_node.send_full_chain()
     else:

@@ -349,9 +349,10 @@ def toPem(der, name):
     b64 = toString(Base64.encode(der))
     lines = ["-----BEGIN " + name + "-----\n"]
     lines.extend([
-        b64[start:start + 64] + '\n'
+        b64[start:start + 64] 
         for start in xrange(0, len(b64), 64)
     ])
+    lines.append("\n")
     lines.append("-----END " + name + "-----\n")
 
     return "".join(lines)

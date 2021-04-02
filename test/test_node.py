@@ -13,12 +13,12 @@ class Test_Node(unittest.TestCase):
         node_1 = ndstart("127.0.0.1",10001)
         
 
-        temp_private_key = temp_private_key_class.toPem().replace('\n', '')
+        temp_private_key = temp_private_key_class.toPem()
 
         saved_wallets = get_saved_wallet()
 
         for each_wallet in saved_wallets:
-            if temp_private_key == saved_wallets[each_wallet]["privatekey"].replace('\n', ''):
+            if temp_private_key == saved_wallets[each_wallet]["privatekey"]:
                 Wallet_Delete(each_wallet)  
 
 
@@ -26,12 +26,12 @@ class Test_Node(unittest.TestCase):
 
         node_2 = ndstart("127.0.0.1",10002)
 
-        temp_private_key2 = temp_private_key_class2.toPem().replace('\n', '')
+        temp_private_key2 = temp_private_key_class2.toPem()
 
         saved_wallets2 = get_saved_wallet()
 
         for each_wallet in saved_wallets2:
-            if temp_private_key2 == saved_wallets2[each_wallet]["privatekey"].replace('\n', ''):
+            if temp_private_key2 == saved_wallets2[each_wallet]["privatekey"]:
                 Wallet_Delete(each_wallet) 
 
 

@@ -7,14 +7,14 @@ class Test_Wallet(unittest.TestCase):
 
     def test_saving_and_importing_and_deleting_the_wallet(self):
         temp_private_key_class = Wallet_Create()
-        temp_private_key = temp_private_key_class.toPem().replace('\n', '')
+        temp_private_key = temp_private_key_class.toPem()
 
         saved_wallets = get_saved_wallet()
 
         result = False
         for each_wallet in saved_wallets:
-            if temp_private_key == (saved_wallets[each_wallet]["privatekey"]).replace('\n', ''):
-                if temp_private_key == (Wallet_Import(each_wallet,1)).replace('\n', '') and "PRIVATE" in temp_private_key:
+            if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
+                if temp_private_key == (Wallet_Import(each_wallet,1)) and "PRIVATE" in temp_private_key:
                     Wallet_Delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
