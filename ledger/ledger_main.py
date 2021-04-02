@@ -8,6 +8,7 @@ import pprint
 from wallet.wallet import Ecdsa, PrivateKey, PublicKey, Wallet_Import, Signature
 
 import pickle
+import json
 
 
 from lib.settings_system import the_settings
@@ -23,10 +24,22 @@ import json
 from config import *
 
 class Account:
-    def __init__(self, PublicKey, balance):
+    def __init__(self, PublicKey, balance, sequance_number=0):
         self.PublicKey = PublicKey
-        self.sequance_number = 0
+        self.sequance_number = sequance_number
         self.balance = balance
+
+    def dump_json(self):
+        data = {
+            "public_key": self.PublicKey,
+            "sequence_number": self.sequance_number,
+            "balance": self.balance
+        }
+        return data
+
+    @staticmethod
+    def load_json(data):
+        return Account(data["public_key"], data["balance"], data["sequance_number"])
 
 
 class ledger:
