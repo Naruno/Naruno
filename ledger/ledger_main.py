@@ -23,9 +23,9 @@ import time
 from config import *
 
 class Account:
-    def __init__(self, PublicKey, balance, sequence_number=0):
+    def __init__(self, PublicKey, balance):
         self.PublicKey = PublicKey
-        self.sequance_number = sequence_number
+        self.sequance_number = 0
         self.balance = balance
 
     def dump_json(self):
