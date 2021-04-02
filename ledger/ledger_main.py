@@ -61,10 +61,10 @@ class ledger:
             if self.tx_verification(trans):
                 touser_inlist = False
                 for Accounts in self.Accounts:
-                    if Accounts.PublicKey in trans.fromUser:
+                    if Accounts.PublicKey == trans.fromUser:
                         Accounts.balance -= (float(trans.amount)+trans.transaction_fee)
                         Accounts.sequance_number += 1
-                    elif Accounts.PublicKey in trans.toUser:
+                    elif Accounts.PublicKey == trans.toUser:
                         Accounts.balance += float(trans.amount)
                         touser_inlist = True
                 if not touser_inlist:
@@ -175,7 +175,7 @@ class ledger:
         balance = 0
         for Accounts in self.Accounts:
             temp_pubkey = Accounts.PublicKey
-            if temp_pubkey in user or temp_pubkey == user:
+            if temp_pubkey in user:
                 balance = Accounts.balance
                 return balance
         return balance
@@ -186,14 +186,14 @@ class ledger:
 
             temp_pubkey = Accounts.PublicKey
 
-            if temp_pubkey in user or temp_pubkey == user:
+            if temp_pubkey in user:
   
                 sequance_number = Accounts.sequance_number
 
                 if my_tx:
                  for trans in self.pendingTransaction + self.validating_list:
 
-                    if user in trans.fromUser or user == trans.fromUser:
+                    if user in trans.fromUser:
                         sequance_number += 1
 
                 return sequance_number
