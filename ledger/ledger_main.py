@@ -38,7 +38,7 @@ class Account:
 
     @staticmethod
     def load_json(data):
-        return Account(data["public_key"], data["balance"], data["sequence_number"])
+        return Account(data["public_key"], data["balance"])
 
 
 class ledger:
