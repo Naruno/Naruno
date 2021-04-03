@@ -293,7 +293,10 @@ class Node(threading.Thread):
         self.id = id.hexdigest()
         """
         from wallet.wallet import Wallet_Import
-        self.id = Wallet_Import(0,0)
+        self.id = "".join([
+            l.strip() for l in Wallet_Import(0,0).splitlines()
+            if l and not l.startswith("-----")
+        ])
 
         # Start the TCP/IP server
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

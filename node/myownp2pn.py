@@ -148,7 +148,7 @@ class MyOwnPeer2PeerNode (Node):
       if node_is_unl(node.id):
         for tx in system.validating_list:
 
-            if node.id in data["fromUser"] and Ecdsa.verify(data["response"]+str(data["transaction_signature"]), Signature.fromBase64(data["signature"]), PublicKey.fromPem(data["fromUser"])):
+            if node.id == data["fromUser"] and Ecdsa.verify(data["response"]+str(data["transaction_signature"]), Signature.fromBase64(data["signature"]), PublicKey.fromPem(data["fromUser"])):
 
                 if data["transaction_signature"] == tx.signature:
                     if data["response"] == "TRUE":

@@ -81,7 +81,7 @@ def node_is_unl(node_id):
     node_id = node_id
     for unl in get_unl_nodes():
         temp_unl = unl
-        if node_id in temp_unl:
+        if node_id == temp_unl:
             return True
     return False
 
