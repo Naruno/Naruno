@@ -47,6 +47,8 @@ def quit_menu_maker(mode):
 		quit_menu_maker_result = "\n0) Quit \n"
 	elif mode == "sub":
 		quit_menu_maker_result = "\n0) Quit sub menu \n"
+	else:
+		raise ValueError("the mode variable contains the unplanned value")
 	return(quit_menu_maker_result)
 
 
