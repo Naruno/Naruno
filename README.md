@@ -26,9 +26,18 @@ This is an open source decentralized application network. In this network, you c
 * [Decentra Network Nedir ?](https://www.youtube.com/watch?v=XUNz5Fb_ZeY&ab_channel=DecentraNetworkT%C3%BCrkiyeToplulu%C4%9Fu)
 * [Decentra Network Çalışma Mantığı ?](https://www.youtube.com/watch?v=3WohnI_VOrc&ab_channel=DecentraNetworkT%C3%BCrkiyeToplulu%C4%9Fu)
 
+# Social Media
+## In Global
+### Decentra Network Global Community
+* [Twitter](https://twitter.com/DecentraC)
+* [Instagram](https://www.instagram.com/decentranetwork.global/)
+## In Turkish
+### Decentra Network Türkiye Topluluğu
+* [Twitter](https://twitter.com/DecentraTurkiye)
+* [Instagram](https://www.instagram.com/decentra.networktr/)
+
 # Telegram
 ## In Turkish
 ### Decentra Network Türkiye Topluluğu
 * [Kanal](https://t.me/joinchat/PnstgE9yipkwYmVk)
 * [Gurup](https://t.me/joinchat/bg-TLUNojKJkYjY0)
-* [Uygulama Gelistirme Gurubu](https://t.me/joinchat/y1ggYuGP_0pjNjI0)
