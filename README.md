@@ -26,7 +26,7 @@
 
 
 # Introducing
-This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.
+This is an open source decentralized application network. In this network, you can develop or use applications in your independent, decentralized application network.
 <br />
 
 <p float="left">
