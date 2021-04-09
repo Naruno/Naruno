@@ -12,14 +12,14 @@
     <br />
     <br />
   <a href="https://www.python.org/">
-  <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" alt="made-with-python">
+  <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" alt="Made_with_python">
     </a>
-  
+  .
     <a href="https://github.com/Decentra-Network/Decentra-Network/blob/master/LICENSE">
-  <img src="https://img.shields.io/github/license/Decentra-Network/Decentra-Network" alt="made-with-python">
+  <img src="https://img.shields.io/github/license/Decentra-Network/Decentra-Network" alt="Licence">
     </a>
-  
-  <img src="https://img.shields.io/badge/Consensus-FBA-%235ec295" alt="made-with-python">
+  .
+  <img src="https://img.shields.io/badge/Consensus-FBA-%235ec295" alt="Consensus">
   
   </p>
 </p>
