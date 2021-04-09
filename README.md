@@ -16,10 +16,10 @@
     </a>
   .
     <a href="https://github.com/Decentra-Network/Decentra-Network/blob/master/LICENSE">
-  <img src="https://img.shields.io/github/license/Decentra-Network/Decentra-Network" alt="Licence">
+  <img src="https://img.shields.io/github/license/Decentra-Network/Decentra-Network.svg" alt="Licence">
     </a>
   .
-  <img src="https://img.shields.io/badge/Consensus-FBA-%235ec295" alt="Consensus">
+  <img src="https://img.shields.io/badge/Consensus-FBA-%235ec295.svg" alt="Consensus">
   
   </p>
 </p>
