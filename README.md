@@ -78,3 +78,25 @@ This is an open source decentralized application network. In this network, you c
 ### Decentra Network Türkiye Topluluğu
 * [Kanal](https://t.me/joinchat/PnstgE9yipkwYmVk)
 * [Gurup](https://t.me/joinchat/bg-TLUNojKJkYjY0)
+
+
+<br />
+<p align="center">
+
+  <h3 align="center">Statistics of this repository</h3>
+  
+  <p align="center">
+    <img src="https://img.shields.io/github/stars/Decentra-Network/Decentra-Network?style=social" alt="Repo_stars">
+  .
+  <img src="https://img.shields.io/github/forks/Decentra-Network/Decentra-Network?style=social" alt="Repo_forks">
+    <br />
+  <img src="https://img.shields.io/github/issues-raw/Decentra-Network/Decentra-Network" alt="Open_issues">
+  .
+  <img src="https://img.shields.io/github/issues-closed-raw/Decentra-Network/Decentra-Network" alt="Closed_issues">
+    <br />
+  <img src="https://img.shields.io/github/issues-pr-raw/Decentra-Network/Decentra-Network" alt="Open_pull_requests">
+  .
+    <img src="https://img.shields.io/github/issues-pr-closed-raw/Decentra-Network/Decentra-Network" alt="Closed_pull_requests">
+<br />
+  </p>
+</p>
