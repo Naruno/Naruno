@@ -69,6 +69,7 @@ class Block:
 
         # TODO: Adding the previous block hash
         # TODO: Order the transaction before proccess_the_transaction
+        # TODO: If we have more than one transaction after a while, we should start the consensus
         self.sequance_number = sequance_number
         self.Accounts = [Account(creator, balance=1000000)]
         self.pendingTransaction = []
