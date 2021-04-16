@@ -21,7 +21,7 @@ from lib.mixlib import *
 
 import pickle
 
-from ledger.ledger_main import get_ledger, create_ledger, get_ledger_from_other_node, sendme_full_node_list
+from blockchain.block.block_main import get_block, create_block, get_block_from_other_node, sendme_full_node_list
 
 from lib.settings_system import the_settings, test_mode, debug_mode
 
@@ -41,15 +41,15 @@ class main_gui:
 
         self.frame = ttk.Frame(self.toplevel)
 
-        self.ledger_44x50_png = tk.PhotoImage(file='gui/icons/ledger_38x50.png')
+        self.block_44x50_png = tk.PhotoImage(file='gui/icons/ledger_38x50.png')
         self.cellmolecule_50x50_png = tk.PhotoImage(file='gui/icons/cell-molecule_50x50.png')
         self.computerinternetnetwork_68x50_png = tk.PhotoImage(file='gui/icons/computer-internet-network_68x50.png')
         self.money_67x50_png = tk.PhotoImage(file='gui/icons/money_67x50.png')
 
-        self.get_ledger_button = ttk.Button(self.frame)
-        self.get_ledger_button.configure(compound = 'top', image = self.ledger_44x50_png, text = 'Get Ledger From Other Nodes')
-        self.get_ledger_button.grid(column='0', padx='25', pady='20', row='1', sticky='n')
-        self.get_ledger_button.configure(command=self.get_ledger_command)
+        self.get_block_button = ttk.Button(self.frame)
+        self.get_block_button.configure(compound = 'top', image = self.block_44x50_png, text = 'Get block From Other Nodes')
+        self.get_block_button.grid(column='0', padx='25', pady='20', row='1', sticky='n')
+        self.get_block_button.configure(command=self.get_block_command)
 
         self.button2 = ttk.Button(self.frame)
         self.button2.configure(compound='top', image=self.computerinternetnetwork_68x50_png, text='Start Node Server')
@@ -128,10 +128,10 @@ class main_gui:
         from lib.settings_system import the_settings
         if the_settings()["test_mode"]:
             self.Test_Mode_Menu_Label = ttk.Label(self.frame, text="Test Mode Menu").grid(column='3', padx='25', pady='20', row='1', sticky='n')
-            self.create_ledger_button = ttk.Button(self.frame)
-            self.create_ledger_button.configure(compound='top', image=self.ledger_44x50_png, text='Create ledger')
-            self.create_ledger_button.grid(column='3', padx='25', pady='20', row='2', sticky='n')
-            self.create_ledger_button.configure(command=self.create_ledger)
+            self.create_block_button = ttk.Button(self.frame)
+            self.create_block_button.configure(compound='top', image=self.block_44x50_png, text='Create block')
+            self.create_block_button.grid(column='3', padx='25', pady='20', row='2', sticky='n')
+            self.create_block_button.configure(command=self.create_block)
         else:
             self.connect_to_main_network = ttk.Button(self.frame)
             self.connect_to_main_network.configure(compound='top', image=self.computerinternetnetwork_68x50_png, text='Connect to Main Network')
@@ -163,13 +163,13 @@ class main_gui:
         command = f"{func_name}(self)"
         exec (command)
 
-    def create_ledger(self):
-        create_ledger()
-        messagebox.showinfo('Wallet', 'ledger are created.')
+    def create_block(self):
+        create_block()
+        messagebox.showinfo('Wallet', 'block are created.')
 
-    def get_ledger_command(self):
-        get_ledger_from_other_node()
-        messagebox.showinfo('Wallet', 'Taked the ledger.')
+    def get_block_command(self):
+        get_block_from_other_node()
+        messagebox.showinfo('Wallet', 'Taked the blockchain.')
 
     def Wallet_Create(self):
         Wallet_Create()
@@ -202,7 +202,7 @@ class main_gui:
             messagebox.showinfo('Send Coin', "This is negative coin amount.")
 
     def reflesh_balance(self):
-        self.balance_label.configure(text = ("Balance: "+str(get_ledger().getBalance(Wallet_Import(0,0)))))
+        self.balance_label.configure(text = ("Balance: "+str(get_block().getBalance(Wallet_Import(0,0)))))
 
     def connect_node(self):
         ip = simpledialog.askstring("Input", "IP: ", parent=self.toplevel)
