@@ -1,23 +1,27 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from node.myownp2pn import MyOwnPeer2PeerNode, connectionfrommixdb
+from node.myownp2pn import mynode, connectionfrommixdb
 from lib.settings_system import the_settings
 
 from config import *
 
 def ndstart(ip, port):
+<<<<<<< HEAD
     node = MyOwnPeer2PeerNode(ip, port)
+=======
+    node = mynode(ip, port)
+>>>>>>> 4e9cb25a3168dc85c23cdc983e683ce93fb8e7f8
     # node.debug = the_settings()["debug_mode"]
     node.start()
     return node
 
 
 def ndstop():
-    MyOwnPeer2PeerNode.main_node.stop()
+    mynode.main_node.stop()
 
 
 def ndconnect(ip, port):
-    MyOwnPeer2PeerNode.main_node.connect_with_node(ip, port)
+    mynode.main_node.connect_to_node(ip, port)
 
 
 def ndconnectmixdb():

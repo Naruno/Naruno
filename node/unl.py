@@ -10,11 +10,19 @@ def save_new_unl_node(id):
     id = id
     node = None
 
+<<<<<<< HEAD
     from node.myownp2pn import MyOwnPeer2PeerNode
     for inbound_node in MyOwnPeer2PeerNode.main_node.nodes_inbound:
         if id in (inbound_node.id):
             node = inbound_node
     for outbound_node in MyOwnPeer2PeerNode.main_node.nodes_outbound:
+=======
+    from node.myownp2pn import mynode
+    for inbound_node in mynode.main_node.nodes_inbound:
+        if id in (inbound_node.id):
+            node = inbound_node
+    for outbound_node in mynode.main_node.nodes_outbound:
+>>>>>>> 4e9cb25a3168dc85c23cdc983e683ce93fb8e7f8
         if id in (outbound_node.id):
             node = outbound_node
     if node != None:
@@ -43,7 +51,11 @@ def save_new_unl_node(id):
          old_cwd = os.getcwd()
          os.chdir(get_config()["main_folder"])
          with open(UNL_NODES_PATH, 'w') as unl_nodes_file:
+<<<<<<< HEAD
              json.dump(nodes_list, unl_nodes_file)
+=======
+             json.dump(nodes_list, unl_nodes_file, indent=4)
+>>>>>>> 4e9cb25a3168dc85c23cdc983e683ce93fb8e7f8
          os.chdir(old_cwd)
 
 def get_unl_nodes():
@@ -66,12 +78,12 @@ def get_unl_nodes():
 
 def get_as_node_type(id_list):
         temp_list = []
-        from node.myownp2pn import MyOwnPeer2PeerNode
+        from node.myownp2pn import mynode
         for list_node in id_list:
-            for inbound in MyOwnPeer2PeerNode.main_node.nodes_inbound:
+            for inbound in mynode.main_node.nodes_inbound:
                 if list_node in inbound.id:
                     temp_list.append(inbound)
-            for outbound in MyOwnPeer2PeerNode.main_node.nodes_outbound:
+            for outbound in mynode.main_node.nodes_outbound:
                 if list_node in outbound.id:
                     temp_list.append(outbound)
         return temp_list
@@ -94,4 +106,8 @@ def unl_node_delete(node_id):
 
         os.chdir(get_config()["main_folder"])
         with open(UNL_NODES_PATH, 'w') as connected_node_file:
+<<<<<<< HEAD
             json.dump(saved_nodes, connected_node_file)
+=======
+            json.dump(saved_nodes, connected_node_file, indent=4)
+>>>>>>> 4e9cb25a3168dc85c23cdc983e683ce93fb8e7f8

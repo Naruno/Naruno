@@ -12,7 +12,11 @@ from config import *
 def save_settings(new_settings):
     os.chdir(get_config()["main_folder"])
     with open(SETTING_PATH, 'w') as settings_file:
+<<<<<<< HEAD
         json.dump(new_settings, settings_file)
+=======
+        json.dump(new_settings, settings_file, indent=4)
+>>>>>>> 4e9cb25a3168dc85c23cdc983e683ce93fb8e7f8
 
 def settings_class(test_mode_settings= False, debug_mode_settings= False):
     temp_json = {}

@@ -19,8 +19,8 @@ def printcentertext(text):
 	print(" ")
 
 
-def banner_maker(sc_name, description, author, email):
-	return("""Script Name    : """+sc_name+"""\n"""+"""Description    : """+description+"""\n"""+"""Author         : """+author+"""\n"""+"""Email          : """+email+"\n")
+def banner_maker(sc_name, description, author):
+	return("""Script Name    : """+sc_name+"""\n"""+"""Description    : """+description+"""\n"""+"""Author         : """+author+"""\n""")
 
 
 def question_maker(question_text=None, mode=None):

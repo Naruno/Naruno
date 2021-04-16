@@ -79,6 +79,10 @@ This is an open source decentralized application network. In this network, you c
 * [Kanal](https://t.me/joinchat/PnstgE9yipkwYmVk)
 * [Gurup](https://t.me/joinchat/bg-TLUNojKJkYjY0)
 
+<<<<<<< HEAD
+=======
+### Founder : Onur Atakan ULUSOY
+>>>>>>> 4e9cb25a3168dc85c23cdc983e683ce93fb8e7f8
 
 <br />
 <p align="center">
