@@ -19,8 +19,8 @@ def printcentertext(text):
 	print(" ")
 
 
-def banner_maker(sc_name, description, author, email):
-	return("""Script Name    : """+sc_name+"""\n"""+"""Description    : """+description+"""\n"""+"""Author         : """+author+"""\n"""+"""Email          : """+email+"\n")
+def banner_maker(sc_name, description, author):
+	return("""Script Name    : """+sc_name+"""\n"""+"""Description    : """+description+"""\n"""+"""Author         : """+author+"""\n""")
 
 
 def question_maker(question_text=None, mode=None):
@@ -32,6 +32,8 @@ def question_maker(question_text=None, mode=None):
 			question_text = "Please enter sub option: "
 		elif mode == "anykeytocontinue":
 			question_text = "Press any key to continue..."
+		else:
+			raise ValueError("the mode variable contains an unplanned value")
 	
 	return(input(question_text))
 
@@ -45,6 +47,8 @@ def quit_menu_maker(mode):
 		quit_menu_maker_result = "\n0) Quit \n"
 	elif mode == "sub":
 		quit_menu_maker_result = "\n0) Quit sub menu \n"
+	else:
+		raise ValueError("the mode variable contains the unplanned value")
 	return(quit_menu_maker_result)
 
 
@@ -66,5 +70,5 @@ def clear():
 
 def dprint(text):
     from lib.settings_system import the_settings
-    if the_settings().debug_mode():
+    if the_settings()["debug_mode"]:
         print("DEBUG: "+str(text))

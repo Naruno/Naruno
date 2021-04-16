@@ -21,21 +21,19 @@ from lib.mixlib import *
 
 import pickle
 
-from ledger.ledger_main import get_ledger , create_ledger, get_ledger_from_other_node, sendme_full_node_list
+from blockchain.block.block_main import get_block , create_block, get_block_from_other_node, sendme_full_node_list
 
-from lib.settings_system import the_settings
 
 
 import os
-
+from lib.settings_system import the_settings, test_mode, debug_mode
 
 def show_menu():
 
-    print(banner_maker(sc_name="Decentra Network", description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.", author="Onur Atakan ULUSOY", email="atadogan06@gmail.com"))
+    print(banner_maker(sc_name="Decentra Network", description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.", author="Decentra Network Developers"))
 
-    from lib.settings_system import the_settings
-    if the_settings().test_mode():
-        print(menu_maker(menu_number="cbl", menu_text="Create ledger"))
+    if the_settings()["test_mode"]:
+        print(menu_maker(menu_number="cbl", menu_text="Create block"))
     else:
         print(menu_maker(menu_number="connectmainnetwork", menu_text="Connect to Main Network"))
 
@@ -59,7 +57,7 @@ def show_menu():
        menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF")+ \
        menu_space() + \
        menu_maker(menu_number="getfullnodelist", menu_text="Get Full Node List")+ \
-       menu_maker(menu_number="getledger", menu_text="Get Ledger From Other Nodes")+ \
+       menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")+ \
        menu_space())
 
     for folder_entry in os.scandir('apps'):
@@ -81,10 +79,9 @@ def menu():
         show_menu()
         choices_input = question_maker(mode="main")
 
-        from lib.settings_system import the_settings
-        if the_settings().test_mode():
+        if the_settings()["test_mode"]:
             if choices_input == "cbl":
-                create_ledger()
+                create_block()
         else:
             if choices_input == "connectmainnetwork":
                 from func.node_connection import connect_to_main_network
@@ -104,7 +101,7 @@ def menu():
                 send_coin(float(temp_coin_amount), input("Please write receiver adress: "))
 
         if choices_input == "gb":
-            print(get_ledger().getBalance(Wallet_Import(0,0)))
+            print(get_block().getBalance(Wallet_Import(0,0)))
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
@@ -120,22 +117,22 @@ def menu():
             from node.unl import save_new_unl_node
             save_new_unl_node(input("Please write ID of the node: "))
         if choices_input == "testmodeon":
-            the_settings().test_mode(True)
+            test_mode(True)
         if choices_input == "testmodeoff":
-            the_settings().test_mode(False)
+            test_mode(False)
         if choices_input == "debugmodeon":
-            the_settings().debug_mode(True)
-            # from node.myownp2pn import MyOwnPeer2PeerNode
-            # MyOwnPeer2PeerNode.main_node.debug = True
+            debug_mode(True)
+            # from node.myownp2pn import mynode
+            # mynode.main_node.debug = True
         if choices_input == "debugmodeoff":
-            the_settings().debug_mode(False)
-            # from node.myownp2pn import MyOwnPeer2PeerNode
-            # MyOwnPeer2PeerNode.main_node.debug = False
+            debug_mode(False)
+            # from node.myownp2pn import mynode
+            # mynode.main_node.debug = False
 
         if choices_input == "getfullnodelist":
             sendme_full_node_list()
-        if choices_input == "getfullledger":
-            get_ledger_from_other_node()
+        if choices_input == "getfullblock":
+            get_block_from_other_node()
 
         for folder_entry in os.scandir('apps'):
             if ".md" not in folder_entry.name:
