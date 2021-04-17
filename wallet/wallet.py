@@ -1,4 +1,27 @@
-#https://github.com/starkbank/ecdsa-python was used for infrastructure
+"""
+MIT License
+
+Copyright (c) 2021 Decentra Network Developers
+Copyright (c) 2018 Stark Bank S.A.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
 
 from hashlib import sha256
 
@@ -176,8 +199,14 @@ class Ecdsa:
         inv = Math.inv(sigS, curve.N)
         u1 = Math.multiply(curve.G, n=(numberMessage * inv) % curve.N, A=curve.A, P=curve.P, N=curve.N)
         u2 = Math.multiply(publicKey.point, n=(sigR * inv) % curve.N, A=curve.A, P=curve.P, N=curve.N)
+
+
+        #add = Math.add(u1, u2, P=curve.P, A=curve.A) # test and delete
+        #return sigR == add.x # test and delete
+        
         add = Math.add(u1, u2, P=curve.P, A=curve.A)
-        return sigR == add.x
+        modX = add.x % curve.N
+        return sigR == modX
 
 
 
@@ -941,7 +970,7 @@ def save_wallet_list(publicKey,privateKey):
     old_cwd = os.getcwd()
     os.chdir(get_config()["main_folder"])
     with open(WALLETS_PATH, 'w') as wallet_list_file:
-        json.dump(wallet_list, wallet_list_file)
+        json.dump(wallet_list, wallet_list_file, indent=4)
     os.chdir(old_cwd)
 
 
@@ -997,4 +1026,4 @@ def Wallet_Delete(account):
     
         os.chdir(get_config()["main_folder"])
         with open(WALLETS_PATH, 'w') as wallet_list_file:
-            json.dump(saved_wallet, wallet_list_file)
+            json.dump(saved_wallet, wallet_list_file, indent=4)
