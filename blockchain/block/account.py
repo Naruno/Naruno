@@ -9,10 +9,6 @@ class Account:
 
         from blockchain.block.block_main import get_block
 
-        try:
-            self.id = len(get_block().Accounts) + 1
-        except:
-            self.id = 0
         self.sequance_number = sequance_number
         self.balance = balance
 

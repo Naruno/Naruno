@@ -46,23 +46,22 @@ class mynode (Node):
             if data["fullblock"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullblock"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 print("getting chain")
                 self.get_full_chain(data)
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         try:
             from node.unl import node_is_unl
             if data["fullnodelist"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullnodelist"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 print("getting node list")
                 self.get_full_node_list(data["byte"])
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         try:
          if data["transactionrequest"]  == 1:
             self.get_transaction(data,node)
         except Exception as e:
             print(e)
-            pass
 
 
         try:
@@ -70,26 +69,26 @@ class mynode (Node):
             self.send_my_block(node)
         except Exception as e:
             print(e)
-            pass
+            
         try:
          if data["action"]  == "myblock":
             self.get_candidate_block(data,node)
         except Exception as e:
             print(e)
-            pass
+
 
         try:
          if data["action"]  == "sendmeyourblockhash":
             self.send_my_block_hash(node)
         except Exception as e:
             print(e)
-            pass
+
         try:
          if data["action"]  == "myblockhash":
             self.get_candidate_block_hash(data,node)
         except Exception as e:
             print(e)
-            pass
+
 
         print("message_from_node from " + node.id + ": " + str(data))
         
@@ -106,7 +105,7 @@ class mynode (Node):
         from blockchain.block.block_main import get_block
         system = get_block()
 
-        if not len(system.validating_list) < system.max_tx_number:
+        if system.validating_list_starting_time != None:
          new_list = []
 
          signature_list = []
@@ -231,7 +230,7 @@ class mynode (Node):
             
             os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
 
-            from blockchain.block.block_main import get_block
+            from blockchain.block.block_main import get_block, perpetualTimer, consensus_trigger
 
             system = get_block()
             
@@ -240,6 +239,7 @@ class mynode (Node):
             system.candidate_blocks = []
             system.exclude_validators = []
             system.save_block()
+            perpetualTimer(system.consensus_timer,consensus_trigger).start()
 
 
         else:

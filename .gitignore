@@ -1,5 +1,11 @@
 # Local db
-db/
+config.json
+settings.json
+connected_node.json
+unl_nodes.json
+temp_block.decentra_network
+loading_block.decentra_network
+wallet_list.json
 
 #apps
 apps/
