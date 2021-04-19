@@ -67,14 +67,19 @@ class perpetualTimer():
 class Block:
     def __init__(self, sequance_number, creator):
 
-        # TODO: Adding the previous block hash
-        # TODO: Order the transaction before proccess_the_transaction
-        # TODO: If we have more than one transaction after a while, we should start the consensus
+
+        # TODO: Save the block to blockchain before resetting
+
+        self.previous_hash = "0"
         self.sequance_number = sequance_number
         self.Accounts = [Account(creator, balance=1000000)]
         self.pendingTransaction = []
+
+
         self.validating_list = []
-        
+        self.validating_list_time = 4
+        self.validating_list_starting_time = None
+
         self.hash = None
 
         from node.unl import get_unl_nodes
@@ -88,12 +93,12 @@ class Block:
 
 
         self.raund_1_starting_time = None
-        self.raund_1_time = 5
+        self.raund_1_time = 4
         self.raund_1 = False
         self.raund_1_node = False
         
         self.raund_2_starting_time = None
-        self.raund_2_time = 5
+        self.raund_2_time = 4
         self.raund_2 = False
         self.raund_2_node = False
 
@@ -104,6 +109,7 @@ class Block:
         self.validated = False
 
         self.save_block()
+        perpetualTimer(self.consensus_timer,consensus_trigger).start()
 
     def calculate_hash(self):
 
@@ -113,7 +119,7 @@ class Block:
 
         tx_list = []
         dprint(len(self.validating_list))
-        for element in self.validating_list:
+        for element in self.validating_list[:]:
             dprint(element)
             tx_list.append(element.signature)
 
@@ -122,8 +128,10 @@ class Block:
         tx_hash = MerkleTree(tx_list).getRootHash()
 
         ac_list = []
-        for element in self.Accounts:
+        for element in self.Accounts[:]:
             ac_list.append(element.PublicKey)
+
+        dprint(ac_list)
 
         ac_hash = MerkleTree(ac_list).getRootHash()
 
@@ -131,6 +139,8 @@ class Block:
         
 
         main_list = []
+
+        main_list.append(self.previous_hash)
 
         main_list.append(str(self.sequance_number))
 
@@ -146,6 +156,11 @@ class Block:
         dprint(self.hash)
     
     def proccess_the_transaction(self):
+
+        for start_validating_list_item in self.validating_list:
+            print(start_validating_list_item.fromUser)
+
+        from_user_list = []
     
         for trans in self.validating_list:
                 touser_inlist = False
@@ -153,18 +168,41 @@ class Block:
                     if Accounts.PublicKey == trans.fromUser:
                         Accounts.balance -= (float(trans.amount)+trans.transaction_fee)
                         Accounts.sequance_number += 1
+                        from_user_list.append(Accounts)
                     elif Accounts.PublicKey == trans.toUser:
                         Accounts.balance += float(trans.amount)
                         touser_inlist = True
                 if not touser_inlist:
                     self.Accounts.append(Account(trans.toUser, float(trans.amount)))
+                    
+        temp_validating_list = self.validating_list
+
+        for tx_item in temp_validating_list[:]:
+            for Account_item in from_user_list:
+                if tx_item.fromUser == Account_item.PublicKey:
+                    tx_item.fromUser = Account_item
+
+        temp_validating_list = sorted(temp_validating_list, key=lambda x: self.Accounts.index(x.fromUser))
 
 
 
+
+        for temp_validating_list_item in temp_validating_list[:]:
+            temp_validating_list_item.fromUser = temp_validating_list_item.fromUser.PublicKey
+
+
+        self.validating_list = temp_validating_list
+
+         
+        for end_validating_list_item in self.validating_list:
+            print(start_validating_list_item.fromUser)
 
 
     def consensus(self):
-      if not len(self.validating_list) < self.max_tx_number:
+     if self.validating_list_starting_time != None:
+      if not (int(time.time()) - self.validating_list_starting_time) < self.validating_list_time or not len(self.validating_list) < self.max_tx_number:
+        if self.raund_1_starting_time == None:
+            self.raund_1_starting_time = int(time.time())
         if not self.raund_1:
 
             self.consensus_raund_1()
@@ -246,9 +284,11 @@ class Block:
 
           self.calculate_hash()
 
+          self.exclude_validators = []
+
           self.save_block()
 
-          self.consensus_raund_2()
+
 
 
 
@@ -265,10 +305,64 @@ class Block:
               from node.myownp2pn import mynode
 
               for node in get_as_node_type(self.total_validators):
+                if node.id not in self.exclude_validators:
                  dprint("Raund 1: second ok of get candidate block: "+ str(node.__dict__))
                  self.exclude_validators.append(node.id)
                  mynode.main_node.send_data_to_node(node, {"action": "sendmeyourblock"})
               self.raund_1_node = True
+
+    def reset_the_block(self):
+        
+        dprint("""\n
+  _____                          _     ____  _      ____   _____ _  __
+ / ____|                        | |   |  _ \| |    / __ \ / ____| |/ /
+| |    _   _ _ __ _ __ ___ _ __ | |_  | |_) | |   | |  | | |    | ' / 
+| |   | | | | '__| '__/ _ \ '_ \| __| |  _ <| |   | |  | | |    |  <  
+| |___| |_| | |  | | |  __/ | | | |_  | |_) | |___| |__| | |____| . \ 
+ \_____\__,_|_|  |_|  \___|_| |_|\__| |____/|______\____/ \_____|_|\_\
+                                        
+        """+str(self.__dict__)+"\n")
+
+
+        self.previous_hash = self.hash
+        self.sequance_number = self.sequance_number + 1
+        self.validating_list = []
+        self.validating_list_starting_time = None
+        
+        self.hash = None
+
+        self.candidate_blocks = []
+        self.candidate_block_hashes = []
+        self.exclude_validators = []
+
+
+
+
+
+        self.raund_1_starting_time = None
+        self.raund_1 = False
+        self.raund_1_node = False
+        
+        self.raund_2_starting_time = None
+        self.raund_2 = False
+        self.raund_2_node = False
+
+
+        self.validated = False
+
+        self.save_block()
+
+
+        dprint("""\n
+ _   _                 ____  _      ____   _____ _  __
+| \ | |               |  _ \| |    / __ \ / ____| |/ /
+|  \| | _____      __ | |_) | |   | |  | | |    | ' / 
+| . ` |/ _ \ \ /\ / / |  _ <| |   | |  | | |    |  <  
+| |\  |  __/\ V  V /  | |_) | |___| |__| | |____| . \ 
+|_| \_|\___| \_/\_/   |____/|______\____/ \_____|_|\_\
+                                        
+        """+str(self.__dict__)+"\n")
+
 
     def consensus_raund_2(self):
         if not  (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time or len(self.candidate_block_hashes) == len(self.total_validators):
@@ -293,6 +387,9 @@ class Block:
                       if self.hash == candidate_block["hash"]:
                         self.validated = True
                         self.app_tigger()
+
+                        
+                        
                       else:
                           print("Raund 2: my block is not valid")
                           # TODO: download the true block
@@ -302,9 +399,11 @@ class Block:
           
           self.raund_2 = True
 
-          
+          self.exclude_validators = []
 
-          self.save_block()
+          self.reset_the_block()
+
+          
 
 
 
@@ -320,6 +419,7 @@ class Block:
               from node.myownp2pn import mynode
 
               for node in get_as_node_type(self.total_validators):
+                if node.id not in self.exclude_validators:
                  dprint("Raund 2: second ok of get candidate block hashes: "+ str(node.__dict__))
                  self.exclude_validators.append(node.id)
                  mynode.main_node.send_data_to_node(node, {"action": "sendmeyourblockhash"})
@@ -332,12 +432,10 @@ class Block:
             for tx in self.pendingTransaction[:]:
                 if len(self.validating_list) < self.max_tx_number:
                     self.validating_list.append(tx)
+                    if self.validating_list_starting_time == None:
+                        self.validating_list_starting_time = int(time.time())
                     self.pendingTransaction.remove(tx)
 
-        if not len(self.validating_list) < self.max_tx_number:
-          if self.raund_1_starting_time == None:
-            self.raund_1_starting_time = int(time.time())
-            perpetualTimer(self.consensus_timer,consensus_trigger).start()
 
         
 

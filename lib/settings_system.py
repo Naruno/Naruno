@@ -4,8 +4,6 @@ import json
 import sys
 import os
 from lib.config_system import get_config
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
 
 from config import *
 
@@ -47,6 +45,6 @@ def the_settings():
 
     if not os.path.exists(SETTING_PATH):
         return settings_class()
-
-    with open(SETTING_PATH, 'rb') as settings_file:
-        return json.load(settings_file)
+    else:
+        with open(SETTING_PATH, 'rb') as settings_file:
+            return json.load(settings_file)

@@ -25,9 +25,6 @@ def config_class():
 
 
 def get_config():
-    temp_folder = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(temp_folder)
-    os.chdir("..")
 
     if not os.path.exists(CONFIG_PATH):
         temp_config_class = config_class()
