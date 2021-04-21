@@ -35,9 +35,9 @@ class Test_Settings(unittest.TestCase):
         debug_mode(temp_debug_mode)
 
 
-if __name__ == '__main__':
-    import os
-    import sys
-    sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-    from lib.settings_system import the_settings, test_mode, debug_mode
-    unittest.main()
+
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from lib.settings_system import the_settings, test_mode, debug_mode
+unittest.main(exit=False)
