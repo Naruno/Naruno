@@ -20,9 +20,9 @@ class Test_Config(unittest.TestCase):
 
         self.assertEqual(finded_true_folder,True,"A problem on the config.")
 
-if __name__ == '__main__':
-    import os
-    import sys
-    sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-    from lib.config_system import get_config    
-    unittest.main()
+
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from lib.config_system import get_config    
+unittest.main(exit=False)
