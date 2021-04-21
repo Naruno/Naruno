@@ -286,4 +286,3 @@ class mynode (Node):
         dprint("Getting the transactions")
         system = get_block()
         system.createTrans(sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node)
-        system.Verificate_Pending_Trans()
