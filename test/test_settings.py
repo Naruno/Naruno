@@ -29,14 +29,17 @@ class Test_Settings(unittest.TestCase):
         temp_test_settings2 = the_settings()
         self.assertEqual(temp_test_settings2["test_mode"], False, "A problem on the saving the settings.")
         self.assertEqual(temp_test_settings2["debug_mode"], False, "A problem on the saving the settings.")
+        
+        temp_test_settings2["test_mode"] = temp_settings["test_mode"]
+        temp_test_settings2["debug_mode"] = temp_settings["debug_mode"]
+        
+        save_settings(temp_test_settings2)
 
-        test_mode(temp_settings["test_mode"])
-        debug_mode(temp_settings["debug_mode"])
 
 
 
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from lib.settings_system import the_settings, test_mode, debug_mode
+from lib.settings_system import the_settings, save_settings
 unittest.main(exit=False)
