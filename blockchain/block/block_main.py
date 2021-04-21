@@ -199,6 +199,7 @@ class Block:
 
 
     def consensus(self):
+     
      if self.validating_list_starting_time != None:
       if not (int(time.time()) - self.validating_list_starting_time) < self.validating_list_time or not len(self.validating_list) < self.max_tx_number:
         if self.raund_1_starting_time == None:
@@ -363,6 +364,9 @@ class Block:
                                         
         """+str(self.__dict__)+"\n")
 
+        self.Verificate_Pending_Trans()
+        self.save_block()
+
 
     def consensus_raund_2(self):
         if not  (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time or len(self.candidate_block_hashes) == len(self.total_validators):
@@ -374,13 +378,10 @@ class Block:
                   tx_valid = 0
 
 
-                  if len(self.candidate_block_hashes) != 1:
-                      for other_block in self.candidate_block_hashes[:]:
-                        if candidate_block != other_block:
-                          if other_block_tx in other_block["hash"]:
-                              tx_valid += 1
-                  else:
-                      tx_valid += 1
+                  for other_block in self.candidate_block_hashes[:]:
+                    if candidate_block != other_block:
+                        if other_block_tx in other_block["hash"]:
+                            tx_valid += 1
 
                   if tx_valid > ((len(self.candidate_block_hashes) * 80)/100):
                       dprint("Raund 2: second ok")
@@ -428,7 +429,8 @@ class Block:
     def Verificate_Pending_Trans(self):
         dprint("Pending transactions number: "+str(len(self.pendingTransaction)))
         dprint("Validating transactions number: "+str(len(self.validating_list)))
-        if len(self.validating_list) < self.max_tx_number:
+        print(self.raund_1_starting_time)
+        if len(self.validating_list) < self.max_tx_number and self.raund_1_starting_time == None:
             for tx in self.pendingTransaction[:]:
                 if len(self.validating_list) < self.max_tx_number:
                     self.validating_list.append(tx)
@@ -443,7 +445,7 @@ class Block:
         dprint("End mining pending transactions number: "+str(len(self.pendingTransaction)))
         dprint("End mining validating transactions number: "+str(len(self.validating_list)))
 
-        self.save_block()
+
 
 
 
@@ -486,6 +488,7 @@ class Block:
 
             # Local saving
             self.pendingTransaction.append(Transaction(sequance_number= sequance_number, signature=temp_signature, fromUser= fromUser, toUser=toUser, data = data, amount = amount, transaction_fee= transaction_fee))
+            self.Verificate_Pending_Trans()
             self.save_block()
             # End
 
@@ -497,11 +500,8 @@ class Block:
                 mynode.main_node.send_data_to_nodes({"transactionrequest": 1, "sequance_number": sequance_number, "signature": signature, "fromUser": fromUser, "to_user": toUser, "data": data, "amount": amount, "transaction_fee": transaction_fee}, exclude=[transaction_sender])
             # End
 
-            # Triggering the consensus
-            self.Verificate_Pending_Trans()
-            # End
 
-
+            
             return True
             
       dprint(" Validation end")

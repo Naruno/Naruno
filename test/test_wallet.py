@@ -38,9 +38,9 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(publicKey1.curve, publicKey2.curve)
 
 
-if __name__ == '__main__':
-    import os
-    import sys
-    sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-    from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete, PrivateKey, toBytes, PublicKey
-    unittest.main()
+
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete, PrivateKey, toBytes, PublicKey
+unittest.main(exit=False)
