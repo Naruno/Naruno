@@ -24,13 +24,13 @@ def settings_class(test_mode_settings= False, debug_mode_settings= False):
 
 
 
-def test_mode(value):
+def test_mode(new_value):
     settings = the_settings()
     settings["test_mode"] = value
     save_settings(settings)
 
 
-def debug_mode(value):
+def debug_mode(new_value):
     settings = the_settings()
     settings["debug_mode"] = value
     save_settings(settings)
