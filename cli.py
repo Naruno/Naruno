@@ -60,16 +60,6 @@ def show_menu():
        menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")+ \
        menu_space())
 
-    for folder_entry in os.scandir('apps'):
-        if ".md" not in folder_entry.name:
-            for entry in os.scandir("apps/"+folder_entry.name):
-                if entry.is_file():
-                    if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
-                        print(entry.name)
-                        import_command = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_cli"
-                        tx_command = f"{entry.name.replace('.py','')}_cli()"
-                        exec (import_command)
-                        exec (tx_command)
 
     print(quit_menu_maker(mode="main"))
 
@@ -134,16 +124,7 @@ def menu():
         if choices_input == "getfullblock":
             get_block_from_other_node()
 
-        for folder_entry in os.scandir('apps'):
-            if ".md" not in folder_entry.name:
-                for entry in os.scandir("apps/"+folder_entry.name):
-                    if entry.is_file():
-                        if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
-                            print(entry.name)
-                            import_command = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_cli_command"
-                            tx_command = f"{entry.name.replace('.py','')}_cli_command(choices_input)"
-                            exec (import_command)
-                            exec (tx_command)
+
 
         if choices_input == "0":
             exit()
