@@ -37,12 +37,42 @@ def consensus_trigger():
       print("consensus trigger")
       get_block().consensus()
 
+
+class app(Thread):
+    def __init__(self,import_command,func):
+        Thread.__init__(self)
+        self.import_command = import_command
+        self.func = func 
+        print("\n\n in app class")
+
+    def run(self):
+        print("\n\n in app runner")
+        exec(self.import_command)
+        exec(self.func)
+
 class perpetualTimer():
 
    def __init__(self,t,hFunction):
       self.t=t
       self.hFunction = hFunction
       self.thread = Timer(self.t,self.handle_function)
+
+      for folder_entry in os.scandir('apps'):
+            if ".md" not in folder_entry.name:
+                for entry in os.scandir("apps/"+folder_entry.name):
+                    if entry.is_file():
+                        if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
+                            import_command = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_run"
+                            tx_command = f"{entry.name.replace('.py','')}_run()"
+
+                            exec (import_command)
+
+                            print("\n\ntest")
+                            print(import_command)
+                            print(tx_command)
+                            x = app(import_command,tx_command)
+                            x.start()
+
 
    def handle_function(self):
       
@@ -324,6 +354,8 @@ class Block:
                                         
         """+str(self.__dict__)+"\n")
 
+        self.app_tigger()
+
 
         self.previous_hash = self.hash
         self.sequance_number = self.sequance_number + 1
@@ -387,7 +419,7 @@ class Block:
                       dprint("Raund 2: second ok")
                       if self.hash == candidate_block["hash"]:
                         self.validated = True
-                        self.app_tigger()
+                        
 
                         
                         
