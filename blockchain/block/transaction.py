@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import json
+import hashlib
+
 
 class Transaction:
     def __init__(self, sequance_number, signature, fromUser, toUser, data, amount, transaction_fee):
@@ -22,6 +25,10 @@ class Transaction:
             "transaction_fee": self.transaction_fee
         }
         return data
+
+    def get_hash(self, encoding="ascii"):
+        transaction_data = json.dumps(self.dump_json()).encode(encoding)
+        return hashlib.sha256(transaction_data).hexdigest()
 
     @staticmethod
     def load_json(data):
