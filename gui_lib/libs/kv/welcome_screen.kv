@@ -1,0 +1,46 @@
+#: import environ os.environ
+#: import gch kivy.utils.get_color_from_hex
+
+
+<DecentraWelcomeScreen>
+    canvas:
+        Color:
+            rgba: gch("#ffffff")
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        adaptive_height: True
+        orientation: "vertical"
+        spacing: dp(80)
+        padding: dp(30)
+        pos_hint: {"center_x": .5}
+        
+
+        Image:
+            source: f"{environ['DECENTRA_ROOT']}/gui_lib/images/logo.ico"
+            pos_hint: {"center_x": .5}
+            size_hint: None, None
+            
+
+        MDBoxLayout:
+            adaptive_height: True
+            orientation: "vertical"
+            spacing: dp(20)
+
+            ProgressBar:
+                id : pb
+                min :0
+                max :100
+                pos_hint: {'x': .1}
+                size_hint_x :.8
+                size_hint_y :.5
+                value: 0
+
+        MDBoxLayout:
+            adaptive_height: True
+            orientation: "vertical"
+            spacing: dp(20)
+
+
