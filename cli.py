@@ -32,10 +32,6 @@ def show_menu():
 
     print(banner_maker(sc_name="Decentra Network", description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.", author="Decentra Network Developers"))
 
-    if the_settings()["test_mode"]:
-        print(menu_maker(menu_number="cbl", menu_text="Create block"))
-    else:
-        print(menu_maker(menu_number="connectmainnetwork", menu_text="Connect to Main Network"))
 
     print(menu_space() + \
 	   menu_maker(menu_number="cw", menu_text="Create wallet")+ \
@@ -69,13 +65,9 @@ def menu():
         show_menu()
         choices_input = question_maker(mode="main")
 
-        if the_settings()["test_mode"]:
-            if choices_input == "cbl":
-                create_block()
-        else:
-            if choices_input == "connectmainnetwork":
-                from func.node_connection import connect_to_main_network
-                connect_to_main_network()
+        if choices_input == "connectmainnetwork":
+            from func.node_connection import connect_to_main_network
+            connect_to_main_network()
         if choices_input == "cw":
             Wallet_Create()
         if choices_input == "sc":
@@ -121,8 +113,11 @@ def menu():
 
         if choices_input == "getfullnodelist":
             sendme_full_node_list()
-        if choices_input == "getfullblock":
-            get_block_from_other_node()
+        if choices_input == "getblock":
+            if the_settings()["test_mode"]:
+                create_block()
+            else:
+                get_block_from_other_node()
 
 
 
