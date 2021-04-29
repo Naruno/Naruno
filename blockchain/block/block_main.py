@@ -107,7 +107,7 @@ class Block:
 
 
         self.validating_list = []
-        self.validating_list_time = 5
+        self.validating_list_time = 3
         self.validating_list_starting_time = int(time.time())
 
         self.hash = None
@@ -122,17 +122,17 @@ class Block:
 
 
         self.raund_1_starting_time = None
-        self.raund_1_time = 5
+        self.raund_1_time = 6
         self.raund_1 = False
         self.raund_1_node = False
         
         self.raund_2_starting_time = None
-        self.raund_2_time = 45
+        self.raund_2_time = 6
         self.raund_2 = False
         self.raund_2_node = False
 
 
-        self.consensus_timer = 2
+        self.consensus_timer = 1
 
 
         self.validated = False
@@ -320,10 +320,12 @@ class Block:
               for my_temp_validating_list in temp_validating_list[:]:
                   if my_validating_list.signature == my_temp_validating_list.signature:
                       ok = True
+              self.validating_list.remove(my_validating_list) 
               if not ok:
-                self.pendingTransaction.append(my_validating_list)
-              else:
-                self.validating_list.remove(my_validating_list) 
+                self.createTrans(my_validating_list.sequance_number, my_validating_list.signature, my_validating_list.fromUser, my_validating_list.toUser, my_validating_list.transaction_fee, my_validating_list.data, my_validating_list.amount, transaction_sender = None)
+                
+
+                
           self.validating_list = temp_validating_list      
 
 
@@ -440,6 +442,7 @@ class Block:
                             tx_valid += 1
 
                   if tx_valid > ((len(self.total_validators) * 80)/100):
+                      
                       dprint("Raund 2: second ok")
                       if self.hash == candidate_block["hash"]:
                         self.validated = True
