@@ -99,6 +99,8 @@ class Block:
 
 
         # TODO: Save the block to blockchain before resetting
+        # TODO: What to do in case of consensus fails will be added
+
 
         self.previous_hash = "0"
         self.sequance_number = sequance_number
