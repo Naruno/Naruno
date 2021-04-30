@@ -45,7 +45,7 @@ class mynode (Node):
             from node.unl import node_is_unl
             if data["fullblock"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullblock"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 print("getting chain")
-                self.get_full_chain(data)
+                self.get_full_chain(data,node)
         except Exception as e:
             print(e)
 
@@ -64,11 +64,7 @@ class mynode (Node):
             print(e)
 
 
-        try:
-         if data["action"]  == "sendmeyourblock":
-            self.send_my_block(node)
-        except Exception as e:
-            print(e)
+
             
         try:
          if data["action"]  == "myblock":
@@ -77,11 +73,7 @@ class mynode (Node):
             print(e)
 
 
-        try:
-         if data["action"]  == "sendmeyourblockhash":
-            self.send_my_block_hash(node)
-        except Exception as e:
-            print(e)
+
 
         try:
          if data["action"]  == "myblockhash":
@@ -101,7 +93,7 @@ class mynode (Node):
 
 
 
-    def send_my_block(self,node):
+    def send_my_block(self,nodes):
         from blockchain.block.block_main import get_block
         system = get_block()
 
@@ -117,16 +109,24 @@ class mynode (Node):
          dprint("signature_list: "+str(signature_list))
          dprint("publickey from pem: "+str(Wallet_Import(0,1)))
 
-         dprint("\nmerkleroot: "+str(MerkleTree(signature_list).getRootHash()))
+         if len(signature_list) != 0:
+             Merkle_signature_list = MerkleTree(signature_list).getRootHash()
+         else:
+             Merkle_signature_list = "0"
+
+         dprint("\nmerkleroot: "+Merkle_signature_list)
 
          data = {
              "action":"myblock",
              "transaction": new_list,
-             "signature":Ecdsa.sign("myblock"+str(MerkleTree(signature_list).getRootHash()), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()
+             "signature":Ecdsa.sign("myblock"+Merkle_signature_list, PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()
          }
-         self.send_data_to_node(node,data)
 
-    def send_my_block_hash(self,node):
+         for each_node in nodes:
+            dprint("Raund 1: second ok of get candidate block: "+ str(each_node.__dict__))
+            self.send_data_to_node(each_node,data)
+
+    def send_my_block_hash(self,nodes):
         from blockchain.block.block_main import get_block
         system = get_block()
 
@@ -138,7 +138,10 @@ class mynode (Node):
              "hash": system.hash,
              "signature":Ecdsa.sign("myblockhash"+system.hash, PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()
          }
-         self.send_data_to_node(node,data)
+
+         for each_node in nodes:
+             dprint("Raund 2: second ok of get candidate block hashes: "+ str(each_node.__dict__))
+             self.send_data_to_node(each_node,data)
 
 
     def get_candidate_block(self,data,node):
@@ -159,9 +162,10 @@ class mynode (Node):
             dprint("signatureverify: "+str(Ecdsa.verify("myblock"+str(MerkleTree(signature_list).getRootHash()), Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id))))
             dprint("publickey from pem: "+str(node.id))
             
-            dprint("\nmerkleroot: "+str(MerkleTree(signature_list).getRootHash()))
+            dprint("merkleroot: "+str(MerkleTree(signature_list).getRootHash()))
 
-            if Ecdsa.verify("myblock"+str(MerkleTree(signature_list).getRootHash()), Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
+            if Ecdsa.verify("myblock"+str(MerkleTree(signature_list).getRootHash()), Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)): 
+                # *** Bloğu indirme işlemini get full block fonksiyonundan yapılsın fonksiyonda kimden alıcağımızı consensus 2 de doğru blokları gönderenlerden alalım yanlış bloktan kurtulmadan önce o bloğun timerlarını kapat
                 dprint("ecdsa true")
 
                 temp_tx = []
@@ -187,6 +191,7 @@ class mynode (Node):
 
             if Ecdsa.verify("myblockhash"+data["hash"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 dprint("ecdsa true")
+                data["sender"] = node.id
 
                 
                 system.candidate_block_hashes.append(data)
@@ -218,10 +223,23 @@ class mynode (Node):
                 else:
                     self.send_data_to_nodes(data)
 
-    def get_full_chain(self,data):
+    def get_full_chain(self,data,node):
       from config import TEMP_BLOCK_PATH
       import os
+      get_ok = False
+
       if not os.path.exists(TEMP_BLOCK_PATH):
+        get_ok = True
+      else:
+        from blockchain.block.block_main import get_block
+        system = get_block()
+        if node.id == system.dowload_true_block:
+            get_ok = True
+
+      
+      if get_ok:
+
+
 
         if str(data["byte"]) == "end":
             from config import LOADING_BLOCK_PATH, TEMP_BLOCK_PATH
@@ -229,17 +247,19 @@ class mynode (Node):
 
             
             os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
-
+            
             from blockchain.block.block_main import get_block, perpetualTimer, consensus_trigger
-
             system = get_block()
+            
             
             from node.unl import get_unl_nodes
             system.total_validators = get_unl_nodes()
             system.candidate_blocks = []
             system.exclude_validators = []
-            system.save_block()
+            dprint(system.sequance_number)
             perpetualTimer(system.consensus_timer,consensus_trigger).start()
+            system.save_block()
+            
 
 
         else:

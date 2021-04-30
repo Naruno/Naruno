@@ -99,6 +99,8 @@ class Block:
 
 
         # TODO: Save the block to blockchain before resetting
+        # TODO: What to do in case of consensus fails will be added
+
 
         self.previous_hash = "0"
         self.sequance_number = sequance_number
@@ -107,8 +109,8 @@ class Block:
 
 
         self.validating_list = []
-        self.validating_list_time = 4
-        self.validating_list_starting_time = None
+        self.validating_list_time = 3
+        self.validating_list_starting_time = int(time.time())
 
         self.hash = None
 
@@ -116,27 +118,28 @@ class Block:
         self.total_validators = get_unl_nodes()
         self.candidate_blocks = []
         self.candidate_block_hashes = []
-        self.exclude_validators = []
 
 
         self.max_tx_number = 2
 
 
         self.raund_1_starting_time = None
-        self.raund_1_time = 4
+        self.raund_1_time = 6
         self.raund_1 = False
         self.raund_1_node = False
         
         self.raund_2_starting_time = None
-        self.raund_2_time = 4
+        self.raund_2_time = 6
         self.raund_2 = False
         self.raund_2_node = False
 
 
-        self.consensus_timer = 2
+        self.consensus_timer = 1
 
 
         self.validated = False
+
+        self.dowload_true_block = ""
 
         self.save_block()
         perpetualTimer(self.consensus_timer,consensus_trigger).start()
@@ -155,7 +158,10 @@ class Block:
 
         dprint(tx_list)
 
-        tx_hash = MerkleTree(tx_list).getRootHash()
+        if len(tx_list) != 0:
+            tx_hash = MerkleTree(tx_list).getRootHash()
+        else:
+            tx_hash = "0"
 
         ac_list = []
         for element in self.Accounts[:]:
@@ -229,9 +235,8 @@ class Block:
 
 
     def consensus(self):
-     
-     if self.validating_list_starting_time != None:
-      if not (int(time.time()) - self.validating_list_starting_time) < self.validating_list_time or not len(self.validating_list) < self.max_tx_number:
+      if not (int(time.time()) - self.validating_list_starting_time) < self.validating_list_time:
+        #or len(self.validating_list) == self.max_tx_number
         if self.raund_1_starting_time == None:
             self.raund_1_starting_time = int(time.time())
         if not self.raund_1:
@@ -257,7 +262,18 @@ class Block:
 
         
     def consensus_raund_1(self):
-        if len(self.candidate_blocks) == len(self.total_validators) or not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
+        if not self.raund_1_node:
+              dprint("Raund 1: in get candidate blocks\n")
+              from node.unl import get_as_node_type
+              from node.myownp2pn import mynode
+
+
+              
+              mynode.main_node.send_my_block(get_as_node_type(self.total_validators))
+              self.raund_1_node = True
+              self.save_block()
+
+        if len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100) or not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
           temp_validating_list = []
           dprint("Raund 1: first ok")
           dprint(len(self.candidate_blocks))
@@ -266,24 +282,36 @@ class Block:
 
               for other_block_tx in candidate_block["transaction"]:
 
-                  tx_valid = 0
+                  tx_valid = 1
+
+                  for my_txs in self.validating_list:
+                      if other_block_tx.signature == my_txs.signature:
+                          tx_valid += 1
 
 
                   if len(self.candidate_blocks) != 1:
+                      dprint("Raund 1: Test tx")
                       for other_block in self.candidate_blocks[:]:
-                        if candidate_block != other_block:
-                          if other_block_tx in other_block["transaction"]:
-                              tx_valid += 1
+                        if candidate_block["signature"] != other_block["signature"]:
+                            dprint("Raund 1: Test tx 2")
+                            for other_block_txs in other_block["transaction"]:
+                                if other_block_tx.signature == other_block_txs.signature:
+                                    dprint("Raund 1: Test tx 3")
+                                    tx_valid += 1
                   else:
                       tx_valid += 1
 
 
-                  if tx_valid > (len(self.candidate_blocks) / 2):
+                  if tx_valid > (len(self.total_validators) / 2):
                       dprint("Raund 1: second ok")
-
-                      if other_block_tx not in self.validating_list:
-                          dprint("Raund 1: third ok")
-                          temp_validating_list.append(other_block_tx)
+                      already_in_ok = False
+                      for alrady_tx  in temp_validating_list[:]:
+                          
+                          if other_block_tx.signature == alrady_tx.signature:
+                              already_in_ok = True
+                      if not already_in_ok:
+                            dprint("Raund 1: third ok")
+                            temp_validating_list.append(other_block_tx)
 
 
 
@@ -294,11 +322,12 @@ class Block:
               for my_temp_validating_list in temp_validating_list[:]:
                   if my_validating_list.signature == my_temp_validating_list.signature:
                       ok = True
-              if ok:
-                  self.validating_list.remove(my_validating_list)
-              else:
-                  self.validating_list.remove(my_validating_list)
-                  self.pendingTransaction.append(my_validating_list) 
+              self.validating_list.remove(my_validating_list) 
+              if not ok:
+                self.createTrans(my_validating_list.sequance_number, my_validating_list.signature, my_validating_list.fromUser, my_validating_list.toUser, my_validating_list.transaction_fee, my_validating_list.data, my_validating_list.amount, transaction_sender = None)
+                
+
+                
           self.validating_list = temp_validating_list      
 
 
@@ -315,7 +344,7 @@ class Block:
 
           self.calculate_hash()
 
-          self.exclude_validators = []
+
 
           self.save_block()
 
@@ -327,20 +356,6 @@ class Block:
           for element_3 in self.validating_list:
             dprint(str(element_3.__dict__))
             
-
-        else:
-
-            if not self.raund_1_node:
-              dprint("Raund 1: in get candidate blocks\n")
-              from node.unl import get_as_node_type
-              from node.myownp2pn import mynode
-
-              for node in get_as_node_type(self.total_validators):
-                if node.id not in self.exclude_validators:
-                 dprint("Raund 1: second ok of get candidate block: "+ str(node.__dict__))
-                 self.exclude_validators.append(node.id)
-                 mynode.main_node.send_data_to_node(node, {"action": "sendmeyourblock"})
-              self.raund_1_node = True
 
     def reset_the_block(self):
         
@@ -360,13 +375,12 @@ class Block:
         self.previous_hash = self.hash
         self.sequance_number = self.sequance_number + 1
         self.validating_list = []
-        self.validating_list_starting_time = None
+        self.validating_list_starting_time = int(time.time())
         
         self.hash = None
 
         self.candidate_blocks = []
         self.candidate_block_hashes = []
-        self.exclude_validators = []
 
 
 
@@ -401,21 +415,36 @@ class Block:
 
 
     def consensus_raund_2(self):
-        if not  (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time or len(self.candidate_block_hashes) == len(self.total_validators):
+        if not self.raund_2_node:
+              dprint("Raund 2: in get candidate block hashes\n")
+              from node.unl import get_as_node_type
+              from node.myownp2pn import mynode
+
+
+              
+
+              mynode.main_node.send_my_block_hash(get_as_node_type(self.total_validators))
+              self.raund_2_node = True
+              self.save_block()
+
+        if len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100) or not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
           temp_validating_list = []
           dprint("Raund 2: first ok")
           for candidate_block in self.candidate_block_hashes[:]:
+                  tx_valid = 1
 
-              for other_block_tx in candidate_block["hash"]:
-                  tx_valid = 0
+                  if self.hash == candidate_block["hash"]:
+                      tx_valid += 1
 
 
                   for other_block in self.candidate_block_hashes[:]:
+
                     if candidate_block != other_block:
-                        if other_block_tx in other_block["hash"]:
+                        if candidate_block["hash"] == other_block["hash"]:
                             tx_valid += 1
 
-                  if tx_valid > ((len(self.candidate_block_hashes) * 80)/100):
+                  if tx_valid > ((len(self.total_validators) * 80)/100):
+                      
                       dprint("Raund 2: second ok")
                       if self.hash == candidate_block["hash"]:
                         self.validated = True
@@ -425,38 +454,34 @@ class Block:
                         
                       else:
                           print("Raund 2: my block is not valid")
-                          # TODO: download the true block
+                          from node.myownp2pn import mynode
+                          from node.unl import get_unl_nodes, get_as_node_type
+                          node = mynode.main_node
+                          unl_list = get_as_node_type([candidate_block["sender"]])
+                          node.send_data_to_node(unl_list[0], "sendmefullblock")
+                          self.dowload_true_block = candidate_block["sender"]
+                          self.save_block()
+
+                          
 
 
         
+          if self.validated:
+           self.raund_2 = True
+
+
+           self.reset_the_block()
+
           
-          self.raund_2 = True
-
-          self.exclude_validators = []
-
-          self.reset_the_block()
-
-          
 
 
 
-          dprint("Raund 2: self.validating_list: ")
-          for element_3 in self.validating_list:
-            dprint(str(element_3.__dict__))
+           dprint("Raund 2: self.validating_list: ")
+           for element_3 in self.validating_list:
+             dprint(str(element_3.__dict__))
             
 
-        else:
-            if not self.raund_2_node:
-              dprint("Raund 2: in get candidate block hashes\n")
-              from node.unl import get_as_node_type
-              from node.myownp2pn import mynode
 
-              for node in get_as_node_type(self.total_validators):
-                if node.id not in self.exclude_validators:
-                 dprint("Raund 2: second ok of get candidate block hashes: "+ str(node.__dict__))
-                 self.exclude_validators.append(node.id)
-                 mynode.main_node.send_data_to_node(node, {"action": "sendmeyourblockhash"})
-              self.raund_1_node = True
 
     def Verificate_Pending_Trans(self):
         dprint("Pending transactions number: "+str(len(self.pendingTransaction)))
@@ -466,12 +491,10 @@ class Block:
             for tx in self.pendingTransaction[:]:
                 if len(self.validating_list) < self.max_tx_number:
                     self.validating_list.append(tx)
-                    if self.validating_list_starting_time == None:
-                        self.validating_list_starting_time = int(time.time())
                     self.pendingTransaction.remove(tx)
 
-
-        
+       
+      
 
 
         dprint("End mining pending transactions number: "+str(len(self.pendingTransaction)))
@@ -479,11 +502,17 @@ class Block:
 
 
 
+    def propagating_the_tx(self,tx):
+        # Propagating to other nodes
+        from node.myownp2pn import mynode
+        from node.unl import get_as_node_type
+        for each_node in get_as_node_type(self.total_validators):
+            mynode.main_node.send_data_to_node(each_node,{"transactionrequest": 1, "sequance_number": tx.sequance_number, "signature": tx.signature, "fromUser": tx.fromUser, "to_user": tx.toUser, "data": tx.data, "amount": tx.amount, "transaction_fee": tx.transaction_fee})
+        # End  
 
 
 
-
-    def createTrans(self, sequance_number, signature, fromUser, toUser, transaction_fee, data, amount, transaction_sender = None, my_tx = False):
+    def createTrans(self, sequance_number, signature, fromUser, toUser, transaction_fee, data, amount, transaction_sender = None):
 
       # Printing the info of tx
       dprint("\nCreating the transaction")
@@ -510,6 +539,7 @@ class Block:
       if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)) and already_got == False:
         dprint("Signature is valid")
 
+        dprint("Getsequancenumber: "+str(self.getSequanceNumber(fromUser)+1))
         if sequance_number == (self.getSequanceNumber(fromUser)+1):
           dprint("Sequance number is valid")
 
@@ -518,20 +548,21 @@ class Block:
           if balance >= (float(amount)+float(transaction_fee)) and (balance - (float(amount)+float(transaction_fee))) > 2:
             dprint("Amount is valid")
 
+
+
+            
+
             # Local saving
-            self.pendingTransaction.append(Transaction(sequance_number= sequance_number, signature=temp_signature, fromUser= fromUser, toUser=toUser, data = data, amount = amount, transaction_fee= transaction_fee))
+            the_tx = Transaction(sequance_number= sequance_number, signature=temp_signature, fromUser= fromUser, toUser=toUser, data = data, amount = amount, transaction_fee= transaction_fee)
+            self.pendingTransaction.append(the_tx)
             self.Verificate_Pending_Trans()
             self.save_block()
             # End
+            
+            self.propagating_the_tx(the_tx)
+            
 
-            # Propagating to other nodes
-            from node.myownp2pn import mynode
-            if transaction_sender is None:
-                mynode.main_node.send_data_to_nodes({"transactionrequest": 1, "sequance_number": sequance_number, "signature": signature, "fromUser": fromUser, "to_user": toUser, "data": data, "amount": amount, "transaction_fee": transaction_fee})
-            else:
-                mynode.main_node.send_data_to_nodes({"transactionrequest": 1, "sequance_number": sequance_number, "signature": signature, "fromUser": fromUser, "to_user": toUser, "data": data, "amount": amount, "transaction_fee": transaction_fee}, exclude=[transaction_sender])
-            # End
-
+           
 
             
             return True
@@ -553,27 +584,29 @@ class Block:
 
     def getBalance(self, user):
         balance = 0
+        user = "".join([
+            l.strip() for l in user.splitlines()
+            if l and not l.startswith("-----")
+        ])
         for Accounts in self.Accounts:
-            temp_pubkey = Accounts.PublicKey
-            if temp_pubkey in user:
+
+            if Accounts.PublicKey == user:
                 balance = Accounts.balance
                 return balance
         return balance
         
-    def getSequanceNumber(self, user, my_tx = True):
+    def getSequanceNumber(self, user):
         sequance_number = 0
         for Accounts in self.Accounts:
 
-            temp_pubkey = Accounts.PublicKey
 
-            if temp_pubkey in user:
+            if Accounts.PublicKey == user:
   
                 sequance_number = Accounts.sequance_number
 
-                if my_tx:
-                 for trans in self.pendingTransaction + self.validating_list:
 
-                    if user in trans.fromUser:
+                for trans in self.pendingTransaction + self.validating_list:
+                    if user == trans.fromUser:
                         sequance_number += 1
 
                 return sequance_number

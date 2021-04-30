@@ -68,12 +68,10 @@ def get_as_node_type(id_list):
         temp_list = []
         from node.myownp2pn import mynode
         for list_node in id_list:
-            for inbound in mynode.main_node.nodes_inbound:
-                if list_node in inbound.id:
-                    temp_list.append(inbound)
-            for outbound in mynode.main_node.nodes_outbound:
-                if list_node in outbound.id:
-                    temp_list.append(outbound)
+            for each_node in (mynode.main_node.nodes_inbound + mynode.main_node.nodes_outbound):
+                if list_node == each_node.id:
+                    temp_list.append(each_node)
+
         return temp_list
 
 
