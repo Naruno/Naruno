@@ -33,6 +33,8 @@ from threading import Timer,Thread,Event
 
 from func.merkle_root import MerkleTree
 
+import sqlite3
+
 def consensus_trigger():
       print("consensus trigger")
       get_block().consensus()
@@ -75,13 +77,9 @@ class perpetualTimer():
 
 
    def handle_function(self):
-      
-      if not get_block().validated:
        self.hFunction()
        self.thread = Timer(self.t,self.handle_function)
        self.thread.start()
-      else:
-          self.cancel()
 
    def start(self):
       self.thread.start()
@@ -98,7 +96,6 @@ class Block:
     def __init__(self, sequance_number, creator):
 
 
-        # TODO: Save the block to blockchain before resetting
         # TODO: What to do in case of consensus fails will be added
 
 
@@ -371,6 +368,46 @@ class Block:
 
         self.app_tigger()
 
+
+        db = sqlite3.connect(BLOCKCHAIN_PATH)
+        cur = db.cursor()
+        cur.execute("""CREATE TABLE IF NOT EXISTS blockchain(
+                    previous_hash,
+                    sequance_number,
+                    hash
+                );""")
+
+        cur.execute(f"""INSERT INTO blockchain VALUES (
+            '{self.previous_hash}', '{self.sequance_number}', '{self.hash}'
+        )""")
+
+
+        cur.execute(f"""CREATE TABLE accounts{self.sequance_number}(
+                    PublicKey,
+                    sequance_number,
+                    balance
+                );""")
+        for each_account in self.Accounts:
+            cur.execute(f"""INSERT INTO accounts{self.sequance_number} VALUES (
+                '{each_account.PublicKey}', '{each_account.sequance_number}', '{each_account.balance}'
+            )""")
+        cur.execute(f"""CREATE TABLE transactions{self.sequance_number}(
+                    sequance_number,
+                    signature,
+                    fromUser,
+                    toUser,
+                    data,
+                    amount,
+                    transaction_fee
+                );""")
+        for each_transaction in self.validating_list:
+            cur.execute(f"""INSERT INTO transactions{self.sequance_number} VALUES (
+                '{each_transaction.sequance_number}', '{each_transaction.signature}', '{each_transaction.fromUser}', '{each_transaction.toUser}', '{each_transaction.data}', '{each_transaction.amount}', '{each_transaction.transaction_fee}'
+            )""")
+
+
+        db.commit()
+        db.close()
 
         self.previous_hash = self.hash
         self.sequance_number = self.sequance_number + 1
