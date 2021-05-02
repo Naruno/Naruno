@@ -11,5 +11,7 @@ UNL_NODES_PATH = 'db/unl_nodes.json'
 TEMP_BLOCK_PATH = 'db/temp_block.decentra_network'
 LOADING_BLOCK_PATH = 'db/loading_block.decentra_network'
 
+BLOCKCHAIN_PATH = 'db/blockchain.decentra_network'
+
 
 WALLETS_PATH = 'db/wallet_list.json'

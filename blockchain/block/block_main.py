@@ -33,6 +33,8 @@ from threading import Timer,Thread,Event
 
 from func.merkle_root import MerkleTree
 
+import sqlite3
+
 def consensus_trigger():
       print("consensus trigger")
       get_block().consensus()
@@ -75,13 +77,9 @@ class perpetualTimer():
 
 
    def handle_function(self):
-      
-      if not get_block().validated:
        self.hFunction()
        self.thread = Timer(self.t,self.handle_function)
        self.thread.start()
-      else:
-          self.cancel()
 
    def start(self):
       self.thread.start()
@@ -98,7 +96,6 @@ class Block:
     def __init__(self, sequance_number, creator):
 
 
-        # TODO: Save the block to blockchain before resetting
         # TODO: What to do in case of consensus fails will be added
 
 
@@ -272,8 +269,10 @@ class Block:
               mynode.main_node.send_my_block(get_as_node_type(self.total_validators))
               self.raund_1_node = True
               self.save_block()
-
-        if len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100) or not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
+        dprint("Raund 1 Conditions")
+        dprint(len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100))
+        dprint((int(time.time()) - self.raund_1_starting_time) < self.raund_1_time)
+        if len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
           temp_validating_list = []
           dprint("Raund 1: first ok")
           dprint(len(self.candidate_blocks))
@@ -282,7 +281,7 @@ class Block:
 
               for other_block_tx in candidate_block["transaction"]:
 
-                  tx_valid = 1
+                  tx_valid = 0
 
                   for my_txs in self.validating_list:
                       if other_block_tx.signature == my_txs.signature:
@@ -372,6 +371,46 @@ class Block:
         self.app_tigger()
 
 
+        db = sqlite3.connect(BLOCKCHAIN_PATH)
+        cur = db.cursor()
+        cur.execute("""CREATE TABLE IF NOT EXISTS blockchain(
+                    previous_hash,
+                    sequance_number,
+                    hash
+                );""")
+
+        cur.execute(f"""INSERT INTO blockchain VALUES (
+            '{self.previous_hash}', '{self.sequance_number}', '{self.hash}'
+        )""")
+
+
+        cur.execute(f"""CREATE TABLE accounts{self.sequance_number}(
+                    PublicKey,
+                    sequance_number,
+                    balance
+                );""")
+        for each_account in self.Accounts:
+            cur.execute(f"""INSERT INTO accounts{self.sequance_number} VALUES (
+                '{each_account.PublicKey}', '{each_account.sequance_number}', '{each_account.balance}'
+            )""")
+        cur.execute(f"""CREATE TABLE transactions{self.sequance_number}(
+                    sequance_number,
+                    signature,
+                    fromUser,
+                    toUser,
+                    data,
+                    amount,
+                    transaction_fee
+                );""")
+        for each_transaction in self.validating_list:
+            cur.execute(f"""INSERT INTO transactions{self.sequance_number} VALUES (
+                '{each_transaction.sequance_number}', '{each_transaction.signature}', '{each_transaction.fromUser}', '{each_transaction.toUser}', '{each_transaction.data}', '{each_transaction.amount}', '{each_transaction.transaction_fee}'
+            )""")
+
+
+        db.commit()
+        db.close()
+
         self.previous_hash = self.hash
         self.sequance_number = self.sequance_number + 1
         self.validating_list = []
@@ -427,11 +466,14 @@ class Block:
               self.raund_2_node = True
               self.save_block()
 
-        if len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100) or not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
+        dprint("Raund 2 Conditions")
+        dprint(len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100))
+        dprint((int(time.time()) - self.raund_2_starting_time) < self.raund_2_time)
+        if len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
           temp_validating_list = []
           dprint("Raund 2: first ok")
           for candidate_block in self.candidate_block_hashes[:]:
-                  tx_valid = 1
+                  tx_valid = 0
 
                   if self.hash == candidate_block["hash"]:
                       tx_valid += 1
