@@ -279,7 +279,7 @@ class Block:
 
               for other_block_tx in candidate_block["transaction"]:
 
-                  tx_valid = 1
+                  tx_valid = 0
 
                   for my_txs in self.validating_list:
                       if other_block_tx.signature == my_txs.signature:
@@ -468,7 +468,7 @@ class Block:
           temp_validating_list = []
           dprint("Raund 2: first ok")
           for candidate_block in self.candidate_block_hashes[:]:
-                  tx_valid = 1
+                  tx_valid = 0
 
                   if self.hash == candidate_block["hash"]:
                       tx_valid += 1
