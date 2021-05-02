@@ -269,8 +269,10 @@ class Block:
               mynode.main_node.send_my_block(get_as_node_type(self.total_validators))
               self.raund_1_node = True
               self.save_block()
-
-        if len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100) or not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
+        dprint("Raund 1 Conditions")
+        dprint(len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100))
+        dprint((int(time.time()) - self.raund_1_starting_time) < self.raund_1_time)
+        if len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
           temp_validating_list = []
           dprint("Raund 1: first ok")
           dprint(len(self.candidate_blocks))
@@ -464,7 +466,10 @@ class Block:
               self.raund_2_node = True
               self.save_block()
 
-        if len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100) or not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
+        dprint("Raund 2 Conditions")
+        dprint(len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100))
+        dprint((int(time.time()) - self.raund_2_starting_time) < self.raund_2_time)
+        if len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
           temp_validating_list = []
           dprint("Raund 2: first ok")
           for candidate_block in self.candidate_block_hashes[:]:

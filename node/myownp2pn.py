@@ -109,10 +109,9 @@ class mynode (Node):
          dprint("signature_list: "+str(signature_list))
          dprint("publickey from pem: "+str(Wallet_Import(0,1)))
 
-         if len(signature_list) != 0:
-             Merkle_signature_list = MerkleTree(signature_list).getRootHash()
-         else:
-             Merkle_signature_list = "0"
+
+         Merkle_signature_list = MerkleTree(signature_list).getRootHash() if len(signature_list) != 0 else "0"
+
 
          dprint("\nmerkleroot: "+Merkle_signature_list)
 
@@ -159,13 +158,17 @@ class mynode (Node):
 
             dprint("signature_list: "+str(signature_list))
 
-            dprint("signatureverify: "+str(Ecdsa.verify("myblock"+str(MerkleTree(signature_list).getRootHash()), Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id))))
+            merkle_root_of_signature_list = MerkleTree(signature_list).getRootHash() if len(signature_list) != 0 else "0"
+
+
+            
+
+            dprint("signatureverify: "+str(Ecdsa.verify("myblock"+merkle_root_of_signature_list, Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id))))
             dprint("publickey from pem: "+str(node.id))
             
-            dprint("merkleroot: "+str(MerkleTree(signature_list).getRootHash()))
+            dprint("merkleroot: "+merkle_root_of_signature_list)
 
-            if Ecdsa.verify("myblock"+str(MerkleTree(signature_list).getRootHash()), Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)): 
-                # *** Bloğu indirme işlemini get full block fonksiyonundan yapılsın fonksiyonda kimden alıcağımızı consensus 2 de doğru blokları gönderenlerden alalım yanlış bloktan kurtulmadan önce o bloğun timerlarını kapat
+            if Ecdsa.verify("myblock"+merkle_root_of_signature_list, Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 dprint("ecdsa true")
 
                 temp_tx = []
