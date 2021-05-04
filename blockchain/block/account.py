@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+import hashlib
 import json
 
 class Account:
@@ -11,6 +12,10 @@ class Account:
 
         self.sequance_number = sequance_number
         self.balance = balance
+
+    def get_hash(self, encoding="ascii"):
+        account_data = json.dumps(self.dump_json()).encode(encoding)
+        return hashlib.sha256(account_data).hexdigest()
 
     def dump_json(self):
         data = {
