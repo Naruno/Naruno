@@ -8,8 +8,6 @@ class Account:
     def __init__(self, PublicKey, balance, sequance_number=0):
         self.PublicKey = PublicKey
 
-        from blockchain.block.block_main import get_block
-
         self.sequance_number = sequance_number
         self.balance = balance
 
@@ -20,7 +18,6 @@ class Account:
     def dump_json(self):
         data = {
             "public_key": self.PublicKey,
-            "id": self.id,
             "sequence_number": self.sequance_number,
             "balance": self.balance
         }
