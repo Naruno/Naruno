@@ -18,11 +18,11 @@ class Account:
     def dump_json(self):
         data = {
             "public_key": self.PublicKey,
-            "sequence_number": self.sequance_number,
-            "balance": self.balance
+            "balance": self.balance,
+            "sequence_number": self.sequance_number
         }
         return data
 
     @staticmethod
     def load_json(data):
-        return Account(data["public_key"], data["balance"], data["id"], data["sequance_number"])
+        return Account(data["public_key"], data["balance"], data["sequance_number"])
