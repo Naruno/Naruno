@@ -11,7 +11,7 @@ class Test_Node(unittest.TestCase):
 
 
         node_1 = ndstart("127.0.0.1",10001)
-        
+
 
         temp_private_key = temp_private_key_class.toPem()
 
@@ -19,7 +19,7 @@ class Test_Node(unittest.TestCase):
 
         for each_wallet in saved_wallets:
             if temp_private_key == saved_wallets[each_wallet]["privatekey"]:
-                Wallet_Delete(each_wallet)  
+                Wallet_Delete(each_wallet)
 
 
         temp_private_key_class2 = Wallet_Create()
@@ -32,7 +32,7 @@ class Test_Node(unittest.TestCase):
 
         for each_wallet in saved_wallets2:
             if temp_private_key2 == saved_wallets2[each_wallet]["privatekey"]:
-                Wallet_Delete(each_wallet) 
+                Wallet_Delete(each_wallet)
 
 
         ndconnect("127.0.0.1", 10001)
@@ -59,7 +59,7 @@ class Test_Node(unittest.TestCase):
                         in_unl_list = True
                         unl_node_delete(unl_element)
                 connected_node_delete(element)
-        
+
         node_1.stop()
         node_2.stop()
 
