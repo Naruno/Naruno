@@ -12,7 +12,7 @@ class Test_Settings(unittest.TestCase):
 
     def test_saving_settings(self):
         backup_settings = the_settings()
-        
+
         temp_settings = the_settings()
 
 
@@ -26,17 +26,17 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(temp_test_settings["test_mode"], True, "A problem on the saving the settings.")
         self.assertEqual(temp_test_settings["debug_mode"], True, "A problem on the saving the settings.")
 
-        
+
         temp_test_settings["test_mode"] = False
         temp_test_settings["debug_mode"] = False
-        save_settings(temp_test_settings)        
+        save_settings(temp_test_settings)
 
 
 
         temp_test_settings2 = the_settings()
         self.assertEqual(temp_test_settings2["test_mode"], False, "A problem on the saving the settings.")
         self.assertEqual(temp_test_settings2["debug_mode"], False, "A problem on the saving the settings.")
-        
+
         temp_test_settings2["test_mode"] = backup_settings["test_mode"]
         temp_test_settings2["debug_mode"] = backup_settings["debug_mode"]
         save_settings(temp_test_settings2)
