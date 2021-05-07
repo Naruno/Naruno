@@ -9,6 +9,9 @@ CONNECTED_NODE_PATH = 'db/connected_node.json'
 UNL_NODES_PATH = 'db/unl_nodes.json'
 
 TEMP_BLOCK_PATH = 'db/temp_block.decentra_network'
+
+TEMP_CANDIDATE_BLOCKS_PATH = 'db/temp_candidate_blocks.decentra_network'
+
 LOADING_BLOCK_PATH = 'db/loading_block.decentra_network'
 
 BLOCKCHAIN_PATH = 'db/blockchain.decentra_network'

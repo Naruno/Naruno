@@ -145,9 +145,8 @@ class mynode (Node):
 
     def get_candidate_block(self,data,node):
 
-      from blockchain.block.block_main import get_block
+      
       dprint("Getting the candidate block")
-      system = get_block()
       from node.unl import node_is_unl
       if node_is_unl(node.id):
             dprint("is unl")
@@ -177,16 +176,17 @@ class mynode (Node):
                     temp_tx.append(Transaction.load_json(element))
 
                 data["transaction"] = temp_tx
-                
-                system.candidate_blocks.append(data)
-                system.save_block()
+                from blockchain.block.block_main import get_candidate_block
+                candidate_class = get_candidate_block()
+                candidate_class.candidate_blocks.append(data)
+                candidate_class.save_candidate_blocks()
 
 
     def get_candidate_block_hash(self,data,node):
 
-      from blockchain.block.block_main import get_block
+
       dprint("Getting the candidate block hash")
-      system = get_block()
+
       from node.unl import node_is_unl
       if node_is_unl(node.id):
             dprint("is unl")
@@ -196,9 +196,10 @@ class mynode (Node):
                 dprint("ecdsa true")
                 data["sender"] = node.id
 
-                
-                system.candidate_block_hashes.append(data)
-                system.save_block()
+                from blockchain.block.block_main import get_candidate_block
+                candidate_class = get_candidate_block()                
+                candidate_class.candidate_block_hashes.append(data)
+                candidate_class.save_candidate_blocks()
 
 
 
