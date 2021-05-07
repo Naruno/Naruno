@@ -1,1 +1,1 @@
-The db in this directory.
+The databases and local files in this directory.
