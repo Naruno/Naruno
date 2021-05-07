@@ -40,36 +40,6 @@ This is an open source decentralized application network. In this network, you c
   <img src="https://user-images.githubusercontent.com/41792982/114184340-628ef680-994d-11eb-914a-5aadeb17112b.jpg" width="32%" />
 </p>
 
-# Wiki
-## Getting Started
-
-* [Downloading](https://github.com/Decentra-Network/Decentra-Network/wiki/Downloading)
-* [Using](https://github.com/Decentra-Network/Decentra-Network/wiki/Using)
-
-## Apps
-
-* [Introducing](https://github.com/Decentra-Network/Decentra-Network/wiki/Introducing-to-App-Development)
-* [How to Install the App ?](https://github.com/Decentra-Network/Decentra-Network/wiki/How-to-Install-the-App-%3F)
-### App Development
-* [Creating the App](https://github.com/Decentra-Network/Decentra-Network/wiki/Creating-the-App)
-* [Definition For App](https://github.com/Decentra-Network/Decentra-Network/wiki/Definition-for-App)
-* [Question and answer](https://github.com/Decentra-Network/Decentra-Network/wiki/Questions-and-Answer-for-App-Development)
-
-# Social Media
-## In Global
-### Decentra Network Global Community
-* [Twitter](https://twitter.com/DecentraC)
-* [Instagram](https://www.instagram.com/decentranetwork.global/)
-## In Turkish
-### Decentra Network Türkiye Topluluğu
-* [Twitter](https://twitter.com/DecentraTurkiye)
-* [Instagram](https://www.instagram.com/decentra.networktr/)
-
-# Telegram
-## In Turkish
-### Decentra Network Türkiye Topluluğu
-* [Kanal](https://t.me/joinchat/PnstgE9yipkwYmVk)
-
 ### Founder : Onur Atakan ULUSOY
 
 <br />
