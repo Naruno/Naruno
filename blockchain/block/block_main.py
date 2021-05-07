@@ -90,6 +90,33 @@ class perpetualTimer():
 
 
 
+class candidate_block:
+    def __init__(self):
+
+        self.candidate_blocks = []
+        self.candidate_block_hashes = []
+
+    def save_candidate_blocks(self):
+        from lib.config_system import get_config
+        import os
+
+
+        os.chdir(get_config()["main_folder"])
+        with open(TEMP_CANDIDATE_BLOCKS_PATH, 'wb') as block_file:
+            pickle.dump(self, block_file, protocol=2)
+
+def get_candidate_block():
+    try:
+        from lib.config_system import get_config
+        import os
+        
+        os.chdir(get_config()["main_folder"])
+        with open(TEMP_CANDIDATE_BLOCKS_PATH, 'rb') as block_file:
+            return pickle.load(block_file)
+    except:
+        return candidate_block()
+
+
 
 
 class Block:
@@ -113,8 +140,7 @@ class Block:
 
         from node.unl import get_unl_nodes
         self.total_validators = get_unl_nodes()
-        self.candidate_blocks = []
-        self.candidate_block_hashes = []
+
 
 
         self.max_tx_number = 2
@@ -269,14 +295,15 @@ class Block:
               mynode.main_node.send_my_block(get_as_node_type(self.total_validators))
               self.raund_1_node = True
               self.save_block()
+        candidate_class = get_candidate_block()
         dprint("Raund 1 Conditions")
-        dprint(len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100))
+        dprint(len(candidate_class.candidate_blocks) > ((len(self.total_validators) * 80)/100))
         dprint((int(time.time()) - self.raund_1_starting_time) < self.raund_1_time)
-        if len(self.candidate_blocks) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
+        if len(candidate_class.candidate_blocks) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
           temp_validating_list = []
           dprint("Raund 1: first ok")
-          dprint(len(self.candidate_blocks))
-          for candidate_block in self.candidate_blocks[:]:
+          dprint(len(candidate_class.candidate_blocks))
+          for candidate_block in candidate_class.candidate_blocks[:]:
 
 
               for other_block_tx in candidate_block["transaction"]:
@@ -288,9 +315,9 @@ class Block:
                           tx_valid += 1
 
 
-                  if len(self.candidate_blocks) != 1:
+                  if len(candidate_class.candidate_blocks) != 1:
                       dprint("Raund 1: Test tx")
-                      for other_block in self.candidate_blocks[:]:
+                      for other_block in candidate_class.candidate_blocks[:]:
                         if candidate_block["signature"] != other_block["signature"]:
                             dprint("Raund 1: Test tx 2")
                             for other_block_txs in other_block["transaction"]:
@@ -418,8 +445,10 @@ class Block:
         
         self.hash = None
 
-        self.candidate_blocks = []
-        self.candidate_block_hashes = []
+        candidate_class = get_candidate_block()
+        candidate_class.candidate_blocks = []
+        candidate_class.candidate_block_hashes = []
+        candidate_class.save_candidate_blocks()
 
 
 
@@ -436,7 +465,6 @@ class Block:
 
         self.validated = False
 
-        self.save_block()
 
 
         dprint("""\n
@@ -466,20 +494,21 @@ class Block:
               self.raund_2_node = True
               self.save_block()
 
+        candidate_class = get_candidate_block()
         dprint("Raund 2 Conditions")
-        dprint(len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100))
+        dprint(len(candidate_class.candidate_block_hashes) > ((len(self.total_validators) * 80)/100))
         dprint((int(time.time()) - self.raund_2_starting_time) < self.raund_2_time)
-        if len(self.candidate_block_hashes) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
+        if len(candidate_class.candidate_block_hashes) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
           temp_validating_list = []
           dprint("Raund 2: first ok")
-          for candidate_block in self.candidate_block_hashes[:]:
+          for candidate_block in candidate_class.candidate_block_hashes[:]:
                   tx_valid = 0
 
                   if self.hash == candidate_block["hash"]:
                       tx_valid += 1
 
 
-                  for other_block in self.candidate_block_hashes[:]:
+                  for other_block in candidate_class.candidate_block_hashes[:]:
 
                     if candidate_block != other_block:
                         if candidate_block["hash"] == other_block["hash"]:
