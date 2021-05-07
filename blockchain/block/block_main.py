@@ -125,6 +125,8 @@ class Block:
 
         # TODO: What to do in case of consensus fails will be added
 
+        self.start_time = int(time.time())
+        self.block_time = 7
 
         self.previous_hash = "0"
         self.sequance_number = sequance_number
@@ -133,7 +135,7 @@ class Block:
 
 
         self.validating_list = []
-        self.validating_list_time = 3
+        self.validating_list_time = 2
         self.validating_list_starting_time = int(time.time())
 
         self.hash = None
@@ -147,17 +149,17 @@ class Block:
 
 
         self.raund_1_starting_time = None
-        self.raund_1_time = 6
+        self.raund_1_time = 3
         self.raund_1 = False
         self.raund_1_node = False
         
         self.raund_2_starting_time = None
-        self.raund_2_time = 6
+        self.raund_2_time = 3
         self.raund_2 = False
         self.raund_2_node = False
 
 
-        self.consensus_timer = 1
+        self.consensus_timer = 0.50
 
 
         self.validated = False
@@ -258,7 +260,10 @@ class Block:
 
 
     def consensus(self):
-      if not (int(time.time()) - self.validating_list_starting_time) < self.validating_list_time:
+      if self.validated:
+        if not int(time.time()) < (self.start_time + (self.sequance_number * self.block_time)):
+           self.reset_the_block()  
+      elif not (int(time.time()) - self.validating_list_starting_time) < self.validating_list_time:
         #or len(self.validating_list) == self.max_tx_number
         if self.raund_1_starting_time == None:
             self.raund_1_starting_time = int(time.time())
@@ -299,7 +304,8 @@ class Block:
         dprint("Raund 1 Conditions")
         dprint(len(candidate_class.candidate_blocks) > ((len(self.total_validators) * 80)/100))
         dprint((int(time.time()) - self.raund_1_starting_time) < self.raund_1_time)
-        if len(candidate_class.candidate_blocks) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
+        if len(candidate_class.candidate_blocks) > ((len(self.total_validators) * 80)/100):
+         if len(candidate_class.candidate_blocks) == len(self.total_validators) or not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
           temp_validating_list = []
           dprint("Raund 1: first ok")
           dprint(len(candidate_class.candidate_blocks))
@@ -377,11 +383,6 @@ class Block:
 
 
 
-
-          dprint("Raund 1: self.validating_list: ")
-          for element_3 in self.validating_list:
-            dprint(str(element_3.__dict__))
-            
 
     def reset_the_block(self):
         
@@ -498,7 +499,8 @@ class Block:
         dprint("Raund 2 Conditions")
         dprint(len(candidate_class.candidate_block_hashes) > ((len(self.total_validators) * 80)/100))
         dprint((int(time.time()) - self.raund_2_starting_time) < self.raund_2_time)
-        if len(candidate_class.candidate_block_hashes) > ((len(self.total_validators) * 80)/100) and not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
+        if len(candidate_class.candidate_block_hashes) > ((len(self.total_validators) * 80)/100):
+         if len(candidate_class.candidate_block_hashes) == len(self.total_validators) or not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
           temp_validating_list = []
           dprint("Raund 2: first ok")
           for candidate_block in candidate_class.candidate_block_hashes[:]:
@@ -519,6 +521,7 @@ class Block:
                       dprint("Raund 2: second ok")
                       if self.hash == candidate_block["hash"]:
                         self.validated = True
+                        self.raund_2 = True
                         
 
                         
@@ -531,25 +534,14 @@ class Block:
                           unl_list = get_as_node_type([candidate_block["sender"]])
                           node.send_data_to_node(unl_list[0], "sendmefullblock")
                           self.dowload_true_block = candidate_block["sender"]
-                          self.save_block()
+                      self.save_block()
 
                           
 
 
         
-          if self.validated:
-           self.raund_2 = True
 
 
-           self.reset_the_block()
-
-          
-
-
-
-           dprint("Raund 2: self.validating_list: ")
-           for element_3 in self.validating_list:
-             dprint(str(element_3.__dict__))
             
 
 
