@@ -20,7 +20,7 @@ class Test_Config(unittest.TestCase):
 
         obj = os.scandir()
         for entry in obj :
-            if entry.name == "wallet":
+            if entry.name == "src":
                 finded_true_folder = True
 
         self.assertEqual(finded_true_folder,True,"A problem on the config.")
