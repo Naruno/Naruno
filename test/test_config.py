@@ -29,7 +29,5 @@ class Test_Config(unittest.TestCase):
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
-os.chdir("..")
-os.chdir("src")
 from lib.config_system import get_config
 unittest.main(exit=False)
