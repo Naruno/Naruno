@@ -20,7 +20,7 @@ class Test_Config(unittest.TestCase):
 
         obj = os.scandir()
         for entry in obj :
-            if entry.name == "wallet":
+            if entry.name == "db":
                 finded_true_folder = True
 
         self.assertEqual(finded_true_folder,True,"A problem on the config.")
@@ -28,6 +28,6 @@ class Test_Config(unittest.TestCase):
 
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
 from lib.config_system import get_config
 unittest.main(exit=False)

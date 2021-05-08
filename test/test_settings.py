@@ -51,6 +51,6 @@ class Test_Settings(unittest.TestCase):
 
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
 from lib.settings_system import the_settings, save_settings
 unittest.main(exit=False)

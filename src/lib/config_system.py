@@ -22,7 +22,7 @@ def save_config(config):
 
 def config_class():
     temp_json = {}
-    temp_json["main_folder"] = os.getcwd()
+    temp_json["main_folder"] = os.path.join(os.path.dirname(__file__), "..")
 
     return temp_json
 
@@ -33,8 +33,7 @@ def get_config():
 
     if not os.path.exists(CONFIG_PATH):
         temp_config_class = config_class()
-        with open(CONFIG_PATH, 'w') as config_file:
-            json.dump(temp_config_class, config_file, indent=4)
+        save_config(temp_config_class)
         return temp_config_class
     else:
         with open(CONFIG_PATH, 'rb') as config_file:
