@@ -13,10 +13,8 @@ from kivy.lang import Builder
 
 from kivymd.app import MDApp
 
-if getattr(sys, "frozen", False):  # bundle mode with PyInstaller
-    os.environ["DECENTRA_ROOT"] = sys._MEIPASS
-else:
-    os.environ["DECENTRA_ROOT"] = str(Path(__file__).parent)
+from lib.config_system import get_config
+os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
 
 
 KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
