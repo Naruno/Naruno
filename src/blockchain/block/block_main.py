@@ -423,9 +423,9 @@ class Block:
                     balance
                 );""")
         for each_account in self.Accounts:
-            cur.execute(f"""INSERT INTO accounts{self.sequance_number} VALUES (
-                '{each_account.PublicKey}', '{each_account.sequance_number}', '{each_account.balance}'
-            )""")
+            cur.execute(f"""INSERT INTO accounts{self.sequance_number} VALUES (?,?,?)""",
+                [each_account.PublicKey, each_account.sequance_number, each_account.balance]
+            )
         cur.execute(f"""CREATE TABLE transactions{self.sequance_number}(
                     sequance_number,
                     signature,
