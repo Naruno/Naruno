@@ -436,9 +436,9 @@ class Block:
                     transaction_fee
                 );""")
         for each_transaction in self.validating_list:
-            cur.execute(f"""INSERT INTO transactions{self.sequance_number} VALUES (
-                '{each_transaction.sequance_number}', '{each_transaction.signature}', '{each_transaction.fromUser}', '{each_transaction.toUser}', '{each_transaction.data}', '{each_transaction.amount}', '{each_transaction.transaction_fee}'
-            )""")
+            cur.execute(f"""INSERT INTO transactions{self.sequance_number} VALUES (?,?,?,?,?,?,?)""",
+                [each_transaction.sequance_number, each_transaction.signature, each_transaction.fromUser, each_transaction.toUser, each_transaction.data, each_transaction.amount, each_transaction.transaction_fee]
+            )
 
 
         db.commit()
