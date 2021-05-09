@@ -22,6 +22,9 @@
   <img src="https://img.shields.io/badge/Consensus-FBA-%235ec295.svg" alt="Consensus">
   
   </p>
+  <p align="center">
+  <a href="https://www.codefactor.io/repository/github/decentra-network/decentra-network"><img src="https://www.codefactor.io/repository/github/decentra-network/decentra-network/badge" alt="CodeFactor" /></a>
+  </p>
 </p>
 
 
