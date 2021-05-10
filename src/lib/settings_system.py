@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
-import sys
 import os
 from lib.config_system import get_config
 

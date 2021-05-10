@@ -6,8 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-import sys
-from pathlib import Path
 
 from kivy.lang import Builder
 

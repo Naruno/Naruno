@@ -7,14 +7,12 @@
 
 import json
 
-from lib.mixlib import dprint
 from config import *
 
 import os
 import sys
 
 def save_new_unl_node(id):
-    id = id
     node = None
 
     from node.myownp2pn import mynode
@@ -83,7 +81,6 @@ def get_as_node_type(id_list):
 
 
 def node_is_unl(node_id):
-    node_id = node_id
     for unl in get_unl_nodes():
         temp_unl = unl
         if node_id == temp_unl:

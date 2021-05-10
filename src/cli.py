@@ -5,18 +5,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import hashlib
-import datetime
-import json
-
-import uuid
-
-from hashlib import sha256
-
-
-from sys import version_info as pyVersion
-from binascii import hexlify, unhexlify
-
 from wallet.wallet import *
 
 from func.send_coin import send_coin
@@ -24,13 +12,8 @@ from func.node_connection import *
 
 from lib.mixlib import *
 
-import pickle
-
 from blockchain.block.block_main import get_block , create_block, get_block_from_other_node, sendme_full_node_list
 
-
-
-import os
 from lib.settings_system import the_settings, test_mode, debug_mode
 
 def show_menu():

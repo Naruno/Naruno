@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from node.node import *
-import pickle
 
 from wallet.wallet import Signature , Ecdsa , PublicKey , PrivateKey , Wallet_Import
 
@@ -21,7 +20,7 @@ from func.merkle_root import MerkleTree
 from blockchain.block.transaction import Transaction
 
 import os
-
+from config import *
 
 class mynode (Node):
     main_node = None
@@ -208,14 +207,13 @@ class mynode (Node):
 
 
     def send_full_chain(self,node = None):
-        from config import TEMP_BLOCK_PATH
         dprint("Sending full chain to node or nodes."+" Node: "+ str(node))
         file = open(TEMP_BLOCK_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
 
             data = {"fullblock" : 1,"byte" : (SendData.decode(encoding='iso-8859-1')),"signature" : Ecdsa.sign("fullblock"+str((SendData.decode(encoding='iso-8859-1'))), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()}
-            if not node == None:
+            if not node is None:
                 self.send_data_to_node(node,data)
             else:
                 self.send_data_to_nodes(data)
@@ -226,14 +224,13 @@ class mynode (Node):
 
             if not SendData:
                 data = {"fullblock" : 1,"byte" : "end","signature": Ecdsa.sign("fullblock"+"end", PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()}
-                if not node == None:
+                if not node is None:
                     self.send_data_to_node(node,data)
                 else:
                     self.send_data_to_nodes(data)
 
     def get_full_chain(self,data,node):
-      from config import TEMP_BLOCK_PATH
-      import os
+      
       get_ok = False
 
       if not os.path.exists(TEMP_BLOCK_PATH):
@@ -250,10 +247,7 @@ class mynode (Node):
 
 
         if str(data["byte"]) == "end":
-            from config import LOADING_BLOCK_PATH, TEMP_BLOCK_PATH
 
-
-            
             os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
             
             from blockchain.block.block_main import get_block, perpetualTimer, consensus_trigger
@@ -271,7 +265,6 @@ class mynode (Node):
 
 
         else:
-            from config import LOADING_BLOCK_PATH
             file = open(LOADING_BLOCK_PATH, "ab")
                 
             file.write((data["byte"].encode(encoding='iso-8859-1')))
@@ -286,7 +279,6 @@ class mynode (Node):
 
 
     def send_full_node_list(self,node = None):
-        from config import CONNECTED_NODE_PATH
         file = open(CONNECTED_NODE_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
@@ -294,14 +286,13 @@ class mynode (Node):
             data = {"fullnodelist" : 1,"byte" : (SendData.decode(encoding='iso-8859-1')),"signature": Ecdsa.sign("fullnodelist"+str((SendData.decode(encoding='iso-8859-1'))), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()}
             print(data)
             print(type(data))
-            if not node == None:
+            if not node is None:
                 self.send_data_to_node(node,data)
             else:
                 self.send_data_to_nodes(data)
 
             SendData = file.read(1024)
     def get_full_node_list(self,data):
-        from config import CONNECTED_NODE_PATH
         file = open(CONNECTED_NODE_PATH, "ab")
 
         file.write((data.encode(encoding='iso-8859-1')))
