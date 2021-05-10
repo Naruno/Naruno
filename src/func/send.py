@@ -7,8 +7,6 @@
 
 from wallet.wallet import Ecdsa, PrivateKey
 
-from node.myownp2pn import mynode
-
 
 def send(my_public_key, my_private_key, to_user, data = None, amount = None):
     my_public_key = "".join([

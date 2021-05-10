@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from node.myownp2pn import mynode, connectionfrommixdb
-from lib.settings_system import the_settings
+#from lib.settings_system import the_settings
 
 from config import *
 

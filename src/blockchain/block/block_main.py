@@ -5,15 +5,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import datetime
-import hashlib
-
-import pprint
-
 from wallet.wallet import Ecdsa, PrivateKey, PublicKey, Wallet_Import, Signature
 
 import pickle
-import json
 
 
 from lib.settings_system import the_settings
@@ -34,11 +28,16 @@ from blockchain.block.transaction import Transaction
 
 import time
 
-from threading import Timer,Thread,Event
+from threading import Timer,Thread
 
 from func.merkle_root import MerkleTree
 
 import sqlite3
+
+from lib.config_system import get_config
+
+from node.myownp2pn import mynode
+from node.unl import get_unl_nodes, get_as_node_type
 
 def consensus_trigger():
       print("consensus trigger")
@@ -102,9 +101,6 @@ class candidate_block:
         self.candidate_block_hashes = []
 
     def save_candidate_blocks(self):
-        from lib.config_system import get_config
-        import os
-
 
         os.chdir(get_config()["main_folder"])
         with open(TEMP_CANDIDATE_BLOCKS_PATH, 'wb') as block_file:
@@ -112,9 +108,6 @@ class candidate_block:
 
 def get_candidate_block():
     try:
-        from lib.config_system import get_config
-        import os
-        
         os.chdir(get_config()["main_folder"])
         with open(TEMP_CANDIDATE_BLOCKS_PATH, 'rb') as block_file:
             return pickle.load(block_file)
@@ -176,10 +169,6 @@ class Block:
 
     def calculate_hash(self):
 
-
-        tx_item_list = []
-
-
         tx_list = []
         dprint(len(self.validating_list))
         for element in self.validating_list[:]:
@@ -200,8 +189,6 @@ class Block:
         dprint(ac_list)
 
         ac_hash = MerkleTree(ac_list).getRootHash()
-
-        from hashlib import sha256
         
 
         main_list = []
@@ -222,9 +209,6 @@ class Block:
         dprint(self.hash)
     
     def proccess_the_transaction(self):
-
-        for start_validating_list_item in self.validating_list:
-            print(start_validating_list_item.fromUser)
 
         from_user_list = []
     
@@ -260,8 +244,6 @@ class Block:
         self.validating_list = temp_validating_list
 
          
-        for end_validating_list_item in self.validating_list:
-            print(start_validating_list_item.fromUser)
 
 
     def consensus(self):
@@ -270,7 +252,7 @@ class Block:
            self.reset_the_block()  
       elif not (int(time.time()) - self.validating_list_starting_time) < self.validating_list_time:
         #or len(self.validating_list) == self.max_tx_number
-        if self.raund_1_starting_time == None:
+        if self.raund_1_starting_time is None:
             self.raund_1_starting_time = int(time.time())
         if not self.raund_1:
 
@@ -506,7 +488,6 @@ class Block:
         dprint((int(time.time()) - self.raund_2_starting_time) < self.raund_2_time)
         if len(candidate_class.candidate_block_hashes) > ((len(self.total_validators) * 80)/100):
          if len(candidate_class.candidate_block_hashes) == len(self.total_validators) or not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
-          temp_validating_list = []
           dprint("Raund 2: first ok")
           for candidate_block in candidate_class.candidate_block_hashes[:]:
                   tx_valid = 0
@@ -555,7 +536,7 @@ class Block:
         dprint("Pending transactions number: "+str(len(self.pendingTransaction)))
         dprint("Validating transactions number: "+str(len(self.validating_list)))
         print(self.raund_1_starting_time)
-        if len(self.validating_list) < self.max_tx_number and self.raund_1_starting_time == None:
+        if len(self.validating_list) < self.max_tx_number and self.raund_1_starting_time is None:
             for tx in self.pendingTransaction[:]:
                 if len(self.validating_list) < self.max_tx_number:
                     self.validating_list.append(tx)
@@ -681,9 +662,6 @@ class Block:
         return sequance_number
 
     def save_block(self):
-        from lib.config_system import get_config
-        import os
-
 
         os.chdir(get_config()["main_folder"])
         with open(TEMP_BLOCK_PATH, 'wb') as block_file:
@@ -698,8 +676,6 @@ class Block:
 
 
 def get_block():
-    from lib.config_system import get_config
-    import os
 
     os.chdir(get_config()["main_folder"])
     with open(TEMP_BLOCK_PATH, 'rb') as block_file:
@@ -708,16 +684,14 @@ def get_block():
 
 
 def sendme_full_node_list():
-    from node.myownp2pn import mynode
-    from node.unl import get_unl_nodes, get_as_node_type
+
     node = mynode.main_node
     unl_list = get_as_node_type(get_unl_nodes())
     node.send_data_to_node(unl_list[0], "sendmefullnodelist")
 
 
 def get_block_from_other_node():
-    from node.myownp2pn import mynode
-    from node.unl import get_unl_nodes, get_as_node_type
+
     node = mynode.main_node
     unl_list = get_as_node_type(get_unl_nodes())
     node.send_data_to_node(unl_list[0], "sendmefullblock")
@@ -731,8 +705,7 @@ def create_block():
             l.strip() for l in Wallet_Import(0,0).splitlines()
             if l and not l.startswith("-----")
         ])        
-        system = Block(0,pubkey)
-        from node.myownp2pn import mynode
+        Block(0,pubkey)
         mynode.main_node.send_full_chain()
     else:
         dprint("Getting block from nodes")
