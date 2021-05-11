@@ -5,121 +5,38 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from wallet.wallet import Ecdsa, PrivateKey, PublicKey, Wallet_Import, Signature
 
 import pickle
-
+import sqlite3
+import time
+import os
 
 from lib.settings_system import the_settings
 from lib.mixlib import dprint
-
-import os
-
-
-import time
-
-
-from config import *
-
-
-from blockchain.block.account import Account
-from blockchain.block.transaction import Transaction
-
-
-import time
-
-from threading import Timer,Thread
-
-from func.merkle_root import MerkleTree
-
-import sqlite3
-
 from lib.config_system import get_config
+from lib.merkle_root import MerkleTree
+from lib.perpetualtimer import perpetualTimer
 
 from node.myownp2pn import mynode
 from node.unl import get_unl_nodes, get_as_node_type
 
-def consensus_trigger():
-      print("consensus trigger")
-      get_block().consensus()
+from wallet.wallet import Ecdsa, PrivateKey, PublicKey, Wallet_Import, Signature
 
+from accounts.account import Account
 
-class app(Thread):
-    def __init__(self,import_command,func):
-        Thread.__init__(self)
-        self.import_command = import_command
-        self.func = func 
-        print("\n\n in app class")
+from transactions.transaction import Transaction
 
-    def run(self):
-        print("\n\n in app runner")
-        exec(self.import_command)
-        exec(self.func)
+from blockchain.block.candidate_blocks import get_candidate_block
 
-class perpetualTimer():
+from consensus.consensus_main import consensus_trigger
 
-   def __init__(self,t,hFunction):
-      self.t=t
-      self.hFunction = hFunction
-      self.thread = Timer(self.t,self.handle_function)
+from app.app_main import apps_starter, app_tigger
 
-      for folder_entry in os.scandir('apps'):
-            if ".md" not in folder_entry.name:
-                for entry in os.scandir("apps/"+folder_entry.name):
-                    if entry.is_file():
-                        if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
-                            import_command = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_run"
-                            tx_command = f"{entry.name.replace('.py','')}_run()"
-
-                            exec (import_command)
-
-                            print("\n\ntest")
-                            print(import_command)
-                            print(tx_command)
-                            x = app(import_command,tx_command)
-                            x.start()
-
-
-   def handle_function(self):
-       self.hFunction()
-       self.thread = Timer(self.t,self.handle_function)
-       self.thread.start()
-
-   def start(self):
-      self.thread.start()
-
-   def cancel(self):
-      self.thread.cancel()
-
-
-
-
-class candidate_block:
-    def __init__(self):
-
-        self.candidate_blocks = []
-        self.candidate_block_hashes = []
-
-    def save_candidate_blocks(self):
-
-        os.chdir(get_config()["main_folder"])
-        with open(TEMP_CANDIDATE_BLOCKS_PATH, 'wb') as block_file:
-            pickle.dump(self, block_file, protocol=2)
-
-def get_candidate_block():
-    try:
-        os.chdir(get_config()["main_folder"])
-        with open(TEMP_CANDIDATE_BLOCKS_PATH, 'rb') as block_file:
-            return pickle.load(block_file)
-    except:
-        return candidate_block()
-
-
+from config import *
 
 
 class Block:
     def __init__(self, sequance_number, creator):
-
 
         # TODO: What to do in case of consensus fails will be added
 
@@ -141,10 +58,7 @@ class Block:
         from node.unl import get_unl_nodes
         self.total_validators = get_unl_nodes()
 
-
-
         self.max_tx_number = 2
-
 
         self.raund_1_starting_time = None
         self.raund_1_time = 3
@@ -156,9 +70,7 @@ class Block:
         self.raund_2 = False
         self.raund_2_node = False
 
-
         self.consensus_timer = 0.50
-
 
         self.validated = False
 
@@ -166,6 +78,8 @@ class Block:
 
         self.save_block()
         perpetualTimer(self.consensus_timer,consensus_trigger).start()
+        apps_starter()
+
 
     def calculate_hash(self):
 
@@ -207,7 +121,8 @@ class Block:
         self.hash = MerkleTree(main_list).getRootHash()
 
         dprint(self.hash)
-    
+
+
     def proccess_the_transaction(self):
 
         from_user_list = []
@@ -243,130 +158,6 @@ class Block:
 
         self.validating_list = temp_validating_list
 
-         
-
-
-    def consensus(self):
-      if self.validated:
-        if not int(time.time()) < (self.start_time + (self.sequance_number * self.block_time)):
-           self.reset_the_block()  
-      elif not (int(time.time()) - self.validating_list_starting_time) < self.validating_list_time:
-        #or len(self.validating_list) == self.max_tx_number
-        if self.raund_1_starting_time is None:
-            self.raund_1_starting_time = int(time.time())
-        if not self.raund_1:
-
-            self.consensus_raund_1()
-        elif not self.raund_2:
-            self.consensus_raund_2()
-
-
-
-    def app_tigger(self):
-            for trans in self.validating_list:
-                for folder_entry in os.scandir('apps'):
-                    if ".md" not in folder_entry.name:
-                        for entry in os.scandir("apps/"+folder_entry.name):
-                            if entry.is_file():
-                                if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
-                                    import_command = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
-                                    tx_command = f"{entry.name.replace('.py','')}_tx(trans)"
-                                    exec (import_command)
-                                    exec (tx_command)
-
-
-        
-    def consensus_raund_1(self):
-        if not self.raund_1_node:
-              dprint("Raund 1: in get candidate blocks\n")
-              from node.unl import get_as_node_type
-              from node.myownp2pn import mynode
-
-
-              
-              mynode.main_node.send_my_block(get_as_node_type(self.total_validators))
-              self.raund_1_node = True
-              self.save_block()
-        candidate_class = get_candidate_block()
-        dprint("Raund 1 Conditions")
-        dprint(len(candidate_class.candidate_blocks) > ((len(self.total_validators) * 80)/100))
-        dprint((int(time.time()) - self.raund_1_starting_time) < self.raund_1_time)
-        if len(candidate_class.candidate_blocks) > ((len(self.total_validators) * 80)/100):
-         if len(candidate_class.candidate_blocks) == len(self.total_validators) or not (int(time.time()) - self.raund_1_starting_time) < self.raund_1_time:
-          temp_validating_list = []
-          dprint("Raund 1: first ok")
-          dprint(len(candidate_class.candidate_blocks))
-          for candidate_block in candidate_class.candidate_blocks[:]:
-
-
-              for other_block_tx in candidate_block["transaction"]:
-
-                  tx_valid = 0
-
-                  for my_txs in self.validating_list:
-                      if other_block_tx.signature == my_txs.signature:
-                          tx_valid += 1
-
-
-                  if len(candidate_class.candidate_blocks) != 1:
-                      dprint("Raund 1: Test tx")
-                      for other_block in candidate_class.candidate_blocks[:]:
-                        if candidate_block["signature"] != other_block["signature"]:
-                            dprint("Raund 1: Test tx 2")
-                            for other_block_txs in other_block["transaction"]:
-                                if other_block_tx.signature == other_block_txs.signature:
-                                    dprint("Raund 1: Test tx 3")
-                                    tx_valid += 1
-                  else:
-                      tx_valid += 1
-
-
-                  if tx_valid > (len(self.total_validators) / 2):
-                      dprint("Raund 1: second ok")
-                      already_in_ok = False
-                      for alrady_tx  in temp_validating_list[:]:
-                          
-                          if other_block_tx.signature == alrady_tx.signature:
-                              already_in_ok = True
-                      if not already_in_ok:
-                            dprint("Raund 1: third ok")
-                            temp_validating_list.append(other_block_tx)
-
-
-
-
-
-          for my_validating_list in self.validating_list[:]:
-              ok = False
-              for my_temp_validating_list in temp_validating_list[:]:
-                  if my_validating_list.signature == my_temp_validating_list.signature:
-                      ok = True
-              self.validating_list.remove(my_validating_list) 
-              if not ok:
-                self.createTrans(my_validating_list.sequance_number, my_validating_list.signature, my_validating_list.fromUser, my_validating_list.toUser, my_validating_list.transaction_fee, my_validating_list.data, my_validating_list.amount, transaction_sender = None)
-                
-
-                
-          self.validating_list = temp_validating_list      
-
-
-          self.raund_1 = True
-
-          self.raund_2_starting_time = int(time.time())
-
-          
-
-
-
-          self.proccess_the_transaction()
-
-
-          self.calculate_hash()
-
-
-
-          self.save_block()
-
 
 
 
@@ -383,7 +174,7 @@ class Block:
                                         
         """+str(self.__dict__)+"\n")
 
-        self.app_tigger()
+        app_tigger(self)
 
 
         db = sqlite3.connect(BLOCKCHAIN_PATH)
@@ -469,69 +260,6 @@ class Block:
         self.save_block()
 
 
-    def consensus_raund_2(self):
-        if not self.raund_2_node:
-              dprint("Raund 2: in get candidate block hashes\n")
-              from node.unl import get_as_node_type
-              from node.myownp2pn import mynode
-
-
-              
-
-              mynode.main_node.send_my_block_hash(get_as_node_type(self.total_validators))
-              self.raund_2_node = True
-              self.save_block()
-
-        candidate_class = get_candidate_block()
-        dprint("Raund 2 Conditions")
-        dprint(len(candidate_class.candidate_block_hashes) > ((len(self.total_validators) * 80)/100))
-        dprint((int(time.time()) - self.raund_2_starting_time) < self.raund_2_time)
-        if len(candidate_class.candidate_block_hashes) > ((len(self.total_validators) * 80)/100):
-         if len(candidate_class.candidate_block_hashes) == len(self.total_validators) or not (int(time.time()) - self.raund_2_starting_time) < self.raund_2_time:
-          dprint("Raund 2: first ok")
-          for candidate_block in candidate_class.candidate_block_hashes[:]:
-                  tx_valid = 0
-
-                  if self.hash == candidate_block["hash"]:
-                      tx_valid += 1
-
-
-                  for other_block in candidate_class.candidate_block_hashes[:]:
-
-                    if candidate_block != other_block:
-                        if candidate_block["hash"] == other_block["hash"]:
-                            tx_valid += 1
-
-                  if tx_valid > ((len(self.total_validators) * 80)/100):
-                      
-                      dprint("Raund 2: second ok")
-                      if self.hash == candidate_block["hash"]:
-                        self.validated = True
-                        self.raund_2 = True
-                        
-
-                        
-                        
-                      else:
-                          print("Raund 2: my block is not valid")
-                          from node.myownp2pn import mynode
-                          from node.unl import get_unl_nodes, get_as_node_type
-                          node = mynode.main_node
-                          unl_list = get_as_node_type([candidate_block["sender"]])
-                          node.send_data_to_node(unl_list[0], "sendmefullblock")
-                          self.dowload_true_block = candidate_block["sender"]
-                      self.save_block()
-
-                          
-
-
-        
-
-
-            
-
-
-
     def Verificate_Pending_Trans(self):
         dprint("Pending transactions number: "+str(len(self.pendingTransaction)))
         dprint("Validating transactions number: "+str(len(self.validating_list)))
@@ -611,9 +339,6 @@ class Block:
             self.propagating_the_tx(the_tx)
             
 
-           
-
-            
             return True
             
       dprint(" Validation end")

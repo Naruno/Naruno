@@ -7,8 +7,8 @@
 
 from wallet.wallet import *
 
-from func.send_coin import send_coin
-from func.node_connection import *
+from transactions.send_coin import send_coin
+from node.node_connection import *
 
 from lib.mixlib import *
 
@@ -54,7 +54,7 @@ def menu():
         choices_input = question_maker(mode="main")
 
         if choices_input == "connectmainnetwork":
-            from func.node_connection import connect_to_main_network
+            from node.node_connection import connect_to_main_network
             connect_to_main_network()
         if choices_input == "cw":
             Wallet_Create()

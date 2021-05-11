@@ -1,0 +1,67 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+import time
+
+from lib.mixlib import dprint
+
+from node.unl import get_as_node_type
+from node.myownp2pn import mynode
+
+from blockchain.block.candidate_blocks import get_candidate_block
+
+
+def consensus_round_2(block):
+        if not block.raund_2_node:
+              dprint("Raund 2: in get candidate block hashes\n")
+              from node.unl import get_as_node_type
+              from node.myownp2pn import mynode
+
+
+              
+
+              mynode.main_node.send_my_block_hash(get_as_node_type(block.total_validators))
+              block.raund_2_node = True
+              block.save_block()
+
+        candidate_class = get_candidate_block()
+        dprint("Raund 2 Conditions")
+        dprint(len(candidate_class.candidate_block_hashes) > ((len(block.total_validators) * 80)/100))
+        dprint((int(time.time()) - block.raund_2_starting_time) < block.raund_2_time)
+        if len(candidate_class.candidate_block_hashes) > ((len(block.total_validators) * 80)/100):
+         if len(candidate_class.candidate_block_hashes) == len(block.total_validators) or not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
+          dprint("Raund 2: first ok")
+          for candidate_block in candidate_class.candidate_block_hashes[:]:
+                  tx_valid = 0
+
+                  if block.hash == candidate_block["hash"]:
+                      tx_valid += 1
+
+
+                  for other_block in candidate_class.candidate_block_hashes[:]:
+
+                    if candidate_block != other_block:
+                        if candidate_block["hash"] == other_block["hash"]:
+                            tx_valid += 1
+
+                  if tx_valid > ((len(block.total_validators) * 80)/100):
+                      
+                      dprint("Raund 2: second ok")
+                      if block.hash == candidate_block["hash"]:
+                        block.validated = True
+                        block.raund_2 = True
+                        
+
+                        
+                        
+                      else:
+                          print("Raund 2: my block is not valid")
+                          node = mynode.main_node
+                          unl_list = get_as_node_type([candidate_block["sender"]])
+                          node.send_data_to_node(unl_list[0], "sendmefullblock")
+                          block.dowload_true_block = candidate_block["sender"]
+                      block.save_block()
