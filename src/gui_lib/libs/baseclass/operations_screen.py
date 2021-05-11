@@ -61,7 +61,7 @@ class OperationBox(MDGridLayout):
 
         return text_list  
     def sent_the_coins(self,widget):
-        from func.send_coin import send_coin
+        from transactions.send_coin import send_coin
 
         text_list = self.get_send_coin_dialog_text()
         receiver_adress = text_list[1]

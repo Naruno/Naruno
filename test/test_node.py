@@ -80,7 +80,7 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
 from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete
-from func.node_connection import ndstart, ndconnect, ndstop
+from node.node_connection import ndstart, ndconnect, ndstop
 from node.node import get_connected_node, connected_node_delete
 from node.unl import save_new_unl_node, get_unl_nodes, get_as_node_type, unl_node_delete
 unittest.main(exit=False)

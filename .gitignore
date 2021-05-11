@@ -9,9 +9,6 @@ loading_block.decentra_network
 blockchain.decentra_network
 wallet_list.json
 
-#apps
-apps/
-
 #venv
 venv/
 

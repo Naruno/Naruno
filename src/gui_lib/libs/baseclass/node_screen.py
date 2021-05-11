@@ -14,7 +14,7 @@ from kivymd.uix.button import MDFlatButton
 
 import os
 
-from func.node_connection import *
+from node.node_connection import *
 from lib.settings_system import the_settings
 
 from blockchain.block.block_main import get_block, create_block, get_block_from_other_node, sendme_full_node_list
@@ -219,5 +219,5 @@ class NodeBox(MDGridLayout):
     def get_node_list(self):
         sendme_full_node_list()
     def connect_to_main_network(self):
-        from func.node_connection import connect_to_main_network
+        from node.node_connection import connect_to_main_network
         connect_to_main_network()

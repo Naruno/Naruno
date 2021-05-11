@@ -14,10 +14,10 @@ from lib.mixlib import dprint
 from hashlib import sha256
 
 
-from func.merkle_root import MerkleTree
+from lib.merkle_root import MerkleTree
 
 
-from blockchain.block.transaction import Transaction
+from transactions.transaction import Transaction
 
 import os
 from config import *
@@ -250,7 +250,8 @@ class mynode (Node):
 
             os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
             
-            from blockchain.block.block_main import get_block, perpetualTimer, consensus_trigger
+            from blockchain.block.block_main import get_block, perpetualTimer, consensus_trigger, apps_starter
+            from apps.app_main import apps_starter
             system = get_block()
             
             
@@ -260,6 +261,7 @@ class mynode (Node):
             system.exclude_validators = []
             dprint(system.sequance_number)
             perpetualTimer(system.consensus_timer,consensus_trigger).start()
+            apps_starter()
             system.save_block()
             
 

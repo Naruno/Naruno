@@ -5,80 +5,48 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from wallet.wallet import Ecdsa, PrivateKey, PublicKey, Wallet_Import, Signature
 
 import pickle
-
+import sqlite3
+import time
+import os
+from threading import Timer
 
 from lib.settings_system import the_settings
 from lib.mixlib import dprint
-
-import os
-
-
-import time
-
-
-from config import *
-
-
-from blockchain.block.account import Account
-from blockchain.block.transaction import Transaction
-
-
-import time
-
-from threading import Timer,Thread
-
-from func.merkle_root import MerkleTree
-
-import sqlite3
-
 from lib.config_system import get_config
+from lib.merkle_root import MerkleTree
 
 from node.myownp2pn import mynode
 from node.unl import get_unl_nodes, get_as_node_type
 
+from wallet.wallet import Ecdsa, PrivateKey, PublicKey, Wallet_Import, Signature
+
+from accounts.account import Account
+
+from transactions.transaction import Transaction
+
+from blockchain.block.candidate_blocks import get_candidate_block
+
+from config import *
+
+
 def consensus_trigger():
-      print("consensus trigger")
-      get_block().consensus()
+    """
+    Gets the temporary block and starts the Block.consensus().
+    """
+    dprint("Consensus Trigger")
+    get_block().consensus()
 
-
-class app(Thread):
-    def __init__(self,import_command,func):
-        Thread.__init__(self)
-        self.import_command = import_command
-        self.func = func 
-        print("\n\n in app class")
-
-    def run(self):
-        print("\n\n in app runner")
-        exec(self.import_command)
-        exec(self.func)
 
 class perpetualTimer():
-
-   def __init__(self,t,hFunction):
+    """
+    It trig the functions at time intervals, independent of the main process.
+    """
+    def __init__(self,t,hFunction):
       self.t=t
       self.hFunction = hFunction
       self.thread = Timer(self.t,self.handle_function)
-
-      for folder_entry in os.scandir('apps'):
-            if ".md" not in folder_entry.name:
-                for entry in os.scandir("apps/"+folder_entry.name):
-                    if entry.is_file():
-                        if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
-                            import_command = f"from apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_run"
-                            tx_command = f"{entry.name.replace('.py','')}_run()"
-
-                            exec (import_command)
-
-                            print("\n\ntest")
-                            print(import_command)
-                            print(tx_command)
-                            x = app(import_command,tx_command)
-                            x.start()
-
 
    def handle_function(self):
        self.hFunction()
@@ -92,34 +60,11 @@ class perpetualTimer():
       self.thread.cancel()
 
 
-
-
-class candidate_block:
-    def __init__(self):
-
-        self.candidate_blocks = []
-        self.candidate_block_hashes = []
-
-    def save_candidate_blocks(self):
-
-        os.chdir(get_config()["main_folder"])
-        with open(TEMP_CANDIDATE_BLOCKS_PATH, 'wb') as block_file:
-            pickle.dump(self, block_file, protocol=2)
-
-def get_candidate_block():
-    try:
-        os.chdir(get_config()["main_folder"])
-        with open(TEMP_CANDIDATE_BLOCKS_PATH, 'rb') as block_file:
-            return pickle.load(block_file)
-    except:
-        return candidate_block()
-
-
-
-
 class Block:
     def __init__(self, sequance_number, creator):
+        """
 
+        """
 
         # TODO: What to do in case of consensus fails will be added
 
@@ -166,6 +111,7 @@ class Block:
 
         self.save_block()
         perpetualTimer(self.consensus_timer,consensus_trigger).start()
+        apps_starter()
 
     def calculate_hash(self):
 
@@ -279,11 +225,8 @@ class Block:
     def consensus_raund_1(self):
         if not self.raund_1_node:
               dprint("Raund 1: in get candidate blocks\n")
-              from node.unl import get_as_node_type
-              from node.myownp2pn import mynode
 
-
-              
+ 
               mynode.main_node.send_my_block(get_as_node_type(self.total_validators))
               self.raund_1_node = True
               self.save_block()
