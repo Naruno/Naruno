@@ -18,7 +18,6 @@ class OperationScreen(MDScreen):
 
 class Send_Coin_Box(MDGridLayout):
     cols = 2
-    pass
 
 class OperationBox(MDGridLayout):
     cols = 2

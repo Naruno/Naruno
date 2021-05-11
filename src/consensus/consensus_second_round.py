@@ -17,12 +17,7 @@ from blockchain.block.candidate_blocks import get_candidate_block
 
 def consensus_round_2(block):
         if not block.raund_2_node:
-              dprint("Raund 2: in get candidate block hashes\n")
-              from node.unl import get_as_node_type
-              from node.myownp2pn import mynode
-
-
-              
+              dprint("Raund 2: in get candidate block hashes\n") 
 
               mynode.main_node.send_my_block_hash(get_as_node_type(block.total_validators))
               block.raund_2_node = True
