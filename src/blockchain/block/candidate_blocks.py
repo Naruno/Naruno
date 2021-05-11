@@ -9,6 +9,10 @@
 import os
 import pickle
 
+from lib.config_system import get_config
+
+from config import *
+
 
 class candidate_block:
     def __init__(self):

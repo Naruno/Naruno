@@ -179,7 +179,7 @@ class mynode (Node):
                     temp_tx.append(Transaction.load_json(element))
 
                 data["transaction"] = temp_tx
-                from blockchain.block.block_main import get_candidate_block
+                from blockchain.block.candidate_blocks import get_candidate_block
                 candidate_class = get_candidate_block()
                 candidate_class.candidate_blocks.append(data)
                 candidate_class.save_candidate_blocks()
@@ -199,7 +199,7 @@ class mynode (Node):
                 dprint("ecdsa true")
                 data["sender"] = node.id
 
-                from blockchain.block.block_main import get_candidate_block
+                from blockchain.block.candidate_blocks import get_candidate_block
                 candidate_class = get_candidate_block()                
                 candidate_class.candidate_block_hashes.append(data)
                 candidate_class.save_candidate_blocks()
@@ -250,8 +250,10 @@ class mynode (Node):
 
             os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
             
-            from blockchain.block.block_main import get_block, perpetualTimer, consensus_trigger, apps_starter
-            from apps.app_main import apps_starter
+            from blockchain.block.block_main import get_block, apps_starter
+            from consensus.consensus_main import consensus_trigger
+            from lib.perpetualtimer import perpetualTimer
+            from app.app_main import apps_starter
             system = get_block()
             
             
