@@ -294,7 +294,7 @@ class Node(threading.Thread):
             else:
                 try:
                     self.send_data_to_node(n, data)
-                except:
+                except: # lgtm [py/catch-base-exception]
                     pass
 
         for n in self.nodes_outbound:
@@ -303,7 +303,7 @@ class Node(threading.Thread):
             else:
                 try:
                     self.send_data_to_node(n, data)
-                except:
+                except: # lgtm [py/catch-base-exception]
                     pass
 
     def send_data_to_node(self, n, data):

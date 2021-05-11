@@ -17,7 +17,7 @@ import os
 from node.node_connection import *
 from lib.settings_system import the_settings
 
-from blockchain.block.block_main import get_block, create_block, get_block_from_other_node, sendme_full_node_list
+from blockchain.block.block_main import create_block, get_block_from_other_node, sendme_full_node_list
 
 class NodeScreen(MDScreen):
     pass
@@ -25,13 +25,11 @@ class NodeScreen(MDScreen):
 # Start Node Server
 class start_node_server_Box(MDGridLayout):
     cols = 2
-    pass
 # End
 
 # Add UNL Node
 class add_unl_node_Box(MDGridLayout):
     cols = 2
-    pass
 # End
 
 class NodeBox(MDGridLayout):

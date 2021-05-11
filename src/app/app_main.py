@@ -9,7 +9,7 @@ import os
 
 from lib.mixlib import dprint
 
-from threading import Timer,Thread
+from threading import Thread
 
 class app(Thread):
     """
@@ -51,7 +51,7 @@ def app_tigger(block):
                 for entry in os.scandir("app/apps/"+folder_entry.name):
                     if entry.is_file():
                         if entry.name[0] != '_' and ".py" in entry.name and "_main" in entry.name:
-                            for trans in block.validating_list:
+                            for trans in block.validating_list: # lgtm [py/unused-loop-variable] 
                                     import_command = f"from app.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
                                     tx_command = f"{entry.name.replace('.py','')}_tx(trans)"
                                     exec (import_command)
