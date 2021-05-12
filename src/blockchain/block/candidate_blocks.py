@@ -11,7 +11,7 @@ import pickle
 
 from lib.config_system import get_config
 
-from config import *
+from config import TEMP_CANDIDATE_BLOCKS_PATH
 
 
 class candidate_block:
