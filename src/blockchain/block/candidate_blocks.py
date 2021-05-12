@@ -26,6 +26,7 @@ class candidate_block:
         with open(TEMP_CANDIDATE_BLOCKS_PATH, 'wb') as block_file:
             pickle.dump(self, block_file, protocol=2)
 
+
 def get_candidate_block():
     try:
         os.chdir(get_config()["main_folder"])
