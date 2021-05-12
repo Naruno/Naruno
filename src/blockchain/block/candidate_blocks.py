@@ -31,5 +31,5 @@ def get_candidate_block():
         os.chdir(get_config()["main_folder"])
         with open(TEMP_CANDIDATE_BLOCKS_PATH, 'rb') as block_file:
             return pickle.load(block_file)
-    except:
+    except FileNotFoundError:
         return candidate_block()
