@@ -111,6 +111,9 @@ class Node_Connection(threading.Thread):
 
         self.id = id
 
+        self.candidate_block = None
+        self.candidate_block_hash = None
+
 
         self.EOT_CHAR = 0x04.to_bytes(1, 'big')
 

@@ -13,7 +13,7 @@ from lib.mixlib import dprint
 from node.unl import get_as_node_type
 from node.myownp2pn import mynode
 
-from blockchain.block.candidate_blocks import get_candidate_block
+from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from blockchain.block.calculate_hash import CalculateHash
 
 from transactions.process_the_transaction import ProccesstheTransaction
@@ -26,7 +26,7 @@ def consensus_round_1(block):
               mynode.main_node.send_my_block(get_as_node_type(block.total_validators))
               block.raund_1_node = True
               block.save_block()
-        candidate_class = get_candidate_block()
+        candidate_class = GetCandidateBlocks()
         dprint("Raund 1 Conditions")
         dprint(len(candidate_class.candidate_blocks) > ((len(block.total_validators) * 80)/100))
         dprint((int(time.time()) - block.raund_1_starting_time) < block.raund_1_time)

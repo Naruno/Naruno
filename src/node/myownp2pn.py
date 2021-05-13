@@ -179,10 +179,8 @@ class mynode (Node):
                     temp_tx.append(Transaction.load_json(element))
 
                 data["transaction"] = temp_tx
-                from blockchain.block.candidate_blocks import get_candidate_block
-                candidate_class = get_candidate_block()
-                candidate_class.candidate_blocks.append(data)
-                candidate_class.save_candidate_blocks()
+
+                node.candidate_block = data
 
 
     def get_candidate_block_hash(self,data,node):
@@ -199,10 +197,7 @@ class mynode (Node):
                 dprint("ecdsa true")
                 data["sender"] = node.id
 
-                from blockchain.block.candidate_blocks import get_candidate_block
-                candidate_class = get_candidate_block()                
-                candidate_class.candidate_block_hashes.append(data)
-                candidate_class.save_candidate_blocks()
+                node.candidate_block_hash = data
 
 
 
