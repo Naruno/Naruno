@@ -9,12 +9,16 @@ from wallet.wallet import *
 
 from transactions.send_coin import send_coin
 from node.node_connection import *
+from node.get_node_list import GetNodeList
 
 from lib.mixlib import *
 
-from blockchain.block.block_main import get_block , create_block, get_block_from_other_node, sendme_full_node_list
+from blockchain.block.get_block import GetBlock, GetBlockFromOtherNode
+from blockchain.block.create_block import CreateBlock
 
 from lib.settings_system import the_settings, test_mode, debug_mode
+
+from accounts.get_balance import GetBalance
 
 def show_menu():
 
@@ -71,7 +75,7 @@ def menu():
                 send_coin(float(temp_coin_amount), input("Please write receiver adress: "))
 
         if choices_input == "gb":
-            print(get_block().getBalance(Wallet_Import(0,0)))
+            print(GetBalance(Wallet_Import(0,0), GetBlock()))
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
@@ -100,12 +104,12 @@ def menu():
             # mynode.main_node.debug = False
 
         if choices_input == "getfullnodelist":
-            sendme_full_node_list()
+            GetNodeList()
         if choices_input == "getblock":
             if the_settings()["test_mode"]:
-                create_block()
+                CreateBlock()
             else:
-                get_block_from_other_node()
+                GetBlockFromOtherNode()
 
 
 

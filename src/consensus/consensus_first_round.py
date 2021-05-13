@@ -14,7 +14,9 @@ from node.unl import get_as_node_type
 from node.myownp2pn import mynode
 
 from blockchain.block.candidate_blocks import get_candidate_block
+from blockchain.block.calculate_hash import CalculateHash
 
+from transactions.process_the_transaction import ProccesstheTransaction
 
 def consensus_round_1(block):
         if not block.raund_1_node:
@@ -95,10 +97,10 @@ def consensus_round_1(block):
 
 
 
-          block.proccess_the_transaction()
+          ProccesstheTransaction(block)
 
 
-          block.calculate_hash()
+          block.hash = CalculateHash(block)
 
 
 

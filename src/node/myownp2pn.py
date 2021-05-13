@@ -22,6 +22,8 @@ from transactions.transaction import Transaction
 import os
 from config import *
 
+from blockchain.block.get_block import GetBlock
+
 class mynode (Node):
     main_node = None
     unl_nodes = []
@@ -97,8 +99,7 @@ class mynode (Node):
 
 
     def send_my_block(self,nodes):
-        from blockchain.block.block_main import get_block
-        system = get_block()
+        system = GetBlock()
 
         if system.validating_list_starting_time != None:
          new_list = []
@@ -129,8 +130,7 @@ class mynode (Node):
             self.send_data_to_node(each_node,data)
 
     def send_my_block_hash(self,nodes):
-        from blockchain.block.block_main import get_block
-        system = get_block()
+        system = GetBlock()
 
         if system.raund_1 and system.raund_2 != True:
 
@@ -236,8 +236,7 @@ class mynode (Node):
       if not os.path.exists(TEMP_BLOCK_PATH):
         get_ok = True
       else:
-        from blockchain.block.block_main import get_block
-        system = get_block()
+        system = GetBlock()
         if node.id == system.dowload_true_block:
             get_ok = True
 
@@ -250,11 +249,11 @@ class mynode (Node):
 
             os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
             
-            from blockchain.block.block_main import get_block, apps_starter
+            from blockchain.block.block_main import apps_starter
             from consensus.consensus_main import consensus_trigger
             from lib.perpetualtimer import perpetualTimer
             from app.app_main import apps_starter
-            system = get_block()
+            system = GetBlock()
             
             
             from node.unl import get_unl_nodes
@@ -305,7 +304,6 @@ class mynode (Node):
 
 
     def get_transaction(self,data,node):
-        from blockchain.block.block_main import get_block
         dprint("Getting the transactions")
-        system = get_block()
+        system = GetBlock()
         system.createTrans(sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node)
