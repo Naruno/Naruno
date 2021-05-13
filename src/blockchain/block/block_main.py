@@ -18,7 +18,7 @@ from lib.perpetualtimer import perpetualTimer
 from node.myownp2pn import mynode
 from node.unl import get_unl_nodes, get_as_node_type
 
-from blockchain.block.candidate_blocks import get_candidate_block
+from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
 
 from transactions.transaction import Transaction
@@ -123,11 +123,10 @@ class Block:
 
         self.validated = False
 
-        # Resetting and setting the new elements.
-        candidate_class = get_candidate_block()
-        candidate_class.candidate_blocks = []
-        candidate_class.candidate_block_hashes = []
-        candidate_class.save_candidate_blocks()
+        # Resetting the node candidate blocks.
+        for node in get_as_node_type(self.total_validators):
+            node.candidate_block = None
+            node.candidate_block_hash = None
 
         #Printing new block.
         dprint("""\n
