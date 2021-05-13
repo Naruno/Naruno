@@ -15,9 +15,11 @@ from kivymd.uix.button import MDFlatButton
 import os
 
 from node.node_connection import *
+from node.get_node_list import GetNodeList
 from lib.settings_system import the_settings
 
-from blockchain.block.block_main import create_block, get_block_from_other_node, sendme_full_node_list
+from blockchain.block.get_block import GetBlockFromOtherNode
+from blockchain.block.create_block import CreateBlock
 
 class NodeScreen(MDScreen):
     pass
@@ -211,11 +213,11 @@ class NodeBox(MDGridLayout):
     # End
     def get_block(self):
         if the_settings()["test_mode"]:
-            create_block()
+            CreateBlock()
         else:
-            get_block_from_other_node()
+            GetBlockFromOtherNode()
     def get_node_list(self):
-        sendme_full_node_list()
+        GetNodeList()
     def connect_to_main_network(self):
         from node.node_connection import connect_to_main_network
         connect_to_main_network()

@@ -13,13 +13,15 @@ from lib.mixlib import dprint
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
 
+from blockchain.block.get_block import GetBlock
+
+
 def consensus_trigger():
     """
     Gets the temporary block and starts the Block.consensus().
     """
     dprint("Consensus Trigger")
-    from blockchain.block.block_main import get_block
-    block = get_block()
+    block = GetBlock()
 
     if block.validated:
         if not int(time.time()) < (block.start_time + (block.sequance_number * block.block_time)):

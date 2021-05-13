@@ -18,6 +18,11 @@ from wallet.wallet import *
 
 import os
 
+from accounts.get_balance import GetBalance
+
+from blockchain.block.get_block import GetBlock
+
+
 class WalletScreen(MDScreen):
     pass
 
@@ -31,9 +36,8 @@ class WalletBox(MDGridLayout):
     FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
 
     def reflesh_balance(self):
-        from blockchain.block.block_main import get_block
 
-        self.text = "Balance: "+str(get_block().getBalance(Wallet_Import(0,0)))
+        self.text = "Balance: "+str(GetBalance(Wallet_Import(0,0), GetBlock()))
 
     def show_wallet_alert_dialog(self):
         if not self.wallet_alert_dialog:
