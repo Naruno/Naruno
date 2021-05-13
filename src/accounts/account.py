@@ -8,6 +8,7 @@
 import hashlib
 import json
 
+
 class Account:
     def __init__(self, PublicKey, balance, sequance_number=0):
         self.PublicKey = PublicKey
