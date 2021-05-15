@@ -10,7 +10,7 @@ import time
 
 from lib.mixlib import dprint
 
-from node.unl import get_as_node_type
+from node.unl import get_as_node_type, get_unl_nodes
 from node.myownp2pn import mynode
 
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
@@ -19,19 +19,20 @@ from blockchain.block.calculate_hash import CalculateHash
 from transactions.process_the_transaction import ProccesstheTransaction
 
 def consensus_round_1(block):
+        unl_nodes = get_unl_nodes()
         if not block.raund_1_node:
               dprint("Raund 1: in get candidate blocks\n")
 
  
-              mynode.main_node.send_my_block(get_as_node_type(block.total_validators))
+              mynode.main_node.send_my_block(get_as_node_type(unl_nodes))
               block.raund_1_node = True
               block.save_block()
         candidate_class = GetCandidateBlocks()
         dprint("Raund 1 Conditions")
-        dprint(len(candidate_class.candidate_blocks) > ((len(block.total_validators) * 80)/100))
+        dprint(len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80)/100))
         dprint((int(time.time()) - block.raund_1_starting_time) < block.raund_1_time)
-        if len(candidate_class.candidate_blocks) > ((len(block.total_validators) * 80)/100):
-         if len(candidate_class.candidate_blocks) == len(block.total_validators) or not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
+        if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80)/100):
+         if len(candidate_class.candidate_blocks) == len(unl_nodes) or not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
           temp_validating_list = []
           dprint("Raund 1: first ok")
           dprint(len(candidate_class.candidate_blocks))
@@ -60,7 +61,7 @@ def consensus_round_1(block):
                       tx_valid += 1
 
 
-                  if tx_valid > (len(block.total_validators) / 2):
+                  if tx_valid > (len(unl_nodes) / 2):
                       dprint("Raund 1: second ok")
                       already_in_ok = False
                       for alrady_tx  in temp_validating_list[:]:

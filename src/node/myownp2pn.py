@@ -20,7 +20,7 @@ from lib.merkle_root import MerkleTree
 from transactions.transaction import Transaction
 
 import os
-from config import *
+from config import TEMP_BLOCK_PATH, LOADING_BLOCK_PATH, CONNECTED_NODE_PATH
 
 from blockchain.block.get_block import GetBlock
 
@@ -101,7 +101,7 @@ class mynode (Node):
     def send_my_block(self,nodes):
         system = GetBlock()
 
-        if system.validating_list_starting_time != None:
+        if system.validating_list_starting_time is not None:
          new_list = []
 
          signature_list = []
@@ -132,7 +132,7 @@ class mynode (Node):
     def send_my_block_hash(self,nodes):
         system = GetBlock()
 
-        if system.raund_1 and system.raund_2 != True:
+        if system.raund_1 and not system.raund_2:
 
 
          data = {
@@ -249,11 +249,7 @@ class mynode (Node):
             from lib.perpetualtimer import perpetualTimer
             from app.app_main import apps_starter
             system = GetBlock()
-            
-            
-            from node.unl import get_unl_nodes
-            system.total_validators = get_unl_nodes()
-            system.candidate_blocks = []
+
             system.exclude_validators = []
             dprint(system.sequance_number)
             perpetualTimer(system.consensus_timer,consensus_trigger).start()

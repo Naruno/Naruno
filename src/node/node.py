@@ -15,10 +15,9 @@ import json
 
 
 
-from config import *
+from config import CONNECTED_NODE_PATH
 
 import os
-import sys
 
 
 from lib.mixlib import dprint

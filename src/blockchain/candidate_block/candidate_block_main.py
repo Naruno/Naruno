@@ -6,14 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import os
-import pickle
-
-from lib.config_system import get_config
-
-from config import TEMP_CANDIDATE_BLOCKS_PATH
-
-
 class candidate_block:
     def __init__(self,candidate_blocks=[], candidate_block_hashes=[]):
 

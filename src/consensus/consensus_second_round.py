@@ -9,26 +9,27 @@ import time
 
 from lib.mixlib import dprint
 
-from node.unl import get_as_node_type
+from node.unl import get_as_node_type, get_unl_nodes
 from node.myownp2pn import mynode
 
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 
 
 def consensus_round_2(block):
+        unl_nodes = get_unl_nodes()
         if not block.raund_2_node:
               dprint("Raund 2: in get candidate block hashes\n") 
 
-              mynode.main_node.send_my_block_hash(get_as_node_type(block.total_validators))
+              mynode.main_node.send_my_block_hash(get_as_node_type(unl_nodes))
               block.raund_2_node = True
               block.save_block()
 
         candidate_class = GetCandidateBlocks()
         dprint("Raund 2 Conditions")
-        dprint(len(candidate_class.candidate_block_hashes) > ((len(block.total_validators) * 80)/100))
+        dprint(len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80)/100))
         dprint((int(time.time()) - block.raund_2_starting_time) < block.raund_2_time)
-        if len(candidate_class.candidate_block_hashes) > ((len(block.total_validators) * 80)/100):
-         if len(candidate_class.candidate_block_hashes) == len(block.total_validators) or not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
+        if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80)/100):
+         if len(candidate_class.candidate_block_hashes) == len(unl_nodes) or not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
           dprint("Raund 2: first ok")
           for candidate_block in candidate_class.candidate_block_hashes[:]:
                   tx_valid = 0
@@ -43,7 +44,7 @@ def consensus_round_2(block):
                         if candidate_block["hash"] == other_block["hash"]:
                             tx_valid += 1
 
-                  if tx_valid > ((len(block.total_validators) * 80)/100):
+                  if tx_valid > ((len(unl_nodes) * 80)/100):
                       
                       dprint("Raund 2: second ok")
                       if block.hash == candidate_block["hash"]:

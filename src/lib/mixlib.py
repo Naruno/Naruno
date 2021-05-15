@@ -89,10 +89,6 @@ def menu_title(menu_title_text):
 	return("\n"+"*** "+menu_title_text+" ***"+" \n"+"\n")
 
 
-def clear():
-	os.system("clear")
-
-
 def dprint(text):
     try:
      from lib.settings_system import the_settings

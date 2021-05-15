@@ -14,7 +14,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 
-from wallet.wallet import *
+from wallet.wallet import Wallet_Create, Wallet_Import
 
 import os
 
@@ -60,5 +60,3 @@ class WalletBox(MDGridLayout):
     def Wallet_Create(self):
         Wallet_Create()
         self.show_wallet_alert_dialog()
-    
-

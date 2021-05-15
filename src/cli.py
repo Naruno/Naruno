@@ -5,13 +5,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from wallet.wallet import *
+from wallet.wallet import Wallet_Create, Wallet_Import
 
 from transactions.send_coin import send_coin
-from node.node_connection import *
+from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, connect_to_main_network
 from node.get_node_list import GetNodeList
+from node.unl import save_new_unl_node
 
-from lib.mixlib import *
+from lib.mixlib import banner_maker, menu_space, menu_maker, quit_menu_maker, question_maker
 
 from blockchain.block.get_block import GetBlock, GetBlockFromOtherNode
 from blockchain.block.create_block import CreateBlock
@@ -58,7 +59,6 @@ def menu():
         choices_input = question_maker(mode="main")
 
         if choices_input == "connectmainnetwork":
-            from node.node_connection import connect_to_main_network
             connect_to_main_network()
         if choices_input == "cw":
             Wallet_Create()
@@ -88,7 +88,6 @@ def menu():
         if choices_input == "ndconnectmixdb":
             ndconnectmixdb()
         if choices_input == "ndnewunl":
-            from node.unl import save_new_unl_node
             save_new_unl_node(input("Please write ID of the node: "))
         if choices_input == "testmodeon":
             test_mode(True)
