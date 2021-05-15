@@ -6,17 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import os
-import pickle
-
-from node.myownp2pn import mynode
 from node.unl import get_unl_nodes, get_as_node_type
 
 from blockchain.candidate_block.candidate_block_main import candidate_block
-
-from lib.config_system import get_config
-
-from config import TEMP_CANDIDATE_BLOCKS_PATH
 
 
 def GetCandidateBlocks():

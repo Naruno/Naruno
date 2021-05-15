@@ -14,7 +14,7 @@ from kivymd.uix.button import MDFlatButton
 
 import os
 
-from node.node_connection import *
+from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, connect_to_main_network
 from node.get_node_list import GetNodeList
 from lib.settings_system import the_settings
 
@@ -219,5 +219,4 @@ class NodeBox(MDGridLayout):
     def get_node_list(self):
         GetNodeList()
     def connect_to_main_network(self):
-        from node.node_connection import connect_to_main_network
         connect_to_main_network()

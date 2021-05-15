@@ -10,7 +10,6 @@ import pickle
 import time
 import os
 
-from lib.settings_system import the_settings
 from lib.mixlib import dprint
 from lib.config_system import get_config
 from lib.perpetualtimer import perpetualTimer
@@ -18,15 +17,14 @@ from lib.perpetualtimer import perpetualTimer
 from node.myownp2pn import mynode
 from node.unl import get_unl_nodes, get_as_node_type
 
-from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
-from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
-
 from transactions.transaction import Transaction
 from transactions.pending_to_validating import PendinttoValidating
 
 from accounts.account import Account
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
+
+from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
 
 from wallet.wallet import (
     Ecdsa,
@@ -40,7 +38,7 @@ from consensus.consensus_main import consensus_trigger
 
 from app.app_main import apps_starter, app_tigger
 
-from config import *
+from config import TEMP_BLOCK_PATH
 
 
 class Block:
@@ -60,8 +58,6 @@ class Block:
         self.validating_list_starting_time = int(time.time())
 
         self.hash = None
-
-        self.total_validators = get_unl_nodes()
 
         self.max_tx_number = 2
 
@@ -124,7 +120,7 @@ class Block:
         self.validated = False
 
         # Resetting the node candidate blocks.
-        for node in get_as_node_type(self.total_validators):
+        for node in get_as_node_type(get_unl_nodes()):
             node.candidate_block = None
             node.candidate_block_hash = None
 
@@ -159,7 +155,7 @@ class Block:
             "amount": tx.amount,
             "transaction_fee": tx.transaction_fee
         }
-        for each_node in get_as_node_type(self.total_validators):
+        for each_node in get_as_node_type(get_unl_nodes()):
             mynode.main_node.send_data_to_node(each_node, items)
 
     def createTrans(self, sequance_number, signature, fromUser, toUser, transaction_fee, data, amount, transaction_sender=None):

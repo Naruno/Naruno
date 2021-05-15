@@ -14,13 +14,7 @@ from node.myownp2pn import mynode
 from blockchain.block.block_main import Block
 from blockchain.block.get_block import GetBlock
 
-from wallet.wallet import (
-    Ecdsa,
-    PrivateKey,
-    PublicKey,
-    Wallet_Import,
-    Signature
-    )
+from wallet.wallet import Wallet_Import
 
 
 def CreateBlock():

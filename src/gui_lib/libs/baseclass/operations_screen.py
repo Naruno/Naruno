@@ -82,4 +82,3 @@ class OperationBox(MDGridLayout):
 
     def send_coin(self):
         self.show_send_coin_dialog()
-
