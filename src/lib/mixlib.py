@@ -95,5 +95,4 @@ def dprint(text):
      if the_settings()["debug_mode"]:
          print("DEBUG: "+str(text))
     except Exception as e:
-        print(e)	
-
+        print(e)
