@@ -6,11 +6,15 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from wallet.wallet import Address
+
+
 def GetSequanceNumber(user, block):
+    user = Address(user)
     sequance_number = 0
     for Accounts in block.Accounts:
 
-        if Accounts.PublicKey == user:
+        if Accounts.Address == user:
 
             sequance_number = Accounts.sequance_number
 

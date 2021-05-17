@@ -26,11 +26,7 @@ def CreateBlock():
 
     if the_settings()["test_mode"]:
         dprint("Creating the genesis block")
-        pubkey = "".join([
-            l.strip() for l in Wallet_Import(0, 0).splitlines()
-            if l and not l.startswith("-----")
-        ])
-        Block(0, pubkey)
+        Block(0, Wallet_Import(0, 3))
         mynode.main_node.send_full_chain()
     else:
         dprint("Getting block from nodes")

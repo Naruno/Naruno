@@ -25,12 +25,12 @@ def ProccesstheTransaction(block):
 
         for Accounts in block.Accounts:
 
-            if Accounts.PublicKey == trans.fromUser:
+            if Accounts.Address == trans.Address:
                 Accounts.balance -= (float(trans.amount)+trans.transaction_fee)
                 Accounts.sequance_number += 1
                 from_user_list.append(Accounts)
 
-            elif Accounts.PublicKey == trans.toUser:
+            elif Accounts.Address == trans.toUser:
                 Accounts.balance += float(trans.amount)
                 touser_inlist = True
 
@@ -42,15 +42,15 @@ def ProccesstheTransaction(block):
     for tx_item in temp_validating_list[:]:
         for Account_item in from_user_list:
 
-            if tx_item.fromUser == Account_item.PublicKey:
+            if tx_item.Address == Account_item.Address:
                 tx_item.fromUser = Account_item
 
-    # Orders the transactions by fromUser index of block.Accounts.
+    # Orders the transactions by Address index of block.Accounts.
     temp_validating_list = sorted(temp_validating_list, key=lambda x: block.Accounts.index(x.fromUser))
 
     # Converts the Account class to Public key.
     for temp_validating_list_item in temp_validating_list[:]:
-        temp_validating_list_item.fromUser = temp_validating_list_item.fromUser.PublicKey
+        temp_validating_list_item.fromUser = temp_validating_list_item.fromUser.Address
 
     # Syncs new sorted list to block.validating_list
     block.validating_list = temp_validating_list

@@ -30,7 +30,7 @@ def saveBlockstoBlockchainDB(block):
     )""")
 
     cur.execute(f"""CREATE TABLE accounts{block.sequance_number}(
-                    PublicKey,
+                    address,
                     sequance_number,
                     balance
                 );""")
@@ -38,7 +38,7 @@ def saveBlockstoBlockchainDB(block):
     for each_account in block.Accounts:
         cur.execute(f"""INSERT INTO accounts{block.sequance_number} VALUES (?,?,?)""",
             [
-                each_account.PublicKey,
+                each_account.Address,
                 each_account.sequance_number,
                 each_account.balance
             ]

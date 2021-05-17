@@ -20,7 +20,7 @@ class Account:
     """
 
     def __init__(self, PublicKey, balance, sequance_number=0):
-        self.PublicKey = PublicKey
+        self.Address = PublicKey
 
         self.sequance_number = sequance_number
         self.balance = balance
@@ -38,7 +38,7 @@ class Account:
         which can then be loaded with the load_json () function.
         """
         data = {
-            "public_key": self.PublicKey,
+            "address": self.Address,
             "balance": self.balance,
             "sequence_number": self.sequance_number
         }

@@ -28,7 +28,7 @@ def CalculateHash(block):
     # Account
     ac_list = []
     for element in block.Accounts[:]:
-        ac_list.append(element.PublicKey)
+        ac_list.append(element.Address)
     dprint(ac_list)
     ac_hash = MerkleTree(ac_list).getRootHash()
 
