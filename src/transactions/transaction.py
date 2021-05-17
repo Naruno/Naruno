@@ -8,12 +8,15 @@
 import json
 import hashlib
 
+from wallet.wallet import Address
+
 
 class Transaction:
     def __init__(self, sequance_number, signature, fromUser, toUser, data, amount, transaction_fee):
         self.sequance_number = sequance_number
         self.signature = signature
         self.fromUser = fromUser
+        self.Address = Address(fromUser)
         self.toUser = toUser
         self.data = data
         self.amount = amount

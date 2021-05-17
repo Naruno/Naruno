@@ -31,7 +31,8 @@ from wallet.wallet import (
     PrivateKey,
     PublicKey,
     Wallet_Import,
-    Signature
+    Signature,
+    Address
     )
 
 from consensus.consensus_main import consensus_trigger

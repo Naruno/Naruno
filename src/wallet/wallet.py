@@ -1018,6 +1018,15 @@ def Wallet_Import(account,mode):
         my_private_key = temp_saved_wallet[account]["privatekey"]
         dprint(my_private_key)
         return my_private_key
+    elif mode == 3:
+        my_address = temp_saved_wallet[account]["publickey"]
+        my_address = "".join([
+            l.strip() for l in my_address.splitlines()
+            if l and not l.startswith("-----")
+        ])
+        my_address = Address(my_address)
+        dprint(my_address)
+        return my_address        
     else:
         raise ValueError("the mode variable contains an unplanned value")
 def Wallet_Delete(account):
@@ -1029,3 +1038,7 @@ def Wallet_Delete(account):
         os.chdir(get_config()["main_folder"])
         with open(WALLETS_PATH, 'w') as wallet_list_file:
             json.dump(saved_wallet, wallet_list_file, indent=4)
+
+def Address(publickey):
+
+    return sha256(publickey.encode('utf-8')).hexdigest()[-40:]
