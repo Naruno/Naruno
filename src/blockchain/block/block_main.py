@@ -51,7 +51,7 @@ class Block:
 
         self.previous_hash = "0"
         self.sequance_number = sequance_number
-        self.Accounts = [Account(creator, balance=1000000)]
+        self.Accounts = [Account(creator, balance=1000000000)]
 
         self.pendingTransaction = []
         self.validating_list = []
