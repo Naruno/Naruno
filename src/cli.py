@@ -71,11 +71,12 @@ def menu():
             except:
                 print("This is not float coin amount.")
 
-            if type_control:
+            if type_control and not float(temp_coin_amount) < GetBlock().minumum_transfer_amount:
                 send_coin(float(temp_coin_amount), input("Please write receiver adress: "))
 
         if choices_input == "gb":
             print(GetBalance(Wallet_Import(0,0), GetBlock()))
+            print(Wallet_Import(0,3))
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
