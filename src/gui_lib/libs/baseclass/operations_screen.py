@@ -61,6 +61,7 @@ class OperationBox(MDGridLayout):
         return text_list  
     def sent_the_coins(self,widget):
         from transactions.send_coin import send_coin
+        from blockchain.block.get_block import GetBlock
 
         text_list = self.get_send_coin_dialog_text()
         receiver_adress = text_list[1]
@@ -69,8 +70,8 @@ class OperationBox(MDGridLayout):
         print(receiver_adress)
         print(amount)
 
-
-        send_coin(float(amount), receiver_adress)
+        if not float(amount) < GetBlock():
+            send_coin(float(amount), receiver_adress)
 
         
 

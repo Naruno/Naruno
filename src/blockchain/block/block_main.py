@@ -61,6 +61,7 @@ class Block:
         self.hash = None
 
         self.max_tx_number = 2
+        self.minumum_transfer_amount = 1000
 
         self.raund_1_starting_time = None
         self.raund_1_time = 3
@@ -182,7 +183,7 @@ class Block:
 
       # Validation
       dprint("\nValidation")
-      if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)) and not already_got:
+      if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)) and not amount < self.minumum_transfer_amount and not already_got:
         dprint("Signature is valid")
 
         dprint("Getsequancenumber: "+str(GetSequanceNumber(fromUser, self)+1))
