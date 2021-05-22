@@ -20,6 +20,10 @@ class TransactionConfig:
     def change_transaction_fee(cls, transaction_fee: float) -> None:
         cls.transaction_fee = transaction_fee
 
+    @classmethod
+    def get_transaction_fee(cls) -> float:
+        return cls.transaction_fee
+
 
 def send(my_public_key, my_private_key, to_user, data = None, amount = None):
     my_public_key = "".join([
@@ -29,6 +33,8 @@ def send(my_public_key, my_private_key, to_user, data = None, amount = None):
 
     system = GetBlock()
     sequance_number = GetSequanceNumber(my_public_key, system) + 1
-    transaction_fee = TransactionConfig.transaction_fee
+
+    # Get the current fee
+    transaction_fee = TransactionConfig.get_transaction_fee()
 
     system.createTrans(sequance_number = sequance_number, signature = Ecdsa.sign(str(sequance_number)+str(my_public_key)+str(to_user)+str(data)+str(amount)+str(transaction_fee), PrivateKey.fromPem(my_private_key)).toBase64(), fromUser = str(my_public_key), toUser = str(to_user), data = data, amount = amount, transaction_fee = transaction_fee, transaction_sender = None)
