@@ -58,6 +58,10 @@ class Block:
         self.validating_list = []
         self.validating_list_time = 2
         self.validating_list_starting_time = int(time.time())
+        self.transaction_fee = 0.02
+        self.default_transaction_fee = 0.02
+        self.optimum_transaction_number = 10 # Each user settings by our hardware
+        self.default_fee_increase = 0.01
 
         self.hash = None
 
@@ -242,8 +246,12 @@ class Block:
         with open(TEMP_BLOCK_PATH, 'wb') as block_file:
             pickle.dump(self, block_file, protocol=2)
 
-    def change_transaction_fee(self, unit=100):
-        """Increase transaction fee by 0.01 DNC for each unit argument"""
-        increase_fee = (len(self.pendingTransaction) // 100) * 0.01
-        new_transaction_fee = TransactionConfig.get_transaction_fee() + increase_fee
-        TransactionConfig.change_transaction_fee(new_transaction_fee)
+    def change_transaction_fee(self):
+        """
+        Increase transaction fee by 0.01 DNC for each self.optimum_transaction_number argument
+        """
+        if not (len(self.pendingTransaction + self.validating_list) // self.optimum_transaction_number) == 0:
+            increase = (len(self.pendingTransaction + self.validating_list) // self.optimum_transaction_number) * self.default_fee_increase
+            self.transaction_fee += increase
+        else:
+            self.transaction_fee = self.default_transaction_fee
