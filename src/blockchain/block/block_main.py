@@ -61,7 +61,7 @@ class Block:
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02
         self.optimum_transaction_number = 10 # Each user settings by our hardware
-        self.default_fee_increase = 0.01
+        self.default_increase_of_fee = 0.01
 
         self.hash = None
 
@@ -188,7 +188,7 @@ class Block:
 
       # Validation
       dprint("\nValidation")
-      if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)) and not amount < self.minumum_transfer_amount and not already_got:
+      if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)) and not amount < self.minumum_transfer_amount and not transaction_fee < self.transaction_fee and not already_got:
         dprint("Signature is valid")
 
         dprint("Getsequancenumber: "+str(GetSequanceNumber(fromUser, self)+1))
@@ -212,6 +212,7 @@ class Block:
             )
             self.pendingTransaction.append(the_tx)
             PendinttoValidating(self)
+            self.change_transaction_fee()
             self.save_block()
             # End
 
@@ -251,7 +252,7 @@ class Block:
         Increase transaction fee by 0.01 DNC for each self.optimum_transaction_number argument
         """
         if not (len(self.pendingTransaction + self.validating_list) // self.optimum_transaction_number) == 0:
-            increase = (len(self.pendingTransaction + self.validating_list) // self.optimum_transaction_number) * self.default_fee_increase
+            increase = (len(self.pendingTransaction + self.validating_list) // self.optimum_transaction_number) * self.default_increase_of_fee
             self.transaction_fee += increase
         else:
             self.transaction_fee = self.default_transaction_fee

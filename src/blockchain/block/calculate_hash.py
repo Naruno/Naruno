@@ -38,6 +38,8 @@ def CalculateHash(block):
     main_list.append(str(block.sequance_number))
     main_list.append(ac_hash)
     main_list.append(tx_hash)
+    main_list.append(block.default_transaction_fee)
+    main_list.append(block.default_increase_of_fee)
 
     # Calculating and returning
     return MerkleTree(main_list).getRootHash()
