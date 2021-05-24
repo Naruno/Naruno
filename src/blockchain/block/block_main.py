@@ -19,6 +19,7 @@ from node.unl import get_unl_nodes, get_as_node_type
 
 from transactions.transaction import Transaction
 from transactions.pending_to_validating import PendinttoValidating
+from transactions.send import TransactionConfig
 
 from accounts.account import Account
 from accounts.get_balance import GetBalance
@@ -240,3 +241,9 @@ class Block:
         os.chdir(get_config()["main_folder"])
         with open(TEMP_BLOCK_PATH, 'wb') as block_file:
             pickle.dump(self, block_file, protocol=2)
+
+    def change_transaction_fee(self, unit=100):
+        """Increase transaction by 0.01 DNC for each unit argument"""
+        increase_fee = (len(self.pendingTransaction) // 100) * 0.01
+        new_transaction_fee = TransactionConfig.get_transaction_fee() + increase_fee
+        TransactionConfig.change_transaction_fee(new_transaction_fee)
