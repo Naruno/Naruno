@@ -19,7 +19,6 @@ from node.unl import get_unl_nodes, get_as_node_type
 
 from transactions.transaction import Transaction
 from transactions.pending_to_validating import PendinttoValidating
-from transactions.send import TransactionConfig
 
 from accounts.account import Account
 from accounts.get_balance import GetBalance
