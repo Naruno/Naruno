@@ -243,7 +243,7 @@ class Block:
             pickle.dump(self, block_file, protocol=2)
 
     def change_transaction_fee(self, unit=100):
-        """Increase transaction by 0.01 DNC for each unit argument"""
+        """Increase transaction fee by 0.01 DNC for each unit argument"""
         increase_fee = (len(self.pendingTransaction) // 100) * 0.01
         new_transaction_fee = TransactionConfig.get_transaction_fee() + increase_fee
         TransactionConfig.change_transaction_fee(new_transaction_fee)
