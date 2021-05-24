@@ -59,7 +59,7 @@ class Block:
         self.validating_list_starting_time = int(time.time())
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02
-        self.optimum_transaction_number = 10 # Each user settings by our hardware
+        self.default_optimum_transaction_number = 10 # Each user settings by our hardware
         self.default_increase_of_fee = 0.01
 
         self.hash = None
@@ -248,10 +248,10 @@ class Block:
 
     def change_transaction_fee(self):
         """
-        Increase transaction fee by 0.01 DNC for each self.optimum_transaction_number argument
+        Increase transaction fee by 0.01 DNC for each self.default_optimum_transaction_number argument
         """
-        if not (len(self.pendingTransaction + self.validating_list) // self.optimum_transaction_number) == 0:
-            increase = (len(self.pendingTransaction + self.validating_list) // self.optimum_transaction_number) * self.default_increase_of_fee
+        if not (len(self.pendingTransaction + self.validating_list) // self.default_optimum_transaction_number) == 0:
+            increase = (len(self.pendingTransaction + self.validating_list) // self.default_optimum_transaction_number) * self.default_increase_of_fee
             self.transaction_fee += increase
         else:
             self.transaction_fee = self.default_transaction_fee
