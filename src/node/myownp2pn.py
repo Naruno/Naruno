@@ -99,9 +99,8 @@ class mynode (Node):
 
 
     def send_my_block(self,nodes):
-        system = GetBlock()
+         system = GetBlock()
 
-        if system.validating_list_starting_time is not None:
          new_list = []
 
          signature_list = []

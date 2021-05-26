@@ -24,10 +24,14 @@ def consensus_trigger():
     block = GetBlock()
 
     if block.validated:
-        if not int(time.time()) < (block.start_time + (block.sequance_number * block.block_time)):
+        if (block.validated_time - block.start_time) >= block.block_time:
+            block.block_time += 0.2
+        else:
+            block.block_time -= 0.2
+
+        if not int(time.time()) < (block.genesis_time + (block.sequance_number * block.block_time)):
            block.reset_the_block()  
-    elif not (int(time.time()) - block.validating_list_starting_time) < block.validating_list_time:
-        #or len(block.validating_list) == block.max_tx_number
+    else:
         if block.raund_1_starting_time is None:
             block.raund_1_starting_time = int(time.time())
         if not block.raund_1:
