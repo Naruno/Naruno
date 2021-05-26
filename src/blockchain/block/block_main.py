@@ -46,6 +46,7 @@ class Block:
     def __init__(self, sequance_number, creator):
         # TODO: What to do in case of consensus fails will be added
 
+        self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 7
 
@@ -55,8 +56,6 @@ class Block:
 
         self.pendingTransaction = []
         self.validating_list = []
-        self.validating_list_time = 2
-        self.validating_list_starting_time = int(time.time())
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02
         self.default_optimum_transaction_number = 10 # Each user settings by our hardware
@@ -80,6 +79,7 @@ class Block:
         self.consensus_timer = 0.50
 
         self.validated = False
+        self.validated_time = None
 
         self.dowload_true_block = ""
 
@@ -109,10 +109,10 @@ class Block:
         saveBlockstoBlockchainDB(self)
 
         # Resetting and setting the new elements.
+        self.start_time = int(time.time())
         self.previous_hash = self.hash
         self.sequance_number = self.sequance_number + 1
         self.validating_list = []
-        self.validating_list_starting_time = int(time.time())
         self.hash = None
 
         self.raund_1_starting_time = None

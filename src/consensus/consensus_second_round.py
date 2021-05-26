@@ -49,6 +49,7 @@ def consensus_round_2(block):
                       dprint("Raund 2: second ok")
                       if block.hash == candidate_block["hash"]:
                         block.validated = True
+                        block.validated_time = int(time.time())
                         block.raund_2 = True
                         
 
