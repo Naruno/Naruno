@@ -122,7 +122,8 @@ class mynode (Node):
          data = {
              "action":"myblock",
              "transaction": new_list,
-             "signature":Ecdsa.sign("myblock"+Merkle_signature_list, PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()
+             "sequance_number": system.sequance_number,
+             "signature":Ecdsa.sign("myblock"+Merkle_signature_list+str(system.sequance_number), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()
          }
 
          for each_node in nodes:
@@ -138,7 +139,8 @@ class mynode (Node):
          data = {
              "action":"myblockhash",
              "hash": system.hash,
-             "signature":Ecdsa.sign("myblockhash"+system.hash, PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()
+             "sequance_number": system.sequance_number,
+             "signature":Ecdsa.sign("myblockhash"+system.hash+str(system.sequance_number), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()
          }
 
          for each_node in nodes:
@@ -148,10 +150,9 @@ class mynode (Node):
 
     def get_candidate_block(self,data,node):
 
-      
       dprint("Getting the candidate block")
       from node.unl import node_is_unl
-      if node_is_unl(node.id):
+      if node_is_unl(node.id) and GetBlock().sequance_number == data["sequance_number"]:
             dprint("is unl")
 
             signature_list = []
@@ -170,7 +171,7 @@ class mynode (Node):
             
             dprint("merkleroot: "+merkle_root_of_signature_list)
 
-            if Ecdsa.verify("myblock"+merkle_root_of_signature_list, Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
+            if Ecdsa.verify("myblock"+merkle_root_of_signature_list+str(data["sequance_number"]), Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 dprint("ecdsa true")
 
                 temp_tx = []
@@ -185,15 +186,14 @@ class mynode (Node):
 
     def get_candidate_block_hash(self,data,node):
 
-
       dprint("Getting the candidate block hash")
 
       from node.unl import node_is_unl
-      if node_is_unl(node.id):
+      if node_is_unl(node.id) and GetBlock().sequance_number == data["sequance_number"]:
             dprint("is unl")
 
 
-            if Ecdsa.verify("myblockhash"+data["hash"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
+            if Ecdsa.verify("myblockhash"+data["hash"]+str(data["sequance_number"]), Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 dprint("ecdsa true")
                 data["sender"] = node.id
 
