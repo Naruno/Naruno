@@ -159,12 +159,13 @@ class Block:
             "to_user": tx.toUser,
             "data": tx.data,
             "amount": tx.amount,
-            "transaction_fee": tx.transaction_fee
+            "transaction_fee": tx.transaction_fee,
+            "transaction_time":tx.time
         }
         for each_node in get_as_node_type(get_unl_nodes()):
             mynode.main_node.send_data_to_node(each_node, items)
 
-    def createTrans(self, sequance_number, signature, fromUser, toUser, transaction_fee, data, amount, transaction_sender=None):
+    def createTrans(self, sequance_number, signature, fromUser, toUser, transaction_fee, data, amount, transaction_time, transaction_sender=None):
 
       # Printing the info of tx
       dprint("\nCreating the transaction")
@@ -187,7 +188,7 @@ class Block:
 
       # Validation
       dprint("\nValidation")
-      if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)), signature_class, PublicKey.fromPem(fromUser)) and not amount < self.minumum_transfer_amount and not transaction_fee < self.transaction_fee and not already_got:
+      if Ecdsa.verify((str(sequance_number)+str(fromUser)+str(toUser)+str(data)+str(amount)+str(transaction_fee)+str(transaction_time)), signature_class, PublicKey.fromPem(fromUser)) and not amount < self.minumum_transfer_amount and not transaction_fee < self.transaction_fee and not already_got and not (int(time.time()) - transaction_time) > 60:
         dprint("Signature is valid")
 
         dprint("Getsequancenumber: "+str(GetSequanceNumber(fromUser, self)+1))
@@ -207,7 +208,8 @@ class Block:
                 toUser=toUser,
                 data = data,
                 amount = amount,
-                transaction_fee= transaction_fee
+                transaction_fee= transaction_fee,
+                time_of_transaction = transaction_time
             )
             self.pendingTransaction.append(the_tx)
             PendinttoValidating(self)

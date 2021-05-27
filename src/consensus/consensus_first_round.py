@@ -83,7 +83,7 @@ def consensus_round_1(block):
                       ok = True
               block.validating_list.remove(my_validating_list) 
               if not ok:
-                block.createTrans(my_validating_list.sequance_number, my_validating_list.signature, my_validating_list.fromUser, my_validating_list.toUser, my_validating_list.transaction_fee, my_validating_list.data, my_validating_list.amount, transaction_sender = None)
+                block.createTrans(my_validating_list.sequance_number, my_validating_list.signature, my_validating_list.fromUser, my_validating_list.toUser, my_validating_list.transaction_fee, my_validating_list.data, my_validating_list.amount, transaction_sender = None, transaction_time = my_validating_list.time)
                 
 
                 
