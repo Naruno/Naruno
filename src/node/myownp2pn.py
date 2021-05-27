@@ -297,4 +297,4 @@ class mynode (Node):
     def get_transaction(self,data,node):
         dprint("Getting the transactions")
         system = GetBlock()
-        system.createTrans(sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node)
+        system.createTrans(sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node, transaction_time = data["transaction_time"])
