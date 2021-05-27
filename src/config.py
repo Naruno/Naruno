@@ -17,7 +17,7 @@ TEMP_CANDIDATE_BLOCKS_PATH = 'db/temp_candidate_blocks.decentra_network'
 
 LOADING_BLOCK_PATH = 'db/loading_block.decentra_network'
 
-BLOCKCHAIN_PATH = 'db/blockchain.decentra_network'
+BLOCKS_PATH = 'db/blocks/'
 
 
 WALLETS_PATH = 'db/wallet_list.json'

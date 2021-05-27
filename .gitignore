@@ -6,7 +6,7 @@ unl_nodes.json
 temp_block.decentra_network
 temp_candidate_blocks.decentra_network
 loading_block.decentra_network
-blockchain.decentra_network
+*.block
 wallet_list.json
 
 #venv

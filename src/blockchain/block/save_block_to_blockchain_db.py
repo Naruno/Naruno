@@ -6,64 +6,20 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import sqlite3
+import os
+import pickle
 
-from config import BLOCKCHAIN_PATH
+from lib.config_system import get_config
+
+from config import BLOCKS_PATH
 
 
 def saveBlockstoBlockchainDB(block):
     """
-    Adds the existing block to the blockchain database
-    at BLOCKCHAIN_PATH.
+    Adds the block to the blockchain database
+    at BLOCKS_PATH.
     """
 
-    db = sqlite3.connect(BLOCKCHAIN_PATH)
-    cur = db.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS blockchain(
-                    previous_hash,
-                    sequance_number,
-                    hash
-                );""")
-
-    cur.execute(f"""INSERT INTO blockchain VALUES (
-        '{block.previous_hash}', '{block.sequance_number}', '{block.hash}'
-    )""")
-
-    cur.execute(f"""CREATE TABLE accounts{block.sequance_number}(
-                    address,
-                    sequance_number,
-                    balance
-                );""")
-
-    for each_account in block.Accounts:
-        cur.execute(f"""INSERT INTO accounts{block.sequance_number} VALUES (?,?,?)""",
-            [
-                each_account.Address,
-                each_account.sequance_number,
-                each_account.balance
-            ]
-        )
-    cur.execute(f"""CREATE TABLE transactions{block.sequance_number}(
-                    sequance_number,
-                    signature,
-                    fromUser,
-                    toUser,
-                    data,
-                    amount,
-                    transaction_fee
-                );""")
-    for each_transaction in block.validating_list:
-        cur.execute(f"""INSERT INTO transactions{block.sequance_number} VALUES (?,?,?,?,?,?,?)""",
-            [
-                each_transaction.sequance_number,
-                each_transaction.signature,
-                each_transaction.fromUser,
-                each_transaction.toUser,
-                each_transaction.data,
-                each_transaction.amount,
-                each_transaction.transaction_fee
-            ]
-        )
-
-    db.commit()
-    db.close()
+    os.chdir(get_config()["main_folder"])
+    with open(BLOCKS_PATH+str(block.sequance_number)+".block", 'wb') as block_file:
+        pickle.dump(block, block_file, protocol=2)
