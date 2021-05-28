@@ -13,6 +13,8 @@ from lib.config_system import get_config
 
 from config import BLOCKS_PATH
 
+from accounts.account import GetAccounts
+
 
 def saveBlockstoBlockchainDB(block):
     """
@@ -23,3 +25,6 @@ def saveBlockstoBlockchainDB(block):
     os.chdir(get_config()["main_folder"])
     with open(BLOCKS_PATH+str(block.sequance_number)+".block", 'wb') as block_file:
         pickle.dump(block, block_file, protocol=2)
+
+    with open(BLOCKS_PATH+str(block.sequance_number)+".accounts", 'wb') as block_file:
+        pickle.dump(GetAccounts(), block_file, protocol=2)
