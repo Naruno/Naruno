@@ -10,6 +10,8 @@ from wallet.wallet import Address
 
 from blockchain.block.get_block import GetBlock
 
+from accounts.account import GetAccounts
+
 def GetBalance(user, block):
     balance = -GetBlock().minumum_transfer_amount
     user = "".join([
@@ -17,9 +19,13 @@ def GetBalance(user, block):
         if l and not l.startswith("-----")
     ])
     user = Address(user)
-    for Accounts in block.Accounts:
+    for Accounts in GetAccounts():
 
         if Accounts.Address == user:
             balance += Accounts.balance
-            return balance
+            break
+
+    for trans in block.pendingTransaction + block.validating_list:
+        if user == trans.fromUser:
+            balance -= trans.amount + trans.transaction_fee
     return balance

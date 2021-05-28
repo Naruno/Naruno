@@ -8,6 +8,8 @@
 from lib.mixlib import dprint
 from lib.merkle_root import MerkleTree
 
+from accounts.account import GetAccounts
+
 
 def CalculateHash(block):
     """
@@ -27,7 +29,7 @@ def CalculateHash(block):
         
     # Account
     ac_list = []
-    for element in block.Accounts[:]:
+    for element in GetAccounts()[:]:
         ac_list.append(element.Address)
     dprint(ac_list)
     ac_hash = MerkleTree(ac_list).getRootHash()

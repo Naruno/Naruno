@@ -20,7 +20,7 @@ from node.unl import get_unl_nodes, get_as_node_type
 from transactions.transaction import Transaction
 from transactions.pending_to_validating import PendinttoValidating
 
-from accounts.account import Account
+from accounts.account import Account, save_accounts
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
 
@@ -52,7 +52,11 @@ class Block:
 
         self.previous_hash = "0"
         self.sequance_number = sequance_number
-        self.Accounts = [Account(creator, balance=1000000000)]
+
+        accounts = [
+            Account(creator, balance=1000000000)
+            ]
+        save_accounts(accounts)
 
         self.pendingTransaction = []
         self.validating_list = []

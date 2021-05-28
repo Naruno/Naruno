@@ -8,11 +8,13 @@
 
 from wallet.wallet import Address
 
+from accounts.account import GetAccounts
+
 
 def GetSequanceNumber(user, block):
     user = Address(user)
     sequance_number = 0
-    for Accounts in block.Accounts:
+    for Accounts in GetAccounts():
 
         if Accounts.Address == user:
 
