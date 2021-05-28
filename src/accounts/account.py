@@ -63,21 +63,15 @@ class Account:
 
 
 def save_accounts(the_accounts):
-    print("\n\n\n *********************dsadasd***************")
-    print(the_accounts)
     os.chdir(get_config()["main_folder"])
     with open(TEMP_ACCOUNTS_PATH, 'wb') as block_file:
         pickle.dump(the_accounts, block_file, protocol=2)
-    print("\n\n\n ************************************")
 
 
 def GetAccounts():
-    print("\n\n\n ************************************")
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_ACCOUNTS_PATH):
         return []
     else:    
         with open(TEMP_ACCOUNTS_PATH, 'rb') as block_file:
             return pickle.load(block_file)
-            print("\n\n\n ************************************")
-
