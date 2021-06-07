@@ -52,6 +52,7 @@ class Block:
 
         self.previous_hash = "0"
         self.sequance_number = sequance_number
+        self.empty_block_number = 0
 
         accounts = [
             Account(creator, balance=1000000000)
@@ -93,9 +94,15 @@ class Block:
 
     def reset_the_block(self):
         """
-        When the block is verified,
-        it saves the block and makes the edits for the new block.
+        When the block is verified and if block have a transaction 
+        and if block have at least half of the max_tx_number transaction,it saves the block 
+        and makes the edits for the new block.
         """
+
+        if (self.validated_time - self.start_time) >= self.block_time:
+            self.block_time += 0.2
+        else:
+            self.block_time -= 0.2
 
         #Printing validated block.
         dprint("""\n
@@ -108,16 +115,7 @@ class Block:
                                         
         """+str(self.__dict__)+"\n")
 
-        app_tigger(self)
-
-        saveBlockstoBlockchainDB(self)
-
-        # Resetting and setting the new elements.
         self.start_time = int(time.time())
-        self.previous_hash = self.hash
-        self.sequance_number = self.sequance_number + 1
-        self.validating_list = []
-        self.hash = None
 
         self.raund_1_starting_time = None
         self.raund_1 = False
@@ -129,23 +127,42 @@ class Block:
 
         self.validated = False
 
+        
+
         # Resetting the node candidate blocks.
         for node in get_as_node_type(get_unl_nodes()):
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        #Printing new block.
-        dprint("""\n
- _   _                 ____  _      ____   _____ _  __
-| \ | |               |  _ \| |    / __ \ / ____| |/ /
-|  \| | _____      __ | |_) | |   | |  | | |    | ' / 
-| . ` |/ _ \ \ /\ / / |  _ <| |   | |  | | |    |  <  
-| |\  |  __/\ V  V /  | |_) | |___| |__| | |____| . \ 
-|_| \_|\___| \_/\_/   |____/|______\____/ \_____|_|\_\
-                                        
-        """+str(self.__dict__)+"\n")
+        if not len(self.validating_list) == 0 and not len(self.validating_list) < (self.max_tx_number / 2):
 
-        # Adding self.pendingTransaction to the new block.
+            
+            app_tigger(self)
+            
+            saveBlockstoBlockchainDB(self)
+
+            # Resetting and setting the new elements.
+            self.previous_hash = self.hash
+            self.sequance_number = self.sequance_number + 1
+            self.validating_list = []
+            self.hash = None
+
+            #Printing new block.
+            dprint("""\n
+    _   _                 ____  _      ____   _____ _  __
+    | \ | |               |  _ \| |    / __ \ / ____| |/ /
+    |  \| | _____      __ | |_) | |   | |  | | |    | ' / 
+    | . ` |/ _ \ \ /\ / / |  _ <| |   | |  | | |    |  <  
+    | |\  |  __/\ V  V /  | |_) | |___| |__| | |____| . \ 
+    |_| \_|\___| \_/\_/   |____/|______\____/ \_____|_|\_\
+                                            
+            """+str(self.__dict__)+"\n")
+        else:
+            self.empty_block_number += 1
+
+
+
+        # Adding self.pendingTransaction to the new/current block.
         PendinttoValidating(self)
 
         # Saving the new block.
@@ -216,7 +233,6 @@ class Block:
                 time_of_transaction = transaction_time
             )
             self.pendingTransaction.append(the_tx)
-            PendinttoValidating(self)
             self.change_transaction_fee()
             self.save_block()
             # End

@@ -11,6 +11,14 @@ from wallet.wallet import Wallet_Import
 
 
 def send_coin(coin_amount, to_user):
+    """
+    A function for sending coins.
+
+    Inputs:
+      * coin_amount: A int or float amount to be sent.
+      * to_user: Receiver's address.
+    """
+
     my_public_key = Wallet_Import(0,0)
     my_private_key = Wallet_Import(0,1)
 

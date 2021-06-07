@@ -18,19 +18,17 @@ from blockchain.block.get_block import GetBlock
 
 def consensus_trigger():
     """
-    Gets the temporary block and starts the Block.consensus().
+    Consensus process consists of 2 stages. This function makes 
+    the necessary redirects according to the situation and works 
+    to shorten the block time.
     """
+
     dprint("Consensus Trigger")
     block = GetBlock()
 
     if block.validated:
-        if (block.validated_time - block.start_time) >= block.block_time:
-            block.block_time += 0.2
-        else:
-            block.block_time -= 0.2
-
-        if not int(time.time()) < (block.genesis_time + (block.sequance_number * block.block_time)):
-           block.reset_the_block()  
+        if not int(time.time()) < (block.genesis_time + ((block.sequance_number + block.empty_block_number) * block.block_time)):
+           block.reset_the_block() 
     else:
         if block.raund_1_starting_time is None:
             block.raund_1_starting_time = int(time.time())

@@ -39,6 +39,13 @@ ScreenManager:
 
 
 class GUI(MDApp):
+    """
+    An MDApp based  GUI class.
+    GUI class consists of 2 elements:
+      * title: Title of the app.
+      * icon: icon of the app.
+    """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.title = "Decentra Network"
@@ -46,7 +53,10 @@ class GUI(MDApp):
 
 
     def build(self):
-        
+        """
+        Some configurations.
+        """
+
         self.theme_cls.primary_palette = "Green"
         FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
 

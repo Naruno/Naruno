@@ -18,11 +18,13 @@ from config import TEMP_ACCOUNTS_PATH
 
 class Account:
     """
+    The account Class.
+
     Account class consists of 3 elements:
-      PublicKey: Public key created with ECDSA.
-      sequance_number: Makes each transaction single use,
+      * PublicKey: Public key created with ECDSA.
+      * sequance_number: Makes each transaction single use,
         incrementing 1 after each transaction.
-      balance: The amount of dnc coins of account.
+      * balance: The amount of dnc coins of account.
     """
 
     def __init__(self, PublicKey, balance, sequance_number=0):
