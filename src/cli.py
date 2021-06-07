@@ -22,6 +22,9 @@ from lib.settings_system import the_settings, test_mode, debug_mode
 from accounts.get_balance import GetBalance
 
 def show_menu():
+    """
+    Prints some information and the menu.
+    """
 
     print(banner_maker(sc_name="Decentra Network", description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.", author="Decentra Network Developers"))
 
@@ -54,6 +57,11 @@ def show_menu():
 
 
 def menu():
+    """
+    The main structure of the cli mode, this function prints the menu, 
+    listens to the entries, makes the directions.
+    """
+
     while True:
         show_menu()
         choices_input = question_maker(mode="main")
@@ -117,8 +125,5 @@ def menu():
             exit()
 
 
-def start():
-    menu()
-
 if __name__ == '__main__':
-    start()
+    menu()

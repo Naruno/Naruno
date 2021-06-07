@@ -29,7 +29,12 @@ from typing import List
 
 import hashlib
  
+
 class Leaf:
+    """
+    The leaf class for merkle tree.
+    """
+
     def __init__(self, left, right, value: str,content)-> None:
         self.left: Leaf = left
         self.right: Leaf = right
@@ -38,15 +43,31 @@ class Leaf:
     
     @staticmethod
     def hash(val: str)-> str:
+        """
+        Returns the sha256 of the value.
+
+        Inputs:
+          * val: A string.
+        """
+
         return hashlib.sha256(val.encode('utf-8')).hexdigest()
+
     def __str__(self):
       return (str(self.value))
- 
+
+
 class MerkleTree:
+    """
+    The merkle tree class.
+    """
+
     def __init__(self, values: List[str])-> None:
         self.__buildTree(values)
  
     def __buildTree(self, values: List[str])-> None:
+        """
+        Calculate and append the leafs
+        """
  
         leaves: List[Leaf] = [Leaf(None, None, Leaf.hash(e),e) for e in values]
         if len(leaves) % 2 == 1:
@@ -54,6 +75,10 @@ class MerkleTree:
         self.root: Leaf = self.__buildTreeRec(leaves) 
     
     def __buildTreeRec(self, Leafs: List[Leaf])-> Leaf:
+        """
+        Calculate and returns the results of the leaf by parent leafs
+        """
+
         half: int = len(Leafs) // 2
  
         if len(Leafs) == 2:
@@ -66,9 +91,16 @@ class MerkleTree:
         return Leaf(left, right, value,content)
     
     def printTree(self)-> None:
+        """
+        Prints the last leaf element.
+        """
         self.__printTreeRec(self.root)
  
     def __printTreeRec(self, Leaf)-> None:
+        """
+        Prints the leaf elements.
+        """
+
         if Leaf != None:
             if Leaf.left != None:
              print("Left: "+str(Leaf.left))
@@ -82,9 +114,8 @@ class MerkleTree:
             self.__printTreeRec(Leaf.right)
     
     def getRootHash(self)-> str:
+        """
+        Returns the merkle root.
+        """
+
         return self.root.value
-        
-        
-        
-
-

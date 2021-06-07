@@ -16,6 +16,17 @@ from blockchain.block.get_block import GetBlock
 
 
 def send(my_public_key, my_private_key, to_user, data = None, amount = None):
+    """
+    The main function for sending the transaction.
+
+    Inputs:
+      * my_public_key: Sender's public key.
+      * my_private_key: Sender's private key.
+      * to_user: Receiver's address.
+      * data: A text that can be written into the transaction. (Can be None)
+      * amount: A int or float amount to be sent. (Can be None)
+    """
+
     my_public_key = "".join([
             l.strip() for l in my_public_key.splitlines()
             if l and not l.startswith("-----")

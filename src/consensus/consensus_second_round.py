@@ -16,6 +16,17 @@ from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 
 
 def consensus_round_2(block):
+        """
+        At this stage of the consensus process,
+        The blocks (block hashes) of our and the
+        unl nodes are compared and the block accepted 
+        by 80 percent is approved.
+
+        Inputs:
+          * block: The block (class) we want consensus 
+          round 2 to be done
+        """
+
         unl_nodes = get_unl_nodes()
         if not block.raund_2_node:
               dprint("Raund 2: in get candidate block hashes\n") 

@@ -18,7 +18,19 @@ from blockchain.block.calculate_hash import CalculateHash
 
 from transactions.process_the_transaction import ProccesstheTransaction
 
+
 def consensus_round_1(block):
+        """
+        At this stage of the consensus process,
+        The transactions of our and the unl nodes 
+        are evaluated and transactions accepted by 
+        owned by more than 50 percent.
+
+        Inputs:
+          * block: The block (class) we want consensus 
+          round 1 to be done
+        """
+
         unl_nodes = get_unl_nodes()
         if not block.raund_1_node:
               dprint("Raund 1: in get candidate blocks\n")

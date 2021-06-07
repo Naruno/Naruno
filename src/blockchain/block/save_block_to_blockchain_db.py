@@ -22,12 +22,12 @@ def saveBlockstoBlockchainDB(block):
     at BLOCKS_PATH.
     """
 
-    if not len(block.validating_list) == 0:
-        
-        os.chdir(get_config()["main_folder"])
 
-        with open(BLOCKS_PATH+str(block.sequance_number)+".block", 'wb') as block_file:
-            pickle.dump(block, block_file, protocol=2)
         
-        with open(BLOCKS_PATH+str(block.sequance_number)+".accounts", 'wb') as block_file:
-            pickle.dump(GetAccounts(), block_file, protocol=2)
+    os.chdir(get_config()["main_folder"])
+
+    with open(BLOCKS_PATH+str(block.sequance_number)+".block", 'wb') as block_file:
+        pickle.dump(block, block_file, protocol=2)
+        
+    with open(BLOCKS_PATH+str(block.sequance_number)+".accounts", 'wb') as block_file:
+        pickle.dump(GetAccounts(), block_file, protocol=2)
