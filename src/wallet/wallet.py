@@ -1041,4 +1041,4 @@ def Wallet_Delete(account):
 
 def Address(publickey):
 
-    return sha256(publickey.encode('utf-8')).hexdigest()[-40:]
+    return sha256(sha256(publickey.encode("utf-8")).hexdigest().encode("utf-8")).hexdigest()[-40:]
