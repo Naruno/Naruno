@@ -25,6 +25,7 @@ from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
 
 from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
+from blockchain.block.blocks_hash import SaveBlockshash, GetBlockshash
 
 from wallet.wallet import (
     Ecdsa,
@@ -53,6 +54,9 @@ class Block:
         self.previous_hash = "0"
         self.sequance_number = sequance_number
         self.empty_block_number = 0
+
+        blocks_hash = [self.previous_hash]
+        SaveBlockshash(blocks_hash)
 
         accounts = [
             Account(creator, balance=1000000000)
@@ -143,6 +147,9 @@ class Block:
 
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
+            current_blockshash_list = GetBlockshash()
+            current_blockshash_list.append(self.previous_hash)
+            SaveBlockshash(current_blockshash_list)
             self.sequance_number = self.sequance_number + 1
             self.validating_list = []
             self.hash = None

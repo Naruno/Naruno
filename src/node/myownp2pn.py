@@ -20,7 +20,7 @@ from lib.merkle_root import MerkleTree
 from transactions.transaction import Transaction
 
 import os
-from config import TEMP_BLOCK_PATH, LOADING_BLOCK_PATH, CONNECTED_NODE_PATH, TEMP_ACCOUNTS_PATH
+from config import TEMP_BLOCK_PATH, LOADING_BLOCK_PATH, CONNECTED_NODE_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCKSHASH_PATH
 
 from blockchain.block.get_block import GetBlock
 
@@ -59,6 +59,13 @@ class mynode (Node):
             if data["fullaccounts"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullaccounts"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 print("getting chain")
                 self.get_full_accounts(data,node)
+        except Exception as e:
+            print(e)
+
+        try:
+            from node.unl import node_is_unl
+            if data["fullblockshash"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullblockshash"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
+                self.get_full_blockshash(data,node)
         except Exception as e:
             print(e)
 
@@ -255,6 +262,29 @@ class mynode (Node):
                 else:
                     self.send_data_to_nodes(data)
 
+    def send_full_blockshash(self,node = None):
+        dprint("Sending full chain to node or nodes."+" Node: "+ str(node))
+        file = open(TEMP_BLOCKSHASH_PATH, "rb")
+        SendData = file.read(1024)
+        while SendData:
+
+            data = {"fullblockshash" : 1,"byte" : (SendData.decode(encoding='iso-8859-1')),"signature" : Ecdsa.sign("fullblockshash"+str((SendData.decode(encoding='iso-8859-1'))), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()}
+            if not node is None:
+                self.send_data_to_node(node,data)
+            else:
+                self.send_data_to_nodes(data)
+
+            SendData = file.read(1024) 
+
+            dprint(SendData)
+
+            if not SendData:
+                data = {"fullblockshash" : 1,"byte" : "end","signature": Ecdsa.sign("fullblockshash"+"end", PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()}
+                if not node is None:
+                    self.send_data_to_node(node,data)
+                else:
+                    self.send_data_to_nodes(data)
+
 
     def get_full_chain(self,data,node):
       
@@ -298,6 +328,24 @@ class mynode (Node):
             file.close()
 
 
+    def get_full_blockshash(self,data,node):
+      
+      get_ok = False
+
+      if not os.path.exists(TEMP_BLOCKSHASH_PATH):
+        get_ok = True
+      else:
+        system = GetBlock()
+        if node.id == system.dowload_true_block:
+            get_ok = True
+
+      
+      if get_ok:
+        file = open(TEMP_BLOCKSHASH_PATH, "ab")
+                
+        file.write((data["byte"].encode(encoding='iso-8859-1')))
+        file.close()
+
     def get_full_accounts(self,data,node):
       
       get_ok = False
@@ -315,7 +363,6 @@ class mynode (Node):
                 
         file.write((data["byte"].encode(encoding='iso-8859-1')))
         file.close()
-
 
     def send_full_node_list(self,node = None):
         file = open(CONNECTED_NODE_PATH, "rb")

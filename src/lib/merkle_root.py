@@ -28,7 +28,7 @@ SOFTWARE.
 from typing import List
 
 import hashlib
- 
+
 
 class Leaf:
     """
@@ -56,6 +56,7 @@ class Leaf:
       return (str(self.value))
 
 
+
 class MerkleTree:
     """
     The merkle tree class.
@@ -68,50 +69,51 @@ class MerkleTree:
         """
         Calculate and append the leafs
         """
- 
+
         leaves: List[Leaf] = [Leaf(None, None, Leaf.hash(e),e) for e in values]
         if len(leaves) % 2 == 1:
             leaves.append(leaves[-1:][0]) # duplicate last elem if odd number of elements
         self.root: Leaf = self.__buildTreeRec(leaves) 
     
-    def __buildTreeRec(self, Leafs: List[Leaf])-> Leaf:
+    def __buildTreeRec(self, leafs: List[Leaf])-> Leaf:
         """
         Calculate and returns the results of the leaf by parent leafs
         """
 
-        half: int = len(Leafs) // 2
+        half: int = len(leafs) // 2
  
-        if len(Leafs) == 2:
-            return Leaf(Leafs[0], Leafs[1], Leaf.hash(Leafs[0].value + Leafs[1].value), Leafs[0].content+"+"+Leafs[1].content)
+        if len(leafs) == 2:
+            return Leaf(leafs[0], leafs[1], Leaf.hash(leafs[0].value + leafs[1].value), leafs[0].content+"+"+leafs[1].content)
         
-        left: Leaf = self.__buildTreeRec(Leafs[:half])
-        right: Leaf = self.__buildTreeRec(Leafs[half:])
+        left: Leaf = self.__buildTreeRec(leafs[:half])
+        right: Leaf = self.__buildTreeRec(leafs[half:])
         value: str = Leaf.hash(left.value + right.value)
-        content: str = self.__buildTreeRec(Leafs[:half]).content+"+"+self.__buildTreeRec(Leafs[half:]).content
+        content: str = self.__buildTreeRec(leafs[:half]).content+"+"+self.__buildTreeRec(leafs[half:]).content
         return Leaf(left, right, value,content)
     
     def printTree(self)-> None:
         """
         Prints the last leaf element.
         """
+
         self.__printTreeRec(self.root)
  
-    def __printTreeRec(self, Leaf)-> None:
+    def __printTreeRec(self, node)-> None:
         """
         Prints the leaf elements.
         """
 
-        if Leaf != None:
-            if Leaf.left != None:
-             print("Left: "+str(Leaf.left))
-             print("Right: "+str(Leaf.right))
+        if node != None:
+            if node.left != None:
+             print("Left: "+str(node.left))
+             print("Right: "+str(node.right))
             else:
              print("Input")
-            print("Value: "+str(Leaf.value))
-            print("Content: "+str(Leaf.content))
+            print("Value: "+str(node.value))
+            print("Content: "+str(node.content))
             print("")
-            self.__printTreeRec(Leaf.left)
-            self.__printTreeRec(Leaf.right)
+            self.__printTreeRec(node.left)
+            self.__printTreeRec(node.right)
     
     def getRootHash(self)-> str:
         """
