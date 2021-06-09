@@ -5,6 +5,7 @@ connected_node.json
 unl_nodes.json
 temp_block.decentra_network
 temp_accounts.decentra_network
+temp_blockshash.decentra_network
 temp_candidate_blocks.decentra_network
 loading_block.decentra_network
 *.block

@@ -8,6 +8,8 @@
 from lib.mixlib import dprint
 from lib.merkle_root import MerkleTree
 
+from blockchain.block.blocks_hash import GetBlockshash
+
 from accounts.account import GetAccounts
 
 
@@ -26,7 +28,12 @@ def CalculateHash(block):
         tx_hash = MerkleTree(tx_list).getRootHash()
     else:
         tx_hash = "0"
-        
+
+
+    # Blocks Hash
+    blockshash_hash = MerkleTree(GetBlockshash()).getRootHash()
+
+
     # Account
     ac_list = []
     for element in GetAccounts()[:]:
@@ -38,6 +45,7 @@ def CalculateHash(block):
     main_list = []
     main_list.append(block.previous_hash)
     main_list.append(str(block.sequance_number))
+    main_list.append(blockshash_hash)
     main_list.append(ac_hash)
     main_list.append(tx_hash)
     main_list.append(str(block.default_transaction_fee))
