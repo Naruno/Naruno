@@ -31,6 +31,8 @@ def create_and_save_the_settings(test_mode_settings= False, debug_mode_settings=
 
     temp_json["debug_mode"] = debug_mode_settings
 
+    temp_json["wallet"] = "0"
+
 
     save_settings(temp_json)
     return(temp_json)
@@ -61,6 +63,17 @@ def debug_mode(new_value):
     settings["debug_mode"] = new_value
     save_settings(settings)
 
+def change_wallet(new_value):
+    """
+    Changes the debug_mode setting.
+
+    Inputs:
+      * new_value: New value for the debug_mode
+    """
+
+    settings = the_settings()
+    settings["wallet"] = new_value
+    save_settings(settings)
 
 def the_settings():
     """

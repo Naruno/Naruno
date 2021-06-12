@@ -9,9 +9,9 @@
             spacing: dp(10)
 
             WalletBox:
-                text : "Balance: 0"
+                text : "Balance"
 
-                
+              
             
 
 <WalletBox>
@@ -29,10 +29,20 @@
     MDGridLayout:
         adaptive_height: True
         padding: dp(10)
-        cols:2
+        cols:3
         spacing: 10
         
- 
+        MDRoundFlatIconButton:
+            icon: "wallet-outline"
+
+            on_press: root.show_example_list_bottom_sheet()
+
+            
+
+            DecentraLabel:
+                text: "Wallets"
+                halign: "right"
+                font_style: "Button"   
         
 
         MDRoundFlatIconButton:
@@ -59,5 +69,5 @@
                 halign: "right"
                 font_style: "Button" 
     
-            
+         
         

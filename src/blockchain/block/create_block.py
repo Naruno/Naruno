@@ -26,7 +26,7 @@ def CreateBlock():
 
     if the_settings()["test_mode"]:
         dprint("Creating the genesis block")
-        Block(0, Wallet_Import(0, 3))
+        Block(0, Wallet_Import(-1, 3))
         mynode.main_node.send_full_accounts()
         mynode.main_node.send_full_chain()
         mynode.main_node.send_full_blockshash()

@@ -67,10 +67,7 @@ class OperationBox(MDGridLayout):
         receiver_adress = text_list[1]
         amount = text_list[0]
 
-        print(receiver_adress)
-        print(amount)
-
-        if not float(amount) < GetBlock():
+        if not float(amount) < GetBlock().minumum_transfer_amount:
             send_coin(float(amount), receiver_adress)
 
         

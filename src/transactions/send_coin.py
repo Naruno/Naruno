@@ -19,8 +19,8 @@ def send_coin(coin_amount, to_user):
       * to_user: Receiver's address.
     """
 
-    my_public_key = Wallet_Import(0,0)
-    my_private_key = Wallet_Import(0,1)
+    my_public_key = Wallet_Import(-1,0)
+    my_private_key = Wallet_Import(-1,1)
 
     if isinstance(coin_amount, int):
         coin_amount = float(coin_amount)
