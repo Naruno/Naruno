@@ -73,26 +73,29 @@ def menu():
 
         if choices_input == "w":
             all_wallets = list(get_saved_wallet())
+            if not len(all_wallets) == 0:
 
-            current_wallet = the_settings()["wallet"]
-            for wallet in all_wallets:
-                number = str(all_wallets.index(wallet))
-                address = Wallet_Import(all_wallets.index(wallet),3)
-                if not current_wallet == number:
-                    print(menu_maker(menu_number=number, menu_text=address))
-                else:
-                    print(menu_maker(menu_number=number, menu_text=address + " - CURRENTLY USED"))
-
-            while True:
-                try:
-                    new_wallet = input("Please select new wallet: ")
-                    if int(new_wallet) in list(range(len(all_wallets))):
-                        change_wallet(new_wallet)
-                        break
+                current_wallet = the_settings()["wallet"]
+                for wallet in all_wallets:
+                    number = str(all_wallets.index(wallet))
+                    address = Wallet_Import(all_wallets.index(wallet),3)
+                    if not current_wallet == number:
+                        print(menu_maker(menu_number=number, menu_text=address))
                     else:
-                        print("There is no such wallet")
-                except:
-                    print("This is not a number")
+                        print(menu_maker(menu_number=number, menu_text=address + " - CURRENTLY USED"))
+
+                while True:
+                    try:
+                        new_wallet = input("Please select wallet: ")
+                        if int(new_wallet) in list(range(len(all_wallets))):
+                            change_wallet(new_wallet)
+                            break
+                        else:
+                            print("There is no such wallet")
+                    except:
+                        print("This is not a number")
+            else:
+                print("There is no wallet")
 
 
 
@@ -115,7 +118,6 @@ def menu():
 
         if choices_input == "gb":
             print(GetBalance(Wallet_Import(-1,0), GetBlock()))
-            print(Wallet_Import(-1,3))
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":

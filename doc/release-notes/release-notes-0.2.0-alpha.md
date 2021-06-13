@@ -36,6 +36,7 @@ and type w in the CLI and select the wallet you want to use.
 - Added the wallet menu and function
 - Changed the Wallet_Import() function to get default wallet 
 - Added a small loading animation
+- Removed the address printing in get balance (gb)
 
 ### Blockchain
 - Changed the Wallet_Import() function to get default wallet  
