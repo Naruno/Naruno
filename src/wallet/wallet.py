@@ -992,6 +992,9 @@ def get_saved_wallet():
 
 
 from lib.mixlib import dprint
+
+from lib.settings_system import the_settings
+
 def Wallet_Create(save = True):
 
     my_private_key = PrivateKey()
@@ -1008,15 +1011,18 @@ def Wallet_Create(save = True):
 def Wallet_Import(account,mode):
     temp_saved_wallet = get_saved_wallet()
     if isinstance(account,int):
-        account = list(temp_saved_wallet)[account]
+        if not -1 == account:
+            account = list(temp_saved_wallet)[account]
+        else:
+            account = list(temp_saved_wallet)[int(the_settings()["wallet"])]
 
     if mode == 0:
         my_public_key = temp_saved_wallet[account]["publickey"]
-        dprint(my_public_key)
+
         return my_public_key
     elif mode == 1:
         my_private_key = temp_saved_wallet[account]["privatekey"]
-        dprint(my_private_key)
+
         return my_private_key
     elif mode == 3:
         my_address = temp_saved_wallet[account]["publickey"]
@@ -1025,10 +1031,11 @@ def Wallet_Import(account,mode):
             if l and not l.startswith("-----")
         ])
         my_address = Address(my_address)
-        dprint(my_address)
-        return my_address        
+        return my_address
     else:
         raise ValueError("the mode variable contains an unplanned value")
+
+
 def Wallet_Delete(account):
     saved_wallet = get_saved_wallet()
     if account in saved_wallet:

@@ -5,7 +5,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from wallet.wallet import Wallet_Create, Wallet_Import
+import time
+import sys
+
+from hashlib import new
+from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet
 
 from transactions.send_coin import send_coin
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, connect_to_main_network
@@ -17,7 +21,7 @@ from lib.mixlib import banner_maker, menu_space, menu_maker, quit_menu_maker, qu
 from blockchain.block.get_block import GetBlock, GetBlockFromOtherNode
 from blockchain.block.create_block import CreateBlock
 
-from lib.settings_system import the_settings, test_mode, debug_mode
+from lib.settings_system import the_settings, test_mode, debug_mode, change_wallet
 
 from accounts.get_balance import GetBalance
 
@@ -30,6 +34,7 @@ def show_menu():
 
 
     print(menu_space() + \
+       menu_maker(menu_number="w", menu_text="Wallets")+ \
 	   menu_maker(menu_number="cw", menu_text="Create wallet")+ \
 	   menu_space() + \
 	   menu_maker(menu_number="sc", menu_text="Send Coin")+ \
@@ -66,6 +71,35 @@ def menu():
         show_menu()
         choices_input = question_maker(mode="main")
 
+        if choices_input == "w":
+            all_wallets = list(get_saved_wallet())
+            if not len(all_wallets) == 0:
+
+                current_wallet = the_settings()["wallet"]
+                for wallet in all_wallets:
+                    number = str(all_wallets.index(wallet))
+                    address = Wallet_Import(all_wallets.index(wallet),3)
+                    if not current_wallet == number:
+                        print(menu_maker(menu_number=number, menu_text=address))
+                    else:
+                        print(menu_maker(menu_number=number, menu_text=address + " - CURRENTLY USED"))
+
+                while True:
+                    try:
+                        new_wallet = input("Please select wallet: ")
+                        if int(new_wallet) in list(range(len(all_wallets))):
+                            change_wallet(new_wallet)
+                            break
+                        else:
+                            print("There is no such wallet")
+                    except:
+                        print("This is not a number")
+            else:
+                print("There is no wallet")
+
+
+
+
         if choices_input == "connectmainnetwork":
             connect_to_main_network()
         if choices_input == "cw":
@@ -83,8 +117,7 @@ def menu():
                 send_coin(float(temp_coin_amount), input("Please write receiver adress: "))
 
         if choices_input == "gb":
-            print(GetBalance(Wallet_Import(0,0), GetBlock()))
-            print(Wallet_Import(0,3))
+            print(GetBalance(Wallet_Import(-1,0), GetBlock()))
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
@@ -126,4 +159,10 @@ def menu():
 
 
 if __name__ == '__main__':
+    animation = ["[■□□□□□□□□□]","[■■□□□□□□□□]", "[■■■□□□□□□□]", "[■■■■□□□□□□]", "[■■■■■□□□□□]", "[■■■■■■□□□□]", "[■■■■■■■□□□]", "[■■■■■■■■□□]", "[■■■■■■■■■□]", "[■■■■■■■■■■]"]
+
+    for i in range(len(animation)):
+        time.sleep(0.1)
+        sys.stdout.write("\r" + animation[i % len(animation)])
+        sys.stdout.flush()
     menu()
