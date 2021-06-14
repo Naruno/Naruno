@@ -176,6 +176,6 @@ if __name__ == '__main__':
 
     for i in range(len(animation)):
         time.sleep(0.1)
-        sys.stdout.write("\r" + animation[i % len(animation)])
+        sys.stdout.write("\r" + animation[i])
         sys.stdout.flush()
     menu()
