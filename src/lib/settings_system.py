@@ -33,8 +33,6 @@ def create_and_save_the_settings(test_mode_settings= False, debug_mode_settings=
 
     temp_json["wallet"] = "0"
 
-    temp_json["pass"] = False
-
 
     save_settings(temp_json)
     return(temp_json)
