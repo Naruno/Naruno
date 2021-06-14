@@ -10,7 +10,7 @@ from transactions.send import send
 from wallet.wallet import Wallet_Import
 
 
-def send_coin(coin_amount, to_user):
+def send_coin(coin_amount, to_user, password):
     """
     A function for sending coins.
 
@@ -20,7 +20,7 @@ def send_coin(coin_amount, to_user):
     """
 
     my_public_key = Wallet_Import(-1,0)
-    my_private_key = Wallet_Import(-1,1)
+    my_private_key = Wallet_Import(-1,1,password)
 
     if isinstance(coin_amount, int):
         coin_amount = float(coin_amount)
@@ -33,4 +33,6 @@ def send_coin(coin_amount, to_user):
         print("This is negative coin amount.")
         return None
 
-    send(my_public_key = my_public_key, my_private_key = my_private_key, to_user = to_user, amount = coin_amount)
+    send(my_public_key = my_public_key, my_private_key = my_private_key, to_user = to_user, password = password, amount = coin_amount)
+
+    del my_private_key

@@ -5,10 +5,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+
 import time
 import sys
+from getpass import getpass
 
-from hashlib import new
+from hashlib import sha256
 from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet
 
 from transactions.send_coin import send_coin
@@ -24,6 +26,7 @@ from blockchain.block.create_block import CreateBlock
 from lib.settings_system import the_settings, test_mode, debug_mode, change_wallet
 
 from accounts.get_balance import GetBalance
+
 
 def show_menu():
     """
@@ -103,7 +106,9 @@ def menu():
         if choices_input == "connectmainnetwork":
             connect_to_main_network()
         if choices_input == "cw":
-            Wallet_Create()
+            password = getpass("Password: ")
+            Wallet_Create(password)
+            del password
         if choices_input == "sc":
             temp_coin_amount = input("Coin Amount (ex. 1.0): ")
             type_control = False
@@ -113,8 +118,16 @@ def menu():
             except:
                 print("This is not float coin amount.")
 
+            receiver = input("Please write receiver adress: ")
+
             if type_control and not float(temp_coin_amount) < GetBlock().minumum_transfer_amount:
-                send_coin(float(temp_coin_amount), input("Please write receiver adress: "))
+                password = getpass("Password: ")
+                if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(password.encode("utf-8")).hexdigest():
+                    print(password)
+                    send_coin(float(temp_coin_amount), receiver, password)
+                else:
+                    print("Password is not correct")
+                del password
 
         if choices_input == "gb":
             print(GetBalance(Wallet_Import(-1,0), GetBlock()))

@@ -954,9 +954,17 @@ class PublicKey:
 
 
 from config import *
+
+from lib.config_system import get_config
+from lib.mixlib import dprint
+from lib.settings_system import the_settings
+from lib.encryption import encrypt, decrypt
+
 import json
 import os
-def save_wallet_list(publicKey,privateKey):
+from hashlib import sha256
+
+def save_wallet_list(publicKey,privateKey,password):
     wallet_list = get_saved_wallet()
 
 
@@ -965,19 +973,20 @@ def save_wallet_list(publicKey,privateKey):
     wallet_list[publicKey]["publickey"] = publicKey
     wallet_list[publicKey]["privatekey"] = privateKey
 
+    wallet_list[publicKey]["password_sha256"] = sha256(password.encode("utf-8")).hexdigest()
 
-    from lib.config_system import get_config
+
+    
 
 
-    old_cwd = os.getcwd()
+
     os.chdir(get_config()["main_folder"])
     with open(WALLETS_PATH, 'w') as wallet_list_file:
         json.dump(wallet_list, wallet_list_file, indent=4)
-    os.chdir(old_cwd)
+
 
 
 def get_saved_wallet():
-        from lib.config_system import get_config
     
         os.chdir(get_config()["main_folder"])
 
@@ -991,24 +1000,25 @@ def get_saved_wallet():
 
 
 
-from lib.mixlib import dprint
 
-from lib.settings_system import the_settings
 
-def Wallet_Create(save = True):
+def Wallet_Create(password, save = True):
 
     my_private_key = PrivateKey()
     my_public_key = my_private_key.publicKey()
 
-    dprint("Please save this codes: ")
-    dprint(my_private_key.toPem())
-    dprint(my_public_key.toPem())
+
+
 
     if save == True:
-        save_wallet_list(my_public_key.toPem(),my_private_key.toPem())
-    return (my_private_key)
+        encrypted_key = encrypt(my_private_key.toPem(),password) if not len(list(get_saved_wallet())) == 0 else my_private_key.toPem()
+        del my_private_key
+        save_wallet_list(my_public_key.toPem(),encrypted_key, password)
+        return (encrypted_key)
+    else:
+        return (my_private_key)
 
-def Wallet_Import(account,mode):
+def Wallet_Import(account,mode,password = None):
     temp_saved_wallet = get_saved_wallet()
     if isinstance(account,int):
         if not -1 == account:
@@ -1021,9 +1031,17 @@ def Wallet_Import(account,mode):
 
         return my_public_key
     elif mode == 1:
-        my_private_key = temp_saved_wallet[account]["privatekey"]
+        if not password is None and not list(temp_saved_wallet).index(account) == 0:
 
-        return my_private_key
+            return decrypt(temp_saved_wallet[account]["privatekey"], password)
+        else:
+            my_private_key = temp_saved_wallet[account]["privatekey"]
+
+            return my_private_key
+
+    elif mode == 2:
+            return temp_saved_wallet[account]["password_sha256"]
+
     elif mode == 3:
         my_address = temp_saved_wallet[account]["publickey"]
         my_address = "".join([

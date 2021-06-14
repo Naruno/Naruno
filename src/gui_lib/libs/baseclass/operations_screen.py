@@ -5,13 +5,24 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+
+import os
+from hashlib import sha256
+
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
+from kivymd.toast import toast
 
+from transactions.send_coin import send_coin
 
-import os
+from blockchain.block.get_block import GetBlock
+
+from wallet.wallet import Wallet_Import
+
+from lib.settings_system import the_settings
+
 
 class OperationScreen(MDScreen):
     pass
@@ -58,17 +69,21 @@ class OperationBox(MDGridLayout):
 
                 sub_obj.text = ""
 
-        return text_list  
+        return text_list
     def sent_the_coins(self,widget):
-        from transactions.send_coin import send_coin
-        from blockchain.block.get_block import GetBlock
+
 
         text_list = self.get_send_coin_dialog_text()
-        receiver_adress = text_list[1]
-        amount = text_list[0]
+        receiver_adress = text_list[2]
+        amount = text_list[1]
+
 
         if not float(amount) < GetBlock().minumum_transfer_amount:
-            send_coin(float(amount), receiver_adress)
+            if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(text_list[0].encode("utf-8")).hexdigest():
+                send_coin(float(amount), receiver_adress, text_list[0])
+            else:
+                toast("Password is not correct")
+            del text_list
 
         
 
