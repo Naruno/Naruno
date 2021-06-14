@@ -22,6 +22,11 @@ class Test_Wallet(unittest.TestCase):
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (Wallet_Import(each_wallet, 1, password)):
+                
+                    Wallet_Delete(each_wallet)
+                    result = True if each_wallet not in get_saved_wallet() else False
+                    break
+                elif decrypt(temp_private_key, password) == (Wallet_Import(each_wallet, 1, password)):
                     Wallet_Delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
@@ -56,4 +61,5 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
 from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete, PrivateKey, toBytes, PublicKey
+from lib.encryption import decrypt
 unittest.main(exit=False)
