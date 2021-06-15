@@ -32,6 +32,8 @@ from lib.settings_system import the_settings, change_wallet
 class WalletScreen(MDScreen):
     pass
 
+class Create_Wallet_Box(MDGridLayout):
+    cols = 2
 
 class WalletBox(MDGridLayout):
     cols = 2
@@ -48,14 +50,23 @@ class WalletBox(MDGridLayout):
     def show_wallet_alert_dialog(self):
         if not self.wallet_alert_dialog:
             self.wallet_alert_dialog = MDDialog(
-                title="Wallet is Created",
+                title="Creating a wallet",
+                type="custom",
+                auto_dismiss=False,
+                content_cls=Create_Wallet_Box(),
                 buttons=[
+                    MDFlatButton(
+                        text="CANCEL",
+                        on_press=self.dismiss_wallet_alert_dialog,
+                        font_size= "18sp",
+                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                    ),
                     MDFlatButton(
                         text="OK",
                         font_size= "18sp",
                         font_name= self.FONT_PATH + "RobotoCondensed-Bold",
-                        on_press=self.dismiss_wallet_alert_dialog
-                    ),
+                        on_press=self.create_the_wallet
+                    )
                 ],
             )
         self.wallet_alert_dialog.open()
@@ -91,9 +102,17 @@ class WalletBox(MDGridLayout):
             )
         bottom_sheet_menu.open()
 
-    def dismiss_wallet_alert_dialog(self,widget):
+    def dismiss_wallet_alert_dialog(self, widget):
         self.wallet_alert_dialog.dismiss()
 
+    def create_the_wallet(self, widget):
+        text_list = []
+        for obj in self.wallet_alert_dialog.content_cls.children:
+            for sub_obj in obj.children:
+                Wallet_Create(sub_obj.text)
+                self.dismiss_wallet_alert_dialog(widget)
+
+                sub_obj.text = ""
+
     def Wallet_Create(self):
-        Wallet_Create()
         self.show_wallet_alert_dialog()

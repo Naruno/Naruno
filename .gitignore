@@ -10,6 +10,7 @@ temp_candidate_blocks.decentra_network
 loading_block.decentra_network
 *.block
 *.accounts
+*.blockshash
 wallet_list.json
 
 #venv

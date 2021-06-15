@@ -12,13 +12,13 @@ class Test_Node(unittest.TestCase):
 
     def test_node_connection_saving_and_unl(self):
 
-        temp_private_key_class = Wallet_Create()
+        password = "123"
+
+        temp_private_key = Wallet_Create(password)
 
 
         node_1 = ndstart("127.0.0.1",10001)
 
-
-        temp_private_key = temp_private_key_class.toPem()
 
         saved_wallets = get_saved_wallet()
 
@@ -27,11 +27,10 @@ class Test_Node(unittest.TestCase):
                 Wallet_Delete(each_wallet)
 
 
-        temp_private_key_class2 = Wallet_Create()
+        temp_private_key2 = Wallet_Create(password)
 
         node_2 = ndstart("127.0.0.1",10002)
 
-        temp_private_key2 = temp_private_key_class2.toPem()
 
         saved_wallets2 = get_saved_wallet()
 
