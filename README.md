@@ -3,7 +3,7 @@
     <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
   </a>
 
-  <h3 align="center">Decentra Network Core (Alpha 0.2.0)</h3>
+  <h3 align="center">Decentra Network Core (Alpha 0.3.0)</h3>
 
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
