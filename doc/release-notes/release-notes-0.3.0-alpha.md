@@ -23,7 +23,7 @@ You can now set a separate password for each wallet,
 which you will need to enter when creating a wallet 
 or when a privatekey is required.
 
-* The first wallet cannot be encrypted as it is used for your connection to the network, but you will still be prompted for a password.
+* The first wallet cannot be encrypted as it is used for your connection to the network in the background, but you will still be prompted for a password.
 
 0.3.0-alpha change log
 =================
