@@ -1,7 +1,7 @@
 0.3.1-alpha Release Notes
 ====================
 
-This patch contains many improvements to the GUI.
+This patch contains many improvements and bug-fixes to the GUI.
 
 Please report bugs using the issue tracker at GitHub:
 
@@ -17,11 +17,7 @@ Notable changes
 
 ## GUI Improvements
 
-You can now set a separate password for each wallet, 
-which you will need to enter when creating a wallet 
-or when a privatekey is required.
-
-* The first wallet cannot be encrypted as it is used for your connection to the network in the background, but you will still be prompted for a password.
+A lot of bug-fixes and improvements have been made to the GUI and it has been made better.
 
 0.3.1-alpha change log
 =================
@@ -37,6 +33,7 @@ or when a privatekey is required.
 - Responsive has been added to Wallet, operations and node pages
 - Added kivymd widgets instead of kivy widgets in settings and welcome pages
 - Welcome screen has been migrated from gridlayout to boxlayout
+- Fixed red circles bug on screen after right click
 
 Credits
 =======

@@ -12,6 +12,7 @@ Config.set('graphics', 'width', '700')
 Config.set('graphics', 'height', '450')
 Config.set('graphics', 'minimum_width', '700')
 Config.set('graphics', 'minimum_height', '450')
+Config.set('input', 'mouse', 'mouse,disable_multitouch')
 
 from kivy.lang import Builder
 
