@@ -35,25 +35,11 @@ class Leaf:
     The leaf class for merkle tree.
     """
 
-    def __init__(self, left, right, value: str,content)-> None:
-        self.left: Leaf = left
-        self.right: Leaf = right
-        self.value = value
-        self.content = content
+    def __init__(self, left, right):
+        self.left = left
+        self.right= right
+        self.value = hashlib.sha256((self.left + self.right).encode('utf-8')).hexdigest()
     
-    @staticmethod
-    def hash(val: str)-> str:
-        """
-        Returns the sha256 of the value.
-
-        Inputs:
-          * val: A string.
-        """
-
-        return hashlib.sha256(val.encode('utf-8')).hexdigest()
-
-    def __str__(self):
-      return (str(self.value))
 
 
 
@@ -63,61 +49,29 @@ class MerkleTree:
     """
 
     def __init__(self, values: List[str])-> None:
-        self.__buildTree(values)
+        self.merkleCalculator(values)
  
-    def __buildTree(self, values: List[str])-> None:
-        """
-        Calculate and append the leafs
-        """
-
-        leaves: List[Leaf] = [Leaf(None, None, Leaf.hash(e),e) for e in values]
-        if len(leaves) % 2 == 1:
-            leaves.append(leaves[-1:][0]) # duplicate last elem if odd number of elements
-        self.root: Leaf = self.__buildTreeRec(leaves) 
-    
-    def __buildTreeRec(self, leafs: List[Leaf])-> Leaf:
-        """
-        Calculate and returns the results of the leaf by parent leafs
-        """
-
-        half: int = len(leafs) // 2
  
-        if len(leafs) == 2:
-            return Leaf(leafs[0], leafs[1], Leaf.hash(leafs[0].value + leafs[1].value), leafs[0].content+"+"+leafs[1].content)
-        
-        left: Leaf = self.__buildTreeRec(leafs[:half])
-        right: Leaf = self.__buildTreeRec(leafs[half:])
-        value: str = Leaf.hash(left.value + right.value)
-        content: str = self.__buildTreeRec(leafs[:half]).content+"+"+self.__buildTreeRec(leafs[half:]).content
-        return Leaf(left, right, value,content)
-    
-    def printTree(self)-> None:
+    def merkleCalculator(self, hashList):
         """
-        Prints the last leaf element.
+        The main calculator.
         """
 
-        self.__printTreeRec(self.root)
- 
-    def __printTreeRec(self, node)-> None:
-        """
-        Prints the leaf elements.
-        """
+        if len(hashList) == 1:
+            self.root = hashList[0]
+            return
+        newHashList = []
 
-        if node != None:
-            if node.left != None:
-             print("Left: "+str(node.left))
-             print("Right: "+str(node.right))
-            else:
-             print("Input")
-            print("Value: "+str(node.value))
-            print("Content: "+str(node.content))
-            print("")
-            self.__printTreeRec(node.left)
-            self.__printTreeRec(node.right)
+        for i in range(0, len(hashList)-1, 2):
+            newHashList.append(Leaf(hashList[i], hashList[i+1]).value)
+        if len(hashList) % 2 == 1:
+            newHashList.append(Leaf(hashList[-1], hashList[-1]).value)
+
+        return self.merkleCalculator(newHashList)
     
     def getRootHash(self)-> str:
         """
         Returns the merkle root.
         """
 
-        return self.root.value
+        return self.root
