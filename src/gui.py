@@ -7,12 +7,20 @@
 
 import os
 
+from kivy import Config
+Config.set('graphics', 'width', '700')
+Config.set('graphics', 'height', '450')
+Config.set('graphics', 'minimum_width', '700')
+Config.set('graphics', 'minimum_height', '450')
+Config.set('input', 'mouse', 'mouse,disable_multitouch')
+
 from kivy.lang import Builder
 
 from kivymd.app import MDApp
 
 from lib.config_system import get_config
 os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
+
 
 
 KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"

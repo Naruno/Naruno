@@ -11,9 +11,8 @@ from hashlib import sha256
 
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
-from kivymd.toast import toast
+from kivymd_extensions.sweetalert import SweetAlert
 
 from transactions.send_coin import send_coin
 
@@ -38,7 +37,7 @@ class OperationBox(MDGridLayout):
 
     def show_send_coin_dialog(self):
         if not self.send_coin_dialog:
-            self.send_coin_dialog = MDDialog(
+            self.send_coin_dialog = SweetAlert(
                 title="Send Coin",
                 type="custom",
                 auto_dismiss=False,
@@ -82,7 +81,10 @@ class OperationBox(MDGridLayout):
             if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(text_list[0].encode("utf-8")).hexdigest():
                 send_coin(float(amount), receiver_adress, text_list[0])
             else:
-                toast("Password is not correct")
+                SweetAlert().fire(
+                    "Password is not correct",
+                    type='failure',
+                )                
             del text_list
 
         

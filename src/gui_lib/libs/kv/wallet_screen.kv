@@ -46,47 +46,48 @@
             pos: self.pos
 
     MDGridLayout:
-        adaptive_height: True
+        size_hint: 1, None
+        height: self.minimum_height
         padding: dp(10)
-        cols:3
+        cols:2
         spacing: 10
         
-        MDRoundFlatIconButton:
-            icon: "wallet-outline"
-
-            on_press: root.show_example_list_bottom_sheet()
-
-            
-
-            DecentraLabel:
-                text: "Wallets"
-                halign: "right"
-                font_style: "Button"   
+        AnchorLayout:
+            size_hint_y: None
+            height: but1.height
+            MDRoundFlatIconButton:
+                id: but1
+                icon: "wallet-outline"
+                on_press: root.show_example_list_bottom_sheet()
+                DecentraLabel:
+                    text: "Wallets"
+                    halign: "right"
+                    font_style: "Button"   
         
 
-        MDRoundFlatIconButton:
-            icon: "wallet-plus-outline"
+        AnchorLayout:
+            size_hint_y: None
+            height: but2.height
+            MDRoundFlatIconButton:
+                id: but2
+                icon: "wallet-plus-outline"
+                on_press: root.Wallet_Create()
+                DecentraLabel:
+                    text: "Create Wallet"
+                    halign: "right"
+                    font_style: "Button" 
 
-            on_press: root.Wallet_Create()
-
-            
-
-            DecentraLabel:
-                text: "Create Wallet"
-                halign: "right"
-                font_style: "Button" 
-
-        MDRoundFlatIconButton:
-            icon: "safe"
-
-            on_press: root.reflesh_balance()
-
-            
-
-            DecentraLabel:
-                text: root.text
-                halign: "right"
-                font_style: "Button" 
+        AnchorLayout:
+            size_hint_y: None
+            height: but3.height
+            MDRoundFlatIconButton:
+                id: but3
+                icon: "safe"
+                on_press: root.reflesh_balance()
+                DecentraLabel:
+                    text: root.text
+                    halign: "right"
+                    font_style: "Button" 
     
          
         

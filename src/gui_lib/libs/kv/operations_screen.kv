@@ -55,22 +55,22 @@
 
 
     MDGridLayout:
+        size_hint: 1, None
+        height: self.minimum_height
         padding: dp(10)
-        adaptive_height: True
         spacing : 10
-
         cols: 2
 
-        MDRoundFlatIconButton:
-            icon: "send-circle-outline"
-
-            on_press: root.send_coin()
-
-            
-
-            DecentraLabel:
-                text: "Send Coin"
-                halign: "right"
-                font_style: "Button"        
+        AnchorLayout:
+            size_hint_y: None
+            height: but1.height
+            MDRoundFlatIconButton:
+                id: but1
+                icon: "send-circle-outline"
+                on_press: root.send_coin()
+                DecentraLabel:
+                    text: "Send Coin"
+                    halign: "right"
+                    font_style: "Button"        
             
         

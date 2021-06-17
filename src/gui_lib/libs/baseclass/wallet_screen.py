@@ -14,7 +14,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 
-from kivymd.toast import toast
+from kivymd_extensions.sweetalert import SweetAlert
 from kivymd.uix.bottomsheet import MDListBottomSheet
 
 from kivy.core.clipboard import Clipboard
@@ -49,7 +49,7 @@ class WalletBox(MDGridLayout):
 
     def show_wallet_alert_dialog(self):
         if not self.wallet_alert_dialog:
-            self.wallet_alert_dialog = MDDialog(
+            self.wallet_alert_dialog = SweetAlert(
                 title="Creating a wallet",
                 type="custom",
                 auto_dismiss=False,
@@ -78,7 +78,10 @@ class WalletBox(MDGridLayout):
         else:
             change_wallet(args[0])
         Clipboard.copy(Wallet_Import(int(args[0]),3))
-        toast("The address has been copied to your clipboard.")
+        SweetAlert().fire(
+            "The address has been copied to your clipboard.",
+            type='success',
+        )
 
     def show_example_list_bottom_sheet(self):
         bottom_sheet_menu = MDListBottomSheet(radius=25,radius_from="top")
