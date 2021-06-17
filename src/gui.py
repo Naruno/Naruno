@@ -29,12 +29,12 @@ for kv_file in os.listdir(KV_DIR):
         Builder.load_string(kv.read())
 
 KV = """
-#:import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
 #:import DecentraWelcomeScreen gui_lib.libs.baseclass.welcome_screen.DecentraWelcomeScreen
 #:import DecentraRootScreen gui_lib.libs.baseclass.root_screen.DecentraRootScreen
 
 ScreenManager:
-    transition: WipeTransition()
+    transition: FadeTransition()
 
     DecentraWelcomeScreen:
         name: "decentra register screen"
