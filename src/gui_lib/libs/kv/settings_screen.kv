@@ -26,25 +26,33 @@
             pos: self.pos
 
     MDGridLayout:
-        adaptive_height: True
+
         cols: 2
+
         DecentraLabel:
             text: "DEBUG MODE"
             halign: "center"
-            font_style: "Button" 
-        Switch:
+            font_style: "Button"
 
-            active: root.d_first_status
-            on_active: root.D_Status_Changing(self, self.active)
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.d_first_status
+                on_active: root.D_Status_Changing(self, self.active)
 
 
         DecentraLabel:
             text: "TEST MODE"
             halign: "center"
             font_style: "Button" 
-        Switch:
 
-            active: root.t_first_status
-            on_active: root.T_Status_Changing(self, self.active)         
+
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.t_first_status
+                on_active: root.T_Status_Changing(self, self.active)         
  
 

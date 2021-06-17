@@ -8,9 +8,9 @@
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 
-from kivymd.uix.dialog import MDDialog
-from kivymd.uix.button import MDFlatButton
 
+from kivymd.uix.button import MDFlatButton
+from kivymd_extensions.sweetalert import SweetAlert
 
 import os
 
@@ -35,14 +35,14 @@ class add_unl_node_Box(MDGridLayout):
 # End
 
 class NodeBox(MDGridLayout):
-    cols = 3
+    cols = 2
     FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
 
     # Start Node Server
     start_node_server_dialog = None
     def show_start_node_server_dialog(self):
         if not self.start_node_server_dialog:
-            self.start_node_server_dialog = MDDialog(
+            self.start_node_server_dialog = SweetAlert(
                 title="Start Node Server",
                 type="custom",
                 auto_dismiss=False,
@@ -106,7 +106,7 @@ class NodeBox(MDGridLayout):
     connect_a_node_dialog = None
     def show_connect_a_node_dialog(self):
         if not self.connect_a_node_dialog:
-            self.connect_a_node_dialog = MDDialog(
+            self.connect_a_node_dialog = SweetAlert(
                 title="Connect a Node",
                 type="custom",
                 auto_dismiss=False,
@@ -162,7 +162,7 @@ class NodeBox(MDGridLayout):
     add_unl_node_dialog = None
     def show_add_unl_node_dialog(self):
         if not self.add_unl_node_dialog:
-            self.add_unl_node_dialog = MDDialog(
+            self.add_unl_node_dialog = SweetAlert(
                 title="Add UNL Node",
                 type="custom",
                 auto_dismiss=False,

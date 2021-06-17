@@ -7,12 +7,19 @@
 
 import os
 
+from kivy import Config
+Config.set('graphics', 'width', '700')
+Config.set('graphics', 'height', '450')
+Config.set('graphics', 'minimum_width', '700')
+Config.set('graphics', 'minimum_height', '450')
+
 from kivy.lang import Builder
 
 from kivymd.app import MDApp
 
 from lib.config_system import get_config
 os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
+
 
 
 KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
@@ -22,12 +29,12 @@ for kv_file in os.listdir(KV_DIR):
         Builder.load_string(kv.read())
 
 KV = """
-#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import WipeTransition kivy.uix.screenmanager.WipeTransition
 #:import DecentraWelcomeScreen gui_lib.libs.baseclass.welcome_screen.DecentraWelcomeScreen
 #:import DecentraRootScreen gui_lib.libs.baseclass.root_screen.DecentraRootScreen
 
 ScreenManager:
-    transition: FadeTransition()
+    transition: WipeTransition()
 
     DecentraWelcomeScreen:
         name: "decentra register screen"
