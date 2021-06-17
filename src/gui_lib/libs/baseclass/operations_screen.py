@@ -77,7 +77,7 @@ class OperationBox(MDGridLayout):
         amount = text_list[1]
 
 
-        if 1 == 1: #not float(amount) < GetBlock().minumum_transfer_amount:
+        if not float(amount) < GetBlock().minumum_transfer_amount:
             if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(text_list[0].encode("utf-8")).hexdigest():
                 send_coin(float(amount), receiver_adress, text_list[0])
             else:
