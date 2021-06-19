@@ -1024,7 +1024,7 @@ def Wallet_Import(account,mode,password = None):
         if not -1 == account:
             account = list(temp_saved_wallet)[account]
         else:
-            account = list(temp_saved_wallet)[int(the_settings()["wallet"])]
+            account = list(temp_saved_wallet)[the_settings()["wallet"]]
 
     if mode == 0:
         my_public_key = temp_saved_wallet[account]["publickey"]

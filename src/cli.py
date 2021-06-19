@@ -11,7 +11,7 @@ import sys
 from getpass import getpass
 
 from hashlib import sha256
-from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet
+from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet, Wallet_Delete
 
 from transactions.send_coin import send_coin
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, connect_to_main_network
@@ -39,6 +39,7 @@ def show_menu():
     print(menu_space() + \
        menu_maker(menu_number="w", menu_text="Wallets")+ \
 	   menu_maker(menu_number="cw", menu_text="Create wallet")+ \
+       menu_maker(menu_number="dw", menu_text="Delete wallet")+ \
 	   menu_space() + \
 	   menu_maker(menu_number="sc", menu_text="Send Coin")+ \
        menu_space() + \
@@ -80,7 +81,7 @@ def menu():
 
                 current_wallet = the_settings()["wallet"]
                 for wallet in all_wallets:
-                    number = str(all_wallets.index(wallet))
+                    number = all_wallets.index(wallet)
                     address = Wallet_Import(all_wallets.index(wallet),3)
                     if not current_wallet == number:
                         print(menu_maker(menu_number=number, menu_text=address))
@@ -91,7 +92,7 @@ def menu():
                     try:
                         new_wallet = input("Please select wallet: ")
                         if int(new_wallet) in list(range(len(all_wallets))):
-                            change_wallet(new_wallet)
+                            change_wallet(int(new_wallet))
                             break
                         else:
                             print("There is no such wallet")
@@ -109,6 +110,17 @@ def menu():
             password = getpass("Password: ")
             Wallet_Create(password)
             del password
+        if choices_input == "dw":
+            if not the_settings()["wallet"] == "0":
+                if "y" == input("Are you sure ? (y or n): "):
+                    saved_wallets = get_saved_wallet()
+                    selected_wallet_pubkey = Wallet_Import(int(the_settings()["wallet"]),0)
+                    for each_wallet in saved_wallets:
+                        if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
+                            change_wallet(0)
+                            Wallet_Delete(each_wallet)
+            else:
+                print("First wallet cannot be deleted.")
         if choices_input == "sc":
             temp_coin_amount = input("Coin Amount (ex. 1.0): ")
             type_control = False
