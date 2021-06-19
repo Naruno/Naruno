@@ -76,10 +76,8 @@ class WalletBox(MDGridLayout):
 
     def callback_for_menu_items(self, *args):
         if not args[0] == the_settings()["wallet"]:
-            change_wallet(args[0])
+            change_wallet(int(args[0]))
             self.reflesh_balance()
-        else:
-            change_wallet(args[0])
         Clipboard.copy(Wallet_Import(int(args[0]),3))
         SweetAlert().fire(
             "The address has been copied to your clipboard.",
@@ -151,7 +149,7 @@ class WalletBox(MDGridLayout):
         self.delete_wallet_alert_dialog.open()
 
     def Wallet_Delete(self):
-        if not the_settings()["wallet"] == "0":
+        if not the_settings()["wallet"] == 0:
             self.show_delete_wallet_alert_dialog()
         else:
             SweetAlert().fire(

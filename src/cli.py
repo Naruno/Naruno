@@ -111,7 +111,7 @@ def menu():
             Wallet_Create(password)
             del password
         if choices_input == "dw":
-            if not the_settings()["wallet"] == "0":
+            if not the_settings()["wallet"] == 0:
                 if "y" == input("Are you sure ? (y or n): "):
                     saved_wallets = get_saved_wallet()
                     selected_wallet_pubkey = Wallet_Import(int(the_settings()["wallet"]),0)
