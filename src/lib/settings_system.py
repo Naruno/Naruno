@@ -31,7 +31,7 @@ def create_and_save_the_settings(test_mode_settings= False, debug_mode_settings=
 
     temp_json["debug_mode"] = debug_mode_settings
 
-    temp_json["wallet"] = "0"
+    temp_json["wallet"] = 0
 
 
     save_settings(temp_json)

@@ -19,7 +19,7 @@ from kivymd.uix.bottomsheet import MDListBottomSheet
 
 from kivy.core.clipboard import Clipboard
 
-from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet
+from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet, Wallet_Delete
 
 import os
 
@@ -34,12 +34,15 @@ class WalletScreen(MDScreen):
 
 class Create_Wallet_Box(MDGridLayout):
     cols = 2
+class Delete_Wallet_Box(MDGridLayout):
+    cols = 2
 
 class WalletBox(MDGridLayout):
     cols = 2
     text = StringProperty()
 
     wallet_alert_dialog = None
+    delete_wallet_alert_dialog = None
 
     FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
 
@@ -73,10 +76,8 @@ class WalletBox(MDGridLayout):
 
     def callback_for_menu_items(self, *args):
         if not args[0] == the_settings()["wallet"]:
-            change_wallet(args[0])
+            change_wallet(int(args[0]))
             self.reflesh_balance()
-        else:
-            change_wallet(args[0])
         Clipboard.copy(Wallet_Import(int(args[0]),3))
         SweetAlert().fire(
             "The address has been copied to your clipboard.",
@@ -90,7 +91,7 @@ class WalletBox(MDGridLayout):
 
         current_wallet = the_settings()["wallet"]
         for wallet in all_wallets:
-            number = str(all_wallets.index(wallet))
+            number = all_wallets.index(wallet)
             address = Wallet_Import(all_wallets.index(wallet),3)
             if not current_wallet == number:
                 data[number] = address
@@ -99,7 +100,7 @@ class WalletBox(MDGridLayout):
 
         for item in data.items():
             bottom_sheet_menu.add_item(
-                item[0] +" : "+ item[1],
+                str(item[0]) +" : "+ item[1],
                 lambda x, y=item[0]: self.callback_for_menu_items(y),
 
             )
@@ -119,3 +120,49 @@ class WalletBox(MDGridLayout):
 
     def Wallet_Create(self):
         self.show_wallet_alert_dialog()
+
+
+    def dismiss_delete_wallet_alert_dialog(self, widget):
+        self.delete_wallet_alert_dialog.dismiss()
+    def show_delete_wallet_alert_dialog(self):
+        if not self.delete_wallet_alert_dialog:
+            self.delete_wallet_alert_dialog = SweetAlert(
+                title="Deleting a wallet",
+                type="custom",
+                auto_dismiss=False,
+                content_cls=Delete_Wallet_Box(),
+                buttons=[
+                    MDFlatButton(
+                        text="CANCEL",
+                        on_press=self.dismiss_delete_wallet_alert_dialog,
+                        font_size= "18sp",
+                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                    ),
+                    MDFlatButton(
+                        text="OK",
+                        font_size= "18sp",
+                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                        on_press=self.delete_the_wallet
+                    )
+                ],
+            )
+        self.delete_wallet_alert_dialog.open()
+
+    def Wallet_Delete(self):
+        if not the_settings()["wallet"] == 0:
+            self.show_delete_wallet_alert_dialog()
+        else:
+            SweetAlert().fire(
+                "First wallet cannot be deleted.",
+                type='failure',
+            )     
+
+    def delete_the_wallet(self, widget):
+        saved_wallets = get_saved_wallet()
+        selected_wallet_pubkey = Wallet_Import(int(the_settings()["wallet"]),0)
+        for each_wallet in saved_wallets:
+            if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
+                change_wallet(0)
+                Wallet_Delete(each_wallet)
+                self.reflesh_balance()
+                self.dismiss_delete_wallet_alert_dialog(widget)
