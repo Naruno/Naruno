@@ -14,8 +14,7 @@ from hashlib import sha256
 from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet, Wallet_Delete
 
 from transactions.send_coin import send_coin
-from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, connect_to_main_network
-from node.get_node_list import GetNodeList
+from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
 from node.unl import save_new_unl_node
 
 from lib.mixlib import banner_maker, menu_space, menu_maker, quit_menu_maker, question_maker
@@ -48,16 +47,15 @@ def show_menu():
        menu_maker(menu_number="ndstart", menu_text="Node Start")+ \
        menu_maker(menu_number="ndstop", menu_text="Node Stop")+ \
        menu_maker(menu_number="ndconnect", menu_text="Node Connect")+ \
-       menu_maker(menu_number="connectmainnetwork", menu_text="Connect to Main Network")+ \
        menu_maker(menu_number="ndconnectmixdb", menu_text="Node Connect from mixdb")+ \
        menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node")+ \
+       menu_maker(menu_number="ndid", menu_text="Print my id")+ \
        menu_space() + \
        menu_maker(menu_number="testmodeon", menu_text="Test mode ON")+ \
        menu_maker(menu_number="testmodeoff", menu_text="Test mode OF")+ \
        menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON")+ \
        menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF")+ \
        menu_space() + \
-       menu_maker(menu_number="getfullnodelist", menu_text="Get Full Node List")+ \
        menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")+ \
        menu_space())
 
@@ -101,11 +99,6 @@ def menu():
             else:
                 print("There is no wallet")
 
-
-
-
-        if choices_input == "connectmainnetwork":
-            connect_to_main_network()
         if choices_input == "cw":
             password = getpass("Password: ")
             Wallet_Create(password)
@@ -156,21 +149,18 @@ def menu():
             ndconnectmixdb()
         if choices_input == "ndnewunl":
             save_new_unl_node(input("Please write ID of the node: "))
+        if choices_input == "ndid":
+            print(ndid())
         if choices_input == "testmodeon":
             test_mode(True)
         if choices_input == "testmodeoff":
             test_mode(False)
         if choices_input == "debugmodeon":
             debug_mode(True)
-            # from node.myownp2pn import mynode
-            # mynode.main_node.debug = True
         if choices_input == "debugmodeoff":
             debug_mode(False)
-            # from node.myownp2pn import mynode
-            # mynode.main_node.debug = False
 
-        if choices_input == "getfullnodelist":
-            GetNodeList()
+
         if choices_input == "getblock":
             if the_settings()["test_mode"]:
                 CreateBlock()

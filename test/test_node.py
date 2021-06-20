@@ -19,25 +19,12 @@ class Test_Node(unittest.TestCase):
 
         node_1 = ndstart("127.0.0.1",10001)
 
-
-        saved_wallets = get_saved_wallet()
-
-        for each_wallet in saved_wallets:
-            if temp_private_key == saved_wallets[each_wallet]["privatekey"]:
-                Wallet_Delete(each_wallet)
-
-
         temp_private_key2 = Wallet_Create(password)
 
         node_2 = ndstart("127.0.0.1",10002)
 
-
-        saved_wallets2 = get_saved_wallet()
-
-        for each_wallet in saved_wallets2:
-            if temp_private_key2 == saved_wallets2[each_wallet]["privatekey"]:
-                Wallet_Delete(each_wallet)
-
+        save_new_unl_node(node_1.id)
+        save_new_unl_node(node_2.id)
 
         ndconnect("127.0.0.1", 10001)
 
@@ -45,13 +32,14 @@ class Test_Node(unittest.TestCase):
         in_unl_list = False
         get_as_node = False
 
+
+
         nodes_list = get_connected_node()
 
         for element in nodes_list:
             if element == node_1.id or element == node_2.id:
                 finded_node = True
-                save_new_unl_node(node_1.id)
-                save_new_unl_node(node_2.id)
+
                 temp_unl_node_list = get_unl_nodes()
                 temp_get_as_node_type = get_as_node_type(temp_unl_node_list)
                 for unl_element in temp_unl_node_list:
@@ -67,7 +55,11 @@ class Test_Node(unittest.TestCase):
         node_1.stop()
         node_2.stop()
 
+        saved_wallets = get_saved_wallet()
 
+        for each_wallet in saved_wallets:
+            if temp_private_key == saved_wallets[each_wallet]["privatekey"] or temp_private_key2 == saved_wallets[each_wallet]["privatekey"] :
+                Wallet_Delete(each_wallet)
 
         self.assertEqual(finded_node,True,"Problem on connection saving system.")
         self.assertEqual(in_unl_list,True,"Problem on UNL node saving system.")

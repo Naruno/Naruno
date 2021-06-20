@@ -42,9 +42,6 @@ class mynode (Node):
             self.send_full_chain(node)
         print("Data Type: "+str(type(data))+"\n")
 
-        if str(data) == "sendmefullnodelist":
-            self.send_full_node_list(node)
-        print("Data Type: "+str(type(data))+"\n")
 
         try:
             from node.unl import node_is_unl
@@ -66,14 +63,6 @@ class mynode (Node):
             from node.unl import node_is_unl
             if data["fullblockshash"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullblockshash"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
                 self.get_full_blockshash(data,node)
-        except Exception as e:
-            print(e)
-
-        try:
-            from node.unl import node_is_unl
-            if data["fullnodelist"] == 1 and node_is_unl(node.id) and Ecdsa.verify("fullnodelist"+data["byte"], Signature.fromBase64(data["signature"]), PublicKey.fromPem(node.id)):
-                print("getting node list")
-                self.get_full_node_list(data["byte"])
         except Exception as e:
             print(e)
 
@@ -364,26 +353,6 @@ class mynode (Node):
         file.write((data["byte"].encode(encoding='iso-8859-1')))
         file.close()
 
-    def send_full_node_list(self,node = None):
-        file = open(CONNECTED_NODE_PATH, "rb")
-        SendData = file.read(1024)
-        while SendData:
-
-            data = {"fullnodelist" : 1,"byte" : (SendData.decode(encoding='iso-8859-1')),"signature": Ecdsa.sign("fullnodelist"+str((SendData.decode(encoding='iso-8859-1'))), PrivateKey.fromPem(Wallet_Import(0,1))).toBase64()}
-            print(data)
-            print(type(data))
-            if not node is None:
-                self.send_data_to_node(node,data)
-            else:
-                self.send_data_to_nodes(data)
-
-            SendData = file.read(1024)
-    def get_full_node_list(self,data):
-        file = open(CONNECTED_NODE_PATH, "ab")
-
-        file.write((data.encode(encoding='iso-8859-1')))
-
-        file.close()
 
 
     def get_transaction(self,data,node):

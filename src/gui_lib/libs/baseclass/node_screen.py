@@ -5,17 +5,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from kivymd.uix.gridlayout import MDGridLayout
-from kivymd.uix.screen import MDScreen
-
-
-from kivymd.uix.button import MDFlatButton
-from kivymd_extensions.sweetalert import SweetAlert
 
 import os
 
-from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, connect_to_main_network
-from node.get_node_list import GetNodeList
+
+from kivymd.uix.gridlayout import MDGridLayout
+from kivymd.uix.screen import MDScreen
+
+from kivymd.uix.button import MDFlatButton
+from kivymd_extensions.sweetalert import SweetAlert
+from kivy.core.clipboard import Clipboard
+
+from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
 from lib.settings_system import the_settings
 
 from blockchain.block.get_block import GetBlockFromOtherNode
@@ -216,7 +217,10 @@ class NodeBox(MDGridLayout):
             CreateBlock()
         else:
             GetBlockFromOtherNode()
-    def get_node_list(self):
-        GetNodeList()
-    def connect_to_main_network(self):
-        connect_to_main_network()
+
+    def nd_id(self):
+        Clipboard.copy(ndid())
+        SweetAlert().fire(
+            "The ID has been copied to your clipboard.",
+            type='success',
+        )
