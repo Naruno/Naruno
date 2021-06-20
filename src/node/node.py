@@ -9,19 +9,14 @@ import socket
 import sys
 import time
 import threading
-
-
+import os
 import json
-
-
 
 from config import CONNECTED_NODE_PATH
 
-import os
-
-
 from lib.mixlib import dprint
 
+from node.unl import node_is_unl
 
 
 def get_connected_node():
@@ -118,13 +113,6 @@ class Node_Connection(threading.Thread):
 
 
         self.info = {}
-
-        print("\n***")
-        print("Node System: Node_Connection.send: Started with client")
-        print("\nid: "+str(self.id))
-        print("\nhost: "+str(self.host))
-        print("\nport: "+str(self.port))
-        print("\n***")
 
         save_connected_node(host,port,id)
 
@@ -342,11 +330,14 @@ class Node(threading.Thread):
             sock.send(self.id.encode('utf-8')) # Send my id to the connected node!
             connected_node_id = sock.recv(4096).decode('utf-8') # When a node is connected, it sends it id!
 
-            thread_client = self.create_the_new_connection(sock, connected_node_id, host, port)
-            thread_client.start()
+            if node_is_unl(connected_node_id):
+                thread_client = self.create_the_new_connection(sock, connected_node_id, host, port)
+                thread_client.start()
 
-            self.nodes_outbound.append(thread_client)
-            self.outbound_node_connected(thread_client)
+                self.nodes_outbound.append(thread_client)
+                self.outbound_node_connected(thread_client)
+            else:
+                dprint("Node System: Could not connect with node because node is not unl node.")
         except Exception as e:
             dprint("Node System: TcpServer.connect_to_node: Could not connect with node. (" + str(e) + ")")
         
@@ -379,21 +370,22 @@ class Node(threading.Thread):
 
         while not self.terminate_flag.is_set():
             try:
-                dprint("Node System: Node: Wait for incoming connection")
                 connection, client_address = self.sock.accept()
                 
                 connected_node_id = connection.recv(4096).decode('utf-8')
                 connection.send(self.id.encode('utf-8'))
+                if node_is_unl(connected_node_id):
+                    thread_client = self.create_the_new_connection(connection, connected_node_id, client_address[0], client_address[1])
+                    thread_client.start()
 
-                thread_client = self.create_the_new_connection(connection, connected_node_id, client_address[0], client_address[1])
-                thread_client.start()
+                    self.nodes_inbound.append(thread_client)
 
-                self.nodes_inbound.append(thread_client)
-
-                self.inbound_node_connected(thread_client)
+                    self.inbound_node_connected(thread_client)
+                else:
+                    dprint("Node System: Could not connect with node because node is not unl node.")
                 
             except socket.timeout:
-                dprint('Node System: Node: Connection timeout!')
+                pass
 
             except Exception as e:
                 raise e

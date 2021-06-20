@@ -159,23 +159,10 @@
             height: but7.height      
             MDRoundFlatIconButton:
                 id: but7
-                icon: "ip-network"
-                on_press: root.get_node_list()
+                icon: "content-copy"
+                on_press: root.nd_id()
                 width:240
                 DecentraLabel:
-                    text: "Get full node list from UNL nodes"
-                    halign: "right"
-                    font_style: "Button"
-
-        AnchorLayout:
-            size_hint_y: None
-            height: but8.height      
-            MDRoundFlatIconButton:
-                id: but8
-                icon: "shield-home"
-                on_press: root.connect_to_main_network()
-                width:240
-                DecentraLabel:
-                    text: "Connect to main network"
+                    text: "Copy the your ID"
                     halign: "right"
                     font_style: "Button"

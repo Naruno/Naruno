@@ -9,56 +9,34 @@
 import json
 import os
 import sys
+import time
 
+from lib.config_system import get_config
 from config import *
 
 
 def save_new_unl_node(id):
-    node = None
+    nodes_list = get_unl_nodes()
 
-    from node.myownp2pn import mynode
-    for inbound_node in mynode.main_node.nodes_inbound:
-        if id in (inbound_node.id):
-            node = inbound_node
-    for outbound_node in mynode.main_node.nodes_outbound:
-        if id in (outbound_node.id):
-            node = outbound_node
-    if node != None:
-        nodes_list = get_unl_nodes()
+    already_in_list = False
 
-        already_in_list = False
+    for element in nodes_list:
+        if element == id:
+            already_in_list = True
 
-        for element in nodes_list:
-            if element == node.id:
-                already_in_list = True
-
-        if not already_in_list:
+    if not already_in_list:
 
      
-         nodes_list[node.id] = {}
-         nodes_list[node.id]["host"] = node.host
-         nodes_list[node.id]["port"] = node.port
+        nodes_list[id] = {}
+        nodes_list[id]["date"] = time.time()
+        
+        os.chdir(get_config()["main_folder"])
+        with open(UNL_NODES_PATH, 'w') as unl_nodes_file:
+            json.dump(nodes_list, unl_nodes_file, indent=4)
 
-         
-
-         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-         from lib.config_system import get_config
-
-
-         old_cwd = os.getcwd()
-         os.chdir(get_config()["main_folder"])
-         with open(UNL_NODES_PATH, 'w') as unl_nodes_file:
-             json.dump(nodes_list, unl_nodes_file, indent=4)
-         os.chdir(old_cwd)
 
 def get_unl_nodes():
 
-        sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-
-        from lib.config_system import get_config
-        
         if not os.path.exists(UNL_NODES_PATH):
             return {}
  
@@ -71,8 +49,8 @@ def get_unl_nodes():
 
 
 def get_as_node_type(id_list):
-        temp_list = []
         from node.myownp2pn import mynode
+        temp_list = []
         for list_node in id_list:
             for each_node in (mynode.main_node.nodes_inbound + mynode.main_node.nodes_outbound):
                 if list_node == each_node.id:
@@ -92,7 +70,6 @@ def unl_node_delete(node_id):
     saved_nodes = get_unl_nodes()
     if node_id in saved_nodes:
         del saved_nodes[node_id]
-        from lib.config_system import get_config
     
 
         os.chdir(get_config()["main_folder"])

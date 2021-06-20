@@ -10,6 +10,7 @@ from kivymd.uix.screen import MDScreen
 
 from lib.settings_system import the_settings, test_mode, debug_mode
 
+
 class SettingsScreen(MDScreen):
     pass
 
@@ -22,5 +23,6 @@ class SettingsBox(MDGridLayout):
 
     def D_Status_Changing(self, instance, value):
         debug_mode(value)
+
     def T_Status_Changing(self, instance, value):
         test_mode(value)
