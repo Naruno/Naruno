@@ -87,8 +87,8 @@ class Block:
 
         self.consensus_timer = 0.50
 
-        self.speed_up = 0
-        self.slow_down = 0
+        self.increase_the_time = 0
+        self.decrease_the_time = 0
 
         self.validated = False
         self.validated_time = None
@@ -107,17 +107,19 @@ class Block:
         """
 
         if (self.validated_time - self.start_time) > self.block_time:
-            if self.speed_up == 3:
-                self.block_time += 0.2
+            if self.increase_the_time == 3:
+                self.increase_the_time = 0
+                self.block_time += 0.1
             else:
-                self.speed_up += 1
-            self.slow_down = 0
+                self.increase_the_time += 1
+            self.decrease_the_time = 0
         else:
-            if self.slow_down == 3:
-                self.block_time -= 0.2
+            if self.decrease_the_time == 3:
+                self.decrease_the_time = 0
+                self.block_time -= 0.1
             else:
-                self.slow_down += 1
-            self.speed_up = 0
+                self.decrease_the_time += 1
+            self.increase_the_time = 0
 
         #Printing validated block.
         dprint("""\n
