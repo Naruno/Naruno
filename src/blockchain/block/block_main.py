@@ -107,16 +107,28 @@ class Block:
         """
 
         if (self.validated_time - self.start_time) > self.block_time:
+<<<<<<< HEAD
             if self.increase_the_time == 3:
                 self.increase_the_time = 0
                 self.block_time += 0.1
+=======
+            if self.speed_up == 3:
+                self.speed_up = 0
+                self.block_time += 0.2
+>>>>>>> 0c2d38c93b03e0fa1bd0b7ed64a791f34a3d19e3
             else:
                 self.increase_the_time += 1
             self.decrease_the_time = 0
         else:
+<<<<<<< HEAD
             if self.decrease_the_time == 3:
                 self.decrease_the_time = 0
                 self.block_time -= 0.1
+=======
+            if self.slow_down == 3:
+                self.slow_down = 0
+                self.block_time -= 0.2
+>>>>>>> 0c2d38c93b03e0fa1bd0b7ed64a791f34a3d19e3
             else:
                 self.decrease_the_time += 1
             self.increase_the_time = 0
