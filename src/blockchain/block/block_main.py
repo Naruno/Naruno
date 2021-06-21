@@ -32,8 +32,7 @@ from wallet.wallet import (
     PrivateKey,
     PublicKey,
     Wallet_Import,
-    Signature,
-    Address
+    Signature
     )
 
 from consensus.consensus_main import consensus_trigger
@@ -87,6 +86,9 @@ class Block:
 
         self.consensus_timer = 0.50
 
+        self.increase_the_time = 0
+        self.decrease_the_time = 0
+
         self.validated = False
         self.validated_time = None
 
@@ -103,10 +105,20 @@ class Block:
         and makes the edits for the new block.
         """
 
-        if (self.validated_time - self.start_time) >= self.block_time:
-            self.block_time += 0.2
+        if (self.validated_time - self.start_time) > self.block_time:
+            if self.increase_the_time == 3:
+                self.increase_the_time = 0
+                self.block_time += 0.1
+            else:
+                self.increase_the_time += 1
+            self.decrease_the_time = 0
         else:
-            self.block_time -= 0.2
+            if self.decrease_the_time == 3:
+                self.decrease_the_time = 0
+                self.block_time -= 0.1
+            else:
+                self.decrease_the_time += 1
+            self.increase_the_time = 0
 
         #Printing validated block.
         dprint("""\n
