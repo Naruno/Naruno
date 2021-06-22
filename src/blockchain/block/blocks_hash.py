@@ -11,7 +11,7 @@ import os
 
 from lib.config_system import get_config
 
-from config import TEMP_BLOCKSHASH_PATH
+from config import TEMP_BLOCKSHASH_PATH, TEMP_BLOCKSHASH_PART_PATH
 
 
 def SaveBlockshash(the_blockshash):
@@ -19,11 +19,23 @@ def SaveBlockshash(the_blockshash):
     with open(TEMP_BLOCKSHASH_PATH, 'wb') as block_file:
         pickle.dump(the_blockshash, block_file, protocol=2)
 
+def SaveBlockshash_part(the_blockshash):
+    os.chdir(get_config()["main_folder"])
+    with open(TEMP_BLOCKSHASH_PART_PATH, 'wb') as block_file:
+        pickle.dump(the_blockshash, block_file, protocol=2)
 
 def GetBlockshash():
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_BLOCKSHASH_PATH):
-        return None
+        return []
     else:    
         with open(TEMP_BLOCKSHASH_PATH, 'rb') as block_file:
+            return pickle.load(block_file)
+
+def GetBlockshash_part():
+    os.chdir(get_config()["main_folder"])
+    if not os.path.exists(TEMP_BLOCKSHASH_PART_PATH):
+        return []
+    else:    
+        with open(TEMP_BLOCKSHASH_PART_PATH, 'rb') as block_file:
             return pickle.load(block_file)

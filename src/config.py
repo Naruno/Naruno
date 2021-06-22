@@ -13,7 +13,9 @@ UNL_NODES_PATH = 'db/unl_nodes.json'
 
 TEMP_BLOCK_PATH = 'db/temp_block.decentra_network'
 TEMP_ACCOUNTS_PATH = 'db/temp_accounts.decentra_network'
+TEMP_ACCOUNTS_PART_PATH = 'db/temp_accounts_part.decentra_network'
 TEMP_BLOCKSHASH_PATH = 'db/temp_blockshash.decentra_network'
+TEMP_BLOCKSHASH_PART_PATH = 'db/temp_blockshash_part.decentra_network'
 
 TEMP_CANDIDATE_BLOCKS_PATH = 'db/temp_candidate_blocks.decentra_network'
 

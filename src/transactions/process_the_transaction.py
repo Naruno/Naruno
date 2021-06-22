@@ -48,10 +48,9 @@ def ProccesstheTransaction(block):
     temp_pubkeys = []
     for tx_item in temp_validating_list[:]:
         for Account_item in from_user_list:
-
-            if Address(tx_item.fromUser) == Account_item.Address:
-                temp_pubkeys.append(tx_item.fromUser)
-                tx_item.fromUser = Account_item
+                if Address(str(tx_item.fromUser)) == Account_item.Address:
+                    temp_pubkeys.append(Account_item.Address)
+                    tx_item.fromUser = Account_item
 
     # Orders the transactions by Address index of temp_accounts.
     temp_validating_list = sorted(temp_validating_list, key=lambda x: temp_accounts.index(x.fromUser))
@@ -60,7 +59,7 @@ def ProccesstheTransaction(block):
     for temp_validating_list_item in temp_validating_list[:]:
         for temp_pubkey in temp_pubkeys:
             if temp_validating_list_item.fromUser.Address == Address(temp_pubkey):
-                temp_validating_list_item.fromUser = temp_pubkey
+                temp_validating_list_item.fromUser = temp_pubkey             
 
     # Syncs new sorted list to block.validating_list
     block.validating_list = temp_validating_list

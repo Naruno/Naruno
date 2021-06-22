@@ -20,12 +20,12 @@ from node.unl import get_unl_nodes, get_as_node_type
 from transactions.transaction import Transaction
 from transactions.pending_to_validating import PendinttoValidating
 
-from accounts.account import Account, save_accounts
+from accounts.account import Account, save_accounts, save_accounts_part
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
 
 from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
-from blockchain.block.blocks_hash import SaveBlockshash, GetBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash, GetBlockshash, SaveBlockshash_part
 
 from wallet.wallet import (
     Ecdsa,
@@ -56,11 +56,13 @@ class Block:
 
         blocks_hash = [self.previous_hash]
         SaveBlockshash(blocks_hash)
+        SaveBlockshash_part([])
 
         accounts = [
             Account(creator, balance=1000000000)
             ]
         save_accounts(accounts)
+        save_accounts_part([])
 
         self.pendingTransaction = []
         self.validating_list = []
