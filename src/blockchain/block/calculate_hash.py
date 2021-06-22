@@ -8,9 +8,9 @@
 from lib.mixlib import dprint
 from lib.merkle_root import MerkleTree
 
-from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part, SaveBlockshash_part
 
-from accounts.account import GetAccounts
+from accounts.account import GetAccounts, GetAccounts_part, save_accounts
 
 
 def CalculateHash(block):
@@ -30,16 +30,49 @@ def CalculateHash(block):
         tx_hash = "0"
 
 
+    part_amount = 100000
+
     # Blocks Hash
-    blockshash_hash = MerkleTree(GetBlockshash()).getRootHash()
+    blocks_hash_list = []
+
+    part_of_blocks_hash = GetBlockshash_part()
+    the_blocks_hash = GetBlockshash()
+
+
+    if not len(the_blocks_hash) - (len(part_of_blocks_hash) * part_amount) == part_amount:
+        for will_added_blocks_hash in the_blocks_hash[(len(part_of_blocks_hash) * part_amount):]:
+            blocks_hash_list.append(will_added_blocks_hash)
+    else:
+        part_of_blocks_hash.append(MerkleTree(the_blocks_hash[(len(part_of_blocks_hash) * part_amount):]).getRootHash())
+        SaveBlockshash_part(part_of_blocks_hash)
+
+    
+    for part_of_blocks_hash_element in part_of_blocks_hash:
+        blocks_hash_list.append(part_of_blocks_hash_element)
+    
+
+    blockshash_hash = MerkleTree(blocks_hash_list).getRootHash()
 
 
     # Account
-    ac_list = []
-    for element in GetAccounts()[:]:
-        ac_list.append(element.Address)
-    dprint(ac_list)
-    ac_hash = MerkleTree(ac_list).getRootHash()
+    account_list = []
+
+    part_of_account = GetAccounts_part()
+    the_accounts = GetAccounts()
+
+    if not len(the_accounts) - (len(part_of_account) * part_amount) == part_amount:
+        for will_added_accounts in the_accounts[(len(part_of_account) * part_amount):]:
+            account_list.append(will_added_accounts.Address)
+    else:
+        part_of_account.append(MerkleTree(the_accounts[(len(part_of_account) * part_amount):]).getRootHash())
+        save_accounts(part_of_account)
+
+    
+    for part_of_account_element in part_of_account:
+        account_list.append(part_of_account_element)
+    
+    ac_hash = MerkleTree(account_list).getRootHash()
+
 
     # Other elements
     main_list = []
