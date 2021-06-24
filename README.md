@@ -21,12 +21,20 @@
   .
   <img src="https://img.shields.io/badge/Consensus-FBA-%235ec295.svg" alt="Consensus">
   
+  
   </p>
   <p align="center">
   <a href="https://www.codefactor.io/repository/github/decentra-network/decentra-network"><img src="https://www.codefactor.io/repository/github/decentra-network/decentra-network/badge" alt="CodeFactor" /></a>
   .
   <a href="https://lgtm.com/projects/g/Decentra-Network/Decentra-Network/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/Decentra-Network/Decentra-Network.svg?logo=lgtm&logoWidth=18"/></a>
   </p>
+  <p align="center">
+    <img src="https://img.shields.io/github/workflow/status/Decentra-Network/Decentra-Network/Python%20package?label=Python%20package%20build" alt="Python_package_build">
+  </p>
+  <p align="center">
+  <img src="https://img.shields.io/github/workflow/status/Decentra-Network/Decentra-Network/CodeQL?label=CodeQL%20build" alt="CodeQL_build">
+  </p>
+  
 </p>
 
 
