@@ -15,13 +15,10 @@
   <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" alt="Made_with_python">
     </a>
   .
-    <a href="https://github.com/Decentra-Network/Decentra-Network/blob/master/LICENSE">
-  <img src="https://img.shields.io/github/license/Decentra-Network/Decentra-Network.svg" alt="Licence">
-    </a>
-  .
-  <img src="https://img.shields.io/badge/Consensus-FBA-%235ec295.svg" alt="Consensus">
-  .
   <img src="https://img.shields.io/github/repo-size/Decentra-Network/Decentra-Network" alt="repo_size">
+  .
+  <img src="https://img.shields.io/tokei/lines/github/Decentra-Network/Decentra-Network" alt="total_lines">
+  
   
   
   
