@@ -20,6 +20,9 @@
     </a>
   .
   <img src="https://img.shields.io/badge/Consensus-FBA-%235ec295.svg" alt="Consensus">
+  .
+  <img src="https://img.shields.io/github/repo-size/Decentra-Network/Decentra-Network" alt="repo_size">
+  
   
   
   </p>
