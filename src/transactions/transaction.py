@@ -18,7 +18,7 @@ class Transaction:
       * sequance_number: A number from the account class that ensures that 
       each transaction is valid once.
       * signature: A signature proving that the sender approved the transaction.
-      * fromUser: Sender's address.
+      * fromUser: Sender's public key.
       * toUser: Receiver's address.
       * data: A text that can be written into the transaction.
       * amount: A int or float amount to be sent.
