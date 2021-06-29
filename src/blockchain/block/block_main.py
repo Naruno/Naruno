@@ -63,6 +63,7 @@ class Block:
             ]
         save_accounts(accounts)
         save_accounts_part([])
+        self.edited_accounts = []
 
         self.pendingTransaction = []
         self.validating_list = []
