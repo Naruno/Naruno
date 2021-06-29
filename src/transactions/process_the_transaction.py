@@ -35,10 +35,12 @@ def ProccesstheTransaction(block):
                 Accounts.balance -= (float(trans.amount)+trans.transaction_fee)
                 Accounts.sequance_number += 1
                 from_user_list.append(Accounts)
+                block.edited_accounts.append(Accounts)
 
             elif Accounts.Address == trans.toUser:
                 Accounts.balance += float(trans.amount)
                 touser_inlist = True
+                block.edited_accounts.append(Accounts)
 
         # If not included in the temp_accounts, add.
         if not touser_inlist:

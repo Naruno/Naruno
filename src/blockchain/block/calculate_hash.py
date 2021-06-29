@@ -60,9 +60,9 @@ def CalculateHash(block):
     part_of_account = GetAccounts_part()
     the_accounts = GetAccounts()
 
-    if not len(the_accounts) - (len(part_of_account) * part_amount) == part_amount:
+    if not len(the_accounts) - (len(part_of_account) * part_amount) >= part_amount:
         for will_added_accounts in the_accounts[(len(part_of_account) * part_amount):]:
-            account_list.append(will_added_accounts.Address)
+            account_list.append(str(will_added_accounts.dump_json()))
     else:
         part_of_account.append(MerkleTree(the_accounts[(len(part_of_account) * part_amount):]).getRootHash())
         save_accounts(part_of_account)
@@ -70,6 +70,11 @@ def CalculateHash(block):
     
     for part_of_account_element in part_of_account:
         account_list.append(part_of_account_element)
+
+    for edited_account in block.edited_accounts:
+        account_list.append(str(edited_account.dump_json()))
+
+    block.edited_accounts.clear()
     
     ac_hash = MerkleTree(account_list).getRootHash()
 
