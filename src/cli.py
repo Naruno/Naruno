@@ -8,12 +8,20 @@
 
 import time
 import sys
+import argparse
 from getpass import getpass
-
 from hashlib import sha256
+
 from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet, Wallet_Delete
+from wallet.create_a_wallet import create_a_wallet
+from wallet.print_wallets import print_wallets
+from wallet.wallet_selector import wallet_selector
+from wallet.delete_current_wallet import delete_current_wallet
+from wallet.print_balance import print_balance
 
 from transactions.send_coin import send_coin
+from transactions.send_the_coin import send_the_coin
+
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
 from node.unl import save_new_unl_node
 
@@ -36,9 +44,10 @@ def show_menu():
 
 
     print(menu_space() + \
-       menu_maker(menu_number="w", menu_text="Wallets")+ \
-	   menu_maker(menu_number="cw", menu_text="Create wallet")+ \
-       menu_maker(menu_number="dw", menu_text="Delete wallet")+ \
+       menu_maker(menu_number="pw", menu_text="Print Wallets")+ \
+       menu_maker(menu_number="w", menu_text="Change Wallet")+ \
+	   menu_maker(menu_number="cw", menu_text="Create Wallet")+ \
+       menu_maker(menu_number="dw", menu_text="Delete Wallet")+ \
 	   menu_space() + \
 	   menu_maker(menu_number="sc", menu_text="Send Coin")+ \
        menu_space() + \
@@ -69,73 +78,34 @@ def menu():
     listens to the entries, makes the directions.
     """
 
+    animation = ["[■□□□□□□□□□]","[■■□□□□□□□□]", "[■■■□□□□□□□]", "[■■■■□□□□□□]", "[■■■■■□□□□□]", "[■■■■■■□□□□]", "[■■■■■■■□□□]", "[■■■■■■■■□□]", "[■■■■■■■■■□]", "[■■■■■■■■■■]"]
+
+    for i in range(len(animation)):
+        time.sleep(0.1)
+        sys.stdout.write("\r" + animation[i])
+        sys.stdout.flush()    
+
     while True:
         show_menu()
         choices_input = question_maker(mode="main")
 
+        if choices_input == "pw":
+            print_wallets()
+
         if choices_input == "w":
-            all_wallets = list(get_saved_wallet())
-            if not len(all_wallets) == 0:
-
-                current_wallet = the_settings()["wallet"]
-                for wallet in all_wallets:
-                    number = all_wallets.index(wallet)
-                    address = Wallet_Import(all_wallets.index(wallet),3)
-                    if not current_wallet == number:
-                        print(menu_maker(menu_number=number, menu_text=address))
-                    else:
-                        print(menu_maker(menu_number=number, menu_text=address + " - CURRENTLY USED"))
-
-                while True:
-                    try:
-                        new_wallet = input("Please select wallet: ")
-                        if int(new_wallet) in list(range(len(all_wallets))):
-                            change_wallet(int(new_wallet))
-                            break
-                        else:
-                            print("There is no such wallet")
-                    except:
-                        print("This is not a number")
-            else:
-                print("There is no wallet")
+            wallet_selector()
 
         if choices_input == "cw":
-            password = getpass("Password: ")
-            Wallet_Create(password)
-            del password
+            create_a_wallet()
+
         if choices_input == "dw":
-            if not the_settings()["wallet"] == 0:
-                if "y" == input("Are you sure ? (y or n): "):
-                    saved_wallets = get_saved_wallet()
-                    selected_wallet_pubkey = Wallet_Import(int(the_settings()["wallet"]),0)
-                    for each_wallet in saved_wallets:
-                        if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
-                            change_wallet(0)
-                            Wallet_Delete(each_wallet)
-            else:
-                print("First wallet cannot be deleted.")
+            if "y" == input("Are you sure ? (y or n): "):
+                delete_current_wallet()
         if choices_input == "sc":
-            temp_coin_amount = input("Coin Amount (ex. 1.0): ")
-            type_control = False
-            try:
-                float(temp_coin_amount)
-                type_control = True
-            except:
-                print("This is not float coin amount.")
-
-            receiver = input("Please write receiver adress: ")
-
-            if type_control and not float(temp_coin_amount) < GetBlock().minumum_transfer_amount:
-                password = getpass("Password: ")
-                if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(password.encode("utf-8")).hexdigest():
-                    print(password)
-                    send_coin(float(temp_coin_amount), receiver, password)
-                else:
-                    print("Password is not correct")
-                del password
+            send_the_coin(input("Please write receiver adress: "), input("Coin Amount (ex. 1.0): "))
 
         if choices_input == "gb":
-            print(GetBalance(Wallet_Import(-1,0), GetBlock()))
+            print_balance()
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
@@ -173,11 +143,82 @@ def menu():
             exit()
 
 
-if __name__ == '__main__':
-    animation = ["[■□□□□□□□□□]","[■■□□□□□□□□]", "[■■■□□□□□□□]", "[■■■■□□□□□□]", "[■■■■■□□□□□]", "[■■■■■■□□□□]", "[■■■■■■■□□□]", "[■■■■■■■■□□]", "[■■■■■■■■■□]", "[■■■■■■■■■■]"]
+def arguments():
+    parser = argparse.ArgumentParser(description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc.")
 
-    for i in range(len(animation)):
-        time.sleep(0.1)
-        sys.stdout.write("\r" + animation[i])
-        sys.stdout.flush()
-    menu()
+    parser.add_argument('-pw', '--printwallet', action='store_true',
+                        help='Print Wallets')
+
+    parser.add_argument('-w', '--wallet', type=int,
+                        help='Change Wallet')
+
+    parser.add_argument('-cw', '--createwallet',
+                        help='Create wallet')
+
+    parser.add_argument('-dw', '--deletewallet', action='store_true',
+                        help='Delete wallet')
+
+    parser.add_argument('-gb', '--getbalance', action='store_true',
+                        help='Get Balance')
+
+    parser.add_argument('-ndnunl', '--ndnewunl', type=str,
+                        help='Add new UNL node')
+
+    parser.add_argument('-ndid', '--ndid', action='store_true',
+                        help='Print my id')
+
+    parser.add_argument('-tmon', '--testmodeon', action='store_true',
+                        help='Test Mode On')
+    parser.add_argument('-tmoff', '--testmodeoff', action='store_true',
+                        help='Test Mode Off')
+
+    parser.add_argument('-dmon', '--debugmodeon', action='store_true',
+                        help='Debug Mode On')
+    parser.add_argument('-dmoff', '--debugmodeoff', action='store_true',
+                        help='Debug Mode Off')
+
+    parser.add_argument('-m', '--menu', action='store_true',
+                        help='An optional boolean for open the menu.') 
+    
+    args = parser.parse_args()
+
+
+    if len(sys.argv) < 2:
+        parser.print_help()
+
+    if args.printwallet:
+        print_wallets()
+
+    if not args.wallet == None:
+        wallet_selector(args.wallet)
+
+    if not args.createwallet == None:
+        create_a_wallet(args.createwallet)
+
+    if args.deletewallet:
+        delete_current_wallet()
+
+    if args.getbalance:
+        print_balance()
+
+    if not args.ndnewunl == None:
+        save_new_unl_node(args.ndnewunl)
+
+    if args.ndid:
+        print(ndid())
+
+    if args.testmodeon:
+        test_mode(True)
+    if args.testmodeoff:
+        test_mode(False)
+    if args.debugmodeon:
+        debug_mode(True)
+    if args.debugmodeoff:
+        debug_mode(False)
+
+    if args.menu:
+        menu()
+
+
+if __name__ == '__main__':
+    arguments()
