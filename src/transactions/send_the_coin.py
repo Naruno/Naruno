@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from getpass import getpass
 from hashlib import sha256
 
 from wallet.wallet import Wallet_Import
@@ -18,7 +17,7 @@ from blockchain.block.get_block import GetBlock
 from lib.settings_system import the_settings
 
 
-def send_the_coin(receiver, temp_coin_amount):
+def send_the_coin(receiver, temp_coin_amount, password):
             type_control = False
             try:
                 float(temp_coin_amount)
@@ -28,10 +27,8 @@ def send_the_coin(receiver, temp_coin_amount):
 
 
             if type_control and not float(temp_coin_amount) < GetBlock().minumum_transfer_amount:
-                password = getpass("Password: ")
                 if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(password.encode("utf-8")).hexdigest():
                     print(password)
                     send_coin(float(temp_coin_amount), receiver, password)
                 else:
                     print("Password is not correct")
-                del password
