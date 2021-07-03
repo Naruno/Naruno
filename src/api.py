@@ -132,6 +132,6 @@ if __name__ == '__main__':
 
 
     if len(sys.argv) < 2:
-        app.run(port=8000)
+        app.run(host='0.0.0.0', port=8000)
     else:
-        app.run(port=args.port)
+        app.run(host='0.0.0.0', port=args.port)
