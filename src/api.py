@@ -82,7 +82,7 @@ def node_connectmixdb_page():
 #/node/newunl/?MFYw......
 @app.route('/node/newunl/', methods=['GET'])
 def node_newunl_page():
-    save_new_unl_node(request.query_string)
+    save_new_unl_node(request.query_string.decode("utf-8"))
     return jsonify("OK")
 
 @app.route('/node/id', methods=['GET'])
