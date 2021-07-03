@@ -9,30 +9,25 @@
 import time
 import sys
 import argparse
-from getpass import getpass
-from hashlib import sha256
 
-from wallet.wallet import Wallet_Create, Wallet_Import, get_saved_wallet, Wallet_Delete
+from transactions.send_the_coin import send_the_coin
+
+from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
+from node.unl import save_new_unl_node
+
+from blockchain.block.get_block import GetBlockFromOtherNode
+from blockchain.block.create_block import CreateBlock
+
+from lib.mixlib import banner_maker, menu_space, menu_maker, quit_menu_maker, question_maker
+from lib.settings_system import the_settings, test_mode, debug_mode
+
 from wallet.create_a_wallet import create_a_wallet
 from wallet.print_wallets import print_wallets
 from wallet.wallet_selector import wallet_selector
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance
 
-from transactions.send_coin import send_coin
-from transactions.send_the_coin import send_the_coin
 
-from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
-from node.unl import save_new_unl_node
-
-from lib.mixlib import banner_maker, menu_space, menu_maker, quit_menu_maker, question_maker
-
-from blockchain.block.get_block import GetBlock, GetBlockFromOtherNode
-from blockchain.block.create_block import CreateBlock
-
-from lib.settings_system import the_settings, test_mode, debug_mode, change_wallet
-
-from accounts.get_balance import GetBalance
 
 
 def show_menu():
