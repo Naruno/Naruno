@@ -50,9 +50,9 @@ def delete_wallets_page():
     delete_current_wallet()
     return jsonify(print_wallets())
 
-@app.route('/send/coin/<address>/<amount>', methods=['GET'])
-def send_coin_page(address, amount):
-    send_the_coin(address, amount)
+@app.route('/send/coin/<address>/<amount>/<password>', methods=['GET'])
+def send_coin_page(address, amount, password):
+    send_the_coin(address, amount, password)
     return jsonify("OK")
 
 @app.route('/wallet/balance', methods=['GET'])

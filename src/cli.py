@@ -9,6 +9,7 @@
 import time
 import sys
 import argparse
+from getpass import getpass
 
 from transactions.send_the_coin import send_the_coin
 
@@ -97,7 +98,7 @@ def menu():
             if "y" == input("Are you sure ? (y or n): "):
                 delete_current_wallet()
         if choices_input == "sc":
-            send_the_coin(input("Please write receiver adress: "), input("Coin Amount (ex. 1.0): "))
+            send_the_coin(input("Please write receiver adress: "), input("Coin Amount (ex. 1.0): "), getpass("Password: "))
 
         if choices_input == "gb":
             print_balance()
