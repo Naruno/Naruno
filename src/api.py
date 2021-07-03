@@ -50,10 +50,9 @@ def delete_wallets_page():
     delete_current_wallet()
     return jsonify(print_wallets())
 
-#/send/coin/?address=123&amount=5
-@app.route('/send/coin/', methods=['GET'])
-def send_coin_page():
-    send_the_coin(request.args.get('address'), request.args.get('amount'))
+@app.route('/send/coin/<address>/<amount>', methods=['GET'])
+def send_coin_page(address, amount):
+    send_the_coin(address, amount)
     return jsonify("OK")
 
 @app.route('/wallet/balance', methods=['GET'])
@@ -80,10 +79,10 @@ def node_connectmixdb_page():
     ndconnectmixdb()
     return jsonify("OK")
 
-#/node/newunl/?id=MFYwEA....
+#/node/newunl/?MFYw......
 @app.route('/node/newunl/', methods=['GET'])
 def node_newunl_page():
-    save_new_unl_node(request.args.get('id'))
+    save_new_unl_node(request.query_string)
     return jsonify("OK")
 
 @app.route('/node/id', methods=['GET'])
@@ -133,6 +132,6 @@ if __name__ == '__main__':
 
 
     if len(sys.argv) < 2:
-        app.run(host='0.0.0.0', port=8000)
+        app.run(port=8000)
     else:
-        app.run(host='0.0.0.0', port=args.port)
+        app.run(port=args.port)
