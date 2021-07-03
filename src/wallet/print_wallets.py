@@ -15,10 +15,17 @@ from lib.settings_system import the_settings
 def print_wallets():
                 all_wallets = list(get_saved_wallet())
                 current_wallet = the_settings()["wallet"]
+                print("\nWallets:")
+                result = []
                 for wallet in all_wallets:
                     number = all_wallets.index(wallet)
                     address = Wallet_Import(all_wallets.index(wallet),3)
                     if not current_wallet == number:
-                        print(menu_maker(menu_number=number, menu_text=address))
+                        text = menu_maker(menu_number=number, menu_text=address)
+                        print(text)
+                        result.append(text)
                     else:
-                        print(menu_maker(menu_number=number, menu_text=address + " - CURRENTLY USED"))
+                        text = menu_maker(menu_number=number, menu_text=address + " - CURRENTLY USED")
+                        print(text)
+                        result.append(text)
+                return result

@@ -14,4 +14,6 @@ from accounts.get_balance import GetBalance
 
 
 def print_balance():
-    print(GetBalance(Wallet_Import(-1,0), GetBlock()))
+    balance = GetBalance(Wallet_Import(-1,0), GetBlock())
+    print(balance)
+    return balance
