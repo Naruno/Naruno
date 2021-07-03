@@ -61,22 +61,27 @@ def balance_wallets_page():
 @app.route('/node/start/<ip>/<port>', methods=['GET'])
 def node_start_page(ip, port):
     ndstart(str(ip), int(port))
+    return jsonify("OK")
 
 @app.route('/node/stop', methods=['GET'])
 def node_stop_page():
     ndstop()
+    return jsonify("OK")
 
 @app.route('/node/connect/<ip>/<port>', methods=['GET'])
 def node_connect_page(ip, port):
     ndconnect(str(ip), int(port))
+    return jsonify("OK")
 
 @app.route('/node/connectmixdb', methods=['GET'])
 def node_connectmixdb_page():
     ndconnectmixdb()
+    return jsonify("OK")
 
 @app.route('/node/newunl/<id>', methods=['GET'])
 def node_newunl_page(id):
     save_new_unl_node(id)
+    return jsonify("OK")
 
 @app.route('/node/id', methods=['GET'])
 def node_id_page():
