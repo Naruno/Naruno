@@ -86,7 +86,9 @@ def consensus_round_1(block):
 
 
 
-
+        
+          newly_added_list = []
+                
           for my_validating_list in block.validating_list[:]:
               ok = False
               for my_temp_validating_list in temp_validating_list[:]:
@@ -94,12 +96,15 @@ def consensus_round_1(block):
                       ok = True
               block.validating_list.remove(my_validating_list) 
               if not ok:
-                block.createTrans(my_validating_list.sequance_number, my_validating_list.signature, my_validating_list.fromUser, my_validating_list.toUser, my_validating_list.transaction_fee, my_validating_list.data, my_validating_list.amount, transaction_sender = None, transaction_time = my_validating_list.time)
+                newly_added_list.append(my_validating_list)
                 
 
                 
-          block.validating_list = temp_validating_list      
-
+          block.validating_list = temp_validating_list
+        
+          
+          for each_newly in newly_added_list:
+                block.createTrans(each_newly.sequance_number, each_newly.signature, each_newly.fromUser, each_newly.toUser, each_newly.transaction_fee, each_newly.data, each_newly.amount, transaction_sender = None, transaction_time = each_newly.time)
 
           block.raund_1 = True
 
