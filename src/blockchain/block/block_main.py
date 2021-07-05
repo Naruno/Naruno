@@ -131,8 +131,8 @@ class Block:
                 self.decrease_the_time += 1
             self.increase_the_time = 0
             
-        self.raund_1_time = self.block_time / 2
-        self.raund_2_time = self.block_time / 2
+        self.raund_1_time = self.block_time / 3
+        self.raund_2_time = self.block_time / 3
 
         #Printing validated block.
         dprint("""\n
