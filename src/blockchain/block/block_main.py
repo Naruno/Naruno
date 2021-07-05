@@ -142,7 +142,7 @@ class Block:
             self.block_time_change_block = self.sequance_number
 
 
-        self.block_time = raund_1_time + raund_2_time
+        self.block_time = self.raund_1_time + self.raund_2_time
 
 
         #Printing validated block.
