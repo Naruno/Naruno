@@ -210,7 +210,7 @@ class Block:
         PendinttoValidating(self)
         
         for each_tx in self.validating_list:
-            propagating_the_tx(each_tx)
+            self.propagating_the_tx(each_tx)
 
         # Saving the new block.
         self.save_block()
