@@ -1,7 +1,7 @@
 0.4.6-alpha Release Notes
 ====================
 
-This minor version includes consensus fixes, and some edit on the release docs.
+This path consensus fixes, and some edit on the release docs.
 
 Please report bugs using the issue tracker at GitHub:
 
