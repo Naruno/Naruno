@@ -208,6 +208,9 @@ class Block:
 
         # Adding self.pendingTransaction to the new/current block.
         PendinttoValidating(self)
+        
+        for each_tx in self.validating_list:
+            propagating_the_tx(each_tx)
 
         # Saving the new block.
         self.save_block()
