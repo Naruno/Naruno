@@ -123,9 +123,10 @@ class Block:
 
         if self.decrease_the_time == 3:
             self.decrease_the_time = 0
-            self.raund_1_time -= 0.1
-            self.block_time_change_time = int(time.time())
-            self.block_time_change_block = self.sequance_number
+            if not self.raund_1_time <= 2:
+                self.raund_1_time -= 0.1
+                self.block_time_change_time = int(time.time())
+                self.block_time_change_block = self.sequance_number
 
 
         if self.increase_the_time_2 == 3:
@@ -137,9 +138,10 @@ class Block:
 
         if self.decrease_the_time_2 == 3:
             self.decrease_the_time_2 = 0
-            self.raund_2_time -= 0.1
-            self.block_time_change_time = int(time.time())
-            self.block_time_change_block = self.sequance_number
+            if not self.raund_2_time <= 2:
+                self.raund_2_time -= 0.1
+                self.block_time_change_time = int(time.time())
+                self.block_time_change_block = self.sequance_number
 
 
         self.block_time = self.raund_1_time + self.raund_2_time
