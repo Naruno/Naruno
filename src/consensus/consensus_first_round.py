@@ -124,16 +124,17 @@ def consensus_round_1(block):
 
           block.save_block()
         
+                
+
          else:
-            if len(candidate_class.candidate_blocks) == len(unl_nodes):
-                if not block.decrease_the_time == 3:
-                    block.decrease_the_time += 1
-                    block.increase_the_time = 0
-            else:
+            if not block.decrease_the_time == 3:
+                block.decrease_the_time += 1
+                block.increase_the_time = 0
+                block.save_block()
+
+        else:
+            if not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
                 if not block.increase_the_time == 3:
                     block.increase_the_time += 1
                     block.decrease_the_time = 0                
-            
-            block.save_block()
-                
-
+                    block.save_block()

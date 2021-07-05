@@ -39,7 +39,9 @@ def consensus_round_2(block):
         dprint("Raund 2 Conditions")
         dprint(len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80)/100))
         dprint((int(time.time()) - block.raund_2_starting_time) < block.raund_2_time)
+
         if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80)/100):
+
          if not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
           dprint("Raund 2: first ok")
           for candidate_block in candidate_class.candidate_block_hashes[:]:
@@ -73,14 +75,16 @@ def consensus_round_2(block):
                           node.send_data_to_node(unl_list[0], "sendmefullblock")
                           block.dowload_true_block = candidate_block["sender"]
                       block.save_block()
+        
          else:
-            if len(candidate_class.candidate_block_hashes) == len(unl_nodes):
-                if not block.decrease_the_time_2 == 3:
-                    block.decrease_the_time_2 += 1
-                    block.increase_the_time_2 = 0
-            else:
+            if not block.decrease_the_time_2 == 3:
+                block.decrease_the_time_2 += 1
+                block.increase_the_time_2 = 0
+                block.save_block()
+
+        else:
+            if not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
                 if not block.increase_the_time_2 == 3:
                     block.increase_the_time_2 += 1
                     block.decrease_the_time_2 = 0                
-            
-            block.save_block()
+                    block.save_block()
