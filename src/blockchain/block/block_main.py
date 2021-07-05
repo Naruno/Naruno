@@ -48,7 +48,7 @@ class Block:
 
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
-        self.block_time = 7
+        self.block_time = 5
         self.block_time_change_time = int(time.time())
         self.block_time_change_block = sequance_number
 
@@ -82,12 +82,12 @@ class Block:
         self.minumum_transfer_amount = 1000
 
         self.raund_1_starting_time = None
-        self.raund_1_time = 2.3333333333333335
+        self.raund_1_time = 1.6
         self.raund_1 = False
         self.raund_1_node = False
 
         self.raund_2_starting_time = None
-        self.raund_2_time = 2.3333333333333335
+        self.raund_2_time = 1.6
         self.raund_2 = False
         self.raund_2_node = False
 
