@@ -40,7 +40,7 @@ def consensus_round_2(block):
         dprint(len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80)/100))
         dprint((int(time.time()) - block.raund_2_starting_time) < block.raund_2_time)
         if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80)/100):
-         if len(candidate_class.candidate_block_hashes) == len(unl_nodes) or not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
+         if not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
           dprint("Raund 2: first ok")
           for candidate_block in candidate_class.candidate_block_hashes[:]:
                   tx_valid = 0
