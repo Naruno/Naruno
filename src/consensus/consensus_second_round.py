@@ -73,3 +73,12 @@ def consensus_round_2(block):
                           node.send_data_to_node(unl_list[0], "sendmefullblock")
                           block.dowload_true_block = candidate_block["sender"]
                       block.save_block()
+         else:
+            if len(candidate_class.candidate_block_hashes) == len(unl_nodes):
+                block.decrease_the_time_2 += 1
+                block.increase_the_time_2 = 0
+            else:
+                block.increase_the_time_2 += 1
+                block.decrease_the_time_2 = 0                
+            
+            block.save_block()

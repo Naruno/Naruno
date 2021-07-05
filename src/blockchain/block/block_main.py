@@ -48,7 +48,7 @@ class Block:
 
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
-        self.block_time = 5
+        self.block_time = 7
         self.block_time_change_time = int(time.time())
         self.block_time_change_block = sequance_number
 
@@ -82,19 +82,21 @@ class Block:
         self.minumum_transfer_amount = 1000
 
         self.raund_1_starting_time = None
-        self.raund_1_time = 1.6
+        self.raund_1_time = 2.3333333333333335
         self.raund_1 = False
         self.raund_1_node = False
 
         self.raund_2_starting_time = None
-        self.raund_2_time = 1.6
+        self.raund_2_time = 2.3333333333333335
         self.raund_2 = False
         self.raund_2_node = False
 
         self.consensus_timer = 0.50
 
         self.increase_the_time = 0
+        self.increase_the_time_2 = 0
         self.decrease_the_time = 0
+        self.decrease_the_time_2 = 0
 
         self.validated = False
         self.validated_time = None
@@ -112,27 +114,36 @@ class Block:
         and makes the edits for the new block.
         """
 
-        if (self.validated_time - self.start_time) >= self.block_time:
-            if self.increase_the_time == 3:
-                self.increase_the_time = 0
-                self.block_time += 0.1
-                self.block_time_change_time = int(time.time())
-                self.block_time_change_block = self.sequance_number
-            else:
-                self.increase_the_time += 1
-            self.decrease_the_time = 0
-        else:
-            if self.decrease_the_time == 3:
-                self.decrease_the_time = 0
-                self.block_time -= 0.1
-                self.block_time_change_time = int(time.time())
-                self.block_time_change_block = self.sequance_number
-            else:
-                self.decrease_the_time += 1
+        if self.increase_the_time == 3:
             self.increase_the_time = 0
-            
-        self.raund_1_time = self.block_time / 3
-        self.raund_2_time = self.block_time / 3
+            self.raund_1_time += 0.1
+            self.block_time_change_time = int(time.time())
+            self.block_time_change_block = self.sequance_number
+
+
+        if self.decrease_the_time == 3:
+            self.decrease_the_time = 0
+            self.raund_1_time -= 0.1
+            self.block_time_change_time = int(time.time())
+            self.block_time_change_block = self.sequance_number
+
+
+        if self.increase_the_time_2 == 3:
+            self.increase_the_time_2 = 0
+            self.raund_2_time += 0.1
+            self.block_time_change_time = int(time.time())
+            self.block_time_change_block = self.sequance_number
+
+
+        if self.decrease_the_time_2 == 3:
+            self.decrease_the_time_2 = 0
+            self.raund_2_time -= 0.1
+            self.block_time_change_time = int(time.time())
+            self.block_time_change_block = self.sequance_number
+
+
+        self.block_time = raund_1_time + raund_2_time
+
 
         #Printing validated block.
         dprint("""\n
