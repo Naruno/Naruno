@@ -114,7 +114,6 @@ class Block:
         and makes the edits for the new block.
         """
 
-
         if self.increase_the_time == 3:
             self.increase_the_time = 0
             self.raund_1_time += 0.1
@@ -143,7 +142,7 @@ class Block:
             self.block_time_change_block = self.sequance_number
 
 
-        self.block_time = raund_1_time + raund_2_time
+        self.block_time = self.raund_1_time + self.raund_2_time
 
 
         #Printing validated block.
