@@ -75,10 +75,12 @@ def consensus_round_2(block):
                       block.save_block()
          else:
             if len(candidate_class.candidate_block_hashes) == len(unl_nodes):
-                block.decrease_the_time_2 += 1
-                block.increase_the_time_2 = 0
+                if not block.decrease_the_time_2 == 3:
+                    block.decrease_the_time_2 += 1
+                    block.increase_the_time_2 = 0
             else:
-                block.increase_the_time_2 += 1
-                block.decrease_the_time_2 = 0                
+                if not block.increase_the_time_2 == 3:
+                    block.increase_the_time_2 += 1
+                    block.decrease_the_time_2 = 0                
             
             block.save_block()
