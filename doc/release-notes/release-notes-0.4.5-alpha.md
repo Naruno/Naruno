@@ -1,7 +1,7 @@
 0.4.5-alpha Release Notes
 ====================
 
-This minor version includes many new features
+This path includes many new features
 
 Please report bugs using the issue tracker at GitHub:
 
