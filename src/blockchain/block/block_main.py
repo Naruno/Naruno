@@ -49,6 +49,8 @@ class Block:
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 7
+        self.block_time_change_time = int(time.time())
+        self.block_time_change_block = sequance_number 
 
         self.previous_hash = "0"
         self.sequance_number = sequance_number
@@ -112,6 +114,8 @@ class Block:
             if self.increase_the_time == 3:
                 self.increase_the_time = 0
                 self.block_time += 0.1
+                self.block_time_change_time = int(time.time())
+                self.block_time_change_block = self.sequance_number
             else:
                 self.increase_the_time += 1
             self.decrease_the_time = 0
@@ -119,6 +123,8 @@ class Block:
             if self.decrease_the_time == 3:
                 self.decrease_the_time = 0
                 self.block_time -= 0.1
+                self.block_time_change_time = int(time.time())
+                self.block_time_change_block = self.sequance_number
             else:
                 self.decrease_the_time += 1
             self.increase_the_time = 0

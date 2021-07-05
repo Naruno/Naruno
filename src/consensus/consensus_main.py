@@ -27,7 +27,7 @@ def consensus_trigger():
     block = GetBlock()
 
     if block.validated:
-        if not int(time.time()) < (block.genesis_time + ((block.sequance_number + block.empty_block_number) * block.block_time)):
+        if not int(time.time()) < (block.block_time_change_time + block.block_time + ((block.block_time_change_block - block.sequance_number) * block.block_time)):
            block.reset_the_block() 
     else:
         if block.raund_1_starting_time is None:
