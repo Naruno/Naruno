@@ -114,7 +114,6 @@ class Block:
         and makes the edits for the new block.
         """
 
-
         if self.increase_the_time == 3:
             self.increase_the_time = 0
             self.raund_1_time += 0.1
