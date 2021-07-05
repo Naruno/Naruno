@@ -300,6 +300,7 @@ class mynode (Node):
             from lib.perpetualtimer import perpetualTimer
             from app.app_main import apps_starter
             system = GetBlock()
+            system.newly = True
             system.change_transaction_fee()
 
             system.exclude_validators = []

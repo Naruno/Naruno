@@ -50,7 +50,9 @@ class Block:
         self.start_time = int(time.time())
         self.block_time = 7
         self.block_time_change_time = int(time.time())
-        self.block_time_change_block = sequance_number 
+        self.block_time_change_block = sequance_number
+
+        self.newly = False 
 
         self.previous_hash = "0"
         self.sequance_number = sequance_number
