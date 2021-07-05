@@ -115,7 +115,7 @@ class Block:
         if (self.validated_time - self.start_time) > self.block_time:
             if self.increase_the_time == 3:
                 self.increase_the_time = 0
-                self.block_time += 0.1
+                self.block_time += 0.5
                 self.block_time_change_time = int(time.time())
                 self.block_time_change_block = self.sequance_number
             else:
@@ -124,7 +124,7 @@ class Block:
         else:
             if self.decrease_the_time == 3:
                 self.decrease_the_time = 0
-                self.block_time -= 0.1
+                self.block_time -= 0.5
                 self.block_time_change_time = int(time.time())
                 self.block_time_change_block = self.sequance_number
             else:
