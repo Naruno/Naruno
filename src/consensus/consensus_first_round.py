@@ -44,7 +44,7 @@ def consensus_round_1(block):
         dprint(len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80)/100))
         dprint((int(time.time()) - block.raund_1_starting_time) < block.raund_1_time)
         if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80)/100):
-         if len(candidate_class.candidate_blocks) == len(unl_nodes) or not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
+         if not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
           temp_validating_list = []
           dprint("Raund 1: first ok")
           dprint(len(candidate_class.candidate_blocks))
