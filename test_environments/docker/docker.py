@@ -29,10 +29,10 @@ class Decentra_Network_Docker:
     
     def install(self):
         os.system("docker kill $(docker ps -q)")
-        os.system(f"docker volume rm decentra-network")
+        os.system("docker volume rm decentra-network")
         for i in range(self.number_of_nodes):
             os.system(f"docker rm -f {i}")
-            os.system("docker volume rm decentra-network-{i}")
+            os.system(f"docker volume rm decentra-network-{i}")
             
         os.system("docker network rm dn-net")
         os.system("docker network create --subnet=172.19.0.0/16 dn-net")
