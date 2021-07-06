@@ -8,7 +8,7 @@
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br />
-    <a href="https://github.com/Decentra-Network/Decentra-Network/wiki"><strong>Explore the wikis »</strong></a>
+    <a href="https://github.com/Decentra-Network/Decentra-Network/tree/master/doc"><strong>Explore the docs »</strong></a>
     <br />
     <br />
   <a href="https://www.python.org/">
@@ -39,21 +39,35 @@
 
 
 # Introducing
-This is an open source decentralized application network. In this network, you can develop or use applications in your independent, decentralized application network.
-<br />
+Decentra Network is an open source blockchain that combines speed, security and decentralization.Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
+The main features of Decentra Network are:
+- Less than 7 Seconds block time (Confirmation Time)
+- Low size (~20mb per 1m user)
+- 10k+ transactions per second
+- Low Transaction Fee
+- Custom and low cost Token, NTF etc. Creation system (Scheduled Feature)
+- Usability even on mobile devices
+- Environmentally Friendly
+- Asymptotic security against Sybil attacks (51 Attack)
+- Completely decentralized structure
+- Official community officers supported in-chain
+- In-chain developer incentives
+- Built-in application structure
+- Custom wallet system
 
-<p float="left">
-  <img src="https://user-images.githubusercontent.com/41792982/114184305-5b67e880-994d-11eb-89d6-4139c25ab525.jpg" width="32%" />
-  <img src="https://user-images.githubusercontent.com/41792982/114184311-5dca4280-994d-11eb-8d3e-7005e65d8fd7.jpg" width="32%" /> 
-  <img src="https://user-images.githubusercontent.com/41792982/114184316-5efb6f80-994d-11eb-888f-70e6d51d5ad9.jpg" width="32%" />
-</p>
-<p float="left">
-  <img src="https://user-images.githubusercontent.com/41792982/114184320-602c9c80-994d-11eb-9234-815ace248d5b.jpg" width="32%" />
-  <img src="https://user-images.githubusercontent.com/41792982/114184331-615dc980-994d-11eb-967e-4029f2f75a0f.jpg" width="32%" /> 
-  <img src="https://user-images.githubusercontent.com/41792982/114184340-628ef680-994d-11eb-914a-5aadeb17112b.jpg" width="32%" />
-</p>
+The software is written in PEP8 format and only needs dependent libraries for GUI panel. Decentra Network Core software, designed with a focus on the community on the Github platform, In addition, UNIT tests of some systems are ready and automated. It also has various structures for automatic setup of test environments. It is fully compatible with Git code management system and Agile methodology.
 
-### Founder : Onur Atakan ULUSOY
+The Decentra-Network Core has 4 control areas:
+- GUI
+- CLI Menu
+- CLI Arguments
+- WEB API
+
+# Contribute
+Decentra Network is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Decentra-Network/Decentra-Network/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Decentra-Network/Decentra-Network/blob/master/CODE_OF_CONDUCT.md).
+
+# Using
+Please review the [documentation](https://github.com/Decentra-Network/Decentra-Network/tree/master/doc) for use.
 
 <br />
 <p align="center">
@@ -75,3 +89,11 @@ This is an open source decentralized application network. In this network, you c
 <br />
   </p>
 </p>
+
+<br />
+<p align="center">
+
+  <h3 align="center">Founder : Onur Atakan ULUSOY</h3>
+
+</p>
+
