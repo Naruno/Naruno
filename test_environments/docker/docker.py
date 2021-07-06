@@ -29,7 +29,7 @@ class Decentra_Network_Docker:
     
     def install(self):
         os.system("docker rm -f $(docker ps -a -q -f ancestor=decentra-network-api)")
-        os.system("docker volume rm $(docker volume ls -q -f name=decentra-network-api)")
+        os.system("docker volume rm $(docker volume ls -q -f name=decentra-network)")
 
         os.system("docker network rm dn-net")
         os.system("docker network create --subnet=172.19.0.0/16 dn-net")
