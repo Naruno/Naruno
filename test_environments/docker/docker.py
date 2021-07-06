@@ -28,12 +28,9 @@ class Decentra_Network_Docker:
         time.sleep(10)
     
     def install(self):
-        os.system("docker kill $(docker ps -q)")
-        os.system("docker volume rm decentra-network")
-        for i in range(self.number_of_nodes):
-            os.system(f"docker rm -f {i}")
-            os.system(f"docker volume rm decentra-network-{i}")
-            
+        os.system("docker rm -f $(docker ps -a -q -f ancestor=decentra-network-api)")
+        os.system("docker volume rm $(docker volume ls -q -f name=decentra-network-api)")
+
         os.system("docker network rm dn-net")
         os.system("docker network create --subnet=172.19.0.0/16 dn-net")
         for i in range(self.number_of_nodes):
