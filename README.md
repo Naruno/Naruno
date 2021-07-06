@@ -72,7 +72,7 @@ Please review the [documentation](https://github.com/Decentra-Network/Decentra-N
 <br />
 <p align="center">
 
-  <h3 align="center">Statistics of this repository</h3>
+  <h3 align="center">Github Statistics of This Repository</h3>
   
   <p align="center">
     <img src="https://img.shields.io/github/stars/Decentra-Network/Decentra-Network?style=social" alt="Repo_stars">
