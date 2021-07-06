@@ -50,6 +50,7 @@ def consensus_round_1(block):
           dprint("Raund 1: first ok")
           dprint(len(candidate_class.candidate_blocks))
           for candidate_block in candidate_class.candidate_blocks[:]:
+              print(candidate_block)
 
 
               for other_block_tx in candidate_block["transaction"]:
