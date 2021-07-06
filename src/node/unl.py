@@ -54,7 +54,12 @@ def get_as_node_type(id_list):
         for list_node in id_list:
             for each_node in (mynode.main_node.nodes_inbound + mynode.main_node.nodes_outbound):
                 if list_node == each_node.id:
-                    temp_list.append(each_node)
+                    already_in_list = False
+                    for each_already_node in temp_list[:]:
+                        if each_already_node.id == each_node.id:
+                            already_in_list = True
+                    if not already_in_list:
+                        temp_list.append(each_node)
 
         return temp_list
 
