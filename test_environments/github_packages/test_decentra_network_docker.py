@@ -117,8 +117,8 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
 
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
 import urllib.request, json
 import time
-from test_environments.docker import Decentra_Network_Docker
+from test_environments.github_packages.docker import Decentra_Network_Docker
 unittest.main(exit=False)
