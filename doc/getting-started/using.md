@@ -1,6 +1,4 @@
-# Opening
-
-
+# Normal
 ## CLI Mode
 If you want to use the CLI, you should open the "src/cli.py".
 
@@ -45,3 +43,10 @@ Connection request of non-unl nodes is not accepted
 Write `ndconnect` and press enter.
 ## GUI Mode
 Click "Connect Node" button.
+
+# Docker
+With Docker you can only use cli and api modes
+## Run CLI
+docker run -v decentra-network-cli:/Decentra-Network/src/db/ --network=host -dit ghcr.io/decentra-network/cli
+## Run API
+docker run -v decentra-network-api:/Decentra-Network/src/db/ --network=host -dit ghcr.io/decentra-network/api

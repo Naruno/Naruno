@@ -7,5 +7,7 @@ With this command, a folder was created as "Decentra-Network".
 # With Docker
 ## Github Packages
 You must login to Github Packages
-
-`docker pull docker.pkg.github.com/decentra-network/decentra-network/api:latest`
+### CLI
+`docker pull ghcr.io/decentra-network/cli:latest`
+### API
+`docker pull ghcr.io/decentra-network/api:latest`
