@@ -24,8 +24,6 @@ Some mistakes fixed
 
 ### Consensus First Round
 - Fixed the situation for not validated transaction.
-
-### Consensus Second Round
 - Removed the candidate block same signature control
 
 ### 0.4.5-alpha Release Note
