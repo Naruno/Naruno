@@ -39,7 +39,7 @@
 
 
 # Introducing
-Decentra Network is an open source blockchain that combines speed, security and decentralization.Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
+Decentra Network is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
 The main features of Decentra Network are:
 - Less than 7 Seconds block time (Confirmation Time)
 - Low size (~20mb per 1m user)
@@ -55,13 +55,40 @@ The main features of Decentra Network are:
 - Built-in application structure
 - Custom wallet system
 
-The software is written in PEP8 format and only needs dependent libraries for GUI panel. Decentra Network Core software, designed with a focus on the community on the Github platform, In addition, UNIT tests of some systems are ready and automated. It also has various structures for automatic setup of test environments. It is fully compatible with Git code management system and Agile methodology.
+The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network Core software, designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile methodology**.
 
-The Decentra-Network Core has 4 control areas:
-- GUI
-- CLI Menu
-- CLI Arguments
-- WEB API
+**The Decentra-Network Core has 4 control areas:**
+
+## GUI
+The GUI was made with **kivy** and some auxiliary libraries to be **cross platform**. It was intended to be useful with a **minimalist** design.The GUI, which has a useful structure, is ready for **additions** and **changes**.
+
+**The GUI has a total of 4 pages.**
+<br />
+
+<p float="center">
+  <img src="https://user-images.githubusercontent.com/41792982/124753209-5eb14700-df31-11eb-8f21-8b4d6575402f.PNG" width="48%" />
+  <img src="https://user-images.githubusercontent.com/41792982/124753346-8bfdf500-df31-11eb-92c1-8629663000b2.PNG" width="48%" />
+
+</p>
+<p float="center">
+  <img src="https://user-images.githubusercontent.com/41792982/124753515-bd76c080-df31-11eb-9663-6dba5db9db5d.PNG" width="48%" />
+  <img src="https://user-images.githubusercontent.com/41792982/124753541-c5366500-df31-11eb-9dbf-daf39c7decb9.PNG" width="48%" /> 
+</p>
+
+## CLI Menu
+The CLI Menu panel is designed to be useful.
+
+![cli menu](https://user-images.githubusercontent.com/41792982/124754486-f5cace80-df32-11eb-9042-b3dadbd88904.PNG)
+
+## CLI Arguments
+The CLI Arguments panel is designed to make some adjustments quickly and in multiple ways.
+
+![cli arguments](https://user-images.githubusercontent.com/41792982/124754779-44786880-df33-11eb-9dda-b5440128ed6c.PNG)
+
+## WEB API
+It has been developed to make web api control easier and to provide control by other languages and other systems.
+
+![api](https://user-images.githubusercontent.com/41792982/124757058-ded9ab80-df35-11eb-8ceb-f3e9672a0283.PNG)
 
 # Contribute
 Decentra Network is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Decentra-Network/Decentra-Network/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Decentra-Network/Decentra-Network/blob/master/CODE_OF_CONDUCT.md).
