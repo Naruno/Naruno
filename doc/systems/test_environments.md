@@ -30,10 +30,15 @@ You must pull images and tag must be decentra-network-api
 You run the decentra-network nodes as this types:
 ## Preparing The Nodes
 * Each node will be in different dir
+
 Node Number 3
+
 1.node Run api with 8000 port
+
 2.node Run api with 8010 port
+
 3.node Run api with 8020 port
+
 .
 .
 .
