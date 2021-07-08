@@ -93,8 +93,8 @@ It has been developed to make web api control easier and to provide control by o
 # Contribute
 Decentra Network is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Decentra-Network/Decentra-Network/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Decentra-Network/Decentra-Network/blob/master/CODE_OF_CONDUCT.md).
 
-# Using
-Please review the [documentation](https://github.com/Decentra-Network/Decentra-Network/tree/master/doc) for use.
+# Documents
+Our documents are available in the [doc](https://github.com/Decentra-Network/Decentra-Network/tree/master/doc) folder.
 
 <br />
 <p align="center">
