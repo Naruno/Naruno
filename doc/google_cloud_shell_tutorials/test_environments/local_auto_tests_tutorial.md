@@ -24,14 +24,14 @@ python3 Decentra-Network/src/api.py
 ## Running The Core 2
 Open new terminal.
 ```bash
-python3 Decentra-Network-2/src/api.py -p 8010
+python3 cloudshell_open/Decentra-Network-2/src/api.py -p 8010
 ```
 <walkthrough-footnote>Local Test Environments Tutorial</walkthrough-footnote>
 
 ## Running The Core 3
 Open new terminal.
 ```bash
-python3 Decentra-Network-3/src/api.py -p 8020
+python3 cloudshell_open/Decentra-Network-3/src/api.py -p 8020
 ```
 <walkthrough-footnote>Local Test Environments Tutorial</walkthrough-footnote>
 
