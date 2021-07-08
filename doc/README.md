@@ -5,7 +5,7 @@
 # Systems
 - [Accounts](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/systems/accounts.md)
 - [Transactions](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/systems/transactions.md)
-- [Test Environments](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/systems/test_environments/test_environments.md)
+- [Test Environments](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/systems/test_environments.md)
 
 # Apps
 - [How to Install the App ?](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/apps/how_to_install_app.md)
@@ -13,7 +13,7 @@
 - [Definition For App](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/apps/definition_for_app.md)
 
  # Google Cloud Shell Tutorials
- - [![Open in Cloud Shell](https://img.shields.io/badge/Test%20Environments-Docker%20Auto-blue)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=doc/systems/test_environments/google_cloud_shell/docker_auto_tests_tutorial.md)
+ - [![Open in Cloud Shell](https://img.shields.io/badge/Test%20Environments-Docker%20Auto-blue)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=doc/systems/google_cloud_shell_tutorials/test_environments/docker_auto_tests_tutorial.md)
 
 # Release Notes
 - [0.1.0-alpha](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/release-notes/release-notes-0.1.0-alpha.md)
