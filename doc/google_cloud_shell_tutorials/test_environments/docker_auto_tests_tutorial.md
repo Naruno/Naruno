@@ -24,3 +24,8 @@ python3 test_environments/docker/test_decentra_network_docker.py
 ## Conclusion
 
 Done!
+<walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
+
+
+
+<walkthrough-footnote>Decentra Network</walkthrough-footnote>
