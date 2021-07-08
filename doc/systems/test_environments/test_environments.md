@@ -6,7 +6,8 @@ You must pull images and tag must be decentra-network-api
 
 `docker image tag ghcr.io/decentra-network/api decentra-network-api`
 
-## Running Auto Test
+## Running Auto Test | [![Open in Cloud Shell](https://img.shields.io/badge/Open-Google%20Cloud%20Shell%20Tutorial-blue)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=doc/systems/test_environments/google_cloud_shell/docker_tutorial.md)
+
 `python3 test_decentra_network_docker.py`
 
 ## Start the Network Only
