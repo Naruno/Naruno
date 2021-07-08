@@ -5,7 +5,7 @@ The core elements of an [account](https://github.com/Decentra-Network/Decentra-N
 * A **sequence number**, which helps make sure any transactions this account sends are applied in the correct order and only once each. After a transaction, the sender account's sequence number increases by 1.
 * An **DNC balance**. Some of this DNC is set aside for the [Reserve](#reserve).
 
-## Addressing System
+# Addressing System
 Addresses allow accounts to take up less space.
 The diagram below shows how the decentra network address is created from the public key.
 
@@ -31,9 +31,19 @@ print(address)
 
 ***
 
-[Get as Address Function](https://github.com/Decentra-Network/Decentra-Network/blob/master/src/wallet/wallet.py#L1042)
+# Get as Address Function
+This function gives the address of an public key.
+You can import with this command 
 
-## Reserve
+```python
+from wallet.wallet import Address
+
+public_key = "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEAtLa9K8MLg+frIEFBYmbYDsc0INqXedAF8SlpEGQQmOSjKV+6MxpVP53bl6elalJfCMV33WhqAelf3qkx+QHvw=="
+
+print(Address(public_key)
+```
+
+# Reserve
 Each account takes up some space in the Decentra Network network, so an account needs to be valuable to take up space. Reserve amount is therefore required.
 
 * The reserve amount is currently 1000 DNC. ([Pull Request #65](https://github.com/Decentra-Network/Decentra-Network/commit/dead29d08e96fea738911b1cd90fe7d2d0a62c44#diff-17332442b68875a6b66bd4989c8ed80c22ce1c836445aa7042145b0c0627cf30R64))
