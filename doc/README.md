@@ -13,7 +13,7 @@
 - [Definition For App](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/apps/definition_for_app.md)
 
  # Google Cloud Shell Tutorials
- - [![Open in Cloud Shell](https://img.shields.io/badge/Open-Google%20Cloud%20Shell%20Tutorial-blue)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=doc/systems/test_environments/google_cloud_shell/docker_tutorial.md)
+ - [![Open in Cloud Shell](https://img.shields.io/badge/Test%20Environments-Docker%20Auto-blue)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=doc/systems/test_environments/google_cloud_shell/docker_tutorial.md)
 
 # Release Notes
 - [0.1.0-alpha](https://github.com/Decentra-Network/Decentra-Network/blob/master/doc/release-notes/release-notes-0.1.0-alpha.md)
