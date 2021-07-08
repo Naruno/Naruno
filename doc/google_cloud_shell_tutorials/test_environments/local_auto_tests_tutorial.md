@@ -36,10 +36,10 @@ python3 cloudshell_open/Decentra-Network-3/src/api.py -p 8020
 <walkthrough-footnote>Local Test Environments Tutorial</walkthrough-footnote>
 
 ## Running The Auto Tests
-Finaly we run our automated test tool, it sets up and tests the network for us.
+Finaly open new terminal and we run our automated test tool, it sets up and tests the network for us.
 
 ```bash
-python3 Decentra-Network/test_environments/local/test_decentra_network_local.py
+python3 cloudshell_open/Decentra-Network/test_environments/local/test_decentra_network_local.py
 ```
 <walkthrough-footnote>Local Test Environments Tutorial</walkthrough-footnote>
 ## Conclusion
