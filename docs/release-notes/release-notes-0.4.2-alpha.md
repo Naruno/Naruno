@@ -7,7 +7,7 @@ nav_order: 6
 0.4.2-alpha Release Notes
 ====================
 
-This patch changes the node approach and adds some features.
+This patch includes some block time improvements.
 
 Please report bugs using the issue tracker at GitHub:
 
@@ -21,10 +21,11 @@ There have been no compatibility changes.
 Notable changes
 ===============
 
-## Only UNL Node Connection
+## Temporary Or Permanent Control For Block Time Increase Or Decrease
 
-Now the software will only accept UNL nodes' requests to connect, 
-this will make a huge contribution to security.
+Now, before increasing or decreasing the block time, the temporality 
+of the situation is checked, thus providing a more stable and accurate 
+block time.
 
 0.4.2-alpha change log
 =================
