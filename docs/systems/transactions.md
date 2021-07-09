@@ -1,3 +1,9 @@
+---
+title: Transactions
+parent: Getting Started
+nav_order: 2
+---
+
 Transactions are the mainstay of every operation on the network. If the transaction is correct, it will be accepted.
 Pseudo transactions are not accepted and will not propagated through the network.
 
