@@ -1,6 +1,6 @@
 ---
 title: Transactions
-parent: Getting Started
+parent: Systems
 nav_order: 2
 ---
 
