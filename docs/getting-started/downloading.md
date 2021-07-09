@@ -1,6 +1,8 @@
-| Name | Description | Pull Command |
+
+| Name | Description | Usage |
 | --- | --- | --- |
-| git clone | For cloning from github | `git clone https://github.com/Decentra-Network/Decentra-Network` |
-| zip | For downloading as zip | [click](https://github.com/Decentra-Network/Decentra-Network/archive/refs/heads/master.zip) |
-| [docker-cli](https://github.com/Decentra-Network/Decentra-Network/pkgs/container/cli) | For using the CLI panel | `docker pull ghcr.io/decentra-network/cli:latest` |
-| [docker-api](https://github.com/Decentra-Network/Decentra-Network/pkgs/container/api) | For running the API | `docker pull ghcr.io/decentra-network/api:latest` |
+| git clone | For cloning with git| `git clone https://github.com/Decentra-Network/Decentra-Network` |
+| [docker-cli](https://github.com/Decentra-Network/Decentra-Network/pkgs/container/cli) | For using the CLI panel docker image | `docker pull ghcr.io/decentra-network/cli:latest` |
+| [docker-api](https://github.com/Decentra-Network/Decentra-Network/pkgs/container/api) | For running the API docker image | `docker pull ghcr.io/decentra-network/api:latest` |
+| zip | For dowload as zip | https://github.com/Decentra-Network/Decentra-Network/archive/refs/heads/master.zip |
+| tar.gz | For dowload as tar.gz | https://github.com/Decentra-Network/Decentra-Network/archive/refs/heads/master.tar.gz |
