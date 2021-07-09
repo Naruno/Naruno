@@ -1,7 +1,6 @@
 ---
-layout: default
-title: Decentra Network Documents
-nav_exclude: true
+title: Index
+nav_order: 1
 ---
 
 # Getting Started
