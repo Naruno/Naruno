@@ -1,7 +1,7 @@
 ---
 title: Creating A App
 parent: Apps
-nav_order: 1
+nav_order: 2
 ---
 
 - Decentra-Network
