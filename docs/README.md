@@ -1,6 +1,8 @@
 ---
+layout: default
 title: Index
-nav_order: 1
+nav_order: 5
+has_children: false
 ---
 
 # Getting Started
