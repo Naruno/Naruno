@@ -1,3 +1,9 @@
+---
+layout: default
+title: 404
+nav_exclude: true
+---
+
 # Getting Started
 - [Downloading](https://decentra-network.github.io/Decentra-Network/getting-started/downloading)
 - [Using](https://decentra-network.github.io/Decentra-Network/getting-started/using)
