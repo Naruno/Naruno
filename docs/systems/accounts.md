@@ -1,3 +1,9 @@
+---
+title: Accounts
+parent: Systems
+nav_order: 1
+---
+
 The most important area of the Decentra Network Blockchain is Accounts. It makes the **Blockchain light**.
 
 The core elements of an [account](https://github.com/Decentra-Network/Decentra-Network/blob/master/src/accounts/account.py#L19) are:
