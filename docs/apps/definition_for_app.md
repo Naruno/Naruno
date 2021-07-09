@@ -1,3 +1,9 @@
+---
+title: Creating A App
+parent: Apps
+nav_order: 3
+---
+
 # Explanation
 Some definitions are required for the Main Software to recognize app.
 
