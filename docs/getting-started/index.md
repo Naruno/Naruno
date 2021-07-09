@@ -1,6 +1,6 @@
 ---
 layout: default
-title: getting-started
+title: Getting Started
 nav_order: 1
 has_children: true
 ---
