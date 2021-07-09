@@ -1,3 +1,9 @@
+---
+title: 0.4.1-alpha
+parent: Release Notes
+nav_order: 7
+---
+
 0.4.1-alpha Release Notes
 ====================
 
