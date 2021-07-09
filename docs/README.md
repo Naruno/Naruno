@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 404
+title: Decentra Network Documents
 nav_exclude: true
 ---
 
