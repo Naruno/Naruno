@@ -1,3 +1,9 @@
+---
+title: 0.2.0-alpha
+parent: Release Notes
+nav_order: 2
+---
+
 0.2.0-alpha Release Notes
 ====================
 
