@@ -1,7 +1,7 @@
 ---
 title: 0.4.6-alpha
 parent: Release Notes
-nav_order: 13
+nav_order: 2
 ---
 
 0.4.6-alpha Release Notes
