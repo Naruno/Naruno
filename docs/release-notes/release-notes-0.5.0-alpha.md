@@ -1,3 +1,9 @@
+---
+title: 0.5.0-alpha
+parent: Release Notes
+nav_order: 14
+---
+
 0.5.0-alpha Release Notes
 ====================
 
