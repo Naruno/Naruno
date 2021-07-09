@@ -1,3 +1,9 @@
+---
+title: Using
+parent: Getting Started
+nav_order: 2
+---
+
 # Normal
 ## CLI Mode
 If you want to use the CLI, you should open the "src/cli.py".
