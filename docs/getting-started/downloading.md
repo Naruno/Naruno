@@ -1,3 +1,8 @@
+---
+title: Downloading
+parent: Getting Started
+nav_order: 1
+---
 
 | Name | Description | Usage |
 | --- | --- | --- |
