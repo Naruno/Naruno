@@ -1,10 +1,3 @@
----
-layout: default
-title: Index
-nav_order: 5
-has_children: false
----
-
 # Getting Started
 - [Downloading](https://decentra-network.github.io/Decentra-Network/getting-started/downloading)
 - [Using](https://decentra-network.github.io/Decentra-Network/getting-started/using)
