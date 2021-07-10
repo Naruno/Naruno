@@ -31,7 +31,12 @@
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/main.yml">
     <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/main.yml/badge.svg" alt="Python_package"></a>
+  .
+  <a href="https://github.com/Decentra-Network/Decentra-Network/deployments/activity_log?environment=github-pages">
+  <img src="https://img.shields.io/github/deployments/Decentra-Network/Decentra-Network/github-pages?label=Github%20pages" alt="Github_pages">
+  <a/>
   </p>
+  
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml">
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL"></a>
