@@ -65,6 +65,7 @@ def consensus_round_1(block):
                   if len(candidate_class.candidate_blocks) != 1:
                       dprint("Raund 1: Test tx")
                       for other_block in candidate_class.candidate_blocks[:]:
+                         if candidate_block["signature"] != other_block["signature"]:
                             dprint("Raund 1: Test tx 2")
                             for other_block_txs in other_block["transaction"]:
                                 if other_block_tx.signature == other_block_txs.signature:
