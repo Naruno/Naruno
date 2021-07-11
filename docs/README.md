@@ -8,6 +8,10 @@
 - [Accounts](https://decentra-network.github.io/Decentra-Network/systems/accounts)
 - [Transactions](https://decentra-network.github.io/Decentra-Network/systems/transactions)
 - [Test Environments](https://decentra-network.github.io/Decentra-Network/systems/test_environments)
+- Consensus
+  - [The Consensus](https://github.com/Decentra-Network/Decentra-Network/blob/master/docs/systems/consensus/the_consensus.md)
+  - [First Round](https://github.com/Decentra-Network/Decentra-Network/blob/master/docs/systems/consensus/first_round.md)
+  - [Second Round](https://github.com/Decentra-Network/Decentra-Network/blob/master/docs/systems/consensus/second_round.md)
 
 ## Apps
 - [How to Install the App ?](https://decentra-network.github.io/Decentra-Network/apps/how_to_install_app)
