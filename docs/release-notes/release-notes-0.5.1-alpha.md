@@ -27,7 +27,7 @@ Documents migrated to a new theme and some documents added and some documents up
 0.5.1-alpha change log
 =================
 
-### COnsensus First Round
+### Consensus First Round
 - Added control mechanism the same blocks in candidate blocks for loops
 
 ### Documents
