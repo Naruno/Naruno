@@ -36,3 +36,4 @@
 - [0.4.5-alpha](https://decentra-network.github.io/Decentra-Network/release-notes/release-notes-0.4.5-alpha)
 - [0.4.6-alpha](https://decentra-network.github.io/Decentra-Network/release-notes/release-notes-0.4.6-alpha)
 - [0.5.0-alpha](https://decentra-network.github.io/Decentra-Network/release-notes/release-notes-0.5.0-alpha)
+- [0.5.1-alpha](https://decentra-network.github.io/Decentra-Network/release-notes/release-notes-0.5.1-alpha)
