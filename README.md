@@ -23,26 +23,43 @@
   
   
   </p>
+
+
+
+
   <p align="center">
   <a href="https://www.codefactor.io/repository/github/decentra-network/decentra-network"><img src="https://www.codefactor.io/repository/github/decentra-network/decentra-network/badge" alt="CodeFactor" /></a>
   .
   <a href="https://lgtm.com/projects/g/Decentra-Network/Decentra-Network/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/Decentra-Network/Decentra-Network.svg?logo=lgtm&logoWidth=18"/></a>
   </p>
+  
+
+
   <p align="center">
-  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/main.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/main.yml/badge.svg" alt="Python_package"></a>
+  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test"></a>
   .
-  <a href="https://github.com/Decentra-Network/Decentra-Network/deployments/activity_log?environment=github-pages">
-  <img src="https://img.shields.io/github/deployments/Decentra-Network/Decentra-Network/github-pages?label=Github%20pages" alt="Github_pages">
+  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml">
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml/badge.svg" alt="Ubuntu_Latest_Unit_Test"></a>
+  .
+  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml">
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml/badge.svg" alt="MacOS_Latest_Unit_Test"></a>
+  </p>
+
+  <p align="center">
+  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml">
+  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL"></a>
+  .
+   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml">
+  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml/badge.svg" alt="Lint_with_flake8">
   <a/>
   </p>
   
   <p align="center">
-  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL"></a>
+    <a href="https://github.com/Decentra-Network/Decentra-Network/deployments/activity_log?environment=github-pages">
+  <img src="https://img.shields.io/github/deployments/Decentra-Network/Decentra-Network/github-pages?label=Github%20pages" alt="Github_pages">
+  <a/>
   </p>
-  
-</p>
 
 # Introducing
 Decentra Network is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
