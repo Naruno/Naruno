@@ -62,7 +62,6 @@
   </p>
     
   <p align="center">
-[![Ubuntu Latest Test Decentra Network](https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_test_decentra_network.yml/badge.svg)](https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_test_decentra_network.yml)
     <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_test_decentra_network.yml">
       <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_test_decentra_network.yml/badge.svg" alt="Ubuntu_latest_test_decentra_network">
     </a>
