@@ -3,20 +3,20 @@ name: MacOS Latest Unit Test
 on: 
   push:
     paths:
-      - '.github/workflows'
-      - 'docker'
-      - 'src'  
-      - 'requirements'
-      - 'tests'
-      - 'test_environments'
+      - '.github/workflows/**'
+      - 'docker/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
+      - 'test_environments/**'
   pull_request:
     paths:
-      - '.github/workflows'
-      - 'docker'
-      - 'src'  
-      - 'requirements'
-      - 'tests'
-      - 'test_environments'
+      - '.github/workflows/**'
+      - 'docker/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
+      - 'test_environments/**'
 jobs:
   build:
 
