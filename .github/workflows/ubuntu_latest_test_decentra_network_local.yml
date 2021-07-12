@@ -20,4 +20,4 @@ jobs:
         pip install pytest
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/test_environments/docker/test_decentra_network_docker.py -cov-fail-under=80
+        pytest Decentra-Network/test_environments/docker/test_decentra_network_docker.py --cov-fail-under=80
