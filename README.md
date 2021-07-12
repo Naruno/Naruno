@@ -13,7 +13,7 @@
     <br />
   <a href="https://www.python.org/">
   <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" alt="Made_with_python">
-    </a>
+  </a>
   .
   <img src="https://img.shields.io/github/repo-size/Decentra-Network/Decentra-Network" alt="repo_size">
   .
