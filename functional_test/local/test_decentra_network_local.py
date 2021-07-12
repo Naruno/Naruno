@@ -53,5 +53,5 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
 import urllib.request, json
 import time
-from test_environments.local.local import Decentra_Network_Local
+from functional_test.local.local import Decentra_Network_Local
 unittest.main(exit=False)

@@ -25,7 +25,7 @@ docker image tag ghcr.io/decentra-network/api decentra-network-api
 Finaly we run our automated test tool, it sets up and tests the network for us.
 
 ```bash
-python3 test_environments/docker/test_decentra_network_docker.py
+python3 functional_test/docker/test_decentra_network_docker.py
 ```
 <walkthrough-footnote>Docker Test Environments Tutorial</walkthrough-footnote>
 ## Conclusion

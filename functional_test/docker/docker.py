@@ -25,7 +25,7 @@ class Decentra_Network_Docker:
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(10)
+        time.sleep(15)
     
     def install(self):
         os.system("docker rm -f $(docker ps -a -q -f ancestor=decentra-network-api)")

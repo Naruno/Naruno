@@ -30,7 +30,6 @@ from wallet.print_balance import print_balance
 
 
 
-
 def show_menu():
     """
     Prints some information and the menu.

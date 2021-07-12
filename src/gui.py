@@ -22,7 +22,6 @@ from lib.config_system import get_config
 os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
 
 
-
 KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
 
 for kv_file in os.listdir(KV_DIR):

@@ -13,19 +13,12 @@
     <br />
   <a href="https://www.python.org/">
   <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" alt="Made_with_python">
-    </a>
+  </a>
   .
   <img src="https://img.shields.io/github/repo-size/Decentra-Network/Decentra-Network" alt="repo_size">
   .
   <img src="https://img.shields.io/tokei/lines/github/Decentra-Network/Decentra-Network" alt="total_lines">
-  
-  
-  
-  
   </p>
-
-
-
 
   <p align="center">
   <a href="https://www.codefactor.io/repository/github/decentra-network/decentra-network"><img src="https://www.codefactor.io/repository/github/decentra-network/decentra-network/badge" alt="CodeFactor" /></a>
@@ -37,28 +30,32 @@
 
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test"></a>
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test">
+  </a>
   .
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml/badge.svg" alt="Ubuntu_Latest_Unit_Test"></a>
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml/badge.svg" alt="Ubuntu_Latest_Unit_Test">
+  </a>
   .
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml/badge.svg" alt="MacOS_Latest_Unit_Test"></a>
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml/badge.svg" alt="MacOS_Latest_Unit_Test">
+  </a>
   </p>
 
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL"></a>
+  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
+  </a>
   .
    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml">
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml/badge.svg" alt="Lint_with_flake8">
   <a/>
   </p>
-  
+    
   <p align="center">
-    <a href="https://github.com/Decentra-Network/Decentra-Network/deployments/activity_log?environment=github-pages">
-  <img src="https://img.shields.io/github/deployments/Decentra-Network/Decentra-Network/github-pages?label=Github%20pages" alt="Github_pages">
-  <a/>
+    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml">
+      <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml/badge.svg" alt="Functional_tests">
+    </a>
   </p>
 
 # Introducing

@@ -23,7 +23,7 @@ class Decentra_Network_Local:
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(10)
+        time.sleep(15)
 
     def creating_the_wallets(self):
 

@@ -1,6 +1,22 @@
 name: Lint with flake8
 
-on: [push,pull_request]
+on: 
+  push:
+    paths:
+      - '.github/workflows/**'
+      - 'docker/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
+      - 'functional_test/**'
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'docker/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
+      - 'functional_test/**'
 
 jobs:
   build:
