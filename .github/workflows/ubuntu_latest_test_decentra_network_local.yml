@@ -1,0 +1,23 @@
+name: Ubuntu Latest Test Decentra Network Local
+
+on: [push,pull_request]
+
+jobs: 
+  build:
+    name: Ubuntu Latest Test Decentra Network Local
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        cd ..
+        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        pytest Decentra-Network/test_environments/docker/test_decentra_network_docker.py
