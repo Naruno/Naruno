@@ -30,7 +30,6 @@ from wallet.print_balance import print_balance
 app = flask.Flask(__name__)
 app.config["DEBUG"] = the_settings()["test_mode"]
 
-
 @app.route('/wallet/print', methods=['GET'])
 def print_wallets_page():
     return jsonify(print_wallets())
