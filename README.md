@@ -18,10 +18,6 @@
   <img src="https://img.shields.io/github/repo-size/Decentra-Network/Decentra-Network" alt="repo_size">
   .
   <img src="https://img.shields.io/tokei/lines/github/Decentra-Network/Decentra-Network" alt="total_lines">
-  
-  
-  
-  
   </p>
 
 
