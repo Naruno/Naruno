@@ -49,7 +49,7 @@ class Transaction:
             "data": self.data,
             "amount": self.amount,
             "transaction_fee": self.transaction_fee,
-            "transaction_time":self.time
+            "transaction_time": self.time
         }
         return data
 
