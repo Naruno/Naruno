@@ -13,12 +13,16 @@ from lib.settings_system import the_settings, change_wallet
 
 
 def delete_current_wallet():
-            if not the_settings()["wallet"] == 0:
-                    saved_wallets = get_saved_wallet()
-                    selected_wallet_pubkey = Wallet_Import(int(the_settings()["wallet"]),0)
-                    for each_wallet in saved_wallets:
-                        if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
-                            change_wallet(0)
-                            Wallet_Delete(each_wallet)
-            else:
-                print("First wallet cannot be deleted.")
+    """
+    Deletes the current wallet.
+    """
+
+    if not the_settings()["wallet"] == 0:
+        saved_wallets = get_saved_wallet()
+        selected_wallet_pubkey = Wallet_Import(int(the_settings()["wallet"]), 0)
+        for each_wallet in saved_wallets:
+            if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
+                change_wallet(0)
+                Wallet_Delete(each_wallet)
+    else:
+        print("First wallet cannot be deleted.")

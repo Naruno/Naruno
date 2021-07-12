@@ -14,27 +14,30 @@ from wallet.print_wallets import print_wallets
 from lib.settings_system import change_wallet
 
 
-def wallet_selector(new_wallet_number = None):
-            all_wallets = list(get_saved_wallet())
-            if not len(all_wallets) == 0:
+def wallet_selector(new_wallet_number=None):
+    """
+    Changes the current wallet.
+    """
 
+    all_wallets = list(get_saved_wallet())
+    if not len(all_wallets) == 0:
 
-                while True:
-                    try:
-                        if new_wallet_number == None:
-                            new_wallet = input("Please select wallet: ")
-                        else:
-                            new_wallet = new_wallet_number
-                        if int(new_wallet) in list(range(len(all_wallets))):
-                            change_wallet(int(new_wallet))
-                            print("New Wallets:")
-                            print_wallets()
-                            break
-                        else:
-                            print("There is no such wallet")
-                            if not new_wallet_number == None:
-                                break
-                    except:
-                        print("This is not a number")
-            else:
-                print("There is no wallet") 
+        while True:
+            try:
+                if new_wallet_number == None:
+                    new_wallet = input("Please select wallet: ")
+                else:
+                    new_wallet = new_wallet_number
+                if int(new_wallet) in list(range(len(all_wallets))):
+                    change_wallet(int(new_wallet))
+                    print("New Wallets:")
+                    print_wallets()
+                    break
+                else:
+                    print("There is no such wallet")
+                    if not new_wallet_number == None:
+                        break
+            except:
+                print("This is not a number")
+    else:
+        print("There is no wallet")

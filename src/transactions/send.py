@@ -15,7 +15,7 @@ from accounts.get_sequance_number import GetSequanceNumber
 from blockchain.block.get_block import GetBlock
 
 
-def send(my_public_key, my_private_key, to_user, password, data = None, amount = None):
+def send(my_public_key, my_private_key, to_user, password, data=None, amount=None):
     """
     The main function for sending the transaction.
 
@@ -27,10 +27,13 @@ def send(my_public_key, my_private_key, to_user, password, data = None, amount =
       * amount: A int or float amount to be sent. (Can be None)
     """
 
-    my_public_key = "".join([
-            l.strip() for l in my_public_key.splitlines()
+    my_public_key = "".join(
+        [
+            l.strip()
+            for l in my_public_key.splitlines()
             if l and not l.startswith("-----")
-        ]) 
+        ]
+    )
 
     system = GetBlock()
     sequance_number = GetSequanceNumber(my_public_key, system) + 1

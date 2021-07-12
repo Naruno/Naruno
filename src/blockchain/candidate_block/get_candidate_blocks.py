@@ -12,6 +12,12 @@ from blockchain.candidate_block.candidate_block_main import candidate_block
 
 
 def GetCandidateBlocks():
+    """
+    Collects candidate blocks and candidate block hashes 
+    from connected unl nodes and returns them in the 
+    candidate_block class
+    """    
+
     nodes = get_as_node_type(get_unl_nodes())
 
     the_candidate_blocks = []
@@ -28,9 +34,12 @@ def GetCandidateBlocks():
         if node.candidate_block_hash:
             already_in_list_candidate_block_hashes = False
             for other_block_hashes in the_candidate_block_hashes[:]:
-                if other_block_hashes["signature"] == node.candidate_block_hash["signature"]:
+                if (
+                    other_block_hashes["signature"]
+                    == node.candidate_block_hash["signature"]
+                ):
                     already_in_list_candidate_block_hashes = True
             if not already_in_list_candidate_block_hashes:
                 the_candidate_block_hashes.append(node.candidate_block_hash)
-    
+
     return candidate_block(the_candidate_blocks, the_candidate_block_hashes)

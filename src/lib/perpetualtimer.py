@@ -9,7 +9,7 @@
 from threading import Timer
 
 
-class perpetualTimer():
+class perpetualTimer:
     """
     It trig the functions at time intervals, independent of the main process.
 
@@ -19,10 +19,10 @@ class perpetualTimer():
       * thread: The threading timer function.
     """
 
-    def __init__(self,t,hFunction):
-        self.t=t
+    def __init__(self, t, hFunction):
+        self.t = t
         self.hFunction = hFunction
-        self.thread = Timer(self.t,self.handle_function)
+        self.thread = Timer(self.t, self.handle_function)
 
     def handle_function(self):
         """
@@ -30,7 +30,7 @@ class perpetualTimer():
         """
 
         self.hFunction()
-        self.thread = Timer(self.t,self.handle_function)
+        self.thread = Timer(self.t, self.handle_function)
         self.thread.start()
 
     def start(self):

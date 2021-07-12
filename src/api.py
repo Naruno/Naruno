@@ -30,87 +30,104 @@ from wallet.print_balance import print_balance
 app = flask.Flask(__name__)
 app.config["DEBUG"] = the_settings()["test_mode"]
 
-@app.route('/wallet/print', methods=['GET'])
+
+@app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
     return jsonify(print_wallets())
 
-@app.route('/wallet/change/<number>', methods=['GET'])
+
+@app.route("/wallet/change/<number>", methods=["GET"])
 def wallet_change_page(number):
     wallet_selector(number)
     return jsonify(print_wallets())
 
-@app.route('/wallet/create/<password>', methods=['GET'])
+
+@app.route("/wallet/create/<password>", methods=["GET"])
 def create_wallet_page(password):
     create_a_wallet(password)
     return jsonify(print_wallets())
 
-@app.route('/wallet/delete', methods=['GET'])
+
+@app.route("/wallet/delete", methods=["GET"])
 def delete_wallets_page():
     delete_current_wallet()
     return jsonify(print_wallets())
 
-@app.route('/send/coin/<address>/<amount>/<password>', methods=['GET'])
+
+@app.route("/send/coin/<address>/<amount>/<password>", methods=["GET"])
 def send_coin_page(address, amount, password):
     send_the_coin(address, amount, password)
     return jsonify("OK")
 
-@app.route('/wallet/balance', methods=['GET'])
+
+@app.route("/wallet/balance", methods=["GET"])
 def balance_wallets_page():
     return jsonify(print_balance())
 
-@app.route('/node/start/<ip>/<port>', methods=['GET'])
+
+@app.route("/node/start/<ip>/<port>", methods=["GET"])
 def node_start_page(ip, port):
     ndstart(str(ip), int(port))
     return jsonify("OK")
 
-@app.route('/node/stop', methods=['GET'])
+
+@app.route("/node/stop", methods=["GET"])
 def node_stop_page():
     ndstop()
     return jsonify("OK")
 
-@app.route('/node/connect/<ip>/<port>', methods=['GET'])
+
+@app.route("/node/connect/<ip>/<port>", methods=["GET"])
 def node_connect_page(ip, port):
     ndconnect(str(ip), int(port))
     return jsonify("OK")
 
-@app.route('/node/connectmixdb', methods=['GET'])
+
+@app.route("/node/connectmixdb", methods=["GET"])
 def node_connectmixdb_page():
     ndconnectmixdb()
     return jsonify("OK")
 
-#/node/newunl/?MFYw......
-@app.route('/node/newunl/', methods=['GET'])
+
+# /node/newunl/?MFYw......
+@app.route("/node/newunl/", methods=["GET"])
 def node_newunl_page():
     save_new_unl_node(request.query_string.decode("utf-8"))
     return jsonify("OK")
 
-@app.route('/node/id', methods=['GET'])
+
+@app.route("/node/id", methods=["GET"])
 def node_id_page():
     return jsonify(ndid())
 
-@app.route('/settings/test/on', methods=['GET'])
+
+@app.route("/settings/test/on", methods=["GET"])
 def settings_test_on_page():
     test_mode(True)
     return jsonify("OK")
 
-@app.route('/settings/test/off', methods=['GET'])
+
+@app.route("/settings/test/off", methods=["GET"])
 def settings_test_off_page():
     test_mode(False)
     return jsonify("OK")
 
-@app.route('/settings/debug/on', methods=['GET'])
+
+@app.route("/settings/debug/on", methods=["GET"])
 def settings_debug_on_page():
     app.config["DEBUG"] = True
     debug_mode(True)
     return jsonify("OK")
 
-@app.route('/settings/debug/off', methods=['GET'])
+
+@app.route("/settings/debug/off", methods=["GET"])
 def settings_debug_off_page():
     app.config["DEBUG"] = False
     debug_mode(False)
     return jsonify("OK")
 
-@app.route('/block/get', methods=['GET'])
+
+@app.route("/block/get", methods=["GET"])
 def block_get_page():
     if the_settings()["test_mode"]:
         CreateBlock()
@@ -119,18 +136,16 @@ def block_get_page():
     return jsonify("OK")
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+    )
 
+    parser.add_argument("-p", "--port", type=int, help="Add new UNL node")
 
-    parser.add_argument('-p', '--port', type=int,
-                        help='Add new UNL node')
-
-    
     args = parser.parse_args()
 
-
     if len(sys.argv) < 2:
-        app.run(host='0.0.0.0', port=8000)
+        app.run(host="0.0.0.0", port=8000)
     else:
-        app.run(host='0.0.0.0', port=args.port)
+        app.run(host="0.0.0.0", port=args.port)

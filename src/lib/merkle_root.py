@@ -25,6 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+
 from typing import List
 
 import hashlib
@@ -37,10 +38,10 @@ class Leaf:
 
     def __init__(self, left, right):
         self.left = left
-        self.right= right
-        self.value = hashlib.sha256((self.left + self.right).encode('utf-8')).hexdigest()
-    
-
+        self.right = right
+        self.value = hashlib.sha256(
+            (self.left + self.right).encode("utf-8")
+        ).hexdigest()
 
 
 class MerkleTree:
@@ -48,10 +49,9 @@ class MerkleTree:
     The merkle tree class.
     """
 
-    def __init__(self, values: List[str])-> None:
+    def __init__(self, values: List[str]) -> None:
         self.merkleCalculator(values)
- 
- 
+
     def merkleCalculator(self, hashList):
         """
         The main calculator.
@@ -62,14 +62,14 @@ class MerkleTree:
             return
         newHashList = []
 
-        for i in range(0, len(hashList)-1, 2):
-            newHashList.append(Leaf(hashList[i], hashList[i+1]).value)
+        for i in range(0, len(hashList) - 1, 2):
+            newHashList.append(Leaf(hashList[i], hashList[i + 1]).value)
         if len(hashList) % 2 == 1:
             newHashList.append(Leaf(hashList[-1], hashList[-1]).value)
 
         return self.merkleCalculator(newHashList)
-    
-    def getRootHash(self)-> str:
+
+    def getRootHash(self) -> str:
         """
         Returns the merkle root.
         """
