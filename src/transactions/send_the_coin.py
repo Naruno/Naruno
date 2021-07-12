@@ -26,7 +26,7 @@ def send_the_coin(receiver, temp_coin_amount, password):
         print("This is not float coin amount.")
 
     if type_control and not float(temp_coin_amount) < GetBlock().minumum_transfer_amount:
-        if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(password.encode("utf-8")).hexdigest():
+        if Wallet_Import(int(the_settings()["wallet"]), 2) == sha256(password.encode("utf-8")).hexdigest():
             print(password)
             send_coin(float(temp_coin_amount), receiver, password)
         else:
