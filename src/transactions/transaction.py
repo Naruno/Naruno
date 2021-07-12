@@ -67,4 +67,13 @@ class Transaction:
         Returns the json data received with dump_json() as an object again.
         """
 
-        return Transaction(data["sequance_number"], data["signature"], data["fromUser"], data["toUser"], data["data"], data["amount"], data["transaction_fee"], data["transaction_time"])
+        return Transaction(
+            data['sequance_number'],
+            data['signature'],
+            data['fromUser'],
+            data['toUser'],
+            data['data'],
+            data['amount'],
+            data['transaction_fee'],
+            data['transaction_time'],
+            )
