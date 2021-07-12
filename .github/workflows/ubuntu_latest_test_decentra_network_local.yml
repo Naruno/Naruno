@@ -1,10 +1,10 @@
-name: Ubuntu Latest Test Decentra Network Local
+name: Ubuntu Latest Test Decentra Network
 
 on: [push,pull_request]
 
 jobs: 
   build:
-    name: Ubuntu Latest Test Decentra Network Local
+    name: Ubuntu Latest Test Decentra Network
     runs-on: ubuntu-latest
     strategy:
       matrix:
