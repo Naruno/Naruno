@@ -17,6 +17,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
+        ls
         python -m pip install --upgrade pip
         python3 src/api.py
 
@@ -53,7 +54,7 @@ jobs:
         python3 src/api.py -p 8020
 
   build_run_test:
-    name: Building The Node 3
+    name: Building Run Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
