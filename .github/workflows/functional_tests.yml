@@ -1,4 +1,4 @@
-name: Ubuntu Latest Test Decentra Network
+name: Functional Tests
 
 on: 
   push:
@@ -20,7 +20,7 @@ on:
 
 jobs: 
   build:
-    name: Ubuntu Latest Test Decentra Network
+    name: Functional Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
