@@ -1,6 +1,22 @@
 name: Windows Latest Unit Test
 
-on: [push,pull_request]
+on: 
+  push:
+    paths:
+      - '.github/workflows/**'
+      - 'docker/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
+      - 'test_environments/**'
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'docker/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
+      - 'test_environments/**'
 
 jobs:
   build:
