@@ -17,9 +17,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        ls
         python -m pip install --upgrade pip
-        python3 src/api.py
+        python3 /Users/runner/work/Decentra-Network/Decentra-Network/src/api.py
 
   build-node-2:
     name: Building The Node 2
@@ -35,7 +34,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 src/api.py -p 8010
+        python3 /Users/runner/work/Decentra-Network/Decentra-Network/src/api.py -p 8010
 
   build-node-3:
     name: Building The Node 3
@@ -51,7 +50,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 src/api.py -p 8020
+        python3 /Users/runner/work/Decentra-Network/Decentra-Network/src/api.py -p 8020
 
   build_run_test:
     name: Building Run Test
@@ -68,4 +67,4 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 test_environments/local/test_decentra_network_local.py
+        python3 /Users/runner/work/Decentra-Network/Decentra-Network/test_environments/local/test_decentra_network_local.py
