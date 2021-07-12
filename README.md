@@ -51,11 +51,10 @@
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml/badge.svg" alt="Lint_with_flake8">
   <a/>
   </p>
-  
     
   <p align="center">
-    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_test_decentra_network.yml">
-      <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_test_decentra_network.yml/badge.svg" alt="Ubuntu_latest_test_decentra_network">
+    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml">
+      <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml/badge.svg" alt="Functional_tests">
     </a>
   </p>
 
