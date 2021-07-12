@@ -56,7 +56,6 @@ jobs:
         
         
   build_run_test:
-    needs: [build_node_1, build_node_2, build_node_3]
     runs-on: ubuntu-latest
     strategy:
       matrix:
