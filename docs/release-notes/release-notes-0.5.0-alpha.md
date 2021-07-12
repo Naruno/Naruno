@@ -38,7 +38,7 @@ Added cli docker.
 - A more stable and round-based accelerator has been added
 
 ### New Test Environments
-- test_environments folder created
+- functional_test folder created
 - Added docker based constructor and autotest to test environments/docker folder
 - Added local constructor and autotest to test environments/local folder
 

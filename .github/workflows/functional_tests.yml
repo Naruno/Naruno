@@ -8,7 +8,7 @@ on:
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
-      - 'test_environments/**'
+      - 'functional_test/**'
   pull_request:
     paths:
       - '.github/workflows/**'
@@ -16,7 +16,7 @@ on:
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
-      - 'test_environments/**'
+      - 'functional_test/**'
 
 jobs: 
   build:
@@ -36,4 +36,4 @@ jobs:
         pip install pytest
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/test_environments/docker/test_decentra_network_docker.py
+        pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py
