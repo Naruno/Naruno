@@ -16,7 +16,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        Decentra_Network_Local()
+        Decentra_Network_Docker()
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/create/123").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
 
