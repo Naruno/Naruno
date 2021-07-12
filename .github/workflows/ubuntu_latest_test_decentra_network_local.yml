@@ -17,7 +17,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies and run tests
       run: |
-        pip install pytest  pytest-cov
+        pip install pytest
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/test_environments/docker/test_decentra_network_docker.py --fail-under=2
+        pytest Decentra-Network/test_environments/docker/test_decentra_network_docker.py
