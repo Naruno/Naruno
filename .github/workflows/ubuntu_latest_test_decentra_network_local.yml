@@ -3,61 +3,13 @@ name: Ubuntu Latest Test Decentra Network Local
 on: [push,pull_request]
 
 jobs:
+  build:
 
-  build-node-1:
-    name: Building The Node 1
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.8]
-    steps:
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python3 /Users/runner/work/Decentra-Network/Decentra-Network/src/api.py
 
-  build-node-2:
-    name: Building The Node 2
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
-    steps:
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python3 /Users/runner/work/Decentra-Network/Decentra-Network/src/api.py -p 8010
-
-  build-node-3:
-    name: Building The Node 3
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
-    steps:
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python3 /Users/runner/work/Decentra-Network/Decentra-Network/src/api.py -p 8020
-
-  build_run_test:
-    name: Building Run Test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -67,4 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 /Users/runner/work/Decentra-Network/Decentra-Network/test_environments/local/test_decentra_network_local.py
+        python3 src/api.py
+    - name: Test with pytest
+      run: |
+        pytest
