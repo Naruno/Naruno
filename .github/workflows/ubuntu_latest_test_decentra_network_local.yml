@@ -18,5 +18,5 @@ jobs:
     - name: Install dependencies
       run: |
         cd ..
-        docker build -t decentra-network -f Decentra-Network/docker/local/api/Dockerfile .
-        sudo python3 Decentra-Network/test_environments/docker/test_decentra_network_docker.py
+        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        python3 Decentra-Network/test_environments/docker/test_decentra_network_docker.py
