@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 Decentra-Network/src/api.py
+        python3 src/api.py
 
   build-node-2:
     name: Building The Node 2
@@ -34,7 +34,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 Decentra-Network/src/api.py -p 8010
+        python3 src/api.py -p 8010
 
   build-node-3:
     name: Building The Node 3
@@ -50,7 +50,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 Decentra-Network/src/api.py -p 8020
+        python3 src/api.py -p 8020
 
   build_run_test:
     name: Building The Node 3
@@ -67,4 +67,4 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 Decentra-Network/test_environments/local/test_decentra_network_local.py
+        python3 test_environments/local/test_decentra_network_local.py
