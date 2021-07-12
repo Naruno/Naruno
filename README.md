@@ -30,18 +30,22 @@
 
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test"></a>
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test">
+  </a>
   .
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml/badge.svg" alt="Ubuntu_Latest_Unit_Test"></a>
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml/badge.svg" alt="Ubuntu_Latest_Unit_Test">
+  </a>
   .
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml/badge.svg" alt="MacOS_Latest_Unit_Test"></a>
+    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml/badge.svg" alt="MacOS_Latest_Unit_Test">
+  </a>
   </p>
 
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL"></a>
+  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
+  </a>
   .
    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml">
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml/badge.svg" alt="Lint_with_flake8">
