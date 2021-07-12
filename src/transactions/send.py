@@ -30,7 +30,7 @@ def send(my_public_key, my_private_key, to_user, password, data = None, amount =
     my_public_key = "".join([
             l.strip() for l in my_public_key.splitlines()
             if l and not l.startswith("-----")
-        ])  
+        ]) 
 
     system = GetBlock()
     sequance_number = GetSequanceNumber(my_public_key, system) + 1
