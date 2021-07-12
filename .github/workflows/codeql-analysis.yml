@@ -11,9 +11,23 @@
 #
 name: "CodeQL"
 
-on:
+on: 
   push:
+    paths:
+      - '.github/workflows/**'
+      - 'docker/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
+      - 'test_environments/**'
   pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'docker/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
+      - 'test_environments/**'
   schedule:
     - cron: '22 14 * * 5'
 
