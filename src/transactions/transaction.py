@@ -15,7 +15,7 @@ class Transaction:
     The transaction class.
 
     Transaction class consists of 8 elements:
-      * sequance_number: A number from the account class that ensures that 
+      * sequance_number: A number from the account class that ensures that
       each transaction is valid once.
       * signature: A signature proving that the sender approved the transaction.
       * fromUser: Sender's public key.
