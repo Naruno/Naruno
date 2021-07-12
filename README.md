@@ -55,11 +55,6 @@
   <a/>
   </p>
   
-  <p align="center">
-    <a href="https://github.com/Decentra-Network/Decentra-Network/deployments/activity_log?environment=github-pages">
-  <img src="https://img.shields.io/github/deployments/Decentra-Network/Decentra-Network/github-pages?label=Github%20pages" alt="Github_pages">
-  <a/>
-  </p>
     
   <p align="center">
     <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_test_decentra_network.yml">
