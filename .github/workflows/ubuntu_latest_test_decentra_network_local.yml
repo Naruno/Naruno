@@ -1,4 +1,4 @@
-name: Ubuntu Latest Unit Test
+name: Ubuntu Latest Test Decentra Network Local
 
 on: [push,pull_request]
 
@@ -28,7 +28,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 Decentra-Network/src/api.py -p 8020
+        python3 Decentra-Network/src/api.py
 
   build-node-2:
     name: Building The Node 2
@@ -37,6 +37,7 @@ jobs:
       matrix:
         python-version: [3.8]
     steps:
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
@@ -52,6 +53,7 @@ jobs:
       matrix:
         python-version: [3.8]
     steps:
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
