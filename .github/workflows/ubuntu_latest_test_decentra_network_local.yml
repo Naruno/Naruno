@@ -4,16 +4,6 @@ on: [push,pull_request]
 
 jobs:
 
-  build-create-folder:
-    name: Building Create Folder
-    runs-on: ubuntu-latest
-    steps:
-    - name: Install dependencies
-      run: |
-        cd ..
-        cp -r Decentra-Network 2
-        cp -r Decentra-Network 3
-
   build-node-1:
     name: Building The Node 1
     runs-on: ubuntu-latest
@@ -44,7 +34,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 2/src/api.py -p 8010
+        python3 Decentra-Network/src/api.py -p 8010
 
   build-node-3:
     name: Building The Node 3
@@ -60,7 +50,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python3 3/src/api.py -p 8020
+        python3 Decentra-Network/src/api.py -p 8020
 
   build_run_test:
     name: Building The Node 3
