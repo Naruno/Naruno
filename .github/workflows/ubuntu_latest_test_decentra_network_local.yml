@@ -4,6 +4,7 @@ on: [push,pull_request]
 
 jobs: 
   build:
+    name: Ubuntu Latest Test Decentra Network Local
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,6 +18,6 @@ jobs:
     - name: Install dependencies
       run: |
         cd ..
-        docker build -t decentra-network -f Decentra-Network/docker/local/Dockerfile
+        docker build -t decentra-network -f Decentra-Network/docker/local/Dockerfile .
         python3 Decentra-Network/test_environments/docker/test_decentra_network_docker.py.py    
         
