@@ -19,8 +19,6 @@ from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
 
 from wallet.wallet import Wallet_Import
 
-from transactions.save_to_db import save_to_db
-
 
 def saveBlockstoBlockchainDB(block):
     """
@@ -32,11 +30,10 @@ def saveBlockstoBlockchainDB(block):
     for validated_transaction in block.validated_list:
         if validated_transaction.fromUser == Wallet_Import(-1, 0):
             our_tx = True
-            save_to_db(validated_transaction)
         elif validated_transaction.toUser == Wallet_Import(-1, 3):
             our_tx = True
-            save_to_db(validated_transaction)
 
+    # If the block is our transaction, then add it to the blockchain database.
     if our_tx:
         with open(BLOCKS_PATH + str(block.sequance_number) + ".block", "wb") as block_file:
             pickle.dump(block, block_file, protocol=2)
