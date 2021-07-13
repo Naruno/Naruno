@@ -6,13 +6,13 @@ on:
       - '.github/workflows/macos_latest_unit_test.yml'
       - 'src/**'  
       - 'requirements/**'
-      - 'tests/**'
+      - 'test/**'
   pull_request:
     paths:
       - '.github/workflows/macos_latest_unit_test.yml'
       - 'src/**'  
       - 'requirements/**'
-      - 'tests/**'
+      - 'test/**'
 jobs:
   build:
 
