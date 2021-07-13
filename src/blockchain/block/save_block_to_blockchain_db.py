@@ -17,6 +17,10 @@ from accounts.account import GetAccounts, GetAccounts_part
 
 from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
 
+from wallet.wallet import Wallet_Import
+
+from transactions.save_to_db import save_to_db
+
 
 def saveBlockstoBlockchainDB(block):
     """
@@ -24,27 +28,35 @@ def saveBlockstoBlockchainDB(block):
     at BLOCKS_PATH.
     """
 
-    os.chdir(get_config()["main_folder"])
+    our_tx = False
+    for validated_transaction in block.validated_list:
+        if validated_transaction.fromUser == Wallet_Import(-1, 0):
+            our_tx = True
+            save_to_db(validated_transaction)
+        elif validated_transaction.toUser == Wallet_Import(-1, 3):
+            our_tx = True
+            save_to_db(validated_transaction)
 
-    with open(BLOCKS_PATH + str(block.sequance_number) + ".block", "wb") as block_file:
-        pickle.dump(block, block_file, protocol=2)
+    if our_tx:
+        with open(BLOCKS_PATH + str(block.sequance_number) + ".block", "wb") as block_file:
+            pickle.dump(block, block_file, protocol=2)
 
-    with open(
-        BLOCKS_PATH + str(block.sequance_number) + ".accounts", "wb"
-    ) as block_file:
-        pickle.dump(GetAccounts(), block_file, protocol=2)
+        with open(
+            BLOCKS_PATH + str(block.sequance_number) + ".accounts", "wb"
+        ) as block_file:
+            pickle.dump(GetAccounts(), block_file, protocol=2)
 
-    with open(
-        BLOCKS_PATH + str(block.sequance_number) + ".accountspart", "wb"
-    ) as block_file:
-        pickle.dump(GetAccounts_part(), block_file, protocol=2)
+        with open(
+            BLOCKS_PATH + str(block.sequance_number) + ".accountspart", "wb"
+        ) as block_file:
+            pickle.dump(GetAccounts_part(), block_file, protocol=2)
 
-    with open(
-        BLOCKS_PATH + str(block.sequance_number) + ".blockshash", "wb"
-    ) as block_file:
-        pickle.dump(GetBlockshash(), block_file, protocol=2)
+        with open(
+            BLOCKS_PATH + str(block.sequance_number) + ".blockshash", "wb"
+        ) as block_file:
+            pickle.dump(GetBlockshash(), block_file, protocol=2)
 
-    with open(
-        BLOCKS_PATH + str(block.sequance_number) + ".blockshashpart", "wb"
-    ) as block_file:
-        pickle.dump(GetBlockshash_part(), block_file, protocol=2)
+        with open(
+            BLOCKS_PATH + str(block.sequance_number) + ".blockshashpart", "wb"
+        ) as block_file:
+            pickle.dump(GetBlockshash_part(), block_file, protocol=2)
