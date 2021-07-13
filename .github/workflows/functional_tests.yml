@@ -14,7 +14,8 @@ on:
       - 'requirements/**'
       - 'functional_test/**'
 
-jobs: 
+jobs:
+
   build:
     name: Functional Tests
     runs-on: ubuntu-latest
