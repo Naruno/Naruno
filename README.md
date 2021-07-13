@@ -2,7 +2,7 @@
   <a href="https://github.com/Decentra-Network/Decentra-Network">
     <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
   </a>
-
+  
   <h3 align="center">Decentra Network Core (0.5.1-alpha)</h3>
 
   <p align="center">
@@ -26,8 +26,7 @@
   <a href="https://lgtm.com/projects/g/Decentra-Network/Decentra-Network/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/Decentra-Network/Decentra-Network.svg?logo=lgtm&logoWidth=18"/></a>
   </p>
   
-
-
+  
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
     <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test">
@@ -143,4 +142,3 @@ Decentra Network is a completely community driven project, you can contribute in
   <h3 align="center">Founder : Onur Atakan ULUSOY</h3>
 
 </p>
-
