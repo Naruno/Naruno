@@ -3,12 +3,14 @@ name: Functional Tests
 on: 
   push:
     paths:
+      - '.github/workflows/**'
       - 'docker/local/api/**'
       - 'src/**'  
       - 'requirements/**'
       - 'functional_test/**'
   pull_request:
     paths:
+      - '.github/workflows/**'
       - 'docker/local/api/**'
       - 'src/**'  
       - 'requirements/**'
