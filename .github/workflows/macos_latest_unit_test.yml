@@ -3,13 +3,13 @@ name: MacOS Latest Unit Test
 on: 
   push:
     paths:
-      - '.github/workflows/**'
+      - '.github/workflows/macos_latest_unit_test.yml'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
   pull_request:
     paths:
-      - '.github/workflows/**'
+      - '.github/workflows/macos_latest_unit_test.yml'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
