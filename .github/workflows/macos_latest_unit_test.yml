@@ -4,19 +4,15 @@ on:
   push:
     paths:
       - '.github/workflows/**'
-      - 'docker/**'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
-      - 'functional_test/**'
   pull_request:
     paths:
       - '.github/workflows/**'
-      - 'docker/**'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
-      - 'functional_test/**'
 jobs:
   build:
 
