@@ -3,20 +3,16 @@ name: Ubuntu Latest Unit Test
 on: 
   push:
     paths:
-      - '.github/workflows/**'
-      - 'docker/**'
+      - '.github/workflows/ubuntu_latest_unit_test.yml'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
-      - 'functional_test/**'
   pull_request:
     paths:
-      - '.github/workflows/**'
-      - 'docker/**'
+      - '.github/workflows/ubuntu_latest_unit_test.yml'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
-      - 'functional_test/**'
 
 jobs:
   build:
