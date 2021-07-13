@@ -19,12 +19,9 @@ def GetBalance(user, block):
     """
 
     balance = -GetBlock().minumum_transfer_amount
-
-    user = "".join([
-        l.strip() for l in user.splitlines()
-        if l and not l.startswith("-----")
-    ])
-
+    user = "".join(
+        [l.strip() for l in user.splitlines() if l and not l.startswith("-----")]
+    )
     user = Address(user)
     for Accounts in GetAccounts():
 

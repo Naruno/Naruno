@@ -51,7 +51,10 @@ def ndid():
     Returns the our node id.
     """
 
-    return "".join([
-            l.strip() for l in Wallet_Import(0,0).splitlines()
+    return "".join(
+        [
+            l.strip()
+            for l in Wallet_Import(0, 0).splitlines()
             if l and not l.startswith("-----")
-        ])
+        ]
+    )
