@@ -15,7 +15,7 @@ class Transaction:
     The transaction class.
 
     Transaction class consists of 8 elements:
-      * sequance_number: A number from the account class that ensures that 
+      * sequance_number: A number from the account class that ensures that
       each transaction is valid once.
       * signature: A signature proving that the sender approved the transaction.
       * fromUser: Sender's public key.
@@ -49,7 +49,7 @@ class Transaction:
             "data": self.data,
             "amount": self.amount,
             "transaction_fee": self.transaction_fee,
-            "transaction_time":self.time
+            "transaction_time": self.time
         }
         return data
 
@@ -67,4 +67,13 @@ class Transaction:
         Returns the json data received with dump_json() as an object again.
         """
 
-        return Transaction(data["sequance_number"],data["signature"],data["fromUser"],data["toUser"],data["data"],data["amount"],data["transaction_fee"],data["transaction_time"])
+        return Transaction(
+            data['sequance_number'],
+            data['signature'],
+            data['fromUser'],
+            data['toUser'],
+            data['data'],
+            data['amount'],
+            data['transaction_fee'],
+            data['transaction_time'],
+            )

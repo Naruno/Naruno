@@ -25,7 +25,6 @@ def consensus_round_1(block):
         The transactions of our and the unl nodes 
         are evaluated and transactions accepted by 
         owned by more than 50 percent.
-
         Inputs:
           * block: The block (class) we want consensus 
           round 1 to be done

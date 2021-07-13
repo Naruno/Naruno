@@ -18,17 +18,16 @@ from lib.settings_system import the_settings
 
 
 def send_the_coin(receiver, temp_coin_amount, password):
-            type_control = False
-            try:
-                float(temp_coin_amount)
-                type_control = True
-            except:
-                print("This is not float coin amount.")
+    type_control = False
+    try:
+        float(temp_coin_amount)
+        type_control = True
+    except:
+        print("This is not float coin amount.")
 
-
-            if type_control and not float(temp_coin_amount) < GetBlock().minumum_transfer_amount:
-                if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(password.encode("utf-8")).hexdigest():
-                    print(password)
-                    send_coin(float(temp_coin_amount), receiver, password)
-                else:
-                    print("Password is not correct")
+    if type_control and not float(temp_coin_amount) < GetBlock().minumum_transfer_amount:
+        if Wallet_Import(int(the_settings()["wallet"]), 2) == sha256(password.encode("utf-8")).hexdigest():
+            print(password)
+            send_coin(float(temp_coin_amount), receiver, password)
+        else:
+            print("Password is not correct")

@@ -86,4 +86,4 @@ if __name__ == '__main__':
         parser.print_help()
 
     if not args.nodenumber == None:
-        Decentra_Network_Docker(args.nodenumber)
+        Decentra_Network_Local(args.nodenumber)

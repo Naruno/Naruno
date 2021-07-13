@@ -48,7 +48,7 @@ class Account:
         data = {
             "address": self.Address,
             "balance": self.balance,
-            "sequence_number": self.sequance_number
+            "sequence_number": self.sequance_number,
         }
         return data
 
@@ -57,37 +57,37 @@ class Account:
         """
         Json returns data in the appropriate format as the account class.
         """
-        return Account(
-            data["public_key"],
-            data["balance"],
-            data["sequence_number"]
-            )
+        return Account(data["public_key"], data["balance"], data["sequence_number"])
+
     def __str__(self):
         return self.Address
 
 
 def save_accounts(the_accounts):
     os.chdir(get_config()["main_folder"])
-    with open(TEMP_ACCOUNTS_PATH, 'wb') as block_file:
+    with open(TEMP_ACCOUNTS_PATH, "wb") as block_file:
         pickle.dump(the_accounts, block_file, protocol=2)
+
 
 def save_accounts_part(the_accounts):
     os.chdir(get_config()["main_folder"])
-    with open(TEMP_ACCOUNTS_PART_PATH, 'wb') as block_file:
+    with open(TEMP_ACCOUNTS_PART_PATH, "wb") as block_file:
         pickle.dump(the_accounts, block_file, protocol=2)
+
 
 def GetAccounts():
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_ACCOUNTS_PATH):
         return []
-    else:    
-        with open(TEMP_ACCOUNTS_PATH, 'rb') as block_file:
+    else:
+        with open(TEMP_ACCOUNTS_PATH, "rb") as block_file:
             return pickle.load(block_file)
+
 
 def GetAccounts_part():
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_ACCOUNTS_PART_PATH):
         return []
-    else:    
-        with open(TEMP_ACCOUNTS_PART_PATH, 'rb') as block_file:
+    else:
+        with open(TEMP_ACCOUNTS_PART_PATH, "rb") as block_file:
             return pickle.load(block_file)
