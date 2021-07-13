@@ -3,20 +3,17 @@ name: Windows Latest Unit Test
 on: 
   push:
     paths:
-      - '.github/workflows/**'
-      - 'docker/**'
+      - '.github/workflows/windows_latest_unit_test.yml'
       - 'src/**'  
       - 'requirements/**'
-      - 'tests/**'
-      - 'functional_test/**'
+      - 'test/**'
+
   pull_request:
     paths:
-      - '.github/workflows/**'
-      - 'docker/**'
+      - '.github/workflows/windows_latest_unit_test.yml'
       - 'src/**'  
       - 'requirements/**'
-      - 'tests/**'
-      - 'functional_test/**'
+      - 'test/**'
 
 jobs:
   build:
