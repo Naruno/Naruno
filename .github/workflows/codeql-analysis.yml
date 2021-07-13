@@ -14,7 +14,7 @@ name: "CodeQL"
 on: 
   push:
     paths:
-      - '.github/workflows/**'
+      - '.github/workflows/codeql-analysis.yml'
       - 'docker/**'
       - 'src/**'  
       - 'requirements/**'
@@ -22,7 +22,7 @@ on:
       - 'functional_test/**'
   pull_request:
     paths:
-      - '.github/workflows/**'
+      - '.github/workflows/codeql-analysis.yml'
       - 'docker/**'
       - 'src/**'  
       - 'requirements/**'
