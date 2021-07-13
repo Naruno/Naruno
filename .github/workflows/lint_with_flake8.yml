@@ -3,12 +3,14 @@ name: Lint with flake8
 on: 
   push:
     paths:
+      - '.github/workflows/lint_with_flake8.yml'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
       - 'functional_test/**'
   pull_request:
     paths:
+      - '.github/workflows/lint_with_flake8.yml'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
