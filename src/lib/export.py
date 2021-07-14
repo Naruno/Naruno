@@ -30,4 +30,5 @@ def export_the_transactions():
     """
     Export the transactions to a CSV file.
     """
+
     export_to_csv(GetMyTransaction(), MY_TRANSACTION_EXPORT_PATH)   

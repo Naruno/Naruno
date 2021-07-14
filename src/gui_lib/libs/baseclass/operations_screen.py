@@ -21,7 +21,9 @@ from blockchain.block.get_block import GetBlock
 from wallet.wallet import Wallet_Import
 
 from lib.settings_system import the_settings
+from lib.export import export_the_transactions
 
+from config import MY_TRANSACTION_EXPORT_PATH
 
 class OperationScreen(MDScreen):
     pass
@@ -32,6 +34,7 @@ class Send_Coin_Box(MDGridLayout):
 class OperationBox(MDGridLayout):
     cols = 2
     send_coin_dialog = None
+    export_transaction_csv_dialog = None
     FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
 
 
@@ -97,3 +100,13 @@ class OperationBox(MDGridLayout):
 
     def send_coin(self):
         self.show_send_coin_dialog()
+
+
+
+    def export_transaction_csv(self):
+        export_the_transactions()
+
+        SweetAlert().fire(
+            f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory",
+            type='success',
+        )

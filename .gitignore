@@ -9,6 +9,7 @@ temp_accounts_part.decentra_network
 temp_blockshash.decentra_network
 temp_blockshash_part.decentra_network
 temp_candidate_blocks.decentra_network
+my_transaction.decentra_network
 loading_block.decentra_network
 *.block
 *.accounts
@@ -16,6 +17,9 @@ loading_block.decentra_network
 *.blockshash
 *.blockshashpart
 wallet_list.json
+
+# Export
+my_transaction.csv
 
 #venv
 venv/

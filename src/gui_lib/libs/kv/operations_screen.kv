@@ -71,6 +71,18 @@
                 DecentraLabel:
                     text: "Send Coin"
                     halign: "right"
-                    font_style: "Button"        
+                    font_style: "Button"
+
+        AnchorLayout:
+            size_hint_y: None
+            height: but2.height
+            MDRoundFlatIconButton:
+                id: but2
+                icon: "file-export-outline"
+                on_press: root.export_transaction_csv()
+                DecentraLabel:
+                    text: "Export Transactions CSV"
+                    halign: "right"
+                    font_style: "Button"
             
         

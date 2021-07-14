@@ -12,6 +12,8 @@ import os
 from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
 
+from transactions.transaction import Transaction
+
 
 def SavetoMyTransaction(tx):
     """
@@ -32,7 +34,7 @@ def GetMyTransaction():
     """
 
     if not os.path.exists(MY_TRANSACTION_PATH):
-        return []
+        return [Transaction(None, None, None, None, None, None, None, None)]
 
     os.chdir(get_config()["main_folder"])
     with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
