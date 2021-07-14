@@ -37,10 +37,7 @@ def GetMyTransaction():
 
     if not os.path.exists(MY_TRANSACTION_PATH):
         return [Transaction(None, None, None, None, None, None, None, None)]
-    else:
-        with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
-            currently_list = pickle.load(my_transaction_file)
-            if (currently_list[0]).sequance_number:
-                print("empty")
-                currently_list.remove(currently_list[0])
-            return currently_list
+
+    
+    with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
+        return pickle.load(my_transaction_file)
