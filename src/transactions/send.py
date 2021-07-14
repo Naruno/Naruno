@@ -14,6 +14,7 @@ from accounts.get_sequance_number import GetSequanceNumber
 
 from blockchain.block.get_block import GetBlock
 
+from transactions.save_to_my_transaction import SavetoMyTransaction
 
 def send(my_public_key, my_private_key, to_user, password, data=None, amount=None):
     """
@@ -43,7 +44,7 @@ def send(my_public_key, my_private_key, to_user, password, data=None, amount=Non
 
     tx_time = int(time.time())
 
-    system.createTrans(
+    the_tx = system.createTrans(
         sequance_number=sequance_number,
         signature=Ecdsa.sign(
             str(sequance_number)
@@ -63,3 +64,5 @@ def send(my_public_key, my_private_key, to_user, password, data=None, amount=Non
         transaction_sender=None,
         transaction_time=tx_time,
     )
+
+    SaveToMyTransaction(the_tx)
