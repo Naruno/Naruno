@@ -22,7 +22,7 @@ def SavetoMyTransaction(tx):
     currently_list = GetMyTransaction()
 
     for i in currently_list:
-        if i.sequance_number == None:
+        if not i.sequance_number:
             currently_list.remove(i)
 
     currently_list.append(tx)
