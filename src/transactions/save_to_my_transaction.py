@@ -21,6 +21,8 @@ def SavetoMyTransaction(tx):
     """
     currently_list = GetMyTransaction()
 
+    print(currently_list[0])
+
     if (currently_list[0]).sequance_number:
         print("empty")
         currently_list.remove(currently_list[0])
