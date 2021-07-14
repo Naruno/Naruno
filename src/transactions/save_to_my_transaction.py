@@ -21,6 +21,10 @@ def SavetoMyTransaction(tx):
     """
     currently_list = GetMyTransaction()
 
+    for i in currently_list:
+        if not i.sequance_number:
+            currently_list.remove(i)
+
     currently_list.append(tx)
 
     os.chdir(get_config()["main_folder"])
