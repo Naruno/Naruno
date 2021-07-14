@@ -138,7 +138,7 @@ def block_get_page():
     return jsonify("OK")
 
 
-@app.route("/export/transaction/csv", methods=["GET"])
+@app.route("/export/transactions/csv", methods=["GET"])
 def export_transaction_csv_page():
     export_the_transactions()
     return jsonify("OK")

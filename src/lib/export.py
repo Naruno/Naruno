@@ -18,7 +18,7 @@ def export_to_csv(obj, filename):
     Export a list of objects to a CSV file.
     """
 
-    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+    with open(filename, 'w') as csvfile:
         fieldnames = [i for i in obj[0].__dict__.keys()]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
