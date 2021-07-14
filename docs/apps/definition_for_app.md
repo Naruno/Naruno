@@ -1,5 +1,5 @@
 ---
-title: Creating A App
+title: Definition For App
 parent: Apps
 nav_order: 3
 ---
