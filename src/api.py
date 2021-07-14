@@ -139,7 +139,7 @@ def block_get_page():
 
 
 @app.route("/export/transaction/csv", methods=["GET"])
-def settings_debug_off_page():
+def export_transaction_csv_page():
     export_the_transactions()
     return jsonify("OK")
 
