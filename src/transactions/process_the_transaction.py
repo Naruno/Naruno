@@ -62,7 +62,7 @@ def ProccesstheTransaction(block):
     # Converts the Account class to Public key.
     for temp_validating_list_item in temp_validating_list[:]:
         for temp_pubkey in temp_pubkeys:
-            if temp_validating_list_item.fromUser.Address == Address(temp_pubkey):
+            if str(temp_validating_list_item.fromUser) == Address(temp_pubkey):
                 temp_validating_list_item.fromUser = temp_pubkey
 
     # Syncs new sorted list to block.validating_list
