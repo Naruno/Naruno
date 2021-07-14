@@ -11,6 +11,8 @@ import sys
 import argparse
 from getpass import getpass
 
+from config import MY_TRANSACTION_EXPORT_PATH
+
 from transactions.send_the_coin import send_the_coin
 
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
@@ -130,6 +132,7 @@ def menu():
 
         if choices_input == "exptrcsv":
             export_the_transactions()
+            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
 
         if choices_input == "getblock":
             if the_settings()["test_mode"]:
@@ -221,6 +224,7 @@ def arguments():
 
     if args.exporttransactioncsv:
         export_the_transactions()
+        print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
 
     if args.menu:
         menu()
