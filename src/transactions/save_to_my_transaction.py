@@ -24,7 +24,7 @@ def SavetoMyTransaction(tx):
     currently_list.append(tx)
 
     os.chdir(get_config()["main_folder"])
-    with open(MY_TRANSACTION_PATH, "w") as my_transaction_file:
+    with open(MY_TRANSACTION_PATH, "wb") as my_transaction_file:
         pickle.dump(currently_list, my_transaction_file, protocol=2)
 
 
