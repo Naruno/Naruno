@@ -7,6 +7,9 @@
 
 
 import csv
+import os
+
+from lib.config_system import get_config
 
 from config import MY_TRANSACTION_EXPORT_PATH
 
@@ -18,6 +21,7 @@ def export_to_csv(obj, filename):
     Export a list of objects to a CSV file.
     """
 
+    os.chdir(get_config()["main_folder"])
     with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = [i for i in obj[0].__dict__.keys()]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
