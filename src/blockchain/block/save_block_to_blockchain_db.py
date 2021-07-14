@@ -36,9 +36,7 @@ def saveBlockstoBlockchainDB(block):
     )
     my_address = Wallet_Import(-1, 3)
     for validated_transaction in block.validating_list:
-        if validated_transaction.fromUser == my_public_key:
-            our_tx = True
-        elif validated_transaction.toUser == my_address:
+        if validated_transaction.fromUser == my_public_key or alidated_transaction.toUser == my_address:
             our_tx = True
 
     # If the block is our transaction, then add it to the blockchain database.
