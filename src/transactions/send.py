@@ -65,4 +65,4 @@ def send(my_public_key, my_private_key, to_user, password, data=None, amount=Non
         transaction_time=tx_time,
     )
 
-    SaveToMyTransaction(the_tx)
+    SavetoMyTransaction(the_tx)
