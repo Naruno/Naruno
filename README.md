@@ -132,6 +132,7 @@ Decentra Network is a completely community driven project, you can contribute in
   <img src="https://img.shields.io/github/issues-pr-raw/Decentra-Network/Decentra-Network" alt="Open_pull_requests">
   .
     <img src="https://img.shields.io/github/issues-pr-closed-raw/Decentra-Network/Decentra-Network" alt="Closed_pull_requests">
+
 <br />
   </p>
 </p>
