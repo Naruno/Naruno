@@ -51,7 +51,7 @@ def ProccesstheTransaction(block):
     for tx_item in temp_validating_list[:]:
         for Account_item in from_user_list:
             if Address(str(tx_item.fromUser)) == Account_item.Address:
-                temp_pubkeys.append(Account_item.Address)
+                temp_pubkeys.append(str(tx_item.fromUser))
                 tx_item.fromUser = Account_item
 
     # Orders the transactions by Address index of temp_accounts.
