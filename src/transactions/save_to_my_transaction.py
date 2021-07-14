@@ -19,14 +19,8 @@ def SavetoMyTransaction(tx):
     """
     Saves the transaction to the transaction db.
     """
+
     currently_list = GetMyTransaction()
-
-    print(currently_list[0])
-
-    if (currently_list[0]).sequance_number:
-        print("empty")
-        currently_list.remove(currently_list[0])
-
     currently_list.append(tx)
 
     os.chdir(get_config()["main_folder"])
@@ -43,6 +37,10 @@ def GetMyTransaction():
 
     if not os.path.exists(MY_TRANSACTION_PATH):
         return [Transaction(None, None, None, None, None, None, None, None)]
-
-    with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
-        return pickle.load(my_transaction_file)
+    else:
+        with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
+            currently_list = pickle.load(my_transaction_file)
+            if (currently_list[0]).sequance_number:
+                print("empty")
+                currently_list.remove(currently_list[0])
+            return currently_list
