@@ -14,6 +14,8 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDFlatButton
 from kivymd_extensions.sweetalert import SweetAlert
 
+from kivy.core.clipboard import Clipboard
+
 from transactions.send_coin import send_coin
 
 from blockchain.block.get_block import GetBlock
@@ -105,8 +107,9 @@ class OperationBox(MDGridLayout):
 
     def export_transaction_csv(self):
         export_the_transactions()
-
+        Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
         SweetAlert().fire(
-            f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory",
+            f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
             type='success',
         )
+        
