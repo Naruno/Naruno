@@ -29,7 +29,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
 
         for i in range(4):
             urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-            time.sleep(1)
+            time.sleep(5)
         time.sleep(30)
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1,24000.0,"A problem in same network one and multi transaction -multi.")

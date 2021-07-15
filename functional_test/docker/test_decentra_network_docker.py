@@ -41,7 +41,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
 
         for i in range(4):
             urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-            time.sleep(1)
+            time.sleep(5)
 
         time.sleep(35)
 
@@ -73,7 +73,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
 
         for i in range(4):
             urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-            time.sleep(1)
+            time.sleep(5)
 
         time.sleep(30)
 
