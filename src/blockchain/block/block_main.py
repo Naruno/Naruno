@@ -250,7 +250,7 @@ class Block:
       signature_class = Signature.fromBase64(signature)
       temp_signature = signature_class.toBase64()
 
-      already_got = self.tx_already_got(temp_signature)
+      already_got = self.tx_already_got(fromUser, sequance_number, temp_signature)
       # End
 
       # Validation
@@ -290,10 +290,16 @@ class Block:
       dprint(" Validation end")
       # End
 
-    def tx_already_got(self, temp_signature):
+    def tx_already_got(self, fromUser, sequance_number, temp_signature):
         for already_tx in (self.pendingTransaction + self.validating_list):
             if already_tx.signature == temp_signature:
                 return True
+            if already_tx.fromUser == fromUser:
+                for already_tx_parent in (self.pendingTransaction + self.validating_list):
+                    if not already_tx.signature == already_tx_parent.signature:
+                        if already_tx.sequance_number == already_tx_parent.sequance_number:
+                            return True
+
         return False
 
     def send_my_response_on_transaction(self, temp_transaction, response, transaction_sender):

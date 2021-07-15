@@ -41,7 +41,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
 
         for i in range(4):
             urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-            time.sleep(1)
+            time.sleep(15)
 
         time.sleep(35)
 
@@ -73,9 +73,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
 
         for i in range(4):
             urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-            time.sleep(1)
-
-        time.sleep(30)
+            time.sleep(15)
 
 
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
@@ -100,15 +98,11 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1,4000.0,"A problem in same network one transaction -1.")
 
-        time.sleep(30)
-
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
         time.sleep(15)
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1,9000.0,"A problem in same network one transaction -2.")
 
-
-        time.sleep(60)
 
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
         time.sleep(15)
