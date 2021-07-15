@@ -4,7 +4,7 @@ parent: Systems
 nav_order: 6
 ---
 
-# CLI
+# CLI Arguments
 
 | Short Usage | Long Usage | Parameters | Description |
 |---|---|---|---|
