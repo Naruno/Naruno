@@ -25,3 +25,4 @@ nav_order: 5
 | GET | /settings/debug/on | Sets the debug mode on |
 | GET | /settings/debug/off | Sets the debug mode off |
 | GET | /block/get | Gets block from other nodes |
+| GET | /export/transaction/csv | Exports transactions to csv |

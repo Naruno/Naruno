@@ -19,4 +19,5 @@ nav_order: 6
 | -tmoff | --testmodeoff | NO | Sets the test mode off |
 | -dmon | --debugmodeon | NO | Sets the debug mode on |
 | -dmoff | --debugmodeoff | NO | Sets the test mode off |
+| -exptrcsv | --exporttransactioncsv | NO | Exports transactions to csv |
 | -m | --menu | NO | Opens the cli menu |

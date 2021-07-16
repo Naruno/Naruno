@@ -12,6 +12,8 @@ from flask import jsonify, request
 import argparse
 
 from transactions.send_the_coin import send_the_coin
+
+from lib.export import export_the_transactions
 from lib.settings_system import the_settings, test_mode, debug_mode
 
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
@@ -132,6 +134,12 @@ def block_get_page():
         CreateBlock()
     else:
         GetBlockFromOtherNode()
+    return jsonify("OK")
+
+
+@app.route("/export/transactions/csv", methods=["GET"])
+def export_transaction_csv_page():
+    export_the_transactions()
     return jsonify("OK")
 
 

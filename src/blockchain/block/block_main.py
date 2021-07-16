@@ -285,7 +285,7 @@ class Block:
 
             self.propagating_the_tx(the_tx)
 
-            return True
+            return the_tx
 
       dprint(" Validation end")
       # End

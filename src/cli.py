@@ -11,6 +11,8 @@ import sys
 import argparse
 from getpass import getpass
 
+from config import MY_TRANSACTION_EXPORT_PATH
+
 from transactions.send_the_coin import send_the_coin
 
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
@@ -21,6 +23,7 @@ from blockchain.block.create_block import CreateBlock
 
 from lib.mixlib import banner_maker, menu_space, menu_maker, quit_menu_maker, question_maker
 from lib.settings_system import the_settings, test_mode, debug_mode
+from lib.export import export_the_transactions
 
 from wallet.create_a_wallet import create_a_wallet
 from wallet.print_wallets import print_wallets
@@ -59,6 +62,8 @@ def show_menu():
        menu_maker(menu_number="testmodeoff", menu_text="Test mode OF")+ \
        menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON")+ \
        menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF")+ \
+       menu_space() + \
+       menu_maker(menu_number="exptrcsv", menu_text="Export Transaction as CSV")+ \
        menu_space() + \
        menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")+ \
        menu_space())
@@ -125,6 +130,9 @@ def menu():
         if choices_input == "debugmodeoff":
             debug_mode(False)
 
+        if choices_input == "exptrcsv":
+            export_the_transactions()
+            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
 
         if choices_input == "getblock":
             if the_settings()["test_mode"]:
@@ -172,6 +180,9 @@ def arguments():
     parser.add_argument('-dmoff', '--debugmodeoff', action='store_true',
                         help='Debug Mode Off')
 
+    parser.add_argument('-exptrcsv', '--exporttransactioncsv', action='store_true',
+                        help='Exports the transaction as csv')                
+
     parser.add_argument('-m', '--menu', action='store_true',
                         help='An optional boolean for open the menu.') 
     
@@ -210,6 +221,10 @@ def arguments():
         debug_mode(True)
     if args.debugmodeoff:
         debug_mode(False)
+
+    if args.exporttransactioncsv:
+        export_the_transactions()
+        print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
 
     if args.menu:
         menu()
