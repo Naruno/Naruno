@@ -6,6 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from transactions.tx_already_got import TxAlreadyGot
+
 
 def SameTransactionGuard(block):
     """
@@ -15,7 +17,7 @@ def SameTransactionGuard(block):
     """
 
     for tx in (block.validating_list + block.pendingTransaction):
-        if block.tx_already_got(tx.fromUser, tx.sequance_number, tx.temp_signature):
+        if TxAlreadyGot(block, tx.fromUser, tx.sequance_number, tx.temp_signature):
             try:
                 block.validating_list.remove(tx)
             except:
