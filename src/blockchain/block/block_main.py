@@ -183,7 +183,7 @@ class Block:
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        if not len(self.validating_list) == 0 not len(self.validating_list) < (self.max_tx_number / 2):
+        if not len(self.validating_list) == 0 or not len(self.validating_list) < (self.max_tx_number / 2):
 
             
             app_tigger(self)
