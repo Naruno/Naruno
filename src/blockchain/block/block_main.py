@@ -149,10 +149,6 @@ class Block:
         self.block_time = self.raund_1_time + self.raund_2_time
 
 
-        for tx in (self.validating_list + self.pendingTransaction):
-            self.propagating_the_tx(tx)
-
-
         #Printing validated block.
         dprint("""\n
   _____                          _     ____  _      ____   _____ _  __
@@ -183,7 +179,7 @@ class Block:
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        if not len(self.validating_list) == 0 or not len(self.validating_list) < (self.max_tx_number / 2):
+        if not len(self.validating_list) == 0 and not len(self.validating_list) < (self.max_tx_number / 2):
 
             
             app_tigger(self)
@@ -289,6 +285,8 @@ class Block:
             SameTransactionGuard(self)
             self.save_block()
             # End
+
+            self.propagating_the_tx(the_tx)
 
             return the_tx
 
