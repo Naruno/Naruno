@@ -17,7 +17,7 @@ def SameTransactionGuard(block):
     """
 
     for tx in (block.validating_list + block.pendingTransaction):
-        if TxAlreadyGot(block, tx.fromUser, tx.sequance_number, tx.temp_signature):
+        if TxAlreadyGot(block, tx.fromUser, tx.sequance_number, tx.signature):
             try:
                 block.validating_list.remove(tx)
             except:
