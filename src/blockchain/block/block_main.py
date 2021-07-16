@@ -19,6 +19,7 @@ from node.unl import get_unl_nodes, get_as_node_type
 
 from transactions.transaction import Transaction
 from transactions.pending_to_validating import PendinttoValidating
+from transactions.same_transaction_guard import SameTransactionGuard
 
 from accounts.account import Account, save_accounts, save_accounts_part
 from accounts.get_balance import GetBalance
@@ -280,6 +281,7 @@ class Block:
             )
             self.pendingTransaction.append(the_tx)
             self.change_transaction_fee()
+            SameTransactionGuard(self)
             self.save_block()
             # End
 
@@ -291,6 +293,10 @@ class Block:
       # End
 
     def tx_already_got(self, fromUser, sequance_number, temp_signature):
+        """
+        Checks if the transaction is already got.
+        """
+
         for already_tx in (self.pendingTransaction + self.validating_list):
             if already_tx.signature == temp_signature:
                 return True
