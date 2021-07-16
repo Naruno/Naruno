@@ -7,7 +7,7 @@ on:
       - 'docker/local/api/**'
       - 'src/**'  
       - 'requirements/**'
-      - 'functional_test/**'
+      - 'functional_test/docker/**'
   pull_request:
     paths:
       - '.github/workflows/functional_tests.yml'
@@ -19,7 +19,7 @@ on:
 jobs:
 
   build:
-    name: Functional Tests
+    name: Docker Based Functional Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
