@@ -43,7 +43,6 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
             urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
             time.sleep(15)
 
-        time.sleep(35)
 
 
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
