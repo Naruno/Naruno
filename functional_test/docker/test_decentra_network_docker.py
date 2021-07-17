@@ -80,7 +80,6 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         self.assertEqual(balance_wallet_1,24000.0,"A problem in same network one and multi transaction -multi.")
 
 
-
     def test_4_same_network_long_term_multi_transacton(self):
         """
         Send coin to 2.wallet from 1.wallet
