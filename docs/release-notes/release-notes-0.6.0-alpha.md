@@ -110,3 +110,4 @@ Credits
 Thanks to everyone who directly contributed to this release:
 
 - Onur Atakan ULUSOY
+- Bahri Can Ergül
