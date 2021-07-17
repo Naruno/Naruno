@@ -6,7 +6,7 @@ parent: Release Notes
 0.6.0-alpha Release Notes
 ====================
 
-This minor release includes some feature additions and fixes.
+This minor release includes very importand feature and additions and fixes and security patches.
 
 Please report bugs using the issue tracker at GitHub:
 
