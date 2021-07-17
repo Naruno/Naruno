@@ -26,3 +26,4 @@ nav_order: 5
 | GET | /settings/debug/off | Sets the debug mode off |
 | GET | /block/get | Gets block from other nodes |
 | GET | /export/transaction/csv | Exports transactions to csv |
+| GET | /export/transaction/json | Returns transactions as json |
