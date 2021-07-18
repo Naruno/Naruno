@@ -21,7 +21,7 @@ def export_to_csv(obj, filename):
     Export a list of objects to a CSV file.
     """
 
-    if not len(obj) == 0
+    if not len(obj) == 0:
         os.chdir(get_config()["main_folder"])
         with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
             fieldnames = [i for i in obj[0].__dict__.keys()]
