@@ -7,11 +7,13 @@
 
 
 import sys
+import json
 import flask
 from flask import jsonify, request
 import argparse
 
 from transactions.send_the_coin import send_the_coin
+from transactions.save_to_my_transaction import GetMyTransaction
 
 from lib.export import export_the_transactions
 from lib.settings_system import the_settings, test_mode, debug_mode
@@ -139,8 +141,15 @@ def block_get_page():
 
 @app.route("/export/transactions/csv", methods=["GET"])
 def export_transaction_csv_page():
-    export_the_transactions()
-    return jsonify("OK")
+    if export_the_transactions():
+        return jsonify("OK")
+    else:
+        return jsonify("You have not a transaction")
+
+
+@app.route("/export/transactions/json", methods=["GET"])
+def export_transaction_json_page():
+    return jsonify([i.__dict__ for i in GetMyTransaction()])
 
 
 if __name__ == "__main__":

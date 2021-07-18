@@ -14,6 +14,7 @@ from getpass import getpass
 from config import MY_TRANSACTION_EXPORT_PATH
 
 from transactions.send_the_coin import send_the_coin
+from transactions.print_transactions import PrintTransactions
 
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
 from node.unl import save_new_unl_node
@@ -64,6 +65,7 @@ def show_menu():
        menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF")+ \
        menu_space() + \
        menu_maker(menu_number="exptrcsv", menu_text="Export Transaction as CSV")+ \
+       menu_maker(menu_number="returntrs", menu_text="Export Transaction as CSV")+ \
        menu_space() + \
        menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")+ \
        menu_space())
@@ -131,8 +133,13 @@ def menu():
             debug_mode(False)
 
         if choices_input == "exptrcsv":
-            export_the_transactions()
-            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+            if export_the_transactions():
+                print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+            else:
+                print("You have not a transaction")
+
+        if choices_input == "returntrs":
+            PrintTransactions()
 
         if choices_input == "getblock":
             if the_settings()["test_mode"]:
@@ -183,6 +190,9 @@ def arguments():
     parser.add_argument('-exptrcsv', '--exporttransactioncsv', action='store_true',
                         help='Exports the transaction as csv')                
 
+    parser.add_argument('-returntrans', '--returntransactions', action='store_true',
+                        help='Exports the transaction as csv')   
+
     parser.add_argument('-m', '--menu', action='store_true',
                         help='An optional boolean for open the menu.') 
     
@@ -223,8 +233,14 @@ def arguments():
         debug_mode(False)
 
     if args.exporttransactioncsv:
-        export_the_transactions()
-        print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+        if export_the_transactions():
+            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+        else:
+            print("You have not a transaction")
+
+    if args.returntransactions:
+        PrintTransactions()
+
 
     if args.menu:
         menu()

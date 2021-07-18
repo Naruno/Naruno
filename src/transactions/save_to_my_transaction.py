@@ -12,8 +12,6 @@ import os
 from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
 
-from transactions.transaction import Transaction
-
 
 def SavetoMyTransaction(tx):
     """
@@ -36,8 +34,11 @@ def GetMyTransaction():
     os.chdir(get_config()["main_folder"])
 
     if not os.path.exists(MY_TRANSACTION_PATH):
-        return [Transaction(None, None, None, None, None, None, None, None)]
+        return []
 
     
     with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
-        return pickle.load(my_transaction_file)
+        obj = pickle.load(my_transaction_file)
+        if not len(obj) == 1:
+            obj.remove(obj[0])
+        return obj
