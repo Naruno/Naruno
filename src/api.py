@@ -141,8 +141,10 @@ def block_get_page():
 
 @app.route("/export/transactions/csv", methods=["GET"])
 def export_transaction_csv_page():
-    export_the_transactions()
-    return jsonify("OK")
+    if export_the_transactions():
+        return jsonify("OK")
+    else:
+        return jsonify("You have not a transaction")
 
 
 @app.route("/export/transactions/json", methods=["GET"])

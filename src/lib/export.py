@@ -21,13 +21,17 @@ def export_to_csv(obj, filename):
     Export a list of objects to a CSV file.
     """
 
-    os.chdir(get_config()["main_folder"])
-    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
-        fieldnames = [i for i in obj[0].__dict__.keys()]
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
-        for obj in obj:
-            writer.writerow(obj.__dict__)
+    if not len(obj) == 0
+        os.chdir(get_config()["main_folder"])
+        with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+            fieldnames = [i for i in obj[0].__dict__.keys()]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            for obj in obj:
+                writer.writerow(obj.__dict__)
+        return True
+    else:
+        return False
 
 
 def export_the_transactions():
@@ -35,4 +39,4 @@ def export_the_transactions():
     Export the transactions to a CSV file.
     """
 
-    export_to_csv(GetMyTransaction(), MY_TRANSACTION_EXPORT_PATH)   
+    return export_to_csv(GetMyTransaction(), MY_TRANSACTION_EXPORT_PATH)   

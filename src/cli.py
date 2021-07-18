@@ -133,8 +133,10 @@ def menu():
             debug_mode(False)
 
         if choices_input == "exptrcsv":
-            export_the_transactions()
-            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+            if export_the_transactions():
+                print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+            else:
+                print("You have not a transaction")
 
         if choices_input == "returntrs":
             PrintTransactions()
@@ -231,8 +233,10 @@ def arguments():
         debug_mode(False)
 
     if args.exporttransactioncsv:
-        export_the_transactions()
-        print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+        if export_the_transactions():
+            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+        else:
+            print("You have not a transaction")
 
     if args.returntransactions:
         PrintTransactions()

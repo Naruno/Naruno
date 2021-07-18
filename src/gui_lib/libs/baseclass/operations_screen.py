@@ -106,10 +106,15 @@ class OperationBox(MDGridLayout):
 
 
     def export_transaction_csv(self):
-        export_the_transactions()
-        Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
-        SweetAlert().fire(
-            f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
-            type='success',
-        )
+        if export_the_transactions():
+            Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
+            SweetAlert().fire(
+                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
+                type='success',
+            )
+        else:
+            SweetAlert().fire(
+                "You have not a transaction",
+                type='failure',
+            )                       
         
