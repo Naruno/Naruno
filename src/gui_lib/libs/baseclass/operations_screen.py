@@ -38,8 +38,6 @@ class Send_Coin_Box(MDGridLayout):
     cols = 2
 
 
-class Transaction_History_Box(MDGridLayout):
-    cols = 1
 
 
 class OperationBox(MDGridLayout):
