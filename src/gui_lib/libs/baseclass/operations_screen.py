@@ -44,7 +44,6 @@ class OperationBox(MDGridLayout):
     cols = 2
     send_coin_dialog = None
     export_transaction_csv_dialog = None
-    transaction_history_dialog = None
     FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
 
 
@@ -125,9 +124,6 @@ class OperationBox(MDGridLayout):
                 "You have not a transaction",
                 type='failure',
             )
-
-    def dismiss_transaction_history_dialog(self, widget):
-        self.transaction_history_dialog.dismiss()
 
     def callback_for_transaction_history_items(self, widget):
         pass
