@@ -31,14 +31,12 @@ from lib.export import export_the_transactions
 
 from config import MY_TRANSACTION_EXPORT_PATH
 
+
 class OperationScreen(MDScreen):
     pass
 
 class Send_Coin_Box(MDGridLayout):
     cols = 2
-
-
-
 
 class OperationBox(MDGridLayout):
     cols = 2
