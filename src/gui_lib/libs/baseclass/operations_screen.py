@@ -9,14 +9,18 @@
 import os
 from hashlib import sha256
 
+from kivy.metrics import dp
+
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDFlatButton
+from kivymd.uix.bottomsheet import MDListBottomSheet
 from kivymd_extensions.sweetalert import SweetAlert
 
 from kivy.core.clipboard import Clipboard
 
 from transactions.send_coin import send_coin
+from transactions.save_to_my_transaction import GetMyTransaction
 
 from blockchain.block.get_block import GetBlock
 
@@ -26,6 +30,7 @@ from lib.settings_system import the_settings
 from lib.export import export_the_transactions
 
 from config import MY_TRANSACTION_EXPORT_PATH
+
 
 class OperationScreen(MDScreen):
     pass
@@ -116,5 +121,29 @@ class OperationBox(MDGridLayout):
             SweetAlert().fire(
                 "You have not a transaction",
                 type='failure',
-            )                       
+            )
+
+    def callback_for_transaction_history_items(self, widget):
+        pass
+
+    def transaction_history(self):
+        transactions = GetMyTransaction()
+        if not len(transactions) == 0:
+            bottom_sheet_menu = MDListBottomSheet(radius=25,radius_from="top")
+            data = {}
+            for tx in transactions:
+                data[tx] = tx.toUser +" | "+ str(tx.amount) +" | "+ str(tx.transaction_fee)
+
+            for item in data.items():
+                bottom_sheet_menu.add_item(
+                    item[1],
+                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
+                )
+            bottom_sheet_menu.open()
+        else:
+            SweetAlert().fire(
+                "You have not a transaction",
+                type='failure',
+            )
+                    
         
