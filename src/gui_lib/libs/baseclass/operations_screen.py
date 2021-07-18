@@ -14,7 +14,7 @@ from kivy.metrics import dp
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDFlatButton
-from kivymd.uix.datatables import MDDataTable
+from kivymd.uix.bottomsheet import MDListBottomSheet
 from kivymd_extensions.sweetalert import SweetAlert
 
 from kivy.core.clipboard import Clipboard
@@ -129,29 +129,28 @@ class OperationBox(MDGridLayout):
                 type='failure',
             )
 
-    def dismiss_transaction_history_dialog(self,widget):
+    def dismiss_transaction_history_dialog(self, widget):
         self.transaction_history_dialog.dismiss()
 
+    def callback_for_transaction_history_items(self, widget):
+        pass
+
     def transaction_history(self):
-        if export_the_transactions():
-            self.transaction_history_dialog = SweetAlert(
-                  title="Send Coin",
-                  type="custom",
-                  auto_dismiss=False,
-                  content_cls=Transaction_History_Box(),
-                  buttons=[
-                      MDFlatButton(
-                          text="OK",
-                          on_press=self.dismiss_transaction_history_dialog,
-                          font_size= "18sp",
-                          font_name= self.FONT_PATH + "RobotoCondensed-Bold",
-                      ),
-                  ],
-              )
-            self.transaction_history_dialog.open()
+        transactions = GetMyTransaction()
+        if not len(transactions) == 0:
+            bottom_sheet_menu = MDListBottomSheet(radius=25,radius_from="top")
+            data = {}
+            for tx in transactions:
+                data[tx] = tx.toUser +" | "+ str(tx.amount) +" | "+ str(tx.transaction_fee)
+
+            for item in data.items():
+                bottom_sheet_menu.add_item(
+                    item[1],
+                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
+                )
+            bottom_sheet_menu.open()
         else:
             SweetAlert().fire(
                 "You have not a transaction",
                 type='failure',
-            )                     
-        
+            )
