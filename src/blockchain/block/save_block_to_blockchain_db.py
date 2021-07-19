@@ -9,7 +9,7 @@
 import os
 import pickle
 
-from lib.config_system import get_config
+from lib.config_system import get_config    lgtm [py/unused-import]
 
 from config import BLOCKS_PATH
 
