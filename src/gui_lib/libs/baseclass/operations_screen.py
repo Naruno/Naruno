@@ -9,8 +9,6 @@
 import os
 from hashlib import sha256
 
-from kivy.metrics import dp
-
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDFlatButton
