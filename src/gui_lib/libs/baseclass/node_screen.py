@@ -236,22 +236,22 @@ class NodeBox(MDGridLayout):
                 "Good",
                 type='success',
             )
-        elif status = "Not bad"
+        elif status == "Not bad":
             SweetAlert().fire(
                 "Not bad",
                 type='info'
             )
-        elif status = "Bad"
+        elif status == "Bad":
             SweetAlert().fire(
                 "Not bad",
                 type='question'
             )
-        elif status = "Very bad"
+        elif status == "Very bad":
             SweetAlert().fire(
                 "Very bad",
                 type='warning'
             )
-        elif status = "Not work"
+        elif status == "Not work":
             SweetAlert().fire(
                 "Not work",
                 type='failure'
