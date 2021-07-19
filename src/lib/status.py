@@ -27,7 +27,7 @@ def Status():
             elif difference <= 20:
                 return "Bad"
             elif difference >= 20:
-                return "Very Bad"
+                return "Very bad"
         else:
             if difference >= 20:
-                return "Not Work"
+                return "Not work"
