@@ -16,7 +16,7 @@ def create_a_wallet(password=None):
     Creates a wallet.
     """
 
-    if password == None:
+    if password is None:
         password = getpass("Password: ")
     Wallet_Create(password)
     del password
