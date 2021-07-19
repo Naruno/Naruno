@@ -8,7 +8,6 @@
 
 import urllib.request, json
 import time
-import os
 import argparse
 import sys
 
