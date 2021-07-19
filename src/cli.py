@@ -25,6 +25,7 @@ from blockchain.block.create_block import CreateBlock
 from lib.mixlib import banner_maker, menu_space, menu_maker, quit_menu_maker, question_maker
 from lib.settings_system import the_settings, test_mode, debug_mode
 from lib.export import export_the_transactions
+from lib.status import Status
 
 from wallet.create_a_wallet import create_a_wallet
 from wallet.print_wallets import print_wallets
@@ -66,6 +67,8 @@ def show_menu():
        menu_space() + \
        menu_maker(menu_number="exptrcsv", menu_text="Export Transaction as CSV")+ \
        menu_maker(menu_number="returntrs", menu_text="Export Transaction as CSV")+ \
+       menu_space() + \
+       menu_maker(menu_number="status", menu_text="Prints the status")+ \
        menu_space() + \
        menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")+ \
        menu_space())
@@ -147,7 +150,8 @@ def menu():
             else:
                 GetBlockFromOtherNode()
 
-
+        if choices_input == "status":
+            print(Status())
 
         if choices_input == "0":
             exit()
@@ -192,6 +196,9 @@ def arguments():
 
     parser.add_argument('-returntrans', '--returntransactions', action='store_true',
                         help='Exports the transaction as csv')   
+
+    parser.add_argument('-st', '--status', action='store_true',
+                        help='Exports the transaction as csv')
 
     parser.add_argument('-m', '--menu', action='store_true',
                         help='An optional boolean for open the menu.') 
@@ -241,6 +248,8 @@ def arguments():
     if args.returntransactions:
         PrintTransactions()
 
+    if args.status:
+        print(Status())
 
     if args.menu:
         menu()

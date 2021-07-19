@@ -17,6 +17,7 @@ from transactions.save_to_my_transaction import GetMyTransaction
 
 from lib.export import export_the_transactions
 from lib.settings_system import the_settings, test_mode, debug_mode
+from lib.status import Status
 
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
 from node.unl import save_new_unl_node
@@ -150,6 +151,12 @@ def export_transaction_csv_page():
 @app.route("/export/transactions/json", methods=["GET"])
 def export_transaction_json_page():
     return jsonify([i.__dict__ for i in GetMyTransaction()])
+
+
+@app.route("/status", methods=["GET"])
+def status_page():
+    return jsonify(Status())
+
 
 
 if __name__ == "__main__":
