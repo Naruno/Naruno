@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from wallet.wallet import Wallet_Import, get_saved_wallet, Wallet_Delete
 
 from lib.mixlib import menu_maker
 from lib.settings_system import the_settings
