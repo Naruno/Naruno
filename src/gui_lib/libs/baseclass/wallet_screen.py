@@ -11,7 +11,6 @@ from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 
 
-from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 
 from kivymd_extensions.sweetalert import SweetAlert

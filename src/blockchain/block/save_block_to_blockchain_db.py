@@ -6,10 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import os
 import pickle
 
-from lib.config_system import get_config
+
 
 from config import BLOCKS_PATH
 

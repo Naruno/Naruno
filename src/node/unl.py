@@ -8,7 +8,6 @@
 
 import json
 import os
-import sys
 import time
 
 from lib.config_system import get_config

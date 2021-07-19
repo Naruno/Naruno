@@ -20,7 +20,8 @@ from lib.merkle_root import MerkleTree
 from transactions.transaction import Transaction
 
 import os
-from config import TEMP_BLOCK_PATH, LOADING_BLOCK_PATH, CONNECTED_NODE_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCKSHASH_PATH
+
+from config import TEMP_BLOCK_PATH, LOADING_BLOCK_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCKSHASH_PATH
 
 from blockchain.block.get_block import GetBlock
 
