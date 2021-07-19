@@ -205,7 +205,7 @@ def arguments():
     if args.printwallet:
         print_wallets()
 
-    if not args.wallet == None:
+    if not args.wallet == is:
         wallet_selector(args.wallet)
 
     if not args.createwallet == None:
