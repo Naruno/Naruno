@@ -21,4 +21,5 @@ nav_order: 6
 | -dmoff | --debugmodeoff | NO | Sets the test mode off |
 | -exptrcsv | --exporttransactioncsv | NO | Exports transactions to csv |
 | -returntrans | --returntransactions | NO | Prints transactions |
+| -st | --status | NO | Prints the status of network |
 | -m | --menu | NO | Opens the cli menu |

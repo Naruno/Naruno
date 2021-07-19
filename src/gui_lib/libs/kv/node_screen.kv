@@ -166,3 +166,16 @@
                     text: "Copy the your ID"
                     halign: "right"
                     font_style: "Button"
+
+        AnchorLayout:
+            size_hint_y: None
+            height: but8.height   
+            MDRoundFlatIconButton:
+                id: but8
+                icon: "lifebuoy"
+                on_press: root.status()
+                width:240
+                DecentraLabel:
+                    text: "Status"
+                    halign: "right"
+                    font_style: "Button"

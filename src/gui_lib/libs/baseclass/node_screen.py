@@ -11,13 +11,16 @@ import os
 
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
-
 from kivymd.uix.button import MDFlatButton
 from kivymd_extensions.sweetalert import SweetAlert
+from kivymd.toast import toast
+
 from kivy.core.clipboard import Clipboard
 
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
+
 from lib.settings_system import the_settings
+from lib.status import Status
 
 from blockchain.block.get_block import GetBlockFromOtherNode
 from blockchain.block.create_block import CreateBlock
@@ -224,3 +227,32 @@ class NodeBox(MDGridLayout):
             "The ID has been copied to your clipboard.",
             type='success',
         )
+
+    def status(self):
+        toast("Calculating...")
+        status = Status()
+        if status == "Good":
+            SweetAlert().fire(
+                "Good",
+                type='success',
+            )
+        elif status == "Not bad":
+            SweetAlert().fire(
+                "Not bad",
+                type='info'
+            )
+        elif status == "Bad":
+            SweetAlert().fire(
+                "Not bad",
+                type='question'
+            )
+        elif status == "Very bad":
+            SweetAlert().fire(
+                "Very bad",
+                type='warning'
+            )
+        elif status == "Not work":
+            SweetAlert().fire(
+                "Not work",
+                type='failure'
+            )
