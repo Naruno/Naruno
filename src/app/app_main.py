@@ -75,6 +75,7 @@ def app_tigger(block):
                         and "_main" in entry.name
                     ):
                         for (
+                            trans
                         ) in block.validating_list:  # lgtm [py/unused-loop-variable]
                             import_command = f"from app.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
                             tx_command = f"{entry.name.replace('.py','')}_tx(trans)"
