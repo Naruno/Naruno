@@ -208,7 +208,7 @@ def arguments():
     if not args.wallet == is:
         wallet_selector(args.wallet)
 
-    if not args.createwallet == None:
+    if not args.createwallet == is:
         create_a_wallet(args.createwallet)
 
     if args.deletewallet:
@@ -217,7 +217,7 @@ def arguments():
     if args.getbalance:
         print_balance()
 
-    if not args.ndnewunl == None:
+    if not args.ndnewunl == is:
         save_new_unl_node(args.ndnewunl)
 
     if args.ndid:
