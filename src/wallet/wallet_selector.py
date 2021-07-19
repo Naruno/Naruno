@@ -24,7 +24,7 @@ def wallet_selector(new_wallet_number=None):
 
         while True:
             try:
-                if new_wallet_number == None:
+                if new_wallet_number is None:
                     new_wallet = input("Please select wallet: ")
                 else:
                     new_wallet = new_wallet_number
@@ -35,7 +35,7 @@ def wallet_selector(new_wallet_number=None):
                     break
                 else:
                     print("There is no such wallet")
-                    if not new_wallet_number == None:
+                    if not new_wallet_number is None:
                         break
             except:
                 print("This is not a number")
