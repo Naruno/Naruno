@@ -84,5 +84,5 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         parser.print_help()
 
-    if not args.nodenumber == None:
+    if not args.nodenumber is None:
         Decentra_Network_Local(args.nodenumber)
