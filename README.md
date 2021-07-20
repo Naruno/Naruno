@@ -3,14 +3,18 @@
     <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
   </a>
   
-  <h3 align="center">Decentra Network Core (0.6.0-alpha)</h3>
+  <h3 align="center">Decentra Network Core</h3>
 
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br />
     <a href="https://decentra-network.github.io/Decentra-Network/"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
+  </p>
+  <p align="center">
+  <img src="https://img.shields.io/github/v/release/Decentra-Network/Decentra-Network" alt="release_version">
+  </p>
+  <p align="center">
   <a href="https://www.python.org/">
   <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" alt="Made_with_python">
   </a>
