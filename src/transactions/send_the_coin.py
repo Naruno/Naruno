@@ -26,7 +26,6 @@ def send_the_coin(receiver, temp_coin_amount, password):
 
     if not temp_coin_amount < GetBlock().minumum_transfer_amount:
         if Wallet_Import(int(the_settings()["wallet"]), 2) == sha256(password.encode("utf-8")).hexdigest():
-            print(password)
             send_coin(float(temp_coin_amount), receiver, password)
         else:
             print("Password is not correct")
