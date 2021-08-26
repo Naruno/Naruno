@@ -158,8 +158,7 @@ def status_page():
     return jsonify(Status())
 
 
-
-if __name__ == "__main__":
+def start():
     parser = argparse.ArgumentParser(
         description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
@@ -172,3 +171,6 @@ if __name__ == "__main__":
         app.run(host="0.0.0.0", port=8000)
     else:
         app.run(host="0.0.0.0", port=args.port)
+
+if __name__ == "__main__":
+    start()
