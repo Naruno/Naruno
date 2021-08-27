@@ -18,6 +18,7 @@ def send_coin(coin_amount, to_user, password):
     Inputs:
       * coin_amount: A int or float amount to be sent.
       * to_user: Receiver's address.
+      * password: Password of wallet.
     """
 
     my_public_key = Wallet_Import(-1, 0)

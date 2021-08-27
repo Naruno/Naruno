@@ -1,6 +1,7 @@
 ---
 title: Creating A App
-parent: Apps
+parent: Embedded
+grand_parent: Apps
 nav_order: 2
 ---
 
