@@ -1,6 +1,6 @@
 ---
 title: Using
-parent: Embedded
+parent: Remote
 grand_parent: Apps
 nav_order: 1
 ---
