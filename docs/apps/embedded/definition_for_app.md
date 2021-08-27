@@ -1,6 +1,7 @@
 ---
 title: Definition For App
-parent: Apps
+parent: Embedded
+grand_parent: Apps
 nav_order: 3
 ---
 

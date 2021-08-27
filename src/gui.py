@@ -107,5 +107,8 @@ class GUI(MDApp):
         
         return Builder.load_string(KV)
 
-if __name__ == '__main__':
+def start():
     GUI().run()
+
+if __name__ == '__main__':
+    start()

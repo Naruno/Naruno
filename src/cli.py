@@ -255,5 +255,8 @@ def arguments():
         menu()
 
 
-if __name__ == '__main__':
+def start():
     arguments()
+
+if __name__ == '__main__':
+    start()

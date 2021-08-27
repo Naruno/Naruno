@@ -19,6 +19,7 @@ from node.unl import get_unl_nodes, get_as_node_type
 
 from transactions.transaction import Transaction
 from transactions.pending_to_validating import PendinttoValidating
+from transactions.save_to_my_transaction import SavetoMyTransaction
 
 from accounts.account import Account, save_accounts, save_accounts_part
 from accounts.get_balance import GetBalance
@@ -181,6 +182,12 @@ class Block:
 
             
             app_tigger(self)
+
+            my_address = Wallet_Import(-1, 3)
+            for tx in self.validating_list:
+                if tx.toUser == my_address:
+                    SavetoMyTransaction(tx)
+
             
             saveBlockstoBlockchainDB(self)
 
