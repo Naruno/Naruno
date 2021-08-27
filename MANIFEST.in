@@ -1,0 +1,5 @@
+recursive-include src/db *
+recursive-include src/db/block *
+recursive-include src/gui_lib/fonts *
+recursive-include src/gui_lib/image *
+recursive-include src/gui_lib/libs/kv *
