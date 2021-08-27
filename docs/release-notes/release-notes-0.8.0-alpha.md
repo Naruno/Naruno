@@ -32,14 +32,43 @@ You can use this library to use Decentra Network API mode on your system
 0.8.0-alpha change log
 =================
 
+### Docs
+- Added new app type document under apps/remote
+- Apps seperated as embedded-remote for new app type
+- Added new download choices (pip based)
+- Added a attention section for new download choices
+- Some referance note section in using page moved to Referances title
+- Added new using guide to using page for new pip installation
+
+### Function Referances
+- Added functions referance tabel for new pip installation
+
+### Requriements
+- Added version flask
+
+### Setup.py (NEW)
+- Added setup.py for one click installation and pip install
+
+### Setups (NEW)
+- Added extra libraries for GUI and API mode.
+
+### CLI
+- Added a function as start for using the some other addition.
+
+### GUI
+- Added a function as start for using the some other addition.
+
+### API
+- Added a function as start for using the some other addition.
+
 ### Transaction
-- Added controller function for "created" or "fail" situation for export transactions
-- Some fixes for export transactions
+- Transactions that come to us are now saved to SavetoMyTransaction system.
 
-### API Doc
-- Added status referance
-- Added transaction history referance
+### Send
+- A addition to send_coin function.
 
+### Wallet
+- Added description to Wallet_Import function
 
 Credits
 =======
