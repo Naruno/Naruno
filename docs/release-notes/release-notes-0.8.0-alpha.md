@@ -21,13 +21,16 @@ Notable changes
 ===============
 
 ## Setup
-You can now install Decentra Network as a library on your system
+You can now install Decentra Network as a library on your system.
 
 ## GUI Setup
-You can use this library to use Decentra Network GUI mode on your system
+You can use this library for install Decentra Network GUI mode on your system.
 
 ## API Setup
-You can use this library to use Decentra Network API mode on your system
+You can use this library for install Decentra Network API mode on your system.
+
+For more information please check [download](https://decentra-network.github.io/Decentra-Network/getting-started/downloading.html) and [using](https://decentra-network.github.io/Decentra-Network/getting-started/using.html) page.
+
 
 0.8.0-alpha change log
 =================
