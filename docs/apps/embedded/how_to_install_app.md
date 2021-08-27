@@ -1,6 +1,7 @@
 ---
 title: How To Install App
-parent: Apps
+parent: Embedded
+grand_parent: Apps
 nav_order: 1
 ---
 

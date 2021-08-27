@@ -1018,6 +1018,15 @@ def Wallet_Create(password, save = True):
         return (my_private_key)
 
 def Wallet_Import(account,mode,password = None):
+    """
+    A function for get info about a wallet.
+
+    Inputs:
+      * account: Account index of saved accounts (if you give -1 the default wallet will use)
+      * mode: Information mode [0 = Public key | 1 = Private key (needs password) | 2 = Returns sha256 of password | 3 = Returns the address of account]
+      * password: Some function needed password for operation you can give with this input
+    """
+
     temp_saved_wallet = get_saved_wallet()
     if isinstance(account,int):
         if not -1 == account:
