@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='decentra_network',
-version='0.8.1',
+version='0.8.2',
 description="""This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.""",
 long_description=open("README.md", "r").read(),
 long_description_content_type='text/markdown',
@@ -11,9 +11,6 @@ author='Decentra Network Developers',
 author_email='atadogan06@gmail.com',
 license='MPL-2.0',
 packages=["", "accounts", "app", "blockchain", "blockchain.block", "blockchain.candidate_block", "consensus", "gui_lib", "gui_lib.libs", "gui_lib.libs.baseclass", "lib", "node", "transactions", "wallet"],
-package_data={
-    "": ["*"],
-},
 include_package_data=True,
 package_dir={'':'src'},
 entry_points = {
