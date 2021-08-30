@@ -11,6 +11,7 @@ import sys
 import flask
 from flask import jsonify, request
 import argparse
+from waitress import serve
 
 from transactions.send_the_coin import send_the_coin
 from transactions.save_to_my_transaction import GetMyTransaction
@@ -168,9 +169,9 @@ def start():
     args = parser.parse_args()
 
     if len(sys.argv) < 2:
-        app.run(host="0.0.0.0", port=8000)
+        serve(app, host="0.0.0.0", port=8000)
     else:
-        app.run(host="0.0.0.0", port=args.port)
+        serve(app, host="0.0.0.0", port=args.port)
 
 if __name__ == "__main__":
     start()
