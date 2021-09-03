@@ -1028,6 +1028,11 @@ def Wallet_Import(account,mode,password = None):
     """
 
     temp_saved_wallet = get_saved_wallet()
+
+    number_of_wallet = len(temp_saved_wallet)
+    if not number_of_wallet:
+        return None
+
     if isinstance(account,int):
         if not -1 == account:
             account = list(temp_saved_wallet)[account]
