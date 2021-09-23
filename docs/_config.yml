@@ -1,7 +1,7 @@
 remote_theme: pmarsceill/just-the-docs
 
 title: [Decentra Network Documents]
-color_scheme: dark
+color_scheme: light
 
 # Aux links for the upper right navigation
 aux_links:
