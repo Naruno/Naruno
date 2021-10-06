@@ -37,7 +37,7 @@ jobs:
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py
 
-  build:
+  build2:
     name: Docker Based Functional Tests
     runs-on: ubuntu-latest
     strategy:
@@ -56,7 +56,7 @@ jobs:
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py
 
-  build:
+  build3:
     name: Docker Based Functional Tests
     runs-on: ubuntu-latest
     strategy:
@@ -75,7 +75,7 @@ jobs:
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py
 
-  build:
+  build4:
     name: Docker Based Functional Tests
     runs-on: ubuntu-latest
     strategy:
@@ -94,7 +94,7 @@ jobs:
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py
 
-  build:
+  build5:
     name: Docker Based Functional Tests
     runs-on: ubuntu-latest
     strategy:
