@@ -2,12 +2,7 @@ name: Stability Test
 
 on: 
   release:
-    branches:
-      - master  
-    types: 
-      - published
-      - created
-      - edited
+    types: [published, edited]
 
 jobs:
 
@@ -27,7 +22,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build2:
@@ -46,7 +41,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build3:
@@ -65,7 +60,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build4:
@@ -84,7 +79,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build5:
@@ -103,7 +98,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build6:
@@ -122,7 +117,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build7:
@@ -141,7 +136,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build8:
@@ -160,7 +155,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build9:
@@ -179,7 +174,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build10:
@@ -198,7 +193,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build11:
@@ -217,7 +212,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build12:
@@ -236,7 +231,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build13:
@@ -255,7 +250,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build14:
@@ -274,7 +269,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build15:
@@ -293,7 +288,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build16:
@@ -312,7 +307,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build17:
@@ -331,7 +326,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build18:
@@ -350,7 +345,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build19:
@@ -369,7 +364,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build20:
@@ -388,7 +383,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build21:
@@ -407,7 +402,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build22:
@@ -426,7 +421,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build23:
@@ -445,7 +440,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build24:
@@ -464,7 +459,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build25:
@@ -483,7 +478,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build26:
@@ -502,7 +497,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build27:
@@ -521,7 +516,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build28:
@@ -540,7 +535,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build29:
@@ -559,7 +554,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build30:
@@ -578,7 +573,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build31:
@@ -597,7 +592,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build32:
@@ -616,7 +611,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build33:
@@ -635,7 +630,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build34:
@@ -654,7 +649,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build35:
@@ -673,7 +668,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build36:
@@ -692,7 +687,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build37:
@@ -711,7 +706,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build38:
@@ -730,7 +725,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build39:
@@ -749,7 +744,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build40:
@@ -768,7 +763,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build41:
@@ -787,7 +782,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build42:
@@ -806,7 +801,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build43:
@@ -825,7 +820,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build44:
@@ -844,7 +839,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build45:
@@ -863,7 +858,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build46:
@@ -882,7 +877,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build47:
@@ -901,7 +896,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build48:
@@ -920,7 +915,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build49:
@@ -939,7 +934,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build50:
@@ -958,7 +953,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build51:
@@ -977,7 +972,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build52:
@@ -996,7 +991,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build53:
@@ -1015,7 +1010,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build54:
@@ -1034,7 +1029,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build55:
@@ -1053,7 +1048,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build56:
@@ -1072,7 +1067,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build57:
@@ -1091,7 +1086,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build58:
@@ -1110,7 +1105,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build59:
@@ -1129,7 +1124,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build60:
@@ -1148,7 +1143,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build61:
@@ -1167,7 +1162,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build62:
@@ -1186,7 +1181,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build63:
@@ -1205,7 +1200,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build64:
@@ -1224,7 +1219,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build65:
@@ -1243,7 +1238,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build66:
@@ -1262,7 +1257,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build67:
@@ -1281,7 +1276,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build68:
@@ -1300,7 +1295,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build69:
@@ -1319,7 +1314,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build70:
@@ -1338,7 +1333,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build71:
@@ -1357,7 +1352,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build72:
@@ -1376,7 +1371,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build73:
@@ -1395,7 +1390,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build74:
@@ -1414,7 +1409,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build75:
@@ -1433,7 +1428,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build76:
@@ -1452,7 +1447,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build77:
@@ -1471,7 +1466,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build78:
@@ -1490,7 +1485,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build79:
@@ -1509,7 +1504,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build80:
@@ -1528,7 +1523,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build81:
@@ -1547,7 +1542,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build82:
@@ -1566,7 +1561,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build83:
@@ -1585,7 +1580,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build84:
@@ -1604,7 +1599,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build85:
@@ -1623,7 +1618,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build86:
@@ -1642,7 +1637,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build87:
@@ -1661,7 +1656,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build88:
@@ -1680,7 +1675,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build89:
@@ -1699,7 +1694,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build90:
@@ -1718,7 +1713,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build91:
@@ -1737,7 +1732,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build92:
@@ -1756,7 +1751,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build93:
@@ -1775,7 +1770,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build94:
@@ -1794,7 +1789,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build95:
@@ -1813,7 +1808,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build96:
@@ -1832,7 +1827,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build97:
@@ -1851,7 +1846,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build98:
@@ -1870,7 +1865,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build99:
@@ -1889,7 +1884,7 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
   build100:
@@ -1908,6 +1903,6 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py 
   
