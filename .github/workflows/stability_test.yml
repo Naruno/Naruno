@@ -2,7 +2,12 @@ name: Stability Test
 
 on: 
   release:
-    types: [published, created, edited]
+    branches:
+      - master  
+    types: 
+      - published
+      - created
+      - edited
 
 jobs:
 
