@@ -18,8 +18,7 @@ on:
 
 jobs:
 
-
-  build0:
+  build:
     name: Docker Based Functional Tests
     runs-on: ubuntu-latest
     strategy:
@@ -27,17 +26,18 @@ jobs:
         python-version: [3.8]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${ matrix.python-version }
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: ${ matrix.python-version }
+        python-version: ${{ matrix.python-version }}
     - name: Install dependencies and run tests
       run: |
         pip install pytest
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py
-  
+        
+        
 
   build1:
     name: Docker Based Functional Tests
@@ -217,3 +217,23 @@ jobs:
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py
+  
+
+  build10:
+    name: Docker Based Functional Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${ matrix.python-version }
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${ matrix.python-version }
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        cd ..
+        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
+        pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py        
