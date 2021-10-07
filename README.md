@@ -56,8 +56,8 @@
   </p>
     
   <p align="center">
-    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml">
-      <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml/badge.svg" alt="Functional_tests">
+    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests_type_2.yml">
+      <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests_type_2.yml/badge.svg" alt="Functional_tests">
     </a>
   </p>
 
