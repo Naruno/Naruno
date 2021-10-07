@@ -32,6 +32,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
+        time.sleep(3)
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/print").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
 
@@ -54,6 +55,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
+        time.sleep(3)
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/create/123").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
@@ -82,6 +84,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
+        time.sleep(3)
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/create/123").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
 
