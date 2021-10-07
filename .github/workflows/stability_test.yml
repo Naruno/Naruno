@@ -1,24 +1,8 @@
 name: Stability Test
 
 on: 
-  push:
-    branches:
-      - master  
-    paths:
-      - '.github/workflows/stability_test.yml'
-      - 'docker/github/api/**'
-      - 'src/**'  
-      - 'requirements/**'
-      - 'functional_test/docker/**'
-  pull_request:
-    branches:
-      - master   
-    paths:
-      - '.github/workflows/stability_test.yml'
-      - 'docker/github/api/**'
-      - 'src/**'  
-      - 'requirements/**'
-      - 'functional_test/**'
+  release:
+    types: [published, created, edited]
 
 jobs:
 
