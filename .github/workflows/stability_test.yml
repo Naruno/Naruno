@@ -2,8 +2,6 @@ name: Stability Test
 
 on: 
   release:
-    branches:
-      - main
     types: 
       - published
       - edited
