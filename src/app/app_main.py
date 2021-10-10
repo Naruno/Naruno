@@ -34,6 +34,7 @@ def apps_starter():
     """
     Finds applications and sends them to the app().
     """
+    port = 79
     for folder_entry in os.scandir("app"):
         if (
             ".md" not in folder_entry.name
@@ -47,8 +48,9 @@ def apps_starter():
                         and ".py" in entry.name
                         and "_main" in entry.name
                     ):
+                        port += 1
                         import_command = f"from app.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_run"
-                        tx_command = f"{entry.name.replace('.py','')}_run()"
+                        tx_command = f"{entry.name.replace('.py','')}_run({port})"
 
                         exec(import_command)
 
