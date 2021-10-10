@@ -41,7 +41,7 @@ def apps_starter():
             and "__" not in folder_entry.name
             and "app_main" not in folder_entry.name
         ):
-            for entry in os.scandir("app/apps/" + folder_entry.name):
+            for entry in os.scandir("app/" + folder_entry.name):
                 if entry.is_file():
                     if (
                         entry.name[0] != "_"
@@ -49,7 +49,7 @@ def apps_starter():
                         and "_main" in entry.name
                     ):
                         port += 1
-                        import_command = f"from app.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_run"
+                        import_command = f"from app.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_run"
                         tx_command = f"{entry.name.replace('.py','')}_run({port})"
 
                         exec(import_command)
@@ -69,7 +69,7 @@ def app_tigger(block):
             and "__" not in folder_entry.name
             and "app_main" not in folder_entry.name
         ):
-            for entry in os.scandir("app/apps/" + folder_entry.name):
+            for entry in os.scandir("app/" + folder_entry.name):
                 if entry.is_file():
                     if (
                         entry.name[0] != "_"
@@ -79,7 +79,7 @@ def app_tigger(block):
                         for (
                             trans
                         ) in block.validating_list:  # lgtm [py/unused-loop-variable]
-                            import_command = f"from app.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
+                            import_command = f"from app.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
                             tx_command = f"{entry.name.replace('.py','')}_tx(trans)"
                             exec(import_command)
                             exec(tx_command)
