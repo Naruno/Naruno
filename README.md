@@ -8,7 +8,7 @@
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br />
-    <a href="https://decentra-network.github.io/Decentra-Network/"><strong>Explore the docs »</strong></a>
+    <a href="https://decentranetwork.org/"><strong>Explore the website »</strong></a>
     <br />
   </p>
   <p align="center">
