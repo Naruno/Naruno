@@ -6,6 +6,13 @@ nav_exclude: true
 
 # Local Test Environments Tutorial
 
+## Installing Requirements
+First we will install the requirements.
+
+```bash
+pip3 install -r requirements/api.txt
+```
+
 ## Duplicating The Decentra Network Core
 First we will replicate the already installed Decentra Network Core.
 
