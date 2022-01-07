@@ -1,11 +1,9 @@
 name: Stability Test
 
 on: 
-  release:
-    types:
-      - created
-      - published
-      - edited
+  push:
+    branches:
+      - stability_test
 
 jobs:
 
