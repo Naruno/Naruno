@@ -1,9 +1,7 @@
 name: Stability Test
 
-on: 
-  push:
-    branches:
-      - stability_test
+on:
+  workflow_dispatch:
 
 jobs:
 
