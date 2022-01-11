@@ -124,5 +124,5 @@ if __name__ == '__main__':
     if args.run:
         temp_environment.run()
 
-    if not args.nodenumber is None:
+    if not args.nodenumber is None and (args.install or args.run):
         temp_environment.start()
