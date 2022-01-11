@@ -16,7 +16,11 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        Decentra_Network_Docker()
+        temp_environment = Decentra_Network_Docker()
+        temp_environment.install()
+        temp_environment.run()
+        temp_environment.start()
+
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/create/123").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
@@ -33,7 +37,10 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        Decentra_Network_Docker()
+        temp_environment = Decentra_Network_Docker()
+        temp_environment.install()
+        temp_environment.run()
+        temp_environment.start()
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/print").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
 
@@ -56,7 +63,10 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        Decentra_Network_Docker()
+        temp_environment = Decentra_Network_Docker()
+        temp_environment.install()
+        temp_environment.run()
+        temp_environment.start()
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/create/123").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
@@ -85,7 +95,10 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        Decentra_Network_Docker()
+        temp_environment = Decentra_Network_Docker()
+        temp_environment.install()
+        temp_environment.run()
+        temp_environment.start()
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/create/123").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
 
@@ -112,5 +125,5 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
 import urllib.request, json
 import time
-from functional_test.docker.docker import Decentra_Network_Docker
+from auto_builders.docker import Decentra_Network_Docker
 unittest.main(exit=False)

@@ -7,7 +7,7 @@ on:
       - 'docker/local/api/**'
       - 'src/**'  
       - 'requirements/**'
-      - 'functional_test/docker/**'
+      - 'functional_test/**'
   pull_request:
     paths:
       - '.github/workflows/functional_tests.yml'

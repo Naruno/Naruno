@@ -8,17 +8,16 @@
 
 import urllib.request, json
 import time
-import os
 import argparse
 import sys
 
 
-class Decentra_Network_Docker:
+class Decentra_Network_Local:
 
     def __init__(self, number_of_nodes = 3):
         self.number_of_nodes = number_of_nodes - 1
-        self.install()
-        self.run()
+    
+    def start(self):
         time.sleep(1)
         self.creating_the_wallets()
         self.starting_the_nodest()
@@ -26,21 +25,6 @@ class Decentra_Network_Docker:
         self.connecting_the_nodes()
         self.creating_the_block()
         time.sleep(15)
-    
-    def install(self):
-        os.system("docker rm -f $(docker ps -a -q -f ancestor=decentra-network-api)")
-        os.system("docker volume rm $(docker volume ls -q -f name=decentra-network)")
-
-        os.system("docker network rm dn-net")
-        os.system("docker network create --subnet=172.19.0.0/16 dn-net")
-        for i in range(self.number_of_nodes):
-            os.system(f"docker tag decentra-network-api {i}")
-
-    def run(self):
-
-        os.system("docker run -v decentra-network:/Decentra-Network/src/db/ --network dn-net -p 8000:8000 -p 7999:7999 -dit decentra-network-api")
-        for i in range(self.number_of_nodes):
-            os.system(f"docker run -v decentra-network-{i}:/Decentra-Network/src/db/ --network dn-net -p 80{i+1}0:8000 -p 800{i+1}:800{i+1} -dit {i}")
 
     def creating_the_wallets(self):
 
@@ -50,9 +34,9 @@ class Decentra_Network_Docker:
 
     def starting_the_nodest(self):
 
-        node_start_1 = json.loads(urllib.request.urlopen("http://localhost:8000/node/start/172.19.0.2/7999").read().decode())
+        node_start_1 = json.loads(urllib.request.urlopen("http://localhost:8000/node/start/0.0.0.0/7999").read().decode())
         for i in range(self.number_of_nodes):
-            node_start_2 = json.loads(urllib.request.urlopen(f"http://localhost:80{i+1}0/node/start/172.19.0.{i+3}/800{i+1}").read().decode())
+            node_start_2 = json.loads(urllib.request.urlopen(f"http://localhost:80{i+1}0/node/start/0.0.0.0/800{i+1}").read().decode())
 
     def unl_nodes_settting(self):
 
@@ -70,12 +54,12 @@ class Decentra_Network_Docker:
     def connecting_the_nodes(self):
 
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(f"http://localhost:8000/node/connect/172.19.0.{i+3}/800{i+1}")
+            urllib.request.urlopen(f"http://localhost:8000/node/connect/0.0.0.0/800{i+1}")
         
         for i in range(self.number_of_nodes):
             for i_n in range(self.number_of_nodes):
                 if not i == i_n:
-                    urllib.request.urlopen(f"http://localhost:80{i+1}0/node/connect/172.19.0.{i_n+3}/800{i_n+1}")
+                    urllib.request.urlopen(f"http://localhost:80{i+1}0/node/connect/localhost/800{i_n+1}")
                     time.sleep(1)
 
     def creating_the_block(self):
@@ -103,4 +87,4 @@ if __name__ == '__main__':
         parser.print_help()
 
     if not args.nodenumber is None:
-        Decentra_Network_Docker(args.nodenumber)
+        Decentra_Network_Local(args.nodenumber)
