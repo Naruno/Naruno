@@ -28,13 +28,15 @@ class Decentra_Network_Docker:
         time.sleep(15)
     
     def install(self):
+        os.system("docker network create --subnet=172.19.0.0/16 dn-net")
+        for i in range(self.number_of_nodes):
+            os.system(f"docker tag decentra-network-api {i}")
+
+    def delete(self):
         os.system("docker rm -f $(docker ps -a -q -f ancestor=decentra-network-api)")
         os.system("docker volume rm $(docker volume ls -q -f name=decentra-network)")
 
         os.system("docker network rm dn-net")
-        os.system("docker network create --subnet=172.19.0.0/16 dn-net")
-        for i in range(self.number_of_nodes):
-            os.system(f"docker tag decentra-network-api {i}")
 
     def run(self):
 
@@ -95,9 +97,15 @@ if __name__ == '__main__':
     parser.add_argument('-nn', '--nodenumber', type=int,
                         help='Change Wallet')
 
-    parser.add_argument('-ir', '--installrun', action='store_true',
-                        help='Install and run')   
+    parser.add_argument('-i', '--install', action='store_true',
+                        help='Install')   
     
+    parser.add_argument('-d', '--delete', action='store_true',
+                        help='delete') 
+
+    parser.add_argument('-r', '--run', action='store_true',
+                        help='run')  
+
     args = parser.parse_args()
 
 
@@ -107,8 +115,13 @@ if __name__ == '__main__':
     temp_environment = Decentra_Network_Docker(args.nodenumber)
 
 
-    if args.installrun:
+    if args.install:
         temp_environment.install()
+
+    if args.delete:
+        temp_environment.delete()
+
+    if args.run:
         temp_environment.run()
 
     if not args.nodenumber is None:

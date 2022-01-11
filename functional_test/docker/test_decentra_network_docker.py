@@ -17,6 +17,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         """
 
         temp_environment = Decentra_Network_Docker()
+        temp_environment.delete()
         temp_environment.install()
         temp_environment.run()
         temp_environment.start()
@@ -38,6 +39,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         """
 
         temp_environment = Decentra_Network_Docker()
+        temp_environment.delete()
         temp_environment.install()
         temp_environment.run()
         temp_environment.start()
@@ -64,6 +66,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         """
 
         temp_environment = Decentra_Network_Docker()
+        temp_environment.delete()
         temp_environment.install()
         temp_environment.run()
         temp_environment.start()
@@ -96,6 +99,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         """
 
         temp_environment = Decentra_Network_Docker()
+        temp_environment.delete()
         temp_environment.install()
         temp_environment.run()
         temp_environment.start()
