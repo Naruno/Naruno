@@ -27,7 +27,6 @@ class Decentra_Network_Local:
         time.sleep(15)
 
     def install(self):
-        os.system("git clone https://github.com/Decentra-Network/Decentra-Network")
         os.system("pip3 install -r Decentra-Network/requirements/api.txt")
         for i in range(self.number_of_nodes):
             print()
