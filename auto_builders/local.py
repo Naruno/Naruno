@@ -35,7 +35,7 @@ class Decentra_Network_Local:
 
     def delete(self):
 
-        os.system("rm -r -f Decentra-Network/src/db/*
+        os.system("rm -r -f Decentra-Network/src/db/*")
         os.system("rm -r -f Decentra-Network-*")      
 
         for line in os.popen("ps ax | grep python3 | grep -v grep"):
