@@ -35,7 +35,15 @@ class Decentra_Network_Local:
 
     def delete(self):
 
-        os.system("rm -r -f Decentra-Network/src/db/*")
+        os.system("rm -r -f Decentra-Network/src/db/blocks/*.accounts")
+        os.system("rm -r -f Decentra-Network/src/db/blocks/*.accountspart")
+        os.system("rm -r -f Decentra-Network/src/db/blocks/*.block")
+        os.system("rm -r -f Decentra-Network/src/db/blocks/*.blockshash")
+        os.system("rm -r -f Decentra-Network/src/db/blocks/*.blockshashpart")
+
+        os.system("rm -r -f Decentra-Network/src/db/*.json")
+        os.system("rm -r -f Decentra-Network/src/db/*.decentra_network")
+        
         os.system("rm -r -f Decentra-Network-*")      
 
         for line in os.popen("ps ax | grep python3 | grep -v grep"):
