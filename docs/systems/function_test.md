@@ -10,8 +10,6 @@ You must pull images and tag must be decentra-network-api
 ## Install From Github Packages
 `docker pull ghcr.io/decentra-network/api:latest`
 
-`docker image tag ghcr.io/decentra-network/api decentra-network-api`
-
 ## Running Auto Test
 
 `python3 Decentra-Network/functional_test/docker/test_decentra_network_docker.py`

@@ -28,6 +28,7 @@ class Decentra_Network_Docker:
         time.sleep(15)
     
     def install(self):
+        os.system("docker image tag ghcr.io/decentra-network/api decentra-network-api")
         os.system("docker network create --subnet=172.19.0.0/16 dn-net")
         for i in range(self.number_of_nodes):
             os.system(f"docker tag decentra-network-api {i}")
