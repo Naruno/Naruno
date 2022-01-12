@@ -104,7 +104,10 @@ if __name__ == '__main__':
                         help='delete') 
 
     parser.add_argument('-r', '--run', action='store_true',
-                        help='run')  
+                        help='run') 
+
+    parser.add_argument('-s', '--start', action='store_true',
+                        help='start')                           
 
     args = parser.parse_args()
 
@@ -124,5 +127,5 @@ if __name__ == '__main__':
     if args.run:
         temp_environment.run()
 
-    if not args.nodenumber is None and (args.install or args.run):
+    if args.start:
         temp_environment.start()

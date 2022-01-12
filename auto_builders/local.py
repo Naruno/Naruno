@@ -11,6 +11,7 @@ import time
 import argparse
 import sys
 import os
+import signal
 
 class Decentra_Network_Local:
 
@@ -31,6 +32,15 @@ class Decentra_Network_Local:
         for i in range(self.number_of_nodes):
             print()
             os.system(f"cp -r -f Decentra-Network Decentra-Network-{i}")
+
+    def delete(self):
+        for line in os.popen("ps ax | grep python3 | grep -v grep"):
+            fields = line.split()
+            if "/src/api.py" in fields[5]:
+                os.kill(int(fields[0]), signal.SIGKILL)
+            
+
+           
 
     def run(self):
 
@@ -97,9 +107,14 @@ if __name__ == '__main__':
     parser.add_argument('-i', '--install', action='store_true',
                         help='Install')   
     
+    parser.add_argument('-d', '--delete', action='store_true',
+                        help='delete') 
 
     parser.add_argument('-r', '--run', action='store_true',
                         help='run')  
+
+    parser.add_argument('-s', '--start', action='store_true',
+                        help='start')                          
     
     args = parser.parse_args()
 
@@ -113,8 +128,11 @@ if __name__ == '__main__':
     if args.install:
         temp_environment.install()
 
+    if args.delete:
+        temp_environment.delete()
+
     if args.run:
         temp_environment.run()
 
-    if not args.nodenumber is None and (args.install or args.run):
+    if args.start:
         temp_environment.start()

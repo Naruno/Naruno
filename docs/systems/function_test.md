@@ -17,6 +17,6 @@ You must pull images and tag must be decentra-network-api
 `python3 Decentra-Network/functional_test/docker/test_decentra_network_docker.py`
 
 ## Start the Network Only
-`python3 Decentra-Network/auto_builders/docker.py -nn 3 -d -i -r`
+`python3 Decentra-Network/auto_builders/docker.py -nn 3 -d -i -r -s`
 
 -nn = node number
