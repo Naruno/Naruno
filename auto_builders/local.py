@@ -10,7 +10,7 @@ import urllib.request, json
 import time
 import argparse
 import sys
-
+import os
 
 class Decentra_Network_Local:
 
@@ -25,6 +25,22 @@ class Decentra_Network_Local:
         self.connecting_the_nodes()
         self.creating_the_block()
         time.sleep(15)
+
+    def install(self):
+        os.system("git clone https://github.com/Decentra-Network/Decentra-Network")
+        os.system("pip3 install -r Decentra-Network/requirements/api.txt")
+        for i in range(self.number_of_nodes):
+            print()
+            os.system(f"cp -r -f Decentra-Network Decentra-Network-{i}")
+
+    def run(self):
+
+        os.system("nohup python3 Decentra-Network/src/api.py &")
+        for i in range(self.number_of_nodes):
+            print(f"nohup python3 Decentra-Network-{i}/src/api.py -p 80{i+1}0 &")
+            os.system(f"nohup python3 Decentra-Network-{i}/src/api.py -p 80{i+1}0 &")
+
+
 
     def creating_the_wallets(self):
 
@@ -79,6 +95,12 @@ if __name__ == '__main__':
     parser.add_argument('-nn', '--nodenumber', type=int,
                         help='Change Wallet')
 
+    parser.add_argument('-i', '--install', action='store_true',
+                        help='Install')   
+    
+
+    parser.add_argument('-r', '--run', action='store_true',
+                        help='run')  
     
     args = parser.parse_args()
 
@@ -86,5 +108,14 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         parser.print_help()
 
-    if not args.nodenumber is None:
-        Decentra_Network_Local(args.nodenumber)
+    temp_environment = Decentra_Network_Local(args.nodenumber)
+
+
+    if args.install:
+        temp_environment.install()
+
+    if args.run:
+        temp_environment.run()
+
+    if not args.nodenumber is None and (args.install or args.run):
+        temp_environment.start()
