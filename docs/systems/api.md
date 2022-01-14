@@ -9,11 +9,11 @@ nav_order: 5
 | Method | Path | Description |
 |---|---|---|
 | GET | /wallet/print | Returns the wallets |
-| GET | /wallet/change/:int:number | Changes the currently wallet | 
+| GET | /wallet/change/:number | Changes the currently wallet | 
 | GET | /wallet/create/:password | Creates a new wallet with the given password |
 | GET | /wallet/delete | Deletes the currenly wallet |
 | GET | /wallet/balance | Returns the balance of the currently wallet |
-| GET | /send/coin/:address/:amount/:password | Deletes the currenly wallet |
+| GET | /send/coin/:address/:amount/:password | Send coin with the given address, amount and password of currently wallet  |
 | GET | /node/start/:ip/:port | Starts a node server with the given ip and port |
 | GET | /node/stop | Stops the node server |
 | GET | /node/newunl/?:id | Creates a new UNL node with given id |
@@ -25,6 +25,6 @@ nav_order: 5
 | GET | /settings/debug/on | Sets the debug mode on |
 | GET | /settings/debug/off | Sets the debug mode off |
 | GET | /block/get | Gets block from other nodes |
-| GET | /export/transaction/csv | Exports transactions to csv |
-| GET | /export/transaction/json | Returns transactions as json |
+| GET | /export/transactions/csv | Exports transactions to csv |
+| GET | /export/transactions/json | Exports transactions to json |
 | GET | /status | Returns the status of network |
