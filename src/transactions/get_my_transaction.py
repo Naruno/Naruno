@@ -26,7 +26,5 @@ def GetMyTransaction():
 
     
     with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
-        obj = pickle.load(my_transaction_file)
-        if not len(obj) == 1:
-            obj.remove(obj[0])        
+        obj = pickle.load(my_transaction_file)      
         return obj
