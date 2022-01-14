@@ -29,21 +29,12 @@ class Decentra_Network_Local:
 
     def install(self):
         os.system("pip3 install -r Decentra-Network/requirements/api.txt")
+        os.system(f"cp -r -f Decentra-Network Decentra-Network-0")
         for i in range(self.number_of_nodes):
-            print()
-            os.system(f"cp -r -f Decentra-Network Decentra-Network-{i}")
+            os.system(f"cp -r -f Decentra-Network Decentra-Network-{i+1}")
 
     def delete(self):
 
-        os.system("rm -r -f Decentra-Network/src/db/blocks/*.accounts")
-        os.system("rm -r -f Decentra-Network/src/db/blocks/*.accountspart")
-        os.system("rm -r -f Decentra-Network/src/db/blocks/*.block")
-        os.system("rm -r -f Decentra-Network/src/db/blocks/*.blockshash")
-        os.system("rm -r -f Decentra-Network/src/db/blocks/*.blockshashpart")
-
-        os.system("rm -r -f Decentra-Network/src/db/*.json")
-        os.system("rm -r -f Decentra-Network/src/db/*.decentra_network")
-        
         os.system("rm -r -f Decentra-Network-*")      
 
         for line in os.popen("ps ax | grep python3 | grep -v grep"):
@@ -56,10 +47,10 @@ class Decentra_Network_Local:
 
     def run(self):
 
-        os.system("nohup python3 Decentra-Network/src/api.py &")
+        os.system("nohup python3 Decentra-Network-0/src/api.py &")
         for i in range(self.number_of_nodes):
-            print(f"nohup python3 Decentra-Network-{i}/src/api.py -p 80{i+1}0 &")
-            os.system(f"nohup python3 Decentra-Network-{i}/src/api.py -p 80{i+1}0 &")
+            print(f"nohup python3 Decentra-Network-{i+1}/src/api.py -p 80{i+1}0 &")
+            os.system(f"nohup python3 Decentra-Network-{i+1}/src/api.py -p 80{i+1}0 &")
 
 
 
