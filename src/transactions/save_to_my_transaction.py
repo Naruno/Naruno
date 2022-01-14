@@ -12,6 +12,8 @@ import os
 from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
 
+from transactions.get_my_transaction import GetMyTransaction
+
 
 def SavetoMyTransaction(tx):
     """
