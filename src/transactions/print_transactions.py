@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from transactions.save_to_my_transaction import GetMyTransaction
+from transactions.get_my_transaction import GetMyTransaction
 
 
 def PrintTransactions():

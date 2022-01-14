@@ -14,7 +14,7 @@ import argparse
 from waitress import serve
 
 from transactions.send_the_coin import send_the_coin
-from transactions.save_to_my_transaction import GetMyTransaction
+from transactions.get_my_transaction import GetMyTransaction
 
 from lib.export import export_the_transactions
 from lib.settings_system import the_settings, test_mode, debug_mode

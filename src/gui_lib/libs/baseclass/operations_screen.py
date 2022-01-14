@@ -18,7 +18,7 @@ from kivymd_extensions.sweetalert import SweetAlert
 from kivy.core.clipboard import Clipboard
 
 from transactions.send_coin import send_coin
-from transactions.save_to_my_transaction import GetMyTransaction
+from transactions.get_my_transaction import GetMyTransaction
 
 from blockchain.block.get_block import GetBlock
 

@@ -13,7 +13,7 @@ from lib.config_system import get_config
 
 from config import MY_TRANSACTION_EXPORT_PATH
 
-from transactions.save_to_my_transaction import GetMyTransaction
+from transactions.get_my_transaction import GetMyTransaction
 
 
 def export_to_csv(obj, filename):

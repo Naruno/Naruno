@@ -13,14 +13,20 @@ from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
 
 
-def SavetoMyTransaction(tx):
-    """
-    Saves the transaction to the transaction db.
-    """
 
-    currently_list = GetMyTransaction()
-    currently_list.append(tx)
+def GetMyTransaction():
+    """
+    Returns the transaction db.
+    """
 
     os.chdir(get_config()["main_folder"])
-    with open(MY_TRANSACTION_PATH, "wb") as my_transaction_file:
-        pickle.dump(currently_list, my_transaction_file, protocol=2)
+
+    if not os.path.exists(MY_TRANSACTION_PATH):
+        return []
+
+    
+    with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
+        obj = pickle.load(my_transaction_file)
+        if not len(obj) == 1:
+            obj.remove(obj[0])
+        return obj
