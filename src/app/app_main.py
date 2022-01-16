@@ -25,6 +25,10 @@ class app(Thread):
         self.func = func
 
     def run(self):
+        """
+        Run the application.
+        """
+
         exec(self.import_command)
         exec(self.func)
         dprint("App is started")
@@ -34,6 +38,7 @@ def apps_starter():
     """
     Finds applications and sends them to the app().
     """
+
     port = 79
     for folder_entry in os.scandir("app"):
         if (
@@ -63,6 +68,7 @@ def app_tigger(block):
     Notifies applications of validated transactions after
     the block is validated.
     """
+
     for folder_entry in os.scandir("app"):
         if (
             ".md" not in folder_entry.name

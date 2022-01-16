@@ -158,6 +158,10 @@ def menu():
 
 
 def arguments():
+    """
+    This function parses the arguments and makes the directions.
+    """
+
     parser = argparse.ArgumentParser(description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc.")
 
     parser.add_argument('-pw', '--printwallet', action='store_true',
@@ -256,6 +260,10 @@ def arguments():
 
 
 def start():
+    """
+    Start the CLI mode with arguments.
+    """
+
     arguments()
 
 if __name__ == '__main__':

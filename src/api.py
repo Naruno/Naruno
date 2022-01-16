@@ -160,6 +160,10 @@ def status_page():
 
 
 def start():
+    """
+    Start the API server.
+    """
+
     parser = argparse.ArgumentParser(
         description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )

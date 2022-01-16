@@ -10,6 +10,10 @@ from transactions.get_my_transaction import GetMyTransaction
 
 
 def PrintTransactions():
+    """
+    Prints all transactions in my transaction.
+    """
+
     print("\n")
     print(*[i.__dict__ for i in GetMyTransaction()], sep = "\n\n")
     print("\n")

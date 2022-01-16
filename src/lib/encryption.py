@@ -10,6 +10,10 @@ import base64
 
 
 def encrypt(clear, key):
+    """
+    Encrypt the string and return the encoded cipher.
+    """
+
     enc = []
     for i in range(len(clear)):
         key_c = key[i % len(key)]
@@ -19,6 +23,10 @@ def encrypt(clear, key):
 
 
 def decrypt(enc, key):
+    """
+    Decrypt the encoded cipher and return the clear string.
+    """
+
     dec = []
     enc = base64.urlsafe_b64decode(enc).decode()
     for i in range(len(enc)):

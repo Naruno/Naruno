@@ -8,8 +8,6 @@
 
 import pickle
 
-
-
 from config import BLOCKS_PATH
 
 from accounts.account import GetAccounts, GetAccounts_part

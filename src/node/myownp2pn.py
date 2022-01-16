@@ -13,11 +13,11 @@ from lib.mixlib import dprint
 
 from hashlib import sha256
 
-
 from lib.merkle_root import MerkleTree
 
-
 from transactions.transaction import Transaction
+from transactions.change_transaction_fee import ChangeTransactionFee
+from transactions.create_transaction import CreateTransaction
 
 import os
 
@@ -302,7 +302,7 @@ class mynode (Node):
             from app.app_main import apps_starter
             system = GetBlock()
             system.newly = True
-            system.change_transaction_fee()
+            ChangeTransactionFee(self)
 
             system.exclude_validators = []
             dprint(system.sequance_number)
@@ -360,4 +360,4 @@ class mynode (Node):
     def get_transaction(self,data,node):
         dprint("Getting the transactions")
         system = GetBlock()
-        system.createTrans(sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node, transaction_time = data["transaction_time"])
+        CreateTransaction(system, sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node, transaction_time = data["transaction_time"])
