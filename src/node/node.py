@@ -21,56 +21,56 @@ from node.unl import node_is_unl
 
 
 def get_connected_node():
-    """
-    Returns the connected nodes.
-    """
+        """
+        Returns the connected nodes.
+        """
 
-    sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-    from lib.config_system import get_config
-
-    if not os.path.exists(CONNECTED_NODE_PATH):
-        temp_json = {}
-        return temp_json
-
-
-    os.chdir(get_config()["main_folder"])
-    with open(CONNECTED_NODE_PATH, 'rb') as connected_node_file:
-        return json.load(connected_node_file)
-
-
-def save_connected_node(host,port,id):
-    """
-    Saves the connected nodes.
-    """
-
-    node_list = get_connected_node()
-
-    already_in_list = False
-
-    for element in node_list:
-        if node_list[element]["host"] == host and node_list[element]["port"] == port:
-            already_in_list = True
-
-    if not already_in_list:
-        node_list[id] = {}
-        node_list[id]["host"] = host
-        node_list[id]["port"] = port
-
-
-
+        sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
         from lib.config_system import get_config
 
-        sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-         
-
-
+        if not os.path.exists(CONNECTED_NODE_PATH):
+            temp_json = {}
+            return temp_json
 
 
         os.chdir(get_config()["main_folder"])
-        with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
-            json.dump(node_list, connected_node_file, indent=4)
+        with open(CONNECTED_NODE_PATH, 'rb') as connected_node_file:
+            return json.load(connected_node_file)
+
+
+def save_connected_node(host,port,id):
+        """
+        Saves the connected nodes.
+        """
+
+        node_list = get_connected_node()
+
+        already_in_list = False
+
+        for element in node_list:
+            if node_list[element]["host"] == host and node_list[element]["port"] == port:
+                already_in_list = True
+
+        if not already_in_list:
+         node_list[id] = {}
+         node_list[id]["host"] = host
+         node_list[id]["port"] = port
+
+
+
+
+         
+
+         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+         
+         from lib.config_system import get_config
+
+
+
+         os.chdir(get_config()["main_folder"])
+         with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
+             json.dump(node_list, connected_node_file, indent=4)
 
 
 
