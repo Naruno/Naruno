@@ -303,7 +303,7 @@ class mynode (Node):
             system = GetBlock()
             system.newly = True
             from transactions.change_transaction_fee import ChangeTransactionFee
-            ChangeTransactionFee(self)
+            ChangeTransactionFee(system)
 
             system.exclude_validators = []
             dprint(system.sequance_number)
