@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+
 import socket
 import sys
 import time
@@ -15,11 +16,8 @@ import json
 from config import CONNECTED_NODE_PATH
 
 from lib.mixlib import dprint
-from lib.config_system import get_config
 
 from node.unl import node_is_unl
-from node.myownp2pn import mynode
-from lib.config_system import get_config
 
 
 def get_connected_node():
@@ -29,6 +27,7 @@ def get_connected_node():
 
     sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
+    from lib.config_system import get_config
 
     if not os.path.exists(CONNECTED_NODE_PATH):
         temp_json = {}
@@ -61,7 +60,7 @@ def save_connected_node(host,port,id):
 
 
 
-         
+        from lib.config_system import get_config
 
         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
          
@@ -82,6 +81,7 @@ def connectionfrommixdb():
     """
 
     node_list = get_connected_node()
+    from node.myownp2pn import mynode
     for element in node_list:
         mynode.main_node.connect_to_node(node_list[element]["host"], node_list[element]["port"])
 

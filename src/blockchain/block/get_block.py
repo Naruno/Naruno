@@ -13,9 +13,6 @@ from lib.config_system import get_config
 
 from config import TEMP_BLOCK_PATH
 
-from node.myownp2pn import mynode
-from node.unl import get_unl_nodes, get_as_node_type
-
 
 def GetBlock():
     """
@@ -31,6 +28,9 @@ def GetBlockFromOtherNode():
     """
     Receive the block from the other node.
     """
+
+    from node.myownp2pn import mynode
+    from node.unl import get_unl_nodes, get_as_node_type
 
     node = mynode.main_node
     unl_list = get_as_node_type(get_unl_nodes())
