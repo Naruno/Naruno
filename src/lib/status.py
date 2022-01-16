@@ -12,6 +12,10 @@ from blockchain.block.get_block import GetBlock
 
 
 def Status():
+    """
+    Returns the status of the network.
+    """
+
     first_block = GetBlock()
     start_time = time.time()
     while True:

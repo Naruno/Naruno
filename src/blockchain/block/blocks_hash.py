@@ -15,18 +15,30 @@ from config import TEMP_BLOCKSHASH_PATH, TEMP_BLOCKSHASH_PART_PATH
 
 
 def SaveBlockshash(the_blockshash):
+    """
+    Saves the blockshash to the TEMP_BLOCKSHASH_PATH.
+    """
+
     os.chdir(get_config()["main_folder"])
     with open(TEMP_BLOCKSHASH_PATH, "wb") as block_file:
         pickle.dump(the_blockshash, block_file, protocol=2)
 
 
 def SaveBlockshash_part(the_blockshash):
+    """
+    Saves the blockshash part to the TEMP_BLOCKSHASH_PART_PATH.
+    """
+
     os.chdir(get_config()["main_folder"])
     with open(TEMP_BLOCKSHASH_PART_PATH, "wb") as block_file:
         pickle.dump(the_blockshash, block_file, protocol=2)
 
 
 def GetBlockshash():
+    """
+    Returns the blockshash.
+    """
+
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_BLOCKSHASH_PATH):
         return []
@@ -36,6 +48,10 @@ def GetBlockshash():
 
 
 def GetBlockshash_part():
+    """
+    Returns the blockshash part.
+    """
+
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_BLOCKSHASH_PART_PATH):
         return []

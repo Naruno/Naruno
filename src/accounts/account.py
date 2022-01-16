@@ -63,18 +63,6 @@ class Account:
         return self.Address
 
 
-def save_accounts(the_accounts):
-    os.chdir(get_config()["main_folder"])
-    with open(TEMP_ACCOUNTS_PATH, "wb") as block_file:
-        pickle.dump(the_accounts, block_file, protocol=2)
-
-
-def save_accounts_part(the_accounts):
-    os.chdir(get_config()["main_folder"])
-    with open(TEMP_ACCOUNTS_PART_PATH, "wb") as block_file:
-        pickle.dump(the_accounts, block_file, protocol=2)
-
-
 def GetAccounts():
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_ACCOUNTS_PATH):

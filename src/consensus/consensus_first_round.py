@@ -17,6 +17,7 @@ from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from blockchain.block.calculate_hash import CalculateHash
 
 from transactions.process_the_transaction import ProccesstheTransaction
+from transactions.create_transaction import CreateTransaction
 
 
 def consensus_round_1(block):
@@ -106,7 +107,7 @@ def consensus_round_1(block):
         
           
           for each_newly in newly_added_list:
-                block.createTrans(each_newly.sequance_number, each_newly.signature, each_newly.fromUser, each_newly.toUser, each_newly.transaction_fee, each_newly.data, each_newly.amount, transaction_sender = None, transaction_time = each_newly.time)
+                CreateTransaction(block, each_newly.sequance_number, each_newly.signature, each_newly.fromUser, each_newly.toUser, each_newly.transaction_fee, each_newly.data, each_newly.amount, transaction_sender = None, transaction_time = each_newly.time)
 
           block.raund_1 = True
 

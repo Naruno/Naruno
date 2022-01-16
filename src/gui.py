@@ -108,6 +108,10 @@ class GUI(MDApp):
         return Builder.load_string(KV)
 
 def start():
+    """
+    Start the GUI mode.
+    """
+    
     GUI().run()
 
 if __name__ == '__main__':

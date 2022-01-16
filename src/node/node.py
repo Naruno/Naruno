@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+
 import socket
 import sys
 import time
@@ -20,7 +21,9 @@ from node.unl import node_is_unl
 
 
 def get_connected_node():
-
+        """
+        Returns the connected nodes.
+        """
 
         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -37,6 +40,9 @@ def get_connected_node():
 
 
 def save_connected_node(host,port,id):
+        """
+        Saves the connected nodes.
+        """
 
         node_list = get_connected_node()
 
@@ -70,13 +76,21 @@ def save_connected_node(host,port,id):
 
 
 def connectionfrommixdb():
-        node_list = get_connected_node()
-        from node.myownp2pn import mynode
-        for element in node_list:
-            mynode.main_node.connect_to_node(node_list[element]["host"], node_list[element]["port"])
+    """
+    Connects to the mixdb.
+    """
+
+    node_list = get_connected_node()
+    from node.myownp2pn import mynode
+    for element in node_list:
+        mynode.main_node.connect_to_node(node_list[element]["host"], node_list[element]["port"])
 
 
 def connected_node_delete(node):
+    """
+    Deletes a connected node.
+    """
+
     saved_nodes = get_connected_node()
     if node in saved_nodes:
         del saved_nodes[node]

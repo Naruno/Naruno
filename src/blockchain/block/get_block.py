@@ -15,14 +15,23 @@ from config import TEMP_BLOCK_PATH
 
 
 def GetBlock():
+    """
+    Returns the block.
+    """
+
     os.chdir(get_config()["main_folder"])
     with open(TEMP_BLOCK_PATH, 'rb') as block_file:
         return pickle.load(block_file)
 
 
 def GetBlockFromOtherNode():
+    """
+    Receive the block from the other node.
+    """
+
     from node.myownp2pn import mynode
     from node.unl import get_unl_nodes, get_as_node_type
+
     node = mynode.main_node
     unl_list = get_as_node_type(get_unl_nodes())
     node.send_data_to_node(unl_list[0], "sendmefullblock")
