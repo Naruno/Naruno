@@ -8,6 +8,7 @@ author='Decentra Network Developers',
 author_email='atadogan06@gmail.com',
 license='MPL-2.0',
 install_requires="""
+decentra_network==0.10.0
 flask==2.0.0
 waitress==2.0.0
 """,
