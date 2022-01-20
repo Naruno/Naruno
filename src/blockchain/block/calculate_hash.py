@@ -67,7 +67,7 @@ def CalculateHash(block):
             account_list.append(str(will_added_accounts.dump_json()))
     else:
         part_of_account.append(MerkleTree(the_accounts[(len(part_of_account) * part_amount):]).getRootHash())
-        save_accounts(part_of_account)
+        save_accounts_part(part_of_account)
 
     
     for part_of_account_element in part_of_account:
