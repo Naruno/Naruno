@@ -11,7 +11,6 @@ from lib.merkle_root import MerkleTree
 from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part, SaveBlockshash_part
 
 from accounts.account import GetAccounts, GetAccounts_part
-from accounts.save_accounts import save_accounts
 from accounts.save_accounts_part import save_accounts_part
 
 
@@ -67,7 +66,7 @@ def CalculateHash(block):
             account_list.append(str(will_added_accounts.dump_json()))
     else:
         part_of_account.append(MerkleTree(the_accounts[(len(part_of_account) * part_amount):]).getRootHash())
-        save_accounts(part_of_account)
+        save_accounts_part(part_of_account)
 
     
     for part_of_account_element in part_of_account:
