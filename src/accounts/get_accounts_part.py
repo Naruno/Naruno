@@ -15,6 +15,10 @@ from config import TEMP_ACCOUNTS_PART_PATH
 
 
 def GetAccounts_part():
+    """
+    Returns the accounts part from TEMP_ACCOUNTS_PART_PATH.
+    """
+    
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_ACCOUNTS_PART_PATH):
         return []
