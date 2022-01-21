@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-
 import pickle
 import os
 
@@ -16,6 +15,10 @@ from config import TEMP_ACCOUNTS_PATH
 
 
 def GetAccounts():
+    """
+    Returns the accounts from TEMP_ACCOUNTS_PATH.
+    """
+    
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(TEMP_ACCOUNTS_PATH):
         return []
