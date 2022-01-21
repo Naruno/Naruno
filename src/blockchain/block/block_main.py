@@ -20,8 +20,8 @@ from transactions.pending_to_validating import PendinttoValidating
 from transactions.save_to_my_transaction import SavetoMyTransaction
 
 from accounts.account import Account
+from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
-from accounts.save_accounts_part import save_accounts_part
 
 from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
 from blockchain.block.blocks_hash import SaveBlockshash, GetBlockshash, SaveBlockshash_part
@@ -67,11 +67,13 @@ class Block:
         SaveBlockshash(blocks_hash)
         SaveBlockshash_part([])
 
-        accounts = [
-            Account(creator, balance=1000000000)
-            ]
-        save_accounts(accounts)
-        save_accounts_part([])
+
+        accounts_list = GetAccounts()
+        if accounts_list == []:
+            save_accounts([Account(creator, 1000000000)])
+
+
+
         self.edited_accounts = []
 
         self.pendingTransaction = []
