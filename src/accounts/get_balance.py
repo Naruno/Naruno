@@ -10,7 +10,7 @@ from wallet.wallet import Address
 
 from blockchain.block.get_block import GetBlock
 
-from accounts.account import GetAccounts
+from accounts.get_accounts import GetAccounts
 
 
 def GetBalance(user, block):

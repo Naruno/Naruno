@@ -10,7 +10,8 @@ import pickle
 
 from config import BLOCKS_PATH
 
-from accounts.account import GetAccounts, GetAccounts_part
+from accounts.get_accounts import GetAccounts
+from accounts.get_accounts_part import GetAccounts_part
 
 from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
 

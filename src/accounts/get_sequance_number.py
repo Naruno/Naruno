@@ -8,7 +8,7 @@
 
 from wallet.wallet import Address
 
-from accounts.account import GetAccounts
+from accounts.get_accounts import GetAccounts
 
 
 def GetSequanceNumber(user, block):
