@@ -119,11 +119,11 @@ if __name__ == '__main__':
     temp_environment = Decentra_Network_Docker(args.nodenumber)
 
 
-    if args.install:
-        temp_environment.install()
-
     if args.delete:
         temp_environment.delete()
+
+    if args.install:
+        temp_environment.install()
 
     if args.run:
         temp_environment.run()
