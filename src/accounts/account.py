@@ -8,13 +8,9 @@
 
 import hashlib
 import json
-import pickle
-import os
 
-from lib.config_system import get_config
-
-from config import TEMP_ACCOUNTS_PATH, TEMP_ACCOUNTS_PART_PATH
-
+from accounts.get_accounts import GetAccounts
+from accounts.get_accounts_part import GetAccounts_part
 
 class Account:
     """
@@ -61,21 +57,3 @@ class Account:
 
     def __str__(self):
         return self.Address
-
-
-def GetAccounts():
-    os.chdir(get_config()["main_folder"])
-    if not os.path.exists(TEMP_ACCOUNTS_PATH):
-        return []
-    else:
-        with open(TEMP_ACCOUNTS_PATH, "rb") as block_file:
-            return pickle.load(block_file)
-
-
-def GetAccounts_part():
-    os.chdir(get_config()["main_folder"])
-    if not os.path.exists(TEMP_ACCOUNTS_PART_PATH):
-        return []
-    else:
-        with open(TEMP_ACCOUNTS_PART_PATH, "rb") as block_file:
-            return pickle.load(block_file)

@@ -10,7 +10,8 @@ from lib.merkle_root import MerkleTree
 
 from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part, SaveBlockshash_part
 
-from accounts.account import GetAccounts, GetAccounts_part
+from accounts.get_accounts import GetAccounts
+from accounts.get_accounts_part import GetAccounts_part
 from accounts.save_accounts_part import save_accounts_part
 
 
