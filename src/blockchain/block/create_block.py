@@ -26,7 +26,18 @@ def CreateBlock():
 
     if the_settings()["test_mode"]:
         dprint("Creating the genesis block")
-        Block(Wallet_Import(-1, 3))
+        previous_hash = "0"
+
+        try:
+            current_block = GetBlock() 
+            if not current_block.hash is None:
+                previous_hash = current_block.hash       
+            else:
+                previous_hash = current_block.previous_hash
+        except:
+            pass
+
+        Block(Wallet_Import(-1, 3), previous_hash)
         mynode.main_node.send_full_accounts()
         mynode.main_node.send_full_chain()
         mynode.main_node.send_full_blockshash()
