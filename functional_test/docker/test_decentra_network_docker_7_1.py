@@ -16,39 +16,20 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        temp_environment = Decentra_Network_Docker(7, 1)
-        temp_environment.delete()
-        temp_environment.install()
-        temp_environment.run()
-        temp_environment.start()
-
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/create/123").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
 
-
-
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-        time.sleep(25)
+        time.sleep(10)
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1,4000.0,"A problem in same network one transaction -1.")
 
-        for i in range(4):
-            urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-            time.sleep(25)
- 
-        balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1,24000.0,"A problem in same network one and multi transaction -multi.")
+
+        time.sleep(20)
 
 
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-        time.sleep(25)
-        balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1,29000.0,"A problem in same network one transaction -2.")
-
-
-
-        urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-        time.sleep(25)
+        time.sleep(10)
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1,34000.0,"A problem in same network one transaction -3.")
 
@@ -58,4 +39,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
 import urllib.request, json
 import time
 from auto_builders.docker import Decentra_Network_Docker
+
+temp_environment = Decentra_Network_Docker(7, 1)
+temp_environment.delete()
+temp_environment.install()
+temp_environment.run()
+temp_environment.start()
+
 unittest.main(exit=False)
