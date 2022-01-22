@@ -51,6 +51,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
 import urllib.request, json
 import time
-from functional_test.docker.docker import Decentra_Network_Docker
-Decentra_Network_Docker()
+from auto_builders.docker import Decentra_Network_Docker
+Decentra_Network_Docker(number_of_nodes = 7, number_of_security_circle = 2)
 unittest.main(exit=False)
