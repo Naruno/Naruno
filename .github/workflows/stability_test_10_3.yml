@@ -1,4 +1,4 @@
-name: Stability Test With 7 Node in 2 Security Circle 
+name: Stability Test With 10 Node in 3 Security Circle 
 
 on:
   push:
