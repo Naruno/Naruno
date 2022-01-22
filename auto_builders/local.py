@@ -26,7 +26,7 @@ class Decentra_Network_Local:
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(15)
+        time.sleep(60)
 
     def install(self):
         os.system("pip3 install -r Decentra-Network/requirements/api.txt")
