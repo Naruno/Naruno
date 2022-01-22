@@ -26,7 +26,7 @@ class Decentra_Network_Docker:
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(15)
+        time.sleep(60)
     
     def install(self):
         os.system("docker image tag ghcr.io/decentra-network/api decentra-network-api")
