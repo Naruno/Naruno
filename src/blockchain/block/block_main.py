@@ -50,7 +50,7 @@ class Block:
     own all the coins.
     """
 
-    def __init__(self, creator):
+    def __init__(self, creator, previous_hash = "0"):
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 7
@@ -59,7 +59,7 @@ class Block:
 
         self.newly = False 
 
-        self.previous_hash = "0"
+        self.previous_hash = previous_hash
         self.sequance_number = 0
         self.empty_block_number = 0
 
