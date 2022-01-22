@@ -1,12 +1,9 @@
 name: Stability Test With 10 Node in 3 Security Circle 
 
 on:
-  workflow_dispatch:
-    inputs:
-      reason:
-        description: 'Give a reason.'
-        default: 'Retest'
-        required: true
+  push:
+    branches:
+      - stability_test
 
 jobs:
 
