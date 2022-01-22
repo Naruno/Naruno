@@ -15,8 +15,9 @@ import signal
 
 class Decentra_Network_Local:
 
-    def __init__(self, number_of_nodes = 3):
+    def __init__(self, number_of_nodes = 3, number_of_security_circle = 1):
         self.number_of_nodes = number_of_nodes - 1
+        self.number_of_security_circle = number_of_security_circle
     
     def start(self):
         time.sleep(1)
@@ -41,9 +42,6 @@ class Decentra_Network_Local:
             fields = line.split()
             if "/src/api.py" in fields[5]:
                 os.kill(int(fields[0]), signal.SIGKILL)
-            
-
-           
 
     def run(self):
 
@@ -51,8 +49,6 @@ class Decentra_Network_Local:
         for i in range(self.number_of_nodes):
             print(f"nohup python3 Decentra-Network-{i+1}/src/api.py -p 80{i+1}0 &")
             os.system(f"nohup python3 Decentra-Network-{i+1}/src/api.py -p 80{i+1}0 &")
-
-
 
     def creating_the_wallets(self):
 
@@ -72,23 +68,45 @@ class Decentra_Network_Local:
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(f"http://localhost:80{i+1}0/node/newunl/?{node_id_1}")
         
-        for i in range(self.number_of_nodes):
-            node_id_2 = json.loads(urllib.request.urlopen(f"http://localhost:80{i+1}0/node/id").read().decode())
-            urllib.request.urlopen(f"http://localhost:8000/node/newunl/?{node_id_2}")
-            for i_n in range(self.number_of_nodes):
-                if not i == i_n:
-                    urllib.request.urlopen(f"http://localhost:80{i_n+1}0/node/newunl/?{node_id_2}")
+        if self.number_of_security_circle == 1:
+            for i in range(self.number_of_nodes):
+                node_id_2 = json.loads(urllib.request.urlopen(f"http://localhost:80{i+1}0/node/id").read().decode())
+                urllib.request.urlopen(f"http://localhost:8000/node/newunl/?{node_id_2}")
+                for i_n in range(self.number_of_nodes):
+                    if not i == i_n:
+                        urllib.request.urlopen(f"http://localhost:80{i_n+1}0/node/newunl/?{node_id_2}")
+        else:
+            nodes_list = list(range(self.number_of_nodes))
+            circle_list = [nodes_list[x:x+((self.number_of_nodes+1)//self.number_of_security_circle)] for x in range(0, len(nodes_list), ((self.number_of_nodes+1)//self.number_of_security_circle))]
+            for circle in circle_list:
+                for i in circle:
+                    node_id_2 = json.loads(urllib.request.urlopen(f"http://localhost:80{i+1}0/node/id").read().decode())
+                    urllib.request.urlopen(f"http://localhost:8000/node/newunl/?{node_id_2}")                    
+                    for i_n in circle:
+                        if not i == i_n:
+                            urllib.request.urlopen(f"http://localhost:80{i_n+1}0/node/newunl/?{node_id_2}")
 
     def connecting_the_nodes(self):
 
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(f"http://localhost:8000/node/connect/0.0.0.0/800{i+1}")
         
-        for i in range(self.number_of_nodes):
-            for i_n in range(self.number_of_nodes):
-                if not i == i_n:
-                    urllib.request.urlopen(f"http://localhost:80{i+1}0/node/connect/localhost/800{i_n+1}")
-                    time.sleep(1)
+        if self.number_of_security_circle == 1:
+            for i in range(self.number_of_nodes):
+                for i_n in range(self.number_of_nodes):
+                    if not i == i_n:
+                        urllib.request.urlopen(f"http://localhost:80{i+1}0/node/connect/localhost/800{i_n+1}")
+                        time.sleep(1)
+        else:
+            nodes_list = list(range(self.number_of_nodes))
+            circle_list = [nodes_list[x:x+((self.number_of_nodes+1)//self.number_of_security_circle)] for x in range(0, len(nodes_list), ((self.number_of_nodes+1)//self.number_of_security_circle))]
+
+            for circle in circle_list:
+                for i in circle:                  
+                    for i_n in circle:
+                        if not i == i_n:
+                            urllib.request.urlopen(f"http://localhost:80{i+1}0/node/connect/localhost/800{i_n+1}")
+                            time.sleep(1)                       
 
     def creating_the_block(self):
 
@@ -106,6 +124,9 @@ if __name__ == '__main__':
 
     parser.add_argument('-nn', '--nodenumber', type=int,
                         help='Change Wallet')
+
+    parser.add_argument('-scn', '--securitycirclenumber', type=int,
+                        help='Security Circle Number')
 
     parser.add_argument('-i', '--install', action='store_true',
                         help='Install')   
@@ -125,7 +146,10 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         parser.print_help()
 
-    temp_environment = Decentra_Network_Local(args.nodenumber)
+    if args.securitycirclenumber is not None:
+        temp_environment = Decentra_Network_Local(args.nodenumber, args.securitycirclenumber)
+    else:
+        temp_environment = Decentra_Network_Local(args.nodenumber)
 
 
     if args.delete:
