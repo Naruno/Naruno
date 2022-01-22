@@ -11,10 +11,16 @@ import unittest
 
 class Test_Decentra_Network_Docker(unittest.TestCase):
 
-    def test_1_same_network_long_term_multi_transacton(self):
+    def test_4_same_network_long_term_multi_transacton(self):
         """
         Send coin to 2.wallet from 1.wallet
         """
+
+        temp_environment = Decentra_Network_Docker(7, 2)
+        temp_environment.delete()
+        temp_environment.install()
+        temp_environment.run()
+        temp_environment.start()
 
         wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/create/123").read().decode())
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
@@ -52,5 +58,4 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
 import urllib.request, json
 import time
 from auto_builders.docker import Decentra_Network_Docker
-Decentra_Network_Docker(number_of_nodes = 7, number_of_security_circle = 2)
 unittest.main(exit=False)
