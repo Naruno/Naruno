@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -42,7 +42,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -62,7 +62,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -82,7 +82,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -102,7 +102,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -122,7 +122,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -142,7 +142,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -162,7 +162,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -182,7 +182,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -202,7 +202,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -222,7 +222,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -242,7 +242,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -262,7 +262,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -282,7 +282,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -302,7 +302,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -322,7 +322,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -342,7 +342,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -362,7 +362,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -382,7 +382,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -402,7 +402,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -422,7 +422,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -442,7 +442,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -462,7 +462,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -482,7 +482,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -502,7 +502,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -522,7 +522,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -542,7 +542,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -562,7 +562,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -582,7 +582,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -602,7 +602,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -622,7 +622,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -642,7 +642,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -662,7 +662,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -682,7 +682,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -702,7 +702,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -722,7 +722,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -742,7 +742,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -762,7 +762,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -782,7 +782,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -802,7 +802,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -822,7 +822,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -842,7 +842,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -862,7 +862,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -882,7 +882,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -902,7 +902,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -922,7 +922,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -942,7 +942,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -962,7 +962,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -982,7 +982,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1002,7 +1002,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1022,7 +1022,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1042,7 +1042,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1062,7 +1062,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1082,7 +1082,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1102,7 +1102,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1122,7 +1122,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1142,7 +1142,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1162,7 +1162,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1182,7 +1182,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1202,7 +1202,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1222,7 +1222,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1242,7 +1242,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1262,7 +1262,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1282,7 +1282,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1302,7 +1302,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1322,7 +1322,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1342,7 +1342,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1362,7 +1362,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1382,7 +1382,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1402,7 +1402,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1422,7 +1422,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1442,7 +1442,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1462,7 +1462,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1482,7 +1482,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1502,7 +1502,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1522,7 +1522,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1542,7 +1542,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1562,7 +1562,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1582,7 +1582,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1602,7 +1602,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1622,7 +1622,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1642,7 +1642,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1662,7 +1662,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1682,7 +1682,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1702,7 +1702,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1722,7 +1722,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1742,7 +1742,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1762,7 +1762,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1782,7 +1782,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1802,7 +1802,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1822,7 +1822,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1842,7 +1842,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1862,7 +1862,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1882,7 +1882,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1902,7 +1902,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1922,7 +1922,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1942,7 +1942,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1962,7 +1962,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -1982,7 +1982,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
@@ -2002,7 +2002,7 @@ jobs:
     - name: Install dependencies and run tests
       run: |
         pip install pytest
-        pip install -r Decentra-Network/requirements.txt
+        pip install decentra-network
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/github/api/Dockerfile .
         pytest Decentra-Network/functional_test/docker/test_decentra_network_docker_7_2.py 
