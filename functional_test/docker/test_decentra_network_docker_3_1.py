@@ -20,16 +20,16 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
 
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-        time.sleep(10)
+        time.sleep(25)
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1,4000.0,"A problem in same network one transaction -1.")
 
 
-        time.sleep(20)
+        time.sleep(25)
 
 
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-        time.sleep(10)
+        time.sleep(25)
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8010/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1,9000.0,"A problem in same network one transaction -3.")
 
