@@ -4,7 +4,7 @@
 block_cipher = None
 
 
-a = Analysis(['Decentra-Network\\src\\api.py'],
+a = Analysis(['src\\api.py'],
              pathex=[],
              binaries=[],
              datas=[],
@@ -35,7 +35,7 @@ exe = EXE(pyz,
           codesign_identity=None,
           entitlements_file=None )
 coll = COLLECT(exe,
-               Tree('Decentra-Network\\src\\'),
+               Tree('src\\'),
                a.binaries,
                a.zipfiles,
                a.datas, 
