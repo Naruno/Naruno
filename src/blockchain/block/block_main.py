@@ -65,7 +65,6 @@ class Block:
 
         blocks_hash = [self.previous_hash]
         SaveBlockshash(blocks_hash)
-        SaveBlockshash_part([])
 
 
         accounts_list = GetAccounts()
