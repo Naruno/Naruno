@@ -43,6 +43,22 @@ Now you can access the Decentra Network CLI in bash.
 
 Now Decentra Network Core broadcasts on port 8000 in API mode.
 
+
+
+
+## EXE With Windows
+### Run CLI With Menu
+`cli.exe --menu`
+
+### Run CLI With Parameters
+`cli.exe --help`
+
+### Run API
+`api.exe`
+
+### Run GUI
+`gui.exe`
+
 # Using Steps
 - Create at least 3 node (differend directory/image)
 - Create wallets
