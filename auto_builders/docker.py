@@ -6,12 +6,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import urllib.request
-import json
-import time
-import os
 import argparse
+import json
+import os
 import sys
+import time
+import urllib.request
 
 
 class Decentra_Network_Docker:
