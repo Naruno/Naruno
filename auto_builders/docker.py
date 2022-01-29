@@ -13,7 +13,6 @@ import urllib.request
 
 
 class Decentra_Network_Docker:
-
     def __init__(self, number_of_nodes=3, number_of_security_circle=1):
         self.number_of_nodes = number_of_nodes - 1
         self.number_of_security_circle = number_of_security_circle
@@ -28,18 +27,14 @@ class Decentra_Network_Docker:
         time.sleep(60)
 
     def install(self):
-        os.system(
-            "docker image tag ghcr.io/decentra-network/api decentra-network-api"
-        )
+        os.system("docker image tag ghcr.io/decentra-network/api decentra-network-api")
         os.system("docker network create --subnet=172.19.0.0/16 dn-net")
         for i in range(self.number_of_nodes):
             os.system(f"docker tag decentra-network-api {i}")
 
     def delete(self):
-        os.system(
-            "docker rm -f $(docker ps -a -q -f ancestor=decentra-network-api)")
-        os.system(
-            "docker volume rm $(docker volume ls -q -f name=decentra-network)")
+        os.system("docker rm -f $(docker ps -a -q -f ancestor=decentra-network-api)")
+        os.system("docker volume rm $(docker volume ls -q -f name=decentra-network)")
 
         os.system("docker network rm dn-net")
 
@@ -58,33 +53,36 @@ class Decentra_Network_Docker:
         urllib.request.urlopen("http://localhost:8000/wallet/create/123")
 
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(
-                f"http://localhost:80{i+1}0/wallet/create/123")
+            urllib.request.urlopen(f"http://localhost:80{i+1}0/wallet/create/123")
 
     def starting_the_nodest(self):
 
-        urllib.request.urlopen(
-            "http://localhost:8000/node/start/172.19.0.2/7999")
+        urllib.request.urlopen("http://localhost:8000/node/start/172.19.0.2/7999")
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:80{i+1}0/node/start/172.19.0.{i+3}/800{i+1}")
+                f"http://localhost:80{i+1}0/node/start/172.19.0.{i+3}/800{i+1}"
+            )
 
     def unl_nodes_settting(self):
 
         node_id_1 = json.loads(
-            urllib.request.urlopen(
-                "http://localhost:8000/node/id").read().decode())
+            urllib.request.urlopen("http://localhost:8000/node/id").read().decode()
+        )
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:80{i+1}0/node/newunl/?{node_id_1}")
+                f"http://localhost:80{i+1}0/node/newunl/?{node_id_1}"
+            )
 
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
                 node_id_2 = json.loads(
-                    urllib.request.urlopen(
-                        f"http://localhost:80{i+1}0/node/id").read().decode())
+                    urllib.request.urlopen(f"http://localhost:80{i+1}0/node/id")
+                    .read()
+                    .decode()
+                )
                 urllib.request.urlopen(
-                    f"http://localhost:8000/node/newunl/?{node_id_2}")
+                    f"http://localhost:8000/node/newunl/?{node_id_2}"
+                )
                 for i_n in range(self.number_of_nodes):
                     if not i == i_n:
                         urllib.request.urlopen(
@@ -93,24 +91,27 @@ class Decentra_Network_Docker:
         else:
             nodes_list = list(range(self.number_of_nodes))
             circle_list = [
-                nodes_list[x:x + ((self.number_of_nodes + 1) //
-                                  self.number_of_security_circle)]
+                nodes_list[
+                    x : x
+                    + ((self.number_of_nodes + 1) // self.number_of_security_circle)
+                ]
                 for x in range(
                     0,
                     len(nodes_list),
-                    ((self.number_of_nodes + 1) //
-                     self.number_of_security_circle),
+                    ((self.number_of_nodes + 1) // self.number_of_security_circle),
                 )
             ]
 
             for circle in circle_list:
                 for i in circle:
                     node_id_2 = json.loads(
-                        urllib.request.urlopen(
-                            f"http://localhost:80{i+1}0/node/id").read().
-                        decode())
+                        urllib.request.urlopen(f"http://localhost:80{i+1}0/node/id")
+                        .read()
+                        .decode()
+                    )
                     urllib.request.urlopen(
-                        f"http://localhost:8000/node/newunl/?{node_id_2}")
+                        f"http://localhost:8000/node/newunl/?{node_id_2}"
+                    )
                     for i_n in circle:
                         if not i == i_n:
                             urllib.request.urlopen(
@@ -121,7 +122,8 @@ class Decentra_Network_Docker:
 
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:8000/node/connect/172.19.0.{i+3}/800{i+1}")
+                f"http://localhost:8000/node/connect/172.19.0.{i+3}/800{i+1}"
+            )
 
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
@@ -134,13 +136,14 @@ class Decentra_Network_Docker:
         else:
             nodes_list = list(range(self.number_of_nodes))
             circle_list = [
-                nodes_list[x:x + ((self.number_of_nodes + 1) //
-                                  self.number_of_security_circle)]
+                nodes_list[
+                    x : x
+                    + ((self.number_of_nodes + 1) // self.number_of_security_circle)
+                ]
                 for x in range(
                     0,
                     len(nodes_list),
-                    ((self.number_of_nodes + 1) //
-                     self.number_of_security_circle),
+                    ((self.number_of_nodes + 1) // self.number_of_security_circle),
                 )
             ]
 
@@ -158,8 +161,7 @@ class Decentra_Network_Docker:
         urllib.request.urlopen("http://localhost:8000/settings/test/on")
         urllib.request.urlopen("http://localhost:8000/settings/debug/on")
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(
-                f"http://localhost:80{i+1}0/settings/debug/on")
+            urllib.request.urlopen(f"http://localhost:80{i+1}0/settings/debug/on")
         urllib.request.urlopen("http://localhost:8000/block/get")
 
 
@@ -171,10 +173,9 @@ if __name__ == "__main__":
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")
 
-    parser.add_argument("-scn",
-                        "--securitycirclenumber",
-                        type=int,
-                        help="Security Circle Number")
+    parser.add_argument(
+        "-scn", "--securitycirclenumber", type=int, help="Security Circle Number"
+    )
 
     parser.add_argument("-i", "--install", action="store_true", help="Install")
 
@@ -190,8 +191,9 @@ if __name__ == "__main__":
         parser.print_help()
 
     if args.securitycirclenumber is not None:
-        temp_environment = Decentra_Network_Docker(args.nodenumber,
-                                                   args.securitycirclenumber)
+        temp_environment = Decentra_Network_Docker(
+            args.nodenumber, args.securitycirclenumber
+        )
     else:
         temp_environment = Decentra_Network_Docker(args.nodenumber)
 
