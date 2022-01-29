@@ -120,7 +120,7 @@ if __name__ == '__main__':
 
 
     parser.add_argument('-nn', '--nodenumber', type=int,
-                        help='Change Wallet')
+                        help='Node Number')
 
     parser.add_argument('-scn', '--securitycirclenumber', type=int,
                         help='Security Circle Number')
