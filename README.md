@@ -66,8 +66,10 @@
   </p>
 
 # Introducing
+
 Decentra Network is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
 The main features of Decentra Network are:
+
 - Less than 7 Seconds block time (Confirmation Time)
 - Low size (~20mb per 1m user)
 - 10k+ transactions per second
@@ -87,6 +89,7 @@ The software is written in **PEP8** format and **only** needs dependent librarie
 **The Decentra-Network Core has 4 control areas:**
 
 ## GUI
+
 The GUI was made with **kivy** and some auxiliary libraries to be **cross platform**. It was intended to be useful with a **minimalist** design.The GUI, which has a useful structure, is ready for **additions** and **changes**.
 
 **The GUI has a total of 4 pages.**
@@ -103,24 +106,29 @@ The GUI was made with **kivy** and some auxiliary libraries to be **cross platfo
 </p>
 
 ## CLI Menu
+
 The CLI Menu panel is designed to be useful.
 
 ![cli menu](https://user-images.githubusercontent.com/41792982/124754486-f5cace80-df32-11eb-9042-b3dadbd88904.PNG)
 
 ## CLI Arguments
+
 The CLI Arguments panel is designed to make some adjustments quickly and in multiple ways.
 
 ![cli arguments](https://user-images.githubusercontent.com/41792982/124754779-44786880-df33-11eb-9dda-b5440128ed6c.PNG)
 
 ## WEB API
+
 It has been developed to make web api control easier and to provide control by other languages and other systems.
 
 ![api](https://user-images.githubusercontent.com/41792982/124757058-ded9ab80-df35-11eb-8ceb-f3e9672a0283.PNG)
 
 # Documents
+
 Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://decentra-network.github.io/Decentra-Network/) website.
 
 # Contribute
+
 Decentra Network is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Decentra-Network/Decentra-Network/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Decentra-Network/Decentra-Network/blob/master/CODE_OF_CONDUCT.md).
 
 <br />
