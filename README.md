@@ -35,6 +35,18 @@
   .
   <a href="https://www.codacy.com/gh/Decentra-Network/Decentra-Network/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Decentra-Network/Decentra-Network&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
   </p>
+  
+  <p align="center">
+  <a href="https://codescene.io/projects/23147/architecture/biomarkers?component=Blockchain-lab">
+  <img alt="CodeScene Code Health" src="https://codescene.io/projects/23147/status-badges/code-health?component-name=Blockchain-lab">
+</a>
+  .
+  <a href="https://codescene.io/projects/23147/">
+  <img alt="CodeScene System Mastery" src="https://codescene.io/projects/23147/status-badges/system-mastery?component-name=Blockchain-lab">
+</a>
+  .
+  <a href="https://codescene.io/projects/23147"><img src="https://codescene.io/projects/23147/status-badges/missed-goals" alt="Missed Goals"></a>
+  </p>
 
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
