@@ -2,7 +2,7 @@
   <a href="https://github.com/Decentra-Network/Decentra-Network">
     <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
   </a>
-  
+
   <h3 align="center">Decentra Network Core</h3>
 
   <p align="center">
@@ -29,12 +29,12 @@
   .
   <a href="https://lgtm.com/projects/g/Decentra-Network/Decentra-Network/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/Decentra-Network/Decentra-Network.svg?logo=lgtm&logoWidth=18"/></a>
   </p>
-  
+
   <p align="center">
   <a href="https://codebeat.co/projects/github-com-decentra-network-decentra-network-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
-  </p>  
-  
-  
+  </p>
+
+
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
     <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test">
@@ -58,7 +58,7 @@
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml/badge.svg" alt="Lint_with_flake8">
   <a/>
   </p>
-    
+
   <p align="center">
     <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml">
       <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml/badge.svg" alt="Functional_tests">
@@ -102,7 +102,7 @@ The GUI was made with **kivy** and some auxiliary libraries to be **cross platfo
 </p>
 <p float="center">
   <img src="https://user-images.githubusercontent.com/41792982/124753515-bd76c080-df31-11eb-9663-6dba5db9db5d.PNG" width="48%" />
-  <img src="https://user-images.githubusercontent.com/41792982/124753541-c5366500-df31-11eb-9dbf-daf39c7decb9.PNG" width="48%" /> 
+  <img src="https://user-images.githubusercontent.com/41792982/124753541-c5366500-df31-11eb-9dbf-daf39c7decb9.PNG" width="48%" />
 </p>
 
 ## CLI Menu
@@ -135,7 +135,7 @@ Decentra Network is a completely community driven project, you can contribute in
 <p align="center">
 
   <h3 align="center">Github Statistics of This Repository</h3>
-  
+
   <p align="center">
     <img src="https://img.shields.io/github/stars/Decentra-Network/Decentra-Network?style=social" alt="Repo_stars">
   .
