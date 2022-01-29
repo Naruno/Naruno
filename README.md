@@ -34,7 +34,6 @@
   <a href="https://codebeat.co/projects/github-com-decentra-network-decentra-network-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
   </p>
 
-
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
     <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test">
