@@ -37,6 +37,18 @@
   </p>
 
   <p align="center">
+  <a href="https://codescene.io/projects/23147/architecture/biomarkers?component=Blockchain-lab">
+  <img alt="CodeScene Code Health" src="https://codescene.io/projects/23147/status-badges/code-health?component-name=Blockchain-lab">
+</a>
+  .
+  <a href="https://codescene.io/projects/23147/">
+  <img alt="CodeScene System Mastery" src="https://codescene.io/projects/23147/status-badges/system-mastery?component-name=Blockchain-lab">
+</a>
+  .
+  <a href="https://codescene.io/projects/23147"><img src="https://codescene.io/projects/23147/status-badges/missed-goals" alt="Missed Goals"></a>
+  </p>
+
+  <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
     <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test">
   </a>
