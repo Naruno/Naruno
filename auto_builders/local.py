@@ -58,13 +58,15 @@ class Decentra_Network_Local:
 
         urllib.request.urlopen("http://localhost:8000/wallet/create/123")
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(f"http://localhost:80{i+1}0/wallet/create/123")
+            urllib.request.urlopen(
+                f"http://localhost:80{i+1}0/wallet/create/123")
 
     def starting_the_nodest(self):
 
         urllib.request.urlopen("http://localhost:8000/node/start/0.0.0.0/7999")
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(f"http://localhost:80{i+1}0/node/start/0.0.0.0/800{i+1}")
+            urllib.request.urlopen(
+                f"http://localhost:80{i+1}0/node/start/0.0.0.0/800{i+1}")
 
     def unl_nodes_settting(self):
 
