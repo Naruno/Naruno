@@ -30,6 +30,10 @@
   <a href="https://lgtm.com/projects/g/Decentra-Network/Decentra-Network/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/Decentra-Network/Decentra-Network.svg?logo=lgtm&logoWidth=18"/></a>
   </p>
   
+  <p align="center">
+  <a href="https://codebeat.co/projects/github-com-decentra-network-decentra-network-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
+  </p>  
+  
   
   <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
