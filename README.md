@@ -145,9 +145,30 @@ Our documents are available in the [docs](https://github.com/Decentra-Network/De
 Decentra Network is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Decentra-Network/Decentra-Network/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Decentra-Network/Decentra-Network/blob/master/CODE_OF_CONDUCT.md).
 
 <br />
-<p align="center">
 
-  <h3 align="center">Github Statistics of This Repository</h3>
+# Analysis && Statistics
+
+## Recent Activity
+
+<details>
+  <img src="https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc.svg" alt="Recent_Activity">
+</details>
+
+## Top Contributors
+
+<details>
+  <img src="https://images.repography.com/22744517/Decentra-Network/Decentra-Network/top-contributors/c5bdec035b13c76d31dd5333396957cc.svg" alt="Top_Contributors">
+</details>
+
+## Structure
+
+<details>
+  <img src="https://images.repography.com/22744517/Decentra-Network/Decentra-Network/structure/c5bdec035b13c76d31dd5333396957cc.svg" alt="Structure">
+</details>
+
+## Github Statistics
+
+<p align="center">
 
   <p align="center">
     <img src="https://img.shields.io/github/stars/Decentra-Network/Decentra-Network?style=social" alt="Repo_stars">
