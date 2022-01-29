@@ -56,15 +56,18 @@ class Decentra_Network_Docker:
     def creating_the_wallets(self):
 
         urllib.request.urlopen("http://localhost:8000/wallet/create/123")
-        
+
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(f"http://localhost:80{i+1}0/wallet/create/123")
+            urllib.request.urlopen(
+                f"http://localhost:80{i+1}0/wallet/create/123")
 
     def starting_the_nodest(self):
 
-        urllib.request.urlopen("http://localhost:8000/node/start/172.19.0.2/7999")
+        urllib.request.urlopen(
+            "http://localhost:8000/node/start/172.19.0.2/7999")
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(f"http://localhost:80{i+1}0/node/start/172.19.0.{i+3}/800{i+1}")
+            urllib.request.urlopen(
+                f"http://localhost:80{i+1}0/node/start/172.19.0.{i+3}/800{i+1}")
 
     def unl_nodes_settting(self):
 
@@ -163,8 +166,7 @@ class Decentra_Network_Docker:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")
