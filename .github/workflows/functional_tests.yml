@@ -8,6 +8,7 @@ on:
       - 'src/**'  
       - 'requirements/**'
       - 'functional_test/**'
+      - 'auto_builders/**'
   pull_request:
     paths:
       - '.github/workflows/functional_tests.yml'
@@ -15,6 +16,7 @@ on:
       - 'src/**'  
       - 'requirements/**'
       - 'functional_test/**'
+      - 'auto_builders/**'
 
 jobs:
 
