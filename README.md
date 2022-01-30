@@ -37,12 +37,12 @@
   </p>
 
   <p align="center">
-  <a href="https://codescene.io/projects/23147/architecture/biomarkers?component=Blockchain-lab">
-  <img alt="CodeScene Code Health" src="https://codescene.io/projects/23147/status-badges/code-health?component-name=Blockchain-lab">
+  <a href="https://codescene.io/projects/23147/architecture/biomarkers?component=Decentra-network">
+  <img alt="CodeScene Code Health" src="https://codescene.io/projects/23147/status-badges/code-health?component-name=Decentra-network">
 </a>
   .
   <a href="https://codescene.io/projects/23147/">
-  <img alt="CodeScene System Mastery" src="https://codescene.io/projects/23147/status-badges/system-mastery?component-name=Blockchain-lab">
+  <img alt="CodeScene System Mastery" src="https://codescene.io/projects/23147/status-badges/system-mastery?component-name=Decentra-network">
 </a>
   .
   <a href="https://codescene.io/projects/23147"><img src="https://codescene.io/projects/23147/status-badges/missed-goals" alt="Missed Goals"></a>
