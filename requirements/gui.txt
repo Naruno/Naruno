@@ -1,4 +1,4 @@
-decentra-network==0.12.0
+decentra-network==0.13.0
 Kivy==2.0.0
 kivymd==0.104.1
 kivymd_extensions.sweetalert==0.1.5
