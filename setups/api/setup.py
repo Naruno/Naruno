@@ -8,7 +8,6 @@
 
 from setuptools import setup
 
-
 setup(
     name="decentra_network_api",
     version="0.13.0",
