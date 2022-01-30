@@ -14,9 +14,6 @@ nav_order: 1
 | [docker-api](https://github.com/Decentra-Network/Decentra-Network/pkgs/container/api) | For running the API docker image     | `docker pull ghcr.io/decentra-network/api:latest`                                                               |
 | zip                                                                                   | For dowload as zip                   | [master.zip](https://github.com/Decentra-Network/Decentra-Network/archive/refs/heads/master.zip)                |
 | tar.gz                                                                                | For dowload as tar.gz                | [master.tar.gz](https://github.com/Decentra-Network/Decentra-Network/archive/refs/heads/master.tar.gz)          |
-| CLI-EXE                                                                               | For dowload the CLI to windows       | [CLI-EXE.zip](https://github.com/Decentra-Network/Decentra-Network/releases/download/v0.12.0-alpha/CLI-EXE.zip) |
-| API-EXE                                                                               | For dowload the API to windows       | [API-EXE.zip](https://github.com/Decentra-Network/Decentra-Network/releases/download/v0.12.0-alpha/API-EXE.zip) |
-| GUI-EXE                                                                               | For dowload the GUI to windows       | [GUI-EXE.zip](https://github.com/Decentra-Network/Decentra-Network/releases/download/v0.12.0-alpha/GUI-EXE.zip) |
 
 # Attention
 
