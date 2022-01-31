@@ -23,11 +23,11 @@ from transactions.create_transaction import CreateTransaction
 def consensus_round_1(block):
     """
     At this stage of the consensus process,
-    The transactions of our and the unl nodes 
-    are evaluated and transactions accepted by 
+    The transactions of our and the unl nodes
+    are evaluated and transactions accepted by
     owned by more than 50 percent.
     Inputs:
-      * block: The block (class) we want consensus 
+      * block: The block (class) we want consensus
       round 1 to be done
     """
 
@@ -40,9 +40,9 @@ def consensus_round_1(block):
         block.save_block()
     candidate_class = GetCandidateBlocks()
     dprint("Raund 1 Conditions")
-    dprint(len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80)/100))
+    dprint(len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100))
     dprint((int(time.time()) - block.raund_1_starting_time) < block.raund_1_time)
-    if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80)/100):
+    if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
 
         if not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
             temp_validating_list = []
@@ -65,7 +65,10 @@ def consensus_round_1(block):
                             if candidate_block["signature"] != other_block["signature"]:
                                 dprint("Raund 1: Test tx 2")
                                 for other_block_txs in other_block["transaction"]:
-                                    if other_block_tx.signature == other_block_txs.signature:
+                                    if (
+                                        other_block_tx.signature
+                                        == other_block_txs.signature
+                                    ):
                                         dprint("Raund 1: Test tx 3")
                                         tx_valid += 1
                     else:
@@ -87,7 +90,10 @@ def consensus_round_1(block):
             for my_validating_list in block.validating_list[:]:
                 ok = False
                 for my_temp_validating_list in temp_validating_list[:]:
-                    if my_validating_list.signature == my_temp_validating_list.signature:
+                    if (
+                        my_validating_list.signature
+                        == my_temp_validating_list.signature
+                    ):
                         ok = True
                 block.validating_list.remove(my_validating_list)
                 if not ok:
@@ -96,8 +102,18 @@ def consensus_round_1(block):
             block.validating_list = temp_validating_list
 
             for each_newly in newly_added_list:
-                CreateTransaction(block, each_newly.sequance_number, each_newly.signature, each_newly.fromUser, each_newly.toUser,
-                                  each_newly.transaction_fee, each_newly.data, each_newly.amount, transaction_sender=None, transaction_time=each_newly.time)
+                CreateTransaction(
+                    block,
+                    each_newly.sequance_number,
+                    each_newly.signature,
+                    each_newly.fromUser,
+                    each_newly.toUser,
+                    each_newly.transaction_fee,
+                    each_newly.data,
+                    each_newly.amount,
+                    transaction_sender=None,
+                    transaction_time=each_newly.time,
+                )
 
             block.raund_1 = True
 
