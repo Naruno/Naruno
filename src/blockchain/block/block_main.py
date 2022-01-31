@@ -24,14 +24,13 @@ from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
 
 from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
-from blockchain.block.blocks_hash import SaveBlockshash, GetBlockshash, SaveBlockshash_part
-
-from wallet.wallet import (
-    PrivateKey,
-    PublicKey,
-    Wallet_Import,
-    Signature
+from blockchain.block.blocks_hash import (
+    SaveBlockshash,
+    GetBlockshash,
+    SaveBlockshash_part,
 )
+
+from wallet.wallet import PrivateKey, PublicKey, Wallet_Import, Signature
 
 from consensus.consensus_main import consensus_trigger
 
@@ -42,10 +41,10 @@ from config import TEMP_BLOCK_PATH
 
 class Block:
     """
-    Block class is most important class. It is responsible for 
+    Block class is most important class. It is responsible for
     resetting and saving blocks.
 
-    You must give a creator of the block. This creator will 
+    You must give a creator of the block. This creator will
     own all the coins.
     """
 
@@ -112,8 +111,8 @@ class Block:
 
     def reset_the_block(self):
         """
-        When the block is verified and if block have a transaction 
-        and if block have at least half of the max_tx_number transaction,it saves the block 
+        When the block is verified and if block have a transaction
+        and if block have at least half of the max_tx_number transaction,it saves the block
         and makes the edits for the new block.
         """
 
@@ -146,7 +145,8 @@ class Block:
         self.block_time = self.raund_1_time + self.raund_2_time
 
         # Printing validated block.
-        dprint("""\n
+        dprint(
+            """\n
   _____                          _     ____  _      ____   _____ _  __
  / ____|                        | |   |  _ \| |    / __ \ / ____| |/ /
 | |    _   _ _ __ _ __ ___ _ __ | |_  | |_) | |   | |  | | |    | ' / 
@@ -154,7 +154,10 @@ class Block:
 | |___| |_| | |  | | |  __/ | | | |_  | |_) | |___| |__| | |____| . \ 
  \_____\__,_|_|  |_|  \___|_| |_|\__| |____/|______\____/ \_____|_|\_\
                                         
-        """+str(self.__dict__)+"\n")
+        """
+            + str(self.__dict__)
+            + "\n"
+        )
 
         self.start_time = int(time.time())
 
@@ -173,7 +176,9 @@ class Block:
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        if not len(self.validating_list) == 0 and not len(self.validating_list) < (self.max_tx_number / 2):
+        if not len(self.validating_list) == 0 and not len(self.validating_list) < (
+            self.max_tx_number / 2
+        ):
 
             app_tigger(self)
 
@@ -194,7 +199,8 @@ class Block:
             self.hash = None
 
             # Printing new block.
-            dprint("""\n
+            dprint(
+                """\n
     _   _                 ____  _      ____   _____ _  __
     | \ | |               |  _ \| |    / __ \ / ____| |/ /
     |  \| | _____      __ | |_) | |   | |  | | |    | ' / 
@@ -202,7 +208,10 @@ class Block:
     | |\  |  __/\ V  V /  | |_) | |___| |__| | |____| . \ 
     |_| \_|\___| \_/\_/   |____/|______\____/ \_____|_|\_\
                                             
-            """+str(self.__dict__)+"\n")
+            """
+                + str(self.__dict__)
+                + "\n"
+            )
         else:
             self.empty_block_number += 1
 
@@ -218,5 +227,5 @@ class Block:
         """
 
         os.chdir(get_config()["main_folder"])
-        with open(TEMP_BLOCK_PATH, 'wb') as block_file:
+        with open(TEMP_BLOCK_PATH, "wb") as block_file:
             pickle.dump(self, block_file, protocol=2)
