@@ -4,8 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import os
 import pickle
 import time
@@ -13,9 +11,11 @@ import time
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
-from app.app_main import app_tigger, apps_starter
-from blockchain.block.blocks_hash import (GetBlockshash, SaveBlockshash,
-                                          SaveBlockshash_part)
+from app.app_main import app_tigger
+from app.app_main import apps_starter
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash_part
 from blockchain.block.save_block_to_blockchain_db import \
     saveBlockstoBlockchainDB
 from config import TEMP_BLOCK_PATH
@@ -23,10 +23,14 @@ from consensus.consensus_main import consensus_trigger
 from lib.config_system import get_config
 from lib.mixlib import dprint
 from lib.perpetualtimer import perpetualTimer
-from node.unl import get_as_node_type, get_unl_nodes
+from node.unl import get_as_node_type
+from node.unl import get_unl_nodes
 from transactions.pending_to_validating import PendinttoValidating
 from transactions.save_to_my_transaction import SavetoMyTransaction
-from wallet.wallet import PrivateKey, PublicKey, Signature, Wallet_Import
+from wallet.wallet import PrivateKey
+from wallet.wallet import PublicKey
+from wallet.wallet import Signature
+from wallet.wallet import Wallet_Import
 
 
 class Block:
