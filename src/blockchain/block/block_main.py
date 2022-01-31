@@ -31,7 +31,7 @@ from wallet.wallet import (
     PublicKey,
     Wallet_Import,
     Signature
-    )
+)
 
 from consensus.consensus_main import consensus_trigger
 
@@ -49,14 +49,14 @@ class Block:
     own all the coins.
     """
 
-    def __init__(self, creator, previous_hash = "0"):
+    def __init__(self, creator, previous_hash="0"):
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 7
         self.block_time_change_time = int(time.time())
         self.block_time_change_block = 0
 
-        self.newly = False 
+        self.newly = False
 
         self.previous_hash = previous_hash
         self.sequance_number = 0
@@ -65,12 +65,9 @@ class Block:
         blocks_hash = [self.previous_hash]
         SaveBlockshash(blocks_hash)
 
-
         accounts_list = GetAccounts()
         if accounts_list == []:
             save_accounts([Account(creator, 1000000000)])
-
-
 
         self.edited_accounts = []
 
@@ -78,7 +75,8 @@ class Block:
         self.validating_list = []
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02
-        self.default_optimum_transaction_number = 10 # Each user settings by our hardware
+        # Each user settings by our hardware
+        self.default_optimum_transaction_number = 10
         self.default_increase_of_fee = 0.01
 
         self.hash = None
@@ -125,7 +123,6 @@ class Block:
             self.block_time_change_time = int(time.time())
             self.block_time_change_block = self.sequance_number
 
-
         if self.decrease_the_time == 3:
             self.decrease_the_time = 0
             if not self.raund_1_time <= 2:
@@ -133,13 +130,11 @@ class Block:
                 self.block_time_change_time = int(time.time())
                 self.block_time_change_block = self.sequance_number
 
-
         if self.increase_the_time_2 == 3:
             self.increase_the_time_2 = 0
             self.raund_2_time += 0.1
             self.block_time_change_time = int(time.time())
             self.block_time_change_block = self.sequance_number
-
 
         if self.decrease_the_time_2 == 3:
             self.decrease_the_time_2 = 0
@@ -148,11 +143,9 @@ class Block:
                 self.block_time_change_time = int(time.time())
                 self.block_time_change_block = self.sequance_number
 
-
         self.block_time = self.raund_1_time + self.raund_2_time
 
-
-        #Printing validated block.
+        # Printing validated block.
         dprint("""\n
   _____                          _     ____  _      ____   _____ _  __
  / ____|                        | |   |  _ \| |    / __ \ / ____| |/ /
@@ -175,8 +168,6 @@ class Block:
 
         self.validated = False
 
-        
-
         # Resetting the node candidate blocks.
         for node in get_as_node_type(get_unl_nodes()):
             node.candidate_block = None
@@ -184,7 +175,6 @@ class Block:
 
         if not len(self.validating_list) == 0 and not len(self.validating_list) < (self.max_tx_number / 2):
 
-            
             app_tigger(self)
 
             my_address = Wallet_Import(-1, 3)
@@ -192,7 +182,6 @@ class Block:
                 if tx.toUser == my_address:
                     SavetoMyTransaction(tx)
 
-            
             saveBlockstoBlockchainDB(self)
 
             # Resetting and setting the new elements.
@@ -204,7 +193,7 @@ class Block:
             self.validating_list = []
             self.hash = None
 
-            #Printing new block.
+            # Printing new block.
             dprint("""\n
     _   _                 ____  _      ____   _____ _  __
     | \ | |               |  _ \| |    / __ \ / ____| |/ /
@@ -216,8 +205,6 @@ class Block:
             """+str(self.__dict__)+"\n")
         else:
             self.empty_block_number += 1
-
-
 
         # Adding self.pendingTransaction to the new/current block.
         PendinttoValidating(self)
