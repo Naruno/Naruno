@@ -27,7 +27,6 @@ from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainD
 from blockchain.block.blocks_hash import SaveBlockshash, GetBlockshash, SaveBlockshash_part
 
 from wallet.wallet import (
-    Ecdsa,
     PrivateKey,
     PublicKey,
     Wallet_Import,
