@@ -6,12 +6,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
-import urllib.request
-from auto_builders.docker import Decentra_Network_Docker
-import time
-import unittest
 import os
 import sys
+import time
+import unittest
+import urllib.request
+
+from auto_builders.docker import Decentra_Network_Docker
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
