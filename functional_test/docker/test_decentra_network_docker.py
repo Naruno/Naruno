@@ -17,7 +17,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         """
 
         success = False
-        for i in range(5):
+        for i in range(2):
             temp_environment = Decentra_Network_Docker()
             temp_environment.delete()
             temp_environment.install()
@@ -44,7 +44,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         """
 
         success = False
-        for i in range(5):
+        for i in range(2):
             temp_environment = Decentra_Network_Docker()
             temp_environment.delete()
             temp_environment.install()
@@ -75,7 +75,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
         success = False
-        for i in range(5):
+        for i in range(2):
             temp_environment = Decentra_Network_Docker()
             temp_environment.delete()
             temp_environment.install()
@@ -108,7 +108,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         """
 
         success = False
-        for i in range(5):
+        for i in range(2):
             temp_environment = Decentra_Network_Docker()
             temp_environment.delete()
             temp_environment.install()
