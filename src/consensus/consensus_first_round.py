@@ -8,16 +8,13 @@
 
 import time
 
-from lib.mixlib import dprint
-
-from node.unl import get_as_node_type, get_unl_nodes
-from node.myownp2pn import mynode
-
-from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from blockchain.block.calculate_hash import CalculateHash
-
-from transactions.process_the_transaction import ProccesstheTransaction
+from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
+from lib.mixlib import dprint
+from node.myownp2pn import mynode
+from node.unl import get_as_node_type, get_unl_nodes
 from transactions.create_transaction import CreateTransaction
+from transactions.process_the_transaction import ProccesstheTransaction
 
 
 def consensus_round_1(block):
