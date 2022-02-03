@@ -4,14 +4,13 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import time
 
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from lib.mixlib import dprint
 from node.myownp2pn import mynode
-from node.unl import get_as_node_type, get_unl_nodes
+from node.unl import get_as_node_type
+from node.unl import get_unl_nodes
 
 
 def consensus_round_2(block):
