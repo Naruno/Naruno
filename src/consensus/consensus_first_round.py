@@ -36,11 +36,14 @@ def consensus_round_1(block):
         block.save_block()
     candidate_class = GetCandidateBlocks()
     dprint("Raund 1 Conditions")
-    dprint(len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100))
-    dprint((int(time.time()) - block.raund_1_starting_time) < block.raund_1_time)
+    dprint(
+        len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100))
+    dprint(
+        (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time)
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
 
-        if not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
+        if not (int(time.time()) -
+                block.raund_1_starting_time) < block.raund_1_time:
             temp_validating_list = []
             dprint("Raund 1: first ok")
             dprint(len(candidate_class.candidate_blocks))
@@ -58,13 +61,13 @@ def consensus_round_1(block):
                     if len(candidate_class.candidate_blocks) != 1:
                         dprint("Raund 1: Test tx")
                         for other_block in candidate_class.candidate_blocks[:]:
-                            if candidate_block["signature"] != other_block["signature"]:
+                            if candidate_block["signature"] != other_block[
+                                    "signature"]:
                                 dprint("Raund 1: Test tx 2")
-                                for other_block_txs in other_block["transaction"]:
-                                    if (
-                                        other_block_tx.signature
-                                        == other_block_txs.signature
-                                    ):
+                                for other_block_txs in other_block[
+                                        "transaction"]:
+                                    if (other_block_tx.signature ==
+                                            other_block_txs.signature):
                                         dprint("Raund 1: Test tx 3")
                                         tx_valid += 1
                     else:
@@ -86,10 +89,8 @@ def consensus_round_1(block):
             for my_validating_list in block.validating_list[:]:
                 ok = False
                 for my_temp_validating_list in temp_validating_list[:]:
-                    if (
-                        my_validating_list.signature
-                        == my_temp_validating_list.signature
-                    ):
+                    if (my_validating_list.signature ==
+                            my_temp_validating_list.signature):
                         ok = True
                 block.validating_list.remove(my_validating_list)
                 if not ok:
@@ -128,7 +129,8 @@ def consensus_round_1(block):
                 block.save_block()
 
     else:
-        if not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
+        if not (int(time.time()) -
+                block.raund_1_starting_time) < block.raund_1_time:
             if not block.increase_the_time == 3:
                 block.increase_the_time += 1
                 block.decrease_the_time = 0
