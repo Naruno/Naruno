@@ -8,12 +8,10 @@
 
 import time
 
-from lib.mixlib import dprint
-
+from blockchain.block.get_block import GetBlock
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
-
-from blockchain.block.get_block import GetBlock
+from lib.mixlib import dprint
 
 
 def consensus_trigger():
