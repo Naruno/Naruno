@@ -4,16 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import time
 
-from lib.mixlib import dprint
-
+from blockchain.block.get_block import GetBlock
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
-
-from blockchain.block.get_block import GetBlock
+from lib.mixlib import dprint
 
 
 def consensus_trigger():
@@ -27,14 +23,9 @@ def consensus_trigger():
     block = GetBlock()
 
     if block.validated:
-        true_time = (
-            block.block_time_change_time
-            + block.block_time
-            + (
-                (block.block_time_change_block - block.sequance_number)
-                * block.block_time
-            )
-        )
+        true_time = (block.block_time_change_time + block.block_time +
+                     ((block.block_time_change_block - block.sequance_number) *
+                      block.block_time))
         if block.newly:
             true_time -= 1
         if not int(time.time()) < true_time:
