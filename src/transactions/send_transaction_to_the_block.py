@@ -34,7 +34,7 @@ def SendTransactiontoTheBlock(block, sequance_number, signature, fromUser, toUse
 
     the_tx = Transaction(
       sequance_number= sequance_number,
-      signature=temp_signature,
+      signature=signature,
       fromUser= fromUser,
       toUser=toUser,
       data = data,
