@@ -11,7 +11,7 @@ def TXAlreadyGot(block, transaction):
     Checks if the transaction is already in the block.
     """
 
-    for already_tx in (block.pendingTransaction + block.validating_list):
+    for already_tx in block.pendingTransaction + block.validating_list:
         if already_tx.signature == transaction.signature:
             return True
 

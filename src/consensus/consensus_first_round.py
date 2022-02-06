@@ -12,8 +12,9 @@ from lib.mixlib import dprint
 from node.myownp2pn import mynode
 from node.unl import get_as_node_type
 from node.unl import get_unl_nodes
-from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
 from transactions.process_the_transaction import ProccesstheTransaction
+from transactions.send_transaction_to_the_block import \
+    SendTransactiontoTheBlock
 
 
 def consensus_round_1(block):

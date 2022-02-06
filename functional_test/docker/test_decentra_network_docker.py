@@ -4,14 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-import unittest
+import json
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
-import urllib.request, json
 import time
+import unittest
+import urllib.request
+
 from auto_builders.docker import Decentra_Network_Docker
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
 class Test_Decentra_Network_Docker(unittest.TestCase):

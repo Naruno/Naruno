@@ -4,13 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
-from wallet.wallet import Address
-
-from blockchain.block.get_block import GetBlock
-
 from accounts.get_accounts import GetAccounts
+from blockchain.block.get_block import GetBlock
+from wallet.wallet import Address
 
 
 def GetBalance(block, user):
@@ -19,9 +15,9 @@ def GetBalance(block, user):
     """
 
     balance = -GetBlock().minumum_transfer_amount
-    user = "".join(
-        [l.strip() for l in user.splitlines() if l and not l.startswith("-----")]
-    )
+    user = "".join([
+        l.strip() for l in user.splitlines() if l and not l.startswith("-----")
+    ])
     user = Address(user)
     for Accounts in GetAccounts():
 
