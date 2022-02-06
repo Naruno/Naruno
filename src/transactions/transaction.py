@@ -34,7 +34,7 @@ class Transaction:
         self.data = data
         self.amount = amount
         self.transaction_fee = transaction_fee
-        self.time = time_of_transaction
+        self.transaction_time = time_of_transaction
 
     def dump_json(self):
         """
