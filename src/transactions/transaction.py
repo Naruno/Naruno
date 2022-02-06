@@ -53,14 +53,6 @@ class Transaction:
         }
         return data
 
-    def get_hash(self, encoding="ascii"):
-        """
-        Returns a sha256 created using the dump_json() function.
-        """
-
-        transaction_data = json.dumps(self.dump_json()).encode(encoding)
-        return hashlib.sha256(transaction_data).hexdigest()
-
     @staticmethod
     def load_json(data):
         """
