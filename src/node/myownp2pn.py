@@ -361,5 +361,5 @@ class mynode (Node):
     def get_transaction(self,data,node):
         dprint("Getting the transactions")
         system = GetBlock()
-        from transactions.create_transaction import CreateTransaction
-        CreateTransaction(system, sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node, transaction_time = data["transaction_time"])
+        from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
+        SendTransactiontoTheBlock(system, sequance_number = data["sequance_number"],signature =data["signature"],fromUser = data["fromUser"],toUser = data["to_user"],data = data["data"],amount = data["amount"],transaction_fee = data["transaction_fee"],transaction_sender=node, transaction_time = data["transaction_time"])

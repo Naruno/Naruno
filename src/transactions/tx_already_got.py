@@ -6,18 +6,18 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-def TXAlreadyGot(block, fromUser, sequance_number, temp_signature):
+def TXAlreadyGot(block, transaction):
     """
     Checks if the transaction is already in the block.
     """
 
     for already_tx in (block.pendingTransaction + block.validating_list):
-        if already_tx.signature == temp_signature:
+        if already_tx.signature == transaction.temp_signature:
             return True
-        if already_tx.fromUser == fromUser:
+        if already_tx.fromUser == transaction.fromUser:
             for already_tx_parent in (block.pendingTransaction + block.validating_list):
-                if not temp_signature == already_tx_parent.signature:
-                    if sequance_number == already_tx_parent.sequance_number:
+                if not transaction.temp_signature == already_tx_parent.signature:
+                    if transaction.sequance_number == already_tx_parent.sequance_number:
                         return True
 
     return False
