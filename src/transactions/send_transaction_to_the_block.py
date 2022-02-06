@@ -14,7 +14,7 @@ from transactions.transaction import Transaction
 from transactions.propagating_the_tx import PropagatingtheTX
 from transactions.tx_already_got import TXAlreadyGot
 from transactions.change_transaction_fee import ChangeTransactionFee
-from transaction.check_transaction import CheckTransaction
+from transactions.check_transaction import CheckTransaction
 
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
