@@ -13,7 +13,7 @@ from blockchain.block.get_block import GetBlock
 from accounts.get_accounts import GetAccounts
 
 
-def GetBalance(user, block):
+def GetBalance(block, user):
     """
     Returns the users balance.
     """
