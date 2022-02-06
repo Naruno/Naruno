@@ -33,17 +33,12 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if Ecdsa.verify(
-        (
-            str(transaction.sequance_number)
-            + str(transaction.fromUser)
-            + str(transaction.toUser)
-            + str(transaction.data)
-            + str(transaction.amount)
-            + str(transaction.transaction_fee)
-            + str(transaction.transaction_time)
-        ),
-        Signature.fromBase64(transaction.signature),
-        PublicKey.fromPem(transaction.fromUser),
+        (str(transaction.sequance_number) + str(transaction.fromUser) +
+         str(transaction.toUser) + str(transaction.data) +
+         str(transaction.amount) + str(transaction.transaction_fee) +
+         str(transaction.transaction_time)),
+            Signature.fromBase64(transaction.signature),
+            PublicKey.fromPem(transaction.fromUser),
     ):
         dprint("The signature is valid")
     else:
@@ -65,19 +60,20 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if transaction.sequance_number == (
-        GetSequanceNumber(transaction.fromUser, block) + 1
-    ):
+            GetSequanceNumber(transaction.fromUser, block) + 1):
         dprint("Sequance number is valid")
     else:
         validation = False
 
     balance = GetBalance(block, transaction.fromUser)
-    if balance >= (float(transaction.amount) + float(transaction.transaction_fee)):
+    if balance >= (float(transaction.amount) +
+                   float(transaction.transaction_fee)):
         dprint("Balance is valid")
     else:
         validation = False
 
-    if (balance - (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
+    if (balance -
+        (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
         dprint("Balance is enough")
     else:
         validation = False

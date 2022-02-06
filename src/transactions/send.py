@@ -15,7 +15,12 @@ from wallet.wallet import Ecdsa
 from wallet.wallet import PrivateKey
 
 
-def send(my_public_key, my_private_key, to_user, password, data=None, amount=None):
+def send(my_public_key,
+         my_private_key,
+         to_user,
+         password,
+         data=None,
+         amount=None):
     """
     The main function for sending the transaction.
 
@@ -27,13 +32,10 @@ def send(my_public_key, my_private_key, to_user, password, data=None, amount=Non
       * amount: A int or float amount to be sent. (Can be None)
     """
 
-    my_public_key = "".join(
-        [
-            l.strip()
-            for l in my_public_key.splitlines()
-            if l and not l.startswith("-----")
-        ]
-    )
+    my_public_key = "".join([
+        l.strip() for l in my_public_key.splitlines()
+        if l and not l.startswith("-----")
+    ])
 
     system = GetBlock()
     sequance_number = GetSequanceNumber(my_public_key, system) + 1
@@ -47,13 +49,8 @@ def send(my_public_key, my_private_key, to_user, password, data=None, amount=Non
         system,
         sequance_number=sequance_number,
         signature=Ecdsa.sign(
-            str(sequance_number)
-            + str(my_public_key)
-            + str(to_user)
-            + str(data)
-            + str(amount)
-            + str(transaction_fee)
-            + str(tx_time),
+            str(sequance_number) + str(my_public_key) + str(to_user) +
+            str(data) + str(amount) + str(transaction_fee) + str(tx_time),
             PrivateKey.fromPem(my_private_key),
         ).toBase64(),
         fromUser=str(my_public_key),
