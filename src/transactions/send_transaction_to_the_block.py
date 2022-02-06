@@ -27,35 +27,35 @@ from wallet.wallet import (
 
 
 def SendTransactiontoTheBlock(block, sequance_number, signature, fromUser, toUser, transaction_fee, data, amount, transaction_time, transaction_sender=None):
-      """
-      This function creates a transaction and adds it 
-      to the validating list and other direction.
-      """
+    """
+    This function creates a transaction and adds it 
+    to the validating list and other direction.
+    """
 
-      # Some data
-      signature_class = Signature.fromBase64(signature)
-      temp_signature = signature_class.toBase64()
-
-
-      # Local saving
-      the_tx = Transaction(
-                sequance_number= sequance_number,
-                signature=temp_signature,
-                fromUser= fromUser,
-                toUser=toUser,
-                data = data,
-                amount = amount,
-                transaction_fee= transaction_fee,
-                time_of_transaction = transaction_time
-       )
-       print(the_tx.dump_json())
+    # Some data
+    signature_class = Signature.fromBase64(signature)
+    temp_signature = signature_class.toBase64()
 
 
-      if CheckTransaction(the_tx):
-        block.pendingTransaction.append(the_tx)
-        ChangeTransactionFee(block)
-        block.save_block()
+    # Local saving
+    the_tx = Transaction(
+      sequance_number= sequance_number,
+      signature=temp_signature,
+      fromUser= fromUser,
+      toUser=toUser,
+      data = data,
+      amount = amount,
+      transaction_fee= transaction_fee,
+      time_of_transaction = transaction_time
+    )
+    print(the_tx.dump_json())
 
-        PropagatingtheTX(the_tx)
 
-        return the_tx
+    if CheckTransaction(the_tx):
+      block.pendingTransaction.append(the_tx)
+      ChangeTransactionFee(block)
+      block.save_block()
+
+      PropagatingtheTX(the_tx)
+
+      return the_tx
