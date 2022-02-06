@@ -47,7 +47,7 @@ class WalletBox(MDGridLayout):
 
     def reflesh_balance(self):
 
-        self.text = "Balance: "+str(GetBalance(Wallet_Import(-1,0), GetBlock()))
+        self.text = "Balance: "+str(GetBalance(GetBlock(), Wallet_Import(-1,0)))
 
     def show_wallet_alert_dialog(self):
         if not self.wallet_alert_dialog:

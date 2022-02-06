@@ -18,6 +18,6 @@ def print_balance():
     Prints the current wallet balance.
     """
 
-    balance = GetBalance(Wallet_Import(-1, 0), GetBlock())
+    balance = GetBalance(GetBlock(), Wallet_Import(-1, 0))
     print(balance)
     return balance

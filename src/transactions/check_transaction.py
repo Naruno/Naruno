@@ -49,7 +49,7 @@ def CheckTransaction(block, transaction):
     else:
         validation = False
 
-    if not transaction.transaction_fee < block.transaction.transaction_fee:
+    if not transaction.transaction_fee < block.transaction_fee:
         dprint("Transaction fee is reached")
     else:
         validation = False
@@ -64,7 +64,7 @@ def CheckTransaction(block, transaction):
     else:
         validation = False
     
-    balance = GetBalance(transaction.fromUser, block)
+    balance = GetBalance(block, transaction.fromUser)
     if balance >= (float(transaction.amount)+float(transaction.transaction_fee)):
         dprint("Balance is valid")
     else:
