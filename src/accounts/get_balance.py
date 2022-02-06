@@ -6,11 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from wallet.wallet import Address
-
-from blockchain.block.get_block import GetBlock
-
 from accounts.get_accounts import GetAccounts
+from blockchain.block.get_block import GetBlock
+from wallet.wallet import Address
 
 
 def GetBalance(block, user):

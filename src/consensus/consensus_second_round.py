@@ -9,8 +9,7 @@ import time
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from lib.mixlib import dprint
 from node.myownp2pn import mynode
-from node.unl import get_as_node_type
-from node.unl import get_unl_nodes
+from node.unl import get_as_node_type, get_unl_nodes
 
 
 def consensus_round_2(block):

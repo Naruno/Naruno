@@ -5,29 +5,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from node.node import *
-
-from wallet.wallet import Signature, Ecdsa, PublicKey, PrivateKey, Wallet_Import
-
-from lib.mixlib import dprint
-
+import os
 from hashlib import sha256
 
-from lib.merkle_root import MerkleTree
-
-from transactions.transaction import Transaction
-
-
-import os
-
-from config import (
-    TEMP_BLOCK_PATH,
-    LOADING_BLOCK_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCKSHASH_PATH,
-)
-
 from blockchain.block.get_block import GetBlock
+from config import (LOADING_BLOCK_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                    TEMP_BLOCKSHASH_PATH)
+from lib.merkle_root import MerkleTree
+from lib.mixlib import dprint
+from node.node import *
+from transactions.transaction import Transaction
+from wallet.wallet import (Ecdsa, PrivateKey, PublicKey, Signature,
+                           Wallet_Import)
 
 
 class mynode(Node):
@@ -40,7 +29,7 @@ class mynode(Node):
         print("MyPeer2PeerNode: Started")
 
     def message_from_node(self, node, data):
-        from node.unl import get_unl_nodes, get_as_node_type
+        from node.unl import get_as_node_type, get_unl_nodes
 
         if str(data) == "sendmefullblock":
             self.send_full_chain(node)
@@ -385,14 +374,15 @@ class mynode(Node):
 
                 os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
 
+                from app.app_main import apps_starter
                 from blockchain.block.block_main import apps_starter
                 from consensus.consensus_main import consensus_trigger
                 from lib.perpetualtimer import perpetualTimer
-                from app.app_main import apps_starter
 
                 system = GetBlock()
                 system.newly = True
-                from transactions.change_transaction_fee import ChangeTransactionFee
+                from transactions.change_transaction_fee import \
+                    ChangeTransactionFee
 
                 ChangeTransactionFee(system)
 
@@ -445,7 +435,8 @@ class mynode(Node):
     def get_transaction(self, data, node):
         dprint("Getting the transactions")
         system = GetBlock()
-        from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
+        from transactions.send_transaction_to_the_block import \
+            SendTransactiontoTheBlock
 
         SendTransactiontoTheBlock(
             system,

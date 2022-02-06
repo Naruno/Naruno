@@ -6,8 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import json
 import hashlib
+import json
 
 
 class Transaction:
