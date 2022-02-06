@@ -42,7 +42,7 @@ def consensus_round_2(block):
         (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time)
 
     if len(candidate_class.candidate_block_hashes) > (
-        (len(unl_nodes) * 80) / 100):
+            (len(unl_nodes) * 80) / 100):
 
         if not (int(time.time()) -
                 block.raund_2_starting_time) < block.raund_2_time:

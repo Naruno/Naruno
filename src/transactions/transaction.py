@@ -68,4 +68,4 @@ class Transaction:
             data['amount'],
             data['transaction_fee'],
             data['transaction_time'],
-            )
+        )

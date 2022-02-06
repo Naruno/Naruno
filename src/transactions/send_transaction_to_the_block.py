@@ -23,7 +23,7 @@ from wallet.wallet import (
     Ecdsa,
     PublicKey,
     Signature
-    )
+)
 
 
 def SendTransactiontoTheBlock(block, sequance_number, signature, fromUser, toUser, transaction_fee, data, amount, transaction_time, transaction_sender=None):
@@ -33,23 +33,22 @@ def SendTransactiontoTheBlock(block, sequance_number, signature, fromUser, toUse
     """
 
     the_tx = Transaction(
-      sequance_number= sequance_number,
-      signature=signature,
-      fromUser= fromUser,
-      toUser=toUser,
-      data = data,
-      amount = amount,
-      transaction_fee= transaction_fee,
-      time_of_transaction = transaction_time
+        sequance_number=sequance_number,
+        signature=signature,
+        fromUser=fromUser,
+        toUser=toUser,
+        data=data,
+        amount=amount,
+        transaction_fee=transaction_fee,
+        time_of_transaction=transaction_time
     )
     print(the_tx.dump_json())
 
-
     if CheckTransaction(block, the_tx):
-      block.pendingTransaction.append(the_tx)
-      ChangeTransactionFee(block)
-      block.save_block()
+        block.pendingTransaction.append(the_tx)
+        ChangeTransactionFee(block)
+        block.save_block()
 
-      PropagatingtheTX(the_tx)
+        PropagatingtheTX(the_tx)
 
-      return the_tx
+        return the_tx

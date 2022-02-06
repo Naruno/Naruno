@@ -22,7 +22,7 @@ from wallet.wallet import (
     Ecdsa,
     PublicKey,
     Signature
-    )
+)
 
 
 def CheckTransaction(block, transaction):
@@ -35,12 +35,12 @@ def CheckTransaction(block, transaction):
     validation = True
 
     if not TXAlreadyGot(block, transaction):
-        dprint("The transaction is not already in the block")    
+        dprint("The transaction is not already in the block")
     else:
         validation = False
-    
+
     if Ecdsa.verify((str(transaction.sequance_number)+str(transaction.fromUser)+str(transaction.toUser)+str(transaction.data)+str(transaction.amount)+str(transaction.transaction_fee)+str(transaction.transaction_time)), Signature.fromBase64(transaction.signature), PublicKey.fromPem(transaction.fromUser)):
-            dprint("The signature is valid")
+        dprint("The signature is valid")
     else:
         validation = False
 
@@ -63,7 +63,7 @@ def CheckTransaction(block, transaction):
         dprint("Sequance number is valid")
     else:
         validation = False
-    
+
     balance = GetBalance(block, transaction.fromUser)
     if balance >= (float(transaction.amount)+float(transaction.transaction_fee)):
         dprint("Balance is valid")
