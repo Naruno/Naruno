@@ -75,6 +75,6 @@ def CheckTransaction(block, transaction):
     else:
         validation = False
 
-      dprint("Validation end")
+    dprint("Validation end")
 
-      return validation
+    return validation
