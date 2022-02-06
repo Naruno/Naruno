@@ -51,7 +51,7 @@ def SendTransactiontoTheBlock(block, sequance_number, signature, fromUser, toUse
     print(the_tx.dump_json())
 
 
-    if CheckTransaction(the_tx):
+    if CheckTransaction(block, the_tx):
       block.pendingTransaction.append(the_tx)
       ChangeTransactionFee(block)
       block.save_block()
