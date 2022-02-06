@@ -14,10 +14,5 @@ def TXAlreadyGot(block, transaction):
     for already_tx in (block.pendingTransaction + block.validating_list):
         if already_tx.signature == transaction.signature:
             return True
-        if already_tx.fromUser == transaction.fromUser:
-            for already_tx_parent in (block.pendingTransaction + block.validating_list):
-                if not transaction.signature == already_tx_parent.signature:
-                    if transaction.sequance_number == already_tx_parent.sequance_number:
-                        return True
 
     return False
