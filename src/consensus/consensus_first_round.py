@@ -12,8 +12,9 @@ from lib.mixlib import dprint
 from node.myownp2pn import mynode
 from node.unl import get_as_node_type
 from node.unl import get_unl_nodes
-from transactions.create_transaction import CreateTransaction
 from transactions.process_the_transaction import ProccesstheTransaction
+from transactions.send_transaction_to_the_block import \
+    SendTransactiontoTheBlock
 
 
 def consensus_round_1(block):
@@ -99,7 +100,7 @@ def consensus_round_1(block):
             block.validating_list = temp_validating_list
 
             for each_newly in newly_added_list:
-                CreateTransaction(
+                SendTransactiontoTheBlock(
                     block,
                     each_newly.sequance_number,
                     each_newly.signature,
@@ -109,7 +110,7 @@ def consensus_round_1(block):
                     each_newly.data,
                     each_newly.amount,
                     transaction_sender=None,
-                    transaction_time=each_newly.time,
+                    transaction_time=each_newly.transaction_time,
                 )
 
             block.raund_1 = True
