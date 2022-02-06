@@ -109,7 +109,7 @@ def consensus_round_1(block):
                     each_newly.data,
                     each_newly.amount,
                     transaction_sender=None,
-                    transaction_time=each_newly.time,
+                    transaction_time=each_newly.transaction_time,
                 )
 
             block.raund_1 = True
