@@ -23,9 +23,14 @@ def consensus_trigger():
     block = GetBlock()
 
     if block.validated:
-        true_time = (block.block_time_change_time + block.block_time +
-                     ((block.block_time_change_block - block.sequance_number) *
-                      block.block_time))
+        true_time = (
+            block.block_time_change_time
+            + block.block_time
+            + (
+                (block.block_time_change_block - block.sequance_number)
+                * block.block_time
+            )
+        )
         if block.newly:
             true_time -= 1
         if not int(time.time()) < true_time:

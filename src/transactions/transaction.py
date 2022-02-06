@@ -26,7 +26,17 @@ class Transaction:
       * time: Sending time.
     """
 
-    def __init__(self, sequance_number, signature, fromUser, toUser, data, amount, transaction_fee, time_of_transaction):
+    def __init__(
+        self,
+        sequance_number,
+        signature,
+        fromUser,
+        toUser,
+        data,
+        amount,
+        transaction_fee,
+        time_of_transaction,
+    ):
         self.sequance_number = sequance_number
         self.signature = signature
         self.fromUser = fromUser
@@ -49,7 +59,7 @@ class Transaction:
             "data": self.data,
             "amount": self.amount,
             "transaction_fee": self.transaction_fee,
-            "transaction_time": self.transaction_time
+            "transaction_time": self.transaction_time,
         }
         return data
 
@@ -60,12 +70,12 @@ class Transaction:
         """
 
         return Transaction(
-            data['sequance_number'],
-            data['signature'],
-            data['fromUser'],
-            data['toUser'],
-            data['data'],
-            data['amount'],
-            data['transaction_fee'],
-            data['transaction_time'],
+            data["sequance_number"],
+            data["signature"],
+            data["fromUser"],
+            data["toUser"],
+            data["data"],
+            data["amount"],
+            data["transaction_fee"],
+            data["transaction_time"],
         )

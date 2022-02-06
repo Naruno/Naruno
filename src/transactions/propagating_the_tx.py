@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
@@ -25,7 +24,7 @@ def PropagatingtheTX(tx):
         "data": tx.data,
         "amount": tx.amount,
         "transaction_fee": tx.transaction_fee,
-        "transaction_time": tx.transaction_time
+        "transaction_time": tx.transaction_time,
     }
     for each_node in get_as_node_type(get_unl_nodes()):
         mynode.main_node.send_data_to_node(each_node, items)

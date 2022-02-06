@@ -46,25 +46,26 @@ def send(my_public_key, my_private_key, to_user, password, data=None, amount=Non
 
     tx_time = int(time.time())
 
-    the_tx = SendTransactiontoTheBlock(system,
-                                       sequance_number=sequance_number,
-                                       signature=Ecdsa.sign(
-                                           str(sequance_number)
-                                           + str(my_public_key)
-                                           + str(to_user)
-                                           + str(data)
-                                           + str(amount)
-                                           + str(transaction_fee)
-                                           + str(tx_time),
-                                           PrivateKey.fromPem(my_private_key),
-                                       ).toBase64(),
-                                       fromUser=str(my_public_key),
-                                       toUser=str(to_user),
-                                       data=data,
-                                       amount=amount,
-                                       transaction_fee=transaction_fee,
-                                       transaction_sender=None,
-                                       transaction_time=tx_time,
-                                       )
+    the_tx = SendTransactiontoTheBlock(
+        system,
+        sequance_number=sequance_number,
+        signature=Ecdsa.sign(
+            str(sequance_number)
+            + str(my_public_key)
+            + str(to_user)
+            + str(data)
+            + str(amount)
+            + str(transaction_fee)
+            + str(tx_time),
+            PrivateKey.fromPem(my_private_key),
+        ).toBase64(),
+        fromUser=str(my_public_key),
+        toUser=str(to_user),
+        data=data,
+        amount=amount,
+        transaction_fee=transaction_fee,
+        transaction_sender=None,
+        transaction_time=tx_time,
+    )
 
     SavetoMyTransaction(the_tx)

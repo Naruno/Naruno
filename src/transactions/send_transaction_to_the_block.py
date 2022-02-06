@@ -19,16 +19,23 @@ from transactions.check_transaction import CheckTransaction
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
 
-from wallet.wallet import (
-    Ecdsa,
-    PublicKey,
-    Signature
-)
+from wallet.wallet import Ecdsa, PublicKey, Signature
 
 
-def SendTransactiontoTheBlock(block, sequance_number, signature, fromUser, toUser, transaction_fee, data, amount, transaction_time, transaction_sender=None):
+def SendTransactiontoTheBlock(
+    block,
+    sequance_number,
+    signature,
+    fromUser,
+    toUser,
+    transaction_fee,
+    data,
+    amount,
+    transaction_time,
+    transaction_sender=None,
+):
     """
-    This function creates a transaction and adds it 
+    This function creates a transaction and adds it
     to the validating list and other direction.
     """
 
@@ -40,7 +47,7 @@ def SendTransactiontoTheBlock(block, sequance_number, signature, fromUser, toUse
         data=data,
         amount=amount,
         transaction_fee=transaction_fee,
-        time_of_transaction=transaction_time
+        time_of_transaction=transaction_time,
     )
     print(the_tx.dump_json())
 

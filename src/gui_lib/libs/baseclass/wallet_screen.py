@@ -52,8 +52,7 @@ class WalletBox(MDGridLayout):
 
     def reflesh_balance(self):
 
-        self.text = "Balance: " + \
-            str(GetBalance(GetBlock(), Wallet_Import(-1, 0)))
+        self.text = "Balance: " + str(GetBalance(GetBlock(), Wallet_Import(-1, 0)))
 
     def show_wallet_alert_dialog(self):
         if not self.wallet_alert_dialog:
@@ -73,8 +72,8 @@ class WalletBox(MDGridLayout):
                         text="OK",
                         font_size="18sp",
                         font_name=self.FONT_PATH + "RobotoCondensed-Bold",
-                        on_press=self.create_the_wallet
-                    )
+                        on_press=self.create_the_wallet,
+                    ),
                 ],
             )
         self.wallet_alert_dialog.open()
@@ -86,7 +85,7 @@ class WalletBox(MDGridLayout):
         Clipboard.copy(Wallet_Import(int(args[0]), 3))
         SweetAlert().fire(
             "The address has been copied to your clipboard.",
-            type='success',
+            type="success",
         )
 
     def show_example_list_bottom_sheet(self):
@@ -107,7 +106,6 @@ class WalletBox(MDGridLayout):
             bottom_sheet_menu.add_item(
                 str(item[0]) + " : " + item[1],
                 lambda x, y=item[0]: self.callback_for_menu_items(y),
-
             )
         bottom_sheet_menu.open()
 
@@ -147,8 +145,8 @@ class WalletBox(MDGridLayout):
                         text="OK",
                         font_size="18sp",
                         font_name=self.FONT_PATH + "RobotoCondensed-Bold",
-                        on_press=self.delete_the_wallet
-                    )
+                        on_press=self.delete_the_wallet,
+                    ),
                 ],
             )
         self.delete_wallet_alert_dialog.open()
@@ -159,13 +157,12 @@ class WalletBox(MDGridLayout):
         else:
             SweetAlert().fire(
                 "First wallet cannot be deleted.",
-                type='failure',
+                type="failure",
             )
 
     def delete_the_wallet(self, widget):
         saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = Wallet_Import(
-            int(the_settings()["wallet"]), 0)
+        selected_wallet_pubkey = Wallet_Import(int(the_settings()["wallet"]), 0)
         for each_wallet in saved_wallets:
             if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
                 change_wallet(0)
