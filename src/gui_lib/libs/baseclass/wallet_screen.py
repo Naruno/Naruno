@@ -4,9 +4,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import os
 
+from accounts.get_balance import GetBalance
+from blockchain.block.get_block import GetBlock
 from kivy.core.clipboard import Clipboard
 from kivy.properties import StringProperty
 from kivymd.uix.bottomsheet import MDListBottomSheet
@@ -14,12 +15,12 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
-
-from accounts.get_balance import GetBalance
-from blockchain.block.get_block import GetBlock
-from lib.settings_system import change_wallet, the_settings
-from wallet.wallet import (Wallet_Create, Wallet_Delete, Wallet_Import,
-                           get_saved_wallet)
+from lib.settings_system import change_wallet
+from lib.settings_system import the_settings
+from wallet.wallet import get_saved_wallet
+from wallet.wallet import Wallet_Create
+from wallet.wallet import Wallet_Delete
+from wallet.wallet import Wallet_Import
 
 
 class WalletScreen(MDScreen):
