@@ -32,12 +32,6 @@ def SendTransactiontoTheBlock(block, sequance_number, signature, fromUser, toUse
     to the validating list and other direction.
     """
 
-    # Some data
-    signature_class = Signature.fromBase64(signature)
-    temp_signature = signature_class.toBase64()
-
-
-    # Local saving
     the_tx = Transaction(
       sequance_number= sequance_number,
       signature=temp_signature,
