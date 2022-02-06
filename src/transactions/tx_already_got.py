@@ -12,7 +12,7 @@ def TXAlreadyGot(block, transaction):
     """
 
     for already_tx in (block.pendingTransaction + block.validating_list):
-        if already_tx.signature == transaction.temp_signature:
+        if already_tx.signature == transaction.signature:
             return True
         if already_tx.fromUser == transaction.fromUser:
             for already_tx_parent in (block.pendingTransaction + block.validating_list):
