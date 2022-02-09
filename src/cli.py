@@ -4,8 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import argparse
 import sys
 import time
@@ -15,12 +13,20 @@ from blockchain.block.create_block import CreateBlock
 from blockchain.block.get_block import GetBlockFromOtherNode
 from config import MY_TRANSACTION_EXPORT_PATH
 from lib.export import export_the_transactions
-from lib.mixlib import (banner_maker, menu_maker, menu_space, question_maker,
-                        quit_menu_maker)
-from lib.settings_system import debug_mode, test_mode, the_settings
+from lib.mixlib import banner_maker
+from lib.mixlib import menu_maker
+from lib.mixlib import menu_space
+from lib.mixlib import question_maker
+from lib.mixlib import quit_menu_maker
+from lib.settings_system import debug_mode
+from lib.settings_system import test_mode
+from lib.settings_system import the_settings
 from lib.status import Status
-from node.node_connection import (ndconnect, ndconnectmixdb, ndid, ndstart,
-                                  ndstop)
+from node.node_connection import ndconnect
+from node.node_connection import ndconnectmixdb
+from node.node_connection import ndid
+from node.node_connection import ndstart
+from node.node_connection import ndstop
 from node.unl import save_new_unl_node
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send

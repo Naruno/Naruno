@@ -13,7 +13,9 @@ from lib.settings_system import the_settings
 from transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.send_transaction_to_the_block import \
     SendTransactiontoTheBlock
-from wallet.wallet import Ecdsa, PrivateKey, Wallet_Import
+from wallet.wallet import Ecdsa
+from wallet.wallet import PrivateKey
+from wallet.wallet import Wallet_Import
 
 
 def send(password, to_user, amount, data=None):

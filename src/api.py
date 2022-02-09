@@ -4,25 +4,28 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import argparse
 import sys
 
 import flask
-from flask import jsonify, request
-from waitress import serve
-
 from blockchain.block.create_block import CreateBlock
 from blockchain.block.get_block import GetBlockFromOtherNode
+from flask import jsonify
+from flask import request
 from lib.export import export_the_transactions
-from lib.settings_system import debug_mode, test_mode, the_settings
+from lib.settings_system import debug_mode
+from lib.settings_system import test_mode
+from lib.settings_system import the_settings
 from lib.status import Status
-from node.node_connection import (ndconnect, ndconnectmixdb, ndid, ndstart,
-                                  ndstop)
+from node.node_connection import ndconnect
+from node.node_connection import ndconnectmixdb
+from node.node_connection import ndid
+from node.node_connection import ndstart
+from node.node_connection import ndstop
 from node.unl import save_new_unl_node
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
+from waitress import serve
 from wallet.create_a_wallet import create_a_wallet
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance
