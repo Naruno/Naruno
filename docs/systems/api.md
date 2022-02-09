@@ -14,6 +14,7 @@ nav_order: 5
 | GET | /wallet/delete | Deletes the currenly wallet |
 | GET | /wallet/balance | Returns the balance of the currently wallet |
 | GET | /send/coin/:address/:amount/:password | Send coin with the given address, amount and password of currently wallet  |
+| GET | /send/coin-data/:address/:amount/:data/:password | Send data and coin with the given address, amount, data and password of currently wallet  |
 | GET | /node/start/:ip/:port | Starts a node server with the given ip and port |
 | GET | /node/stop | Stops the node server |
 | GET | /node/newunl/?:id | Creates a new UNL node with given id |
