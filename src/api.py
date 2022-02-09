@@ -6,32 +6,28 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+import argparse
 import sys
 
 import flask
 from flask import jsonify, request
-import argparse
 from waitress import serve
 
-from transactions.send import send
-from transactions.get_my_transaction import GetMyTransaction
-
-from lib.export import export_the_transactions
-from lib.settings_system import the_settings, test_mode, debug_mode
-from lib.status import Status
-
-from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
-from node.unl import save_new_unl_node
-
-from blockchain.block.get_block import GetBlockFromOtherNode
 from blockchain.block.create_block import CreateBlock
-
+from blockchain.block.get_block import GetBlockFromOtherNode
+from lib.export import export_the_transactions
+from lib.settings_system import debug_mode, test_mode, the_settings
+from lib.status import Status
+from node.node_connection import (ndconnect, ndconnectmixdb, ndid, ndstart,
+                                  ndstop)
+from node.unl import save_new_unl_node
+from transactions.get_my_transaction import GetMyTransaction
+from transactions.send import send
 from wallet.create_a_wallet import create_a_wallet
-from wallet.print_wallets import print_wallets
-from wallet.wallet_selector import wallet_selector
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance
-
+from wallet.print_wallets import print_wallets
+from wallet.wallet_selector import wallet_selector
 
 app = flask.Flask(__name__)
 

@@ -5,17 +5,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
-
 from hashlib import sha256
 
 from accounts.get_sequance_number import GetSequanceNumber
 from blockchain.block.get_block import GetBlock
-from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
-from wallet.wallet import Ecdsa
-from wallet.wallet import PrivateKey
-from wallet.wallet import Wallet_Import
 from lib.settings_system import the_settings
+from transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.send_transaction_to_the_block import \
+    SendTransactiontoTheBlock
+from wallet.wallet import Ecdsa, PrivateKey, Wallet_Import
 
 
 def send(password, to_user, amount, data=None):
