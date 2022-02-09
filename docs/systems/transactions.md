@@ -28,24 +28,17 @@ Transaction fees are determined by a special [mechanism](https://github.com/Dece
 ***
 
 ## Sending a Transaction
-Sending a transaction is pretty simple.
-
-The elements you will use to send a transaction with [send()](https://github.com/Decentra-Network/Decentra-Network/blob/master/src/transactions/send.py#L18) function are as follows:
-
-* Sender's public key.
-* Sender's private key.
-* Receiver's address.
-* A text that can be written into the transaction. (Can be None)
-* A int or float amount to be sent. (Can be None)
+The sending transaction is done by the send.py and send function. 
+send function is verry simple, it takes the password, receiver address, amount and data.
 
 ```python
 from transactions.send import send
-from wallet.wallet import Wallet_Import
 
 password = "123"
 
-my_public_key = Wallet_Import(-1,0)
-my_private_key = Wallet_Import(-1,1,password)
+to_user = "ex_wallet"
 
-send(my_public_key = my_public_key, my_private_key = my_private_key , to_user, password, data = None, amount = None)
+amount = 5000
+
+send(password, to_user, amount, data=None):
 ```
