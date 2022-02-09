@@ -50,6 +50,7 @@ def show_menu():
        menu_maker(menu_number="dw", menu_text="Delete Wallet")+ \
 	   menu_space() + \
 	   menu_maker(menu_number="sc", menu_text="Send Coin")+ \
+       menu_maker(menu_number="scd", menu_text="Send Coin Data")+ \
        menu_space() + \
        menu_maker(menu_number="gb", menu_text="Get Balance")+ \
        menu_space() + \
@@ -108,7 +109,8 @@ def menu():
                 delete_current_wallet()
         if choices_input == "sc":
             send(getpass("Password: "), input("Please write receiver adress: "), input("Coin Amount (ex. 1.0): "))
-
+        if choices_input == "scd":
+            send(getpass("Password: "), input("Please write receiver adress: "), input("Coin Amount (ex. 1.0): "), input("Data: "))
         if choices_input == "gb":
             print_balance()
         if choices_input == "help":
