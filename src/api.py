@@ -4,34 +4,33 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
+import argparse
 import sys
 
 import flask
-from flask import jsonify, request
-import argparse
-from waitress import serve
-
-from transactions.send_the_coin import send_the_coin
-from transactions.get_my_transaction import GetMyTransaction
-
-from lib.export import export_the_transactions
-from lib.settings_system import the_settings, test_mode, debug_mode
-from lib.status import Status
-
-from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
-from node.unl import save_new_unl_node
-
-from blockchain.block.get_block import GetBlockFromOtherNode
 from blockchain.block.create_block import CreateBlock
-
+from blockchain.block.get_block import GetBlockFromOtherNode
+from flask import jsonify
+from flask import request
+from lib.export import export_the_transactions
+from lib.settings_system import debug_mode
+from lib.settings_system import test_mode
+from lib.settings_system import the_settings
+from lib.status import Status
+from node.node_connection import ndconnect
+from node.node_connection import ndconnectmixdb
+from node.node_connection import ndid
+from node.node_connection import ndstart
+from node.node_connection import ndstop
+from node.unl import save_new_unl_node
+from transactions.get_my_transaction import GetMyTransaction
+from transactions.send import send
+from waitress import serve
 from wallet.create_a_wallet import create_a_wallet
-from wallet.print_wallets import print_wallets
-from wallet.wallet_selector import wallet_selector
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance
-
+from wallet.print_wallets import print_wallets
+from wallet.wallet_selector import wallet_selector
 
 app = flask.Flask(__name__)
 
@@ -61,7 +60,14 @@ def delete_wallets_page():
 
 @app.route("/send/coin/<address>/<amount>/<password>", methods=["GET"])
 def send_coin_page(address, amount, password):
-    send_the_coin(address, amount, password)
+    send(password, address, amount)
+    return jsonify("OK")
+
+
+@app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
+           methods=["GET"])
+def send_coin_data_page(address, amount, data, password):
+    send(password, address, amount, data)
     return jsonify("OK")
 
 
@@ -165,7 +171,8 @@ def start():
     """
 
     parser = argparse.ArgumentParser(
-        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description=
+        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p", "--port", type=int, help="Add new UNL node")
@@ -176,6 +183,7 @@ def start():
         serve(app, host="0.0.0.0", port=8000)
     else:
         serve(app, host="0.0.0.0", port=args.port)
+
 
 if __name__ == "__main__":
     start()
