@@ -65,7 +65,7 @@ def send_coin_page(address, amount, password):
     return jsonify("OK")
 
 @app.route("/send/coin-data/<address>/<amount>/<data>/<password>", methods=["GET"])
-def send_coin_page(address, amount, data, password):
+def send_coin_data_page(address, amount, data, password):
     send(password, address, amount, data)
     return jsonify("OK")
 
