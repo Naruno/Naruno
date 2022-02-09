@@ -87,7 +87,7 @@ class OperationBox(MDGridLayout):
 
         if not float(amount) < GetBlock().minumum_transfer_amount:
             if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(text_list[0].encode("utf-8")).hexdigest():
-                send(text_list[0], float(amount), receiver_adress)
+                send(text_list[0], receiver_adress, float(amount))
             else:
                 SweetAlert().fire(
                     "Password is not correct",
