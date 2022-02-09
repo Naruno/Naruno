@@ -50,19 +50,14 @@ def send(password, to_user, amount, data=None):
     block = GetBlock()
 
     if not amount < block.minumum_transfer_amount:
-        if (
-            Wallet_Import(int(the_settings()["wallet"]), 2)
-            == sha256(password.encode("utf-8")).hexdigest()
-        ):
+        if (Wallet_Import(int(the_settings()["wallet"]),
+                          2) == sha256(password.encode("utf-8")).hexdigest()):
 
             my_private_key = Wallet_Import(-1, 1, password)
-            my_public_key = "".join(
-                [
-                    l.strip()
-                    for l in Wallet_Import(-1, 0).splitlines()
-                    if l and not l.startswith("-----")
-                ]
-            )
+            my_public_key = "".join([
+                l.strip() for l in Wallet_Import(-1, 0).splitlines()
+                if l and not l.startswith("-----")
+            ])
 
             sequance_number = GetSequanceNumber(my_public_key, block) + 1
 
@@ -75,13 +70,9 @@ def send(password, to_user, amount, data=None):
                 block,
                 sequance_number=sequance_number,
                 signature=Ecdsa.sign(
-                    str(sequance_number)
-                    + str(my_public_key)
-                    + str(to_user)
-                    + str(data)
-                    + str(amount)
-                    + str(transaction_fee)
-                    + str(tx_time),
+                    str(sequance_number) + str(my_public_key) + str(to_user) +
+                    str(data) + str(amount) + str(transaction_fee) +
+                    str(tx_time),
                     PrivateKey.fromPem(my_private_key),
                 ).toBase64(),
                 fromUser=str(my_public_key),
