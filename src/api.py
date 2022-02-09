@@ -64,10 +64,12 @@ def send_coin_page(address, amount, password):
     send(password, address, amount)
     return jsonify("OK")
 
+
 @app.route("/send/coin-data/<address>/<amount>/<data>/<password>", methods=["GET"])
 def send_coin_data_page(address, amount, data, password):
     send(password, address, amount, data)
     return jsonify("OK")
+
 
 @app.route("/wallet/balance", methods=["GET"])
 def balance_wallets_page():
@@ -180,6 +182,7 @@ def start():
         serve(app, host="0.0.0.0", port=8000)
     else:
         serve(app, host="0.0.0.0", port=args.port)
+
 
 if __name__ == "__main__":
     start()

@@ -18,6 +18,7 @@ from wallet.wallet import PrivateKey
 from wallet.wallet import Wallet_Import
 from lib.settings_system import the_settings
 
+
 def send(password,
          to_user,
          amount,
@@ -34,9 +35,6 @@ def send(password,
 
     """
 
-
-
-
     try:
         amount = float(amount)
     except ValueError:
@@ -44,15 +42,15 @@ def send(password,
         return False
 
     if isinstance(amount, int):
-                amount = float(amount)
+        amount = float(amount)
 
     if not isinstance(amount, float):
-                print("This is not int or float coin amount.")
-                return None
+        print("This is not int or float coin amount.")
+        return None
 
     if amount < 0:
-                print("This is negative coin amount.")
-                return None
+        print("This is negative coin amount.")
+        return None
 
     block = GetBlock()
 
@@ -77,7 +75,8 @@ def send(password,
                 sequance_number=sequance_number,
                 signature=Ecdsa.sign(
                     str(sequance_number) + str(my_public_key) + str(to_user) +
-                    str(data) + str(amount) + str(transaction_fee) + str(tx_time),
+                    str(data) + str(amount) +
+                    str(transaction_fee) + str(tx_time),
                     PrivateKey.fromPem(my_private_key),
                 ).toBase64(),
                 fromUser=str(my_public_key),
@@ -90,7 +89,6 @@ def send(password,
             )
 
             SavetoMyTransaction(the_tx)
-
 
             del my_private_key
             del password
