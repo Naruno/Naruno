@@ -85,12 +85,15 @@ class OperationBox(MDGridLayout):
         amount = text_list[1]
 
         if not float(amount) < GetBlock().minumum_transfer_amount:
-            if Wallet_Import(int(the_settings()["wallet"]), 2) == sha256(text_list[0].encode("utf-8")).hexdigest():
+            if (
+                Wallet_Import(int(the_settings()["wallet"]), 2)
+                == sha256(text_list[0].encode("utf-8")).hexdigest()
+            ):
                 send(text_list[0], receiver_adress, float(amount))
             else:
                 SweetAlert().fire(
                     "Password is not correct",
-                    type='failure',
+                    type="failure",
                 )
             del text_list
 
@@ -109,12 +112,12 @@ class OperationBox(MDGridLayout):
             Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
             SweetAlert().fire(
                 f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
-                type='success',
+                type="success",
             )
         else:
             SweetAlert().fire(
                 "You have not a transaction",
-                type='failure',
+                type="failure",
             )
 
     def callback_for_transaction_history_items(self, widget):
@@ -126,18 +129,18 @@ class OperationBox(MDGridLayout):
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {}
             for tx in transactions:
-                data[tx] = tx.toUser + " | " + \
-                    str(tx.amount) + " | " + str(tx.transaction_fee)
+                data[tx] = (
+                    tx.toUser + " | " + str(tx.amount) + " | " + str(tx.transaction_fee)
+                )
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.callback_for_transaction_history_items(
-                        y),
+                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:
             SweetAlert().fire(
                 "You have not a transaction",
-                type='failure',
+                type="failure",
             )

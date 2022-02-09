@@ -11,19 +11,14 @@ from hashlib import sha256
 from accounts.get_sequance_number import GetSequanceNumber
 from blockchain.block.get_block import GetBlock
 from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.send_transaction_to_the_block import \
-    SendTransactiontoTheBlock
+from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
 from wallet.wallet import Ecdsa
 from wallet.wallet import PrivateKey
 from wallet.wallet import Wallet_Import
 from lib.settings_system import the_settings
 
 
-def send(password,
-         to_user,
-         amount,
-         data=None
-         ):
+def send(password, to_user, amount, data=None):
     """
     The main function for sending the transaction.
 
@@ -55,13 +50,19 @@ def send(password,
     block = GetBlock()
 
     if not amount < block.minumum_transfer_amount:
-        if Wallet_Import(int(the_settings()["wallet"]), 2) == sha256(password.encode("utf-8")).hexdigest():
+        if (
+            Wallet_Import(int(the_settings()["wallet"]), 2)
+            == sha256(password.encode("utf-8")).hexdigest()
+        ):
 
             my_private_key = Wallet_Import(-1, 1, password)
-            my_public_key = "".join([
-                l.strip() for l in Wallet_Import(-1, 0).splitlines()
-                if l and not l.startswith("-----")
-            ])
+            my_public_key = "".join(
+                [
+                    l.strip()
+                    for l in Wallet_Import(-1, 0).splitlines()
+                    if l and not l.startswith("-----")
+                ]
+            )
 
             sequance_number = GetSequanceNumber(my_public_key, block) + 1
 
@@ -74,9 +75,13 @@ def send(password,
                 block,
                 sequance_number=sequance_number,
                 signature=Ecdsa.sign(
-                    str(sequance_number) + str(my_public_key) + str(to_user) +
-                    str(data) + str(amount) +
-                    str(transaction_fee) + str(tx_time),
+                    str(sequance_number)
+                    + str(my_public_key)
+                    + str(to_user)
+                    + str(data)
+                    + str(amount)
+                    + str(transaction_fee)
+                    + str(tx_time),
                     PrivateKey.fromPem(my_private_key),
                 ).toBase64(),
                 fromUser=str(my_public_key),
