@@ -13,7 +13,7 @@ from flask import jsonify, request
 import argparse
 from waitress import serve
 
-from transactions.send_the_coin import send_the_coin
+from transactions.send import send
 from transactions.get_my_transaction import GetMyTransaction
 
 from lib.export import export_the_transactions
@@ -61,7 +61,7 @@ def delete_wallets_page():
 
 @app.route("/send/coin/<address>/<amount>/<password>", methods=["GET"])
 def send_coin_page(address, amount, password):
-    send_the_coin(address, amount, password)
+    send(password, address, amount)
     return jsonify("OK")
 
 

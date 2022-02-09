@@ -17,7 +17,7 @@ from kivymd_extensions.sweetalert import SweetAlert
 
 from kivy.core.clipboard import Clipboard
 
-from transactions.send_the_coin import send_the_coin
+from transactions.send import send
 from transactions.get_my_transaction import GetMyTransaction
 
 from blockchain.block.get_block import GetBlock
@@ -87,7 +87,7 @@ class OperationBox(MDGridLayout):
 
         if not float(amount) < GetBlock().minumum_transfer_amount:
             if Wallet_Import(int(the_settings()["wallet"]),2) == sha256(text_list[0].encode("utf-8")).hexdigest():
-                send_the_coin(float(amount), receiver_adress, text_list[0])
+                send(text_list[0], float(amount), receiver_adress)
             else:
                 SweetAlert().fire(
                     "Password is not correct",

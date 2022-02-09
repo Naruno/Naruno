@@ -13,7 +13,7 @@ from getpass import getpass
 
 from config import MY_TRANSACTION_EXPORT_PATH
 
-from transactions.send_the_coin import send_the_coin
+from transactions.send import send
 from transactions.print_transactions import PrintTransactions
 
 from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
@@ -107,7 +107,7 @@ def menu():
             if "y" == input("Are you sure ? (y or n): "):
                 delete_current_wallet()
         if choices_input == "sc":
-            send_the_coin(input("Please write receiver adress: "), input("Coin Amount (ex. 1.0): "), getpass("Password: "))
+            send(getpass("Password: "), input("Please write receiver adress: "), input("Coin Amount (ex. 1.0): "))
 
         if choices_input == "gb":
             print_balance()
