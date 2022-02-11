@@ -13,6 +13,7 @@ from lib.settings_system import the_settings
 
 
 class Test_Config(unittest.TestCase):
+
     def setUp(self):
         self.ctx = app.app_context()
         self.ctx.push()
