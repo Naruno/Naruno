@@ -5,6 +5,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from lib.settings_system import the_settings
+from api import app
+import sys
+import os
 import unittest
 
 
@@ -14,6 +18,7 @@ class Test_Config(unittest.TestCase):
         self.ctx = app.app_context()
         self.ctx.push()
         self.client = app.test_client()
+
     def tearDown(self):
         self.ctx.pop()
 
@@ -28,9 +33,5 @@ class Test_Config(unittest.TestCase):
         self.assertEqual(response.status_code, 200, "A problem on the API.")
 
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
-from api import app
-from lib.settings_system import the_settings
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 unittest.main(exit=False)
