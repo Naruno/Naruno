@@ -6,29 +6,26 @@ nav_exclude: true
 
 # Docker Test Environments Tutorial
 
-## Pulling
-First we need to download our docker image.
+## Download API Docker
 
 ```bash
 docker pull ghcr.io/decentra-network/api:latest
 ```
 
-## Name Changing
-Second we will make its name available for use.
+## Building Test Environment with Auto Builders
+With auto builders, you can build your test environment in a automated way.
+
+It's takes 60 seconds.
 
 ```bash
-docker image tag ghcr.io/decentra-network/api decentra-network-api
+python3 auto_builders/docker.py -nn 3 -scn 1 -i -r -s
 ```
 <walkthrough-footnote>Docker Test Environments Tutorial</walkthrough-footnote>
 
-## Running The Auto Tests
-Finaly we run our automated test tool, it sets up and tests the network for us.
-
-```bash
-python3 functional_test/docker/test_decentra_network_docker.py
-```
-<walkthrough-footnote>Docker Test Environments Tutorial</walkthrough-footnote>
 ## Conclusion
+
+Now you can use our [API referance](https://docs.decentranetwork.org/systems/api.html#api-referance) to send transactions to your test environment.
+
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
 
