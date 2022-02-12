@@ -35,8 +35,7 @@ setup(
     include_package_data=True,
     package_dir={"": "src"},
     entry_points={
-        "console_scripts":
-        ["dngui = gui:start", "dncli=cli:start", "dnapi=api:start"],
+        "console_scripts": ["dngui = gui:start", "dncli=cli:start", "dnapi=api:start"],
     },
     python_requires=">=3.6",
     zip_safe=False,
