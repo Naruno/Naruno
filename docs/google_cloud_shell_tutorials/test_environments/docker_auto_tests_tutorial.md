@@ -24,7 +24,7 @@ python3 auto_builders/docker.py -nn 3 -scn 1 -i -r -s
 
 ## Conclusion
 
-Now you can use our [API referance](https://docs.decentranetwork.org/systems/api.html#api-referance) to send transactions to your test environment.
+Now you can use our [API document](https://docs.decentranetwork.org/systems/api.html) to send transactions to your test environment.
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
