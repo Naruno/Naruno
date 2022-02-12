@@ -9,7 +9,8 @@ from setuptools import setup
 setup(
     name="decentra_network",
     version="0.14.0",
-    description="""This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.""",
+    description=
+    """This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.""",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     url="https://decentra-network.github.io/Decentra-Network/",
@@ -35,7 +36,8 @@ setup(
     include_package_data=True,
     package_dir={"": "src"},
     entry_points={
-        "console_scripts": ["dngui = gui:start", "dncli=cli:start", "dnapi=api:start"],
+        "console_scripts":
+        ["dngui = gui:start", "dncli=cli:start", "dnapi=api:start"],
     },
     python_requires=">=3.6",
     zip_safe=False,
