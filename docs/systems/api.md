@@ -9,9 +9,9 @@ In normal usage (api.py) the default host is 0.0.0.0 and port is 8000.
 
 In auto_builders based instalation the host is 0.0.0.0 and port is 
 increase by node number. For example: 
-- 1th node port is 8000
-- 2th node port is 8010 
-- 3th node port is 8020
+- 1st node port is 8000
+- 2nd node port is 8010 
+- 3rd node port is 8020
 
 # API Referance
 
