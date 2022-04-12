@@ -20,88 +20,6 @@ from lib.mixlib import dprint
 from node.unl import node_is_unl
 
 
-def get_connected_node():
-        """
-        Returns the connected nodes.
-        """
-
-        sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-        from lib.config_system import get_config
-
-        if not os.path.exists(CONNECTED_NODE_PATH):
-            temp_json = {}
-            return temp_json
-
-
-        os.chdir(get_config()["main_folder"])
-        with open(CONNECTED_NODE_PATH, 'rb') as connected_node_file:
-            return json.load(connected_node_file)
-
-
-def save_connected_node(host,port,id):
-        """
-        Saves the connected nodes.
-        """
-
-        node_list = get_connected_node()
-
-        already_in_list = False
-
-        for element in node_list:
-            if node_list[element]["host"] == host and node_list[element]["port"] == port:
-                already_in_list = True
-
-        if not already_in_list:
-         node_list[id] = {}
-         node_list[id]["host"] = host
-         node_list[id]["port"] = port
-
-
-
-
-         
-
-         sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-         
-         from lib.config_system import get_config
-
-
-
-         os.chdir(get_config()["main_folder"])
-         with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
-             json.dump(node_list, connected_node_file, indent=4)
-
-
-
-
-def connectionfrommixdb():
-    """
-    Connects to the mixdb.
-    """
-
-    node_list = get_connected_node()
-    from node.myownp2pn import mynode
-    for element in node_list:
-        mynode.main_node.connect_to_node(node_list[element]["host"], node_list[element]["port"])
-
-
-def connected_node_delete(node):
-    """
-    Deletes a connected node.
-    """
-
-    saved_nodes = get_connected_node()
-    if node in saved_nodes:
-        del saved_nodes[node]
-        from lib.config_system import get_config
-    
-
-        os.chdir(get_config()["main_folder"])
-        with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
-            json.dump(saved_nodes, connected_node_file, indent=4)
-
-
 class Node_Connection(threading.Thread):
 
 
@@ -128,7 +46,7 @@ class Node_Connection(threading.Thread):
 
         self.info = {}
 
-        save_connected_node(host,port,id)
+        Node.save_connected_node(host,port,id)
 
     def send(self, data, encoding_type='utf-8'):
 
@@ -424,6 +342,86 @@ class Node(threading.Thread):
         self.sock.settimeout(None)   
         self.sock.close()
         print("Node System: Node stopped")
+
+    @staticmethod
+    def get_connected_node():
+            """
+            Returns the connected nodes.
+            """
+
+            sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+            from lib.config_system import get_config
+
+            if not os.path.exists(CONNECTED_NODE_PATH):
+                temp_json = {}
+                return temp_json
+
+
+            os.chdir(get_config()["main_folder"])
+            with open(CONNECTED_NODE_PATH, 'rb') as connected_node_file:
+                return json.load(connected_node_file)
+
+    @staticmethod
+    def save_connected_node(host,port,id):
+            """
+            Saves the connected nodes.
+            """
+
+            node_list = Node.get_connected_node()
+
+            already_in_list = False
+
+            for element in node_list:
+                if node_list[element]["host"] == host and node_list[element]["port"] == port:
+                    already_in_list = True
+
+            if not already_in_list:
+                node_list[id] = {}
+                node_list[id]["host"] = host
+                node_list[id]["port"] = port
+
+
+
+
+                
+
+                sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+                
+                from lib.config_system import get_config
+
+
+
+                os.chdir(get_config()["main_folder"])
+                with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
+                    json.dump(node_list, connected_node_file, indent=4)
+
+    @staticmethod
+    def connectionfrommixdb():
+        """
+        Connects to the mixdb.
+        """
+
+        node_list = Node.get_connected_node()
+        from node.myownp2pn import mynode
+        for element in node_list:
+            mynode.main_node.connect_to_node(node_list[element]["host"], node_list[element]["port"])
+
+    @staticmethod
+    def connected_node_delete(node):
+        """
+        Deletes a connected node.
+        """
+
+        saved_nodes = Node.get_connected_node()
+        if node in saved_nodes:
+            del saved_nodes[node]
+            from lib.config_system import get_config
+        
+
+            os.chdir(get_config()["main_folder"])
+            with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
+                json.dump(saved_nodes, connected_node_file, indent=4)
 
     def outbound_node_connected(self, node):
         dprint("Node System: outbound_node_connected: " + node.id)

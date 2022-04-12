@@ -6,7 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from node.myownp2pn import mynode, connectionfrommixdb
+from node.myownp2pn import mynode
+from node.node import Node
 from wallet.wallet import Wallet_Import
 
 from config import *
@@ -43,7 +44,7 @@ def ndconnectmixdb():
     Connects to nodes from mixdb.
     """
 
-    connectionfrommixdb()
+    Node.connectionfrommixdb()
 
 
 def ndid():
