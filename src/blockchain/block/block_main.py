@@ -138,8 +138,7 @@ class Block:
         self.block_time = self.raund_1_time + self.raund_2_time
 
         # Printing validated block.
-        dprint(
-            """\n
+        dprint("""\n
   _____                          _     ____  _      ____   _____ _  __
  / ____|                        | |   |  _ \| |    / __ \ / ____| |/ /
 | |    _   _ _ __ _ __ ___ _ __ | |_  | |_) | |   | |  | | |    | ' /
@@ -147,10 +146,7 @@ class Block:
 | |___| |_| | |  | | |  __/ | | | |_  | |_) | |___| |__| | |____| . \
  \_____\__,_|_|  |_|  \___|_| |_|\__| |____/|______\____/ \_____|_|\_\
 
-        """
-            + str(self.__dict__)
-            + "\n"
-        )
+        """ + str(self.__dict__) + "\n")
 
         self.start_time = int(time.time())
 
@@ -169,9 +165,8 @@ class Block:
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        if not len(self.validating_list) == 0 and not len(self.validating_list) < (
-            self.max_tx_number / 2
-        ):
+        if not len(self.validating_list) == 0 and not len(
+                self.validating_list) < (self.max_tx_number / 2):
 
             app_tigger(self)
 
@@ -192,8 +187,7 @@ class Block:
             self.hash = None
 
             # Printing new block.
-            dprint(
-                """\n
+            dprint("""\n
     _   _                 ____  _      ____   _____ _  __
     | \ | |               |  _ \| |    / __ \ / ____| |/ /
     |  \| | _____      __ | |_) | |   | |  | | |    | ' /
@@ -201,10 +195,7 @@ class Block:
     | |\  |  __/\ V  V /  | |_) | |___| |__| | |____| . \
     |_| \_|\___| \_/\_/   |____/|______\____/ \_____|_|\_\
 
-            """
-                + str(self.__dict__)
-                + "\n"
-            )
+            """ + str(self.__dict__) + "\n")
         else:
             self.empty_block_number += 1
 
