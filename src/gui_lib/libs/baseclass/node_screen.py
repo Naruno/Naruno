@@ -4,19 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import os
 
+from blockchain.block.create_block import CreateBlock
+from blockchain.block.get_block import GetBlockFromOtherNode
 from kivy.core.clipboard import Clipboard
 from kivymd.toast import toast
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
-
-from blockchain.block.create_block import CreateBlock
-from blockchain.block.get_block import GetBlockFromOtherNode
 from lib.settings_system import the_settings
 from lib.status import Status
 from node.node import Node
