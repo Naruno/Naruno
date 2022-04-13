@@ -26,7 +26,7 @@ class Test_Node(unittest.TestCase):
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
 
-        ndconnect("127.0.0.1", 10001)
+        Node_Connection.connect("127.0.0.1", 10001)
 
         finded_node = False
         in_unl_list = False
@@ -72,7 +72,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
 from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete
 from node.node import Node
-from node.node_connection import ndconnect, ndstop
+from node.node_connection import Node_Connection
 from node.node import Node
 from node.unl import Unl
 unittest.main(exit=False)

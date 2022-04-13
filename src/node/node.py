@@ -39,6 +39,7 @@ from wallet.wallet import PrivateKey
 from wallet.wallet import PublicKey
 from wallet.wallet import Signature
 from wallet.wallet import Wallet_Import
+from node.unl import Unl
 
 
 
@@ -46,6 +47,14 @@ class Node(threading.Thread):
     
     main_node = None
     unl_nodes = []
+
+    id = "".join(
+        [
+            l.strip()
+            for l in Wallet_Import(0, 0).splitlines()
+            if l and not l.startswith("-----")
+        ]
+    )
 
 
     def __init__(self, host, port, callback=None):
@@ -66,14 +75,6 @@ class Node(threading.Thread):
 
         self.nodes_outbound = []
 
-
-        from wallet.wallet import Wallet_Import
-        self.id = "".join([
-            l.strip() for l in Wallet_Import(0,0).splitlines()
-            if l and not l.startswith("-----")
-        ])
-
-
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.init_server()
 
@@ -86,7 +87,7 @@ class Node(threading.Thread):
                 connection, client_address = self.sock.accept()
                 
                 connected_node_id = connection.recv(4096).decode('utf-8')
-                connection.send(self.id.encode('utf-8'))
+                connection.send(Node.id.encode('utf-8'))
                 if Unl.node_is_unl(connected_node_id):
                     thread_client = self.create_the_new_connection(connection, connected_node_id, client_address[0], client_address[1])
                     thread_client.start()
@@ -103,7 +104,7 @@ class Node(threading.Thread):
 
             time.sleep(0.01)
 
-        print("Node System: Node stopping...")
+        dprint("Node System: Stopping protocol started by node")
         for t in self.nodes_inbound:
             t.stop()
 
@@ -120,12 +121,12 @@ class Node(threading.Thread):
 
         self.sock.settimeout(None)   
         self.sock.close()
-        print("Node System: Node stopped")
+        dprint("Node System: The node is stopped")
 
 
 
     def init_server(self):
-        print("Node System: Initialisation of the Node on port: " + str(self.port) + " on node (" + self.id + ")")
+        dprint("Node System: Node server is starting")
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind((self.host, self.port))
         self.sock.settimeout(10.0)
@@ -148,7 +149,7 @@ class Node(threading.Thread):
 
         for n in self.nodes_inbound:
             if n in exclude:
-                dprint("Node System: Node send_data_to_nodes: Excluding node in sending the message")
+                dprint("Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 try:
                     self.send_data_to_node(n, data)
@@ -157,7 +158,7 @@ class Node(threading.Thread):
 
         for n in self.nodes_outbound:
             if n in exclude:
-                dprint("Node System: Node send_data_to_nodes: Excluding node in sending the message")
+                dprint("Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 try:
                     self.send_data_to_node(n, data)
@@ -172,29 +173,28 @@ class Node(threading.Thread):
                 n.send(data)
 
             except Exception as e:
-                dprint("Node System: Node send_data_to_node: Error while sending data to the node (" + str(e) + ")")
+                dprint("Node System: Node send_data_to_node: Could not send data to node")
         else:
-            dprint("Node System: Node send_data_to_node: Could not send the data, node is not found!")
+            dprint("Node System: Node send_data_to_node: Node is not connected")
 
     def connect_to_node(self, host, port):
 
         if host == self.host and port == self.port:
-            print("Node System: connect_to_node: Cannot connect with yourself!!")
+            dprint("Node System: Node connect_to_node: You can not connect to yourself")
             return False
 
-        # Check if node is already connected with this node!
         for node in self.nodes_outbound:
             if node.host == host and node.port == port:
-                print("Node System: connect_to_node: Already connected with this node.")
+                dprint("Node System: connect_to_node: Node is already connected")
                 return True
 
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            dprint("Node System: connecting to %s port %s" % (host, port))
+            dprint("Node System: Connecting to %s port %s" % (host, port))
             sock.connect((host, port))
 
             # Basic information exchange (not secure) of the id's of the nodes!
-            sock.send(self.id.encode('utf-8')) # Send my id to the connected node!
+            sock.send(Node.id.encode('utf-8')) # Send my id to the connected node!
             connected_node_id = sock.recv(4096).decode('utf-8') # When a node is connected, it sends it id!
 
             if Unl.node_is_unl(connected_node_id):
@@ -205,7 +205,7 @@ class Node(threading.Thread):
             else:
                 dprint("Node System: Could not connect with node because node is not unl node.")
         except Exception as e:
-            dprint("Node System: TcpServer.connect_to_node: Could not connect with node. (" + str(e) + ")")
+            dprint("Node System: Could not connect with node")
         
 
 
@@ -219,7 +219,7 @@ class Node(threading.Thread):
             del self.nodes_outbound[self.nodes_outbound.index(node)]
 
         else:
-            print("Node System: Node disconnect_to_node: cannot disconnect with a node with which we are not connected.")
+            print("Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
         self.terminate_flag.set()
@@ -312,11 +312,10 @@ class Node(threading.Thread):
 
 
     def message_from_node(self, node, data):
-            from node.unl import Unl
+            
 
             if str(data) == "sendmefullblock":
                 self.send_full_chain(node)
-            print("Data Type: " + str(type(data)) + "\n")
 
             try:
                 if (data["fullblock"] == 1 and Unl.node_is_unl(node.id)
@@ -373,7 +372,7 @@ class Node(threading.Thread):
             except Exception as e:
                 print(e)
 
-            print("message_from_node from " + node.id + ": " + str(data))
+            dprint("message_from_node from " + node.id + ": " + str(data))
 
     def send_my_block(self, nodes):
         system = GetBlock()

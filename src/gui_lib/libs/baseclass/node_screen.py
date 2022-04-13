@@ -18,7 +18,7 @@ from kivymd.toast import toast
 from kivy.core.clipboard import Clipboard
 
 from node.node import Node
-from node.node_connection import ndstop, ndconnect, ndconnectmixdb, ndid
+from node.node_connection import Node_Connection
 
 from lib.settings_system import the_settings
 from lib.status import Status
@@ -101,9 +101,9 @@ class NodeBox(MDGridLayout):
 
 
     def stop_node_server(self):
-        ndstop()
+        Node.main_node.stop()
     def connect_to_know_node(self):
-        ndconnectmixdb()
+        Node_Connection.connectmixdb()
 
 
     # Connect a Node
@@ -150,7 +150,7 @@ class NodeBox(MDGridLayout):
         print(ip)
         print(port)
         
-        ndconnect(ip, int(port))
+        Node_Connection.connect(ip, int(port))
 
         self.connect_a_node_dialog.dismiss()
     def dismiss_connect_a_node_dialog(self,widget):
@@ -223,7 +223,7 @@ class NodeBox(MDGridLayout):
             GetBlockFromOtherNode()
 
     def nd_id(self):
-        Clipboard.copy(ndid())
+        Clipboard.copy(Node.id)
         SweetAlert().fire(
             "The ID has been copied to your clipboard.",
             type='success',

@@ -123,40 +123,18 @@ class Node_Connection(threading.Thread):
         self.sock.close()
         dprint("Node System: Node_Connection: Stopped")
 
+    @staticmethod
+    def connect(ip, port):
+        """
+        Connects to a node.
+        """
+        from node.node import Node
+        Node.main_node.connect_to_node(ip, port)
 
-def ndstop():
-    """
-    Stops the node server
-    """
-    from node.node import Node
-    Node.main_node.stop()
-
-
-def ndconnect(ip, port):
-    """
-    Connects to a node.
-    """
-    from node.node import Node
-    Node.main_node.connect_to_node(ip, port)
-
-
-def ndconnectmixdb():
-    """
-    Connects to nodes from mixdb.
-    """
-    from node.node import Node
-    Node.connectionfrommixdb()
-
-
-def ndid():
-    """
-    Returns the our node id.
-    """
-
-    return "".join(
-        [
-            l.strip()
-            for l in Wallet_Import(0, 0).splitlines()
-            if l and not l.startswith("-----")
-        ]
-    )
+    @staticmethod
+    def connectmixdb():
+        """
+        Connects to nodes from mixdb.
+        """
+        from node.node import Node
+        Node.connectionfrommixdb()
