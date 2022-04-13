@@ -18,140 +18,12 @@ from config import CONNECTED_NODE_PATH
 from lib.mixlib import dprint
 
 from node.unl import Unl
-
-
-class Node_Connection(threading.Thread):
-
-
-    def __init__(self, main_node, sock, id, host, port):
-
-
-        super(Node_Connection, self).__init__()
-
-        self.host = host
-        self.port = port
-        self.main_node = main_node
-        self.sock = sock
-        self.terminate_flag = threading.Event()
-
-
-        self.id = id
-
-        self.candidate_block = None
-        self.candidate_block_hash = None
-
-
-        self.EOT_CHAR = 0x04.to_bytes(1, 'big')
-
-
-        self.info = {}
-
-        Node.save_connected_node(host,port,id)
-
-    def send(self, data, encoding_type='utf-8'):
-
-        if isinstance(data, str):
-            self.sock.sendall( data.encode(encoding_type) + self.EOT_CHAR )
-
-        elif isinstance(data, dict):
-            try:
-                json_data = json.dumps(data)
-                json_data = json_data.encode(encoding_type) + self.EOT_CHAR
-                self.sock.sendall(json_data)
-
-            except TypeError as type_error:
-                dprint('Node System: This dict is invalid')
-                dprint(type_error)
-
-            except Exception as e:
-                print('Node System: Unexpected Error in send message')
-                print(e)
-
-        elif isinstance(data, bytes):
-            bin_data = data + self.EOT_CHAR
-            self.sock.sendall(bin_data)
-
-        else:
-            dprint('Node System: Node System: Datatype used is not valid please use str, dict (will be send as json) or bytes')
-
-
-    def stop(self):
-        self.terminate_flag.set()
-
-    def parse_packet(self, packet):
-        try:
-            packet_decoded = packet.decode('utf-8')
-
-            try:
-                return json.loads(packet_decoded)
-
-            except json.decoder.JSONDecodeError:
-                return packet_decoded
-
-        except UnicodeDecodeError:
-            return packet
-
-    def run(self):
-        self.sock.settimeout(10.0)          
-        buffer = b''
-
-        while not self.terminate_flag.is_set():
-            chunk = b''
-
-            try:
-                chunk = self.sock.recv(4096) 
-
-            except socket.timeout:
-                dprint("Node System: Node_Connection: timeout")
-
-            except Exception as e:
-                self.terminate_flag.set()
-                dprint('Node System: Unexpected error')
-                dprint(e)
-
-            # BUG: possible buffer overflow when no EOT_CHAR is found => Fix by max buffer count or so?
-            if chunk != b'':
-                buffer += chunk
-                eot_pos = buffer.find(self.EOT_CHAR)
-
-                while eot_pos > 0:
-                    packet = buffer[:eot_pos]
-                    buffer = buffer[eot_pos + 1:]
-
-                    self.main_node.message_count_recv += 1
-                    self.main_node.message_from_node( self, self.parse_packet(packet) )
-
-                    eot_pos = buffer.find(self.EOT_CHAR)
-
-            time.sleep(0.01)
-
-        # IDEA: Invoke (event) a method in main_node so the user is able to send a bye message to the node before it is closed?
-
-        self.sock.settimeout(None)
-        self.sock.close()
-        dprint("Node System: Node_Connection: Stopped")
-
-    def set_info(self, key, value):
-        self.info[key] = value
-
-    def get_info(self, key):
-        return self.info[key]
-
-    def __str__(self):
-        return 'Node_Connection: {}:{} <-> {}:{} ({})'.format(self.main_node.host, self.main_node.port, self.host, self.port, self.id)
-
-    def __repr__(self):
-        return '<Node_Connection: Node {}:{} <-> Connection {}:{}>'.format(self.main_node.host, self.main_node.port, self.host, self.port)
-
+from node.node_connection import Node_Connection
 
 
 class Node(threading.Thread):
     
-
-
     def __init__(self, host, port, callback=None):
-        
-
         super(Node, self).__init__()
 
 
@@ -180,9 +52,50 @@ class Node(threading.Thread):
         self.init_server()
 
 
-        self.message_count_send = 0
-        self.message_count_recv = 0
-        self.message_count_rerr = 0
+
+    def run(self):
+
+        while not self.terminate_flag.is_set():
+            try:
+                connection, client_address = self.sock.accept()
+                
+                connected_node_id = connection.recv(4096).decode('utf-8')
+                connection.send(self.id.encode('utf-8'))
+                if Unl.node_is_unl(connected_node_id):
+                    thread_client = self.create_the_new_connection(connection, connected_node_id, client_address[0], client_address[1])
+                    thread_client.start()
+
+                    self.nodes_inbound.append(thread_client)
+                else:
+                    dprint("Node System: Could not connect with node because node is not unl node.")
+                
+            except socket.timeout:
+                pass
+
+            except Exception as e:
+                raise e
+
+            time.sleep(0.01)
+
+        print("Node System: Node stopping...")
+        for t in self.nodes_inbound:
+            t.stop()
+
+        for t in self.nodes_outbound:
+            t.stop()
+
+        time.sleep(1)
+
+        for t in self.nodes_inbound:
+            t.join()
+
+        for t in self.nodes_outbound:
+            t.join()
+
+        self.sock.settimeout(None)   
+        self.sock.close()
+        print("Node System: Node stopped")
+
 
 
     def init_server(self):
@@ -197,19 +110,16 @@ class Node(threading.Thread):
 
         for n in self.nodes_inbound:
             if n.terminate_flag.is_set():
-                self.inbound_node_disconnected(n)
                 n.join()
                 del self.nodes_inbound[self.nodes_inbound.index(n)]
 
         for n in self.nodes_outbound:
             if n.terminate_flag.is_set():
-                self.outbound_node_disconnected(n)
                 n.join()
                 del self.nodes_outbound[self.nodes_inbound.index(n)]
 
     def send_data_to_nodes(self, data, exclude=[]):
 
-        self.message_count_send = self.message_count_send + 1
         for n in self.nodes_inbound:
             if n in exclude:
                 dprint("Node System: Node send_data_to_nodes: Excluding node in sending the message")
@@ -230,7 +140,6 @@ class Node(threading.Thread):
 
     def send_data_to_node(self, n, data):
 
-        self.message_count_send = self.message_count_send + 1
         self.delete_closed_connections()
         if n in self.nodes_inbound or n in self.nodes_outbound:
             try:
@@ -267,7 +176,6 @@ class Node(threading.Thread):
                 thread_client.start()
 
                 self.nodes_outbound.append(thread_client)
-                self.outbound_node_connected(thread_client)
             else:
                 dprint("Node System: Could not connect with node because node is not unl node.")
         except Exception as e:
@@ -280,7 +188,6 @@ class Node(threading.Thread):
     def disconnect_to_node(self, node):
 
         if node in self.nodes_outbound:
-            self.node_disconnect_to_outbound_node(node)
             node.stop()
             node.join()
             del self.nodes_outbound[self.nodes_outbound.index(node)]
@@ -289,8 +196,6 @@ class Node(threading.Thread):
             print("Node System: Node disconnect_to_node: cannot disconnect with a node with which we are not connected.")
 
     def stop(self):
-
-        self.node_request_to_stop()
         self.terminate_flag.set()
 
 
@@ -298,50 +203,6 @@ class Node(threading.Thread):
 
         return Node_Connection(self, connection, id, host, port)
 
-    def run(self):
-
-        while not self.terminate_flag.is_set():
-            try:
-                connection, client_address = self.sock.accept()
-                
-                connected_node_id = connection.recv(4096).decode('utf-8')
-                connection.send(self.id.encode('utf-8'))
-                if Unl.node_is_unl(connected_node_id):
-                    thread_client = self.create_the_new_connection(connection, connected_node_id, client_address[0], client_address[1])
-                    thread_client.start()
-
-                    self.nodes_inbound.append(thread_client)
-
-                    self.inbound_node_connected(thread_client)
-                else:
-                    dprint("Node System: Could not connect with node because node is not unl node.")
-                
-            except socket.timeout:
-                pass
-
-            except Exception as e:
-                raise e
-
-            time.sleep(0.01)
-
-        print("Node System: Node stopping...")
-        for t in self.nodes_inbound:
-            t.stop()
-
-        for t in self.nodes_outbound:
-            t.stop()
-
-        time.sleep(1)
-
-        for t in self.nodes_inbound:
-            t.join()
-
-        for t in self.nodes_outbound:
-            t.join()
-
-        self.sock.settimeout(None)   
-        self.sock.close()
-        print("Node System: Node stopped")
 
     @staticmethod
     def get_connected_node():
@@ -423,40 +284,7 @@ class Node(threading.Thread):
             with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
                 json.dump(saved_nodes, connected_node_file, indent=4)
 
-    def outbound_node_connected(self, node):
-        dprint("Node System: outbound_node_connected: " + node.id)
- 
-
-    def inbound_node_connected(self, node):
-        dprint("Node System: inbound_node_connected: " + node.id)
- 
-
-    def inbound_node_disconnected(self, node):
-        dprint("Node System: inbound_node_disconnected: " + node.id)
-
-
-    def outbound_node_disconnected(self, node):
-        dprint("Node System: outbound_node_disconnected: " + node.id)
-
 
     def message_from_node(self, node, data):
-        dprint("Node System: message_from_node: " + node.id + ": " + str(data))
         if self.callback is not None:
             self.callback("message_from_node", self, node, data)
-
-    def node_disconnect_to_outbound_node(self, node):
-        dprint("Node System: node wants to disconnect with oher outbound node: " + node.id)
-
-
-    def node_request_to_stop(self):
-        dprint("Node System: node is requested to stop!")
-
-
-    def __str__(self):
-        return 'Node: {}:{}'.format(self.host, self.port)
-
-    def __repr__(self):
-        return '<Node {}:{} id: {}>'.format(self.host, self.port, self.id)
-
-
-    

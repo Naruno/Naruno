@@ -97,12 +97,6 @@ class mynode(Node):
 
         print("message_from_node from " + node.id + ": " + str(data))
 
-    def node_disconnect_to_outbound_node(self, node):
-        print("node wants to disconnect with oher outbound node: " + node.id)
-
-    def node_request_to_stop(self):
-        print("node is requested to stop!")
-
     def send_my_block(self, nodes):
         system = GetBlock()
 
