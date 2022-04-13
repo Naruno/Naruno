@@ -169,7 +169,6 @@ class mynode(Node):
     def get_candidate_block(self, data, node):
 
         dprint("Getting the candidate block")
-        from node.unl import Unl.node_is_unl
 
         if (Unl.node_is_unl(node.id)
                 and GetBlock().sequance_number == data["sequance_number"]):
