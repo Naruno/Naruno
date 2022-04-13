@@ -9,7 +9,7 @@ import time
 from blockchain.block.calculate_hash import CalculateHash
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from lib.mixlib import dprint
-from node.myownp2pn import mynode
+from node.node import Node
 from node.unl import Unl
 from transactions.process_the_transaction import ProccesstheTransaction
 from transactions.send_transaction_to_the_block import \
@@ -31,7 +31,7 @@ def consensus_round_1(block):
     if not block.raund_1_node:
         dprint("Raund 1: in get candidate blocks\n")
 
-        mynode.main_node.send_my_block(Unl.get_as_node_type(unl_nodes))
+        Node.main_node.send_my_block(Unl.get_as_node_type(unl_nodes))
         block.raund_1_node = True
         block.save_block()
     candidate_class = GetCandidateBlocks()

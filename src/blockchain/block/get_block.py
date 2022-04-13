@@ -29,9 +29,9 @@ def GetBlockFromOtherNode():
     Receive the block from the other node.
     """
 
-    from node.myownp2pn import mynode
+    from node.node import Node
     from node.unl import Unl
 
-    node = mynode.main_node
+    node = Node.main_node
     unl_list = Unl.get_as_node_type(Unl.get_unl_nodes())
     node.send_data_to_node(unl_list[0], "sendmefullblock")

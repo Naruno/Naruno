@@ -57,12 +57,12 @@ class Unl:
         Converts the UNL node list to Node class.
         """
 
-        from node.myownp2pn import mynode
+        from node.node import Node
 
         temp_list = []
         for list_node in id_list:
             for each_node in (
-                mynode.main_node.nodes_inbound + mynode.main_node.nodes_outbound
+                Node.main_node.nodes_inbound + Node.main_node.nodes_outbound
             ):
                 if list_node == each_node.id:
                     temp_list.append(each_node)

@@ -8,7 +8,7 @@ import time
 
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from lib.mixlib import dprint
-from node.myownp2pn import mynode
+from node.node import Node
 from node.unl import Unl
 
 
@@ -28,7 +28,7 @@ def consensus_round_2(block):
     if not block.raund_2_node:
         dprint("Raund 2: in get candidate block hashes\n")
 
-        mynode.main_node.send_my_block_hash(Unl.get_as_node_type(unl_nodes))
+        Node.main_node.send_my_block_hash(Unl.get_as_node_type(unl_nodes))
         block.raund_2_node = True
         block.save_block()
 
@@ -68,7 +68,7 @@ def consensus_round_2(block):
 
                     else:
                         print("Raund 2: my block is not valid")
-                        node = mynode.main_node
+                        node = Node.main_node
                         unl_list = Unl.get_as_node_type(
                             [candidate_block["sender"]])
                         node.send_data_to_node(unl_list[0], "sendmefullblock")

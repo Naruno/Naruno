@@ -9,7 +9,7 @@
 from lib.settings_system import the_settings
 from lib.mixlib import dprint
 
-from node.myownp2pn import mynode
+from node.node import Node
 
 from blockchain.block.block_main import Block
 from blockchain.block.get_block import GetBlock
@@ -38,9 +38,9 @@ def CreateBlock():
             pass
 
         Block(Wallet_Import(-1, 3), previous_hash)
-        mynode.main_node.send_full_accounts()
-        mynode.main_node.send_full_chain()
-        mynode.main_node.send_full_blockshash()
+        Node.main_node.send_full_accounts()
+        Node.main_node.send_full_chain()
+        Node.main_node.send_full_blockshash()
     else:
         dprint("Getting block from nodes")
         GetBlock()

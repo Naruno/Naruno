@@ -128,8 +128,8 @@ def ndstart(ip, port):
     """
     Starts the node server.
     """
-    from node.myownp2pn import mynode
-    node = mynode(ip, port)
+    from node.node import Node
+    node = Node(ip, port)
     node.start()
     return node
 
@@ -138,16 +138,16 @@ def ndstop():
     """
     Stops the node server
     """
-    from node.myownp2pn import mynode
-    mynode.main_node.stop()
+    from node.node import Node
+    Node.main_node.stop()
 
 
 def ndconnect(ip, port):
     """
     Connects to a node.
     """
-    from node.myownp2pn import mynode
-    mynode.main_node.connect_to_node(ip, port)
+    from node.node import Node
+    Node.main_node.connect_to_node(ip, port)
 
 
 def ndconnectmixdb():
