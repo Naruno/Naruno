@@ -35,7 +35,6 @@ jobs:
         pip install pytest
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
-        pip uninstall Decentra-Network -y
     - name: Test with pytest
       run: |
         pytest
