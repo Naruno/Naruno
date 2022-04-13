@@ -11,8 +11,6 @@ import time
 import threading
 import os
 import json
-
-
 from wallet.wallet import Wallet_Import
 from config import *
 from lib.mixlib import dprint
