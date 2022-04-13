@@ -33,6 +33,7 @@ jobs:
         pip install pytest
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
+        pip install .
     - name: Test with pytest
       run: |
         pytest
