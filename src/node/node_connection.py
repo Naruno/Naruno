@@ -11,8 +11,8 @@ import time
 import threading
 import os
 import json
-from node.myownp2pn import mynode
-from node.node import Node
+
+
 from wallet.wallet import Wallet_Import
 from config import *
 from lib.mixlib import dprint
@@ -39,7 +39,7 @@ class Node_Connection(threading.Thread):
 
         self.EOT_CHAR = 0x04.to_bytes(1, 'big')
 
-
+        from node.node import Node
         Node.save_connected_node(host,port,id)
 
     def send(self, data, encoding_type='utf-8'):
@@ -130,7 +130,7 @@ def ndstart(ip, port):
     """
     Starts the node server.
     """
-
+    from node.myownp2pn import mynode
     node = mynode(ip, port)
     node.start()
     return node
@@ -140,7 +140,7 @@ def ndstop():
     """
     Stops the node server
     """
-
+    from node.myownp2pn import mynode
     mynode.main_node.stop()
 
 
@@ -148,7 +148,7 @@ def ndconnect(ip, port):
     """
     Connects to a node.
     """
-
+    from node.myownp2pn import mynode
     mynode.main_node.connect_to_node(ip, port)
 
 
@@ -156,7 +156,7 @@ def ndconnectmixdb():
     """
     Connects to nodes from mixdb.
     """
-
+    from node.node import Node
     Node.connectionfrommixdb()
 
 
