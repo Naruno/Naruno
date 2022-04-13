@@ -5,8 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from node.myownp2pn import mynode
-from node.unl import get_as_node_type
-from node.unl import get_unl_nodes
+from node.unl import Unl
 
 
 def PropagatingtheTX(tx):
@@ -25,5 +24,5 @@ def PropagatingtheTX(tx):
         "transaction_fee": tx.transaction_fee,
         "transaction_time": tx.transaction_time,
     }
-    for each_node in get_as_node_type(get_unl_nodes()):
+    for each_node in Unl.get_as_node_type(Unl.get_unl_nodes()):
         mynode.main_node.send_data_to_node(each_node, items)

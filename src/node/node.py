@@ -17,7 +17,7 @@ from config import CONNECTED_NODE_PATH
 
 from lib.mixlib import dprint
 
-from node.unl import node_is_unl
+from node.unl import Unl
 
 
 class Node_Connection(threading.Thread):
@@ -262,7 +262,7 @@ class Node(threading.Thread):
             sock.send(self.id.encode('utf-8')) # Send my id to the connected node!
             connected_node_id = sock.recv(4096).decode('utf-8') # When a node is connected, it sends it id!
 
-            if node_is_unl(connected_node_id):
+            if Unl.node_is_unl(connected_node_id):
                 thread_client = self.create_the_new_connection(sock, connected_node_id, host, port)
                 thread_client.start()
 
@@ -306,7 +306,7 @@ class Node(threading.Thread):
                 
                 connected_node_id = connection.recv(4096).decode('utf-8')
                 connection.send(self.id.encode('utf-8'))
-                if node_is_unl(connected_node_id):
+                if Unl.node_is_unl(connected_node_id):
                     thread_client = self.create_the_new_connection(connection, connected_node_id, client_address[0], client_address[1])
                     thread_client.start()
 

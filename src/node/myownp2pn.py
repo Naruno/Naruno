@@ -15,6 +15,7 @@ from config import TEMP_BLOCKSHASH_PATH
 from lib.merkle_root import MerkleTree
 from lib.mixlib import dprint
 from node.node import *
+from node.unl import Unl
 from transactions.transaction import Transaction
 from wallet.wallet import Ecdsa
 from wallet.wallet import PrivateKey
@@ -33,16 +34,14 @@ class mynode(Node):
         print("MyPeer2PeerNode: Started")
 
     def message_from_node(self, node, data):
-        from node.unl import get_as_node_type, get_unl_nodes
+        from node.unl import Unl
 
         if str(data) == "sendmefullblock":
             self.send_full_chain(node)
         print("Data Type: " + str(type(data)) + "\n")
 
         try:
-            from node.unl import node_is_unl
-
-            if (data["fullblock"] == 1 and node_is_unl(node.id)
+            if (data["fullblock"] == 1 and Unl.node_is_unl(node.id)
                     and Ecdsa.verify(
                         "fullblock" + data["byte"],
                         Signature.fromBase64(data["signature"]),
@@ -54,9 +53,8 @@ class mynode(Node):
             print(e)
 
         try:
-            from node.unl import node_is_unl
 
-            if (data["fullaccounts"] == 1 and node_is_unl(node.id)
+            if (data["fullaccounts"] == 1 and Unl.node_is_unl(node.id)
                     and Ecdsa.verify(
                         "fullaccounts" + data["byte"],
                         Signature.fromBase64(data["signature"]),
@@ -68,9 +66,8 @@ class mynode(Node):
             print(e)
 
         try:
-            from node.unl import node_is_unl
 
-            if (data["fullblockshash"] == 1 and node_is_unl(node.id)
+            if (data["fullblockshash"] == 1 and Unl.node_is_unl(node.id)
                     and Ecdsa.verify(
                         "fullblockshash" + data["byte"],
                         Signature.fromBase64(data["signature"]),
@@ -172,9 +169,9 @@ class mynode(Node):
     def get_candidate_block(self, data, node):
 
         dprint("Getting the candidate block")
-        from node.unl import node_is_unl
+        from node.unl import Unl.node_is_unl
 
-        if (node_is_unl(node.id)
+        if (Unl.node_is_unl(node.id)
                 and GetBlock().sequance_number == data["sequance_number"]):
             dprint("is unl")
 
@@ -219,9 +216,8 @@ class mynode(Node):
 
         dprint("Getting the candidate block hash")
 
-        from node.unl import node_is_unl
 
-        if (node_is_unl(node.id)
+        if (Unl.node_is_unl(node.id)
                 and GetBlock().sequance_number == data["sequance_number"]):
             dprint("is unl")
 

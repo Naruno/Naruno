@@ -203,8 +203,8 @@ class NodeBox(MDGridLayout):
 
         print(pubkey)
 
-        from node.unl import save_new_unl_node
-        save_new_unl_node(pubkey)        
+        from node.unl import Unl
+        Unl.save_new_unl_node(pubkey)        
 
         self.add_unl_node_dialog.dismiss()
     def dismiss_add_unl_node_dialog(self,widget):

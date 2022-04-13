@@ -30,8 +30,8 @@ def GetBlockFromOtherNode():
     """
 
     from node.myownp2pn import mynode
-    from node.unl import get_unl_nodes, get_as_node_type
+    from node.unl import Unl
 
     node = mynode.main_node
-    unl_list = get_as_node_type(get_unl_nodes())
+    unl_list = Unl.get_as_node_type(Unl.get_unl_nodes())
     node.send_data_to_node(unl_list[0], "sendmefullblock")

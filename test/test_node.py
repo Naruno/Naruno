@@ -23,8 +23,8 @@ class Test_Node(unittest.TestCase):
 
         node_2 = ndstart("127.0.0.1",10002)
 
-        save_new_unl_node(node_1.id)
-        save_new_unl_node(node_2.id)
+        Unl.save_new_unl_node(node_1.id)
+        Unl.save_new_unl_node(node_2.id)
 
         ndconnect("127.0.0.1", 10001)
 
@@ -40,8 +40,8 @@ class Test_Node(unittest.TestCase):
             if element == node_1.id or element == node_2.id:
                 finded_node = True
 
-                temp_unl_node_list = get_unl_nodes()
-                temp_get_as_node_type = get_as_node_type(temp_unl_node_list)
+                temp_unl_node_list = Unl.get_unl_nodes()
+                temp_get_as_node_type = Unl.get_as_node_type(temp_unl_node_list)
                 for unl_element in temp_unl_node_list:
                     if unl_element == node_1.id or unl_element == node_2.id:
                         for node_element_of_unl in temp_get_as_node_type:
@@ -49,7 +49,7 @@ class Test_Node(unittest.TestCase):
                                 if node_1.port == node_element_of_unl.port or node_2 == node_element_of_unl.port:
                                     get_as_node = True
                         in_unl_list = True
-                        unl_node_delete(unl_element)
+                        Unl.unl_node_delete(unl_element)
                 Node.connected_node_delete(element)
 
         node_1.stop()
@@ -73,5 +73,5 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
 from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete
 from node.node_connection import ndstart, ndconnect, ndstop
 from node.node import Node
-from node.unl import save_new_unl_node, get_unl_nodes, get_as_node_type, unl_node_delete
+from node.unl import Unl
 unittest.main(exit=False)

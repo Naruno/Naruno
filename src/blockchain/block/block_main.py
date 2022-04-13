@@ -23,8 +23,7 @@ from consensus.consensus_main import consensus_trigger
 from lib.config_system import get_config
 from lib.mixlib import dprint
 from lib.perpetualtimer import perpetualTimer
-from node.unl import get_as_node_type
-from node.unl import get_unl_nodes
+from node.unl import Unl
 from transactions.pending_to_validating import PendinttoValidating
 from transactions.save_to_my_transaction import SavetoMyTransaction
 from wallet.wallet import PrivateKey
@@ -162,7 +161,7 @@ class Block:
         self.validated = False
 
         # Resetting the node candidate blocks.
-        for node in get_as_node_type(get_unl_nodes()):
+        for node in Unl.get_as_node_type(Unl.get_unl_nodes()):
             node.candidate_block = None
             node.candidate_block_hash = None
 

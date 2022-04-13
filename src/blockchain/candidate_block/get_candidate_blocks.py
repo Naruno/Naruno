@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from node.unl import get_unl_nodes, get_as_node_type
+from node.unl import Unl
 
 from blockchain.candidate_block.candidate_block_main import candidate_block
 
@@ -18,7 +18,7 @@ def GetCandidateBlocks():
     candidate_block class
     """    
 
-    nodes = get_as_node_type(get_unl_nodes())
+    nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
 
     the_candidate_blocks = []
     the_candidate_block_hashes = []

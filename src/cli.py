@@ -27,7 +27,7 @@ from node.node_connection import ndconnectmixdb
 from node.node_connection import ndid
 from node.node_connection import ndstart
 from node.node_connection import ndstop
-from node.unl import save_new_unl_node
+from node.unl import Unl
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send
 from wallet.create_a_wallet import create_a_wallet
@@ -151,7 +151,7 @@ def menu():
         if choices_input == "ndconnectmixdb":
             ndconnectmixdb()
         if choices_input == "ndnewunl":
-            save_new_unl_node(input("Please write ID of the node: "))
+            Unl.save_new_unl_node(input("Please write ID of the node: "))
         if choices_input == "ndid":
             print(ndid())
         if choices_input == "testmodeon":
@@ -291,7 +291,7 @@ def arguments():
         print_balance()
 
     if not args.ndnewunl is None:
-        save_new_unl_node(args.ndnewunl)
+        Unl.save_new_unl_node(args.ndnewunl)
 
     if args.ndid:
         print(ndid())

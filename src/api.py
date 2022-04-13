@@ -22,7 +22,7 @@ from node.node_connection import ndconnectmixdb
 from node.node_connection import ndid
 from node.node_connection import ndstart
 from node.node_connection import ndstop
-from node.unl import save_new_unl_node
+from node.unl import Unl
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
 from waitress import serve
@@ -103,7 +103,7 @@ def node_connectmixdb_page():
 # /node/newunl/?MFYw......
 @app.route("/node/newunl/", methods=["GET"])
 def node_newunl_page():
-    save_new_unl_node(request.query_string.decode("utf-8"))
+    Unl.save_new_unl_node(request.query_string.decode("utf-8"))
     return jsonify("OK")
 
 
