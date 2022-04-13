@@ -20,7 +20,7 @@ def GetBlock():
     """
 
     os.chdir(get_config()["main_folder"])
-    with open(TEMP_BLOCK_PATH, 'rb') as block_file:
+    with open(TEMP_BLOCK_PATH, "rb") as block_file:
         return pickle.load(block_file)
 
 

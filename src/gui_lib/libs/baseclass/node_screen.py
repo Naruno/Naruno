@@ -30,11 +30,14 @@ from blockchain.block.create_block import CreateBlock
 class NodeScreen(MDScreen):
     pass
 
+
 # Start Node Server
 
 
 class start_node_server_Box(MDGridLayout):
     cols = 2
+
+
 # End
 
 # Add UNL Node
@@ -42,6 +45,8 @@ class start_node_server_Box(MDGridLayout):
 
 class add_unl_node_Box(MDGridLayout):
     cols = 2
+
+
 # End
 
 
@@ -104,6 +109,7 @@ class NodeBox(MDGridLayout):
 
     def start_node_server(self):
         self.show_start_node_server_dialog()
+
     # End
 
     def stop_node_server(self):
@@ -168,6 +174,7 @@ class NodeBox(MDGridLayout):
 
     def connect_a_node(self):
         self.show_connect_a_node_dialog()
+
     # End
 
     # Add UNL Node
@@ -214,6 +221,7 @@ class NodeBox(MDGridLayout):
         print(pubkey)
 
         from node.unl import Unl
+
         Unl.save_new_unl_node(pubkey)
 
         self.add_unl_node_dialog.dismiss()
@@ -225,6 +233,7 @@ class NodeBox(MDGridLayout):
 
     def add_unl_node(self):
         self.show_add_unl_node_dialog()
+
     # End
 
     def get_block(self):
@@ -237,7 +246,7 @@ class NodeBox(MDGridLayout):
         Clipboard.copy(Node.id)
         SweetAlert().fire(
             "The ID has been copied to your clipboard.",
-            type='success',
+            type="success",
         )
 
     def status(self):
@@ -246,25 +255,13 @@ class NodeBox(MDGridLayout):
         if status == "Good":
             SweetAlert().fire(
                 "Good",
-                type='success',
+                type="success",
             )
         elif status == "Not bad":
-            SweetAlert().fire(
-                "Not bad",
-                type='info'
-            )
+            SweetAlert().fire("Not bad", type="info")
         elif status == "Bad":
-            SweetAlert().fire(
-                "Not bad",
-                type='question'
-            )
+            SweetAlert().fire("Not bad", type="question")
         elif status == "Very bad":
-            SweetAlert().fire(
-                "Very bad",
-                type='warning'
-            )
+            SweetAlert().fire("Very bad", type="warning")
         elif status == "Not work":
-            SweetAlert().fire(
-                "Not work",
-                type='failure'
-            )
+            SweetAlert().fire("Not work", type="failure")

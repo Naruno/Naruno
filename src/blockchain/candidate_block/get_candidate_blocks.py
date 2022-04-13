@@ -13,8 +13,8 @@ from blockchain.candidate_block.candidate_block_main import candidate_block
 
 def GetCandidateBlocks():
     """
-    Collects candidate blocks and candidate block hashes 
-    from connected unl nodes and returns them in the 
+    Collects candidate blocks and candidate block hashes
+    from connected unl nodes and returns them in the
     candidate_block class
     """
 
