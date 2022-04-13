@@ -6,9 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from node.unl import Unl
-
 from blockchain.candidate_block.candidate_block_main import candidate_block
+from node.unl import Unl
 
 
 def GetCandidateBlocks():

@@ -5,13 +5,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from node.unl import Unl
-from node.node_connection import Node_Connection
-from node.node import Node
-from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete
-import sys
 import os
+import sys
 import unittest
+
+from node.node import Node
+from node.node_connection import Node_Connection
+from node.unl import Unl
+from wallet.wallet import (Wallet_Create, Wallet_Delete, Wallet_Import,
+                           get_saved_wallet)
 
 
 class Test_Node(unittest.TestCase):

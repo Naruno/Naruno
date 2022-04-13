@@ -8,23 +8,19 @@
 
 import os
 
-
+from kivy.core.clipboard import Clipboard
+from kivymd.toast import toast
+from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.button import MDFlatButton
 from kivymd_extensions.sweetalert import SweetAlert
-from kivymd.toast import toast
 
-from kivy.core.clipboard import Clipboard
-
-from node.node import Node
-from node.node_connection import Node_Connection
-
+from blockchain.block.create_block import CreateBlock
+from blockchain.block.get_block import GetBlockFromOtherNode
 from lib.settings_system import the_settings
 from lib.status import Status
-
-from blockchain.block.get_block import GetBlockFromOtherNode
-from blockchain.block.create_block import CreateBlock
+from node.node import Node
+from node.node_connection import Node_Connection
 
 
 class NodeScreen(MDScreen):

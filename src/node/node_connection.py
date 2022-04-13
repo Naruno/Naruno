@@ -5,16 +5,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import json
+import os
 import socket
 import sys
-import time
 import threading
-import os
-import json
-from wallet.wallet import Wallet_Import
+import time
+
 from config import *
 from lib.mixlib import dprint
 from node.unl import Unl
+from wallet.wallet import Wallet_Import
 
 
 class Node_Connection(threading.Thread):

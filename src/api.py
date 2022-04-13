@@ -8,21 +8,19 @@ import argparse
 import sys
 
 import flask
+from flask import jsonify, request
+from waitress import serve
+
 from blockchain.block.create_block import CreateBlock
 from blockchain.block.get_block import GetBlockFromOtherNode
-from flask import jsonify
-from flask import request
 from lib.export import export_the_transactions
-from lib.settings_system import debug_mode
-from lib.settings_system import test_mode
-from lib.settings_system import the_settings
+from lib.settings_system import debug_mode, test_mode, the_settings
 from lib.status import Status
-from node.node_connection import Node_Connection
 from node.node import Node
+from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
-from waitress import serve
 from wallet.create_a_wallet import create_a_wallet
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance

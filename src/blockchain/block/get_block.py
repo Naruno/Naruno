@@ -6,12 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import pickle
 import os
-
-from lib.config_system import get_config
+import pickle
 
 from config import TEMP_BLOCK_PATH
+from lib.config_system import get_config
 
 
 def GetBlock():
