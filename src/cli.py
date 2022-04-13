@@ -42,8 +42,7 @@ def show_menu():
     print(
         banner_maker(
             sc_name="Decentra Network",
-            description=
-            "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
+            description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
             author="Decentra Network Developers",
         ))
 
@@ -143,7 +142,8 @@ def menu():
         if choices_input == "ndstop":
             Node.main_node.stop()
         if choices_input == "ndconnect":
-            Node_Connection.connect(str(input("node ip: ")), int(input("node port: ")))
+            Node_Connection.connect(
+                str(input("node ip: ")), int(input("node port: ")))
 
         if choices_input == "ndconnectmixdb":
             Node_Connection.connectmixdb()
@@ -190,8 +190,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument("-pw",

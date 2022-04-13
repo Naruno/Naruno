@@ -26,18 +26,24 @@ from lib.status import Status
 from blockchain.block.get_block import GetBlockFromOtherNode
 from blockchain.block.create_block import CreateBlock
 
+
 class NodeScreen(MDScreen):
     pass
 
 # Start Node Server
+
+
 class start_node_server_Box(MDGridLayout):
     cols = 2
 # End
 
 # Add UNL Node
+
+
 class add_unl_node_Box(MDGridLayout):
     cols = 2
 # End
+
 
 class NodeBox(MDGridLayout):
     cols = 2
@@ -45,6 +51,7 @@ class NodeBox(MDGridLayout):
 
     # Start Node Server
     start_node_server_dialog = None
+
     def show_start_node_server_dialog(self):
         if not self.start_node_server_dialog:
             self.start_node_server_dialog = SweetAlert(
@@ -56,19 +63,18 @@ class NodeBox(MDGridLayout):
                     MDFlatButton(
                         text="CANCEL",
                         on_press=self.dismiss_start_node_server_dialog,
-                        font_size= "18sp",
-                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_size="18sp",
+                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.start_node_server_func,
-                        font_size= "18sp",
-                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_size="18sp",
+                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
                     ),
                 ],
             )
         self.start_node_server_dialog.open()
-
 
     def get_start_node_server_dialog_text(self):
         text_list = []
@@ -77,7 +83,8 @@ class NodeBox(MDGridLayout):
                 text_list.append(sub_obj.text)
                 sub_obj.text = ""
 
-        return text_list  
+        return text_list
+
     def start_node_server_func(self, widget):
         text_list = self.get_start_node_server_dialog_text()
         ip = text_list[1]
@@ -85,30 +92,30 @@ class NodeBox(MDGridLayout):
 
         print(ip)
         print(port)
-        
+
         Node(ip, int(port))
 
         self.start_node_server_dialog.dismiss()
-    def dismiss_start_node_server_dialog(self,widget):
+
+    def dismiss_start_node_server_dialog(self, widget):
         self.get_start_node_server_dialog_text()
 
         self.start_node_server_dialog.dismiss()
-
 
     def start_node_server(self):
         self.show_start_node_server_dialog()
     # End
 
-
     def stop_node_server(self):
         Node.main_node.stop()
+
     def connect_to_know_node(self):
         Node_Connection.connectmixdb()
-
 
     # Connect a Node
 
     connect_a_node_dialog = None
+
     def show_connect_a_node_dialog(self):
         if not self.connect_a_node_dialog:
             self.connect_a_node_dialog = SweetAlert(
@@ -120,19 +127,18 @@ class NodeBox(MDGridLayout):
                     MDFlatButton(
                         text="CANCEL",
                         on_press=self.dismiss_connect_a_node_dialog,
-                        font_size= "18sp",
-                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_size="18sp",
+                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.connect_a_node_func,
-                        font_size= "18sp",
-                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_size="18sp",
+                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
                     ),
                 ],
             )
         self.connect_a_node_dialog.open()
-
 
     def get_connect_a_node_dialog_text(self):
         text_list = []
@@ -141,30 +147,33 @@ class NodeBox(MDGridLayout):
                 text_list.append(sub_obj.text)
                 sub_obj.text = ""
 
-        return text_list  
-    def connect_a_node_func(self,widget):
+        return text_list
+
+    def connect_a_node_func(self, widget):
         text_list = self.get_connect_a_node_dialog_text()
         ip = text_list[1]
         port = text_list[0]
 
         print(ip)
         print(port)
-        
+
         Node_Connection.connect(ip, int(port))
 
         self.connect_a_node_dialog.dismiss()
-    def dismiss_connect_a_node_dialog(self,widget):
+
+    def dismiss_connect_a_node_dialog(self, widget):
         self.get_connect_a_node_dialog_text()
 
         self.connect_a_node_dialog.dismiss()
 
     def connect_a_node(self):
         self.show_connect_a_node_dialog()
-    # End   
+    # End
 
     # Add UNL Node
 
     add_unl_node_dialog = None
+
     def show_add_unl_node_dialog(self):
         if not self.add_unl_node_dialog:
             self.add_unl_node_dialog = SweetAlert(
@@ -176,19 +185,18 @@ class NodeBox(MDGridLayout):
                     MDFlatButton(
                         text="CANCEL",
                         on_press=self.dismiss_add_unl_node_dialog,
-                        font_size= "18sp",
-                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_size="18sp",
+                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.add_unl_node_func,
-                        font_size= "18sp",
-                        font_name= self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_size="18sp",
+                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
                     ),
                 ],
             )
         self.add_unl_node_dialog.open()
-
 
     def get_add_unl_node_dialog_text(self):
         text_list = []
@@ -197,18 +205,20 @@ class NodeBox(MDGridLayout):
                 text_list.append(sub_obj.text)
                 sub_obj.text = ""
 
-        return text_list  
-    def add_unl_node_func(self,widget):
+        return text_list
+
+    def add_unl_node_func(self, widget):
         text_list = self.get_add_unl_node_dialog_text()
         pubkey = text_list[0]
 
         print(pubkey)
 
         from node.unl import Unl
-        Unl.save_new_unl_node(pubkey)        
+        Unl.save_new_unl_node(pubkey)
 
         self.add_unl_node_dialog.dismiss()
-    def dismiss_add_unl_node_dialog(self,widget):
+
+    def dismiss_add_unl_node_dialog(self, widget):
         self.get_add_unl_node_dialog_text()
 
         self.add_unl_node_dialog.dismiss()
@@ -216,6 +226,7 @@ class NodeBox(MDGridLayout):
     def add_unl_node(self):
         self.show_add_unl_node_dialog()
     # End
+
     def get_block(self):
         if the_settings()["test_mode"]:
             CreateBlock()

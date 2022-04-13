@@ -28,22 +28,20 @@ class Node_Connection(threading.Thread):
         self.sock = sock
         self.terminate_flag = threading.Event()
 
-
         self.id = id
 
         self.candidate_block = None
         self.candidate_block_hash = None
 
-
         self.EOT_CHAR = 0x04.to_bytes(1, 'big')
 
         from node.node import Node
-        Node.save_connected_node(host,port,id)
+        Node.save_connected_node(host, port, id)
 
     def send(self, data, encoding_type='utf-8'):
 
         if isinstance(data, str):
-            self.sock.sendall( data.encode(encoding_type) + self.EOT_CHAR )
+            self.sock.sendall(data.encode(encoding_type) + self.EOT_CHAR)
 
         elif isinstance(data, dict):
             try:
@@ -66,7 +64,6 @@ class Node_Connection(threading.Thread):
         else:
             dprint('Node System: Node System: Datatype used is not valid please use str, dict (will be send as json) or bytes')
 
-
     def stop(self):
         self.terminate_flag.set()
 
@@ -84,14 +81,14 @@ class Node_Connection(threading.Thread):
             return packet
 
     def run(self):
-        self.sock.settimeout(10.0)          
+        self.sock.settimeout(10.0)
         buffer = b''
 
         while not self.terminate_flag.is_set():
             chunk = b''
 
             try:
-                chunk = self.sock.recv(4096) 
+                chunk = self.sock.recv(4096)
 
             except socket.timeout:
                 dprint("Node System: Node_Connection: timeout")
@@ -110,8 +107,8 @@ class Node_Connection(threading.Thread):
                     packet = buffer[:eot_pos]
                     buffer = buffer[eot_pos + 1:]
 
-
-                    self.main_node.message_from_node( self, self.parse_packet(packet) )
+                    self.main_node.message_from_node(
+                        self, self.parse_packet(packet))
 
                     eot_pos = buffer.find(self.EOT_CHAR)
 

@@ -14,7 +14,7 @@ from config import *
 
 
 class Unl:
-    
+
     @staticmethod
     def save_new_unl_node(id):
         """

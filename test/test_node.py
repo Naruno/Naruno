@@ -5,6 +5,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from node.unl import Unl
+from node.node_connection import Node_Connection
+from node.node import Node
+from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete
+import sys
+import os
 import unittest
 
 
@@ -16,12 +22,11 @@ class Test_Node(unittest.TestCase):
 
         temp_private_key = Wallet_Create(password)
 
-
-        node_1 = Node("127.0.0.1",10001)
+        node_1 = Node("127.0.0.1", 10001)
 
         temp_private_key2 = Wallet_Create(password)
 
-        node_2 = Node("127.0.0.1",10002)
+        node_2 = Node("127.0.0.1", 10002)
 
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
@@ -32,8 +37,6 @@ class Test_Node(unittest.TestCase):
         in_unl_list = False
         get_as_node = False
 
-
-
         nodes_list = Node.get_connected_node()
 
         for element in nodes_list:
@@ -41,7 +44,8 @@ class Test_Node(unittest.TestCase):
                 finded_node = True
 
                 temp_unl_node_list = Unl.get_unl_nodes()
-                temp_get_as_node_type = Unl.get_as_node_type(temp_unl_node_list)
+                temp_get_as_node_type = Unl.get_as_node_type(
+                    temp_unl_node_list)
                 for unl_element in temp_unl_node_list:
                     if unl_element == node_1.id or unl_element == node_2.id:
                         for node_element_of_unl in temp_get_as_node_type:
@@ -58,21 +62,16 @@ class Test_Node(unittest.TestCase):
         saved_wallets = get_saved_wallet()
 
         for each_wallet in saved_wallets:
-            if temp_private_key == saved_wallets[each_wallet]["privatekey"] or temp_private_key2 == saved_wallets[each_wallet]["privatekey"] :
+            if temp_private_key == saved_wallets[each_wallet]["privatekey"] or temp_private_key2 == saved_wallets[each_wallet]["privatekey"]:
                 Wallet_Delete(each_wallet)
 
-        self.assertEqual(finded_node,True,"Problem on connection saving system.")
-        self.assertEqual(in_unl_list,True,"Problem on UNL node saving system.")
-        self.assertEqual(get_as_node,True,"Problem on UNL get as node system.")
+        self.assertEqual(finded_node, True,
+                         "Problem on connection saving system.")
+        self.assertEqual(in_unl_list, True,
+                         "Problem on UNL node saving system.")
+        self.assertEqual(get_as_node, True,
+                         "Problem on UNL get as node system.")
 
 
-
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
-from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete
-from node.node import Node
-from node.node_connection import Node_Connection
-from node.node import Node
-from node.unl import Unl
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 unittest.main(exit=False)

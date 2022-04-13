@@ -29,9 +29,9 @@ def CreateBlock():
         previous_hash = "0"
 
         try:
-            current_block = GetBlock() 
+            current_block = GetBlock()
             if not current_block.hash is None:
-                previous_hash = current_block.hash       
+                previous_hash = current_block.hash
             else:
                 previous_hash = current_block.previous_hash
         except:

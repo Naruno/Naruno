@@ -16,7 +16,7 @@ def GetCandidateBlocks():
     Collects candidate blocks and candidate block hashes 
     from connected unl nodes and returns them in the 
     candidate_block class
-    """    
+    """
 
     nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
 
