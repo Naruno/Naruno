@@ -9,7 +9,6 @@
 import json
 import os
 import time
-
 from lib.config_system import get_config
 from config import *
 
