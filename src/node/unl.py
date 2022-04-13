@@ -22,7 +22,7 @@ class Unl:
         Saves the new unl.
         """
 
-        nodes_list = self.get_unl_nodes()
+        nodes_list = Unl.get_unl_nodes()
 
         already_in_list = False
 
@@ -76,7 +76,7 @@ class Unl:
         Returns the this node is unl or not.
         """
 
-        for unl in self.get_unl_nodes():
+        for unl in Unl.get_unl_nodes():
             temp_unl = unl
             if node_id == temp_unl:
                 return True
@@ -88,7 +88,7 @@ class Unl:
         Deletes the UNL node
         """
 
-        saved_nodes = self.get_unl_nodes()
+        saved_nodes = Unl.get_unl_nodes()
         if node_id in saved_nodes:
             del saved_nodes[node_id]
 
