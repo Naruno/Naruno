@@ -17,7 +17,8 @@ from kivymd.toast import toast
 
 from kivy.core.clipboard import Clipboard
 
-from node.node_connection import ndstart, ndstop, ndconnect, ndconnectmixdb, ndid
+from node.node import Node
+from node.node_connection import ndstop, ndconnect, ndconnectmixdb, ndid
 
 from lib.settings_system import the_settings
 from lib.status import Status
@@ -85,7 +86,7 @@ class NodeBox(MDGridLayout):
         print(ip)
         print(port)
         
-        ndstart(ip, int(port))
+        Node(ip, int(port))
 
         self.start_node_server_dialog.dismiss()
     def dismiss_start_node_server_dialog(self,widget):

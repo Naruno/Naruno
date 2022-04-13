@@ -25,7 +25,7 @@ from lib.status import Status
 from node.node_connection import ndconnect
 from node.node_connection import ndconnectmixdb
 from node.node_connection import ndid
-from node.node_connection import ndstart
+from node.node import Node
 from node.node_connection import ndstop
 from node.unl import Unl
 from transactions.print_transactions import PrintTransactions
@@ -142,7 +142,7 @@ def menu():
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
-            ndstart(str(input("ip: ")), int(input("port: ")))
+            Node(str(input("ip: ")), int(input("port: ")))
         if choices_input == "ndstop":
             ndstop()
         if choices_input == "ndconnect":

@@ -124,16 +124,6 @@ class Node_Connection(threading.Thread):
         dprint("Node System: Node_Connection: Stopped")
 
 
-def ndstart(ip, port):
-    """
-    Starts the node server.
-    """
-    from node.node import Node
-    node = Node(ip, port)
-    node.start()
-    return node
-
-
 def ndstop():
     """
     Stops the node server

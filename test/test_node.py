@@ -17,11 +17,11 @@ class Test_Node(unittest.TestCase):
         temp_private_key = Wallet_Create(password)
 
 
-        node_1 = ndstart("127.0.0.1",10001)
+        node_1 = Node("127.0.0.1",10001)
 
         temp_private_key2 = Wallet_Create(password)
 
-        node_2 = ndstart("127.0.0.1",10002)
+        node_2 = Node("127.0.0.1",10002)
 
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
@@ -71,7 +71,8 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
 from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete
-from node.node_connection import ndstart, ndconnect, ndstop
+from node.node import Node
+from node.node_connection import ndconnect, ndstop
 from node.node import Node
 from node.unl import Unl
 unittest.main(exit=False)

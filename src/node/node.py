@@ -77,7 +77,7 @@ class Node(threading.Thread):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.init_server()
 
-
+        self.start()
 
     def run(self):
 

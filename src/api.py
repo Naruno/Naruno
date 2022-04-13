@@ -20,7 +20,7 @@ from lib.status import Status
 from node.node_connection import ndconnect
 from node.node_connection import ndconnectmixdb
 from node.node_connection import ndid
-from node.node_connection import ndstart
+from node.node import Node
 from node.node_connection import ndstop
 from node.unl import Unl
 from transactions.get_my_transaction import GetMyTransaction
@@ -78,7 +78,7 @@ def balance_wallets_page():
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
 def node_start_page(ip, port):
-    ndstart(str(ip), int(port))
+    Node(str(ip), int(port))
     return jsonify("OK")
 
 
