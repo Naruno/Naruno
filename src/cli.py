@@ -22,12 +22,9 @@ from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
-from node.node_connection import ndconnect
-from node.node_connection import ndconnectmixdb
-from node.node_connection import ndid
-from node.node_connection import ndstart
-from node.node_connection import ndstop
-from node.unl import save_new_unl_node
+from node.node import Node
+from node.node_connection import Node_Connection
+from node.unl import Unl
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send
 from wallet.create_a_wallet import create_a_wallet
@@ -142,18 +139,19 @@ def menu():
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
-            ndstart(str(input("ip: ")), int(input("port: ")))
+            Node(str(input("ip: ")), int(input("port: ")))
         if choices_input == "ndstop":
-            ndstop()
+            Node.main_node.stop()
         if choices_input == "ndconnect":
-            ndconnect(str(input("node ip: ")), int(input("node port: ")))
+            Node_Connection.connect(str(input("node ip: ")),
+                                    int(input("node port: ")))
 
         if choices_input == "ndconnectmixdb":
-            ndconnectmixdb()
+            Node_Connection.connectmixdb()
         if choices_input == "ndnewunl":
-            save_new_unl_node(input("Please write ID of the node: "))
+            Unl.save_new_unl_node(input("Please write ID of the node: "))
         if choices_input == "ndid":
-            print(ndid())
+            print(Node.id)
         if choices_input == "testmodeon":
             test_mode(True)
         if choices_input == "testmodeoff":
@@ -291,10 +289,10 @@ def arguments():
         print_balance()
 
     if not args.ndnewunl is None:
-        save_new_unl_node(args.ndnewunl)
+        Unl.save_new_unl_node(args.ndnewunl)
 
     if args.ndid:
-        print(ndid())
+        print(Node.id)
 
     if args.testmodeon:
         test_mode(True)

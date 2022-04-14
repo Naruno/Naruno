@@ -24,21 +24,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
+import json
+import os
+from base64 import b64decode
+from base64 import b64encode
+from binascii import hexlify
+from binascii import unhexlify
 from hashlib import sha256
-
-
+from random import SystemRandom
 from sys import version_info as pyVersion
-from binascii import hexlify, unhexlify
 
-
-
+from config import *
+from lib.config_system import get_config
+from lib.encryption import decrypt
+from lib.encryption import encrypt
+from lib.settings_system import the_settings
 
 if pyVersion.major == 3:
     # py3 constants and conversion functions
 
     xrange = range
-    stringTypes = (str,) # lgtm [py/multiple-definition]
+    stringTypes = (str, )  # lgtm [py/multiple-definition]
     intTypes = (int, float)
 
     def toString(string):
@@ -52,10 +58,11 @@ if pyVersion.major == 3:
 
     def safeHexFromBinary(byteString):
         return hexlify(byteString)
+
 else:
     # py2 constants and conversion functions
 
-    stringTypes = (str, unicode) # lgtm [py/multiple-definition]
+    stringTypes = (str, unicode)  # lgtm [py/multiple-definition]
     intTypes = (int, float, long)
 
     def toString(string):
@@ -114,8 +121,6 @@ class BinaryAscii:
         fmtStr = "%0" + str(2 * length) + "x"
         return toString(cls.binaryFromHex((fmtStr % number).encode()))
 
-from random import SystemRandom
-
 
 class RandomInteger:
 
@@ -130,15 +135,12 @@ class RandomInteger:
 
         return SystemRandom().randrange(min, max + 1)
 
-from sys import version_info as pyVersion
-from binascii import hexlify, unhexlify
-
 
 if pyVersion.major == 3:
     # py3 constants and conversion functions
 
     xrange = range
-    stringTypes = (str,)
+    stringTypes = (str, )
     intTypes = (int, float)
 
     def toString(string):
@@ -152,6 +154,7 @@ if pyVersion.major == 3:
 
     def safeHexFromBinary(byteString):
         return hexlify(byteString)
+
 else:
     # py2 constants and conversion functions
 
@@ -182,9 +185,14 @@ class Ecdsa:
         r, s, randSignPoint = 0, 0, None
         while r == 0 or s == 0:
             randNum = RandomInteger.between(1, curve.N - 1)
-            randSignPoint = Math.multiply(curve.G, n=randNum, A=curve.A, P=curve.P, N=curve.N)
+            randSignPoint = Math.multiply(curve.G,
+                                          n=randNum,
+                                          A=curve.A,
+                                          P=curve.P,
+                                          N=curve.N)
             r = randSignPoint.x % curve.N
-            s = ((numberMessage + r * privateKey.secret) * (Math.inv(randNum, curve.N))) % curve.N
+            s = ((numberMessage + r * privateKey.secret) *
+                 (Math.inv(randNum, curve.N))) % curve.N
         recoveryId = randSignPoint.y & 1
         if randSignPoint.y > curve.N:
             recoveryId += 2
@@ -199,20 +207,23 @@ class Ecdsa:
         sigR = signature.r
         sigS = signature.s
         inv = Math.inv(sigS, curve.N)
-        u1 = Math.multiply(curve.G, n=(numberMessage * inv) % curve.N, A=curve.A, P=curve.P, N=curve.N)
-        u2 = Math.multiply(publicKey.point, n=(sigR * inv) % curve.N, A=curve.A, P=curve.P, N=curve.N)
+        u1 = Math.multiply(curve.G,
+                           n=(numberMessage * inv) % curve.N,
+                           A=curve.A,
+                           P=curve.P,
+                           N=curve.N)
+        u2 = Math.multiply(publicKey.point,
+                           n=(sigR * inv) % curve.N,
+                           A=curve.A,
+                           P=curve.P,
+                           N=curve.N)
 
+        # add = Math.add(u1, u2, P=curve.P, A=curve.A) # test and delete
+        # return sigR == add.x # test and delete
 
-        #add = Math.add(u1, u2, P=curve.P, A=curve.A) # test and delete
-        #return sigR == add.x # test and delete
-        
         add = Math.add(u1, u2, P=curve.P, A=curve.A)
         modX = add.x % curve.N
         return sigR == modX
-
-
-
-from base64 import b64encode, b64decode
 
 
 class Base64:
@@ -226,7 +237,6 @@ class Base64:
         return b64encode(string)
 
 
-
 hexAt = "\x00"
 hexB = "\x02"
 hexC = "\x03"
@@ -234,11 +244,11 @@ hexD = "\x04"
 hexF = "\x06"
 hex0 = "\x30"
 
-hex31 = 0x1f
-hex127 = 0x7f
-hex129 = 0xa0
+hex31 = 0x1F
+hex127 = 0x7F
+hex129 = 0xA0
 hex160 = 0x80
-hex224 = 0xe0
+hex224 = 0xE0
 
 bytesHex0 = toBytes(hex0)
 bytesHexB = toBytes(hexB)
@@ -271,7 +281,8 @@ def encodeOid(first, second, *pieces):
     assert first <= 2
     assert second <= 39
 
-    encodedPieces = [chr(40 * first + second)] + [_encodeNumber(p) for p in pieces]
+    encodedPieces = [chr(40 * first + second)
+                     ] + [_encodeNumber(p) for p in pieces]
     body = "".join(encodedPieces)
 
     return hexF + _encodeLength(len(body)) + body
@@ -295,7 +306,7 @@ def removeSequence(string):
     length, lengthLen = _readLength(string[1:])
     endSeq = 1 + lengthLen + length
 
-    return string[1 + lengthLen: endSeq], string[endSeq:]
+    return string[1 + lengthLen:endSeq], string[endSeq:]
 
 
 def removeInteger(string):
@@ -304,9 +315,8 @@ def removeInteger(string):
     length, lengthLen = _readLength(string[1:])
     numberBytes = string[1 + lengthLen:1 + lengthLen + length]
     rest = string[1 + lengthLen + length:]
-    nBytes = numberBytes[0] if isinstance(
-        numberBytes[0], intTypes
-    ) else ord(numberBytes[0])
+    nBytes = (numberBytes[0]
+              if isinstance(numberBytes[0], intTypes) else ord(numberBytes[0]))
 
     assert nBytes < hex160
 
@@ -370,8 +380,7 @@ def removeConstructed(string):
 
 def fromPem(pem):
     t = "".join([
-        l.strip() for l in pem.splitlines()
-        if l and not l.startswith("-----")
+        l.strip() for l in pem.splitlines() if l and not l.startswith("-----")
     ])
     return Base64.decode(t)
 
@@ -379,10 +388,7 @@ def fromPem(pem):
 def toPem(der, name):
     b64 = toString(Base64.encode(der))
     lines = ["-----BEGIN " + name + "-----\n"]
-    lines.extend([
-        b64[start:start + 64] 
-        for start in xrange(0, len(b64), 64)
-    ])
+    lines.extend([b64[start:start + 64] for start in xrange(0, len(b64), 64)])
     lines.append("\n")
     lines.append("-----END " + name + "-----\n")
 
@@ -429,7 +435,8 @@ def _readLength(string):
     if lengthLen > len(string) - 1:
         raise Exception("ran out of length bytes")
 
-    return int(BinaryAscii.hexFromBinary(string[1:1 + lengthLen]), 16), 1 + lengthLen
+    return int(BinaryAscii.hexFromBinary(string[1:1 + lengthLen]),
+               16), 1 + lengthLen
 
 
 def _readNumber(string):
@@ -444,7 +451,7 @@ def _readNumber(string):
         if not isinstance(d, intTypes):
             d = ord(d)
 
-        number += (d & hex127)
+        number += d & hex127
         lengthLen += 1
         if not d & hex160:
             break
@@ -454,20 +461,20 @@ def _readNumber(string):
 
 def _checkSequenceError(string, start, expected):
     if not string.startswith(start):
-        raise Exception(
-            "wanted sequence (0x%s), got 0x%02x" %
-            (expected, _extractFirstInt(string))
-        )
+        raise Exception("wanted sequence (0x%s), got 0x%02x" %
+                        (expected, _extractFirstInt(string)))
 
 
 def _extractFirstInt(string):
     return string[0] if isinstance(string[0], intTypes) else ord(string[0])
+
 
 #
 # Elliptic Curve Equation
 #
 # y^2 = x^3 + A*x + B (mod P)
 #
+
 
 class Point:
 
@@ -505,22 +512,22 @@ secp256k1 = CurveFp(
     name="secp256k1",
     A=0x0000000000000000000000000000000000000000000000000000000000000000,
     B=0x0000000000000000000000000000000000000000000000000000000000000007,
-    P=0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f,
-    N=0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141,
-    Gx=0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798,
-    Gy=0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8,
-    oid=(1, 3, 132, 0, 10)
+    P=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F,
+    N=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141,
+    Gx=0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798,
+    Gy=0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8,
+    oid=(1, 3, 132, 0, 10),
 )
 
 prime256v1 = CurveFp(
     name="prime256v1",
     nistName="P-256",
-    A=0xffffffff00000001000000000000000000000000fffffffffffffffffffffffc,
-    B=0x5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b,
-    P=0xffffffff00000001000000000000000000000000ffffffffffffffffffffffff,
-    N=0xffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551,
-    Gx=0x6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296,
-    Gy=0x4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5,
+    A=0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFC,
+    B=0x5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B,
+    P=0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF,
+    N=0xFFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551,
+    Gx=0x6B17D1F2E12C4247F8BCE6E563A440F277037D812DEB33A0F4A13945D898C296,
+    Gy=0x4FE342E2FE1A7F9B8EE7EB4A7C0F9E162BCE33576B315ECECBB6406837BF51F5,
     oid=(1, 2, 840, 10045, 3, 1, 7),
 )
 p256 = prime256v1
@@ -531,7 +538,6 @@ supportedCurves = [
 ]
 
 curvesByOid = {curve.oid: curve for curve in supportedCurves}
-
 
 hexAt = "\x00"
 
@@ -554,7 +560,8 @@ class PrivateKey:
         return PublicKey(point=publicPoint, curve=curve)
 
     def toString(self):
-        return BinaryAscii.stringFromNumber(number=self.secret, length=self.curve.length())
+        return BinaryAscii.stringFromNumber(number=self.secret,
+                                            length=self.curve.length())
 
     def toDer(self):
         encodedPublicKey = self.publicKey().toString(encoded=True)
@@ -578,16 +585,13 @@ class PrivateKey:
     def fromDer(cls, string):
         t, empty = removeSequence(string)
         if len(empty) != 0:
-            raise Exception(
-                "trailing junk after DER private key: " +
-                BinaryAscii.hexFromBinary(empty)
-            )
+            raise Exception("trailing junk after DER private key: " +
+                            BinaryAscii.hexFromBinary(empty))
 
         one, t = removeInteger(t)
         if one != 1:
             raise Exception(
-                "expected '1' at start of DER private key, got %d" % one
-            )
+                "expected '1' at start of DER private key, got %d" % one)
 
         privateKeyStr, t = removeOctetString(t)
         tag, curveOidStr, t = removeConstructed(t)
@@ -599,27 +603,26 @@ class PrivateKey:
         if len(empty) != 0:
             raise Exception(
                 "trailing junk after DER private key curve_oid: %s" %
-                BinaryAscii.hexFromBinary(empty)
-            )
+                BinaryAscii.hexFromBinary(empty))
 
         if oidCurve not in curvesByOid:
             raise Exception(
-                "unknown curve with oid %s; The following are registered: %s" % (
-                    oidCurve,
-                    ", ".join([curve.name for curve in supportedCurves])
-                )
-            )
+                "unknown curve with oid %s; The following are registered: %s" %
+                (oidCurve, ", ".join([curve.name
+                                      for curve in supportedCurves])))
 
         curve = curvesByOid[oidCurve]
 
         if len(privateKeyStr) < curve.length():
-            privateKeyStr = hexAt * (curve.lenght() - len(privateKeyStr)) + privateKeyStr
+            privateKeyStr = (hexAt * (curve.lenght() - len(privateKeyStr)) +
+                             privateKeyStr)
 
         return cls.fromString(privateKeyStr, curve)
 
     @classmethod
     def fromString(cls, string, curve=secp256k1):
-        return PrivateKey(secret=BinaryAscii.numberFromString(string), curve=curve)
+        return PrivateKey(secret=BinaryAscii.numberFromString(string),
+                          curve=curve)
 
 
 class Signature:
@@ -630,30 +633,35 @@ class Signature:
         self.recoveryId = recoveryId
 
     def toDer(self, withRecoveryId=False):
-        encodedSequence = encodeSequence(encodeInteger(self.r), encodeInteger(self.s))
+        encodedSequence = encodeSequence(encodeInteger(self.r),
+                                         encodeInteger(self.s))
         if not withRecoveryId:
             return encodedSequence
         return chr(27 + self.recoveryId) + encodedSequence
 
     def toBase64(self, withRecoveryId=False):
-        return toString(Base64.encode(toBytes(self.toDer(withRecoveryId=withRecoveryId))))
+        return toString(
+            Base64.encode(toBytes(self.toDer(withRecoveryId=withRecoveryId))))
 
     @classmethod
     def fromDer(cls, string, recoveryByte=False):
         recoveryId = None
         if recoveryByte:
-            recoveryId = string[0] if isinstance(string[0], intTypes) else ord(string[0])
+            recoveryId = (string[0] if isinstance(string[0], intTypes) else
+                          ord(string[0]))
             recoveryId -= 27
             string = string[1:]
 
         rs, empty = removeSequence(string)
         if len(empty) != 0:
-            raise Exception("trailing junk after DER signature: %s" % BinaryAscii.hexFromBinary(empty))
+            raise Exception("trailing junk after DER signature: %s" %
+                            BinaryAscii.hexFromBinary(empty))
 
         r, rest = removeInteger(rs)
         s, empty = removeInteger(rest)
         if len(empty) != 0:
-            raise Exception("trailing junk after DER numbers: %s" % BinaryAscii.hexFromBinary(empty))
+            raise Exception("trailing junk after DER numbers: %s" %
+                            BinaryAscii.hexFromBinary(empty))
 
         return Signature(r=r, s=s, recoveryId=recoveryId)
 
@@ -661,7 +669,6 @@ class Signature:
     def fromBase64(cls, string, recoveryByte=False):
         der = Base64.decode(string)
         return cls.fromDer(der, recoveryByte)
-
 
 
 class Math:
@@ -748,8 +755,8 @@ class Math:
         z = cls.inv(p.z, P)
 
         return Point(
-            (p.x * z ** 2) % P,
-            (p.y * z ** 3) % P,
+            (p.x * z**2) % P,
+            (p.y * z**3) % P,
         )
 
     @classmethod
@@ -764,11 +771,11 @@ class Math:
         if not p.y:
             return Point(0, 0, 0)
 
-        ysq = (p.y ** 2) % P
+        ysq = (p.y**2) % P
         S = (4 * p.x * ysq) % P
-        M = (3 * p.x ** 2 + A * p.z ** 4) % P
+        M = (3 * p.x**2 + A * p.z**4) % P
         nx = (M**2 - 2 * S) % P
-        ny = (M * (S - nx) - 8 * ysq ** 2) % P
+        ny = (M * (S - nx) - 8 * ysq**2) % P
         nz = (2 * p.y * p.z) % P
         return Point(nx, ny, nz)
 
@@ -788,10 +795,10 @@ class Math:
         if not q.y:
             return p
 
-        U1 = (p.x * q.z ** 2) % P
-        U2 = (q.x * p.z ** 2) % P
-        S1 = (p.y * q.z ** 3) % P
-        S2 = (q.y * p.z ** 3) % P
+        U1 = (p.x * q.z**2) % P
+        U2 = (q.x * p.z**2) % P
+        S1 = (p.y * q.z**3) % P
+        S2 = (q.y * p.z**3) % P
 
         if U1 == U2:
             if S1 != S2:
@@ -803,7 +810,7 @@ class Math:
         H2 = (H * H) % P
         H3 = (H * H2) % P
         U1H2 = (U1 * H2) % P
-        nx = (R ** 2 - H3 - 2 * U1H2) % P
+        nx = (R**2 - H3 - 2 * U1H2) % P
         ny = (R * (U1H2 - nx) - S1 * H3) % P
         nz = (H * p.z * q.z) % P
 
@@ -831,13 +838,7 @@ class Math:
 
         if (n % 2) == 0:
             return cls._jacobianDouble(
-                cls._jacobianMultiply(
-                    p,
-                    n // 2,
-                    N,
-                    A,
-                    P
-                ),
+                cls._jacobianMultiply(p, n // 2, N, A, P),
                 A,
                 P,
             )
@@ -859,6 +860,8 @@ class Math:
             A,
             P,
         )
+
+
 class PublicKey:
 
     def __init__(self, point, curve):
@@ -883,7 +886,8 @@ class PublicKey:
             encodeOid(*self.curve.oid),
         )
 
-        return encodeSequence(encodeEcAndOid, encodeBitString(self.toString(encoded=True)))
+        return encodeSequence(encodeEcAndOid,
+                              encodeBitString(self.toString(encoded=True)))
 
     def toPem(self):
         return toPem(der=toBytes(self.toDer()), name="PUBLIC KEY")
@@ -897,8 +901,7 @@ class PublicKey:
         s1, empty = removeSequence(string)
         if len(empty) != 0:
             raise Exception("trailing junk after DER public key: {}".format(
-                BinaryAscii.hexFromBinary(empty)
-            ))
+                BinaryAscii.hexFromBinary(empty)))
 
         s2, pointBitString = removeSequence(s1)
 
@@ -906,26 +909,23 @@ class PublicKey:
 
         oidCurve, empty = removeObject(rest)
         if len(empty) != 0:
-            raise Exception("trailing junk after DER public key objects: {}".format(
-                BinaryAscii.hexFromBinary(empty)
-            ))
+            raise Exception(
+                "trailing junk after DER public key objects: {}".format(
+                    BinaryAscii.hexFromBinary(empty)))
 
         if oidCurve not in curvesByOid:
             raise Exception(
-                "Unknown curve with oid %s. Only the following are available: %s" % (
-                    oidCurve,
-                    ", ".join([curve.name for curve in supportedCurves])
-                )
-            )
+                "Unknown curve with oid %s. Only the following are available: %s"
+                %
+                (oidCurve, ", ".join([curve.name
+                                      for curve in supportedCurves])))
 
         curve = curvesByOid[oidCurve]
 
         pointStr, empty = removeBitString(pointBitString)
         if len(empty) != 0:
-            raise Exception(
-                "trailing junk after public key point-string: " +
-                BinaryAscii.hexFromBinary(empty)
-            )
+            raise Exception("trailing junk after public key point-string: " +
+                            BinaryAscii.hexFromBinary(empty))
 
         return cls.fromString(pointStr[2:], curve)
 
@@ -944,80 +944,55 @@ class PublicKey:
         if validatePoint and not curve.contains(p):
             raise Exception(
                 "point ({x},{y}) is not valid for curve {name}".format(
-                    x=p.x, y=p.y, name=curve.name
-                )
-            )
+                    x=p.x, y=p.y, name=curve.name))
 
         return PublicKey(point=p, curve=curve)
 
 
-
-
-from config import *
-
-from lib.config_system import get_config
-from lib.settings_system import the_settings
-from lib.encryption import encrypt, decrypt
-
-import json
-import os
-from hashlib import sha256
-
-def save_wallet_list(publicKey,privateKey,password):
+def save_wallet_list(publicKey, privateKey, password):
     wallet_list = get_saved_wallet()
-
 
     wallet_list[publicKey] = {}
 
     wallet_list[publicKey]["publickey"] = publicKey
     wallet_list[publicKey]["privatekey"] = privateKey
 
-    wallet_list[publicKey]["password_sha256"] = sha256(password.encode("utf-8")).hexdigest()
-
-
-    
-
-
+    wallet_list[publicKey]["password_sha256"] = sha256(
+        password.encode("utf-8")).hexdigest()
 
     os.chdir(get_config()["main_folder"])
-    with open(WALLETS_PATH, 'w') as wallet_list_file:
+    with open(WALLETS_PATH, "w") as wallet_list_file:
         json.dump(wallet_list, wallet_list_file, indent=4)
 
 
-
 def get_saved_wallet():
-    
-        os.chdir(get_config()["main_folder"])
 
-        if not os.path.exists(WALLETS_PATH):
-            return {}
-        
+    os.chdir(get_config()["main_folder"])
 
-        with open(WALLETS_PATH, 'rb') as wallet_list_file:
-            return json.load(wallet_list_file)
+    if not os.path.exists(WALLETS_PATH):
+        return {}
 
+    with open(WALLETS_PATH, "rb") as wallet_list_file:
+        return json.load(wallet_list_file)
 
 
-
-
-
-def Wallet_Create(password, save = True):
+def Wallet_Create(password, save=True):
 
     my_private_key = PrivateKey()
     my_public_key = my_private_key.publicKey()
 
-
-
-
     if save == True:
-        encrypted_key = encrypt(my_private_key.toPem(),password) if not len(list(get_saved_wallet())) == 0 else my_private_key.toPem()
+        encrypted_key = (encrypt(my_private_key.toPem(), password)
+                         if not len(list(get_saved_wallet())) == 0 else
+                         my_private_key.toPem())
         del my_private_key
-        save_wallet_list(my_public_key.toPem(),encrypted_key, password)
-        return (encrypted_key)
+        save_wallet_list(my_public_key.toPem(), encrypted_key, password)
+        return encrypted_key
     else:
-        return (my_private_key)
+        return my_private_key
 
-def Wallet_Import(account,mode,password = None):
+
+def Wallet_Import(account, mode, password=None):
     """
     A function for get info about a wallet.
 
@@ -1031,9 +1006,10 @@ def Wallet_Import(account,mode,password = None):
 
     number_of_wallet = len(temp_saved_wallet)
     if not number_of_wallet:
-        return None
+        Wallet_Create("123")
+        temp_saved_wallet = get_saved_wallet()
 
-    if isinstance(account,int):
+    if isinstance(account, int):
         if not -1 == account:
             account = list(temp_saved_wallet)[account]
         else:
@@ -1044,7 +1020,8 @@ def Wallet_Import(account,mode,password = None):
 
         return my_public_key
     elif mode == 1:
-        if not password is None and not list(temp_saved_wallet).index(account) == 0:
+        if not password is None and not list(temp_saved_wallet).index(
+                account) == 0:
 
             return decrypt(temp_saved_wallet[account]["privatekey"], password)
         else:
@@ -1053,7 +1030,7 @@ def Wallet_Import(account,mode,password = None):
             return my_private_key
 
     elif mode == 2:
-            return temp_saved_wallet[account]["password_sha256"]
+        return temp_saved_wallet[account]["password_sha256"]
 
     elif mode == 3:
         my_address = temp_saved_wallet[account]["publickey"]
@@ -1072,11 +1049,14 @@ def Wallet_Delete(account):
     if account in saved_wallet:
         del saved_wallet[account]
         from lib.config_system import get_config
-    
+
         os.chdir(get_config()["main_folder"])
-        with open(WALLETS_PATH, 'w') as wallet_list_file:
+        with open(WALLETS_PATH, "w") as wallet_list_file:
             json.dump(saved_wallet, wallet_list_file, indent=4)
+
 
 def Address(publickey):
 
-    return sha256(sha256(publickey.encode("utf-8")).hexdigest().encode("utf-8")).hexdigest()[-40:]
+    return sha256(
+        sha256(publickey.encode("utf-8")).hexdigest().encode(
+            "utf-8")).hexdigest()[-40:]

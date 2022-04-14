@@ -17,12 +17,9 @@ from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
-from node.node_connection import ndconnect
-from node.node_connection import ndconnectmixdb
-from node.node_connection import ndid
-from node.node_connection import ndstart
-from node.node_connection import ndstop
-from node.unl import save_new_unl_node
+from node.node import Node
+from node.node_connection import Node_Connection
+from node.unl import Unl
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
 from waitress import serve
@@ -78,38 +75,38 @@ def balance_wallets_page():
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
 def node_start_page(ip, port):
-    ndstart(str(ip), int(port))
+    Node(str(ip), int(port))
     return jsonify("OK")
 
 
 @app.route("/node/stop", methods=["GET"])
 def node_stop_page():
-    ndstop()
+    Node.main_node.stop()
     return jsonify("OK")
 
 
 @app.route("/node/connect/<ip>/<port>", methods=["GET"])
 def node_connect_page(ip, port):
-    ndconnect(str(ip), int(port))
+    Node_Connection.connect(str(ip), int(port))
     return jsonify("OK")
 
 
 @app.route("/node/connectmixdb", methods=["GET"])
 def node_connectmixdb_page():
-    ndconnectmixdb()
+    Node_Connection.connectmixdb()
     return jsonify("OK")
 
 
 # /node/newunl/?MFYw......
 @app.route("/node/newunl/", methods=["GET"])
 def node_newunl_page():
-    save_new_unl_node(request.query_string.decode("utf-8"))
+    Unl.save_new_unl_node(request.query_string.decode("utf-8"))
     return jsonify("OK")
 
 
 @app.route("/node/id", methods=["GET"])
 def node_id_page():
-    return jsonify(ndid())
+    return jsonify(Node.id)
 
 
 @app.route("/settings/test/on", methods=["GET"])
