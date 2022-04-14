@@ -1031,7 +1031,8 @@ def Wallet_Import(account,mode,password = None):
 
     number_of_wallet = len(temp_saved_wallet)
     if not number_of_wallet:
-        return None
+        Wallet_Create("node")
+        temp_saved_wallet = get_saved_wallet()
 
     if isinstance(account,int):
         if not -1 == account:
