@@ -4,14 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
-import pickle
 import os
-
-from lib.config_system import get_config
+import pickle
 
 from config import TEMP_BLOCK_PATH
+from lib.config_system import get_config
 
 
 def GetBlock():
@@ -20,7 +17,7 @@ def GetBlock():
     """
 
     os.chdir(get_config()["main_folder"])
-    with open(TEMP_BLOCK_PATH, 'rb') as block_file:
+    with open(TEMP_BLOCK_PATH, "rb") as block_file:
         return pickle.load(block_file)
 
 

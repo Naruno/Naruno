@@ -4,17 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import json
 import os
 import time
-from lib.config_system import get_config
+
 from config import *
+from lib.config_system import get_config
 
 
 class Unl:
-    
+
     @staticmethod
     def save_new_unl_node(id):
         """
@@ -61,9 +60,8 @@ class Unl:
 
         temp_list = []
         for list_node in id_list:
-            for each_node in (
-                Node.main_node.nodes_inbound + Node.main_node.nodes_outbound
-            ):
+            for each_node in (Node.main_node.nodes_inbound +
+                              Node.main_node.nodes_outbound):
                 if list_node == each_node.id:
                     temp_list.append(each_node)
 

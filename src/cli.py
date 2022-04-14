@@ -22,8 +22,8 @@ from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
-from node.node_connection import Node_Connection
 from node.node import Node
+from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send
@@ -143,7 +143,8 @@ def menu():
         if choices_input == "ndstop":
             Node.main_node.stop()
         if choices_input == "ndconnect":
-            Node_Connection.connect(str(input("node ip: ")), int(input("node port: ")))
+            Node_Connection.connect(str(input("node ip: ")),
+                                    int(input("node port: ")))
 
         if choices_input == "ndconnectmixdb":
             Node_Connection.connectmixdb()

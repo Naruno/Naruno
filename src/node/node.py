@@ -4,27 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
+import json
+import os
 import socket
 import sys
-import time
 import threading
-import os
-import json
-
-from config import CONNECTED_NODE_PATH
-
-from lib.mixlib import dprint
-
-from node.unl import Unl
-from node.node_connection import Node_Connection
-
-
-import os
+import time
 from hashlib import sha256
 
 from blockchain.block.get_block import GetBlock
+from config import CONNECTED_NODE_PATH
 from config import LOADING_BLOCK_PATH
 from config import TEMP_ACCOUNTS_PATH
 from config import TEMP_BLOCK_PATH
@@ -32,6 +21,7 @@ from config import TEMP_BLOCKSHASH_PATH
 from lib.merkle_root import MerkleTree
 from lib.mixlib import dprint
 from node.node import *
+from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.transaction import Transaction
 from wallet.wallet import Ecdsa
@@ -39,37 +29,28 @@ from wallet.wallet import PrivateKey
 from wallet.wallet import PublicKey
 from wallet.wallet import Signature
 from wallet.wallet import Wallet_Import
-from node.unl import Unl
-
 
 
 class Node(threading.Thread):
-    
+
     main_node = None
     unl_nodes = []
 
-    id = "".join(
-        [
-            l.strip()
-            for l in Wallet_Import(0, 0).splitlines()
-            if l and not l.startswith("-----")
-        ]
-    )
-
+    id = "".join([
+        l.strip() for l in Wallet_Import(0, 0).splitlines()
+        if l and not l.startswith("-----")
+    ])
 
     def __init__(self, host, port, callback=None):
         self.__class__.main_node = self
         super(Node, self).__init__()
-
 
         self.terminate_flag = threading.Event()
 
         self.host = host
         self.port = port
 
-
         self.callback = callback
-
 
         self.nodes_inbound = []
 
@@ -85,17 +66,24 @@ class Node(threading.Thread):
         while not self.terminate_flag.is_set():
             try:
                 connection, client_address = self.sock.accept()
-                
-                connected_node_id = connection.recv(4096).decode('utf-8')
-                connection.send(Node.id.encode('utf-8'))
+
+                connected_node_id = connection.recv(4096).decode("utf-8")
+                connection.send(Node.id.encode("utf-8"))
                 if Unl.node_is_unl(connected_node_id):
-                    thread_client = self.create_the_new_connection(connection, connected_node_id, client_address[0], client_address[1])
+                    thread_client = self.create_the_new_connection(
+                        connection,
+                        connected_node_id,
+                        client_address[0],
+                        client_address[1],
+                    )
                     thread_client.start()
 
                     self.nodes_inbound.append(thread_client)
                 else:
-                    dprint("Node System: Could not connect with node because node is not unl node.")
-                
+                    dprint(
+                        "Node System: Could not connect with node because node is not unl node."
+                    )
+
             except socket.timeout:
                 pass
 
@@ -119,11 +107,9 @@ class Node(threading.Thread):
         for t in self.nodes_outbound:
             t.join()
 
-        self.sock.settimeout(None)   
+        self.sock.settimeout(None)
         self.sock.close()
         dprint("Node System: The node is stopped")
-
-
 
     def init_server(self):
         dprint("Node System: Node server is starting")
@@ -131,7 +117,6 @@ class Node(threading.Thread):
         self.sock.bind((self.host, self.port))
         self.sock.settimeout(10.0)
         self.sock.listen(1)
-
 
     def delete_closed_connections(self):
 
@@ -149,20 +134,22 @@ class Node(threading.Thread):
 
         for n in self.nodes_inbound:
             if n in exclude:
-                dprint("Node System: Node send_data_to_nodes: Node is excluded")
+                dprint(
+                    "Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 try:
                     self.send_data_to_node(n, data)
-                except: # lgtm [py/catch-base-exception]
+                except:  # lgtm [py/catch-base-exception]
                     pass
 
         for n in self.nodes_outbound:
             if n in exclude:
-                dprint("Node System: Node send_data_to_nodes: Node is excluded")
+                dprint(
+                    "Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 try:
                     self.send_data_to_node(n, data)
-                except: # lgtm [py/catch-base-exception]
+                except:  # lgtm [py/catch-base-exception]
                     pass
 
     def send_data_to_node(self, n, data):
@@ -173,19 +160,25 @@ class Node(threading.Thread):
                 n.send(data)
 
             except Exception as e:
-                dprint("Node System: Node send_data_to_node: Could not send data to node")
+                dprint(
+                    "Node System: Node send_data_to_node: Could not send data to node"
+                )
         else:
-            dprint("Node System: Node send_data_to_node: Node is not connected")
+            dprint(
+                "Node System: Node send_data_to_node: Node is not connected")
 
     def connect_to_node(self, host, port):
 
         if host == self.host and port == self.port:
-            dprint("Node System: Node connect_to_node: You can not connect to yourself")
+            dprint(
+                "Node System: Node connect_to_node: You can not connect to yourself"
+            )
             return False
 
         for node in self.nodes_outbound:
             if node.host == host and node.port == port:
-                dprint("Node System: connect_to_node: Node is already connected")
+                dprint(
+                    "Node System: connect_to_node: Node is already connected")
                 return True
 
         try:
@@ -194,22 +187,23 @@ class Node(threading.Thread):
             sock.connect((host, port))
 
             # Basic information exchange (not secure) of the id's of the nodes!
-            sock.send(Node.id.encode('utf-8')) # Send my id to the connected node!
-            connected_node_id = sock.recv(4096).decode('utf-8') # When a node is connected, it sends it id!
+            # Send my id to the connected node!
+            sock.send(Node.id.encode("utf-8"))
+            # When a node is connected, it sends it id!
+            connected_node_id = sock.recv(4096).decode("utf-8")
 
             if Unl.node_is_unl(connected_node_id):
-                thread_client = self.create_the_new_connection(sock, connected_node_id, host, port)
+                thread_client = self.create_the_new_connection(
+                    sock, connected_node_id, host, port)
                 thread_client.start()
 
                 self.nodes_outbound.append(thread_client)
             else:
-                dprint("Node System: Could not connect with node because node is not unl node.")
+                dprint(
+                    "Node System: Could not connect with node because node is not unl node."
+                )
         except Exception as e:
             dprint("Node System: Could not connect with node")
-        
-
-
-
 
     def disconnect_to_node(self, node):
 
@@ -219,69 +213,61 @@ class Node(threading.Thread):
             del self.nodes_outbound[self.nodes_outbound.index(node)]
 
         else:
-            print("Node System: Node disconnect_to_node: Node is not connected")
+            print(
+                "Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
         self.terminate_flag.set()
-
 
     def create_the_new_connection(self, connection, id, host, port):
 
         return Node_Connection(self, connection, id, host, port)
 
-
     @staticmethod
     def get_connected_node():
-            """
-            Returns the connected nodes.
-            """
+        """
+        Returns the connected nodes.
+        """
+
+        sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+        from lib.config_system import get_config
+
+        if not os.path.exists(CONNECTED_NODE_PATH):
+            temp_json = {}
+            return temp_json
+
+        os.chdir(get_config()["main_folder"])
+        with open(CONNECTED_NODE_PATH, "rb") as connected_node_file:
+            return json.load(connected_node_file)
+
+    @staticmethod
+    def save_connected_node(host, port, id):
+        """
+        Saves the connected nodes.
+        """
+
+        node_list = Node.get_connected_node()
+
+        already_in_list = False
+
+        for element in node_list:
+            if (node_list[element]["host"] == host
+                    and node_list[element]["port"] == port):
+                already_in_list = True
+
+        if not already_in_list:
+            node_list[id] = {}
+            node_list[id]["host"] = host
+            node_list[id]["port"] = port
 
             sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
             from lib.config_system import get_config
 
-            if not os.path.exists(CONNECTED_NODE_PATH):
-                temp_json = {}
-                return temp_json
-
-
             os.chdir(get_config()["main_folder"])
-            with open(CONNECTED_NODE_PATH, 'rb') as connected_node_file:
-                return json.load(connected_node_file)
-
-    @staticmethod
-    def save_connected_node(host,port,id):
-            """
-            Saves the connected nodes.
-            """
-
-            node_list = Node.get_connected_node()
-
-            already_in_list = False
-
-            for element in node_list:
-                if node_list[element]["host"] == host and node_list[element]["port"] == port:
-                    already_in_list = True
-
-            if not already_in_list:
-                node_list[id] = {}
-                node_list[id]["host"] = host
-                node_list[id]["port"] = port
-
-
-
-
-                
-
-                sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-                
-                from lib.config_system import get_config
-
-
-
-                os.chdir(get_config()["main_folder"])
-                with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
-                    json.dump(node_list, connected_node_file, indent=4)
+            with open(CONNECTED_NODE_PATH, "w") as connected_node_file:
+                json.dump(node_list, connected_node_file, indent=4)
 
     @staticmethod
     def connectionfrommixdb():
@@ -291,8 +277,10 @@ class Node(threading.Thread):
 
         node_list = Node.get_connected_node()
         from node.node import Node
+
         for element in node_list:
-            Node.main_node.connect_to_node(node_list[element]["host"], node_list[element]["port"])
+            Node.main_node.connect_to_node(node_list[element]["host"],
+                                           node_list[element]["port"])
 
     @staticmethod
     def connected_node_delete(node):
@@ -304,75 +292,72 @@ class Node(threading.Thread):
         if node in saved_nodes:
             del saved_nodes[node]
             from lib.config_system import get_config
-        
 
             os.chdir(get_config()["main_folder"])
-            with open(CONNECTED_NODE_PATH, 'w') as connected_node_file:
+            with open(CONNECTED_NODE_PATH, "w") as connected_node_file:
                 json.dump(saved_nodes, connected_node_file, indent=4)
 
-
     def message_from_node(self, node, data):
-            
 
-            if str(data) == "sendmefullblock":
-                self.send_full_chain(node)
+        if str(data) == "sendmefullblock":
+            self.send_full_chain(node)
 
-            try:
-                if (data["fullblock"] == 1 and Unl.node_is_unl(node.id)
-                        and Ecdsa.verify(
-                            "fullblock" + data["byte"],
-                            Signature.fromBase64(data["signature"]),
-                            PublicKey.fromPem(node.id),
-                        )):
-                    print("getting chain")
-                    self.get_full_chain(data, node)
-            except Exception as e:
-                print(e)
+        try:
+            if (data["fullblock"] == 1 and Unl.node_is_unl(node.id)
+                    and Ecdsa.verify(
+                        "fullblock" + data["byte"],
+                        Signature.fromBase64(data["signature"]),
+                        PublicKey.fromPem(node.id),
+                    )):
+                print("getting chain")
+                self.get_full_chain(data, node)
+        except Exception as e:
+            print(e)
 
-            try:
+        try:
 
-                if (data["fullaccounts"] == 1 and Unl.node_is_unl(node.id)
-                        and Ecdsa.verify(
-                            "fullaccounts" + data["byte"],
-                            Signature.fromBase64(data["signature"]),
-                            PublicKey.fromPem(node.id),
-                        )):
-                    print("getting chain")
-                    self.get_full_accounts(data, node)
-            except Exception as e:
-                print(e)
+            if (data["fullaccounts"] == 1 and Unl.node_is_unl(node.id)
+                    and Ecdsa.verify(
+                        "fullaccounts" + data["byte"],
+                        Signature.fromBase64(data["signature"]),
+                        PublicKey.fromPem(node.id),
+                    )):
+                print("getting chain")
+                self.get_full_accounts(data, node)
+        except Exception as e:
+            print(e)
 
-            try:
+        try:
 
-                if (data["fullblockshash"] == 1 and Unl.node_is_unl(node.id)
-                        and Ecdsa.verify(
-                            "fullblockshash" + data["byte"],
-                            Signature.fromBase64(data["signature"]),
-                            PublicKey.fromPem(node.id),
-                        )):
-                    self.get_full_blockshash(data, node)
-            except Exception as e:
-                print(e)
+            if (data["fullblockshash"] == 1 and Unl.node_is_unl(node.id)
+                    and Ecdsa.verify(
+                        "fullblockshash" + data["byte"],
+                        Signature.fromBase64(data["signature"]),
+                        PublicKey.fromPem(node.id),
+                    )):
+                self.get_full_blockshash(data, node)
+        except Exception as e:
+            print(e)
 
-            try:
-                if data["transactionrequest"] == 1:
-                    self.get_transaction(data, node)
-            except Exception as e:
-                print(e)
+        try:
+            if data["transactionrequest"] == 1:
+                self.get_transaction(data, node)
+        except Exception as e:
+            print(e)
 
-            try:
-                if data["action"] == "myblock":
-                    self.get_candidate_block(data, node)
-            except Exception as e:
-                print(e)
+        try:
+            if data["action"] == "myblock":
+                self.get_candidate_block(data, node)
+        except Exception as e:
+            print(e)
 
-            try:
-                if data["action"] == "myblockhash":
-                    self.get_candidate_block_hash(data, node)
-            except Exception as e:
-                print(e)
+        try:
+            if data["action"] == "myblockhash":
+                self.get_candidate_block_hash(data, node)
+        except Exception as e:
+            print(e)
 
-            dprint("message_from_node from " + node.id + ": " + str(data))
+        dprint("message_from_node from " + node.id + ": " + str(data))
 
     def send_my_block(self, nodes):
         system = GetBlock()
@@ -485,7 +470,6 @@ class Node(threading.Thread):
     def get_candidate_block_hash(self, data, node):
 
         dprint("Getting the candidate block hash")
-
 
         if (Unl.node_is_unl(node.id)
                 and GetBlock().sequance_number == data["sequance_number"]):

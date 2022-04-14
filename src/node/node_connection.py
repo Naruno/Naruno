@@ -4,14 +4,13 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
+import json
+import os
 import socket
 import sys
-import time
 import threading
-import os
-import json
-from wallet.wallet import Wallet_Import
+import time
+
 from config import *
 from lib.mixlib import dprint
 from node.unl import Unl
@@ -28,22 +27,21 @@ class Node_Connection(threading.Thread):
         self.sock = sock
         self.terminate_flag = threading.Event()
 
-
         self.id = id
 
         self.candidate_block = None
         self.candidate_block_hash = None
 
-
-        self.EOT_CHAR = 0x04.to_bytes(1, 'big')
+        self.EOT_CHAR = 0x04.to_bytes(1, "big")
 
         from node.node import Node
-        Node.save_connected_node(host,port,id)
 
-    def send(self, data, encoding_type='utf-8'):
+        Node.save_connected_node(host, port, id)
+
+    def send(self, data, encoding_type="utf-8"):
 
         if isinstance(data, str):
-            self.sock.sendall( data.encode(encoding_type) + self.EOT_CHAR )
+            self.sock.sendall(data.encode(encoding_type) + self.EOT_CHAR)
 
         elif isinstance(data, dict):
             try:
@@ -52,11 +50,11 @@ class Node_Connection(threading.Thread):
                 self.sock.sendall(json_data)
 
             except TypeError as type_error:
-                dprint('Node System: This dict is invalid')
+                dprint("Node System: This dict is invalid")
                 dprint(type_error)
 
             except Exception as e:
-                print('Node System: Unexpected Error in send message')
+                print("Node System: Unexpected Error in send message")
                 print(e)
 
         elif isinstance(data, bytes):
@@ -64,15 +62,16 @@ class Node_Connection(threading.Thread):
             self.sock.sendall(bin_data)
 
         else:
-            dprint('Node System: Node System: Datatype used is not valid please use str, dict (will be send as json) or bytes')
-
+            dprint(
+                "Node System: Node System: Datatype used is not valid please use str, dict (will be send as json) or bytes"
+            )
 
     def stop(self):
         self.terminate_flag.set()
 
     def parse_packet(self, packet):
         try:
-            packet_decoded = packet.decode('utf-8')
+            packet_decoded = packet.decode("utf-8")
 
             try:
                 return json.loads(packet_decoded)
@@ -84,25 +83,25 @@ class Node_Connection(threading.Thread):
             return packet
 
     def run(self):
-        self.sock.settimeout(10.0)          
-        buffer = b''
+        self.sock.settimeout(10.0)
+        buffer = b""
 
         while not self.terminate_flag.is_set():
-            chunk = b''
+            chunk = b""
 
             try:
-                chunk = self.sock.recv(4096) 
+                chunk = self.sock.recv(4096)
 
             except socket.timeout:
                 dprint("Node System: Node_Connection: timeout")
 
             except Exception as e:
                 self.terminate_flag.set()
-                dprint('Node System: Unexpected error')
+                dprint("Node System: Unexpected error")
                 dprint(e)
 
             # BUG: possible buffer overflow when no EOT_CHAR is found => Fix by max buffer count or so?
-            if chunk != b'':
+            if chunk != b"":
                 buffer += chunk
                 eot_pos = buffer.find(self.EOT_CHAR)
 
@@ -110,8 +109,8 @@ class Node_Connection(threading.Thread):
                     packet = buffer[:eot_pos]
                     buffer = buffer[eot_pos + 1:]
 
-
-                    self.main_node.message_from_node( self, self.parse_packet(packet) )
+                    self.main_node.message_from_node(self,
+                                                     self.parse_packet(packet))
 
                     eot_pos = buffer.find(self.EOT_CHAR)
 
@@ -129,6 +128,7 @@ class Node_Connection(threading.Thread):
         Connects to a node.
         """
         from node.node import Node
+
         Node.main_node.connect_to_node(ip, port)
 
     @staticmethod
@@ -137,4 +137,5 @@ class Node_Connection(threading.Thread):
         Connects to nodes from mixdb.
         """
         from node.node import Node
+
         Node.connectionfrommixdb()
