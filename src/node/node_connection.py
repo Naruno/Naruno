@@ -14,7 +14,6 @@ import time
 from config import *
 from lib.mixlib import dprint
 from node.unl import Unl
-from wallet.wallet import Wallet_Import
 
 
 class Node_Connection(threading.Thread):
