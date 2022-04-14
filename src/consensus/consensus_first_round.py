@@ -12,7 +12,8 @@ from lib.mixlib import dprint
 from node.node import Node
 from node.unl import Unl
 from transactions.process_the_transaction import ProccesstheTransaction
-from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
+from transactions.send_transaction_to_the_block import \
+    SendTransactiontoTheBlock
 
 
 def consensus_round_1(block):

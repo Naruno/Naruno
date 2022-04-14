@@ -11,10 +11,8 @@ import unittest
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
-from wallet.wallet import get_saved_wallet
-from wallet.wallet import Wallet_Create
-from wallet.wallet import Wallet_Delete
-from wallet.wallet import Wallet_Import
+from wallet.wallet import (Wallet_Create, Wallet_Delete, Wallet_Import,
+                           get_saved_wallet)
 
 
 class Test_Node(unittest.TestCase):

@@ -25,20 +25,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from random import SystemRandom
-import os
 import json
-from lib.encryption import encrypt, decrypt
-from lib.settings_system import the_settings
-from lib.config_system import get_config
-from config import *
-from base64 import b64encode, b64decode
-from hashlib import sha256
-
-
-from sys import version_info as pyVersion
+import os
+from base64 import b64decode, b64encode
 from binascii import hexlify, unhexlify
+from hashlib import sha256
+from random import SystemRandom
+from sys import version_info as pyVersion
 
+from config import *
+from lib.config_system import get_config
+from lib.encryption import decrypt, encrypt
+from lib.settings_system import the_settings
 
 if pyVersion.major == 3:
     # py3 constants and conversion functions
