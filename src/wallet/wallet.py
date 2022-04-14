@@ -25,6 +25,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+from random import SystemRandom
+import os
+import json
+from lib.encryption import encrypt, decrypt
+from lib.settings_system import the_settings
+from lib.config_system import get_config
+from config import *
+from base64 import b64encode, b64decode
 from hashlib import sha256
 
 
@@ -32,13 +40,11 @@ from sys import version_info as pyVersion
 from binascii import hexlify, unhexlify
 
 
-
-
 if pyVersion.major == 3:
     # py3 constants and conversion functions
 
     xrange = range
-    stringTypes = (str,) # lgtm [py/multiple-definition]
+    stringTypes = (str,)  # lgtm [py/multiple-definition]
     intTypes = (int, float)
 
     def toString(string):
@@ -55,7 +61,7 @@ if pyVersion.major == 3:
 else:
     # py2 constants and conversion functions
 
-    stringTypes = (str, unicode) # lgtm [py/multiple-definition]
+    stringTypes = (str, unicode)  # lgtm [py/multiple-definition]
     intTypes = (int, float, long)
 
     def toString(string):
@@ -114,8 +120,6 @@ class BinaryAscii:
         fmtStr = "%0" + str(2 * length) + "x"
         return toString(cls.binaryFromHex((fmtStr % number).encode()))
 
-from random import SystemRandom
-
 
 class RandomInteger:
 
@@ -129,9 +133,6 @@ class RandomInteger:
         """
 
         return SystemRandom().randrange(min, max + 1)
-
-from sys import version_info as pyVersion
-from binascii import hexlify, unhexlify
 
 
 if pyVersion.major == 3:
@@ -182,9 +183,11 @@ class Ecdsa:
         r, s, randSignPoint = 0, 0, None
         while r == 0 or s == 0:
             randNum = RandomInteger.between(1, curve.N - 1)
-            randSignPoint = Math.multiply(curve.G, n=randNum, A=curve.A, P=curve.P, N=curve.N)
+            randSignPoint = Math.multiply(
+                curve.G, n=randNum, A=curve.A, P=curve.P, N=curve.N)
             r = randSignPoint.x % curve.N
-            s = ((numberMessage + r * privateKey.secret) * (Math.inv(randNum, curve.N))) % curve.N
+            s = ((numberMessage + r * privateKey.secret)
+                 * (Math.inv(randNum, curve.N))) % curve.N
         recoveryId = randSignPoint.y & 1
         if randSignPoint.y > curve.N:
             recoveryId += 2
@@ -199,20 +202,17 @@ class Ecdsa:
         sigR = signature.r
         sigS = signature.s
         inv = Math.inv(sigS, curve.N)
-        u1 = Math.multiply(curve.G, n=(numberMessage * inv) % curve.N, A=curve.A, P=curve.P, N=curve.N)
-        u2 = Math.multiply(publicKey.point, n=(sigR * inv) % curve.N, A=curve.A, P=curve.P, N=curve.N)
+        u1 = Math.multiply(curve.G, n=(numberMessage * inv) %
+                           curve.N, A=curve.A, P=curve.P, N=curve.N)
+        u2 = Math.multiply(publicKey.point, n=(sigR * inv) %
+                           curve.N, A=curve.A, P=curve.P, N=curve.N)
 
+        # add = Math.add(u1, u2, P=curve.P, A=curve.A) # test and delete
+        # return sigR == add.x # test and delete
 
-        #add = Math.add(u1, u2, P=curve.P, A=curve.A) # test and delete
-        #return sigR == add.x # test and delete
-        
         add = Math.add(u1, u2, P=curve.P, A=curve.A)
         modX = add.x % curve.N
         return sigR == modX
-
-
-
-from base64 import b64encode, b64decode
 
 
 class Base64:
@@ -224,7 +224,6 @@ class Base64:
     @classmethod
     def encode(cls, string):
         return b64encode(string)
-
 
 
 hexAt = "\x00"
@@ -271,7 +270,8 @@ def encodeOid(first, second, *pieces):
     assert first <= 2
     assert second <= 39
 
-    encodedPieces = [chr(40 * first + second)] + [_encodeNumber(p) for p in pieces]
+    encodedPieces = [chr(40 * first + second)] + \
+        [_encodeNumber(p) for p in pieces]
     body = "".join(encodedPieces)
 
     return hexF + _encodeLength(len(body)) + body
@@ -380,7 +380,7 @@ def toPem(der, name):
     b64 = toString(Base64.encode(der))
     lines = ["-----BEGIN " + name + "-----\n"]
     lines.extend([
-        b64[start:start + 64] 
+        b64[start:start + 64]
         for start in xrange(0, len(b64), 64)
     ])
     lines.append("\n")
@@ -468,6 +468,7 @@ def _extractFirstInt(string):
 #
 # y^2 = x^3 + A*x + B (mod P)
 #
+
 
 class Point:
 
@@ -613,7 +614,8 @@ class PrivateKey:
         curve = curvesByOid[oidCurve]
 
         if len(privateKeyStr) < curve.length():
-            privateKeyStr = hexAt * (curve.lenght() - len(privateKeyStr)) + privateKeyStr
+            privateKeyStr = hexAt * \
+                (curve.lenght() - len(privateKeyStr)) + privateKeyStr
 
         return cls.fromString(privateKeyStr, curve)
 
@@ -630,7 +632,8 @@ class Signature:
         self.recoveryId = recoveryId
 
     def toDer(self, withRecoveryId=False):
-        encodedSequence = encodeSequence(encodeInteger(self.r), encodeInteger(self.s))
+        encodedSequence = encodeSequence(
+            encodeInteger(self.r), encodeInteger(self.s))
         if not withRecoveryId:
             return encodedSequence
         return chr(27 + self.recoveryId) + encodedSequence
@@ -642,18 +645,21 @@ class Signature:
     def fromDer(cls, string, recoveryByte=False):
         recoveryId = None
         if recoveryByte:
-            recoveryId = string[0] if isinstance(string[0], intTypes) else ord(string[0])
+            recoveryId = string[0] if isinstance(
+                string[0], intTypes) else ord(string[0])
             recoveryId -= 27
             string = string[1:]
 
         rs, empty = removeSequence(string)
         if len(empty) != 0:
-            raise Exception("trailing junk after DER signature: %s" % BinaryAscii.hexFromBinary(empty))
+            raise Exception("trailing junk after DER signature: %s" %
+                            BinaryAscii.hexFromBinary(empty))
 
         r, rest = removeInteger(rs)
         s, empty = removeInteger(rest)
         if len(empty) != 0:
-            raise Exception("trailing junk after DER numbers: %s" % BinaryAscii.hexFromBinary(empty))
+            raise Exception("trailing junk after DER numbers: %s" %
+                            BinaryAscii.hexFromBinary(empty))
 
         return Signature(r=r, s=s, recoveryId=recoveryId)
 
@@ -661,7 +667,6 @@ class Signature:
     def fromBase64(cls, string, recoveryByte=False):
         der = Base64.decode(string)
         return cls.fromDer(der, recoveryByte)
-
 
 
 class Math:
@@ -859,6 +864,8 @@ class Math:
             A,
             P,
         )
+
+
 class PublicKey:
 
     def __init__(self, point, curve):
@@ -951,73 +958,49 @@ class PublicKey:
         return PublicKey(point=p, curve=curve)
 
 
-
-
-from config import *
-
-from lib.config_system import get_config
-from lib.settings_system import the_settings
-from lib.encryption import encrypt, decrypt
-
-import json
-import os
-from hashlib import sha256
-
-def save_wallet_list(publicKey,privateKey,password):
+def save_wallet_list(publicKey, privateKey, password):
     wallet_list = get_saved_wallet()
-
 
     wallet_list[publicKey] = {}
 
     wallet_list[publicKey]["publickey"] = publicKey
     wallet_list[publicKey]["privatekey"] = privateKey
 
-    wallet_list[publicKey]["password_sha256"] = sha256(password.encode("utf-8")).hexdigest()
-
-
-    
-
-
+    wallet_list[publicKey]["password_sha256"] = sha256(
+        password.encode("utf-8")).hexdigest()
 
     os.chdir(get_config()["main_folder"])
     with open(WALLETS_PATH, 'w') as wallet_list_file:
         json.dump(wallet_list, wallet_list_file, indent=4)
 
 
-
 def get_saved_wallet():
-    
-        os.chdir(get_config()["main_folder"])
 
-        if not os.path.exists(WALLETS_PATH):
-            return {}
-        
+    os.chdir(get_config()["main_folder"])
 
-        with open(WALLETS_PATH, 'rb') as wallet_list_file:
-            return json.load(wallet_list_file)
+    if not os.path.exists(WALLETS_PATH):
+        return {}
 
+    with open(WALLETS_PATH, 'rb') as wallet_list_file:
+        return json.load(wallet_list_file)
 
 
-
-
-
-def Wallet_Create(password, save = True):
+def Wallet_Create(password, save=True):
 
     my_private_key = PrivateKey()
     my_public_key = my_private_key.publicKey()
 
-
-
-
     if save == True:
-        encrypted_key = encrypt(my_private_key.toPem(),password) if not len(list(get_saved_wallet())) == 0 else my_private_key.toPem()
+        encrypted_key = encrypt(my_private_key.toPem(), password) if not len(
+            list(get_saved_wallet())) == 0 else my_private_key.toPem()
         del my_private_key
-        save_wallet_list(my_public_key.toPem(),encrypted_key, password)
+        save_wallet_list(my_public_key.toPem(), encrypted_key, password)
         return (encrypted_key)
     else:
         return (my_private_key)
 
-def Wallet_Import(account,mode,password = None):
+
+def Wallet_Import(account, mode, password=None):
     """
     A function for get info about a wallet.
 
@@ -1034,7 +1017,7 @@ def Wallet_Import(account,mode,password = None):
         Wallet_Create("node")
         temp_saved_wallet = get_saved_wallet()
 
-    if isinstance(account,int):
+    if isinstance(account, int):
         if not -1 == account:
             account = list(temp_saved_wallet)[account]
         else:
@@ -1054,7 +1037,7 @@ def Wallet_Import(account,mode,password = None):
             return my_private_key
 
     elif mode == 2:
-            return temp_saved_wallet[account]["password_sha256"]
+        return temp_saved_wallet[account]["password_sha256"]
 
     elif mode == 3:
         my_address = temp_saved_wallet[account]["publickey"]
@@ -1073,10 +1056,11 @@ def Wallet_Delete(account):
     if account in saved_wallet:
         del saved_wallet[account]
         from lib.config_system import get_config
-    
+
         os.chdir(get_config()["main_folder"])
         with open(WALLETS_PATH, 'w') as wallet_list_file:
             json.dump(saved_wallet, wallet_list_file, indent=4)
+
 
 def Address(publickey):
 
