@@ -12,8 +12,9 @@ from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
 from app.app_main import app_tigger
-from blockchain.block.blocks_hash import (GetBlockshash, SaveBlockshash,
-                                          SaveBlockshash_part)
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash_part
 from blockchain.block.save_block_to_blockchain_db import \
     saveBlockstoBlockchainDB
 from config import TEMP_BLOCK_PATH
@@ -24,7 +25,10 @@ from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
 from transactions.pending_to_validating import PendinttoValidating
 from transactions.save_to_my_transaction import SavetoMyTransaction
-from wallet.wallet import PrivateKey, PublicKey, Signature, Wallet_Import
+from wallet.wallet import PrivateKey
+from wallet.wallet import PublicKey
+from wallet.wallet import Signature
+from wallet.wallet import Wallet_Import
 
 
 class Block:
