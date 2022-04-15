@@ -13,9 +13,12 @@ on:
   pull_request:
     paths:
       - '.github/workflows/tests.yml'
+      - 'docker/local/api/**'
       - 'src/**'  
       - 'requirements/**'
       - 'tests/unit_tests/**'
+      - 'tests/functional_tests/**'
+      - 'auto_builders/**'  
 
 jobs:
   lint_with_flake8:
@@ -62,7 +65,7 @@ jobs:
         pip install flask==2.0.0 waitress==2.0.0 werkzeug==2.0.3
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests/unit_tests
   unit-test-macos-latest:
     needs: lint_with_flake8
 
@@ -84,7 +87,7 @@ jobs:
         pip install flask==2.0.0 waitress==2.0.0 werkzeug==2.0.3
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests/unit_tests
   unit-test-windows-latest:
     needs: lint_with_flake8
 
@@ -106,7 +109,7 @@ jobs:
         pip install flask==2.0.0 waitress==2.0.0 werkzeug==2.0.3
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests/unit_tests
   functional-test-docker-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
     runs-on: ubuntu-latest
