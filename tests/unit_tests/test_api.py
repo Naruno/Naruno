@@ -30,7 +30,7 @@ class Test_Config(unittest.TestCase):
 
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
 from api import app
 from lib.settings_system import the_settings
 unittest.main(exit=False)

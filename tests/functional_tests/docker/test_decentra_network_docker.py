@@ -8,7 +8,7 @@
 import unittest
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","..",".."))
 import urllib.request, json
 import time
 from auto_builders.docker import Decentra_Network_Docker

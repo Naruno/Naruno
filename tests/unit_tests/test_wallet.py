@@ -59,7 +59,7 @@ class Test_Wallet(unittest.TestCase):
 
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
 from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete, PrivateKey, toBytes, PublicKey
 from lib.encryption import decrypt
 unittest.main(exit=False)

@@ -7,15 +7,18 @@ on:
       - 'docker/local/api/**'
       - 'src/**'  
       - 'requirements/**'
-      - 'test/**'
-      - 'functional_test/**'
+      - 'tests/unit_tests/**'
+      - 'tests/functional_tests/**'
       - 'auto_builders/**'      
   pull_request:
     paths:
       - '.github/workflows/tests.yml'
+      - 'docker/local/api/**'
       - 'src/**'  
       - 'requirements/**'
-      - 'test/**'
+      - 'tests/unit_tests/**'
+      - 'tests/functional_tests/**'
+      - 'auto_builders/**'  
 
 jobs:
   lint_with_flake8:
@@ -63,7 +66,7 @@ jobs:
         pip install -r requirements/gui.txt
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests/unit_tests
   unit-test-macos-latest:
     needs: lint_with_flake8
 
@@ -86,7 +89,7 @@ jobs:
         pip install -r requirements/gui.txt
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests/unit_tests
   unit-test-windows-latest:
     needs: lint_with_flake8
 
@@ -109,7 +112,8 @@ jobs:
         pip install -r requirements/gui.txt
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests/unit_tests
+
   functional-test-docker-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
     runs-on: ubuntu-latest
@@ -127,5 +131,5 @@ jobs:
         pip install pytest
         cd ..
         docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/functional_test/docker/test_decentra_network_docker.py
+        pytest Decentra-Network/tests/functional_tests/docker/test_decentra_network_docker.py
 
