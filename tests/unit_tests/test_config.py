@@ -5,10 +5,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.config_system import get_config
-import sys
 import os
+import sys
 import unittest
+
+from lib.config_system import get_config
 
 
 class Test_Config(unittest.TestCase):
