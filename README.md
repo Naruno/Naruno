@@ -31,6 +31,10 @@
   </p>
 
   <p align="center">
+    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml">
+  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
+  </a>
+  .
   <a href="https://codebeat.co/projects/github-com-decentra-network-decentra-network-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
   .
   <a href="https://www.codacy.com/gh/Decentra-Network/Decentra-Network/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Decentra-Network/Decentra-Network&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
@@ -48,35 +52,13 @@
   <a href="https://codescene.io/projects/23147"><img src="https://codescene.io/projects/23147/status-badges/missed-goals" alt="Missed Goals"></a>
   </p>
 
-  <p align="center">
-  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/windows_latest_unit_test.yml/badge.svg" alt="Windows_Latest_Unit_Test">
-  </a>
-  .
-  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/ubuntu_latest_unit_test.yml/badge.svg" alt="Ubuntu_Latest_Unit_Test">
-  </a>
-  .
-  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml">
-    <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/macos_latest_unit_test.yml/badge.svg" alt="MacOS_Latest_Unit_Test">
-  </a>
-  </p>
 
   <p align="center">
-  <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
-  </a>
-  .
-   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/lint_with_flake8.yml/badge.svg" alt="Lint_with_flake8">
+   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/tests.yml">
+  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/tests.yml/badge.svg" alt="Lint_with_flake8">
   <a/>
   </p>
 
-  <p align="center">
-    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml">
-      <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/functional_tests.yml/badge.svg" alt="Functional_tests">
-    </a>
-  </p>
 
 # Introducing
 
