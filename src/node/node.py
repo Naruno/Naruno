@@ -36,10 +36,13 @@ class Node(threading.Thread):
     main_node = None
     unl_nodes = []
 
-    id = "".join([
-        l.strip() for l in Wallet_Import(0, 0).splitlines()
-        if l and not l.startswith("-----")
-    ])
+    id = "".join(
+        [
+            l.strip()
+            for l in Wallet_Import(0, 0).splitlines()
+            if l and not l.startswith("-----")
+        ]
+    )
 
     def __init__(self, host, port, callback=None):
         self.__class__.main_node = self
@@ -134,8 +137,7 @@ class Node(threading.Thread):
 
         for n in self.nodes_inbound:
             if n in exclude:
-                dprint(
-                    "Node System: Node send_data_to_nodes: Node is excluded")
+                dprint("Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 try:
                     self.send_data_to_node(n, data)
@@ -144,8 +146,7 @@ class Node(threading.Thread):
 
         for n in self.nodes_outbound:
             if n in exclude:
-                dprint(
-                    "Node System: Node send_data_to_nodes: Node is excluded")
+                dprint("Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 try:
                     self.send_data_to_node(n, data)
@@ -164,21 +165,17 @@ class Node(threading.Thread):
                     "Node System: Node send_data_to_node: Could not send data to node"
                 )
         else:
-            dprint(
-                "Node System: Node send_data_to_node: Node is not connected")
+            dprint("Node System: Node send_data_to_node: Node is not connected")
 
     def connect_to_node(self, host, port):
 
         if host == self.host and port == self.port:
-            dprint(
-                "Node System: Node connect_to_node: You can not connect to yourself"
-            )
+            dprint("Node System: Node connect_to_node: You can not connect to yourself")
             return False
 
         for node in self.nodes_outbound:
             if node.host == host and node.port == port:
-                dprint(
-                    "Node System: connect_to_node: Node is already connected")
+                dprint("Node System: connect_to_node: Node is already connected")
                 return True
 
         try:
@@ -194,7 +191,8 @@ class Node(threading.Thread):
 
             if Unl.node_is_unl(connected_node_id):
                 thread_client = self.create_the_new_connection(
-                    sock, connected_node_id, host, port)
+                    sock, connected_node_id, host, port
+                )
                 thread_client.start()
 
                 self.nodes_outbound.append(thread_client)
@@ -213,8 +211,7 @@ class Node(threading.Thread):
             del self.nodes_outbound[self.nodes_outbound.index(node)]
 
         else:
-            print(
-                "Node System: Node disconnect_to_node: Node is not connected")
+            print("Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
         self.terminate_flag.set()
@@ -252,8 +249,10 @@ class Node(threading.Thread):
         already_in_list = False
 
         for element in node_list:
-            if (node_list[element]["host"] == host
-                    and node_list[element]["port"] == port):
+            if (
+                node_list[element]["host"] == host
+                and node_list[element]["port"] == port
+            ):
                 already_in_list = True
 
         if not already_in_list:
@@ -279,8 +278,9 @@ class Node(threading.Thread):
         from node.node import Node
 
         for element in node_list:
-            Node.main_node.connect_to_node(node_list[element]["host"],
-                                           node_list[element]["port"])
+            Node.main_node.connect_to_node(
+                node_list[element]["host"], node_list[element]["port"]
+            )
 
     @staticmethod
     def connected_node_delete(node):
@@ -303,12 +303,15 @@ class Node(threading.Thread):
             self.send_full_chain(node)
 
         try:
-            if (data["fullblock"] == 1 and Unl.node_is_unl(node.id)
-                    and Ecdsa.verify(
-                        "fullblock" + data["byte"],
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-            )):
+            if (
+                data["fullblock"] == 1
+                and Unl.node_is_unl(node.id)
+                and Ecdsa.verify(
+                    "fullblock" + data["byte"],
+                    Signature.fromBase64(data["signature"]),
+                    PublicKey.fromPem(node.id),
+                )
+            ):
                 print("getting chain")
                 self.get_full_chain(data, node)
         except Exception as e:
@@ -316,12 +319,15 @@ class Node(threading.Thread):
 
         try:
 
-            if (data["fullaccounts"] == 1 and Unl.node_is_unl(node.id)
-                    and Ecdsa.verify(
-                        "fullaccounts" + data["byte"],
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-            )):
+            if (
+                data["fullaccounts"] == 1
+                and Unl.node_is_unl(node.id)
+                and Ecdsa.verify(
+                    "fullaccounts" + data["byte"],
+                    Signature.fromBase64(data["signature"]),
+                    PublicKey.fromPem(node.id),
+                )
+            ):
                 print("getting chain")
                 self.get_full_accounts(data, node)
         except Exception as e:
@@ -329,12 +335,15 @@ class Node(threading.Thread):
 
         try:
 
-            if (data["fullblockshash"] == 1 and Unl.node_is_unl(node.id)
-                    and Ecdsa.verify(
-                        "fullblockshash" + data["byte"],
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-            )):
+            if (
+                data["fullblockshash"] == 1
+                and Unl.node_is_unl(node.id)
+                and Ecdsa.verify(
+                    "fullblockshash" + data["byte"],
+                    Signature.fromBase64(data["signature"]),
+                    PublicKey.fromPem(node.id),
+                )
+            ):
                 self.get_full_blockshash(data, node)
         except Exception as e:
             print(e)
@@ -373,29 +382,28 @@ class Node(threading.Thread):
         dprint("signature_list: " + str(signature_list))
         dprint("publickey from pem: " + str(Wallet_Import(0, 1)))
 
-        Merkle_signature_list = (MerkleTree(signature_list).getRootHash()
-                                 if len(signature_list) != 0 else "0")
+        Merkle_signature_list = (
+            MerkleTree(signature_list).getRootHash()
+            if len(signature_list) != 0
+            else "0"
+        )
 
         dprint("\nmerkleroot: " + Merkle_signature_list)
 
         data = {
-            "action":
-            "myblock",
-            "transaction":
-            new_list,
-            "sequance_number":
-            system.sequance_number,
-            "signature":
-            Ecdsa.sign(
-                "myblock" + Merkle_signature_list +
-                str(system.sequance_number),
+            "action": "myblock",
+            "transaction": new_list,
+            "sequance_number": system.sequance_number,
+            "signature": Ecdsa.sign(
+                "myblock" + Merkle_signature_list + str(system.sequance_number),
                 PrivateKey.fromPem(Wallet_Import(0, 1)),
             ).toBase64(),
         }
 
         for each_node in nodes:
-            dprint("Raund 1: second ok of get candidate block: " +
-                   str(each_node.__dict__))
+            dprint(
+                "Raund 1: second ok of get candidate block: " + str(each_node.__dict__)
+            )
             self.send_data_to_node(each_node, data)
 
     def send_my_block_hash(self, nodes):
@@ -404,30 +412,30 @@ class Node(threading.Thread):
         if system.raund_1 and not system.raund_2:
 
             data = {
-                "action":
-                "myblockhash",
-                "hash":
-                system.hash,
-                "sequance_number":
-                system.sequance_number,
-                "signature":
-                Ecdsa.sign(
+                "action": "myblockhash",
+                "hash": system.hash,
+                "sequance_number": system.sequance_number,
+                "signature": Ecdsa.sign(
                     "myblockhash" + system.hash + str(system.sequance_number),
                     PrivateKey.fromPem(Wallet_Import(0, 1)),
                 ).toBase64(),
             }
 
             for each_node in nodes:
-                dprint("Raund 2: second ok of get candidate block hashes: " +
-                       str(each_node.__dict__))
+                dprint(
+                    "Raund 2: second ok of get candidate block hashes: "
+                    + str(each_node.__dict__)
+                )
                 self.send_data_to_node(each_node, data)
 
     def get_candidate_block(self, data, node):
 
         dprint("Getting the candidate block")
 
-        if (Unl.node_is_unl(node.id)
-                and GetBlock().sequance_number == data["sequance_number"]):
+        if (
+            Unl.node_is_unl(node.id)
+            and GetBlock().sequance_number == data["sequance_number"]
+        ):
             dprint("is unl")
 
             signature_list = []
@@ -438,23 +446,30 @@ class Node(threading.Thread):
 
             merkle_root_of_signature_list = (
                 MerkleTree(signature_list).getRootHash()
-                if len(signature_list) != 0 else "0")
+                if len(signature_list) != 0
+                else "0"
+            )
 
-            dprint("signatureverify: " + str(
-                Ecdsa.verify(
-                    "myblock" + merkle_root_of_signature_list,
-                    Signature.fromBase64(data["signature"]),
-                    PublicKey.fromPem(node.id),
-                )))
+            dprint(
+                "signatureverify: "
+                + str(
+                    Ecdsa.verify(
+                        "myblock" + merkle_root_of_signature_list,
+                        Signature.fromBase64(data["signature"]),
+                        PublicKey.fromPem(node.id),
+                    )
+                )
+            )
             dprint("publickey from pem: " + str(node.id))
 
             dprint("merkleroot: " + merkle_root_of_signature_list)
 
             if Ecdsa.verify(
-                    "myblock" + merkle_root_of_signature_list +
-                    str(data["sequance_number"]),
-                    Signature.fromBase64(data["signature"]),
-                    PublicKey.fromPem(node.id),
+                "myblock"
+                + merkle_root_of_signature_list
+                + str(data["sequance_number"]),
+                Signature.fromBase64(data["signature"]),
+                PublicKey.fromPem(node.id),
             ):
                 dprint("ecdsa true")
 
@@ -471,15 +486,16 @@ class Node(threading.Thread):
 
         dprint("Getting the candidate block hash")
 
-        if (Unl.node_is_unl(node.id)
-                and GetBlock().sequance_number == data["sequance_number"]):
+        if (
+            Unl.node_is_unl(node.id)
+            and GetBlock().sequance_number == data["sequance_number"]
+        ):
             dprint("is unl")
 
             if Ecdsa.verify(
-                    "myblockhash" + data["hash"] +
-                    str(data["sequance_number"]),
-                    Signature.fromBase64(data["signature"]),
-                    PublicKey.fromPem(node.id),
+                "myblockhash" + data["hash"] + str(data["sequance_number"]),
+                Signature.fromBase64(data["signature"]),
+                PublicKey.fromPem(node.id),
             ):
                 dprint("ecdsa true")
                 data["sender"] = node.id
@@ -493,13 +509,10 @@ class Node(threading.Thread):
         while SendData:
 
             data = {
-                "fullblock":
-                1,
+                "fullblock": 1,
                 "byte": (SendData.decode(encoding="iso-8859-1")),
-                "signature":
-                Ecdsa.sign(
-                    "fullblock" + str(
-                        (SendData.decode(encoding="iso-8859-1"))),
+                "signature": Ecdsa.sign(
+                    "fullblock" + str((SendData.decode(encoding="iso-8859-1"))),
                     PrivateKey.fromPem(Wallet_Import(0, 1)),
                 ).toBase64(),
             }
@@ -514,14 +527,11 @@ class Node(threading.Thread):
 
             if not SendData:
                 data = {
-                    "fullblock":
-                    1,
-                    "byte":
-                    "end",
-                    "signature":
-                    Ecdsa.sign("fullblock" + "end",
-                               PrivateKey.fromPem(Wallet_Import(
-                                   0, 1))).toBase64(),
+                    "fullblock": 1,
+                    "byte": "end",
+                    "signature": Ecdsa.sign(
+                        "fullblock" + "end", PrivateKey.fromPem(Wallet_Import(0, 1))
+                    ).toBase64(),
                 }
                 if not node is None:
                     self.send_data_to_node(node, data)
@@ -535,13 +545,10 @@ class Node(threading.Thread):
         while SendData:
 
             data = {
-                "fullaccounts":
-                1,
+                "fullaccounts": 1,
                 "byte": (SendData.decode(encoding="iso-8859-1")),
-                "signature":
-                Ecdsa.sign(
-                    "fullaccounts" + str(
-                        (SendData.decode(encoding="iso-8859-1"))),
+                "signature": Ecdsa.sign(
+                    "fullaccounts" + str((SendData.decode(encoding="iso-8859-1"))),
                     PrivateKey.fromPem(Wallet_Import(0, 1)),
                 ).toBase64(),
             }
@@ -556,14 +563,11 @@ class Node(threading.Thread):
 
             if not SendData:
                 data = {
-                    "fullaccounts":
-                    1,
-                    "byte":
-                    "end",
-                    "signature":
-                    Ecdsa.sign("fullaccounts" + "end",
-                               PrivateKey.fromPem(Wallet_Import(
-                                   0, 1))).toBase64(),
+                    "fullaccounts": 1,
+                    "byte": "end",
+                    "signature": Ecdsa.sign(
+                        "fullaccounts" + "end", PrivateKey.fromPem(Wallet_Import(0, 1))
+                    ).toBase64(),
                 }
                 if not node is None:
                     self.send_data_to_node(node, data)
@@ -577,13 +581,10 @@ class Node(threading.Thread):
         while SendData:
 
             data = {
-                "fullblockshash":
-                1,
+                "fullblockshash": 1,
                 "byte": (SendData.decode(encoding="iso-8859-1")),
-                "signature":
-                Ecdsa.sign(
-                    "fullblockshash" + str(
-                        (SendData.decode(encoding="iso-8859-1"))),
+                "signature": Ecdsa.sign(
+                    "fullblockshash" + str((SendData.decode(encoding="iso-8859-1"))),
                     PrivateKey.fromPem(Wallet_Import(0, 1)),
                 ).toBase64(),
             }
@@ -598,12 +599,9 @@ class Node(threading.Thread):
 
             if not SendData:
                 data = {
-                    "fullblockshash":
-                    1,
-                    "byte":
-                    "end",
-                    "signature":
-                    Ecdsa.sign(
+                    "fullblockshash": 1,
+                    "byte": "end",
+                    "signature": Ecdsa.sign(
                         "fullblockshash" + "end",
                         PrivateKey.fromPem(Wallet_Import(0, 1)),
                     ).toBase64(),
@@ -635,15 +633,13 @@ class Node(threading.Thread):
 
                 system = GetBlock()
                 system.newly = True
-                from transactions.change_transaction_fee import \
-                    ChangeTransactionFee
+                from transactions.change_transaction_fee import ChangeTransactionFee
 
                 ChangeTransactionFee(system)
 
                 system.exclude_validators = []
                 dprint(system.sequance_number)
-                perpetualTimer(system.consensus_timer,
-                               consensus_trigger).start()
+                perpetualTimer(system.consensus_timer, consensus_trigger).start()
                 system.save_block()
 
             else:
@@ -689,8 +685,7 @@ class Node(threading.Thread):
     def get_transaction(self, data, node):
         dprint("Getting the transactions")
         system = GetBlock()
-        from transactions.send_transaction_to_the_block import \
-            SendTransactiontoTheBlock
+        from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
 
         SendTransactiontoTheBlock(
             system,
