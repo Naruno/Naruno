@@ -630,8 +630,6 @@ class Node(threading.Thread):
 
                 os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
 
-                from app.app_main import apps_starter
-                from blockchain.block.block_main import apps_starter
                 from consensus.consensus_main import consensus_trigger
                 from lib.perpetualtimer import perpetualTimer
 
@@ -646,7 +644,6 @@ class Node(threading.Thread):
                 dprint(system.sequance_number)
                 perpetualTimer(system.consensus_timer,
                                consensus_trigger).start()
-                apps_starter()
                 system.save_block()
 
             else:
