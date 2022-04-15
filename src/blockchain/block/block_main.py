@@ -12,7 +12,6 @@ from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
 from app.app_main import app_tigger
-from app.app_main import apps_starter
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash_part
@@ -100,7 +99,6 @@ class Block:
 
         self.save_block()
         perpetualTimer(self.consensus_timer, consensus_trigger).start()
-        apps_starter()
 
     def reset_the_block(self):
         """
