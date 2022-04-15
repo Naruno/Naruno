@@ -19,6 +19,6 @@ Kivy==2.0.0
 kivymd==0.104.1
 kivymd_extensions.sweetalert==0.1.5
 """,
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     zip_safe=False,
 )
