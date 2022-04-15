@@ -15,11 +15,10 @@ setup(
     author_email="atadogan06@gmail.com",
     license="MPL-2.0",
     install_requires="""
-decentra-network==0.14.0
 Kivy==2.0.0
 kivymd==0.104.1
 kivymd_extensions.sweetalert==0.1.5
 """,
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     zip_safe=False,
 )
