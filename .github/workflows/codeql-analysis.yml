@@ -18,16 +18,16 @@ on:
       - 'docker/**'
       - 'src/**'  
       - 'requirements/**'
-      - 'test/**'
-      - 'functional_test/**'
+      - 'tests/unit_tests/**'
+      - 'tests/functional_tests/**'
   pull_request:
     paths:
       - '.github/workflows/codeql-analysis.yml'
       - 'docker/**'
       - 'src/**'  
       - 'requirements/**'
-      - 'test/**'
-      - 'functional_test/**'
+      - 'tests/unit_tests/**'
+      - 'tests/functional_tests/**'
   schedule:
     - cron: '22 14 * * 5'
 
