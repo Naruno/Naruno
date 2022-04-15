@@ -6,14 +6,21 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from lib.encryption import decrypt
-from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete, PrivateKey, toBytes, PublicKey
+from wallet.wallet import (
+    Wallet_Create,
+    get_saved_wallet,
+    Wallet_Import,
+    Wallet_Delete,
+    PrivateKey,
+    toBytes,
+    PublicKey,
+)
 import sys
 import os
 import unittest
 
 
 class Test_Wallet(unittest.TestCase):
-
     def test_saving_and_importing_and_deleting_the_wallet(self):
 
         password = "123"
@@ -30,13 +37,16 @@ class Test_Wallet(unittest.TestCase):
                     Wallet_Delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
-                elif decrypt(temp_private_key, password) == (Wallet_Import(each_wallet, 1, password)):
+                elif decrypt(temp_private_key, password) == (
+                    Wallet_Import(each_wallet, 1, password)
+                ):
                     Wallet_Delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
 
         self.assertEqual(
-            result, True, "A problem on the saving and importing the wallet.")
+            result, True, "A problem on the saving and importing the wallet."
+        )
 
     def test_Private_Pem_Conversion(self):
 

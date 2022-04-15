@@ -12,7 +12,6 @@ import unittest
 
 
 class Test_Config(unittest.TestCase):
-
     def test_getting_and_saving_config(self):
         finded_true_folder = False
 
