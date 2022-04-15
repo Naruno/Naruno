@@ -13,22 +13,16 @@ import time
 from hashlib import sha256
 
 from blockchain.block.get_block import GetBlock
-from config import CONNECTED_NODE_PATH
-from config import LOADING_BLOCK_PATH
-from config import TEMP_ACCOUNTS_PATH
-from config import TEMP_BLOCK_PATH
-from config import TEMP_BLOCKSHASH_PATH
+from config import (CONNECTED_NODE_PATH, LOADING_BLOCK_PATH,
+                    TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PATH)
 from lib.merkle_root import MerkleTree
 from lib.mixlib import dprint
 from node.node import *
 from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.transaction import Transaction
-from wallet.wallet import Ecdsa
-from wallet.wallet import PrivateKey
-from wallet.wallet import PublicKey
-from wallet.wallet import Signature
-from wallet.wallet import Wallet_Import
+from wallet.wallet import (Ecdsa, PrivateKey, PublicKey, Signature,
+                           Wallet_Import)
 
 
 class Node(threading.Thread):
@@ -633,7 +627,8 @@ class Node(threading.Thread):
 
                 system = GetBlock()
                 system.newly = True
-                from transactions.change_transaction_fee import ChangeTransactionFee
+                from transactions.change_transaction_fee import \
+                    ChangeTransactionFee
 
                 ChangeTransactionFee(system)
 
@@ -685,7 +680,8 @@ class Node(threading.Thread):
     def get_transaction(self, data, node):
         dprint("Getting the transactions")
         system = GetBlock()
-        from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
+        from transactions.send_transaction_to_the_block import \
+            SendTransactiontoTheBlock
 
         SendTransactiontoTheBlock(
             system,

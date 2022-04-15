@@ -7,7 +7,6 @@
 
 
 import os
-
 from threading import Thread
 
 from lib.mixlib import dprint
