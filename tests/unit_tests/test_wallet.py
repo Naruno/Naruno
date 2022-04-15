@@ -19,6 +19,7 @@ from wallet.wallet import Wallet_Import
 
 
 class Test_Wallet(unittest.TestCase):
+
     def test_saving_and_importing_and_deleting_the_wallet(self):
 
         password = "123"
@@ -30,21 +31,22 @@ class Test_Wallet(unittest.TestCase):
         result = False
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (Wallet_Import(each_wallet, 1, password)):
+                if temp_private_key == (Wallet_Import(each_wallet, 1,
+                                                      password)):
 
                     Wallet_Delete(each_wallet)
-                    result = True if each_wallet not in get_saved_wallet() else False
+                    result = True if each_wallet not in get_saved_wallet(
+                    ) else False
                     break
-                elif decrypt(temp_private_key, password) == (
-                    Wallet_Import(each_wallet, 1, password)
-                ):
+                elif decrypt(temp_private_key, password) == (Wallet_Import(
+                        each_wallet, 1, password)):
                     Wallet_Delete(each_wallet)
-                    result = True if each_wallet not in get_saved_wallet() else False
+                    result = True if each_wallet not in get_saved_wallet(
+                    ) else False
                     break
 
-        self.assertEqual(
-            result, True, "A problem on the saving and importing the wallet."
-        )
+        self.assertEqual(result, True,
+                         "A problem on the saving and importing the wallet.")
 
     def test_Private_Pem_Conversion(self):
 
