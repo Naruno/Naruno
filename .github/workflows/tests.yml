@@ -110,7 +110,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-  functional-test-docker-ubuntu-latest:
+  functional-test-docker-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
     runs-on: ubuntu-latest
     strategy:
