@@ -15,7 +15,6 @@ setup(
     author_email="atadogan06@gmail.com",
     license="MPL-2.0",
     install_requires="""
-decentra-network==0.14.0
 flask==2.0.0
 waitress==2.1.1
 werkzeug==2.0.3
