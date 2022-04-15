@@ -40,7 +40,7 @@ class Block:
     own all the coins.
     """
 
-    def __init__(self, creator, previous_hash="0"):
+    def __init__(self, creator, previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9"):
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 7
