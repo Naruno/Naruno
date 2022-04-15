@@ -1,4 +1,4 @@
-name: Deploy Packages
+name: Deploys
 
 on:
   release:
