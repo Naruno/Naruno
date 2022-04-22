@@ -27,6 +27,9 @@ def CheckTransaction(block, transaction):
     """
     This function checks the transaction.
     """
+
+    logger.info(f"Checking the transaction started {block.sequance_number}:{transaction.signature}")
+
     validation = True
 
     if not TXAlreadyGot(block, transaction):
@@ -79,4 +82,6 @@ def CheckTransaction(block, transaction):
         logger.info("Balance is enough")
     else:
         validation = False
+
+    logger.info(f"Checking the transaction finished {block.sequance_number}:{transaction.signature}")
     return validation

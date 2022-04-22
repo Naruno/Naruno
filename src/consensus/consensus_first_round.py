@@ -18,7 +18,7 @@ from transactions.send_transaction_to_the_block import \
     SendTransactiontoTheBlock
 
 
-logger = get_logger("CONSENSUS FIRST ROUND")
+logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
 def consensus_round_1(block):
@@ -31,6 +31,8 @@ def consensus_round_1(block):
       * block: The block (class) we want consensus
       round 1 to be done
     """
+
+    logger.info("Firsts round is starting")
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_1_node:
@@ -137,3 +139,5 @@ def consensus_round_1(block):
                 block.increase_the_time += 1
                 block.decrease_the_time = 0
                 block.save_block()
+
+    logger.info("Firsts round is done")

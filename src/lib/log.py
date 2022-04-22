@@ -9,7 +9,7 @@ import os
 import sys
 import time
 from lib.config_system import get_config
-
+from config import LOGS_PATH
 
 def get_logger(name):
     logger = logging.getLogger(name)
@@ -30,7 +30,7 @@ def get_logger(name):
     fh = logging.FileHandler(
         os.path.join(
             main_folder,
-            "logs",
+            LOGS_PATH,
             f"{name}.log"
         )
     )

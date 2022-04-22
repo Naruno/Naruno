@@ -141,8 +141,6 @@ class Block:
 
         self.block_time = self.raund_1_time + self.raund_2_time
 
-        # Printing validated block.
-        logger.info("New block not created because any transaction is not validated")
 
         self.start_time = int(time.time())
 
@@ -184,6 +182,7 @@ class Block:
 
             logger.info("New block created")
         else:
+            logger.info("New block not created because any transaction is not validated")
             self.empty_block_number += 1
 
         # Adding self.pendingTransaction to the new/current block.

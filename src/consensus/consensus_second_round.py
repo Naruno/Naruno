@@ -14,7 +14,7 @@ from node.node import Node
 from node.unl import Unl
 
 
-logger = get_logger("CONSENSUS SECOND ROUND")
+logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
 def consensus_round_2(block):
@@ -28,6 +28,8 @@ def consensus_round_2(block):
       * block: The block (class) we want consensus
       round 2 to be done
     """
+
+    logger.info("Seconds round is starting")
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_2_node:
@@ -91,3 +93,5 @@ def consensus_round_2(block):
                 block.increase_the_time_2 += 1
                 block.decrease_the_time_2 = 0
                 block.save_block()
+
+    logger.info("Seconds round is done")
