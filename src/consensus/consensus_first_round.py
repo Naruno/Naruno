@@ -4,6 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+from lib.log import get_logger
+
 import time
 
 from blockchain.block.calculate_hash import CalculateHash
@@ -13,6 +16,9 @@ from node.unl import Unl
 from transactions.process_the_transaction import ProccesstheTransaction
 from transactions.send_transaction_to_the_block import \
     SendTransactiontoTheBlock
+
+
+logger = get_logger("CONSENSUS FIRST ROUND")
 
 
 def consensus_round_1(block):
@@ -34,9 +40,12 @@ def consensus_round_1(block):
         block.save_block()
     candidate_class = GetCandidateBlocks()
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
+        logger.info("Enough candidate blocks received")
 
         if not (int(time.time()) -
                 block.raund_1_starting_time) < block.raund_1_time:
+
+            logger.info("True time")
             temp_validating_list = []
             for candidate_block in candidate_class.candidate_blocks[:]:
                 print(candidate_block)
@@ -72,7 +81,7 @@ def consensus_round_1(block):
                             if other_block_tx.signature == alrady_tx.signature:
                                 already_in_ok = True
                         if not already_in_ok:
-
+                            logger.info(f"Transaction is valid ({other_block_tx.signature})")
                             temp_validating_list.append(other_block_tx)
 
             newly_added_list = []
@@ -115,6 +124,7 @@ def consensus_round_1(block):
 
         else:
             if not block.decrease_the_time == 3:
+                logger.info("Decrease the time")
                 block.decrease_the_time += 1
                 block.increase_the_time = 0
                 block.save_block()
@@ -123,6 +133,7 @@ def consensus_round_1(block):
         if not (int(time.time()) -
                 block.raund_1_starting_time) < block.raund_1_time:
             if not block.increase_the_time == 3:
+                logger.info("Increase the time")
                 block.increase_the_time += 1
                 block.decrease_the_time = 0
                 block.save_block()

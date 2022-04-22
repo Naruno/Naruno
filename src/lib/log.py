@@ -8,6 +8,7 @@ import logging
 import os
 import sys
 import time
+from lib.config_system import get_config
 
 
 def get_logger(name):
@@ -23,5 +24,17 @@ def get_logger(name):
     ch.setFormatter(formatter)
     # add ch to logger
     logger.addHandler(ch)
-    logger.setLevel(logging.DEBUG)
+    #file
+    main_folder = get_config()["main_folder"]
+    print(main_folder)
+    fh = logging.FileHandler(
+        os.path.join(
+            main_folder,
+            "logs",
+            f"{name}.log"
+        )
+    )
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
     return logger

@@ -18,6 +18,8 @@ loading_block.decentra_network
 *.blockshashpart
 wallet_list.json
 
+*.log
+
 # Export
 my_transaction.csv
 

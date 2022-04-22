@@ -4,11 +4,17 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+from lib.log import get_logger
+
 import time
 
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from node.node import Node
 from node.unl import Unl
+
+
+logger = get_logger("CONSENSUS SECOND ROUND")
 
 
 def consensus_round_2(block):
@@ -35,9 +41,11 @@ def consensus_round_2(block):
 
     if len(candidate_class.candidate_block_hashes) > (
         (len(unl_nodes) * 80) / 100):
+        logger.info("Enough candidate block hashes received")
 
         if not (int(time.time()) -
                 block.raund_2_starting_time) < block.raund_2_time:
+            logger.info("True time")
 
             for candidate_block in candidate_class.candidate_block_hashes[:]:
                 tx_valid = 0
@@ -54,6 +62,7 @@ def consensus_round_2(block):
                 if tx_valid > ((len(unl_nodes) * 80) / 100):
 
                     if block.hash == candidate_block["hash"]:
+                        logger.info("Block approved")
                         block.validated = True
                         block.validated_time = int(time.time())
                         block.raund_2 = True
@@ -69,6 +78,7 @@ def consensus_round_2(block):
 
         else:
             if not block.decrease_the_time_2 == 3:
+                logger.info("Decrease the time")
                 block.decrease_the_time_2 += 1
                 block.increase_the_time_2 = 0
                 block.save_block()
@@ -77,6 +87,7 @@ def consensus_round_2(block):
         if not (int(time.time()) -
                 block.raund_2_starting_time) < block.raund_2_time:
             if not block.increase_the_time_2 == 3:
+                logger.info("Increase the time")
                 block.increase_the_time_2 += 1
                 block.decrease_the_time_2 = 0
                 block.save_block()
