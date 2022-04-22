@@ -33,3 +33,4 @@ MY_TRANSACTION_PATH = 'db/my_transaction.decentra_network'
 # Export
 MY_TRANSACTION_EXPORT_PATH = 'db/my_transaction.csv'
 
+LOGS_PATH = 'logs'
