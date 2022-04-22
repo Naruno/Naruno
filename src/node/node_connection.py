@@ -4,6 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+from lib.log import get_logger
+
 import json
 import os
 import socket
@@ -12,8 +15,10 @@ import threading
 import time
 
 from config import *
-from lib.mixlib import dprint
 from node.unl import Unl
+
+
+logger = get_logger("NODE")
 
 
 class Node_Connection(threading.Thread):
@@ -50,19 +55,17 @@ class Node_Connection(threading.Thread):
                 self.sock.sendall(json_data)
 
             except TypeError as type_error:
-                dprint("Node System: This dict is invalid")
-                dprint(type_error)
+                logger.exception(type_error)
 
             except Exception as e:
-                print("Node System: Unexpected Error in send message")
-                print(e)
+                logger.exception(e)
 
         elif isinstance(data, bytes):
             bin_data = data + self.EOT_CHAR
             self.sock.sendall(bin_data)
 
         else:
-            dprint(
+            logger.warning(
                 "Node System: Node System: Datatype used is not valid please use str, dict (will be send as json) or bytes"
             )
 
@@ -93,12 +96,11 @@ class Node_Connection(threading.Thread):
                 chunk = self.sock.recv(4096)
 
             except socket.timeout:
-                dprint("Node System: Node_Connection: timeout")
+                logger.exception("Node System: Node_Connection: timeout")
 
             except Exception as e:
                 self.terminate_flag.set()
-                dprint("Node System: Unexpected error")
-                dprint(e)
+                logger.exception(e)
 
             # BUG: possible buffer overflow when no EOT_CHAR is found => Fix by max buffer count or so?
             if chunk != b"":
@@ -120,7 +122,7 @@ class Node_Connection(threading.Thread):
 
         self.sock.settimeout(None)
         self.sock.close()
-        dprint("Node System: Node_Connection: Stopped")
+        logger.info("Node System: Node_Connection: Stopped")
 
     @staticmethod
     def connect(ip, port):

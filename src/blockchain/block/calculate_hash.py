@@ -5,7 +5,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.mixlib import dprint
 from lib.merkle_root import MerkleTree
 
 from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part, SaveBlockshash_part
@@ -22,9 +21,7 @@ def CalculateHash(block):
 
     # Transaction
     tx_list = []
-    dprint(len(block.validating_list))
     for element in block.validating_list[:]:
-        dprint(element)
         tx_list.append(element.signature)
     if len(tx_list) != 0:
         tx_hash = MerkleTree(tx_list).getRootHash()

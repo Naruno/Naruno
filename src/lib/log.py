@@ -23,4 +23,5 @@ def get_logger(name):
     ch.setFormatter(formatter)
     # add ch to logger
     logger.addHandler(ch)
+    logger.setLevel(logging.DEBUG)
     return logger

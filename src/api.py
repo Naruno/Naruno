@@ -7,6 +7,8 @@
 import argparse
 import sys
 
+from lib.log import get_logger
+
 import flask
 from blockchain.block.create_block import CreateBlock
 from blockchain.block.get_block import GetBlockFromOtherNode
@@ -28,6 +30,10 @@ from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance
 from wallet.print_wallets import print_wallets
 from wallet.wallet_selector import wallet_selector
+
+
+logger = get_logger("API")
+
 
 app = flask.Flask(__name__)
 
@@ -172,14 +178,14 @@ def start():
         "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
-    parser.add_argument("-p", "--port", type=int, help="Add new UNL node")
+    parser.add_argument("-p", "--port", default=8000, type=int, help="Add new UNL node")
 
     args = parser.parse_args()
 
-    if len(sys.argv) < 2:
-        serve(app, host="0.0.0.0", port=8000)
-    else:
-        serve(app, host="0.0.0.0", port=args.port)
+
+    logger.info(f"Starting API on port {args.port}")
+    serve(app, host="0.0.0.0", port=args.port)
+
 
 
 if __name__ == "__main__":

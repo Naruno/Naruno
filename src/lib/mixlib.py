@@ -147,19 +147,3 @@ def menu_title(menu_title_text):
     """
     
     return("\n"+"*** "+menu_title_text+" ***"+" \n"+"\n")
-
-
-def dprint(text):
-    """
-    Prints the given data according to the debug mode
-
-    Inputs:
-      * text: A data (It is returned to str in function.)
-    """
-
-    try:
-     from lib.settings_system import the_settings
-     if the_settings()["debug_mode"]:
-         print("DEBUG: "+str(text))
-    except Exception as e:
-        print(e)

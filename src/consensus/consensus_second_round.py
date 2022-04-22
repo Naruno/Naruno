@@ -7,7 +7,6 @@
 import time
 
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
-from lib.mixlib import dprint
 from node.node import Node
 from node.unl import Unl
 
@@ -26,26 +25,20 @@ def consensus_round_2(block):
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_2_node:
-        dprint("Raund 2: in get candidate block hashes\n")
+
 
         Node.main_node.send_my_block_hash(Unl.get_as_node_type(unl_nodes))
         block.raund_2_node = True
         block.save_block()
 
     candidate_class = GetCandidateBlocks()
-    dprint("Raund 2 Conditions")
-    dprint(
-        len(candidate_class.candidate_block_hashes) > (
-            (len(unl_nodes) * 80) / 100))
-    dprint(
-        (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time)
 
     if len(candidate_class.candidate_block_hashes) > (
         (len(unl_nodes) * 80) / 100):
 
         if not (int(time.time()) -
                 block.raund_2_starting_time) < block.raund_2_time:
-            dprint("Raund 2: first ok")
+
             for candidate_block in candidate_class.candidate_block_hashes[:]:
                 tx_valid = 0
 
@@ -60,7 +53,6 @@ def consensus_round_2(block):
 
                 if tx_valid > ((len(unl_nodes) * 80) / 100):
 
-                    dprint("Raund 2: second ok")
                     if block.hash == candidate_block["hash"]:
                         block.validated = True
                         block.validated_time = int(time.time())

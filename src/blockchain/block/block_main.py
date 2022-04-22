@@ -8,6 +8,8 @@ import os
 import pickle
 import time
 
+from lib.log import get_logger
+
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
@@ -20,7 +22,6 @@ from blockchain.block.save_block_to_blockchain_db import \
 from config import TEMP_BLOCK_PATH
 from consensus.consensus_main import consensus_trigger
 from lib.config_system import get_config
-from lib.mixlib import dprint
 from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
 from transactions.pending_to_validating import PendinttoValidating
@@ -29,6 +30,9 @@ from wallet.wallet import PrivateKey
 from wallet.wallet import PublicKey
 from wallet.wallet import Signature
 from wallet.wallet import Wallet_Import
+
+
+logger = get_logger("BLOCKCHAIN")
 
 
 class Block:
@@ -98,6 +102,8 @@ class Block:
         self.dowload_true_block = ""
 
         self.save_block()
+
+        logger.info("Consensus timer is started")
         perpetualTimer(self.consensus_timer, consensus_trigger).start()
 
     def reset_the_block(self):
@@ -136,15 +142,7 @@ class Block:
         self.block_time = self.raund_1_time + self.raund_2_time
 
         # Printing validated block.
-        dprint("""\n
-  _____                          _     ____  _      ____   _____ _  __
- / ____|                        | |   |  _ \| |    / __ \ / ____| |/ /
-| |    _   _ _ __ _ __ ___ _ __ | |_  | |_) | |   | |  | | |    | ' /
-| |   | | | | '__| '__/ _ \ '_ \| __| |  _ <| |   | |  | | |    |  <
-| |___| |_| | |  | | |  __/ | | | |_  | |_) | |___| |__| | |____| . \
- \_____\__,_|_|  |_|  \___|_| |_|\__| |____/|______\____/ \_____|_|\_\
-
-        """ + str(self.__dict__) + "\n")
+        logger.info("New block not created because any transaction is not validated")
 
         self.start_time = int(time.time())
 
@@ -184,16 +182,7 @@ class Block:
             self.validating_list = []
             self.hash = None
 
-            # Printing new block.
-            dprint("""\n
-    _   _                 ____  _      ____   _____ _  __
-    | \ | |               |  _ \| |    / __ \ / ____| |/ /
-    |  \| | _____      __ | |_) | |   | |  | | |    | ' /
-    | . ` |/ _ \ \ /\ / / |  _ <| |   | |  | | |    |  <
-    | |\  |  __/\ V  V /  | |_) | |___| |__| | |____| . \
-    |_| \_|\___| \_/\_/   |____/|______\____/ \_____|_|\_\
-
-            """ + str(self.__dict__) + "\n")
+            logger.info("New block created")
         else:
             self.empty_block_number += 1
 

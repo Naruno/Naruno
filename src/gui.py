@@ -7,6 +7,10 @@
 
 import os
 
+from loguru import logger
+
+from lib.log import get_logger
+
 from kivy import Config
 Config.set('graphics', 'width', '700')
 Config.set('graphics', 'height', '450')
@@ -43,6 +47,9 @@ ScreenManager:
         name: "decentra root screen"
 
 """
+
+
+logger = get_logger("GUI")
 
 
 class GUI(MDApp):
@@ -112,6 +119,7 @@ def start():
     Start the GUI mode.
     """
     
+    logger.info("Starting GUI mode")
     GUI().run()
 
 if __name__ == '__main__':

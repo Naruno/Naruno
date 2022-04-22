@@ -6,10 +6,14 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
+from lib.log import logging
+
 from blockchain.block.get_block import GetBlock
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
-from lib.mixlib import dprint
+
+
+logger = logging.getLogger("CONSENSUS")
 
 
 def consensus_trigger():
@@ -19,7 +23,6 @@ def consensus_trigger():
     to shorten the block time.
     """
 
-    dprint("Consensus Trigger")
     block = GetBlock()
 
     if block.validated:
@@ -28,14 +31,17 @@ def consensus_trigger():
                       block.block_time))
         if block.newly:
             true_time -= 1
+            logger.info("Consensus proccess is complated but the time is not true, will be waiting for the true time")
         if not int(time.time()) < true_time:
             block.newly = False
+            logger.info("Consensus proccess is complated, the block will be reset")
             block.reset_the_block()
     else:
         if block.raund_1_starting_time is None:
             block.raund_1_starting_time = int(time.time())
         if not block.raund_1:
-
+            logger.info("Firsts round is starting")
             consensus_round_1(block)
         elif not block.raund_2:
+            logger.info("Firsts round is starting")
             consensus_round_2(block)

@@ -8,7 +8,6 @@ import time
 
 from blockchain.block.calculate_hash import CalculateHash
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
-from lib.mixlib import dprint
 from node.node import Node
 from node.unl import Unl
 from transactions.process_the_transaction import ProccesstheTransaction
@@ -29,24 +28,16 @@ def consensus_round_1(block):
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_1_node:
-        dprint("Raund 1: in get candidate blocks\n")
 
         Node.main_node.send_my_block(Unl.get_as_node_type(unl_nodes))
         block.raund_1_node = True
         block.save_block()
     candidate_class = GetCandidateBlocks()
-    dprint("Raund 1 Conditions")
-    dprint(
-        len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100))
-    dprint(
-        (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time)
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
 
         if not (int(time.time()) -
                 block.raund_1_starting_time) < block.raund_1_time:
             temp_validating_list = []
-            dprint("Raund 1: first ok")
-            dprint(len(candidate_class.candidate_blocks))
             for candidate_block in candidate_class.candidate_blocks[:]:
                 print(candidate_block)
 
@@ -59,29 +50,29 @@ def consensus_round_1(block):
                             tx_valid += 1
 
                     if len(candidate_class.candidate_blocks) != 1:
-                        dprint("Raund 1: Test tx")
+
                         for other_block in candidate_class.candidate_blocks[:]:
                             if candidate_block["signature"] != other_block[
                                     "signature"]:
-                                dprint("Raund 1: Test tx 2")
+
                                 for other_block_txs in other_block[
                                         "transaction"]:
                                     if (other_block_tx.signature ==
                                             other_block_txs.signature):
-                                        dprint("Raund 1: Test tx 3")
+
                                         tx_valid += 1
                     else:
                         tx_valid += 1
 
                     if tx_valid > (len(unl_nodes) / 2):
-                        dprint("Raund 1: second ok")
+
                         already_in_ok = False
                         for alrady_tx in temp_validating_list[:]:
 
                             if other_block_tx.signature == alrady_tx.signature:
                                 already_in_ok = True
                         if not already_in_ok:
-                            dprint("Raund 1: third ok")
+
                             temp_validating_list.append(other_block_tx)
 
             newly_added_list = []

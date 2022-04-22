@@ -4,13 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+from lib.log import get_logger
+
 from blockchain.block.block_main import Block
 from blockchain.block.get_block import GetBlock
-from lib.mixlib import dprint
 from lib.settings_system import the_settings
 from node.node import Node
 from wallet.wallet import Wallet_Import
 
+logger = get_logger("BLOCKCHAIN")
 
 def CreateBlock():
     """
@@ -20,7 +23,6 @@ def CreateBlock():
     """
 
     if the_settings()["test_mode"]:
-        dprint("Creating the genesis block")
         previous_hash = "0"
 
         try:
@@ -32,10 +34,11 @@ def CreateBlock():
         except:
             pass
 
+        logger.info("Creating the genesis block and sending it to the connected nodes")
         Block(Wallet_Import(-1, 3), previous_hash)
         Node.main_node.send_full_accounts()
         Node.main_node.send_full_chain()
         Node.main_node.send_full_blockshash()
     else:
-        dprint("Getting block from nodes")
+        logger.info("Getting the last block from the connected nodes")
         GetBlock()
