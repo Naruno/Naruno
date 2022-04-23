@@ -151,14 +151,14 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-local-ubuntu-latest-node-0
-        path: Decentra-Network-0/src/logs/*.log
+        path: /home/runner/work/Decentra-Network-0/src/logs/*.log 
     - name: Archive logs of Node 1
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-local-ubuntu-latest-node-1
-        path: Decentra-Network-1/src/logs/*.log
+        path: /home/runner/work/Decentra-Network-1/src/logs/*.log 
     - name: Archive logs of Node 2
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-local-ubuntu-latest-node-2
-        path: Decentra-Network-2/src/logs/*.log        
+        path: /home/runner/work/Decentra-Network-2/src/logs/*.log 
