@@ -70,7 +70,7 @@ jobs:
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
-        name: log-report
+        name: log-report-unit-test-ubuntu-latest
         path: src/logs/*.log      
   
   unit-test-macos-latest:
@@ -99,7 +99,7 @@ jobs:
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
-        name: log-report
+        name: log-report-unit-test-macos-latest
         path: src/logs/*.log           
   unit-test-windows-latest:
     needs: lint_with_flake8
@@ -127,7 +127,7 @@ jobs:
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
-        name: log-report
+        name: log-report-unit-test-windows-latest
         path: src/logs/*.log           
 
   functional-test-local-ubuntu-latest:
@@ -150,15 +150,15 @@ jobs:
     - name: Archive logs of Node 0
       uses: actions/upload-artifact@v3
       with:
-        name: log-report
+        name: log-report-functional-test-local-ubuntu-latest-node-0
         path: Decentra-Network-0/src/logs/*.log
     - name: Archive logs of Node 1
       uses: actions/upload-artifact@v3
       with:
-        name: log-report
+        name: log-report-functional-test-local-ubuntu-latest-node-1
         path: Decentra-Network-1/src/logs/*.log
     - name: Archive logs of Node 2
       uses: actions/upload-artifact@v3
       with:
-        name: log-report
+        name: log-report-functional-test-local-ubuntu-latest-node-2
         path: Decentra-Network-2/src/logs/*.log        
