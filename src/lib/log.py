@@ -8,15 +8,19 @@ import logging
 import os
 import sys
 import time
+
+from loguru import Level
 from lib.config_system import get_config
+from lib.settings_system import the_settings
 from config import LOGS_PATH
 
 def get_logger(name):
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
+    level = logging.DEBUG if the_settings()["debug_mode"] else logging.INFO
+    logger.setLevel(level)
     # create console handler and set level to debug
     ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
+    ch.setLevel(level)
     # create formatter
     formatter = logging.Formatter(
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
@@ -34,7 +38,7 @@ def get_logger(name):
             f"{name}.log"
         )
     )
-    fh.setLevel(logging.DEBUG)
+    fh.setLevel(level)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
     return logger

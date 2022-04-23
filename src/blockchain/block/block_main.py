@@ -184,6 +184,8 @@ class Block:
         else:
             logger.info("New block not created because any transaction is not validated")
             self.empty_block_number += 1
+        
+        logger.debug(self.__dict__)
 
         # Adding self.pendingTransaction to the new/current block.
         PendinttoValidating(self)
