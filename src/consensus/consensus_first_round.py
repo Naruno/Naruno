@@ -49,7 +49,7 @@ def consensus_round_1(block):
             logger.info("True time")
             temp_validating_list = []
             for candidate_block in candidate_class.candidate_blocks[:]:
-                logger.debug(f"Candidate block {candidate_block["signature"]} {str(candidate_block)}")
+                logger.debug(f"Candidate block {str(candidate_block)}")
 
                 for other_block_tx in candidate_block["transaction"]:
 
