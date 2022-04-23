@@ -9,9 +9,9 @@ import os
 import sys
 import time
 
+from config import LOGS_PATH
 from lib.config_system import get_config
 from lib.settings_system import the_settings
-from config import LOGS_PATH
 
 
 def get_logger(name):

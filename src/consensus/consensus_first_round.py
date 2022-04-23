@@ -5,17 +5,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.log import get_logger
-
 import time
 
 from blockchain.block.calculate_hash import CalculateHash
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
+from lib.log import get_logger
 from node.node import Node
 from node.unl import Unl
 from transactions.process_the_transaction import ProccesstheTransaction
-from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
-
+from transactions.send_transaction_to_the_block import \
+    SendTransactiontoTheBlock
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 

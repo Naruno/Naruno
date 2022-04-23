@@ -5,8 +5,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.log import get_logger
-
 import json
 import os
 import socket
@@ -15,8 +13,8 @@ import threading
 import time
 
 from config import *
+from lib.log import get_logger
 from node.unl import Unl
-
 
 logger = get_logger("NODE")
 

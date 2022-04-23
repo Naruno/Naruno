@@ -5,16 +5,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.config_system import get_config
-from kivymd.app import MDApp
-from kivy.lang import Builder
 import os
 
+from kivy import Config
+from kivy.lang import Builder
+from kivymd.app import MDApp
 from loguru import logger
 
+from lib.config_system import get_config
 from lib.log import get_logger
-
-from kivy import Config
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")

@@ -5,20 +5,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.log import get_logger
-
 import time
 
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
+from lib.log import get_logger
 from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.propagating_the_tx import PropagatingtheTX
 from transactions.transaction import Transaction
 from transactions.tx_already_got import TXAlreadyGot
-from wallet.wallet import Ecdsa
-from wallet.wallet import PublicKey
-from wallet.wallet import Signature
-
+from wallet.wallet import Ecdsa, PublicKey, Signature
 
 logger = get_logger("TRANSACTIONS")
 
