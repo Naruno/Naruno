@@ -11,10 +11,10 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","..",".."))
 import urllib.request, json
 import time
-from auto_builders.docker import Decentra_Network_Docker
+from auto_builders.local import Decentra_Network_Local
 
 
-class Test_Decentra_Network_Docker(unittest.TestCase):
+class Test_Decentra_Network_Local(unittest.TestCase):
 
     def test_1_different_network_one_transacton(self):
         """
@@ -23,7 +23,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
 
         success = False
         for i in range(2):
-            temp_environment = Decentra_Network_Docker()
+            temp_environment = Decentra_Network_Local()
             temp_environment.delete()
             temp_environment.install()
             temp_environment.run()
@@ -56,7 +56,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
 
         success = False
         for i in range(2):
-            temp_environment = Decentra_Network_Docker()
+            temp_environment = Decentra_Network_Local()
             temp_environment.delete()
             temp_environment.install()
             temp_environment.run()
@@ -89,7 +89,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         """
         success = False
         for i in range(2):
-            temp_environment = Decentra_Network_Docker()
+            temp_environment = Decentra_Network_Local()
             temp_environment.delete()
             temp_environment.install()
             temp_environment.run()
@@ -128,7 +128,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
 
         success = False
         for i in range(2):
-            temp_environment = Decentra_Network_Docker()
+            temp_environment = Decentra_Network_Local()
             temp_environment.delete()
             temp_environment.install()
             temp_environment.run()
