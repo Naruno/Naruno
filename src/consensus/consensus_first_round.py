@@ -32,7 +32,8 @@ def consensus_round_1(block):
       round 1 to be done
     """
 
-    logger.info(f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting")
+    logger.info(
+        f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting")
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_1_node:
@@ -74,17 +75,20 @@ def consensus_round_1(block):
                     else:
                         tx_valid += 1
 
-                    logger.debug(f"Tx valid of {other_block_tx.signature} : {tx_valid}")
+                    logger.debug(
+                        f"Tx valid of {other_block_tx.signature} : {tx_valid}")
                     if tx_valid > (len(unl_nodes) / 2):
 
                         already_in_ok = False
                         for alrady_tx in temp_validating_list[:]:
 
                             if other_block_tx.signature == alrady_tx.signature:
-                                logger.warning("The transaction is already in the list")
+                                logger.warning(
+                                    "The transaction is already in the list")
                                 already_in_ok = True
                         if not already_in_ok:
-                            logger.info(f"Transaction is valid ({other_block_tx.signature})")
+                            logger.info(
+                                f"Transaction is valid ({other_block_tx.signature})")
                             temp_validating_list.append(other_block_tx)
 
             newly_added_list = []
@@ -99,8 +103,6 @@ def consensus_round_1(block):
                 if not ok:
                     newly_added_list.append(my_validating_list)
 
-            
-            
             block.validating_list = temp_validating_list
             logger.debug(f"Newly validating list {block.validating_list}")
 
@@ -124,7 +126,6 @@ def consensus_round_1(block):
 
             ProccesstheTransaction(block)
 
-            
             block.hash = CalculateHash(block)
             logger.debug(f"Block hash {block.hash}")
 

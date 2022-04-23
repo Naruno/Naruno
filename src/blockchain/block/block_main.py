@@ -141,7 +141,6 @@ class Block:
 
         self.block_time = self.raund_1_time + self.raund_2_time
 
-
         self.start_time = int(time.time())
 
         self.raund_1_starting_time = None
@@ -182,9 +181,10 @@ class Block:
 
             logger.info("New block created")
         else:
-            logger.info("New block not created because any transaction is not validated")
+            logger.info(
+                "New block not created because any transaction is not validated")
             self.empty_block_number += 1
-        
+
         logger.debug(self.__dict__)
 
         # Adding self.pendingTransaction to the new/current block.

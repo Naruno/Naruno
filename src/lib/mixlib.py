@@ -26,12 +26,11 @@ SOFTWARE.
 """
 
 
-
 def starting_text_centered():
     """
     Prints the STARTING message between space.
     """
-    
+
     print(" ")
     print(" STARTING")
     print(" ")
@@ -53,7 +52,7 @@ def printcentertext(text):
     Inputs:
       * text: A string.
     """
-    
+
     print(" ")
     print(text)
     print(" ")
@@ -68,7 +67,7 @@ def banner_maker(sc_name, description, author):
       * description: Description of the script.
       * author: Author of the script.
     """
-    
+
     return("""Script Name    : """+sc_name+"""\n"""+"""Description    : """+description+"""\n"""+"""Author         : """+author+"""\n""")
 
 
@@ -79,7 +78,7 @@ def question_maker(question_text=None, mode=None):
     Inputs:
       * mode: A string ("main" or "sub")
     """
-    
+
     if question_text is None:
         if mode == "main":
             question_text = "Please enter main option: "
@@ -89,7 +88,7 @@ def question_maker(question_text=None, mode=None):
             question_text = "Press any key to continue..."
         else:
             raise ValueError("the mode variable contains an unplanned value")
-    
+
     return(input(question_text))
 
 
@@ -100,9 +99,9 @@ def menu_maker(menu_number, menu_text):
     Inputs:
       * menu_number: A data for menu defination (ex. 1, "sc")
     """
-    
+
     return(str(menu_number)+") "+menu_text+"\n")
-	
+
 
 def quit_menu_maker(mode):
     """
@@ -111,14 +110,14 @@ def quit_menu_maker(mode):
     Inputs:
       * mode: A string ("main" or "sub")
     """
-    
+
     if mode == "main":
         quit_menu_maker_result = "\n0) Quit \n"
     elif mode == "sub":
         quit_menu_maker_result = "\n0) Quit sub menu \n"
     else:
         raise ValueError("the mode variable contains the unplanned value")
-    
+
     return(quit_menu_maker_result)
 
 
@@ -126,7 +125,7 @@ def menu_space():
     """
     Returns a string in the form of a space.
     """
-    
+
     return("\n")
 
 
@@ -134,7 +133,7 @@ def menu_seperator():
     """
     Returns a string in the form of a seperator.
     """
-    
+
     return("\n"+"*** \n"+"\n")
 
 
@@ -145,5 +144,5 @@ def menu_title(menu_title_text):
     Inputs:
       * menu_title_text: A string.
     """
-    
+
     return("\n"+"*** "+menu_title_text+" ***"+" \n"+"\n")

@@ -10,6 +10,7 @@ import os
 
 from threading import Thread
 
+
 def app_tigger(block):
     """
     Notifies applications of validated transactions after

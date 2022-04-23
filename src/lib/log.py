@@ -13,6 +13,7 @@ from lib.config_system import get_config
 from lib.settings_system import the_settings
 from config import LOGS_PATH
 
+
 def get_logger(name):
     logger = logging.getLogger(name)
     level = logging.DEBUG if the_settings()["debug_mode"] else logging.INFO
@@ -27,7 +28,7 @@ def get_logger(name):
     ch.setFormatter(formatter)
     # add ch to logger
     logger.addHandler(ch)
-    #file
+    # file
     main_folder = get_config()["main_folder"]
     fh = logging.FileHandler(
         os.path.join(

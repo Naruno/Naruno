@@ -29,11 +29,11 @@ def consensus_round_2(block):
       round 2 to be done
     """
 
-    logger.info("BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting")
+    logger.info(
+        "BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting")
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_2_node:
-
 
         Node.main_node.send_my_block_hash(Unl.get_as_node_type(unl_nodes))
         block.raund_2_node = True
@@ -42,7 +42,7 @@ def consensus_round_2(block):
     candidate_class = GetCandidateBlocks()
 
     if len(candidate_class.candidate_block_hashes) > (
-        (len(unl_nodes) * 80) / 100):
+            (len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate block hashes received")
 
         if not (int(time.time()) -
@@ -62,7 +62,7 @@ def consensus_round_2(block):
                     if candidate_block != other_block:
                         if candidate_block["hash"] == other_block["hash"]:
                             tx_valid += 1
-                
+
                 logger.debug(f"Hash valid of  {candidate_block} : {tx_valid}")
                 if tx_valid > ((len(unl_nodes) * 80) / 100):
 
@@ -74,7 +74,8 @@ def consensus_round_2(block):
 
                     else:
                         sender = candidate_block["sender"]
-                        logger.warning(f"Our block is not valid, the system will try to get true block from node {sender}")
+                        logger.warning(
+                            f"Our block is not valid, the system will try to get true block from node {sender}")
                         node = Node.main_node
                         unl_list = Unl.get_as_node_type(
                             [sender])

@@ -15,6 +15,7 @@ from wallet.wallet import Wallet_Import
 
 logger = get_logger("BLOCKCHAIN")
 
+
 def CreateBlock():
     """
     If test mode is on, creates genesis block
@@ -34,7 +35,8 @@ def CreateBlock():
         except:
             pass
 
-        logger.info("Creating the genesis block and sending it to the connected nodes")
+        logger.info(
+            "Creating the genesis block and sending it to the connected nodes")
         Block(Wallet_Import(-1, 3), previous_hash)
         Node.main_node.send_full_accounts()
         Node.main_node.send_full_chain()

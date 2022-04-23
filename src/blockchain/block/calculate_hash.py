@@ -28,7 +28,6 @@ def CalculateHash(block):
     else:
         tx_hash = "0"
 
-
     part_amount = 100000
 
     # Blocks Hash
@@ -37,21 +36,18 @@ def CalculateHash(block):
     part_of_blocks_hash = GetBlockshash_part()
     the_blocks_hash = GetBlockshash()
 
-
     if not len(the_blocks_hash) - (len(part_of_blocks_hash) * part_amount) == part_amount:
         for will_added_blocks_hash in the_blocks_hash[(len(part_of_blocks_hash) * part_amount):]:
             blocks_hash_list.append(will_added_blocks_hash)
     else:
-        part_of_blocks_hash.append(MerkleTree(the_blocks_hash[(len(part_of_blocks_hash) * part_amount):]).getRootHash())
+        part_of_blocks_hash.append(MerkleTree(
+            the_blocks_hash[(len(part_of_blocks_hash) * part_amount):]).getRootHash())
         SaveBlockshash_part(part_of_blocks_hash)
 
-    
     for part_of_blocks_hash_element in part_of_blocks_hash:
         blocks_hash_list.append(part_of_blocks_hash_element)
-    
 
     blockshash_hash = MerkleTree(blocks_hash_list).getRootHash()
-
 
     # Account
     account_list = []
@@ -63,10 +59,10 @@ def CalculateHash(block):
         for will_added_accounts in the_accounts[(len(part_of_account) * part_amount):]:
             account_list.append(str(will_added_accounts.dump_json()))
     else:
-        part_of_account.append(MerkleTree(the_accounts[(len(part_of_account) * part_amount):]).getRootHash())
+        part_of_account.append(MerkleTree(
+            the_accounts[(len(part_of_account) * part_amount):]).getRootHash())
         save_accounts_part(part_of_account)
 
-    
     for part_of_account_element in part_of_account:
         account_list.append(part_of_account_element)
 
@@ -74,9 +70,8 @@ def CalculateHash(block):
         account_list.append(str(edited_account.dump_json()))
 
     block.edited_accounts.clear()
-    
-    ac_hash = MerkleTree(account_list).getRootHash()
 
+    ac_hash = MerkleTree(account_list).getRootHash()
 
     # Other elements
     main_list = []

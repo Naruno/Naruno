@@ -28,7 +28,8 @@ def CheckTransaction(block, transaction):
     This function checks the transaction.
     """
 
-    logger.info(f"Checking the transaction started {block.sequance_number}:{transaction.signature}")
+    logger.info(
+        f"Checking the transaction started {block.sequance_number}:{transaction.signature}")
 
     validation = True
 
@@ -78,10 +79,11 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if (balance -
-        (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
+            (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
         logger.info("Balance is enough")
     else:
         validation = False
 
-    logger.info(f"Checking the transaction finished {block.sequance_number}:{transaction.signature}")
+    logger.info(
+        f"Checking the transaction finished {block.sequance_number}:{transaction.signature}")
     return validation

@@ -5,6 +5,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from lib.config_system import get_config
+from kivymd.app import MDApp
+from kivy.lang import Builder
 import os
 
 from loguru import logger
@@ -18,11 +21,7 @@ Config.set('graphics', 'minimum_width', '700')
 Config.set('graphics', 'minimum_height', '450')
 Config.set('input', 'mouse', 'mouse,disable_multitouch')
 
-from kivy.lang import Builder
 
-from kivymd.app import MDApp
-
-from lib.config_system import get_config
 os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
 
 
@@ -64,7 +63,6 @@ class GUI(MDApp):
         super().__init__(**kwargs)
         self.title = "Decentra Network"
         self.icon = f"{os.environ['DECENTRA_ROOT']}/gui_lib/images/logo.ico"
-
 
     def build(self):
         """
@@ -111,16 +109,18 @@ class GUI(MDApp):
                 ],
             }
         )
-        
+
         return Builder.load_string(KV)
+
 
 def start():
     """
     Start the GUI mode.
     """
-    
+
     logger.info("Starting GUI mode")
     GUI().run()
+
 
 if __name__ == '__main__':
     start()
