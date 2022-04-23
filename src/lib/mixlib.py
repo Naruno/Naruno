@@ -68,7 +68,17 @@ def banner_maker(sc_name, description, author):
       * author: Author of the script.
     """
 
-    return("""Script Name    : """+sc_name+"""\n"""+"""Description    : """+description+"""\n"""+"""Author         : """+author+"""\n""")
+    return (
+        """Script Name    : """
+        + sc_name
+        + """\n"""
+        + """Description    : """
+        + description
+        + """\n"""
+        + """Author         : """
+        + author
+        + """\n"""
+    )
 
 
 def question_maker(question_text=None, mode=None):
@@ -89,7 +99,7 @@ def question_maker(question_text=None, mode=None):
         else:
             raise ValueError("the mode variable contains an unplanned value")
 
-    return(input(question_text))
+    return input(question_text)
 
 
 def menu_maker(menu_number, menu_text):
@@ -100,7 +110,7 @@ def menu_maker(menu_number, menu_text):
       * menu_number: A data for menu defination (ex. 1, "sc")
     """
 
-    return(str(menu_number)+") "+menu_text+"\n")
+    return str(menu_number) + ") " + menu_text + "\n"
 
 
 def quit_menu_maker(mode):
@@ -118,7 +128,7 @@ def quit_menu_maker(mode):
     else:
         raise ValueError("the mode variable contains the unplanned value")
 
-    return(quit_menu_maker_result)
+    return quit_menu_maker_result
 
 
 def menu_space():
@@ -126,7 +136,7 @@ def menu_space():
     Returns a string in the form of a space.
     """
 
-    return("\n")
+    return "\n"
 
 
 def menu_seperator():
@@ -134,7 +144,7 @@ def menu_seperator():
     Returns a string in the form of a seperator.
     """
 
-    return("\n"+"*** \n"+"\n")
+    return "\n" + "*** \n" + "\n"
 
 
 def menu_title(menu_title_text):
@@ -145,4 +155,4 @@ def menu_title(menu_title_text):
       * menu_title_text: A string.
     """
 
-    return("\n"+"*** "+menu_title_text+" ***"+" \n"+"\n")
+    return "\n" + "*** " + menu_title_text + " ***" + " \n" + "\n"

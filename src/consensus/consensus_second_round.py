@@ -30,7 +30,8 @@ def consensus_round_2(block):
     """
 
     logger.info(
-        "BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting")
+        "BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting"
+    )
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_2_node:
@@ -41,12 +42,10 @@ def consensus_round_2(block):
 
     candidate_class = GetCandidateBlocks()
 
-    if len(candidate_class.candidate_block_hashes) > (
-            (len(unl_nodes) * 80) / 100):
+    if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate block hashes received")
 
-        if not (int(time.time()) -
-                block.raund_2_starting_time) < block.raund_2_time:
+        if not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
             logger.info("True time")
 
             for candidate_block in candidate_class.candidate_block_hashes[:]:
@@ -75,10 +74,10 @@ def consensus_round_2(block):
                     else:
                         sender = candidate_block["sender"]
                         logger.warning(
-                            f"Our block is not valid, the system will try to get true block from node {sender}")
+                            f"Our block is not valid, the system will try to get true block from node {sender}"
+                        )
                         node = Node.main_node
-                        unl_list = Unl.get_as_node_type(
-                            [sender])
+                        unl_list = Unl.get_as_node_type([sender])
                         node.send_data_to_node(unl_list[0], "sendmefullblock")
                         block.dowload_true_block = sender
                     block.save_block()
@@ -91,8 +90,7 @@ def consensus_round_2(block):
                 block.save_block()
 
     else:
-        if not (int(time.time()) -
-                block.raund_2_starting_time) < block.raund_2_time:
+        if not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
             if not block.increase_the_time_2 == 3:
                 logger.info("Increase the time")
                 block.increase_the_time_2 += 1

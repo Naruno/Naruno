@@ -22,7 +22,6 @@ logger = get_logger("NODE")
 
 
 class Node_Connection(threading.Thread):
-
     def __init__(self, main_node, sock, id, host, port):
         super(Node_Connection, self).__init__()
 
@@ -109,10 +108,9 @@ class Node_Connection(threading.Thread):
 
                 while eot_pos > 0:
                     packet = buffer[:eot_pos]
-                    buffer = buffer[eot_pos + 1:]
+                    buffer = buffer[eot_pos + 1 :]
 
-                    self.main_node.message_from_node(self,
-                                                     self.parse_packet(packet))
+                    self.main_node.message_from_node(self, self.parse_packet(packet))
 
                     eot_pos = buffer.find(self.EOT_CHAR)
 

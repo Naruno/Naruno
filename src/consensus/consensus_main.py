@@ -26,20 +26,26 @@ def consensus_trigger():
     block = GetBlock()
 
     logger.info(
-        "BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started")
+        "BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
+    )
 
     if block.validated:
-        true_time = (block.block_time_change_time + block.block_time +
-                     ((block.block_time_change_block - block.sequance_number) *
-                      block.block_time))
+        true_time = (
+            block.block_time_change_time
+            + block.block_time
+            + (
+                (block.block_time_change_block - block.sequance_number)
+                * block.block_time
+            )
+        )
         if block.newly:
             true_time -= 1
             logger.info(
-                "Consensus proccess is complated but the time is not true, will be waiting for the true time")
+                "Consensus proccess is complated but the time is not true, will be waiting for the true time"
+            )
         if not int(time.time()) < true_time:
             block.newly = False
-            logger.info(
-                "Consensus proccess is complated, the block will be reset")
+            logger.info("Consensus proccess is complated, the block will be reset")
             block.reset_the_block()
     else:
         if block.raund_1_starting_time is None:

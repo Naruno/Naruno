@@ -14,8 +14,7 @@ from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from node.node import Node
 from node.unl import Unl
 from transactions.process_the_transaction import ProccesstheTransaction
-from transactions.send_transaction_to_the_block import \
-    SendTransactiontoTheBlock
+from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
 
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
@@ -33,7 +32,8 @@ def consensus_round_1(block):
     """
 
     logger.info(
-        f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting")
+        f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting"
+    )
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_1_node:
@@ -45,8 +45,7 @@ def consensus_round_1(block):
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
 
-        if not (int(time.time()) -
-                block.raund_1_starting_time) < block.raund_1_time:
+        if not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
             logger.info("True time")
             temp_validating_list = []
             for candidate_block in candidate_class.candidate_blocks[:]:
@@ -63,32 +62,31 @@ def consensus_round_1(block):
                     if len(candidate_class.candidate_blocks) != 1:
 
                         for other_block in candidate_class.candidate_blocks[:]:
-                            if candidate_block["signature"] != other_block[
-                                    "signature"]:
+                            if candidate_block["signature"] != other_block["signature"]:
 
-                                for other_block_txs in other_block[
-                                        "transaction"]:
-                                    if (other_block_tx.signature ==
-                                            other_block_txs.signature):
+                                for other_block_txs in other_block["transaction"]:
+                                    if (
+                                        other_block_tx.signature
+                                        == other_block_txs.signature
+                                    ):
 
                                         tx_valid += 1
                     else:
                         tx_valid += 1
 
-                    logger.debug(
-                        f"Tx valid of {other_block_tx.signature} : {tx_valid}")
+                    logger.debug(f"Tx valid of {other_block_tx.signature} : {tx_valid}")
                     if tx_valid > (len(unl_nodes) / 2):
 
                         already_in_ok = False
                         for alrady_tx in temp_validating_list[:]:
 
                             if other_block_tx.signature == alrady_tx.signature:
-                                logger.warning(
-                                    "The transaction is already in the list")
+                                logger.warning("The transaction is already in the list")
                                 already_in_ok = True
                         if not already_in_ok:
                             logger.info(
-                                f"Transaction is valid ({other_block_tx.signature})")
+                                f"Transaction is valid ({other_block_tx.signature})"
+                            )
                             temp_validating_list.append(other_block_tx)
 
             newly_added_list = []
@@ -96,8 +94,10 @@ def consensus_round_1(block):
             for my_validating_list in block.validating_list[:]:
                 ok = False
                 for my_temp_validating_list in temp_validating_list[:]:
-                    if (my_validating_list.signature ==
-                            my_temp_validating_list.signature):
+                    if (
+                        my_validating_list.signature
+                        == my_temp_validating_list.signature
+                    ):
                         ok = True
                 block.validating_list.remove(my_validating_list)
                 if not ok:
@@ -139,8 +139,7 @@ def consensus_round_1(block):
                 block.save_block()
 
     else:
-        if not (int(time.time()) -
-                block.raund_1_starting_time) < block.raund_1_time:
+        if not (int(time.time()) - block.raund_1_starting_time) < block.raund_1_time:
             if not block.increase_the_time == 3:
                 logger.info("Increase the time")
                 block.increase_the_time += 1

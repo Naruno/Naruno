@@ -17,8 +17,7 @@ from app.app_main import app_tigger
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash_part
-from blockchain.block.save_block_to_blockchain_db import \
-    saveBlockstoBlockchainDB
+from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
 from config import TEMP_BLOCK_PATH
 from consensus.consensus_main import consensus_trigger
 from lib.config_system import get_config
@@ -44,7 +43,11 @@ class Block:
     own all the coins.
     """
 
-    def __init__(self, creator, previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9"):
+    def __init__(
+        self,
+        creator,
+        previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9",
+    ):
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 7
@@ -158,8 +161,9 @@ class Block:
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        if not len(self.validating_list) == 0 and not len(
-                self.validating_list) < (self.max_tx_number / 2):
+        if not len(self.validating_list) == 0 and not len(self.validating_list) < (
+            self.max_tx_number / 2
+        ):
 
             app_tigger(self)
 
@@ -182,7 +186,8 @@ class Block:
             logger.info("New block created")
         else:
             logger.info(
-                "New block not created because any transaction is not validated")
+                "New block not created because any transaction is not validated"
+            )
             self.empty_block_number += 1
 
         logger.debug(self.__dict__)

@@ -29,7 +29,8 @@ def CheckTransaction(block, transaction):
     """
 
     logger.info(
-        f"Checking the transaction started {block.sequance_number}:{transaction.signature}")
+        f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
+    )
 
     validation = True
 
@@ -39,12 +40,17 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if Ecdsa.verify(
-        (str(transaction.sequance_number) + str(transaction.fromUser) +
-         str(transaction.toUser) + str(transaction.data) +
-         str(transaction.amount) + str(transaction.transaction_fee) +
-         str(transaction.transaction_time)),
-            Signature.fromBase64(transaction.signature),
-            PublicKey.fromPem(transaction.fromUser),
+        (
+            str(transaction.sequance_number)
+            + str(transaction.fromUser)
+            + str(transaction.toUser)
+            + str(transaction.data)
+            + str(transaction.amount)
+            + str(transaction.transaction_fee)
+            + str(transaction.transaction_time)
+        ),
+        Signature.fromBase64(transaction.signature),
+        PublicKey.fromPem(transaction.fromUser),
     ):
         logger.info("The signature is valid")
     else:
@@ -66,24 +72,24 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if transaction.sequance_number == (
-            GetSequanceNumber(transaction.fromUser, block) + 1):
+        GetSequanceNumber(transaction.fromUser, block) + 1
+    ):
         logger.info("Sequance number is valid")
     else:
         validation = False
 
     balance = GetBalance(block, transaction.fromUser)
-    if balance >= (float(transaction.amount) +
-                   float(transaction.transaction_fee)):
+    if balance >= (float(transaction.amount) + float(transaction.transaction_fee)):
         logger.info("Balance is valid")
     else:
         validation = False
 
-    if (balance -
-            (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
+    if (balance - (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
         logger.info("Balance is enough")
     else:
         validation = False
 
     logger.info(
-        f"Checking the transaction finished {block.sequance_number}:{transaction.signature}")
+        f"Checking the transaction finished {block.sequance_number}:{transaction.signature}"
+    )
     return validation
