@@ -114,7 +114,7 @@ jobs:
       run: |
         pytest tests/unit_tests
 
-  functional-test-docker-local-ubuntu-latest:
+  functional-test-local-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
     runs-on: ubuntu-latest
     strategy:
@@ -130,6 +130,5 @@ jobs:
       run: |
         pip install pytest
         cd ..
-        docker build -t decentra-network-api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/functional_tests/docker/test_decentra_network_docker.py
+        pytest Decentra-Network/tests/functional_tests/local/test_decentra_network_local.py
 
