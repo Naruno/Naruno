@@ -73,12 +73,13 @@ def consensus_round_2(block):
                         block.raund_2 = True
 
                     else:
-                        logger.warning(f"Our block is not valid, the system will try to get true block from node {str(candidate_block["sender"])}")
+                        sender = candidate_block["sender"]
+                        logger.warning(f"Our block is not valid, the system will try to get true block from node {sender}")
                         node = Node.main_node
                         unl_list = Unl.get_as_node_type(
-                            [candidate_block["sender"]])
+                            [sender])
                         node.send_data_to_node(unl_list[0], "sendmefullblock")
-                        block.dowload_true_block = candidate_block["sender"]
+                        block.dowload_true_block = sender
                     block.save_block()
 
         else:
