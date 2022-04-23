@@ -18,8 +18,8 @@ from config import LOADING_BLOCK_PATH
 from config import TEMP_ACCOUNTS_PATH
 from config import TEMP_BLOCK_PATH
 from config import TEMP_BLOCKSHASH_PATH
+from lib.log import get_logger
 from lib.merkle_root import MerkleTree
-from lib.mixlib import dprint
 from node.node import *
 from node.node_connection import Node_Connection
 from node.unl import Unl
@@ -29,6 +29,8 @@ from wallet.wallet import PrivateKey
 from wallet.wallet import PublicKey
 from wallet.wallet import Signature
 from wallet.wallet import Wallet_Import
+
+logger = get_logger("NODE")
 
 
 class Node(threading.Thread):
@@ -80,7 +82,7 @@ class Node(threading.Thread):
 
                     self.nodes_inbound.append(thread_client)
                 else:
-                    dprint(
+                    logger.warning(
                         "Node System: Could not connect with node because node is not unl node."
                     )
 
@@ -92,7 +94,7 @@ class Node(threading.Thread):
 
             time.sleep(0.01)
 
-        dprint("Node System: Stopping protocol started by node")
+        logger.info("Node System: Stopping protocol started by node")
         for t in self.nodes_inbound:
             t.stop()
 
@@ -109,10 +111,10 @@ class Node(threading.Thread):
 
         self.sock.settimeout(None)
         self.sock.close()
-        dprint("Node System: The node is stopped")
+        logger.info("Node System: The node is stopped")
 
     def init_server(self):
-        dprint("Node System: Node server is starting")
+        logger.info("Node System: Node server is starting")
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind((self.host, self.port))
         self.sock.settimeout(10.0)
@@ -134,7 +136,7 @@ class Node(threading.Thread):
 
         for n in self.nodes_inbound:
             if n in exclude:
-                dprint(
+                logger.info(
                     "Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 try:
@@ -144,7 +146,7 @@ class Node(threading.Thread):
 
         for n in self.nodes_outbound:
             if n in exclude:
-                dprint(
+                logger.info(
                     "Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 try:
@@ -160,30 +162,30 @@ class Node(threading.Thread):
                 n.send(data)
 
             except Exception as e:
-                dprint(
+                logger.exception(
                     "Node System: Node send_data_to_node: Could not send data to node"
                 )
         else:
-            dprint(
+            logger.warning(
                 "Node System: Node send_data_to_node: Node is not connected")
 
     def connect_to_node(self, host, port):
 
         if host == self.host and port == self.port:
-            dprint(
+            logger.error(
                 "Node System: Node connect_to_node: You can not connect to yourself"
             )
             return False
 
         for node in self.nodes_outbound:
             if node.host == host and node.port == port:
-                dprint(
+                logger.warning(
                     "Node System: connect_to_node: Node is already connected")
                 return True
 
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            dprint("Node System: Connecting to %s port %s" % (host, port))
+            logger.info("Node System: Connecting to %s port %s" % (host, port))
             sock.connect((host, port))
 
             # Basic information exchange (not secure) of the id's of the nodes!
@@ -199,11 +201,11 @@ class Node(threading.Thread):
 
                 self.nodes_outbound.append(thread_client)
             else:
-                dprint(
+                logger.warning(
                     "Node System: Could not connect with node because node is not unl node."
                 )
         except Exception as e:
-            dprint("Node System: Could not connect with node")
+            logger.exception("Node System: Could not connect with node")
 
     def disconnect_to_node(self, node):
 
@@ -357,8 +359,6 @@ class Node(threading.Thread):
         except Exception as e:
             print(e)
 
-        dprint("message_from_node from " + node.id + ": " + str(data))
-
     def send_my_block(self, nodes):
         system = GetBlock()
 
@@ -370,13 +370,8 @@ class Node(threading.Thread):
             new_list.append(element.dump_json())
             signature_list.append(element.signature)
 
-        dprint("signature_list: " + str(signature_list))
-        dprint("publickey from pem: " + str(Wallet_Import(0, 1)))
-
         Merkle_signature_list = (MerkleTree(signature_list).getRootHash()
                                  if len(signature_list) != 0 else "0")
-
-        dprint("\nmerkleroot: " + Merkle_signature_list)
 
         data = {
             "action":
@@ -394,8 +389,6 @@ class Node(threading.Thread):
         }
 
         for each_node in nodes:
-            dprint("Raund 1: second ok of get candidate block: " +
-                   str(each_node.__dict__))
             self.send_data_to_node(each_node, data)
 
     def send_my_block_hash(self, nodes):
@@ -418,37 +411,20 @@ class Node(threading.Thread):
             }
 
             for each_node in nodes:
-                dprint("Raund 2: second ok of get candidate block hashes: " +
-                       str(each_node.__dict__))
                 self.send_data_to_node(each_node, data)
 
     def get_candidate_block(self, data, node):
 
-        dprint("Getting the candidate block")
-
         if (Unl.node_is_unl(node.id)
                 and GetBlock().sequance_number == data["sequance_number"]):
-            dprint("is unl")
 
             signature_list = []
             for element in data["transaction"]:
                 signature_list.append(element["signature"])
 
-            dprint("signature_list: " + str(signature_list))
-
             merkle_root_of_signature_list = (
                 MerkleTree(signature_list).getRootHash()
                 if len(signature_list) != 0 else "0")
-
-            dprint("signatureverify: " + str(
-                Ecdsa.verify(
-                    "myblock" + merkle_root_of_signature_list,
-                    Signature.fromBase64(data["signature"]),
-                    PublicKey.fromPem(node.id),
-                )))
-            dprint("publickey from pem: " + str(node.id))
-
-            dprint("merkleroot: " + merkle_root_of_signature_list)
 
             if Ecdsa.verify(
                     "myblock" + merkle_root_of_signature_list +
@@ -456,7 +432,6 @@ class Node(threading.Thread):
                     Signature.fromBase64(data["signature"]),
                     PublicKey.fromPem(node.id),
             ):
-                dprint("ecdsa true")
 
                 temp_tx = []
 
@@ -469,11 +444,8 @@ class Node(threading.Thread):
 
     def get_candidate_block_hash(self, data, node):
 
-        dprint("Getting the candidate block hash")
-
         if (Unl.node_is_unl(node.id)
                 and GetBlock().sequance_number == data["sequance_number"]):
-            dprint("is unl")
 
             if Ecdsa.verify(
                     "myblockhash" + data["hash"] +
@@ -481,13 +453,11 @@ class Node(threading.Thread):
                     Signature.fromBase64(data["signature"]),
                     PublicKey.fromPem(node.id),
             ):
-                dprint("ecdsa true")
                 data["sender"] = node.id
 
                 node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
-        dprint("Sending full chain to node or nodes." + " Node: " + str(node))
         file = open(TEMP_BLOCK_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
@@ -510,8 +480,6 @@ class Node(threading.Thread):
 
             SendData = file.read(1024)
 
-            dprint(SendData)
-
             if not SendData:
                 data = {
                     "fullblock":
@@ -529,7 +497,6 @@ class Node(threading.Thread):
                     self.send_data_to_nodes(data)
 
     def send_full_accounts(self, node=None):
-        dprint("Sending full chain to node or nodes." + " Node: " + str(node))
         file = open(TEMP_ACCOUNTS_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
@@ -552,8 +519,6 @@ class Node(threading.Thread):
 
             SendData = file.read(1024)
 
-            dprint(SendData)
-
             if not SendData:
                 data = {
                     "fullaccounts":
@@ -571,7 +536,6 @@ class Node(threading.Thread):
                     self.send_data_to_nodes(data)
 
     def send_full_blockshash(self, node=None):
-        dprint("Sending full chain to node or nodes." + " Node: " + str(node))
         file = open(TEMP_BLOCKSHASH_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
@@ -593,8 +557,6 @@ class Node(threading.Thread):
                 self.send_data_to_nodes(data)
 
             SendData = file.read(1024)
-
-            dprint(SendData)
 
             if not SendData:
                 data = {
@@ -641,7 +603,6 @@ class Node(threading.Thread):
                 ChangeTransactionFee(system)
 
                 system.exclude_validators = []
-                dprint(system.sequance_number)
                 perpetualTimer(system.consensus_timer,
                                consensus_trigger).start()
                 system.save_block()
@@ -687,7 +648,6 @@ class Node(threading.Thread):
             file.close()
 
     def get_transaction(self, data, node):
-        dprint("Getting the transactions")
         system = GetBlock()
         from transactions.send_transaction_to_the_block import \
             SendTransactiontoTheBlock

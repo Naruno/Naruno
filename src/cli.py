@@ -13,6 +13,7 @@ from blockchain.block.create_block import CreateBlock
 from blockchain.block.get_block import GetBlockFromOtherNode
 from config import MY_TRANSACTION_EXPORT_PATH
 from lib.export import export_the_transactions
+from lib.log import get_logger
 from lib.mixlib import banner_maker
 from lib.mixlib import menu_maker
 from lib.mixlib import menu_space
@@ -22,6 +23,7 @@ from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
+from loguru import logger
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
@@ -32,6 +34,8 @@ from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance
 from wallet.print_wallets import print_wallets
 from wallet.wallet_selector import wallet_selector
+
+logger = get_logger("CLI")
 
 
 def show_menu():
@@ -325,6 +329,7 @@ def start():
     Start the CLI mode with arguments.
     """
 
+    logger.info("Starting CLI mode")
     arguments()
 
 

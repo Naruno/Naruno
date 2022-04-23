@@ -8,7 +8,7 @@ import time
 
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
-from lib.mixlib import dprint
+from lib.log import get_logger
 from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.propagating_the_tx import PropagatingtheTX
 from transactions.transaction import Transaction
@@ -17,18 +17,22 @@ from wallet.wallet import Ecdsa
 from wallet.wallet import PublicKey
 from wallet.wallet import Signature
 
+logger = get_logger("TRANSACTIONS")
+
 
 def CheckTransaction(block, transaction):
     """
     This function checks the transaction.
     """
 
-    dprint("\nValidation")
+    logger.info(
+        f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
+    )
 
     validation = True
 
     if not TXAlreadyGot(block, transaction):
-        dprint("The transaction is not already in the block")
+        logger.warning("The transaction is already got")
     else:
         validation = False
 
@@ -40,44 +44,45 @@ def CheckTransaction(block, transaction):
             Signature.fromBase64(transaction.signature),
             PublicKey.fromPem(transaction.fromUser),
     ):
-        dprint("The signature is valid")
+        logger.info("The signature is valid")
     else:
         validation = False
 
     if not transaction.amount < block.minumum_transfer_amount:
-        dprint("Minimum transfer amount is reached")
+        logger.info("Minimum transfer amount is reached")
     else:
         validation = False
 
     if not transaction.transaction_fee < block.transaction_fee:
-        dprint("Transaction fee is reached")
+        logger.info("Transaction fee is reached")
     else:
         validation = False
 
     if not (int(time.time()) - transaction.transaction_time) > 60:
-        dprint("Transaction time is valid")
+        logger.info("Transaction time is valid")
     else:
         validation = False
 
     if transaction.sequance_number == (
             GetSequanceNumber(transaction.fromUser, block) + 1):
-        dprint("Sequance number is valid")
+        logger.info("Sequance number is valid")
     else:
         validation = False
 
     balance = GetBalance(block, transaction.fromUser)
     if balance >= (float(transaction.amount) +
                    float(transaction.transaction_fee)):
-        dprint("Balance is valid")
+        logger.info("Balance is valid")
     else:
         validation = False
 
     if (balance -
         (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
-        dprint("Balance is enough")
+        logger.info("Balance is enough")
     else:
         validation = False
 
-    dprint("Validation end")
-
+    logger.info(
+        f"Checking the transaction finished {block.sequance_number}:{transaction.signature}"
+    )
     return validation

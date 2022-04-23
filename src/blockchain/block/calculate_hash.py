@@ -4,15 +4,13 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-from lib.mixlib import dprint
-from lib.merkle_root import MerkleTree
-
-from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part, SaveBlockshash_part
-
 from accounts.get_accounts import GetAccounts
 from accounts.get_accounts_part import GetAccounts_part
 from accounts.save_accounts_part import save_accounts_part
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import GetBlockshash_part
+from blockchain.block.blocks_hash import SaveBlockshash_part
+from lib.merkle_root import MerkleTree
 
 
 def CalculateHash(block):
@@ -22,15 +20,12 @@ def CalculateHash(block):
 
     # Transaction
     tx_list = []
-    dprint(len(block.validating_list))
     for element in block.validating_list[:]:
-        dprint(element)
         tx_list.append(element.signature)
     if len(tx_list) != 0:
         tx_hash = MerkleTree(tx_list).getRootHash()
     else:
         tx_hash = "0"
-
 
     part_amount = 100000
 
@@ -40,21 +35,21 @@ def CalculateHash(block):
     part_of_blocks_hash = GetBlockshash_part()
     the_blocks_hash = GetBlockshash()
 
-
-    if not len(the_blocks_hash) - (len(part_of_blocks_hash) * part_amount) == part_amount:
-        for will_added_blocks_hash in the_blocks_hash[(len(part_of_blocks_hash) * part_amount):]:
+    if (not len(the_blocks_hash) -
+        (len(part_of_blocks_hash) * part_amount) == part_amount):
+        for will_added_blocks_hash in the_blocks_hash[(
+                len(part_of_blocks_hash) * part_amount):]:
             blocks_hash_list.append(will_added_blocks_hash)
     else:
-        part_of_blocks_hash.append(MerkleTree(the_blocks_hash[(len(part_of_blocks_hash) * part_amount):]).getRootHash())
+        part_of_blocks_hash.append(
+            MerkleTree(the_blocks_hash[(len(part_of_blocks_hash) *
+                                        part_amount):]).getRootHash())
         SaveBlockshash_part(part_of_blocks_hash)
 
-    
     for part_of_blocks_hash_element in part_of_blocks_hash:
         blocks_hash_list.append(part_of_blocks_hash_element)
-    
 
     blockshash_hash = MerkleTree(blocks_hash_list).getRootHash()
-
 
     # Account
     account_list = []
@@ -62,14 +57,17 @@ def CalculateHash(block):
     part_of_account = GetAccounts_part()
     the_accounts = GetAccounts()
 
-    if not len(the_accounts) - (len(part_of_account) * part_amount) >= part_amount:
-        for will_added_accounts in the_accounts[(len(part_of_account) * part_amount):]:
+    if not len(the_accounts) - (len(part_of_account) *
+                                part_amount) >= part_amount:
+        for will_added_accounts in the_accounts[(len(part_of_account) *
+                                                 part_amount):]:
             account_list.append(str(will_added_accounts.dump_json()))
     else:
-        part_of_account.append(MerkleTree(the_accounts[(len(part_of_account) * part_amount):]).getRootHash())
+        part_of_account.append(
+            MerkleTree(the_accounts[(len(part_of_account) *
+                                     part_amount):]).getRootHash())
         save_accounts_part(part_of_account)
 
-    
     for part_of_account_element in part_of_account:
         account_list.append(part_of_account_element)
 
@@ -77,9 +75,8 @@ def CalculateHash(block):
         account_list.append(str(edited_account.dump_json()))
 
     block.edited_accounts.clear()
-    
-    ac_hash = MerkleTree(account_list).getRootHash()
 
+    ac_hash = MerkleTree(account_list).getRootHash()
 
     # Other elements
     main_list = []
