@@ -67,6 +67,12 @@ jobs:
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
+    - name: Archive logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-unit-test-ubuntu-latest
+        path: src/logs/*.log      
+  
   unit-test-macos-latest:
     needs: lint_with_flake8
 
@@ -90,6 +96,11 @@ jobs:
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
+    - name: Archive logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-unit-test-macos-latest
+        path: src/logs/*.log           
   unit-test-windows-latest:
     needs: lint_with_flake8
 
@@ -113,6 +124,11 @@ jobs:
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
+    - name: Archive logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-unit-test-windows-latest
+        path: src/logs/*.log           
 
   functional-test-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
@@ -131,4 +147,18 @@ jobs:
         pip install pytest
         cd ..
         pytest Decentra-Network/tests/functional_tests/local/test_decentra_network_local.py
-
+    - name: Archive logs of Node 0
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-functional-test-local-ubuntu-latest-node-0
+        path: /home/runner/work/Decentra-Network/Decentra-Network-0/src/logs/*.log 
+    - name: Archive logs of Node 1
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-functional-test-local-ubuntu-latest-node-1
+        path: /home/runner/work/Decentra-Network/Decentra-Network-1/src/logs/*.log 
+    - name: Archive logs of Node 2
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-functional-test-local-ubuntu-latest-node-2
+        path: /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs/*.log 
