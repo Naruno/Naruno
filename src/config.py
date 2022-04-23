@@ -23,12 +23,9 @@ LOADING_BLOCK_PATH = "db/loading_block.decentra_network"
 
 BLOCKS_PATH = "db/blocks/"
 
-
 WALLETS_PATH = "db/wallet_list.json"
 
-
 MY_TRANSACTION_PATH = "db/my_transaction.decentra_network"
-
 
 # Export
 MY_TRANSACTION_EXPORT_PATH = "db/my_transaction.csv"

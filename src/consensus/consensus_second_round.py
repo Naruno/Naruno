@@ -39,10 +39,12 @@ def consensus_round_2(block):
 
     candidate_class = GetCandidateBlocks()
 
-    if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80) / 100):
+    if len(candidate_class.candidate_block_hashes) > (
+        (len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate block hashes received")
 
-        if not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
+        if not (int(time.time()) -
+                block.raund_2_starting_time) < block.raund_2_time:
             logger.info("True time")
 
             for candidate_block in candidate_class.candidate_block_hashes[:]:
@@ -87,7 +89,8 @@ def consensus_round_2(block):
                 block.save_block()
 
     else:
-        if not (int(time.time()) - block.raund_2_starting_time) < block.raund_2_time:
+        if not (int(time.time()) -
+                block.raund_2_starting_time) < block.raund_2_time:
             if not block.increase_the_time_2 == 3:
                 logger.info("Increase the time")
                 block.increase_the_time_2 += 1

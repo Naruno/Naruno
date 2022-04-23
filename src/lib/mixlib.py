@@ -68,17 +68,9 @@ def banner_maker(sc_name, description, author):
       * author: Author of the script.
     """
 
-    return (
-        """Script Name    : """
-        + sc_name
-        + """\n"""
-        + """Description    : """
-        + description
-        + """\n"""
-        + """Author         : """
-        + author
-        + """\n"""
-    )
+    return ("""Script Name    : """ + sc_name + """\n""" +
+            """Description    : """ + description + """\n""" +
+            """Author         : """ + author + """\n""")
 
 
 def question_maker(question_text=None, mode=None):
