@@ -147,3 +147,18 @@ jobs:
         pip install pytest
         cd ..
         pytest Decentra-Network/tests/functional_tests/local/test_decentra_network_local.py
+    - name: Archive logs of Node 0
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report
+        path: Decentra-Network-0/src/logs/*.log
+    - name: Archive logs of Node 1
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report
+        path: Decentra-Network-1/src/logs/*.log
+    - name: Archive logs of Node 2
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report
+        path: Decentra-Network-2/src/logs/*.log        
