@@ -8,8 +8,6 @@ import os
 import pickle
 import time
 
-from lib.log import get_logger
-
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
@@ -22,6 +20,7 @@ from blockchain.block.save_block_to_blockchain_db import \
 from config import TEMP_BLOCK_PATH
 from consensus.consensus_main import consensus_trigger
 from lib.config_system import get_config
+from lib.log import get_logger
 from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
 from transactions.pending_to_validating import PendinttoValidating
@@ -30,7 +29,6 @@ from wallet.wallet import PrivateKey
 from wallet.wallet import PublicKey
 from wallet.wallet import Signature
 from wallet.wallet import Wallet_Import
-
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -44,7 +42,11 @@ class Block:
     own all the coins.
     """
 
-    def __init__(self, creator, previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9"):
+    def __init__(
+        self,
+        creator,
+        previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9",
+    ):
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 7
@@ -141,7 +143,6 @@ class Block:
 
         self.block_time = self.raund_1_time + self.raund_2_time
 
-
         self.start_time = int(time.time())
 
         self.raund_1_starting_time = None
@@ -182,9 +183,11 @@ class Block:
 
             logger.info("New block created")
         else:
-            logger.info("New block not created because any transaction is not validated")
+            logger.info(
+                "New block not created because any transaction is not validated"
+            )
             self.empty_block_number += 1
-        
+
         logger.debug(self.__dict__)
 
         # Adding self.pendingTransaction to the new/current block.

@@ -4,11 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
-from lib.log import get_logger
-
-
 import json
 import os
 import socket
@@ -23,6 +18,7 @@ from config import LOADING_BLOCK_PATH
 from config import TEMP_ACCOUNTS_PATH
 from config import TEMP_BLOCK_PATH
 from config import TEMP_BLOCKSHASH_PATH
+from lib.log import get_logger
 from lib.merkle_root import MerkleTree
 from node.node import *
 from node.node_connection import Node_Connection
@@ -33,7 +29,6 @@ from wallet.wallet import PrivateKey
 from wallet.wallet import PublicKey
 from wallet.wallet import Signature
 from wallet.wallet import Wallet_Import
-
 
 logger = get_logger("NODE")
 
@@ -364,7 +359,6 @@ class Node(threading.Thread):
         except Exception as e:
             print(e)
 
-
     def send_my_block(self, nodes):
         system = GetBlock()
 
@@ -376,10 +370,8 @@ class Node(threading.Thread):
             new_list.append(element.dump_json())
             signature_list.append(element.signature)
 
-
         Merkle_signature_list = (MerkleTree(signature_list).getRootHash()
                                  if len(signature_list) != 0 else "0")
-
 
         data = {
             "action":
@@ -526,7 +518,6 @@ class Node(threading.Thread):
                 self.send_data_to_nodes(data)
 
             SendData = file.read(1024)
-
 
             if not SendData:
                 data = {

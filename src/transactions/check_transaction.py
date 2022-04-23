@@ -4,13 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-from lib.log import get_logger
-
 import time
 
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
+from lib.log import get_logger
 from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.propagating_the_tx import PropagatingtheTX
 from transactions.transaction import Transaction
@@ -18,7 +16,6 @@ from transactions.tx_already_got import TXAlreadyGot
 from wallet.wallet import Ecdsa
 from wallet.wallet import PublicKey
 from wallet.wallet import Signature
-
 
 logger = get_logger("TRANSACTIONS")
 
@@ -28,7 +25,9 @@ def CheckTransaction(block, transaction):
     This function checks the transaction.
     """
 
-    logger.info(f"Checking the transaction started {block.sequance_number}:{transaction.signature}")
+    logger.info(
+        f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
+    )
 
     validation = True
 
@@ -83,5 +82,7 @@ def CheckTransaction(block, transaction):
     else:
         validation = False
 
-    logger.info(f"Checking the transaction finished {block.sequance_number}:{transaction.signature}")
+    logger.info(
+        f"Checking the transaction finished {block.sequance_number}:{transaction.signature}"
+    )
     return validation

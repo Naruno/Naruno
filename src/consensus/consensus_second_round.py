@@ -4,15 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-from lib.log import get_logger
-
 import time
 
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
+from lib.log import get_logger
 from node.node import Node
 from node.unl import Unl
-
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
@@ -29,11 +26,12 @@ def consensus_round_2(block):
       round 2 to be done
     """
 
-    logger.info("BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting")
+    logger.info(
+        "BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting"
+    )
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_2_node:
-
 
         Node.main_node.send_my_block_hash(Unl.get_as_node_type(unl_nodes))
         block.raund_2_node = True
@@ -62,7 +60,7 @@ def consensus_round_2(block):
                     if candidate_block != other_block:
                         if candidate_block["hash"] == other_block["hash"]:
                             tx_valid += 1
-                
+
                 logger.debug(f"Hash valid of  {candidate_block} : {tx_valid}")
                 if tx_valid > ((len(unl_nodes) * 80) / 100):
 
@@ -74,10 +72,11 @@ def consensus_round_2(block):
 
                     else:
                         sender = candidate_block["sender"]
-                        logger.warning(f"Our block is not valid, the system will try to get true block from node {sender}")
+                        logger.warning(
+                            f"Our block is not valid, the system will try to get true block from node {sender}"
+                        )
                         node = Node.main_node
-                        unl_list = Unl.get_as_node_type(
-                            [sender])
+                        unl_list = Unl.get_as_node_type([sender])
                         node.send_data_to_node(unl_list[0], "sendmefullblock")
                         block.dowload_true_block = sender
                     block.save_block()
