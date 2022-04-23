@@ -32,7 +32,7 @@ def consensus_round_1(block):
       round 1 to be done
     """
 
-    logger.info("Firsts round is starting")
+    logger.info("First round is starting")
 
     unl_nodes = Unl.get_unl_nodes()
     if not block.raund_1_node:
@@ -140,4 +140,4 @@ def consensus_round_1(block):
                 block.decrease_the_time = 0
                 block.save_block()
 
-    logger.info("Firsts round is done")
+    logger.info("First round is done")

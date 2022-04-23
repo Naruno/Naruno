@@ -42,12 +42,12 @@ def consensus_trigger():
         if block.raund_1_starting_time is None:
             block.raund_1_starting_time = int(time.time())
         if not block.raund_1:
-            logger.info("Firsts round is starting")
+            logger.info("First round is starting")
             consensus_round_1(block)
-            logger.info("Firsts round is done")
+            logger.info("First round is done")
         elif not block.raund_2:
-            logger.info("Firsts round is starting")
+            logger.info("Second round is starting")
             consensus_round_2(block)
-            logger.info("Seconds round is done")
+            logger.info("Second round is done")
     
     logger.info("Consensus process is done")
