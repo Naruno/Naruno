@@ -138,3 +138,6 @@ class Node_Connection(threading.Thread):
         from node.node import Node
 
         Node.connectionfrommixdb()
+
+    def __str__(self):
+        return f"Node Connection: {self.host}:{self.port} ({self.id})"
