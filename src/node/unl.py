@@ -62,7 +62,7 @@ class Unl:
         if Node.main_node is not None:
             for list_node in id_list:
                 for each_node in (Node.main_node.nodes_inbound +
-                                Node.main_node.nodes_outbound):
+                                  Node.main_node.nodes_outbound):
                     if list_node == each_node.id:
                         temp_list.append(each_node)
 
