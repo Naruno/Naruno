@@ -30,12 +30,19 @@ def Status():
             "status": "",
             "first_block": str(first_block.__dict__),
             "new_block": str(new_block.__dict__),
-            "last_transaction_of_block": str(new_block.validating_list[-1]) if len(new_block.validating_list) > 0 else "",
+            "last_transaction_of_block": str(new_block.validating_list[-1])
+            if len(new_block.validating_list) > 0
+            else "",
             "last_transaction_of_us": str([i.__dict__ for i in GetMyTransaction()]),
-            "connected_nodes": [str(the_connections) for the_connections in Unl.get_as_node_type(Unl.get_unl_nodes())],
+            "connected_nodes": [
+                str(the_connections)
+                for the_connections in Unl.get_as_node_type(Unl.get_unl_nodes())
+            ],
         }
 
-        if not (first_block.sequance_number + first_block.empty_block_number) == (new_block.sequance_number + new_block.empty_block_number):
+        if not (first_block.sequance_number + first_block.empty_block_number) == (
+            new_block.sequance_number + new_block.empty_block_number
+        ):
             if difference <= 6:
                 status_json["status"] = "Good"
             elif difference <= 10:
