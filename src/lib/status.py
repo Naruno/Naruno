@@ -49,4 +49,3 @@ def Status():
                 status_json["status"] = "Not work"
 
         return status_json
-
