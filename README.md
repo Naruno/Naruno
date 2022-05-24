@@ -54,13 +54,11 @@
   <a href="https://codescene.io/projects/23147"><img src="https://codescene.io/projects/23147/status-badges/missed-goals" alt="Missed Goals"></a>
   </p>
 
-
   <p align="center">
    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/tests.yml">
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/tests.yml/badge.svg" alt="Lint_with_flake8">
   <a/>
   </p>
-
 
 # Introducing
 
