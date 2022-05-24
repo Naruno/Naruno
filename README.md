@@ -22,6 +22,8 @@
   <img src="https://img.shields.io/github/repo-size/Decentra-Network/Decentra-Network" alt="repo_size">
   .
   <img  src="https://img.shields.io/tokei/lines/github/Decentra-Network/Decentra-Network" alt="total_lines">
+  .
+  <img src="https://static.pepy.tech/personalized-badge/decentra-network?period=total&units=international_system&left_color=grey&right_color=blue&left_text=PyPI%20Downloads" alt="pypi_downloads">
   </p>
 
   <p align="center">
