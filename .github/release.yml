@@ -5,6 +5,11 @@ changelog:
     authors:
       - restyled-io
   categories:
+  
+    - title: Dependencies
+      labels:
+        - Dependencies
+
     - title: Accounts
       labels:
         - Accounts
@@ -46,10 +51,6 @@ changelog:
       labels:
         - Consensus
 
-    - title: Dependencies
-      labels:
-        - Dependencies
-
     - title: Package
       labels:
         - Docker
@@ -66,6 +67,7 @@ changelog:
         - Stability-Test
         - Unit-Test
         - Test-Environments
+        - Tests
 
     - title: GitHub
       labels:
