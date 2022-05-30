@@ -6,7 +6,7 @@ parent: Release Notes
 0.15.0-alpha Release Notes
 ====================
 
-This path fix the requirements getting on the setups.
+This minor version includes new features and important fixes.
 
 Please report bugs using the issue tracker at GitHub:
 
