@@ -10,10 +10,6 @@ changelog:
       labels:
         - Accounts
 
-    - title: API
-      labels:
-        - API
-
     - title: APP
       labels:
         - APP
@@ -42,6 +38,7 @@ changelog:
       labels:
         - Connection
         - Node
+        - API
 
     - title: Consensus
       labels:
