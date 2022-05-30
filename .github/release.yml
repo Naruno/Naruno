@@ -87,6 +87,10 @@ changelog:
       labels:
         - Logging
 
+    - title: Debugging
+      labels:
+        - Debugging
+
     - title: Release
       labels:
         - Minor
