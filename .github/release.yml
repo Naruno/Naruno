@@ -5,10 +5,6 @@ changelog:
     authors:
       - restyled-io
   categories:
-  
-    - title: Dependencies
-      labels:
-        - Dependencies
 
     - title: Accounts
       labels:
@@ -112,6 +108,10 @@ changelog:
     - title: Platform
       labels:
         - Windows
+
+    - title: Requirements
+      labels:
+        - Dependencies
 
     - title: Other Changes
       labels:
