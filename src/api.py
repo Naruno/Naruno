@@ -218,7 +218,7 @@ def start():
 
     parser.add_argument("-p",
                         "--port",
-                        default=8000,
+                        default=2000,
                         type=int,
                         help="Add new UNL node")
 

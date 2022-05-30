@@ -35,7 +35,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             wallet_2_address = (wallet_2_json[0].replace("0) ", "").replace(
                 " - CURRENTLY USED\n", ""))
             urllib.request.urlopen(
-                f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+                f"http://localhost:2000/send/coin/{wallet_2_address}/5000/123")
 
             time.sleep(10)
 
@@ -69,7 +69,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
 
             for i in range(4):
                 urllib.request.urlopen(
-                    f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123"
+                    f"http://localhost:2000/send/coin/{wallet_2_address}/5000/123"
                 )
                 time.sleep(10)
 
@@ -100,13 +100,13 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             wallet_2_address = (wallet_2_json[0].replace("0) ", "").replace(
                 " - CURRENTLY USED\n", ""))
             urllib.request.urlopen(
-                f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+                f"http://localhost:2000/send/coin/{wallet_2_address}/5000/123")
 
             time.sleep(10)
 
             for i in range(4):
                 urllib.request.urlopen(
-                    f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123"
+                    f"http://localhost:2000/send/coin/{wallet_2_address}/5000/123"
                 )
                 time.sleep(10)
 
@@ -140,15 +140,15 @@ class Test_Decentra_Network_Local(unittest.TestCase):
                 " - CURRENTLY USED\n", ""))
 
             urllib.request.urlopen(
-                f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+                f"http://localhost:2000/send/coin/{wallet_2_address}/5000/123")
             time.sleep(10)
 
             urllib.request.urlopen(
-                f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+                f"http://localhost:2000/send/coin/{wallet_2_address}/5000/123")
             time.sleep(10)
 
             urllib.request.urlopen(
-                f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+                f"http://localhost:2000/send/coin/{wallet_2_address}/5000/123")
             time.sleep(10)
             balance_wallet_1 = json.loads(
                 urllib.request.urlopen(

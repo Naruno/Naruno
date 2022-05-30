@@ -48,50 +48,50 @@ class Decentra_Network_Docker:
     def run(self):
         time.sleep(5 * self.number_of_nodes)
         os.system(
-            "docker run -v decentra-network:/Decentra-Network/src/db/ --network dn-net -p 8000:8000 -p 7999:7999 -dit decentra-network-api"
+            "docker run -v decentra-network:/Decentra-Network/src/db/ --network dn-net -p2000:2000 -p 7999:7999 -dit decentra-network-api"
         )
         for i in range(self.number_of_nodes):
             os.system(
-                f"docker run -v decentra-network-{i}:/Decentra-Network/src/db/ --network dn-net -p 8{i+1}00:8000 -p 80{i+1}0:80{i+1}0 -dit {i}"
+                f"docker run -v decentra-network-{i}:/Decentra-Network/src/db/ --network dn-net -p2{i+1}00:2000 -p20{i+1}0:20{i+1}0 -dit {i}"
             )
 
     def creating_the_wallets(self):
         time.sleep(1 * self.number_of_nodes)
-        urllib.request.urlopen("http://localhost:8000/wallet/create/123")
+        urllib.request.urlopen("http://localhost:2000/wallet/create/123")
 
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:8{i+1}00/wallet/create/123")
+                f"http://localhost:2{i+1}00/wallet/create/123")
 
     def starting_the_nodest(self):
         time.sleep(1 * self.number_of_nodes)
         urllib.request.urlopen(
-            "http://localhost:8000/node/start/172.19.0.2/7999")
+            "http://localhost:2000/node/start/172.19.0.2/7999")
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:8{i+1}00/node/start/172.19.0.{i+3}/80{i+1}0"
+                f"http://localhost:2{i+1}00/node/start/172.19.0.{i+3}/20{i+1}0"
             )
 
     def unl_nodes_settting(self):
         time.sleep(1 * self.number_of_nodes)
         node_id_1 = json.loads(
             urllib.request.urlopen(
-                "http://localhost:8000/node/id").read().decode())
+                "http://localhost:2000/node/id").read().decode())
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:8{i+1}00/node/newunl/?{node_id_1}")
+                f"http://localhost:2{i+1}00/node/newunl/?{node_id_1}")
 
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
                 node_id_2 = json.loads(
                     urllib.request.urlopen(
-                        f"http://localhost:8{i+1}00/node/id").read().decode())
+                        f"http://localhost:2{i+1}00/node/id").read().decode())
                 urllib.request.urlopen(
-                    f"http://localhost:8000/node/newunl/?{node_id_2}")
+                    f"http://localhost:2000/node/newunl/?{node_id_2}")
                 for i_n in range(self.number_of_nodes):
                     if not i == i_n:
                         urllib.request.urlopen(
-                            f"http://localhost:8{i_n+1}00/node/newunl/?{node_id_2}"
+                            f"http://localhost:2{i_n+1}00/node/newunl/?{node_id_2}"
                         )
         else:
             nodes_list = list(range(self.number_of_nodes))
@@ -110,28 +110,28 @@ class Decentra_Network_Docker:
                 for i in circle:
                     node_id_2 = json.loads(
                         urllib.request.urlopen(
-                            f"http://localhost:8{i+1}00/node/id").read().
+                            f"http://localhost:2{i+1}00/node/id").read().
                         decode())
                     urllib.request.urlopen(
-                        f"http://localhost:8000/node/newunl/?{node_id_2}")
+                        f"http://localhost:2000/node/newunl/?{node_id_2}")
                     for i_n in circle:
                         if not i == i_n:
                             urllib.request.urlopen(
-                                f"http://localhost:8{i_n+1}00/node/newunl/?{node_id_2}"
+                                f"http://localhost:2{i_n+1}00/node/newunl/?{node_id_2}"
                             )
 
     def connecting_the_nodes(self):
         time.sleep(1 * self.number_of_nodes)
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:8000/node/connect/172.19.0.{i+3}/80{i+1}0")
+                f"http://localhost:2000/node/connect/172.19.0.{i+3}/20{i+1}0")
 
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
                 for i_n in range(self.number_of_nodes):
                     if not i == i_n:
                         urllib.request.urlopen(
-                            f"http://localhost:8{i+1}00/node/connect/172.19.0.{i_n+3}/80{i_n+1}0"
+                            f"http://localhost:2{i+1}00/node/connect/172.19.0.{i_n+3}/20{i_n+1}0"
                         )
                         time.sleep(1)
         else:
@@ -152,18 +152,18 @@ class Decentra_Network_Docker:
                     for i_n in circle:
                         if not i == i_n:
                             urllib.request.urlopen(
-                                f"http://localhost:8{i+1}00/node/connect/172.19.0.{i_n+3}/80{i_n+1}0"
+                                f"http://localhost:2{i+1}00/node/connect/172.19.0.{i_n+3}/20{i_n+1}0"
                             )
                             time.sleep(1)
 
     def creating_the_block(self):
         time.sleep(1 * self.number_of_nodes)
-        urllib.request.urlopen("http://localhost:8000/settings/test/on")
-        urllib.request.urlopen("http://localhost:8000/settings/debug/on")
+        urllib.request.urlopen("http://localhost:2000/settings/test/on")
+        urllib.request.urlopen("http://localhost:2000/settings/debug/on")
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:8{i+1}00/settings/debug/on")
-        urllib.request.urlopen("http://localhost:8000/block/get")
+                f"http://localhost:2{i+1}00/settings/debug/on")
+        urllib.request.urlopen("http://localhost:2000/block/get")
 
 
 if __name__ == "__main__":
