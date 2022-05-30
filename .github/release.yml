@@ -1,0 +1,112 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - restyled-io
+  categories:
+    - title: Accounts
+      labels:
+        - Accounts
+
+    - title: API
+      labels:
+        - API
+
+    - title: APP
+      labels:
+        - APP
+
+    - title: Auto-Builders
+      labels:
+        - Auto-Builders
+
+    - title: Backup
+      labels:
+        - Backup
+
+    - title: Block
+      labels:
+        - Block
+        - Block-Time-Optimizer
+        - Hash-Calculation
+        - Send
+
+    - title: CLI
+      labels:
+        - CLI-Menu
+        - CLI-Parameters
+
+    - title: Connection
+      labels:
+        - Connection
+        - Node
+
+    - title: Consensus
+      labels:
+        - Consensus
+
+    - title: Dependencies
+      labels:
+        - Dependencies
+
+    - title: Package
+      labels:
+        - Docker
+        - Setup
+        - Setups
+
+    - title: Documentation
+      labels:
+        - Documentation
+
+    - title: Tests
+      labels:
+        - Functional-Test
+        - Stability-Test
+        - Unit-Test
+        - Test-Environments
+
+    - title: GitHub
+      labels:
+        - Github-Actions
+
+    - title: Google
+      labels:
+        - Google-Cloud-Shell
+
+    - title: GUI
+      labels:
+        - GUI
+
+    - title: Licence
+      labels:
+        - Licence
+
+    - title: Logging
+      labels:
+        - Logging
+
+    - title: Release
+      labels:
+        - Minor
+        - Major
+        - Release
+        - Path
+
+    - title: Performance-Optimization
+      labels:
+        - Performance-Optimization
+
+    - title: Security
+      labels:
+        - Security
+        - Vulnerability
+
+    - title: Platform
+      labels:
+        - Windows
+
+    - title: Other Changes
+      labels:
+        - "*"
