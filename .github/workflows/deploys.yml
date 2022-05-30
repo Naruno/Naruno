@@ -2,7 +2,7 @@ name: Deploys
 
 on:
   release:
-    types: [published]
+    types: [published, edited]
 
 jobs:
   deploy-pypi:
