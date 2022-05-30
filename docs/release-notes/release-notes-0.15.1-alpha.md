@@ -23,7 +23,7 @@ Notable changes
 ## Github
 Fixed the deoploy workflow problem.
 
-0.10.0-alpha change log
+0.15.1-alpha change log
 =================
 
 ### GitHub
