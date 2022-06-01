@@ -31,7 +31,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
 
             wallet_2_json = json.loads(
                 urllib.request.urlopen(
-                    "http://localhost:8100/wallet/create/123").read().decode())
+                    "http://localhost:8101/wallet/create/123").read().decode())
             wallet_2_address = (wallet_2_json[0].replace("0) ", "").replace(
                 " - CURRENTLY USED\n", ""))
             urllib.request.urlopen(
@@ -41,7 +41,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
 
             balance_wallet_1 = json.loads(
                 urllib.request.urlopen(
-                    "http://localhost:8100/wallet/balance").read().decode())
+                    "http://localhost:8101/wallet/balance").read().decode())
 
             if balance_wallet_1 == 4000.0:
                 success = True
@@ -63,7 +63,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             temp_environment.start()
             wallet_2_json = json.loads(
                 urllib.request.urlopen(
-                    "http://localhost:8100/wallet/print").read().decode())
+                    "http://localhost:8101/wallet/print").read().decode())
             wallet_2_address = (wallet_2_json[0].replace("0) ", "").replace(
                 " - CURRENTLY USED\n", ""))
 
@@ -75,7 +75,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
 
             balance_wallet_1 = json.loads(
                 urllib.request.urlopen(
-                    "http://localhost:8100/wallet/balance").read().decode())
+                    "http://localhost:8101/wallet/balance").read().decode())
 
             if balance_wallet_1 == 19000.0:
                 success = True
@@ -96,7 +96,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             temp_environment.start()
             wallet_2_json = json.loads(
                 urllib.request.urlopen(
-                    "http://localhost:8100/wallet/create/123").read().decode())
+                    "http://localhost:8101/wallet/create/123").read().decode())
             wallet_2_address = (wallet_2_json[0].replace("0) ", "").replace(
                 " - CURRENTLY USED\n", ""))
             urllib.request.urlopen(
@@ -112,7 +112,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
 
             balance_wallet_1 = json.loads(
                 urllib.request.urlopen(
-                    "http://localhost:8100/wallet/balance").read().decode())
+                    "http://localhost:8101/wallet/balance").read().decode())
 
             if balance_wallet_1 == 24000.0:
                 success = True
@@ -135,7 +135,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             temp_environment.start()
             wallet_2_json = json.loads(
                 urllib.request.urlopen(
-                    "http://localhost:8100/wallet/create/123").read().decode())
+                    "http://localhost:8101/wallet/create/123").read().decode())
             wallet_2_address = (wallet_2_json[0].replace("0) ", "").replace(
                 " - CURRENTLY USED\n", ""))
 
@@ -152,7 +152,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             time.sleep(10)
             balance_wallet_1 = json.loads(
                 urllib.request.urlopen(
-                    "http://localhost:8100/wallet/balance").read().decode())
+                    "http://localhost:8101/wallet/balance").read().decode())
 
             if balance_wallet_1 == 14000.0:
                 success = True
