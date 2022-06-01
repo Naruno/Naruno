@@ -52,7 +52,7 @@ class Decentra_Network_Docker:
         )
         for i in range(self.number_of_nodes):
             os.system(
-                f"docker run -v decentra-network-{i}:/Decentra-Network/src/db/ --network dn-net -p {8100 + i + 1}:{8100 + i + 1} -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
+                f"docker run -v decentra-network-{i}:/Decentra-Network/src/db/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
             )
 
     def creating_the_wallets(self):
