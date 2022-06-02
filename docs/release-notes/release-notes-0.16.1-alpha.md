@@ -30,6 +30,9 @@ Now we can open 98 node and 98 API ports for tests.
 ### Connection
 * connection: New type for calculating port number by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/403
 
+### Tests
+Added __init__.py for test discovering.
+
 Credits
 =======
 
