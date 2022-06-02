@@ -70,7 +70,7 @@ class Decentra_Network_Docker:
                 urllib.request.urlopen(f"http://localhost:8000/node/newunl/?{node_id_2}")
                 for i_n in range(self.number_of_nodes):
                     if not i == i_n:
-                        urllib.request.urlopen(f"http://localhost:8{i_n+1}00/node/newunl/?{node_id_2}")
+                        urllib.request.urlopen(f"http://localhost:{8100 + i_n + 1}/node/newunl/?{node_id_2}")
         else:
             nodes_list = list(range(self.number_of_nodes))
             circle_list = [nodes_list[x:x+((self.number_of_nodes+1)//self.number_of_security_circle)] for x in range(0, len(nodes_list), ((self.number_of_nodes+1)//self.number_of_security_circle))]
@@ -81,7 +81,7 @@ class Decentra_Network_Docker:
                     urllib.request.urlopen(f"http://localhost:8000/node/newunl/?{node_id_2}")                    
                     for i_n in circle:
                         if not i == i_n:
-                            urllib.request.urlopen(f"http://localhost:8{i_n+1}00/node/newunl/?{node_id_2}")
+                            urllib.request.urlopen(f"http://localhost:{8100 + i_n + 1}/node/newunl/?{node_id_2}")
 
     def connecting_the_nodes(self):
 
