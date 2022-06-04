@@ -1,4 +1,4 @@
-name: Stability Test With 5 Node in 1 Security Circle 
+name: Docker Stability Test With 5 Node in 1 Security Circle 
 
 on:
   push:
