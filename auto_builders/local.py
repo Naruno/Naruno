@@ -29,7 +29,8 @@ class Decentra_Network_Local:
         time.sleep(60)
 
     def install(self):
-        os.system("git clone https://github.com/Decentra-Network/Decentra-Network Decentra-Network-orig")
+        os.system(
+            "git clone https://github.com/Decentra-Network/Decentra-Network Decentra-Network-orig")
         time.sleep(5*self.number_of_nodes)
         os.system("pip3 install -r Decentra-Network-orig/requirements/api.txt")
         os.system(f"cp -r -f Decentra-Network-orig Decentra-Network-0")
@@ -166,8 +167,7 @@ class Decentra_Network_Local:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")

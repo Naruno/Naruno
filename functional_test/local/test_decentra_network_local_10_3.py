@@ -6,6 +6,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+import json
+import urllib.request
+import os
+from auto_builders.local import Decentra_Network_Local
+import time
+import sys
 import unittest
 
 
@@ -16,29 +22,31 @@ class Test_Decentra_Network_Local(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/create/123").read().decode())
-        wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
+        wallet_2_json = json.loads(urllib.request.urlopen(
+            "http://localhost:8101/wallet/create/123").read().decode())
+        wallet_2_address = wallet_2_json[0].replace(
+            "0) ", "").replace(" - CURRENTLY USED\n", "")
 
-        urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+        urllib.request.urlopen(
+            f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
         time.sleep(10)
-        balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1,4000.0,"A problem in same network one transaction -1.")
-
+        balance_wallet_1 = json.loads(urllib.request.urlopen(
+            "http://localhost:8101/wallet/balance").read().decode())
+        self.assertEqual(balance_wallet_1, 4000.0,
+                         "A problem in same network one transaction -1.")
 
         time.sleep(20)
 
-
-        urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+        urllib.request.urlopen(
+            f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
         time.sleep(10)
-        balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1,9000.0,"A problem in same network one transaction -3.")
+        balance_wallet_1 = json.loads(urllib.request.urlopen(
+            "http://localhost:8101/wallet/balance").read().decode())
+        self.assertEqual(balance_wallet_1, 9000.0,
+                         "A problem in same network one transaction -3.")
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..",".."))
-import urllib.request, json
-import time
-from auto_builders.local import Decentra_Network_Local
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 temp_environment = Decentra_Network_Local(10, 3)
 temp_environment.delete()
