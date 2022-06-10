@@ -47,21 +47,16 @@ def app_tigger(block):
 
     for folder_entry in os.scandir("app"):
         logger.debug(f"Found application {folder_entry.name}")
-        if (
-            ".md" not in folder_entry.name
-            and "__" not in folder_entry.name
-            and "app_main" not in folder_entry.name
-        ):
-            logger.debug(f"Starting thread for application {folder_entry.name}")
+        if (".md" not in folder_entry.name and "__" not in folder_entry.name
+                and "app_main" not in folder_entry.name):
+            logger.debug(
+                f"Starting thread for application {folder_entry.name}")
             for entry in os.scandir("app/" + folder_entry.name):
                 logger.debug(f"Found entry {entry.name}")
                 if entry.is_file():
                     logger.debug(f"Found file {entry.name}")
-                    if (
-                        entry.name[0] != "_"
-                        and ".py" in entry.name
-                        and "_main" in entry.name
-                    ):
+                    if (entry.name[0] != "_" and ".py" in entry.name
+                            and "_main" in entry.name):
                         logger.debug(f"Starting thread for file {entry.name}")
                         import_command = f"from app.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
                         tx_command = f"{entry.name.replace('.py','')}_tx(trans)"
