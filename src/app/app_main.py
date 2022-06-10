@@ -12,7 +12,6 @@ from lib.log import get_logger
 logger = get_logger("APP")
 
 
-
 class app(Thread):
     """
     It initiates the start functions of the applications in parallel
@@ -30,11 +29,10 @@ class app(Thread):
         Run the application.
         """
         exec(self.import_command)
-        for trans in self.block.validating_list:  # lgtm [py/unused-loop-variable]
+        # lgtm [py/unused-loop-variable]
+        for trans in self.block.validating_list:
             logger.debug(f"Application triggering for tx {trans.__dict__}")
             exec(self.func)
-
-
 
 
 def app_tigger(block):
@@ -43,13 +41,15 @@ def app_tigger(block):
     the block is validated.
     """
 
-    logger.info(f"Triggering applications for block {block.sequance_number}:{block.empty_block_number}")
+    logger.info(
+        f"Triggering applications for block {block.sequance_number}:{block.empty_block_number}")
 
     for folder_entry in os.scandir("app"):
         logger.debug(f"Found application {folder_entry.name}")
         if (".md" not in folder_entry.name and "__" not in folder_entry.name
                 and "app_main" not in folder_entry.name):
-            logger.debug(f"Starting thread for application {folder_entry.name}")
+            logger.debug(
+                f"Starting thread for application {folder_entry.name}")
             for entry in os.scandir("app/" + folder_entry.name):
                 logger.debug(f"Found entry {entry.name}")
                 if entry.is_file():
