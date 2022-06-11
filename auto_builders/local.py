@@ -62,7 +62,7 @@ class Decentra_Network_Local:
         urllib.request.urlopen("http://localhost:8000/settings/debug/on")
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:{8100 + i + 1}/settings/debug/on")        
+                f"http://localhost:{8100 + i + 1}/settings/debug/on")
 
     def creating_the_wallets(self):
         time.sleep(1*self.number_of_nodes)
@@ -169,8 +169,7 @@ class Decentra_Network_Local:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")
