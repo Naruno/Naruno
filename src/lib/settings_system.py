@@ -4,13 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import json
 import os
-from lib.config_system import get_config
 
 from config import *
+from lib.config_system import get_config
 
 
 def save_settings(new_settings):
@@ -23,7 +21,8 @@ def save_settings(new_settings):
         json.dump(new_settings, settings_file, indent=4)
 
 
-def create_and_save_the_settings(test_mode_settings=False, debug_mode_settings=True):
+def create_and_save_the_settings(test_mode_settings=False,
+                                 debug_mode_settings=True):
     """
     Creates and saves settings.
     """
