@@ -118,6 +118,11 @@ changelog:
       labels:
         - Settings
 
+    - title: Status
+      labels:
+        - Status
+
+
     - title: Other Changes
       labels:
         - "*"
