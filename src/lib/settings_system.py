@@ -8,9 +8,9 @@
 
 import json
 import os
-from lib.config_system import get_config
 
 from config import *
+from lib.config_system import get_config
 
 
 def save_settings(new_settings):
