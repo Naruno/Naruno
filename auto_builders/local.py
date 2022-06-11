@@ -21,6 +21,7 @@ class Decentra_Network_Local:
 
     def start(self):
         time.sleep(5*self.number_of_nodes)
+        self.debug_and_test_mode()
         self.creating_the_wallets()
         self.starting_the_nodest()
         self.unl_nodes_settting()
@@ -54,6 +55,14 @@ class Decentra_Network_Local:
             os.system(
                 f"nohup python3 Decentra-Network-{i+1}/src/api.py -p {8100 + i + 1} &"
             )
+
+    def debug_and_test_mode(self):
+        time.sleep(1*self.number_of_nodes)
+        urllib.request.urlopen("http://localhost:8000/settings/test/on")
+        urllib.request.urlopen("http://localhost:8000/settings/debug/on")
+        for i in range(self.number_of_nodes):
+            urllib.request.urlopen(
+                f"http://localhost:{8100 + i + 1}/settings/debug/on")        
 
     def creating_the_wallets(self):
         time.sleep(1*self.number_of_nodes)
@@ -154,11 +163,6 @@ class Decentra_Network_Local:
 
     def creating_the_block(self):
         time.sleep(1*self.number_of_nodes)
-        urllib.request.urlopen("http://localhost:8000/settings/test/on")
-        urllib.request.urlopen("http://localhost:8000/settings/debug/on")
-        for i in range(self.number_of_nodes):
-            urllib.request.urlopen(
-                f"http://localhost:{8100 + i + 1}/settings/debug/on")
         urllib.request.urlopen("http://localhost:8000/block/get")
 
 

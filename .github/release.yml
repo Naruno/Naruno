@@ -114,6 +114,10 @@ changelog:
       labels:
         - Research
 
+    - title: Settings
+      labels:
+        - Settings
+
     - title: Other Changes
       labels:
         - "*"
