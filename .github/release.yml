@@ -6,14 +6,6 @@ changelog:
       - restyled-io
   categories:
 
-    - title: Logging
-      labels:
-        - Logging
-
-    - title: Debugging
-      labels:
-        - Debugging
-
     - title: Accounts
       labels:
         - Accounts
@@ -85,6 +77,14 @@ changelog:
     - title: Licence
       labels:
         - Licence
+
+    - title: Logging
+      labels:
+        - Logging
+
+    - title: Debugging
+      labels:
+        - Debugging
 
     - title: Release
       labels:
