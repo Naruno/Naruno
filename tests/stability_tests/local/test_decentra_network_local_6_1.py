@@ -7,12 +7,13 @@
 
 
 import json
-import urllib.request
 import os
-from auto_builders.local import Decentra_Network_Local
-import time
 import sys
+import time
 import unittest
+import urllib.request
+
+from auto_builders.local import Decentra_Network_Local
 
 
 class Test_Decentra_Network_Local(unittest.TestCase):
