@@ -1,0 +1,2008 @@
+name: Docker Stability Test With 3 Node in 1 Security Circle 
+
+on:
+  release:
+    types: [published, edited]
+
+jobs:
+
+  build1:
+    name: 1
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build2:
+    name: 2
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build3:
+    name: 3
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build4:
+    name: 4
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build5:
+    name: 5
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build6:
+    name: 6
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build7:
+    name: 7
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build8:
+    name: 8
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build9:
+    name: 9
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build10:
+    name: 10
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build11:
+    name: 11
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build12:
+    name: 12
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build13:
+    name: 13
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build14:
+    name: 14
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build15:
+    name: 15
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build16:
+    name: 16
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build17:
+    name: 17
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build18:
+    name: 18
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build19:
+    name: 19
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build20:
+    name: 20
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build21:
+    name: 21
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build22:
+    name: 22
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build23:
+    name: 23
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build24:
+    name: 24
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build25:
+    name: 25
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build26:
+    name: 26
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build27:
+    name: 27
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build28:
+    name: 28
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build29:
+    name: 29
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build30:
+    name: 30
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build31:
+    name: 31
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build32:
+    name: 32
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build33:
+    name: 33
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build34:
+    name: 34
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build35:
+    name: 35
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build36:
+    name: 36
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build37:
+    name: 37
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build38:
+    name: 38
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build39:
+    name: 39
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build40:
+    name: 40
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build41:
+    name: 41
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build42:
+    name: 42
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build43:
+    name: 43
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build44:
+    name: 44
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build45:
+    name: 45
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build46:
+    name: 46
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build47:
+    name: 47
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build48:
+    name: 48
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build49:
+    name: 49
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build50:
+    name: 50
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build51:
+    name: 51
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build52:
+    name: 52
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build53:
+    name: 53
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build54:
+    name: 54
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build55:
+    name: 55
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build56:
+    name: 56
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build57:
+    name: 57
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build58:
+    name: 58
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build59:
+    name: 59
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build60:
+    name: 60
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build61:
+    name: 61
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build62:
+    name: 62
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build63:
+    name: 63
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build64:
+    name: 64
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build65:
+    name: 65
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build66:
+    name: 66
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build67:
+    name: 67
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build68:
+    name: 68
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build69:
+    name: 69
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build70:
+    name: 70
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build71:
+    name: 71
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build72:
+    name: 72
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build73:
+    name: 73
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build74:
+    name: 74
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build75:
+    name: 75
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build76:
+    name: 76
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build77:
+    name: 77
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build78:
+    name: 78
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build79:
+    name: 79
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build80:
+    name: 80
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build81:
+    name: 81
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build82:
+    name: 82
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build83:
+    name: 83
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build84:
+    name: 84
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build85:
+    name: 85
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build86:
+    name: 86
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build87:
+    name: 87
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build88:
+    name: 88
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build89:
+    name: 89
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build90:
+    name: 90
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build91:
+    name: 91
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build92:
+    name: 92
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build93:
+    name: 93
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build94:
+    name: 94
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build95:
+    name: 95
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build96:
+    name: 96
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build97:
+    name: 97
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build98:
+    name: 98
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build99:
+    name: 99
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
+  build100:
+    name: 100
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        
+        cd ..
+        docker pull ghcr.io/decentra-network/api:latest
+        pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_3_1.py 
+  
