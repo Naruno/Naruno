@@ -1,8 +1,10 @@
 name: Docker Stability Test With 7 Node in 2 Security Circle 
 
 on:
-  release:
-    types: [published, edited]
+  workflow_run:
+    workflows: ["Deploys"]
+    types:
+      - completed
 
 jobs:
 
