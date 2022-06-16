@@ -1,4 +1,5 @@
 # Local db
+*.out
 config.json
 settings.json
 connected_node.json

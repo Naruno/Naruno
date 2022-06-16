@@ -44,16 +44,18 @@ class Decentra_Network_Local:
             fields = line.split()
             if "/src/api.py" in fields[5]:
                 os.kill(int(fields[0]), signal.SIGKILL)
+        os.system("rm -r -f Decentra-Network-0.out")
+        for i in range(self.number_of_nodes):
+            os.system(
+                f"rm -r -f Decentra-Network-{i + 1}.out"
+            )        
 
     def run(self):
         time.sleep(5 * self.number_of_nodes)
-        os.system("nohup python3 Decentra-Network-0/src/api.py &")
+        os.system("nohup python3 Decentra-Network-0/src/api.py >> Decentra-Network-0.out &")
         for i in range(self.number_of_nodes):
-            print(
-                f"nohup python3 Decentra-Network-{i+1}/src/api.py -p {8100 + i + 1} &"
-            )
             os.system(
-                f"nohup python3 Decentra-Network-{i+1}/src/api.py -p {8100 + i + 1} &"
+                f"nohup python3 Decentra-Network-{i+1}/src/api.py -p {8100 + i + 1} >> Decentra-Network-{i + 1}.out &"
             )
 
     def debug_and_test_mode(self):
