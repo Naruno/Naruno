@@ -25,7 +25,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build2:
@@ -45,7 +45,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build3:
@@ -65,7 +65,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build4:
@@ -85,7 +85,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build5:
@@ -105,7 +105,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build6:
@@ -125,7 +125,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build7:
@@ -145,7 +145,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build8:
@@ -165,7 +165,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build9:
@@ -185,7 +185,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build10:
@@ -205,7 +205,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build11:
@@ -225,7 +225,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build12:
@@ -245,7 +245,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build13:
@@ -265,7 +265,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build14:
@@ -285,7 +285,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build15:
@@ -305,7 +305,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build16:
@@ -325,7 +325,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build17:
@@ -345,7 +345,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build18:
@@ -365,7 +365,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build19:
@@ -385,7 +385,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build20:
@@ -405,7 +405,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build21:
@@ -425,7 +425,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build22:
@@ -445,7 +445,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build23:
@@ -465,7 +465,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build24:
@@ -485,7 +485,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build25:
@@ -505,7 +505,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build26:
@@ -525,7 +525,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build27:
@@ -545,7 +545,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build28:
@@ -565,7 +565,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build29:
@@ -585,7 +585,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build30:
@@ -605,7 +605,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build31:
@@ -625,7 +625,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build32:
@@ -645,7 +645,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build33:
@@ -665,7 +665,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build34:
@@ -685,7 +685,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build35:
@@ -705,7 +705,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build36:
@@ -725,7 +725,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build37:
@@ -745,7 +745,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build38:
@@ -765,7 +765,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build39:
@@ -785,7 +785,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build40:
@@ -805,7 +805,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build41:
@@ -825,7 +825,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build42:
@@ -845,7 +845,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build43:
@@ -865,7 +865,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build44:
@@ -885,7 +885,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build45:
@@ -905,7 +905,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build46:
@@ -925,7 +925,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build47:
@@ -945,7 +945,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build48:
@@ -965,7 +965,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build49:
@@ -985,7 +985,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build50:
@@ -1005,7 +1005,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build51:
@@ -1025,7 +1025,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build52:
@@ -1045,7 +1045,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build53:
@@ -1065,7 +1065,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build54:
@@ -1085,7 +1085,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build55:
@@ -1105,7 +1105,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build56:
@@ -1125,7 +1125,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build57:
@@ -1145,7 +1145,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build58:
@@ -1165,7 +1165,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build59:
@@ -1185,7 +1185,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build60:
@@ -1205,7 +1205,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build61:
@@ -1225,7 +1225,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build62:
@@ -1245,7 +1245,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build63:
@@ -1265,7 +1265,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build64:
@@ -1285,7 +1285,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build65:
@@ -1305,7 +1305,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build66:
@@ -1325,7 +1325,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build67:
@@ -1345,7 +1345,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build68:
@@ -1365,7 +1365,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build69:
@@ -1385,7 +1385,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build70:
@@ -1405,7 +1405,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build71:
@@ -1425,7 +1425,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build72:
@@ -1445,7 +1445,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build73:
@@ -1465,7 +1465,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build74:
@@ -1485,7 +1485,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build75:
@@ -1505,7 +1505,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build76:
@@ -1525,7 +1525,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build77:
@@ -1545,7 +1545,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build78:
@@ -1565,7 +1565,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build79:
@@ -1585,7 +1585,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build80:
@@ -1605,7 +1605,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build81:
@@ -1625,7 +1625,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build82:
@@ -1645,7 +1645,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build83:
@@ -1665,7 +1665,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build84:
@@ -1685,7 +1685,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build85:
@@ -1705,7 +1705,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build86:
@@ -1725,7 +1725,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build87:
@@ -1745,7 +1745,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build88:
@@ -1765,7 +1765,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build89:
@@ -1785,7 +1785,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build90:
@@ -1805,7 +1805,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build91:
@@ -1825,7 +1825,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build92:
@@ -1845,7 +1845,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build93:
@@ -1865,7 +1865,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build94:
@@ -1885,7 +1885,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build95:
@@ -1905,7 +1905,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build96:
@@ -1925,7 +1925,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build97:
@@ -1945,7 +1945,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build98:
@@ -1965,7 +1965,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build99:
@@ -1985,7 +1985,7 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
   build100:
@@ -2005,6 +2005,6 @@ jobs:
         pip install pytest
         
         cd ..
-        docker pull ghcr.io/decentra-network/api:latest
+        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/stability_tests/docker/test_decentra_network_docker_4_1.py 
   
