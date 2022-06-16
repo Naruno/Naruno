@@ -19,7 +19,7 @@ def Status():
     first_block = GetBlock()
     start_time = time.time()
     while True:
-        time.sleep(5)
+        time.sleep(15)
         new_time = time.time()
         new_block = GetBlock()
         difference = int(new_time - start_time)
