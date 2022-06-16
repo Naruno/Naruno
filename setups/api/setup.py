@@ -16,7 +16,7 @@ setup(
     license="MPL-2.0",
     install_requires="""
 flask==2.0.0
-waitress==2.1.1
+waitress==2.1.2
 werkzeug==2.0.3
 """,
     python_requires=">=3.7",
