@@ -52,10 +52,16 @@ changelog:
       labels:
         - Consensus
 
-    - title: Package
+    - title: Docker
       labels:
         - Docker
+
+    - title: Setup
+      labels:
         - Setup
+    
+    - title: Setups
+      labels:
         - Setups
 
     - title: Documentation
