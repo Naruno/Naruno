@@ -12,7 +12,8 @@ from lib.log import get_logger
 from node.node import Node
 from node.unl import Unl
 from transactions.process_the_transaction import ProccesstheTransaction
-from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
+from transactions.send_transaction_to_the_block import \
+    SendTransactiontoTheBlock
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
