@@ -46,8 +46,9 @@ def SendTransactiontoTheBlock(
         time_of_transaction=transaction_time,
     )
     print(the_tx.dump_json())
+    checking = CheckTransaction(block, the_tx)
 
-    if CheckTransaction(block, the_tx):
+    if checking:
         block.pendingTransaction.append(the_tx)
         ChangeTransactionFee(block)
         block.save_block()
@@ -55,3 +56,5 @@ def SendTransactiontoTheBlock(
         PropagatingtheTX(the_tx)
 
         return the_tx
+    else:
+        return False

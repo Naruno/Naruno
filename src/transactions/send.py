@@ -84,7 +84,8 @@ def send(password, to_user, amount, data=None):
                 transaction_time=tx_time,
             )
 
-            SavetoMyTransaction(the_tx)
+            if not the_tx == False:
+                SavetoMyTransaction(the_tx)
 
             del my_private_key
             del password
