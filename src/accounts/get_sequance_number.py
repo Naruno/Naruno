@@ -11,7 +11,7 @@ from wallet.wallet import Address
 from accounts.get_accounts import GetAccounts
 
 
-def GetSequanceNumber(user, block):
+def GetSequanceNumber(user):
     user = Address(user)
     sequance_number = 0
     for Accounts in GetAccounts():
@@ -19,10 +19,6 @@ def GetSequanceNumber(user, block):
         if Accounts.Address == user:
 
             sequance_number = Accounts.sequance_number
-
-            for trans in block.pendingTransaction + block.validating_list:
-                if user == trans.fromUser:
-                    sequance_number += 1
 
             return sequance_number
     return sequance_number

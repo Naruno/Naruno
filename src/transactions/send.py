@@ -59,7 +59,7 @@ def send(password, to_user, amount, data=None):
                 if l and not l.startswith("-----")
             ])
 
-            sequance_number = GetSequanceNumber(my_public_key, block) + 1
+            sequance_number = GetSequanceNumber(my_public_key) + 1
 
             # Get the current fee
             transaction_fee = block.transaction_fee

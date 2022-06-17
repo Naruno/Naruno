@@ -5,7 +5,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from accounts.get_accounts import GetAccounts
-from blockchain.block.get_block import GetBlock
 from wallet.wallet import Address
 
 
@@ -14,10 +13,7 @@ def GetBalance(block, user):
     Returns the users balance.
     """
 
-    balance = -GetBlock().minumum_transfer_amount
-    user = "".join([
-        l.strip() for l in user.splitlines() if l and not l.startswith("-----")
-    ])
+    balance = -block.minumum_transfer_amount
     user = Address(user)
     for Accounts in GetAccounts():
 
@@ -25,7 +21,4 @@ def GetBalance(block, user):
             balance += Accounts.balance
             break
 
-    for trans in block.pendingTransaction + block.validating_list:
-        if user == trans.fromUser:
-            balance -= trans.amount + trans.transaction_fee
     return balance
