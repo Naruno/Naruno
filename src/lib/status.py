@@ -19,6 +19,7 @@ def Status():
     first_block = GetBlock()
     start_time = time.time()
     while True:
+
         time.sleep(15)
         new_time = time.time()
         new_block = GetBlock()
@@ -45,7 +46,7 @@ def Status():
         if not (first_block.sequance_number +
                 first_block.empty_block_number) == (
                     new_block.sequance_number + new_block.empty_block_number):
-            if difference <= 6:
+            if difference <= 7:
                 status_json["status"] = "Good"
             elif difference <= 10:
                 status_json["status"] = "Not bad"

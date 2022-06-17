@@ -1056,7 +1056,10 @@ def Wallet_Delete(account):
 
 
 def Address(publickey):
-
+    the_public_key = "".join([
+        l.strip() for l in publickey.splitlines()
+        if l and not l.startswith("-----")
+    ])
     return sha256(
-        sha256(publickey.encode("utf-8")).hexdigest().encode(
+        sha256(the_public_key.encode("utf-8")).hexdigest().encode(
             "utf-8")).hexdigest()[-40:]

@@ -23,7 +23,6 @@ from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
-from loguru import logger
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
