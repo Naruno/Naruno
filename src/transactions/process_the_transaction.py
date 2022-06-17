@@ -43,14 +43,15 @@ def ProccesstheTransaction(block):
 
         # If not included in the temp_accounts, add.
         if not touser_inlist:
-            new_added_accounts_list.append(Account(trans.toUser, float(trans.amount)))
+            new_added_accounts_list.append(
+                Account(trans.toUser, float(trans.amount)))
 
     # Syncs new sorted list to block.validating_list
 
-    block.validating_list = sorted(temp_validating_list, key=lambda x: x.fromUser)
+    block.validating_list = sorted(temp_validating_list,
+                                   key=lambda x: x.fromUser)
 
-    new_accounts_list = temp_accounts + sorted(
-        new_added_accounts_list, key=lambda x: x.Address
-    )
+    new_accounts_list = temp_accounts + sorted(new_added_accounts_list,
+                                               key=lambda x: x.Address)
 
     save_accounts(new_accounts_list)
