@@ -31,8 +31,11 @@ changelog:
         - Block
         - Block-Time-Optimizer
         - Hash-Calculation
+
+    - title: Transactions
+      labels:
         - Send
-        - Transactions
+        - Transactions      
 
     - title: CLI
       labels:
