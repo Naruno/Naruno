@@ -39,8 +39,7 @@ def consensus_round_2(block):
 
     candidate_class = GetCandidateBlocks()
 
-    time_difference = (int(time.time()) -
-                block.raund_2_starting_time)
+    time_difference = int(time.time()) - block.raund_2_starting_time
 
     if len(candidate_class.candidate_block_hashes) > (
         (len(unl_nodes) * 80) / 100):
