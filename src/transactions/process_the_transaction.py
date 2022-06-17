@@ -46,7 +46,8 @@ def ProccesstheTransaction(block):
 
     # Syncs new sorted list to block.validating_list
 
-    block.validating_list = sorted(temp_validating_list, key=lambda x: x.fromUser)
+    block.validating_list = sorted(temp_validating_list,
+                                   key=lambda x: x.fromUser)
 
     new_accounts_list = sorted(temp_accounts, key=lambda x: x.Address)
 
