@@ -64,7 +64,7 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if transaction.sequance_number == (
-            GetSequanceNumber(transaction.fromUser, block) + 1):
+            GetSequanceNumber(transaction.fromUser) + 1):
         logger.info("Sequance number is valid")
     else:
         validation = False
@@ -81,6 +81,11 @@ def CheckTransaction(block, transaction):
         logger.info("Balance is enough")
     else:
         validation = False
+
+    for tx in block.pendingTransaction + block.validating_list:
+        if tx.fromUser == transaction.fromUser and tx.signature != transaction.signature:
+            logger.info("Multiple transaction in one account")
+            validation = False
 
     logger.info(
         f"Checking the transaction finished {block.sequance_number}:{transaction.signature}"
