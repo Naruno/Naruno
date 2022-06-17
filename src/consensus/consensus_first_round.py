@@ -40,11 +40,14 @@ def consensus_round_1(block):
         block.raund_1_node = True
         block.save_block()
     candidate_class = GetCandidateBlocks()
+    time_difference = (int(time.time()) -
+        block.raund_1_starting_time)    
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
 
-        if not (int(time.time()) -
-                block.raund_1_starting_time) < block.raund_1_time:
+
+
+        if time_difference > block.raund_1_time:
             logger.info("True time")
             temp_validating_list = []
             for candidate_block in candidate_class.candidate_blocks[:]:
@@ -131,19 +134,20 @@ def consensus_round_1(block):
             block.save_block()
 
         else:
-            if not block.decrease_the_time == 3:
-                logger.info("Decrease the time")
-                block.decrease_the_time += 1
-                block.increase_the_time = 0
-                block.save_block()
+            if (time_difference - block.raund_1_time) >= 1:
+                if not block.decrease_the_time == 3:
+                    logger.info("Decrease the time")
+                    block.decrease_the_time += 1
+                    block.increase_the_time = 0
+                    block.save_block()
 
     else:
-        if not (int(time.time()) -
-                block.raund_1_starting_time) < block.raund_1_time:
-            if not block.increase_the_time == 3:
-                logger.info("Increase the time")
-                block.increase_the_time += 1
-                block.decrease_the_time = 0
-                block.save_block()
+        if time_difference > block.raund_1_time:
+            if (time_difference - block.raund_1_time) >= 1:
+                if not block.increase_the_time == 3:
+                    logger.info("Increase the time")
+                    block.increase_the_time += 1
+                    block.decrease_the_time = 0
+                    block.save_block()
 
     logger.info("First round is done")
