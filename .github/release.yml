@@ -5,6 +5,10 @@ changelog:
     authors:
       - restyled-io
   categories:
+  
+    - title: Wallet
+      labels:
+        - Wallet
 
     - title: Accounts
       labels:
