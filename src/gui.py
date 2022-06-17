@@ -11,7 +11,6 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 from lib.config_system import get_config
 from lib.log import get_logger
-from loguru import logger
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
