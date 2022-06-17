@@ -12,8 +12,7 @@ from lib.log import get_logger
 from node.node import Node
 from node.unl import Unl
 from transactions.process_the_transaction import ProccesstheTransaction
-from transactions.send_transaction_to_the_block import \
-    SendTransactiontoTheBlock
+from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -40,8 +39,7 @@ def consensus_round_1(block):
         block.raund_1_node = True
         block.save_block()
     candidate_class = GetCandidateBlocks()
-    time_difference = (int(time.time()) -
-                       block.raund_1_starting_time)
+    time_difference = int(time.time()) - block.raund_1_starting_time
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
 
@@ -62,28 +60,26 @@ def consensus_round_1(block):
                     if len(candidate_class.candidate_blocks) != 1:
 
                         for other_block in candidate_class.candidate_blocks[:]:
-                            if candidate_block["signature"] != other_block[
-                                    "signature"]:
+                            if candidate_block["signature"] != other_block["signature"]:
 
-                                for other_block_txs in other_block[
-                                        "transaction"]:
-                                    if (other_block_tx.signature ==
-                                            other_block_txs.signature):
+                                for other_block_txs in other_block["transaction"]:
+                                    if (
+                                        other_block_tx.signature
+                                        == other_block_txs.signature
+                                    ):
 
                                         tx_valid += 1
                     else:
                         tx_valid += 1
 
-                    logger.debug(
-                        f"Tx valid of {other_block_tx.signature} : {tx_valid}")
+                    logger.debug(f"Tx valid of {other_block_tx.signature} : {tx_valid}")
                     if tx_valid > (len(unl_nodes) / 2):
 
                         already_in_ok = False
                         for alrady_tx in temp_validating_list[:]:
 
                             if other_block_tx.signature == alrady_tx.signature:
-                                logger.warning(
-                                    "The transaction is already in the list")
+                                logger.warning("The transaction is already in the list")
                                 already_in_ok = True
                         if not already_in_ok:
                             logger.info(
@@ -96,8 +92,10 @@ def consensus_round_1(block):
             for my_validating_list in block.validating_list[:]:
                 ok = False
                 for my_temp_validating_list in temp_validating_list[:]:
-                    if (my_validating_list.signature ==
-                            my_temp_validating_list.signature):
+                    if (
+                        my_validating_list.signature
+                        == my_temp_validating_list.signature
+                    ):
                         ok = True
                 block.validating_list.remove(my_validating_list)
                 if not ok:
