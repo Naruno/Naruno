@@ -41,11 +41,9 @@ def consensus_round_1(block):
         block.save_block()
     candidate_class = GetCandidateBlocks()
     time_difference = (int(time.time()) -
-        block.raund_1_starting_time)    
+                       block.raund_1_starting_time)
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
-
-
 
         if time_difference > block.raund_1_time:
             logger.info("True time")
