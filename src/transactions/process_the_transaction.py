@@ -4,12 +4,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
-from wallet.wallet import Address
-
-from accounts.account import Account,  GetAccounts
+from accounts.account import Account
+from accounts.account import GetAccounts
 from accounts.save_accounts import save_accounts
+from wallet.wallet import Address
 
 
 def ProccesstheTransaction(block):
@@ -46,26 +44,11 @@ def ProccesstheTransaction(block):
         if not touser_inlist:
             temp_accounts.append(Account(trans.toUser, float(trans.amount)))
 
-    # Converts public keys to an Account class to use when ordering
-    temp_pubkeys = []
-    for tx_item in temp_validating_list[:]:
-        for Account_item in from_user_list:
-            if Address(str(tx_item.fromUser)) == Account_item.Address:
-                temp_pubkeys.append(str(tx_item.fromUser))
-                tx_item.fromUser = Account_item
-
-    # Orders the transactions by Address index of temp_accounts.
-    temp_validating_list = sorted(
-        temp_validating_list, key=lambda x: temp_accounts.index(x.fromUser)
-    )
-
-    # Converts the Account class to Public key.
-    for temp_validating_list_item in temp_validating_list[:]:
-        for temp_pubkey in temp_pubkeys:
-            if str(temp_validating_list_item.fromUser) == Address(temp_pubkey):
-                temp_validating_list_item.fromUser = temp_pubkey
-
     # Syncs new sorted list to block.validating_list
-    block.validating_list = temp_validating_list
 
-    save_accounts(temp_accounts)
+    block.validating_list = sorted(temp_validating_list,
+                                   key=lambda x: x.fromUser)
+
+    new_accounts_list = sorted(temp_accounts, key=lambda x: x.Address)
+
+    save_accounts(new_accounts_list)
