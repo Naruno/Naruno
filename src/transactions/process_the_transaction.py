@@ -6,10 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from wallet.wallet import Address
-
 from accounts.account import Account, GetAccounts
 from accounts.save_accounts import save_accounts
+from wallet.wallet import Address
 
 
 def ProccesstheTransaction(block):
