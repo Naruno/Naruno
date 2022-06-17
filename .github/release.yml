@@ -28,6 +28,7 @@ changelog:
         - Block-Time-Optimizer
         - Hash-Calculation
         - Send
+        - Transactions
 
     - title: CLI
       labels:
