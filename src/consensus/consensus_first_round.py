@@ -34,15 +34,15 @@ def consensus_round_1(block):
     )
 
     unl_nodes = Unl.get_unl_nodes()
-    if not block.raund_1_node:
-        logger.info("Our block is sending to the unl nodes")
-        Node.main_node.send_my_block(Unl.get_as_node_type(unl_nodes))
-        block.raund_1_node = True
-        block.save_block()
+    logger.info("Our block is sending to the unl nodes")
+    Node.main_node.send_my_block(block, Unl.get_as_node_type(unl_nodes))
     candidate_class = GetCandidateBlocks()
     time_difference = int(time.time()) - block.raund_1_starting_time
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
+
+        logger.info("Time difference is {}".format(time_difference))
+        logger.info("block.raund_1_time is {}".format(block.raund_1_time))
 
         if time_difference > block.raund_1_time:
             logger.info("True time")
@@ -131,7 +131,7 @@ def consensus_round_1(block):
             block.save_block()
 
         else:
-            if (time_difference - block.raund_1_time) >= 1:
+            if (block.raund_1_time - time_difference) >= 3:
                 if not block.decrease_the_time == 3:
                     logger.info("Decrease the time")
                     block.decrease_the_time += 1
@@ -140,7 +140,7 @@ def consensus_round_1(block):
 
     else:
         if time_difference > block.raund_1_time:
-            if (time_difference - block.raund_1_time) >= 1:
+            if (block.raund_1_time - time_difference) >= 3:
                 if not block.increase_the_time == 3:
                     logger.info("Increase the time")
                     block.increase_the_time += 1

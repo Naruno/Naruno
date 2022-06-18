@@ -27,15 +27,12 @@ def consensus_round_2(block):
     """
 
     logger.info(
-        "BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting"
+        f"BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting"
     )
 
     unl_nodes = Unl.get_unl_nodes()
-    if not block.raund_2_node:
-
-        Node.main_node.send_my_block_hash(Unl.get_as_node_type(unl_nodes))
-        block.raund_2_node = True
-        block.save_block()
+    logger.info("Our block hash is sending to the unl nodes")
+    Node.main_node.send_my_block_hash(block, Unl.get_as_node_type(unl_nodes))
 
     candidate_class = GetCandidateBlocks()
 
@@ -83,7 +80,7 @@ def consensus_round_2(block):
                     block.save_block()
 
         else:
-            if (time_difference - block.raund_2_time) >= 1:
+            if (block.raund_2_time - time_difference) >= 3:
                 if not block.decrease_the_time_2 == 3:
                     logger.info("Decrease the time")
                     block.decrease_the_time_2 += 1
@@ -92,7 +89,7 @@ def consensus_round_2(block):
 
     else:
         if time_difference > block.raund_2_time:
-            if (time_difference - block.raund_2_time) >= 1:
+            if (block.raund_2_time - time_difference) >= 3:
                 if not block.increase_the_time_2 == 3:
                     logger.info("Increase the time")
                     block.increase_the_time_2 += 1

@@ -44,6 +44,7 @@ def consensus_trigger():
     else:
         if block.raund_1_starting_time is None:
             block.raund_1_starting_time = int(time.time())
+            block.save_block()
         if not block.raund_1:
             logger.info("First round is starting")
             consensus_round_1(block)

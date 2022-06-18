@@ -359,8 +359,8 @@ class Node(threading.Thread):
         except Exception as e:
             print(e)
 
-    def send_my_block(self, nodes):
-        system = GetBlock()
+    def send_my_block(self, block, nodes):
+        system = block
 
         new_list = []
 
@@ -391,8 +391,8 @@ class Node(threading.Thread):
         for each_node in nodes:
             self.send_data_to_node(each_node, data)
 
-    def send_my_block_hash(self, nodes):
-        system = GetBlock()
+    def send_my_block_hash(self, block, nodes):
+        system = block
 
         if system.raund_1 and not system.raund_2:
 
