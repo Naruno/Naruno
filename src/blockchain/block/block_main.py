@@ -89,7 +89,6 @@ class Block:
 
         self.consensus_timer = 0.50
 
-
         self.validated = False
         self.validated_time = None
 
@@ -106,7 +105,6 @@ class Block:
         and if block have at least half of the max_tx_number transaction,it saves the block
         and makes the edits for the new block.
         """
-
 
         self.block_time = self.raund_1_time + self.raund_2_time
 

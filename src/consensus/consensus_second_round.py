@@ -79,7 +79,4 @@ def consensus_round_2(block):
                         block.dowload_true_block = sender
                     block.save_block()
 
-
-
-
     logger.info("Second round is done")
