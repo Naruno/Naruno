@@ -130,21 +130,7 @@ def consensus_round_1(block):
 
             block.save_block()
 
-        else:
-            if (block.raund_1_time - time_difference) >= 3:
-                if not block.decrease_the_time == 3:
-                    logger.info("Decrease the time")
-                    block.decrease_the_time += 1
-                    block.increase_the_time = 0
-                    block.save_block()
 
-    else:
-        if time_difference > block.raund_1_time:
-            if (block.raund_1_time - time_difference) >= 3:
-                if not block.increase_the_time == 3:
-                    logger.info("Increase the time")
-                    block.increase_the_time += 1
-                    block.decrease_the_time = 0
-                    block.save_block()
+
 
     logger.info("First round is done")

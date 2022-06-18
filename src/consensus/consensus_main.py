@@ -24,13 +24,11 @@ def consensus_trigger():
     block = GetBlock()
 
     logger.info(
-        "BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
+        f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
     )
 
     if block.validated:
-        true_time = (block.block_time_change_time + block.block_time +
-                     ((block.block_time_change_block - block.sequance_number) *
-                      block.block_time))
+        true_time = (block.genesis_time + block.block_time + ((block.sequance_number) * block.block_time))
         if block.newly:
             true_time -= 1
             logger.info(
