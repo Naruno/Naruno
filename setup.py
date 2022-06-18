@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="decentra_network",
-    version="0.19.0",
+    version="0.20.0",
     description=
     """This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.""",
     long_description=open("README.md", "r").read(),

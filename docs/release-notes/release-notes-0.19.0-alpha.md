@@ -35,7 +35,6 @@ Removed unused library in CLI and GUI.
 ### Setups
 Synced the required libraries between requirements/api.txt and setups.
 
-### Package
 
 0.19.0-alpha change log
 =================
