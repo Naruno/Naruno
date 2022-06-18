@@ -37,7 +37,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             urllib.request.urlopen(
                 f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
 
-            time.sleep(10)
+            time.sleep(15)
 
             balance_wallet_1 = json.loads(
                 urllib.request.urlopen(
@@ -71,7 +71,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
                 urllib.request.urlopen(
                     f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123"
                 )
-                time.sleep(10)
+                time.sleep(15)
 
             balance_wallet_1 = json.loads(
                 urllib.request.urlopen(
@@ -102,13 +102,13 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             urllib.request.urlopen(
                 f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
 
-            time.sleep(10)
+            time.sleep(15)
 
             for i in range(4):
                 urllib.request.urlopen(
                     f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123"
                 )
-                time.sleep(10)
+                time.sleep(15)
 
             balance_wallet_1 = json.loads(
                 urllib.request.urlopen(
