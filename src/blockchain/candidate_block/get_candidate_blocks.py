@@ -21,9 +21,9 @@ def GetCandidateBlocks():
     the_candidate_block_hashes = []
 
     for node in nodes:
-        if node.candidate_block:
+        if node.candidate_block is not None:
             the_candidate_blocks.append(node.candidate_block)
-        if node.candidate_block_hash:
+        if node.candidate_block_hash is not None:
             the_candidate_block_hashes.append(node.candidate_block_hash)
 
     return candidate_block(the_candidate_blocks, the_candidate_block_hashes)
