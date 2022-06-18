@@ -17,9 +17,9 @@ from auto_builders.local import Decentra_Network_Local
 class Test_Decentra_Network_Local(unittest.TestCase):
 
     def test_1_different_network_one_transacton(self):
-        """
-        Send coin to 2.wallet from 1.wallet
-        """
+            """
+            Send coin to 2.wallet from 1.wallet
+            """
 
 
             temp_environment = Decentra_Network_Local()
