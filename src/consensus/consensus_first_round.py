@@ -130,7 +130,4 @@ def consensus_round_1(block):
 
             block.save_block()
 
-
-
-
     logger.info("First round is done")
