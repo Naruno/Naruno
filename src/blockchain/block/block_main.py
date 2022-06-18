@@ -106,7 +106,6 @@ class Block:
         and makes the edits for the new block.
         """
 
-        self.block_time = self.raund_1_time + self.raund_2_time
 
         self.start_time = int(time.time())
 
