@@ -11,6 +11,7 @@ import signal
 import sys
 import time
 import urllib.request
+import random
 
 
 class Decentra_Network_Local:
@@ -18,6 +19,22 @@ class Decentra_Network_Local:
     def __init__(self, number_of_nodes=3, number_of_security_circle=1):
         self.number_of_nodes = number_of_nodes - 1
         self.number_of_security_circle = number_of_security_circle
+        nodes_list = list(range(self.number_of_nodes))
+        self.circles = [
+                nodes_list[x:x + ((self.number_of_nodes + 1) //
+                                  self.number_of_security_circle)]
+                for x in range(
+                    0,
+                    len(nodes_list),
+                    ((self.number_of_nodes + 1) //
+                     self.number_of_security_circle),
+                )
+        ]
+        random_amount = int(10 * (self.number_of_security_circle / self.number_of_nodes))
+        for i in range(random_amount):
+            random_circle = random.randint(0, len(self.circles) - 1)
+            random_node = random.randint(0, self.number_of_nodes - 1)
+            self.circles[random_circle].append(random_node)
 
     def start(self):
         time.sleep(5 * self.number_of_nodes)
@@ -104,18 +121,7 @@ class Decentra_Network_Local:
                             f"http://localhost:{8100 + i_n + 1}/node/newunl/?{node_id_2}"
                         )
         else:
-            nodes_list = list(range(self.number_of_nodes))
-            circle_list = [
-                nodes_list[x:x + ((self.number_of_nodes + 1) //
-                                  self.number_of_security_circle)]
-                for x in range(
-                    0,
-                    len(nodes_list),
-                    ((self.number_of_nodes + 1) //
-                     self.number_of_security_circle),
-                )
-            ]
-            for circle in circle_list:
+            for circle in self.circles:
                 for i in circle:
                     node_id_2 = json.loads(
                         urllib.request.urlopen(
@@ -144,19 +150,7 @@ class Decentra_Network_Local:
                         )
                         time.sleep(1)
         else:
-            nodes_list = list(range(self.number_of_nodes))
-            circle_list = [
-                nodes_list[x:x + ((self.number_of_nodes + 1) //
-                                  self.number_of_security_circle)]
-                for x in range(
-                    0,
-                    len(nodes_list),
-                    ((self.number_of_nodes + 1) //
-                     self.number_of_security_circle),
-                )
-            ]
-
-            for circle in circle_list:
+            for circle in self.circles:
                 for i in circle:
                     for i_n in circle:
                         if not i == i_n:
