@@ -38,8 +38,7 @@ def consensus_round_2(block):
 
     time_difference = int(time.time()) - block.raund_2_starting_time
 
-    if len(candidate_class.candidate_block_hashes) > (
-            (len(unl_nodes) * 80) / 100):
+    if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate block hashes received")
 
         if time_difference > block.raund_2_time:
