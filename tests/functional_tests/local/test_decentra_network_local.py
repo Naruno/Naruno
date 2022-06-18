@@ -21,8 +21,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        success = False
-        for i in range(1):
+
             temp_environment = Decentra_Network_Local()
             temp_environment.delete()
             temp_environment.install()
@@ -35,21 +34,21 @@ class Test_Decentra_Network_Local(unittest.TestCase):
             wallet_2_address = (wallet_2_json[0].replace("0) ", "").replace(
                 " - CURRENTLY USED\n", ""))
 
-            for i in range(2):
-                urllib.request.urlopen(
-                    f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+            urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+            time.sleep(25)
+            balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
+            self.assertEqual(balance_wallet_1,4000.0,"A problem in same network one transaction -1.")
 
-                time.sleep(30)
 
-            balance_wallet_1 = json.loads(
-                urllib.request.urlopen(
-                    "http://localhost:8101/wallet/balance").read().decode())
+            time.sleep(45)
 
-            if balance_wallet_1 == 9000.0:
-                success = True
 
-        self.assertEqual(success, True,
-                         "A problem in different network one transaction.")
+            urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+            time.sleep(25)
+            balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
+            self.assertEqual(balance_wallet_1,9000.0,"A problem in same network one transaction -3.")
+
+
 
 
 
