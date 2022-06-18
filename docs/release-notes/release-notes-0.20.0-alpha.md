@@ -37,6 +37,9 @@ Disabled multi transaction from the same account in the same block.
 ### Transactions
 * transactions: Disabled multiple transactions from the same account in one block by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/444
 
+### Tests
+* tests: Removed a functional test because its useless
+
 Credits
 =======
 
