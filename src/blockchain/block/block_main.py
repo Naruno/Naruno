@@ -50,8 +50,6 @@ class Block:
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 10
-        self.block_time_change_time = int(time.time())
-        self.block_time_change_block = 0
 
         self.newly = False
 
@@ -84,19 +82,12 @@ class Block:
         self.raund_1_starting_time = None
         self.raund_1_time = 5
         self.raund_1 = False
-        self.raund_1_node = False
 
         self.raund_2_starting_time = None
         self.raund_2_time = 5
         self.raund_2 = False
-        self.raund_2_node = False
 
         self.consensus_timer = 0.50
-
-        self.increase_the_time = 0
-        self.increase_the_time_2 = 0
-        self.decrease_the_time = 0
-        self.decrease_the_time_2 = 0
 
         self.validated = False
         self.validated_time = None
@@ -115,18 +106,15 @@ class Block:
         and makes the edits for the new block.
         """
 
-
         self.block_time = self.raund_1_time + self.raund_2_time
 
         self.start_time = int(time.time())
 
         self.raund_1_starting_time = None
         self.raund_1 = False
-        self.raund_1_node = False
 
         self.raund_2_starting_time = None
         self.raund_2 = False
-        self.raund_2_node = False
 
         self.validated = False
 
