@@ -21,16 +21,17 @@ class Decentra_Network_Local:
         self.number_of_security_circle = number_of_security_circle
         nodes_list = list(range(self.number_of_nodes))
         self.circles = [
-                nodes_list[x:x + ((self.number_of_nodes + 1) //
-                                  self.number_of_security_circle)]
-                for x in range(
-                    0,
-                    len(nodes_list),
-                    ((self.number_of_nodes + 1) //
-                     self.number_of_security_circle),
-                )
+            nodes_list[x:x + ((self.number_of_nodes + 1) //
+                              self.number_of_security_circle)]
+            for x in range(
+                0,
+                len(nodes_list),
+                ((self.number_of_nodes + 1) //
+                 self.number_of_security_circle),
+            )
         ]
-        random_amount = int(10 * (self.number_of_security_circle / self.number_of_nodes)) if not self.number_of_security_circle == 1 else 0
+        random_amount = int(10 * (self.number_of_security_circle / self.number_of_nodes)
+                            ) if not self.number_of_security_circle == 1 else 0
         for i in range(random_amount):
             random_circle = random.randint(0, len(self.circles) - 1)
             random_node = random.randint(0, self.number_of_nodes - 1)
@@ -65,11 +66,12 @@ class Decentra_Network_Local:
         for i in range(self.number_of_nodes):
             os.system(
                 f"rm -r -f Decentra-Network-{i + 1}.out"
-            )        
+            )
 
     def run(self):
         time.sleep(5 * self.number_of_nodes)
-        os.system("nohup python3 Decentra-Network-0/src/api.py >> Decentra-Network-0.out &")
+        os.system(
+            "nohup python3 Decentra-Network-0/src/api.py >> Decentra-Network-0.out &")
         for i in range(self.number_of_nodes):
             os.system(
                 f"nohup python3 Decentra-Network-{i+1}/src/api.py -p {8100 + i + 1} >> Decentra-Network-{i + 1}.out &"
@@ -167,8 +169,7 @@ class Decentra_Network_Local:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")
