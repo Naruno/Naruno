@@ -7,10 +7,10 @@
 import argparse
 import json
 import os
+import random
 import sys
 import time
 import urllib.request
-import random
 
 
 class Decentra_Network_Docker:
