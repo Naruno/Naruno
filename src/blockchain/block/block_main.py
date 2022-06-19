@@ -106,7 +106,6 @@ class Block:
         and makes the edits for the new block.
         """
 
-
         self.start_time = int(time.time())
 
         self.raund_1_starting_time = None
