@@ -414,7 +414,7 @@ class Node(threading.Thread):
                 self.send_data_to_node(each_node, data)
 
     def get_candidate_block(self, data, node):
-        if node.candidate_block is None:
+
 
             if (Unl.node_is_unl(node.id)
                     and GetBlock().sequance_number == data["sequance_number"]):
@@ -445,7 +445,6 @@ class Node(threading.Thread):
 
     def get_candidate_block_hash(self, data, node):
 
-        if node.candidate_block_hash is None:
 
             if (Unl.node_is_unl(node.id)
                     and GetBlock().sequance_number == data["sequance_number"]):

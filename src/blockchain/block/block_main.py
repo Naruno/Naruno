@@ -80,11 +80,11 @@ class Block:
         self.minumum_transfer_amount = 1000
 
         self.raund_1_starting_time = None
-        self.raund_1_time = 5
+        self.raund_1_time = 3.5
         self.raund_1 = False
 
         self.raund_2_starting_time = None
-        self.raund_2_time = 5
+        self.raund_2_time = 3.5
         self.raund_2 = False
 
         self.consensus_timer = 0.50
