@@ -13,16 +13,22 @@ import time
 from hashlib import sha256
 
 from blockchain.block.get_block import GetBlock
-from config import (CONNECTED_NODE_PATH, LOADING_BLOCK_PATH,
-                    TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PATH)
+from config import CONNECTED_NODE_PATH
+from config import LOADING_BLOCK_PATH
+from config import TEMP_ACCOUNTS_PATH
+from config import TEMP_BLOCK_PATH
+from config import TEMP_BLOCKSHASH_PATH
 from lib.log import get_logger
 from lib.merkle_root import MerkleTree
 from node.node import *
 from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.transaction import Transaction
-from wallet.wallet import (Ecdsa, PrivateKey, PublicKey, Signature,
-                           Wallet_Import)
+from wallet.wallet import Ecdsa
+from wallet.wallet import PrivateKey
+from wallet.wallet import PublicKey
+from wallet.wallet import Signature
+from wallet.wallet import Wallet_Import
 
 logger = get_logger("NODE")
 
