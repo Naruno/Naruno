@@ -310,7 +310,7 @@ class Node(threading.Thread):
                         "fullblock" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 print("getting chain")
                 self.get_full_chain(data, node)
         except Exception as e:
@@ -323,7 +323,7 @@ class Node(threading.Thread):
                         "fullaccounts" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 print("getting chain")
                 self.get_full_accounts(data, node)
         except Exception as e:
@@ -336,7 +336,7 @@ class Node(threading.Thread):
                         "fullblockshash" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 self.get_full_blockshash(data, node)
         except Exception as e:
             print(e)
@@ -415,47 +415,47 @@ class Node(threading.Thread):
 
     def get_candidate_block(self, data, node):
 
-            if (Unl.node_is_unl(node.id)
-                    and GetBlock().sequance_number == data["sequance_number"]):
+        if (Unl.node_is_unl(node.id)
+                and GetBlock().sequance_number == data["sequance_number"]):
 
-                signature_list = []
+            signature_list = []
+            for element in data["transaction"]:
+                signature_list.append(element["signature"])
+
+            merkle_root_of_signature_list = (
+                MerkleTree(signature_list).getRootHash()
+                if len(signature_list) != 0 else "0")
+
+            if Ecdsa.verify(
+                    "myblock" + merkle_root_of_signature_list +
+                    str(data["sequance_number"]),
+                    Signature.fromBase64(data["signature"]),
+                    PublicKey.fromPem(node.id),
+            ):
+
+                temp_tx = []
+
                 for element in data["transaction"]:
-                    signature_list.append(element["signature"])
+                    temp_tx.append(Transaction.load_json(element))
 
-                merkle_root_of_signature_list = (
-                    MerkleTree(signature_list).getRootHash()
-                    if len(signature_list) != 0 else "0")
+                data["transaction"] = temp_tx
 
-                if Ecdsa.verify(
-                        "myblock" + merkle_root_of_signature_list +
-                        str(data["sequance_number"]),
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-                ):
-
-                    temp_tx = []
-
-                    for element in data["transaction"]:
-                        temp_tx.append(Transaction.load_json(element))
-
-                    data["transaction"] = temp_tx
-
-                    node.candidate_block = data
+                node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node):
 
-            if (Unl.node_is_unl(node.id)
-                    and GetBlock().sequance_number == data["sequance_number"]):
+        if (Unl.node_is_unl(node.id)
+                and GetBlock().sequance_number == data["sequance_number"]):
 
-                if Ecdsa.verify(
-                        "myblockhash" + data["hash"] +
-                        str(data["sequance_number"]),
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-                ):
-                    data["sender"] = node.id
+            if Ecdsa.verify(
+                    "myblockhash" + data["hash"] +
+                    str(data["sequance_number"]),
+                    Signature.fromBase64(data["signature"]),
+                    PublicKey.fromPem(node.id),
+            ):
+                data["sender"] = node.id
 
-                    node.candidate_block_hash = data
+                node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
         file = open(TEMP_BLOCK_PATH, "rb")
