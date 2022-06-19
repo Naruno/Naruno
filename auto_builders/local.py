@@ -29,6 +29,8 @@ class Decentra_Network_Local:
                 ((self.number_of_nodes + 1) // self.number_of_security_circle),
             )
         ]
+
+        """
         random_amount = (int(
             10 * (self.number_of_security_circle / self.number_of_nodes))
                          if not self.number_of_security_circle == 1 else 0)
@@ -36,6 +38,7 @@ class Decentra_Network_Local:
             random_circle = random.randint(0, len(self.circles) - 1)
             random_node = random.randint(0, self.number_of_nodes - 1)
             self.circles[random_circle].append(random_node)
+        """
 
     def start(self):
         time.sleep(5 * self.number_of_nodes)
