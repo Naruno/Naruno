@@ -3,13 +3,6 @@
 
 block_cipher = None
 
-# After the build you should copy this file and folder from site-packagess and shares to dist folder: 
-# kivymd
-# kivymd_extensions
-# kivymd_extensions.sweetalert-0.1.5.dist-info
-# libpng16-16.dll
-# typing.py
-
 
 from kivy_deps import sdl2, glew
 from kivymd import hooks_path as kivymd_hooks_path
@@ -42,7 +35,7 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=True,
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
