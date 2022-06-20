@@ -16,6 +16,7 @@ jobs:
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-linux@main
       with:
+        path: /github/workspace
         spec: CLI
 
     - uses: actions/upload-artifact@v2
@@ -32,6 +33,7 @@ jobs:
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-windows@main
       with:
+        path: /github/workspace
         spec: CLI
 
     - uses: actions/upload-artifact@v2
