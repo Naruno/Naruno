@@ -3,17 +3,19 @@
 
 block_cipher = None
 
-
-
 from kivy_deps import sdl2, glew
-
 from kivymd import hooks_path as kivymd_hooks_path
 
-a = Analysis(['src/gui.py'],
+import kivymd
+from os.path import dirname, abspath, join, basename
+
+stiffscroll = os.path.join(kivymd.path, f"stiffscroll{os.sep}")
+
+a = Analysis(['src\\gui.py'],
              pathex=[],
              binaries=[],
-             datas=[],
-             hiddenimports=[],
+             datas=[(stiffscroll, join("kivymd", basename(dirname(stiffscroll)))),],
+             hiddenimports=["kivymd_extensions","kivymd_extensions.sweetalert"],
              hookspath=[kivymd_hooks_path],
              hooksconfig={},
              runtime_hooks=[],
@@ -26,7 +28,7 @@ pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 
 exe = EXE(pyz,
-          Tree('src/'), 
+          a.scripts, 
           [],
           exclude_binaries=True,
           name='Decentra-Network-GUI',
@@ -34,20 +36,18 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=False,
+          console=True,
           disable_windowed_traceback=False,
           target_arch=None,
           codesign_identity=None,
           entitlements_file=None )
-
-
 coll = COLLECT(exe,
-                Tree('src/'),
-                a.binaries,
-                a.zipfiles,
-                a.datas,
-                *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
-                strip=False,
-                upx=True,
-                upx_exclude=[],
-                name='Decentra-Network-GUI')
+               Tree('src/'),
+               a.binaries,
+               a.zipfiles,
+               a.datas, 
+               *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)], 
+               strip=False,
+               upx=True,
+               upx_exclude=[],
+               name='Decentra-Network-GUI')
