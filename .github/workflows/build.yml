@@ -34,7 +34,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: Linux-CLI Upload
+        name: decentra-network-cli-linux
         path: dist/Decentra-Network-CLI
   build-cli-windows:
 
@@ -59,7 +59,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: Windows-CLI Upload
+        name: decentra-network-cli-win32
         path: dist/Decentra-Network-CLI        
 
   build-api-linux:
@@ -88,7 +88,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: Linux-API Upload
+        name: decentra-network-api-linux
         path: dist/Decentra-Network-API
 
   build-api-windows:
@@ -117,7 +117,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: Windows-API Upload
+        name: decentra-network-api-win32
         path: dist/Decentra-Network-API  
 
   build-gui-windows:
@@ -148,5 +148,5 @@ jobs:
         pyinstaller GUI-win32.spec
     - uses: actions/upload-artifact@v2
       with:
-        name: Windows-GUI Upload
+        name: decentra-network-gui-win32
         path: dist/Decentra-Network-GUI  
