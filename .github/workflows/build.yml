@@ -139,7 +139,9 @@ jobs:
         pip install pyinstaller
         python3 -m venv venv
         source venv/bin/activate
-        pip3 install -r requirements/gui.txt        
+        pip3 install -r requirements/gui.txt    
+        pip3 install kivy-deps.sdl2
+        pip3 install kivy-deps.glew            
     - name: PyInstaller
       run: |
         pyinstaller GUI.spec
