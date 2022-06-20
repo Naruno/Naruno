@@ -10,7 +10,9 @@ block_cipher = None
 # libpng16-16.dll
 # typing.py
 
-from kivy_deps import sdl2, glew
+from sys import platform
+if platform == "win32":
+    from kivy_deps import sdl2, glew
 
 from kivymd import hooks_path as kivymd_hooks_path
 
@@ -44,13 +46,25 @@ exe = EXE(pyz,
           target_arch=None,
           codesign_identity=None,
           entitlements_file=None )
-coll = COLLECT(exe,
-               Tree('src/'),
-               a.binaries,
-               a.zipfiles,
-               a.datas,
-               *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
-               strip=False,
-               upx=True,
-               upx_exclude=[],
-               name='Decentra-Network-GUI')
+
+if platform == "win32":
+    coll = COLLECT(exe,
+                Tree('src/'),
+                a.binaries,
+                a.zipfiles,
+                a.datas,
+                *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
+                strip=False,
+                upx=True,
+                upx_exclude=[],
+                name='Decentra-Network-GUI')
+else:                
+    coll = COLLECT(exe,
+                Tree('src/'),
+                a.binaries,
+                a.zipfiles,
+                a.datas,
+                strip=False,
+                upx=True,
+                upx_exclude=[],
+                name='Decentra-Network-GUI')
