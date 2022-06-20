@@ -1,4 +1,4 @@
-name: Packages Application with Pyinstaller
+name: Build
 
 on:
   release:
