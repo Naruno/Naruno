@@ -30,7 +30,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: CLI Upload
+        name: Linux-CLI Upload
         path: dist/Decentra-Network-CLI
   build-cli-windows:
 
@@ -51,9 +51,9 @@ jobs:
         pip install pyinstaller
     - name: PyInstaller
       run: |
-        pyinstaller CLI.spec
+        pyinstaller CLI.spec -F
 
     - uses: actions/upload-artifact@v2
       with:
-        name: CLI Upload
+        name: Windows-CLI Upload
         path: dist/Decentra-Network-CLI        
