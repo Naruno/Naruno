@@ -16,13 +16,13 @@ jobs:
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-linux@main
       with:
-        path: /github/workspace/Decentra-Network/
+        path: /home/runner/work/Decentra-Network/
         spec: cli
 
     - uses: actions/upload-artifact@v2
       with:
         name: name-of-artifact
-        path: dist/Decentra-Network-CLI
+        path: /home/runner/work/Decentra-Network/dist/Decentra-Network-CLI
   build-cli-windows:
 
     runs-on: ubuntu-latest
@@ -33,11 +33,11 @@ jobs:
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-windows@main
       with:
-        path: /github/workspace/Decentra-Network/
+        path: /home/runner/work/Decentra-Network/
         spec: cli
 
     - uses: actions/upload-artifact@v2
       with:
         name: name-of-artifact
-        path: dist/Decentra-Network-CLI
+        path: /home/runner/work/Decentra-Network/dist/Decentra-Network-CLI
         
