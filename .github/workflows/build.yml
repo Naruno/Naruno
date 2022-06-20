@@ -170,11 +170,10 @@ jobs:
         python -m venv venv
         venv\Scripts\activate.bat
         pip3 install -r requirements/gui.txt
-        pip install kivy.deps.angle 
               
     - name: PyInstaller
       run: |
-        set KIVY_GL_BACKEND=angle_sdl2
+        $env:KIVY_GL_BACKEND="angle_sdl2"
         pyinstaller GUI.spec
     - uses: actions/upload-artifact@v2
       with:
