@@ -145,7 +145,7 @@ jobs:
     - name: PyInstaller
       run: |
         $env:KIVY_GL_BACKEND="angle_sdl2"
-        pyinstaller GUI_win32.spec
+        pyinstaller GUI-win32.spec
     - uses: actions/upload-artifact@v2
       with:
         name: Windows-GUI Upload
