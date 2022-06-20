@@ -51,9 +51,68 @@ jobs:
         pip install pyinstaller
     - name: PyInstaller
       run: |
-        pyinstaller CLI.spec -F
+        pyinstaller CLI.spec
 
     - uses: actions/upload-artifact@v2
       with:
         name: Windows-CLI Upload
         path: dist/Decentra-Network-CLI        
+
+  build-api-linux:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        python3 -m venv venv
+        source venv/bin/activate
+        pip3 install -r requirements/api.txt        
+    - name: PyInstaller
+      run: |
+        pyinstaller API.spec
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Linux-API Upload
+        path: dist/Decentra-Network-API
+
+  build-api-windows:
+
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        python3 -m venv venv
+        venv\Scripts\activate.bat
+        pip3 install -r requirements/api.txt          
+    - name: PyInstaller
+      run: |
+        pyinstaller API.spec
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Windows-API Upload
+        path: dist/Decentra-Network-API  
+
