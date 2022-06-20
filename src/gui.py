@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
-
+os.environ['KIVY_GL_BACKEND'] = 'angle_sdl2'
 from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -19,7 +19,7 @@ Config.set("graphics", "minimum_height", "450")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
 os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
-os.environ['KIVY_GL_BACKEND'] = 'angle_sdl2'
+
 
 KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
 
