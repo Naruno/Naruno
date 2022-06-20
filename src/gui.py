@@ -11,7 +11,7 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 from lib.config_system import get_config
 from lib.log import get_logger
-
+Config.set('graphics', 'multisamples', '0')
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
 Config.set("graphics", "minimum_width", "700")
