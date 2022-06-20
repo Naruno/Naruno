@@ -87,7 +87,7 @@ jobs:
         name: Linux-API Upload
         path: dist/Decentra-Network-API
 
-  build-gui-windows:
+  build-api-windows:
 
     runs-on: windows-latest
     strategy:
@@ -145,7 +145,7 @@ jobs:
         name: Linux-GUI Upload
         path: dist/Decentra-Network-GUI
 
-  build-api-windows:
+  build-gui-windows:
 
     runs-on: windows-latest
     strategy:
@@ -161,7 +161,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pyinstaller
+        pip install pyinstaller==4.10
+        pip install pyinstaller-hooks-contrib==2022.3 
         python -m venv venv
         venv\Scripts\activate.bat
         pip3 install -r requirements/gui.txt          
