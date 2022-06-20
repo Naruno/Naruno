@@ -169,11 +169,13 @@ jobs:
         pip install pyinstaller-hooks-contrib==2022.3 
         python -m venv venv
         venv\Scripts\activate.bat
-        pip3 install -r requirements/gui.txt          
+        pip3 install -r requirements/gui.txt
+        pip install kivy.deps.angle 
+              
     - name: PyInstaller
       run: |
+        set KIVY_GL_BACKEND=angle_sdl2
         pyinstaller GUI.spec
-
     - uses: actions/upload-artifact@v2
       with:
         name: Windows-GUI Upload

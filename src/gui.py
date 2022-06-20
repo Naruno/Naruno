@@ -5,13 +5,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
-os.environ['KIVY_GL_BACKEND'] = 'angle_sdl2'
+
 from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from lib.config_system import get_config
 from lib.log import get_logger
-Config.set('graphics', 'multisamples', '0')
+
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
 Config.set("graphics", "minimum_width", "700")
