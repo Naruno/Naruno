@@ -87,7 +87,7 @@ jobs:
         name: Linux-API Upload
         path: dist/Decentra-Network-API
 
-  build-api-windows:
+  build-gui-windows:
 
     runs-on: windows-latest
     strategy:
@@ -116,7 +116,7 @@ jobs:
         name: Windows-API Upload
         path: dist/Decentra-Network-API  
 
-  build-api-linux:
+  build-gui-linux:
 
     runs-on: ubuntu-latest
     strategy:
@@ -139,7 +139,7 @@ jobs:
     - name: PyInstaller
       run: |
         pyinstaller GUI.spec
-venv\Lib\site-packages
+
     - uses: actions/upload-artifact@v2
       with:
         name: Linux-GUI Upload
