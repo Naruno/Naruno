@@ -46,11 +46,13 @@ exe = EXE(pyz,
           codesign_identity=None,
           entitlements_file=None )
 
-coll = COLLECT(exe, Tree('src/'),
+coll = COLLECT(exe,
+               Tree('src/'),
                a.binaries,
                a.zipfiles,
                a.datas,
                *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
                strip=False,
                upx=True,
+               upx_exclude=[],
                name='Decentra-Network-GUI')
