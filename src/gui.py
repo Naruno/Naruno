@@ -19,6 +19,7 @@ Config.set("graphics", "minimum_height", "450")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
 os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
+os.environ['KIVY_GL_BACKEND'] = 'angle_sdl2'
 
 KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
 

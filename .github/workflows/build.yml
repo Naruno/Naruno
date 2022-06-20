@@ -1,6 +1,10 @@
 name: Build
 
-on:
+on: 
+  workflow_run:
+    workflows: ["Tests"]
+    types:
+      - completed
   release:
     types: [published]
   workflow_dispatch:
@@ -168,7 +172,6 @@ jobs:
         pip3 install -r requirements/gui.txt          
     - name: PyInstaller
       run: |
-        set KIVY_GL_BACKEND=angle_sdl2
         pyinstaller GUI.spec
 
     - uses: actions/upload-artifact@v2
