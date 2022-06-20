@@ -10,12 +10,16 @@ block_cipher = None
 # libpng16-16.dll
 # typing.py
 
+from kivy_deps import sdl2, glew
+
+from kivymd import hooks_path as kivymd_hooks_path
+
 a = Analysis(['src/gui.py'],
              pathex=[],
              binaries=[],
              datas=[],
              hiddenimports=[],
-             hookspath=[],
+             hookspath=[kivymd_hooks_path],
              hooksconfig={},
              runtime_hooks=[],
              excludes=[],
@@ -41,7 +45,7 @@ exe = EXE(pyz,
           codesign_identity=None,
           entitlements_file=None )
 coll = COLLECT(exe,
-               Tree('src/'),
+               *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
                a.binaries,
                a.zipfiles,
                a.datas, 
