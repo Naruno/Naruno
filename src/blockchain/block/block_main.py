@@ -45,7 +45,7 @@ class Block:
     def __init__(
         self,
         creator,
-        previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9",
+        previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9-7ae110446b9fdc17f0510ad1dd4324e993932f3b158f443766a0e31cd1f7f266",
     ):
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
