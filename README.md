@@ -61,7 +61,7 @@
      .
    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/build.yml">
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/build.yml/badge.svg" alt="build">
-  <a/>     
+  <a/>
   </p>
 
   <p align="center">
