@@ -64,8 +64,8 @@
    <a href="https://github.com/features/copilot/">
   <img src="https://img.shields.io/badge/With-Copilot-292242" alt="with_copilot">
   <a/>
-  </p>  
-  
+  </p>
+
 # Introducing
 
 Decentra Network is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
