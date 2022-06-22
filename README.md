@@ -126,7 +126,7 @@ It has been developed to make web api control easier and to provide control by o
 
 # Documents
 
-Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://decentra-network.github.io/Decentra-Network/) website.
+Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://docs.decentranetwork.org/) website.
 
 # Contribute
 
