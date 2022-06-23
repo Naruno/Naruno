@@ -8,7 +8,7 @@
 
 import os
 import argparse
-
+os.environ["KIVY_NO_ARGS"] = "1"
 from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -24,7 +24,6 @@ Config.set("graphics", "minimum_height", "450")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
 os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
-
 
 KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
 
