@@ -29,7 +29,8 @@ def safety_check(interface=None, timeout=None):
                 logger.info("Safe")
         else:
             if the_settings()["debug_mode"]:
-                logger.info("Control check is none but passing because of debug mode")
+                logger.info(
+                    "Control check is none but passing because of debug mode")
             else:
                 logger.info("NOT Safe (Control check is None)")
                 exit()
