@@ -5,6 +5,14 @@ changelog:
     authors:
       - restyled-io
   categories:
+  
+    - title: Integration
+      labels:
+        - Integration
+  
+    - title: Security
+      labels:
+        - Security
 
     - title: Builds
       labels:
