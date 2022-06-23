@@ -6,16 +6,16 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from lib.safety import safety_check
+from lib.log import get_logger
+from lib.config_system import get_config
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivy import Config
 import os
 import argparse
 os.environ["KIVY_NO_ARGS"] = "1"
-from kivy import Config
-from kivy.lang import Builder
-from kivymd.app import MDApp
-from lib.config_system import get_config
-from lib.log import get_logger
 
-from lib.safety import safety_check
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
@@ -109,14 +109,14 @@ class GUI(MDApp):
 
         return Builder.load_string(KV)
 
+
 def arguments():
     """
     This function parses the arguments and makes the directions.
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument(
@@ -134,10 +134,11 @@ def arguments():
     )
 
     args = parser.parse_args()
-    
-    safety_check(args.interface, args.timeout) 
-    
+
+    safety_check(args.interface, args.timeout)
+
     GUI().run()
+
 
 def start():
     """

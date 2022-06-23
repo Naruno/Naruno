@@ -10,7 +10,8 @@ from lib.settings_system import the_settings
 
 logger = get_logger("Safety")
 
-def safety_check(interface = None, timeout = None):
+
+def safety_check(interface=None, timeout=None):
     logger.info("Checking safety")
     try:
         from pywall import pywall
@@ -28,9 +29,10 @@ def safety_check(interface = None, timeout = None):
                 logger.info("Safe")
         else:
             if the_settings()["debug_mode"]:
-                logger.info("Control check is none but passing because of debug mode")
+                logger.info(
+                    "Control check is none but passing because of debug mode")
             else:
                 logger.info("NOT Safe (Control check is None)")
-                exit()                
+                exit()
     except ImportError:
-        logger.info("Passing safety check (no pywall)")    
+        logger.info("Passing safety check (no pywall)")
