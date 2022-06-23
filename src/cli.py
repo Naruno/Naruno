@@ -23,6 +23,7 @@ from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
+from lib.safety import safety_check
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
@@ -271,28 +272,32 @@ def arguments():
         help="An optional boolean for open the menu.",
     )
 
+    parser.add_argument(
+        "-i",
+        "--interface",
+        type=str,
+        help="Interface",
+    )
+
+    parser.add_argument(
+        "-t",
+        "--timeout",
+        type=int,
+        help="Timeout",
+    )
+
     args = parser.parse_args()
 
     if len(sys.argv) < 2:
-        parser.print_help()
+        parser.print_help()   
+
 
     if args.printwallet:
         print_wallets()
 
-    if not args.wallet is None:
-        wallet_selector(args.wallet)
-
-    if not args.createwallet is None:
-        create_a_wallet(args.createwallet)
-
-    if args.deletewallet:
-        delete_current_wallet()
 
     if args.getbalance:
         print_balance()
-
-    if not args.ndnewunl is None:
-        Unl.save_new_unl_node(args.ndnewunl)
 
     if args.ndid:
         print(Node.id)
@@ -319,6 +324,20 @@ def arguments():
     if args.status:
         print(Status())
 
+    safety_check(args.interface, args.timeout)    
+
+    if not args.ndnewunl is None:
+        Unl.save_new_unl_node(args.ndnewunl)
+
+    if not args.createwallet is None:
+        create_a_wallet(args.createwallet)
+
+    if args.deletewallet:
+        delete_current_wallet()
+
+    if not args.wallet is None:
+        wallet_selector(args.wallet)
+
     if args.menu:
         menu()
 
@@ -329,6 +348,7 @@ def start():
     """
 
     logger.info("Starting CLI mode")
+
     arguments()
 
 

@@ -17,6 +17,7 @@ from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
+from lib.safety import safety_check
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
@@ -222,7 +223,23 @@ def start():
                         type=int,
                         help="Add new UNL node")
 
+    parser.add_argument(
+        "-i",
+        "--interface",
+        type=str,
+        help="Interface",
+    )
+
+    parser.add_argument(
+        "-t",
+        "--timeout",
+        type=int,
+        help="Timeout",
+    )
+
     args = parser.parse_args()
+
+    safety_check(args.interface, args.timeout)  
 
     logger.info(f"Starting API on port {args.port}")
     serve(app, host="0.0.0.0", port=args.port)

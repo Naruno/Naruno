@@ -4,13 +4,18 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import os
 
+
+import os
+import argparse
+os.environ["KIVY_NO_ARGS"] = "1"
 from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from lib.config_system import get_config
 from lib.log import get_logger
+
+from lib.safety import safety_check
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
@@ -19,7 +24,6 @@ Config.set("graphics", "minimum_height", "450")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
 os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
-
 
 KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
 
@@ -105,6 +109,35 @@ class GUI(MDApp):
 
         return Builder.load_string(KV)
 
+def arguments():
+    """
+    This function parses the arguments and makes the directions.
+    """
+
+    parser = argparse.ArgumentParser(
+        description=
+        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+    )
+
+    parser.add_argument(
+        "-i",
+        "--interface",
+        type=str,
+        help="Interface",
+    )
+
+    parser.add_argument(
+        "-t",
+        "--timeout",
+        type=int,
+        help="Timeout",
+    )
+
+    args = parser.parse_args()
+    
+    safety_check(args.interface, args.timeout) 
+    
+    GUI().run()
 
 def start():
     """
@@ -112,7 +145,7 @@ def start():
     """
 
     logger.info("Starting GUI mode")
-    GUI().run()
+    arguments()
 
 
 if __name__ == "__main__":
