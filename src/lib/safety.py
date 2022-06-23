@@ -15,6 +15,7 @@ def safety_check(interface=None, timeout=None):
     logger.info("Checking safety")
     try:
         from pywall import pywall
+
         the_pywall = pywall()
         if interface is not None:
             the_pywall.iface = interface
@@ -29,8 +30,7 @@ def safety_check(interface=None, timeout=None):
                 logger.info("Safe")
         else:
             if the_settings()["debug_mode"]:
-                logger.info(
-                    "Control check is none but passing because of debug mode")
+                logger.info("Control check is none but passing because of debug mode")
             else:
                 logger.info("NOT Safe (Control check is None)")
                 exit()
