@@ -6,9 +6,9 @@ changelog:
       - restyled-io
   categories:
 
-    - title: Build
+    - title: Builds
       labels:
-        - Build
+        - Builds
 
     - title: Windows
       labels:

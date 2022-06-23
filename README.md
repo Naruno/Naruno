@@ -59,8 +59,8 @@
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/tests.yml/badge.svg" alt="tests">
   <a/>
      .
-   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/build.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/build.yml/badge.svg" alt="build">
+   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/builds.yml">
+  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/builds.yml/badge.svg" alt="builds">
   <a/>
   </p>
 
