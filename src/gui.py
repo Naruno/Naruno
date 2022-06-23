@@ -12,6 +12,8 @@ from kivymd.app import MDApp
 from lib.config_system import get_config
 from lib.log import get_logger
 
+from lib.safety import safety_check
+
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
 Config.set("graphics", "minimum_width", "700")
@@ -105,6 +107,35 @@ class GUI(MDApp):
 
         return Builder.load_string(KV)
 
+def arguments():
+    """
+    This function parses the arguments and makes the directions.
+    """
+
+    parser = argparse.ArgumentParser(
+        description=
+        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+    )
+
+    parser.add_argument(
+        "-i",
+        "--interface",
+        type=str,
+        help="Interface",
+    )
+
+    parser.add_argument(
+        "-t",
+        "--timeout",
+        type=int,
+        help="Timeout",
+    )
+
+    args = parser.parse_args()
+    
+    safety_check(args.interface, args.timeout) 
+    
+    GUI().run()
 
 def start():
     """
@@ -112,7 +143,7 @@ def start():
     """
 
     logger.info("Starting GUI mode")
-    GUI().run()
+    arguments()
 
 
 if __name__ == "__main__":
