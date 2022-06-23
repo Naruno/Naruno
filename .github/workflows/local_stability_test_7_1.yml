@@ -1,10 +1,8 @@
 name: Local Stability Test With 7 Node in 1 Security Circle 
 
 on:
-  workflow_run:
-    workflows: ["Deploys"]
-    types:
-      - completed
+  release:
+      types: [published]
   workflow_dispatch:
 
 jobs:
