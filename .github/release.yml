@@ -5,11 +5,11 @@ changelog:
     authors:
       - restyled-io
   categories:
-  
+
     - title: Integration
       labels:
         - Integration
-  
+
     - title: Security
       labels:
         - Security
@@ -55,7 +55,7 @@ changelog:
     - title: Transactions
       labels:
         - Send
-        - Transactions      
+        - Transactions
 
     - title: CLI
       labels:
@@ -79,7 +79,7 @@ changelog:
     - title: Setup
       labels:
         - Setup
-    
+
     - title: Setups
       labels:
         - Setups
