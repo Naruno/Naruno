@@ -4,37 +4,35 @@ parent: Release Notes
 nav_order: 19
 ---
 
-0.8.2-alpha Release Notes
-====================
+# 0.8.2-alpha Release Notes
 
 This path fixes non-py file problem of library installation.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Decentra-Network/Decentra-Network/issues>
 
-Compatibility
-==============
+# Compatibility
 
 There have been no compatibility changes.
 
-Notable changes
-===============
+# Notable changes
 
 ## Setup
+
 Added MANIFES.in for non-py file import.
 
-0.8.2-alpha change log
-=================
+# 0.8.2-alpha change log
 
 ### Setup.py
+
 - Fixed non-py file problem.
 
 ### MANIFEST.in
+
 - Added some recursive-include for library installation
 
-Credits
-=======
+# Credits
 
 Thanks to everyone who directly contributed to this release:
 
