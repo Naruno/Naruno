@@ -147,6 +147,11 @@ jobs:
         pip install pytest
         cd ..
         pytest Decentra-Network/tests/functional_tests/local/test_decentra_network_local.py
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
     - name: Archive logs of Node 0
       uses: actions/upload-artifact@v3
       with:
@@ -181,3 +186,8 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/functional_tests/docker/test_decentra_network_docker.py
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
