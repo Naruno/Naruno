@@ -26,6 +26,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build2:
     name: 2
@@ -46,6 +53,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build3:
     name: 3
@@ -66,6 +80,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build4:
     name: 4
@@ -86,6 +107,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build5:
     name: 5
@@ -106,6 +134,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build6:
     name: 6
@@ -126,6 +161,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build7:
     name: 7
@@ -146,6 +188,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build8:
     name: 8
@@ -166,6 +215,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build9:
     name: 9
@@ -186,6 +242,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build10:
     name: 10
@@ -206,6 +269,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build11:
     name: 11
@@ -226,6 +296,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build12:
     name: 12
@@ -246,6 +323,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build13:
     name: 13
@@ -266,6 +350,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build14:
     name: 14
@@ -286,6 +377,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build15:
     name: 15
@@ -306,6 +404,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build16:
     name: 16
@@ -326,6 +431,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build17:
     name: 17
@@ -346,6 +458,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build18:
     name: 18
@@ -366,6 +485,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build19:
     name: 19
@@ -386,6 +512,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build20:
     name: 20
@@ -406,6 +539,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build21:
     name: 21
@@ -426,6 +566,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build22:
     name: 22
@@ -446,6 +593,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build23:
     name: 23
@@ -466,6 +620,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build24:
     name: 24
@@ -486,6 +647,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build25:
     name: 25
@@ -506,6 +674,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build26:
     name: 26
@@ -526,6 +701,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build27:
     name: 27
@@ -546,6 +728,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build28:
     name: 28
@@ -566,6 +755,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build29:
     name: 29
@@ -586,6 +782,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build30:
     name: 30
@@ -606,6 +809,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build31:
     name: 31
@@ -626,6 +836,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build32:
     name: 32
@@ -646,6 +863,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build33:
     name: 33
@@ -666,6 +890,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build34:
     name: 34
@@ -686,6 +917,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build35:
     name: 35
@@ -706,6 +944,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build36:
     name: 36
@@ -726,6 +971,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build37:
     name: 37
@@ -746,6 +998,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build38:
     name: 38
@@ -766,6 +1025,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build39:
     name: 39
@@ -786,6 +1052,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build40:
     name: 40
@@ -806,6 +1079,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build41:
     name: 41
@@ -826,6 +1106,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build42:
     name: 42
@@ -846,6 +1133,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build43:
     name: 43
@@ -866,6 +1160,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build44:
     name: 44
@@ -886,6 +1187,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build45:
     name: 45
@@ -906,6 +1214,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build46:
     name: 46
@@ -926,6 +1241,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build47:
     name: 47
@@ -946,6 +1268,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build48:
     name: 48
@@ -966,6 +1295,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build49:
     name: 49
@@ -986,6 +1322,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build50:
     name: 50
@@ -1006,6 +1349,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build51:
     name: 51
@@ -1026,6 +1376,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build52:
     name: 52
@@ -1046,6 +1403,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build53:
     name: 53
@@ -1066,6 +1430,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build54:
     name: 54
@@ -1086,6 +1457,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build55:
     name: 55
@@ -1106,6 +1484,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build56:
     name: 56
@@ -1126,6 +1511,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build57:
     name: 57
@@ -1146,6 +1538,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build58:
     name: 58
@@ -1166,6 +1565,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build59:
     name: 59
@@ -1186,6 +1592,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build60:
     name: 60
@@ -1206,6 +1619,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build61:
     name: 61
@@ -1226,6 +1646,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build62:
     name: 62
@@ -1246,6 +1673,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build63:
     name: 63
@@ -1266,6 +1700,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build64:
     name: 64
@@ -1286,6 +1727,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build65:
     name: 65
@@ -1306,6 +1754,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build66:
     name: 66
@@ -1326,6 +1781,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build67:
     name: 67
@@ -1346,6 +1808,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build68:
     name: 68
@@ -1366,6 +1835,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build69:
     name: 69
@@ -1386,6 +1862,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build70:
     name: 70
@@ -1406,6 +1889,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build71:
     name: 71
@@ -1426,6 +1916,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build72:
     name: 72
@@ -1446,6 +1943,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build73:
     name: 73
@@ -1466,6 +1970,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build74:
     name: 74
@@ -1486,6 +1997,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build75:
     name: 75
@@ -1506,6 +2024,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build76:
     name: 76
@@ -1526,6 +2051,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build77:
     name: 77
@@ -1546,6 +2078,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build78:
     name: 78
@@ -1566,6 +2105,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build79:
     name: 79
@@ -1586,6 +2132,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build80:
     name: 80
@@ -1606,6 +2159,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build81:
     name: 81
@@ -1626,6 +2186,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build82:
     name: 82
@@ -1646,6 +2213,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build83:
     name: 83
@@ -1666,6 +2240,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build84:
     name: 84
@@ -1686,6 +2267,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build85:
     name: 85
@@ -1706,6 +2294,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build86:
     name: 86
@@ -1726,6 +2321,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build87:
     name: 87
@@ -1746,6 +2348,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build88:
     name: 88
@@ -1766,6 +2375,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build89:
     name: 89
@@ -1786,6 +2402,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build90:
     name: 90
@@ -1806,6 +2429,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build91:
     name: 91
@@ -1826,6 +2456,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build92:
     name: 92
@@ -1846,6 +2483,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build93:
     name: 93
@@ -1866,6 +2510,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build94:
     name: 94
@@ -1886,6 +2537,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build95:
     name: 95
@@ -1906,6 +2564,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build96:
     name: 96
@@ -1926,6 +2591,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build97:
     name: 97
@@ -1946,6 +2618,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build98:
     name: 98
@@ -1966,6 +2645,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build99:
     name: 99
@@ -1986,6 +2672,13 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   
   build100:
     name: 100
@@ -2006,4 +2699,11 @@ jobs:
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_4_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
   

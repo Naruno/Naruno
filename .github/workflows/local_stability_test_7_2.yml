@@ -26,7 +26,18 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
-  
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
+
+
   build2:
     name: 2
     runs-on: ubuntu-latest
@@ -46,6 +57,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build3:
     name: 3
@@ -66,6 +87,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build4:
     name: 4
@@ -86,6 +117,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build5:
     name: 5
@@ -106,6 +147,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build6:
     name: 6
@@ -126,6 +177,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build7:
     name: 7
@@ -146,6 +207,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build8:
     name: 8
@@ -166,6 +237,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build9:
     name: 9
@@ -186,6 +267,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build10:
     name: 10
@@ -206,6 +297,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build11:
     name: 11
@@ -226,6 +327,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build12:
     name: 12
@@ -246,6 +357,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build13:
     name: 13
@@ -266,6 +387,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build14:
     name: 14
@@ -286,6 +417,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build15:
     name: 15
@@ -306,6 +447,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build16:
     name: 16
@@ -326,6 +477,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build17:
     name: 17
@@ -346,6 +507,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build18:
     name: 18
@@ -366,6 +537,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build19:
     name: 19
@@ -386,6 +567,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build20:
     name: 20
@@ -406,6 +597,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build21:
     name: 21
@@ -426,6 +627,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build22:
     name: 22
@@ -446,6 +657,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build23:
     name: 23
@@ -466,6 +687,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build24:
     name: 24
@@ -486,6 +717,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build25:
     name: 25
@@ -506,6 +747,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build26:
     name: 26
@@ -526,6 +777,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build27:
     name: 27
@@ -546,6 +807,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build28:
     name: 28
@@ -566,6 +837,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build29:
     name: 29
@@ -586,6 +867,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build30:
     name: 30
@@ -606,6 +897,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build31:
     name: 31
@@ -626,6 +927,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build32:
     name: 32
@@ -646,6 +957,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build33:
     name: 33
@@ -666,6 +987,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build34:
     name: 34
@@ -686,6 +1017,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build35:
     name: 35
@@ -706,6 +1047,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build36:
     name: 36
@@ -726,6 +1077,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build37:
     name: 37
@@ -746,6 +1107,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build38:
     name: 38
@@ -766,6 +1137,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build39:
     name: 39
@@ -786,6 +1167,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build40:
     name: 40
@@ -806,6 +1197,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build41:
     name: 41
@@ -826,6 +1227,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build42:
     name: 42
@@ -846,6 +1257,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build43:
     name: 43
@@ -866,6 +1287,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build44:
     name: 44
@@ -886,6 +1317,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build45:
     name: 45
@@ -906,6 +1347,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build46:
     name: 46
@@ -926,6 +1377,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build47:
     name: 47
@@ -946,6 +1407,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build48:
     name: 48
@@ -966,6 +1437,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build49:
     name: 49
@@ -986,6 +1467,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build50:
     name: 50
@@ -1006,6 +1497,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build51:
     name: 51
@@ -1026,6 +1527,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build52:
     name: 52
@@ -1046,6 +1557,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build53:
     name: 53
@@ -1066,6 +1587,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build54:
     name: 54
@@ -1086,6 +1617,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build55:
     name: 55
@@ -1106,6 +1647,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build56:
     name: 56
@@ -1126,6 +1677,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build57:
     name: 57
@@ -1146,6 +1707,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build58:
     name: 58
@@ -1166,6 +1737,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build59:
     name: 59
@@ -1186,6 +1767,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build60:
     name: 60
@@ -1206,6 +1797,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build61:
     name: 61
@@ -1226,6 +1827,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build62:
     name: 62
@@ -1246,6 +1857,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build63:
     name: 63
@@ -1266,6 +1887,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build64:
     name: 64
@@ -1286,6 +1917,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build65:
     name: 65
@@ -1306,6 +1947,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build66:
     name: 66
@@ -1326,6 +1977,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build67:
     name: 67
@@ -1346,6 +2007,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build68:
     name: 68
@@ -1366,6 +2037,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build69:
     name: 69
@@ -1386,6 +2067,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build70:
     name: 70
@@ -1406,6 +2097,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build71:
     name: 71
@@ -1426,6 +2127,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build72:
     name: 72
@@ -1446,6 +2157,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build73:
     name: 73
@@ -1466,6 +2187,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build74:
     name: 74
@@ -1486,6 +2217,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build75:
     name: 75
@@ -1506,6 +2247,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build76:
     name: 76
@@ -1526,6 +2277,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build77:
     name: 77
@@ -1546,6 +2307,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build78:
     name: 78
@@ -1566,6 +2337,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build79:
     name: 79
@@ -1586,6 +2367,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build80:
     name: 80
@@ -1606,6 +2397,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build81:
     name: 81
@@ -1626,6 +2427,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build82:
     name: 82
@@ -1646,6 +2457,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build83:
     name: 83
@@ -1666,6 +2487,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build84:
     name: 84
@@ -1686,6 +2517,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build85:
     name: 85
@@ -1706,6 +2547,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build86:
     name: 86
@@ -1726,6 +2577,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build87:
     name: 87
@@ -1746,6 +2607,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build88:
     name: 88
@@ -1766,6 +2637,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build89:
     name: 89
@@ -1786,6 +2667,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build90:
     name: 90
@@ -1806,6 +2697,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build91:
     name: 91
@@ -1826,6 +2727,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build92:
     name: 92
@@ -1846,6 +2757,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build93:
     name: 93
@@ -1866,6 +2787,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build94:
     name: 94
@@ -1886,6 +2817,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build95:
     name: 95
@@ -1906,6 +2847,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build96:
     name: 96
@@ -1926,6 +2877,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build97:
     name: 97
@@ -1946,6 +2907,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build98:
     name: 98
@@ -1966,6 +2937,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build99:
     name: 99
@@ -1986,6 +2967,16 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
   build100:
     name: 100
@@ -2006,4 +2997,14 @@ jobs:
         cd ..
         
         pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_7_2.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+        curl http://localhost:8103/status
+        curl http://localhost:8104/status
+        curl http://localhost:8105/status
+        curl http://localhost:8106/status
   
