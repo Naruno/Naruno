@@ -4,39 +4,38 @@ parent: Release Notes
 nav_order: 17
 ---
 
-0.8.0-alpha Release Notes
-====================
+# 0.8.0-alpha Release Notes
 
 This minor release includes new library type installation and use.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Decentra-Network/Decentra-Network/issues>
 
-Compatibility
-==============
+# Compatibility
 
 There have been no compatibility changes.
 
-Notable changes
-===============
+# Notable changes
 
 ## Setup
+
 You can now install Decentra Network as a library on your system.
 
 ## GUI Setup
+
 You can use this library for install Decentra Network GUI mode on your system.
 
 ## API Setup
+
 You can use this library for install Decentra Network API mode on your system.
 
 For more information please check [download](https://decentra-network.github.io/Decentra-Network/getting-started/downloading.html) and [using](https://decentra-network.github.io/Decentra-Network/getting-started/using.html) page.
 
-
-0.8.0-alpha change log
-=================
+# 0.8.0-alpha change log
 
 ### Docs
+
 - Added new app type document under apps/remote
 - Apps seperated as embedded-remote for new app type
 - Added new download choices (pip based)
@@ -45,37 +44,46 @@ For more information please check [download](https://decentra-network.github.io/
 - Added new using guide to using page for new pip installation
 
 ### Function Referances
+
 - Added functions referance tabel for new pip installation
 
 ### Requriements
+
 - Added version flask
 
 ### Setup.py (NEW)
+
 - Added setup.py for one click installation and pip install
 
 ### Setups (NEW)
+
 - Added extra libraries for GUI and API mode.
 
 ### CLI
+
 - Added a function as start for using the some other addition.
 
 ### GUI
+
 - Added a function as start for using the some other addition.
 
 ### API
+
 - Added a function as start for using the some other addition.
 
 ### Transaction
+
 - Transactions that come to us are now saved to SavetoMyTransaction system.
 
 ### Send
+
 - A addition to send_coin function.
 
 ### Wallet
+
 - Added description to Wallet_Import function
 
-Credits
-=======
+# Credits
 
 Thanks to everyone who directly contributed to this release:
 

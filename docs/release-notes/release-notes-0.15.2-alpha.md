@@ -4,18 +4,15 @@ parent: Release Notes
 nav_order: 34
 ---
 
-0.15.2-alpha Release Notes
-====================
+# 0.15.2-alpha Release Notes
 
 This path is a clean start for versioning problems.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Decentra-Network/Decentra-Network/issues>
 
-
-Credits
-=======
+# Credits
 
 Thanks to everyone who directly contributed to this release:
 
