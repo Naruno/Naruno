@@ -191,6 +191,9 @@ jobs:
         curl http://localhost:8000/status
         curl http://localhost:8101/status
         curl http://localhost:8102/status
+    - name: test
+      run: |
+        docker volume inspect decentra-network-db
     - name: Archive logs of Node 0
       uses: actions/upload-artifact@v3
       with:
@@ -207,7 +210,4 @@ jobs:
         name: log-report-functional-test-docker-ubuntu-latest-node-2
         path: /var/lib/docker/volumes/decentra-network-db-1/_data/*.log 
 
-    - name: test
-      run: |
-        docker volume inspect decentra-network-db
-        
+
