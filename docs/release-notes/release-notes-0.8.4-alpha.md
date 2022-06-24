@@ -1,6 +1,7 @@
 ---
 title: 0.8.4-alpha
 parent: Release Notes
+nav_order: 21
 ---
 
 0.8.4-alpha Release Notes

@@ -1,6 +1,7 @@
 ---
 title: 0.7.0-alpha
 parent: Release Notes
+nav_order: 16
 ---
 
 0.7.0-alpha Release Notes

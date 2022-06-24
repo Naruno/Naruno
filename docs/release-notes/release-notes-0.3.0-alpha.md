@@ -1,6 +1,7 @@
 ---
 title: 0.3.0-alpha
 parent: Release Notes
+nav_order: 3
 ---
 
 0.3.0-alpha Release Notes

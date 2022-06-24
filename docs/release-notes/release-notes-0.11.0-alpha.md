@@ -1,6 +1,7 @@
 ---
 title: 0.11.0-alpha
 parent: Release Notes
+nav_order: 25
 ---
 
 0.11.0-alpha Release Notes

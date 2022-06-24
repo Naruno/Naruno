@@ -1,6 +1,7 @@
 ---
 title: 0.11.3-alpha
 parent: Release Notes
+nav_order: 28
 ---
 
 0.11.3-alpha Release Notes
