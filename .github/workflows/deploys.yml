@@ -8,6 +8,7 @@ jobs:
   deploy-pypi:
 
     runs-on: ubuntu-latest
+    environment: Deploy
     strategy:
       matrix:
         python-version: [3.8]
@@ -43,6 +44,7 @@ jobs:
   deploy-docker:
 
     runs-on: ubuntu-latest
+    environment: Deploy
     strategy:
       matrix:
         python-version: [3.8]
