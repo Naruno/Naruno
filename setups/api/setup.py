@@ -19,6 +19,6 @@ flask==2.0.0
 waitress==2.1.2
 werkzeug==2.0.3
 """,
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     zip_safe=False,
 )

@@ -39,6 +39,6 @@ setup(
         "console_scripts":
         ["dngui = gui:start", "dncli=cli:start", "dnapi=api:start"],
     },
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     zip_safe=False,
 )
