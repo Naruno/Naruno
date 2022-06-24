@@ -115,6 +115,7 @@ class Block:
         self.raund_2 = False
 
         self.validated = False
+        self.validated_time = None
 
         # Resetting the node candidate blocks.
         for node in Unl.get_as_node_type(Unl.get_unl_nodes()):
