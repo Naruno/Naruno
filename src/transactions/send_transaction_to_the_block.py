@@ -45,7 +45,6 @@ def SendTransactiontoTheBlock(
         transaction_fee=transaction_fee,
         time_of_transaction=transaction_time,
     )
-    print(the_tx.dump_json())
     checking = CheckTransaction(block, the_tx)
 
     if checking:
