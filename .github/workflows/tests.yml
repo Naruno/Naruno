@@ -162,3 +162,21 @@ jobs:
       with:
         name: log-report-functional-test-local-ubuntu-latest-node-2
         path: /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs/*.log 
+
+  functional-test-docker-ubuntu-latest:
+    needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies and run tests
+      run: |
+        pip install pytest
+        cd ..
+        pytest Decentra-Network/tests/functional_tests/docker/test_decentra_network_docker.py
