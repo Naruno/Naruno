@@ -11,7 +11,7 @@ import unittest
 
 class Test_Decentra_Network_Local(unittest.TestCase):
 
-    def test_4_same_network_long_term_multi_transacton(self):
+    def test_1_multiple_transaction_with_time_difference(self):
         """
         Send coin to 2.wallet from 1.wallet
         """

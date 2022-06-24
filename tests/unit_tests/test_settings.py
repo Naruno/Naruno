@@ -10,12 +10,12 @@ import unittest
 
 class Test_Settings(unittest.TestCase):
 
-    def test_creating_settings(self):
+    def test_1_settings_by_creating_settings(self):
         temp_settings = the_settings()
         self.assertIsNotNone(temp_settings["test_mode"], "A problem on the test_mode.")
         self.assertIsNotNone(temp_settings["debug_mode"], "A problem on the debug_mode.")
 
-    def test_saving_settings(self):
+    def test_2_settings_by_saving_and_getting_new_settings(self):
         backup_settings = the_settings()
 
         temp_settings = the_settings()

@@ -12,7 +12,7 @@ import unittest
 
 class Test_Node(unittest.TestCase):
 
-    def test_node_connection_saving_and_unl(self):
+    def test_1_node_by_connection_saving_and_unl_nodes_system(self):
 
         password = "123"
 

@@ -10,7 +10,7 @@ import unittest
 
 class Test_Wallet(unittest.TestCase):
 
-    def test_saving_and_importing_and_deleting_the_wallet(self):
+    def test_1_wallet_by_creating_saving_importing_and_deleting_a_wallet(self):
 
         password = "123"
 
@@ -33,7 +33,7 @@ class Test_Wallet(unittest.TestCase):
 
         self.assertEqual(result, True, "A problem on the saving and importing the wallet.")
 
-    def test_Private_Pem_Conversion(self):
+    def test_2_wallet_by_private_pem_conversion(self):
 
         password = "123"
 
@@ -43,7 +43,7 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(temp_private_key_class.secret, privateKey2.secret)
         self.assertEqual(temp_private_key_class.curve, privateKey2.curve)
 
-    def test_Public_Conversion(self):
+    def test_3_wallet_by_public_conversion(self):
 
         password = "123"
 

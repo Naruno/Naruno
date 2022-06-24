@@ -17,7 +17,7 @@ class Test_Config(unittest.TestCase):
     def tearDown(self):
         self.ctx.pop()
 
-    def test_api(self):
+    def test_1_api_debug_by_response_status_code(self):
         backup_settings = the_settings()
         print(backup_settings["debug_mode"])
         response = self.client.get("/settings/debug/on")
