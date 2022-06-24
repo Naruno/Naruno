@@ -4,14 +4,18 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import os
 import sys
 import unittest
 
 from lib.encryption import decrypt
-from wallet.wallet import (PrivateKey, PublicKey, Wallet_Create, Wallet_Delete,
-                           Wallet_Import, get_saved_wallet, toBytes)
+from wallet.wallet import get_saved_wallet
+from wallet.wallet import PrivateKey
+from wallet.wallet import PublicKey
+from wallet.wallet import toBytes
+from wallet.wallet import Wallet_Create
+from wallet.wallet import Wallet_Delete
+from wallet.wallet import Wallet_Import
 
 
 class Test_Wallet(unittest.TestCase):
