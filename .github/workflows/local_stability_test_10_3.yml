@@ -2,7 +2,7 @@ name: Local Stability Test With 10 Node in 3 Security Circle
 
 on:
   release:
-      types: [published]
+    types: [published]
   workflow_dispatch:
 
 jobs:
