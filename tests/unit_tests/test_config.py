@@ -12,6 +12,7 @@ from lib.config_system import get_config
 
 
 class Test_Config(unittest.TestCase):
+
     def test_1_config_by_getting_and_saving_main_folder_config(self):
         finded_true_folder = False
 
