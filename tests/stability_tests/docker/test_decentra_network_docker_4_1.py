@@ -7,12 +7,13 @@
 
 
 import json
-import urllib.request
 import os
-from auto_builders.docker import Decentra_Network_Docker
-import time
 import sys
+import time
 import unittest
+import urllib.request
+
+from auto_builders.docker import Decentra_Network_Docker
 
 
 class Test_Decentra_Network_Docker(unittest.TestCase):

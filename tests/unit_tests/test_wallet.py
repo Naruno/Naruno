@@ -5,19 +5,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.encryption import decrypt
-from wallet.wallet import (
-    Wallet_Create,
-    get_saved_wallet,
-    Wallet_Import,
-    Wallet_Delete,
-    PrivateKey,
-    toBytes,
-    PublicKey,
-)
-import sys
 import os
+import sys
 import unittest
+
+from lib.encryption import decrypt
+from wallet.wallet import (PrivateKey, PublicKey, Wallet_Create, Wallet_Delete,
+                           Wallet_Import, get_saved_wallet, toBytes)
 
 
 class Test_Wallet(unittest.TestCase):

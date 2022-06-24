@@ -5,10 +5,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.settings_system import the_settings, save_settings
-import sys
 import os
+import sys
 import unittest
+
+from lib.settings_system import save_settings, the_settings
 
 
 class Test_Settings(unittest.TestCase):
