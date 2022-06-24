@@ -1,46 +1,46 @@
 ---
 title: 0.8.1-alpha
 parent: Release Notes
+nav_order: 18
 ---
 
-0.8.1-alpha Release Notes
-====================
+# 0.8.1-alpha Release Notes
 
 This path includes some fixes for library based installation.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Decentra-Network/Decentra-Network/issues>
 
-Compatibility
-==============
+# Compatibility
 
 There have been no compatibility changes.
 
-Notable changes
-===============
+# Notable changes
 
 ## Setup
+
 Fixed.
 
 ## GUI Setup
+
 Fixed.
 
 ## API Setup
+
 fixed.
 
-0.8.1-alpha change log
-=================
+# 0.8.1-alpha change log
 
 ### Setup.py
+
 - Fixed packages.
 
 ### Setups
+
 - Added package_dir.
 
-
-Credits
-=======
+# Credits
 
 Thanks to everyone who directly contributed to this release:
 
