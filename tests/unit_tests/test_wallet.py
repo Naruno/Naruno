@@ -14,20 +14,20 @@ class Test_Wallet(unittest.TestCase):
 
         password = "123"
 
-        temp_private_key = Wallet_Create(password)
+        temp_private_key = wallet_create(password)
 
         saved_wallets = get_saved_wallet()
 
         result = False
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (Wallet_Import(each_wallet, 1, password)):
+                if temp_private_key == (wallet_import(each_wallet, 1, password)):
                 
-                    Wallet_Delete(each_wallet)
+                    wallet_delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
-                elif decrypt(temp_private_key, password) == (Wallet_Import(each_wallet, 1, password)):
-                    Wallet_Delete(each_wallet)
+                elif decrypt(temp_private_key, password) == (wallet_import(each_wallet, 1, password)):
+                    wallet_delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
 
@@ -37,7 +37,7 @@ class Test_Wallet(unittest.TestCase):
 
         password = "123"
 
-        temp_private_key_class = Wallet_Create(password, save=False)
+        temp_private_key_class = wallet_create(password, save=False)
         pem = temp_private_key_class.toPem()
         privateKey2 = PrivateKey.fromPem(pem)
         self.assertEqual(temp_private_key_class.secret, privateKey2.secret)
@@ -47,7 +47,7 @@ class Test_Wallet(unittest.TestCase):
 
         password = "123"
 
-        privateKey = Wallet_Create(password, save=False)
+        privateKey = wallet_create(password, save=False)
         publicKey1 = privateKey.publicKey()
         pem = publicKey1.toPem()
         publicKey2 = PublicKey.fromPem(pem)
@@ -60,6 +60,12 @@ class Test_Wallet(unittest.TestCase):
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from wallet.wallet import Wallet_Create, get_saved_wallet, Wallet_Import, Wallet_Delete, PrivateKey, toBytes, PublicKey
+from wallet.wallet_import import wallet_import
+from wallet.wallet_create import wallet_create
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.wallet_delete import wallet_delete
+from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.ellipticcurve.utils.compatibility import toBytes
+from wallet.ellipticcurve.publicKey import PublicKey
 from lib.encryption import decrypt
 unittest.main(exit=False)

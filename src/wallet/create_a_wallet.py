@@ -8,7 +8,7 @@
 
 from getpass import getpass
 
-from wallet.wallet import Wallet_Create
+from wallet.wallet_create import wallet_create
 
 
 def create_a_wallet(password=None):
@@ -18,5 +18,5 @@ def create_a_wallet(password=None):
 
     if password is None:
         password = getpass("Password: ")
-    Wallet_Create(password)
+    wallet_create(password)
     del password

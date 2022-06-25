@@ -15,7 +15,7 @@ from accounts.get_accounts_part import GetAccounts_part
 
 from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
 
-from wallet.wallet import Wallet_Import
+from wallet.wallet_import import wallet_import
 
 
 def saveBlockstoBlockchainDB(block):
@@ -28,11 +28,11 @@ def saveBlockstoBlockchainDB(block):
     my_public_key = "".join(
         [
             l.strip()
-            for l in Wallet_Import(-1, 0).splitlines()
+            for l in wallet_import(-1, 0).splitlines()
             if l and not l.startswith("-----")
         ]
     )
-    my_address = Wallet_Import(-1, 3)
+    my_address = wallet_import(-1, 3)
     for validated_transaction in block.validating_list:
         if validated_transaction.fromUser == my_public_key or validated_transaction.toUser == my_address:
             our_tx = True

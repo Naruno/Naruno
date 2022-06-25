@@ -17,10 +17,10 @@ from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 from lib.settings_system import change_wallet
 from lib.settings_system import the_settings
-from wallet.wallet import get_saved_wallet
-from wallet.wallet import Wallet_Create
-from wallet.wallet import Wallet_Delete
-from wallet.wallet import Wallet_Import
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.wallet_create import wallet_create
+from wallet.wallet_delete import wallet_delete
+from wallet.wallet_import import wallet_import
 
 
 class WalletScreen(MDScreen):
@@ -47,7 +47,7 @@ class WalletBox(MDGridLayout):
     def reflesh_balance(self):
 
         self.text = "Balance: " + str(
-            GetBalance(GetBlock(), Wallet_Import(-1, 0)))
+            GetBalance(GetBlock(), wallet_import(-1, 0)))
 
     def show_wallet_alert_dialog(self):
         if not self.wallet_alert_dialog:
@@ -77,7 +77,7 @@ class WalletBox(MDGridLayout):
         if not args[0] == the_settings()["wallet"]:
             change_wallet(int(args[0]))
             self.reflesh_balance()
-        Clipboard.copy(Wallet_Import(int(args[0]), 3))
+        Clipboard.copy(wallet_import(int(args[0]), 3))
         SweetAlert().fire(
             "The address has been copied to your clipboard.",
             type="success",
@@ -91,7 +91,7 @@ class WalletBox(MDGridLayout):
         current_wallet = the_settings()["wallet"]
         for wallet in all_wallets:
             number = all_wallets.index(wallet)
-            address = Wallet_Import(all_wallets.index(wallet), 3)
+            address = wallet_import(all_wallets.index(wallet), 3)
             if not current_wallet == number:
                 data[number] = address
             else:
@@ -111,7 +111,7 @@ class WalletBox(MDGridLayout):
         text_list = []
         for obj in self.wallet_alert_dialog.content_cls.children:
             for sub_obj in obj.children:
-                Wallet_Create(sub_obj.text)
+                wallet_create(sub_obj.text)
                 self.dismiss_wallet_alert_dialog(widget)
 
                 sub_obj.text = ""
@@ -157,12 +157,12 @@ class WalletBox(MDGridLayout):
 
     def delete_the_wallet(self, widget):
         saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = Wallet_Import(int(the_settings()["wallet"]),
+        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]),
                                                0)
         for each_wallet in saved_wallets:
             if selected_wallet_pubkey == saved_wallets[each_wallet][
                     "publickey"]:
                 change_wallet(0)
-                Wallet_Delete(each_wallet)
+                wallet_delete(each_wallet)
                 self.reflesh_balance()
                 self.dismiss_delete_wallet_alert_dialog(widget)
