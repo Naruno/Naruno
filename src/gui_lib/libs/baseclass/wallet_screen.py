@@ -46,7 +46,8 @@ class WalletBox(MDGridLayout):
 
     def reflesh_balance(self):
 
-        self.text = "Balance: " + str(GetBalance(GetBlock(), wallet_import(-1, 0)))
+        self.text = "Balance: " + str(
+            GetBalance(GetBlock(), wallet_import(-1, 0)))
 
     def show_wallet_alert_dialog(self):
         if not self.wallet_alert_dialog:
@@ -156,9 +157,11 @@ class WalletBox(MDGridLayout):
 
     def delete_the_wallet(self, widget):
         saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]), 0)
+        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]),
+                                               0)
         for each_wallet in saved_wallets:
-            if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
+            if selected_wallet_pubkey == saved_wallets[each_wallet][
+                    "publickey"]:
                 change_wallet(0)
                 wallet_delete(each_wallet)
                 self.reflesh_balance()

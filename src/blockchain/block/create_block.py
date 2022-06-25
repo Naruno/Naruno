@@ -33,7 +33,8 @@ def CreateBlock():
         except:
             pass
 
-        logger.info("Creating the genesis block and sending it to the connected nodes")
+        logger.info(
+            "Creating the genesis block and sending it to the connected nodes")
         Block(wallet_import(-1, 3), previous_hash)
         Node.main_node.send_full_accounts()
         Node.main_node.send_full_chain()

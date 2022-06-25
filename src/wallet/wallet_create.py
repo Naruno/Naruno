@@ -37,11 +37,9 @@ def wallet_create(password, save=True):
     my_public_key = my_private_key.publicKey()
 
     if save == True:
-        encrypted_key = (
-            encrypt(my_private_key.toPem(), password)
-            if not len(list(get_saved_wallet())) == 0
-            else my_private_key.toPem()
-        )
+        encrypted_key = (encrypt(my_private_key.toPem(), password)
+                         if not len(list(get_saved_wallet())) == 0 else
+                         my_private_key.toPem())
         del my_private_key
         save_wallet_list(my_public_key.toPem(), encrypted_key, password)
         return encrypted_key

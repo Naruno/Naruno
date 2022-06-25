@@ -33,6 +33,7 @@ from wallet.ellipticcurve.point import Point
 
 
 class CurveFp:
+
     def __init__(self, A, B, P, N, Gx, Gy, name, oid, nistName=None):
         self.A = A
         self.B = B
@@ -98,9 +99,9 @@ _curvesByOid = {tuple(curve.oid): curve for curve in supportedCurves}
 def getCurveByOid(oid):
     if oid not in _curvesByOid:
         raise Exception(
-            "Unknown curve with oid {oid}; The following are registered: {names}".format(
+            "Unknown curve with oid {oid}; The following are registered: {names}"
+            .format(
                 oid=".".join([str(number) for number in oid]),
                 names=", ".join([curve.name for curve in supportedCurves]),
-            )
-        )
+            ))
     return _curvesByOid[oid]

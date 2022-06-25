@@ -27,9 +27,8 @@ def print_wallets():
             print(text)
             result.append(text)
         else:
-            text = menu_maker(
-                menu_number=number, menu_text=address + " - CURRENTLY USED"
-            )
+            text = menu_maker(menu_number=number,
+                              menu_text=address + " - CURRENTLY USED")
             print(text)
             result.append(text)
     return result

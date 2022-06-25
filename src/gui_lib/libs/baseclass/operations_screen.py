@@ -77,10 +77,8 @@ class OperationBox(MDGridLayout):
         amount = text_list[1]
 
         if not float(amount) < GetBlock().minumum_transfer_amount:
-            if (
-                wallet_import(int(the_settings()["wallet"]), 2)
-                == sha256(text_list[0].encode("utf-8")).hexdigest()
-            ):
+            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
+                    text_list[0].encode("utf-8")).hexdigest()):
                 send(text_list[0], receiver_adress, float(amount))
             else:
                 SweetAlert().fire(
@@ -121,14 +119,14 @@ class OperationBox(MDGridLayout):
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {}
             for tx in transactions:
-                data[tx] = (
-                    tx.toUser + " | " + str(tx.amount) + " | " + str(tx.transaction_fee)
-                )
+                data[tx] = (tx.toUser + " | " + str(tx.amount) + " | " +
+                            str(tx.transaction_fee))
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.
+                    callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:
