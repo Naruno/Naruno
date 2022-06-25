@@ -458,6 +458,8 @@ class Node(threading.Thread):
                 node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
+        self.send_full_accounts(node)
+        self.send_full_blockshash(node)
         file = open(TEMP_BLOCK_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
