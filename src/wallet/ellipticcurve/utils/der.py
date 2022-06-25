@@ -24,12 +24,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
 from datetime import datetime
 
-from wallet.ellipticcurve.utils.binary import (bitsFromHex, byteStringFromHex,
-                                               hexFromInt, intFromHex)
-from wallet.ellipticcurve.utils.oid import oidFromHex, oidToHex
+from wallet.ellipticcurve.utils.binary import bitsFromHex
+from wallet.ellipticcurve.utils.binary import byteStringFromHex
+from wallet.ellipticcurve.utils.binary import hexFromInt
+from wallet.ellipticcurve.utils.binary import intFromHex
+from wallet.ellipticcurve.utils.oid import oidFromHex
+from wallet.ellipticcurve.utils.oid import oidToHex
 
 
 class DerFieldType:

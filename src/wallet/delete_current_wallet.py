@@ -4,9 +4,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
-from lib.settings_system import change_wallet, the_settings
+from lib.settings_system import change_wallet
+from lib.settings_system import the_settings
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_delete import wallet_delete
 from wallet.wallet_import import wallet_import
