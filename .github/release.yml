@@ -62,10 +62,12 @@ changelog:
         - CLI-Menu
         - CLI-Parameters
 
-    - title: Connection
+    - title: Node
       labels:
-        - Connection
         - Node
+
+    - title: API
+      labels:
         - API
 
     - title: Consensus
