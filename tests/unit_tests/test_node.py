@@ -16,11 +16,11 @@ class Test_Node(unittest.TestCase):
 
         password = "123"
 
-        temp_private_key = Wallet_Create(password)
+        temp_private_key = wallet_create(password)
 
         node_1 = Node("127.0.0.1", 10001)
 
-        temp_private_key2 = Wallet_Create(password)
+        temp_private_key2 = wallet_create(password)
 
         node_2 = Node("127.0.0.1", 10002)
 
@@ -63,7 +63,7 @@ class Test_Node(unittest.TestCase):
             if (temp_private_key == saved_wallets[each_wallet]["privatekey"]
                     or temp_private_key2
                     == saved_wallets[each_wallet]["privatekey"]):
-                Wallet_Delete(each_wallet)
+                wallet_delete(each_wallet)
 
         self.assertEqual(finded_node, True,
                          "Problem on connection saving system.")
@@ -78,8 +78,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
-from wallet.wallet import get_saved_wallet
-from wallet.wallet import Wallet_Create
-from wallet.wallet import Wallet_Delete
-from wallet.wallet import Wallet_Import
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.wallet_create import wallet_create
+from wallet.wallet_delete import wallet_delete
+from wallet.wallet_import import wallet_import
 unittest.main(exit=False)

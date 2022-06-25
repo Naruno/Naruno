@@ -19,7 +19,7 @@ from lib.export import export_the_transactions
 from lib.settings_system import the_settings
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
-from wallet.wallet import Wallet_Import
+from wallet.wallet_import import wallet_import
 
 
 class OperationScreen(MDScreen):
@@ -77,7 +77,7 @@ class OperationBox(MDGridLayout):
         amount = text_list[1]
 
         if not float(amount) < GetBlock().minumum_transfer_amount:
-            if (Wallet_Import(int(the_settings()["wallet"]), 2) == sha256(
+            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
                     text_list[0].encode("utf-8")).hexdigest()):
                 send(text_list[0], receiver_adress, float(amount))
             else:

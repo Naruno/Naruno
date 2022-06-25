@@ -7,7 +7,7 @@
 from accounts.account import Account
 from accounts.account import GetAccounts
 from accounts.save_accounts import save_accounts
-from wallet.wallet import Address
+from wallet.wallet_import import Address
 
 
 def ProccesstheTransaction(block):

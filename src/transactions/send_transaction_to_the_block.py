@@ -12,10 +12,6 @@ from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.check_transaction import CheckTransaction
 from transactions.propagating_the_tx import PropagatingtheTX
 from transactions.transaction import Transaction
-from transactions.tx_already_got import TXAlreadyGot
-from wallet.wallet import Ecdsa
-from wallet.wallet import PublicKey
-from wallet.wallet import Signature
 
 
 def SendTransactiontoTheBlock(

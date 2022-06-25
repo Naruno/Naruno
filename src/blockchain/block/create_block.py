@@ -9,7 +9,7 @@ from blockchain.block.get_block import GetBlock
 from lib.log import get_logger
 from lib.settings_system import the_settings
 from node.node import Node
-from wallet.wallet import Wallet_Import
+from wallet.wallet_import import wallet_import
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -35,7 +35,7 @@ def CreateBlock():
 
         logger.info(
             "Creating the genesis block and sending it to the connected nodes")
-        Block(Wallet_Import(-1, 3), previous_hash)
+        Block(wallet_import(-1, 3), previous_hash)
         Node.main_node.send_full_accounts()
         Node.main_node.send_full_chain()
         Node.main_node.send_full_blockshash()

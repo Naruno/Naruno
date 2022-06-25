@@ -24,11 +24,11 @@ from node.node import *
 from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.transaction import Transaction
-from wallet.wallet import Ecdsa
-from wallet.wallet import PrivateKey
-from wallet.wallet import PublicKey
-from wallet.wallet import Signature
-from wallet.wallet import Wallet_Import
+from wallet.ellipticcurve.ecdsa import Ecdsa
+from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.ellipticcurve.publicKey import PublicKey
+from wallet.ellipticcurve.signature import Signature
+from wallet.wallet_import import wallet_import
 
 logger = get_logger("NODE")
 
@@ -39,7 +39,7 @@ class Node(threading.Thread):
     unl_nodes = []
 
     id = "".join([
-        l.strip() for l in Wallet_Import(0, 0).splitlines()
+        l.strip() for l in wallet_import(0, 0).splitlines()
         if l and not l.startswith("-----")
     ])
 
@@ -384,7 +384,7 @@ class Node(threading.Thread):
             Ecdsa.sign(
                 "myblock" + Merkle_signature_list +
                 str(system.sequance_number),
-                PrivateKey.fromPem(Wallet_Import(0, 1)),
+                PrivateKey.fromPem(wallet_import(0, 1)),
             ).toBase64(),
         }
 
@@ -406,7 +406,7 @@ class Node(threading.Thread):
                 "signature":
                 Ecdsa.sign(
                     "myblockhash" + system.hash + str(system.sequance_number),
-                    PrivateKey.fromPem(Wallet_Import(0, 1)),
+                    PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
 
@@ -470,7 +470,7 @@ class Node(threading.Thread):
                 Ecdsa.sign(
                     "fullblock" + str(
                         (SendData.decode(encoding="iso-8859-1"))),
-                    PrivateKey.fromPem(Wallet_Import(0, 1)),
+                    PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
             if not node is None:
@@ -488,7 +488,7 @@ class Node(threading.Thread):
                     "end",
                     "signature":
                     Ecdsa.sign("fullblock" + "end",
-                               PrivateKey.fromPem(Wallet_Import(
+                               PrivateKey.fromPem(wallet_import(
                                    0, 1))).toBase64(),
                 }
                 if not node is None:
@@ -509,7 +509,7 @@ class Node(threading.Thread):
                 Ecdsa.sign(
                     "fullaccounts" + str(
                         (SendData.decode(encoding="iso-8859-1"))),
-                    PrivateKey.fromPem(Wallet_Import(0, 1)),
+                    PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
             if not node is None:
@@ -527,7 +527,7 @@ class Node(threading.Thread):
                     "end",
                     "signature":
                     Ecdsa.sign("fullaccounts" + "end",
-                               PrivateKey.fromPem(Wallet_Import(
+                               PrivateKey.fromPem(wallet_import(
                                    0, 1))).toBase64(),
                 }
                 if not node is None:
@@ -548,7 +548,7 @@ class Node(threading.Thread):
                 Ecdsa.sign(
                     "fullblockshash" + str(
                         (SendData.decode(encoding="iso-8859-1"))),
-                    PrivateKey.fromPem(Wallet_Import(0, 1)),
+                    PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
             if not node is None:
@@ -567,7 +567,7 @@ class Node(threading.Thread):
                     "signature":
                     Ecdsa.sign(
                         "fullblockshash" + "end",
-                        PrivateKey.fromPem(Wallet_Import(0, 1)),
+                        PrivateKey.fromPem(wallet_import(0, 1)),
                     ).toBase64(),
                 }
                 if not node is None:

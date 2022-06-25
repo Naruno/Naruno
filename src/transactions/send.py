@@ -13,9 +13,9 @@ from lib.settings_system import the_settings
 from transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.send_transaction_to_the_block import \
     SendTransactiontoTheBlock
-from wallet.wallet import Ecdsa
-from wallet.wallet import PrivateKey
-from wallet.wallet import Wallet_Import
+from wallet.ellipticcurve.ecdsa import Ecdsa
+from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.wallet_import import wallet_import
 
 
 def send(password, to_user, amount, data=None):
@@ -50,12 +50,12 @@ def send(password, to_user, amount, data=None):
     block = GetBlock()
 
     if not amount < block.minumum_transfer_amount:
-        if (Wallet_Import(int(the_settings()["wallet"]),
+        if (wallet_import(int(the_settings()["wallet"]),
                           2) == sha256(password.encode("utf-8")).hexdigest()):
 
-            my_private_key = Wallet_Import(-1, 1, password)
+            my_private_key = wallet_import(-1, 1, password)
             my_public_key = "".join([
-                l.strip() for l in Wallet_Import(-1, 0).splitlines()
+                l.strip() for l in wallet_import(-1, 0).splitlines()
                 if l and not l.startswith("-----")
             ])
 
