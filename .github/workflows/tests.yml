@@ -191,3 +191,28 @@ jobs:
         curl http://localhost:8000/status
         curl http://localhost:8101/status
         curl http://localhost:8102/status
+    - name: Copy out file from volume
+      run: |
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-0/src
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-1/src
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-2/src
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/src/logs
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/src/logs
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs
+    - name: Archive logs of Node 0
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-functional-test-docker-ubuntu-latest-node-0
+        path: /home/runner/work/Decentra-Network/Decentra-Network-0/src/logs/*.log 
+    - name: Archive logs of Node 1
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-functional-test-docker-ubuntu-latest-node-1
+        path: /home/runner/work/Decentra-Network/Decentra-Network-1/src/logs/*.log 
+    - name: Archive logs of Node 2
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-functional-test-docker-ubuntu-latest-node-2
+        path: /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs/*.log 
+
+
