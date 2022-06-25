@@ -143,19 +143,35 @@ Decentra Network is a completely community driven project, you can contribute in
 ## Recent Activity
 
 <details>
-  <img src="https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc.svg" alt="Recent_Activity">
+ 
+## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Recent activity [![Time period](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_badge.svg)](https://repography.com)
+[![Timeline graph](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_timeline.svg)](https://github.com/Decentra-Network/Decentra-Network/commits)
+[![Issue status graph](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_issues.svg)](https://github.com/Decentra-Network/Decentra-Network/issues)
+[![Pull request status graph](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_prs.svg)](https://github.com/Decentra-Network/Decentra-Network/pulls)
+[![Trending topics](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_words.svg)](https://github.com/Decentra-Network/Decentra-Network/commits)
+[![Top contributors](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_users.svg)](https://github.com/Decentra-Network/Decentra-Network/graphs/contributors)
+
+
 </details>
 
 ## Top Contributors
 
 <details>
-  <img src="https://images.repography.com/22744517/Decentra-Network/Decentra-Network/top-contributors/c5bdec035b13c76d31dd5333396957cc.svg" alt="Top_Contributors">
+
+## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Top contributors
+[![Top contributors](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/top-contributors/c5bdec035b13c76d31dd5333396957cc_table.svg)](https://github.com/Decentra-Network/Decentra-Network/graphs/contributors)
+
+
 </details>
 
 ## Structure
 
 <details>
-  <img src="https://images.repography.com/22744517/Decentra-Network/Decentra-Network/structure/c5bdec035b13c76d31dd5333396957cc.svg" alt="Structure">
+
+## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
+[![Structure](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/structure/06d5e6e5f3c07b9922b3f3d3e0c91649_table.svg)](https://github.com/Decentra-Network/Decentra-Network)
+
+
 </details>
 
 ## Github Statistics
