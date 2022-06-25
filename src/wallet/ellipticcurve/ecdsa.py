@@ -44,9 +44,11 @@ class Ecdsa:
         r, s, randSignPoint = 0, 0, None
         while r == 0 or s == 0:
             randNum = RandomInteger.between(1, curve.N - 1)
-            randSignPoint = Math.multiply(curve.G, n=randNum, A=curve.A, P=curve.P, N=curve.N)
+            randSignPoint = Math.multiply(
+                curve.G, n=randNum, A=curve.A, P=curve.P, N=curve.N)
             r = randSignPoint.x % curve.N
-            s = ((numberMessage + r * privateKey.secret) * (Math.inv(randNum, curve.N))) % curve.N
+            s = ((numberMessage + r * privateKey.secret)
+                 * (Math.inv(randNum, curve.N))) % curve.N
         recoveryId = randSignPoint.y & 1
         if randSignPoint.y > curve.N:
             recoveryId += 2
@@ -65,8 +67,10 @@ class Ecdsa:
         if not 1 <= s <= curve.N - 1:
             return False
         inv = Math.inv(s, curve.N)
-        u1 = Math.multiply(curve.G, n=(numberMessage * inv) % curve.N, N=curve.N, A=curve.A, P=curve.P)
-        u2 = Math.multiply(publicKey.point, n=(r * inv) % curve.N, N=curve.N, A=curve.A, P=curve.P)
+        u1 = Math.multiply(curve.G, n=(numberMessage * inv) %
+                           curve.N, N=curve.N, A=curve.A, P=curve.P)
+        u2 = Math.multiply(publicKey.point, n=(r * inv) %
+                           curve.N, N=curve.N, A=curve.A, P=curve.P)
         v = Math.add(u1, u2, A=curve.A, P=curve.P)
         if v.isAtInfinity():
             return False

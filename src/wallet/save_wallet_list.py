@@ -34,6 +34,7 @@ from lib.config_system import get_config
 
 from wallet.get_saved_wallet import get_saved_wallet
 
+
 def save_wallet_list(publicKey, privateKey, password):
     wallet_list = get_saved_wallet()
 

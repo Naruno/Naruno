@@ -63,6 +63,7 @@ def byteStringFromBase64(base64String):
 def bitsFromHex(hexadecimal):
     return format(intFromHex(hexadecimal), 'b').zfill(4 * len(hexadecimal))
 
+
 class BinaryAscii:
 
     @classmethod

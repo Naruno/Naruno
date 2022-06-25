@@ -51,7 +51,8 @@ class Signature:
     def fromDer(cls, string, recoveryByte=False):
         recoveryId = None
         if recoveryByte:
-            recoveryId = string[0] if isinstance(string[0], intTypes) else ord(string[0])
+            recoveryId = string[0] if isinstance(
+                string[0], intTypes) else ord(string[0])
             recoveryId -= 27
             string = string[1:]
 

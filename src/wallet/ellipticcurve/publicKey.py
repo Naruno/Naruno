@@ -54,7 +54,8 @@ class PublicKey:
                 encodePrimitive(DerFieldType.object, _ecdsaPublicKeyOid),
                 encodePrimitive(DerFieldType.object, self.curve.oid),
             ),
-            encodePrimitive(DerFieldType.bitString, self.toString(encoded=True)),
+            encodePrimitive(DerFieldType.bitString,
+                            self.toString(encoded=True)),
         )
         return byteStringFromHex(hexadecimal)
 
@@ -99,9 +100,11 @@ class PublicKey:
         if p.isAtInfinity():
             raise Exception("Public Key point is at infinity")
         if not curve.contains(p):
-            raise Exception("Point ({x},{y}) is not valid for curve {name}".format(x=p.x, y=p.y, name=curve.name))
+            raise Exception("Point ({x},{y}) is not valid for curve {name}".format(
+                x=p.x, y=p.y, name=curve.name))
         if not Math.multiply(p=p, n=curve.N, N=curve.N, A=curve.A, P=curve.P).isAtInfinity():
-            raise Exception("Point ({x},{y}) * {name}.N is not at infinity".format(x=p.x, y=p.y, name=curve.name))
+            raise Exception(
+                "Point ({x},{y}) * {name}.N is not at infinity".format(x=p.x, y=p.y, name=curve.name))
         return publicKey
 
 

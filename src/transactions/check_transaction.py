@@ -77,7 +77,7 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if (balance -
-        (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
+            (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
         logger.info("Balance is enough")
     else:
         validation = False

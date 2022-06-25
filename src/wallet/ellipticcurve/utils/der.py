@@ -78,7 +78,8 @@ def parse(hexadecimal):
         return []
     typeByte, hexadecimal = hexadecimal[:2], hexadecimal[2:]
     length, lengthBytes = _readLengthBytes(hexadecimal)
-    content, hexadecimal = hexadecimal[lengthBytes: lengthBytes + length], hexadecimal[lengthBytes + length:]
+    content, hexadecimal = hexadecimal[lengthBytes: lengthBytes +
+                                       length], hexadecimal[lengthBytes + length:]
     if len(content) < length:
         raise Exception("missing bytes in DER parse")
 
@@ -141,12 +142,14 @@ def _encodeInteger(number):
 def _readLengthBytes(hexadecimal):
     lengthBytes = 2
     lengthIndicator = intFromHex(hexadecimal[0:lengthBytes])
-    isShortForm = lengthIndicator < 128  # checks if first bit of byte is 1 (a.k.a. short-form)
+    # checks if first bit of byte is 1 (a.k.a. short-form)
+    isShortForm = lengthIndicator < 128
     if isShortForm:
         length = lengthIndicator * 2
         return length, lengthBytes
 
-    lengthLength = lengthIndicator - 128  # nullifies first bit of byte (only used as long-form flag)
+    # nullifies first bit of byte (only used as long-form flag)
+    lengthLength = lengthIndicator - 128
     if lengthLength == 0:
         raise Exception("indefinite length encoding located in DER")
     lengthBytes += 2 * lengthLength
@@ -157,9 +160,11 @@ def _readLengthBytes(hexadecimal):
 def _generateLengthBytes(hexadecimal):
     size = len(hexadecimal) // 2
     length = hexFromInt(size)
-    if size < 128:  # checks if first bit of byte should be 0 (a.k.a. short-form flag)
+    # checks if first bit of byte should be 0 (a.k.a. short-form flag)
+    if size < 128:
         return length.zfill(2)
-    lengthLength = 128 + len(length) // 2  # +128 sets the first bit of the byte as 1 (a.k.a. long-form flag)
+    # +128 sets the first bit of the byte as 1 (a.k.a. long-form flag)
+    lengthLength = 128 + len(length) // 2
     return hexFromInt(lengthLength) + length
 
 
