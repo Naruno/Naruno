@@ -27,7 +27,12 @@ SOFTWARE.
 
 from datetime import datetime
 from wallet.ellipticcurve.utils.oid import oidToHex, oidFromHex
-from wallet.ellipticcurve.utils.binary import hexFromInt, intFromHex, byteStringFromHex, bitsFromHex
+from wallet.ellipticcurve.utils.binary import (
+    hexFromInt,
+    intFromHex,
+    byteStringFromHex,
+    bitsFromHex,
+)
 
 
 class DerFieldType:
@@ -70,7 +75,9 @@ def encodePrimitive(tagType, value):
         value = _encodeInteger(value)
     if tagType == DerFieldType.object:
         value = oidToHex(value)
-    return "{tag}{size}{value}".format(tag=_typeToHexTag[tagType], size=_generateLengthBytes(value), value=value)
+    return "{tag}{size}{value}".format(
+        tag=_typeToHexTag[tagType], size=_generateLengthBytes(value), value=value
+    )
 
 
 def parse(hexadecimal):
@@ -78,8 +85,10 @@ def parse(hexadecimal):
         return []
     typeByte, hexadecimal = hexadecimal[:2], hexadecimal[2:]
     length, lengthBytes = _readLengthBytes(hexadecimal)
-    content, hexadecimal = hexadecimal[lengthBytes: lengthBytes +
-                                       length], hexadecimal[lengthBytes + length:]
+    content, hexadecimal = (
+        hexadecimal[lengthBytes : lengthBytes + length],
+        hexadecimal[lengthBytes + length :],
+    )
     if len(content) < length:
         raise Exception("missing bytes in DER parse")
 
@@ -124,17 +133,19 @@ def _parseInteger(hexadecimal):
     if bits[0] == "0":  # negative numbers are encoded using two's complement
         return integer
     bitCount = 4 * len(hexadecimal)
-    return integer - (2 ** bitCount)
+    return integer - (2**bitCount)
 
 
 def _encodeInteger(number):
     hexadecimal = hexFromInt(abs(number))
     if number < 0:
         bitCount = 4 * len(hexadecimal)
-        twosComplement = (2 ** bitCount) + number
+        twosComplement = (2**bitCount) + number
         return hexFromInt(twosComplement)
     bits = bitsFromHex(hexadecimal[0])
-    if bits[0] == "1":  # if first bit was left as 1, number would be parsed as a negative integer with two's complement
+    if (
+        bits[0] == "1"
+    ):  # if first bit was left as 1, number would be parsed as a negative integer with two's complement
         hexadecimal = "00" + hexadecimal
     return hexadecimal
 

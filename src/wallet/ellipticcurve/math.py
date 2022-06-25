@@ -29,7 +29,6 @@ from wallet.ellipticcurve.point import Point
 
 
 class Math:
-
     @classmethod
     def multiply(cls, p, n, N, A, P):
         """
@@ -58,7 +57,8 @@ class Math:
         :return: Point that represents the sum of First and Second Point
         """
         return cls._fromJacobian(
-            cls._jacobianAdd(cls._toJacobian(p), cls._toJacobian(q), A, P), P,
+            cls._jacobianAdd(cls._toJacobian(p), cls._toJacobian(q), A, P),
+            P,
         )
 
     @classmethod
@@ -109,8 +109,8 @@ class Math:
         :return: Point in default coordinates
         """
         z = cls.inv(p.z, P)
-        x = (p.x * z ** 2) % P
-        y = (p.y * z ** 3) % P
+        x = (p.x * z**2) % P
+        y = (p.y * z**3) % P
 
         return Point(x, y, 0)
 
@@ -127,11 +127,11 @@ class Math:
         if p.y == 0:
             return Point(0, 0, 0)
 
-        ysq = (p.y ** 2) % P
+        ysq = (p.y**2) % P
         S = (4 * p.x * ysq) % P
-        M = (3 * p.x ** 2 + A * p.z ** 4) % P
+        M = (3 * p.x**2 + A * p.z**4) % P
         nx = (M**2 - 2 * S) % P
-        ny = (M * (S - nx) - 8 * ysq ** 2) % P
+        ny = (M * (S - nx) - 8 * ysq**2) % P
         nz = (2 * p.y * p.z) % P
 
         return Point(nx, ny, nz)
@@ -152,10 +152,10 @@ class Math:
         if q.y == 0:
             return p
 
-        U1 = (p.x * q.z ** 2) % P
-        U2 = (q.x * p.z ** 2) % P
-        S1 = (p.y * q.z ** 3) % P
-        S2 = (q.y * p.z ** 3) % P
+        U1 = (p.x * q.z**2) % P
+        U2 = (q.x * p.z**2) % P
+        S1 = (p.y * q.z**3) % P
+        S2 = (q.y * p.z**3) % P
 
         if U1 == U2:
             if S1 != S2:
@@ -167,7 +167,7 @@ class Math:
         H2 = (H * H) % P
         H3 = (H * H2) % P
         U1H2 = (U1 * H2) % P
-        nx = (R ** 2 - H3 - 2 * U1H2) % P
+        nx = (R**2 - H3 - 2 * U1H2) % P
         ny = (R * (U1H2 - nx) - S1 * H3) % P
         nz = (H * p.z * q.z) % P
 
@@ -195,11 +195,11 @@ class Math:
             return cls._jacobianMultiply(p, n % N, N, A, P)
 
         if (n % 2) == 0:
-            return cls._jacobianDouble(
-                cls._jacobianMultiply(p, n // 2, N, A, P), A, P
-            )
+            return cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P)
 
         return cls._jacobianAdd(
-            cls._jacobianDouble(cls._jacobianMultiply(
-                p, n // 2, N, A, P), A, P), p, A, P
+            cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P),
+            p,
+            A,
+            P,
         )

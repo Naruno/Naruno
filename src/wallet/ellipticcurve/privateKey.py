@@ -28,14 +28,25 @@ SOFTWARE.
 from wallet.ellipticcurve.math import Math
 from wallet.ellipticcurve.utils.integer import RandomInteger
 from wallet.ellipticcurve.utils.pem import getPemContent, createPem
-from wallet.ellipticcurve.utils.binary import hexFromByteString, byteStringFromHex, intFromHex, base64FromByteString, byteStringFromBase64
-from wallet.ellipticcurve.utils.der import hexFromInt, parse, encodeConstructed, DerFieldType, encodePrimitive
+from wallet.ellipticcurve.utils.binary import (
+    hexFromByteString,
+    byteStringFromHex,
+    intFromHex,
+    base64FromByteString,
+    byteStringFromBase64,
+)
+from wallet.ellipticcurve.utils.der import (
+    hexFromInt,
+    parse,
+    encodeConstructed,
+    DerFieldType,
+    encodePrimitive,
+)
 from wallet.ellipticcurve.curve import secp256k1, getCurveByOid
 from wallet.ellipticcurve.publicKey import PublicKey
 
 
 class PrivateKey:
-
     def __init__(self, curve=secp256k1, secret=None):
         self.curve = curve
         self.secret = secret or RandomInteger.between(1, curve.N - 1)
@@ -59,10 +70,14 @@ class PrivateKey:
         hexadecimal = encodeConstructed(
             encodePrimitive(DerFieldType.integer, 1),
             encodePrimitive(DerFieldType.octetString, hexFromInt(self.secret)),
-            encodePrimitive(DerFieldType.oidContainer, encodePrimitive(
-                DerFieldType.object, self.curve.oid)),
-            encodePrimitive(DerFieldType.publicKeyPointContainer, encodePrimitive(
-                DerFieldType.bitString, publicKeyString))
+            encodePrimitive(
+                DerFieldType.oidContainer,
+                encodePrimitive(DerFieldType.object, self.curve.oid),
+            ),
+            encodePrimitive(
+                DerFieldType.publicKeyPointContainer,
+                encodePrimitive(DerFieldType.bitString, publicKeyString),
+            ),
         )
         return byteStringFromHex(hexadecimal)
 
@@ -78,17 +93,19 @@ class PrivateKey:
     @classmethod
     def fromDer(cls, string):
         hexadecimal = hexFromByteString(string)
-        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[
-            0]
+        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[0]
         if privateKeyFlag != 1:
-            raise Exception("Private keys should start with a '1' flag, but a '{flag}' was found instead".format(
-                flag=privateKeyFlag
-            ))
+            raise Exception(
+                "Private keys should start with a '1' flag, but a '{flag}' was found instead".format(
+                    flag=privateKeyFlag
+                )
+            )
         curve = getCurveByOid(curveData[0])
         privateKey = cls.fromString(string=secretHex, curve=curve)
         if privateKey.publicKey().toString(encoded=True) != publicKeyString[0]:
             raise Exception(
-                "The public key described inside the private key file doesn't match the actual public key of the pair")
+                "The public key described inside the private key file doesn't match the actual public key of the pair"
+            )
         return privateKey
 
     @classmethod

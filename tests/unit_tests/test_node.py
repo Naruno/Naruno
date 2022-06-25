@@ -18,7 +18,6 @@ import unittest
 
 
 class Test_Node(unittest.TestCase):
-
     def test_1_node_by_connection_saving_and_unl_nodes_system(self):
 
         password = "123"
@@ -47,15 +46,18 @@ class Test_Node(unittest.TestCase):
                 finded_node = True
 
                 temp_unl_node_list = Unl.get_unl_nodes()
-                temp_get_as_node_type = Unl.get_as_node_type(
-                    temp_unl_node_list)
+                temp_get_as_node_type = Unl.get_as_node_type(temp_unl_node_list)
                 for unl_element in temp_unl_node_list:
                     if unl_element == node_1.id or unl_element == node_2.id:
                         for node_element_of_unl in temp_get_as_node_type:
-                            if (node_1.host == node_element_of_unl.host
-                                    or node_2 == node_element_of_unl.host):
-                                if (node_1.port == node_element_of_unl.port
-                                        or node_2 == node_element_of_unl.port):
+                            if (
+                                node_1.host == node_element_of_unl.host
+                                or node_2 == node_element_of_unl.host
+                            ):
+                                if (
+                                    node_1.port == node_element_of_unl.port
+                                    or node_2 == node_element_of_unl.port
+                                ):
                                     get_as_node = True
                         in_unl_list = True
                         Unl.unl_node_delete(unl_element)
@@ -67,17 +69,15 @@ class Test_Node(unittest.TestCase):
         saved_wallets = get_saved_wallet()
 
         for each_wallet in saved_wallets:
-            if (temp_private_key == saved_wallets[each_wallet]["privatekey"]
-                    or temp_private_key2
-                    == saved_wallets[each_wallet]["privatekey"]):
+            if (
+                temp_private_key == saved_wallets[each_wallet]["privatekey"]
+                or temp_private_key2 == saved_wallets[each_wallet]["privatekey"]
+            ):
                 wallet_delete(each_wallet)
 
-        self.assertEqual(finded_node, True,
-                         "Problem on connection saving system.")
-        self.assertEqual(in_unl_list, True,
-                         "Problem on UNL node saving system.")
-        self.assertEqual(get_as_node, True,
-                         "Problem on UNL get as node system.")
+        self.assertEqual(finded_node, True, "Problem on connection saving system.")
+        self.assertEqual(in_unl_list, True, "Problem on UNL node saving system.")
+        self.assertEqual(get_as_node, True, "Problem on UNL get as node system.")
 
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))

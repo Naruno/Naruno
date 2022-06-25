@@ -26,7 +26,11 @@ SOFTWARE.
 """
 
 from base64 import b64encode, b64decode
-from wallet.ellipticcurve.utils.compatibility import safeHexFromBinary, safeBinaryFromHex, toString
+from wallet.ellipticcurve.utils.compatibility import (
+    safeHexFromBinary,
+    safeBinaryFromHex,
+    toString,
+)
 
 
 def hexFromInt(number):
@@ -61,11 +65,10 @@ def byteStringFromBase64(base64String):
 
 
 def bitsFromHex(hexadecimal):
-    return format(intFromHex(hexadecimal), 'b').zfill(4 * len(hexadecimal))
+    return format(intFromHex(hexadecimal), "b").zfill(4 * len(hexadecimal))
 
 
 class BinaryAscii:
-
     @classmethod
     def hexFromBinary(cls, data):
         """

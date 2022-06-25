@@ -34,7 +34,6 @@ from wallet.ellipticcurve.point import Point
 
 
 class CurveFp:
-
     def __init__(self, A, B, P, N, Gx, Gy, name, oid, nistName=None):
         self.A = A
         self.B = B
@@ -68,22 +67,22 @@ secp256k1 = CurveFp(
     name="secp256k1",
     A=0x0000000000000000000000000000000000000000000000000000000000000000,
     B=0x0000000000000000000000000000000000000000000000000000000000000007,
-    P=0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f,
-    N=0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141,
-    Gx=0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798,
-    Gy=0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8,
-    oid=[1, 3, 132, 0, 10]
+    P=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F,
+    N=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141,
+    Gx=0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798,
+    Gy=0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8,
+    oid=[1, 3, 132, 0, 10],
 )
 
 prime256v1 = CurveFp(
     name="prime256v1",
     nistName="P-256",
-    A=0xffffffff00000001000000000000000000000000fffffffffffffffffffffffc,
-    B=0x5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b,
-    P=0xffffffff00000001000000000000000000000000ffffffffffffffffffffffff,
-    N=0xffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551,
-    Gx=0x6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296,
-    Gy=0x4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5,
+    A=0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFC,
+    B=0x5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B,
+    P=0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF,
+    N=0xFFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551,
+    Gx=0x6B17D1F2E12C4247F8BCE6E563A440F277037D812DEB33A0F4A13945D898C296,
+    Gy=0x4FE342E2FE1A7F9B8EE7EB4A7C0F9E162BCE33576B315ECECBB6406837BF51F5,
     oid=[1, 2, 840, 10045, 3, 1, 7],
 )
 
@@ -99,8 +98,10 @@ _curvesByOid = {tuple(curve.oid): curve for curve in supportedCurves}
 
 def getCurveByOid(oid):
     if oid not in _curvesByOid:
-        raise Exception("Unknown curve with oid {oid}; The following are registered: {names}".format(
-            oid=".".join([str(number) for number in oid]),
-            names=", ".join([curve.name for curve in supportedCurves]),
-        ))
+        raise Exception(
+            "Unknown curve with oid {oid}; The following are registered: {names}".format(
+                oid=".".join([str(number) for number in oid]),
+                names=", ".join([curve.name for curve in supportedCurves]),
+            )
+        )
     return _curvesByOid[oid]

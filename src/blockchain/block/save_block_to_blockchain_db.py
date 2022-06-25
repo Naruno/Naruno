@@ -34,13 +34,18 @@ def saveBlockstoBlockchainDB(block):
     )
     my_address = wallet_import(-1, 3)
     for validated_transaction in block.validating_list:
-        if validated_transaction.fromUser == my_public_key or validated_transaction.toUser == my_address:
+        if (
+            validated_transaction.fromUser == my_public_key
+            or validated_transaction.toUser == my_address
+        ):
             our_tx = True
 
     # If the block is our transaction, then add it to the blockchain database.
     if our_tx:
         #
-        with open(BLOCKS_PATH + str(block.sequance_number) + ".block", "wb") as block_file:
+        with open(
+            BLOCKS_PATH + str(block.sequance_number) + ".block", "wb"
+        ) as block_file:
             pickle.dump(block, block_file, protocol=2)
 
         with open(

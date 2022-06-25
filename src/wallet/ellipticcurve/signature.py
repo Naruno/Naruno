@@ -26,12 +26,21 @@ SOFTWARE.
 """
 
 from wallet.ellipticcurve.utils.compatibility import *
-from wallet.ellipticcurve.utils.der import parse, encodeConstructed, encodePrimitive, DerFieldType
-from wallet.ellipticcurve.utils.binary import hexFromByteString, byteStringFromHex, base64FromByteString, byteStringFromBase64
+from wallet.ellipticcurve.utils.der import (
+    parse,
+    encodeConstructed,
+    encodePrimitive,
+    DerFieldType,
+)
+from wallet.ellipticcurve.utils.binary import (
+    hexFromByteString,
+    byteStringFromHex,
+    base64FromByteString,
+    byteStringFromBase64,
+)
 
 
 class Signature:
-
     def __init__(self, r, s, recoveryId=None):
         self.r = r
         self.s = s
@@ -51,8 +60,9 @@ class Signature:
     def fromDer(cls, string, recoveryByte=False):
         recoveryId = None
         if recoveryByte:
-            recoveryId = string[0] if isinstance(
-                string[0], intTypes) else ord(string[0])
+            recoveryId = (
+                string[0] if isinstance(string[0], intTypes) else ord(string[0])
+            )
             recoveryId -= 27
             string = string[1:]
 
