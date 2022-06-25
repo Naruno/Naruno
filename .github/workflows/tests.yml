@@ -196,9 +196,9 @@ jobs:
         mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-0/src
         mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-1/src
         mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-2/src
-        sudo cp -r /var/lib/docker/volumes/decentra-network-db/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/src/logs
-        sudo cp -r /var/lib/docker/volumes/decentra-network-db-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/src/logs
-        sudo cp -r /var/lib/docker/volumes/decentra-network-db-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/src/logs
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/src/logs
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs
     - name: Archive logs of Node 0
       uses: actions/upload-artifact@v3
       with:
