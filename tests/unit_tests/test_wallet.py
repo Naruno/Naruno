@@ -65,7 +65,6 @@ from wallet.wallet_create import wallet_create
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_delete import wallet_delete
 from wallet.ellipticcurve.privateKey import PrivateKey
-from wallet.ellipticcurve.utils.compatibility import toBytes
 from wallet.ellipticcurve.publicKey import PublicKey
 from lib.encryption import decrypt
 unittest.main(exit=False)

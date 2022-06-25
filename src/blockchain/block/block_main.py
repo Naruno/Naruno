@@ -25,9 +25,6 @@ from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
 from transactions.pending_to_validating import PendinttoValidating
 from transactions.save_to_my_transaction import SavetoMyTransaction
-from wallet.ellipticcurve.privateKey import PrivateKey
-from wallet.ellipticcurve.publicKey import PublicKey
-from wallet.ellipticcurve.signature import Signature
 from wallet.wallet_import import wallet_import
 
 logger = get_logger("BLOCKCHAIN")

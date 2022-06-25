@@ -7,7 +7,7 @@
 
 
 from wallet.wallet_import import wallet_import
-from  wallet.get_saved_wallet import get_saved_wallet
+from wallet.get_saved_wallet import get_saved_wallet
 
 from lib.mixlib import menu_maker
 from lib.settings_system import the_settings
