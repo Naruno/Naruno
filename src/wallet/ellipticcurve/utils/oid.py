@@ -25,7 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from wallet.ellipticcurve.utils.binary import intFromHex, hexFromInt
+from wallet.ellipticcurve.utils.binary import hexFromInt, intFromHex
 
 
 def oidFromHex(hexadecimal):

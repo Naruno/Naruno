@@ -4,8 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from accounts.account import Account
-from accounts.account import GetAccounts
+from accounts.account import Account, GetAccounts
 from accounts.save_accounts import save_accounts
 from wallet.wallet_import import Address
 

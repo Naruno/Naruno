@@ -5,16 +5,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import os
+import sys
+import unittest
+
 from lib.encryption import decrypt
-from wallet.ellipticcurve.publicKey import PublicKey
 from wallet.ellipticcurve.privateKey import PrivateKey
-from wallet.wallet_delete import wallet_delete
+from wallet.ellipticcurve.publicKey import PublicKey
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_create import wallet_create
+from wallet.wallet_delete import wallet_delete
 from wallet.wallet_import import wallet_import
-import sys
-import os
-import unittest
 
 
 class Test_Wallet(unittest.TestCase):

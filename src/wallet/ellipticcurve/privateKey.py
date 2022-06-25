@@ -25,25 +25,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+from wallet.ellipticcurve.curve import getCurveByOid, secp256k1
 from wallet.ellipticcurve.math import Math
-from wallet.ellipticcurve.utils.integer import RandomInteger
-from wallet.ellipticcurve.utils.pem import getPemContent, createPem
-from wallet.ellipticcurve.utils.binary import (
-    hexFromByteString,
-    byteStringFromHex,
-    intFromHex,
-    base64FromByteString,
-    byteStringFromBase64,
-)
-from wallet.ellipticcurve.utils.der import (
-    hexFromInt,
-    parse,
-    encodeConstructed,
-    DerFieldType,
-    encodePrimitive,
-)
-from wallet.ellipticcurve.curve import secp256k1, getCurveByOid
 from wallet.ellipticcurve.publicKey import PublicKey
+from wallet.ellipticcurve.utils.binary import (base64FromByteString,
+                                               byteStringFromBase64,
+                                               byteStringFromHex,
+                                               hexFromByteString, intFromHex)
+from wallet.ellipticcurve.utils.der import (DerFieldType, encodeConstructed,
+                                            encodePrimitive, hexFromInt, parse)
+from wallet.ellipticcurve.utils.integer import RandomInteger
+from wallet.ellipticcurve.utils.pem import createPem, getPemContent
 
 
 class PrivateKey:

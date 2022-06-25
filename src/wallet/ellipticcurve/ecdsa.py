@@ -26,11 +26,12 @@ SOFTWARE.
 """
 
 from hashlib import sha256
-from wallet.ellipticcurve.signature import Signature
+
 from wallet.ellipticcurve.math import Math
-from wallet.ellipticcurve.utils.integer import RandomInteger
+from wallet.ellipticcurve.signature import Signature
 from wallet.ellipticcurve.utils.binary import numberFromByteString
 from wallet.ellipticcurve.utils.compatibility import *
+from wallet.ellipticcurve.utils.integer import RandomInteger
 
 
 class Ecdsa:

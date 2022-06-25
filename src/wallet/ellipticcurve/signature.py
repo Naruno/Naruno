@@ -25,19 +25,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+from wallet.ellipticcurve.utils.binary import (base64FromByteString,
+                                               byteStringFromBase64,
+                                               byteStringFromHex,
+                                               hexFromByteString)
 from wallet.ellipticcurve.utils.compatibility import *
-from wallet.ellipticcurve.utils.der import (
-    parse,
-    encodeConstructed,
-    encodePrimitive,
-    DerFieldType,
-)
-from wallet.ellipticcurve.utils.binary import (
-    hexFromByteString,
-    byteStringFromHex,
-    base64FromByteString,
-    byteStringFromBase64,
-)
+from wallet.ellipticcurve.utils.der import (DerFieldType, encodeConstructed,
+                                            encodePrimitive, parse)
 
 
 class Signature:

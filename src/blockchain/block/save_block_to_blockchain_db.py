@@ -8,13 +8,10 @@
 
 import pickle
 
-from config import BLOCKS_PATH
-
 from accounts.get_accounts import GetAccounts
 from accounts.get_accounts_part import GetAccounts_part
-
 from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
-
+from config import BLOCKS_PATH
 from wallet.wallet_import import wallet_import
 
 

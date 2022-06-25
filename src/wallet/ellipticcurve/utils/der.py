@@ -26,13 +26,10 @@ SOFTWARE.
 """
 
 from datetime import datetime
-from wallet.ellipticcurve.utils.oid import oidToHex, oidFromHex
-from wallet.ellipticcurve.utils.binary import (
-    hexFromInt,
-    intFromHex,
-    byteStringFromHex,
-    bitsFromHex,
-)
+
+from wallet.ellipticcurve.utils.binary import (bitsFromHex, byteStringFromHex,
+                                               hexFromInt, intFromHex)
+from wallet.ellipticcurve.utils.oid import oidFromHex, oidToHex
 
 
 class DerFieldType:

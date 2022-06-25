@@ -6,13 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from wallet.wallet_import import wallet_import
+from lib.settings_system import change_wallet, the_settings
 from wallet.get_saved_wallet import get_saved_wallet
-
 from wallet.wallet_delete import wallet_delete
-
-
-from lib.settings_system import the_settings, change_wallet
+from wallet.wallet_import import wallet_import
 
 
 def delete_current_wallet():

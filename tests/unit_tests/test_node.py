@@ -6,15 +6,16 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-from wallet.wallet_import import wallet_import
-from wallet.wallet_delete import wallet_delete
-from wallet.wallet_create import wallet_create
-from wallet.get_saved_wallet import get_saved_wallet
-from node.unl import Unl
-from node.node_connection import Node_Connection
-from node.node import Node
 import sys
 import unittest
+
+from node.node import Node
+from node.node_connection import Node_Connection
+from node.unl import Unl
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.wallet_create import wallet_create
+from wallet.wallet_delete import wallet_delete
+from wallet.wallet_import import wallet_import
 
 
 class Test_Node(unittest.TestCase):

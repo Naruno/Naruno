@@ -25,12 +25,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from base64 import b64encode, b64decode
-from wallet.ellipticcurve.utils.compatibility import (
-    safeHexFromBinary,
-    safeBinaryFromHex,
-    toString,
-)
+from base64 import b64decode, b64encode
+
+from wallet.ellipticcurve.utils.compatibility import (safeBinaryFromHex,
+                                                      safeHexFromBinary,
+                                                      toString)
 
 
 def hexFromInt(number):
