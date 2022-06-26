@@ -6,9 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import pickle
-from distutils.log import info
 
 from config import MY_TRANSACTION_PATH
+from distutils.log import info
 from lib.config_system import get_config
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.save_my_transaction import SaveMyTransaction
