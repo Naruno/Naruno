@@ -36,9 +36,6 @@ def send(password, to_user, amount, data=None):
         print("This is not float coin amount.")
         return False
 
-    if isinstance(amount, int):
-        amount = float(amount)
-
     if not isinstance(amount, float):
         print("This is not int or float coin amount.")
         return None
@@ -48,6 +45,11 @@ def send(password, to_user, amount, data=None):
         return None
 
     block = GetBlock()
+
+    decimal_amount = len(str(block.transaction_fee).split(".")[1])
+    if len(str(amount).split(".")[1]) > decimal_amount:
+        print(f"The amount of decimal places is more than {decimal_amount}.")
+        return False
 
     if not amount < block.minumum_transfer_amount:
         if (wallet_import(int(the_settings()["wallet"]),
