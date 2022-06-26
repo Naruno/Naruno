@@ -31,4 +31,3 @@ Added approved and unapproved types for my transactions as true of false.
 Thanks to everyone who directly contributed to this release:
 
 - Onur Atakan ULUSOY
-- Bahri Can ERGUL
