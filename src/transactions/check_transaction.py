@@ -47,7 +47,7 @@ def CheckTransaction(block, transaction):
         logger.info("The signature is valid")
     else:
         validation = False
-    
+
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
 
     if not len(str(transaction.amount).split(".")[1]) > decimal_amount:
@@ -61,7 +61,8 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if not len(str(transaction.transaction_fee).split(".")[1]) > decimal_amount:
-        logger.info(f"The decimal amount of transaction.transaction_fee is true.")
+        logger.info(
+            f"The decimal amount of transaction.transaction_fee is true.")
     else:
         validation = False
 
@@ -89,7 +90,7 @@ def CheckTransaction(block, transaction):
         validation = False
 
     if (balance -
-        (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
+            (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
         logger.info("Balance is enough")
     else:
         validation = False

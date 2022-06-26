@@ -36,9 +36,6 @@ def send(password, to_user, amount, data=None):
         print("This is not float coin amount.")
         return False
 
-
-
-
     if not isinstance(amount, float):
         print("This is not int or float coin amount.")
         return None
