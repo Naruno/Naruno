@@ -119,8 +119,9 @@ class OperationBox(MDGridLayout):
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {}
             for tx in transactions:
-                data[tx] = (tx.toUser + " | " + str(tx.amount) + " | " +
-                            str(tx.transaction_fee))
+                data[tx[0]] = (tx[0].toUser + " | " + str(tx[0].amount) +
+                               " | " + str(tx[0].transaction_fee) + " | " +
+                               str(tx[1]))
 
             for item in data.items():
                 bottom_sheet_menu.add_item(

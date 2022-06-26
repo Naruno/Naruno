@@ -8,18 +8,19 @@ import os
 import pickle
 
 from config import MY_TRANSACTION_PATH
+from distutils.log import info
 from lib.config_system import get_config
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.save_my_transaction import SaveMyTransaction
 
 
-def SavetoMyTransaction(tx, validated=False):
+def ValidateTransaction(tx):
     """
-    Saves the transaction to the transaction db.
+    Validates the transaction.
     """
 
-    currently_list = GetMyTransaction()
-    tx_list = [tx, validated]
-    currently_list.append(tx_list)
-
-    SaveMyTransaction(currently_list)
+    tx_list = GetMyTransaction()
+    for i in tx_list:
+        if i[0].signature == tx.signature:
+            i[1] = True
+    SaveMyTransaction(tx_list)

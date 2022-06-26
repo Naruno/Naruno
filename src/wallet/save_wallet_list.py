@@ -28,18 +28,17 @@ import json
 import os
 from hashlib import sha256
 
-
 from config import *
 from lib.config_system import get_config
-
 from wallet.get_saved_wallet import get_saved_wallet
+
 
 def save_wallet_list(publicKey, privateKey, password):
     wallet_list = get_saved_wallet()
 
     wallet_list[publicKey] = {}
 
-    wallet_list[publicKey]["publickey"] = publicKey
+    wallet_list[publicKey]["publickey"] = publicKey.replace("\n", "")
     wallet_list[publicKey]["privatekey"] = privateKey
 
     wallet_list[publicKey]["password_sha256"] = sha256(
