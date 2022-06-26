@@ -11,7 +11,8 @@ from accounts.get_sequance_number import GetSequanceNumber
 from blockchain.block.get_block import GetBlock
 from lib.settings_system import the_settings
 from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.send_transaction_to_the_block import SendTransactiontoTheBlock
+from transactions.send_transaction_to_the_block import \
+    SendTransactiontoTheBlock
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.wallet_import import wallet_import
