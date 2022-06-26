@@ -28,6 +28,7 @@ jobs:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
     runs-on: windows-latest
+    environment: Tests     
 
     steps:
     - name: Checkout repository

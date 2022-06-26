@@ -24,6 +24,7 @@ jobs:
   lint_with_flake8:
 
     runs-on: ubuntu-latest
+    environment: Tests 
     strategy:
       matrix:
         python-version: [3.8]
@@ -48,6 +49,7 @@ jobs:
     needs: lint_with_flake8
 
     runs-on: ubuntu-latest
+    environment: Tests 
     strategy:
       matrix:
         python-version: [3.8]
@@ -77,6 +79,7 @@ jobs:
     needs: lint_with_flake8
 
     runs-on: macos-latest
+    environment: Tests     
     strategy:
       matrix:
         python-version: [3.8]
@@ -105,6 +108,7 @@ jobs:
     needs: lint_with_flake8
 
     runs-on: windows-latest
+    environment: Tests     
     strategy:
       matrix:
         python-version: [3.8]
@@ -133,6 +137,7 @@ jobs:
   functional-test-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
     runs-on: ubuntu-latest
+    environment: Tests 
     strategy:
       matrix:
         python-version: [3.8]
@@ -171,6 +176,7 @@ jobs:
   functional-test-docker-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
     runs-on: ubuntu-latest
+    environment: Tests 
     strategy:
       matrix:
         python-version: [3.8]
