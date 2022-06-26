@@ -47,9 +47,21 @@ def CheckTransaction(block, transaction):
         logger.info("The signature is valid")
     else:
         validation = False
+    
+    decimal_amount = len(str(block.transaction_fee).split(".")[1])
+
+    if not len(str(transaction.amount).split(".")[1]) > decimal_amount:
+        logger.info(f"The decimal amount of transaction.amount is true.")
+    else:
+        validation = False
 
     if not transaction.amount < block.minumum_transfer_amount:
         logger.info("Minimum transfer amount is reached")
+    else:
+        validation = False
+
+    if not len(str(transaction.transaction_fee).split(".")[1]) > decimal_amount:
+        logger.info(f"The decimal amount of transaction.transaction_fee is true.")
     else:
         validation = False
 
