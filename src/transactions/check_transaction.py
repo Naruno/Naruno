@@ -47,7 +47,7 @@ def CheckTransaction(block, transaction):
         logger.info("The signature is valid")
     else:
         validation = False
-    
+
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
 
     if not len(str(transaction.amount).split(".")[1]) > decimal_amount:
@@ -60,8 +60,10 @@ def CheckTransaction(block, transaction):
     else:
         validation = False
 
-    if not len(str(transaction.transaction_fee).split(".")[1]) > decimal_amount:
-        logger.info(f"The decimal amount of transaction.transaction_fee is true.")
+    if not len(str(
+            transaction.transaction_fee).split(".")[1]) > decimal_amount:
+        logger.info(
+            f"The decimal amount of transaction.transaction_fee is true.")
     else:
         validation = False
 
@@ -95,7 +97,8 @@ def CheckTransaction(block, transaction):
         validation = False
 
     for tx in block.pendingTransaction + block.validating_list:
-        if tx.fromUser == transaction.fromUser and tx.signature != transaction.signature:
+        if (tx.fromUser == transaction.fromUser
+                and tx.signature != transaction.signature):
             logger.info("Multiple transaction in one account")
             validation = False
 
