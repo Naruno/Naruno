@@ -13,11 +13,11 @@ from flask import jsonify
 from flask import request
 from lib.export import export_the_transactions
 from lib.log import get_logger
+from lib.safety import safety_check
 from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
-from lib.safety import safety_check
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
@@ -197,7 +197,8 @@ def export_transaction_csv_page():
 def export_transaction_json_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify([(str(i[0].__dict__) + " | " + str(i[1])) for i in GetMyTransaction()])
+    return jsonify([(str(i[0].__dict__) + " | " + str(i[1]))
+                    for i in GetMyTransaction()])
 
 
 @app.route("/status", methods=["GET"])
@@ -239,7 +240,7 @@ def start():
 
     args = parser.parse_args()
 
-    safety_check(args.interface, args.timeout)  
+    safety_check(args.interface, args.timeout)
 
     logger.info(f"Starting API on port {args.port}")
     serve(app, host="0.0.0.0", port=args.port)
