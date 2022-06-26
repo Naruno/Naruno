@@ -13,6 +13,7 @@ permissions:
 jobs:
   dependency-review:
     runs-on: ubuntu-latest
+    environment: Tests      
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v3

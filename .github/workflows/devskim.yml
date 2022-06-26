@@ -17,6 +17,7 @@ jobs:
   lint:
     name: DevSkim
     runs-on: ubuntu-20.04
+    environment: Tests      
     permissions:
       actions: read
       contents: read
