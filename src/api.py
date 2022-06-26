@@ -197,7 +197,7 @@ def export_transaction_csv_page():
 def export_transaction_json_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify([i.__dict__ for i in GetMyTransaction()])
+    return jsonify([(str(i[0].__dict__) + " | " + str(i[1])) for i in GetMyTransaction()])
 
 
 @app.route("/status", methods=["GET"])

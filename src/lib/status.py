@@ -34,8 +34,8 @@ def Status():
             "last_transaction_of_block":
             str(new_block.validating_list[-1])
             if len(new_block.validating_list) > 0 else "",
-            "last_transaction_of_us":
-            str([i.__dict__ for i in GetMyTransaction()]),
+            "transactions_of_us":
+            str([(str(i[0].__dict__) + " | " + str(i[1])) for i in GetMyTransaction()]),
             "connected_nodes": [
                 str(the_connections) for the_connections in
                 Unl.get_as_node_type(Unl.get_unl_nodes())

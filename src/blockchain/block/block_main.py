@@ -25,6 +25,8 @@ from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
 from transactions.pending_to_validating import PendinttoValidating
 from transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.validate_transaction import ValidateTransaction
+from transactions.get_my_transaction import GetMyTransaction
 from wallet.wallet_import import wallet_import
 
 logger = get_logger("BLOCKCHAIN")
@@ -125,9 +127,16 @@ class Block:
             app_tigger(self)
 
             my_address = wallet_import(-1, 3)
+            my_public_key = wallet_import(-1, 0)
+            logger.info("My address is: " + my_address)
+            logger.info("My public key is: " + my_public_key)
             for tx in self.validating_list:
+                logger.info("Transaction is: " + str(tx.fromUser))
                 if tx.toUser == my_address:
-                    SavetoMyTransaction(tx)
+                    SavetoMyTransaction(tx, validated=True)
+                elif tx.fromUser == my_public_key:
+                    logger.info("sending to validate")
+                    ValidateTransaction(tx)
 
             saveBlockstoBlockchainDB(self)
 
