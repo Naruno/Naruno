@@ -56,6 +56,37 @@ Now you can access the Decentra Network CLI in bash.
 
 Now Decentra Network Core broadcasts on port 8000 in API mode.
 
+## Builds
+You should use `chmod +x filename` to make the file executable in linux.
+### GUI Mode (Win32)
+
+`./Decentra-Network-GUI.exe`
+
+### CLI With Menu (Win32)
+
+`./Decentra-Network-CLI.exe -m`
+
+### CLI With Menu (Linux)
+
+`./Decentra-Network-CLI -m`
+
+### CLI With Parameters (Win32)
+
+`./Decentra-Network-CLI.exe -h`
+
+### CLI With Parameters (Linux)
+
+`./Decentra-Network-CLI -h`
+
+### API (Win32)
+
+`./Decentra-Network-API.exe`
+
+### API (Linux)
+
+`./Decentra-Network-API`
+
+
 # Using Steps
 
 - Create at least 3 node (differend directory/image)
