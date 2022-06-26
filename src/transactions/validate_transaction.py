@@ -16,11 +16,12 @@ from config import MY_TRANSACTION_PATH
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.save_my_transaction import SaveMyTransaction
 
+
 def ValidateTransaction(tx):
     """
     Validates the transaction.
     """
-    
+
     tx_list = GetMyTransaction()
     for i in tx_list:
         if i[0].signature == tx.signature:

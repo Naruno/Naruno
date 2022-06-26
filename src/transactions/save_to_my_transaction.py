@@ -15,6 +15,7 @@ from config import MY_TRANSACTION_PATH
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.save_my_transaction import SaveMyTransaction
 
+
 def SavetoMyTransaction(tx, validated=False):
     """
     Saves the transaction to the transaction db.

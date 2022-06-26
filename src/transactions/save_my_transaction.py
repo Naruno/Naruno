@@ -14,6 +14,7 @@ from config import MY_TRANSACTION_PATH
 
 from transactions.get_my_transaction import GetMyTransaction
 
+
 def SaveMyTransaction(transaction_list):
     """
     Saves the transaction_list to the transaction db.

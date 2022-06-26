@@ -213,8 +213,7 @@ def start():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
@@ -239,7 +238,7 @@ def start():
 
     args = parser.parse_args()
 
-    safety_check(args.interface, args.timeout)  
+    safety_check(args.interface, args.timeout)
 
     logger.info(f"Starting API on port {args.port}")
     serve(app, host="0.0.0.0", port=args.port)
