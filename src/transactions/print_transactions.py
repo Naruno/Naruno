@@ -15,6 +15,7 @@ def PrintTransactions():
     """
 
     print("\n")
-    print(*[(str(i.__dict__) + " | " + str(i[1]))
-          for i in GetMyTransaction()], sep="\n\n")
+    print(
+        *[(str(i.__dict__) + " | " + str(i[1])) for i in GetMyTransaction()], sep="\n\n"
+    )
     print("\n")
