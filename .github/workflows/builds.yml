@@ -1,10 +1,16 @@
 name: Builds
 
 on: 
-  workflow_run:
-    workflows: ["Tests"]
-    types:
-      - completed
+  push:
+    paths:
+      - '.github/workflows/builds.yml'
+      - 'src/**'  
+      - 'requirements/**'      
+  pull_request:
+    paths:
+      - '.github/workflows/builds.yml'
+      - 'src/**'  
+      - 'requirements/**'    
   release:
     types: [published]
   workflow_dispatch:
