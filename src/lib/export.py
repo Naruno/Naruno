@@ -17,7 +17,6 @@ from config import MY_TRANSACTION_EXPORT_PATH
 from transactions.get_my_transaction import GetMyTransaction
 
 
-
 def export_the_transactions():
     """
     Export the transactions to a CSV file.
@@ -36,5 +35,4 @@ def export_the_transactions():
                 writer.writerow(trans)
         return True
     else:
-        return False                
-
+        return False
