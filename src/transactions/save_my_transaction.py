@@ -6,12 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import pickle
 import os
+import pickle
 
-from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
-
+from lib.config_system import get_config
 from transactions.get_my_transaction import GetMyTransaction
 
 
