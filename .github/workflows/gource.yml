@@ -8,6 +8,7 @@ on:
 jobs:
   action:
     runs-on: ubuntu-latest
+    environment: Builds   
 
     steps:
       - name: 'Checkout'
