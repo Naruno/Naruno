@@ -15,8 +15,7 @@ from app.app_main import app_tigger
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash_part
-from blockchain.block.save_block_to_blockchain_db import \
-    saveBlockstoBlockchainDB
+from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
 from config import TEMP_BLOCK_PATH
 from consensus.consensus_main import consensus_trigger
 from lib.config_system import get_config
@@ -121,8 +120,9 @@ class Block:
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        if not len(self.validating_list) == 0 and not len(
-                self.validating_list) < (self.max_tx_number / 2):
+        if not len(self.validating_list) == 0 and not len(self.validating_list) < (
+            self.max_tx_number / 2
+        ):
 
             app_tigger(self)
 

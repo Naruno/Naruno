@@ -37,87 +37,75 @@ app = flask.Flask(__name__)
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(print_wallets())
 
 
 @app.route("/wallet/change/<number>", methods=["GET"])
 def wallet_change_page(number):
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     wallet_selector(number)
     return jsonify(print_wallets())
 
 
 @app.route("/wallet/create/<password>", methods=["GET"])
 def create_wallet_page(password):
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     create_a_wallet(password)
     return jsonify(print_wallets())
 
 
 @app.route("/wallet/delete", methods=["GET"])
 def delete_wallets_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     delete_current_wallet()
     return jsonify(print_wallets())
 
 
 @app.route("/send/coin/<address>/<amount>/<password>", methods=["GET"])
 def send_coin_page(address, amount, password):
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     send(password, address, amount)
     return jsonify("OK")
 
 
-@app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
-           methods=["GET"])
+@app.route("/send/coin-data/<address>/<amount>/<data>/<password>", methods=["GET"])
 def send_coin_data_page(address, amount, data, password):
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     send(password, address, amount, data)
     return jsonify("OK")
 
 
 @app.route("/wallet/balance", methods=["GET"])
 def balance_wallets_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(print_balance())
 
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
 def node_start_page(ip, port):
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     Node(str(ip), int(port))
     return jsonify("OK")
 
 
 @app.route("/node/stop", methods=["GET"])
 def node_stop_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     Node.main_node.stop()
     return jsonify("OK")
 
 
 @app.route("/node/connect/<ip>/<port>", methods=["GET"])
 def node_connect_page(ip, port):
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     Node_Connection.connect(str(ip), int(port))
     return jsonify("OK")
 
 
 @app.route("/node/connectmixdb", methods=["GET"])
 def node_connectmixdb_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     Node_Connection.connectmixdb()
     return jsonify("OK")
 
@@ -125,39 +113,34 @@ def node_connectmixdb_page():
 # /node/newunl/?MFYw......
 @app.route("/node/newunl/", methods=["GET"])
 def node_newunl_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     Unl.save_new_unl_node(request.query_string.decode("utf-8"))
     return jsonify("OK")
 
 
 @app.route("/node/id", methods=["GET"])
 def node_id_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(Node.id)
 
 
 @app.route("/settings/test/on", methods=["GET"])
 def settings_test_on_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     test_mode(True)
     return jsonify("OK")
 
 
 @app.route("/settings/test/off", methods=["GET"])
 def settings_test_off_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     test_mode(False)
     return jsonify("OK")
 
 
 @app.route("/settings/debug/on", methods=["GET"])
 def settings_debug_on_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = True
     debug_mode(True)
     return jsonify("OK")
@@ -165,8 +148,7 @@ def settings_debug_on_page():
 
 @app.route("/settings/debug/off", methods=["GET"])
 def settings_debug_off_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = False
     debug_mode(False)
     return jsonify("OK")
@@ -174,8 +156,7 @@ def settings_debug_off_page():
 
 @app.route("/block/get", methods=["GET"])
 def block_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["test_mode"]:
         CreateBlock()
     else:
@@ -185,8 +166,7 @@ def block_get_page():
 
 @app.route("/export/transactions/csv", methods=["GET"])
 def export_transaction_csv_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if export_the_transactions():
         return jsonify("OK")
     else:
@@ -195,16 +175,15 @@ def export_transaction_csv_page():
 
 @app.route("/export/transactions/json", methods=["GET"])
 def export_transaction_json_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify([(str(i[0].__dict__) + " | " + str(i[1]))
-                    for i in GetMyTransaction()])
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(
+        [(str(i[0].__dict__) + " | " + str(i[1])) for i in GetMyTransaction()]
+    )
 
 
 @app.route("/status", methods=["GET"])
 def status_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(Status())
 
 
@@ -217,11 +196,7 @@ def start():
         description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
-    parser.add_argument("-p",
-                        "--port",
-                        default=8000,
-                        type=int,
-                        help="Add new UNL node")
+    parser.add_argument("-p", "--port", default=8000, type=int, help="Add new UNL node")
 
     parser.add_argument(
         "-i",
