@@ -1,5 +1,21 @@
 name: Codecov
-on: [push]
+on: 
+  push:
+    paths:
+      - '.github/workflows/tests.yml'
+      - 'docker/**'
+      - 'setups/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'  
+  pull_request:
+    paths:
+      - '.github/workflows/tests.yml'
+      - 'docker/**'
+      - 'setups/**'
+      - 'src/**'  
+      - 'requirements/**'
+      - 'tests/**'
 jobs:
   run:
     runs-on: ${{ matrix.os }}
