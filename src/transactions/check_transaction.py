@@ -29,6 +29,47 @@ def CheckTransaction(block, transaction):
         f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
     )
 
+
+    if isinstance(transaction.sequance_number, int):
+        logger.info("sequance_number is int")
+    else:
+        return False
+
+    if isinstance(transaction.signature, str):
+        logger.info("signature is int")
+    else:
+        return False
+
+    if isinstance(transaction.fromUser, str):
+        logger.info("fromUser is int")
+    else:
+        return False
+
+    if isinstance(transaction.toUser, str):
+        logger.info("toUser is int")
+    else:
+        return False
+
+    if isinstance(transaction.data, str):
+        logger.info("data is int")
+    else:
+        return False
+
+    if isinstance(transaction.amount, (int, float)):
+        logger.info("amount is int")
+    else:
+        return False
+
+    if isinstance(transaction.transaction_fee, (int, float)):
+        logger.info("transaction_fee is int")
+    else:
+        return False
+
+    if isinstance(transaction.transaction_time, (int)):
+        logger.info("transaction_time is int")
+    else:
+        return False
+
     if len(transaction.fromUser) == 120:
         logger.info("The from user is correct")
     else:
