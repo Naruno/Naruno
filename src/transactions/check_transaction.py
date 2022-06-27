@@ -29,7 +29,6 @@ def CheckTransaction(block, transaction):
         f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
     )
 
-
     if isinstance(transaction.sequance_number, int):
         logger.info("sequance_number is int")
     else:
