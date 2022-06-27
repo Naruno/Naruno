@@ -29,7 +29,6 @@ def CheckTransaction(block, transaction):
         f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
     )
 
-
     if isinstance(transaction.sequance_number, int):
         logger.info("sequance_number is int")
     else:
@@ -140,7 +139,7 @@ def CheckTransaction(block, transaction):
         return False
 
     if (balance -
-        (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
+            (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
         logger.info("Balance is enough")
     else:
         return False
