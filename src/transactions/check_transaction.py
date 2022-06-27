@@ -85,17 +85,12 @@ def CheckTransaction(block, transaction):
         return False
 
     if Ecdsa.verify(
-        (
-            str(transaction.sequance_number)
-            + str(transaction.fromUser)
-            + str(transaction.toUser)
-            + str(transaction.data)
-            + str(transaction.amount)
-            + str(transaction.transaction_fee)
-            + str(transaction.transaction_time)
-        ),
-        Signature.fromBase64(transaction.signature),
-        PublicKey.fromPem(transaction.fromUser),
+        (str(transaction.sequance_number) + str(transaction.fromUser) +
+         str(transaction.toUser) + str(transaction.data) +
+         str(transaction.amount) + str(transaction.transaction_fee) +
+         str(transaction.transaction_time)),
+            Signature.fromBase64(transaction.signature),
+            PublicKey.fromPem(transaction.fromUser),
     ):
         logger.info("The signature is valid")
     else:
@@ -113,8 +108,10 @@ def CheckTransaction(block, transaction):
     else:
         return False
 
-    if not len(str(transaction.transaction_fee).split(".")[1]) > decimal_amount:
-        logger.info(f"The decimal amount of transaction.transaction_fee is true.")
+    if not len(str(
+            transaction.transaction_fee).split(".")[1]) > decimal_amount:
+        logger.info(
+            f"The decimal amount of transaction.transaction_fee is true.")
     else:
         return False
 
@@ -128,27 +125,28 @@ def CheckTransaction(block, transaction):
     else:
         return False
 
-    if transaction.sequance_number == (GetSequanceNumber(transaction.fromUser) + 1):
+    if transaction.sequance_number == (
+            GetSequanceNumber(transaction.fromUser) + 1):
         logger.info("Sequance number is valid")
     else:
         return False
 
     balance = GetBalance(block, transaction.fromUser)
-    if balance >= (float(transaction.amount) + float(transaction.transaction_fee)):
+    if balance >= (float(transaction.amount) +
+                   float(transaction.transaction_fee)):
         logger.info("Balance is valid")
     else:
         return False
 
-    if (balance - (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
+    if (balance -
+        (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
         logger.info("Balance is enough")
     else:
         return False
 
     for tx in block.pendingTransaction + block.validating_list:
-        if (
-            tx.fromUser == transaction.fromUser
-            and tx.signature != transaction.signature
-        ):
+        if (tx.fromUser == transaction.fromUser
+                and tx.signature != transaction.signature):
             logger.info("Multiple transaction in one account")
             return False
 
