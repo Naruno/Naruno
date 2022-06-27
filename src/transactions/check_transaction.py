@@ -35,32 +35,32 @@ def CheckTransaction(block, transaction):
         return False
 
     if isinstance(transaction.signature, str):
-        logger.info("signature is int")
+        logger.info("signature is str")
     else:
         return False
 
     if isinstance(transaction.fromUser, str):
-        logger.info("fromUser is int")
+        logger.info("fromUser is str")
     else:
         return False
 
     if isinstance(transaction.toUser, str):
-        logger.info("toUser is int")
+        logger.info("toUser is str")
     else:
         return False
 
     if isinstance(transaction.data, str):
-        logger.info("data is int")
+        logger.info("data is str")
     else:
         return False
 
     if isinstance(transaction.amount, (int, float)):
-        logger.info("amount is int")
+        logger.info("amount is int&&float")
     else:
         return False
 
     if isinstance(transaction.transaction_fee, (int, float)):
-        logger.info("transaction_fee is int")
+        logger.info("transaction_fee is int&&float")
     else:
         return False
 
@@ -74,7 +74,7 @@ def CheckTransaction(block, transaction):
     else:
         return False
 
-    if len(transaction.toUser) == 40:
+    if len(transaction.toUser) <= 40:
         logger.info("The to user is correct")
     else:
         return False
