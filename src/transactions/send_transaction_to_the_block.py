@@ -32,14 +32,14 @@ def SendTransactiontoTheBlock(
     """
 
     the_tx = Transaction(
-        sequance_number=sequance_number,
-        signature=signature,
-        fromUser=fromUser,
-        toUser=toUser,
-        data=data,
-        amount=amount,
-        transaction_fee=transaction_fee,
-        time_of_transaction=transaction_time,
+        sequance_number=int(sequance_number),
+        signature=str(signature),
+        fromUser=str(fromUser),
+        toUser=str(toUser),
+        data=str(data),
+        amount=float(amount),
+        transaction_fee=float(transaction_fee),
+        time_of_transaction=int(transaction_time),
     )
     checking = CheckTransaction(block, the_tx)
 

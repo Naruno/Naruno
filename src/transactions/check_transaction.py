@@ -29,12 +29,60 @@ def CheckTransaction(block, transaction):
         f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
     )
 
-    validation = True
+    if isinstance(transaction.sequance_number, int):
+        logger.info("sequance_number is int")
+    else:
+        return False
+
+    if isinstance(transaction.signature, str):
+        logger.info("signature is str")
+    else:
+        return False
+
+    if isinstance(transaction.fromUser, str):
+        logger.info("fromUser is str")
+    else:
+        return False
+
+    if isinstance(transaction.toUser, str):
+        logger.info("toUser is str")
+    else:
+        return False
+
+    if isinstance(transaction.data, str):
+        logger.info("data is str")
+    else:
+        return False
+
+    if isinstance(transaction.amount, (int, float)):
+        logger.info("amount is int&&float")
+    else:
+        return False
+
+    if isinstance(transaction.transaction_fee, (int, float)):
+        logger.info("transaction_fee is int&&float")
+    else:
+        return False
+
+    if isinstance(transaction.transaction_time, (int)):
+        logger.info("transaction_time is int")
+    else:
+        return False
+
+    if len(transaction.fromUser) == 120:
+        logger.info("The from user is correct")
+    else:
+        return False
+
+    if len(transaction.toUser) <= 40:
+        logger.info("The to user is correct")
+    else:
+        return False
 
     if not TXAlreadyGot(block, transaction):
         logger.warning("The transaction is already got")
     else:
-        validation = False
+        return False
 
     if Ecdsa.verify(
         (str(transaction.sequance_number) + str(transaction.fromUser) +
@@ -46,63 +94,63 @@ def CheckTransaction(block, transaction):
     ):
         logger.info("The signature is valid")
     else:
-        validation = False
+        return False
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
 
     if not len(str(transaction.amount).split(".")[1]) > decimal_amount:
         logger.info(f"The decimal amount of transaction.amount is true.")
     else:
-        validation = False
+        return False
 
     if not transaction.amount < block.minumum_transfer_amount:
         logger.info("Minimum transfer amount is reached")
     else:
-        validation = False
+        return False
 
     if not len(str(
             transaction.transaction_fee).split(".")[1]) > decimal_amount:
         logger.info(
             f"The decimal amount of transaction.transaction_fee is true.")
     else:
-        validation = False
+        return False
 
     if not transaction.transaction_fee < block.transaction_fee:
         logger.info("Transaction fee is reached")
     else:
-        validation = False
+        return False
 
     if not (int(time.time()) - transaction.transaction_time) > 60:
         logger.info("Transaction time is valid")
     else:
-        validation = False
+        return False
 
     if transaction.sequance_number == (
             GetSequanceNumber(transaction.fromUser) + 1):
         logger.info("Sequance number is valid")
     else:
-        validation = False
+        return False
 
     balance = GetBalance(block, transaction.fromUser)
     if balance >= (float(transaction.amount) +
                    float(transaction.transaction_fee)):
         logger.info("Balance is valid")
     else:
-        validation = False
+        return False
 
     if (balance -
         (float(transaction.amount) + float(transaction.transaction_fee))) > 2:
         logger.info("Balance is enough")
     else:
-        validation = False
+        return False
 
     for tx in block.pendingTransaction + block.validating_list:
         if (tx.fromUser == transaction.fromUser
                 and tx.signature != transaction.signature):
             logger.info("Multiple transaction in one account")
-            validation = False
+            return False
 
     logger.info(
         f"Checking the transaction finished {block.sequance_number}:{transaction.signature}"
     )
-    return validation
+    return True
