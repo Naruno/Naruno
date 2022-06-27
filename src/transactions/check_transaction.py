@@ -54,6 +54,11 @@ def CheckTransaction(block, transaction):
     else:
         return False
 
+    if (1000000 / block.max_tx_number) >= len(transaction.data):
+        logger.info("Data len is true")
+    else:
+        return False
+
     if isinstance(transaction.amount, (int, float)):
         logger.info("amount is int&&float")
     else:

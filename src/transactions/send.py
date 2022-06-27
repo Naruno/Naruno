@@ -18,7 +18,7 @@ from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.wallet_import import wallet_import
 
 
-def send(password, to_user, amount, data=None):
+def send(password, to_user, amount, data=""):
     """
     The main function for sending the transaction.
 
@@ -38,13 +38,17 @@ def send(password, to_user, amount, data=None):
 
     if not isinstance(amount, float):
         print("This is not int or float coin amount.")
-        return None
+        return False
 
     if amount < 0:
         print("This is negative coin amount.")
-        return None
+        return False
 
     block = GetBlock()
+
+    if not (1000000 / block.max_tx_number) >= len(data):
+        print("The data is too long.")
+        return False
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
     if len(str(amount).split(".")[1]) > decimal_amount:
