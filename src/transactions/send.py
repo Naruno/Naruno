@@ -18,7 +18,7 @@ from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.wallet_import import wallet_import
 
 
-def send(password, to_user, amount, data=None):
+def send(password, to_user, amount, data=""):
     """
     The main function for sending the transaction.
 
