@@ -100,7 +100,7 @@ changelog:
 
     - title: GitHub
       labels:
-        - Github-Actions
+        - GitHub
 
     - title: Google
       labels:
