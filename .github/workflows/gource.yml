@@ -1,4 +1,4 @@
-name: Gource Action
+name: Gource
 
 on:
   release:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  action:
+  gource:
     runs-on: ubuntu-latest
     environment: Builds   
 
