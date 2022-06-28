@@ -40,8 +40,7 @@ jobs:
         pip install pytest-cov  
     - name: Generate coverage report
       run: |
-        cd tests/unit_tests
-        pytest --cov=tests./ --cov-report=xml
+        pytest tests/unit_tests
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
       with:
