@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/codecov.yml'
+      - '.coveragerc'
       - 'docker/**'
       - 'setups/**'
       - 'src/**'  
@@ -12,6 +13,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/codecov.yml'
+      - '.coveragerc'
       - 'docker/**'
       - 'setups/**'
       - 'src/**'  
@@ -47,10 +49,10 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        directory: ./
+        directory: tests/unit_tests/
         env_vars: OS,PYTHON
         fail_ci_if_error: true
-        files: ./coverage.xml
+        files: tests/unit_tests/coverage.xml
         flags: unittests
         name: codecov-umbrella
         path_to_write_report: ./codecov_report.txt
