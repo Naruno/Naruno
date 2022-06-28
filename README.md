@@ -155,7 +155,6 @@ Decentra Network is a completely community driven project, you can contribute in
 [![Trending topics](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_words.svg)](https://github.com/Decentra-Network/Decentra-Network/commits)
 [![Top contributors](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_users.svg)](https://github.com/Decentra-Network/Decentra-Network/graphs/contributors)
 
-
 </details>
 
 ## Top Contributors
@@ -163,8 +162,8 @@ Decentra Network is a completely community driven project, you can contribute in
 <details>
 
 ## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Top contributors
-[![Top contributors](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/top-contributors/c5bdec035b13c76d31dd5333396957cc_table.svg)](https://github.com/Decentra-Network/Decentra-Network/graphs/contributors)
 
+[![Top contributors](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/top-contributors/c5bdec035b13c76d31dd5333396957cc_table.svg)](https://github.com/Decentra-Network/Decentra-Network/graphs/contributors)
 
 </details>
 
@@ -173,8 +172,8 @@ Decentra Network is a completely community driven project, you can contribute in
 <details>
 
 ## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
-[![Structure](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/structure/06d5e6e5f3c07b9922b3f3d3e0c91649_table.svg)](https://github.com/Decentra-Network/Decentra-Network)
 
+[![Structure](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/structure/06d5e6e5f3c07b9922b3f3d3e0c91649_table.svg)](https://github.com/Decentra-Network/Decentra-Network)
 
 </details>
 
