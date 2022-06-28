@@ -40,11 +40,10 @@ jobs:
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt      
         pip install pytest
-        pip install pytest-cov  
+        pip install coverage
     - name: Generate coverage report
       run: |
-        COVERAGE_RCFILE=.coveragerc
-        pytest tests/unit_tests
+        coverage run -m pytest tests/unit_tests && coverage xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
       with:
