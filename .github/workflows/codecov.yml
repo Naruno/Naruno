@@ -32,11 +32,15 @@ jobs:
       uses: actions/setup-python@master
       with:
         python-version: 3.8
+    - name: Install dependencies
+      run: |
+        pip install -r requirements/api.txt
+        pip install -r requirements/gui.txt      
+        pip install pytest
+        pip install pytest-cov  
     - name: Generate coverage report
       run: |
-        pip install pytest
-        pip install pytest-cov
-        pytest --cov=./ --cov-report=xml
+        pytest --cov=./ --cov-report=xml tests/unit_tests
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
       with:
