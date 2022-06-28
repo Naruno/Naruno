@@ -41,6 +41,7 @@ jobs:
         pip install pytest-cov  
     - name: Generate coverage report
       run: |
+        COVERAGE_RCFILE=.coveragerc
         pytest tests/unit_tests
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
