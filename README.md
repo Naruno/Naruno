@@ -30,6 +30,10 @@
   <a href="https://www.codefactor.io/repository/github/decentra-network/decentra-network"><img src="https://www.codefactor.io/repository/github/decentra-network/decentra-network/badge" alt="CodeFactor" /></a>
   .
   <a href="https://lgtm.com/projects/g/Decentra-Network/Decentra-Network/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/Decentra-Network/Decentra-Network.svg?logo=lgtm&logoWidth=18"/></a>
+  .
+  <a href="https://codecov.io/gh/Decentra-Network/Decentra-Network" > 
+   <img src="https://codecov.io/gh/Decentra-Network/Decentra-Network/branch/master/graph/badge.svg?token=YT9JQFBIPN"/> 
+   </a>  
   </p>
 
   <p align="center">
