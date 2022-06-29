@@ -75,6 +75,7 @@ def change_wallet(new_value):
     settings = the_settings()
     settings["wallet"] = new_value
     save_settings(settings)
+    return settings["wallet"]
 
 
 def the_settings():

@@ -13,11 +13,15 @@ from wallet.print_wallets import print_wallets
 
 from lib.settings_system import change_wallet
 
+from lib.log import get_logger
+
+logger = get_logger("WALLET")
 
 def wallet_selector(new_wallet_number=None):
     """
     Changes the current wallet.
     """
+    new_wallet_from_function = None
 
     all_wallets = list(get_saved_wallet())
     if not len(all_wallets) == 0:
@@ -29,15 +33,21 @@ def wallet_selector(new_wallet_number=None):
                 else:
                     new_wallet = new_wallet_number
                 if int(new_wallet) in list(range(len(all_wallets))):
-                    change_wallet(int(new_wallet))
-                    print("New Wallets:")
+                    new_wallet_from_function = change_wallet(int(new_wallet))
+                    logger.info("New Wallets:")
                     print_wallets()
                     break
                 else:
-                    print("There is no such wallet")
-                    if not new_wallet_number is None:
-                        break
+                    logger.error("There is no such wallet")
+                    new_wallet_from_function = False
+                    break
             except:
-                print("This is not a number")
+                logger.error("This is not a number")
+                if not new_wallet_number is None:
+                    new_wallet_from_function = False
+                    break
     else:
-        print("There is no wallet")
+        logger.error("There is no wallet")
+        new_wallet_from_function = False
+    
+    return new_wallet_from_function
