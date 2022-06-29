@@ -93,6 +93,23 @@ class Test_Wallet(unittest.TestCase):
         
         self.assertEqual(results, 1)
 
+    def test_7_wallet_selector_non_number(self):
+
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+
+        saved_wallets = get_saved_wallet()
+        results = wallet_selector("Decentra Network") + 1
+
+        for each_wallet in saved_wallets:
+            if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
+                if temp_private_key == (wallet_import(each_wallet, 1, password)):
+                    wallet_delete(each_wallet)
+        
+        self.assertEqual(results, True)
+
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
