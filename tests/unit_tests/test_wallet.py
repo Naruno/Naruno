@@ -4,13 +4,14 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import os
 import sys
 import unittest
 
 from lib.encryption import decrypt
-from lib.settings_system import change_wallet, save_settings, the_settings
+from lib.settings_system import change_wallet
+from lib.settings_system import save_settings
+from lib.settings_system import the_settings
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.ellipticcurve.publicKey import PublicKey
