@@ -25,7 +25,7 @@ def wallet_selector(new_wallet_number):
     all_wallets = list(get_saved_wallet())
     if len(all_wallets) == 0:
         logger.error("There is no wallet")
-        return False
+        return None
       
     new_wallet_from_function = None
     while True:
@@ -37,7 +37,7 @@ def wallet_selector(new_wallet_number):
                     break
                 else:
                     logger.error("There is no such wallet")
-                    new_wallet_from_function = False
+                    new_wallet_from_function = None
                     break
             except:
                 logger.error("This is not a number")

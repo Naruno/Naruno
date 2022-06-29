@@ -57,7 +57,7 @@ class Test_Wallet(unittest.TestCase):
 
     def test_4_wallet_selector_empty(self):
         results = wallet_selector(0)
-        self.assertEqual(results, False)
+        self.assertEqual(results, None)
 
     def test_5_wallet_selector(self):
 
@@ -84,13 +84,13 @@ class Test_Wallet(unittest.TestCase):
         temp_private_key = wallet_create(password)
 
         saved_wallets = get_saved_wallet()
-        results = wallet_selector(len(saved_wallets)) + 1
+        results = wallet_selector(len(saved_wallets))
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1, password)):
                     wallet_delete(each_wallet)
         
-        self.assertEqual(results, 1)
+        self.assertEqual(results, None)
 
     def test_7_wallet_selector_non_number(self):
 
