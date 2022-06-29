@@ -5,6 +5,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import os
+from lib.encryption import decrypt
+from wallet.ellipticcurve.publicKey import PublicKey
+from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.wallet_delete import wallet_delete
+from wallet.delete_current_wallet import delete_current_wallet
+from wallet.save_wallet_list import save_wallet_list
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.wallet_create import wallet_create
+from wallet.wallet_selector import wallet_selector
+from wallet.wallet_import import wallet_import
+from lib.settings_system import the_settings, save_settings, change_wallet
+import sys
 import unittest
 
 
@@ -22,7 +35,7 @@ class Test_Wallet(unittest.TestCase):
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1, password)):
-                
+
                     wallet_delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
@@ -31,7 +44,8 @@ class Test_Wallet(unittest.TestCase):
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
 
-        self.assertEqual(result, True, "A problem on the saving and importing the wallet.")
+        self.assertEqual(
+            result, True, "A problem on the saving and importing the wallet.")
 
     def test_2_wallet_by_private_pem_conversion(self):
 
@@ -146,18 +160,6 @@ class Test_Wallet(unittest.TestCase):
         save_settings(backup_settings)
         self.assertEqual(len(saved_wallets), 1)
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from lib.settings_system import the_settings, save_settings, change_wallet
-from wallet.wallet_import import wallet_import
-from wallet.wallet_selector import wallet_selector
-from wallet.wallet_create import wallet_create
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.save_wallet_list import save_wallet_list
-from wallet.delete_current_wallet import delete_current_wallet
-from wallet.wallet_delete import wallet_delete
-from wallet.ellipticcurve.privateKey import PrivateKey
-from wallet.ellipticcurve.publicKey import PublicKey
-from lib.encryption import decrypt
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 unittest.main(exit=False)
