@@ -41,3 +41,6 @@ def wallet_delete(account):
         os.chdir(get_config()["main_folder"])
         with open(WALLETS_PATH, "w") as wallet_list_file:
             json.dump(saved_wallet, wallet_list_file, indent=4)
+        return True
+    else:
+        return False
