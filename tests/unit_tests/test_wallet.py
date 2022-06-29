@@ -57,7 +57,6 @@ class Test_Wallet(unittest.TestCase):
 
     def test_4_wallet_selector_empty(self):
         results = wallet_selector(0)
-
         self.assertEqual(results, False)
 
     def test_5_wallet_selector(self):
