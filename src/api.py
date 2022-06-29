@@ -24,10 +24,10 @@ from node.unl import Unl
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
 from waitress import serve
-from wallet.create_a_wallet import create_a_wallet
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance
 from wallet.print_wallets import print_wallets
+from wallet.wallet_create import wallet_create
 from wallet.wallet_selector import wallet_selector
 
 logger = get_logger("API")
@@ -54,7 +54,7 @@ def wallet_change_page(number):
 def create_wallet_page(password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    create_a_wallet(password)
+    wallet_create(password)
     return jsonify(print_wallets())
 
 
