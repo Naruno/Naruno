@@ -75,10 +75,6 @@ class Test_Wallet(unittest.TestCase):
         saved_wallets = get_saved_wallet()
         results = wallet_selector(0) + 1
 
-        for each_wallet in saved_wallets:
-            if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (wallet_import(each_wallet, 1, password)):
-                    wallet_delete(each_wallet)
         save_wallet_list(original_saved_wallets)
         self.assertEqual(results, True)
 
@@ -92,10 +88,6 @@ class Test_Wallet(unittest.TestCase):
 
         saved_wallets = get_saved_wallet()
         results = wallet_selector(len(saved_wallets))
-        for each_wallet in saved_wallets:
-            if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (wallet_import(each_wallet, 1, password)):
-                    wallet_delete(each_wallet)
         save_wallet_list(original_saved_wallets)
         self.assertEqual(results, None)
 
@@ -110,21 +102,60 @@ class Test_Wallet(unittest.TestCase):
         saved_wallets = get_saved_wallet()
         results = wallet_selector("Decentra Network") + 1
 
-        for each_wallet in saved_wallets:
-            if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (wallet_import(each_wallet, 1, password)):
-                    wallet_delete(each_wallet)
         save_wallet_list(original_saved_wallets)
         self.assertEqual(results, True)
+
+    def test_8_delete_current_wallet_first_wallet(self):
+        backup_settings = the_settings()
+
+        temp_settings = the_settings()
+
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        delete_current_wallet()
+
+        saved_wallets = get_saved_wallet()
+
+        save_wallet_list(original_saved_wallets)
+        save_settings(backup_settings)
+        self.assertEqual(len(saved_wallets), 1)
+
+    def test_9_delete_current_wallet(self):
+        backup_settings = the_settings()
+
+        temp_settings = the_settings()
+
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        temp_private_key_2 = wallet_create(password)
+
+        change_wallet(1)
+        delete_current_wallet()
+
+        saved_wallets = get_saved_wallet()
+
+        save_wallet_list(original_saved_wallets)
+        save_settings(backup_settings)
+        self.assertEqual(len(saved_wallets), 1)
 
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
+from lib.settings_system import the_settings, save_settings, change_wallet
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
 from wallet.wallet_create import wallet_create
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.save_wallet_list import save_wallet_list
+from wallet.delete_current_wallet import delete_current_wallet
 from wallet.wallet_delete import wallet_delete
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.ellipticcurve.publicKey import PublicKey

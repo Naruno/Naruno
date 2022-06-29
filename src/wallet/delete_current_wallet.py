@@ -15,6 +15,10 @@ from wallet.wallet_delete import wallet_delete
 from lib.settings_system import the_settings, change_wallet
 
 
+from lib.log import get_logger
+
+logger = get_logger("WALLET")
+
 def delete_current_wallet():
     """
     Deletes the current wallet.
@@ -26,6 +30,13 @@ def delete_current_wallet():
         for each_wallet in saved_wallets:
             if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
                 change_wallet(0)
-                wallet_delete(each_wallet)
+                if wallet_delete(each_wallet):
+                    logger.info("Wallet deleted: " + each_wallet)
+                    return True
+                else:
+                    logger.error("Wallet not deleted: " + each_wallet)
+                    return False
     else:
-        print("First wallet cannot be deleted.")
+        logger.info("First wallet cannot be deleted.")
+        return False
+
