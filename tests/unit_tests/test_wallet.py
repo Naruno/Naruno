@@ -55,12 +55,49 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(publicKey1.point.y, publicKey2.point.y)
         self.assertEqual(publicKey1.curve, publicKey2.curve)
 
+    def test_4_wallet_selector_empty(self):
+        results = wallet_selector(0)
 
+        self.assertEqual(results, False)
+
+    def test_5_wallet_selector(self):
+
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+
+        saved_wallets = get_saved_wallet()
+        results = wallet_selector(0) + 1
+
+        for each_wallet in saved_wallets:
+            if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
+                if temp_private_key == (wallet_import(each_wallet, 1, password)):
+                    wallet_delete(each_wallet)
+        
+        self.assertEqual(results, True)
+
+    def test_6_wallet_selector_false_wallet_number(self):
+
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+
+        saved_wallets = get_saved_wallet()
+        results = wallet_selector(len(saved_wallets)) + 1
+        for each_wallet in saved_wallets:
+            if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
+                if temp_private_key == (wallet_import(each_wallet, 1, password)):
+                    wallet_delete(each_wallet)
+        
+        self.assertEqual(results, 1)
 
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
 from wallet.wallet_import import wallet_import
+from wallet.wallet_selector import wallet_selector
 from wallet.wallet_create import wallet_create
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_delete import wallet_delete
