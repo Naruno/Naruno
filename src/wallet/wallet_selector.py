@@ -17,6 +17,7 @@ from lib.log import get_logger
 
 logger = get_logger("WALLET")
 
+
 def wallet_selector(new_wallet_number=None):
     """
     Changes the current wallet.
@@ -49,5 +50,5 @@ def wallet_selector(new_wallet_number=None):
     else:
         logger.error("There is no wallet")
         new_wallet_from_function = False
-    
+
     return new_wallet_from_function

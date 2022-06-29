@@ -5,6 +5,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import os
+from lib.encryption import decrypt
+from wallet.ellipticcurve.publicKey import PublicKey
+from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.wallet_delete import wallet_delete
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.wallet_create import wallet_create
+from wallet.wallet_selector import wallet_selector
+from wallet.wallet_import import wallet_import
+import sys
 import unittest
 
 
@@ -22,7 +32,7 @@ class Test_Wallet(unittest.TestCase):
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1, password)):
-                
+
                     wallet_delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
@@ -31,7 +41,8 @@ class Test_Wallet(unittest.TestCase):
                     result = True if each_wallet not in get_saved_wallet() else False
                     break
 
-        self.assertEqual(result, True, "A problem on the saving and importing the wallet.")
+        self.assertEqual(
+            result, True, "A problem on the saving and importing the wallet.")
 
     def test_2_wallet_by_private_pem_conversion(self):
 
@@ -62,7 +73,6 @@ class Test_Wallet(unittest.TestCase):
 
     def test_5_wallet_selector(self):
 
-
         password = "123"
 
         temp_private_key = wallet_create(password)
@@ -74,11 +84,10 @@ class Test_Wallet(unittest.TestCase):
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1, password)):
                     wallet_delete(each_wallet)
-        
+
         self.assertEqual(results, True)
 
     def test_6_wallet_selector_false_wallet_number(self):
-
 
         password = "123"
 
@@ -90,18 +99,9 @@ class Test_Wallet(unittest.TestCase):
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1, password)):
                     wallet_delete(each_wallet)
-        
+
         self.assertEqual(results, 1)
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from wallet.wallet_import import wallet_import
-from wallet.wallet_selector import wallet_selector
-from wallet.wallet_create import wallet_create
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.wallet_delete import wallet_delete
-from wallet.ellipticcurve.privateKey import PrivateKey
-from wallet.ellipticcurve.publicKey import PublicKey
-from lib.encryption import decrypt
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 unittest.main(exit=False)
