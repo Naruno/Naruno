@@ -29,11 +29,11 @@ from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send
-from wallet.create_a_wallet import create_a_wallet
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_balance import print_balance
 from wallet.print_wallets import print_wallets
 from wallet.wallet_selector import wallet_selector
+from wallet.wallet_create import wallet_create
 
 logger = get_logger("CLI")
 
@@ -120,7 +120,7 @@ def menu():
             wallet_selector(input("Please select wallet: "))
 
         if choices_input == "cw":
-            create_a_wallet()
+            wallet_create(getpass("Password: "))
 
         if choices_input == "dw":
             if "y" == input("Are you sure ? (y or n): "):
@@ -330,7 +330,7 @@ def arguments():
         Unl.save_new_unl_node(args.ndnewunl)
 
     if not args.createwallet is None:
-        create_a_wallet(args.createwallet)
+        wallet_create(args.createwallet)
 
     if args.deletewallet:
         delete_current_wallet()
