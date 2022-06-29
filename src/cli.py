@@ -117,7 +117,7 @@ def menu():
             print_wallets()
 
         if choices_input == "w":
-            wallet_selector()
+            wallet_selector(input("Please select wallet: "))
 
         if choices_input == "cw":
             create_a_wallet()

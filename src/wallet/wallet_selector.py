@@ -17,7 +17,7 @@ from lib.log import get_logger
 
 logger = get_logger("WALLET")
 
-def wallet_selector(new_wallet_number=None):
+def wallet_selector(new_wallet_number):
     """
     Changes the current wallet.
     """
@@ -28,12 +28,8 @@ def wallet_selector(new_wallet_number=None):
 
         while True:
             try:
-                if new_wallet_number is None:
-                    new_wallet = input("Please select wallet: ")
-                else:
-                    new_wallet = new_wallet_number
-                if int(new_wallet) in list(range(len(all_wallets))):
-                    new_wallet_from_function = change_wallet(int(new_wallet))
+                if int(new_wallet_number) in list(range(len(all_wallets))):
+                    new_wallet_from_function = change_wallet(int(new_wallet_number))
                     logger.info("New Wallets:")
                     print_wallets()
                     break
@@ -43,9 +39,8 @@ def wallet_selector(new_wallet_number=None):
                     break
             except:
                 logger.error("This is not a number")
-                if not new_wallet_number is None:
-                    new_wallet_from_function = False
-                    break
+                new_wallet_from_function = False
+                break
     else:
         logger.error("There is no wallet")
         new_wallet_from_function = False
