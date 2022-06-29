@@ -19,6 +19,7 @@ from wallet.wallet_selector import wallet_selector
 
 
 class Test_Wallet(unittest.TestCase):
+
     def test_1_wallet_by_creating_saving_importing_and_deleting_a_wallet(self):
 
         password = "123"
@@ -30,21 +31,22 @@ class Test_Wallet(unittest.TestCase):
         result = False
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (wallet_import(each_wallet, 1, password)):
+                if temp_private_key == (wallet_import(each_wallet, 1,
+                                                      password)):
 
                     wallet_delete(each_wallet)
-                    result = True if each_wallet not in get_saved_wallet() else False
+                    result = True if each_wallet not in get_saved_wallet(
+                    ) else False
                     break
-                elif decrypt(temp_private_key, password) == (
-                    wallet_import(each_wallet, 1, password)
-                ):
+                elif decrypt(temp_private_key, password) == (wallet_import(
+                        each_wallet, 1, password)):
                     wallet_delete(each_wallet)
-                    result = True if each_wallet not in get_saved_wallet() else False
+                    result = True if each_wallet not in get_saved_wallet(
+                    ) else False
                     break
 
-        self.assertEqual(
-            result, True, "A problem on the saving and importing the wallet."
-        )
+        self.assertEqual(result, True,
+                         "A problem on the saving and importing the wallet.")
 
     def test_2_wallet_by_private_pem_conversion(self):
 
@@ -84,7 +86,8 @@ class Test_Wallet(unittest.TestCase):
 
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (wallet_import(each_wallet, 1, password)):
+                if temp_private_key == (wallet_import(each_wallet, 1,
+                                                      password)):
                     wallet_delete(each_wallet)
 
         self.assertEqual(results, True)
@@ -99,7 +102,8 @@ class Test_Wallet(unittest.TestCase):
         results = wallet_selector(len(saved_wallets)) + 1
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (wallet_import(each_wallet, 1, password)):
+                if temp_private_key == (wallet_import(each_wallet, 1,
+                                                      password)):
                     wallet_delete(each_wallet)
 
         self.assertEqual(results, 1)
