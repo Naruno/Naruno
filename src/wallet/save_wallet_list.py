@@ -33,7 +33,7 @@ from lib.config_system import get_config
 from wallet.get_saved_wallet import get_saved_wallet
 
 
-def save_wallet_list(publicKey, privateKey, password):
+def save_to_wallet_list(publicKey, privateKey, password):
     wallet_list = get_saved_wallet()
 
     wallet_list[publicKey] = {}
@@ -43,6 +43,10 @@ def save_wallet_list(publicKey, privateKey, password):
 
     wallet_list[publicKey]["password_sha256"] = sha256(
         password.encode("utf-8")).hexdigest()
+
+    save_wallet_list(wallet_list)
+
+def save_wallet_list(wallet_list):
 
     os.chdir(get_config()["main_folder"])
     with open(WALLETS_PATH, "w") as wallet_list_file:

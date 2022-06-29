@@ -56,11 +56,17 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(publicKey1.curve, publicKey2.curve)
 
     def test_4_wallet_selector_empty(self):
+
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
         results = wallet_selector(0)
+        save_wallet_list(original_saved_wallets)
         self.assertEqual(results, None)
 
     def test_5_wallet_selector(self):
-
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
 
         password = "123"
 
@@ -73,11 +79,12 @@ class Test_Wallet(unittest.TestCase):
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1, password)):
                     wallet_delete(each_wallet)
-        
+        save_wallet_list(original_saved_wallets)
         self.assertEqual(results, True)
 
     def test_6_wallet_selector_false_wallet_number(self):
-
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
 
         password = "123"
 
@@ -89,11 +96,12 @@ class Test_Wallet(unittest.TestCase):
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1, password)):
                     wallet_delete(each_wallet)
-        
+        save_wallet_list(original_saved_wallets)
         self.assertEqual(results, None)
 
     def test_7_wallet_selector_non_number(self):
-
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
 
         password = "123"
 
@@ -106,7 +114,7 @@ class Test_Wallet(unittest.TestCase):
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1, password)):
                     wallet_delete(each_wallet)
-        
+        save_wallet_list(original_saved_wallets)
         self.assertEqual(results, True)
 
 import os
@@ -116,6 +124,7 @@ from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
 from wallet.wallet_create import wallet_create
 from wallet.get_saved_wallet import get_saved_wallet
+from wallet.save_wallet_list import save_wallet_list
 from wallet.wallet_delete import wallet_delete
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.ellipticcurve.publicKey import PublicKey

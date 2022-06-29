@@ -40,7 +40,7 @@ from lib.encryption import decrypt
 from lib.encryption import encrypt
 from lib.settings_system import the_settings
 
-from wallet.save_wallet_list import save_wallet_list
+from wallet.save_wallet_list import save_to_wallet_list
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_create import wallet_create
 from wallet.ellipticcurve.privateKey import PrivateKey

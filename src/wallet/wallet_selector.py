@@ -28,21 +28,19 @@ def wallet_selector(new_wallet_number):
         return None
       
     new_wallet_from_function = None
-    while True:
-            try:
-                if int(new_wallet_number) in list(range(len(all_wallets))):
-                    new_wallet_from_function = change_wallet(int(new_wallet_number))
-                    logger.info("New Wallets:")
-                    print_wallets()
-                    break
-                else:
-                    logger.error("There is no such wallet")
-                    new_wallet_from_function = None
-                    break
-            except:
-                logger.error("This is not a number")
-                new_wallet_from_function = False
-                break
+    try:
+        if int(new_wallet_number) in list(range(len(all_wallets))):
+            new_wallet_from_function = change_wallet(int(new_wallet_number))
+            logger.info("New Wallets:")
+            print_wallets()
+
+        else:
+            logger.error("There is no such wallet")
+            new_wallet_from_function = None
+
+    except:
+        logger.error("This is not a number")
+        new_wallet_from_function = False
     return new_wallet_from_function
 
     

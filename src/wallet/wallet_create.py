@@ -29,7 +29,7 @@ from config import *
 from lib.encryption import encrypt
 
 
-from wallet.save_wallet_list import save_wallet_list
+from wallet.save_wallet_list import save_to_wallet_list
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.ellipticcurve.privateKey import PrivateKey
 
@@ -43,7 +43,7 @@ def wallet_create(password, save=True):
                          if not len(list(get_saved_wallet())) == 0 else
                          my_private_key.toPem())
         del my_private_key
-        save_wallet_list(my_public_key.toPem(), encrypted_key, password)
+        save_to_wallet_list(my_public_key.toPem(), encrypted_key, password)
         return encrypted_key
     else:
         return my_private_key
