@@ -29,7 +29,6 @@ import os
 
 from config import *
 from lib.config_system import get_config
-
 from wallet.get_saved_wallet import get_saved_wallet
 
 
