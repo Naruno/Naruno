@@ -108,7 +108,7 @@ def wallet_import(wallet, mode, password=None):
         my_address = Address(my_address)
         return my_address
     else:
-        raise ValueError("the mode variable contains an unplanned value")
+        return False
 
 
 def Address(publickey):

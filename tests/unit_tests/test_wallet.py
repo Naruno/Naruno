@@ -254,6 +254,7 @@ class Test_Wallet(unittest.TestCase):
         password = "123"
 
         temp_private_key = wallet_create(password)
+        temp_private_key_2 = wallet_create(password)
         result = wallet_import(1, 1)
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, False)
@@ -297,6 +298,10 @@ class Test_Wallet(unittest.TestCase):
         true_pass = sha256(password.encode("utf-8")).hexdigest()
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, true_pass)
+
+    def test_21_wallet_import_bad_mode(self):
+        result = wallet_import(-1, 4)
+        self.assertEqual(result, False)
 
 
 unittest.main(exit=False)
