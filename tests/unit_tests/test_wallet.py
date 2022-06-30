@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 from hashlib import sha256
 
@@ -23,8 +24,6 @@ from wallet.wallet_create import wallet_create
 from wallet.wallet_delete import wallet_delete
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
-
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Wallet(unittest.TestCase):
