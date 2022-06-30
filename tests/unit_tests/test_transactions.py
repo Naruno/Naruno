@@ -4,17 +4,15 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from transactions.validate_transaction import ValidateTransaction
+from transactions.transaction import Transaction
+from transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.save_my_transaction import SaveMyTransaction
+from transactions.get_my_transaction import GetMyTransaction
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import unittest
-
-from transactions.get_my_transaction import GetMyTransaction
-from transactions.save_my_transaction import SaveMyTransaction
-from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.transaction import Transaction
-from transactions.validate_transaction import ValidateTransaction
-
 
 
 class Test_Settings(unittest.TestCase):
