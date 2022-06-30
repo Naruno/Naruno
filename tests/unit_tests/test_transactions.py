@@ -5,15 +5,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from transactions.transaction import Transaction
+from transactions.validate_transaction import ValidateTransaction
+from transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.save_my_transaction import SaveMyTransaction
+from transactions.get_my_transaction import GetMyTransaction
 import unittest
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from transactions.get_my_transaction import GetMyTransaction
-from transactions.save_my_transaction import SaveMyTransaction
-from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.validate_transaction import ValidateTransaction
-from transactions.transaction import Transaction
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+
 
 class Test_Settings(unittest.TestCase):
 
@@ -30,7 +31,7 @@ class Test_Settings(unittest.TestCase):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction)
-        
+
         result = GetMyTransaction()
 
         SaveMyTransaction(backup)
@@ -41,7 +42,7 @@ class Test_Settings(unittest.TestCase):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, validated=True)
-        
+
         result = GetMyTransaction()
 
         SaveMyTransaction(backup)
@@ -52,13 +53,12 @@ class Test_Settings(unittest.TestCase):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction)
-        
+
         result = GetMyTransaction()
 
         ValidateTransaction(new_transaction)
 
         result_2 = GetMyTransaction()
-
 
         SaveMyTransaction(backup)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
@@ -70,9 +70,9 @@ class Test_Settings(unittest.TestCase):
     def test_5_dumb_transaction(self):
 
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
-        
+
         dumped_transaction = new_transaction.dump_json()
-        
+
         the_json = {
             "sequance_number": 1,
             "signature": "",
@@ -85,7 +85,6 @@ class Test_Settings(unittest.TestCase):
         }
 
         self.assertEqual(dumped_transaction, the_json)
-
 
     def test_5_load_transaction(self):
 
@@ -104,10 +103,7 @@ class Test_Settings(unittest.TestCase):
 
         loaded_transaction_json = loaded_transaction.dump_json()
 
-
         self.assertEqual(loaded_transaction_json, the_json)
-
-
 
 
 unittest.main(exit=False)
