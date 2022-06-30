@@ -15,6 +15,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Config(unittest.TestCase):
+
     def setUp(self):
         self.ctx = app.app_context()
         self.ctx.push()
