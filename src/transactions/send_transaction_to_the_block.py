@@ -4,8 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.check_transaction import CheckTransaction
 from transactions.propagating_the_tx import PropagatingtheTX

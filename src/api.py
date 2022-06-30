@@ -8,8 +8,10 @@ import argparse
 from inspect import getblock
 
 import flask
+from accounts.get_balance import GetBalance
 from blockchain.block.create_block import CreateBlock
-from blockchain.block.get_block import GetBlock, GetBlockFromOtherNode
+from blockchain.block.get_block import GetBlock
+from blockchain.block.get_block import GetBlockFromOtherNode
 from flask import jsonify
 from flask import request
 from lib.export import export_the_transactions
@@ -25,12 +27,11 @@ from node.unl import Unl
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
 from waitress import serve
-from wallet.wallet_import import wallet_import
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
+from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
-from accounts.get_balance import GetBalance
 
 logger = get_logger("API")
 
