@@ -60,6 +60,47 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(result_2[0][0].signature, new_transaction.signature)
         self.assertEqual(result_2[0][1], True)
 
+    def test_5_dumb_transaction(self):
+
+        new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+        
+        dumped_transaction = new_transaction.dump_json()
+        
+        the_json = {
+            "sequance_number": 1,
+            "signature": "",
+            "fromUser": "",
+            "toUser": "",
+            "data": "",
+            "amount": 1,
+            "transaction_fee": 1,
+            "transaction_time": 1,
+        }
+
+        self.assertEqual(dumped_transaction, the_json)
+
+
+    def test_5_load_transaction(self):
+
+        the_json = {
+            "sequance_number": 1,
+            "signature": "",
+            "fromUser": "",
+            "toUser": "",
+            "data": "",
+            "amount": 1,
+            "transaction_fee": 1,
+            "transaction_time": 1,
+        }
+
+        loaded_transaction = Transaction.load_json(the_json)
+
+        loaded_transaction_json = loaded_transaction.dump_json()
+
+
+        self.assertEqual(loaded_transaction_json, the_json)
+
+
 
 import os
 import sys
