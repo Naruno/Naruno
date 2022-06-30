@@ -10,13 +10,12 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from blockchain.block.block_main import Block
-from transactions.pending_to_validating import PendingtoValidating
 from transactions.get_my_transaction import GetMyTransaction
+from transactions.pending_to_validating import PendingtoValidating
 from transactions.save_my_transaction import SaveMyTransaction
 from transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.transaction import Transaction
 from transactions.validate_transaction import ValidateTransaction
-
 
 
 class Test_Settings(unittest.TestCase):
@@ -129,7 +128,7 @@ class Test_Settings(unittest.TestCase):
 
     def test_8_pending_to_validating_many_transaction(self):
 
-        block = Block("",start_the_system=False)
+        block = Block("", start_the_system=False)
         block.max_tx_number = 2
 
         temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
@@ -145,7 +144,7 @@ class Test_Settings(unittest.TestCase):
 
     def test_8_pending_to_validating_round_1_started(self):
 
-        block = Block("",start_the_system=False)
+        block = Block("", start_the_system=False)
         block.max_tx_number = 2
         block.raund_1_starting_time = 1
 
@@ -162,7 +161,7 @@ class Test_Settings(unittest.TestCase):
 
     def test_8_pending_to_validating(self):
 
-        block = Block("",start_the_system=False)
+        block = Block("", start_the_system=False)
         block.max_tx_number = 2
 
         temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
@@ -174,5 +173,6 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(len(block.pendingTransaction), 0)
+
 
 unittest.main(exit=False)
