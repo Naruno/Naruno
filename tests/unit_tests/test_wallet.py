@@ -181,7 +181,6 @@ class Test_Wallet(unittest.TestCase):
         true_version = [f"0) {wallet_import(-1,3)} - CURRENTLY USED\n"]
 
         save_wallet_list(original_saved_wallets)
-
         self.assertEqual(result, true_version)
 
     def test_11_print_wallets_multiple_wallet(self):
@@ -227,6 +226,9 @@ class Test_Wallet(unittest.TestCase):
         save_settings(backup_settings)
 
         self.assertEqual(result, true_version)
+
+    def test_13_wallet_delete_wrong_wallet(self):
+        self.assertEqual(wallet_delete("non"), False)
 
 
 unittest.main(exit=False)
