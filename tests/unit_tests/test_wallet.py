@@ -146,6 +146,66 @@ class Test_Wallet(unittest.TestCase):
         save_settings(backup_settings)
         self.assertEqual(len(saved_wallets), 1)
 
+
+    def test_10_print_wallets_one_wallet(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+
+        result = print_wallets()
+        true_version = [f"0) {wallet_import(-1,3)} - CURRENTLY USED\n"]
+
+
+        save_wallet_list(original_saved_wallets)
+
+        self.assertEqual(result, true_version)
+
+
+    def test_11_print_wallets_multiple_wallet(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        temp_private_key_2 = wallet_create(password)
+
+        result = print_wallets()
+        print(result)
+        true_version = [f"0) {wallet_import(-1,3)} - CURRENTLY USED\n", f"1) {wallet_import(1,3)}\n"]
+
+
+        save_wallet_list(original_saved_wallets)
+
+        self.assertEqual(result, true_version)
+
+
+    def test_12_print_wallets_multiple_wallet_different_current_wallet(self):
+        original_saved_wallets = get_saved_wallet()
+        backup_settings = the_settings()
+
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        temp_private_key_2 = wallet_create(password)
+
+        change_wallet(1)
+
+        result = print_wallets()
+        true_version = [f"0) {wallet_import(0,3)}\n", f"1) {wallet_import(-1,3)} - CURRENTLY USED\n"]
+
+
+        save_wallet_list(original_saved_wallets)
+        save_settings(backup_settings)
+
+        self.assertEqual(result, true_version)
+
+
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
@@ -153,6 +213,7 @@ from lib.settings_system import the_settings, save_settings, change_wallet
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
 from wallet.wallet_create import wallet_create
+from wallet.print_wallets import print_wallets
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.save_wallet_list import save_wallet_list
 from wallet.delete_current_wallet import delete_current_wallet
