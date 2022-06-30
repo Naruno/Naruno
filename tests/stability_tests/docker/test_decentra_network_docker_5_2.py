@@ -7,13 +7,13 @@
 import json
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 import time
 import unittest
 import urllib.request
 
 from auto_builders.docker import Decentra_Network_Docker
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 temp_environment = Decentra_Network_Docker(5, 2)
 temp_environment.delete()
