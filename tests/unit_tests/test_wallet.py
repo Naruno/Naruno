@@ -40,7 +40,7 @@ class Test_Wallet(unittest.TestCase):
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
                 if temp_private_key == (wallet_import(each_wallet, 1,
-                                                          password)):
+                                                      password)):
 
                     wallet_delete(each_wallet)
                     result = True if each_wallet not in get_saved_wallet(
@@ -229,5 +229,6 @@ class Test_Wallet(unittest.TestCase):
 
     def test_13_wallet_delete_wrong_wallet(self):
         self.assertEqual(wallet_delete("non"), False)
+
 
 unittest.main(exit=False)
