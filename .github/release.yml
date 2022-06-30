@@ -92,10 +92,9 @@ changelog:
 
     - title: Tests
       labels:
-        - Functional-Test
-        - Stability-Test
-        - Unit-Test
-        - Test-Environments
+        - Functional-Tests
+        - Stability-Tests
+        - Unit-Tests
         - Tests
 
     - title: GitHub
