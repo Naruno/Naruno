@@ -87,7 +87,7 @@ def wallet_import(wallet, mode, password=None):
                 if wallet == -1:
                     my_private_key = temp_saved_wallet[account]["privatekey"]
                     return my_private_key
-                else:              
+                else:
                     return False
         else:
             if not list(temp_saved_wallet).index(account) == 0:
