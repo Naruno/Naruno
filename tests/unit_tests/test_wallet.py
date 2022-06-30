@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from lib.encryption import decrypt
@@ -23,6 +23,7 @@ from wallet.wallet_create import wallet_create
 from wallet.wallet_delete import wallet_delete
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
+
 
 
 class Test_Wallet(unittest.TestCase):
@@ -228,5 +229,4 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(result, true_version)
 
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 unittest.main(exit=False)

@@ -4,9 +4,18 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
+from node.node import Node
+from node.node_connection import Node_Connection
+from node.unl import Unl
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.wallet_create import wallet_create
+from wallet.wallet_delete import wallet_delete
+from wallet.wallet_import import wallet_import
 
 
 
@@ -72,14 +81,5 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(get_as_node, True,
                          "Problem on UNL get as node system.")
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from node.node import Node
-from node.node_connection import Node_Connection
-from node.unl import Unl
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.wallet_create import wallet_create
-from wallet.wallet_delete import wallet_delete
-from wallet.wallet_import import wallet_import
+
 unittest.main(exit=False)
