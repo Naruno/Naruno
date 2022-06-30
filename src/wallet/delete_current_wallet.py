@@ -33,9 +33,6 @@ def delete_current_wallet():
                 if wallet_delete(each_wallet):
                     logger.info("Wallet deleted: " + each_wallet)
                     return True
-                else:
-                    logger.error("Wallet not deleted: " + each_wallet)
-                    return False
     else:
         logger.info("First wallet cannot be deleted.")
         return False
