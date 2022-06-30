@@ -228,5 +228,5 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(result, true_version)
 
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+
 unittest.main(exit=False)

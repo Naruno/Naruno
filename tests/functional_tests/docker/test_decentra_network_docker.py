@@ -49,7 +49,4 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
             self.assertEqual(balance_wallet_1,9000.0,"A problem in same network one transaction -3.")
 
 
-
-
-
 unittest.main(exit=False)

@@ -6,7 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import unittest
-
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
+from lib.settings_system import the_settings, save_settings
 
 class Test_Settings(unittest.TestCase):
 
@@ -49,8 +52,5 @@ class Test_Settings(unittest.TestCase):
 
 
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from lib.settings_system import the_settings, save_settings
+
 unittest.main(exit=False)

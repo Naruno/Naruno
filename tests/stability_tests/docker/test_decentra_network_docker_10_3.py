@@ -7,7 +7,18 @@
 
 
 import unittest
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","..",".."))
+import urllib.request, json
+import time
+from auto_builders.docker import Decentra_Network_Docker
 
+temp_environment = Decentra_Network_Docker(10, 3)
+temp_environment.delete()
+temp_environment.install()
+temp_environment.run()
+temp_environment.start()
 
 class Test_Decentra_Network_Docker(unittest.TestCase):
 
@@ -33,17 +44,6 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1,9000.0,"A problem in same network one transaction -3.")
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..",".."))
-import urllib.request, json
-import time
-from auto_builders.docker import Decentra_Network_Docker
 
-temp_environment = Decentra_Network_Docker(10, 3)
-temp_environment.delete()
-temp_environment.install()
-temp_environment.run()
-temp_environment.start()
 
 unittest.main(exit=False)

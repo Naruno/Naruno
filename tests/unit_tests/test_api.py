@@ -6,7 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import unittest
-
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
+from api import app
+from lib.settings_system import the_settings
 
 class Test_Config(unittest.TestCase):
 
@@ -28,9 +32,5 @@ class Test_Config(unittest.TestCase):
         self.assertEqual(response.status_code, 200, "A problem on the API.")
 
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from api import app
-from lib.settings_system import the_settings
+
 unittest.main(exit=False)

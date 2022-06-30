@@ -6,7 +6,14 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import unittest
-
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
+from transactions.get_my_transaction import GetMyTransaction
+from transactions.save_my_transaction import SaveMyTransaction
+from transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.validate_transaction import ValidateTransaction
+from transactions.transaction import Transaction
 
 class Test_Settings(unittest.TestCase):
 
@@ -102,12 +109,5 @@ class Test_Settings(unittest.TestCase):
 
 
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from transactions.get_my_transaction import GetMyTransaction
-from transactions.save_my_transaction import SaveMyTransaction
-from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.validate_transaction import ValidateTransaction
-from transactions.transaction import Transaction
+
 unittest.main(exit=False)
