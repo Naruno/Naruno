@@ -4,8 +4,25 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
 import unittest
+
+from lib.encryption import decrypt
+from lib.settings_system import change_wallet
+from lib.settings_system import save_settings
+from lib.settings_system import the_settings
+from wallet.delete_current_wallet import delete_current_wallet
+from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.ellipticcurve.publicKey import PublicKey
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.print_wallets import print_wallets
+from wallet.save_wallet_list import save_wallet_list
+from wallet.wallet_create import wallet_create
+from wallet.wallet_delete import wallet_delete
+from wallet.wallet_import import wallet_import
+from wallet.wallet_selector import wallet_selector
 
 
 class Test_Wallet(unittest.TestCase):
@@ -21,17 +38,22 @@ class Test_Wallet(unittest.TestCase):
         result = False
         for each_wallet in saved_wallets:
             if temp_private_key == (saved_wallets[each_wallet]["privatekey"]):
-                if temp_private_key == (wallet_import(each_wallet, 1, password)):
-                
+                if temp_private_key == (wallet_import(each_wallet, 1,
+                                                      password)):
+
                     wallet_delete(each_wallet)
-                    result = True if each_wallet not in get_saved_wallet() else False
+                    result = True if each_wallet not in get_saved_wallet(
+                    ) else False
                     break
-                elif decrypt(temp_private_key, password) == (wallet_import(each_wallet, 1, password)):
+                elif decrypt(temp_private_key, password) == (wallet_import(
+                        each_wallet, 1, password)):
                     wallet_delete(each_wallet)
-                    result = True if each_wallet not in get_saved_wallet() else False
+                    result = True if each_wallet not in get_saved_wallet(
+                    ) else False
                     break
 
-        self.assertEqual(result, True, "A problem on the saving and importing the wallet.")
+        self.assertEqual(result, True,
+                         "A problem on the saving and importing the wallet.")
 
     def test_2_wallet_by_private_pem_conversion(self):
 
@@ -146,7 +168,6 @@ class Test_Wallet(unittest.TestCase):
         save_settings(backup_settings)
         self.assertEqual(len(saved_wallets), 1)
 
-
     def test_10_print_wallets_one_wallet(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
@@ -158,11 +179,9 @@ class Test_Wallet(unittest.TestCase):
         result = print_wallets()
         true_version = [f"0) {wallet_import(-1,3)} - CURRENTLY USED\n"]
 
-
         save_wallet_list(original_saved_wallets)
 
         self.assertEqual(result, true_version)
-
 
     def test_11_print_wallets_multiple_wallet(self):
         original_saved_wallets = get_saved_wallet()
@@ -175,13 +194,14 @@ class Test_Wallet(unittest.TestCase):
 
         result = print_wallets()
         print(result)
-        true_version = [f"0) {wallet_import(-1,3)} - CURRENTLY USED\n", f"1) {wallet_import(1,3)}\n"]
-
+        true_version = [
+            f"0) {wallet_import(-1,3)} - CURRENTLY USED\n",
+            f"1) {wallet_import(1,3)}\n",
+        ]
 
         save_wallet_list(original_saved_wallets)
 
         self.assertEqual(result, true_version)
-
 
     def test_12_print_wallets_multiple_wallet_different_current_wallet(self):
         original_saved_wallets = get_saved_wallet()
@@ -197,8 +217,10 @@ class Test_Wallet(unittest.TestCase):
         change_wallet(1)
 
         result = print_wallets()
-        true_version = [f"0) {wallet_import(0,3)}\n", f"1) {wallet_import(-1,3)} - CURRENTLY USED\n"]
-
+        true_version = [
+            f"0) {wallet_import(0,3)}\n",
+            f"1) {wallet_import(-1,3)} - CURRENTLY USED\n",
+        ]
 
         save_wallet_list(original_saved_wallets)
         save_settings(backup_settings)
@@ -206,19 +228,5 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(result, true_version)
 
 
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..","..","src"))
-from lib.settings_system import the_settings, save_settings, change_wallet
-from wallet.wallet_import import wallet_import
-from wallet.wallet_selector import wallet_selector
-from wallet.wallet_create import wallet_create
-from wallet.print_wallets import print_wallets
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.save_wallet_list import save_wallet_list
-from wallet.delete_current_wallet import delete_current_wallet
-from wallet.wallet_delete import wallet_delete
-from wallet.ellipticcurve.privateKey import PrivateKey
-from wallet.ellipticcurve.publicKey import PublicKey
-from lib.encryption import decrypt
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 unittest.main(exit=False)
