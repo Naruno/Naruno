@@ -35,6 +35,7 @@ from wallet.get_saved_wallet import get_saved_wallet
 
 logger = get_logger("WALLET")
 
+
 def wallet_delete(account):
     saved_wallet = get_saved_wallet()
     if account in saved_wallet:
