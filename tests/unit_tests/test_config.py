@@ -9,11 +9,11 @@ from lib.config_system import get_config
 import unittest
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Config(unittest.TestCase):
-
     def test_1_config_by_getting_and_saving_main_folder_config(self):
         finded_true_folder = False
 
