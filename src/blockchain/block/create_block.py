@@ -33,7 +33,8 @@ def CreateBlock():
         except:
             pass
 
-        logger.info("Creating the genesis block and sending it to the connected nodes")
+        logger.info(
+            "Creating the genesis block and sending it to the connected nodes")
         if previous_hash is None:
             Block(wallet_import(-1, 3))
         else:
