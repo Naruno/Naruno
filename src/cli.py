@@ -141,7 +141,7 @@ def menu():
                 input("Data: "),
             )
         if choices_input == "gb":
-            GetBalance(block, wallet_import(-1, 0))
+            GetBalance(GetBlock(), wallet_import(-1, 0))
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
@@ -297,7 +297,7 @@ def arguments():
         print_wallets()
 
     if args.getbalance:
-        GetBalance(block, wallet_import(-1, 0))
+        GetBalance(GetBlock(), wallet_import(-1, 0))
 
     if args.ndid:
         print(Node.id)
