@@ -39,14 +39,13 @@ from lib.config_system import get_config
 from lib.encryption import decrypt
 from lib.encryption import encrypt
 from lib.settings_system import the_settings
-
-from wallet.save_wallet_list import save_to_wallet_list
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.wallet_create import wallet_create
 from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.save_wallet_list import save_to_wallet_list
+from wallet.wallet_create import wallet_create
 
 
-def wallet_import(account, mode, password=None):
+def wallet_import(wallet, mode, password=None):
     """
     A function for get info about a wallet.
 
@@ -56,6 +55,8 @@ def wallet_import(account, mode, password=None):
       * password: Some function needed password for operation you can give with this input
     """
 
+    account = wallet
+
     temp_saved_wallet = get_saved_wallet()
 
     number_of_wallet = len(temp_saved_wallet)
@@ -63,9 +64,12 @@ def wallet_import(account, mode, password=None):
         wallet_create("123")
         temp_saved_wallet = get_saved_wallet()
 
-    if isinstance(account, int):
-        if not -1 == account:
-            account = list(temp_saved_wallet)[account]
+    if isinstance(wallet, int):
+        if not -1 == wallet:
+            if not wallet > (len(temp_saved_wallet) - 1):
+                account = list(temp_saved_wallet)[account]
+            else:
+                return False
         else:
             account = list(temp_saved_wallet)[the_settings()["wallet"]]
 
@@ -74,14 +78,23 @@ def wallet_import(account, mode, password=None):
 
         return my_public_key
     elif mode == 1:
-        if not password is None and not list(temp_saved_wallet).index(
-                account) == 0:
+        if not password is None:
+            if not list(temp_saved_wallet).index(account) == 0:
 
-            return decrypt(temp_saved_wallet[account]["privatekey"], password)
+                return decrypt(temp_saved_wallet[account]["privatekey"],
+                               password)
+            else:
+                if wallet == -1:
+                    my_private_key = temp_saved_wallet[account]["privatekey"]
+                    return my_private_key
+                else:              
+                    return False
         else:
-            my_private_key = temp_saved_wallet[account]["privatekey"]
-
-            return my_private_key
+            if not list(temp_saved_wallet).index(account) == 0:
+                return False
+            else:
+                my_private_key = temp_saved_wallet[account]["privatekey"]
+                return my_private_key
 
     elif mode == 2:
         return temp_saved_wallet[account]["password_sha256"]
