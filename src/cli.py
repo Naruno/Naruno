@@ -9,8 +9,9 @@ import sys
 import time
 from getpass import getpass
 
+from accounts.get_balance import GetBalance
 from blockchain.block.create_block import CreateBlock
-from blockchain.block.get_block import GetBlockFromOtherNode
+from blockchain.block.get_block import GetBlock, GetBlockFromOtherNode
 from config import MY_TRANSACTION_EXPORT_PATH
 from lib.export import export_the_transactions
 from lib.log import get_logger
@@ -30,7 +31,7 @@ from node.unl import Unl
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send
 from wallet.delete_current_wallet import delete_current_wallet
-from wallet.print_balance import print_balance
+from wallet.wallet_import import wallet_import
 from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
 from wallet.wallet_selector import wallet_selector
@@ -139,7 +140,7 @@ def menu():
                 input("Data: "),
             )
         if choices_input == "gb":
-            print_balance()
+            GetBalance(block, wallet_import(-1, 0))
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
@@ -295,7 +296,7 @@ def arguments():
         print_wallets()
 
     if args.getbalance:
-        print_balance()
+        GetBalance(block, wallet_import(-1, 0))
 
     if args.ndid:
         print(Node.id)
