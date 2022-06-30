@@ -7,7 +7,9 @@
 import argparse
 
 import flask
+from accounts.get_balance import GetBalance
 from blockchain.block.create_block import CreateBlock
+from blockchain.block.get_block import GetBlock
 from blockchain.block.get_block import GetBlockFromOtherNode
 from flask import jsonify
 from flask import request
@@ -25,9 +27,9 @@ from transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
 from waitress import serve
 from wallet.delete_current_wallet import delete_current_wallet
-from wallet.print_balance import print_balance
 from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
+from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
 
 logger = get_logger("API")
@@ -87,7 +89,7 @@ def send_coin_data_page(address, amount, data, password):
 def balance_wallets_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify(print_balance())
+    return jsonify(GetBalance(GetBlock(), wallet_import(-1, 0)))
 
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
