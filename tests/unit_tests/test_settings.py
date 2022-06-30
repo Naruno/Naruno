@@ -8,7 +8,8 @@ import os
 import sys
 import unittest
 
-from lib.settings_system import save_settings, the_settings
+from lib.settings_system import save_settings
+from lib.settings_system import the_settings
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
