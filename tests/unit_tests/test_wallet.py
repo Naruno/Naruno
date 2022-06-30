@@ -298,4 +298,5 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, true_pass)
 
+
 unittest.main(exit=False)
