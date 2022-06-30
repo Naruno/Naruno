@@ -236,4 +236,43 @@ class Test_Wallet(unittest.TestCase):
         custom = wallet_import(0, 3)
         self.assertEqual(default, custom)
 
+    def test_15_wallet_import_not_pass_first_wallet(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        result = wallet_import(0, 1)
+        save_wallet_list(original_saved_wallets)
+        self.assertEqual(result, temp_private_key)
+
+    def test_16_wallet_import_not_pass_first_wallet(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        result = wallet_import(1, 1)
+        save_wallet_list(original_saved_wallets)
+        self.assertEqual(result, False)
+
+    def test_17_wallet_import_first_wallet_private_with_pass(self):
+        result = wallet_import(0, 1, password="123")
+        self.assertEqual(result, False)
+
+    def test_18_wallet_import_custom_wallet_private_with_pass(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        temp_private_key_2 = decrypt(wallet_create(password)   , password)
+             
+        result = wallet_import(1, 1, password="123")
+        save_wallet_list(original_saved_wallets)
+        self.assertEqual(result, temp_private_key_2)
+
 unittest.main(exit=False)
