@@ -9,6 +9,8 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
+from blockchain.block.block_main import Block
+from transactions.pending_to_validating import PendingtoValidating
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.save_my_transaction import SaveMyTransaction
 from transactions.save_to_my_transaction import SavetoMyTransaction
@@ -87,7 +89,7 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(dumped_transaction, the_json)
 
-    def test_5_load_transaction(self):
+    def test_6_load_transaction(self):
 
         the_json = {
             "sequance_number": 1,
@@ -106,5 +108,71 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(loaded_transaction_json, the_json)
 
+    def test_7_load_transaction(self):
+
+        the_json = {
+            "sequance_number": 1,
+            "signature": "",
+            "fromUser": "",
+            "toUser": "",
+            "data": "",
+            "amount": 1,
+            "transaction_fee": 1,
+            "transaction_time": 1,
+        }
+
+        loaded_transaction = Transaction.load_json(the_json)
+
+        loaded_transaction_json = loaded_transaction.dump_json()
+
+        self.assertEqual(loaded_transaction_json, the_json)
+
+    def test_8_pending_to_validating_many_transaction(self):
+
+        block = Block("",start_the_system=False)
+        block.max_tx_number = 2
+
+        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+
+        block.pendingTransaction.append(temp_transaction)
+        block.pendingTransaction.append(temp_transaction)
+        block.pendingTransaction.append(temp_transaction)
+
+        PendingtoValidating(block)
+
+        self.assertEqual(len(block.validating_list), 2)
+        self.assertEqual(len(block.pendingTransaction), 1)
+
+    def test_8_pending_to_validating_round_1_started(self):
+
+        block = Block("",start_the_system=False)
+        block.max_tx_number = 2
+        block.raund_1_starting_time = 1
+
+        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+
+        block.pendingTransaction.append(temp_transaction)
+        block.pendingTransaction.append(temp_transaction)
+        block.pendingTransaction.append(temp_transaction)
+
+        PendingtoValidating(block)
+
+        self.assertEqual(len(block.validating_list), 0)
+        self.assertEqual(len(block.pendingTransaction), 3)
+
+    def test_8_pending_to_validating(self):
+
+        block = Block("",start_the_system=False)
+        block.max_tx_number = 2
+
+        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+
+        block.pendingTransaction.append(temp_transaction)
+        block.pendingTransaction.append(temp_transaction)
+
+        PendingtoValidating(block)
+
+        self.assertEqual(len(block.validating_list), 2)
+        self.assertEqual(len(block.pendingTransaction), 0)
 
 unittest.main(exit=False)

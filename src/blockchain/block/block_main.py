@@ -24,7 +24,7 @@ from lib.log import get_logger
 from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
 from transactions.get_my_transaction import GetMyTransaction
-from transactions.pending_to_validating import PendinttoValidating
+from transactions.pending_to_validating import PendingtoValidating
 from transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.validate_transaction import ValidateTransaction
 from wallet.wallet_import import wallet_import
@@ -45,6 +45,7 @@ class Block:
         self,
         creator,
         previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9-f86b4d545fe18264dc489f5af6782b9f4986fe3a9bf03b3fec417df9e8fd97d4",
+        start_the_system=True,
     ):
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
@@ -95,8 +96,9 @@ class Block:
 
         self.save_block()
 
-        logger.info("Consensus timer is started")
-        perpetualTimer(self.consensus_timer, consensus_trigger).start()
+        if start_the_system:
+            logger.info("Consensus timer is started")
+            perpetualTimer(self.consensus_timer, consensus_trigger).start()
 
     def reset_the_block(self):
         """
@@ -155,7 +157,7 @@ class Block:
         logger.debug(self.__dict__)
 
         # Adding self.pendingTransaction to the new/current block.
-        PendinttoValidating(self)
+        PendingtoValidating(self)
 
         # Saving the new block.
         self.save_block()
