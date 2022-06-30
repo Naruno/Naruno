@@ -26,18 +26,15 @@ SOFTWARE.
 """
 import json
 import os
-from base64 import b64decode
-from base64 import b64encode
-from binascii import hexlify
-from binascii import unhexlify
+from base64 import b64decode, b64encode
+from binascii import hexlify, unhexlify
 from hashlib import sha256
 from random import SystemRandom
 from sys import version_info as pyVersion
 
 from config import *
 from lib.config_system import get_config
-from lib.encryption import decrypt
-from lib.encryption import encrypt
+from lib.encryption import decrypt, encrypt
 from lib.settings_system import the_settings
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.get_saved_wallet import get_saved_wallet
