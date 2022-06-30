@@ -30,7 +30,6 @@ import os
 from config import *
 from lib.config_system import get_config
 from lib.log import get_logger
-
 from wallet.get_saved_wallet import get_saved_wallet
 
 logger = get_logger("WALLET")
