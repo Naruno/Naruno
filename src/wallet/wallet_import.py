@@ -39,11 +39,10 @@ from lib.config_system import get_config
 from lib.encryption import decrypt
 from lib.encryption import encrypt
 from lib.settings_system import the_settings
-
-from wallet.save_wallet_list import save_to_wallet_list
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.wallet_create import wallet_create
 from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.save_wallet_list import save_to_wallet_list
+from wallet.wallet_create import wallet_create
 
 
 def wallet_import(account, mode, password=None):
@@ -65,7 +64,7 @@ def wallet_import(account, mode, password=None):
 
     if isinstance(account, int):
         if not -1 == account:
-            if not account > (len(temp_saved_wallet)-1):
+            if not account > (len(temp_saved_wallet) - 1):
                 account = list(temp_saved_wallet)[account]
             else:
                 return False
@@ -78,15 +77,14 @@ def wallet_import(account, mode, password=None):
         return my_public_key
     elif mode == 1:
         if not password is None:
-            if not list(temp_saved_wallet).index(
-                    account) == 0:
+            if not list(temp_saved_wallet).index(account) == 0:
 
-                return decrypt(temp_saved_wallet[account]["privatekey"], password)
+                return decrypt(temp_saved_wallet[account]["privatekey"],
+                               password)
             else:
                 return False
         else:
-            if not list(temp_saved_wallet).index(
-                    account) == 0:
+            if not list(temp_saved_wallet).index(account) == 0:
                 return False
             else:
                 my_private_key = temp_saved_wallet[account]["privatekey"]

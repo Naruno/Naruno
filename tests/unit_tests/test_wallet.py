@@ -25,7 +25,6 @@ from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
 
 
-
 class Test_Wallet(unittest.TestCase):
 
     def test_1_wallet_by_creating_saving_importing_and_deleting_a_wallet(self):
@@ -269,10 +268,11 @@ class Test_Wallet(unittest.TestCase):
         password = "123"
 
         temp_private_key = wallet_create(password)
-        temp_private_key_2 = decrypt(wallet_create(password)   , password)
-             
+        temp_private_key_2 = decrypt(wallet_create(password), password)
+
         result = wallet_import(1, 1, password="123")
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, temp_private_key_2)
+
 
 unittest.main(exit=False)
