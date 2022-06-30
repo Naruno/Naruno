@@ -274,5 +274,15 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, temp_private_key_2)
 
+    def test_19_wallet_import_default_wallet_zero_private_with_pass(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        result = wallet_import(-1, 1, password="123")
+        save_wallet_list(original_saved_wallets)
+        self.assertEqual(temp_private_key, result)
 
 unittest.main(exit=False)

@@ -45,7 +45,7 @@ from wallet.save_wallet_list import save_to_wallet_list
 from wallet.wallet_create import wallet_create
 
 
-def wallet_import(account, mode, password=None):
+def wallet_import(wallet, mode, password=None):
     """
     A function for get info about a wallet.
 
@@ -55,6 +55,8 @@ def wallet_import(account, mode, password=None):
       * password: Some function needed password for operation you can give with this input
     """
 
+    account = wallet
+
     temp_saved_wallet = get_saved_wallet()
 
     number_of_wallet = len(temp_saved_wallet)
@@ -62,9 +64,9 @@ def wallet_import(account, mode, password=None):
         wallet_create("123")
         temp_saved_wallet = get_saved_wallet()
 
-    if isinstance(account, int):
-        if not -1 == account:
-            if not account > (len(temp_saved_wallet) - 1):
+    if isinstance(wallet, int):
+        if not -1 == wallet:
+            if not wallet > (len(temp_saved_wallet) - 1):
                 account = list(temp_saved_wallet)[account]
             else:
                 return False
@@ -82,7 +84,11 @@ def wallet_import(account, mode, password=None):
                 return decrypt(temp_saved_wallet[account]["privatekey"],
                                password)
             else:
-                return False
+                if wallet == -1:
+                    my_private_key = temp_saved_wallet[account]["privatekey"]
+                    return my_private_key
+                else:              
+                    return False
         else:
             if not list(temp_saved_wallet).index(account) == 0:
                 return False
