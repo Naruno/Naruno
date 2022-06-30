@@ -8,6 +8,7 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
+from hashlib import sha256
 
 from lib.encryption import decrypt
 from lib.settings_system import change_wallet
@@ -284,5 +285,18 @@ class Test_Wallet(unittest.TestCase):
         result = wallet_import(-1, 1, password="123")
         save_wallet_list(original_saved_wallets)
         self.assertEqual(temp_private_key, result)
+
+    def test_20_wallet_import_default_wallet_get_pass(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        result = wallet_import(-1, 2)
+        true_pass = sha256(password.encode("utf-8")).hexdigest()
+        save_wallet_list(original_saved_wallets)
+        self.assertEqual(result, true_pass)
+
 
 unittest.main(exit=False)
