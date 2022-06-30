@@ -4,26 +4,24 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from wallet.wallet_selector import wallet_selector
+from wallet.wallet_import import wallet_import
+from wallet.wallet_delete import wallet_delete
+from wallet.wallet_create import wallet_create
+from wallet.save_wallet_list import save_wallet_list
+from wallet.print_wallets import print_wallets
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.ellipticcurve.publicKey import PublicKey
+from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.delete_current_wallet import delete_current_wallet
+from lib.settings_system import the_settings
+from lib.settings_system import save_settings
+from lib.settings_system import change_wallet
+from lib.encryption import decrypt
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import unittest
-
-from lib.encryption import decrypt
-from lib.settings_system import change_wallet
-from lib.settings_system import save_settings
-from lib.settings_system import the_settings
-from wallet.delete_current_wallet import delete_current_wallet
-from wallet.ellipticcurve.privateKey import PrivateKey
-from wallet.ellipticcurve.publicKey import PublicKey
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.print_wallets import print_wallets
-from wallet.save_wallet_list import save_wallet_list
-from wallet.wallet_create import wallet_create
-from wallet.wallet_delete import wallet_delete
-from wallet.wallet_import import wallet_import
-from wallet.wallet_selector import wallet_selector
-
 
 
 class Test_Wallet(unittest.TestCase):
@@ -269,10 +267,11 @@ class Test_Wallet(unittest.TestCase):
         password = "123"
 
         temp_private_key = wallet_create(password)
-        temp_private_key_2 = decrypt(wallet_create(password)   , password)
-             
+        temp_private_key_2 = decrypt(wallet_create(password), password)
+
         result = wallet_import(1, 1, password="123")
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, temp_private_key_2)
+
 
 unittest.main(exit=False)
