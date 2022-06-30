@@ -228,7 +228,12 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(result, true_version)
 
     def test_13_wallet_delete_wrong_wallet(self):
-        self.assertEqual(wallet_delete("non"), False)
+        result = wallet_delete("non")
+        self.assertEqual(result, False)
 
+    def test_14_wallet_import_with_custom_wallet(self):
+        default = wallet_import(-1, 3)
+        custom = wallet_import(0, 3)
+        self.assertEqual(default, custom)
 
 unittest.main(exit=False)
