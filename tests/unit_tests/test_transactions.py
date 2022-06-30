@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from blockchain.block.block_main import Block
@@ -15,8 +16,6 @@ from transactions.save_my_transaction import SaveMyTransaction
 from transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.transaction import Transaction
 from transactions.validate_transaction import ValidateTransaction
-
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Settings(unittest.TestCase):
