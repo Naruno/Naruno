@@ -5,11 +5,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from lib.settings_system import the_settings
-from api import app
-import unittest
 import os
 import sys
+import unittest
+
+from api import app
+from lib.settings_system import the_settings
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
