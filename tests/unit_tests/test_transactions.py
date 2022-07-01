@@ -10,6 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from blockchain.block.block_main import Block
+from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.pending_to_validating import PendingtoValidating
 from transactions.save_my_transaction import SaveMyTransaction
@@ -227,5 +228,48 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(len(block.pendingTransaction), 1)
 
+
+    def test_16_change_transaction_fee_increasing(self):
+
+        block = Block("", start_the_system=False)
+        first_transaction_fee = block.transaction_fee
+        block.max_tx_number = 3
+        block.default_optimum_transaction_number = 1
+        block.default_increase_of_fee = 0.01
+        block.default_transaction_fee = 0.02
+
+        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+
+        block.pendingTransaction.append(temp_transaction)
+        block.validating_list.append(temp_transaction)
+        block.validating_list.append(temp_transaction)
+
+        ChangeTransactionFee(block)
+
+        new_transaction_fee = block.transaction_fee
+
+        self.assertEqual(first_transaction_fee, 0.02)
+        self.assertEqual(new_transaction_fee, 0.05)
+
+    def test_17_change_transaction_fee(self):
+
+        block = Block("", start_the_system=False)
+        first_transaction_fee = block.transaction_fee
+        block.max_tx_number = 3
+        block.default_optimum_transaction_number = 3
+        block.default_increase_of_fee = 0.01
+        block.default_transaction_fee = 0.02
+
+        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+
+        block.pendingTransaction.append(temp_transaction)
+        block.validating_list.append(temp_transaction)
+
+        ChangeTransactionFee(block)
+
+        new_transaction_fee = block.transaction_fee
+
+        self.assertEqual(first_transaction_fee, 0.02)
+        self.assertEqual(new_transaction_fee, 0.02)
 
 unittest.main(exit=False)

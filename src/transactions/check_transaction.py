@@ -9,9 +9,6 @@ import time
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
 from lib.log import get_logger
-from transactions.change_transaction_fee import ChangeTransactionFee
-from transactions.propagating_the_tx import PropagatingtheTX
-from transactions.transaction import Transaction
 from transactions.tx_already_got import TXAlreadyGot
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.publicKey import PublicKey

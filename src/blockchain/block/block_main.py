@@ -71,7 +71,7 @@ class Block:
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02
         # Each user settings by our hardware
-        self.default_optimum_transaction_number = 10
+        self.default_optimum_transaction_number = 1
         self.default_increase_of_fee = 0.01
 
         self.hash = None
