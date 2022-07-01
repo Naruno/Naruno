@@ -238,7 +238,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, temp_private_key)
 
-    def test_wallet_import_not_pass_first_wallet(self):
+    def test_wallet_import_not_pass_custom_wallet(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
