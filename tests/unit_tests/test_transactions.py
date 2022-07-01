@@ -22,6 +22,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Transactions(unittest.TestCase):
+
     def test_get_my_transaction_non(self):
         backup = GetMyTransaction()
         SaveMyTransaction([])

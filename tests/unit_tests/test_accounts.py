@@ -14,6 +14,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Accounts(unittest.TestCase):
+
     def test_dumb_account(self):
 
         new_account = Account("test_account", 1, 1)
