@@ -47,6 +47,8 @@ class Block:
         previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9-f86b4d545fe18264dc489f5af6782b9f4986fe3a9bf03b3fec417df9e8fd97d4",
         start_the_system=True,
     ):
+        self.first_time = True
+        self.creator = creator
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
         self.block_time = 11
@@ -57,12 +59,9 @@ class Block:
         self.sequance_number = 0
         self.empty_block_number = 0
 
-        blocks_hash = [self.previous_hash]
-        SaveBlockshash(blocks_hash)
 
-        accounts_list = GetAccounts()
-        if accounts_list == []:
-            save_accounts([Account(creator, 1000000000)])
+
+
 
         self.edited_accounts = []
 
@@ -93,8 +92,6 @@ class Block:
         self.validated_time = None
 
         self.dowload_true_block = ""
-
-        self.save_block()
 
         if start_the_system:
             logger.info("Consensus timer is started")
@@ -166,7 +163,13 @@ class Block:
         """
         Saves the current block to the TEMP_BLOCK_PATH.
         """
-
+        if self.first_time:
+            accounts_list = GetAccounts()
+            if accounts_list == []:
+                save_accounts([Account(creator, 1000000000)])
+            blocks_hash = [self.previous_hash]
+            SaveBlockshash(blocks_hash)            
+            self.first_time = False
         os.chdir(get_config()["main_folder"])
         with open(TEMP_BLOCK_PATH, "wb") as block_file:
             pickle.dump(self, block_file, protocol=2)

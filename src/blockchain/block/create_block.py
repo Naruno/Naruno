@@ -35,10 +35,12 @@ def CreateBlock():
 
         logger.info(
             "Creating the genesis block and sending it to the connected nodes")
+        the_block = None
         if previous_hash is None:
-            Block(wallet_import(-1, 3))
+            the_block = Block(wallet_import(-1, 3))
         else:
-            Block(wallet_import(-1, 3), previous_hash=previous_hash)
+            the_block = Block(wallet_import(-1, 3), previous_hash=previous_hash)
+        the_block.save_block()
         Node.main_node.send_full_accounts()
         Node.main_node.send_full_chain()
         Node.main_node.send_full_blockshash()
