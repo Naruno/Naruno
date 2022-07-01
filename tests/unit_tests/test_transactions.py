@@ -185,10 +185,7 @@ class Test_Settings(unittest.TestCase):
 
         block.pendingTransaction.append(temp_transaction)
 
-        if not TXAlreadyGot(block, temp_transaction):
-            block.pendingTransaction.append(temp_transaction)
-
-        self.assertEqual(len(block.pendingTransaction), 1)
+        self.assertEqual(TXAlreadyGot(block, temp_transaction), True)
 
     def test_12_tx_already_got_validating(self):
 
@@ -198,10 +195,9 @@ class Test_Settings(unittest.TestCase):
 
         block.validating_list.append(temp_transaction)
 
-        if not TXAlreadyGot(block, temp_transaction):
-            block.validating_list.append(temp_transaction)
+        result = TXAlreadyGot(block, temp_transaction)
 
-        self.assertEqual(len(block.validating_list), 1)
+        self.assertEqual(result, True)
 
     def test_14_tx_already_got_different(self):
 
@@ -212,10 +208,7 @@ class Test_Settings(unittest.TestCase):
 
         block.pendingTransaction.append(temp_transaction)
 
-        if not TXAlreadyGot(block, temp_transaction_2):
-            block.pendingTransaction.append(temp_transaction_2)
-
-        self.assertEqual(len(block.pendingTransaction), 2)
+        self.assertEqual(TXAlreadyGot(block, temp_transaction_2), False)
 
     def test_15_tx_already_got(self):
 

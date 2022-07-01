@@ -10,7 +10,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from api import app
-from lib.settings_system import the_settings
 
 
 
@@ -25,13 +24,7 @@ class Test_Config(unittest.TestCase):
         self.ctx.pop()
 
     def test_1_api_debug_by_response_status_code(self):
-        backup_settings = the_settings()
-        print(backup_settings["debug_mode"])
-        response = self.client.get("/settings/debug/on")
-        if backup_settings["debug_mode"] == True:
-            self.client.get("/settings/debug/on")
-        else:
-            self.client.get("/settings/debug/off")
+        response = self.client.get("/wallet/print")
         self.assertEqual(response.status_code, 200, "A problem on the API.")
 
 
