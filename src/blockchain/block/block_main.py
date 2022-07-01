@@ -166,7 +166,7 @@ class Block:
         if self.first_time:
             accounts_list = GetAccounts()
             if accounts_list == []:
-                save_accounts([Account(creator, 1000000000)])
+                save_accounts([Account(self.creator, 1000000000)])
             blocks_hash = [self.previous_hash]
             SaveBlockshash(blocks_hash)            
             self.first_time = False
