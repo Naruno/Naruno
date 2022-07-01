@@ -24,7 +24,7 @@ temp_environment.start()
 
 class Test_Decentra_Network_Local(unittest.TestCase):
 
-    def test_1_multiple_transaction_with_time_difference(self):
+    def test_multiple_transaction_with_time_difference(self):
         """
         Send coin to 2.wallet from 1.wallet
         """

@@ -28,7 +28,7 @@ from wallet.wallet_selector import wallet_selector
 
 class Test_Wallet(unittest.TestCase):
 
-    def test_1_wallet_by_creating_saving_importing_and_deleting_a_wallet(self):
+    def test_wallet_by_creating_saving_importing_and_deleting_a_wallet(self):
 
         password = "123"
 
@@ -47,7 +47,7 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(result, True,
                          "A problem on the saving and importing the wallet.")
 
-    def test_2_wallet_by_private_pem_conversion(self):
+    def test_wallet_by_private_pem_conversion(self):
 
         password = "123"
 
@@ -57,7 +57,7 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(temp_private_key_class.secret, privateKey2.secret)
         self.assertEqual(temp_private_key_class.curve, privateKey2.curve)
 
-    def test_3_wallet_by_public_conversion(self):
+    def test_wallet_by_public_conversion(self):
 
         password = "123"
 
@@ -69,7 +69,7 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(publicKey1.point.y, publicKey2.point.y)
         self.assertEqual(publicKey1.curve, publicKey2.curve)
 
-    def test_4_wallet_selector_empty(self):
+    def test_wallet_selector_empty(self):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
@@ -78,7 +78,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(results, None)
 
-    def test_5_wallet_selector(self):
+    def test_wallet_selector(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -92,7 +92,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(results, True)
 
-    def test_6_wallet_selector_false_wallet_number(self):
+    def test_wallet_selector_false_wallet_number(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -105,7 +105,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(results, None)
 
-    def test_7_wallet_selector_non_number(self):
+    def test_wallet_selector_non_number(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -119,7 +119,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(results, True)
 
-    def test_8_delete_current_wallet_first_wallet(self):
+    def test_delete_current_wallet_first_wallet(self):
         backup_settings = the_settings()
 
         temp_settings = the_settings()
@@ -138,7 +138,7 @@ class Test_Wallet(unittest.TestCase):
         save_settings(backup_settings)
         self.assertEqual(len(saved_wallets), 1)
 
-    def test_9_delete_current_wallet(self):
+    def test_delete_current_wallet(self):
         backup_settings = the_settings()
 
         temp_settings = the_settings()
@@ -160,7 +160,7 @@ class Test_Wallet(unittest.TestCase):
         save_settings(backup_settings)
         self.assertEqual(len(saved_wallets), 1)
 
-    def test_10_print_wallets_one_wallet(self):
+    def test_print_wallets_one_wallet(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -174,7 +174,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, true_version)
 
-    def test_11_print_wallets_multiple_wallet(self):
+    def test_print_wallets_multiple_wallet(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -194,7 +194,7 @@ class Test_Wallet(unittest.TestCase):
 
         self.assertEqual(result, true_version)
 
-    def test_12_print_wallets_multiple_wallet_different_current_wallet(self):
+    def test_print_wallets_multiple_wallet_different_current_wallet(self):
         original_saved_wallets = get_saved_wallet()
         backup_settings = the_settings()
 
@@ -218,16 +218,16 @@ class Test_Wallet(unittest.TestCase):
 
         self.assertEqual(result, true_version)
 
-    def test_13_wallet_delete_wrong_wallet(self):
+    def test_wallet_delete_wrong_wallet(self):
         result = wallet_delete("non")
         self.assertEqual(result, False)
 
-    def test_14_wallet_import_with_custom_wallet(self):
+    def test_wallet_import_with_custom_wallet(self):
         default = wallet_import(-1, 3)
         custom = wallet_import(0, 3)
         self.assertEqual(default, custom)
 
-    def test_15_wallet_import_not_pass_first_wallet(self):
+    def test_wallet_import_not_pass_first_wallet(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -238,7 +238,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, temp_private_key)
 
-    def test_16_wallet_import_not_pass_first_wallet(self):
+    def test_wallet_import_not_pass_custom_wallet(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -250,11 +250,11 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, False)
 
-    def test_17_wallet_import_first_wallet_private_with_pass(self):
+    def test_wallet_import_first_wallet_private_with_pass(self):
         result = wallet_import(0, 1, password="123")
         self.assertEqual(result, False)
 
-    def test_18_wallet_import_custom_wallet_private_with_pass(self):
+    def test_wallet_import_custom_wallet_private_with_pass(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -267,7 +267,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, temp_private_key_2)
 
-    def test_19_wallet_import_default_wallet_zero_private_with_pass(self):
+    def test_wallet_import_default_wallet_zero_private_with_pass(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -278,7 +278,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(temp_private_key, result)
 
-    def test_20_wallet_import_default_wallet_get_pass(self):
+    def test_wallet_import_default_wallet_get_pass(self):
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -290,7 +290,7 @@ class Test_Wallet(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, true_pass)
 
-    def test_21_wallet_import_bad_mode(self):
+    def test_wallet_import_bad_mode(self):
         result = wallet_import(-1, 4)
         self.assertEqual(result, False)
 

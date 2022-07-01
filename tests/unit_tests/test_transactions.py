@@ -21,9 +21,9 @@ from transactions.validate_transaction import ValidateTransaction
 
 
 
-class Test_Settings(unittest.TestCase):
+class Test_Transactions(unittest.TestCase):
 
-    def test_1_get_my_transaction_non(self):
+    def test_get_my_transaction_non(self):
         backup = GetMyTransaction()
         SaveMyTransaction([])
 
@@ -32,7 +32,7 @@ class Test_Settings(unittest.TestCase):
         SaveMyTransaction(backup)
         self.assertEqual(result, [])
 
-    def test_2_get_my_transaction_not_validated(self):
+    def test_get_my_transaction_not_validated(self):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction)
@@ -43,7 +43,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
 
-    def test_3_get_my_transaction_validated(self):
+    def test_get_my_transaction_validated(self):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, validated=True)
@@ -54,7 +54,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], True)
 
-    def test_4_validate_my_transaction(self):
+    def test_validate_my_transaction(self):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction)
@@ -72,7 +72,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(result_2[0][0].signature, new_transaction.signature)
         self.assertEqual(result_2[0][1], True)
 
-    def test_5_dumb_transaction(self):
+    def test_dumb_transaction(self):
 
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
 
@@ -91,7 +91,7 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(dumped_transaction, the_json)
 
-    def test_6_load_transaction(self):
+    def test_load_transaction(self):
 
         the_json = {
             "sequance_number": 1,
@@ -110,26 +110,7 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(loaded_transaction_json, the_json)
 
-    def test_7_load_transaction(self):
-
-        the_json = {
-            "sequance_number": 1,
-            "signature": "",
-            "fromUser": "",
-            "toUser": "",
-            "data": "",
-            "amount": 1,
-            "transaction_fee": 1,
-            "transaction_time": 1,
-        }
-
-        loaded_transaction = Transaction.load_json(the_json)
-
-        loaded_transaction_json = loaded_transaction.dump_json()
-
-        self.assertEqual(loaded_transaction_json, the_json)
-
-    def test_8_pending_to_validating_many_transaction(self):
+    def test_pending_to_validating_many_transaction(self):
 
         block = Block("", start_the_system=False)
         block.max_tx_number = 2
@@ -145,7 +126,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(len(block.pendingTransaction), 1)
 
-    def test_9_pending_to_validating_round_1_started(self):
+    def test_pending_to_validating_round_1_started(self):
 
         block = Block("", start_the_system=False)
         block.max_tx_number = 2
@@ -162,7 +143,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 0)
         self.assertEqual(len(block.pendingTransaction), 3)
 
-    def test_10_pending_to_validating(self):
+    def test_pending_to_validating(self):
 
         block = Block("", start_the_system=False)
         block.max_tx_number = 2
@@ -177,7 +158,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(len(block.pendingTransaction), 0)
 
-    def test_11_tx_already_got_pending(self):
+    def test_tx_already_got_pending(self):
 
         block = Block("", start_the_system=False)
 
@@ -187,7 +168,7 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(TXAlreadyGot(block, temp_transaction), True)
 
-    def test_12_tx_already_got_validating(self):
+    def test_tx_already_got_validating(self):
 
         block = Block("", start_the_system=False)
 
@@ -199,7 +180,7 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(result, True)
 
-    def test_14_tx_already_got_different(self):
+    def test_tx_already_got_different(self):
 
         block = Block("", start_the_system=False)
 
@@ -210,7 +191,7 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(TXAlreadyGot(block, temp_transaction_2), False)
 
-    def test_15_tx_already_got(self):
+    def test_tx_already_got(self):
 
         block = Block("", start_the_system=False)
 
@@ -221,7 +202,7 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(len(block.pendingTransaction), 1)
 
-    def test_16_change_transaction_fee_increasing(self):
+    def test_change_transaction_fee_increasing(self):
 
         block = Block("", start_the_system=False)
         first_transaction_fee = block.transaction_fee
@@ -243,7 +224,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(first_transaction_fee, 0.02)
         self.assertEqual(new_transaction_fee, 0.05)
 
-    def test_17_change_transaction_fee(self):
+    def test_change_transaction_fee(self):
 
         block = Block("", start_the_system=False)
         first_transaction_fee = block.transaction_fee

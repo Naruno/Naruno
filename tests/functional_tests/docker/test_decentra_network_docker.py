@@ -18,7 +18,7 @@ from auto_builders.docker import Decentra_Network_Docker
 
 class Test_Decentra_Network_Docker(unittest.TestCase):
 
-    def test_1_multiple_transaction_with_time_difference(self):
+    def test_multiple_transaction_with_time_difference(self):
         """
         Send coin to 2.wallet from 1.wallet
         """
