@@ -10,13 +10,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from blockchain.block.block_main import Block
-from transactions.tx_already_got import TXAlreadyGot
 from transactions.get_my_transaction import GetMyTransaction
 from transactions.pending_to_validating import PendingtoValidating
 from transactions.save_my_transaction import SaveMyTransaction
 from transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.transaction import Transaction
+from transactions.tx_already_got import TXAlreadyGot
 from transactions.validate_transaction import ValidateTransaction
+
 
 
 class Test_Settings(unittest.TestCase):
@@ -175,7 +176,6 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(len(block.pendingTransaction), 0)
 
-
     def test_11_tx_already_got_pending(self):
 
         block = Block("", start_the_system=False)
@@ -188,7 +188,6 @@ class Test_Settings(unittest.TestCase):
             block.pendingTransaction.append(temp_transaction)
 
         self.assertEqual(len(block.pendingTransaction), 1)
-
 
     def test_12_tx_already_got_validating(self):
 
@@ -227,5 +226,6 @@ class Test_Settings(unittest.TestCase):
             block.pendingTransaction.append(temp_transaction)
 
         self.assertEqual(len(block.pendingTransaction), 1)
+
 
 unittest.main(exit=False)
