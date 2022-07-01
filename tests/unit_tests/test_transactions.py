@@ -228,7 +228,6 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(len(block.pendingTransaction), 1)
 
-
     def test_16_change_transaction_fee_increasing(self):
 
         block = Block("", start_the_system=False)
@@ -271,5 +270,6 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(first_transaction_fee, 0.02)
         self.assertEqual(new_transaction_fee, 0.02)
+
 
 unittest.main(exit=False)
