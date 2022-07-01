@@ -15,11 +15,11 @@ from blockchain.block.block_main import Block
 import unittest
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Settings(unittest.TestCase):
-
     def test_1_get_my_transaction_non(self):
         backup = GetMyTransaction()
         SaveMyTransaction([])
