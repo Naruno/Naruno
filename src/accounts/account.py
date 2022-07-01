@@ -53,7 +53,7 @@ class Account:
         """
         Json returns data in the appropriate format as the account class.
         """
-        return Account(data["public_key"], data["balance"], data["sequence_number"])
+        return Account(data["address"], data["balance"], data["sequence_number"])
 
     def __str__(self):
         return self.Address

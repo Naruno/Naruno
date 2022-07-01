@@ -21,7 +21,7 @@ from wallet.wallet_import import wallet_import
 
 class Test_Node(unittest.TestCase):
 
-    def test_1_node_by_connection_saving_and_unl_nodes_system(self):
+    def test_node_by_connection_saving_and_unl_nodes_system(self):
 
         password = "123"
 

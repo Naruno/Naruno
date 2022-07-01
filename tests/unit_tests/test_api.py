@@ -23,7 +23,7 @@ class Test_Config(unittest.TestCase):
     def tearDown(self):
         self.ctx.pop()
 
-    def test_1_api_debug_by_response_status_code(self):
+    def test_api_debug_by_response_status_code(self):
         response = self.client.get("/wallet/print")
         self.assertEqual(response.status_code, 200, "A problem on the API.")
 
