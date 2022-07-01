@@ -15,7 +15,9 @@ from transactions.pending_to_validating import PendingtoValidating
 from transactions.save_my_transaction import SaveMyTransaction
 from transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.transaction import Transaction
+from transactions.tx_already_got import TXAlreadyGot
 from transactions.validate_transaction import ValidateTransaction
+
 
 
 class Test_Settings(unittest.TestCase):
@@ -142,7 +144,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(len(block.pendingTransaction), 1)
 
-    def test_8_pending_to_validating_round_1_started(self):
+    def test_9_pending_to_validating_round_1_started(self):
 
         block = Block("", start_the_system=False)
         block.max_tx_number = 2
@@ -159,7 +161,7 @@ class Test_Settings(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 0)
         self.assertEqual(len(block.pendingTransaction), 3)
 
-    def test_8_pending_to_validating(self):
+    def test_10_pending_to_validating(self):
 
         block = Block("", start_the_system=False)
         block.max_tx_number = 2
@@ -173,6 +175,57 @@ class Test_Settings(unittest.TestCase):
 
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(len(block.pendingTransaction), 0)
+
+    def test_11_tx_already_got_pending(self):
+
+        block = Block("", start_the_system=False)
+
+        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+
+        block.pendingTransaction.append(temp_transaction)
+
+        if not TXAlreadyGot(block, temp_transaction):
+            block.pendingTransaction.append(temp_transaction)
+
+        self.assertEqual(len(block.pendingTransaction), 1)
+
+    def test_12_tx_already_got_validating(self):
+
+        block = Block("", start_the_system=False)
+
+        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+
+        block.validating_list.append(temp_transaction)
+
+        if not TXAlreadyGot(block, temp_transaction):
+            block.validating_list.append(temp_transaction)
+
+        self.assertEqual(len(block.validating_list), 1)
+
+    def test_14_tx_already_got_different(self):
+
+        block = Block("", start_the_system=False)
+
+        temp_transaction = Transaction(1, "1", "", "", "", 1, 1, 1)
+        temp_transaction_2 = Transaction(2, "2", "", "", "", 1, 1, 1)
+
+        block.pendingTransaction.append(temp_transaction)
+
+        if not TXAlreadyGot(block, temp_transaction_2):
+            block.pendingTransaction.append(temp_transaction_2)
+
+        self.assertEqual(len(block.pendingTransaction), 2)
+
+    def test_15_tx_already_got(self):
+
+        block = Block("", start_the_system=False)
+
+        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+
+        if not TXAlreadyGot(block, temp_transaction):
+            block.pendingTransaction.append(temp_transaction)
+
+        self.assertEqual(len(block.pendingTransaction), 1)
 
 
 unittest.main(exit=False)
