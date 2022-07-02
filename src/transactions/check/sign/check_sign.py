@@ -20,17 +20,12 @@ def Check_Sign(transaction):
     """
 
     if Ecdsa.verify(
-        (
-            str(transaction.sequance_number)
-            + str(transaction.fromUser)
-            + str(transaction.toUser)
-            + str(transaction.data)
-            + str(transaction.amount)
-            + str(transaction.transaction_fee)
-            + str(transaction.transaction_time)
-        ),
-        Signature.fromBase64(transaction.signature),
-        PublicKey.fromPem(transaction.fromUser),
+        (str(transaction.sequance_number) + str(transaction.fromUser) +
+         str(transaction.toUser) + str(transaction.data) +
+         str(transaction.amount) + str(transaction.transaction_fee) +
+         str(transaction.transaction_time)),
+            Signature.fromBase64(transaction.signature),
+            PublicKey.fromPem(transaction.fromUser),
     ):
         logger.info("The signature is valid")
     else:
