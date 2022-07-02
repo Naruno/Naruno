@@ -9,6 +9,7 @@ from lib.log import get_logger
 
 logger = get_logger("TRANSACTIONS")
 
+
 def Check_Type(transaction):
     """
     Check if the transaction type is valid
@@ -52,5 +53,5 @@ def Check_Type(transaction):
         logger.info("transaction_time is int")
     else:
         return False
-    
+
     return True

@@ -9,6 +9,7 @@ from lib.log import get_logger
 
 logger = get_logger("TRANSACTIONS")
 
+
 def Check_Len(block, transaction):
     """
     Check if the transaction lenght is valid

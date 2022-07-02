@@ -14,6 +14,7 @@ from wallet.ellipticcurve.signature import Signature
 
 logger = get_logger("TRANSACTIONS")
 
+
 def Check_Sign(transaction):
     """
     Check if the transaction signature is valid
@@ -30,6 +31,5 @@ def Check_Sign(transaction):
         logger.info("The signature is valid")
     else:
         return False
-
 
     return True

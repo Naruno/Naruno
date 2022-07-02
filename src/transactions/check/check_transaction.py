@@ -34,24 +34,21 @@ def CheckTransaction(block, transaction, custom_current_time=None, custom_sequen
         logger.info("Transaction type is correct")
     else:
         return False
-    
+
     if Check_Len(block, transaction):
         logger.info("Transaction len is correct")
     else:
         return False
-    
+
     if Check_Datas(block, transaction, custom_current_time=custom_current_time, custom_balance=custom_balance, custom_sequence_number=custom_sequence_number):
         logger.info("Transaction balance is correct")
     else:
         return False
-    
+
     if Check_Sign(transaction):
         logger.info("Transaction sign is correct")
     else:
         return False
-
-
-
 
     logger.info(
         f"Checking the transaction finished {block.sequance_number}:{transaction.signature}"
