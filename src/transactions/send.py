@@ -57,14 +57,19 @@ def send(password, to_user, amount, data=""):
         return False
 
     if not amount < block.minumum_transfer_amount:
-        if (wallet_import(int(the_settings()["wallet"]),
-                          2) == sha256(password.encode("utf-8")).hexdigest()):
+        if (
+            wallet_import(int(the_settings()["wallet"]), 2)
+            == sha256(password.encode("utf-8")).hexdigest()
+        ):
 
             my_private_key = wallet_import(-1, 1, password)
-            my_public_key = "".join([
-                l.strip() for l in wallet_import(-1, 0).splitlines()
-                if l and not l.startswith("-----")
-            ])
+            my_public_key = "".join(
+                [
+                    l.strip()
+                    for l in wallet_import(-1, 0).splitlines()
+                    if l and not l.startswith("-----")
+                ]
+            )
 
             sequance_number = GetSequanceNumber(my_public_key) + 1
 
@@ -72,21 +77,25 @@ def send(password, to_user, amount, data=""):
             transaction_fee = block.transaction_fee
 
             tx_time = int(time.time())
-            the_transaction = Transaction(sequance_number,
-                                          Ecdsa.sign(
-                                              str(sequance_number) + str(my_public_key) + str(to_user) +
-                                              str(data) + str(amount) + str(transaction_fee) +
-                                              str(tx_time),
-                                              PrivateKey.fromPem(
-                                                  my_private_key),
-                                          ).toBase64(),
-                                          my_public_key,
-                                          to_user,
-                                          data,
-                                          amount,
-                                          transaction_fee,
-                                          tx_time
-                                          )
+            the_transaction = Transaction(
+                sequance_number,
+                Ecdsa.sign(
+                    str(sequance_number)
+                    + str(my_public_key)
+                    + str(to_user)
+                    + str(data)
+                    + str(amount)
+                    + str(transaction_fee)
+                    + str(tx_time),
+                    PrivateKey.fromPem(my_private_key),
+                ).toBase64(),
+                my_public_key,
+                to_user,
+                data,
+                amount,
+                transaction_fee,
+                tx_time,
+            )
             if CheckTransaction(block, the_transaction):
                 block.pendingTransaction.append(the_transaction)
                 Node.send_transaction(the_transaction)

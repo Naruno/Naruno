@@ -47,11 +47,11 @@ def CheckTransaction(
         return False
 
     if Check_Datas(
-            block,
-            transaction,
-            custom_current_time=custom_current_time,
-            custom_balance=custom_balance,
-            custom_sequence_number=custom_sequence_number,
+        block,
+        transaction,
+        custom_current_time=custom_current_time,
+        custom_balance=custom_balance,
+        custom_sequence_number=custom_sequence_number,
     ):
         logger.info("Transaction balance is correct")
     else:
