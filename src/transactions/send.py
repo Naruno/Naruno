@@ -10,9 +10,10 @@ from hashlib import sha256
 from accounts.get_sequance_number import GetSequanceNumber
 from blockchain.block.get_block import GetBlock
 from lib.settings_system import the_settings
+from node.node import Node
+from transactions.check.check_transaction import CheckTransaction
 from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.send_transaction_to_the_block import \
-    SendTransactiontoTheBlock
+from transactions.transaction import Transaction
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.wallet_import import wallet_import
@@ -71,27 +72,26 @@ def send(password, to_user, amount, data=""):
             transaction_fee = block.transaction_fee
 
             tx_time = int(time.time())
-
-            the_tx = SendTransactiontoTheBlock(
-                block,
-                sequance_number=sequance_number,
-                signature=Ecdsa.sign(
+            the_transaction = Transaction(
+                sequance_number,
+                Ecdsa.sign(
                     str(sequance_number) + str(my_public_key) + str(to_user) +
                     str(data) + str(amount) + str(transaction_fee) +
                     str(tx_time),
                     PrivateKey.fromPem(my_private_key),
                 ).toBase64(),
-                fromUser=str(my_public_key),
-                toUser=str(to_user),
-                data=data,
-                amount=amount,
-                transaction_fee=transaction_fee,
-                transaction_sender=None,
-                transaction_time=tx_time,
+                my_public_key,
+                to_user,
+                data,
+                amount,
+                transaction_fee,
+                tx_time,
             )
-
-            if not the_tx == False:
-                SavetoMyTransaction(the_tx)
+            if CheckTransaction(block, the_transaction):
+                block.pendingTransaction.append(the_transaction)
+                Node.send_transaction(the_transaction)
+                block.save_block()
+                SavetoMyTransaction(the_transaction)
 
             del my_private_key
             del password

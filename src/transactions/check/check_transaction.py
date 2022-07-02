@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from lib.log import get_logger
+from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.check.datas.check_datas import Check_Datas
 from transactions.check.len.check_len import Check_Len
 from transactions.check.sign.check_sign import Check_Sign
@@ -28,6 +29,7 @@ def CheckTransaction(
     logger.info(
         f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
     )
+    ChangeTransactionFee(block)
 
     if not TXAlreadyGot(block, transaction):
         logger.warning("The transaction is already got")

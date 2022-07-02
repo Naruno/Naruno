@@ -10,7 +10,6 @@ import socket
 import sys
 import threading
 import time
-from hashlib import sha256
 
 from blockchain.block.get_block import GetBlock
 from config import CONNECTED_NODE_PATH
@@ -23,6 +22,7 @@ from lib.merkle_root import MerkleTree
 from node.node import *
 from node.node_connection import Node_Connection
 from node.unl import Unl
+from transactions.check.check_transaction import CheckTransaction
 from transactions.transaction import Transaction
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.privateKey import PrivateKey
@@ -670,19 +670,18 @@ class Node(threading.Thread):
             Node.main_node.send_data_to_node(each_node, items)
 
     def get_transaction(self, data, node):
-        system = GetBlock()
-        from transactions.send_transaction_to_the_block import \
-            SendTransactiontoTheBlock
-
-        SendTransactiontoTheBlock(
-            system,
-            sequance_number=data["sequance_number"],
-            signature=data["signature"],
-            fromUser=data["fromUser"],
-            toUser=data["to_user"],
-            data=data["data"],
-            amount=data["amount"],
-            transaction_fee=data["transaction_fee"],
-            transaction_sender=node,
-            transaction_time=data["transaction_time"],
+        block = GetBlock()
+        the_transaction = Transaction(
+            data["sequance_number"],
+            data["signature"],
+            data["fromUser"],
+            data["to_user"],
+            data["data"],
+            data["amount"],
+            data["transaction_fee"],
+            data["transaction_time"],
         )
+        if CheckTransaction(block, the_transaction):
+            block.pendingTransaction.append(the_transaction)
+            Node.send_transaction(the_transaction)
+            block.save_block()
