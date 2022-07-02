@@ -16,7 +16,13 @@ from transactions.tx_already_got import TXAlreadyGot
 logger = get_logger("TRANSACTIONS")
 
 
-def CheckTransaction(block, transaction, custom_current_time=None, custom_sequence_number=None, custom_balance=None):
+def CheckTransaction(
+    block,
+    transaction,
+    custom_current_time=None,
+    custom_sequence_number=None,
+    custom_balance=None,
+):
     """
     This function checks the transaction.
     """
@@ -40,7 +46,13 @@ def CheckTransaction(block, transaction, custom_current_time=None, custom_sequen
     else:
         return False
 
-    if Check_Datas(block, transaction, custom_current_time=custom_current_time, custom_balance=custom_balance, custom_sequence_number=custom_sequence_number):
+    if Check_Datas(
+        block,
+        transaction,
+        custom_current_time=custom_current_time,
+        custom_balance=custom_balance,
+        custom_sequence_number=custom_sequence_number,
+    ):
         logger.info("Transaction balance is correct")
     else:
         return False
