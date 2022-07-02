@@ -4,25 +4,23 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from transactions.validate_transaction import ValidateTransaction
+from transactions.tx_already_got import TXAlreadyGot
+from transactions.transaction import Transaction
+from transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.save_my_transaction import SaveMyTransaction
+from transactions.pending_to_validating import PendingtoValidating
+from transactions.get_my_transaction import GetMyTransaction
+from transactions.check.type.check_type import Check_Type
+from transactions.check.len.check_len import Check_Len
+from transactions.check.datas.check_datas import Check_Datas
+from transactions.check.check_transaction import CheckTransaction
+from transactions.change_transaction_fee import ChangeTransactionFee
+from blockchain.block.block_main import Block
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import unittest
-
-from blockchain.block.block_main import Block
-from transactions.change_transaction_fee import ChangeTransactionFee
-from transactions.check.check_transaction import CheckTransaction
-from transactions.check.datas.check_datas import Check_Datas
-from transactions.check.len.check_len import Check_Len
-from transactions.check.type.check_type import Check_Type
-from transactions.get_my_transaction import GetMyTransaction
-from transactions.pending_to_validating import PendingtoValidating
-from transactions.save_my_transaction import SaveMyTransaction
-from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.transaction import Transaction
-from transactions.tx_already_got import TXAlreadyGot
-from transactions.validate_transaction import ValidateTransaction
-
 
 
 class Test_Transactions(unittest.TestCase):
