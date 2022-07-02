@@ -599,10 +599,8 @@ class Node(threading.Thread):
 
                 system = GetBlock()
                 system.newly = True
-                from transactions.change_transaction_fee import \
-                    ChangeTransactionFee
 
-                ChangeTransactionFee(system)
+                system.ChangeTransactionFee()
 
                 system.exclude_validators = []
                 perpetualTimer(system.consensus_timer,

@@ -10,8 +10,8 @@ import pickle
 from config import MY_TRANSACTION_PATH
 from distutils.log import info
 from lib.config_system import get_config
-from transactions.get_my_transaction import GetMyTransaction
-from transactions.save_my_transaction import SaveMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.save_my_transaction import SaveMyTransaction
 
 
 def ValidateTransaction(tx):

@@ -23,7 +23,7 @@ from lib.status import Status
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
-from transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
 from waitress import serve
 from wallet.delete_current_wallet import delete_current_wallet

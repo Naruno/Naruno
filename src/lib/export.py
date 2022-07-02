@@ -9,7 +9,7 @@ import os
 
 from config import MY_TRANSACTION_EXPORT_PATH
 from lib.config_system import get_config
-from transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
 
 
 def export_the_transactions():

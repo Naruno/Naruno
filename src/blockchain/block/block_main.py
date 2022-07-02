@@ -23,10 +23,10 @@ from lib.config_system import get_config
 from lib.log import get_logger
 from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
-from transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
 from transactions.pending_to_validating import PendingtoValidating
-from transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.validate_transaction import ValidateTransaction
+from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.validate_transaction import ValidateTransaction
 from wallet.wallet_import import wallet_import
 
 logger = get_logger("BLOCKCHAIN")
@@ -95,6 +95,16 @@ class Block:
         if start_the_system:
             logger.info("Consensus timer is started")
             perpetualTimer(self.consensus_timer, consensus_trigger).start()
+
+    def ChangeTransactionFee(self):
+        """
+        Increase transaction fee by 0.01 DNC for each self.default_optimum_transaction_number argument
+        """
+        if not (len(self.pendingTransaction + self.validating_list) // self.default_optimum_transaction_number) == 0:
+            increase = (len(self.pendingTransaction + self.validating_list) // self.default_optimum_transaction_number) * self.default_increase_of_fee
+            self.transaction_fee += increase
+        else:
+            self.transaction_fee = self.default_transaction_fee
 
     def reset_the_block(self):
         """

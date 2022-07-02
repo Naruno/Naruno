@@ -42,6 +42,12 @@ def Check_Datas(
     else:
         return False
 
+
+    for already_tx in block.pendingTransaction + block.validating_list:
+        if already_tx.signature == transaction.signature:
+            return False
+    logger.info("Transaction is new")
+
     for tx in block.pendingTransaction + block.validating_list:
         if (tx.fromUser == transaction.fromUser
                 and tx.signature != transaction.signature):

@@ -10,18 +10,16 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from blockchain.block.block_main import Block
-from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.check.check_transaction import CheckTransaction
 from transactions.check.datas.check_datas import Check_Datas
 from transactions.check.len.check_len import Check_Len
 from transactions.check.type.check_type import Check_Type
-from transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
 from transactions.pending_to_validating import PendingtoValidating
-from transactions.save_my_transaction import SaveMyTransaction
-from transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.save_my_transaction import SaveMyTransaction
+from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.transaction import Transaction
-from transactions.tx_already_got import TXAlreadyGot
-from transactions.validate_transaction import ValidateTransaction
+from transactions.my_transactions.validate_transaction import ValidateTransaction
 
 
 
@@ -162,50 +160,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(len(block.pendingTransaction), 0)
 
-    def test_tx_already_got_pending(self):
-
-        block = Block("", start_the_system=False)
-
-        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
-
-        block.pendingTransaction.append(temp_transaction)
-
-        self.assertEqual(TXAlreadyGot(block, temp_transaction), True)
-
-    def test_tx_already_got_validating(self):
-
-        block = Block("", start_the_system=False)
-
-        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
-
-        block.validating_list.append(temp_transaction)
-
-        result = TXAlreadyGot(block, temp_transaction)
-
-        self.assertEqual(result, True)
-
-    def test_tx_already_got_different(self):
-
-        block = Block("", start_the_system=False)
-
-        temp_transaction = Transaction(1, "1", "", "", "", 1, 1, 1)
-        temp_transaction_2 = Transaction(2, "2", "", "", "", 1, 1, 1)
-
-        block.pendingTransaction.append(temp_transaction)
-
-        self.assertEqual(TXAlreadyGot(block, temp_transaction_2), False)
-
-    def test_tx_already_got(self):
-
-        block = Block("", start_the_system=False)
-
-        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
-
-        if not TXAlreadyGot(block, temp_transaction):
-            block.pendingTransaction.append(temp_transaction)
-
-        self.assertEqual(len(block.pendingTransaction), 1)
-
     def test_change_transaction_fee_increasing(self):
 
         block = Block("", start_the_system=False)
@@ -221,7 +175,7 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block)
+        block.ChangeTransactionFee()
 
         new_transaction_fee = block.transaction_fee
 
@@ -242,7 +196,7 @@ class Test_Transactions(unittest.TestCase):
         block.pendingTransaction.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block)
+        block.ChangeTransactionFee()
 
         new_transaction_fee = block.transaction_fee
 

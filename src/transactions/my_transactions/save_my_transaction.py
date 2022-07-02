@@ -9,17 +9,14 @@ import pickle
 
 from config import MY_TRANSACTION_PATH
 from lib.config_system import get_config
-from transactions.get_my_transaction import GetMyTransaction
-from transactions.save_my_transaction import SaveMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
 
 
-def SavetoMyTransaction(tx, validated=False):
+def SaveMyTransaction(transaction_list):
     """
-    Saves the transaction to the transaction db.
+    Saves the transaction_list to the transaction db.
     """
 
-    currently_list = GetMyTransaction()
-    tx_list = [tx, validated]
-    currently_list.append(tx_list)
-
-    SaveMyTransaction(currently_list)
+    os.chdir(get_config()["main_folder"])
+    with open(MY_TRANSACTION_PATH, "wb") as my_transaction_file:
+        pickle.dump(transaction_list, my_transaction_file, protocol=2)

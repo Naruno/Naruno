@@ -8,7 +8,7 @@ import time
 
 from blockchain.block.get_block import GetBlock
 from node.unl import Unl
-from transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
 
 
 def Status():

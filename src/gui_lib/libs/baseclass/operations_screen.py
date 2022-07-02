@@ -17,7 +17,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 from lib.export import export_the_transactions
 from lib.settings_system import the_settings
-from transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
 from transactions.send import send
 from wallet.wallet_import import wallet_import
 
