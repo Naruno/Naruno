@@ -6,9 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 from hashlib import sha256
+from lib.log import get_logger
 
 from accounts.get_sequance_number import GetSequanceNumber
-from blockchain.block.get_block import GetBlock
 from lib.settings_system import the_settings
 from node.node import Node
 from transactions.check.check_transaction import CheckTransaction
@@ -19,7 +19,9 @@ from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.wallet_import import wallet_import
 
 
-def send(password, to_user, amount, data=""):
+logger = get_logger("TRANSACTIONS")
+
+def send(block, password, to_user, amount, data=""):
     """
     The main function for sending the transaction.
 
@@ -34,26 +36,21 @@ def send(password, to_user, amount, data=""):
     try:
         amount = float(amount)
     except ValueError:
-        print("This is not float coin amount.")
-        return False
-
-    if not isinstance(amount, float):
-        print("This is not int or float coin amount.")
+        logger.exception("This is not float coin amount.")
         return False
 
     if amount < 0:
-        print("This is negative coin amount.")
+        logger.error("This is negative coin amount.")
         return False
 
-    block = GetBlock()
 
-    if not (1000000 / block.max_tx_number) >= len(data):
-        print("The data is too long.")
+    if not (block.max_data_size / block.max_tx_number) >= len(data):
+        logger.error("The data is too long.")
         return False
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
     if len(str(amount).split(".")[1]) > decimal_amount:
-        print(f"The amount of decimal places is more than {decimal_amount}.")
+        logger.error(f"The amount of decimal places is more than {decimal_amount}.")
         return False
 
     if not amount < block.minumum_transfer_amount:
@@ -93,8 +90,18 @@ def send(password, to_user, amount, data=""):
                 block.save_block()
                 SavetoMyTransaction(the_transaction)
 
-            del my_private_key
-            del password
+                del my_private_key
+                del password
+              
+                return True
+            else:
+                logger.error("The transaction is not valid.")
+                return False
+
 
         else:
-            print("Password is not correct")
+            return False
+            logger.error("Password is not correct")
+    else:
+        return False
+        logger.error(f"The amount is too low. minumum:{block.minumum_transfer_amount}")

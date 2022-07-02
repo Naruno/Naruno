@@ -10,6 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from blockchain.block.block_main import Block
+from transactions.send import send
 from transactions.check.check_transaction import CheckTransaction
 from transactions.check.datas.check_datas import Check_Datas
 from transactions.check.len.check_len import Check_Len
@@ -873,5 +874,42 @@ class Test_Transactions(unittest.TestCase):
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
 
+    def test_send_false_amount_type(self):
+        block = Block("onur", start_the_system=False) 
+        result = send(block, "123", "onur", "atakan", "ulusoy")
+        self.assertEqual(result, False)
 
+    def test_send_false_amount_type_negative(self):
+        block = Block("onur", start_the_system=False) 
+        result = send(block, "123", "onur", -500, "ulusoy")
+        self.assertEqual(result, False)
+
+    def test_send_false_big_data(self):
+        block = Block("onur", start_the_system=False)    
+        data = "a"
+        for i in range(int((block.max_data_size / block.max_tx_number))):
+            data += "a"
+        result = send(block, "123", "onur", 500, data)
+        self.assertEqual(result, False)
+
+    def test_send_false_false_decimal_amount(self):
+        block = Block("onur", start_the_system=False)    
+        result = send(block, "123", "onur", 500.001, "ulusoy")
+        self.assertEqual(result, False)
+
+    def test_send_false_false_amount_lower_than_minumum(self):
+        block = Block("onur", start_the_system=False)    
+        result = send(block, "123", "onur", 500, "ulusoy")
+        self.assertEqual(result, False)  
+
+    def test_send_false_false_pass(self):
+        block = Block("onur", start_the_system=False)    
+        result = send(block, "1235", "onur", 5000, "ulusoy")
+        self.assertEqual(result, False)   
+
+    def test_send_false_false_check(self):
+        block = Block("onur", start_the_system=False)    
+        result = send(block, "123", "onur", 5000, "ulusoy")
+        self.assertEqual(result, False)
+ 
 unittest.main(exit=False)
