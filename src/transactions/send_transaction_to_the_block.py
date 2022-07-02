@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from transactions.change_transaction_fee import ChangeTransactionFee
 from transactions.check.check_transaction import CheckTransaction
-from transactions.propagating_the_tx import PropagatingtheTX
+from node.node import Node
 from transactions.transaction import Transaction
 
 
@@ -44,7 +44,7 @@ def SendTransactiontoTheBlock(
         ChangeTransactionFee(block)
         block.save_block()
 
-        PropagatingtheTX(the_tx)
+        Node.send_transaction(the_tx)
 
         return the_tx
     else:

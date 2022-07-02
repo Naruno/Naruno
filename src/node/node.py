@@ -649,6 +649,26 @@ class Node(threading.Thread):
             file.write((data["byte"].encode(encoding="iso-8859-1")))
             file.close()
 
+    @staticmethod
+    def send_transaction(tx):
+        """
+        Sends the given transaction to UNL nodes.
+        """
+
+        items = {
+            "transactionrequest": 1,
+            "sequance_number": tx.sequance_number,
+            "signature": tx.signature,
+            "fromUser": tx.fromUser,
+            "to_user": tx.toUser,
+            "data": tx.data,
+            "amount": tx.amount,
+            "transaction_fee": tx.transaction_fee,
+            "transaction_time": tx.transaction_time,
+        }
+        for each_node in Unl.get_as_node_type(Unl.get_unl_nodes()):
+            Node.main_node.send_data_to_node(each_node, items)
+
     def get_transaction(self, data, node):
         system = GetBlock()
         from transactions.send_transaction_to_the_block import \
