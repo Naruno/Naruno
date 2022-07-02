@@ -12,6 +12,7 @@ from lib.log import get_logger
 from node.node import Node
 from node.unl import Unl
 from transactions.check.check_transaction import CheckTransaction
+from transactions.get_transaction import GetTransaction
 from transactions.process_the_transaction import ProccesstheTransaction
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
@@ -105,9 +106,7 @@ def consensus_round_1(block):
             logger.debug(f"Newly validating list {block.validating_list}")
 
             for each_newly in newly_added_list:
-                if CheckTransaction(block, each_newly):
-                    block.pendingTransaction.append(each_newly)
-                    Node.send_transaction(each_newly)
+                GetTransaction(block, each_newly)
 
             block.raund_1 = True
 

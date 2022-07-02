@@ -12,6 +12,7 @@ from lib.log import get_logger
 from lib.settings_system import the_settings
 from node.node import Node
 from transactions.check.check_transaction import CheckTransaction
+from transactions.get_transaction import GetTransaction
 from transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 from transactions.transaction import Transaction
@@ -85,10 +86,7 @@ def send(block, password, to_user, amount, data=""):
                 transaction_fee,
                 tx_time,
             )
-            if CheckTransaction(block, the_transaction):
-                block.pendingTransaction.append(the_transaction)
-                Node.send_transaction(the_transaction)
-                block.save_block()
+            if GetTransaction(block, the_transaction):
                 SavetoMyTransaction(the_transaction)
 
                 del my_private_key
