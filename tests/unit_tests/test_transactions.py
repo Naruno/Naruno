@@ -27,6 +27,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Transactions(unittest.TestCase):
+
     def test_get_my_transaction_non(self):
         backup = GetMyTransaction()
         SaveMyTransaction([])
@@ -253,8 +254,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -363,23 +366,26 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        result = Check_Datas(
-            block, the_transaction, custom_balance=10, custom_sequence_number=0
-        )
+        result = Check_Datas(block,
+                             the_transaction,
+                             custom_balance=10,
+                             custom_sequence_number=0)
         self.assertEqual(result, False)
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.amount = 10
-        result = Check_Datas(
-            block, the_transaction, custom_balance=100000, custom_sequence_number=0
-        )
+        result = Check_Datas(block,
+                             the_transaction,
+                             custom_balance=100000,
+                             custom_sequence_number=0)
         self.assertEqual(result, False)
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.transaction_fee = 0.001
-        result = Check_Datas(
-            block, the_transaction, custom_balance=100000, custom_sequence_number=0
-        )
+        result = Check_Datas(block,
+                             the_transaction,
+                             custom_balance=100000,
+                             custom_sequence_number=0)
         self.assertEqual(result, False)
 
         the_transaction = Transaction.load_json(the_transaction_json)
@@ -390,15 +396,17 @@ class Test_Transactions(unittest.TestCase):
         the_transaction1 = Transaction.load_json(the_transaction_json)
         the_transaction1.signature = "a"
         block3.pendingTransaction.append(the_transaction1)
-        result = Check_Datas(
-            block3, the_transaction, custom_balance=100000, custom_sequence_number=0
-        )
+        result = Check_Datas(block3,
+                             the_transaction,
+                             custom_balance=100000,
+                             custom_sequence_number=0)
         self.assertEqual(result, False)
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        result = Check_Datas(
-            block, the_transaction, custom_balance=100000, custom_sequence_number=0
-        )
+        result = Check_Datas(block,
+                             the_transaction,
+                             custom_balance=100000,
+                             custom_sequence_number=0)
         self.assertEqual(result, False)
 
         the_transaction = Transaction.load_json(the_transaction_json)
