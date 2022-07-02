@@ -7,7 +7,6 @@
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import time
 import unittest
 
 from blockchain.block.block_main import Block
@@ -250,7 +249,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(first_transaction_fee, 0.02)
         self.assertEqual(new_transaction_fee, 0.02)
 
-    def test_check_transaction(self):
+    def test_check_transaction_true(self):
 
         the_transaction_json = {
             "sequance_number": 1,
@@ -279,6 +278,26 @@ class Test_Transactions(unittest.TestCase):
         )
         self.assertEqual(result, True)
 
+    def test_check_transaction_false_seuance_number(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.sequance_number = 2
         result = CheckTransaction(
@@ -289,6 +308,25 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+    def test_check_transaction_false_signature(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.data = "test"
@@ -300,6 +338,25 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+    def test_check_transaction_false_fromUser(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = "OMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg=="
@@ -311,6 +368,25 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+    def test_check_transaction_false_toUser(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.toUser = "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg=="
@@ -322,6 +398,25 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+    def test_check_transaction_already_got(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         block2 = Block(the_transaction.fromUser, start_the_system=False)
@@ -337,6 +432,25 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+    def test_check_transaction_bad_type_fromUser(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.toUser = 1
@@ -348,6 +462,25 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+    def test_check_transaction_true_len_data(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_string = ""
@@ -356,6 +489,25 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.data = the_string
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, True)
+    def test_check_transaction_false_len_data(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_string = "a"
@@ -364,43 +516,136 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.data = the_string
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_balance(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         result = Check_Datas(block,
                              the_transaction,
+                             custom_current_time=(the_transaction.transaction_time + 5),
                              custom_balance=10,
                              custom_sequence_number=0)
         self.assertEqual(result, False)
+    def test_check_transaction_false_amount(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.amount = 10
         result = Check_Datas(block,
                              the_transaction,
+                             custom_current_time=(the_transaction.transaction_time + 5),
                              custom_balance=100000,
                              custom_sequence_number=0)
         self.assertEqual(result, False)
+    def test_check_transaction_false_transaction_fee(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.transaction_fee = 0.001
         result = Check_Datas(block,
                              the_transaction,
+                             custom_current_time=(the_transaction.transaction_time + 5),
                              custom_balance=100000,
                              custom_sequence_number=0)
         self.assertEqual(result, False)
+    def test_check_transaction_multiple_transaction_from_one_user(self):
 
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block3 = Block(the_transaction.fromUser, start_the_system=False)
-        block3.max_tx_number = 2
-        block3.transaction_delay_time = 60
-        block3.minumum_transfer_amount = 1000
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
         the_transaction1 = Transaction.load_json(the_transaction_json)
         the_transaction1.signature = "a"
-        block3.pendingTransaction.append(the_transaction1)
-        result = Check_Datas(block3,
+        block.pendingTransaction.append(the_transaction1)
+        result = Check_Datas(block,
                              the_transaction,
+                             custom_current_time=(the_transaction.transaction_time + 5),
                              custom_balance=100000,
                              custom_sequence_number=0)
         self.assertEqual(result, False)
+    def test_check_transaction_wrong_time(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         result = Check_Datas(block,
@@ -408,51 +653,241 @@ class Test_Transactions(unittest.TestCase):
                              custom_balance=100000,
                              custom_sequence_number=0)
         self.assertEqual(result, False)
+    def test_check_transaction_false_amount_decimal(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction.amount = 0.0001
+        the_transaction.amount = 0.001
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_transaction_fee_decimal(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction.transaction_fee = 0.0001
+        the_transaction.transaction_fee = 0.001
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_sequance_number_type(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.sequance_number = "1"
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_signature_type(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.signature = 1
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_fromUser_type(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = 1
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_toUser_type(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.toUser = 1
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_data_type(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.data = 1
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_amount_type(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.amount = "1"
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_transaction_fee_type(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.transaction_fee = "1"
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+    def test_check_transaction_false_transaction_time_type(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser, start_the_system=False)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.transaction_time = "1"
