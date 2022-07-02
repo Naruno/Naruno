@@ -60,10 +60,6 @@ class Block:
         self.sequance_number = 0
         self.empty_block_number = 0
 
-
-
-
-
         self.edited_accounts = []
 
         self.pendingTransaction = []
@@ -171,7 +167,7 @@ class Block:
             if accounts_list == []:
                 save_accounts([Account(self.creator, self.coin_amount)])
             blocks_hash = [self.previous_hash]
-            SaveBlockshash(blocks_hash)            
+            SaveBlockshash(blocks_hash)
             self.first_time = False
         os.chdir(get_config()["main_folder"])
         with open(TEMP_BLOCK_PATH, "wb") as block_file:

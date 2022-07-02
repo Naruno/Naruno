@@ -4,20 +4,28 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import time
-from lib.log import get_logger
+
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
+from lib.log import get_logger
 
 logger = get_logger("TRANSACTIONS")
 
-def Check_Datas(block, transaction, custom_current_time=None, custom_balance=None, custom_sequence_number=None):
+
+def Check_Datas(
+    block,
+    transaction,
+    custom_current_time=None,
+    custom_balance=None,
+    custom_sequence_number=None,
+):
     """
     Check if the transaction datas are valid
     """
 
-    balance = GetBalance(block, transaction.fromUser) if custom_balance is None else custom_balance
+    balance = (GetBalance(block, transaction.fromUser)
+               if custom_balance is None else custom_balance)
     if balance >= (float(transaction.amount) +
                    float(transaction.transaction_fee)):
         logger.info("Balance is valid")
@@ -40,15 +48,18 @@ def Check_Datas(block, transaction, custom_current_time=None, custom_balance=Non
             logger.info("Multiple transaction in one account")
             return False
 
-    get_sequance_number = GetSequanceNumber(transaction.fromUser) if custom_sequence_number is None else custom_sequence_number
-    if transaction.sequance_number == (
-            get_sequance_number + 1):
+    get_sequance_number = (GetSequanceNumber(transaction.fromUser)
+                           if custom_sequence_number is None else
+                           custom_sequence_number)
+    if transaction.sequance_number == (get_sequance_number + 1):
         logger.info("Sequance number is valid")
     else:
         return False
 
-    current_time = int(time.time()) if custom_current_time is None else custom_current_time
-    if not (current_time - transaction.transaction_time) > block.transaction_delay_time:
+    current_time = (int(time.time())
+                    if custom_current_time is None else custom_current_time)
+    if not (current_time -
+            transaction.transaction_time) > block.transaction_delay_time:
         logger.info("Transaction time is valid")
     else:
         return False

@@ -4,10 +4,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 from lib.log import get_logger
 
 logger = get_logger("TRANSACTIONS")
+
 
 def Check_Type(transaction):
     """
@@ -52,5 +52,5 @@ def Check_Type(transaction):
         logger.info("transaction_time is int")
     else:
         return False
-    
+
     return True
