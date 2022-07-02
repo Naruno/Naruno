@@ -23,6 +23,7 @@ from node.node import *
 from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.check.check_transaction import CheckTransaction
+from transactions.get_transaction import GetTransaction
 from transactions.transaction import Transaction
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.privateKey import PrivateKey
@@ -679,7 +680,4 @@ class Node(threading.Thread):
             data["transaction_fee"],
             data["transaction_time"],
         )
-        if CheckTransaction(block, the_transaction):
-            block.pendingTransaction.append(the_transaction)
-            Node.send_transaction(the_transaction)
-            block.save_block()
+        GetTransaction(block, the_transaction)
