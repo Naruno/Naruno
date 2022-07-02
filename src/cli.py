@@ -128,13 +128,17 @@ def menu():
             if "y" == input("Are you sure ? (y or n): "):
                 delete_current_wallet()
         if choices_input == "sc":
+            block = GetBlock()
             send(
+                block,
                 getpass("Password: "),
                 input("Please write receiver adress: "),
                 input("Coin Amount (ex. 1.0): "),
             )
         if choices_input == "scd":
+            block = GetBlock()
             send(
+                block,
                 getpass("Password: "),
                 input("Please write receiver adress: "),
                 input("Coin Amount (ex. 1.0): "),

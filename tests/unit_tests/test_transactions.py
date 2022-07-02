@@ -15,11 +15,14 @@ from transactions.check.datas.check_datas import Check_Datas
 from transactions.check.len.check_len import Check_Len
 from transactions.check.type.check_type import Check_Type
 from transactions.my_transactions.get_my_transaction import GetMyTransaction
-from transactions.pending_to_validating import PendingtoValidating
 from transactions.my_transactions.save_my_transaction import SaveMyTransaction
-from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
+from transactions.pending_to_validating import PendingtoValidating
+from transactions.send import send
 from transactions.transaction import Transaction
-from transactions.my_transactions.validate_transaction import ValidateTransaction
 
 
 
@@ -871,6 +874,44 @@ class Test_Transactions(unittest.TestCase):
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.transaction_time = "1"
         result = Check_Type(the_transaction)
+        self.assertEqual(result, False)
+
+    def test_send_false_amount_type(self):
+        block = Block("onur", start_the_system=False)
+        result = send(block, "123", "onur", "atakan", "ulusoy")
+        self.assertEqual(result, False)
+
+    def test_send_false_amount_type_negative(self):
+        block = Block("onur", start_the_system=False)
+        result = send(block, "123", "onur", -500, "ulusoy")
+        self.assertEqual(result, False)
+
+    def test_send_false_big_data(self):
+        block = Block("onur", start_the_system=False)
+        data = "a"
+        for i in range(int((block.max_data_size / block.max_tx_number))):
+            data += "a"
+        result = send(block, "123", "onur", 500, data)
+        self.assertEqual(result, False)
+
+    def test_send_false_false_decimal_amount(self):
+        block = Block("onur", start_the_system=False)
+        result = send(block, "123", "onur", 500.001, "ulusoy")
+        self.assertEqual(result, False)
+
+    def test_send_false_false_amount_lower_than_minumum(self):
+        block = Block("onur", start_the_system=False)
+        result = send(block, "123", "onur", 500, "ulusoy")
+        self.assertEqual(result, False)
+
+    def test_send_false_false_pass(self):
+        block = Block("onur", start_the_system=False)
+        result = send(block, "1235", "onur", 5000, "ulusoy")
+        self.assertEqual(result, False)
+
+    def test_send_false_false_check(self):
+        block = Block("onur", start_the_system=False)
+        result = send(block, "123", "onur", 5000, "ulusoy")
         self.assertEqual(result, False)
 
 

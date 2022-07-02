@@ -72,7 +72,8 @@ def delete_wallets_page():
 def send_coin_page(address, amount, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    send(password, address, amount)
+    block = GetBlock()
+    send(block, password, address, amount)
     return jsonify("OK")
 
 
@@ -81,7 +82,8 @@ def send_coin_page(address, amount, password):
 def send_coin_data_page(address, amount, data, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    send(password, address, amount, data)
+    block = GetBlock()
+    send(block, assword, address, amount, data)
     return jsonify("OK")
 
 
