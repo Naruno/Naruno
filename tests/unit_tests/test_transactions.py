@@ -10,6 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from blockchain.block.block_main import Block
+from blockchain.block.change_transaction_fee import ChangeTransactionFee
 from transactions.check.check_transaction import CheckTransaction
 from transactions.check.datas.check_datas import Check_Datas
 from transactions.check.len.check_len import Check_Len
@@ -178,7 +179,7 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        block.ChangeTransactionFee()
+        ChangeTransactionFee(block)
 
         new_transaction_fee = block.transaction_fee
 
@@ -199,7 +200,7 @@ class Test_Transactions(unittest.TestCase):
         block.pendingTransaction.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        block.ChangeTransactionFee()
+        ChangeTransactionFee(block)
 
         new_transaction_fee = block.transaction_fee
 

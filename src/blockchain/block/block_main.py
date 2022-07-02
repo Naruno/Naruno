@@ -96,16 +96,6 @@ class Block:
             logger.info("Consensus timer is started")
             perpetualTimer(self.consensus_timer, consensus_trigger).start()
 
-    def ChangeTransactionFee(self):
-        """
-        Increase transaction fee by 0.01 DNC for each self.default_optimum_transaction_number argument
-        """
-        if not (len(self.pendingTransaction + self.validating_list) // self.default_optimum_transaction_number) == 0:
-            increase = (len(self.pendingTransaction + self.validating_list) // self.default_optimum_transaction_number) * self.default_increase_of_fee
-            self.transaction_fee += increase
-        else:
-            self.transaction_fee = self.default_transaction_fee
-
     def reset_the_block(self):
         """
         When the block is verified and if block have a transaction

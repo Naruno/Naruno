@@ -12,6 +12,7 @@ import threading
 import time
 
 from blockchain.block.get_block import GetBlock
+from blockchain.block.change_transaction_fee import ChangeTransactionFee
 from config import CONNECTED_NODE_PATH
 from config import LOADING_BLOCK_PATH
 from config import TEMP_ACCOUNTS_PATH
@@ -601,7 +602,7 @@ class Node(threading.Thread):
                 system = GetBlock()
                 system.newly = True
 
-                system.ChangeTransactionFee()
+                ChangeTransactionFee(system)
 
                 system.exclude_validators = []
                 perpetualTimer(system.consensus_timer,
