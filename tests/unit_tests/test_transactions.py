@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import time
 import unittest
 
@@ -23,7 +24,6 @@ from transactions.transaction import Transaction
 from transactions.tx_already_got import TXAlreadyGot
 from transactions.validate_transaction import ValidateTransaction
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Transactions(unittest.TestCase):
