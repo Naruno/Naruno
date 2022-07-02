@@ -47,6 +47,7 @@ class Block:
         previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9-f86b4d545fe18264dc489f5af6782b9f4986fe3a9bf03b3fec417df9e8fd97d4",
         start_the_system=True,
     ):
+        self.coin_amount = 1000000000
         self.first_time = True
         self.creator = creator
         self.genesis_time = int(time.time())
@@ -72,6 +73,8 @@ class Block:
         # Each user settings by our hardware
         self.default_optimum_transaction_number = 1
         self.default_increase_of_fee = 0.01
+        self.transaction_delay_time = 60
+        self.max_data_size = 1000000
 
         self.hash = None
 
@@ -166,7 +169,7 @@ class Block:
         if self.first_time:
             accounts_list = GetAccounts()
             if accounts_list == []:
-                save_accounts([Account(self.creator, 1000000000)])
+                save_accounts([Account(self.creator, self.coin_amount)])
             blocks_hash = [self.previous_hash]
             SaveBlockshash(blocks_hash)            
             self.first_time = False
