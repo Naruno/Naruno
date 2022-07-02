@@ -72,20 +72,21 @@ def send(password, to_user, amount, data=""):
             transaction_fee = block.transaction_fee
 
             tx_time = int(time.time())
-            the_transaction = Transaction(sequance_number, 
-                Ecdsa.sign(
-                    str(sequance_number) + str(my_public_key) + str(to_user) +
-                    str(data) + str(amount) + str(transaction_fee) +
-                    str(tx_time),
-                    PrivateKey.fromPem(my_private_key),
-                ).toBase64(), 
-                my_public_key, 
-                to_user, 
-                data, 
-                amount, 
-                transaction_fee, 
-                tx_time
-            )
+            the_transaction = Transaction(sequance_number,
+                                          Ecdsa.sign(
+                                              str(sequance_number) + str(my_public_key) + str(to_user) +
+                                              str(data) + str(amount) + str(transaction_fee) +
+                                              str(tx_time),
+                                              PrivateKey.fromPem(
+                                                  my_private_key),
+                                          ).toBase64(),
+                                          my_public_key,
+                                          to_user,
+                                          data,
+                                          amount,
+                                          transaction_fee,
+                                          tx_time
+                                          )
             if CheckTransaction(block, the_transaction):
                 block.pendingTransaction.append(the_transaction)
                 Node.send_transaction(the_transaction)

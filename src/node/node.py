@@ -311,7 +311,7 @@ class Node(threading.Thread):
                         "fullblock" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 print("getting chain")
                 self.get_full_chain(data, node)
         except Exception as e:
@@ -324,7 +324,7 @@ class Node(threading.Thread):
                         "fullaccounts" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 print("getting chain")
                 self.get_full_accounts(data, node)
         except Exception as e:
@@ -337,7 +337,7 @@ class Node(threading.Thread):
                         "fullblockshash" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 self.get_full_blockshash(data, node)
         except Exception as e:
             print(e)
@@ -672,7 +672,8 @@ class Node(threading.Thread):
 
     def get_transaction(self, data, node):
         block = GetBlock()
-        the_transaction = Transaction(data["sequance_number"], data["signature"], data["fromUser"], data["to_user"], data["data"], data["amount"], data["transaction_fee"], data["transaction_time"])
+        the_transaction = Transaction(data["sequance_number"], data["signature"], data["fromUser"],
+                                      data["to_user"], data["data"], data["amount"], data["transaction_fee"], data["transaction_time"])
         if CheckTransaction(block, the_transaction):
             block.pendingTransaction.append(the_transaction)
             Node.send_transaction(the_transaction)
