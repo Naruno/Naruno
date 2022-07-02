@@ -13,7 +13,8 @@ from lib.settings_system import the_settings
 from node.node import Node
 from transactions.check.check_transaction import CheckTransaction
 from transactions.get_transaction import GetTransaction
-from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from transactions.transaction import Transaction
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.privateKey import PrivateKey
