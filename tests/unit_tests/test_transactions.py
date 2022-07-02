@@ -308,6 +308,7 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+
     def test_check_transaction_false_signature(self):
 
         the_transaction_json = {
@@ -338,6 +339,7 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+
     def test_check_transaction_false_fromUser(self):
 
         the_transaction_json = {
@@ -368,6 +370,7 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+
     def test_check_transaction_false_toUser(self):
 
         the_transaction_json = {
@@ -398,6 +401,7 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+
     def test_check_transaction_already_got(self):
 
         the_transaction_json = {
@@ -432,6 +436,7 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+
     def test_check_transaction_bad_type_fromUser(self):
 
         the_transaction_json = {
@@ -462,6 +467,7 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, False)
+
     def test_check_transaction_true_len_data(self):
 
         the_transaction_json = {
@@ -489,6 +495,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.data = the_string
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, True)
+
     def test_check_transaction_false_len_data(self):
 
         the_transaction_json = {
@@ -516,6 +523,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.data = the_string
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_balance(self):
 
         the_transaction_json = {
@@ -537,12 +545,15 @@ class Test_Transactions(unittest.TestCase):
         block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        result = Check_Datas(block,
-                             the_transaction,
-                             custom_current_time=(the_transaction.transaction_time + 5),
-                             custom_balance=10,
-                             custom_sequence_number=0)
+        result = Check_Datas(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_balance=10,
+            custom_sequence_number=0,
+        )
         self.assertEqual(result, False)
+
     def test_check_transaction_false_amount(self):
 
         the_transaction_json = {
@@ -565,12 +576,15 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.amount = 10
-        result = Check_Datas(block,
-                             the_transaction,
-                             custom_current_time=(the_transaction.transaction_time + 5),
-                             custom_balance=100000,
-                             custom_sequence_number=0)
+        result = Check_Datas(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_balance=100000,
+            custom_sequence_number=0,
+        )
         self.assertEqual(result, False)
+
     def test_check_transaction_false_transaction_fee(self):
 
         the_transaction_json = {
@@ -593,12 +607,15 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.transaction_fee = 0.001
-        result = Check_Datas(block,
-                             the_transaction,
-                             custom_current_time=(the_transaction.transaction_time + 5),
-                             custom_balance=100000,
-                             custom_sequence_number=0)
+        result = Check_Datas(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_balance=100000,
+            custom_sequence_number=0,
+        )
         self.assertEqual(result, False)
+
     def test_check_transaction_multiple_transaction_from_one_user(self):
 
         the_transaction_json = {
@@ -621,12 +638,15 @@ class Test_Transactions(unittest.TestCase):
         the_transaction1 = Transaction.load_json(the_transaction_json)
         the_transaction1.signature = "a"
         block.pendingTransaction.append(the_transaction1)
-        result = Check_Datas(block,
-                             the_transaction,
-                             custom_current_time=(the_transaction.transaction_time + 5),
-                             custom_balance=100000,
-                             custom_sequence_number=0)
+        result = Check_Datas(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_balance=100000,
+            custom_sequence_number=0,
+        )
         self.assertEqual(result, False)
+
     def test_check_transaction_wrong_time(self):
 
         the_transaction_json = {
@@ -653,6 +673,7 @@ class Test_Transactions(unittest.TestCase):
                              custom_balance=100000,
                              custom_sequence_number=0)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_amount_decimal(self):
 
         the_transaction_json = {
@@ -677,6 +698,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.amount = 0.001
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_transaction_fee_decimal(self):
 
         the_transaction_json = {
@@ -701,6 +723,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.transaction_fee = 0.001
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_sequance_number_type(self):
 
         the_transaction_json = {
@@ -725,6 +748,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.sequance_number = "1"
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_signature_type(self):
 
         the_transaction_json = {
@@ -749,6 +773,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.signature = 1
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_fromUser_type(self):
 
         the_transaction_json = {
@@ -773,6 +798,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.fromUser = 1
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_toUser_type(self):
 
         the_transaction_json = {
@@ -797,6 +823,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.toUser = 1
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_data_type(self):
 
         the_transaction_json = {
@@ -821,6 +848,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.data = 1
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_amount_type(self):
 
         the_transaction_json = {
@@ -845,6 +873,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.amount = "1"
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_transaction_fee_type(self):
 
         the_transaction_json = {
@@ -869,6 +898,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.transaction_fee = "1"
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
+
     def test_check_transaction_false_transaction_time_type(self):
 
         the_transaction_json = {
