@@ -59,8 +59,7 @@ changelog:
 
     - title: CLI
       labels:
-        - CLI-Menu
-        - CLI-Parameters
+        - CLI
 
     - title: Node
       labels:
