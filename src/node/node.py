@@ -22,14 +22,13 @@ from lib.merkle_root import MerkleTree
 from node.node import *
 from node.node_connection import Node_Connection
 from node.unl import Unl
+from transactions.check.check_transaction import CheckTransaction
 from transactions.transaction import Transaction
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.ellipticcurve.publicKey import PublicKey
 from wallet.ellipticcurve.signature import Signature
 from wallet.wallet_import import wallet_import
-from transactions.transaction import Transaction
-from transactions.check.check_transaction import CheckTransaction
 
 logger = get_logger("NODE")
 
@@ -672,7 +671,16 @@ class Node(threading.Thread):
 
     def get_transaction(self, data, node):
         block = GetBlock()
-        the_transaction = Transaction(data["sequance_number"], data["signature"], data["fromUser"], data["to_user"], data["data"], data["amount"], data["transaction_fee"], data["transaction_time"])
+        the_transaction = Transaction(
+            data["sequance_number"],
+            data["signature"],
+            data["fromUser"],
+            data["to_user"],
+            data["data"],
+            data["amount"],
+            data["transaction_fee"],
+            data["transaction_time"],
+        )
         if CheckTransaction(block, the_transaction):
             block.pendingTransaction.append(the_transaction)
             Node.send_transaction(the_transaction)
