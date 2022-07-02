@@ -12,24 +12,20 @@ import threading
 import time
 
 from blockchain.block.get_block import GetBlock
-from config import CONNECTED_NODE_PATH
-from config import LOADING_BLOCK_PATH
-from config import TEMP_ACCOUNTS_PATH
-from config import TEMP_BLOCK_PATH
-from config import TEMP_BLOCKSHASH_PATH
+from config import (CONNECTED_NODE_PATH, LOADING_BLOCK_PATH,
+                    TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PATH)
 from lib.log import get_logger
 from lib.merkle_root import MerkleTree
 from node.node import *
 from node.node_connection import Node_Connection
 from node.unl import Unl
+from transactions.check.check_transaction import CheckTransaction
 from transactions.transaction import Transaction
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.ellipticcurve.publicKey import PublicKey
 from wallet.ellipticcurve.signature import Signature
 from wallet.wallet_import import wallet_import
-from transactions.transaction import Transaction
-from transactions.check.check_transaction import CheckTransaction
 
 logger = get_logger("NODE")
 
@@ -595,7 +591,8 @@ class Node(threading.Thread):
 
                 system = GetBlock()
                 system.newly = True
-                from transactions.change_transaction_fee import ChangeTransactionFee
+                from transactions.change_transaction_fee import \
+                    ChangeTransactionFee
 
                 ChangeTransactionFee(system)
 
