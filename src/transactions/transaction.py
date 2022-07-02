@@ -35,14 +35,14 @@ class Transaction:
         transaction_fee,
         time_of_transaction,
     ):
-        self.sequance_number = sequance_number
-        self.signature = signature
-        self.fromUser = fromUser
-        self.toUser = toUser
-        self.data = data
-        self.amount = amount
-        self.transaction_fee = transaction_fee
-        self.transaction_time = time_of_transaction
+        self.sequance_number = int(sequance_number)
+        self.signature = str(signature)
+        self.fromUser = str(fromUser)
+        self.toUser = str(toUser)
+        self.data = str(data)
+        self.amount = float(amount)
+        self.transaction_fee = float(transaction_fee)
+        self.transaction_time = int(time_of_transaction)
 
     def dump_json(self):
         """

@@ -10,7 +10,6 @@ import socket
 import sys
 import threading
 import time
-from hashlib import sha256
 
 from blockchain.block.get_block import GetBlock
 from config import CONNECTED_NODE_PATH
@@ -29,6 +28,8 @@ from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.ellipticcurve.publicKey import PublicKey
 from wallet.ellipticcurve.signature import Signature
 from wallet.wallet_import import wallet_import
+from transactions.transaction import Transaction
+from transactions.check.check_transaction import CheckTransaction
 
 logger = get_logger("NODE")
 
@@ -649,40 +650,10 @@ class Node(threading.Thread):
             file.write((data["byte"].encode(encoding="iso-8859-1")))
             file.close()
 
-    @staticmethod
-    def send_transaction(tx):
-        """
-        Sends the given transaction to UNL nodes.
-        """
-
-        items = {
-            "transactionrequest": 1,
-            "sequance_number": tx.sequance_number,
-            "signature": tx.signature,
-            "fromUser": tx.fromUser,
-            "to_user": tx.toUser,
-            "data": tx.data,
-            "amount": tx.amount,
-            "transaction_fee": tx.transaction_fee,
-            "transaction_time": tx.transaction_time,
-        }
-        for each_node in Unl.get_as_node_type(Unl.get_unl_nodes()):
-            Node.main_node.send_data_to_node(each_node, items)
-
     def get_transaction(self, data, node):
-        system = GetBlock()
-        from transactions.send_transaction_to_the_block import \
-            SendTransactiontoTheBlock
-
-        SendTransactiontoTheBlock(
-            system,
-            sequance_number=data["sequance_number"],
-            signature=data["signature"],
-            fromUser=data["fromUser"],
-            toUser=data["to_user"],
-            data=data["data"],
-            amount=data["amount"],
-            transaction_fee=data["transaction_fee"],
-            transaction_sender=node,
-            transaction_time=data["transaction_time"],
-        )
+        block = GetBlock()
+        the_transaction = Transaction(data["sequance_number"], data["signature"], data["fromUser"], data["to_user"], data["data"], data["amount"], data["transaction_fee"], data["transaction_time"])
+        if CheckTransaction(block, the_transaction):
+            block.pendingTransaction.append(the_transaction)
+            Node.send_transaction(the_transaction)
+            block.save_block()

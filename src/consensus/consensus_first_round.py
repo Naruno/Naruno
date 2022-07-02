@@ -11,9 +11,8 @@ from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from lib.log import get_logger
 from node.node import Node
 from node.unl import Unl
+from transactions.check.check_transaction import CheckTransaction
 from transactions.process_the_transaction import ProccesstheTransaction
-from transactions.send_transaction_to_the_block import \
-    SendTransactiontoTheBlock
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -106,18 +105,9 @@ def consensus_round_1(block):
             logger.debug(f"Newly validating list {block.validating_list}")
 
             for each_newly in newly_added_list:
-                SendTransactiontoTheBlock(
-                    block,
-                    each_newly.sequance_number,
-                    each_newly.signature,
-                    each_newly.fromUser,
-                    each_newly.toUser,
-                    each_newly.transaction_fee,
-                    each_newly.data,
-                    each_newly.amount,
-                    transaction_sender=None,
-                    transaction_time=each_newly.transaction_time,
-                )
+                if CheckTransaction(block, each_newly):
+                    block.pendingTransaction.append(each_newly)
+                    Node.send_transaction(each_newly)
 
             block.raund_1 = True
 
