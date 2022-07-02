@@ -370,24 +370,19 @@ class Test_Transactions(unittest.TestCase):
             "transaction_fee": 0.02,
             "transaction_time": 1656764224,
         }
+
         the_transaction = Transaction.load_json(the_transaction_json)
         block = Block(the_transaction.fromUser, start_the_system=False)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
-
-        the_transaction = Transaction.load_json(the_transaction_json)
-        block2 = Block(the_transaction.fromUser, start_the_system=False)
-        block2.max_tx_number = 2
-        block2.transaction_delay_time = 60
-        block2.minumum_transfer_amount = 1000
-        block2.pendingTransaction.append(the_transaction)
-        result = CheckTransaction(
-            block2,
+        block.pendingTransaction.append(the_transaction)
+        result = Check_Datas(
+            block,
             the_transaction,
             custom_current_time=(the_transaction.transaction_time + 5),
-            custom_sequence_number=0,
             custom_balance=100000,
+            custom_sequence_number=0,
         )
         self.assertEqual(result, False)
 
