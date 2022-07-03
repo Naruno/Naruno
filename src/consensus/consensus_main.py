@@ -6,15 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
-
-from transactions.pending_to_validating import PendingtoValidating
-
-
 from blockchain.block.get_block import GetBlock
-from transactions.pending_to_validating import PendingtoValidating
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
 from lib.log import get_logger
+from transactions.pending_to_validating import PendingtoValidating
 
 logger = get_logger("CONSENSUS")
 
@@ -34,7 +30,8 @@ def consensus_trigger():
 
     if block.validated:
         true_time = (block.genesis_time + block.block_time +
-                     ((block.sequance_number + block.empty_block_number) * block.block_time))
+                     ((block.sequance_number + block.empty_block_number) *
+                      block.block_time))
         if block.newly:
             true_time -= 1
             logger.info(
