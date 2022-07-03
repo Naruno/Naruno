@@ -11,7 +11,6 @@ import pickle
 from config import BLOCKS_PATH
 
 from accounts.get_accounts import GetAccounts
-from accounts.get_accounts_part import GetAccounts_part
 
 from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
 
@@ -48,10 +47,6 @@ def saveBlockstoBlockchainDB(block):
         ) as block_file:
             pickle.dump(GetAccounts(), block_file, protocol=2)
 
-        with open(
-            BLOCKS_PATH + str(block.sequance_number) + ".accountspart", "wb"
-        ) as block_file:
-            pickle.dump(GetAccounts_part(), block_file, protocol=2)
 
         with open(
             BLOCKS_PATH + str(block.sequance_number) + ".blockshash", "wb"

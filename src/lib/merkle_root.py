@@ -50,7 +50,10 @@ class MerkleTree:
     """
 
     def __init__(self, values: List[str]) -> None:
-        self.merkleCalculator(values)
+        if not len(values) == 0:
+            self.merkleCalculator(values)
+        else:
+            self.root = ""
 
     def merkleCalculator(self, hashList):
         """

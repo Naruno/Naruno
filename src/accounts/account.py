@@ -9,9 +9,6 @@
 import hashlib
 import json
 
-from accounts.get_accounts import GetAccounts
-from accounts.get_accounts_part import GetAccounts_part
-
 class Account:
     """
     The account Class.

@@ -65,11 +65,12 @@ class Block:
         self.validating_list = []
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02
-        # Each user settings by our hardware
         self.default_optimum_transaction_number = 1
         self.default_increase_of_fee = 0.01
         self.transaction_delay_time = 60
         self.max_data_size = 1000000
+
+        self.part_amount = 100000
 
         self.hash = None
 
@@ -88,6 +89,7 @@ class Block:
 
         self.validated = False
         self.validated_time = None
+
 
         self.dowload_true_block = ""
 
