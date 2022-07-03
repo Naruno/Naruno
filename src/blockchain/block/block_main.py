@@ -14,18 +14,15 @@ from accounts.save_accounts import save_accounts
 from app.app_main import app_tigger
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash
-from blockchain.block.save_block_to_blockchain_db import \
-    saveBlockstoBlockchainDB
+from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
 from config import TEMP_BLOCK_PATH
 from consensus.consensus_main import consensus_trigger
 from lib.config_system import get_config
 from lib.log import get_logger
 from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
-from transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.validate_transaction import ValidateTransaction
 from wallet.wallet_import import wallet_import
 
 logger = get_logger("BLOCKCHAIN")
@@ -115,8 +112,11 @@ class Block:
         self.validated_time = None
 
         # Resetting the node candidate blocks.
-        nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
-                 if custom_nodes is None else custom_nodes)
+        nodes = (
+            Unl.get_as_node_type(Unl.get_unl_nodes())
+            if custom_nodes is None
+            else custom_nodes
+        )
         for node in nodes:
             node.candidate_block = None
             node.candidate_block_hash = None
