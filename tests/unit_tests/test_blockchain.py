@@ -17,6 +17,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Blockchain(unittest.TestCase):
+
     def test_block_reset_start_time(self):
         block = Block("onur", start_the_system=False)
         first_time = block.start_time
