@@ -4,13 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import hashlib
 import json
 
-from accounts.get_accounts import GetAccounts
-from accounts.get_accounts_part import GetAccounts_part
 
 class Account:
     """
@@ -53,7 +49,8 @@ class Account:
         """
         Json returns data in the appropriate format as the account class.
         """
-        return Account(data["address"], data["balance"], data["sequence_number"])
+        return Account(data["address"], data["balance"],
+                       data["sequence_number"])
 
     def __str__(self):
         return self.Address

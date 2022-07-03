@@ -24,11 +24,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
-
-from typing import List
-
 import hashlib
+from typing import List
 
 
 class Leaf:
@@ -40,8 +37,7 @@ class Leaf:
         self.left = left
         self.right = right
         self.value = hashlib.sha256(
-            (self.left + self.right).encode("utf-8")
-        ).hexdigest()
+            (self.left + self.right).encode("utf-8")).hexdigest()
 
 
 class MerkleTree:
@@ -50,7 +46,10 @@ class MerkleTree:
     """
 
     def __init__(self, values: List[str]) -> None:
-        self.merkleCalculator(values)
+        if not len(values) == 0:
+            self.merkleCalculator(values)
+        else:
+            self.root = ""
 
     def merkleCalculator(self, hashList):
         """
