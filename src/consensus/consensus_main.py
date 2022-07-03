@@ -6,15 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
-
-from transactions.pending_to_validating import PendingtoValidating
-
-
 from blockchain.block.get_block import GetBlock
-from transactions.pending_to_validating import PendingtoValidating
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
 from lib.log import get_logger
+from transactions.pending_to_validating import PendingtoValidating
 
 logger = get_logger("CONSENSUS")
 
