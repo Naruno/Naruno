@@ -4,15 +4,14 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from node.node_connection import Node_Connection
+from node.unl import Unl
+from blockchain.block.block_main import Block
+import unittest
 import os
 import time
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import unittest
-
-from blockchain.block.block_main import Block
-from node.unl import Unl
-from node.node_connection import Node_Connection
 
 
 class Test_Blockchain(unittest.TestCase):

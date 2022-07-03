@@ -27,7 +27,6 @@ from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
 
 
-
 logger = get_logger("BLOCKCHAIN")
 
 
@@ -95,7 +94,7 @@ class Block:
             logger.info("Consensus timer is started")
             perpetualTimer(self.consensus_timer, consensus_trigger).start()
 
-    def reset_the_block(self, custom_nodes = None):
+    def reset_the_block(self, custom_nodes=None):
         """
         When the block is verified and if block have a transaction
         and if block have at least half of the max_tx_number transaction,it saves the block
@@ -114,26 +113,27 @@ class Block:
         self.validated_time = None
 
         # Resetting the node candidate blocks.
-        nodes = Unl.get_as_node_type(Unl.get_unl_nodes()) if custom_nodes is None else custom_nodes
+        nodes = Unl.get_as_node_type(
+            Unl.get_unl_nodes()) if custom_nodes is None else custom_nodes
         for node in nodes:
             node.candidate_block = None
             node.candidate_block_hash = None
 
         if not len(self.validating_list) < (self.max_tx_number / 2):
-            app_tigger(self)            
+            app_tigger(self)
             my_address = wallet_import(-1, 3)
             my_public_key = wallet_import(-1, 0)
             for tx in self.validating_list:
                 if tx.toUser == my_address:
                     SavetoMyTransaction(tx, validated=True)
                 elif tx.fromUser == my_public_key:
-                    ValidateTransaction(tx)               
+                    ValidateTransaction(tx)
             saveBlockstoBlockchainDB(self)
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
             current_blockshash_list = GetBlockshash()
             current_blockshash_list.append(self.previous_hash)
-            SaveBlockshash(current_blockshash_list)            
+            SaveBlockshash(current_blockshash_list)
             self.sequance_number = self.sequance_number + 1
             self.validating_list = []
             self.hash = None
