@@ -7,8 +7,7 @@
 import os
 import pickle
 import time
-from blockchain.block.save_block_to_blockchain_db import \
-    saveBlockstoBlockchainDB
+from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
 from blockchain.block.blocks_hash import SaveBlockshash
 from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.my_transactions.validate_transaction import ValidateTransaction
@@ -113,8 +112,11 @@ class Block:
         self.validated_time = None
 
         # Resetting the node candidate blocks.
-        nodes = Unl.get_as_node_type(
-            Unl.get_unl_nodes()) if custom_nodes is None else custom_nodes
+        nodes = (
+            Unl.get_as_node_type(Unl.get_unl_nodes())
+            if custom_nodes is None
+            else custom_nodes
+        )
         for node in nodes:
             node.candidate_block = None
             node.candidate_block_hash = None
