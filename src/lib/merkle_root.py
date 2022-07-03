@@ -37,7 +37,8 @@ class Leaf:
         self.left = left
         self.right = right
         self.value = hashlib.sha256(
-            (self.left + self.right).encode("utf-8")).hexdigest()
+            (self.left + self.right).encode("utf-8")
+        ).hexdigest()
 
 
 class MerkleTree:

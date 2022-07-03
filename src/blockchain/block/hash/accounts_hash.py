@@ -14,8 +14,9 @@ def AccountsHash(block, the_accounts):
 
     account_list = []
 
-    new_part = MerkleTree([account.get_hash()
-                           for account in the_accounts]).getRootHash()
+    new_part = MerkleTree(
+        [account.get_hash() for account in the_accounts]
+    ).getRootHash()
     account_list.append(new_part)
 
     for edited_account in block.edited_accounts:
