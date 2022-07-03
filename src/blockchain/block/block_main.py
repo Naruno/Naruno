@@ -7,27 +7,26 @@
 import os
 import pickle
 import time
-
+from blockchain.block.save_block_to_blockchain_db import \
+    saveBlockstoBlockchainDB
+from blockchain.block.blocks_hash import SaveBlockshash
+from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.validate_transaction import ValidateTransaction
+from app.app_main import app_tigger
+from wallet.wallet_import import wallet_import
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
-from app.app_main import app_tigger
-from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.blocks_hash import SaveBlockshash
-from blockchain.block.blocks_hash import SaveBlockshash_part
-from blockchain.block.save_block_to_blockchain_db import \
-    saveBlockstoBlockchainDB
 from config import TEMP_BLOCK_PATH
 from consensus.consensus_main import consensus_trigger
 from lib.config_system import get_config
 from lib.log import get_logger
 from lib.perpetualtimer import perpetualTimer
 from node.unl import Unl
-from transactions.my_transactions.get_my_transaction import GetMyTransaction
-from transactions.pending_to_validating import PendingtoValidating
-from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.my_transactions.validate_transaction import ValidateTransaction
-from wallet.wallet_import import wallet_import
+
+
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -96,7 +95,7 @@ class Block:
             logger.info("Consensus timer is started")
             perpetualTimer(self.consensus_timer, consensus_trigger).start()
 
-    def reset_the_block(self):
+    def reset_the_block(self, custom_nodes = None):
         """
         When the block is verified and if block have a transaction
         and if block have at least half of the max_tx_number transaction,it saves the block
@@ -115,48 +114,40 @@ class Block:
         self.validated_time = None
 
         # Resetting the node candidate blocks.
-        for node in Unl.get_as_node_type(Unl.get_unl_nodes()):
+        nodes = Unl.get_as_node_type(Unl.get_unl_nodes()) if custom_nodes is None else custom_nodes
+        for node in nodes:
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        if not len(self.validating_list) == 0 and not len(
-                self.validating_list) < (self.max_tx_number / 2):
-
-            app_tigger(self)
-
+        if not len(self.validating_list) < (self.max_tx_number / 2):
+            app_tigger(self)            
             my_address = wallet_import(-1, 3)
             my_public_key = wallet_import(-1, 0)
             for tx in self.validating_list:
                 if tx.toUser == my_address:
                     SavetoMyTransaction(tx, validated=True)
                 elif tx.fromUser == my_public_key:
-                    ValidateTransaction(tx)
-
+                    ValidateTransaction(tx)               
             saveBlockstoBlockchainDB(self)
-
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
             current_blockshash_list = GetBlockshash()
             current_blockshash_list.append(self.previous_hash)
-            SaveBlockshash(current_blockshash_list)
+            SaveBlockshash(current_blockshash_list)            
             self.sequance_number = self.sequance_number + 1
             self.validating_list = []
             self.hash = None
 
             logger.info("New block created")
+            return True
         else:
             logger.info(
-                "New block not created because any transaction is not validated"
+                "New block not created because no transaction enought to create a new block"
             )
             self.empty_block_number += 1
+            return False
 
         logger.debug(self.__dict__)
-
-        # Adding self.pendingTransaction to the new/current block.
-        PendingtoValidating(self)
-
-        # Saving the new block.
-        self.save_block()
 
     def save_block(self):
         """

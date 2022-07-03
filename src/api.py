@@ -83,7 +83,7 @@ def send_coin_data_page(address, amount, data, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
-    send(block, assword, address, amount, data)
+    send(block, password, address, amount, data)
     return jsonify("OK")
 
 
