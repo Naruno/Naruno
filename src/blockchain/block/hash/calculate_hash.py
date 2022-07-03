@@ -4,9 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from blockchain.block.hash.tx_hash import TransactionsHash
-from blockchain.block.hash.blocks_hash import BlocksHash
 from blockchain.block.hash.accounts_hash import AccountsHash
+from blockchain.block.hash.blocks_hash import BlocksHash
+from blockchain.block.hash.tx_hash import TransactionsHash
 from lib.merkle_root import MerkleTree
 
 

@@ -6,6 +6,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
+from accounts.get_accounts import GetAccounts
+from accounts.save_accounts import save_accounts
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import GetBlockshash_part
+from blockchain.block.blocks_hash import SaveBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash_part
 from blockchain.block.hash.calculate_hash import CalculateHash
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from lib.log import get_logger
@@ -13,12 +19,6 @@ from node.node import Node
 from node.unl import Unl
 from transactions.get_transaction import GetTransaction
 from transactions.process_the_transaction import ProccesstheTransaction
-from accounts.get_accounts import GetAccounts
-from accounts.save_accounts import save_accounts
-from blockchain.block.blocks_hash import SaveBlockshash_part
-from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.blocks_hash import GetBlockshash_part
-from blockchain.block.blocks_hash import SaveBlockshash
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -122,12 +122,12 @@ def consensus_round_1(block):
             part_of_blocks_hash = GetBlockshash_part()
             the_blocks_hash = GetBlockshash()
             the_accounts = GetAccounts()
-            CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts)
+            CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
+                          the_accounts)
 
             save_accounts(the_accounts)
             SaveBlockshash_part(part_of_blocks_hash)
             SaveBlockshash(the_blocks_hash)
-
 
             logger.debug(f"Block hash {block.hash}")
 
