@@ -122,12 +122,12 @@ def consensus_round_1(block):
             part_of_blocks_hash = GetBlockshash_part()
             the_blocks_hash = GetBlockshash()
             the_accounts = GetAccounts()
-            CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts)
+            CalculateHash(block, part_of_blocks_hash,
+                          the_blocks_hash, the_accounts)
 
             save_accounts(the_accounts)
             SaveBlockshash_part(part_of_blocks_hash)
             SaveBlockshash(the_blocks_hash)
-
 
             logger.debug(f"Block hash {block.hash}")
 

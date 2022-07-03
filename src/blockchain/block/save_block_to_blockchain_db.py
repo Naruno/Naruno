@@ -47,7 +47,6 @@ def saveBlockstoBlockchainDB(block):
         ) as block_file:
             pickle.dump(GetAccounts(), block_file, protocol=2)
 
-
         with open(
             BLOCKS_PATH + str(block.sequance_number) + ".blockshash", "wb"
         ) as block_file:

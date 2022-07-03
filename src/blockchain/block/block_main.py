@@ -90,7 +90,6 @@ class Block:
         self.validated = False
         self.validated_time = None
 
-
         self.dowload_true_block = ""
 
         if start_the_system:

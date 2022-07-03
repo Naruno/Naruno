@@ -13,7 +13,7 @@ def BlocksHash(block, part_of_blocks_hash, the_blocks_hash):
     """
 
     blocks_hash_list = []
-    if len(the_blocks_hash) == block.part_amount: 
+    if len(the_blocks_hash) == block.part_amount:
         for will_added_blocks_hash in the_blocks_hash:
             blocks_hash_list.append(will_added_blocks_hash)
     else:
@@ -22,6 +22,5 @@ def BlocksHash(block, part_of_blocks_hash, the_blocks_hash):
         part_of_blocks_hash.append(new_part)
     for part_of_blocks_hash_element in part_of_blocks_hash:
         blocks_hash_list.append(part_of_blocks_hash_element)
-    
 
     return MerkleTree(blocks_hash_list).getRootHash()

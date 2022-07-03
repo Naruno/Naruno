@@ -9,6 +9,7 @@
 import hashlib
 import json
 
+
 class Account:
     """
     The account Class.
