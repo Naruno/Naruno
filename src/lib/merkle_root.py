@@ -26,9 +26,8 @@ SOFTWARE.
 """
 
 
-from typing import List
-
 import hashlib
+from typing import List
 
 
 class Leaf:
