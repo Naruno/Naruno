@@ -111,7 +111,8 @@ def consensus_round_1(block):
             logger.debug(f"Newly validating list {block.validating_list}")
 
             for each_newly in newly_added_list:
-                GetTransaction(block, each_newly)
+                if GetTransaction(block, each_newly):
+                    Node.send_transaction(each_newly)              
 
             block.raund_1 = True
 

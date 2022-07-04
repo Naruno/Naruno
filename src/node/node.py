@@ -681,4 +681,6 @@ class Node(threading.Thread):
             data["transaction_fee"],
             data["transaction_time"],
         )
-        GetTransaction(block, the_transaction)
+        if GetTransaction(block, the_transaction):
+            Node.send_transaction(the_transaction)
+            block.save_block()

@@ -87,6 +87,8 @@ def send(block, password, to_user, amount, data=""):
                 tx_time,
             )
             if GetTransaction(block, the_transaction):
+                Node.send_transaction(the_transaction)
+                block.save_block()
                 SavetoMyTransaction(the_transaction)
 
                 del my_private_key

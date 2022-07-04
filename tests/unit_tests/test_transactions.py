@@ -12,6 +12,7 @@ import unittest
 from blockchain.block.block_main import Block
 from blockchain.block.change_transaction_fee import ChangeTransactionFee
 from transactions.check.check_transaction import CheckTransaction
+from transactions.get_transaction import GetTransaction
 from transactions.check.datas.check_datas import Check_Datas
 from transactions.check.len.check_len import Check_Len
 from transactions.check.type.check_type import Check_Type
@@ -915,5 +916,63 @@ class Test_Transactions(unittest.TestCase):
         result = send(block, "123", "onur", 5000, "ulusoy")
         self.assertEqual(result, False)
 
+
+    def test_get_transaction_false(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        result = GetTransaction(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_sequence_number=0,
+            custom_balance=1,
+        )
+        self.assertEqual(result, False)
+
+    def test_get_transaction_true(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        result = GetTransaction(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_sequence_number=0,
+            custom_balance=100000,
+        )
+        self.assertEqual(result, True)
 
 unittest.main(exit=False)
