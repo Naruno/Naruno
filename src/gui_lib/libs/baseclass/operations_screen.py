@@ -18,6 +18,8 @@ from kivymd_extensions.sweetalert import SweetAlert
 from lib.export import export_the_transactions
 from lib.settings_system import the_settings
 from transactions.my_transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from transactions.send import send
 from wallet.wallet_import import wallet_import
 
@@ -80,7 +82,12 @@ class OperationBox(MDGridLayout):
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
                     text_list[0].encode("utf-8")).hexdigest()):
                 block = GetBlock()
-                send(block, text_list[0], receiver_adress, float(amount))
+                send_tx = send(block, text_list[0], receiver_adress,
+                               float(amount))
+                if not send_tx == False:
+                    SavetoMyTransaction(send_tx)
+                    Node.send_transaction(send_tx)
+                    block.save_block()
             else:
                 SweetAlert().fire(
                     "Password is not correct",

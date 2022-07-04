@@ -10,11 +10,7 @@ from hashlib import sha256
 from accounts.get_sequance_number import GetSequanceNumber
 from lib.log import get_logger
 from lib.settings_system import the_settings
-from node.node import Node
-from transactions.check.check_transaction import CheckTransaction
 from transactions.get_transaction import GetTransaction
-from transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
 from transactions.transaction import Transaction
 from wallet.ellipticcurve.ecdsa import Ecdsa
 from wallet.ellipticcurve.privateKey import PrivateKey
@@ -23,7 +19,16 @@ from wallet.wallet_import import wallet_import
 logger = get_logger("TRANSACTIONS")
 
 
-def send(block, password, to_user, amount, data=""):
+def send(
+    block,
+    password,
+    to_user,
+    amount,
+    data="",
+    custom_current_time=None,
+    custom_sequence_number=None,
+    custom_balance=None,
+):
     """
     The main function for sending the transaction.
 
@@ -86,13 +91,18 @@ def send(block, password, to_user, amount, data=""):
                 transaction_fee,
                 tx_time,
             )
-            if GetTransaction(block, the_transaction):
-                SavetoMyTransaction(the_transaction)
+            if GetTransaction(
+                    block,
+                    the_transaction,
+                    custom_current_time=custom_current_time,
+                    custom_sequence_number=custom_sequence_number,
+                    custom_balance=custom_balance,
+            ):
 
                 del my_private_key
                 del password
 
-                return True
+                return the_transaction
             else:
                 logger.error("The transaction is not valid.")
                 return False

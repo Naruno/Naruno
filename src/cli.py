@@ -29,6 +29,8 @@ from lib.status import Status
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send
 from wallet.delete_current_wallet import delete_current_wallet
@@ -129,21 +131,29 @@ def menu():
                 delete_current_wallet()
         if choices_input == "sc":
             block = GetBlock()
-            send(
+            send_tx = send(
                 block,
                 getpass("Password: "),
                 input("Please write receiver adress: "),
                 input("Coin Amount (ex. 1.0): "),
             )
+            if not send_tx == False:
+                SavetoMyTransaction(send_tx)
+                Node.send_transaction(send_tx)
+                block.save_block()
         if choices_input == "scd":
             block = GetBlock()
-            send(
+            send_tx = send(
                 block,
                 getpass("Password: "),
                 input("Please write receiver adress: "),
                 input("Coin Amount (ex. 1.0): "),
                 input("Data: "),
             )
+            if not send_tx == False:
+                SavetoMyTransaction(send_tx)
+                Node.send_transaction(send_tx)
+                block.save_block()
         if choices_input == "gb":
             GetBalance(GetBlock(), wallet_import(-1, 0))
         if choices_input == "help":

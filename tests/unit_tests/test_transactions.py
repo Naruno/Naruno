@@ -7,6 +7,7 @@
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+import time
 import unittest
 
 from blockchain.block.block_main import Block
@@ -15,6 +16,7 @@ from transactions.check.check_transaction import CheckTransaction
 from transactions.check.datas.check_datas import Check_Datas
 from transactions.check.len.check_len import Check_Len
 from transactions.check.type.check_type import Check_Type
+from transactions.get_transaction import GetTransaction
 from transactions.my_transactions.get_my_transaction import GetMyTransaction
 from transactions.my_transactions.save_my_transaction import SaveMyTransaction
 from transactions.my_transactions.save_to_my_transaction import \
@@ -895,25 +897,97 @@ class Test_Transactions(unittest.TestCase):
         result = send(block, "123", "onur", 500, data)
         self.assertEqual(result, False)
 
-    def test_send_false_false_decimal_amount(self):
+    def test_send_false_decimal_amount(self):
         block = Block("onur")
         result = send(block, "123", "onur", 500.001, "ulusoy")
         self.assertEqual(result, False)
 
-    def test_send_false_false_amount_lower_than_minumum(self):
+    def test_send_false_amount_lower_than_minumum(self):
         block = Block("onur")
         result = send(block, "123", "onur", 500, "ulusoy")
         self.assertEqual(result, False)
 
-    def test_send_false_false_pass(self):
+    def test_send_false_pass(self):
         block = Block("onur")
         result = send(block, "1235", "onur", 5000, "ulusoy")
         self.assertEqual(result, False)
 
-    def test_send_false_false_check(self):
+    def test_send_false_check(self):
         block = Block("onur")
         result = send(block, "123", "onur", 5000, "ulusoy")
         self.assertEqual(result, False)
+
+    def test_send_true(self):
+        block = Block("onur")
+        result = send(
+            block,
+            "123",
+            "onur",
+            5000,
+            "ulusoy",
+            custom_current_time=(int(time.time()) + 5),
+            custom_sequence_number=0,
+            custom_balance=100000,
+        )
+        self.assertNotEqual(result, False)
+
+    def test_get_transaction_false(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        result = GetTransaction(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_sequence_number=0,
+            custom_balance=1,
+        )
+        self.assertEqual(result, False)
+
+    def test_get_transaction_true(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        result = GetTransaction(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_sequence_number=0,
+            custom_balance=100000,
+        )
+        self.assertEqual(result, True)
 
 
 unittest.main(exit=False)

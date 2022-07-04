@@ -24,6 +24,8 @@ from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.my_transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from transactions.send import send
 from waitress import serve
 from wallet.delete_current_wallet import delete_current_wallet
@@ -73,7 +75,11 @@ def send_coin_page(address, amount, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
-    send(block, password, address, amount)
+    send_tx = send(block, password, address, amount)
+    if not send_tx == False:
+        SavetoMyTransaction(send_tx)
+        Node.send_transaction(send_tx)
+        block.save_block()
     return jsonify("OK")
 
 
@@ -83,7 +89,11 @@ def send_coin_data_page(address, amount, data, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
-    send(block, password, address, amount, data)
+    send_tx = send(block, password, address, amount, data)
+    if not send_tx == False:
+        SavetoMyTransaction(send_tx)
+        Node.send_transaction(send_tx)
+        block.save_block()
     return jsonify("OK")
 
 
