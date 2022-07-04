@@ -24,6 +24,8 @@ from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.my_transactions.get_my_transaction import GetMyTransaction
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from transactions.send import send
 from waitress import serve
 from wallet.delete_current_wallet import delete_current_wallet
@@ -31,9 +33,6 @@ from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
-from transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-
 
 logger = get_logger("API")
 

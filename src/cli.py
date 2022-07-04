@@ -29,6 +29,8 @@ from lib.status import Status
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send
 from wallet.delete_current_wallet import delete_current_wallet
@@ -36,9 +38,6 @@ from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
-from transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-
 
 logger = get_logger("CLI")
 
@@ -141,7 +140,7 @@ def menu():
             if not send_tx == False:
                 SavetoMyTransaction(send_tx)
                 Node.send_transaction(send_tx)
-                block.save_block()                
+                block.save_block()
         if choices_input == "scd":
             block = GetBlock()
             send_tx = send(
@@ -154,7 +153,7 @@ def menu():
             if not send_tx == False:
                 SavetoMyTransaction(send_tx)
                 Node.send_transaction(send_tx)
-                block.save_block()                
+                block.save_block()
         if choices_input == "gb":
             GetBalance(GetBlock(), wallet_import(-1, 0))
         if choices_input == "help":
