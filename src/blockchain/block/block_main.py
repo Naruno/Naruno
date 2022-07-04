@@ -115,6 +115,7 @@ class Block:
             self.validating_list = []
             self.hash = None
             logger.info("New block created")
+            logger.debug(self.__dict__)
             return [block2, self]
         else:
             logger.info(
@@ -123,7 +124,6 @@ class Block:
             self.empty_block_number += 1
             return False
 
-        logger.debug(self.__dict__)
 
     def save_block(self):
         """
