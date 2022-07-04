@@ -113,12 +113,15 @@ def consensus_round_1(block):
             for each_newly in newly_added_list:
                 if GetTransaction(block, each_newly):
                     Node.send_transaction(each_newly)
+   
 
             block.raund_1 = True
 
             block.raund_2_starting_time = int(time.time())
 
-            ProccesstheTransaction(block)
+            account_list = GetAccounts()
+            ProccesstheTransaction(block, account_list)
+            save_accounts(account_list)
 
             part_of_blocks_hash = GetBlockshash_part()
             the_blocks_hash = GetBlockshash()
