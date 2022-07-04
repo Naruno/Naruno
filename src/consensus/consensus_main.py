@@ -11,15 +11,12 @@ from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
 from lib.log import get_logger
 from transactions.pending_to_validating import PendingtoValidating
-from transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.validate_transaction import ValidateTransaction
 from wallet.wallet_import import wallet_import
 from app.app_main import app_tigger
 from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.save_block_to_blockchain_db import \
-    saveBlockstoBlockchainDB
+from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
 from blockchain.block.blocks_hash import SaveBlockshash
 
 logger = get_logger("CONSENSUS")
@@ -39,9 +36,11 @@ def consensus_trigger():
     )
 
     if block.validated:
-        true_time = (block.genesis_time + block.block_time +
-                     ((block.sequance_number + block.empty_block_number) *
-                      block.block_time))
+        true_time = (
+            block.genesis_time
+            + block.block_time
+            + ((block.sequance_number + block.empty_block_number) * block.block_time)
+        )
         if block.newly:
             true_time -= 1
             logger.info(
@@ -49,8 +48,7 @@ def consensus_trigger():
             )
         if not int(time.time()) < true_time:
             block.newly = False
-            logger.info(
-                "Consensus proccess is complated, the block will be reset")
+            logger.info("Consensus proccess is complated, the block will be reset")
 
             current_blockshash_list = GetBlockshash()
             reset_block = block.reset_the_block(current_blockshash_list)
