@@ -11,13 +11,10 @@ import sys
 import threading
 import time
 
-from blockchain.block.get_block import GetBlock
 from blockchain.block.change_transaction_fee import ChangeTransactionFee
-from config import CONNECTED_NODE_PATH
-from config import LOADING_BLOCK_PATH
-from config import TEMP_ACCOUNTS_PATH
-from config import TEMP_BLOCK_PATH
-from config import TEMP_BLOCKSHASH_PATH
+from blockchain.block.get_block import GetBlock
+from config import (CONNECTED_NODE_PATH, LOADING_BLOCK_PATH,
+                    TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PATH)
 from lib.log import get_logger
 from lib.merkle_root import MerkleTree
 from node.node import *
