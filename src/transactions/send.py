@@ -108,9 +108,9 @@ def send(
                 return False
 
         else:
-            return False
             logger.error("Password is not correct")
+            return False
     else:
-        return False
         logger.error(
             f"The amount is too low. minumum:{block.minumum_transfer_amount}")
+        return False
