@@ -7,6 +7,7 @@
 import copy
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import time
 import unittest
 
@@ -29,7 +30,6 @@ from transactions.process_the_transaction import ProccesstheTransaction
 from transactions.send import send
 from transactions.transaction import Transaction
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Transactions(unittest.TestCase):
