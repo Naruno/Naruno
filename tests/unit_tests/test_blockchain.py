@@ -25,53 +25,134 @@ from transactions.transaction import Transaction
 class Test_Blockchain(unittest.TestCase):
 
     def test_block_reset_start_time(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         first_time = block.start_time
         time.sleep(2)
-        block.reset_the_block()
+        current_blockshash_list = []
+        block.reset_the_block(current_blockshash_list)
         second_time = block.start_time
         self.assertNotEqual(first_time, second_time)
 
     def test_block_reset_raund_1(self):
-        block = Block("onur", start_the_system=False)
-        block.reset_the_block()
+        block = Block("onur")
+        current_blockshash_list = []
+        block.reset_the_block(current_blockshash_list)
         self.assertEqual(block.raund_1_starting_time, None)
         self.assertEqual(block.raund_1, False)
 
     def test_block_reset_raund_2(self):
-        block = Block("onur", start_the_system=False)
-        block.reset_the_block()
+        block = Block("onur")
+        current_blockshash_list = []
+        block.reset_the_block(current_blockshash_list)
         self.assertEqual(block.raund_2_starting_time, None)
         self.assertEqual(block.raund_2, False)
 
     def test_block_reset_validated(self):
-        block = Block("onur", start_the_system=False)
-        block.reset_the_block()
+        block = Block("onur")
+        current_blockshash_list = []
+        block.reset_the_block(current_blockshash_list)
         self.assertEqual(block.validated_time, None)
         self.assertEqual(block.validated, False)
 
     def test_block_reset_nodes(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         node_1 = Node_Connection("main_node", "sock", "id", "host", "port")
         node_1.candidate_block = True
         node_1.candidate_block_hash = True
         nodes_2 = [node_1]
-        block.reset_the_block(custom_nodes=nodes_2)
+        current_blockshash_list = []
+        block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
         for node in nodes_2:
             self.assertEqual(node.candidate_block, None)
             self.assertEqual(node.candidate_block_hash, None)
 
-    def test_block_not_enough_transaction(self):
-        block = Block("onur", start_the_system=False)
+    def test_block_not_reset_enough_transaction(self):
+        block = Block("onur")
         nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
         nodes_2 = nodes.copy()
         block.max_tx_number = 3
         block.validating_list = [1]
-        result = block.reset_the_block(custom_nodes=nodes_2)
+        current_blockshash_list = []
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
         self.assertEqual(result, False)
 
+    def test_block_reset_enough_transaction_result(self):
+        block = Block("onur")
+        block.hash = "onur"
+        nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
+        nodes_2 = nodes.copy()
+        block.max_tx_number = 3
+        block.validating_list = [1, 2]
+        current_blockshash_list = []
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
+        self.assertNotEqual(result, False)
+
+    def test_block_reset_enough_transaction_hash_configuration(self):
+        block = Block("onur")
+        block.hash = "onur"
+        nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
+        nodes_2 = nodes.copy()
+        block.max_tx_number = 3
+        block.validating_list = [1, 2]
+        current_blockshash_list = []
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
+        self.assertEqual(result[0].hash, result[1].previous_hash)
+
+    def test_block_reset_enough_transaction_blockshash_list(self):
+        block = Block("onur")
+        block.hash = "onur"
+        nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
+        nodes_2 = nodes.copy()
+        block.max_tx_number = 3
+        block.validating_list = [1, 2]
+        current_blockshash_list = []
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
+        self.assertEqual(current_blockshash_list, [result[1].previous_hash])
+
+    def test_block_reset_enough_transaction_sequance_number(self):
+        block = Block("onur")
+        block.sequance_number = 0
+        block.hash = "onur"
+        nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
+        nodes_2 = nodes.copy()
+        block.max_tx_number = 3
+        block.validating_list = [1, 2]
+        current_blockshash_list = []
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
+        true_sequence = result[0].sequance_number + 1
+        self.assertEqual(result[1].sequance_number, true_sequence)
+
+    def test_block_reset_enough_transaction_validating_list(self):
+        block = Block("onur")
+        block.hash = "onur"
+        nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
+        nodes_2 = nodes.copy()
+        block.max_tx_number = 3
+        block.validating_list = [1, 2]
+        current_blockshash_list = []
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
+        self.assertEqual(result[1].validating_list, [])
+
+    def test_block_reset_enough_transaction_hash(self):
+        block = Block("onur")
+        block.hash = "onur"
+        nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
+        nodes_2 = nodes.copy()
+        block.max_tx_number = 3
+        block.validating_list = [1, 2]
+        current_blockshash_list = []
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
+        self.assertEqual(result[1].hash, None)
+
     def test_block_TXHash_none(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
 
         block.validating_list = []
 
@@ -79,7 +160,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(result, "0")
 
     def test_block_TransactionsHash(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
 
         the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
 
@@ -91,7 +172,7 @@ class Test_Blockchain(unittest.TestCase):
             "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8")
 
     def test_block_BlocksHash(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
 
         block.part_amount = 3
 
@@ -105,7 +186,7 @@ class Test_Blockchain(unittest.TestCase):
             "f99f80322fa66623d9b332fb91eee976333b024f19905c490c20acdfecaa7a86")
 
     def test_block_BlocksHash_enough_for_parting(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
 
         block.part_amount = 2
 
@@ -126,7 +207,7 @@ class Test_Blockchain(unittest.TestCase):
             "97fce529fae4a3fea934aca54ed8b3be5d8be9dd09b5761d353ae5d440edbdf9")
 
     def test_block_AccountsHash(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
 
         block.part_amount = 3
 
@@ -141,7 +222,7 @@ class Test_Blockchain(unittest.TestCase):
             "4cbc6f4516470078ef91f1eb33a0f7e99cc5f95808a3343a3e256cfee657d6f8")
 
     def test_block_AccountsHash_enough_for_parting(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
 
         block.part_amount = 2
 
@@ -156,7 +237,7 @@ class Test_Blockchain(unittest.TestCase):
             "4cbc6f4516470078ef91f1eb33a0f7e99cc5f95808a3343a3e256cfee657d6f8")
 
     def test_block_CalculateHash(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
 
         block.part_amount = 2
 

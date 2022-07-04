@@ -6,7 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from blockchain.block.block_main import Block
 from blockchain.block.get_block import GetBlock
+from consensus.consensus_main import consensus_trigger
 from lib.log import get_logger
+from lib.perpetualtimer import perpetualTimer
 from lib.settings_system import the_settings
 from node.node import Node
 from wallet.wallet_import import wallet_import
@@ -39,8 +41,11 @@ def CreateBlock():
         if previous_hash is None:
             the_block = Block(wallet_import(-1, 3))
         else:
-            the_block = Block(wallet_import(-1, 3), previous_hash=previous_hash)
+            the_block = Block(wallet_import(-1, 3),
+                              previous_hash=previous_hash)
         the_block.save_block()
+        logger.info("Consensus timer is started")
+        perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
         Node.main_node.send_full_accounts()
         Node.main_node.send_full_chain()
         Node.main_node.send_full_blockshash()

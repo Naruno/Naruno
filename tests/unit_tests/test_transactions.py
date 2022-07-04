@@ -118,7 +118,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_pending_to_validating_many_transaction(self):
 
-        block = Block("", start_the_system=False)
+        block = Block("")
         block.max_tx_number = 2
 
         temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
@@ -134,7 +134,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_pending_to_validating_round_1_started(self):
 
-        block = Block("", start_the_system=False)
+        block = Block("")
         block.max_tx_number = 2
         block.raund_1_starting_time = 1
 
@@ -151,7 +151,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_pending_to_validating(self):
 
-        block = Block("", start_the_system=False)
+        block = Block("")
         block.max_tx_number = 2
 
         temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
@@ -166,7 +166,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_change_transaction_fee_increasing(self):
 
-        block = Block("", start_the_system=False)
+        block = Block("")
         first_transaction_fee = block.transaction_fee
         block.max_tx_number = 3
         block.default_optimum_transaction_number = 1
@@ -188,7 +188,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_change_transaction_fee(self):
 
-        block = Block("", start_the_system=False)
+        block = Block("")
         first_transaction_fee = block.transaction_fee
         block.max_tx_number = 3
         block.default_optimum_transaction_number = 3
@@ -222,7 +222,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -251,7 +251,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -282,7 +282,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -313,7 +313,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -344,7 +344,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -376,7 +376,7 @@ class Test_Transactions(unittest.TestCase):
         }
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -405,7 +405,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -436,7 +436,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -464,7 +464,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -492,7 +492,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -522,7 +522,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -553,7 +553,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -584,7 +584,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -615,7 +615,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -642,7 +642,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -667,7 +667,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -692,7 +692,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -717,7 +717,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -742,7 +742,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -767,7 +767,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -792,7 +792,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -817,7 +817,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -842,7 +842,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -867,7 +867,7 @@ class Test_Transactions(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block = Block(the_transaction.fromUser, start_the_system=False)
+        block = Block(the_transaction.fromUser)
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -878,17 +878,17 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_send_false_amount_type(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         result = send(block, "123", "onur", "atakan", "ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_amount_type_negative(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         result = send(block, "123", "onur", -500, "ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_big_data(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         data = "a"
         for i in range(int((block.max_data_size / block.max_tx_number))):
             data += "a"
@@ -896,22 +896,22 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_send_false_false_decimal_amount(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         result = send(block, "123", "onur", 500.001, "ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_false_amount_lower_than_minumum(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         result = send(block, "123", "onur", 500, "ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_false_pass(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         result = send(block, "1235", "onur", 5000, "ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_false_check(self):
-        block = Block("onur", start_the_system=False)
+        block = Block("onur")
         result = send(block, "123", "onur", 5000, "ulusoy")
         self.assertEqual(result, False)
 
