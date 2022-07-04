@@ -41,7 +41,8 @@ def CreateBlock():
         if previous_hash is None:
             the_block = Block(wallet_import(-1, 3))
         else:
-            the_block = Block(wallet_import(-1, 3), previous_hash=previous_hash)
+            the_block = Block(wallet_import(-1, 3),
+                              previous_hash=previous_hash)
         the_block.save_block()
         logger.info("Consensus timer is started")
         perpetualTimer(the_block.consensus_timer, consensus_trigger).start()

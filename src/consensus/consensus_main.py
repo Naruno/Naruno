@@ -51,9 +51,9 @@ def consensus_trigger():
             block.newly = False
             logger.info(
                 "Consensus proccess is complated, the block will be reset")
-            
+
             current_blockshash_list = GetBlockshash()
-            reset_block = block.reset_the_block(current_blockshash_list) 
+            reset_block = block.reset_the_block(current_blockshash_list)
             if not reset_block == False:
                 block2 = reset_block[0]
                 app_tigger(block2)
@@ -66,7 +66,7 @@ def consensus_trigger():
                         ValidateTransaction(tx)
                 SaveBlockshash(current_blockshash_list)
                 saveBlockstoBlockchainDB(block2)
-                
+
             block.save_block()
     else:
         PendingtoValidating(block)
