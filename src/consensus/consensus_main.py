@@ -7,7 +7,8 @@
 import time
 
 from app.app_main import app_tigger
-from blockchain.block.blocks_hash import GetBlockshash, SaveBlockshash
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.get_block import GetBlock
 from blockchain.block.save_block_to_blockchain_db import \
     saveBlockstoBlockchainDB
