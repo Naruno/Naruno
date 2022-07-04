@@ -21,6 +21,7 @@ from node.unl import Unl
 from transactions.transaction import Transaction
 
 
+
 class Test_Blockchain(unittest.TestCase):
 
     def test_block_reset_start_time(self):
@@ -72,7 +73,8 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
         self.assertEqual(result, False)
 
     def test_block_reset_enough_transaction_result(self):
@@ -83,7 +85,8 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
         self.assertNotEqual(result, False)
 
     def test_block_reset_enough_transaction_hash_configuration(self):
@@ -94,7 +97,8 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)        
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
         self.assertEqual(result[0].hash, result[1].previous_hash)
 
     def test_block_reset_enough_transaction_blockshash_list(self):
@@ -105,7 +109,8 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)        
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
         self.assertEqual(current_blockshash_list, [result[1].previous_hash])
 
     def test_block_reset_enough_transaction_sequance_number(self):
@@ -117,8 +122,9 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
-        true_sequence = result[0].sequance_number + 1    
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
+        true_sequence = result[0].sequance_number + 1
         self.assertEqual(result[1].sequance_number, true_sequence)
 
     def test_block_reset_enough_transaction_validating_list(self):
@@ -129,7 +135,8 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2) 
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
         self.assertEqual(result[1].validating_list, [])
 
     def test_block_reset_enough_transaction_hash(self):
@@ -140,7 +147,8 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2) 
+        result = block.reset_the_block(current_blockshash_list,
+                                       custom_nodes=nodes_2)
         self.assertEqual(result[1].hash, None)
 
     def test_block_TXHash_none(self):
