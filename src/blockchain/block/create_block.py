@@ -10,6 +10,8 @@ from lib.log import get_logger
 from lib.settings_system import the_settings
 from node.node import Node
 from wallet.wallet_import import wallet_import
+from consensus.consensus_main import consensus_trigger
+from lib.perpetualtimer import perpetualTimer
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -41,6 +43,8 @@ def CreateBlock():
         else:
             the_block = Block(wallet_import(-1, 3), previous_hash=previous_hash)
         the_block.save_block()
+        logger.info("Consensus timer is started")
+        perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
         Node.main_node.send_full_accounts()
         Node.main_node.send_full_chain()
         Node.main_node.send_full_blockshash()
