@@ -36,6 +36,9 @@ from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+
 
 logger = get_logger("CLI")
 
@@ -129,21 +132,29 @@ def menu():
                 delete_current_wallet()
         if choices_input == "sc":
             block = GetBlock()
-            send(
+            send_tx = send(
                 block,
                 getpass("Password: "),
                 input("Please write receiver adress: "),
                 input("Coin Amount (ex. 1.0): "),
             )
+            if not send_tx == False:
+                SavetoMyTransaction(send_tx)
+                Node.send_transaction(send_tx)
+                block.save_block()                
         if choices_input == "scd":
             block = GetBlock()
-            send(
+            send_tx = send(
                 block,
                 getpass("Password: "),
                 input("Please write receiver adress: "),
                 input("Coin Amount (ex. 1.0): "),
                 input("Data: "),
             )
+            if not send_tx == False:
+                SavetoMyTransaction(send_tx)
+                Node.send_transaction(send_tx)
+                block.save_block()                
         if choices_input == "gb":
             GetBalance(GetBlock(), wallet_import(-1, 0))
         if choices_input == "help":

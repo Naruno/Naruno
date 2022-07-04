@@ -896,22 +896,27 @@ class Test_Transactions(unittest.TestCase):
         result = send(block, "123", "onur", 500, data)
         self.assertEqual(result, False)
 
-    def test_send_false_false_decimal_amount(self):
+    def test_send_false_decimal_amount(self):
         block = Block("onur")
         result = send(block, "123", "onur", 500.001, "ulusoy")
         self.assertEqual(result, False)
 
-    def test_send_false_false_amount_lower_than_minumum(self):
+    def test_send_false_amount_lower_than_minumum(self):
         block = Block("onur")
         result = send(block, "123", "onur", 500, "ulusoy")
         self.assertEqual(result, False)
 
-    def test_send_false_false_pass(self):
+    def test_send_false_pass(self):
         block = Block("onur")
         result = send(block, "1235", "onur", 5000, "ulusoy")
         self.assertEqual(result, False)
 
-    def test_send_false_false_check(self):
+    def test_send_false_check(self):
+        block = Block("onur")
+        result = send(block, "123", "onur", 5000, "ulusoy")
+        self.assertEqual(result, False)
+
+    def test_send_true(self):
         block = Block("onur")
         result = send(block, "123", "onur", 5000, "ulusoy")
         self.assertEqual(result, False)

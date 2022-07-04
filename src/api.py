@@ -31,6 +31,9 @@ from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+
 
 logger = get_logger("API")
 
@@ -73,7 +76,11 @@ def send_coin_page(address, amount, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
-    send(block, password, address, amount)
+    send_tx = send(block, password, address, amount)
+    if not send_tx == False:
+        SavetoMyTransaction(send_tx)
+        Node.send_transaction(send_tx)
+        block.save_block()
     return jsonify("OK")
 
 
@@ -83,7 +90,11 @@ def send_coin_data_page(address, amount, data, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
-    send(block, password, address, amount, data)
+    send_tx = send(block, password, address, amount, data)
+    if not send_tx == False:
+        SavetoMyTransaction(send_tx)
+        Node.send_transaction(send_tx)
+        block.save_block()
     return jsonify("OK")
 
 
