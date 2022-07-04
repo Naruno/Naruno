@@ -4,22 +4,21 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import copy
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import unittest
 import time
-import copy
+import unittest
 
 from accounts.account import Account
 from blockchain.block.block_main import Block
 from blockchain.block.change_transaction_fee import ChangeTransactionFee
-from transactions.process_the_transaction import ProccesstheTransaction
 from transactions.check.check_transaction import CheckTransaction
-from transactions.get_transaction import GetTransaction
 from transactions.check.datas.check_datas import Check_Datas
 from transactions.check.len.check_len import Check_Len
 from transactions.check.type.check_type import Check_Type
+from transactions.get_transaction import GetTransaction
 from transactions.my_transactions.get_my_transaction import GetMyTransaction
 from transactions.my_transactions.save_my_transaction import SaveMyTransaction
 from transactions.my_transactions.save_to_my_transaction import \
@@ -27,6 +26,7 @@ from transactions.my_transactions.save_to_my_transaction import \
 from transactions.my_transactions.validate_transaction import \
     ValidateTransaction
 from transactions.pending_to_validating import PendingtoValidating
+from transactions.process_the_transaction import ProccesstheTransaction
 from transactions.send import send
 from transactions.transaction import Transaction
 
@@ -922,13 +922,17 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_true(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 5000, "ulusoy",
+        result = send(
+            block,
+            "123",
+            "onur",
+            5000,
+            "ulusoy",
             custom_current_time=(int(time.time()) + 5),
             custom_sequence_number=0,
-            custom_balance=100000
+            custom_balance=100000,
         )
         self.assertNotEqual(result, False)
-
 
     def test_get_transaction_false(self):
 
@@ -988,7 +992,6 @@ class Test_Transactions(unittest.TestCase):
         )
         self.assertEqual(result, True)
 
-
     def test_ProccesstheTransaction_validating_list(self):
 
         the_transaction_json = {
@@ -1011,9 +1014,12 @@ class Test_Transactions(unittest.TestCase):
         the_transaction_2 = Transaction.load_json(the_transaction_json)
         the_transaction_2.fromUser = "A"
         block.validating_list = [the_transaction, the_transaction_2]
-        account_list = [Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000)]
+        account_list = [
+            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000)
+        ]
         result = ProccesstheTransaction(block, account_list)
-        self.assertEqual(block.validating_list, [the_transaction_2, the_transaction])
+        self.assertEqual(block.validating_list,
+                         [the_transaction_2, the_transaction])
 
     def test_ProccesstheTransaction_account_list(self):
 
@@ -1049,30 +1055,53 @@ class Test_Transactions(unittest.TestCase):
         the_transaction_5.fromUser = "Atakan"
         the_transaction_5.toUser = "teaaast"
 
-        block.validating_list = [the_transaction, the_transaction_2, the_transaction_3, the_transaction_4, the_transaction_5]
-        account_list = [Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000), Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000), Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000), Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000), Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000)]
+        block.validating_list = [
+            the_transaction,
+            the_transaction_2,
+            the_transaction_3,
+            the_transaction_4,
+            the_transaction_5,
+        ]
+        account_list = [
+            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000),
+            Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000),
+            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000),
+            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000),
+            Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000),
+        ]
         result = ProccesstheTransaction(block, account_list)
         self.assertEqual(len(account_list), 7)
-        true_list = [the_transaction_4, the_transaction_5, the_transaction_2, the_transaction_3, the_transaction]
+        true_list = [
+            the_transaction_4,
+            the_transaction_5,
+            the_transaction_2,
+            the_transaction_3,
+            the_transaction,
+        ]
         self.assertEqual(block.validating_list, true_list)
         self.assertEqual(account_list[0].balance, 100000 - 5000 - 0.02)
-        self.assertEqual(account_list[0].Address, "2ffd1f6bed8614f4cd01fc7159ac950604272773")
+        self.assertEqual(account_list[0].Address,
+                         "2ffd1f6bed8614f4cd01fc7159ac950604272773")
         self.assertEqual(account_list[0].sequance_number, 1)
 
         self.assertEqual(account_list[1].balance, 94999.98)
-        self.assertEqual(account_list[1].Address, "73cd109827c0de9fa211c0d062eab13584ea6bb8")
+        self.assertEqual(account_list[1].Address,
+                         "73cd109827c0de9fa211c0d062eab13584ea6bb8")
         self.assertEqual(account_list[1].sequance_number, 1)
 
         self.assertEqual(account_list[2].balance, 94999.98)
-        self.assertEqual(account_list[2].Address, "08fe9bfc6521565c601a3785c5f5fb0a406279e6")
+        self.assertEqual(account_list[2].Address,
+                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6")
         self.assertEqual(account_list[2].sequance_number, 1)
-    
+
         self.assertEqual(account_list[3].balance, 94999.98)
-        self.assertEqual(account_list[3].Address, "6a4236cba1002b2919651677c7c520b67627aa2a")
+        self.assertEqual(account_list[3].Address,
+                         "6a4236cba1002b2919651677c7c520b67627aa2a")
         self.assertEqual(account_list[3].sequance_number, 1)
-        
+
         self.assertEqual(account_list[4].balance, 99999.98)
-        self.assertEqual(account_list[4].Address, "d10d419bae75549222c5ffead625a9e0246ad3e6")
+        self.assertEqual(account_list[4].Address,
+                         "d10d419bae75549222c5ffead625a9e0246ad3e6")
         self.assertEqual(account_list[4].sequance_number, 1)
 
         self.assertEqual(account_list[5].balance, 55000)

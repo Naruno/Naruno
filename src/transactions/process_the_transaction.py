@@ -26,14 +26,14 @@ def ProccesstheTransaction(block, account_list):
     for trans in block.validating_list:
         touser_inlist = True
         to_user_in_new_list = False
-        
+
         address_of_fromUser = Address(trans.fromUser)
- 
+
         for Accounts in account_list:
             touser_inlist = False
             if Accounts.Address == address_of_fromUser:
                 Accounts.balance -= float(trans.amount) + trans.transaction_fee
-                
+
                 Accounts.sequance_number += 1
                 from_user_list.append(Accounts)
                 block.edited_accounts.append(Accounts)
@@ -44,20 +44,21 @@ def ProccesstheTransaction(block, account_list):
                 block.edited_accounts.append(Accounts)
                 break
 
-            
             for i in new_added_accounts_list:
                 if i.Address == trans.toUser:
-                    i.balance += float(trans.amount)           
+                    i.balance += float(trans.amount)
                     to_user_in_new_list = True
 
             # If not included in the account_list, add.
         if not touser_inlist and not to_user_in_new_list:
-            new_added_accounts_list.append(Account(trans.toUser, float(trans.amount)))
+            new_added_accounts_list.append(
+                Account(trans.toUser, float(trans.amount)))
 
     # Syncs new sorted list to block.validating_list
 
     block.validating_list = sorted(temp_validating_list,
                                    key=lambda x: x.fromUser)
 
-    new_added_accounts_list = sorted(new_added_accounts_list, key=lambda x: x.Address)
+    new_added_accounts_list = sorted(new_added_accounts_list,
+                                     key=lambda x: x.Address)
     account_list.extend(new_added_accounts_list)
