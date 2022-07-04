@@ -6,18 +6,20 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
+from app.app_main import app_tigger
+from blockchain.block.blocks_hash import GetBlockshash, SaveBlockshash
 from blockchain.block.get_block import GetBlock
+from blockchain.block.save_block_to_blockchain_db import \
+    saveBlockstoBlockchainDB
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
 from lib.log import get_logger
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from transactions.pending_to_validating import PendingtoValidating
-from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
-from transactions.my_transactions.validate_transaction import ValidateTransaction
 from wallet.wallet_import import wallet_import
-from app.app_main import app_tigger
-from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.save_block_to_blockchain_db import saveBlockstoBlockchainDB
-from blockchain.block.blocks_hash import SaveBlockshash
 
 logger = get_logger("CONSENSUS")
 

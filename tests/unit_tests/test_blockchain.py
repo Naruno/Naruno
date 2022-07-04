@@ -4,19 +4,20 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from transactions.transaction import Transaction
-from node.unl import Unl
-from node.node_connection import Node_Connection
-from blockchain.block.hash.tx_hash import TransactionsHash
-from blockchain.block.hash.calculate_hash import CalculateHash
-from blockchain.block.hash.blocks_hash import BlocksHash
-from blockchain.block.hash.accounts_hash import AccountsHash
-from blockchain.block.block_main import Block
-from accounts.account import Account
-import unittest
-import time
 import os
 import sys
+import time
+import unittest
+
+from accounts.account import Account
+from blockchain.block.block_main import Block
+from blockchain.block.hash.accounts_hash import AccountsHash
+from blockchain.block.hash.blocks_hash import BlocksHash
+from blockchain.block.hash.calculate_hash import CalculateHash
+from blockchain.block.hash.tx_hash import TransactionsHash
+from node.node_connection import Node_Connection
+from node.unl import Unl
+from transactions.transaction import Transaction
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 

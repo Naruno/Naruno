@@ -4,24 +4,19 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import copy
 import os
 import pickle
 import time
-import copy
 
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import save_accounts
-
 from blockchain.block.blocks_hash import SaveBlockshash
-
 from config import TEMP_BLOCK_PATH
-
 from lib.config_system import get_config
 from lib.log import get_logger
-
 from node.unl import Unl
-
 
 logger = get_logger("BLOCKCHAIN")
 

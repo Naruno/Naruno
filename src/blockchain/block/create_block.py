@@ -6,12 +6,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from blockchain.block.block_main import Block
 from blockchain.block.get_block import GetBlock
+from consensus.consensus_main import consensus_trigger
 from lib.log import get_logger
+from lib.perpetualtimer import perpetualTimer
 from lib.settings_system import the_settings
 from node.node import Node
 from wallet.wallet_import import wallet_import
-from consensus.consensus_main import consensus_trigger
-from lib.perpetualtimer import perpetualTimer
 
 logger = get_logger("BLOCKCHAIN")
 
