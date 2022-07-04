@@ -23,6 +23,7 @@ from wallet.wallet_import import wallet_import
 from transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 
+
 class OperationScreen(MDScreen):
     pass
 
@@ -81,11 +82,12 @@ class OperationBox(MDGridLayout):
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
                     text_list[0].encode("utf-8")).hexdigest()):
                 block = GetBlock()
-                send_tx = send(block, text_list[0], receiver_adress, float(amount))
+                send_tx = send(
+                    block, text_list[0], receiver_adress, float(amount))
                 if not send_tx == False:
                     SavetoMyTransaction(send_tx)
                     Node.send_transaction(send_tx)
-                    block.save_block()                    
+                    block.save_block()
             else:
                 SweetAlert().fire(
                     "Password is not correct",

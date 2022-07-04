@@ -51,8 +51,7 @@ def show_menu():
     print(
         banner_maker(
             sc_name="Decentra Network",
-            description=
-            "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
+            description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
             author="Decentra Network Developers",
         ))
 
@@ -141,7 +140,7 @@ def menu():
             if not send_tx == False:
                 SavetoMyTransaction(send_tx)
                 Node.send_transaction(send_tx)
-                block.save_block()                
+                block.save_block()
         if choices_input == "scd":
             block = GetBlock()
             send_tx = send(
@@ -154,7 +153,7 @@ def menu():
             if not send_tx == False:
                 SavetoMyTransaction(send_tx)
                 Node.send_transaction(send_tx)
-                block.save_block()                
+                block.save_block()
         if choices_input == "gb":
             GetBalance(GetBlock(), wallet_import(-1, 0))
         if choices_input == "help":
@@ -212,8 +211,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument("-pw",

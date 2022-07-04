@@ -312,7 +312,7 @@ class Node(threading.Thread):
                         "fullblock" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 print("getting chain")
                 self.get_full_chain(data, node)
         except Exception as e:
@@ -325,7 +325,7 @@ class Node(threading.Thread):
                         "fullaccounts" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 print("getting chain")
                 self.get_full_accounts(data, node)
         except Exception as e:
@@ -338,7 +338,7 @@ class Node(threading.Thread):
                         "fullblockshash" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
-                    )):
+            )):
                 self.get_full_blockshash(data, node)
         except Exception as e:
             print(e)

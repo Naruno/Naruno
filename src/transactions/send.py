@@ -83,7 +83,6 @@ def send(block, password, to_user, amount, data="", custom_current_time=None, cu
                 tx_time,
             )
             if GetTransaction(block, the_transaction, custom_current_time=custom_current_time, custom_sequence_number=custom_sequence_number, custom_balance=custom_balance):
-                
 
                 del my_private_key
                 del password

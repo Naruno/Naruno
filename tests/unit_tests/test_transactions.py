@@ -4,29 +4,27 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from transactions.transaction import Transaction
+from transactions.send import send
+from transactions.pending_to_validating import PendingtoValidating
+from transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from transactions.my_transactions.save_my_transaction import SaveMyTransaction
+from transactions.my_transactions.get_my_transaction import GetMyTransaction
+from transactions.check.type.check_type import Check_Type
+from transactions.check.len.check_len import Check_Len
+from transactions.check.datas.check_datas import Check_Datas
+from transactions.get_transaction import GetTransaction
+from transactions.check.check_transaction import CheckTransaction
+from blockchain.block.change_transaction_fee import ChangeTransactionFee
+from blockchain.block.block_main import Block
+import time
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import unittest
-import time
-
-from blockchain.block.block_main import Block
-from blockchain.block.change_transaction_fee import ChangeTransactionFee
-from transactions.check.check_transaction import CheckTransaction
-from transactions.get_transaction import GetTransaction
-from transactions.check.datas.check_datas import Check_Datas
-from transactions.check.len.check_len import Check_Len
-from transactions.check.type.check_type import Check_Type
-from transactions.my_transactions.get_my_transaction import GetMyTransaction
-from transactions.my_transactions.save_my_transaction import SaveMyTransaction
-from transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
-from transactions.pending_to_validating import PendingtoValidating
-from transactions.send import send
-from transactions.transaction import Transaction
-
 
 
 class Test_Transactions(unittest.TestCase):
@@ -920,12 +918,11 @@ class Test_Transactions(unittest.TestCase):
     def test_send_true(self):
         block = Block("onur")
         result = send(block, "123", "onur", 5000, "ulusoy",
-            custom_current_time=(int(time.time()) + 5),
-            custom_sequence_number=0,
-            custom_balance=100000
-        )
+                      custom_current_time=(int(time.time()) + 5),
+                      custom_sequence_number=0,
+                      custom_balance=100000
+                      )
         self.assertNotEqual(result, False)
-
 
     def test_get_transaction_false(self):
 
@@ -984,5 +981,6 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
         )
         self.assertEqual(result, True)
+
 
 unittest.main(exit=False)
