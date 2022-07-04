@@ -118,7 +118,9 @@ def consensus_round_1(block):
 
             block.raund_2_starting_time = int(time.time())
 
-            ProccesstheTransaction(block)
+            account_list = GetAccounts()
+            ProccesstheTransaction(block, account_list)
+            save_accounts(account_list)
 
             part_of_blocks_hash = GetBlockshash_part()
             the_blocks_hash = GetBlockshash()
