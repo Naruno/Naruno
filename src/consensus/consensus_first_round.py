@@ -113,7 +113,6 @@ def consensus_round_1(block):
             for each_newly in newly_added_list:
                 if GetTransaction(block, each_newly):
                     Node.send_transaction(each_newly)
-   
 
             block.raund_1 = True
 
