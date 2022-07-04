@@ -19,7 +19,7 @@ from wallet.wallet_import import wallet_import
 logger = get_logger("TRANSACTIONS")
 
 
-def send(block, password, to_user, amount, data="", custom_current_time=None, custom_current_time=None, custom_balance=None):
+def send(block, password, to_user, amount, data="", custom_current_time=None, custom_sequence_number=None, custom_balance=None):
     """
     The main function for sending the transaction.
 

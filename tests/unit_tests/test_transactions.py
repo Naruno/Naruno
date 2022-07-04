@@ -8,6 +8,7 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
+import time
 
 from blockchain.block.block_main import Block
 from blockchain.block.change_transaction_fee import ChangeTransactionFee
@@ -918,8 +919,12 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_true(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 5000, "ulusoy")
-        self.assertEqual(result, False)
+        result = send(block, "123", "onur", 5000, "ulusoy",
+            custom_current_time=(int(time.time()) + 5),
+            custom_sequence_number=0,
+            custom_balance=100000
+        )
+        self.assertNotEqual(result, False)
 
 
     def test_get_transaction_false(self):
