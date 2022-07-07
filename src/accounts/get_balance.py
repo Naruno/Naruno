@@ -4,21 +4,22 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from accounts.get_accounts import GetAccounts
 from wallet.wallet_import import Address
 
 
-def GetBalance(block, user):
+def GetBalance(block, user, account_list):
     """
     Returns the users balance.
     """
 
+
     balance = -block.minumum_transfer_amount
     user = Address(user)
-    for Accounts in GetAccounts():
+    for Accounts in account_list:
 
         if Accounts.Address == user:
             balance += Accounts.balance
+
             break
 
     return balance
