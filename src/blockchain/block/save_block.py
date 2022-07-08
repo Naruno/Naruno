@@ -8,7 +8,6 @@
 import os
 import pickle
 
-
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import SaveAccounts

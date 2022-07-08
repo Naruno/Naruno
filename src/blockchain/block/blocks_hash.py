@@ -6,12 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import pickle
 import os
+import pickle
 
+from config import TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH
 from lib.config_system import get_config
-
-from config import TEMP_BLOCKSHASH_PATH, TEMP_BLOCKSHASH_PART_PATH
 
 
 def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
