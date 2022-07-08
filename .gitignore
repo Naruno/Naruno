@@ -29,6 +29,10 @@ test_SaveBlock_GetBlock_TEMP_BLOCKSHASH_PATH
 test_SaveBlockshash_TEMP_BLOCKSHASH_PATH
 test_SaveBlockshash_part_TEMP_BLOCKSHASH_PART_PATH
 
+db/blocs/*
+db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
+db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
+
 *.log
 
 # Export
