@@ -917,7 +917,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_check(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 5000, "ulusoy")
+        result = send(block, "123", "onur", 5000, "ulusoy", custom_balance=5)
         self.assertEqual(result, False)
 
     def test_send_true(self):
