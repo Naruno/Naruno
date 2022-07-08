@@ -19,17 +19,15 @@ from lib.log import get_logger
 
 logger = get_logger("BLOCKCHAIN")
 
-def SaveBlock(block):
+def SaveBlock(block, custom_TEMP_BLOCK_PATH=None, custom_TEMP_ACCOUNTS_PATH=None, custom_TEMP_BLOCKSHASH_PATH=None):
     """
     Saves the current block to the TEMP_BLOCK_PATH.
     """
     if block.first_time:
-        accounts_list = GetAccounts()
-        if accounts_list == []:
-            SaveAccounts([Account(block.creator, block.coin_amount)])
-        blocks_hash = [block.previous_hash]
-        SaveBlockshash(blocks_hash)
+        SaveAccounts([Account(block.creator, block.coin_amount)], custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+        SaveBlockshash([block.previous_hash], custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
         block.first_time = False
+    the_TEMP_BLOCK_PATH = TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
     os.chdir(get_config()["main_folder"])
-    with open(TEMP_BLOCK_PATH, "wb") as block_file:
+    with open(the_TEMP_BLOCK_PATH, "wb") as block_file:
         pickle.dump(block, block_file, protocol=2)
