@@ -7,8 +7,8 @@
 import os
 from hashlib import sha256
 
-from blockchain.block.save_block import SaveBlock
 from blockchain.block.get_block import GetBlock
+from blockchain.block.save_block import SaveBlock
 from config import MY_TRANSACTION_EXPORT_PATH
 from kivy.core.clipboard import Clipboard
 from kivymd.uix.bottomsheet import MDListBottomSheet
@@ -87,6 +87,7 @@ class OperationBox(MDGridLayout):
                                float(amount))
                 if not send_tx == False:
                     from node.node import Node
+
                     SavetoMyTransaction(send_tx)
                     Node.send_transaction(send_tx)
                     SaveBlock(block)
