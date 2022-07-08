@@ -281,8 +281,6 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         )
 
-        block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-
         the_accounts = GetAccounts(
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
         the_blocks_hash = GetBlockshash(
