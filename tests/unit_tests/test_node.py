@@ -8,7 +8,9 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
+import copy
 
+from node.get_candidate_blocks import GetCandidateBlocks
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
@@ -80,5 +82,19 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(get_as_node, True,
                          "Problem on UNL get as node system.")
 
+
+    def test_GetCandidateBlocks(self):
+
+        node_1 = Node_Connection("main_node", "sock", "id", "host", "port")
+        node_1.candidate_block = True
+        node_1.candidate_block_hash = True
+        node_2 = copy.copy(node_1)
+        node_2.candidate_block = True
+        node_2.candidate_block_hash = False
+        nodes_list = [node_1, node_2]
+
+        result = GetCandidateBlocks(nodes_list)
+        self.assertEqual(result.candidate_blocks, [True, True])
+        self.assertEqual(result.candidate_block_hashes, [True, False])
 
 unittest.main(exit=False)
