@@ -16,7 +16,7 @@ from lib.settings_system import the_settings
 
 def get_logger(name):
     logger = logging.getLogger(name)
-    level = logging.DEBUG if the_settings()["debug_mode"] else logging.INFO
+    level = logging.ERROR
     logger.setLevel(level)
     # create console handler and set level to debug
     ch = logging.StreamHandler()
