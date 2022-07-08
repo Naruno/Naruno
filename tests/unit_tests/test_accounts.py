@@ -4,13 +4,14 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from blockchain.block.block_main import Block
-from accounts.get_sequance_number import GetSequanceNumber
-from accounts.get_balance import GetBalance
-from accounts.account import Account
-import unittest
 import os
 import sys
+import unittest
+
+from accounts.account import Account
+from accounts.get_balance import GetBalance
+from accounts.get_sequance_number import GetSequanceNumber
+from blockchain.block.block_main import Block
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
