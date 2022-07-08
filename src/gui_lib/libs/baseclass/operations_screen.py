@@ -80,12 +80,11 @@ class OperationBox(MDGridLayout):
         amount = text_list[1]
 
         if not float(amount) < GetBlock().minumum_transfer_amount:
-            if (
-                wallet_import(int(the_settings()["wallet"]), 2)
-                == sha256(text_list[0].encode("utf-8")).hexdigest()
-            ):
+            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
+                    text_list[0].encode("utf-8")).hexdigest()):
                 block = GetBlock()
-                send_tx = send(block, text_list[0], receiver_adress, float(amount))
+                send_tx = send(block, text_list[0], receiver_adress,
+                               float(amount))
                 if not send_tx == False:
                     from node.node import Node
 
@@ -131,20 +130,15 @@ class OperationBox(MDGridLayout):
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {}
             for tx in transactions:
-                data[tx[0]] = (
-                    tx[0].toUser
-                    + " | "
-                    + str(tx[0].amount)
-                    + " | "
-                    + str(tx[0].transaction_fee)
-                    + " | "
-                    + str(tx[1])
-                )
+                data[tx[0]] = (tx[0].toUser + " | " + str(tx[0].amount) +
+                               " | " + str(tx[0].transaction_fee) + " | " +
+                               str(tx[1]))
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.
+                    callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:
