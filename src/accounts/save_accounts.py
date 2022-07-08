@@ -19,7 +19,11 @@ def SaveAccounts(the_accounts, custom_TEMP_ACCOUNTS_PATH=None):
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
 
-    the_TEMP_ACCOUNTS_PATH = TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH is None else custom_TEMP_ACCOUNTS_PATH
+    the_TEMP_ACCOUNTS_PATH = (
+        TEMP_ACCOUNTS_PATH
+        if custom_TEMP_ACCOUNTS_PATH is None
+        else custom_TEMP_ACCOUNTS_PATH
+    )
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_ACCOUNTS_PATH, "wb") as block_file:
         pickle.dump(the_accounts, block_file, protocol=2)
