@@ -10,7 +10,7 @@ import flask
 from accounts.get_balance import GetBalance
 from blockchain.block.create_block import CreateBlock
 from blockchain.block.get_block import GetBlock
-from blockchain.block.get_block_from_other_node import GetBlockFromOtherNode
+from node.get_block_from_other_node import GetBlockFromOtherNode
 from blockchain.block.save_block import SaveBlock
 from flask import jsonify
 from flask import request
