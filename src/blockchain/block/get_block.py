@@ -20,16 +20,3 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "rb") as block_file:
         return pickle.load(block_file)
-
-
-def GetBlockFromOtherNode():
-    """
-    Receive the block from the other node.
-    """
-
-    from node.node import Node
-    from node.unl import Unl
-
-    node = Node.main_node
-    unl_list = Unl.get_as_node_type(Unl.get_unl_nodes())
-    node.send_data_to_node(unl_list[0], "sendmefullblock")

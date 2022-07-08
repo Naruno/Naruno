@@ -7,7 +7,7 @@
 import os
 
 from blockchain.block.create_block import CreateBlock
-from blockchain.block.get_block import GetBlockFromOtherNode
+from blockchain.block.get_block_from_other_node import GetBlockFromOtherNode
 from kivy.core.clipboard import Clipboard
 from kivymd.toast import toast
 from kivymd.uix.button import MDFlatButton
