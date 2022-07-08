@@ -13,6 +13,7 @@ from lib.perpetualtimer import perpetualTimer
 from lib.settings_system import the_settings
 from node.node import Node
 from wallet.wallet_import import wallet_import
+from node.get_block_from_other_node import GetBlockFromOtherNode
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -52,4 +53,4 @@ def CreateBlock():
         Node.main_node.send_full_blockshash()
     else:
         logger.info("Getting the last block from the connected nodes")
-        GetBlock()
+        GetBlockFromOtherNode()
