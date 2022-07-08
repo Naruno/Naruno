@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from node.node import Node
@@ -15,7 +16,6 @@ from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_create import wallet_create
 from wallet.wallet_delete import wallet_delete
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Node(unittest.TestCase):
