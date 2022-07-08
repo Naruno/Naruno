@@ -10,11 +10,11 @@ from config import BLOCKS_PATH
 
 
 def GetBlockstoBlockchainDB(sequance_number,
-    custom_BLOCKS_PATH=None,
-    custom_TEMP_ACCOUNTS_PATH=None,
-    custom_TEMP_BLOCKSHASH_PATH=None,
-    custom_TEMP_BLOCKSHASH_PART_PATH=None
-):
+                            custom_BLOCKS_PATH=None,
+                            custom_TEMP_ACCOUNTS_PATH=None,
+                            custom_TEMP_BLOCKSHASH_PATH=None,
+                            custom_TEMP_BLOCKSHASH_PART_PATH=None
+                            ):
     """
     Gets the block from the blockchain database
     """

@@ -5,35 +5,31 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from node.unl import Unl
+from node.node_connection import Node_Connection
+from blockchain.block.save_block import SaveBlock
+from blockchain.block.hash.tx_hash import TransactionsHash
+from blockchain.block.hash.calculate_hash import CalculateHash
+from blockchain.block.hash.blocks_hash import BlocksHash
+from blockchain.block.hash.accounts_hash import AccountsHash
+from blockchain.block.get_block import GetBlock
+from blockchain.block.blocks_hash import SaveBlockshash_part
+from blockchain.block.blocks_hash import SaveBlockshash
+from blockchain.block.blocks_hash import GetBlockshash_part
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
+from blockchain.block.save_block_to_blockchain_db import SaveBlockstoBlockchainDB
+from blockchain.block.block_main import Block
+from accounts.get_accounts import GetAccounts
+from wallet.wallet_import import wallet_import
+from accounts.account import Account
+from transactions.transaction import Transaction
+import copy
+import unittest
+import time
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import time
-import unittest
-import copy
-
-from transactions.transaction import Transaction
-from accounts.account import Account
-from wallet.wallet_import import wallet_import
-from accounts.get_accounts import GetAccounts
-from blockchain.block.block_main import Block
-from blockchain.block.save_block_to_blockchain_db import SaveBlockstoBlockchainDB
-from blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
-from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.blocks_hash import GetBlockshash_part
-from blockchain.block.blocks_hash import SaveBlockshash
-from blockchain.block.blocks_hash import SaveBlockshash_part
-from blockchain.block.get_block import GetBlock
-from blockchain.block.hash.accounts_hash import AccountsHash
-from blockchain.block.hash.blocks_hash import BlocksHash
-from blockchain.block.hash.calculate_hash import CalculateHash
-from blockchain.block.hash.tx_hash import TransactionsHash
-from blockchain.block.save_block import SaveBlock
-
-from node.node_connection import Node_Connection
-from node.unl import Unl
-from transactions.transaction import Transaction
-
 
 
 class Test_Blockchain(unittest.TestCase):
@@ -358,29 +354,27 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
         self.assertEqual(the_list, [])
 
-
     def test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction(self):
         block = Block("onur")
-        custom_BLOCKS_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/"
-        custom_TEMP_ACCOUNTS_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH"
-        custom_TEMP_BLOCKSHASH_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH"
-        custom_TEMP_BLOCKSHASH_PART_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH" 
+        custom_BLOCKS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH"
         SaveBlockstoBlockchainDB(block,
-            custom_BLOCKS_PATH=custom_BLOCKS_PATH, 
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, 
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH, 
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH, 
-        )
+                                 custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+                                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                                 custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+                                 )
         result = GetBlockstoBlockchainDB(
             block.sequance_number,
-            custom_BLOCKS_PATH=custom_BLOCKS_PATH, 
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, 
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH, 
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH, 
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
         self.assertEqual(result, False)
-
 
     def test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_fromUser(self):
         block = Block("onur")
@@ -400,22 +394,22 @@ class Test_Blockchain(unittest.TestCase):
 
         block.validating_list.append(loaded_transaction)
 
-        custom_BLOCKS_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"
-        custom_TEMP_ACCOUNTS_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH"
-        custom_TEMP_BLOCKSHASH_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH"
-        custom_TEMP_BLOCKSHASH_PART_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH" 
+        custom_BLOCKS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH"
         SaveBlockstoBlockchainDB(block,
-            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, 
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH, 
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH, 
-        )
+                                 custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+                                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                                 custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+                                 )
         result = GetBlockstoBlockchainDB(
             block.sequance_number,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, 
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH, 
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH, 
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
         block_2 = copy.copy(result[0])
@@ -426,7 +420,8 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(len(result), 4)
         self.assertEqual(block_2.__dict__, block_2_normal.__dict__)
-        self.assertEqual(result[0].validating_list[0].__dict__, block.validating_list[0].__dict__)
+        self.assertEqual(result[0].validating_list[0].__dict__,
+                         block.validating_list[0].__dict__)
         self.assertEqual(result[1], [])
         self.assertEqual(result[2], [])
         self.assertEqual(result[3], [])
