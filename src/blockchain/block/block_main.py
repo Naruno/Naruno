@@ -11,7 +11,7 @@ import time
 
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
-from accounts.save_accounts import save_accounts
+from accounts.save_accounts import SaveAccounts
 from blockchain.block.blocks_hash import SaveBlockshash
 from config import TEMP_BLOCK_PATH
 from lib.config_system import get_config
@@ -132,7 +132,7 @@ class Block:
         if self.first_time:
             accounts_list = GetAccounts()
             if accounts_list == []:
-                save_accounts([Account(self.creator, self.coin_amount)])
+                SaveAccounts([Account(self.creator, self.coin_amount)])
             blocks_hash = [self.previous_hash]
             SaveBlockshash(blocks_hash)
             self.first_time = False

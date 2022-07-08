@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
-from accounts.save_accounts import save_accounts
+from accounts.save_accounts import SaveAccounts
 from wallet.wallet_import import Address
 
 

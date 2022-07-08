@@ -7,7 +7,7 @@
 import time
 
 from accounts.get_accounts import GetAccounts
-from accounts.save_accounts import save_accounts
+from accounts.save_accounts import SaveAccounts
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import GetBlockshash_part
 from blockchain.block.blocks_hash import SaveBlockshash
@@ -120,7 +120,7 @@ def consensus_round_1(block):
 
             account_list = GetAccounts()
             ProccesstheTransaction(block, account_list)
-            save_accounts(account_list)
+            SaveAccounts(account_list)
 
             part_of_blocks_hash = GetBlockshash_part()
             the_blocks_hash = GetBlockshash()
@@ -128,7 +128,7 @@ def consensus_round_1(block):
             CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
                           the_accounts)
 
-            save_accounts(the_accounts)
+            SaveAccounts(the_accounts)
             SaveBlockshash_part(part_of_blocks_hash)
             SaveBlockshash(the_blocks_hash)
 
