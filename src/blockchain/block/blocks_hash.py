@@ -20,7 +20,11 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
     """
 
     os.chdir(get_config()["main_folder"])
-    the_TEMP_BLOCKSHASH_PATH = TEMP_BLOCKSHASH_PATH if custom_TEMP_BLOCKSHASH_PATH is None else custom_TEMP_BLOCKSHASH_PATH
+    the_TEMP_BLOCKSHASH_PATH = (
+        TEMP_BLOCKSHASH_PATH
+        if custom_TEMP_BLOCKSHASH_PATH is None
+        else custom_TEMP_BLOCKSHASH_PATH
+    )
     with open(the_TEMP_BLOCKSHASH_PATH, "wb") as block_file:
         pickle.dump(the_blockshash, block_file, protocol=2)
 
@@ -31,7 +35,11 @@ def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
     """
 
     os.chdir(get_config()["main_folder"])
-    the_TEMP_BLOCKSHASH_PART_PATH = TEMP_BLOCKSHASH_PART_PATH if custom_TEMP_BLOCKSHASH_PART_PATH is None else custom_TEMP_BLOCKSHASH_PART_PATH
+    the_TEMP_BLOCKSHASH_PART_PATH = (
+        TEMP_BLOCKSHASH_PART_PATH
+        if custom_TEMP_BLOCKSHASH_PART_PATH is None
+        else custom_TEMP_BLOCKSHASH_PART_PATH
+    )
     with open(the_TEMP_BLOCKSHASH_PART_PATH, "wb") as block_file:
         pickle.dump(the_blockshash, block_file, protocol=2)
 
@@ -40,7 +48,11 @@ def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
     """
     Returns the blockshash.
     """
-    the_TEMP_BLOCKSHASH_PATH = TEMP_BLOCKSHASH_PATH if custom_TEMP_BLOCKSHASH_PATH is None else custom_TEMP_BLOCKSHASH_PATH
+    the_TEMP_BLOCKSHASH_PATH = (
+        TEMP_BLOCKSHASH_PATH
+        if custom_TEMP_BLOCKSHASH_PATH is None
+        else custom_TEMP_BLOCKSHASH_PATH
+    )
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(the_TEMP_BLOCKSHASH_PATH):
         return []
@@ -53,7 +65,11 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     """
     Returns the blockshash part.
     """
-    the_TEMP_BLOCKSHASH_PART_PATH = TEMP_BLOCKSHASH_PART_PATH if custom_TEMP_BLOCKSHASH_PART_PATH is None else custom_TEMP_BLOCKSHASH_PART_PATH
+    the_TEMP_BLOCKSHASH_PART_PATH = (
+        TEMP_BLOCKSHASH_PART_PATH
+        if custom_TEMP_BLOCKSHASH_PART_PATH is None
+        else custom_TEMP_BLOCKSHASH_PART_PATH
+    )
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(the_TEMP_BLOCKSHASH_PART_PATH):
         return []

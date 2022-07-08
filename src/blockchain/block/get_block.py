@@ -15,7 +15,9 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     """
     Returns the block.
     """
-    the_TEMP_BLOCK_PATH = TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
+    the_TEMP_BLOCK_PATH = (
+        TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
+    )
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "rb") as block_file:
         return pickle.load(block_file)
