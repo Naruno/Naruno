@@ -13,7 +13,7 @@ import unittest
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from blockchain.block.block_main import Block
-from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part, SaveBlockshash, SaveBlockshash_part 
 from blockchain.block.get_block import GetBlock
 from blockchain.block.hash.accounts_hash import AccountsHash
 from blockchain.block.hash.blocks_hash import BlocksHash
@@ -313,5 +313,31 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block.__dict__, block_2.__dict__)
 
+    def test_SaveBlockshash(self):
+
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockshash_TEMP_BLOCKSHASH_PATH"
+        the_list = ["onur"]
+        SaveBlockshash(the_list, custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        the_list_2 = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        self.assertEqual(the_list, the_list_2)
+
+    def test_SaveBlockshash_part(self):
+
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlockshash_part_TEMP_BLOCKSHASH_PART_PATH"
+        the_list = ["onur"]
+        SaveBlockshash_part(the_list, custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        the_list_2 = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        self.assertEqual(the_list, the_list_2)
+
+
+    def test_GetBlockshash_non(self):
+        custom_TEMP_BLOCKSHASH_PATH = f"db/test_GetBlockshash_non_TEMP_BLOCKSHASH_PATH"
+        the_list = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        self.assertEqual(the_list, [])
+
+    def test_GetBlockshash_part_non(self):
+        custom_TEMP_BLOCKSHASH_PART_PATH = f"db/test_GetBlockshash_part_non_TEMP_BLOCKSHASH_PART_PATH"
+        the_list = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        self.assertEqual(the_list, [])
 
 unittest.main(exit=False)
