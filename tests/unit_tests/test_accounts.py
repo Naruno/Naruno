@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 
 from accounts.account import Account
@@ -13,7 +14,6 @@ from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
 from blockchain.block.block_main import Block
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Accounts(unittest.TestCase):
