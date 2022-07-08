@@ -13,6 +13,7 @@ import time
 
 from blockchain.block.change_transaction_fee import ChangeTransactionFee
 from blockchain.block.get_block import GetBlock
+from blockchain.block.save_block import SaveBlock
 from config import CONNECTED_NODE_PATH
 from config import LOADING_BLOCK_PATH
 from config import TEMP_ACCOUNTS_PATH
@@ -607,7 +608,7 @@ class Node(threading.Thread):
                 system.exclude_validators = []
                 perpetualTimer(system.consensus_timer,
                                consensus_trigger).start()
-                system.save_block()
+                SaveBlock(system)
 
             else:
                 file = open(LOADING_BLOCK_PATH, "ab")
@@ -683,4 +684,4 @@ class Node(threading.Thread):
         )
         if GetTransaction(block, the_transaction):
             Node.send_transaction(the_transaction)
-            block.save_block()
+            SaveBlock(block)

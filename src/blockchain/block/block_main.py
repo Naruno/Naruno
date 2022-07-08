@@ -123,18 +123,3 @@ class Block:
             )
             self.empty_block_number += 1
             return False
-
-    def save_block(self):
-        """
-        Saves the current block to the TEMP_BLOCK_PATH.
-        """
-        if self.first_time:
-            accounts_list = GetAccounts()
-            if accounts_list == []:
-                SaveAccounts([Account(self.creator, self.coin_amount)])
-            blocks_hash = [self.previous_hash]
-            SaveBlockshash(blocks_hash)
-            self.first_time = False
-        os.chdir(get_config()["main_folder"])
-        with open(TEMP_BLOCK_PATH, "wb") as block_file:
-            pickle.dump(self, block_file, protocol=2)

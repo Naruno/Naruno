@@ -8,6 +8,7 @@ import time
 
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import SaveAccounts
+from blockchain.block.save_block import SaveBlock
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import GetBlockshash_part
 from blockchain.block.blocks_hash import SaveBlockshash
@@ -134,6 +135,6 @@ def consensus_round_1(block):
 
             logger.debug(f"Block hash {block.hash}")
 
-            block.save_block()
+            SaveBlock(block)
 
     logger.info("First round is done")

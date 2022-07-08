@@ -10,6 +10,7 @@ import flask
 from accounts.get_balance import GetBalance
 from blockchain.block.create_block import CreateBlock
 from blockchain.block.get_block import GetBlock
+from blockchain.block.save_block import SaveBlock
 from blockchain.block.get_block import GetBlockFromOtherNode
 from flask import jsonify
 from flask import request
@@ -79,7 +80,7 @@ def send_coin_page(address, amount, password):
     if not send_tx == False:
         SavetoMyTransaction(send_tx)
         Node.send_transaction(send_tx)
-        block.save_block()
+        SaveBlock(block)
     return jsonify("OK")
 
 
@@ -93,7 +94,7 @@ def send_coin_data_page(address, amount, data, password):
     if not send_tx == False:
         SavetoMyTransaction(send_tx)
         Node.send_transaction(send_tx)
-        block.save_block()
+        SaveBlock(block)
     return jsonify("OK")
 
 
