@@ -4,12 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import os
 import pickle
 
-from config import TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH
+from config import TEMP_BLOCKSHASH_PART_PATH
+from config import TEMP_BLOCKSHASH_PATH
 from lib.config_system import get_config
 
 
