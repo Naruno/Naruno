@@ -67,8 +67,8 @@ def SaveBlockstoBlockchainDB(
                 the_BLOCKS_PATH + str(block.sequance_number) +
                 ".blockshashpart", "wb") as block_file:
             pickle.dump(
-                GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                                   custom_TEMP_BLOCKSHASH_PART_PATH),
+                GetBlockshash_part(
+                    custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
                 block_file,
                 protocol=2,
             )
