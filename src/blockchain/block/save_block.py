@@ -36,9 +36,8 @@ def SaveBlock(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         )
         block.first_time = False
-    the_TEMP_BLOCK_PATH = (
-        TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
-    )
+    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
+                           else custom_TEMP_BLOCK_PATH)
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "wb") as block_file:
         pickle.dump(block, block_file, protocol=2)
