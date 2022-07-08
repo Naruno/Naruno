@@ -11,9 +11,9 @@ import unittest
 
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
-from accounts.save_accounts import SaveAccounts
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
+from accounts.save_accounts import SaveAccounts
 from blockchain.block.block_main import Block
 
 
@@ -165,17 +165,18 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(len(result), len(account_list))
         self.assertEqual(result[0].Address, account_list[0].Address)
         self.assertEqual(result[0].balance, account_list[0].balance)
-        self.assertEqual(result[0].sequance_number, account_list[0].sequance_number)
+        self.assertEqual(result[0].sequance_number,
+                         account_list[0].sequance_number)
 
         self.assertEqual(result[1].Address, account_list[1].Address)
         self.assertEqual(result[1].balance, account_list[1].balance)
-        self.assertEqual(result[1].sequance_number, account_list[1].sequance_number)
+        self.assertEqual(result[1].sequance_number,
+                         account_list[1].sequance_number)
 
         self.assertEqual(result[2].Address, account_list[2].Address)
         self.assertEqual(result[2].balance, account_list[2].balance)
-        self.assertEqual(result[2].sequance_number, account_list[2].sequance_number)
-
-
+        self.assertEqual(result[2].sequance_number,
+                         account_list[2].sequance_number)
 
 
 unittest.main(exit=False)

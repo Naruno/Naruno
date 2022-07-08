@@ -124,7 +124,6 @@ class Block:
             self.empty_block_number += 1
             return False
 
-
     def save_block(self):
         """
         Saves the current block to the TEMP_BLOCK_PATH.
