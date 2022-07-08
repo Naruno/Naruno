@@ -4,7 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import copy
 import os
 import sys
@@ -14,8 +13,10 @@ import unittest
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from blockchain.block.block_main import Block
-from blockchain.block.blocks_hash import (GetBlockshash, GetBlockshash_part,
-                                          SaveBlockshash, SaveBlockshash_part)
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import GetBlockshash_part
+from blockchain.block.blocks_hash import SaveBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash_part
 from blockchain.block.get_block import GetBlock
 from blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
