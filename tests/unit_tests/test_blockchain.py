@@ -4,12 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import copy
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import time
 import unittest
-import copy
 
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
@@ -355,7 +355,6 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_GetCandidateBlocks(self):
 
-
         node_1 = Node_Connection("main_node", "sock", "id", "host", "port")
         node_1.candidate_block = True
         node_1.candidate_block_hash = True
@@ -368,7 +367,5 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(result.candidate_blocks, [True, True])
         self.assertEqual(result.candidate_block_hashes, [True, False])
 
-
-        
 
 unittest.main(exit=False)
