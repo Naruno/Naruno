@@ -7,6 +7,7 @@
 import copy
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import time
 import unittest
 
@@ -28,7 +29,6 @@ from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.transaction import Transaction
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Blockchain(unittest.TestCase):
