@@ -75,7 +75,7 @@ class Test_Accounts(unittest.TestCase):
         block = Block("alieren")
         block.minumum_transfer_amount = 5
 
-        result = GetBalance(block, "the_account_4", account_list)
+        result = GetBalance(block, "the_account_4", account_list = account_list)
 
         self.assertEqual(result, -5)
 
@@ -91,11 +91,11 @@ class Test_Accounts(unittest.TestCase):
         block = Block("alieren")
         block.minumum_transfer_amount = 5
 
-        result = GetBalance(block, "test_account", account_list)
+        result = GetBalance(block, "test_account", account_list = account_list)
         self.assertEqual(result, 5)
-        result_2 = GetBalance(block, "test_account_2", account_list)
+        result_2 = GetBalance(block, "test_account_2", account_list = account_list)
         self.assertEqual(result_2, 10)
-        result_3 = GetBalance(block, "test_account_3", account_list)
+        result_3 = GetBalance(block, "test_account_3", account_list = account_list)
         self.assertEqual(result_3, 15)
    
 unittest.main(exit=False)
