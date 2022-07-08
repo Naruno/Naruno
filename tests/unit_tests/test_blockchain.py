@@ -9,6 +9,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import time
 import unittest
+import copy
 
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
@@ -23,6 +24,7 @@ from blockchain.block.hash.blocks_hash import BlocksHash
 from blockchain.block.hash.calculate_hash import CalculateHash
 from blockchain.block.hash.tx_hash import TransactionsHash
 from blockchain.block.save_block import SaveBlock
+from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.transaction import Transaction
@@ -351,5 +353,22 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
         self.assertEqual(the_list, [])
 
+    def test_GetCandidateBlocks(self):
+
+
+        node_1 = Node_Connection("main_node", "sock", "id", "host", "port")
+        node_1.candidate_block = True
+        node_1.candidate_block_hash = True
+        node_2 = copy.copy(node_1)
+        node_2.candidate_block = True
+        node_2.candidate_block_hash = False
+        nodes_list = [node_1, node_2]
+
+        result = GetCandidateBlocks(nodes_list)
+        self.assertEqual(result.candidate_blocks, [True, True])
+        self.assertEqual(result.candidate_block_hashes, [True, False])
+
+
+        
 
 unittest.main(exit=False)

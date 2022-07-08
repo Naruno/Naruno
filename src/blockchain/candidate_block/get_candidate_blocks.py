@@ -8,14 +8,14 @@ from blockchain.candidate_block.candidate_block_main import candidate_block
 from node.unl import Unl
 
 
-def GetCandidateBlocks():
+def GetCandidateBlocks(custom_nodes_list=None):
     """
     Collects candidate blocks and candidate block hashes
     from connected unl nodes and returns them in the
     candidate_block class
     """
 
-    nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
+    nodes = Unl.get_as_node_type(Unl.get_unl_nodes()) if custom_nodes_list is None else custom_nodes_list
 
     the_candidate_blocks = []
     the_candidate_block_hashes = []
