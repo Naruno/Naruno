@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
+from blockchain.block.save_block import SaveBlock
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from lib.log import get_logger
 from node.node import Node
@@ -77,6 +78,6 @@ def consensus_round_2(block):
                         unl_list = Unl.get_as_node_type([sender])
                         node.send_data_to_node(unl_list[0], "sendmefullblock")
                         block.dowload_true_block = sender
-                    block.save_block()
+                    SaveBlock(block)
 
     logger.info("Second round is done")

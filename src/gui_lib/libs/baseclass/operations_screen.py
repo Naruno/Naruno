@@ -8,6 +8,7 @@ import os
 from hashlib import sha256
 
 from blockchain.block.get_block import GetBlock
+from blockchain.block.save_block import SaveBlock
 from config import MY_TRANSACTION_EXPORT_PATH
 from kivy.core.clipboard import Clipboard
 from kivymd.uix.bottomsheet import MDListBottomSheet
@@ -85,9 +86,11 @@ class OperationBox(MDGridLayout):
                 send_tx = send(block, text_list[0], receiver_adress,
                                float(amount))
                 if not send_tx == False:
+                    from node.node import Node
+
                     SavetoMyTransaction(send_tx)
                     Node.send_transaction(send_tx)
-                    block.save_block()
+                    SaveBlock(block)
             else:
                 SweetAlert().fire(
                     "Password is not correct",

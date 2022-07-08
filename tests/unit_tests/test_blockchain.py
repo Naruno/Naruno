@@ -11,11 +11,15 @@ import time
 import unittest
 
 from accounts.account import Account
+from accounts.get_accounts import GetAccounts
 from blockchain.block.block_main import Block
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.get_block import GetBlock
 from blockchain.block.hash.accounts_hash import AccountsHash
 from blockchain.block.hash.blocks_hash import BlocksHash
 from blockchain.block.hash.calculate_hash import CalculateHash
 from blockchain.block.hash.tx_hash import TransactionsHash
+from blockchain.block.save_block import SaveBlock
 from node.node_connection import Node_Connection
 from node.unl import Unl
 from transactions.transaction import Transaction
@@ -261,6 +265,53 @@ class Test_Blockchain(unittest.TestCase):
         true_hash = "873a38de099d3d779b66c45537bc1d1865a506a59573a669d2fdbfca67d3634b"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
+
+    def test_SaveBlock_GetBlock_first_time(self):
+        block = Block("onur")
+
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCK_PATH"
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_ACCOUNTS_PATH")
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PATH")
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        )
+
+        the_accounts = GetAccounts(
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+        the_blocks_hash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+
+        self.assertEqual(len(the_accounts), 1)
+        self.assertEqual(the_accounts[0].Address, "onur")
+        self.assertEqual(the_accounts[0].balance, block.coin_amount)
+        self.assertEqual(the_accounts[0].sequance_number, 0)
+
+        self.assertEqual(len(the_blocks_hash), 1)
+        self.assertEqual(the_blocks_hash[0], block.previous_hash)
+
+        self.assertEqual(block.first_time, False)
+
+    def test_SaveBlock_GetBlock(self):
+        block = Block("onur")
+
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_TEMP_BLOCK_PATH"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_TEMP_ACCOUNTS_PATH"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_TEMP_BLOCKSHASH_PATH"
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        )
+
+        block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+
+        self.assertEqual(block.__dict__, block_2.__dict__)
 
 
 unittest.main(exit=False)

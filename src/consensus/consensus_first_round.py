@@ -13,6 +13,7 @@ from blockchain.block.blocks_hash import GetBlockshash_part
 from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash_part
 from blockchain.block.hash.calculate_hash import CalculateHash
+from blockchain.block.save_block import SaveBlock
 from blockchain.candidate_block.get_candidate_blocks import GetCandidateBlocks
 from lib.log import get_logger
 from node.node import Node
@@ -134,6 +135,6 @@ def consensus_round_1(block):
 
             logger.debug(f"Block hash {block.hash}")
 
-            block.save_block()
+            SaveBlock(block)
 
     logger.info("First round is done")

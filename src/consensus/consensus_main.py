@@ -10,6 +10,7 @@ from app.app_main import app_tigger
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.get_block import GetBlock
+from blockchain.block.save_block import SaveBlock
 from blockchain.block.save_block_to_blockchain_db import \
     saveBlockstoBlockchainDB
 from consensus.consensus_first_round import consensus_round_1
@@ -67,12 +68,12 @@ def consensus_trigger():
                 SaveBlockshash(current_blockshash_list)
                 saveBlockstoBlockchainDB(block2)
 
-            block.save_block()
+            SaveBlock(block)
     else:
         PendingtoValidating(block)
         if block.raund_1_starting_time is None:
             block.raund_1_starting_time = int(time.time())
-            block.save_block()
+            SaveBlock(block)
         if not block.raund_1:
             logger.info("First round is starting")
             consensus_round_1(block)

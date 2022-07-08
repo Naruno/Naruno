@@ -20,6 +20,12 @@ loading_block.decentra_network
 wallet_list.json
 
 test_SaveAccounts_GetAccounts
+test_SaveBlock_GetBlock_first_time_TEMP_ACCOUNTS_PATH
+test_SaveBlock_GetBlock_first_time_TEMP_BLOCK_PATH
+test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PATH
+test_SaveBlock_GetBlock_TEMP_ACCOUNTS_PATH
+test_SaveBlock_GetBlock_TEMP_BLOCK_PATH
+test_SaveBlock_GetBlock_TEMP_BLOCKSHASH_PATH
 
 *.log
 
