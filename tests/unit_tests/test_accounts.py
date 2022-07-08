@@ -12,6 +12,7 @@ import unittest
 from blockchain.block.block_main import Block
 from accounts.account import Account
 from accounts.get_balance import GetBalance
+from accounts.get_sequance_number import GetSequanceNumber
 
 
 class Test_Accounts(unittest.TestCase):
@@ -64,7 +65,7 @@ class Test_Accounts(unittest.TestCase):
 
         self.assertEqual(account_string, the_account_string)
 
-    def test_get_balance_not_list_account(self):
+    def test_GetBalance_not_list_account(self):
 
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10, 1) 
         the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15, 1)
@@ -97,5 +98,33 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(result_2, 10)
         result_3 = GetBalance(block, "test_account_3", account_list = account_list)
         self.assertEqual(result_3, 15)
-   
+
+    def test_GetSequanceNumber_not_list_account(self):
+
+        the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10, 1) 
+        the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15, 2)
+        the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20, 3)
+
+        account_list = [the_account, the_account_2, the_account_3]
+
+        result = GetSequanceNumber("onuratakan", account_list = account_list)
+
+        self.assertEqual(result, 0)
+
+    def test_GetSequanceNumber(self):
+
+        the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10, 1) 
+        the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15, 2)
+        the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20, 3)
+
+        account_list = [the_account, the_account_2, the_account_3]
+
+
+        result = GetSequanceNumber("test_account", account_list = account_list)
+        self.assertEqual(result, 1)
+        result_2 = GetSequanceNumber("test_account_2", account_list = account_list)
+        self.assertEqual(result_2, 2)
+        result_3 = GetSequanceNumber("test_account_3", account_list = account_list)
+        self.assertEqual(result_3, 3)
+
 unittest.main(exit=False)

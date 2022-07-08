@@ -11,10 +11,11 @@ from wallet.wallet_import import Address
 from accounts.get_accounts import GetAccounts
 
 
-def GetSequanceNumber(user):
+def GetSequanceNumber(user, account_list = None):
     user = Address(user)
     sequance_number = 0
-    for Accounts in GetAccounts():
+    the_account_list = GetAccounts() if account_list == None else account_list
+    for Accounts in the_account_list:
 
         if Accounts.Address == user:
 
