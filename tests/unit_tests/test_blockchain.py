@@ -4,26 +4,24 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from transactions.transaction import Transaction
+from node.unl import Unl
+from node.node_connection import Node_Connection
+from blockchain.block.hash.tx_hash import TransactionsHash
+from blockchain.block.hash.calculate_hash import CalculateHash
+from blockchain.block.hash.blocks_hash import BlocksHash
+from blockchain.block.hash.accounts_hash import AccountsHash
+from blockchain.block.save_block import SaveBlock
+from blockchain.block.get_block import GetBlock
+from blockchain.block.block_main import Block
+from blockchain.block.blocks_hash import GetBlockshash
+from accounts.get_accounts import GetAccounts
+from accounts.account import Account
+import unittest
+import time
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import time
-import unittest
-
-from accounts.account import Account
-from accounts.get_accounts import GetAccounts
-from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.block_main import Block
-from blockchain.block.get_block import GetBlock
-from blockchain.block.save_block import SaveBlock
-from blockchain.block.hash.accounts_hash import AccountsHash
-from blockchain.block.hash.blocks_hash import BlocksHash
-from blockchain.block.hash.calculate_hash import CalculateHash
-from blockchain.block.hash.tx_hash import TransactionsHash
-from node.node_connection import Node_Connection
-from node.unl import Unl
-from transactions.transaction import Transaction
-
 
 
 class Test_Blockchain(unittest.TestCase):
@@ -273,18 +271,19 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_first_time_TEMP_ACCOUNTS_PATH"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PATH"
         SaveBlock(block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
-        )
+                  custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                  custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                  custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
+                  )
 
         block_2 = GetBlock(
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH          
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH
         )
 
-        the_accounts = GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
-        the_blocks_hash = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
-
+        the_accounts = GetAccounts(
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+        the_blocks_hash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
 
         self.assertEqual(len(the_accounts), 1)
         self.assertEqual(the_accounts[0].Address, "onur")
@@ -296,8 +295,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block.first_time, False)
 
-
-
     def test_SaveBlock_GetBlock(self):
         block = Block("onur")
 
@@ -305,15 +302,14 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_TEMP_ACCOUNTS_PATH"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_TEMP_BLOCKSHASH_PATH"
         SaveBlock(block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
-        )
+                  custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                  custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                  custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
+                  )
 
         block_2 = GetBlock(
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH          
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH
         )
-
 
         self.assertEqual(block.__dict__, block_2.__dict__)
 

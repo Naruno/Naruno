@@ -19,13 +19,16 @@ from lib.log import get_logger
 
 logger = get_logger("BLOCKCHAIN")
 
+
 def SaveBlock(block, custom_TEMP_BLOCK_PATH=None, custom_TEMP_ACCOUNTS_PATH=None, custom_TEMP_BLOCKSHASH_PATH=None):
     """
     Saves the current block to the TEMP_BLOCK_PATH.
     """
     if block.first_time:
-        SaveAccounts([Account(block.creator, block.coin_amount)], custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
-        SaveBlockshash([block.previous_hash], custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        SaveAccounts([Account(block.creator, block.coin_amount)],
+                     custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+        SaveBlockshash([block.previous_hash],
+                       custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
         block.first_time = False
     the_TEMP_BLOCK_PATH = TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
     os.chdir(get_config()["main_folder"])
