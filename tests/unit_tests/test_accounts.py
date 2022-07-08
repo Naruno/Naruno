@@ -4,18 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from blockchain.block.block_main import Block
+from accounts.get_sequance_number import GetSequanceNumber
+from accounts.get_balance import GetBalance
+from accounts.save_accounts import SaveAccounts
+from accounts.get_accounts import GetAccounts
+from accounts.account import Account
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import unittest
-
-from accounts.account import Account
-from accounts.get_accounts import GetAccounts
-from accounts.save_accounts import SaveAccounts
-from accounts.get_balance import GetBalance
-from accounts.get_sequance_number import GetSequanceNumber
-from blockchain.block.block_main import Block
-
 
 
 class Test_Accounts(unittest.TestCase):
@@ -165,17 +163,18 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(len(result), len(account_list))
         self.assertEqual(result[0].Address, account_list[0].Address)
         self.assertEqual(result[0].balance, account_list[0].balance)
-        self.assertEqual(result[0].sequance_number, account_list[0].sequance_number)
+        self.assertEqual(result[0].sequance_number,
+                         account_list[0].sequance_number)
 
         self.assertEqual(result[1].Address, account_list[1].Address)
         self.assertEqual(result[1].balance, account_list[1].balance)
-        self.assertEqual(result[1].sequance_number, account_list[1].sequance_number)
+        self.assertEqual(result[1].sequance_number,
+                         account_list[1].sequance_number)
 
         self.assertEqual(result[2].Address, account_list[2].Address)
         self.assertEqual(result[2].balance, account_list[2].balance)
-        self.assertEqual(result[2].sequance_number, account_list[2].sequance_number)
-
-
+        self.assertEqual(result[2].sequance_number,
+                         account_list[2].sequance_number)
 
 
 unittest.main(exit=False)

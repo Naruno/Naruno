@@ -14,7 +14,7 @@ from lib.config_system import get_config
 from config import TEMP_ACCOUNTS_PATH
 
 
-def SaveAccounts(the_accounts, custom_TEMP_ACCOUNTS_PATH = None):
+def SaveAccounts(the_accounts, custom_TEMP_ACCOUNTS_PATH=None):
     """
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
