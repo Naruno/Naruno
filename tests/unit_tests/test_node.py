@@ -15,7 +15,6 @@ from node.unl import Unl
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_create import wallet_create
 from wallet.wallet_delete import wallet_delete
-from wallet.wallet_import import wallet_import
 
 
 

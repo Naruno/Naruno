@@ -19,6 +19,8 @@ loading_block.decentra_network
 *.blockshashpart
 wallet_list.json
 
+test_SaveAccounts_GetAccounts
+
 *.log
 
 # Export
