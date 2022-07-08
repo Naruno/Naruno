@@ -11,26 +11,21 @@ from getpass import getpass
 
 from accounts.get_balance import GetBalance
 from blockchain.block.create_block import CreateBlock
-from blockchain.block.get_block import GetBlock
-from blockchain.block.get_block import GetBlockFromOtherNode
+from blockchain.block.get_block import GetBlock, GetBlockFromOtherNode
 from blockchain.block.save_block import SaveBlock
 from config import MY_TRANSACTION_EXPORT_PATH
 from lib.export import export_the_transactions
 from lib.log import get_logger
-from lib.mixlib import banner_maker
-from lib.mixlib import menu_maker
-from lib.mixlib import menu_space
-from lib.mixlib import question_maker
-from lib.mixlib import quit_menu_maker
+from lib.mixlib import (banner_maker, menu_maker, menu_space, question_maker,
+                        quit_menu_maker)
 from lib.safety import safety_check
-from lib.settings_system import debug_mode
-from lib.settings_system import test_mode
-from lib.settings_system import the_settings
+from lib.settings_system import debug_mode, test_mode, the_settings
 from lib.status import Status
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
-from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from transactions.print_transactions import PrintTransactions
 from transactions.send import send
 from wallet.delete_current_wallet import delete_current_wallet
