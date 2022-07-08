@@ -5,9 +5,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from wallet.wallet_import import Address
+from accounts.get_accounts import GetAccounts
 
-
-def GetBalance(block, user, account_list):
+def GetBalance(block, user, account_list = None):
     """
     Returns the users balance.
     """
@@ -15,7 +15,8 @@ def GetBalance(block, user, account_list):
 
     balance = -block.minumum_transfer_amount
     user = Address(user)
-    for Accounts in account_list:
+    the_account_list = GetAccounts() if account_list == None else account_list
+    for Accounts in the_account_list:
 
         if Accounts.Address == user:
             balance += Accounts.balance
