@@ -10,10 +10,15 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import time
 import unittest
+import copy
 
+from transactions.transaction import Transaction
 from accounts.account import Account
+from wallet.wallet_import import wallet_import
 from accounts.get_accounts import GetAccounts
 from blockchain.block.block_main import Block
+from blockchain.block.save_block_to_blockchain_db import SaveBlockstoBlockchainDB
+from blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import GetBlockshash_part
 from blockchain.block.blocks_hash import SaveBlockshash
@@ -352,6 +357,79 @@ class Test_Blockchain(unittest.TestCase):
         the_list = GetBlockshash_part(
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
         self.assertEqual(the_list, [])
+
+
+    def test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction(self):
+        block = Block("onur")
+        custom_BLOCKS_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/"
+        custom_TEMP_ACCOUNTS_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH"
+        custom_TEMP_BLOCKSHASH_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH"
+        custom_TEMP_BLOCKSHASH_PART_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH" 
+        SaveBlockstoBlockchainDB(block,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH, 
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, 
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH, 
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH, 
+        )
+        result = GetBlockstoBlockchainDB(
+            block.sequance_number,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH, 
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, 
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH, 
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH, 
+        )
+
+        self.assertEqual(result, False)
+
+
+    def test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_fromUser(self):
+        block = Block("onur")
+
+        the_json = {
+            "sequance_number": 1,
+            "signature": "",
+            "fromUser": wallet_import(-1, 0),
+            "toUser": "",
+            "data": "",
+            "amount": 1,
+            "transaction_fee": 1,
+            "transaction_time": 1,
+        }
+
+        loaded_transaction = Transaction.load_json(the_json)
+
+        block.validating_list.append(loaded_transaction)
+
+        custom_BLOCKS_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"
+        custom_TEMP_ACCOUNTS_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH"
+        custom_TEMP_BLOCKSHASH_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH"
+        custom_TEMP_BLOCKSHASH_PART_PATH="db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH" 
+        SaveBlockstoBlockchainDB(block,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, 
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH, 
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH, 
+        )
+        result = GetBlockstoBlockchainDB(
+            block.sequance_number,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, 
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH, 
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH, 
+        )
+
+        block_2 = copy.copy(result[0])
+        block_2_normal = copy.copy(block)
+
+        block_2.validating_list = []
+        block_2_normal.validating_list = []
+
+        self.assertEqual(len(result), 4)
+        self.assertEqual(block_2.__dict__, block_2_normal.__dict__)
+        self.assertEqual(result[0].validating_list[0].__dict__, block.validating_list[0].__dict__)
+        self.assertEqual(result[1], [])
+        self.assertEqual(result[2], [])
+        self.assertEqual(result[3], [])
 
 
 unittest.main(exit=False)

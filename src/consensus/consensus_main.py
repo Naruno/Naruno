@@ -12,7 +12,7 @@ from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.get_block import GetBlock
 from blockchain.block.save_block import SaveBlock
 from blockchain.block.save_block_to_blockchain_db import \
-    saveBlockstoBlockchainDB
+    SaveBlockstoBlockchainDB
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
 from lib.log import get_logger
@@ -66,7 +66,7 @@ def consensus_trigger():
                     elif tx.fromUser == my_public_key:
                         ValidateTransaction(tx)
                 SaveBlockshash(current_blockshash_list)
-                saveBlockstoBlockchainDB(block2)
+                SaveBlockstoBlockchainDB(block2)
 
             SaveBlock(block)
     else:
