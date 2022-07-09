@@ -18,13 +18,15 @@ def AppsTrigger(block):
     the block is validated.
     """
 
-    logger.info(f"Triggering applications for block {block.sequance_number}:{block.empty_block_number}")
+    logger.info(
+        f"Triggering applications for block {block.sequance_number}:{block.empty_block_number}")
 
     for folder_entry in os.scandir("apps"):
         logger.debug(f"Found application {folder_entry.name}")
         if (".md" not in folder_entry.name and "__" not in folder_entry.name
                 and "app_main" not in folder_entry.name and "apps_trigger" not in folder_entry.name):
-            logger.debug(f"Starting thread for application {folder_entry.name}")
+            logger.debug(
+                f"Starting thread for application {folder_entry.name}")
             for entry in os.scandir("apps/" + folder_entry.name):
                 logger.debug(f"Found entry {entry.name}")
                 if entry.is_file():
