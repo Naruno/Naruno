@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
-from app.app_main import app_tigger
+from apps.apps_trigger import AppsTrigger
 from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.get_block import GetBlock
@@ -57,7 +57,7 @@ def consensus_trigger():
             reset_block = block.reset_the_block(current_blockshash_list)
             if not reset_block == False:
                 block2 = reset_block[0]
-                app_tigger(block2)
+                AppsTrigger(block2)
                 my_address = wallet_import(-1, 3)
                 my_public_key = wallet_import(-1, 0)
                 for tx in block2.validating_list:

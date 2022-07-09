@@ -34,9 +34,11 @@ test_3_CreateBlock_from_zero_TEMP_BLOCK_PATH
 test_CreateBlock_from_zero_TEMP_ACCOUNTS_PATH
 test_CreateBlock_from_zero_TEMP_BLOCKSHASH_PATH
 
-db/blocs/*
-db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
-db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
+src/db/blocs/*
+src/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
+src/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
+
+src/apps/testing_app/*.tx
 
 *.log
 

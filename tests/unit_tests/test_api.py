@@ -13,7 +13,7 @@ from api import app
 
 
 
-class Test_Config(unittest.TestCase):
+class Test_API(unittest.TestCase):
 
     def setUp(self):
         self.ctx = app.app_context()

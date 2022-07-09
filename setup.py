@@ -20,7 +20,7 @@ setup(
     packages=[
         "",
         "accounts",
-        "app",
+        "apps",
         "blockchain",
         "blockchain.block",
         "blockchain.candidate_block",
