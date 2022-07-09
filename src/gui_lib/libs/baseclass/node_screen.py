@@ -7,15 +7,18 @@
 import os
 
 from blockchain.block.create_block import CreateBlock
-from node.get_block_from_other_node import GetBlockFromOtherNode
+from blockchain.block.save_block import SaveBlock
+from consensus.consensus_main import consensus_trigger
 from kivy.core.clipboard import Clipboard
 from kivymd.toast import toast
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
+from lib.perpetualtimer import perpetualTimer
 from lib.settings_system import the_settings
 from lib.status import Status
+from node.get_block_from_other_node import GetBlockFromOtherNode
 from node.node import Node
 from node.node_connection import Node_Connection
 
@@ -227,11 +230,13 @@ class NodeBox(MDGridLayout):
     def add_unl_node(self):
         self.show_add_unl_node_dialog()
 
-    # End
-
     def get_block(self):
         if the_settings()["test_mode"]:
-            CreateBlock()
+            the_block = CreateBlock()
+            SaveBlock(the_block)
+            Node.main_node.send_block_to_other_nodes()
+            perpetualTimer(the_block.consensus_timer,
+                           consensus_trigger).start()
         else:
             GetBlockFromOtherNode()
 

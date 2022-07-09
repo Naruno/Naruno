@@ -685,3 +685,12 @@ class Node(threading.Thread):
         if GetTransaction(block, the_transaction):
             Node.send_transaction(the_transaction)
             SaveBlock(block)
+
+    def send_block_to_other_nodes(self):
+        """
+        Sends the block to the other nodes.
+        """
+
+        self.send_full_accounts()
+        self.send_full_chain()
+        self.send_full_blockshash()
