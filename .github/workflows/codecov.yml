@@ -9,7 +9,8 @@ on:
       - 'setups/**'
       - 'src/**'  
       - 'requirements/**'
-      - 'tests/**'  
+      - 'tests/**'
+      - 'auto_builders/**'      
   pull_request:
     paths:
       - '.github/workflows/codecov.yml'
@@ -19,6 +20,7 @@ on:
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
+      - 'auto_builders/**'      
 jobs:
   run:
     runs-on: ${{ matrix.os }}

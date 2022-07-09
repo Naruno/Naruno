@@ -8,7 +8,8 @@ on:
       - 'setups/**'
       - 'src/**'  
       - 'requirements/**'
-      - 'tests/**'  
+      - 'tests/**'
+      - 'auto_builders/**'
   pull_request:
     paths:
       - '.github/workflows/tests.yml'
@@ -17,6 +18,7 @@ on:
       - 'src/**'  
       - 'requirements/**'
       - 'tests/**'
+      - 'auto_builders/**'      
 
 jobs:
   lint_with_flake8:
