@@ -6,21 +6,22 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 
-from blockchain.block.create_block import CreateBlock
-from node.get_block_from_other_node import GetBlockFromOtherNode
 from kivy.core.clipboard import Clipboard
 from kivymd.toast import toast
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
-from lib.settings_system import the_settings
-from lib.status import Status
-from node.node import Node
-from node.node_connection import Node_Connection
+
+from blockchain.block.create_block import CreateBlock
 from blockchain.block.save_block import SaveBlock
 from consensus.consensus_main import consensus_trigger
 from lib.perpetualtimer import perpetualTimer
+from lib.settings_system import the_settings
+from lib.status import Status
+from node.get_block_from_other_node import GetBlockFromOtherNode
+from node.node import Node
+from node.node_connection import Node_Connection
 
 
 class NodeScreen(MDScreen):
