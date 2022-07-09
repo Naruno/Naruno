@@ -39,6 +39,8 @@ from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
+from consensus.consensus_main import consensus_trigger
+from lib.perpetualtimer import perpetualTimer
 
 logger = get_logger("CLI")
 
@@ -195,7 +197,11 @@ def menu():
 
         if choices_input == "getblock":
             if the_settings()["test_mode"]:
-                CreateBlock()
+                the_block = CreateBlock()
+                SaveBlock(the_block)
+                Node.main_node.send_block_to_other_nodes()
+                logger.info("Consensus timer is started")
+                perpetualTimer(the_block.consensus_timer, consensus_trigger).start()   
             else:
                 GetBlockFromOtherNode()
 
