@@ -4,17 +4,15 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from transactions.transaction import Transaction
+from lib.config_system import get_config
+from blockchain.block.block_main import Block
+from apps.apps_trigger import AppsTrigger
+import unittest
+import time
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import time
-import unittest
-
-from apps.apps_trigger import AppsTrigger
-from blockchain.block.block_main import Block
-from lib.config_system import get_config
-from transactions.transaction import Transaction
-
 
 
 class Test_apps(unittest.TestCase):
