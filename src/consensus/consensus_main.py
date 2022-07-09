@@ -7,7 +7,8 @@
 import time
 
 from apps.apps_trigger import AppsTrigger
-from blockchain.block.blocks_hash import GetBlockshash, SaveBlockshash
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.get_block import GetBlock
 from blockchain.block.save_block import SaveBlock
 from blockchain.block.save_block_to_blockchain_db import \
