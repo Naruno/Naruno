@@ -17,7 +17,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_apps(unittest.TestCase):
-
     def test_AppsTrigger_App(self):
         block = Block("onur")
         the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
@@ -26,8 +25,11 @@ class Test_apps(unittest.TestCase):
         AppsTrigger(block)
         time.sleep(2)
         os.chdir(get_config()["main_folder"])
-        self.assertTrue(os.path.isfile(
-            f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"))
+        self.assertTrue(
+            os.path.isfile(
+                f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
+            )
+        )
 
 
 unittest.main(exit=False)

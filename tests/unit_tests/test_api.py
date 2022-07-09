@@ -8,11 +8,11 @@ from api import app
 import unittest
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_API(unittest.TestCase):
-
     def setUp(self):
         self.ctx = app.app_context()
         self.ctx.push()
