@@ -12,9 +12,9 @@ from getpass import getpass
 from accounts.get_balance import GetBalance
 from blockchain.block.create_block import CreateBlock
 from blockchain.block.get_block import GetBlock
-from node.get_block_from_other_node import GetBlockFromOtherNode
 from blockchain.block.save_block import SaveBlock
 from config import MY_TRANSACTION_EXPORT_PATH
+from consensus.consensus_main import consensus_trigger
 from lib.export import export_the_transactions
 from lib.log import get_logger
 from lib.mixlib import banner_maker
@@ -22,11 +22,13 @@ from lib.mixlib import menu_maker
 from lib.mixlib import menu_space
 from lib.mixlib import question_maker
 from lib.mixlib import quit_menu_maker
+from lib.perpetualtimer import perpetualTimer
 from lib.safety import safety_check
 from lib.settings_system import debug_mode
 from lib.settings_system import test_mode
 from lib.settings_system import the_settings
 from lib.status import Status
+from node.get_block_from_other_node import GetBlockFromOtherNode
 from node.node import Node
 from node.node_connection import Node_Connection
 from node.unl import Unl
@@ -39,8 +41,6 @@ from wallet.print_wallets import print_wallets
 from wallet.wallet_create import wallet_create
 from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
-from consensus.consensus_main import consensus_trigger
-from lib.perpetualtimer import perpetualTimer
 
 logger = get_logger("CLI")
 
@@ -201,7 +201,8 @@ def menu():
                 SaveBlock(the_block)
                 Node.main_node.send_block_to_other_nodes()
                 logger.info("Consensus timer is started")
-                perpetualTimer(the_block.consensus_timer, consensus_trigger).start()   
+                perpetualTimer(the_block.consensus_timer,
+                               consensus_trigger).start()
             else:
                 GetBlockFromOtherNode()
 

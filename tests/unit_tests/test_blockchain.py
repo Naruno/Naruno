@@ -18,8 +18,8 @@ from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import GetBlockshash_part
 from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash_part
-from blockchain.block.get_block import GetBlock
 from blockchain.block.create_block import CreateBlock
+from blockchain.block.get_block import GetBlock
 from blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from blockchain.block.hash.accounts_hash import AccountsHash
@@ -433,13 +433,13 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(result[2], [])
         self.assertEqual(result[3], [])
 
-
     def test_CreateBlock_from_zero(self):
         custom_TEMP_BLOCK_PATH = "db/test_CreateBlock_from_zero_TEMP_BLOCK_PATH"
         custom_TEMP_BLOCK_PATH_2 = "db/test_2_CreateBlock_from_zero_TEMP_BLOCK_PATH"
         custom_TEMP_BLOCK_PATH_3 = "db/test_3_CreateBlock_from_zero_TEMP_BLOCK_PATH"
         custom_TEMP_ACCOUNTS_PATH = "db/test_CreateBlock_from_zero_TEMP_ACCOUNTS_PATH"
-        custom_TEMP_BLOCKSHASH_PATH = "db/test_CreateBlock_from_zero_TEMP_BLOCKSHASH_PATH"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_CreateBlock_from_zero_TEMP_BLOCKSHASH_PATH")
 
         block = CreateBlock(custom_TEMP_BLOCK_PATH)
         SaveBlock(
@@ -465,5 +465,6 @@ class Test_Blockchain(unittest.TestCase):
         block = CreateBlock(custom_TEMP_BLOCK_PATH_3)
         result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_3)
         self.assertEqual(block.previous_hash, result.hash)
+
 
 unittest.main(exit=False)

@@ -28,17 +28,13 @@ def CreateBlock(custom_TEMP_BLOCK_PATH=None):
         else:
             previous_hash = current_block.previous_hash
     except:
-            pass
+        pass
 
     logger.info(
-            "Creating the genesis block and sending it to the connected nodes")
+        "Creating the genesis block and sending it to the connected nodes")
     the_block = None
     if previous_hash is None:
-            the_block = Block(wallet_import(-1, 3))
+        the_block = Block(wallet_import(-1, 3))
     else:
-            the_block = Block(wallet_import(-1, 3),
-                              previous_hash=previous_hash)
+        the_block = Block(wallet_import(-1, 3), previous_hash=previous_hash)
     return the_block
-
-
-
