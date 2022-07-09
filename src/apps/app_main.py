@@ -12,7 +12,6 @@ from lib.log import get_logger
 logger = get_logger("APP")
 
 
-
 class app(Thread):
     """
     It initiates the start functions of the applications in parallel
@@ -30,6 +29,7 @@ class app(Thread):
         Run the application.
         """
         exec(self.import_command)
-        for trans in self.block.validating_list:  # lgtm [py/unused-loop-variable]
+        # lgtm [py/unused-loop-variable]
+        for trans in self.block.validating_list:
             logger.debug(f"Application triggering for tx {trans.__dict__}")
             exec(self.func)
