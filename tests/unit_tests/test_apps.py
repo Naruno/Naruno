@@ -12,11 +12,11 @@ import unittest
 import time
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_apps(unittest.TestCase):
-
     def test_AppsTrigger_App(self):
         block = Block("onur")
         the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
@@ -28,7 +28,8 @@ class Test_apps(unittest.TestCase):
         self.assertTrue(
             os.path.isfile(
                 f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
-            ))
+            )
+        )
 
 
 unittest.main(exit=False)
