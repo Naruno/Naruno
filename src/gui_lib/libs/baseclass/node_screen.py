@@ -22,6 +22,7 @@ from blockchain.block.save_block import SaveBlock
 from consensus.consensus_main import consensus_trigger
 from lib.perpetualtimer import perpetualTimer
 
+
 class NodeScreen(MDScreen):
     pass
 
@@ -229,13 +230,13 @@ class NodeBox(MDGridLayout):
     def add_unl_node(self):
         self.show_add_unl_node_dialog()
 
-
     def get_block(self):
         if the_settings()["test_mode"]:
             the_block = CreateBlock()
             SaveBlock(the_block)
             Node.main_node.send_block_to_other_nodes()
-            perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
+            perpetualTimer(the_block.consensus_timer,
+                           consensus_trigger).start()
         else:
             GetBlockFromOtherNode()
 

@@ -198,7 +198,7 @@ def block_get_page():
         SaveBlock(the_block)
         Node.main_node.send_block_to_other_nodes()
         logger.info("Consensus timer is started")
-        perpetualTimer(the_block.consensus_timer, consensus_trigger).start()        
+        perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
     else:
         GetBlockFromOtherNode()
     return jsonify("OK")
@@ -235,8 +235,7 @@ def start():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
