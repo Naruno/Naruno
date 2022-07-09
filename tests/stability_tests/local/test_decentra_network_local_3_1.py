@@ -4,15 +4,14 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from auto_builders.local import Decentra_Network_Local
+import urllib.request
+import unittest
+import time
 import json
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-import time
-import unittest
-import urllib.request
-
-from auto_builders.local import Decentra_Network_Local
 
 
 temp_environment = Decentra_Network_Local(3, 1)
@@ -43,8 +42,6 @@ class Test_Decentra_Network_Local(unittest.TestCase):
                 "http://localhost:8101/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1, 4000.0,
                          "A problem in same network one transaction -1.")
-
-        
 
         urllib.request.urlopen(
             f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
