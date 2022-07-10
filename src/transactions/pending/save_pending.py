@@ -12,6 +12,7 @@ from hashlib import sha256
 from config import PENDING_TRANSACTIONS_PATH
 from lib.config_system import get_config
 
+
 def SavePending(tx):
     file_name = sha256((tx.signature).encode('utf-8')).hexdigest()
     the_path = PENDING_TRANSACTIONS_PATH + f"{file_name}.json"

@@ -8,6 +8,7 @@
 from transactions.pending.get_pending import GetPending
 from transactions.pending.delete_pending import DeletePending
 
+
 def PendingtoValidating(block):
     """
     Adds transactions to the verification list
