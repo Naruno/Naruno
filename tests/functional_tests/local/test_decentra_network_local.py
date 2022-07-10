@@ -52,6 +52,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
                 "http://localhost:8101/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1, 9000.0,
                          "A problem in same network one transaction -3.")
+        temp_environment.delete()
 
 
 unittest.main(exit=False)
