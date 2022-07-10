@@ -157,7 +157,7 @@ class Test_Accounts(unittest.TestCase):
 
         account_list = [the_account, the_account_2, the_account_3]
 
-        temp_path = "db/test_SaveAccounts_GetAccounts"
+        temp_path = "db/test_SaveAccounts_GetAccounts.json"
 
         SaveAccounts(account_list, temp_path)
 

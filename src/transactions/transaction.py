@@ -48,18 +48,7 @@ class Transaction:
         """
         Returns a json containing the account's data.
         """
-
-        data = {
-            "sequance_number": self.sequance_number,
-            "signature": self.signature,
-            "fromUser": self.fromUser,
-            "toUser": self.toUser,
-            "data": self.data,
-            "amount": self.amount,
-            "transaction_fee": self.transaction_fee,
-            "transaction_time": self.transaction_time,
-        }
-        return data
+        return self.__dict__
 
     @staticmethod
     def load_json(data):
@@ -67,13 +56,7 @@ class Transaction:
         Returns the json data received with dump_json() as an object again.
         """
 
-        return Transaction(
-            data["sequance_number"],
-            data["signature"],
-            data["fromUser"],
-            data["toUser"],
-            data["data"],
-            data["amount"],
-            data["transaction_fee"],
-            data["transaction_time"],
-        )
+        the_transaction_json = json.loads(json.dumps(data))
+        the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
+        the_transaction.__dict__ = the_transaction_json
+        return the_transaction

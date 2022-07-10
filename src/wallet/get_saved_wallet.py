@@ -31,7 +31,6 @@ from config import *
 from lib.config_system import get_config
 
 
-
 def get_saved_wallet():
 
     os.chdir(get_config()["main_folder"])
@@ -39,5 +38,5 @@ def get_saved_wallet():
     if not os.path.exists(WALLETS_PATH):
         return {}
 
-    with open(WALLETS_PATH, "rb") as wallet_list_file:
+    with open(WALLETS_PATH, "r") as wallet_list_file:
         return json.load(wallet_list_file)

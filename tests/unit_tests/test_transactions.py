@@ -36,7 +36,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_non(self):
         backup = GetMyTransaction()
-        SaveMyTransaction([])
+        SaveMyTransaction({})
 
         result = GetMyTransaction()
 

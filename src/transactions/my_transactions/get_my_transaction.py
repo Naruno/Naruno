@@ -4,14 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
-import pickle
+import json
 import os
 
-from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
-
+from lib.config_system import get_config
+from transactions.transaction import Transaction
 
 
 def GetMyTransaction():
@@ -24,7 +22,14 @@ def GetMyTransaction():
     if not os.path.exists(MY_TRANSACTION_PATH):
         return []
 
-    
-    with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
-        obj = pickle.load(my_transaction_file)      
-        return obj
+    the_transactions = []
+
+    with open(MY_TRANSACTION_PATH, "r") as my_transaction_file:
+        the_transactions_json = json.load(my_transaction_file)
+        for transaction in list(the_transactions_json.values()):
+            print(transaction)
+            the_transactions.append([
+                Transaction.load_json(transaction["tx"]),
+                transaction["validated"]
+            ])
+    return the_transactions

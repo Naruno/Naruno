@@ -243,7 +243,7 @@ class Node(threading.Thread):
             return temp_json
 
         os.chdir(get_config()["main_folder"])
-        with open(CONNECTED_NODE_PATH, "rb") as connected_node_file:
+        with open(CONNECTED_NODE_PATH, "r") as connected_node_file:
             return json.load(connected_node_file)
 
     @staticmethod
