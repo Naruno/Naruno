@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import itertools
 import json
 import os
 import time
@@ -13,7 +14,6 @@ from lib.config_system import get_config
 
 
 class Unl:
-
     @staticmethod
     def save_new_unl_node(id):
         """
@@ -22,12 +22,7 @@ class Unl:
 
         nodes_list = Unl.get_unl_nodes()
 
-        already_in_list = False
-
-        for element in nodes_list:
-            if element == id:
-                already_in_list = True
-
+        already_in_list = any(element == id for element in nodes_list)
         if not already_in_list:
 
             nodes_list[id] = {}
@@ -60,11 +55,14 @@ class Unl:
 
         temp_list = []
         if Node.main_node is not None:
-            for list_node in id_list:
-                for each_node in (Node.main_node.nodes_inbound +
-                                  Node.main_node.nodes_outbound):
-                    if list_node == each_node.id:
-                        temp_list.append(each_node)
+            temp_list.extend(
+                each_node
+                for list_node, each_node in itertools.product(
+                    id_list,
+                    (Node.main_node.nodes_inbound + Node.main_node.nodes_outbound),
+                )
+                if list_node == each_node.id
+            )
 
         return temp_list
 

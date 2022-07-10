@@ -37,7 +37,8 @@ class Leaf:
         self.left = left
         self.right = right
         self.value = hashlib.sha256(
-            (self.left + self.right).encode("utf-8")).hexdigest()
+            (self.left + self.right).encode("utf-8")
+        ).hexdigest()
 
 
 class MerkleTree:
@@ -46,7 +47,7 @@ class MerkleTree:
     """
 
     def __init__(self, values: List[str]) -> None:
-        if not len(values) == 0:
+        if values:
             self.merkleCalculator(values)
         else:
             self.root = ""

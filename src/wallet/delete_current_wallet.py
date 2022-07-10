@@ -24,14 +24,14 @@ def delete_current_wallet():
     Deletes the current wallet.
     """
 
-    if not the_settings()["wallet"] == 0:
+    if the_settings()["wallet"] != 0:
         saved_wallets = get_saved_wallet()
         selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]), 0)
         for each_wallet in saved_wallets:
             if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
                 change_wallet(0)
                 if wallet_delete(each_wallet):
-                    logger.info("Wallet deleted: " + each_wallet)
+                    logger.info(f"Wallet deleted: {each_wallet}")
                     return True
     else:
         logger.info("First wallet cannot be deleted.")

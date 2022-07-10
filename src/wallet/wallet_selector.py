@@ -17,16 +17,17 @@ from lib.log import get_logger
 
 logger = get_logger("WALLET")
 
+
 def wallet_selector(new_wallet_number):
     """
     Changes the current wallet.
     """
 
     all_wallets = list(get_saved_wallet())
-    if len(all_wallets) == 0:
+    if not all_wallets:
         logger.error("There is no wallet")
         return None
-      
+
     new_wallet_from_function = None
     try:
         if int(new_wallet_number) in list(range(len(all_wallets))):
@@ -42,6 +43,3 @@ def wallet_selector(new_wallet_number):
         logger.error("This is not a number")
         new_wallet_from_function = False
     return new_wallet_from_function
-
-    
-    

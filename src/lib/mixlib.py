@@ -68,9 +68,23 @@ def banner_maker(sc_name, description, author):
       * author: Author of the script.
     """
 
-    return ("""Script Name    : """ + sc_name + """\n""" +
-            """Description    : """ + description + """\n""" +
-            """Author         : """ + author + """\n""")
+    return (
+        (
+            (
+                (
+                    (
+                        f"""Script Name    : {sc_name}"""
+                        + """\n"""
+                        + """Description    : """
+                    )
+                    + description
+                )
+                + """\n"""
+            )
+            + """Author         : """
+        )
+        + author
+    ) + """\n"""
 
 
 def question_maker(question_text=None, mode=None):
@@ -102,7 +116,7 @@ def menu_maker(menu_number, menu_text):
       * menu_number: A data for menu defination (ex. 1, "sc")
     """
 
-    return str(menu_number) + ") " + menu_text + "\n"
+    return f"{str(menu_number)}) {menu_text}" + "\n"
 
 
 def quit_menu_maker(mode):

@@ -21,18 +21,16 @@ def save_settings(new_settings):
         json.dump(new_settings, settings_file, indent=4)
 
 
-def create_and_save_the_settings(test_mode_settings=False,
-                                 debug_mode_settings=True):
+def create_and_save_the_settings(test_mode_settings=False, debug_mode_settings=True):
     """
     Creates and saves settings.
     """
 
-    temp_json = {}
-    temp_json["test_mode"] = test_mode_settings
-
-    temp_json["debug_mode"] = debug_mode_settings
-
-    temp_json["wallet"] = 0
+    temp_json = {
+        "test_mode": test_mode_settings,
+        "debug_mode": debug_mode_settings,
+        "wallet": 0,
+    }
 
     save_settings(temp_json)
     return temp_json
@@ -88,6 +86,5 @@ def the_settings():
 
     if not os.path.exists(SETTING_PATH):
         return create_and_save_the_settings()
-    else:
-        with open(SETTING_PATH, "r") as settings_file:
-            return json.load(settings_file)
+    with open(SETTING_PATH, "r") as settings_file:
+        return json.load(settings_file)
