@@ -483,7 +483,7 @@ class Test_Blockchain(unittest.TestCase):
 
         result = Block.load_json(block.dump_json())
 
-
         self.assertEqual(block.dump_json(), result.dump_json())
+
 
 unittest.main(exit=False)
