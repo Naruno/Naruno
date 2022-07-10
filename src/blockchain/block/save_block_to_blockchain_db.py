@@ -7,7 +7,8 @@
 import json
 
 from accounts.get_accounts import GetAccounts
-from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import GetBlockshash_part
 from config import BLOCKS_PATH
 from wallet.wallet_import import wallet_import
 
