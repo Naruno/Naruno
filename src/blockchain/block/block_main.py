@@ -51,7 +51,6 @@ class Block:
 
         self.edited_accounts = []
 
-        self.pendingTransaction = []
         self.validating_list = []
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02
@@ -130,10 +129,6 @@ class Block:
         Dumps the block as json.
         """
         temp_block = copy.copy(self)
-        temp_pending_transaction = []
-        for transaction in temp_block.pendingTransaction:
-            temp_pending_transaction.append(transaction.dump_json())
-        temp_block.pendingTransaction = temp_pending_transaction
 
         temp_validating_list = []
         for transaction in temp_block.validating_list:
@@ -143,14 +138,10 @@ class Block:
 
     @staticmethod
     def load_json(json_string):
-        temp_pending_transactions = []
-        for tx in json_string["pendingTransaction"]:
-            temp_pending_transactions.append(Transaction.load_json(tx))
         temp_validating_list = []
         for tx in json_string["validating_list"]:
             temp_validating_list.append(Transaction.load_json(tx))
         the_block_json = json.loads(json.dumps(json_string))
-        the_block_json["pendingTransaction"] = temp_pending_transactions
         the_block_json["validating_list"] = temp_validating_list
         the_block = Block("Decentra-Network")
         the_block.__dict__ = the_block_json
