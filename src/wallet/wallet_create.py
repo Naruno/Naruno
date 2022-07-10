@@ -27,11 +27,9 @@ SOFTWARE.
 
 from config import *
 from lib.encryption import encrypt
-
-
-from wallet.save_wallet_list import save_to_wallet_list
-from wallet.get_saved_wallet import get_saved_wallet
 from wallet.ellipticcurve.privateKey import PrivateKey
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.save_wallet_list import save_to_wallet_list
 
 
 def wallet_create(password, save=True):
