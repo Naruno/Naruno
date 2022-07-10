@@ -17,9 +17,11 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
     Returns the accounts from TEMP_ACCOUNTS_PATH.
     """
 
-    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                              if custom_TEMP_ACCOUNTS_PATH is None else
-                              custom_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = (
+        TEMP_ACCOUNTS_PATH
+        if custom_TEMP_ACCOUNTS_PATH is None
+        else custom_TEMP_ACCOUNTS_PATH
+    )
 
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(the_TEMP_ACCOUNTS_PATH):
@@ -30,6 +32,5 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
 
         the_accounts = []
         for account_json in the_accounts_json:
-            the_accounts.append(
-                Account.load_json(the_accounts_json[account_json]))
+            the_accounts.append(Account.load_json(the_accounts_json[account_json]))
         return the_accounts
