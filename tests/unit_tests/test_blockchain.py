@@ -497,7 +497,6 @@ class Test_Blockchain(unittest.TestCase):
 
         the_transaction = Transaction(1, "", "", "", 1, 1, 1, 1)
 
-        block.pendingTransaction.append(the_transaction)
         block.validating_list.append(the_transaction)
 
         result = Block.load_json(block.dump_json())

@@ -7,12 +7,14 @@
 
 import json
 import os
+from hashlib import sha256
 
 from config import VALIDATING_TRANSACTIONS_PATH
 from lib.config_system import get_config
 
 def SaveValidating(tx):
-    the_path = VALIDATING_TRANSACTIONS_PATH + f"{tx.signature}.json"
+    file_name = sha256((tx.signature).encode('utf-8')).hexdigest()
+    the_path = VALIDATING_TRANSACTIONS_PATH + f"{file_name}.json"
     os.chdir(get_config()["main_folder"])
     with open(the_path, "w") as my_transaction_file:
         json.dump(tx.dump_json(), my_transaction_file)

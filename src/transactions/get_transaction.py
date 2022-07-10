@@ -4,7 +4,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
 from transactions.check.check_transaction import CheckTransaction
+from transactions.pending.save_pending import SavePending
 
 
 def GetTransaction(
@@ -21,7 +24,7 @@ def GetTransaction(
             custom_sequence_number,
             custom_balance,
     ):
-        block.pendingTransaction.append(the_transaction)
+        SavePending(the_transaction)
         return True
     else:
         return False
