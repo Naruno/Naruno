@@ -212,6 +212,16 @@ class Node(threading.Thread):
         except Exception as e:
             logger.exception("Node System: Could not connect with node")
 
+    def disconnect_to_node(self, node):
+
+        if node in self.nodes_outbound:
+            node.stop()
+            node.join()
+            del self.nodes_outbound[self.nodes_outbound.index(node)]
+
+        else:
+            print("Node System: Node disconnect_to_node: Node is not connected")
+
     def stop(self):
         self.terminate_flag.set()
 
