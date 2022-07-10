@@ -4,7 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import pickle
+import json
 
 from accounts.get_accounts import GetAccounts
 from blockchain.block.blocks_hash import GetBlockshash
@@ -41,36 +41,36 @@ def SaveBlockstoBlockchainDB(
     if our_tx:
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
-        with open(the_BLOCKS_PATH + str(block.sequance_number) + ".block",
-                  "wb") as block_file:
-            pickle.dump(block, block_file, protocol=2)
+        with open(the_BLOCKS_PATH + str(block.sequance_number) + ".block.json",
+                  "w") as block_file:
+            json.dump(block.dump_json(), block_file)
 
-        with open(the_BLOCKS_PATH + str(block.sequance_number) + ".accounts",
-                  "wb") as block_file:
-            pickle.dump(
+        with open(the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.json",
+                  "w") as block_file:
+            json.dump(
                 GetAccounts(
                     custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
                 block_file,
-                protocol=2,
+                
             )
 
-        with open(the_BLOCKS_PATH + str(block.sequance_number) + ".blockshash",
-                  "wb") as block_file:
-            pickle.dump(
+        with open(the_BLOCKS_PATH + str(block.sequance_number) + ".blockshash.json",
+                  "w") as block_file:
+            json.dump(
                 GetBlockshash(
                     custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
                 block_file,
-                protocol=2,
+                
             )
 
         with open(
                 the_BLOCKS_PATH + str(block.sequance_number) +
-                ".blockshashpart", "wb") as block_file:
-            pickle.dump(
+                ".blockshashpart.json", "w") as block_file:
+            json.dump(
                 GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
                                    custom_TEMP_BLOCKSHASH_PART_PATH),
                 block_file,
-                protocol=2,
+                
             )
     else:
         False

@@ -243,7 +243,7 @@ class Node(threading.Thread):
             return temp_json
 
         os.chdir(get_config()["main_folder"])
-        with open(CONNECTED_NODE_PATH, "rb") as connected_node_file:
+        with open(CONNECTED_NODE_PATH, "r") as connected_node_file:
             return json.load(connected_node_file)
 
     @staticmethod
@@ -463,7 +463,7 @@ class Node(threading.Thread):
     def send_full_chain(self, node=None):
         self.send_full_accounts(node)
         self.send_full_blockshash(node)
-        file = open(TEMP_BLOCK_PATH, "rb")
+        file = open(TEMP_BLOCK_PATH, "r")
         SendData = file.read(1024)
         while SendData:
 
@@ -502,7 +502,7 @@ class Node(threading.Thread):
                     self.send_data_to_nodes(data)
 
     def send_full_accounts(self, node=None):
-        file = open(TEMP_ACCOUNTS_PATH, "rb")
+        file = open(TEMP_ACCOUNTS_PATH, "r")
         SendData = file.read(1024)
         while SendData:
 
@@ -541,7 +541,7 @@ class Node(threading.Thread):
                     self.send_data_to_nodes(data)
 
     def send_full_blockshash(self, node=None):
-        file = open(TEMP_BLOCKSHASH_PATH, "rb")
+        file = open(TEMP_BLOCKSHASH_PATH, "r")
         SendData = file.read(1024)
         while SendData:
 

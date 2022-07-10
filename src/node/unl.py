@@ -47,7 +47,7 @@ class Unl:
             return {}
 
         os.chdir(get_config()["main_folder"])
-        with open(UNL_NODES_PATH, "rb") as unl_nodes_file:
+        with open(UNL_NODES_PATH, "r") as unl_nodes_file:
             return json.load(unl_nodes_file)
 
     @staticmethod

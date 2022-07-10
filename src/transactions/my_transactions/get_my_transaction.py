@@ -6,9 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import pickle
+import json
 import os
 
+from transactions.transaction import Transaction
 from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
 
@@ -24,7 +25,11 @@ def GetMyTransaction():
     if not os.path.exists(MY_TRANSACTION_PATH):
         return []
 
+    the_transactions = []
     
-    with open(MY_TRANSACTION_PATH, "rb") as my_transaction_file:
-        obj = pickle.load(my_transaction_file)      
-        return obj
+    with open(MY_TRANSACTION_PATH, "r") as my_transaction_file:
+        the_transactions_json = json.load(my_transaction_file)
+        for transaction in list(the_transactions_json.values()):
+            print(transaction)
+            the_transactions.append([Transaction.load_json(transaction["tx"]), transaction["validated"]])
+    return the_transactions

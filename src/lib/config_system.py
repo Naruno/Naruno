@@ -45,5 +45,5 @@ def get_config():
     if not os.path.exists(CONFIG_PATH):
         return create_and_save_the_configs()
     else:
-        with open(CONFIG_PATH, "rb") as config_file:
+        with open(CONFIG_PATH, "r") as config_file:
             return json.load(config_file)

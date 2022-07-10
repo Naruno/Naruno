@@ -89,5 +89,5 @@ def the_settings():
     if not os.path.exists(SETTING_PATH):
         return create_and_save_the_settings()
     else:
-        with open(SETTING_PATH, "rb") as settings_file:
+        with open(SETTING_PATH, "r") as settings_file:
             return json.load(settings_file)

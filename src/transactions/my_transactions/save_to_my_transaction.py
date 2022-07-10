@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
-import pickle
+import json
 
 from config import MY_TRANSACTION_PATH
 from lib.config_system import get_config

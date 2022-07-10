@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
-import pickle
+import json
 
 from config import TEMP_ACCOUNTS_PATH
 from lib.config_system import get_config
@@ -20,5 +20,10 @@ def SaveAccounts(the_accounts, custom_TEMP_ACCOUNTS_PATH=None):
                               if custom_TEMP_ACCOUNTS_PATH is None else
                               custom_TEMP_ACCOUNTS_PATH)
     os.chdir(get_config()["main_folder"])
-    with open(the_TEMP_ACCOUNTS_PATH, "wb") as block_file:
-        pickle.dump(the_accounts, block_file, protocol=2)
+    # turn account list to a json array (use dump_json for objects)
+    the_accounts_json = {}
+    for account in the_accounts:
+        the_accounts_json[account.Address] = account.dump_json()
+
+    with open(the_TEMP_ACCOUNTS_PATH, "w") as block_file:
+        json.dump(the_accounts_json, block_file)

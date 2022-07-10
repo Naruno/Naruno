@@ -6,13 +6,14 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import copy
 import os
-import pickle
+import json
 import time
 
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import SaveAccounts
 from blockchain.block.blocks_hash import SaveBlockshash
+from transactions.transaction import Transaction
 from config import TEMP_BLOCK_PATH
 from lib.config_system import get_config
 from lib.log import get_logger
@@ -123,3 +124,36 @@ class Block:
             )
             self.empty_block_number += 1
             return False
+    
+    def dump_json(self):
+        """
+        Dumps the block as json.
+        """
+        temp_block = copy.copy(self)
+        temp_pending_transaction = []
+        for transaction in temp_block.pendingTransaction:
+            temp_pending_transaction.append(transaction.dump_json())
+        temp_block.pendingTransaction = temp_pending_transaction
+
+        temp_validating_list = []
+        for transaction in temp_block.validating_list:
+            temp_validating_list.append(transaction.dump_json())
+        temp_block.validating_list = temp_validating_list
+        return temp_block.__dict__
+
+    @staticmethod
+    def load_json(json_string):
+        temp_pending_transactions = []
+        for tx in json_string["pendingTransaction"]:
+            temp_pending_transactions.append(Transaction.load_json(tx))
+        temp_validating_list = []
+        for tx in json_string["validating_list"]:
+            temp_validating_list.append(Transaction.load_json(tx))
+        the_block_json = json.loads(json.dumps(json_string))
+        the_block_json["pendingTransaction"] = temp_pending_transactions
+        the_block_json["validating_list"] = temp_validating_list
+        the_block = Block("Decentra-Network")
+        the_block.__dict__ = the_block_json
+
+        return the_block
+

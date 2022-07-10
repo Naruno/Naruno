@@ -39,5 +39,5 @@ def get_saved_wallet():
     if not os.path.exists(WALLETS_PATH):
         return {}
 
-    with open(WALLETS_PATH, "rb") as wallet_list_file:
+    with open(WALLETS_PATH, "r") as wallet_list_file:
         return json.load(wallet_list_file)
