@@ -35,9 +35,6 @@ from transactions.transaction import Transaction
 from transactions.pending.save_pending import SavePending
 from transactions.pending.get_pending import GetPending
 from transactions.pending.delete_pending import DeletePending
-from transactions.validating.save_validating import SaveValidating
-from transactions.validating.get_validating import GetValidating
-from transactions.validating.delete_validating import DeleteValidating
 
 
 class Test_Transactions(unittest.TestCase):
@@ -1200,29 +1197,5 @@ class Test_Transactions(unittest.TestCase):
         DeletePending(the_transaction)
         self.assertEqual(result, True)
 
-    def test_SaveValidating_GetValidating_DeleteValidating(self):
-        the_transaction_json = {
-            "sequance_number": 1,
-            "signature":
-            "test_SaveValidating_GetValidating_DeleteValidating",
-            "fromUser":
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
-            "toUser": "onur",
-            "data": "blockchain-lab",
-            "amount": 5000.0,
-            "transaction_fee": 0,
-            "transaction_time": 1656764224,
-        }
-        the_transaction = Transaction.load_json(the_transaction_json)
-
-        SaveValidating(the_transaction)
-        validating_list = GetValidating()
-        result = False
-        for validating in validating_list:
-            if validating.signature == the_transaction.signature:
-                result = True
-        
-        DeleteValidating(the_transaction)
-        self.assertEqual(result, True)
 
 unittest.main(exit=False)
