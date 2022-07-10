@@ -14,7 +14,6 @@ from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
 
 
-
 def GetMyTransaction():
     """
     Returns the transaction db.
@@ -26,10 +25,11 @@ def GetMyTransaction():
         return []
 
     the_transactions = []
-    
+
     with open(MY_TRANSACTION_PATH, "r") as my_transaction_file:
         the_transactions_json = json.load(my_transaction_file)
         for transaction in list(the_transactions_json.values()):
             print(transaction)
-            the_transactions.append([Transaction.load_json(transaction["tx"]), transaction["validated"]])
+            the_transactions.append([Transaction.load_json(
+                transaction["tx"]), transaction["validated"]])
     return the_transactions

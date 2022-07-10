@@ -60,5 +60,3 @@ class Transaction:
         the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
         the_transaction.__dict__ = the_transaction_json
         return the_transaction
-
-

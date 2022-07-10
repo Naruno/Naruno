@@ -23,4 +23,3 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
         the_block_json = json.load(block_file)
     the_block = Block.load_json(the_block_json)
     return the_block
-

@@ -124,7 +124,7 @@ class Block:
             )
             self.empty_block_number += 1
             return False
-    
+
     def dump_json(self):
         """
         Dumps the block as json.
@@ -156,4 +156,3 @@ class Block:
         the_block.__dict__ = the_block_json
 
         return the_block
-

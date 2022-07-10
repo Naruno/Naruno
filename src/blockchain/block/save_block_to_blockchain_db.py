@@ -51,7 +51,7 @@ def SaveBlockstoBlockchainDB(
                 GetAccounts(
                     custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
                 block_file,
-                
+
             )
 
         with open(the_BLOCKS_PATH + str(block.sequance_number) + ".blockshash.json",
@@ -60,17 +60,17 @@ def SaveBlockstoBlockchainDB(
                 GetBlockshash(
                     custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
                 block_file,
-                
+
             )
 
         with open(
                 the_BLOCKS_PATH + str(block.sequance_number) +
                 ".blockshashpart.json", "w") as block_file:
             json.dump(
-                GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                                   custom_TEMP_BLOCKSHASH_PART_PATH),
+                GetBlockshash_part(
+                    custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
                 block_file,
-                
+
             )
     else:
         False
