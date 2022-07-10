@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-
 from hashlib import sha256
 
 from config import PENDING_TRANSACTIONS_PATH
