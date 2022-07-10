@@ -52,8 +52,10 @@ def Check_Datas(
     logger.info("Transaction is new")
 
     for tx in pending_transactions + block.validating_list:
-        if (tx.fromUser == transaction.fromUser
-                and tx.signature != transaction.signature):
+        if (
+            tx.fromUser == transaction.fromUser
+            and tx.signature != transaction.signature
+        ):
 
             logger.info("Multiple transaction in one account")
             return False

@@ -65,8 +65,7 @@ class PublicKey:
                 encodePrimitive(DerFieldType.object, _ecdsaPublicKeyOid),
                 encodePrimitive(DerFieldType.object, self.curve.oid),
             ),
-            encodePrimitive(DerFieldType.bitString,
-                            self.toString(encoded=True)),
+            encodePrimitive(DerFieldType.bitString, self.toString(encoded=True)),
         )
         return byteStringFromHex(hexadecimal)
 

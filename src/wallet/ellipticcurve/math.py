@@ -195,8 +195,7 @@ class Math:
             return cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P)
 
         return cls._jacobianAdd(
-            cls._jacobianDouble(cls._jacobianMultiply(
-                p, n // 2, N, A, P), A, P),
+            cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P),
             p,
             A,
             P,
