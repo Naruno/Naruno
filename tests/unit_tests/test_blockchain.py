@@ -473,6 +473,25 @@ class Test_Blockchain(unittest.TestCase):
         result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_3)
         self.assertEqual(block.previous_hash, result.hash)
 
+    def test_CreateBlock_migratation_from_uncomplated_block(self):
+        custom_TEMP_BLOCK_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCK_PATH.json"
+        custom_TEMP_BLOCK_PATH_2 = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCKSHASH_PATH.json"
+
+        block = CreateBlock(custom_TEMP_BLOCK_PATH)
+        block.hash = None
+        block.previous_hash = "Onuratakan"
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        )
+
+        result = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2)
+        self.assertEqual(result.previous_hash, block.previous_hash)
+
     def test_dump_json_load_json_Block(self):
         block = Block("onur")
 
