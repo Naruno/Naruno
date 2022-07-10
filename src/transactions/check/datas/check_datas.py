@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
+from transactions.pending.get_pending import GetPending
 from accounts.get_balance import GetBalance
 from accounts.get_sequance_number import GetSequanceNumber
 from lib.log import get_logger
@@ -44,16 +45,16 @@ def Check_Datas(
     else:
         return False
 
-    for already_tx in block.pendingTransaction + block.validating_list:
+    pending_transactions = GetPending()
+    for already_tx in pending_transactions + block.validating_list:
         if already_tx.signature == transaction.signature:
             return False
     logger.info("Transaction is new")
 
-    for tx in block.pendingTransaction + block.validating_list:
-        if (
-            tx.fromUser == transaction.fromUser
-            and tx.signature != transaction.signature
-        ):
+    for tx in pending_transactions + block.validating_list:
+        if (tx.fromUser == transaction.fromUser
+                and tx.signature != transaction.signature):
+
             logger.info("Multiple transaction in one account")
             return False
 

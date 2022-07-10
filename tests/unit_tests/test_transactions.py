@@ -4,9 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from ast import Delete
 import copy
 import os
 import sys
+
+from requests import delete
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import time
 import unittest
@@ -29,7 +32,9 @@ from transactions.pending_to_validating import PendingtoValidating
 from transactions.process_the_transaction import ProccesstheTransaction
 from transactions.send import send
 from transactions.transaction import Transaction
-
+from transactions.pending.save_pending import SavePending
+from transactions.pending.get_pending import GetPending
+from transactions.pending.delete_pending import DeletePending
 
 
 class Test_Transactions(unittest.TestCase):
@@ -126,16 +131,34 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+        temp_transaction = Transaction(1, "1", "", "", "", 1, 1, 1)
+        temp_transaction_2 = Transaction(1, "2", "", "", "", 1, 1, 1)
+        temp_transaction_3 = Transaction(1, "3", "", "", "", 1, 1, 1)
 
-        block.pendingTransaction.append(temp_transaction)
-        block.pendingTransaction.append(temp_transaction)
-        block.pendingTransaction.append(temp_transaction)
+        SavePending(temp_transaction)
+        SavePending(temp_transaction_2)
+        SavePending(temp_transaction_3)
 
         PendingtoValidating(block)
 
+        pending_transactions = GetPending()
+
+        know_pending_number = 0
+
+        for transaction in pending_transactions:
+            if transaction.signature == temp_transaction.signature:
+                know_pending_number += 1
+            if transaction.signature == temp_transaction_2.signature:
+                know_pending_number += 1
+            if transaction.signature == temp_transaction_3.signature:
+                know_pending_number += 1
+
+        DeletePending(temp_transaction)
+        DeletePending(temp_transaction_2)
+        DeletePending(temp_transaction_3)
+
         self.assertEqual(len(block.validating_list), 2)
-        self.assertEqual(len(block.pendingTransaction), 1)
+        self.assertEqual(know_pending_number, 1)     
 
     def test_pending_to_validating_round_1_started(self):
 
@@ -143,31 +166,63 @@ class Test_Transactions(unittest.TestCase):
         block.max_tx_number = 2
         block.raund_1_starting_time = 1
 
-        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+        temp_transaction = Transaction(1, "4", "", "", "", 1, 1, 1)
+        temp_transaction_2 = Transaction(1, "5", "", "", "", 1, 1, 1)
+        temp_transaction_3 = Transaction(1, "6", "", "", "", 1, 1, 1)
 
-        block.pendingTransaction.append(temp_transaction)
-        block.pendingTransaction.append(temp_transaction)
-        block.pendingTransaction.append(temp_transaction)
+        SavePending(temp_transaction)
+        SavePending(temp_transaction_2)
+        SavePending(temp_transaction_3)
 
         PendingtoValidating(block)
 
+        pending_transactions = GetPending()
+
+        know_pending_number = 0
+
+        for transaction in pending_transactions:
+            if transaction.signature == temp_transaction.signature:
+                know_pending_number += 1
+            if transaction.signature == temp_transaction_2.signature:
+                know_pending_number += 1
+            if transaction.signature == temp_transaction_3.signature:
+                know_pending_number += 1
+
+        DeletePending(temp_transaction)
+        DeletePending(temp_transaction_2)
+        DeletePending(temp_transaction_3) 
+
         self.assertEqual(len(block.validating_list), 0)
-        self.assertEqual(len(block.pendingTransaction), 3)
+        self.assertEqual(know_pending_number, 3)
 
     def test_pending_to_validating(self):
 
         block = Block("")
         block.max_tx_number = 2
 
-        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+        temp_transaction = Transaction(1, "77", "", "", "", 1, 1, 1)
+        temp_transaction_2 = Transaction(1, "88", "", "", "", 1, 1, 1)
 
-        block.pendingTransaction.append(temp_transaction)
-        block.pendingTransaction.append(temp_transaction)
+        SavePending(temp_transaction)
+        SavePending(temp_transaction_2)
 
         PendingtoValidating(block)
 
+        pending_transactions = GetPending()
+
+        know_pending_number = 0
+
+        for transaction in pending_transactions:
+            if transaction.signature == temp_transaction.signature:
+                know_pending_number += 1
+            if transaction.signature == temp_transaction_2.signature:
+                know_pending_number += 1
+
+        DeletePending(temp_transaction)
+        DeletePending(temp_transaction_2)
+
         self.assertEqual(len(block.validating_list), 2)
-        self.assertEqual(len(block.pendingTransaction), 0)
+        self.assertEqual(know_pending_number, 0)
 
     def test_change_transaction_fee_increasing(self):
 
@@ -178,13 +233,12 @@ class Test_Transactions(unittest.TestCase):
         block.default_increase_of_fee = 0.01
         block.default_transaction_fee = 0.02
 
-        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+        temp_transaction = Transaction(1, "9", "", "", "", 1, 1, 1)
 
-        block.pendingTransaction.append(temp_transaction)
         block.validating_list.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block)
+        ChangeTransactionFee(block, custom_pending_transactions=[temp_transaction])
 
         new_transaction_fee = block.transaction_fee
 
@@ -200,12 +254,12 @@ class Test_Transactions(unittest.TestCase):
         block.default_increase_of_fee = 0.01
         block.default_transaction_fee = 0.02
 
-        temp_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+        temp_transaction = Transaction(1, "10", "", "", "", 1, 1, 1)
 
-        block.pendingTransaction.append(temp_transaction)
+
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block)
+        ChangeTransactionFee(block, custom_pending_transactions=[temp_transaction])
 
         new_transaction_fee = block.transaction_fee
 
@@ -385,7 +439,7 @@ class Test_Transactions(unittest.TestCase):
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
-        block.pendingTransaction.append(the_transaction)
+        SavePending(the_transaction)
         result = Check_Datas(
             block,
             the_transaction,
@@ -393,6 +447,7 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
             custom_sequence_number=0,
         )
+        DeletePending(the_transaction)
         self.assertEqual(result, False)
 
     def test_check_transaction_bad_type_fromUser(self):
@@ -594,8 +649,8 @@ class Test_Transactions(unittest.TestCase):
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
         the_transaction1 = Transaction.load_json(the_transaction_json)
-        the_transaction1.signature = "a"
-        block.pendingTransaction.append(the_transaction1)
+        the_transaction1.signature = "11"
+        SavePending(the_transaction1)
         result = Check_Datas(
             block,
             the_transaction,
@@ -603,6 +658,7 @@ class Test_Transactions(unittest.TestCase):
             custom_balance=100000,
             custom_sequence_number=0,
         )
+        DeletePending(the_transaction1)
         self.assertEqual(result, False)
 
     def test_check_transaction_wrong_time(self):
@@ -884,12 +940,12 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_amount_type(self):
         block = Block("onur")
-        result = send(block, "123", "onur", "atakan", "ulusoy")
+        result = send(block, "123", "onur", "atakan", "1ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_amount_type_negative(self):
         block = Block("onur")
-        result = send(block, "123", "onur", -500, "ulusoy")
+        result = send(block, "123", "onur", -500, "2ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_big_data(self):
@@ -902,22 +958,22 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_decimal_amount(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 500.001, "ulusoy")
+        result = send(block, "123", "onur", 500.001, "3ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_amount_lower_than_minumum(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 500, "ulusoy")
+        result = send(block, "123", "onur", 500, "4ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_pass(self):
         block = Block("onur")
-        result = send(block, "1235", "onur", 5000, "ulusoy")
+        result = send(block, "1235", "onur", 5000, "5ulusoy")
         self.assertEqual(result, False)
 
     def test_send_false_check(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 5000, "ulusoy", custom_balance=5)
+        result = send(block, "123", "onur", 5000, "6ulusoy", custom_balance=5)
         self.assertEqual(result, False)
 
     def test_send_true(self):
@@ -927,12 +983,14 @@ class Test_Transactions(unittest.TestCase):
             "123",
             "onur",
             5000,
-            "ulusoy",
+            "77ulusoy",
             custom_current_time=(int(time.time()) + 5),
             custom_sequence_number=0,
             custom_balance=100000,
         )
+        
         self.assertNotEqual(result, False)
+        DeletePending(result)
 
     def test_get_transaction_false(self):
 
@@ -990,6 +1048,7 @@ class Test_Transactions(unittest.TestCase):
             custom_sequence_number=0,
             custom_balance=100000,
         )
+        DeletePending(the_transaction)
         self.assertEqual(result, True)
 
     def test_ProccesstheTransaction_validating_list(self):
@@ -1111,6 +1170,32 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(account_list[6].balance, 5000)
         self.assertEqual(account_list[6].Address, "teaaast")
         self.assertEqual(account_list[6].sequance_number, 0)
+
+
+    def test_SavePending_GetPending_DeletePending(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "test_SavePending_GetPending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+
+        SavePending(the_transaction)
+        pending_list = GetPending()
+        result = False
+        for pending in pending_list:
+            if pending.signature == the_transaction.signature:
+                result = True
+        
+        DeletePending(the_transaction)
+        self.assertEqual(result, True)
 
 
 unittest.main(exit=False)
