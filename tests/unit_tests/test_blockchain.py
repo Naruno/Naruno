@@ -475,12 +475,9 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_CreateBlock_migratation_from_uncomplated_block(self):
         custom_TEMP_BLOCK_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCK_PATH.json"
-        custom_TEMP_BLOCK_PATH_2 = (
-            "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCK_PATH.json")
-        custom_TEMP_ACCOUNTS_PATH = (
-            "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_ACCOUNTS_PATH.json")
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCK_PATH_2 = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCKSHASH_PATH.json"
 
         block = CreateBlock(custom_TEMP_BLOCK_PATH)
         block.hash = None
@@ -494,7 +491,6 @@ class Test_Blockchain(unittest.TestCase):
 
         result = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2)
         self.assertEqual(result.previous_hash, block.previous_hash)
-
 
     def test_dump_json_load_json_Block(self):
         block = Block("onur")
