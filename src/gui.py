@@ -6,17 +6,17 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from lib.safety import safety_check
+from lib.log import get_logger
+from lib.config_system import get_config
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivy import Config
 import os
 import argparse
 
 os.environ["KIVY_NO_ARGS"] = "1"
-from kivy import Config
-from kivy.lang import Builder
-from kivymd.app import MDApp
-from lib.config_system import get_config
-from lib.log import get_logger
 
-from lib.safety import safety_check
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
