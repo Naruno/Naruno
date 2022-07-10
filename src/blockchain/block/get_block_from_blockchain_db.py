@@ -21,23 +21,28 @@ def GetBlockstoBlockchainDB(
     Gets the block from the blockchain database
     """
     try:
-        the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
-                           custom_BLOCKS_PATH)
-        with open(the_BLOCKS_PATH + str(sequance_number) + ".block.json",
-                  "r") as block_file:
+        the_BLOCKS_PATH = (
+            BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
+        )
+        with open(
+            the_BLOCKS_PATH + str(sequance_number) + ".block.json", "r"
+        ) as block_file:
             the_block_json = json.load(block_file)
         the_block = Block.load_json(the_block_json)
 
-        with open(the_BLOCKS_PATH + str(sequance_number) + ".accounts.json",
-                  "r") as block_file:
+        with open(
+            the_BLOCKS_PATH + str(sequance_number) + ".accounts.json", "r"
+        ) as block_file:
             the_accounts = json.load(block_file)
 
-        with open(the_BLOCKS_PATH + str(sequance_number) + ".blockshash.json",
-                  "r") as block_file:
+        with open(
+            the_BLOCKS_PATH + str(sequance_number) + ".blockshash.json", "r"
+        ) as block_file:
             the_blockshash = json.load(block_file)
 
-        with open(the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json",
-                  "r") as block_file:
+        with open(
+            the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json", "r"
+        ) as block_file:
             the_blockshashpart = json.load(block_file)
 
         return [the_block, the_accounts, the_blockshash, the_blockshashpart]
