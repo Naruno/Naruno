@@ -29,6 +29,9 @@ from transactions.pending_to_validating import PendingtoValidating
 from transactions.process_the_transaction import ProccesstheTransaction
 from transactions.send import send
 from transactions.transaction import Transaction
+from transactions.pending.save_pending import SavePending
+from transactions.pending.get_pending import GetPending
+from transactions.pending.delete_pending import DeletePending
 
 
 
@@ -1111,6 +1114,32 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(account_list[6].balance, 5000)
         self.assertEqual(account_list[6].Address, "teaaast")
         self.assertEqual(account_list[6].sequance_number, 0)
+
+
+    def test_SavePending_GetPending(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "test_SavePending_GetPending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+
+        SavePending(the_transaction)
+        pending_list = GetPending()
+        result = False
+        for pending in pending_list:
+            if pending.signature == the_transaction.signature:
+                result = True
+        
+        DeletePending(the_transaction)
+        self.assertEqual(result, True)
 
 
 unittest.main(exit=False)
