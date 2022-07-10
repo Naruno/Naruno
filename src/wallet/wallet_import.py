@@ -65,46 +65,42 @@ def wallet_import(wallet, mode, password=None):
         temp_saved_wallet = get_saved_wallet()
 
     if isinstance(wallet, int):
-        if not -1 == wallet:
-            if not wallet > (len(temp_saved_wallet) - 1):
-                account = list(temp_saved_wallet)[account]
-            else:
-                return False
-        else:
+        if wallet == -1:
             account = list(temp_saved_wallet)[the_settings()["wallet"]]
 
-    if mode == 0:
-        my_public_key = temp_saved_wallet[account]["publickey"]
-
-        return my_public_key
-    elif mode == 1:
-        if not password is None:
-            if not list(temp_saved_wallet).index(account) == 0:
-
-                return decrypt(temp_saved_wallet[account]["privatekey"],
-                               password)
-            else:
-                if wallet == -1:
-                    my_private_key = temp_saved_wallet[account]["privatekey"]
-                    return my_private_key
-                else:              
-                    return False
+        elif wallet <= (len(temp_saved_wallet) - 1):
+            account = list(temp_saved_wallet)[account]
         else:
-            if not list(temp_saved_wallet).index(account) == 0:
+            return False
+    if mode == 0:
+        return temp_saved_wallet[account]["publickey"]
+    elif mode == 1:
+        if password is None:
+            if list(temp_saved_wallet).index(account) != 0:
                 return False
-            else:
-                my_private_key = temp_saved_wallet[account]["privatekey"]
-                return my_private_key
+            my_private_key = temp_saved_wallet[account]["privatekey"]
+            return my_private_key
 
+        elif list(temp_saved_wallet).index(account) != 0:
+
+            return decrypt(temp_saved_wallet[account]["privatekey"], password)
+        else:
+            if wallet != -1:
+                return False
+            my_private_key = temp_saved_wallet[account]["privatekey"]
+            return my_private_key
     elif mode == 2:
         return temp_saved_wallet[account]["password_sha256"]
 
     elif mode == 3:
         my_address = temp_saved_wallet[account]["publickey"]
-        my_address = "".join([
-            l.strip() for l in my_address.splitlines()
-            if l and not l.startswith("-----")
-        ])
+        my_address = "".join(
+            [
+                l.strip()
+                for l in my_address.splitlines()
+                if l and not l.startswith("-----")
+            ]
+        )
         my_address = Address(my_address)
         return my_address
     else:
@@ -112,10 +108,9 @@ def wallet_import(wallet, mode, password=None):
 
 
 def Address(publickey):
-    the_public_key = "".join([
-        l.strip() for l in publickey.splitlines()
-        if l and not l.startswith("-----")
-    ])
+    the_public_key = "".join(
+        [l.strip() for l in publickey.splitlines() if l and not l.startswith("-----")]
+    )
     return sha256(
-        sha256(the_public_key.encode("utf-8")).hexdigest().encode(
-            "utf-8")).hexdigest()[-40:]
+        sha256(the_public_key.encode("utf-8")).hexdigest().encode("utf-8")
+    ).hexdigest()[-40:]

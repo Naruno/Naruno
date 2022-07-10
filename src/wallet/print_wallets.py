@@ -25,12 +25,12 @@ def print_wallets():
     for wallet in all_wallets:
         number = all_wallets.index(wallet)
         address = wallet_import(all_wallets.index(wallet), 3)
-        if not current_wallet == number:
+        if current_wallet != number:
             text = menu_maker(menu_number=number, menu_text=address)
-            print(text)
-            result.append(text)
         else:
-            text = menu_maker(menu_number=number, menu_text=address + " - CURRENTLY USED")
-            print(text)
-            result.append(text)
+            text = menu_maker(
+                menu_number=number, menu_text=f"{address} - CURRENTLY USED"
+            )
+        print(text)
+        result.append(text)
     return result

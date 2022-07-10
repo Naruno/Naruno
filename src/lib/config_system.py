@@ -27,9 +27,7 @@ def create_and_save_the_configs():
     Creates and saves configs.
     """
 
-    temp_json = {}
-    temp_json["main_folder"] = os.path.join(os.path.dirname(__file__), "..")
-
+    temp_json = {"main_folder": os.path.join(os.path.dirname(__file__), "..")}
     save_config(temp_json)
     return temp_json
 
@@ -42,6 +40,5 @@ def get_config():
 
     if not os.path.exists(CONFIG_PATH):
         return create_and_save_the_configs()
-    else:
-        with open(CONFIG_PATH, "r") as config_file:
-            return json.load(config_file)
+    with open(CONFIG_PATH, "r") as config_file:
+        return json.load(config_file)

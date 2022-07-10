@@ -18,16 +18,15 @@ def export_the_transactions():
     """
     obj = GetMyTransaction()
     filename = MY_TRANSACTION_EXPORT_PATH
-    if not len(obj) == 0:
-        os.chdir(get_config()["main_folder"])
-        with open(filename, "w", newline="", encoding="utf-8") as csvfile:
-            fieldnames = [i for i in obj[0][0].__dict__.keys()] + ["is_valid"]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            for obj in obj:
-                trans = obj[0].__dict__
-                trans["is_valid"] = obj[1]
-                writer.writerow(trans)
-        return True
-    else:
+    if len(obj) == 0:
         return False
+    os.chdir(get_config()["main_folder"])
+    with open(filename, "w", newline="", encoding="utf-8") as csvfile:
+        fieldnames = list(obj[0][0].__dict__.keys()) + ["is_valid"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for obj in obj:
+            trans = obj[0].__dict__
+            trans["is_valid"] = obj[1]
+            writer.writerow(trans)
+    return True

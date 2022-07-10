@@ -18,12 +18,13 @@ def SaveMyTransaction(transaction_list):
     """
 
     if type(transaction_list) is list:
-        new_dict = {}
-        for tx in transaction_list:
-            new_dict[tx[0].signature] = {
+        new_dict = {
+            tx[0].signature: {
                 "tx": tx[0].dump_json(),
                 "validated": tx[1],
             }
+            for tx in transaction_list
+        }
 
         transaction_list = new_dict
 
