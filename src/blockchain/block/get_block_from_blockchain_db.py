@@ -4,10 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 from accounts.get_accounts import GetAccounts
-from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import GetBlockshash_part
 from blockchain.block.get_block import GetBlock
 from config import BLOCKS_PATH
 
