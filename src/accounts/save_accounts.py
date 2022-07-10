@@ -16,11 +16,9 @@ def SaveAccounts(the_accounts, custom_TEMP_ACCOUNTS_PATH=None):
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
 
-    the_TEMP_ACCOUNTS_PATH = (
-        TEMP_ACCOUNTS_PATH
-        if custom_TEMP_ACCOUNTS_PATH is None
-        else custom_TEMP_ACCOUNTS_PATH
-    )
+    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
+                              if custom_TEMP_ACCOUNTS_PATH is None else
+                              custom_TEMP_ACCOUNTS_PATH)
     os.chdir(get_config()["main_folder"])
     # turn account list to a json array (use dump_json for objects)
     the_accounts_json = {}
