@@ -24,17 +24,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
-from wallet.ellipticcurve.curve import getCurveByOid, secp256k1
+from wallet.ellipticcurve.curve import getCurveByOid
+from wallet.ellipticcurve.curve import secp256k1
 from wallet.ellipticcurve.math import Math
 from wallet.ellipticcurve.point import Point
-from wallet.ellipticcurve.utils.binary import (base64FromByteString,
-                                               byteStringFromBase64,
-                                               byteStringFromHex,
-                                               hexFromByteString, intFromHex)
-from wallet.ellipticcurve.utils.der import (DerFieldType, encodeConstructed,
-                                            encodePrimitive, hexFromInt, parse)
-from wallet.ellipticcurve.utils.pem import createPem, getPemContent
+from wallet.ellipticcurve.utils.binary import base64FromByteString
+from wallet.ellipticcurve.utils.binary import byteStringFromBase64
+from wallet.ellipticcurve.utils.binary import byteStringFromHex
+from wallet.ellipticcurve.utils.binary import hexFromByteString
+from wallet.ellipticcurve.utils.binary import intFromHex
+from wallet.ellipticcurve.utils.der import DerFieldType
+from wallet.ellipticcurve.utils.der import encodeConstructed
+from wallet.ellipticcurve.utils.der import encodePrimitive
+from wallet.ellipticcurve.utils.der import hexFromInt
+from wallet.ellipticcurve.utils.der import parse
+from wallet.ellipticcurve.utils.pem import createPem
+from wallet.ellipticcurve.utils.pem import getPemContent
 
 
 class PublicKey:

@@ -4,15 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import argparse
 import os
 
 from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
-
 from lib.config_system import get_config
 from lib.log import get_logger
 from lib.safety import safety_check

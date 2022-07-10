@@ -17,11 +17,16 @@ from config import MY_TRANSACTION_EXPORT_PATH
 from consensus.consensus_main import consensus_trigger
 from lib.export import export_the_transactions
 from lib.log import get_logger
-from lib.mixlib import (banner_maker, menu_maker, menu_space, question_maker,
-                        quit_menu_maker)
+from lib.mixlib import banner_maker
+from lib.mixlib import menu_maker
+from lib.mixlib import menu_space
+from lib.mixlib import question_maker
+from lib.mixlib import quit_menu_maker
 from lib.perpetualtimer import perpetualTimer
 from lib.safety import safety_check
-from lib.settings_system import debug_mode, test_mode, the_settings
+from lib.settings_system import debug_mode
+from lib.settings_system import test_mode
+from lib.settings_system import the_settings
 from lib.status import Status
 from node.get_block_from_other_node import GetBlockFromOtherNode
 from node.node import Node
