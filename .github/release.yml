@@ -34,9 +34,9 @@ changelog:
       labels:
         - Accounts
 
-    - title: APP
+    - title: APPS
       labels:
-        - APP
+        - APPS
 
     - title: Auto-Builders
       labels:
