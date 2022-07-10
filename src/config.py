@@ -22,6 +22,7 @@ LOADING_BLOCK_PATH = "db/loading_block.decentra_network.json"
 
 BLOCKS_PATH = "db/blocks/"
 PENDING_TRANSACTIONS_PATH = "db/pending_transactions/"
+VALIDATING_TRANSACTIONS_PATH = "db/validating_transactions/"
 
 WALLETS_PATH = "db/wallet_list.json"
 

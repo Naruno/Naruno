@@ -5,14 +5,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
 import os
 
-from config import PENDING_TRANSACTIONS_PATH
+from config import VALIDATING_TRANSACTIONS_PATH
 from lib.config_system import get_config
 
-def SavePending(tx):
-    the_path = PENDING_TRANSACTIONS_PATH + f"{tx.signature}.json"
+def DeleteValidating(tx):
     os.chdir(get_config()["main_folder"])
-    with open(the_path, "w") as my_transaction_file:
-        json.dump(tx.dump_json(), my_transaction_file)
+    for entry in os.scandir(VALIDATING_TRANSACTIONS_PATH):
+        if entry.name == f"{tx.signature}.json":
+            os.remove(entry.path)
