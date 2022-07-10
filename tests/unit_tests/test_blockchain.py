@@ -473,5 +473,17 @@ class Test_Blockchain(unittest.TestCase):
         result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_3)
         self.assertEqual(block.previous_hash, result.hash)
 
+    def test_dump_json_load_json_Block(self):
+        block = Block("onur")
+
+        the_transaction = Transaction(1, "", "", "", 1, 1, 1, 1)
+
+        block.pendingTransaction.append(the_transaction)
+        block.validating_list.append(the_transaction)
+
+        result = Block.load_json(block.dump_json())
+
+
+        self.assertEqual(block.dump_json(), result.dump_json())
 
 unittest.main(exit=False)
