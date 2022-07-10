@@ -4,8 +4,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import os
 import json
+import os
 
 from blockchain.block.block_main import Block
 from config import TEMP_BLOCK_PATH
@@ -23,4 +23,3 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
         the_block_json = json.load(block_file)
     the_block = Block.load_json(the_block_json)
     return the_block
-

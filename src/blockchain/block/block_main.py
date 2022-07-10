@@ -5,19 +5,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import copy
-import os
 import json
+import os
 import time
 
 from accounts.account import Account
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import SaveAccounts
 from blockchain.block.blocks_hash import SaveBlockshash
-from transactions.transaction import Transaction
 from config import TEMP_BLOCK_PATH
 from lib.config_system import get_config
 from lib.log import get_logger
 from node.unl import Unl
+from transactions.transaction import Transaction
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -124,7 +124,7 @@ class Block:
             )
             self.empty_block_number += 1
             return False
-    
+
     def dump_json(self):
         """
         Dumps the block as json.
@@ -156,4 +156,3 @@ class Block:
         the_block.__dict__ = the_block_json
 
         return the_block
-

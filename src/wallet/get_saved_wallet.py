@@ -31,7 +31,6 @@ from config import *
 from lib.config_system import get_config
 
 
-
 def get_saved_wallet():
 
     os.chdir(get_config()["main_folder"])

@@ -4,15 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 import json
 import os
 
-from transactions.transaction import Transaction
-from lib.config_system import get_config
 from config import MY_TRANSACTION_PATH
-
+from lib.config_system import get_config
+from transactions.transaction import Transaction
 
 
 def GetMyTransaction():
@@ -26,10 +23,13 @@ def GetMyTransaction():
         return []
 
     the_transactions = []
-    
+
     with open(MY_TRANSACTION_PATH, "r") as my_transaction_file:
         the_transactions_json = json.load(my_transaction_file)
         for transaction in list(the_transactions_json.values()):
             print(transaction)
-            the_transactions.append([Transaction.load_json(transaction["tx"]), transaction["validated"]])
+            the_transactions.append([
+                Transaction.load_json(transaction["tx"]),
+                transaction["validated"]
+            ])
     return the_transactions

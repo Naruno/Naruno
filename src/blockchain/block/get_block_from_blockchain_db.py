@@ -36,8 +36,9 @@ def GetBlockstoBlockchainDB(
                   "r") as block_file:
             the_blockshash = json.load(block_file)
 
-        with open(the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json",
-                  "r") as block_file:
+        with open(
+                the_BLOCKS_PATH + str(sequance_number) +
+                ".blockshashpart.json", "r") as block_file:
             the_blockshashpart = json.load(block_file)
 
         return [the_block, the_accounts, the_blockshash, the_blockshashpart]
