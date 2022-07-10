@@ -18,6 +18,7 @@ test_*.json
 
 
 src/db/blocs/*
+src/db/pending_transactions/*
 src/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
 src/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
 
