@@ -4,9 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import json
 
-from blockchain.block.block_main import Block
+
+from blockchain.block.get_block import GetBlock
+from accounts.get_accounts import GetAccounts
+from blockchain.block.blocks_hash import GetBlockshash
+from blockchain.block.blocks_hash import GetBlockshash_part
 from config import BLOCKS_PATH
 
 
@@ -23,23 +26,11 @@ def GetBlockstoBlockchainDB(
     try:
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
-        with open(the_BLOCKS_PATH + str(sequance_number) + ".block.json",
-                  "r") as block_file:
-            the_block_json = json.load(block_file)
-        the_block = Block.load_json(the_block_json)
-
-        with open(the_BLOCKS_PATH + str(sequance_number) + ".accounts.json",
-                  "r") as block_file:
-            the_accounts = json.load(block_file)
-
-        with open(the_BLOCKS_PATH + str(sequance_number) + ".blockshash.json",
-                  "r") as block_file:
-            the_blockshash = json.load(block_file)
-
-        with open(
-                the_BLOCKS_PATH + str(sequance_number) +
-                ".blockshashpart.json", "r") as block_file:
-            the_blockshashpart = json.load(block_file)
+        the_block = GetBlock((the_BLOCKS_PATH + str(sequance_number) + ".block.json"))
+        the_accounts = GetAccounts((the_BLOCKS_PATH + str(sequance_number) + ".accounts.json"))
+        the_blockshash = GetBlockshash(the_BLOCKS_PATH + str(sequance_number) + ".blockshash.json")
+        the_blockshashpart = GetBlockshash_part(the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json")
+           
 
         return [the_block, the_accounts, the_blockshash, the_blockshashpart]
     except FileNotFoundError:
