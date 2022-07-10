@@ -18,11 +18,11 @@ def GetTransaction(
     custom_balance=None,
 ):
     if CheckTransaction(
-            block,
-            the_transaction,
-            custom_current_time,
-            custom_sequence_number,
-            custom_balance,
+        block,
+        the_transaction,
+        custom_current_time,
+        custom_sequence_number,
+        custom_balance,
     ):
         SavePending(the_transaction)
         return True

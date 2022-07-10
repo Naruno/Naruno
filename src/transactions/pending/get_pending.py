@@ -19,6 +19,7 @@ def GetPending():
     for entry in os.scandir(PENDING_TRANSACTIONS_PATH):
         if entry.name != "README.md":
             with open(entry.path, "r") as my_transaction_file:
-                the_pending_list.append(Transaction.load_json(
-                    json.load(my_transaction_file)))
+                the_pending_list.append(
+                    Transaction.load_json(json.load(my_transaction_file))
+                )
     return the_pending_list
