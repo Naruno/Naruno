@@ -6,10 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from blockchain.block.get_block import GetBlock
 from accounts.get_accounts import GetAccounts
-from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.blocks_hash import GetBlockshash_part
+from blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
+from blockchain.block.get_block import GetBlock
 from config import BLOCKS_PATH
 
 
