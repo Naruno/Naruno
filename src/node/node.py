@@ -49,7 +49,7 @@ class Node(threading.Thread):
         ]
     )
 
-    def __init__(self, host, port, callback=None):
+    def __init__(self, host, port):
         self.__class__.main_node = self
         super(Node, self).__init__()
 
@@ -58,7 +58,6 @@ class Node(threading.Thread):
         self.host = host
         self.port = port
 
-        self.callback = callback
 
         self.nodes_inbound = []
 
