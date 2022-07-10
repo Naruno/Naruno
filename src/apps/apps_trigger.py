@@ -40,8 +40,5 @@ def AppsTrigger(block):
                         tx_command = f"{entry.name.replace('.py','')}_tx(trans)"
                         logger.debug(f"import command: {import_command}")
                         logger.debug(f"tx_command: {tx_command}")
-                        try:
-                            x = app(import_command, tx_command, block)
-                            x.start()
-                        except Exception as e:
-                            logger.exception(e)
+                        x = app(import_command, tx_command, block)
+                        x.start()
