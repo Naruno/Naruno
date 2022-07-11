@@ -191,6 +191,7 @@ class Node(threading.Thread):
             logger.info("Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
+        self.sock.shutdown(socket.SHUT_RDWR)
         self.terminate_flag.set()
 
     @staticmethod

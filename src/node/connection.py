@@ -67,6 +67,7 @@ class Connection(threading.Thread):
             )
 
     def stop(self):
+        self.sock.shutdown(socket.SHUT_RDWR)
         self.terminate_flag.set()
 
     def parse_packet(self, packet):
