@@ -98,7 +98,7 @@ class Node(threading.Thread):
         logger.info("Node System: Stopping protocol started by node")
         for t in self.nodes:
             self.disconnect_to_node(t)
-        self.sock.settimeout(None)
+        
         self.sock.close()
         logger.info("Node System: The node is stopped")
 
