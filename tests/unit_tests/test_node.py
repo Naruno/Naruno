@@ -106,4 +106,20 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(result.candidate_blocks, [True, True])
         self.assertEqual(result.candidate_block_hashes, [True, False])
 
+    def test_parse_packet_unicode(self):
+        connection = Connection("main_node", "sock", "id", "host", "port")
+        packet = "test"
+        packet = packet.encode('utf-16')
+        result = connection.parse_packet(packet)
+        self.assertEqual(result, b'\xff\xfet\x00e\x00s\x00t\x00')
+
+    def test_parse_packet(self):
+        connection = Connection("main_node", "sock", "id", "host", "port")
+        packet = "test"
+        packet = packet.encode("utf-8")
+        result = connection.parse_packet(packet)
+        self.assertEqual(result, "test")
+        
+
+
 unittest.main(exit=False)
