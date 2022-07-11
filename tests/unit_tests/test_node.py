@@ -79,7 +79,8 @@ class Test_Node(unittest.TestCase):
                     == saved_wallets[each_wallet]["privatekey"]):
                 wallet_delete(each_wallet)
 
-
+        for i in node_2.nodes + node_1.nodes:
+            i.close()
         node_2.stop()
         node_1.stop()
 
@@ -161,6 +162,8 @@ class Test_Node(unittest.TestCase):
 
         node_2.disconnect_to_node(connection)
         node_2.delete_closed_connections()
+        for i in node_2.nodes + node_1.nodes:
+            i.close()        
         node_2.stop()
         node_1.stop()
         self.assertEqual(connection_2.messages[0], "test")
@@ -179,6 +182,8 @@ class Test_Node(unittest.TestCase):
 
 
         Node.id = default_id
+        for i in node_2.nodes + node_1.nodes:
+            i.close()        
         node_2.stop()
         node_1.stop()
         self.assertEqual(node_1.nodes, [])
