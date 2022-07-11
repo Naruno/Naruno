@@ -112,7 +112,7 @@ class Connection(threading.Thread):
 
             time.sleep(0.01)
 
-        self.sock.settimeout(None)
+        self.sock.settimeout(2)
         self.sock.close()
         logger.info("Node System: Connection: Stopped")
-        sys.exit()
+
