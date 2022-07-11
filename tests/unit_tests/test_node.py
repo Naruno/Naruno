@@ -16,11 +16,11 @@ import copy
 import unittest
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 
 class Test_Node(unittest.TestCase):
-
     def test_node_by_connection_saving_and_unl_nodes_system(self):
         time.sleep(30)
         password = "123"
@@ -50,15 +50,18 @@ class Test_Node(unittest.TestCase):
                 finded_node = True
 
                 temp_unl_node_list = Unl.get_unl_nodes()
-                temp_get_as_node_type = Unl.get_as_node_type(
-                    temp_unl_node_list)
+                temp_get_as_node_type = Unl.get_as_node_type(temp_unl_node_list)
                 for unl_element in temp_unl_node_list:
                     if unl_element == node_1.id or unl_element == node_2.id:
                         for node_element_of_unl in temp_get_as_node_type:
-                            if (node_1.host == node_element_of_unl.host
-                                    or node_2 == node_element_of_unl.host):
-                                if (node_1.port == node_element_of_unl.port
-                                        or node_2 == node_element_of_unl.port):
+                            if (
+                                node_1.host == node_element_of_unl.host
+                                or node_2 == node_element_of_unl.host
+                            ):
+                                if (
+                                    node_1.port == node_element_of_unl.port
+                                    or node_2 == node_element_of_unl.port
+                                ):
                                     get_as_node = True
                         in_unl_list = True
                         Unl.unl_node_delete(unl_element)
@@ -67,28 +70,26 @@ class Test_Node(unittest.TestCase):
         node_2.disconnect_to_node(connection)
         node_2.delete_closed_connections()
 
-        connection_closing_deleting = any(
-            element == id for element in nodes_list)
+        connection_closing_deleting = any(element == id for element in nodes_list)
 
         saved_wallets = get_saved_wallet()
 
         for each_wallet in saved_wallets:
-            if (temp_private_key == saved_wallets[each_wallet]["privatekey"]
-                    or temp_private_key2
-                    == saved_wallets[each_wallet]["privatekey"]):
+            if (
+                temp_private_key == saved_wallets[each_wallet]["privatekey"]
+                or temp_private_key2 == saved_wallets[each_wallet]["privatekey"]
+            ):
                 wallet_delete(each_wallet)
 
         node_2.stop()
         node_1.stop()
 
-        self.assertEqual(connection_closing_deleting, False,
-                         "Connection closing deleting")
-        self.assertEqual(finded_node, True,
-                         "Problem on connection saving system.")
-        self.assertEqual(in_unl_list, True,
-                         "Problem on UNL node saving system.")
-        self.assertEqual(get_as_node, True,
-                         "Problem on UNL get as node system.")
+        self.assertEqual(
+            connection_closing_deleting, False, "Connection closing deleting"
+        )
+        self.assertEqual(finded_node, True, "Problem on connection saving system.")
+        self.assertEqual(in_unl_list, True, "Problem on UNL node saving system.")
+        self.assertEqual(get_as_node, True, "Problem on UNL get as node system.")
 
     def test_GetCandidateBlocks(self):
 
@@ -107,9 +108,9 @@ class Test_Node(unittest.TestCase):
     def test_parse_packet_unicode(self):
         connection = Connection("main_node", "sock", "id", "host", "port")
         packet = "test"
-        packet = packet.encode('utf-16')
+        packet = packet.encode("utf-16")
         result = connection.parse_packet(packet)
-        self.assertEqual(result, b'\xff\xfet\x00e\x00s\x00t\x00')
+        self.assertEqual(result, b"\xff\xfet\x00e\x00s\x00t\x00")
 
     def test_parse_packet(self):
         connection = Connection("main_node", "sock", "id", "host", "port")
@@ -133,8 +134,7 @@ class Test_Node(unittest.TestCase):
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
 
-        connection = node_2.connect_to_node(
-            "127.0.0.1", 10001, save_messages=True)
+        connection = node_2.connect_to_node("127.0.0.1", 10001, save_messages=True)
         time.sleep(2)
         connection_2 = node_1.nodes[0]
         connection_2.save_messages = True
@@ -142,7 +142,7 @@ class Test_Node(unittest.TestCase):
         node_2.send_data_to_nodes(1)
         node_2.send_data_to_nodes("test")
         time.sleep(2)
-        node_2.send_data_to_nodes({"test": b'b'})
+        node_2.send_data_to_nodes({"test": b"b"})
         node_2.send_data_to_nodes({"test": "test"})
         time.sleep(2)
         node_2.send_data_to_nodes(b"test")
@@ -150,9 +150,10 @@ class Test_Node(unittest.TestCase):
         saved_wallets = get_saved_wallet()
 
         for each_wallet in saved_wallets:
-            if (temp_private_key == saved_wallets[each_wallet]["privatekey"]
-                    or temp_private_key2
-                    == saved_wallets[each_wallet]["privatekey"]):
+            if (
+                temp_private_key == saved_wallets[each_wallet]["privatekey"]
+                or temp_private_key2 == saved_wallets[each_wallet]["privatekey"]
+            ):
                 wallet_delete(each_wallet)
 
         node_2.disconnect_to_node(connection)
