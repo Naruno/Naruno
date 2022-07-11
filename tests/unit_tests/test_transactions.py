@@ -143,22 +143,19 @@ class Test_Transactions(unittest.TestCase):
 
         pending_transactions = GetPending()
 
-        know_pending_number = 0
+        transaction_1_true = any(element.signature == temp_transaction.signature for element in pending_transactions)
+        transaction_2_true = any(element.signature == temp_transaction_2.signature for element in pending_transactions)
+        transaction_3_true = any(element.signature == temp_transaction_3.signature for element in pending_transactions)
 
-        for transaction in pending_transactions:
-            if transaction.signature == temp_transaction.signature:
-                know_pending_number += 1
-            if transaction.signature == temp_transaction_2.signature:
-                know_pending_number += 1
-            if transaction.signature == temp_transaction_3.signature:
-                know_pending_number += 1
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
         DeletePending(temp_transaction_3)
 
         self.assertEqual(len(block.validating_list), 2)
-        self.assertEqual(know_pending_number, 1)     
+        self.assertEqual(transaction_1_true, False)
+        self.assertEqual(transaction_2_true, False)
+        self.assertEqual(transaction_3_true, True)    
 
     def test_pending_to_validating_round_1_started(self):
 
@@ -210,19 +207,16 @@ class Test_Transactions(unittest.TestCase):
 
         pending_transactions = GetPending()
 
-        know_pending_number = 0
 
-        for transaction in pending_transactions:
-            if transaction.signature == temp_transaction.signature:
-                know_pending_number += 1
-            if transaction.signature == temp_transaction_2.signature:
-                know_pending_number += 1
+        transaction_1_true = any(element.signature == temp_transaction.signature for element in pending_transactions)
+        transaction_2_true = any(element.signature == temp_transaction_2.signature for element in pending_transactions)
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
 
         self.assertEqual(len(block.validating_list), 2)
-        self.assertEqual(know_pending_number, 0)
+        self.assertEqual(transaction_1_true, False)
+        self.assertEqual(transaction_2_true, False)
 
     def test_change_transaction_fee_increasing(self):
 

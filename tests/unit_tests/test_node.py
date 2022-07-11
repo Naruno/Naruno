@@ -68,9 +68,7 @@ class Test_Node(unittest.TestCase):
         node_2.disconnect_to_node(connection)
         node_2.delete_closed_connections()
 
-        for n in node_2.nodes:
-            if n == connection:
-                connection_closing_deleting = False
+        connection_closing_deleting = any(element == id for element in nodes_list)
 
         saved_wallets = get_saved_wallet()
 
@@ -84,7 +82,7 @@ class Test_Node(unittest.TestCase):
         node_2.stop()
         node_1.stop()
 
-        self.assertEqual(connection_closing_deleting, True,
+        self.assertEqual(connection_closing_deleting, False,
                         "Connection closing deleting")
         self.assertEqual(finded_node, True,
                          "Problem on connection saving system.")
