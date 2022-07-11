@@ -4,18 +4,19 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from wallet.wallet_delete import wallet_delete
-from wallet.wallet_create import wallet_create
-from wallet.get_saved_wallet import get_saved_wallet
-from node.unl import Unl
-from node.connection import Connection
-from node.node import Node
-from node.get_candidate_blocks import GetCandidateBlocks
-import time
 import copy
-import unittest
 import os
 import sys
+import time
+import unittest
+
+from node.connection import Connection
+from node.get_candidate_blocks import GetCandidateBlocks
+from node.node import Node
+from node.unl import Unl
+from wallet.get_saved_wallet import get_saved_wallet
+from wallet.wallet_create import wallet_create
+from wallet.wallet_delete import wallet_delete
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
