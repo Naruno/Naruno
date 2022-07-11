@@ -99,7 +99,7 @@ class Node(threading.Thread):
         for t in self.nodes:
             self.disconnect_to_node(t)
 
-
+        self.sock.settimeout(None)
         self.sock.close()
         logger.info("Node System: The node is stopped")
         sys.exit()
