@@ -29,7 +29,7 @@ from blockchain.block.hash.tx_hash import TransactionsHash
 from blockchain.block.save_block import SaveBlock
 from blockchain.block.save_block_to_blockchain_db import \
     SaveBlockstoBlockchainDB
-from node.node_connection import Node_Connection
+from node.connection import Connection
 from node.unl import Unl
 from transactions.transaction import Transaction
 from wallet.wallet_import import wallet_import
@@ -70,7 +70,7 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_block_reset_nodes(self):
         block = Block("onur")
-        node_1 = Node_Connection("main_node", "sock", "id", "host", "port")
+        node_1 = Connection("main_node", "sock", "id", "host", "port")
         node_1.candidate_block = True
         node_1.candidate_block_hash = True
         nodes_2 = [node_1]

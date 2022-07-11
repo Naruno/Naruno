@@ -12,7 +12,7 @@ import copy
 
 from node.get_candidate_blocks import GetCandidateBlocks
 from node.node import Node
-from node.node_connection import Node_Connection
+from node.connection import Connection
 from node.unl import Unl
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_create import wallet_create
@@ -37,8 +37,9 @@ class Test_Node(unittest.TestCase):
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
 
-        Node_Connection.connect("127.0.0.1", 10001)
+        connection = node_2.connect_to_node("127.0.0.1", 10001)
 
+        connection_closing_deleting = True
         finded_node = False
         in_unl_list = False
         get_as_node = False
@@ -64,8 +65,12 @@ class Test_Node(unittest.TestCase):
                         Unl.unl_node_delete(unl_element)
                 Node.connected_node_delete(element)
 
-        node_1.stop()
-        node_2.stop()
+        node_2.disconnect_to_node(connection)
+        node_2.delete_closed_connections()
+
+        for n in node_2.nodes:
+            if n == connection:
+                connection_closing_deleting = False
 
         saved_wallets = get_saved_wallet()
 
@@ -75,6 +80,12 @@ class Test_Node(unittest.TestCase):
                     == saved_wallets[each_wallet]["privatekey"]):
                 wallet_delete(each_wallet)
 
+
+        node_2.stop()
+        node_1.stop()
+
+        self.assertEqual(connection_closing_deleting, True,
+                        "Connection closing deleting")
         self.assertEqual(finded_node, True,
                          "Problem on connection saving system.")
         self.assertEqual(in_unl_list, True,
@@ -85,7 +96,7 @@ class Test_Node(unittest.TestCase):
 
     def test_GetCandidateBlocks(self):
 
-        node_1 = Node_Connection("main_node", "sock", "id", "host", "port")
+        node_1 = Connection("main_node", "sock", "id", "host", "port")
         node_1.candidate_block = True
         node_1.candidate_block_hash = True
         node_2 = copy.copy(node_1)

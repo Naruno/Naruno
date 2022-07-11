@@ -18,10 +18,10 @@ from node.unl import Unl
 logger = get_logger("NODE")
 
 
-class Node_Connection(threading.Thread):
+class Connection(threading.Thread):
 
     def __init__(self, main_node, sock, id, host, port):
-        super(Node_Connection, self).__init__()
+        super(Connection, self).__init__()
 
         self.host = host
         self.port = port
@@ -93,7 +93,7 @@ class Node_Connection(threading.Thread):
                 chunk = self.sock.recv(4096)
 
             except socket.timeout:
-                logger.exception("Node System: Node_Connection: timeout")
+                logger.exception("Node System: Connection: timeout")
 
             except Exception as e:
                 self.terminate_flag.set()
@@ -119,25 +119,9 @@ class Node_Connection(threading.Thread):
 
         self.sock.settimeout(None)
         self.sock.close()
-        logger.info("Node System: Node_Connection: Stopped")
+        logger.info("Node System: Connection: Stopped")
 
-    @staticmethod
-    def connect(ip, port):
-        """
-        Connects to a node.
-        """
-        from node.node import Node
 
-        Node.main_node.connect_to_node(ip, port)
-
-    @staticmethod
-    def connectmixdb():
-        """
-        Connects to nodes from mixdb.
-        """
-        from node.node import Node
-
-        Node.connectionfrommixdb()
 
     def __str__(self):
         return f"Node Connection: {self.host}:{self.port} ({self.id})"

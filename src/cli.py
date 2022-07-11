@@ -30,7 +30,7 @@ from lib.settings_system import the_settings
 from lib.status import Status
 from node.get_block_from_other_node import GetBlockFromOtherNode
 from node.node import Node
-from node.node_connection import Node_Connection
+from node.connection import Connection
 from node.unl import Unl
 from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.print_transactions import PrintTransactions
@@ -166,10 +166,10 @@ def menu():
         if choices_input == "ndstop":
             Node.main_node.stop()
         if choices_input == "ndconnect":
-            Node_Connection.connect(str(input("node ip: ")), int(input("node port: ")))
+            Node.main_node.connect_to_node(str(input("node ip: ")), int(input("node port: ")))
 
         if choices_input == "ndconnectmixdb":
-            Node_Connection.connectmixdb()
+            Node.connectionfrommixdb()
         if choices_input == "ndnewunl":
             Unl.save_new_unl_node(input("Please write ID of the node: "))
         if choices_input == "ndid":

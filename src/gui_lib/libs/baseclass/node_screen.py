@@ -20,7 +20,7 @@ from lib.settings_system import the_settings
 from lib.status import Status
 from node.get_block_from_other_node import GetBlockFromOtherNode
 from node.node import Node
-from node.node_connection import Node_Connection
+from node.connection import Connection
 
 
 class NodeScreen(MDScreen):
@@ -112,7 +112,7 @@ class NodeBox(MDGridLayout):
         Node.main_node.stop()
 
     def connect_to_know_node(self):
-        Node_Connection.connectmixdb()
+        Node.connectionfrommixdb()
 
     # Connect a Node
 
@@ -159,7 +159,7 @@ class NodeBox(MDGridLayout):
         print(ip)
         print(port)
 
-        Node_Connection.connect(ip, int(port))
+        Node.main_node.connect_to_node(ip, int(port))
 
         self.connect_a_node_dialog.dismiss()
 

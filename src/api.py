@@ -24,7 +24,7 @@ from lib.settings_system import the_settings
 from lib.status import Status
 from node.get_block_from_other_node import GetBlockFromOtherNode
 from node.node import Node
-from node.node_connection import Node_Connection
+from node.connection import Connection
 from node.unl import Unl
 from transactions.my_transactions.get_my_transaction import GetMyTransaction
 from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
@@ -115,14 +115,14 @@ def node_stop_page():
 @app.route("/node/connect/<ip>/<port>", methods=["GET"])
 def node_connect_page(ip, port):
     logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    Node_Connection.connect(str(ip), int(port))
+    Node.main_node.connect_to_node(str(ip), int(port))
     return jsonify("OK")
 
 
 @app.route("/node/connectmixdb", methods=["GET"])
 def node_connectmixdb_page():
     logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    Node_Connection.connectmixdb()
+    Node.connectionfrommixdb()
     return jsonify("OK")
 
 

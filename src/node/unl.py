@@ -59,7 +59,7 @@ class Unl:
                 each_node
                 for list_node, each_node in itertools.product(
                     id_list,
-                    (Node.main_node.nodes_inbound + Node.main_node.nodes_outbound),
+                    Node.main_node.nodes,
                 )
                 if list_node == each_node.id
             )

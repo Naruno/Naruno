@@ -22,7 +22,7 @@ from config import TEMP_BLOCKSHASH_PATH
 from lib.log import get_logger
 from lib.merkle_root import MerkleTree
 from node.node import *
-from node.node_connection import Node_Connection
+from node.connection import Connection
 from node.unl import Unl
 from transactions.check.check_transaction import CheckTransaction
 from transactions.get_transaction import GetTransaction
@@ -59,9 +59,7 @@ class Node(threading.Thread):
         self.port = port
 
 
-        self.nodes_inbound = []
-
-        self.nodes_outbound = []
+        self.nodes = []
 
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.init_server()
@@ -77,7 +75,8 @@ class Node(threading.Thread):
                 connected_node_id = connection.recv(4096).decode("utf-8")
                 connection.send(Node.id.encode("utf-8"))
                 if Unl.node_is_unl(connected_node_id):
-                    thread_client = self.create_the_new_connection(
+                    thread_client = Connection(
+                        self,
                         connection,
                         connected_node_id,
                         client_address[0],
@@ -85,7 +84,7 @@ class Node(threading.Thread):
                     )
                     thread_client.start()
 
-                    self.nodes_inbound.append(thread_client)
+                    self.nodes.append(thread_client)
                 else:
                     logger.warning(
                         "Node System: Could not connect with node because node is not unl node."
@@ -100,19 +99,8 @@ class Node(threading.Thread):
             time.sleep(0.01)
 
         logger.info("Node System: Stopping protocol started by node")
-        for t in self.nodes_inbound:
-            t.stop()
-
-        for t in self.nodes_outbound:
-            t.stop()
-
-        time.sleep(1)
-
-        for t in self.nodes_inbound:
-            t.join()
-
-        for t in self.nodes_outbound:
-            t.join()
+        for t in self.nodes:
+            self.disconnect_to_node(t)
 
         self.sock.settimeout(None)
         self.sock.close()
@@ -127,28 +115,14 @@ class Node(threading.Thread):
 
     def delete_closed_connections(self):
 
-        for n in self.nodes_inbound:
+        for n in self.nodes:
             if n.terminate_flag.is_set():
                 n.join()
-                del self.nodes_inbound[self.nodes_inbound.index(n)]
-
-        for n in self.nodes_outbound:
-            if n.terminate_flag.is_set():
-                n.join()
-                del self.nodes_outbound[self.nodes_inbound.index(n)]
+                del self.nodes[self.nodes.index(n)]
 
     def send_data_to_nodes(self, data, exclude=[]):
 
-        for n in self.nodes_inbound:
-            if n in exclude:
-                logger.info("Node System: Node send_data_to_nodes: Node is excluded")
-            else:
-                try:
-                    self.send_data_to_node(n, data)
-                except:  # lgtm [py/catch-base-exception]
-                    pass
-
-        for n in self.nodes_outbound:
+        for n in self.nodes:
             if n in exclude:
                 logger.info("Node System: Node send_data_to_nodes: Node is excluded")
             else:
@@ -160,7 +134,7 @@ class Node(threading.Thread):
     def send_data_to_node(self, n, data):
 
         self.delete_closed_connections()
-        if n in self.nodes_inbound or n in self.nodes_outbound:
+        if n in self.nodes:
             try:
                 n.send(data)
 
@@ -179,7 +153,7 @@ class Node(threading.Thread):
             )
             return False
 
-        for node in self.nodes_outbound:
+        for node in self.nodes:
             if node.host == host and node.port == port:
                 logger.warning(
                     "Node System: connect_to_node: Node is already connected"
@@ -198,12 +172,13 @@ class Node(threading.Thread):
             connected_node_id = sock.recv(4096).decode("utf-8")
 
             if Unl.node_is_unl(connected_node_id):
-                thread_client = self.create_the_new_connection(
-                    sock, connected_node_id, host, port
+                thread_client = Connection(
+                    self, sock, connected_node_id, host, port
                 )
                 thread_client.start()
 
-                self.nodes_outbound.append(thread_client)
+                self.nodes.append(thread_client)
+                return thread_client
             else:
                 logger.warning(
                     "Node System: Could not connect with node because node is not unl node."
@@ -213,20 +188,17 @@ class Node(threading.Thread):
 
     def disconnect_to_node(self, node):
 
-        if node in self.nodes_outbound:
+        if node in self.nodes:
+            print("Node System: Disconnecting from node")
             node.stop()
             node.join()
-            del self.nodes_outbound[self.nodes_outbound.index(node)]
+            del self.nodes[self.nodes.index(node)]
 
         else:
             print("Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
         self.terminate_flag.set()
-
-    def create_the_new_connection(self, connection, id, host, port):
-
-        return Node_Connection(self, connection, id, host, port)
 
     @staticmethod
     def get_connected_node():
