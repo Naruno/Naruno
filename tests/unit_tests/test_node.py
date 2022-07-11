@@ -29,16 +29,16 @@ class Test_Node(unittest.TestCase):
 
         temp_private_key = wallet_create(password)
 
-        node_1 = Node("127.0.0.1", 50001)
+        node_1 = Node("127.0.0.1", 60001)
 
         temp_private_key2 = wallet_create(password)
 
-        node_2 = Node("127.0.0.1", 50002)
+        node_2 = Node("127.0.0.1", 60002)
 
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
 
-        connection = node_2.connect_to_node("127.0.0.1", 50001)
+        connection = node_2.connect_to_node("127.0.0.1", 60001)
 
         connection_closing_deleting = True
         finded_node = False
@@ -131,16 +131,16 @@ class Test_Node(unittest.TestCase):
 
         temp_private_key = wallet_create(password)
 
-        node_1 = Node("127.0.0.1", 50001)
+        node_1 = Node("127.0.0.1", 60001)
 
         temp_private_key2 = wallet_create(password)
 
-        node_2 = Node("127.0.0.1", 50002)
+        node_2 = Node("127.0.0.1", 60002)
 
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
 
-        connection = node_2.connect_to_node("127.0.0.1", 50001, save_messages=True)
+        connection = node_2.connect_to_node("127.0.0.1", 60001, save_messages=True)
         time.sleep(2)
         connection_2 = node_1.nodes[0]
         connection_2.save_messages = True
@@ -180,9 +180,9 @@ class Test_Node(unittest.TestCase):
 
         default_id = copy.copy(Node.id)
         Node.id = "id"
-        node_1 = Node("127.0.0.1", 50001)
-        node_2 = Node("127.0.0.1", 50002)
-        connection = node_2.connect_to_node("127.0.0.1", 50001)
+        node_1 = Node("127.0.0.1", 60001)
+        node_2 = Node("127.0.0.1", 60002)
+        connection = node_2.connect_to_node("127.0.0.1", 60001)
         time.sleep(2)
 
 
