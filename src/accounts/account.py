@@ -37,20 +37,18 @@ class Account:
         Converts and returns the account's elements to json,
         which can then be loaded with the load_json () function.
         """
-        data = {
+        return {
             "address": self.Address,
             "balance": self.balance,
             "sequence_number": self.sequance_number,
         }
-        return data
 
     @staticmethod
     def load_json(data):
         """
         Json returns data in the appropriate format as the account class.
         """
-        return Account(data["address"], data["balance"],
-                       data["sequence_number"])
+        return Account(data["address"], data["balance"], data["sequence_number"])
 
     def __str__(self):
         return self.Address

@@ -16,10 +16,10 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     """
     Returns the block.
     """
-    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
-                           else custom_TEMP_BLOCK_PATH)
+    the_TEMP_BLOCK_PATH = (
+        TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
+    )
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
-    the_block = Block.load_json(the_block_json)
-    return the_block
+    return Block.load_json(the_block_json)
