@@ -29,8 +29,7 @@ def CreateBlock(custom_TEMP_BLOCK_PATH=None):
         else:
             previous_hash = current_block.previous_hash
 
-    logger.info(
-        "Creating the genesis block and sending it to the connected nodes")
+    logger.info("Creating the genesis block and sending it to the connected nodes")
 
     if previous_hash is None:
         return Block(wallet_import(-1, 3))
