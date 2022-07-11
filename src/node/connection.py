@@ -120,8 +120,3 @@ class Connection(threading.Thread):
         self.sock.settimeout(None)
         self.sock.close()
         logger.info("Node System: Connection: Stopped")
-
-
-
-    def __str__(self):
-        return f"Node Connection: {self.host}:{self.port} ({self.id})"
