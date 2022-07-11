@@ -7,8 +7,8 @@
 import time
 
 from blockchain.block.save_block import SaveBlock
-from node.get_candidate_blocks import GetCandidateBlocks
 from lib.log import get_logger
+from node.get_candidate_blocks import GetCandidateBlocks
 from node.node import Node
 from node.unl import Unl
 

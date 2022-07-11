@@ -8,14 +8,12 @@ import time
 
 from accounts.get_accounts import GetAccounts
 from accounts.save_accounts import SaveAccounts
-from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.blocks_hash import GetBlockshash_part
-from blockchain.block.blocks_hash import SaveBlockshash
-from blockchain.block.blocks_hash import SaveBlockshash_part
+from blockchain.block.blocks_hash import (GetBlockshash, GetBlockshash_part,
+                                          SaveBlockshash, SaveBlockshash_part)
 from blockchain.block.hash.calculate_hash import CalculateHash
 from blockchain.block.save_block import SaveBlock
-from node.get_candidate_blocks import GetCandidateBlocks
 from lib.log import get_logger
+from node.get_candidate_blocks import GetCandidateBlocks
 from node.node import Node
 from node.unl import Unl
 from transactions.get_transaction import GetTransaction
