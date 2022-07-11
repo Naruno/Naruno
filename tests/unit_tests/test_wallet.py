@@ -23,6 +23,7 @@ from wallet.save_wallet_list import save_wallet_list
 from wallet.wallet_create import wallet_create
 from wallet.wallet_delete import wallet_delete
 from wallet.wallet_import import wallet_import
+from wallet.wallet_import import Address
 from wallet.wallet_selector import wallet_selector
 
 
@@ -294,5 +295,8 @@ class Test_Wallet(unittest.TestCase):
         result = wallet_import(-1, 4)
         self.assertEqual(result, False)
 
+    def test_Address(self):
+        result = Address("onuratakan")
+        self.assertEqual(result, "70c5360b9723e16c5c0f4d0f0c1edc7ef720def8")
 
 unittest.main(exit=False)
