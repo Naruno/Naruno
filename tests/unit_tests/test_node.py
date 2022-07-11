@@ -175,6 +175,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(connection_2.messages[0], "test")
         self.assertEqual(connection_2.messages[1], {"test": "test"})
         self.assertEqual(connection_2.messages[2], "test")
+        time.sleep(10)
 
     def test_connection_not_unl(self):
 
