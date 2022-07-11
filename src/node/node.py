@@ -98,10 +98,10 @@ class Node(threading.Thread):
         logger.info("Node System: Stopping protocol started by node")
         for t in self.nodes:
             self.disconnect_to_node(t)
-
         self.sock.settimeout(None)
         self.sock.close()
         logger.info("Node System: The node is stopped")
+        sys.exit()
 
     def init_server(self):
         logger.info("Node System: Node server is starting")
@@ -159,10 +159,9 @@ class Node(threading.Thread):
             logger.info("Node System: Connecting to %s port %s" % (host, port))
             sock.connect((host, port))
 
-            # Basic information exchange (not secure) of the id's of the nodes!
-            # Send my id to the connected node!
+          
             sock.send(Node.id.encode("utf-8"))
-            # When a node is connected, it sends it id!
+           
             connected_node_id = sock.recv(4096).decode("utf-8")
 
             if Unl.node_is_unl(connected_node_id):
