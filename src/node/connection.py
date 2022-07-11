@@ -112,7 +112,8 @@ class Connection(threading.Thread):
 
             time.sleep(0.01)
 
-        
+        socket.socket(socket.AF_INET, 
+                  socket.SOCK_STREAM).connect( (self.host, self.port))        
         self.sock.close()
         logger.info("Node System: Connection: Stopped")
         sys.exit()
