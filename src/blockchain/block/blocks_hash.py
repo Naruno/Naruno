@@ -7,7 +7,8 @@
 import json
 import os
 
-from config import TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH
+from config import TEMP_BLOCKSHASH_PART_PATH
+from config import TEMP_BLOCKSHASH_PATH
 from lib.config_system import get_config
 
 

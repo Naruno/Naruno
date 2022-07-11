@@ -6,6 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 
+from accounts.get_balance import GetBalance
+from blockchain.block.get_block import GetBlock
 from kivy.core.clipboard import Clipboard
 from kivy.properties import StringProperty
 from kivymd.uix.bottomsheet import MDListBottomSheet
@@ -13,10 +15,8 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
-
-from accounts.get_balance import GetBalance
-from blockchain.block.get_block import GetBlock
-from lib.settings_system import change_wallet, the_settings
+from lib.settings_system import change_wallet
+from lib.settings_system import the_settings
 from wallet.get_saved_wallet import get_saved_wallet
 from wallet.wallet_create import wallet_create
 from wallet.wallet_delete import wallet_delete
