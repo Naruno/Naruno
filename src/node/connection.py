@@ -20,7 +20,7 @@ logger = get_logger("NODE")
 
 class Connection(threading.Thread):
 
-    def __init__(self, main_node, sock, id, host, port):
+    def __init__(self, main_node, sock, id, host, port, save_messages=False):
         super(Connection, self).__init__()
 
         self.host = host
@@ -33,6 +33,9 @@ class Connection(threading.Thread):
 
         self.candidate_block = None
         self.candidate_block_hash = None
+
+        self.save_messages = save_messages
+        self.messages = []
 
         self.EOT_CHAR = 0x04.to_bytes(1, "big")
 
@@ -53,9 +56,6 @@ class Connection(threading.Thread):
 
             except TypeError as type_error:
                 logger.exception(type_error)
-
-            except Exception as e:
-                logger.exception(e)
 
         elif isinstance(data, bytes):
             bin_data = data + self.EOT_CHAR
@@ -95,10 +95,6 @@ class Connection(threading.Thread):
             except socket.timeout:
                 logger.exception("Node System: Connection: timeout")
 
-            except Exception as e:
-                self.terminate_flag.set()
-                logger.exception(e)
-
             # BUG: possible buffer overflow when no EOT_CHAR is found => Fix by max buffer count or so?
             if chunk != b"":
                 buffer += chunk
@@ -107,9 +103,10 @@ class Connection(threading.Thread):
                 while eot_pos > 0:
                     packet = buffer[:eot_pos]
                     buffer = buffer[eot_pos + 1:]
-
-                    self.main_node.message_from_node(self,
-                                                     self.parse_packet(packet))
+                    parsed_packets = self.parse_packet(packet)
+                    if self.save_messages:
+                        self.messages.append(parsed_packets)
+                    self.main_node.message_from_node(self, parsed_packets)
 
                     eot_pos = buffer.find(self.EOT_CHAR)
 

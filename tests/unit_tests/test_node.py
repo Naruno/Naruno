@@ -9,6 +9,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 import unittest
 import copy
+import time
 
 from node.get_candidate_blocks import GetCandidateBlocks
 from node.node import Node
@@ -23,7 +24,7 @@ from wallet.wallet_delete import wallet_delete
 class Test_Node(unittest.TestCase):
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
-
+        time.sleep(30)
         password = "123"
 
         temp_private_key = wallet_create(password)
@@ -91,7 +92,6 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(get_as_node, True,
                          "Problem on UNL get as node system.")
 
-
     def test_GetCandidateBlocks(self):
 
         node_1 = Connection("main_node", "sock", "id", "host", "port")
@@ -120,6 +120,50 @@ class Test_Node(unittest.TestCase):
         result = connection.parse_packet(packet)
         self.assertEqual(result, "test")
         
+    def test_send_data_to_nodes(self):
+        time.sleep(30)        
+        password = "123"
 
+        temp_private_key = wallet_create(password)
+
+        node_1 = Node("127.0.0.1", 10001)
+
+        temp_private_key2 = wallet_create(password)
+
+        node_2 = Node("127.0.0.1", 10002)
+
+        Unl.save_new_unl_node(node_1.id)
+        Unl.save_new_unl_node(node_2.id)
+
+        connection = node_2.connect_to_node("127.0.0.1", 10001, save_messages=True)
+        time.sleep(2)
+        connection_2 = node_1.nodes[0]
+        connection_2.save_messages = True
+
+        node_2.send_data_to_nodes(1)
+        node_2.send_data_to_nodes("test")
+        time.sleep(2)
+        node_2.send_data_to_nodes({"test": b'b'})
+        node_2.send_data_to_nodes({"test": "test"})
+        time.sleep(2)
+        node_2.send_data_to_nodes(b"test")
+
+
+        saved_wallets = get_saved_wallet()
+
+        for each_wallet in saved_wallets:
+            if (temp_private_key == saved_wallets[each_wallet]["privatekey"]
+                    or temp_private_key2
+                    == saved_wallets[each_wallet]["privatekey"]):
+                wallet_delete(each_wallet)
+
+
+        node_2.disconnect_to_node(connection)
+        node_2.delete_closed_connections()
+        node_2.stop()
+        node_1.stop()
+        self.assertEqual(connection_2.messages[0], "test")
+        self.assertEqual(connection_2.messages[1], {"test": "test"})
+        self.assertEqual(connection_2.messages[2], "test")
 
 unittest.main(exit=False)

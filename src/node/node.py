@@ -126,10 +126,7 @@ class Node(threading.Thread):
             if n in exclude:
                 logger.info("Node System: Node send_data_to_nodes: Node is excluded")
             else:
-                try:
-                    self.send_data_to_node(n, data)
-                except:  # lgtm [py/catch-base-exception]
-                    pass
+                self.send_data_to_node(n, data)
 
     def send_data_to_node(self, n, data):
 
@@ -145,7 +142,7 @@ class Node(threading.Thread):
         else:
             logger.warning("Node System: Node send_data_to_node: Node is not connected")
 
-    def connect_to_node(self, host, port):
+    def connect_to_node(self, host, port, save_messages=False):
 
         if host == self.host and port == self.port:
             logger.error(
@@ -173,7 +170,8 @@ class Node(threading.Thread):
 
             if Unl.node_is_unl(connected_node_id):
                 thread_client = Connection(
-                    self, sock, connected_node_id, host, port
+                    self, sock, connected_node_id, host, port,
+                    save_messages=save_messages
                 )
                 thread_client.start()
 
@@ -189,13 +187,13 @@ class Node(threading.Thread):
     def disconnect_to_node(self, node):
 
         if node in self.nodes:
-            print("Node System: Disconnecting from node")
+            logger.info("Node System: Disconnecting from node")
             node.stop()
             node.join()
             del self.nodes[self.nodes.index(node)]
 
         else:
-            print("Node System: Node disconnect_to_node: Node is not connected")
+            logger.info("Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
         self.terminate_flag.set()
@@ -288,10 +286,10 @@ class Node(threading.Thread):
                     PublicKey.fromPem(node.id),
                 )
             ):
-                print("getting chain")
+                logger.info("getting chain")
                 self.get_full_chain(data, node)
         except Exception as e:
-            print(e)
+            logger.exception(e)
 
         try:
 
@@ -304,10 +302,10 @@ class Node(threading.Thread):
                     PublicKey.fromPem(node.id),
                 )
             ):
-                print("getting chain")
+                logger.info("get_full_accounts")
                 self.get_full_accounts(data, node)
         except Exception as e:
-            print(e)
+            logger.exception(e)
 
         try:
 
@@ -322,25 +320,25 @@ class Node(threading.Thread):
             ):
                 self.get_full_blockshash(data, node)
         except Exception as e:
-            print(e)
+            logger.exception(e)
 
         try:
             if data["transactionrequest"] == 1:
                 self.get_transaction(data, node)
         except Exception as e:
-            print(e)
+            logger.exception(e)
 
         try:
             if data["action"] == "myblock":
                 self.get_candidate_block(data, node)
         except Exception as e:
-            print(e)
+            logger.exception(e)
 
         try:
             if data["action"] == "myblockhash":
                 self.get_candidate_block_hash(data, node)
         except Exception as e:
-            print(e)
+            logger.exception(e)
 
     def send_my_block(self, block, nodes):
         system = block
