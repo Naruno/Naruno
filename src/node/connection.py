@@ -114,5 +114,5 @@ class Connection(threading.Thread):
 
         self.sock.close()
         logger.info("Node System: Connection: Stopped")
-        os._exit()
+        os._exit(0)
         

@@ -102,7 +102,7 @@ class Node(threading.Thread):
 
         self.sock.close()
         logger.info("Node System: The node is stopped")
-        os._exit()
+        os._exit(0)
 
     def init_server(self):
         logger.info("Node System: Node server is starting")
