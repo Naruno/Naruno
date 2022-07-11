@@ -103,6 +103,7 @@ class Node(threading.Thread):
                   socket.SOCK_STREAM).connect( (self.host, self.port))        
         self.sock.close()
         logger.info("Node System: The node is stopped")
+        os._exit()
 
     def init_server(self):
         logger.info("Node System: Node server is starting")

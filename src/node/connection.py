@@ -116,4 +116,5 @@ class Connection(threading.Thread):
                   socket.SOCK_STREAM).connect( (self.host, self.port))        
         self.sock.close()
         logger.info("Node System: Connection: Stopped")
+        os._exit()
         
