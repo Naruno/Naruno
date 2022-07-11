@@ -24,7 +24,7 @@ from wallet.wallet_delete import wallet_delete
 class Test_Node(unittest.TestCase):
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
-        time.sleep(30)
+        time.sleep(10)
         password = "123"
 
         temp_private_key = wallet_create(password)
@@ -121,7 +121,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(result, "test")
         
     def test_send_data_to_nodes(self):
-        time.sleep(30)        
+        time.sleep(10)        
         password = "123"
 
         temp_private_key = wallet_create(password)
@@ -167,7 +167,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(connection_2.messages[2], "test")
 
     def test_connection_not_unl(self):
-        time.sleep(30)
+        time.sleep(10)
         default_id = copy.copy(Node.id)
         Node.id = "id"
         node_1 = Node("127.0.0.1", 10001)
