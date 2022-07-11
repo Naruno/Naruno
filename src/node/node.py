@@ -99,8 +99,7 @@ class Node(threading.Thread):
         for t in self.nodes:
             self.disconnect_to_node(t)
 
-        socket.socket(socket.AF_INET, 
-                  socket.SOCK_STREAM).connect( (self.host, self.port))        
+
         self.sock.close()
         logger.info("Node System: The node is stopped")
         os._exit()
