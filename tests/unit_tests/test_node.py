@@ -166,4 +166,23 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(connection_2.messages[1], {"test": "test"})
         self.assertEqual(connection_2.messages[2], "test")
 
+    def test_connection_not_unl(self):
+        time.sleep(30)
+        default_id = copy.copy(Node.id)
+        Node.id = "id"
+        node_1 = Node("127.0.0.1", 10001)
+        node_2 = Node("127.0.0.1", 10002)
+        connection = node_2.connect_to_node("127.0.0.1", 10001)
+        time.sleep(2)
+
+
+
+        Node.id = default_id
+        node_2.stop()
+        node_1.stop()
+        self.assertEqual(node_1.nodes, [])
+        self.assertEqual(node_2.nodes, [])
+        self.assertEqual(connection, None)
+
+
 unittest.main(exit=False)
