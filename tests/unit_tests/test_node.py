@@ -4,21 +4,19 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from wallet.wallet_delete import wallet_delete
+from wallet.wallet_create import wallet_create
+from wallet.get_saved_wallet import get_saved_wallet
+from node.unl import Unl
+from node.connection import Connection
+from node.node import Node
+from node.get_candidate_blocks import GetCandidateBlocks
+import time
+import copy
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
-import unittest
-import copy
-import time
-
-from node.get_candidate_blocks import GetCandidateBlocks
-from node.node import Node
-from node.connection import Connection
-from node.unl import Unl
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.wallet_create import wallet_create
-from wallet.wallet_delete import wallet_delete
-
 
 
 class Test_Node(unittest.TestCase):
@@ -69,7 +67,8 @@ class Test_Node(unittest.TestCase):
         node_2.disconnect_to_node(connection)
         node_2.delete_closed_connections()
 
-        connection_closing_deleting = any(element == id for element in nodes_list)
+        connection_closing_deleting = any(
+            element == id for element in nodes_list)
 
         saved_wallets = get_saved_wallet()
 
@@ -79,12 +78,11 @@ class Test_Node(unittest.TestCase):
                     == saved_wallets[each_wallet]["privatekey"]):
                 wallet_delete(each_wallet)
 
-
         node_2.stop()
         node_1.stop()
 
         self.assertEqual(connection_closing_deleting, False,
-                        "Connection closing deleting")
+                         "Connection closing deleting")
         self.assertEqual(finded_node, True,
                          "Problem on connection saving system.")
         self.assertEqual(in_unl_list, True,
@@ -119,9 +117,9 @@ class Test_Node(unittest.TestCase):
         packet = packet.encode("utf-8")
         result = connection.parse_packet(packet)
         self.assertEqual(result, "test")
-        
+
     def test_send_data_to_nodes(self):
-        time.sleep(30)        
+        time.sleep(30)
         password = "123"
 
         temp_private_key = wallet_create(password)
@@ -135,7 +133,8 @@ class Test_Node(unittest.TestCase):
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
 
-        connection = node_2.connect_to_node("127.0.0.1", 10001, save_messages=True)
+        connection = node_2.connect_to_node(
+            "127.0.0.1", 10001, save_messages=True)
         time.sleep(2)
         connection_2 = node_1.nodes[0]
         connection_2.save_messages = True
@@ -148,7 +147,6 @@ class Test_Node(unittest.TestCase):
         time.sleep(2)
         node_2.send_data_to_nodes(b"test")
 
-
         saved_wallets = get_saved_wallet()
 
         for each_wallet in saved_wallets:
@@ -157,7 +155,6 @@ class Test_Node(unittest.TestCase):
                     == saved_wallets[each_wallet]["privatekey"]):
                 wallet_delete(each_wallet)
 
-
         node_2.disconnect_to_node(connection)
         node_2.delete_closed_connections()
         node_2.stop()
@@ -165,5 +162,6 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(connection_2.messages[0], "test")
         self.assertEqual(connection_2.messages[1], {"test": "test"})
         self.assertEqual(connection_2.messages[2], "test")
+
 
 unittest.main(exit=False)
