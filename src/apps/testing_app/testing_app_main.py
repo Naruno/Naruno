@@ -13,6 +13,7 @@ from lib.config_system import get_config
 
 def testing_app_main_tx(tx):
     os.chdir(get_config()["main_folder"])
-    with open(f"apps/testing_app/{tx.transaction_time}.tx", "w") as my_transaction_file:
+    with open(f"apps/testing_app/{tx.transaction_time}.tx",
+              "w") as my_transaction_file:
         json.dump(tx.transaction_time, my_transaction_file)
     sys.exit()
