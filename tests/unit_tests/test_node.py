@@ -66,8 +66,13 @@ class Test_Node(unittest.TestCase):
                         Unl.unl_node_delete(unl_element)
                 Node.connected_node_delete(element)
 
-        node_2.disconnect_to_node(connection)
+        for i in node_2.nodes:
+            node_2.disconnect_to_node(i)
         node_2.delete_closed_connections()
+
+        for i in node_1.nodes:
+            node_1.disconnect_to_node(i)
+        node_1.delete_closed_connections()
 
         connection_closing_deleting = any(element == id for element in nodes_list)
 
@@ -79,8 +84,6 @@ class Test_Node(unittest.TestCase):
                     == saved_wallets[each_wallet]["privatekey"]):
                 wallet_delete(each_wallet)
 
-        for i in node_2.nodes + node_1.nodes:
-            i.stop() 
         node_2.stop()
         node_1.stop()
 
@@ -160,10 +163,13 @@ class Test_Node(unittest.TestCase):
                 wallet_delete(each_wallet)
 
 
-        node_2.disconnect_to_node(connection)
+        for i in node_2.nodes:
+            node_2.disconnect_to_node(i)
         node_2.delete_closed_connections()
-        for i in node_2.nodes + node_1.nodes:
-            i.stop()        
+
+        for i in node_1.nodes:
+            node_1.disconnect_to_node(i)
+        node_1.delete_closed_connections()    
         node_2.stop()
         node_1.stop()
         self.assertEqual(connection_2.messages[0], "test")
@@ -182,8 +188,13 @@ class Test_Node(unittest.TestCase):
 
 
         Node.id = default_id
-        for i in node_2.nodes + node_1.nodes:
-            i.stop()        
+        for i in node_2.nodes:
+            node_2.disconnect_to_node(i)
+        node_2.delete_closed_connections()
+
+        for i in node_1.nodes:
+            node_1.disconnect_to_node(i)
+        node_1.delete_closed_connections()  
         node_2.stop()
         node_1.stop()
         self.assertEqual(node_1.nodes, [])
