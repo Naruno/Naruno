@@ -10,7 +10,9 @@ import unittest
 from hashlib import sha256
 
 from lib.encryption import decrypt
-from lib.settings_system import change_wallet, save_settings, the_settings
+from lib.settings_system import change_wallet
+from lib.settings_system import save_settings
+from lib.settings_system import the_settings
 from wallet.delete_current_wallet import delete_current_wallet
 from wallet.ellipticcurve.privateKey import PrivateKey
 from wallet.ellipticcurve.publicKey import PublicKey
@@ -19,7 +21,8 @@ from wallet.print_wallets import print_wallets
 from wallet.save_wallet_list import save_wallet_list
 from wallet.wallet_create import wallet_create
 from wallet.wallet_delete import wallet_delete
-from wallet.wallet_import import Address, wallet_import
+from wallet.wallet_import import Address
+from wallet.wallet_import import wallet_import
 from wallet.wallet_selector import wallet_selector
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
