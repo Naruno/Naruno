@@ -94,7 +94,6 @@ class Connection(threading.Thread):
 
             except socket.timeout:
                 logger.exception("Node System: Connection: timeout")
-)
 
             # BUG: possible buffer overflow when no EOT_CHAR is found => Fix by max buffer count or so?
             if chunk != b"":
