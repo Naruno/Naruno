@@ -4,17 +4,15 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from decentra_network.transactions.transaction import Transaction
+from decentra_network.lib.config_system import get_config
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.apps.apps_trigger import AppsTrigger
+import unittest
+import time
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-import time
-import unittest
-
-from decentra_network.apps.apps_trigger import AppsTrigger
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.transaction import Transaction
-
 
 
 class Test_apps(unittest.TestCase):

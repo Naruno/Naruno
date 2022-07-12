@@ -86,8 +86,8 @@ def parse(hexadecimal):
     typeByte, hexadecimal = hexadecimal[:2], hexadecimal[2:]
     length, lengthBytes = _readLengthBytes(hexadecimal)
     content, hexadecimal = (
-        hexadecimal[lengthBytes : lengthBytes + length],
-        hexadecimal[lengthBytes + length :],
+        hexadecimal[lengthBytes: lengthBytes + length],
+        hexadecimal[lengthBytes + length:],
     )
     if len(content) < length:
         raise Exception("missing bytes in DER parse")
@@ -173,7 +173,8 @@ def _readLengthBytes(hexadecimal):
 def _generateLengthBytes(hexadecimal):
     size = len(hexadecimal) // 2
     length = hexFromInt(size)
-    if size < 128:  # checks if first bit of byte should be 0 (a.k.a. short-form flag)
+    # checks if first bit of byte should be 0 (a.k.a. short-form flag)
+    if size < 128:
         return length.zfill(2)
     lengthLength = (
         128 + len(length) // 2

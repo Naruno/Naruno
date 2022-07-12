@@ -4,13 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from decentra_network.lib.config_system import get_config
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-import unittest
-
-from decentra_network.lib.config_system import get_config
-
 
 
 class Test_Config(unittest.TestCase):

@@ -90,7 +90,8 @@ class OperationBox(MDGridLayout):
                 == sha256(text_list[0].encode("utf-8")).hexdigest()
             ):
                 block = GetBlock()
-                send_tx = send(block, text_list[0], receiver_adress, float(amount))
+                send_tx = send(
+                    block, text_list[0], receiver_adress, float(amount))
                 if send_tx != False:
                     from decentra_network.node.node import Node
 
@@ -144,7 +145,8 @@ class OperationBox(MDGridLayout):
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.callback_for_transaction_history_items(
+                        y),
                 )
             bottom_sheet_menu.open()
         else:
