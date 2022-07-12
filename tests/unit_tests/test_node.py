@@ -66,15 +66,8 @@ class Test_Node(unittest.TestCase):
                         Unl.unl_node_delete(unl_element)
                 Node.connected_node_delete(element)
 
-        for i in node_2.nodes:
-            node_2.disconnect_to_node(i)
-        node_2.delete_closed_connections()
 
-        for i in node_1.nodes:
-            node_1.disconnect_to_node(i)
-        node_1.delete_closed_connections()
-
-        connection_closing_deleting = any(element == id for element in nodes_list)
+        
 
         saved_wallets = get_saved_wallet()
 
@@ -88,6 +81,8 @@ class Test_Node(unittest.TestCase):
         node_2.join()
         node_1.stop()
         node_1.join()
+        
+        connection_closing_deleting = any(element == id for element in nodes_list)
 
         self.assertEqual(connection_closing_deleting, False,
                         "Connection closing deleting")
@@ -165,13 +160,7 @@ class Test_Node(unittest.TestCase):
                 wallet_delete(each_wallet)
 
 
-        for i in node_2.nodes:
-            node_2.disconnect_to_node(i)
-        node_2.delete_closed_connections()
-
-        for i in node_1.nodes:
-            node_1.disconnect_to_node(i)
-        node_1.delete_closed_connections()    
+  
         node_2.stop()
         node_2.join()
         node_1.stop()
@@ -193,13 +182,7 @@ class Test_Node(unittest.TestCase):
 
 
         Node.id = default_id
-        for i in node_2.nodes:
-            node_2.disconnect_to_node(i)
-        node_2.delete_closed_connections()
 
-        for i in node_1.nodes:
-            node_1.disconnect_to_node(i)
-        node_1.delete_closed_connections()  
         node_2.stop()
         node_2.join()
         node_1.stop()
