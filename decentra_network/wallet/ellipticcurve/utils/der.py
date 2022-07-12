@@ -26,13 +26,11 @@ SOFTWARE.
 """
 
 from datetime import datetime
-from decentra_network.wallet.ellipticcurve.utils.oid import oidToHex, oidFromHex
+
 from decentra_network.wallet.ellipticcurve.utils.binary import (
-    hexFromInt,
-    intFromHex,
-    byteStringFromHex,
-    bitsFromHex,
-)
+    bitsFromHex, byteStringFromHex, hexFromInt, intFromHex)
+from decentra_network.wallet.ellipticcurve.utils.oid import (oidFromHex,
+                                                             oidToHex)
 
 
 class DerFieldType:
