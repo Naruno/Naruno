@@ -7,6 +7,10 @@
 import argparse
 from flask import Flask, jsonify, request
 from waitress import serve
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.get_block import GetBlock

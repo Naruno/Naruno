@@ -7,6 +7,8 @@
 
 
 import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 import argparse
 
 os.environ["KIVY_NO_ARGS"] = "1"
