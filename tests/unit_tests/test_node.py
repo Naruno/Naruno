@@ -97,7 +97,7 @@ class Test_Node(unittest.TestCase):
                          "Problem on UNL node saving system.")
         self.assertEqual(get_as_node, True,
                          "Problem on UNL get as node system.")
-        time.sleep(30)
+        time.sleep(10)
 
     def test_GetCandidateBlocks(self):
 
@@ -179,7 +179,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(connection_2.messages[0], "test")
         self.assertEqual(connection_2.messages[1], {"test": "test"})
         self.assertEqual(connection_2.messages[2], "test")
-        time.sleep(30)
+        time.sleep(10)
 
     def test_connection_not_unl(self):
 
@@ -207,6 +207,6 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(node_1.nodes, [])
         self.assertEqual(node_2.nodes, [])
         self.assertEqual(connection, None)
-        time.sleep(30)  
+        time.sleep(10)  
 
 unittest.main(exit=False)
