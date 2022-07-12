@@ -29,7 +29,6 @@ def GetMyTransaction():
         for transaction in list(the_transactions_json.values()):
             print(transaction)
             the_transactions.append(
-                [Transaction.load_json(transaction["tx"]),
-                 transaction["validated"]]
+                [Transaction.load_json(transaction["tx"]), transaction["validated"]]
             )
     return the_transactions

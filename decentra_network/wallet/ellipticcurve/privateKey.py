@@ -93,8 +93,7 @@ class PrivateKey:
     @classmethod
     def fromDer(cls, string):
         hexadecimal = hexFromByteString(string)
-        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[
-            0]
+        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[0]
         if privateKeyFlag != 1:
             raise Exception(
                 "Private keys should start with a '1' flag, but a '{flag}' was found instead".format(
