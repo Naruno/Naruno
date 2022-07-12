@@ -6,14 +6,16 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from decentra_network.lib.safety import safety_check
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.config_system import get_config
-from kivymd.app import MDApp
-from kivy.lang import Builder
-from kivy import Config
-import os
 import argparse
+import os
+
+from kivy import Config
+from kivy.lang import Builder
+from kivymd.app import MDApp
+
+from decentra_network.lib.config_system import get_config
+from decentra_network.lib.log import get_logger
+from decentra_network.lib.safety import safety_check
 
 os.environ["KIVY_NO_ARGS"] = "1"
 

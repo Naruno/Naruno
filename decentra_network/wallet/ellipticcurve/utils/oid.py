@@ -25,7 +25,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from decentra_network.wallet.ellipticcurve.utils.binary import intFromHex, hexFromInt
+from decentra_network.wallet.ellipticcurve.utils.binary import (hexFromInt,
+                                                                intFromHex)
 
 
 def oidFromHex(hexadecimal):
