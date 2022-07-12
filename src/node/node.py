@@ -119,8 +119,7 @@ class Node(threading.Thread):
 
         for n in self.nodes:
             if n.terminate_flag.is_set():
-                n.join()
-                del self.nodes[self.nodes.index(n)]
+                self.nodes.remove(n)
 
     def send_data_to_nodes(self, data, exclude=[]):
 
