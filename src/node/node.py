@@ -85,6 +85,7 @@ class Node(threading.Thread):
                     thread_client.start()
 
                     self.nodes.append(thread_client)
+                    Node.save_connected_node(client_address[0], client_address[1], connected_node_id)
                 else:
                     logger.warning(
                         "Node System: Could not connect with node because node is not unl node."
@@ -176,6 +177,7 @@ class Node(threading.Thread):
                 thread_client.start()
 
                 self.nodes.append(thread_client)
+                Node.save_connected_node(host, port, connected_node_id)
                 return thread_client
             else:
                 logger.warning(

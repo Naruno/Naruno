@@ -38,10 +38,7 @@ class Connection(threading.Thread):
         self.messages = []
 
         self.EOT_CHAR = 0x04.to_bytes(1, "big")
-
-        from node.node import Node
-
-        Node.save_connected_node(host, port, id)
+      
 
     def send(self, data, encoding_type="utf-8"):
 
