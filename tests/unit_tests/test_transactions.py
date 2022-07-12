@@ -10,31 +10,31 @@ import os
 import sys
 
 from requests import delete
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import time
 import unittest
 
-from accounts.account import Account
-from blockchain.block.block_main import Block
-from blockchain.block.change_transaction_fee import ChangeTransactionFee
-from transactions.check.check_transaction import CheckTransaction
-from transactions.check.datas.check_datas import Check_Datas
-from transactions.check.len.check_len import Check_Len
-from transactions.check.type.check_type import Check_Type
-from transactions.get_transaction import GetTransaction
-from transactions.my_transactions.get_my_transaction import GetMyTransaction
-from transactions.my_transactions.save_my_transaction import SaveMyTransaction
-from transactions.my_transactions.save_to_my_transaction import \
+from decentra_network.accounts.account import Account
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.change_transaction_fee import ChangeTransactionFee
+from decentra_network.transactions.check.check_transaction import CheckTransaction
+from decentra_network.transactions.check.datas.check_datas import Check_Datas
+from decentra_network.transactions.check.len.check_len import Check_Len
+from decentra_network.transactions.check.type.check_type import Check_Type
+from decentra_network.transactions.get_transaction import GetTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import SaveMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
-from transactions.my_transactions.validate_transaction import \
+from decentra_network.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
-from transactions.pending_to_validating import PendingtoValidating
-from transactions.process_the_transaction import ProccesstheTransaction
-from transactions.send import send
-from transactions.transaction import Transaction
-from transactions.pending.save_pending import SavePending
-from transactions.pending.get_pending import GetPending
-from transactions.pending.delete_pending import DeletePending
+from decentra_network.transactions.pending_to_validating import PendingtoValidating
+from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
+from decentra_network.transactions.send import send
+from decentra_network.transactions.transaction import Transaction
+from decentra_network.transactions.pending.save_pending import SavePending
+from decentra_network.transactions.pending.get_pending import GetPending
+from decentra_network.transactions.pending.delete_pending import DeletePending
 
 
 class Test_Transactions(unittest.TestCase):

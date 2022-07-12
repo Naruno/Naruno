@@ -6,18 +6,18 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 import copy
 import time
 
-from node.get_candidate_blocks import GetCandidateBlocks
-from node.node import Node
-from node.connection import Connection
-from node.unl import Unl
-from wallet.get_saved_wallet import get_saved_wallet
-from wallet.wallet_create import wallet_create
-from wallet.wallet_delete import wallet_delete
+from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
+from decentra_network.node.node import Node
+from decentra_network.node.connection import Connection
+from decentra_network.node.unl import Unl
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.wallet_create import wallet_create
+from decentra_network.wallet.wallet_delete import wallet_delete
 
 
 

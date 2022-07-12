@@ -75,11 +75,11 @@ class Decentra_Network_Docker:
     def run(self):
         time.sleep(5 * self.number_of_nodes)
         os.system(
-            "docker run -v decentra-network-db:/app/Decentra-Network/src/db/ -v decentra-network-logs:/app/Decentra-Network/src/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit decentra-network-api"
+            "docker run -v decentra-network-db:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit decentra-network-api"
         )
         for i in range(self.number_of_nodes):
             os.system(
-                f"docker run -v decentra-network-db-{i}:/app/Decentra-Network/src/db/ -v decentra-network-logs-{i}:/app/Decentra-Network/src/logs/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
+                f"docker run -v decentra-network-db-{i}:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs-{i}:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
             )
 
     def debug_and_test_mode(self):
