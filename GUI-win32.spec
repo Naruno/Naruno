@@ -11,7 +11,7 @@ from os.path import dirname, abspath, join, basename
 
 stiffscroll = os.path.join(kivymd.path, f"stiffscroll{os.sep}")
 
-a = Analysis(['src\\gui.py'],
+a = Analysis(['decentra_network\\gui.py'],
              pathex=[],
              binaries=[],
              datas=[(stiffscroll, join("kivymd", basename(dirname(stiffscroll)))),],
