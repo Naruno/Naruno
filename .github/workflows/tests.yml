@@ -199,9 +199,9 @@ jobs:
         curl http://localhost:8102/status
     - name: Copy out file from volume
       run: |
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-0/src
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-1/src
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-2/src
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network
         sudo cp -r /var/lib/docker/volumes/decentra-network-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs
         sudo cp -r /var/lib/docker/volumes/decentra-network-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs
         sudo cp -r /var/lib/docker/volumes/decentra-network-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs
