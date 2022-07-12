@@ -27,7 +27,8 @@ def GetBlockstoBlockchainDB(
         the_BLOCKS_PATH = (
             BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
         )
-        the_block = GetBlock((the_BLOCKS_PATH + str(sequance_number) + ".block.json"))
+        the_block = GetBlock(
+            (the_BLOCKS_PATH + str(sequance_number) + ".block.json"))
         the_accounts = GetAccounts(
             (the_BLOCKS_PATH + str(sequance_number) + ".accounts.json")
         )
