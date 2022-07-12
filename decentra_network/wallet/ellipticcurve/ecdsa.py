@@ -48,8 +48,7 @@ class Ecdsa:
             )
             r = randSignPoint.x % curve.N
             s = (
-                (numberMessage + r * privateKey.secret) *
-                (Math.inv(randNum, curve.N))
+                (numberMessage + r * privateKey.secret) * (Math.inv(randNum, curve.N))
             ) % curve.N
         recoveryId = randSignPoint.y & 1
         if randSignPoint.y > curve.N:

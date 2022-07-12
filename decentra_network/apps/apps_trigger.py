@@ -30,8 +30,7 @@ def AppsTrigger(block):
             and "app_main" not in folder_entry.name
             and "apps_trigger" not in folder_entry.name
         ):
-            logger.debug(
-                f"Starting thread for application {folder_entry.name}")
+            logger.debug(f"Starting thread for application {folder_entry.name}")
             for entry in os.scandir(f"apps/{folder_entry.name}"):
                 logger.debug(f"Found entry {entry.name}")
                 if entry.is_file():

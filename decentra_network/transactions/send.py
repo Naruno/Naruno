@@ -56,8 +56,7 @@ def send(
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
     if len(str(amount).split(".")[1]) > decimal_amount:
-        logger.error(
-            f"The amount of decimal places is more than {decimal_amount}.")
+        logger.error(f"The amount of decimal places is more than {decimal_amount}.")
         return False
 
     if amount >= block.minumum_transfer_amount:
@@ -118,6 +117,5 @@ def send(
             logger.error("Password is not correct")
             return False
     else:
-        logger.error(
-            f"The amount is too low. minumum:{block.minumum_transfer_amount}")
+        logger.error(f"The amount is too low. minumum:{block.minumum_transfer_amount}")
         return False

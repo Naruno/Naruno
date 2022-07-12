@@ -61,8 +61,7 @@ class Signature:
         recoveryId = None
         if recoveryByte:
             recoveryId = (
-                string[0] if isinstance(
-                    string[0], intTypes) else ord(string[0])
+                string[0] if isinstance(string[0], intTypes) else ord(string[0])
             )
             recoveryId -= 27
             string = string[1:]

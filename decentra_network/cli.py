@@ -74,8 +74,7 @@ def show_menu():
         + menu_maker(menu_number="ndstart", menu_text="Node Start")
         + menu_maker(menu_number="ndstop", menu_text="Node Stop")
         + menu_maker(menu_number="ndconnect", menu_text="Node Connect")
-        + menu_maker(menu_number="ndconnectmixdb",
-                     menu_text="Node Connect from mixdb")
+        + menu_maker(menu_number="ndconnectmixdb", menu_text="Node Connect from mixdb")
         + menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node")
         + menu_maker(menu_number="ndid", menu_text="Print my id")
         + menu_space()
@@ -84,15 +83,12 @@ def show_menu():
         + menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON")
         + menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF")
         + menu_space()
-        + menu_maker(menu_number="exptrcsv",
-                     menu_text="Export Transaction as CSV")
-        + menu_maker(menu_number="returntrs",
-                     menu_text="Export Transaction as CSV")
+        + menu_maker(menu_number="exptrcsv", menu_text="Export Transaction as CSV")
+        + menu_maker(menu_number="returntrs", menu_text="Export Transaction as CSV")
         + menu_space()
         + menu_maker(menu_number="status", menu_text="Prints the status")
         + menu_space()
-        + menu_maker(menu_number="getblock",
-                     menu_text="Get block From Other Nodes")
+        + menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")
         + menu_space()
     )
 
@@ -193,8 +189,7 @@ def menu():
 
         if choices_input == "exptrcsv":
             if export_the_transactions():
-                print(
-                    f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+                print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
             else:
                 print("You have not a transaction")
 
@@ -207,8 +202,7 @@ def menu():
                 SaveBlock(the_block)
                 Node.main_node.send_block_to_other_nodes()
                 logger.info("Consensus timer is started")
-                perpetualTimer(the_block.consensus_timer,
-                               consensus_trigger).start()
+                perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
             else:
                 GetBlockFromOtherNode()
 
@@ -240,14 +234,11 @@ def arguments():
         "-dw", "--deletewallet", action="store_true", help="Delete wallet"
     )
 
-    parser.add_argument("-gb", "--getbalance",
-                        action="store_true", help="Get Balance")
+    parser.add_argument("-gb", "--getbalance", action="store_true", help="Get Balance")
 
-    parser.add_argument("-ndnunl", "--ndnewunl",
-                        type=str, help="Add new UNL node")
+    parser.add_argument("-ndnunl", "--ndnewunl", type=str, help="Add new UNL node")
 
-    parser.add_argument("-ndid", "--ndid",
-                        action="store_true", help="Print my id")
+    parser.add_argument("-ndid", "--ndid", action="store_true", help="Print my id")
 
     parser.add_argument(
         "-tmon", "--testmodeon", action="store_true", help="Test Mode On"
@@ -327,8 +318,7 @@ def arguments():
 
     if args.exporttransactioncsv:
         if export_the_transactions():
-            print(
-                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
         else:
             print("You have not a transaction")
 
