@@ -16,11 +16,8 @@ def GetCandidateBlocks(custom_nodes_list=None):
     candidate_block class
     """
 
-    nodes = (
-        Unl.get_as_node_type(Unl.get_unl_nodes())
-        if custom_nodes_list is None
-        else custom_nodes_list
-    )
+    nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
+             if custom_nodes_list is None else custom_nodes_list)
 
     the_candidate_blocks = []
     the_candidate_block_hashes = []

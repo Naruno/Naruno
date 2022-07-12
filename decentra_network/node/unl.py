@@ -14,6 +14,7 @@ from decentra_network.lib.config_system import get_config
 
 
 class Unl:
+
     @staticmethod
     def save_new_unl_node(id):
         """
@@ -55,14 +56,11 @@ class Unl:
 
         temp_list = []
         if Node.main_node is not None:
-            temp_list.extend(
-                each_node
-                for list_node, each_node in itertools.product(
-                    id_list,
-                    Node.main_node.nodes,
-                )
-                if list_node == each_node.id
-            )
+            temp_list.extend(each_node
+                             for list_node, each_node in itertools.product(
+                                 id_list,
+                                 Node.main_node.nodes,
+                             ) if list_node == each_node.id)
 
         return temp_list
 

@@ -68,6 +68,7 @@ def bitsFromHex(hexadecimal):
 
 
 class BinaryAscii:
+
     @classmethod
     def hexFromBinary(cls, data):
         """
