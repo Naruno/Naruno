@@ -4,6 +4,29 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from decentra_network.transactions.pending.delete_pending import DeletePending
+from decentra_network.transactions.pending.get_pending import GetPending
+from decentra_network.transactions.pending.save_pending import SavePending
+from decentra_network.transactions.transaction import Transaction
+from decentra_network.transactions.send import send
+from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
+from decentra_network.transactions.pending_to_validating import PendingtoValidating
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import SaveMyTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import GetMyTransaction
+from decentra_network.transactions.get_transaction import GetTransaction
+from decentra_network.transactions.check.type.check_type import Check_Type
+from decentra_network.transactions.check.len.check_len import Check_Len
+from decentra_network.transactions.check.datas.check_datas import Check_Datas
+from decentra_network.transactions.check.check_transaction import CheckTransaction
+from decentra_network.blockchain.block.change_transaction_fee import ChangeTransactionFee
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.accounts.account import Account
+import unittest
+import time
 from ast import Delete
 import copy
 import os
@@ -11,30 +34,6 @@ import sys
 
 from requests import delete
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-import time
-import unittest
-
-from decentra_network.accounts.account import Account
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.change_transaction_fee import ChangeTransactionFee
-from decentra_network.transactions.check.check_transaction import CheckTransaction
-from decentra_network.transactions.check.datas.check_datas import Check_Datas
-from decentra_network.transactions.check.len.check_len import Check_Len
-from decentra_network.transactions.check.type.check_type import Check_Type
-from decentra_network.transactions.get_transaction import GetTransaction
-from decentra_network.transactions.my_transactions.get_my_transaction import GetMyTransaction
-from decentra_network.transactions.my_transactions.save_my_transaction import SaveMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from decentra_network.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
-from decentra_network.transactions.pending_to_validating import PendingtoValidating
-from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
-from decentra_network.transactions.send import send
-from decentra_network.transactions.transaction import Transaction
-from decentra_network.transactions.pending.save_pending import SavePending
-from decentra_network.transactions.pending.get_pending import GetPending
-from decentra_network.transactions.pending.delete_pending import DeletePending
 
 
 class Test_Transactions(unittest.TestCase):
@@ -143,10 +142,12 @@ class Test_Transactions(unittest.TestCase):
 
         pending_transactions = GetPending()
 
-        transaction_1_true = any(element.signature == temp_transaction.signature for element in pending_transactions)
-        transaction_2_true = any(element.signature == temp_transaction_2.signature for element in pending_transactions)
-        transaction_3_true = any(element.signature == temp_transaction_3.signature for element in pending_transactions)
-
+        transaction_1_true = any(
+            element.signature == temp_transaction.signature for element in pending_transactions)
+        transaction_2_true = any(
+            element.signature == temp_transaction_2.signature for element in pending_transactions)
+        transaction_3_true = any(
+            element.signature == temp_transaction_3.signature for element in pending_transactions)
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
@@ -155,7 +156,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(transaction_1_true, False)
         self.assertEqual(transaction_2_true, False)
-        self.assertEqual(transaction_3_true, True)    
+        self.assertEqual(transaction_3_true, True)
 
     def test_pending_to_validating_round_1_started(self):
 
@@ -187,7 +188,7 @@ class Test_Transactions(unittest.TestCase):
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
-        DeletePending(temp_transaction_3) 
+        DeletePending(temp_transaction_3)
 
         self.assertEqual(len(block.validating_list), 0)
         self.assertEqual(know_pending_number, 3)
@@ -207,9 +208,10 @@ class Test_Transactions(unittest.TestCase):
 
         pending_transactions = GetPending()
 
-
-        transaction_1_true = any(element.signature == temp_transaction.signature for element in pending_transactions)
-        transaction_2_true = any(element.signature == temp_transaction_2.signature for element in pending_transactions)
+        transaction_1_true = any(
+            element.signature == temp_transaction.signature for element in pending_transactions)
+        transaction_2_true = any(
+            element.signature == temp_transaction_2.signature for element in pending_transactions)
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
@@ -232,7 +234,8 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block, custom_pending_transactions=[temp_transaction])
+        ChangeTransactionFee(
+            block, custom_pending_transactions=[temp_transaction])
 
         new_transaction_fee = block.transaction_fee
 
@@ -250,10 +253,10 @@ class Test_Transactions(unittest.TestCase):
 
         temp_transaction = Transaction(1, "10", "", "", "", 1, 1, 1)
 
-
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block, custom_pending_transactions=[temp_transaction])
+        ChangeTransactionFee(
+            block, custom_pending_transactions=[temp_transaction])
 
         new_transaction_fee = block.transaction_fee
 
@@ -982,7 +985,7 @@ class Test_Transactions(unittest.TestCase):
             custom_sequence_number=0,
             custom_balance=100000,
         )
-        
+
         self.assertNotEqual(result, False)
         DeletePending(result)
 
@@ -1165,7 +1168,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(account_list[6].Address, "teaaast")
         self.assertEqual(account_list[6].sequance_number, 0)
 
-
     def test_SavePending_GetPending_DeletePending(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -1187,7 +1189,7 @@ class Test_Transactions(unittest.TestCase):
         for pending in pending_list:
             if pending.signature == the_transaction.signature:
                 result = True
-        
+
         DeletePending(the_transaction)
         self.assertEqual(result, True)
 

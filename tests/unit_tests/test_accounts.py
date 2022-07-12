@@ -4,18 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.accounts.save_accounts import SaveAccounts
+from decentra_network.accounts.get_sequance_number import GetSequanceNumber
+from decentra_network.accounts.get_balance import GetBalance
+from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.accounts.account import Account
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-import unittest
-
-from decentra_network.accounts.account import Account
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.accounts.get_sequance_number import GetSequanceNumber
-from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.block_main import Block
-
 
 
 class Test_Accounts(unittest.TestCase):

@@ -4,46 +4,46 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from decentra_network.wallet.wallet_selector import wallet_selector
+from decentra_network.wallet.wallet_import import wallet_import
+from decentra_network.wallet.wallet_create import wallet_create
+from decentra_network.wallet.print_wallets import print_wallets
+from decentra_network.wallet.delete_current_wallet import delete_current_wallet
+from decentra_network.transactions.send import send
+from decentra_network.transactions.print_transactions import PrintTransactions
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
+from decentra_network.node.unl import Unl
+from decentra_network.node.connection import Connection
+from decentra_network.node.node import Node
+from decentra_network.node.get_block_from_other_node import GetBlockFromOtherNode
+from decentra_network.lib.status import Status
+from decentra_network.lib.settings_system import the_settings
+from decentra_network.lib.settings_system import test_mode
+from decentra_network.lib.settings_system import debug_mode
+from decentra_network.lib.safety import safety_check
+from decentra_network.lib.perpetualtimer import perpetualTimer
+from decentra_network.lib.mixlib import quit_menu_maker
+from decentra_network.lib.mixlib import question_maker
+from decentra_network.lib.mixlib import menu_space
+from decentra_network.lib.mixlib import menu_maker
+from decentra_network.lib.mixlib import banner_maker
+from decentra_network.lib.log import get_logger
+from decentra_network.lib.export import export_the_transactions
+from decentra_network.consensus.consensus_main import consensus_trigger
+from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
+from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.blockchain.block.get_block import GetBlock
+from decentra_network.blockchain.block.create_block import CreateBlock
+from decentra_network.accounts.get_balance import GetBalance
+from getpass import getpass
+import time
 import argparse
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-import time
-from getpass import getpass
 
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.blockchain.block.create_block import CreateBlock
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
-from decentra_network.consensus.consensus_main import consensus_trigger
-from decentra_network.lib.export import export_the_transactions
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.mixlib import banner_maker
-from decentra_network.lib.mixlib import menu_maker
-from decentra_network.lib.mixlib import menu_space
-from decentra_network.lib.mixlib import question_maker
-from decentra_network.lib.mixlib import quit_menu_maker
-from decentra_network.lib.perpetualtimer import perpetualTimer
-from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import debug_mode
-from decentra_network.lib.settings_system import test_mode
-from decentra_network.lib.settings_system import the_settings
-from decentra_network.lib.status import Status
-from decentra_network.node.get_block_from_other_node import GetBlockFromOtherNode
-from decentra_network.node.node import Node
-from decentra_network.node.connection import Connection
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from decentra_network.transactions.print_transactions import PrintTransactions
-from decentra_network.transactions.send import send
-from decentra_network.wallet.delete_current_wallet import delete_current_wallet
-from decentra_network.wallet.print_wallets import print_wallets
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_import import wallet_import
-from decentra_network.wallet.wallet_selector import wallet_selector
 
 logger = get_logger("CLI")
 
@@ -76,7 +76,8 @@ def show_menu():
         + menu_maker(menu_number="ndstart", menu_text="Node Start")
         + menu_maker(menu_number="ndstop", menu_text="Node Stop")
         + menu_maker(menu_number="ndconnect", menu_text="Node Connect")
-        + menu_maker(menu_number="ndconnectmixdb", menu_text="Node Connect from mixdb")
+        + menu_maker(menu_number="ndconnectmixdb",
+                     menu_text="Node Connect from mixdb")
         + menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node")
         + menu_maker(menu_number="ndid", menu_text="Print my id")
         + menu_space()
@@ -85,12 +86,15 @@ def show_menu():
         + menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON")
         + menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF")
         + menu_space()
-        + menu_maker(menu_number="exptrcsv", menu_text="Export Transaction as CSV")
-        + menu_maker(menu_number="returntrs", menu_text="Export Transaction as CSV")
+        + menu_maker(menu_number="exptrcsv",
+                     menu_text="Export Transaction as CSV")
+        + menu_maker(menu_number="returntrs",
+                     menu_text="Export Transaction as CSV")
         + menu_space()
         + menu_maker(menu_number="status", menu_text="Prints the status")
         + menu_space()
-        + menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")
+        + menu_maker(menu_number="getblock",
+                     menu_text="Get block From Other Nodes")
         + menu_space()
     )
 
@@ -191,7 +195,8 @@ def menu():
 
         if choices_input == "exptrcsv":
             if export_the_transactions():
-                print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+                print(
+                    f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
             else:
                 print("You have not a transaction")
 
@@ -204,7 +209,8 @@ def menu():
                 SaveBlock(the_block)
                 Node.main_node.send_block_to_other_nodes()
                 logger.info("Consensus timer is started")
-                perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
+                perpetualTimer(the_block.consensus_timer,
+                               consensus_trigger).start()
             else:
                 GetBlockFromOtherNode()
 
@@ -236,11 +242,14 @@ def arguments():
         "-dw", "--deletewallet", action="store_true", help="Delete wallet"
     )
 
-    parser.add_argument("-gb", "--getbalance", action="store_true", help="Get Balance")
+    parser.add_argument("-gb", "--getbalance",
+                        action="store_true", help="Get Balance")
 
-    parser.add_argument("-ndnunl", "--ndnewunl", type=str, help="Add new UNL node")
+    parser.add_argument("-ndnunl", "--ndnewunl",
+                        type=str, help="Add new UNL node")
 
-    parser.add_argument("-ndid", "--ndid", action="store_true", help="Print my id")
+    parser.add_argument("-ndid", "--ndid",
+                        action="store_true", help="Print my id")
 
     parser.add_argument(
         "-tmon", "--testmodeon", action="store_true", help="Test Mode On"
@@ -320,7 +329,8 @@ def arguments():
 
     if args.exporttransactioncsv:
         if export_the_transactions():
-            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+            print(
+                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
         else:
             print("You have not a transaction")
 
