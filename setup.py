@@ -16,7 +16,7 @@ setup(
 
     name         = "decentra_network",
     version      = "0.25.0",
-    url          = "https://github.com/keyiflerolsun/KekikTaban",
+    url          = "https://github.com/Decentra-Network/Decentra-Network",
     description  = "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
     keywords     = ["python", "cryptography", "blockchain", "p2p", "python3", "cryptocurrency", "kivy", "coin", "copilot", "fba", "dapps", "p2p-network", "kivymd", "blokzinciri", "decentra-network", "githubcopilot", "blokzincir"],
 
