@@ -97,12 +97,14 @@ class Node(threading.Thread):
 
         logger.info("Node System: Stopping protocol started by node")
         for t in self.nodes:
-            self.disconnect_to_node(t)
+            t.stop()
+        time.sleep(1)
+        for t in self.nodes:
+            t.join()
 
         self.sock.settimeout(None)
         self.sock.close()
         logger.info("Node System: The node is stopped")
-        sys.exit()
 
     def init_server(self):
         logger.info("Node System: Node server is starting")
@@ -184,6 +186,7 @@ class Node(threading.Thread):
         if node in self.nodes:
             logger.info("Node System: Disconnecting from node")
             node.stop()
+            time.sleep(1)
             node.join()
             del self.nodes[self.nodes.index(node)]
 
@@ -191,7 +194,6 @@ class Node(threading.Thread):
             logger.info("Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
-        self.sock.shutdown(socket.SHUT_RDWR)
         self.terminate_flag.set()
 
     @staticmethod

@@ -85,7 +85,9 @@ class Test_Node(unittest.TestCase):
                 wallet_delete(each_wallet)
 
         node_2.stop()
+        node_2.join()
         node_1.stop()
+        node_1.join()
 
         self.assertEqual(connection_closing_deleting, False,
                         "Connection closing deleting")
@@ -171,7 +173,9 @@ class Test_Node(unittest.TestCase):
             node_1.disconnect_to_node(i)
         node_1.delete_closed_connections()    
         node_2.stop()
+        node_2.join()
         node_1.stop()
+        node_1.join()
         self.assertEqual(connection_2.messages[0], "test")
         self.assertEqual(connection_2.messages[1], {"test": "test"})
         self.assertEqual(connection_2.messages[2], "test")
@@ -197,7 +201,9 @@ class Test_Node(unittest.TestCase):
             node_1.disconnect_to_node(i)
         node_1.delete_closed_connections()  
         node_2.stop()
+        node_2.join()
         node_1.stop()
+        node_1.join()
         self.assertEqual(node_1.nodes, [])
         self.assertEqual(node_2.nodes, [])
         self.assertEqual(connection, None)
