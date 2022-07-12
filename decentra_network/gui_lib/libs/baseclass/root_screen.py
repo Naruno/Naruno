@@ -16,7 +16,8 @@ class DecentraRootScreen(MDScreen):
     pass
 
 
-class DecentraListItem(ThemableBehavior, RectangularRippleBehavior, MDBoxLayout):
+class DecentraListItem(ThemableBehavior, RectangularRippleBehavior,
+                       MDBoxLayout):
     text = StringProperty()
     secondary_text = StringProperty()
     tertiary_text = StringProperty()

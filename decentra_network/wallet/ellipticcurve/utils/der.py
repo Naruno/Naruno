@@ -74,9 +74,9 @@ def encodePrimitive(tagType, value):
         value = _encodeInteger(value)
     if tagType == DerFieldType.object:
         value = oidToHex(value)
-    return "{tag}{size}{value}".format(
-        tag=_typeToHexTag[tagType], size=_generateLengthBytes(value), value=value
-    )
+    return "{tag}{size}{value}".format(tag=_typeToHexTag[tagType],
+                                       size=_generateLengthBytes(value),
+                                       value=value)
 
 
 def parse(hexadecimal):
@@ -85,8 +85,8 @@ def parse(hexadecimal):
     typeByte, hexadecimal = hexadecimal[:2], hexadecimal[2:]
     length, lengthBytes = _readLengthBytes(hexadecimal)
     content, hexadecimal = (
-        hexadecimal[lengthBytes : lengthBytes + length],
-        hexadecimal[lengthBytes + length :],
+        hexadecimal[lengthBytes:lengthBytes + length],
+        hexadecimal[lengthBytes + length:],
     )
     if len(content) < length:
         raise Exception("missing bytes in DER parse")
@@ -143,7 +143,7 @@ def _encodeInteger(number):
         return hexFromInt(twosComplement)
     bits = bitsFromHex(hexadecimal[0])
     if (
-        bits[0] == "1"
+            bits[0] == "1"
     ):  # if first bit was left as 1, number would be parsed as a negative integer with two's complement
         hexadecimal = "00" + hexadecimal
     return hexadecimal
@@ -152,9 +152,8 @@ def _encodeInteger(number):
 def _readLengthBytes(hexadecimal):
     lengthBytes = 2
     lengthIndicator = intFromHex(hexadecimal[0:lengthBytes])
-    isShortForm = (
-        lengthIndicator < 128
-    )  # checks if first bit of byte is 1 (a.k.a. short-form)
+    isShortForm = (lengthIndicator < 128
+                   )  # checks if first bit of byte is 1 (a.k.a. short-form)
     if isShortForm:
         length = lengthIndicator * 2
         return length, lengthBytes
