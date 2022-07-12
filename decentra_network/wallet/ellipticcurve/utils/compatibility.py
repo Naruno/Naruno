@@ -24,8 +24,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
-from binascii import hexlify, unhexlify
+from binascii import hexlify
+from binascii import unhexlify
 from sys import version_info as pyVersion
 
 if pyVersion.major == 3:
