@@ -109,8 +109,7 @@ def wallet_import(wallet, mode, password=None):
 
 def Address(publickey):
     the_public_key = "".join(
-        [l.strip() for l in publickey.splitlines()
-         if l and not l.startswith("-----")]
+        [l.strip() for l in publickey.splitlines() if l and not l.startswith("-----")]
     )
     return sha256(
         sha256(the_public_key.encode("utf-8")).hexdigest().encode("utf-8")
