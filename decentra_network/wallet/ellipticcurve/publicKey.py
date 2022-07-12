@@ -43,6 +43,7 @@ from decentra_network.wallet.ellipticcurve.utils.pem import getPemContent
 
 
 class PublicKey:
+
     def __init__(self, point, curve):
         self.point = point
         self.curve = curve
@@ -62,13 +63,15 @@ class PublicKey:
                 encodePrimitive(DerFieldType.object, _ecdsaPublicKeyOid),
                 encodePrimitive(DerFieldType.object, self.curve.oid),
             ),
-            encodePrimitive(DerFieldType.bitString, self.toString(encoded=True)),
+            encodePrimitive(DerFieldType.bitString,
+                            self.toString(encoded=True)),
         )
         return byteStringFromHex(hexadecimal)
 
     def toPem(self):
         der = self.toDer()
-        return createPem(content=base64FromByteString(der), template=_pemTemplate)
+        return createPem(content=base64FromByteString(der),
+                         template=_pemTemplate)
 
     @classmethod
     def fromPem(cls, string):
@@ -82,11 +85,11 @@ class PublicKey:
         publicKeyOid, curveOid = curveData
         if publicKeyOid != _ecdsaPublicKeyOid:
             raise Exception(
-                "The Public Key Object Identifier (OID) should be {ecdsaPublicKeyOid}, but {actualOid} was found instead".format(
+                "The Public Key Object Identifier (OID) should be {ecdsaPublicKeyOid}, but {actualOid} was found instead"
+                .format(
                     ecdsaPublicKeyOid=_ecdsaPublicKeyOid,
                     actualOid=publicKeyOid,
-                )
-            )
+                ))
         curve = getCurveByOid(curveOid)
         return cls.fromString(string=pointString, curve=curve)
 
@@ -111,21 +114,15 @@ class PublicKey:
         if not curve.contains(p):
             raise Exception(
                 "Point ({x},{y}) is not valid for curve {name}".format(
-                    x=p.x, y=p.y, name=curve.name
-                )
-            )
-        if not Math.multiply(
-            p=p, n=curve.N, N=curve.N, A=curve.A, P=curve.P
-        ).isAtInfinity():
+                    x=p.x, y=p.y, name=curve.name))
+        if not Math.multiply(p=p, n=curve.N, N=curve.N, A=curve.A,
+                             P=curve.P).isAtInfinity():
             raise Exception(
                 "Point ({x},{y}) * {name}.N is not at infinity".format(
-                    x=p.x, y=p.y, name=curve.name
-                )
-            )
+                    x=p.x, y=p.y, name=curve.name))
         return publicKey
 
 
 _ecdsaPublicKeyOid = (1, 2, 840, 10045, 2, 1)
-
 
 _pemTemplate = """{content}"""

@@ -44,6 +44,7 @@ from decentra_network.wallet.ellipticcurve.utils.pem import getPemContent
 
 
 class PrivateKey:
+
     def __init__(self, curve=secp256k1, secret=None):
         self.curve = curve
         self.secret = secret or RandomInteger.between(1, curve.N - 1)
@@ -80,7 +81,8 @@ class PrivateKey:
 
     def toPem(self):
         der = self.toDer()
-        return createPem(content=base64FromByteString(der), template=_pemTemplate)
+        return createPem(content=base64FromByteString(der),
+                         template=_pemTemplate)
 
     @classmethod
     def fromPem(cls, string):
@@ -90,13 +92,12 @@ class PrivateKey:
     @classmethod
     def fromDer(cls, string):
         hexadecimal = hexFromByteString(string)
-        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[0]
+        privateKeyFlag, secretHex, curveData, publicKeyString = parse(
+            hexadecimal)[0]
         if privateKeyFlag != 1:
             raise Exception(
-                "Private keys should start with a '1' flag, but a '{flag}' was found instead".format(
-                    flag=privateKeyFlag
-                )
-            )
+                "Private keys should start with a '1' flag, but a '{flag}' was found instead"
+                .format(flag=privateKeyFlag))
         curve = getCurveByOid(curveData[0])
         privateKey = cls.fromString(string=secretHex, curve=curve)
         if privateKey.publicKey().toString(encoded=True) != publicKeyString[0]:
