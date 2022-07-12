@@ -96,7 +96,7 @@ class Connection(threading.Thread):
 
                 while eot_pos > 0:
                     packet = buffer[:eot_pos]
-                    buffer = buffer[eot_pos + 1:]
+                    buffer = buffer[eot_pos + 1 :]
                     parsed_packets = self.parse_packet(packet)
                     if self.save_messages:
                         self.messages.append(parsed_packets)

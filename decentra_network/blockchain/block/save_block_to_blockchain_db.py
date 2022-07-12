@@ -47,15 +47,13 @@ def SaveBlockstoBlockchainDB(
         the_BLOCKS_PATH = (
             BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
         )
-        SaveBlock(block, (the_BLOCKS_PATH +
-                  str(block.sequance_number) + ".block.json"))
+        SaveBlock(block, (the_BLOCKS_PATH + str(block.sequance_number) + ".block.json"))
         SaveAccounts(
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
             (the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.json"),
         )
         SaveBlockshash(
-            GetBlockshash(
-                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             (the_BLOCKS_PATH + str(block.sequance_number) + ".blockshash.json"),
         )
         SaveBlockshash_part(
