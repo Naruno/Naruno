@@ -19,8 +19,7 @@ from kivymd_extensions.sweetalert import SweetAlert
 from lib.export import export_the_transactions
 from lib.settings_system import the_settings
 from transactions.my_transactions.get_my_transaction import GetMyTransaction
-from transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
+from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
 from transactions.send import send
 from wallet.wallet_import import wallet_import
 
@@ -51,16 +50,17 @@ class OperationBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_send_coin_dialog,
                         font_size="18sp",
-                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.sent_the_coins,
                         font_size="18sp",
-                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
                     ),
                 ],
             )
+
         self.send_coin_dialog.open()
 
     def get_send_coin_dialog_text(self):
@@ -79,13 +79,14 @@ class OperationBox(MDGridLayout):
         receiver_adress = text_list[2]
         amount = text_list[1]
 
-        if not float(amount) < GetBlock().minumum_transfer_amount:
-            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
-                    text_list[0].encode("utf-8")).hexdigest()):
+        if float(amount) >= GetBlock().minumum_transfer_amount:
+            if (
+                wallet_import(int(the_settings()["wallet"]), 2)
+                == sha256(text_list[0].encode("utf-8")).hexdigest()
+            ):
                 block = GetBlock()
-                send_tx = send(block, text_list[0], receiver_adress,
-                               float(amount))
-                if not send_tx == False:
+                send_tx = send(block, text_list[0], receiver_adress, float(amount))
+                if send_tx != False:
                     from node.node import Node
 
                     SavetoMyTransaction(send_tx)
@@ -126,19 +127,19 @@ class OperationBox(MDGridLayout):
 
     def transaction_history(self):
         transactions = GetMyTransaction()
-        if not len(transactions) == 0:
+        if len(transactions) != 0:
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
-            data = {}
-            for tx in transactions:
-                data[tx[0]] = (tx[0].toUser + " | " + str(tx[0].amount) +
-                               " | " + str(tx[0].transaction_fee) + " | " +
-                               str(tx[1]))
+            data = {
+                tx[
+                    0
+                ]: f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
+                for tx in transactions
+            }
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.
-                    callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:

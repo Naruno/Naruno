@@ -65,16 +65,17 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_start_node_server_dialog,
                         font_size="18sp",
-                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.start_node_server_func,
                         font_size="18sp",
-                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
                     ),
                 ],
             )
+
         self.start_node_server_dialog.open()
 
     def get_start_node_server_dialog_text(self):
@@ -130,16 +131,17 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_connect_a_node_dialog,
                         font_size="18sp",
-                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.connect_a_node_func,
                         font_size="18sp",
-                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
                     ),
                 ],
             )
+
         self.connect_a_node_dialog.open()
 
     def get_connect_a_node_dialog_text(self):
@@ -189,16 +191,17 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_add_unl_node_dialog,
                         font_size="18sp",
-                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.add_unl_node_func,
                         font_size="18sp",
-                        font_name=self.FONT_PATH + "RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
                     ),
                 ],
             )
+
         self.add_unl_node_dialog.open()
 
     def get_add_unl_node_dialog_text(self):
@@ -235,8 +238,7 @@ class NodeBox(MDGridLayout):
             the_block = CreateBlock()
             SaveBlock(the_block)
             Node.main_node.send_block_to_other_nodes()
-            perpetualTimer(the_block.consensus_timer,
-                           consensus_trigger).start()
+            perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
         else:
             GetBlockFromOtherNode()
 

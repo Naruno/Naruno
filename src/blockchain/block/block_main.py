@@ -100,13 +100,16 @@ class Block:
         self.validated_time = None
 
         # Resetting the node candidate blocks.
-        nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
-                 if custom_nodes is None else custom_nodes)
+        nodes = (
+            Unl.get_as_node_type(Unl.get_unl_nodes())
+            if custom_nodes is None
+            else custom_nodes
+        )
         for node in nodes:
             node.candidate_block = None
             node.candidate_block_hash = None
 
-        if not len(self.validating_list) < (self.max_tx_number / 2):
+        if len(self.validating_list) >= (self.max_tx_number / 2):
             block2 = copy.copy(self)
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
@@ -130,17 +133,19 @@ class Block:
         """
         temp_block = copy.copy(self)
 
-        temp_validating_list = []
-        for transaction in temp_block.validating_list:
-            temp_validating_list.append(transaction.dump_json())
+        temp_validating_list = [
+            transaction.dump_json() for transaction in temp_block.validating_list
+        ]
+
         temp_block.validating_list = temp_validating_list
         return temp_block.__dict__
 
     @staticmethod
     def load_json(json_string):
-        temp_validating_list = []
-        for tx in json_string["validating_list"]:
-            temp_validating_list.append(Transaction.load_json(tx))
+        temp_validating_list = [
+            Transaction.load_json(tx) for tx in json_string["validating_list"]
+        ]
+
         the_block_json = json.loads(json.dumps(json_string))
         the_block_json["validating_list"] = temp_validating_list
         the_block = Block("Decentra-Network")

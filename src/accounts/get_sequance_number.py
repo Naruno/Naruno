@@ -11,7 +11,7 @@ from wallet.wallet_import import Address
 def GetSequanceNumber(user, account_list=None):
     user = Address(user)
     sequance_number = 0
-    the_account_list = GetAccounts() if account_list == None else account_list
+    the_account_list = GetAccounts() if account_list is None else account_list
     for Accounts in the_account_list:
 
         if Accounts.Address == user:

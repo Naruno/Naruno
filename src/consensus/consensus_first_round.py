@@ -47,8 +47,8 @@ def consensus_round_1(block):
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
 
-        logger.info("Time difference is {}".format(time_difference))
-        logger.info("block.raund_1_time is {}".format(block.raund_1_time))
+        logger.info(f"Time difference is {time_difference}")
+        logger.info(f"block.raund_1_time is {block.raund_1_time}")
 
         if time_difference > block.raund_1_time:
             logger.info("True time")
@@ -58,37 +58,34 @@ def consensus_round_1(block):
 
                 for other_block_tx in candidate_block["transaction"]:
 
-                    tx_valid = 0
-
-                    for my_txs in block.validating_list:
-                        if other_block_tx.signature == my_txs.signature:
-                            tx_valid += 1
+                    tx_valid = sum(
+                        other_block_tx.signature == my_txs.signature
+                        for my_txs in block.validating_list
+                    )
 
                     if len(candidate_class.candidate_blocks) != 1:
 
                         for other_block in candidate_class.candidate_blocks[:]:
-                            if candidate_block["signature"] != other_block[
-                                    "signature"]:
+                            if candidate_block["signature"] != other_block["signature"]:
 
-                                for other_block_txs in other_block[
-                                        "transaction"]:
-                                    if (other_block_tx.signature ==
-                                            other_block_txs.signature):
+                                for other_block_txs in other_block["transaction"]:
+                                    if (
+                                        other_block_tx.signature
+                                        == other_block_txs.signature
+                                    ):
 
                                         tx_valid += 1
                     else:
                         tx_valid += 1
 
-                    logger.debug(
-                        f"Tx valid of {other_block_tx.signature} : {tx_valid}")
+                    logger.debug(f"Tx valid of {other_block_tx.signature} : {tx_valid}")
                     if tx_valid > (len(unl_nodes) / 2):
 
                         already_in_ok = False
                         for alrady_tx in temp_validating_list[:]:
 
                             if other_block_tx.signature == alrady_tx.signature:
-                                logger.warning(
-                                    "The transaction is already in the list")
+                                logger.warning("The transaction is already in the list")
                                 already_in_ok = True
                         if not already_in_ok:
                             logger.info(
@@ -99,11 +96,11 @@ def consensus_round_1(block):
             newly_added_list = []
 
             for my_validating_list in block.validating_list[:]:
-                ok = False
-                for my_temp_validating_list in temp_validating_list[:]:
-                    if (my_validating_list.signature ==
-                            my_temp_validating_list.signature):
-                        ok = True
+                ok = any(
+                    (my_validating_list.signature == my_temp_validating_list.signature)
+                    for my_temp_validating_list in temp_validating_list[:]
+                )
+
                 block.validating_list.remove(my_validating_list)
                 if not ok:
                     newly_added_list.append(my_validating_list)
@@ -126,8 +123,7 @@ def consensus_round_1(block):
             part_of_blocks_hash = GetBlockshash_part()
             the_blocks_hash = GetBlockshash()
             the_accounts = GetAccounts()
-            CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
-                          the_accounts)
+            CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts)
 
             SaveAccounts(the_accounts)
             SaveBlockshash_part(part_of_blocks_hash)

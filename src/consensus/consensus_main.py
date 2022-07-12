@@ -11,15 +11,12 @@ from blockchain.block.blocks_hash import GetBlockshash
 from blockchain.block.blocks_hash import SaveBlockshash
 from blockchain.block.get_block import GetBlock
 from blockchain.block.save_block import SaveBlock
-from blockchain.block.save_block_to_blockchain_db import \
-    SaveBlockstoBlockchainDB
+from blockchain.block.save_block_to_blockchain_db import SaveBlockstoBlockchainDB
 from consensus.consensus_first_round import consensus_round_1
 from consensus.consensus_second_round import consensus_round_2
 from lib.log import get_logger
-from transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from transactions.my_transactions.validate_transaction import ValidateTransaction
 from transactions.pending_to_validating import PendingtoValidating
 from wallet.wallet_import import wallet_import
 
@@ -40,22 +37,23 @@ def consensus_trigger():
     )
 
     if block.validated:
-        true_time = (block.genesis_time + block.block_time +
-                     ((block.sequance_number + block.empty_block_number) *
-                      block.block_time))
+        true_time = (
+            block.genesis_time
+            + block.block_time
+            + ((block.sequance_number + block.empty_block_number) * block.block_time)
+        )
         if block.newly:
             true_time -= 1
             logger.info(
                 "Consensus proccess is complated but the time is not true, will be waiting for the true time"
             )
-        if not int(time.time()) < true_time:
+        if int(time.time()) >= true_time:
             block.newly = False
-            logger.info(
-                "Consensus proccess is complated, the block will be reset")
+            logger.info("Consensus proccess is complated, the block will be reset")
 
             current_blockshash_list = GetBlockshash()
             reset_block = block.reset_the_block(current_blockshash_list)
-            if not reset_block == False:
+            if reset_block != False:
                 block2 = reset_block[0]
                 AppsTrigger(block2)
                 my_address = wallet_import(-1, 3)

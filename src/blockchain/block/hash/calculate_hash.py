@@ -25,15 +25,16 @@ def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
     accounts_hash = AccountsHash(block, the_accounts)
 
     # Other Elements
-    main_list = []
-    main_list.append(block.previous_hash)
-    main_list.append(str(block.sequance_number))
-    main_list.append(blocks_hash)
-    main_list.append(accounts_hash)
-    main_list.append(tx_hash)
-    main_list.append(str(block.default_transaction_fee))
-    main_list.append(str(block.default_increase_of_fee))
-    main_list.append(str(block.default_optimum_transaction_number))
+    main_list = [
+        block.previous_hash,
+        str(block.sequance_number),
+        blocks_hash,
+        accounts_hash,
+        tx_hash,
+        str(block.default_transaction_fee),
+        str(block.default_increase_of_fee),
+        str(block.default_optimum_transaction_number),
+    ]
 
     the_hash = MerkleTree(main_list).getRootHash()
 

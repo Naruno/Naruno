@@ -28,25 +28,40 @@ def SaveBlockstoBlockchainDB(
     at BLOCKS_PATH.
     """
 
-    our_tx = False
-    my_public_key = "".join([
-        l.strip() for l in wallet_import(-1, 0).splitlines()
-        if l and not l.startswith("-----")
-    ])
+    my_public_key = "".join(
+        [
+            l.strip()
+            for l in wallet_import(-1, 0).splitlines()
+            if l and not l.startswith("-----")
+        ]
+    )
     my_address = wallet_import(-1, 3)
-    for validated_transaction in block.validating_list:
-        if (validated_transaction.fromUser
-                == my_public_key) or (validated_transaction.toUser
-                                      == my_address):
-            our_tx = True
+    our_tx = any(
+        (validated_transaction.fromUser == my_public_key)
+        or (validated_transaction.toUser == my_address)
+        for validated_transaction in block.validating_list
+    )
 
     # If the block is our transaction, then add it to the blockchain database.
     if our_tx:
-        the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH)
+        the_BLOCKS_PATH = (
+            BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
+        )
         SaveBlock(block, (the_BLOCKS_PATH + str(block.sequance_number) + ".block.json"))
-        SaveAccounts(GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH), (the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.json"))
-        SaveBlockshash(GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH), (the_BLOCKS_PATH + str(block.sequance_number) + ".blockshash.json"))
-        SaveBlockshash_part(GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH), (the_BLOCKS_PATH + str(block.sequance_number) + ".blockshashpart.json"))
-            
+        SaveAccounts(
+            GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
+            (the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.json"),
+        )
+        SaveBlockshash(
+            GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            (the_BLOCKS_PATH + str(block.sequance_number) + ".blockshash.json"),
+        )
+        SaveBlockshash_part(
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+            ),
+            (the_BLOCKS_PATH + str(block.sequance_number) + ".blockshashpart.json"),
+        )
+
     else:
         False

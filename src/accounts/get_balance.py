@@ -7,15 +7,15 @@
 from wallet.wallet_import import Address
 from accounts.get_accounts import GetAccounts
 
-def GetBalance(block, user, account_list = None):
+
+def GetBalance(block, user, account_list=None):
     """
     Returns the users balance.
     """
 
-
     balance = -block.minumum_transfer_amount
     user = Address(user)
-    the_account_list = GetAccounts() if account_list == None else account_list
+    the_account_list = GetAccounts() if account_list is None else account_list
     for Accounts in the_account_list:
 
         if Accounts.Address == user:

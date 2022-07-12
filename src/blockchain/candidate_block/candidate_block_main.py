@@ -15,7 +15,13 @@ class candidate_block:
       * A list element for candidate_block_hashes
     """
 
-    def __init__(self, candidate_blocks=[], candidate_block_hashes=[]):
+    def __init__(
+        self, candidate_blocks: list = None, candidate_block_hashes: list = None
+    ):
 
+        if candidate_blocks is None:
+            candidate_blocks = []
+        if candidate_block_hashes is None:
+            candidate_block_hashes = []
         self.candidate_blocks = candidate_blocks
         self.candidate_block_hashes = candidate_block_hashes
