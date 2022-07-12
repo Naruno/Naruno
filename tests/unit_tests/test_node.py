@@ -81,8 +81,8 @@ class Test_Node(unittest.TestCase):
         node_2.join()
         node_1.stop()
         node_1.join()
-        
-        connection_closing_deleting = any(element == id for element in nodes_list)
+
+        connection_closing_deleting = any(element.id == Node.id for element in node_2.nodes)
 
         self.assertEqual(connection_closing_deleting, False,
                         "Connection closing deleting")

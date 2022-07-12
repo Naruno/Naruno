@@ -102,6 +102,8 @@ class Node(threading.Thread):
         for t in self.nodes:
             t.join()
 
+        time.sleep(1)
+        self.delete_closed_connections()
         self.sock.settimeout(None)
         self.sock.close()
         logger.info("Node System: The node is stopped")
@@ -186,10 +188,6 @@ class Node(threading.Thread):
         if node in self.nodes:
             logger.info("Node System: Disconnecting from node")
             node.stop()
-            time.sleep(1)
-            node.join()
-            del self.nodes[self.nodes.index(node)]
-
         else:
             logger.info("Node System: Node disconnect_to_node: Node is not connected")
 
