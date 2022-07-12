@@ -8,9 +8,8 @@ import time
 
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
 
 
 def Status():

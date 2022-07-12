@@ -4,25 +4,24 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.wallet.wallet_selector import wallet_selector
-from decentra_network.wallet.wallet_import import Address
-from decentra_network.wallet.wallet_import import wallet_import
-from decentra_network.wallet.wallet_delete import wallet_delete
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.save_wallet_list import save_wallet_list
-from decentra_network.wallet.print_wallets import print_wallets
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
-from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.delete_current_wallet import delete_current_wallet
-from decentra_network.lib.settings_system import the_settings
-from decentra_network.lib.settings_system import save_settings
-from decentra_network.lib.settings_system import change_wallet
-from decentra_network.lib.encryption import decrypt
-from hashlib import sha256
-import unittest
 import os
 import sys
+import unittest
+from hashlib import sha256
+
+from decentra_network.lib.encryption import decrypt
+from decentra_network.lib.settings_system import (change_wallet, save_settings,
+                                                  the_settings)
+from decentra_network.wallet.delete_current_wallet import delete_current_wallet
+from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
+from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.print_wallets import print_wallets
+from decentra_network.wallet.save_wallet_list import save_wallet_list
+from decentra_network.wallet.wallet_create import wallet_create
+from decentra_network.wallet.wallet_delete import wallet_delete
+from decentra_network.wallet.wallet_import import Address, wallet_import
+from decentra_network.wallet.wallet_selector import wallet_selector
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 

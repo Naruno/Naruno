@@ -8,9 +8,9 @@
 import json
 import os
 
-from decentra_network.transactions.transaction import Transaction
 from decentra_network.config import PENDING_TRANSACTIONS_PATH
 from decentra_network.lib.config_system import get_config
+from decentra_network.transactions.transaction import Transaction
 
 
 def GetPending():
