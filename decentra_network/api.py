@@ -8,7 +8,9 @@ import argparse
 import os
 import sys
 
-from flask import Flask, jsonify, request
+from flask import Flask
+from flask import jsonify
+from flask import request
 from waitress import serve
 
 from decentra_network.accounts.get_balance import GetBalance
@@ -20,8 +22,9 @@ from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (debug_mode, test_mode,
-                                                  the_settings)
+from decentra_network.lib.settings_system import debug_mode
+from decentra_network.lib.settings_system import test_mode
+from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
 from decentra_network.node.connection import Connection
 from decentra_network.node.get_block_from_other_node import \

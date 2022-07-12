@@ -18,12 +18,16 @@ from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
 from decentra_network.consensus.consensus_main import consensus_trigger
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
-from decentra_network.lib.mixlib import (banner_maker, menu_maker, menu_space,
-                                         question_maker, quit_menu_maker)
+from decentra_network.lib.mixlib import banner_maker
+from decentra_network.lib.mixlib import menu_maker
+from decentra_network.lib.mixlib import menu_space
+from decentra_network.lib.mixlib import question_maker
+from decentra_network.lib.mixlib import quit_menu_maker
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (debug_mode, test_mode,
-                                                  the_settings)
+from decentra_network.lib.settings_system import debug_mode
+from decentra_network.lib.settings_system import test_mode
+from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
 from decentra_network.node.connection import Connection
 from decentra_network.node.get_block_from_other_node import \

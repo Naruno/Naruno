@@ -24,7 +24,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
 from decentra_network.config import *
 from decentra_network.lib.encryption import encrypt
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey

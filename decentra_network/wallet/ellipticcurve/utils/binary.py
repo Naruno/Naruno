@@ -24,11 +24,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
+from base64 import b64decode
+from base64 import b64encode
 
-from base64 import b64decode, b64encode
-
-from decentra_network.wallet.ellipticcurve.utils.compatibility import (
-    safeBinaryFromHex, safeHexFromBinary, toString)
+from decentra_network.wallet.ellipticcurve.utils.compatibility import safeBinaryFromHex
+from decentra_network.wallet.ellipticcurve.utils.compatibility import safeHexFromBinary
+from decentra_network.wallet.ellipticcurve.utils.compatibility import toString
 
 
 def hexFromInt(number):
