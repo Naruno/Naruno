@@ -26,26 +26,31 @@ def Status():
         new_block = GetBlock()
 
         status_json = {
-            "status": "",
-            "first_block": str(first_block.__dict__),
-            "new_block": str(new_block.__dict__),
-            "last_transaction_of_block": str(new_block.validating_list[-1])
-            if len(new_block.validating_list) > 0
-            else "",
-            "transactions_of_us": str(
-                [f"{str(i[0].__dict__)} | {str(i[1])}" for i in GetMyTransaction()]
-            ),
+            "status":
+            "",
+            "first_block":
+            str(first_block.__dict__),
+            "new_block":
+            str(new_block.__dict__),
+            "last_transaction_of_block":
+            str(new_block.validating_list[-1])
+            if len(new_block.validating_list) > 0 else "",
+            "transactions_of_us":
+            str([
+                f"{str(i[0].__dict__)} | {str(i[1])}"
+                for i in GetMyTransaction()
+            ]),
             "connected_nodes": [
-                str(the_connections)
-                for the_connections in Unl.get_as_node_type(Unl.get_unl_nodes())
+                str(the_connections) for the_connections in
+                Unl.get_as_node_type(Unl.get_unl_nodes())
             ],
         }
 
-        status_json["status"] = (
-            "Not working"
-            if (first_block.sequance_number + first_block.empty_block_number)
-            == (new_block.sequance_number + new_block.empty_block_number)
-            else "Working"
-        )
+        status_json["status"] = ("Not working" if
+                                 (first_block.sequance_number +
+                                  first_block.empty_block_number)
+                                 == (new_block.sequance_number +
+                                     new_block.empty_block_number) else
+                                 "Working")
 
         return status_json
