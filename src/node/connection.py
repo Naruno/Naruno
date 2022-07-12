@@ -95,7 +95,7 @@ class Connection(threading.Thread):
             except socket.timeout:
                 logger.exception("Node System: Connection: timeout")
 
-            # BUG: possible buffer overflow when no EOT_CHAR is found => Fix by max buffer count or so?
+
             if chunk != b"":
                 buffer += chunk
                 eot_pos = buffer.find(self.EOT_CHAR)
@@ -112,8 +112,9 @@ class Connection(threading.Thread):
 
             time.sleep(0.01)
 
-        # IDEA: Invoke (event) a method in main_node so the user is able to send a bye message to the node before it is closed?
 
         self.sock.settimeout(None)
         self.sock.close()
+        self.main_node.delete_closed_connections()
         logger.info("Node System: Connection: Stopped")
+        

@@ -24,7 +24,7 @@ from wallet.wallet_delete import wallet_delete
 class Test_Node(unittest.TestCase):
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
-        time.sleep(30)
+
         password = "123"
 
         temp_private_key = wallet_create(password)
@@ -66,8 +66,13 @@ class Test_Node(unittest.TestCase):
                         Unl.unl_node_delete(unl_element)
                 Node.connected_node_delete(element)
 
-        node_2.disconnect_to_node(connection)
+        for i in node_2.nodes:
+            node_2.disconnect_to_node(i)
         node_2.delete_closed_connections()
+
+        for i in node_1.nodes:
+            node_1.disconnect_to_node(i)
+        node_1.delete_closed_connections()
 
         connection_closing_deleting = any(element == id for element in nodes_list)
 
@@ -79,9 +84,10 @@ class Test_Node(unittest.TestCase):
                     == saved_wallets[each_wallet]["privatekey"]):
                 wallet_delete(each_wallet)
 
-
         node_2.stop()
+        node_2.join()
         node_1.stop()
+        node_1.join()
 
         self.assertEqual(connection_closing_deleting, False,
                         "Connection closing deleting")
@@ -91,6 +97,7 @@ class Test_Node(unittest.TestCase):
                          "Problem on UNL node saving system.")
         self.assertEqual(get_as_node, True,
                          "Problem on UNL get as node system.")
+        time.sleep(30)
 
     def test_GetCandidateBlocks(self):
 
@@ -121,7 +128,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(result, "test")
         
     def test_send_data_to_nodes(self):
-        time.sleep(30)        
+      
         password = "123"
 
         temp_private_key = wallet_create(password)
@@ -158,12 +165,48 @@ class Test_Node(unittest.TestCase):
                 wallet_delete(each_wallet)
 
 
-        node_2.disconnect_to_node(connection)
+        for i in node_2.nodes:
+            node_2.disconnect_to_node(i)
         node_2.delete_closed_connections()
+
+        for i in node_1.nodes:
+            node_1.disconnect_to_node(i)
+        node_1.delete_closed_connections()    
         node_2.stop()
+        node_2.join()
         node_1.stop()
+        node_1.join()
         self.assertEqual(connection_2.messages[0], "test")
         self.assertEqual(connection_2.messages[1], {"test": "test"})
         self.assertEqual(connection_2.messages[2], "test")
+        time.sleep(30)
+
+    def test_connection_not_unl(self):
+
+        default_id = copy.copy(Node.id)
+        Node.id = "id"
+        node_1 = Node("127.0.0.1", 10001)
+        node_2 = Node("127.0.0.1", 10002)
+        connection = node_2.connect_to_node("127.0.0.1", 10001)
+        time.sleep(2)
+
+
+
+        Node.id = default_id
+        for i in node_2.nodes:
+            node_2.disconnect_to_node(i)
+        node_2.delete_closed_connections()
+
+        for i in node_1.nodes:
+            node_1.disconnect_to_node(i)
+        node_1.delete_closed_connections()  
+        node_2.stop()
+        node_2.join()
+        node_1.stop()
+        node_1.join()
+        self.assertEqual(node_1.nodes, [])
+        self.assertEqual(node_2.nodes, [])
+        self.assertEqual(connection, None)
+        time.sleep(30)  
 
 unittest.main(exit=False)

@@ -93,14 +93,14 @@ class Node(threading.Thread):
             except socket.timeout:
                 pass
 
-            except Exception as e:
-                raise e
-
             time.sleep(0.01)
 
         logger.info("Node System: Stopping protocol started by node")
         for t in self.nodes:
-            self.disconnect_to_node(t)
+            t.stop()
+        time.sleep(1)
+        for t in self.nodes:
+            t.join()
 
         self.sock.settimeout(None)
         self.sock.close()
@@ -144,28 +144,27 @@ class Node(threading.Thread):
 
     def connect_to_node(self, host, port, save_messages=False):
 
-        if host == self.host and port == self.port:
-            logger.error(
-                "Node System: Node connect_to_node: You can not connect to yourself"
-            )
-            return False
-
-        for node in self.nodes:
-            if node.host == host and node.port == port:
-                logger.warning(
-                    "Node System: connect_to_node: Node is already connected"
+            if host == self.host and port == self.port:
+                logger.error(
+                    "Node System: Node connect_to_node: You can not connect to yourself"
                 )
-                return True
+                return False
 
-        try:
+            for node in self.nodes:
+                if node.host == host and node.port == port:
+                    logger.warning(
+                        "Node System: connect_to_node: Node is already connected"
+                    )
+                    return True
+
+
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             logger.info("Node System: Connecting to %s port %s" % (host, port))
             sock.connect((host, port))
 
-            # Basic information exchange (not secure) of the id's of the nodes!
-            # Send my id to the connected node!
+          
             sock.send(Node.id.encode("utf-8"))
-            # When a node is connected, it sends it id!
+           
             connected_node_id = sock.recv(4096).decode("utf-8")
 
             if Unl.node_is_unl(connected_node_id):
@@ -181,14 +180,13 @@ class Node(threading.Thread):
                 logger.warning(
                     "Node System: Could not connect with node because node is not unl node."
                 )
-        except Exception as e:
-            logger.exception("Node System: Could not connect with node")
 
     def disconnect_to_node(self, node):
 
         if node in self.nodes:
             logger.info("Node System: Disconnecting from node")
             node.stop()
+            time.sleep(1)
             node.join()
             del self.nodes[self.nodes.index(node)]
 
