@@ -58,7 +58,6 @@ class Node(threading.Thread):
         self.host = host
         self.port = port
 
-
         self.nodes = []
 
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -124,7 +123,8 @@ class Node(threading.Thread):
 
         for n in self.nodes:
             if n in exclude:
-                logger.info("Node System: Node send_data_to_nodes: Node is excluded")
+                logger.info(
+                    "Node System: Node send_data_to_nodes: Node is excluded")
             else:
                 self.send_data_to_node(n, data)
 
@@ -140,46 +140,45 @@ class Node(threading.Thread):
                     "Node System: Node send_data_to_node: Could not send data to node"
                 )
         else:
-            logger.warning("Node System: Node send_data_to_node: Node is not connected")
+            logger.warning(
+                "Node System: Node send_data_to_node: Node is not connected")
 
     def connect_to_node(self, host, port, save_messages=False):
 
-            if host == self.host and port == self.port:
-                logger.error(
-                    "Node System: Node connect_to_node: You can not connect to yourself"
-                )
-                return False
+        if host == self.host and port == self.port:
+            logger.error(
+                "Node System: Node connect_to_node: You can not connect to yourself"
+            )
+            return False
 
-            for node in self.nodes:
-                if node.host == host and node.port == port:
-                    logger.warning(
-                        "Node System: connect_to_node: Node is already connected"
-                    )
-                    return True
-
-
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            logger.info("Node System: Connecting to %s port %s" % (host, port))
-            sock.connect((host, port))
-
-          
-            sock.send(Node.id.encode("utf-8"))
-           
-            connected_node_id = sock.recv(4096).decode("utf-8")
-
-            if Unl.node_is_unl(connected_node_id):
-                thread_client = Connection(
-                    self, sock, connected_node_id, host, port,
-                    save_messages=save_messages
-                )
-                thread_client.start()
-
-                self.nodes.append(thread_client)
-                return thread_client
-            else:
+        for node in self.nodes:
+            if node.host == host and node.port == port:
                 logger.warning(
-                    "Node System: Could not connect with node because node is not unl node."
+                    "Node System: connect_to_node: Node is already connected"
                 )
+                return True
+
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        logger.info("Node System: Connecting to %s port %s" % (host, port))
+        sock.connect((host, port))
+
+        sock.send(Node.id.encode("utf-8"))
+
+        connected_node_id = sock.recv(4096).decode("utf-8")
+
+        if Unl.node_is_unl(connected_node_id):
+            thread_client = Connection(
+                self, sock, connected_node_id, host, port,
+                save_messages=save_messages
+            )
+            thread_client.start()
+
+            self.nodes.append(thread_client)
+            return thread_client
+        else:
+            logger.warning(
+                "Node System: Could not connect with node because node is not unl node."
+            )
 
     def disconnect_to_node(self, node):
 
@@ -191,7 +190,8 @@ class Node(threading.Thread):
             del self.nodes[self.nodes.index(node)]
 
         else:
-            logger.info("Node System: Node disconnect_to_node: Node is not connected")
+            logger.info(
+                "Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
         self.terminate_flag.set()
@@ -223,7 +223,8 @@ class Node(threading.Thread):
         node_list = Node.get_connected_node()
 
         already_in_list = any(
-            (node_list[element]["host"] == host and node_list[element]["port"] == port)
+            (node_list[element]["host"] ==
+             host and node_list[element]["port"] == port)
             for element in node_list
         )
 
@@ -360,7 +361,8 @@ class Node(threading.Thread):
             "transaction": new_list,
             "sequance_number": system.sequance_number,
             "signature": Ecdsa.sign(
-                (f"myblock{Merkle_signature_list}" + str(system.sequance_number)),
+                (f"myblock{Merkle_signature_list}" +
+                 str(system.sequance_number)),
                 PrivateKey.fromPem(wallet_import(0, 1)),
             ).toBase64(),
         }
@@ -393,13 +395,15 @@ class Node(threading.Thread):
             or GetBlock().sequance_number != data["sequance_number"]
         ):
             return
-        signature_list = [element["signature"] for element in data["transaction"]]
+        signature_list = [element["signature"]
+                          for element in data["transaction"]]
         merkle_root_of_signature_list = (
             MerkleTree(signature_list).getRootHash() if signature_list else "0"
         )
 
         if Ecdsa.verify(
-            (f"myblock{merkle_root_of_signature_list}" + str(data["sequance_number"])),
+            (f"myblock{merkle_root_of_signature_list}" +
+             str(data["sequance_number"])),
             Signature.fromBase64(data["signature"]),
             PublicKey.fromPem(node.id),
         ):
@@ -437,7 +441,8 @@ class Node(threading.Thread):
                 "fullblock": 1,
                 "byte": (SendData.decode(encoding="iso-8859-1")),
                 "signature": Ecdsa.sign(
-                    "fullblock" + str((SendData.decode(encoding="iso-8859-1"))),
+                    "fullblock" +
+                    str((SendData.decode(encoding="iso-8859-1"))),
                     PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
@@ -453,7 +458,8 @@ class Node(threading.Thread):
                     "fullblock": 1,
                     "byte": "end",
                     "signature": Ecdsa.sign(
-                        "fullblock" + "end", PrivateKey.fromPem(wallet_import(0, 1))
+                        "fullblock" +
+                            "end", PrivateKey.fromPem(wallet_import(0, 1))
                     ).toBase64(),
                 }
                 if node is not None:
@@ -470,7 +476,8 @@ class Node(threading.Thread):
                 "fullaccounts": 1,
                 "byte": (SendData.decode(encoding="iso-8859-1")),
                 "signature": Ecdsa.sign(
-                    "fullaccounts" + str((SendData.decode(encoding="iso-8859-1"))),
+                    "fullaccounts" +
+                    str((SendData.decode(encoding="iso-8859-1"))),
                     PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
@@ -486,7 +493,8 @@ class Node(threading.Thread):
                     "fullaccounts": 1,
                     "byte": "end",
                     "signature": Ecdsa.sign(
-                        "fullaccounts" + "end", PrivateKey.fromPem(wallet_import(0, 1))
+                        "fullaccounts" +
+                            "end", PrivateKey.fromPem(wallet_import(0, 1))
                     ).toBase64(),
                 }
                 if node is not None:
@@ -503,7 +511,8 @@ class Node(threading.Thread):
                 "fullblockshash": 1,
                 "byte": (SendData.decode(encoding="iso-8859-1")),
                 "signature": Ecdsa.sign(
-                    "fullblockshash" + str((SendData.decode(encoding="iso-8859-1"))),
+                    "fullblockshash" +
+                    str((SendData.decode(encoding="iso-8859-1"))),
                     PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
@@ -554,7 +563,8 @@ class Node(threading.Thread):
                 ChangeTransactionFee(system)
 
                 system.exclude_validators = []
-                perpetualTimer(system.consensus_timer, consensus_trigger).start()
+                perpetualTimer(system.consensus_timer,
+                               consensus_trigger).start()
                 SaveBlock(system)
 
             else:

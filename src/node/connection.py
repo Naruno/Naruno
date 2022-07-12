@@ -95,7 +95,6 @@ class Connection(threading.Thread):
             except socket.timeout:
                 logger.exception("Node System: Connection: timeout")
 
-
             if chunk != b"":
                 buffer += chunk
                 eot_pos = buffer.find(self.EOT_CHAR)
@@ -112,9 +111,7 @@ class Connection(threading.Thread):
 
             time.sleep(0.01)
 
-
         self.sock.settimeout(None)
         self.sock.close()
         self.main_node.delete_closed_connections()
         logger.info("Node System: Connection: Stopped")
-        
