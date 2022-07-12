@@ -9,14 +9,14 @@
             spacing: dp(10)
 
             SettingsBox:
-                
-            
+
+
 
 
 
 <SettingsBox>
     adaptive_height: True
-    
+
 
     canvas.before:
         Color:
@@ -45,7 +45,7 @@
         DecentraLabel:
             text: "TEST MODE"
             halign: "center"
-            font_style: "Button" 
+            font_style: "Button"
 
 
         AnchorLayout:
@@ -53,6 +53,4 @@
             anchor_y: 'center'
             MDSwitch:
                 active: root.t_first_status
-                on_active: root.T_Status_Changing(self, self.active)         
- 
-
+                on_active: root.T_Status_Changing(self, self.active)

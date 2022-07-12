@@ -9,13 +9,13 @@
             spacing: dp(10)
 
             OperationBox:
-                
-            
+
+
 <Send_Coin_Box>
     adaptive_height: True
     height:"120dp"
     padding: dp(24)
-    
+
 
 
     MDGridLayout:
@@ -38,12 +38,12 @@
             password: True
             size_hint_x: .5
             hint_text: "Password: "
-            mode: "fill"       
+            mode: "fill"
 
 
 <OperationBox>
     adaptive_height: True
-    
+
 
     canvas.before:
         Color:
@@ -51,7 +51,7 @@
         Rectangle:
             size: self.size
             pos: self.pos
-    
+
 
 
     MDGridLayout:
@@ -103,5 +103,3 @@
                     text: "View Transactions History"
                     halign: "right"
                     font_style: "Button"
-            
-        
