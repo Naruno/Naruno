@@ -7,32 +7,32 @@
 import copy
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import time
 import unittest
 
-from accounts.account import Account
-from accounts.get_accounts import GetAccounts
-from blockchain.block.block_main import Block
-from blockchain.block.blocks_hash import GetBlockshash
-from blockchain.block.blocks_hash import GetBlockshash_part
-from blockchain.block.blocks_hash import SaveBlockshash
-from blockchain.block.blocks_hash import SaveBlockshash_part
-from blockchain.block.create_block import CreateBlock
-from blockchain.block.get_block import GetBlock
-from blockchain.block.get_block_from_blockchain_db import \
+from decentra_network.accounts.account import Account
+from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
+from decentra_network.blockchain.block.create_block import CreateBlock
+from decentra_network.blockchain.block.get_block import GetBlock
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
-from blockchain.block.hash.accounts_hash import AccountsHash
-from blockchain.block.hash.blocks_hash import BlocksHash
-from blockchain.block.hash.calculate_hash import CalculateHash
-from blockchain.block.hash.tx_hash import TransactionsHash
-from blockchain.block.save_block import SaveBlock
-from blockchain.block.save_block_to_blockchain_db import \
+from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
+from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
+from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
+from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
+from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.blockchain.block.save_block_to_blockchain_db import \
     SaveBlockstoBlockchainDB
-from node.connection import Connection
-from node.unl import Unl
-from transactions.transaction import Transaction
-from wallet.wallet_import import wallet_import
+from decentra_network.node.connection import Connection
+from decentra_network.node.unl import Unl
+from decentra_network.transactions.transaction import Transaction
+from decentra_network.wallet.wallet_import import wallet_import
 
 
 

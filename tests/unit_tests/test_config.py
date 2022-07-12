@@ -6,10 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
-from lib.config_system import get_config
+from decentra_network.lib.config_system import get_config
 
 
 

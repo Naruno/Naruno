@@ -10,4 +10,4 @@ WORKDIR /app/
 
 COPY Decentra-Network Decentra-Network
 
-CMD [ "python3", "Decentra-Network/src/cli.py"]
+CMD [ "python3", "Decentra-Network/decentra_network/cli.py"]

@@ -10,19 +10,19 @@ nav_order: 2
 
 ### GUI Mode
 
-`python3 src/gui.py`
+`python3 decentra_network/gui.py`
 
 ### CLI With Menu
 
-`python3 src/cli.py -m`
+`python3 decentra_network/cli.py -m`
 
 ### CLI With Parameters
 
-`python3 src/cli.py -h`
+`python3 decentra_network/cli.py -h`
 
 ### API
 
-`python3 src/api.py`
+`python3 decentra_network/api.py`
 
 ## Pip
 
@@ -46,13 +46,13 @@ nav_order: 2
 
 ### Run CLI Menu
 
-`docker run -v decentra-network-cli:/app/Decentra-Network/src/db/ --network=host -it ghcr.io/decentra-network/cli /bin/sh`
+`docker run -v decentra-network-cli:/app/Decentra-Network/decentra_network/db/ --network=host -it ghcr.io/decentra-network/cli /bin/sh`
 
 Now you can access the Decentra Network CLI in bash.
 
 ### Run API
 
-`docker run -v decentra-network-api:/app/Decentra-Network/src/db/ --network=host -dit ghcr.io/decentra-network/api`
+`docker run -v decentra-network-api:/app/Decentra-Network/decentra_network/db/ --network=host -dit ghcr.io/decentra-network/api`
 
 Now Decentra Network Core broadcasts on port 8000 in API mode.
 
