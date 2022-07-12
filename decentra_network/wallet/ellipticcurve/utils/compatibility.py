@@ -25,9 +25,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from sys import version_info as pyVersion
 from binascii import hexlify, unhexlify
-
+from sys import version_info as pyVersion
 
 if pyVersion.major == 3:
     # py3 constants and conversion functions

@@ -4,18 +4,19 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.wallet.wallet_delete import wallet_delete
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.node.unl import Unl
-from decentra_network.node.connection import Connection
-from decentra_network.node.node import Node
-from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
-import time
 import copy
-import unittest
 import os
 import sys
+import time
+import unittest
+
+from decentra_network.node.connection import Connection
+from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
+from decentra_network.node.node import Node
+from decentra_network.node.unl import Unl
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.wallet_create import wallet_create
+from decentra_network.wallet.wallet_delete import wallet_delete
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 

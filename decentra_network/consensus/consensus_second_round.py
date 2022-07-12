@@ -7,8 +7,8 @@
 import time
 
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.lib.log import get_logger
+from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.node import Node
 from decentra_network.node.unl import Unl
 
