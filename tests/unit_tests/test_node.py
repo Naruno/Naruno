@@ -56,7 +56,7 @@ class Test_Node(unittest.TestCase):
         in_unl_list = False
         get_as_node = False
 
-        nodes_list = Node.get_connected_node()
+        nodes_list = Node.get_connected_nodes()
         print(nodes_list)
         for element in nodes_list:
             print(element)

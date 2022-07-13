@@ -200,7 +200,7 @@ class Node(threading.Thread):
         self.terminate_flag.set()
 
     @staticmethod
-    def get_connected_node():
+    def get_connected_nodes():
         """
         Returns the connected nodes.
         """
@@ -213,8 +213,8 @@ class Node(threading.Thread):
         for entry in os.scandir(CONNECTED_NODES_PATH):
             if entry.name != "README.md":
                 with open(entry.path, "r") as my_transaction_file:
-                    the_pending_list[(entry.name).replace(
-                        ".json", "")] = json.load(my_transaction_file)
+                    loaded_json = json.load(my_transaction_file)
+                    the_pending_list[loaded_json["id"]] = loaded_json
 
         return the_pending_list
 
@@ -225,6 +225,7 @@ class Node(threading.Thread):
         """
 
         node_list = {}
+        node_list["id"] = node_id
         node_list["host"] = host
         node_list["port"] = port
 
@@ -240,7 +241,7 @@ class Node(threading.Thread):
         Connects to the mixdb.
         """
 
-        node_list = Node.get_connected_node()
+        node_list = Node.get_connected_nodes()
         from decentra_network.node.node import Node
 
         for element in node_list:
