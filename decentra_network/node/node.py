@@ -295,13 +295,13 @@ class Node(threading.Thread):
         if "transactionrequest" in data:
                 self.get_transaction(data, node)
 
+        if "action" in data:
+            if data["action"] == "myblock":
+                    self.get_candidate_block(data, node)
 
-        if data["action"] == "myblock":
-                self.get_candidate_block(data, node)
 
-
-        if data["action"] == "myblockhash":
-                self.get_candidate_block_hash(data, node)
+            if data["action"] == "myblockhash":
+                    self.get_candidate_block_hash(data, node)
 
 
     def send_my_block(self, block, nodes):
