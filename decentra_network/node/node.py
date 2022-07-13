@@ -52,9 +52,9 @@ class Node(threading.Thread):
 
     def __init__(self, host, port):
         self.__class__.main_node = self
-        super(Node, self).__init__()
+        threading.Thread.__init__(self)
 
-        self.terminate_flag = threading.Event()
+        self.status = True
 
         self.host = host
         self.port = port
@@ -68,7 +68,7 @@ class Node(threading.Thread):
 
     def run(self):
 
-        while not self.terminate_flag.is_set():
+        while self.status:
             with contextlib.suppress(socket.timeout):
                 connection, client_address = self.sock.accept()
 
@@ -118,7 +118,7 @@ class Node(threading.Thread):
     def delete_closed_connections(self):
 
         for n in self.nodes:
-            if n.terminate_flag.is_set():
+            if n.status is False:
                 self.nodes.remove(n)
 
     def send_data_to_nodes(self, data, exclude=None):
@@ -197,7 +197,7 @@ class Node(threading.Thread):
                 "Node System: Node disconnect_to_node: Node is not connected")
 
     def stop(self):
-        self.terminate_flag.set()
+        self.status = False
 
     @staticmethod
     def get_connected_nodes():
@@ -261,11 +261,10 @@ class Node(threading.Thread):
 
     def message_from_node(self, node, data):
 
-        if str(data) == "sendmefullblock":
+        if data["sendmefullblock"] == 1:
             self.send_full_chain(node)
 
-        try:
-            if (data["fullblock"] == 1 and Unl.node_is_unl(node.id)
+        if (data["fullblock"] == 1 and Unl.node_is_unl(node.id)
                     and Ecdsa.verify(
                         "fullblock" + data["byte"],
                         Signature.fromBase64(data["signature"]),
@@ -273,12 +272,8 @@ class Node(threading.Thread):
                     )):
                 logger.info("getting chain")
                 self.get_full_chain(data, node)
-        except Exception as e:
-            logger.exception(e)
 
-        try:
-
-            if (data["fullaccounts"] == 1 and Unl.node_is_unl(node.id)
+        if (data["fullaccounts"] == 1 and Unl.node_is_unl(node.id)
                     and Ecdsa.verify(
                         "fullaccounts" + data["byte"],
                         Signature.fromBase64(data["signature"]),
@@ -286,38 +281,28 @@ class Node(threading.Thread):
                     )):
                 logger.info("get_full_accounts")
                 self.get_full_accounts(data, node)
-        except Exception as e:
-            logger.exception(e)
 
-        try:
 
-            if (data["fullblockshash"] == 1 and Unl.node_is_unl(node.id)
+        if (data["fullblockshash"] == 1 and Unl.node_is_unl(node.id)
                     and Ecdsa.verify(
                         "fullblockshash" + data["byte"],
                         Signature.fromBase64(data["signature"]),
                         PublicKey.fromPem(node.id),
                     )):
                 self.get_full_blockshash(data, node)
-        except Exception as e:
-            logger.exception(e)
 
-        try:
-            if data["transactionrequest"] == 1:
+
+        if data["transactionrequest"] == 1:
                 self.get_transaction(data, node)
-        except Exception as e:
-            logger.exception(e)
 
-        try:
-            if data["action"] == "myblock":
+
+        if data["action"] == "myblock":
                 self.get_candidate_block(data, node)
-        except Exception as e:
-            logger.exception(e)
 
-        try:
-            if data["action"] == "myblockhash":
+
+        if data["action"] == "myblockhash":
                 self.get_candidate_block_hash(data, node)
-        except Exception as e:
-            logger.exception(e)
+
 
     def send_my_block(self, block, nodes):
         system = block

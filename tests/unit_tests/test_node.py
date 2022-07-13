@@ -57,9 +57,6 @@ class Test_Node(unittest.TestCase):
         get_as_node = False
 
         nodes_list = Node.get_connected_nodes()
-        print(nodes_list)
-        for element in nodes_list:
-            print(element)
         for element in nodes_list:
             if element == self.node_1.id or element == self.node_2.id:
                 finded_node = True
@@ -108,19 +105,6 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(result.candidate_blocks, [True, True])
         self.assertEqual(result.candidate_block_hashes, [True, False])
 
-    def test_parse_packet_unicode(self):
-        connection = Connection("main_node", "sock", "id", "host", "port")
-        packet = "test"
-        packet = packet.encode("utf-16")
-        result = connection.parse_packet(packet)
-        self.assertEqual(result, b"\xff\xfet\x00e\x00s\x00t\x00")
-
-    def test_parse_packet(self):
-        connection = Connection("main_node", "sock", "id", "host", "port")
-        packet = "test"
-        packet = packet.encode("utf-8")
-        result = connection.parse_packet(packet)
-        self.assertEqual(result, "test")
 
     def test_send_data_to_nodes(self):
 
@@ -132,18 +116,13 @@ class Test_Node(unittest.TestCase):
         connection_2 = self.node_1.nodes[0]
         connection_2.save_messages = True
 
-        self.node_2.send_data_to_nodes(1)
-        self.node_2.send_data_to_nodes("test")
-        time.sleep(2)
-        self.node_2.send_data_to_nodes({"test": b"b"})
         self.node_2.send_data_to_nodes({"test": "test"})
         time.sleep(2)
-        self.node_2.send_data_to_nodes(b"test")
 
+        
+        self.assertEqual(len(connection_2.messages), 1)
+        self.assertEqual(connection_2.messages[0], {"test": "test"})
         self.reset_node_connections()
-        self.assertEqual(connection_2.messages[0], "test")
-        self.assertEqual(connection_2.messages[1], {"test": "test"})
-        self.assertEqual(connection_2.messages[2], "test")
 
     def test_connection_not_unl(self):
 
@@ -177,7 +156,7 @@ class Test_Node(unittest.TestCase):
         node_2.stop()
         node_2.join()
         time.sleep(2)
-        self.assertEqual(connection.terminate_flag.is_set(), True)
+        self.assertEqual(connection.status, False)
 
 
 unittest.main(exit=False)

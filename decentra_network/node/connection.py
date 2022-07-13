@@ -11,6 +11,7 @@ import sys
 import threading
 import time
 
+
 from decentra_network.config import *
 from decentra_network.lib.log import get_logger
 from decentra_network.node.unl import Unl
@@ -19,16 +20,16 @@ logger = get_logger("NODE")
 
 
 class Connection(threading.Thread):
-    def __init__(self, main_node, sock, id, host, port, save_messages=False):
-        super(Connection, self).__init__()
+    def __init__(self, main_node, sock, node_id, host, port, save_messages=False):
+        threading.Thread.__init__(self)
 
         self.host = host
         self.port = port
         self.main_node = main_node
         self.sock = sock
-        self.terminate_flag = threading.Event()
+        self.status = True
 
-        self.id = id
+        self.id = node_id
 
         self.candidate_block = None
         self.candidate_block_hash = None
@@ -39,49 +40,19 @@ class Connection(threading.Thread):
         self.EOT_CHAR = 0x04.to_bytes(1, "big")
 
     def send(self, data, encoding_type="utf-8"):
+        json_data = json.dumps(data)
+        json_data = json_data.encode(encoding_type) + self.EOT_CHAR
+        self.sock.sendall(json_data)
 
-        if isinstance(data, str):
-            self.sock.sendall(data.encode(encoding_type) + self.EOT_CHAR)
-
-        elif isinstance(data, dict):
-            try:
-                json_data = json.dumps(data)
-                json_data = json_data.encode(encoding_type) + self.EOT_CHAR
-                self.sock.sendall(json_data)
-
-            except TypeError as type_error:
-                logger.exception(type_error)
-
-        elif isinstance(data, bytes):
-            bin_data = data + self.EOT_CHAR
-            self.sock.sendall(bin_data)
-
-        else:
-            logger.warning(
-                "Node System: Node System: Datatype used is not valid please use str, dict (will be send as json) or bytes"
-            )
 
     def stop(self):
-        self.terminate_flag.set()
-
-    def parse_packet(self, packet):
-        try:
-            packet_decoded = packet.decode("utf-8")
-
-            try:
-                return json.loads(packet_decoded)
-
-            except json.decoder.JSONDecodeError:
-                return packet_decoded
-
-        except UnicodeDecodeError:
-            return packet
+        self.status = False
 
     def run(self):
         self.sock.settimeout(10.0)
         buffer = b""
 
-        while not self.terminate_flag.is_set():
+        while self.status:
             chunk = b""
 
             try:
@@ -97,10 +68,10 @@ class Connection(threading.Thread):
                 while eot_pos > 0:
                     packet = buffer[:eot_pos]
                     buffer = buffer[eot_pos + 1 :]
-                    parsed_packets = self.parse_packet(packet)
+                    message = json.loads(packet)
                     if self.save_messages:
-                        self.messages.append(parsed_packets)
-                    self.main_node.message_from_node(self, parsed_packets)
+                        self.messages.append(message)
+                    self.main_node.message_from_node(self, message)
 
                     eot_pos = buffer.find(self.EOT_CHAR)
 
