@@ -15,9 +15,6 @@ from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.node import Node
 from decentra_network.node.connection import Connection
 from decentra_network.node.unl import Unl
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_delete import wallet_delete
 
 
 
