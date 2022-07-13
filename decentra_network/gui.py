@@ -20,7 +20,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 os.environ["KIVY_NO_ARGS"] = "1"
 
-
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
 Config.set("graphics", "minimum_width", "700")
@@ -75,23 +74,23 @@ class GUI(MDApp):
         self.theme_cls.primary_palette = "Green"
         FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
 
-        self.theme_cls.font_styles.update(
-            {
-                "H1": [f"{FONT_PATH}RobotoCondensed-Light", 96, False, -1.5],
-                "H2": [f"{FONT_PATH}RobotoCondensed-Light", 60, False, -0.5],
-                "H3": [f"{FONT_PATH}Eczar-Regular", 48, False, 0],
-                "H4": [f"{FONT_PATH}RobotoCondensed-Regular", 34, False, 0.25],
-                "H5": [f"{FONT_PATH}RobotoCondensed-Regular", 24, False, 0],
-                "H6": [f"{FONT_PATH}RobotoCondensed-Bold", 20, False, 0.15],
-                "Subtitle1": [f"{FONT_PATH}RobotoCondensed-Regular", 16, False, 0.15],
-                "Subtitle2": [f"{FONT_PATH}RobotoCondensed-Medium", 14, False, 0.1],
-                "Body1": [f"{FONT_PATH}Eczar-Regular", 16, False, 0.5],
-                "Body2": [f"{FONT_PATH}RobotoCondensed-Light", 14, False, 0.25],
-                "Button": [f"{FONT_PATH}RobotoCondensed-Bold", 14, True, 1.25],
-                "Caption": [f"{FONT_PATH}RobotoCondensed-Regular", 12, False, 0.4],
-                "Overline": [f"{FONT_PATH}RobotoCondensed-Regular", 10, True, 1.5],
-            }
-        )
+        self.theme_cls.font_styles.update({
+            "H1": [f"{FONT_PATH}RobotoCondensed-Light", 96, False, -1.5],
+            "H2": [f"{FONT_PATH}RobotoCondensed-Light", 60, False, -0.5],
+            "H3": [f"{FONT_PATH}Eczar-Regular", 48, False, 0],
+            "H4": [f"{FONT_PATH}RobotoCondensed-Regular", 34, False, 0.25],
+            "H5": [f"{FONT_PATH}RobotoCondensed-Regular", 24, False, 0],
+            "H6": [f"{FONT_PATH}RobotoCondensed-Bold", 20, False, 0.15],
+            "Subtitle1":
+            [f"{FONT_PATH}RobotoCondensed-Regular", 16, False, 0.15],
+            "Subtitle2":
+            [f"{FONT_PATH}RobotoCondensed-Medium", 14, False, 0.1],
+            "Body1": [f"{FONT_PATH}Eczar-Regular", 16, False, 0.5],
+            "Body2": [f"{FONT_PATH}RobotoCondensed-Light", 14, False, 0.25],
+            "Button": [f"{FONT_PATH}RobotoCondensed-Bold", 14, True, 1.25],
+            "Caption": [f"{FONT_PATH}RobotoCondensed-Regular", 12, False, 0.4],
+            "Overline": [f"{FONT_PATH}RobotoCondensed-Regular", 10, True, 1.5],
+        })
 
         return Builder.load_string(KV)
 
@@ -102,7 +101,8 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description=
+        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument(
