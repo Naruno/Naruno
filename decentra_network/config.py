@@ -8,7 +8,7 @@
 CONFIG_PATH = "db/config.json"
 SETTING_PATH = "db/settings.json"
 
-CONNECTED_NODE_PATH = "db/connected_node.json"
+CONNECTED_NODES_PATH = "db/connected_nodes/"
 UNL_NODES_PATH = "db/unl_nodes.json"
 
 TEMP_BLOCK_PATH = "db/temp_block.decentra_network.json"

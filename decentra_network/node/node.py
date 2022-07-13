@@ -11,19 +11,21 @@ import socket
 import sys
 import threading
 import time
+from hashlib import sha256
 
 from decentra_network.blockchain.block.change_transaction_fee import (
     ChangeTransactionFee,
 )
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import CONNECTED_NODE_PATH
+from decentra_network.config import CONNECTED_NODES_PATH
 from decentra_network.config import LOADING_BLOCK_PATH
 from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.config import TEMP_BLOCK_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PATH
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.merkle_root import MerkleTree
+from decentra_network.lib.config_system import get_config
 from decentra_network.node.node import *
 from decentra_network.node.connection import Connection
 from decentra_network.node.unl import Unl
@@ -35,6 +37,7 @@ from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
 from decentra_network.wallet.ellipticcurve.signature import Signature
 from decentra_network.wallet.wallet_import import wallet_import
+
 
 logger = get_logger("NODE")
 
@@ -201,16 +204,17 @@ class Node(threading.Thread):
         Returns the connected nodes.
         """
 
-        sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-        from decentra_network.lib.config_system import get_config
-
-        if not os.path.exists(CONNECTED_NODE_PATH):
+        if not os.path.exists(CONNECTED_NODES_PATH):
             return {}
 
+        the_pending_list = {}
         os.chdir(get_config()["main_folder"])
-        with open(CONNECTED_NODE_PATH, "r") as connected_node_file:
-            return json.load(connected_node_file)
+        for entry in os.scandir(CONNECTED_NODES_PATH):
+            if entry.name != "README.md":
+                with open(entry.path, "r") as my_transaction_file:
+                    the_pending_list[(entry.name).replace(".json","")] = json.load(my_transaction_file)
+
+        return the_pending_list
 
     @staticmethod
     def save_connected_node(host, port, id):
@@ -218,25 +222,14 @@ class Node(threading.Thread):
         Saves the connected nodes.
         """
 
-        node_list = Node.get_connected_node()
+        node_list = {}
+        node_list["host"] = host
+        node_list["port"] = port
 
-        already_in_list = any(
-            (node_list[element]["host"] == host and node_list[element]["port"] == port)
-            for element in node_list
-        )
-
-        if not already_in_list:
-            node_list[id] = {}
-            node_list[id]["host"] = host
-            node_list[id]["port"] = port
-
-            sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-            from decentra_network.lib.config_system import get_config
-
-            os.chdir(get_config()["main_folder"])
-            with open(CONNECTED_NODE_PATH, "w") as connected_node_file:
-                json.dump(node_list, connected_node_file, indent=4)
+        file_name = CONNECTED_NODES_PATH + f"{id}.json"
+        os.chdir(get_config()["main_folder"])
+        with open(file_name, "w") as connected_node_file:
+            json.dump(node_list, connected_node_file, indent=4)
 
     @staticmethod
     def connectionfrommixdb():
@@ -257,15 +250,11 @@ class Node(threading.Thread):
         """
         Deletes a connected node.
         """
-
-        saved_nodes = Node.get_connected_node()
-        if node in saved_nodes:
-            del saved_nodes[node]
-            from decentra_network.lib.config_system import get_config
-
-            os.chdir(get_config()["main_folder"])
-            with open(CONNECTED_NODE_PATH, "w") as connected_node_file:
-                json.dump(saved_nodes, connected_node_file, indent=4)
+        os.chdir(get_config()["main_folder"])
+        file_name = node
+        for entry in os.scandir(CONNECTED_NODES_PATH):
+            if entry.name == f"{file_name}.json":
+                os.remove(entry.path)
 
     def message_from_node(self, node, data):
 

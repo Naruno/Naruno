@@ -30,6 +30,8 @@ class Test_Node(unittest.TestCase):
         self.node_2.join()
         self.node_1.stop()
         self.node_1.join()
+        Node.connected_node_delete("id5")
+        Node.connected_node_delete("id2")
 
     def reset_node_connections(self):
         for node_1_node in self.node_1.nodes:
@@ -55,7 +57,9 @@ class Test_Node(unittest.TestCase):
         get_as_node = False
 
         nodes_list = Node.get_connected_node()
-
+        print(nodes_list)
+        for element in nodes_list:
+            print(element)
         for element in nodes_list:
             if element == self.node_1.id or element == self.node_2.id:
                 finded_node = True
