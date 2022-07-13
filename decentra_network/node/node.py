@@ -8,7 +8,6 @@ import contextlib
 import json
 import os
 import socket
-import sys
 import threading
 import time
 from hashlib import sha256
@@ -220,7 +219,7 @@ class Node(threading.Thread):
         return the_pending_list
 
     @staticmethod
-    def save_connected_node(host, port, id):
+    def save_connected_node(host, port, node_id):
         """
         Saves the connected nodes.
         """
@@ -229,7 +228,8 @@ class Node(threading.Thread):
         node_list["host"] = host
         node_list["port"] = port
 
-        file_name = CONNECTED_NODES_PATH + f"{id}.json"
+        node_id = sha256((node_id).encode("utf-8")).hexdigest()
+        file_name = CONNECTED_NODES_PATH + f"{node_id}.json"
         os.chdir(get_config()["main_folder"])
         with open(file_name, "w") as connected_node_file:
             json.dump(node_list, connected_node_file, indent=4)
@@ -248,14 +248,14 @@ class Node(threading.Thread):
                                            node_list[element]["port"])
 
     @staticmethod
-    def connected_node_delete(node):
+    def connected_node_delete(node_id):
         """
         Deletes a connected node.
         """
         os.chdir(get_config()["main_folder"])
-        file_name = node
+        node_id = sha256((node_id).encode("utf-8")).hexdigest()
         for entry in os.scandir(CONNECTED_NODES_PATH):
-            if entry.name == f"{file_name}.json":
+            if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
 
     def message_from_node(self, node, data):
