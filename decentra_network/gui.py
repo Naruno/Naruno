@@ -36,8 +36,8 @@ for kv_file in os.listdir(KV_DIR):
 
 KV = """
 #:import FadeTransition kivy.uix.screenmanager.FadeTransition
-#:import DecentraWelcomeScreen gui_lib.libs.baseclass.welcome_screen.DecentraWelcomeScreen
-#:import DecentraRootScreen gui_lib.libs.baseclass.root_screen.DecentraRootScreen
+#:import DecentraWelcomeScreen decentra_network.gui_lib.libs.baseclass.welcome_screen.DecentraWelcomeScreen
+#:import DecentraRootScreen decentra_network.gui_lib.libs.baseclass.root_screen.DecentraRootScreen
 
 ScreenManager:
     transition: FadeTransition()

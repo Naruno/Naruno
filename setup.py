@@ -23,14 +23,18 @@ setup(
     long_description_content_type = "text/markdown",
     long_description              = "".join(open("README.md", encoding="utf-8").readlines()),
     include_package_data          = True,
-    package_dir={"": "decentra_network"},
-    entry_points={
-        "console_scripts":
-        ["dngui = decentra_network.gui:start", "dncli=decentra_network.cli:start", "dnapi=decentra_network.api:start"],
+
+    entry_points = {
+        "console_scripts": [
+            "dngui = decentra_network.gui:start",
+            "dncli = decentra_network.cli:start",
+            "dnapi = decentra_network.api:start"
+        ],
     },
+
     license     = "MPL-2.0",
     classifiers = [
-        "Development Status :: 3 - Alpha ",
+        "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
         "Programming Language :: Python :: 3"
     ],
