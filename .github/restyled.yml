@@ -8,8 +8,5 @@ request_review: author
 
 restylers:
   - name: autopep8
-    command:
-      - autopep8
-      - "--in-place"
-      - "--ignore E402"  
+    arguments: ["--ignore E402"]
   - "*"
