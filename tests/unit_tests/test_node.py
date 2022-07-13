@@ -17,7 +17,6 @@ from decentra_network.node.connection import Connection
 from decentra_network.node.unl import Unl
 
 
-
 class Test_Node(unittest.TestCase):
 
     def setUp(self):
@@ -39,15 +38,15 @@ class Test_Node(unittest.TestCase):
         self.node_1.delete_closed_connections()
         for node_2_node in self.node_2.nodes:
             self.node_2.disconnect_to_node(node_2_node)
-        self.node_2.delete_closed_connections()  
-        time.sleep(2)    
+        self.node_2.delete_closed_connections()
+        time.sleep(2)
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 
         Node.id = "id"
         Unl.save_new_unl_node(Node.id)
         Node.id = "id2"
-        Unl.save_new_unl_node(Node.id )
+        Unl.save_new_unl_node(Node.id)
         time.sleep(2)
         self.node_2.connect_to_node("127.0.0.1", 10001)
         time.sleep(2)
@@ -79,22 +78,18 @@ class Test_Node(unittest.TestCase):
                         Unl.unl_node_delete(unl_element)
                 Node.connected_node_delete(element)
 
-
-
-
-
         self.reset_node_connections()
-        connection_closing_deleting = any(element.id == Node.id for element in self.node_2.nodes)
+        connection_closing_deleting = any(
+            element.id == Node.id for element in self.node_2.nodes)
 
         self.assertEqual(connection_closing_deleting, False,
-                        "Connection closing deleting")
+                         "Connection closing deleting")
         self.assertEqual(finded_node, True,
                          "Problem on connection saving system.")
         self.assertEqual(in_unl_list, True,
                          "Problem on UNL node saving system.")
         self.assertEqual(get_as_node, True,
                          "Problem on UNL get as node system.")
-
 
     def test_GetCandidateBlocks(self):
 
@@ -123,9 +118,8 @@ class Test_Node(unittest.TestCase):
         packet = packet.encode("utf-8")
         result = connection.parse_packet(packet)
         self.assertEqual(result, "test")
-        
+
     def test_send_data_to_nodes(self):
-      
 
         Unl.save_new_unl_node(self.node_1.id)
         Unl.save_new_unl_node(self.node_2.id)
@@ -143,8 +137,6 @@ class Test_Node(unittest.TestCase):
         time.sleep(2)
         self.node_2.send_data_to_nodes(b"test")
 
-
-
         self.reset_node_connections()
         self.assertEqual(connection_2.messages[0], "test")
         self.assertEqual(connection_2.messages[1], {"test": "test"})
@@ -161,10 +153,8 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_2.nodes, [])
         self.assertEqual(connection, None)
 
-
     def test_closing_connections_when_node_close(self):
-        
-        
+
         Node.id = "id4"
         node_1 = Node("127.0.0.1", 10003)
         time.sleep(2)
@@ -174,9 +164,9 @@ class Test_Node(unittest.TestCase):
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
 
-        connection = node_2.connect_to_node("127.0.0.1", 10003, save_messages=True)
+        connection = node_2.connect_to_node(
+            "127.0.0.1", 10003, save_messages=True)
         time.sleep(2)
-
 
         node_1.stop()
         node_1.join()
