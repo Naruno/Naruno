@@ -22,6 +22,7 @@ class Test_Node(unittest.TestCase):
 
     def setUp(self):
         self.node_1 = Node("127.0.0.1", 10001)
+        time.sleep(2)
         self.node_2 = Node("127.0.0.1", 10002)
 
     def tearDown(self):
@@ -42,10 +43,10 @@ class Test_Node(unittest.TestCase):
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 
         Node.id = "id"
-        Unl.save_new_unl_node(Node.id )
+        Unl.save_new_unl_node(Node.id)
         Node.id = "id2"
         Unl.save_new_unl_node(Node.id )
-
+        time.sleep(2)
         self.node_2.connect_to_node("127.0.0.1", 10001)
         time.sleep(2)
         connection_closing_deleting = True
@@ -147,18 +148,38 @@ class Test_Node(unittest.TestCase):
 
     def test_connection_not_unl(self):
 
-        default_id = copy.copy(Node.id)
         Node.id = "id3"
         connection = self.node_2.connect_to_node("127.0.0.1", 10001)
         time.sleep(2)
 
-
-
-        Node.id = default_id
         self.reset_node_connections()
         self.assertEqual(self.node_1.nodes, [])
         self.assertEqual(self.node_2.nodes, [])
         self.assertEqual(connection, None)
+
+
+    def test_closing_connections_when_node_close(self):
+        
+        
+        Node.id = "id4"
+        node_1 = Node("127.0.0.1", 10003)
+        time.sleep(2)
+        Node.id = "id5"
+        node_2 = Node("127.0.0.1", 10004)
+
+        Unl.save_new_unl_node(node_1.id)
+        Unl.save_new_unl_node(node_2.id)
+
+        connection = node_2.connect_to_node("127.0.0.1", 10003, save_messages=True)
+        time.sleep(2)
+
+
+        node_1.stop()
+        node_1.join()
+        node_2.stop()
+        node_2.join()
+        time.sleep(2)
+        self.assertEqual(connection.terminate_flag.is_set(), True)
 
 
 unittest.main(exit=False)
