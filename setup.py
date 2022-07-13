@@ -30,7 +30,7 @@ setup(
     },
     license     = "MPL-2.0",
     classifiers = [
-        "Development Status :: Alpha",
+        "Development Status :: 3 - Alpha ",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
         "Programming Language :: Python :: 3"
     ],
