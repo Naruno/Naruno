@@ -13,23 +13,21 @@ import threading
 import time
 from hashlib import sha256
 
-from decentra_network.blockchain.block.change_transaction_fee import (
-    ChangeTransactionFee,
-)
+from decentra_network.blockchain.block.change_transaction_fee import \
+    ChangeTransactionFee
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import CONNECTED_NODES_PATH
-from decentra_network.config import LOADING_BLOCK_PATH
-from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.config import TEMP_BLOCK_PATH
-from decentra_network.config import TEMP_BLOCKSHASH_PATH
+from decentra_network.config import (CONNECTED_NODES_PATH, LOADING_BLOCK_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PATH)
+from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.merkle_root import MerkleTree
-from decentra_network.lib.config_system import get_config
-from decentra_network.node.node import *
 from decentra_network.node.connection import Connection
+from decentra_network.node.node import *
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.check.check_transaction import CheckTransaction
+from decentra_network.transactions.check.check_transaction import \
+    CheckTransaction
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
@@ -37,7 +35,6 @@ from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
 from decentra_network.wallet.ellipticcurve.signature import Signature
 from decentra_network.wallet.wallet_import import wallet_import
-
 
 logger = get_logger("NODE")
 
@@ -535,6 +532,7 @@ class Node(threading.Thread):
                 os.rename(LOADING_BLOCK_PATH, TEMP_BLOCK_PATH)
 
                 from consensus.consensus_main import consensus_trigger
+
                 from decentra_network.lib.perpetualtimer import perpetualTimer
 
                 system = GetBlock()
