@@ -22,6 +22,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
 class Test_Node(unittest.TestCase):
+
     def setUp(self):
         self.node_1 = Node("127.0.0.1", 10001)
         self.node_2 = Node("127.0.0.1", 10002)
@@ -62,34 +63,34 @@ class Test_Node(unittest.TestCase):
                 finded_node = True
 
                 temp_unl_node_list = Unl.get_unl_nodes()
-                temp_get_as_node_type = Unl.get_as_node_type(temp_unl_node_list)
+                temp_get_as_node_type = Unl.get_as_node_type(
+                    temp_unl_node_list)
                 for unl_element in temp_unl_node_list:
                     if unl_element == self.node_1.id or unl_element == self.node_2.id:
                         for node_element_of_unl in temp_get_as_node_type:
-                            if (
-                                self.node_1.host == node_element_of_unl.host
-                                or self.node_2 == node_element_of_unl.host
-                            ):
-                                if (
-                                    self.node_1.port == node_element_of_unl.port
-                                    or self.node_2 == node_element_of_unl.port
-                                ):
+                            if (self.node_1.host == node_element_of_unl.host or
+                                    self.node_2 == node_element_of_unl.host):
+                                if (self.node_1.port
+                                        == node_element_of_unl.port
+                                        or self.node_2
+                                        == node_element_of_unl.port):
                                     get_as_node = True
                         in_unl_list = True
                         Unl.unl_node_delete(unl_element)
                 Node.connected_node_delete(element)
 
         self.reset_node_connections()
-        connection_closing_deleting = any(
-            element.id == Node.id for element in self.node_2.nodes
-        )
+        connection_closing_deleting = any(element.id == Node.id
+                                          for element in self.node_2.nodes)
 
-        self.assertEqual(
-            connection_closing_deleting, False, "Connection closing deleting"
-        )
-        self.assertEqual(finded_node, True, "Problem on connection saving system.")
-        self.assertEqual(in_unl_list, True, "Problem on UNL node saving system.")
-        self.assertEqual(get_as_node, True, "Problem on UNL get as node system.")
+        self.assertEqual(connection_closing_deleting, False,
+                         "Connection closing deleting")
+        self.assertEqual(finded_node, True,
+                         "Problem on connection saving system.")
+        self.assertEqual(in_unl_list, True,
+                         "Problem on UNL node saving system.")
+        self.assertEqual(get_as_node, True,
+                         "Problem on UNL get as node system.")
 
     def test_GetCandidateBlocks(self):
 
