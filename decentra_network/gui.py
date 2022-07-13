@@ -6,19 +6,19 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from decentra_network.lib.safety import safety_check
+from decentra_network.lib.log import get_logger
+from decentra_network.lib.config_system import get_config
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivy import Config
+import argparse
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-import argparse
 
 os.environ["KIVY_NO_ARGS"] = "1"
-from kivy import Config
-from kivy.lang import Builder
-from kivymd.app import MDApp
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
 
-from decentra_network.lib.safety import safety_check
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
