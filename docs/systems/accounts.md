@@ -6,7 +6,7 @@ nav_order: 1
 
 The most important area of the Decentra Network Blockchain is Accounts. It makes the **Blockchain light**.
 
-The core elements of an [account](https://github.com/Decentra-Network/Decentra-Network/blob/master/src/accounts/account.py#L19) are:
+The core elements of an [account](https://github.com/Decentra-Network/Decentra-Network/blob/master/decentra_network/accounts/account.py#L19) are:
 * An identifying **address**, such as 6e427f9c0e6ee1d71ea7516d5ae861da5dc9cc11. (This decentra-network **specific [addressing](#addressing-system)**.)
 * A **sequence number**, which helps make sure any transactions this account sends are applied in the correct order and only once each. After a transaction, the sender account's sequence number increases by 1.
 * An **DNC balance**. Some of this DNC is set aside for the [Reserve](#reserve).

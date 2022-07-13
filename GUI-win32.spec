@@ -11,7 +11,7 @@ from os.path import dirname, abspath, join, basename
 
 stiffscroll = os.path.join(kivymd.path, f"stiffscroll{os.sep}")
 
-a = Analysis(['src\\gui.py'],
+a = Analysis(['decentra_network\\gui.py'],
              pathex=[],
              binaries=[],
              datas=[(stiffscroll, join("kivymd", basename(dirname(stiffscroll)))),],
@@ -42,7 +42,7 @@ exe = EXE(pyz,
           codesign_identity=None,
           entitlements_file=None )
 coll = COLLECT(exe,
-               Tree('src/'),
+               Tree('decentra_network/'),
                a.binaries,
                a.zipfiles,
                a.datas, 

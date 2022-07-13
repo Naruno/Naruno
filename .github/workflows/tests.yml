@@ -6,7 +6,7 @@ on:
       - '.github/workflows/tests.yml'
       - 'docker/**'
       - 'setups/**'
-      - 'src/**'  
+      - 'decentra_network/**'  
       - 'requirements/**'
       - 'tests/**'
       - 'auto_builders/**'
@@ -15,7 +15,7 @@ on:
       - '.github/workflows/tests.yml'
       - 'docker/**'
       - 'setups/**'
-      - 'src/**'  
+      - 'decentra_network/**'  
       - 'requirements/**'
       - 'tests/**'
       - 'auto_builders/**'      
@@ -73,7 +73,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: log-report-unit-test-ubuntu-latest
-        path: src/logs/*.log      
+        path: decentra_network/logs/*.log      
   
   unit-test-macos-latest:
     needs: lint_with_flake8
@@ -103,7 +103,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: log-report-unit-test-macos-latest
-        path: src/logs/*.log           
+        path: decentra_network/logs/*.log           
   unit-test-windows-latest:
     needs: lint_with_flake8
 
@@ -132,7 +132,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: log-report-unit-test-windows-latest
-        path: src/logs/*.log           
+        path: decentra_network/logs/*.log           
 
   functional-test-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
@@ -161,17 +161,17 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-local-ubuntu-latest-node-0
-        path: /home/runner/work/Decentra-Network/Decentra-Network-0/src/logs/*.log 
+        path: /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs/*.log 
     - name: Archive logs of Node 1
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-local-ubuntu-latest-node-1
-        path: /home/runner/work/Decentra-Network/Decentra-Network-1/src/logs/*.log 
+        path: /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs/*.log 
     - name: Archive logs of Node 2
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-local-ubuntu-latest-node-2
-        path: /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs/*.log 
+        path: /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs/*.log 
 
   functional-test-docker-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
@@ -199,26 +199,26 @@ jobs:
         curl http://localhost:8102/status
     - name: Copy out file from volume
       run: |
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-0/src
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-1/src
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-2/src
-        sudo cp -r /var/lib/docker/volumes/decentra-network-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/src/logs
-        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/src/logs
-        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network
+        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs
+        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs
     - name: Archive logs of Node 0
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-docker-ubuntu-latest-node-0
-        path: /home/runner/work/Decentra-Network/Decentra-Network-0/src/logs/*.log 
+        path: /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs/*.log 
     - name: Archive logs of Node 1
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-docker-ubuntu-latest-node-1
-        path: /home/runner/work/Decentra-Network/Decentra-Network-1/src/logs/*.log 
+        path: /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs/*.log 
     - name: Archive logs of Node 2
       uses: actions/upload-artifact@v3
       with:
         name: log-report-functional-test-docker-ubuntu-latest-node-2
-        path: /home/runner/work/Decentra-Network/Decentra-Network-2/src/logs/*.log 
+        path: /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs/*.log 
 
 
