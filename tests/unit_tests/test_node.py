@@ -8,13 +8,13 @@ import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-import unittest
 import copy
 import time
+import unittest
 
+from decentra_network.node.connection import Connection
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.node import Node
-from decentra_network.node.connection import Connection
 from decentra_network.node.unl import Unl
 
 
