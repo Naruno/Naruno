@@ -4,21 +4,19 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from decentra_network.wallet.wallet_delete import wallet_delete
+from decentra_network.wallet.wallet_create import wallet_create
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
+from decentra_network.node.unl import Unl
+from decentra_network.node.connection import Connection
+from decentra_network.node.node import Node
+from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
+import time
+import copy
+import unittest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-import unittest
-import copy
-import time
-
-from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
-from decentra_network.node.node import Node
-from decentra_network.node.connection import Connection
-from decentra_network.node.unl import Unl
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_delete import wallet_delete
-
 
 
 class Test_Node(unittest.TestCase):
@@ -39,15 +37,15 @@ class Test_Node(unittest.TestCase):
         self.node_1.delete_closed_connections()
         for node_2_node in self.node_2.nodes:
             self.node_2.disconnect_to_node(node_2_node)
-        self.node_2.delete_closed_connections()  
-        time.sleep(2)    
+        self.node_2.delete_closed_connections()
+        time.sleep(2)
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 
         Node.id = "id"
-        Unl.save_new_unl_node(Node.id )
+        Unl.save_new_unl_node(Node.id)
         Node.id = "id2"
-        Unl.save_new_unl_node(Node.id )
+        Unl.save_new_unl_node(Node.id)
 
         self.node_2.connect_to_node("127.0.0.1", 10001)
         time.sleep(2)
@@ -77,22 +75,18 @@ class Test_Node(unittest.TestCase):
                         Unl.unl_node_delete(unl_element)
                 Node.connected_node_delete(element)
 
-
-
-
-
         self.reset_node_connections()
-        connection_closing_deleting = any(element.id == Node.id for element in self.node_2.nodes)
+        connection_closing_deleting = any(
+            element.id == Node.id for element in self.node_2.nodes)
 
         self.assertEqual(connection_closing_deleting, False,
-                        "Connection closing deleting")
+                         "Connection closing deleting")
         self.assertEqual(finded_node, True,
                          "Problem on connection saving system.")
         self.assertEqual(in_unl_list, True,
                          "Problem on UNL node saving system.")
         self.assertEqual(get_as_node, True,
                          "Problem on UNL get as node system.")
-
 
     def test_GetCandidateBlocks(self):
 
@@ -121,9 +115,8 @@ class Test_Node(unittest.TestCase):
         packet = packet.encode("utf-8")
         result = connection.parse_packet(packet)
         self.assertEqual(result, "test")
-        
+
     def test_send_data_to_nodes(self):
-      
 
         Unl.save_new_unl_node(self.node_1.id)
         Unl.save_new_unl_node(self.node_2.id)
@@ -141,8 +134,6 @@ class Test_Node(unittest.TestCase):
         time.sleep(2)
         self.node_2.send_data_to_nodes(b"test")
 
-
-
         self.reset_node_connections()
         self.assertEqual(connection_2.messages[0], "test")
         self.assertEqual(connection_2.messages[1], {"test": "test"})
@@ -154,8 +145,6 @@ class Test_Node(unittest.TestCase):
         Node.id = "id3"
         connection = self.node_2.connect_to_node("127.0.0.1", 10001)
         time.sleep(2)
-
-
 
         Node.id = default_id
         self.reset_node_connections()
