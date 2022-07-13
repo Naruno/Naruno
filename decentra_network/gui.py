@@ -15,6 +15,7 @@ from kivy import Config
 import argparse
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 os.environ["KIVY_NO_ARGS"] = "1"
