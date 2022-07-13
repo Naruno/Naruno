@@ -192,6 +192,7 @@ class Node(threading.Thread):
             logger.info(
                 "Node System: Disconnecting from decentra_network.node")
             node.stop()
+            node.join()
         else:
             logger.info(
                 "Node System: Node disconnect_to_node: Node is not connected")
@@ -242,7 +243,6 @@ class Node(threading.Thread):
         """
 
         node_list = Node.get_connected_nodes()
-        from decentra_network.node.node import Node
 
         for element in node_list:
             Node.main_node.connect_to_node(node_list[element]["host"],
@@ -625,7 +625,6 @@ class Node(threading.Thread):
         """
         Sends the block to the other nodes.
         """
-
-        self.send_full_accounts()
         self.send_full_chain()
+        self.send_full_accounts()
         self.send_full_blockshash()
