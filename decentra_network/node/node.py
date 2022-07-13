@@ -260,11 +260,11 @@ class Node(threading.Thread):
                 os.remove(entry.path)
 
     def message_from_node(self, node, data):
-
-        if data["sendmefullblock"] == 1:
+        is_unl = Unl.node_is_unl(data)
+        if "sendmefullblock" in data:
             self.send_full_chain(node)
 
-        if (data["fullblock"] == 1 and Unl.node_is_unl(node.id)
+        if ("fullblock" in data and is_unl
                     and Ecdsa.verify(
                         "fullblock" + data["byte"],
                         Signature.fromBase64(data["signature"]),
@@ -273,7 +273,7 @@ class Node(threading.Thread):
                 logger.info("getting chain")
                 self.get_full_chain(data, node)
 
-        if (data["fullaccounts"] == 1 and Unl.node_is_unl(node.id)
+        if ("fullaccounts" in data and is_unl
                     and Ecdsa.verify(
                         "fullaccounts" + data["byte"],
                         Signature.fromBase64(data["signature"]),
@@ -283,7 +283,7 @@ class Node(threading.Thread):
                 self.get_full_accounts(data, node)
 
 
-        if (data["fullblockshash"] == 1 and Unl.node_is_unl(node.id)
+        if ("fullblockshash" in data and is_unl
                     and Ecdsa.verify(
                         "fullblockshash" + data["byte"],
                         Signature.fromBase64(data["signature"]),
@@ -292,7 +292,7 @@ class Node(threading.Thread):
                 self.get_full_blockshash(data, node)
 
 
-        if data["transactionrequest"] == 1:
+        if "transactionrequest" in data:
                 self.get_transaction(data, node)
 
 
