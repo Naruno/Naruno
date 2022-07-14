@@ -21,8 +21,11 @@ class Test_Node(unittest.TestCase):
 
     def setUp(self):
         self.node_1 = server("127.0.0.1", 10001)
-        time.sleep(2)
         self.node_2 = server("127.0.0.1", 10002)
+        Unl.save_new_unl_node(self.node_1.id)
+        Unl.save_new_unl_node(self.node_2.id)
+        time.sleep(2)
+        self.node_2.connect("127.0.0.1", 10001)
 
     def tearDown(self):
         self.node_2.stop()
@@ -32,17 +35,9 @@ class Test_Node(unittest.TestCase):
         server.connected_node_delete("id5")
         server.connected_node_delete("id2")
 
-    def reset_node_connections(self):
-        for client in self.node_1.clients + self.node_2.clients:
-            client.socket.close()
-        time.sleep(2)
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
-
-        Unl.save_new_unl_node("id")
-        Unl.save_new_unl_node("id2")
-        time.sleep(2)
-        self.node_2.connect("127.0.0.1", 10001)
+        
         time.sleep(2)
         connection_closing_deleting = True
         finded_node = False
@@ -78,7 +73,6 @@ class Test_Node(unittest.TestCase):
                          "Problem on UNL node saving system.")
         self.assertEqual(get_as_node, True,
                          "Problem on UNL get as node system.")
-        self.reset_node_connections()
 
     def test_GetCandidateBlocks(self):
 
@@ -94,31 +88,14 @@ class Test_Node(unittest.TestCase):
 
 
     def test_send_data_all(self):
-        Unl.save_new_unl_node(self.node_1.id)
-        Unl.save_new_unl_node(self.node_2.id)
         self.node_1.save_messages = True
         self.node_2.save_messages = True
-        self.node_2.connect("127.0.0.1", 10001)
-        time.sleep(2)
         result = self.node_2.send({"action": "test"})
         print(result)
         time.sleep(2)
 
         self.assertEqual(len(self.node_1.messages), 1)
         self.assertEqual(self.node_1.messages[0], result)
-        self.reset_node_connections()
-
-    def test_message_not_unl(self):
-        backup_id = copy.copy(self.node_1.id)
-        self.node_1.id = "id3"
-        self.node_2.connect("127.0.0.1", 10001)
-        time.sleep(2)
-        result = self.node_2.send({"action": "test123"})
-
-        finded_message = any(message == result for message in self.node_1.messages)
-        self.assertEqual(finded_message, False)
-        self.node_1.id = backup_id
-        self.reset_node_connections()
 
 
 
