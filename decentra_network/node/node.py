@@ -18,6 +18,8 @@ from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import CONNECTED_NODES_PATH
 from decentra_network.config import LOADING_BLOCK_PATH
+from decentra_network.config import LOADING_ACCOUNTS_PATH
+from decentra_network.config import LOADING_BLOCKSHASH_PATH
 from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.config import TEMP_BLOCK_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PATH
@@ -567,8 +569,14 @@ class Node(threading.Thread):
                 get_ok = True
 
         if get_ok:
-            with open(TEMP_BLOCKSHASH_PATH, "ab") as file:
+            if str(data["byte"]) == "end":
+                os.rename(LOADING_BLOCKSHASH_PATH, TEMP_BLOCKSHASH_PATH)
+            else:
+                file = open(LOADING_BLOCKSHASH_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
+                file.close()
+                            
+
 
     def get_full_accounts(self, data, node):
 
@@ -582,8 +590,12 @@ class Node(threading.Thread):
                 get_ok = True
 
         if get_ok:
-            with open(TEMP_ACCOUNTS_PATH, "ab") as file:
+            if str(data["byte"]) == "end":
+                os.rename(LOADING_ACCOUNTS_PATH, TEMP_ACCOUNTS_PATH)
+            else:
+                file = open(LOADING_ACCOUNTS_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
+                file.close()
 
     @staticmethod
     def send_transaction(tx):
@@ -625,6 +637,6 @@ class Node(threading.Thread):
         """
         Sends the block to the other nodes.
         """
+        self.send_full_chain()
         self.send_full_accounts()
-        self.send_full_chain()        
         self.send_full_blockshash()
