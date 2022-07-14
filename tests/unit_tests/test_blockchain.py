@@ -70,7 +70,7 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_block_reset_nodes(self):
         block = Block("onur")
-        node_1 = client("socket", "address", "node_id", "server", test=False)
+        node_1 = client("socket", "address", "node_id", "server", test=True)
         node_1.candidate_block = True
         node_1.candidate_block_hash = True
         nodes_2 = [node_1]
