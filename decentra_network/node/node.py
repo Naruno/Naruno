@@ -625,6 +625,6 @@ class Node(threading.Thread):
         """
         Sends the block to the other nodes.
         """
-        self.send_full_chain()
         self.send_full_accounts()
+        self.send_full_chain()        
         self.send_full_blockshash()
