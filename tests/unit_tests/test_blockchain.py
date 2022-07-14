@@ -29,7 +29,7 @@ from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.block.save_block_to_blockchain_db import \
     SaveBlockstoBlockchainDB
-from decentra_network.node.connection import Connection
+from decentra_network.node.client.client import client
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.wallet_import import wallet_import
@@ -70,7 +70,7 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_block_reset_nodes(self):
         block = Block("onur")
-        node_1 = Connection("main_node", "sock", "id", "host", "port")
+        node_1 = client("socket", "address", "node_id", "server", test=False)
         node_1.candidate_block = True
         node_1.candidate_block_hash = True
         nodes_2 = [node_1]

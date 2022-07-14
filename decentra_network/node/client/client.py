@@ -12,7 +12,7 @@ import json
 import contextlib
 
 class client(Thread):
-    def __init__(self, socket, address, node_id, server):
+    def __init__(self, socket, address, node_id, server, test=False):
         Thread.__init__(self)
         self.server = server
         self.socket = socket
@@ -23,8 +23,8 @@ class client(Thread):
         self.candidate_block_hash = None
 
         self.running = True
-
-        self.start()
+        if not test:
+            self.start()
 
     def run(self):
         self.socket.settimeout(10.0)        

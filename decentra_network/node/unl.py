@@ -52,7 +52,8 @@ class Unl:
         """
 
         from decentra_network.node.server.server import server
-        return server.Server.clients
+        nodes = [] if server.Server is None else server.Server.clients
+        return nodes
 
     @staticmethod
     def node_is_unl(node_id):
