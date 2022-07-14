@@ -81,5 +81,5 @@ class Connection(threading.Thread):
 
         self.sock.settimeout(None)
         self.sock.close()
-        self.main_node.delete_closed_connections()
+        self.main_node.clean()
         logger.info("Node System: Connection: Stopped")

@@ -35,11 +35,11 @@ class Test_Node(unittest.TestCase):
 
     def reset_node_connections(self):
         for node_1_node in self.node_1.nodes:
-            self.node_1.disconnect_to_node(node_1_node)
-        self.node_1.delete_closed_connections()
+            self.node_1.disconnect(node_1_node)
+        self.node_1.clean()
         for node_2_node in self.node_2.nodes:
-            self.node_2.disconnect_to_node(node_2_node)
-        self.node_2.delete_closed_connections()
+            self.node_2.disconnect(node_2_node)
+        self.node_2.clean()
         time.sleep(2)
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
@@ -49,7 +49,7 @@ class Test_Node(unittest.TestCase):
         Node.id = "id2"
         Unl.save_new_unl_node(Node.id)
         time.sleep(2)
-        self.node_2.connect_to_node("127.0.0.1", 10001)
+        self.node_2.connect("127.0.0.1", 10001)
         time.sleep(2)
         connection_closing_deleting = True
         finded_node = False
@@ -106,17 +106,17 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(result.candidate_block_hashes, [True, False])
 
 
-    def test_send_data_to_nodes(self):
+    def test_send_data_all(self):
 
         Unl.save_new_unl_node(self.node_1.id)
         Unl.save_new_unl_node(self.node_2.id)
 
-        self.node_2.connect_to_node("127.0.0.1", 10001, save_messages=True)
+        self.node_2.connect("127.0.0.1", 10001, save_messages=True)
         time.sleep(2)
         connection_2 = self.node_1.nodes[0]
         connection_2.save_messages = True
 
-        self.node_2.send_data_to_nodes({"test": "test"})
+        self.node_2.send_data_all({"test": "test"})
         time.sleep(2)
 
         
@@ -127,7 +127,7 @@ class Test_Node(unittest.TestCase):
     def test_connection_not_unl(self):
 
         Node.id = "id3"
-        connection = self.node_2.connect_to_node("127.0.0.1", 10001)
+        connection = self.node_2.connect("127.0.0.1", 10001)
         time.sleep(2)
 
         self.reset_node_connections()
@@ -146,7 +146,7 @@ class Test_Node(unittest.TestCase):
         Unl.save_new_unl_node(node_1.id)
         Unl.save_new_unl_node(node_2.id)
 
-        connection = node_2.connect_to_node("127.0.0.1",
+        connection = node_2.connect("127.0.0.1",
                                             10003,
                                             save_messages=True)
         time.sleep(2)

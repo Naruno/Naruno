@@ -16,4 +16,4 @@ def GetBlockFromOtherNode():
 
     node = Node.main_node
     unl_list = Unl.get_as_node_type(Unl.get_unl_nodes())
-    node.send_data_to_node(unl_list[0], {"sendmefullblock": 1})
+    node.send_data(unl_list[0], {"sendmefullblock": 1})

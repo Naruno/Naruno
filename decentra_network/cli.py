@@ -170,7 +170,7 @@ def menu():
         if choices_input == "ndstop":
             Node.main_node.stop()
         if choices_input == "ndconnect":
-            Node.main_node.connect_to_node(
+            Node.main_node.connect(
                 str(input("node ip: ")), int(input("node port: "))
             )
 

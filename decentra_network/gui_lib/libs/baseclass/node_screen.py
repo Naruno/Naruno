@@ -161,7 +161,7 @@ class NodeBox(MDGridLayout):
         print(ip)
         print(port)
 
-        Node.main_node.connect_to_node(ip, int(port))
+        Node.main_node.connect(ip, int(port))
 
         self.connect_a_node_dialog.dismiss()
 

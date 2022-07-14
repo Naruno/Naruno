@@ -66,7 +66,7 @@ class Node(threading.Thread):
         self.nodes = []
 
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.init_server()
+        self.start_node()
 
         self.start()
 
@@ -107,62 +107,62 @@ class Node(threading.Thread):
             t.join()
 
         time.sleep(1)
-        self.delete_closed_connections()
+        self.clean()
         self.sock.settimeout(None)
         self.sock.close()
         logger.info("Node System: The node is stopped")
 
-    def init_server(self):
+    def start_node(self):
         logger.info("Node System: Node server is starting")
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind((self.host, self.port))
         self.sock.settimeout(10.0)
         self.sock.listen(1)
 
-    def delete_closed_connections(self):
+    def clean(self):
 
         for n in self.nodes:
             if n.status is False:
                 self.nodes.remove(n)
 
-    def send_data_to_nodes(self, data, exclude=None):
+    def send_data_all(self, data, exclude=None):
 
         if exclude is None:
             exclude = []
         for n in self.nodes:
             if n in exclude:
                 logger.info(
-                    "Node System: Node send_data_to_nodes: Node is excluded")
+                    "Node System: Node send_data_all: Node is excluded")
             else:
-                self.send_data_to_node(n, data)
+                self.send_data(n, data)
 
-    def send_data_to_node(self, n, data):
+    def send_data(self, n, data):
 
-        self.delete_closed_connections()
+        self.clean()
         if n in self.nodes:
             try:
                 n.send_message(data)
 
             except Exception as e:
                 logger.exception(
-                    "Node System: Node send_data_to_node: Could not send data to node"
+                    "Node System: Node send_data: Could not send data to node"
                 )
         else:
             logger.warning(
-                "Node System: Node send_data_to_node: Node is not connected")
+                "Node System: Node send_data: Node is not connected")
 
-    def connect_to_node(self, host, port, save_messages=False):
+    def connect(self, host, port, save_messages=False):
 
         if host == self.host and port == self.port:
             logger.error(
-                "Node System: Node connect_to_node: You can not connect to yourself"
+                "Node System: Node connect: You can not connect to yourself"
             )
             return False
 
         for node in self.nodes:
             if node.host == host and node.port == port:
                 logger.warning(
-                    "Node System: connect_to_node: Node is already connected")
+                    "Node System: connect: Node is already connected")
                 return True
 
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -190,16 +190,15 @@ class Node(threading.Thread):
                 "Node System: Could not connect with node because node is not unl node."
             )
 
-    def disconnect_to_node(self, node):
+    def disconnect(self, node):
 
         if node in self.nodes:
             logger.info(
                 "Node System: Disconnecting from decentra_network.node")
             node.stop()
-            node.join()
         else:
             logger.info(
-                "Node System: Node disconnect_to_node: Node is not connected")
+                "Node System: Node disconnect: Node is not connected")
 
     def stop(self):
         self.status = False
@@ -249,7 +248,7 @@ class Node(threading.Thread):
         node_list = Node.get_connected_nodes()
 
         for element in node_list:
-            Node.main_node.connect_to_node(node_list[element]["host"],
+            Node.main_node.connect(node_list[element]["host"],
                                            node_list[element]["port"])
 
     @staticmethod
@@ -345,7 +344,7 @@ class Node(threading.Thread):
         }
 
         for each_node in nodes:
-            self.send_data_to_node(each_node, data)
+            self.send_data(each_node, data)
 
     def send_my_block_hash(self, block, nodes):
         system = block
@@ -367,7 +366,7 @@ class Node(threading.Thread):
             }
 
             for each_node in nodes:
-                self.send_data_to_node(each_node, data)
+                self.send_data(each_node, data)
 
     def get_candidate_block(self, data, node):
 
@@ -429,9 +428,9 @@ class Node(threading.Thread):
                 ).toBase64(),
             }
             if node is not None:
-                self.send_data_to_node(node, data)
+                self.send_data(node, data)
             else:
-                self.send_data_to_nodes(data)
+                self.send_data_all(data)
 
             SendData = file.read(1024)
 
@@ -447,9 +446,9 @@ class Node(threading.Thread):
                                    0, 1))).toBase64(),
                 }
                 if node is not None:
-                    self.send_data_to_node(node, data)
+                    self.send_data(node, data)
                 else:
-                    self.send_data_to_nodes(data)
+                    self.send_data_all(data)
 
     def send_full_accounts(self, node=None):
         file = open(TEMP_ACCOUNTS_PATH, "rb")
@@ -468,9 +467,9 @@ class Node(threading.Thread):
                 ).toBase64(),
             }
             if node is not None:
-                self.send_data_to_node(node, data)
+                self.send_data(node, data)
             else:
-                self.send_data_to_nodes(data)
+                self.send_data_all(data)
 
             SendData = file.read(1024)
 
@@ -486,9 +485,9 @@ class Node(threading.Thread):
                                    0, 1))).toBase64(),
                 }
                 if node is not None:
-                    self.send_data_to_node(node, data)
+                    self.send_data(node, data)
                 else:
-                    self.send_data_to_nodes(data)
+                    self.send_data_all(data)
 
     def send_full_blockshash(self, node=None):
         file = open(TEMP_BLOCKSHASH_PATH, "rb")
@@ -507,9 +506,9 @@ class Node(threading.Thread):
                 ).toBase64(),
             }
             if node is not None:
-                self.send_data_to_node(node, data)
+                self.send_data(node, data)
             else:
-                self.send_data_to_nodes(data)
+                self.send_data_all(data)
 
             SendData = file.read(1024)
 
@@ -526,9 +525,9 @@ class Node(threading.Thread):
                     ).toBase64(),
                 }
                 if node is not None:
-                    self.send_data_to_node(node, data)
+                    self.send_data(node, data)
                 else:
-                    self.send_data_to_nodes(data)
+                    self.send_data_all(data)
 
     def send_full_blockshash_part(self, node=None):
         file = open(TEMP_BLOCKSHASH_PART_PATH, "rb")
@@ -547,9 +546,9 @@ class Node(threading.Thread):
                 ).toBase64(),
             }
             if node is not None:
-                self.send_data_to_node(node, data)
+                self.send_data(node, data)
             else:
-                self.send_data_to_nodes(data)
+                self.send_data_all(data)
 
             SendData = file.read(1024)
 
@@ -566,9 +565,9 @@ class Node(threading.Thread):
                     ).toBase64(),
                 }
                 if node is not None:
-                    self.send_data_to_node(node, data)
+                    self.send_data(node, data)
                 else:
-                    self.send_data_to_nodes(data)
+                    self.send_data_all(data)
 
     def get_full_chain(self, data, node):
 
@@ -683,7 +682,7 @@ class Node(threading.Thread):
             "transaction_time": tx.transaction_time,
         }
         for each_node in Unl.get_as_node_type(Unl.get_unl_nodes()):
-            Node.main_node.send_data_to_node(each_node, items)
+            Node.main_node.send_data(each_node, items)
 
     def get_transaction(self, data, node):
         block = GetBlock()

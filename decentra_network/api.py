@@ -120,7 +120,7 @@ def node_stop_page():
 @app.route("/node/connect/<ip>/<port>", methods=["GET"])
 def node_connect_page(ip, port):
     logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    Node.main_node.connect_to_node(str(ip), int(port))
+    Node.main_node.connect(str(ip), int(port))
     return jsonify("OK")
 
 
