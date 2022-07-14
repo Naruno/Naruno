@@ -339,8 +339,10 @@ class server(Thread):
                     PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
-
-            self.send(data)
+            if node is None:
+                self.send(data)
+            else:
+                self.send_node(node, data)
 
             SendData = file.read(1024)
 
@@ -354,7 +356,10 @@ class server(Thread):
                                PrivateKey.fromPem(wallet_import(
                                    0, 1))).toBase64(),
                 }
-                self.send(data)
+                if node is None:
+                    self.send(data)
+                else:
+                    self.send_node(node, data)
 
     def send_full_accounts(self, node=None):
         file = open(TEMP_ACCOUNTS_PATH, "rb")
@@ -371,7 +376,10 @@ class server(Thread):
                     PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
-            self.send(data)
+            if node is None:
+                self.send(data)
+            else:
+                self.send_node(node, data)
 
             SendData = file.read(1024)
 
@@ -385,7 +393,10 @@ class server(Thread):
                                PrivateKey.fromPem(wallet_import(
                                    0, 1))).toBase64(),
                 }
-                self.send(data)
+                if node is None:
+                    self.send(data)
+                else:
+                    self.send_node(node, data)
 
     def send_full_blockshash(self, node=None):
         file = open(TEMP_BLOCKSHASH_PATH, "rb")
@@ -402,7 +413,10 @@ class server(Thread):
                     PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
-            self.send(data)
+            if node is None:
+                self.send(data)
+            else:
+                self.send_node(node, data)
 
             SendData = file.read(1024)
 
@@ -417,7 +431,10 @@ class server(Thread):
                         PrivateKey.fromPem(wallet_import(0, 1)),
                     ).toBase64(),
                 }
-                self.send(data)
+                if node is None:
+                    self.send(data)
+                else:
+                    self.send_node(node, data)
 
     def send_full_blockshash_part(self, node=None):
         file = open(TEMP_BLOCKSHASH_PART_PATH, "rb")
@@ -434,7 +451,10 @@ class server(Thread):
                     PrivateKey.fromPem(wallet_import(0, 1)),
                 ).toBase64(),
             }
-            self.send(data)
+            if node is None:
+                self.send(data)
+            else:
+                self.send_node(node, data)
 
             SendData = file.read(1024)
 
@@ -449,7 +469,10 @@ class server(Thread):
                         PrivateKey.fromPem(wallet_import(0, 1)),
                     ).toBase64(),
                 }
-                self.send(data)
+                if node is None:
+                    self.send(data)
+                else:
+                    self.send_node(node, data)
 
     def get_full_chain(self, data, node):
 
