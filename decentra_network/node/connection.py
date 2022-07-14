@@ -73,7 +73,7 @@ class Connection(threading.Thread):
                     if self.save_messages:
                         self.messages.append(message)
                     logger.info("Node System: Connection: Received: %s" % message)
-                    self.main_node.new_message(self, message)
+                    self.main_node.get_message(self, message)
 
                     eot_pos = buffer.find(self.EOT_CHAR)
 

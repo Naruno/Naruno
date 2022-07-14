@@ -77,7 +77,7 @@ class Node(threading.Thread):
                 connection, client_address = self.sock.accept()
 
                 connected_node_id = connection.recv(4096).decode("utf-8")
-                connection.send_message(Node.id.encode("utf-8"))
+                connection.send(Node.id.encode("utf-8"))
                 if Unl.node_is_unl(connected_node_id):
                     thread_client = Connection(
                         self,
@@ -262,7 +262,7 @@ class Node(threading.Thread):
             if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
 
-    def new_message(self, node, data):
+    def get_message(self, node, data):
         is_unl = Unl.node_is_unl(node.id)
         if "sendmefullblock" in data:
             self.send_full_chain(node)
