@@ -141,7 +141,7 @@ def node_newunl_page():
 @app.route("/node/id", methods=["GET"])
 def node_id_page():
     logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify(Node.id)
+    return jsonify(server.id)
 
 
 @app.route("/settings/test/on", methods=["GET"])

@@ -178,7 +178,7 @@ def menu():
         if choices_input == "ndnewunl":
             Unl.save_new_unl_node(input("Please write ID of the node: "))
         if choices_input == "ndid":
-            print(Node.id)
+            print(server.id)
         if choices_input == "testmodeon":
             test_mode(True)
         if choices_input == "testmodeoff":
@@ -306,7 +306,7 @@ def arguments():
         GetBalance(GetBlock(), wallet_import(-1, 0))
 
     if args.ndid:
-        print(Node.id)
+        print(server.id)
 
     if args.testmodeon:
         test_mode(True)

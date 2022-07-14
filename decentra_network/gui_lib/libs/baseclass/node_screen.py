@@ -242,7 +242,7 @@ class NodeBox(MDGridLayout):
             GetBlockFromOtherNode()
 
     def nd_id(self):
-        Clipboard.copy(Node.id)
+        Clipboard.copy(server.id)
         SweetAlert().fire(
             "The ID has been copied to your clipboard.",
             type="success",
