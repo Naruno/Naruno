@@ -35,7 +35,11 @@ class client(Thread):
             with contextlib.suppress(socket.timeout):
                 data = self.socket.recv(1024)
                 logger.info("Received data from %s:%s: %s" % (self.host, self.port, data))
-                data = json.loads(data.decode("utf-8"))
+                data = data.decode("utf-8")
+                try:
+                    data = json.loads(decoded)
+                except json.JSONDecodeError:
+                    logger.error("Error decoding JSON data: %s" % data)
                 if self.server.check_message(data):
                     self.server.messages.append(data)
                     self.server.get_message(self, data)
