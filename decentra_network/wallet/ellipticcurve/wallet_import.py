@@ -40,9 +40,9 @@ from decentra_network.lib.encryption import decrypt
 from decentra_network.lib.encryption import encrypt
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.save_wallet_list import save_to_wallet_list
-from decentra_network.wallet.wallet_create import wallet_create
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet 
+from decentra_network.wallet.ellipticcurve.save_wallet_list import save_to_wallet_list
+from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 
 
 def wallet_import(wallet, mode, password=None):

@@ -7,7 +7,7 @@
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.wallet.wallet_import import Address
+from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
 def ProccesstheTransaction(block, account_list):

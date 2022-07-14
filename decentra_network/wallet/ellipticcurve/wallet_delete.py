@@ -26,30 +26,25 @@ SOFTWARE.
 """
 import json
 import os
-from hashlib import sha256
 
 from decentra_network.config import *
 from decentra_network.lib.config_system import get_config
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
+from decentra_network.lib.log import get_logger
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet 
+
+logger = get_logger("WALLET")
 
 
-def save_to_wallet_list(publicKey, privateKey, password):
-    wallet_list = get_saved_wallet()
+def wallet_delete(account):
+    saved_wallet = get_saved_wallet()
+    if account in saved_wallet:
+        del saved_wallet[account]
 
-    wallet_list[publicKey] = {}
-
-    wallet_list[publicKey]["publickey"] = publicKey.replace("\n", "")
-    wallet_list[publicKey]["privatekey"] = privateKey
-
-    wallet_list[publicKey]["password_sha256"] = sha256(
-        password.encode("utf-8")
-    ).hexdigest()
-
-    save_wallet_list(wallet_list)
-
-
-def save_wallet_list(wallet_list):
-
-    os.chdir(get_config()["main_folder"])
-    with open(WALLETS_PATH, "w") as wallet_list_file:
-        json.dump(wallet_list, wallet_list_file, indent=4)
+        os.chdir(get_config()["main_folder"])
+        with open(WALLETS_PATH, "w") as wallet_list_file:
+            json.dump(saved_wallet, wallet_list_file, indent=4)
+        logger.info(f"Wallet {account} deleted")
+        return True
+    else:
+        logger.error(f"Wallet {account} not found")
+        return False

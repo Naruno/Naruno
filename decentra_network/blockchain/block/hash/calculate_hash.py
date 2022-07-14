@@ -7,7 +7,7 @@
 from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
 from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
 from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
-from decentra_network.lib.merkle_root import MerkleTree
+from decentra_network.lib.mix.merkle_root import MerkleTree
 
 
 def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):

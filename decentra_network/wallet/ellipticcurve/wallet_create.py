@@ -24,27 +24,29 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-import json
-import os
 
 from decentra_network.config import *
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-
-logger = get_logger("WALLET")
+from decentra_network.lib.encryption import encrypt
 
 
-def wallet_delete(account):
-    saved_wallet = get_saved_wallet()
-    if account in saved_wallet:
-        del saved_wallet[account]
+from decentra_network.wallet.ellipticcurve.save_wallet_list import save_to_wallet_list
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet 
+from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 
-        os.chdir(get_config()["main_folder"])
-        with open(WALLETS_PATH, "w") as wallet_list_file:
-            json.dump(saved_wallet, wallet_list_file, indent=4)
-        logger.info(f"Wallet {account} deleted")
-        return True
-    else:
-        logger.error(f"Wallet {account} not found")
-        return False
+
+def wallet_create(password, save=True):
+
+    my_private_key = PrivateKey()
+    my_public_key = my_private_key.publicKey()
+
+    if save != True:
+        return my_private_key
+    encrypted_key = (
+        encrypt(my_private_key.toPem(), password)
+        if list(get_saved_wallet())
+        else my_private_key.toPem()
+    )
+
+    del my_private_key
+    save_to_wallet_list(my_public_key.toPem(), encrypted_key, password)
+    return encrypted_key

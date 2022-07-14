@@ -24,7 +24,7 @@ from decentra_network.transactions.my_transactions.validate_transaction import (
     ValidateTransaction,
 )
 from decentra_network.transactions.pending_to_validating import PendingtoValidating
-from decentra_network.wallet.wallet_import import wallet_import
+from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 logger = get_logger("CONSENSUS")
 
