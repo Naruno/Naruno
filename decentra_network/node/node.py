@@ -260,7 +260,7 @@ class Node(threading.Thread):
                 os.remove(entry.path)
 
     def message_from_node(self, node, data):
-        is_unl = Unl.node_is_unl(data)
+        is_unl = Unl.node_is_unl(node.id)
         if "sendmefullblock" in data:
             self.send_full_chain(node)
 
