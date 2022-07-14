@@ -77,7 +77,7 @@ def consensus_round_2(block):
                         )
                         node = server.Server
                         unl_list = Unl.get_as_node_type([sender])
-                        node.send_data(unl_list[0],  {"sendmefullblock": 1})
+                        node.send_node(unl_list[0],  {"sendmefullblock": 1})
                         block.dowload_true_block = sender
                     SaveBlock(block)
 

@@ -105,7 +105,18 @@ class server(Thread):
         for a_client in self.clients:
             a_client.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
-    
+
+    def send_node(self, node, data):
+        data["id"] = server.id
+        sign = Ecdsa.sign(
+                        str(data["action"]),
+                        PrivateKey.fromPem(wallet_import(0, 1)),
+                    ).toBase64()
+
+        data["sign"] = sign
+        node.socket.sendall(json.dumps(data).encode("utf-8"))
+        return data
+
     def check_message(self, data):
         message = str(data["action"])
         return Ecdsa.verify(
@@ -189,56 +200,29 @@ class server(Thread):
 
 
     def get_message(self, node, data):
-        is_unl = Unl.node_is_unl(node.id)
-        if "sendmefullblock" in data:
+        if "sendmefullblock" in data["action"]:
             self.send_full_chain(node)
 
-        if ("fullblock" in data and is_unl
-                    and Ecdsa.verify(
-                        "fullblock" + data["byte"],
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-                    )):
-                logger.info("getting chain")
-                self.get_full_chain(data, node)
+        if "fullblock" in data["action"]:
+            self.get_full_chain(data, node)
 
-        if ("fullaccounts" in data and is_unl
-                    and Ecdsa.verify(
-                        "fullaccounts" + data["byte"],
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-                    )):
-                logger.info("get_full_accounts")
-                self.get_full_accounts(data, node)
+        if "fullaccounts" in data["action"]:
+            self.get_full_accounts(data, node)
 
+        if "fullblockshash" in data["action"]:
+            self.get_full_blockshash(data, node)
 
-        if ("fullblockshash" in data and is_unl
-                    and Ecdsa.verify(
-                        "fullblockshash" + data["byte"],
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-                    )):
-                self.get_full_blockshash(data, node)
+        if "fullblockshash_part" in data["action"]:
+            self.get_full_blockshash_part(data, node)
 
+        if "transactionrequest" in data["action"]:
+            self.get_transaction(data, node)
 
-        if ("fullblockshash_part" in data and is_unl
-                    and Ecdsa.verify(
-                        "fullblockshash_part" + data["byte"],
-                        Signature.fromBase64(data["signature"]),
-                        PublicKey.fromPem(node.id),
-                    )):
-                self.get_full_blockshash_part(data, node)
+        if "myblock" in data["action"]:
+            self.get_candidate_block(data, node)
 
-        if "transactionrequest" in data:
-                self.get_transaction(data, node)
-
-        if "action" in data:
-            if data["action"] == "myblock":
-                    self.get_candidate_block(data, node)
-
-
-            if data["action"] == "myblockhash":
-                    self.get_candidate_block_hash(data, node)
+        if "myblockhash" in data["action"]:
+            self.get_candidate_block_hash(data, node)
 
 
     def send_my_block(self, block, nodes):
@@ -270,7 +254,7 @@ class server(Thread):
         }
 
         for each_node in nodes:
-            self.send_data(each_node, data)
+            self.send_node(each_node, data)
 
     def send_my_block_hash(self, block, nodes):
         system = block
@@ -292,7 +276,7 @@ class server(Thread):
             }
 
             for each_node in nodes:
-                self.send_data(each_node, data)
+                self.send_node(each_node, data)
 
     def get_candidate_block(self, data, node):
 
@@ -585,7 +569,7 @@ class server(Thread):
             "transaction_time": tx.transaction_time,
         }
         for each_node in Unl.get_as_node_type(Unl.get_unl_nodes()):
-            server.Server.send_data(each_node, items)
+            server.Server.send_node(each_node, items)
 
     def get_transaction(self, data, node):
         block = GetBlock()
