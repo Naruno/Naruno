@@ -204,7 +204,7 @@ class server(Thread):
 
     def get_message(self, node, data):
         if "sendmefullblock" in data["action"]:
-            self.send_full_chain(node)
+            self.send_block_to_other_nodes(node)
 
         if "fullblock" in data["action"]:
             self.get_full_chain(data, node)
@@ -323,8 +323,6 @@ class server(Thread):
             node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
-        self.send_full_accounts(node)
-        self.send_full_blockshash(node)
         file = open(TEMP_BLOCK_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
@@ -332,12 +330,6 @@ class server(Thread):
             data = {
                 "action":"fullblock",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
-                "signature":
-                Ecdsa.sign(
-                    "fullblock" + str(
-                        (SendData.decode(encoding="iso-8859-1"))),
-                    PrivateKey.fromPem(wallet_import(0, 1)),
-                ).toBase64(),
             }
             if node is None:
                 self.send(data)
@@ -349,12 +341,7 @@ class server(Thread):
             if not SendData:
                 data = {
                     "action":"fullblock",
-                    "byte":
-                    "end",
-                    "signature":
-                    Ecdsa.sign("fullblock" + "end",
-                               PrivateKey.fromPem(wallet_import(
-                                   0, 1))).toBase64(),
+                    "byte":"end",
                 }
                 if node is None:
                     self.send(data)
@@ -605,11 +592,11 @@ class server(Thread):
             server.send_transaction(the_transaction)
             SaveBlock(block)
 
-    def send_block_to_other_nodes(self):
+    def send_block_to_other_nodes(self, node=None):
         """
         Sends the block to the other nodes.
         """
-        self.send_full_chain()
-        self.send_full_accounts()
-        self.send_full_blockshash()
-        self.send_full_blockshash_part()
+        self.send_full_chain(node=node)
+        self.send_full_accounts(node=node)
+        self.send_full_blockshash(node=node)
+        self.send_full_blockshash_part(node=node)
