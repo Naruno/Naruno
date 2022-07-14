@@ -330,8 +330,7 @@ class server(Thread):
         while SendData:
 
             data = {
-                "fullblock":
-                1,
+                "action":"fullblock",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
                 "signature":
                 Ecdsa.sign(
@@ -347,8 +346,7 @@ class server(Thread):
 
             if not SendData:
                 data = {
-                    "fullblock":
-                    1,
+                    "action":"fullblock",
                     "byte":
                     "end",
                     "signature":
@@ -364,8 +362,7 @@ class server(Thread):
         while SendData:
 
             data = {
-                "fullaccounts":
-                1,
+                "action":"fullaccounts",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
                 "signature":
                 Ecdsa.sign(
@@ -380,8 +377,7 @@ class server(Thread):
 
             if not SendData:
                 data = {
-                    "fullaccounts":
-                    1,
+                    "action":"fullaccounts",
                     "byte":
                     "end",
                     "signature":
@@ -397,8 +393,7 @@ class server(Thread):
         while SendData:
 
             data = {
-                "fullblockshash":
-                1,
+                "action":"fullblockshash",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
                 "signature":
                 Ecdsa.sign(
@@ -413,8 +408,7 @@ class server(Thread):
 
             if not SendData:
                 data = {
-                    "fullblockshash":
-                    1,
+                    "action":"fullblockshash",
                     "byte":
                     "end",
                     "signature":
@@ -431,8 +425,7 @@ class server(Thread):
         while SendData:
 
             data = {
-                "fullblockshash_part":
-                1,
+                "action":"fullblockshash_part",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
                 "signature":
                 Ecdsa.sign(
@@ -447,8 +440,7 @@ class server(Thread):
 
             if not SendData:
                 data = {
-                    "fullblockshash_part":
-                    1,
+                    "action":"fullblockshash_part",
                     "byte":
                     "end",
                     "signature":
