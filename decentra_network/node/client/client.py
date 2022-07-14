@@ -10,6 +10,9 @@ import socket
 import time
 import json
 import contextlib
+from decentra_network.lib.log import get_logger
+
+logger = get_logger("NODE")
 
 class client(Thread):
     def __init__(self, socket, address, node_id, server, test=False):
@@ -31,6 +34,7 @@ class client(Thread):
         while self.running:
             with contextlib.suppress(socket.timeout):
                 data = self.socket.recv(1024)
+                logger.info("Received data from %s:%s: %s" % (self.host, self.port, data))
                 data = json.loads(data.decode("utf-8"))
                 if self.server.check_message(data):
                     self.server.messages.append(data)
