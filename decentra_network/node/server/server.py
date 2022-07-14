@@ -277,12 +277,10 @@ class server(Thread):
                 self.send_node(each_node, data)
 
     def get_candidate_block(self, data, node):
-
+        logger.info("Getting candidate block: {}".format(data["sequance_number"]))
         if GetBlock().sequance_number != data["sequance_number"]:
-            return
-        signature_list = [
-            element["signature"] for element in data["transaction"]
-        ]
+            logger.info("Candidate block sequance number is not correct")
+            return False
 
         temp_tx = [
             Transaction.load_json(element)

@@ -41,9 +41,11 @@ def consensus_round_1(block):
 
     unl_nodes = Unl.get_unl_nodes()
     logger.info("Our block is sending to the unl nodes")
-    server.Server.send_my_block(block, Unl.get_as_node_type(unl_nodes))
-    candidate_class = GetCandidateBlocks()
+    nodes = Unl.get_as_node_type(unl_nodes)
+    server.Server.send_my_block(block, nodes)
+    candidate_class = GetCandidateBlocks(custom_nodes_list=nodes)
     time_difference = int(time.time()) - block.raund_1_starting_time
+    logger.info(f"candidate block number {len(candidate_class.candidate_blocks)} limit {len(unl_nodes) * 80 / 100}")
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
 
