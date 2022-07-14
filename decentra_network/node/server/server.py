@@ -117,11 +117,11 @@ class server(Thread):
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
 
-    def new_message(self, data):
+    def get_message(self, data):
         if self.check_message(data):
             logger.info("New message: {}".format(data))
             self.messages.append(data)
-            self.get_message(self, data)
+            self.direct_message(self, data)
 
     def check_message(self, data):
         # remove sign from data
@@ -208,7 +208,7 @@ class server(Thread):
                 os.remove(entry.path)
 
 
-    def get_message(self, node, data):
+    def direct_message(self, node, data):
         logger.info("Directing message: {}".format(data["action"]))
         if "sendmefullblock" == data["action"]:
             self.send_block_to_other_nodes(node)
