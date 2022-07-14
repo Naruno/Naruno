@@ -63,8 +63,6 @@ class server(Thread):
 
         self.clients = []
 
-        self.candidate_block = None
-        self.candidate_block_hash = None
         self.messages = []
         self.save_messages = False
 
@@ -117,11 +115,11 @@ class server(Thread):
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
 
-    def get_message(self, data):
+    def get_message(self, client, data):
         if self.check_message(data):
             logger.info("New message: {}".format(data))
             self.messages.append(data)
-            self.direct_message(self, data)
+            self.direct_message(client, data)
 
     def check_message(self, data):
         # remove sign from data

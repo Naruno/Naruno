@@ -75,16 +75,12 @@ class Test_Node(unittest.TestCase):
                          "Problem on UNL get as node system.")
 
     def test_GetCandidateBlocks(self):
-
-        self.node_1.candidate_block = True
-        self.node_1.candidate_block_hash = True
-        self.node_2.candidate_block = True
-        self.node_2.candidate_block_hash = False
-        nodes_list = [self.node_1, self.node_2]
-
-        result = GetCandidateBlocks(nodes_list)
-        self.assertEqual(result.candidate_blocks, [True, True])
-        self.assertEqual(result.candidate_block_hashes, [True, False])
+        client_2 = self.node_2.clients[0]
+        client_2.candidate_block = True
+        client_2.candidate_block_hash = False
+        result = GetCandidateBlocks()
+        self.assertEqual(result.candidate_blocks, [True])
+        self.assertEqual(result.candidate_block_hashes, [False])
 
 
     def test_send_data_all(self):

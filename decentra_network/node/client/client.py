@@ -39,11 +39,11 @@ class client(Thread):
                 data = data.decode("utf-8")
                 try:
                     data = json.loads(data)
-                    self.server.get_message(data)
+                    self.server.get_message(self, data)
                 except json.JSONDecodeError:
                     splited_data = re.split(r"(?<=})\B(?={)", data)
                     for i in splited_data:
-                        self.server.get_message(json.loads(i))
+                        self.server.get_message(self, json.loads(i))
 
 
             time.sleep(0.01)
