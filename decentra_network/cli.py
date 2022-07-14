@@ -145,7 +145,7 @@ def menu():
             )
             if send_tx != False:
                 SavetoMyTransaction(send_tx)
-                Node.send_transaction(send_tx)
+                server.send_transaction(send_tx)
                 SaveBlock(block)
         if choices_input == "scd":
             block = GetBlock()
@@ -158,7 +158,7 @@ def menu():
             )
             if send_tx != False:
                 SavetoMyTransaction(send_tx)
-                Node.send_transaction(send_tx)
+                server.send_transaction(send_tx)
                 SaveBlock(block)
         if choices_input == "gb":
             GetBalance(GetBlock(), wallet_import(-1, 0))
@@ -167,14 +167,14 @@ def menu():
         if choices_input == "ndstart":
             server(str(input("ip: ")), int(input("port: ")))
         if choices_input == "ndstop":
-            Node.main_node.stop()
+            server.Server.stop()
         if choices_input == "ndconnect":
-            Node.main_node.connect(
+            server.Server.connect(
                 str(input("node ip: ")), int(input("node port: "))
             )
 
         if choices_input == "ndconnectmixdb":
-            Node.connectionfrommixdb()
+            server.connectionfrommixdb()
         if choices_input == "ndnewunl":
             Unl.save_new_unl_node(input("Please write ID of the node: "))
         if choices_input == "ndid":
@@ -201,7 +201,7 @@ def menu():
             if the_settings()["test_mode"]:
                 the_block = CreateBlock()
                 SaveBlock(the_block)
-                Node.main_node.send_block_to_other_nodes()
+                server.Server.send_block_to_other_nodes()
                 logger.info("Consensus timer is started")
                 perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
             else:

@@ -608,7 +608,7 @@ class server(Thread):
             "transaction_time": tx.transaction_time,
         }
         for each_node in Unl.get_as_node_type(Unl.get_unl_nodes()):
-            Node.main_node.send_data(each_node, items)
+            server.Server.send_data(each_node, items)
 
     def get_transaction(self, data, node):
         block = GetBlock()
@@ -623,7 +623,7 @@ class server(Thread):
             data["transaction_time"],
         )
         if GetTransaction(block, the_transaction):
-            Node.send_transaction(the_transaction)
+            server.send_transaction(the_transaction)
             SaveBlock(block)
 
     def send_block_to_other_nodes(self):

@@ -109,10 +109,10 @@ class NodeBox(MDGridLayout):
     # End
 
     def stop_node_server(self):
-        Node.main_node.stop()
+        server.Server.stop()
 
     def connect_to_know_node(self):
-        Node.connectionfrommixdb()
+        server.connectionfrommixdb()
 
     # Connect a Node
 
@@ -160,7 +160,7 @@ class NodeBox(MDGridLayout):
         print(ip)
         print(port)
 
-        Node.main_node.connect(ip, int(port))
+        server.Server.connect(ip, int(port))
 
         self.connect_a_node_dialog.dismiss()
 
@@ -236,7 +236,7 @@ class NodeBox(MDGridLayout):
         if the_settings()["test_mode"]:
             the_block = CreateBlock()
             SaveBlock(the_block)
-            Node.main_node.send_block_to_other_nodes()
+            server.Server.send_block_to_other_nodes()
             perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
         else:
             GetBlockFromOtherNode()

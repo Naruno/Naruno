@@ -79,7 +79,7 @@ def send_coin_page(address, amount, password):
     send_tx = send(block, password, address, amount)
     if send_tx != False:
         SavetoMyTransaction(send_tx)
-        Node.send_transaction(send_tx)
+        server.send_transaction(send_tx)
         SaveBlock(block)
     return jsonify("OK")
 
@@ -91,7 +91,7 @@ def send_coin_data_page(address, amount, data, password):
     send_tx = send(block, password, address, amount, data)
     if send_tx != False:
         SavetoMyTransaction(send_tx)
-        Node.send_transaction(send_tx)
+        server.send_transaction(send_tx)
         SaveBlock(block)
     return jsonify("OK")
 
@@ -112,21 +112,21 @@ def node_start_page(ip, port):
 @app.route("/node/stop", methods=["GET"])
 def node_stop_page():
     logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    Node.main_node.stop()
+    server.Server.stop()
     return jsonify("OK")
 
 
 @app.route("/node/connect/<ip>/<port>", methods=["GET"])
 def node_connect_page(ip, port):
     logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    Node.main_node.connect(str(ip), int(port))
+    server.Server.connect(str(ip), int(port))
     return jsonify("OK")
 
 
 @app.route("/node/connectmixdb", methods=["GET"])
 def node_connectmixdb_page():
     logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    Node.connectionfrommixdb()
+    server.connectionfrommixdb()
     return jsonify("OK")
 
 
@@ -180,7 +180,7 @@ def block_get_page():
     if the_settings()["test_mode"]:
         the_block = CreateBlock()
         SaveBlock(the_block)
-        Node.main_node.send_block_to_other_nodes()
+        server.Server.send_block_to_other_nodes()
         logger.info("Consensus timer is started")
         perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
     else:
