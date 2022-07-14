@@ -31,8 +31,7 @@ from decentra_network.lib.settings_system import test_mode
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
 from decentra_network.node.get_block_from_other_node import GetBlockFromOtherNode
-from decentra_network.node.node import Node
-from decentra_network.node.connection import Connection
+from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.my_transactions.save_to_my_transaction import (
     SavetoMyTransaction,
@@ -166,7 +165,7 @@ def menu():
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
-            Node(str(input("ip: ")), int(input("port: ")))
+            server(str(input("ip: ")), int(input("port: ")))
         if choices_input == "ndstop":
             Node.main_node.stop()
         if choices_input == "ndconnect":

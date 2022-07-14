@@ -25,8 +25,7 @@ from decentra_network.lib.settings_system import test_mode
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
 from decentra_network.node.get_block_from_other_node import GetBlockFromOtherNode
-from decentra_network.node.node import Node
-from decentra_network.node.connection import Connection
+from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.my_transactions.get_my_transaction import (
     GetMyTransaction,
@@ -106,7 +105,7 @@ def balance_wallets_page():
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
 def node_start_page(ip, port):
     logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    Node(str(ip), int(port))
+    server(str(ip), int(port))
     return jsonify("OK")
 
 

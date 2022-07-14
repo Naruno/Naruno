@@ -51,20 +51,8 @@ class Unl:
         Converts the UNL node list to Node class.
         """
 
-        from decentra_network.node.node import Node
-
-        temp_list = []
-        if Node.main_node is not None:
-            temp_list.extend(
-                each_node
-                for list_node, each_node in itertools.product(
-                    id_list,
-                    Node.main_node.nodes,
-                )
-                if list_node == each_node.id
-            )
-
-        return temp_list
+        from decentra_network.node.server.server import server
+        return server.Server.clients
 
     @staticmethod
     def node_is_unl(node_id):

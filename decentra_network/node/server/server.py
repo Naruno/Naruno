@@ -4,13 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import contextlib
-import json
-import os
+
+from threading import Thread
 import socket
-import threading
-import time
+import json
 from hashlib import sha256
+import os
 
 from decentra_network.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
@@ -28,8 +27,6 @@ from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.merkle_root import MerkleTree
-from decentra_network.node.connection import Connection
-from decentra_network.node.node import *
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.check.check_transaction import \
     CheckTransaction
@@ -40,168 +37,94 @@ from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
 from decentra_network.wallet.ellipticcurve.signature import Signature
 from decentra_network.wallet.wallet_import import wallet_import
+from decentra_network.node.client.client import client
+import time
+import contextlib
 
 logger = get_logger("NODE")
 
 
-class Node(threading.Thread):
 
-    main_node = None
-    unl_nodes = []
 
-    id = "".join([
-        l.strip() for l in wallet_import(0, 0).splitlines()
-        if l and not l.startswith("-----")
-    ])
-
-    def __init__(self, host, port):
-        self.__class__.main_node = self
-        threading.Thread.__init__(self)
-
-        self.status = True
-
+class server(Thread):
+    Server = None
+    id = wallet_import(0, 0)
+    def __init__(self, host, port, save_messages=False, test=False):
+        self.__class__.Server = self      
+        Thread.__init__(self)
+        self.running = True
+        
         self.host = host
         self.port = port
-
-        self.nodes = []
-
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.start_node()
+        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
+        self.sock.bind((self.host, self.port))
+        self.sock.listen(1)
+
+        self.clients = []
+
+        self.candidate_block = None
+        self.candidate_block_hash = None
+        self.messages = []
+        self.save_messages = False
 
         self.start()
 
     def run(self):
-
-        while self.status:
+        self.sock.settimeout(10.0)
+        while self.running:
             with contextlib.suppress(socket.timeout):
-                connection, client_address = self.sock.accept()
-
-                connected_node_id = connection.recv(4096).decode("utf-8")
-                connection.send(Node.id.encode("utf-8"))
-                if Unl.node_is_unl(connected_node_id):
-                    thread_client = Connection(
-                        self,
-                        connection,
-                        connected_node_id,
-                        client_address[0],
-                        client_address[1],
-                    )
-                    thread_client.start()
-
-                    self.nodes.append(thread_client)
-                    Node.save_connected_node(client_address[0],
-                                             client_address[1],
-                                             connected_node_id)
-                else:
-                    logger.warning(
-                        "Node System: Could not connect with node because node is not unl node."
-                    )
-
+                conn, addr = self.sock.accept()
+                connected = any(a_client.socket == conn for a_client in self.clients)
+                data = conn.recv(4096)
+                conn.send(server.id.encode("utf-8"))
+                client_id = data.decode("utf-8")
+                if Unl.node_is_unl(client_id):
+                    self.clients.append(client(conn, addr, client_id, self))
+                    server.save_connected_node(addr[0], addr[1], client_id)
             time.sleep(0.01)
-
-        logger.info("Node System: Stopping protocol started by node")
-        for t in self.nodes:
-            t.stop()
+        for c in self.clients:
+            c.stop()
         time.sleep(1)
-        for t in self.nodes:
-            t.join()
-
-        time.sleep(1)
-        self.clean()
+        for c in self.clients:
+            c.join()
         self.sock.settimeout(None)
         self.sock.close()
-        logger.info("Node System: The node is stopped")
-
-    def start_node(self):
-        logger.info("Node System: Node server is starting")
-        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.sock.bind((self.host, self.port))
-        self.sock.settimeout(10.0)
-        self.sock.listen(1)
-
-    def clean(self):
-
-        for n in self.nodes:
-            if n.status is False:
-                self.nodes.remove(n)
-
-    def send_data_all(self, data, exclude=None):
-
-        if exclude is None:
-            exclude = []
-        for n in self.nodes:
-            if n in exclude:
-                logger.info(
-                    "Node System: Node send_data_all: Node is excluded")
-            else:
-                self.send_data(n, data)
-
-    def send_data(self, n, data):
-
-        self.clean()
-        if n in self.nodes:
-            try:
-                n.send_message(data)
-
-            except Exception as e:
-                logger.exception(
-                    "Node System: Node send_data: Could not send data to node"
-                )
-        else:
-            logger.warning(
-                "Node System: Node send_data: Node is not connected")
-
-    def connect(self, host, port, save_messages=False):
-
-        if host == self.host and port == self.port:
-            logger.error(
-                "Node System: Node connect: You can not connect to yourself"
-            )
-            return False
-
-        for node in self.nodes:
-            if node.host == host and node.port == port:
-                logger.warning(
-                    "Node System: connect: Node is already connected")
-                return True
-
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        logger.info(f"Node System: Connecting to {host} port {port}")
-        sock.connect((host, port))
-
-        sock.send(Node.id.encode("utf-8"))
-
-        connected_node_id = sock.recv(4096).decode("utf-8")
-
-        if Unl.node_is_unl(connected_node_id):
-            thread_client = Connection(self,
-                                       sock,
-                                       connected_node_id,
-                                       host,
-                                       port,
-                                       save_messages=save_messages)
-            thread_client.start()
-
-            self.nodes.append(thread_client)
-            Node.save_connected_node(host, port, connected_node_id)
-            return thread_client
-        else:
-            logger.warning(
-                "Node System: Could not connect with node because node is not unl node."
-            )
-
-    def disconnect(self, node):
-
-        if node in self.nodes:
-            logger.info(
-                "Node System: Disconnecting from decentra_network.node")
-            node.stop()
-        else:
-            logger.info(
-                "Node System: Node disconnect: Node is not connected")
 
     def stop(self):
-        self.status = False
+        self.running = False
+    
+    def send(self, data):
+        data["id"] = server.id
+        sign = Ecdsa.sign(
+                        str(data["action"]),
+                        PrivateKey.fromPem(wallet_import(0, 1)),
+                    ).toBase64()
+
+        data["sign"] = sign
+        for a_client in self.clients:
+            a_client.socket.sendall(json.dumps(data).encode("utf-8"))
+        return data
+    
+    def check_message(self, data):
+        message = str(data["action"])
+        return Ecdsa.verify(
+                        message,
+                        Signature.fromBase64(data["sign"]),
+                        PublicKey.fromPem(data["id"]),
+                    )
+    
+    def connect(self, host, port):
+        connected = any(a_client.host == host and a_client.port == port for a_client in self.clients)
+        if not connected:
+            conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            addr = (host, port)
+            conn.connect(addr)
+            conn.send(server.id.encode("utf-8"))
+            client_id = conn.recv(4096).decode("utf-8")                
+            if Unl.node_is_unl(client_id):
+                    self.clients.append(client(conn, addr, client_id, self))
+
 
     @staticmethod
     def get_connected_nodes():
@@ -221,6 +144,8 @@ class Node(threading.Thread):
                     the_pending_list[loaded_json["id"]] = loaded_json
 
         return the_pending_list
+
+
 
     @staticmethod
     def save_connected_node(host, port, node_id):
@@ -245,10 +170,10 @@ class Node(threading.Thread):
         Connects to the mixdb.
         """
 
-        node_list = Node.get_connected_nodes()
+        node_list = server.Server.get_connected_nodes()
 
         for element in node_list:
-            Node.main_node.connect(node_list[element]["host"],
+            server.Server.connect(node_list[element]["host"],
                                            node_list[element]["port"])
 
     @staticmethod
@@ -261,6 +186,7 @@ class Node(threading.Thread):
         for entry in os.scandir(CONNECTED_NODES_PATH):
             if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
+
 
     def get_message(self, node, data):
         is_unl = Unl.node_is_unl(node.id)
