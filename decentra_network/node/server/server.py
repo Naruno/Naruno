@@ -203,28 +203,28 @@ class server(Thread):
 
 
     def get_message(self, node, data):
-        if "sendmefullblock" in data["action"]:
+        if "sendmefullblock" == data["action"]:
             self.send_block_to_other_nodes(node)
 
-        if "fullblock" in data["action"]:
+        if "fullblock" == data["action"]:
             self.get_full_chain(data, node)
 
-        if "fullaccounts" in data["action"]:
+        if "fullaccounts" == data["action"]:
             self.get_full_accounts(data, node)
 
-        if "fullblockshash" in data["action"]:
+        if "fullblockshash" == data["action"]:
             self.get_full_blockshash(data, node)
 
-        if "fullblockshash_part" in data["action"]:
+        if "fullblockshash_part" == data["action"]:
             self.get_full_blockshash_part(data, node)
 
-        if "transactionrequest" in data["action"]:
+        if "transactionrequest" == data["action"]:
             self.get_transaction(data, node)
 
-        if "myblock" in data["action"]:
+        if "myblock" == data["action"]:
             self.get_candidate_block(data, node)
 
-        if "myblockhash" in data["action"]:
+        if "myblockhash" == data["action"]:
             self.get_candidate_block_hash(data, node)
 
 
@@ -283,8 +283,7 @@ class server(Thread):
 
     def get_candidate_block(self, data, node):
 
-        if (not Unl.node_is_unl(node.id)
-                or GetBlock().sequance_number != data["sequance_number"]):
+        if GetBlock().sequance_number != data["sequance_number"]:
             return
         signature_list = [
             element["signature"] for element in data["transaction"]
@@ -293,33 +292,20 @@ class server(Thread):
             MerkleTree(signature_list).getRootHash()
             if signature_list else "0")
 
-        if Ecdsa.verify(
-            (f"myblock{merkle_root_of_signature_list}" +
-             str(data["sequance_number"])),
-                Signature.fromBase64(data["signature"]),
-                PublicKey.fromPem(node.id),
-        ):
 
-            temp_tx = [
-                Transaction.load_json(element)
-                for element in data["transaction"]
-            ]
+        temp_tx = [
+            Transaction.load_json(element)
+            for element in data["transaction"]
+        ]
 
-            data["transaction"] = temp_tx
+        data["transaction"] = temp_tx
 
-            node.candidate_block = data
+        node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node):
 
-        if (Unl.node_is_unl(node.id) and GetBlock().sequance_number
-                == data["sequance_number"]) and Ecdsa.verify(
-                    "myblockhash" + data["hash"] +
-                    str(data["sequance_number"]),
-                    Signature.fromBase64(data["signature"]),
-                    PublicKey.fromPem(node.id),
-                ):
+        if GetBlock().sequance_number == data["sequance_number"]:
             data["sender"] = node.id
-
             node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
