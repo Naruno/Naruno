@@ -42,6 +42,7 @@ class Connection(threading.Thread):
     def send(self, data):
         json_data = json.dumps(data)
         json_data = json_data.encode("utf-8") + self.EOT_CHAR
+        logger.info("Node System: Connection: Sending: %s" % json_data)
         self.sock.sendall(json_data)
 
 
@@ -71,6 +72,7 @@ class Connection(threading.Thread):
                     message = json.loads(packet.decode("utf-8"))
                     if self.save_messages:
                         self.messages.append(message)
+                    logger.info("Node System: Connection: Received: %s" % message)
                     self.main_node.message_from_node(self, message)
 
                     eot_pos = buffer.find(self.EOT_CHAR)
