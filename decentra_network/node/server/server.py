@@ -117,6 +117,12 @@ class server(Thread):
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
 
+    def new_message(self, data):
+        if self.check_message(data):
+            logger.info("New message: {}".format(data))
+            self.messages.append(data)
+            self.get_message(self, data)
+
     def check_message(self, data):
         # remove sign from data
         sign = data["sign"]
@@ -203,6 +209,7 @@ class server(Thread):
 
 
     def get_message(self, node, data):
+        logger.info("Directing message: {}".format(data["action"]))
         if "sendmefullblock" == data["action"]:
             self.send_block_to_other_nodes(node)
 
@@ -239,8 +246,6 @@ class server(Thread):
             new_list.append(element.dump_json())
             signature_list.append(element.signature)
 
-        Merkle_signature_list = (MerkleTree(signature_list).getRootHash()
-                                 if len(signature_list) != 0 else "0")
 
         data = {
             "action":
@@ -249,11 +254,6 @@ class server(Thread):
             new_list,
             "sequance_number":
             system.sequance_number,
-            "signature":
-            Ecdsa.sign(
-                f"myblock{Merkle_signature_list}{str(system.sequance_number)}",
-                PrivateKey.fromPem(wallet_import(0, 1)),
-            ).toBase64(),
         }
 
         for each_node in nodes:
@@ -271,11 +271,6 @@ class server(Thread):
                 system.hash,
                 "sequance_number":
                 system.sequance_number,
-                "signature":
-                Ecdsa.sign(
-                    f"myblockhash{system.hash}{str(system.sequance_number)}",
-                    PrivateKey.fromPem(wallet_import(0, 1)),
-                ).toBase64(),
             }
 
             for each_node in nodes:
@@ -288,10 +283,6 @@ class server(Thread):
         signature_list = [
             element["signature"] for element in data["transaction"]
         ]
-        merkle_root_of_signature_list = (
-            MerkleTree(signature_list).getRootHash()
-            if signature_list else "0")
-
 
         temp_tx = [
             Transaction.load_json(element)
