@@ -9,7 +9,7 @@ import time
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.lib.log import get_logger
-from decentra_network.node.node import Node
+from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
@@ -33,7 +33,7 @@ def consensus_round_2(block):
 
     unl_nodes = Unl.get_unl_nodes()
     logger.info("Our block hash is sending to the unl nodes")
-    Node.main_node.send_my_block_hash(block, Unl.get_as_node_type(unl_nodes))
+    server.Server.send_my_block_hash(block, Unl.get_as_node_type(unl_nodes))
 
     candidate_class = GetCandidateBlocks()
 
@@ -75,7 +75,7 @@ def consensus_round_2(block):
                         logger.warning(
                             f"Our block is not valid, the system will try to get true block from decentra_network.node {sender}"
                         )
-                        node = Node.main_node
+                        node = server.Server
                         unl_list = Unl.get_as_node_type([sender])
                         node.send_data(unl_list[0],  {"sendmefullblock": 1})
                         block.dowload_true_block = sender

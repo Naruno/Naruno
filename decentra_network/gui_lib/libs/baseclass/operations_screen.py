@@ -92,10 +92,10 @@ class OperationBox(MDGridLayout):
                 block = GetBlock()
                 send_tx = send(block, text_list[0], receiver_adress, float(amount))
                 if send_tx != False:
-                    from decentra_network.node.node import Node
+                    from decentra_network.node.server.server import server
 
                     SavetoMyTransaction(send_tx)
-                    Node.send_transaction(send_tx)
+                    server.send_transaction(send_tx)
                     SaveBlock(block)
             else:
                 SweetAlert().fire(

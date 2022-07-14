@@ -16,7 +16,7 @@ from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.lib.log import get_logger
-from decentra_network.node.node import Node
+from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
@@ -41,7 +41,7 @@ def consensus_round_1(block):
 
     unl_nodes = Unl.get_unl_nodes()
     logger.info("Our block is sending to the unl nodes")
-    Node.main_node.send_my_block(block, Unl.get_as_node_type(unl_nodes))
+    server.Server.send_my_block(block, Unl.get_as_node_type(unl_nodes))
     candidate_class = GetCandidateBlocks()
     time_difference = int(time.time()) - block.raund_1_starting_time
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
@@ -110,7 +110,7 @@ def consensus_round_1(block):
 
             for each_newly in newly_added_list:
                 if GetTransaction(block, each_newly):
-                    Node.send_transaction(each_newly)
+                    server.send_transaction(each_newly)
 
             block.raund_1 = True
 
