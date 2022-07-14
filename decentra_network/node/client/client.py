@@ -5,11 +5,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from posixpath import split
 from threading import Thread
 import socket
 import time
 import json
 import contextlib
+import re
 from decentra_network.lib.log import get_logger
 
 logger = get_logger("NODE")
@@ -38,14 +40,21 @@ class client(Thread):
                 data = data.decode("utf-8")
                 try:
                     data = json.loads(data)
+                    self.get_message(data)
                 except json.JSONDecodeError:
-                    logger.error("Error decoding JSON data: %s" % data)
-                if self.server.check_message(data):
-                    self.server.messages.append(data)
-                    self.server.get_message(self, data)
+                    splited_data = re.split(r"(?<=})\B(?={)", data)
+                    for i in splited_data:
+                        self.get_message(json.loads(i))
+
+
             time.sleep(0.01)
         self.socket.settimeout(None)
         self.socket.close()
+
+    def get_message(self, data):
+        if self.server.check_message(data):
+                self.server.messages.append(data)
+                self.server.get_message(self, data)
 
     def stop(self):
         self.running = False
