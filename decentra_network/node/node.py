@@ -20,9 +20,11 @@ from decentra_network.config import CONNECTED_NODES_PATH
 from decentra_network.config import LOADING_BLOCK_PATH
 from decentra_network.config import LOADING_ACCOUNTS_PATH
 from decentra_network.config import LOADING_BLOCKSHASH_PATH
+from decentra_network.config import LOADING_BLOCKSHASH_PART_PATH
 from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.config import TEMP_BLOCK_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PATH
+from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.merkle_root import MerkleTree
@@ -294,6 +296,14 @@ class Node(threading.Thread):
                 self.get_full_blockshash(data, node)
 
 
+        if ("fullblockshash_part" in data and is_unl
+                    and Ecdsa.verify(
+                        "fullblockshash_part" + data["byte"],
+                        Signature.fromBase64(data["signature"]),
+                        PublicKey.fromPem(node.id),
+                    )):
+                self.get_full_blockshash_part(data, node)
+
         if "transactionrequest" in data:
                 self.get_transaction(data, node)
 
@@ -520,6 +530,46 @@ class Node(threading.Thread):
                 else:
                     self.send_data_to_nodes(data)
 
+    def send_full_blockshash_part(self, node=None):
+        file = open(TEMP_BLOCKSHASH_PART_PATH, "rb")
+        SendData = file.read(1024)
+        while SendData:
+
+            data = {
+                "fullblockshash_part":
+                1,
+                "byte": (SendData.decode(encoding="iso-8859-1")),
+                "signature":
+                Ecdsa.sign(
+                    "fullblockshash_part" + str(
+                        (SendData.decode(encoding="iso-8859-1"))),
+                    PrivateKey.fromPem(wallet_import(0, 1)),
+                ).toBase64(),
+            }
+            if node is not None:
+                self.send_data_to_node(node, data)
+            else:
+                self.send_data_to_nodes(data)
+
+            SendData = file.read(1024)
+
+            if not SendData:
+                data = {
+                    "fullblockshash_part":
+                    1,
+                    "byte":
+                    "end",
+                    "signature":
+                    Ecdsa.sign(
+                        "fullblockshash_part" + "end",
+                        PrivateKey.fromPem(wallet_import(0, 1)),
+                    ).toBase64(),
+                }
+                if node is not None:
+                    self.send_data_to_node(node, data)
+                else:
+                    self.send_data_to_nodes(data)
+
     def get_full_chain(self, data, node):
 
         get_ok = False
@@ -577,6 +627,24 @@ class Node(threading.Thread):
                 file.close()
                             
 
+    def get_full_blockshash_part(self, data, node):
+
+        get_ok = False
+
+        if not os.path.exists(TEMP_BLOCKSHASH_PART_PATH):
+            get_ok = True
+        else:
+            system = GetBlock()
+            if node.id == system.dowload_true_block:
+                get_ok = True
+
+        if get_ok:
+            if str(data["byte"]) == "end":
+                os.rename(LOADING_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PART_PATH)
+            else:
+                file = open(LOADING_BLOCKSHASH_PART_PATH, "ab")
+                file.write((data["byte"].encode(encoding="iso-8859-1")))
+                file.close()
 
     def get_full_accounts(self, data, node):
 
@@ -640,3 +708,4 @@ class Node(threading.Thread):
         self.send_full_chain()
         self.send_full_accounts()
         self.send_full_blockshash()
+        self.send_full_blockshash_part()

@@ -10,6 +10,7 @@ import os
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.config import TEMP_BLOCK_PATH
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
@@ -22,6 +23,7 @@ def SaveBlock(
     custom_TEMP_BLOCK_PATH=None,
     custom_TEMP_ACCOUNTS_PATH=None,
     custom_TEMP_BLOCKSHASH_PATH=None,
+    custom_TEMP_BLOCKSHASH_PART_PATH=None,
 ):
     """
     Saves the current block to the TEMP_BLOCK_PATH.
@@ -34,6 +36,10 @@ def SaveBlock(
         SaveBlockshash(
             [block.previous_hash],
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        )
+        SaveBlockshash_part(
+            [],
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         block.first_time = False
     the_TEMP_BLOCK_PATH = (
