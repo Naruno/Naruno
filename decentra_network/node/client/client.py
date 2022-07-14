@@ -37,7 +37,7 @@ class client(Thread):
                 logger.info("Received data from %s:%s: %s" % (self.host, self.port, data))
                 data = data.decode("utf-8")
                 try:
-                    data = json.loads(decoded)
+                    data = json.loads(data)
                 except json.JSONDecodeError:
                     logger.error("Error decoding JSON data: %s" % data)
                 if self.server.check_message(data):
