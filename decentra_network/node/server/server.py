@@ -119,11 +119,12 @@ class server(Thread):
 
     def check_message(self, data):
         # remove sign from data
+        sign = data["sign"]
         del data["sign"]
         message = str(data)
         return Ecdsa.verify(
                         message,
-                        Signature.fromBase64(data["sign"]),
+                        Signature.fromBase64(sign),
                         PublicKey.fromPem(data["id"]),
                     )
     

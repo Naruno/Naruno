@@ -91,7 +91,7 @@ class Test_Node(unittest.TestCase):
         self.node_1.save_messages = True
         self.node_2.save_messages = True
         result = self.node_2.send({"action": "test"})
-        print(result)
+        del result["sign"]
         time.sleep(2)
 
         self.assertEqual(len(self.node_1.messages), 1)
