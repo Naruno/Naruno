@@ -39,9 +39,9 @@ class Connection(threading.Thread):
 
         self.EOT_CHAR = 0x04.to_bytes(1, "big")
 
-    def send(self, data, encoding_type="utf-8"):
+    def send(self, data):
         json_data = json.dumps(data)
-        json_data = json_data.encode(encoding_type) + self.EOT_CHAR
+        json_data = json_data.encode("utf-8") + self.EOT_CHAR
         self.sock.sendall(json_data)
 
 
@@ -68,7 +68,7 @@ class Connection(threading.Thread):
                 while eot_pos > 0:
                     packet = buffer[:eot_pos]
                     buffer = buffer[eot_pos + 1 :]
-                    message = json.loads(packet)
+                    message = json.loads(packet.decode("utf-8"))
                     if self.save_messages:
                         self.messages.append(message)
                     self.main_node.message_from_node(self, message)
