@@ -33,7 +33,7 @@ class client(Thread):
         self.socket.settimeout(10.0)        
         while self.running:
             with contextlib.suppress(socket.timeout):
-                data = self.socket.recv(1024)
+                data = self.socket.recv(4096)
                 logger.info("Received data from %s:%s: %s" % (self.host, self.port, data))
                 data = data.decode("utf-8")
                 try:
