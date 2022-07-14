@@ -97,7 +97,7 @@ class server(Thread):
     def send(self, data):
         data["id"] = server.id
         sign = Ecdsa.sign(
-                        str(data["action"]),
+                        str(data),
                         PrivateKey.fromPem(wallet_import(0, 1)),
                     ).toBase64()
 
@@ -109,7 +109,7 @@ class server(Thread):
     def send_node(self, node, data):
         data["id"] = server.id
         sign = Ecdsa.sign(
-                        str(data["action"]),
+                        str(data),
                         PrivateKey.fromPem(wallet_import(0, 1)),
                     ).toBase64()
 
@@ -118,7 +118,9 @@ class server(Thread):
         return data
 
     def check_message(self, data):
-        message = str(data["action"])
+        # remove sign from data
+        del data["sign"]
+        message = str(data)
         return Ecdsa.verify(
                         message,
                         Signature.fromBase64(data["sign"]),
@@ -558,7 +560,7 @@ class server(Thread):
         """
 
         items = {
-            "transactionrequest": 1,
+            "action":"transactionrequest",
             "sequance_number": tx.sequance_number,
             "signature": tx.signature,
             "fromUser": tx.fromUser,
