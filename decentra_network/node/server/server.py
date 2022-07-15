@@ -71,7 +71,8 @@ class server(Thread):
         while self.running:
             with contextlib.suppress(socket.timeout):
                 conn, addr = self.sock.accept()
-                connected = any(a_client.socket == conn for a_client in self.clients)
+                connected = any(a_client.socket == conn
+                                for a_client in self.clients)
                 data = conn.recv(4096)
                 conn.send(server.id.encode("utf-8"))
                 client_id = data.decode("utf-8")
@@ -126,9 +127,8 @@ class server(Thread):
         )
 
     def connect(self, host, port):
-        connected = any(
-            a_client.host == host and a_client.port == port for a_client in self.clients
-        )
+        connected = any(a_client.host == host and a_client.port == port
+                        for a_client in self.clients)
         if not connected:
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             addr = (host, port)
@@ -183,9 +183,8 @@ class server(Thread):
         node_list = server.Server.get_connected_nodes()
 
         for element in node_list:
-            server.Server.connect(
-                node_list[element]["host"], node_list[element]["port"]
-            )
+            server.Server.connect(node_list[element]["host"],
+                                  node_list[element]["port"])
 
     @staticmethod
     def connected_node_delete(node_id):
@@ -256,7 +255,8 @@ class server(Thread):
             self.send(data)
 
     def get_candidate_block(self, data, node):
-        logger.info("Getting candidate block: {}".format(data["sequance_number"]))
+        logger.info("Getting candidate block: {}".format(
+            data["sequance_number"]))
         if GetBlock().sequance_number != data["sequance_number"]:
             logger.info("Candidate block sequance number is not correct")
             return False
@@ -391,7 +391,8 @@ class server(Thread):
                 ChangeTransactionFee(system)
 
                 system.exclude_validators = []
-                perpetualTimer(system.consensus_timer, consensus_trigger).start()
+                perpetualTimer(system.consensus_timer,
+                               consensus_trigger).start()
                 SaveBlock(system)
 
             else:
@@ -432,7 +433,8 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(LOADING_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PART_PATH)
+                os.rename(LOADING_BLOCKSHASH_PART_PATH,
+                          TEMP_BLOCKSHASH_PART_PATH)
             else:
                 file = open(LOADING_BLOCKSHASH_PART_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
