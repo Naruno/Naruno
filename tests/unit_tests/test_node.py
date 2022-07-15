@@ -76,11 +76,12 @@ class Test_Node(unittest.TestCase):
 
     def test_GetCandidateBlocks(self):
         client_2 = self.node_2.clients[0]
-        client_2.candidate_block = True
-        client_2.candidate_block_hash = False
+        value_1 = {'action': 'myblock', 'transaction': [], 'sequance_number': 0, 'id': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==', 'signature': 'MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk='}
+        client_2.candidate_block = value_1
+        client_2.candidate_block_hash = value_1
         result = GetCandidateBlocks()
-        self.assertEqual(result.candidate_blocks, [True])
-        self.assertEqual(result.candidate_block_hashes, [False])
+        self.assertEqual(result.candidate_blocks, [value_1])
+        self.assertEqual(result.candidate_block_hashes, [value_1])
 
 
     def test_send_data_all(self):

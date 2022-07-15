@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
+import json
 class candidate_block:
     """
     The candidate_block class.
@@ -26,6 +26,18 @@ class candidate_block:
         self.candidate_blocks = candidate_blocks
         self.candidate_block_hashes = candidate_block_hashes
 
-        self.candidate_blocks = list(set(self.candidate_blocks))
-        self.candidate_block_hashes = list(set(self.candidate_block_hashes))
+        #turn list items json dumps
+        for i in range(len(self.candidate_blocks)):
+            self.candidate_blocks[i] = json.dumps(self.candidate_blocks[i])
+        for i in range(len(self.candidate_block_hashes)):
+            self.candidate_block_hashes[i] = json.dumps(self.candidate_block_hashes[i])
+
+        self.candidate_blocks = list(dict.fromkeys(self.candidate_blocks))
+        self.candidate_block_hashes = list(dict.fromkeys(self.candidate_block_hashes))
+
+        #turn list items json dumps
+        for i in range(len(self.candidate_blocks)):
+            self.candidate_blocks[i] = json.loads(self.candidate_blocks[i])
+        for i in range(len(self.candidate_block_hashes)):
+            self.candidate_block_hashes[i] = json.loads(self.candidate_block_hashes[i])
 
