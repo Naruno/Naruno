@@ -5,31 +5,32 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from threading import Thread
-import socket
+import contextlib
 import json
-from hashlib import sha256
 import os
+import socket
+import time
+from hashlib import sha256
+from threading import Thread
 
-from decentra_network.blockchain.block.change_transaction_fee import (
-    ChangeTransactionFee,
-)
+from decentra_network.blockchain.block.change_transaction_fee import \
+    ChangeTransactionFee
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import CONNECTED_NODES_PATH
-from decentra_network.config import LOADING_BLOCK_PATH
-from decentra_network.config import LOADING_ACCOUNTS_PATH
-from decentra_network.config import LOADING_BLOCKSHASH_PATH
-from decentra_network.config import LOADING_BLOCKSHASH_PART_PATH
-from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.config import TEMP_BLOCK_PATH
-from decentra_network.config import TEMP_BLOCKSHASH_PATH
-from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
+from decentra_network.config import (CONNECTED_NODES_PATH,
+                                     LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     LOADING_BLOCKSHASH_PART_PATH,
+                                     LOADING_BLOCKSHASH_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PART_PATH,
+                                     TEMP_BLOCKSHASH_PATH)
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.mix.merkle_root import MerkleTree
+from decentra_network.node.client.client import client
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.check.check_transaction import CheckTransaction
+from decentra_network.transactions.check.check_transaction import \
+    CheckTransaction
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
@@ -37,9 +38,6 @@ from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
 from decentra_network.wallet.ellipticcurve.signature import Signature
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
-from decentra_network.node.client.client import client
-import time
-import contextlib
 
 logger = get_logger("NODE")
 
