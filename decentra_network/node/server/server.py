@@ -104,7 +104,7 @@ class server(Thread):
             a_client.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
 
-    def send_node(self, node, data):
+    def send_client(self, node, data):
         data["id"] = server.id
         sign = Ecdsa.sign(
                         str(data),
@@ -306,7 +306,7 @@ class server(Thread):
             if node is None:
                 self.send(data)
             else:
-                self.send_node(node, data)
+                self.send_client(node, data)
 
             SendData = file.read(1024)
 
@@ -318,7 +318,7 @@ class server(Thread):
                 if node is None:
                     self.send(data)
                 else:
-                    self.send_node(node, data)
+                    self.send_client(node, data)
 
     def send_full_accounts(self, node=None):
         file = open(TEMP_ACCOUNTS_PATH, "rb")
@@ -328,17 +328,11 @@ class server(Thread):
             data = {
                 "action":"fullaccounts",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
-                "signature":
-                Ecdsa.sign(
-                    "fullaccounts" + str(
-                        (SendData.decode(encoding="iso-8859-1"))),
-                    PrivateKey.fromPem(wallet_import(0, 1)),
-                ).toBase64(),
             }
             if node is None:
                 self.send(data)
             else:
-                self.send_node(node, data)
+                self.send_client(node, data)
 
             SendData = file.read(1024)
 
@@ -346,16 +340,12 @@ class server(Thread):
                 data = {
                     "action":"fullaccounts",
                     "byte":
-                    "end",
-                    "signature":
-                    Ecdsa.sign("fullaccounts" + "end",
-                               PrivateKey.fromPem(wallet_import(
-                                   0, 1))).toBase64(),
+                    "end"
                 }
                 if node is None:
                     self.send(data)
                 else:
-                    self.send_node(node, data)
+                    self.send_client(node, data)
 
     def send_full_blockshash(self, node=None):
         file = open(TEMP_BLOCKSHASH_PATH, "rb")
@@ -364,18 +354,12 @@ class server(Thread):
 
             data = {
                 "action":"fullblockshash",
-                "byte": (SendData.decode(encoding="iso-8859-1")),
-                "signature":
-                Ecdsa.sign(
-                    "fullblockshash" + str(
-                        (SendData.decode(encoding="iso-8859-1"))),
-                    PrivateKey.fromPem(wallet_import(0, 1)),
-                ).toBase64(),
+                "byte": (SendData.decode(encoding="iso-8859-1"))
             }
             if node is None:
                 self.send(data)
             else:
-                self.send_node(node, data)
+                self.send_client(node, data)
 
             SendData = file.read(1024)
 
@@ -383,17 +367,12 @@ class server(Thread):
                 data = {
                     "action":"fullblockshash",
                     "byte":
-                    "end",
-                    "signature":
-                    Ecdsa.sign(
-                        "fullblockshash" + "end",
-                        PrivateKey.fromPem(wallet_import(0, 1)),
-                    ).toBase64(),
+                    "end"
                 }
                 if node is None:
                     self.send(data)
                 else:
-                    self.send_node(node, data)
+                    self.send_client(node, data)
 
     def send_full_blockshash_part(self, node=None):
         file = open(TEMP_BLOCKSHASH_PART_PATH, "rb")
@@ -402,18 +381,12 @@ class server(Thread):
 
             data = {
                 "action":"fullblockshash_part",
-                "byte": (SendData.decode(encoding="iso-8859-1")),
-                "signature":
-                Ecdsa.sign(
-                    "fullblockshash_part" + str(
-                        (SendData.decode(encoding="iso-8859-1"))),
-                    PrivateKey.fromPem(wallet_import(0, 1)),
-                ).toBase64(),
+                "byte": (SendData.decode(encoding="iso-8859-1"))
             }
             if node is None:
                 self.send(data)
             else:
-                self.send_node(node, data)
+                self.send_client(node, data)
 
             SendData = file.read(1024)
 
@@ -421,17 +394,12 @@ class server(Thread):
                 data = {
                     "action":"fullblockshash_part",
                     "byte":
-                    "end",
-                    "signature":
-                    Ecdsa.sign(
-                        "fullblockshash_part" + "end",
-                        PrivateKey.fromPem(wallet_import(0, 1)),
-                    ).toBase64(),
+                    "end"
                 }
                 if node is None:
                     self.send(data)
                 else:
-                    self.send_node(node, data)
+                    self.send_client(node, data)
 
     def get_full_chain(self, data, node):
 
@@ -537,7 +505,7 @@ class server(Thread):
         items = {
             "action":"transactionrequest",
             "sequance_number": tx.sequance_number,
-            "signature": tx.signature,
+            "txsignature": tx.signature,
             "fromUser": tx.fromUser,
             "to_user": tx.toUser,
             "data": tx.data,
@@ -546,13 +514,13 @@ class server(Thread):
             "transaction_time": tx.transaction_time,
         }
         for each_node in Unl.get_as_node_type(Unl.get_unl_nodes()):
-            server.Server.send_node(each_node, items)
+            server.Server.send_client(each_node, items)
 
     def get_transaction(self, data, node):
         block = GetBlock()
         the_transaction = Transaction(
             data["sequance_number"],
-            data["signature"],
+            data["txsignature"],
             data["fromUser"],
             data["to_user"],
             data["data"],
