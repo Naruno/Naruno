@@ -44,20 +44,19 @@ import contextlib
 logger = get_logger("NODE")
 
 
-
-
 class server(Thread):
     Server = None
     id = wallet_import(0, 0)
+
     def __init__(self, host, port, save_messages=False, test=False):
-        self.__class__.Server = self      
+        self.__class__.Server = self
         Thread.__init__(self)
         self.running = True
-        
+
         self.host = host
         self.port = port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
+        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind((self.host, self.port))
         self.sock.listen(1)
 
@@ -73,7 +72,8 @@ class server(Thread):
         while self.running:
             with contextlib.suppress(socket.timeout):
                 conn, addr = self.sock.accept()
-                connected = any(a_client.socket == conn for a_client in self.clients)
+                connected = any(a_client.socket ==
+                                conn for a_client in self.clients)
                 data = conn.recv(4096)
                 conn.send(server.id.encode("utf-8"))
                 client_id = data.decode("utf-8")
@@ -91,7 +91,7 @@ class server(Thread):
 
     def stop(self):
         self.running = False
-    
+
     def send(self, data, except_client=None):
         for a_client in self.clients:
             if a_client != except_client:
@@ -101,9 +101,9 @@ class server(Thread):
     def send_client(self, node, data):
         data["id"] = server.id
         sign = Ecdsa.sign(
-                        str(data),
-                        PrivateKey.fromPem(wallet_import(0, 1)),
-                    ).toBase64()
+            str(data),
+            PrivateKey.fromPem(wallet_import(0, 1)),
+        ).toBase64()
 
         data["signature"] = sign
         node.socket.sendall(json.dumps(data).encode("utf-8"))
@@ -122,22 +122,22 @@ class server(Thread):
         message = str(data)
         data["signature"] = sign
         return Ecdsa.verify(
-                        message,
-                        Signature.fromBase64(sign),
-                        PublicKey.fromPem(data["id"]),
-                    )
-    
+            message,
+            Signature.fromBase64(sign),
+            PublicKey.fromPem(data["id"]),
+        )
+
     def connect(self, host, port):
-        connected = any(a_client.host == host and a_client.port == port for a_client in self.clients)
+        connected = any(a_client.host == host and a_client.port ==
+                        port for a_client in self.clients)
         if not connected:
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             addr = (host, port)
             conn.connect(addr)
             conn.send(server.id.encode("utf-8"))
-            client_id = conn.recv(4096).decode("utf-8")                
+            client_id = conn.recv(4096).decode("utf-8")
             if Unl.node_is_unl(client_id):
-                    self.clients.append(client(conn, addr, client_id, self))
-
+                self.clients.append(client(conn, addr, client_id, self))
 
     @staticmethod
     def get_connected_nodes():
@@ -157,8 +157,6 @@ class server(Thread):
                     the_pending_list[loaded_json["id"]] = loaded_json
 
         return the_pending_list
-
-
 
     @staticmethod
     def save_connected_node(host, port, node_id):
@@ -187,7 +185,7 @@ class server(Thread):
 
         for element in node_list:
             server.Server.connect(node_list[element]["host"],
-                                           node_list[element]["port"])
+                                  node_list[element]["port"])
 
     @staticmethod
     def connected_node_delete(node_id):
@@ -199,7 +197,6 @@ class server(Thread):
         for entry in os.scandir(CONNECTED_NODES_PATH):
             if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
-
 
     def direct_message(self, node, data):
         logger.info("Directing message: {}".format(data["action"]))
@@ -227,7 +224,6 @@ class server(Thread):
         if "myblockhash" == data["action"]:
             self.get_candidate_block_hash(data, node)
 
-
     def send_my_block(self, block):
         system = block
 
@@ -238,7 +234,6 @@ class server(Thread):
         for element in system.validating_list:
             new_list.append(element.dump_json())
             signature_list.append(element.signature)
-
 
         data = {
             "action":
@@ -264,11 +259,11 @@ class server(Thread):
                 system.sequance_number,
             }
 
-            
             self.send(data)
 
     def get_candidate_block(self, data, node):
-        logger.info("Getting candidate block: {}".format(data["sequance_number"]))
+        logger.info("Getting candidate block: {}".format(
+            data["sequance_number"]))
         if GetBlock().sequance_number != data["sequance_number"]:
             logger.info("Candidate block sequance number is not correct")
             return False
@@ -287,7 +282,7 @@ class server(Thread):
         while SendData:
 
             data = {
-                "action":"fullblock",
+                "action": "fullblock",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
             }
             if node is None:
@@ -299,8 +294,8 @@ class server(Thread):
 
             if not SendData:
                 data = {
-                    "action":"fullblock",
-                    "byte":"end",
+                    "action": "fullblock",
+                    "byte": "end",
                 }
                 if node is None:
                     self.send(data)
@@ -313,7 +308,7 @@ class server(Thread):
         while SendData:
 
             data = {
-                "action":"fullaccounts",
+                "action": "fullaccounts",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
             }
             if node is None:
@@ -325,7 +320,7 @@ class server(Thread):
 
             if not SendData:
                 data = {
-                    "action":"fullaccounts",
+                    "action": "fullaccounts",
                     "byte":
                     "end"
                 }
@@ -340,7 +335,7 @@ class server(Thread):
         while SendData:
 
             data = {
-                "action":"fullblockshash",
+                "action": "fullblockshash",
                 "byte": (SendData.decode(encoding="iso-8859-1"))
             }
             if node is None:
@@ -352,7 +347,7 @@ class server(Thread):
 
             if not SendData:
                 data = {
-                    "action":"fullblockshash",
+                    "action": "fullblockshash",
                     "byte":
                     "end"
                 }
@@ -367,7 +362,7 @@ class server(Thread):
         while SendData:
 
             data = {
-                "action":"fullblockshash_part",
+                "action": "fullblockshash_part",
                 "byte": (SendData.decode(encoding="iso-8859-1"))
             }
             if node is None:
@@ -379,7 +374,7 @@ class server(Thread):
 
             if not SendData:
                 data = {
-                    "action":"fullblockshash_part",
+                    "action": "fullblockshash_part",
                     "byte":
                     "end"
                 }
@@ -443,7 +438,6 @@ class server(Thread):
                 file = open(LOADING_BLOCKSHASH_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
-                            
 
     def get_full_blockshash_part(self, data, node):
 
@@ -458,7 +452,8 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(LOADING_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PART_PATH)
+                os.rename(LOADING_BLOCKSHASH_PART_PATH,
+                          TEMP_BLOCKSHASH_PART_PATH)
             else:
                 file = open(LOADING_BLOCKSHASH_PART_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
@@ -490,7 +485,7 @@ class server(Thread):
         """
 
         data = {
-            "action":"transactionrequest",
+            "action": "transactionrequest",
             "sequance_number": tx.sequance_number,
             "txsignature": tx.signature,
             "fromUser": tx.fromUser,
