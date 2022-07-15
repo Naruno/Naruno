@@ -81,8 +81,8 @@ class server(Thread):
                 if not connected:
                     logger.info(
                         f"NODE:{self.host}:{self.port} New connection: {addr}")
-                    conn.sendall(server.id.encode("utf-8"))
-                    data = conn.recv(4096)
+                    conn.send(server.id.encode("utf-8"))
+                    data = conn.recv(1024)
                     client_id = data.decode("utf-8")
                     if Unl.node_is_unl(client_id):
                         self.clients.append(client(conn, addr, client_id,
@@ -160,18 +160,13 @@ class server(Thread):
         connected = self.check_connected(host=host, port=port)
         if not connected:
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            conn.settimeout(10.0)
             addr = (host, port)
             conn.connect(addr)
-            conn.sendall(server.id.encode("utf-8"))
-            try:
-                client_id = conn.recv(4096).decode("utf-8")
-                if Unl.node_is_unl(client_id):
-                    self.clients.append(client(conn, addr, client_id, self))
-                    return True
-            except socket.timeout:
-                logger.info(
-                    f"NODE:{self.host}:{self.port} Connection timeout: {addr}")
+            conn.send(server.id.encode("utf-8"))
+            client_id = conn.recv(1024).decode("utf-8")
+            if Unl.node_is_unl(client_id):
+                self.clients.append(client(conn, addr, client_id, self))
+                return True
 
     @staticmethod
     def get_connected_nodes():
