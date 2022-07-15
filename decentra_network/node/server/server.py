@@ -82,7 +82,7 @@ class server(Thread):
                     logger.info(
                         f"NODE:{self.host}:{self.port} New connection: {addr}")
                     data = conn.recv(1024)
-                    conn.send(server.id.encode("utf-8"))                    
+                    conn.send(server.id.encode("utf-8"))
                     client_id = data.decode("utf-8")
                     if Unl.node_is_unl(client_id):
                         self.clients.append(client(conn, addr, client_id,
