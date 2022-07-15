@@ -88,7 +88,6 @@ class server(Thread):
                         self.clients.append(client(conn, addr, client_id,
                                                    self))
                         server.save_connected_node(addr[0], addr[1], client_id)
-                        return True
                 else:
                     logger.info(
                         f"NODE:{self.host}:{self.port}: Already connected {addr}"

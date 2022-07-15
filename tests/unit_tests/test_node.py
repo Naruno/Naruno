@@ -29,8 +29,11 @@ class Test_Node(unittest.TestCase):
         Unl.save_new_unl_node(cls.node_2.id)
         time.sleep(2)
         cls.node_0.connect("127.0.0.1", 10001)
-        cls.node_1.connect("127.0.0.1", 10002)
-        cls.node_2.connect("127.0.0.1", 10000)
+        time.sleep(15)
+        cls.node_0.connect("127.0.0.1", 10002)
+        time.sleep(15)
+        cls.node_2.connect("127.0.0.1", 10001)
+        time.sleep(15)
 
         print(cls.node_0.clients)
         print(cls.node_1.clients)
