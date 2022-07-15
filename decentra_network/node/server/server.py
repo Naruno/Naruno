@@ -4,7 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import contextlib
 import json
 import os
@@ -17,13 +16,15 @@ from decentra_network.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import (CONNECTED_NODES_PATH,
-                                     LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
-                                     LOADING_BLOCKSHASH_PART_PATH,
-                                     LOADING_BLOCKSHASH_PATH,
-                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-                                     TEMP_BLOCKSHASH_PART_PATH,
-                                     TEMP_BLOCKSHASH_PATH)
+from decentra_network.config import CONNECTED_NODES_PATH
+from decentra_network.config import LOADING_ACCOUNTS_PATH
+from decentra_network.config import LOADING_BLOCK_PATH
+from decentra_network.config import LOADING_BLOCKSHASH_PART_PATH
+from decentra_network.config import LOADING_BLOCKSHASH_PATH
+from decentra_network.config import TEMP_ACCOUNTS_PATH
+from decentra_network.config import TEMP_BLOCK_PATH
+from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
+from decentra_network.config import TEMP_BLOCKSHASH_PATH
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.mix.merkle_root import MerkleTree
