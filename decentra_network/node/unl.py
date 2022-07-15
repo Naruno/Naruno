@@ -14,19 +14,20 @@ from decentra_network.lib.config_system import get_config
 
 
 class Unl:
+
     @staticmethod
-    def save_new_unl_node(id):
+    def save_new_unl_node(node_id):
         """
         Saves the new unl.
         """
 
         nodes_list = Unl.get_unl_nodes()
 
-        already_in_list = any(element == id for element in nodes_list)
+        already_in_list = any(element == node_id for element in nodes_list)
         if not already_in_list:
 
-            nodes_list[id] = {}
-            nodes_list[id]["date"] = time.time()
+            nodes_list[node_id] = {}
+            nodes_list[node_id]["date"] = time.time()
 
             os.chdir(get_config()["main_folder"])
             with open(UNL_NODES_PATH, "w") as unl_nodes_file:
@@ -52,6 +53,7 @@ class Unl:
         """
 
         from decentra_network.node.server.server import server
+
         nodes = [] if server.Server is None else server.Server.clients
         return nodes
 
