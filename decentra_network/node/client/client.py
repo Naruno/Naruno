@@ -16,6 +16,7 @@ from decentra_network.lib.log import get_logger
 
 logger = get_logger("NODE")
 
+
 class client(Thread):
     def __init__(self, socket, address, node_id, server, test=False):
         Thread.__init__(self)
@@ -36,7 +37,8 @@ class client(Thread):
         while self.running:
             with contextlib.suppress(socket.timeout):
                 data = self.socket.recv(4096)
-                logger.info(f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}")
+                logger.info(
+                    f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}")
                 data = data.decode("utf-8")
                 try:
                     data = json.loads(data)
@@ -46,9 +48,7 @@ class client(Thread):
                     for i in splited_data:
                         self.server.get_message(self, json.loads(i))
 
-
             time.sleep(0.01)
-
 
     def stop(self):
         self.running = False

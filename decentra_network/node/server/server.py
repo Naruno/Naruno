@@ -73,23 +73,25 @@ class server(Thread):
                 conn, addr = self.sock.accept()
                 connected = False
                 if not connected:
-                    logger.info(f"NODE:{self.host}:{self.port} New connection: {addr}")
+                    logger.info(
+                        f"NODE:{self.host}:{self.port} New connection: {addr}")
                     data = conn.recv(4096)
                     conn.send(server.id.encode("utf-8"))
                     client_id = data.decode("utf-8")
                     if Unl.node_is_unl(client_id):
-                        self.clients.append(client(conn, addr, client_id, self))
+                        self.clients.append(
+                            client(conn, addr, client_id, self))
                         server.save_connected_node(addr[0], addr[1], client_id)
                         return True
                 else:
-                    logger.info(f"NODE:{self.host}:{self.port}: Already connected {addr}")
+                    logger.info(
+                        f"NODE:{self.host}:{self.port}: Already connected {addr}")
             time.sleep(0.01)
-
 
     def stop(self):
         self.running = False
-        socket.socket(socket.AF_INET, 
-                    socket.SOCK_STREAM).connect( (self.host, self.port))
+        socket.socket(socket.AF_INET,
+                      socket.SOCK_STREAM).connect((self.host, self.port))
         for c in self.clients:
             c.stop()
         time.sleep(1)
@@ -110,7 +112,8 @@ class server(Thread):
     def send(self, data, except_client=None):
         data = self.prepare_message(data)
         logger.info(f"NODE:{self.host}:{self.port} Send: {data}")
-        logger.info(f"NODE:{self.host}:{self.port} Send to: {[[client.host, client.port] for client in self.clients]}")
+        logger.info(
+            f"NODE:{self.host}:{self.port} Send to: {[[client.host, client.port] for client in self.clients]}")
         for a_client in self.clients:
             if a_client != except_client:
                 self.send_client(a_client, data, ready_to_send=True)
@@ -129,7 +132,8 @@ class server(Thread):
                 self.messages.append(data)
             self.direct_message(client, data)
         else:
-            logger.info(f"NODE:{self.host}:{self.port} Message not valid: {data}")
+            logger.info(
+                f"NODE:{self.host}:{self.port} Message not valid: {data}")
 
     def check_message(self, data):
         # remove sign from data
@@ -186,7 +190,8 @@ class server(Thread):
         node_list["host"] = host
         node_list["port"] = port
 
-        node_id = sha256((node_id+host+str(port)).encode("utf-8")).hexdigest()
+        node_id = sha256((node_id + host + str(port)
+                          ).encode("utf-8")).hexdigest()
         file_name = CONNECTED_NODES_PATH + f"{node_id}.json"
         os.chdir(get_config()["main_folder"])
         with open(file_name, "w") as connected_node_file:
@@ -211,7 +216,8 @@ class server(Thread):
         """
         print(node)
         os.chdir(get_config()["main_folder"])
-        node_id = sha256((node["id"]+node["host"]+str(node["port"])).encode("utf-8")).hexdigest()
+        node_id = sha256((node["id"] + node["host"] +
+                         str(node["port"])).encode("utf-8")).hexdigest()
         for entry in os.scandir(CONNECTED_NODES_PATH):
             if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
