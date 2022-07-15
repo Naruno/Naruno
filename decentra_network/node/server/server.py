@@ -233,7 +233,7 @@ class server(Thread):
             self.get_candidate_block_hash(data, node)
 
 
-    def send_my_block(self, block, nodes):
+    def send_my_block(self, block):
         system = block
 
         new_list = []
@@ -253,11 +253,9 @@ class server(Thread):
             "sequance_number":
             system.sequance_number,
         }
+        self.send(data)
 
-        for each_node in nodes:
-            self.send_node(each_node, data)
-
-    def send_my_block_hash(self, block, nodes):
+    def send_my_block_hash(self, block):
         system = block
 
         if system.raund_1 and not system.raund_2:
@@ -271,8 +269,8 @@ class server(Thread):
                 system.sequance_number,
             }
 
-            for each_node in nodes:
-                self.send_node(each_node, data)
+            
+            self.send(data)
 
     def get_candidate_block(self, data, node):
         logger.info("Getting candidate block: {}".format(data["sequance_number"]))

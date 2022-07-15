@@ -33,7 +33,7 @@ def consensus_round_2(block):
 
     unl_nodes = Unl.get_unl_nodes()
     logger.info("Our block hash is sending to the unl nodes")
-    server.Server.send_my_block_hash(block, Unl.get_as_node_type(unl_nodes))
+    server.Server.send_my_block_hash(block)
 
     candidate_class = GetCandidateBlocks()
 
