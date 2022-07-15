@@ -99,7 +99,7 @@ class server(Thread):
                         PrivateKey.fromPem(wallet_import(0, 1)),
                     ).toBase64()
 
-        data["sign"] = sign
+        data["signature"] = sign
         for a_client in self.clients:
             a_client.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
@@ -111,7 +111,7 @@ class server(Thread):
                         PrivateKey.fromPem(wallet_import(0, 1)),
                     ).toBase64()
 
-        data["sign"] = sign
+        data["signature"] = sign
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
 
@@ -123,8 +123,8 @@ class server(Thread):
 
     def check_message(self, data):
         # remove sign from data
-        sign = data["sign"]
-        del data["sign"]
+        sign = data["signature"]
+        del data["signature"]
         message = str(data)
         data["signature"] = sign
         return Ecdsa.verify(
