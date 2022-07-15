@@ -93,16 +93,9 @@ class server(Thread):
         self.running = False
     
     def send(self, data, except_client=None):
-        data["id"] = server.id
-        sign = Ecdsa.sign(
-                        str(data),
-                        PrivateKey.fromPem(wallet_import(0, 1)),
-                    ).toBase64()
-
-        data["signature"] = sign
         for a_client in self.clients:
             if a_client != except_client:
-                a_client.socket.sendall(json.dumps(data).encode("utf-8"))
+                self.send_client(a_client, data)
         return data
 
     def send_client(self, node, data):
