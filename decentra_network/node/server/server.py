@@ -81,8 +81,8 @@ class server(Thread):
                 if not connected:
                     logger.info(
                         f"NODE:{self.host}:{self.port} New connection: {addr}")
-                    data = conn.recv(4096)
                     conn.sendall(server.id.encode("utf-8"))
+                    data = conn.recv(4096)
                     client_id = data.decode("utf-8")
                     if Unl.node_is_unl(client_id):
                         self.clients.append(client(conn, addr, client_id,
@@ -93,6 +93,7 @@ class server(Thread):
                     logger.info(
                         f"NODE:{self.host}:{self.port}: Already connected {addr}"
                     )
+                    conn.close()
             time.sleep(0.01)
 
     def stop(self):
