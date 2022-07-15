@@ -41,3 +41,10 @@ class candidate_block:
         for i in range(len(self.candidate_block_hashes)):
             self.candidate_block_hashes[i] = json.loads(self.candidate_block_hashes[i])
 
+
+        for block in self.candidate_blocks:
+            temp_tx = [
+                Transaction.load_json(element)
+                for element in block["transaction"]
+            ]
+            block["transaction"] = temp_tx

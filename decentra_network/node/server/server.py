@@ -280,13 +280,6 @@ class server(Thread):
             logger.info("Candidate block sequance number is not correct")
             return False
 
-        temp_tx = [
-            Transaction.load_json(element)
-            for element in data["transaction"]
-        ]
-
-        data["transaction"] = temp_tx
-
         node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node):
