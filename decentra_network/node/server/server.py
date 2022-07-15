@@ -92,7 +92,7 @@ class server(Thread):
     def stop(self):
         self.running = False
     
-    def send(self, data):
+    def send(self, data, except_client=None):
         data["id"] = server.id
         sign = Ecdsa.sign(
                         str(data),
@@ -101,7 +101,8 @@ class server(Thread):
 
         data["signature"] = sign
         for a_client in self.clients:
-            a_client.socket.sendall(json.dumps(data).encode("utf-8"))
+            if a_client != except_client:
+                a_client.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
 
     def send_client(self, node, data):
@@ -497,12 +498,12 @@ class server(Thread):
                 file.close()
 
     @staticmethod
-    def send_transaction(tx):
+    def send_transaction(tx, except_client=None):
         """
         Sends the given transaction to UNL nodes.
         """
 
-        items = {
+        data = {
             "action":"transactionrequest",
             "sequance_number": tx.sequance_number,
             "txsignature": tx.signature,
@@ -513,8 +514,7 @@ class server(Thread):
             "transaction_fee": tx.transaction_fee,
             "transaction_time": tx.transaction_time,
         }
-        for each_node in Unl.get_as_node_type(Unl.get_unl_nodes()):
-            server.Server.send_client(each_node, items)
+        server.Server.send(data, except_client=except_client)
 
     def get_transaction(self, data, node):
         block = GetBlock()
@@ -529,7 +529,7 @@ class server(Thread):
             data["transaction_time"],
         )
         if GetTransaction(block, the_transaction):
-            server.send_transaction(the_transaction)
+            server.send_transaction(the_transaction, except_client=node)
             SaveBlock(block)
 
     def send_block_to_other_nodes(self, node=None):
