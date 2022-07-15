@@ -12,8 +12,9 @@ import time
 from hashlib import sha256
 from threading import Thread
 
-from decentra_network.blockchain.block.change_transaction_fee import \
-    ChangeTransactionFee
+from decentra_network.blockchain.block.change_transaction_fee import (
+    ChangeTransactionFee,
+)
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import CONNECTED_NODES_PATH
@@ -30,8 +31,7 @@ from decentra_network.lib.log import get_logger
 from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.node.client.client import client
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.check.check_transaction import \
-    CheckTransaction
+from decentra_network.transactions.check.check_transaction import CheckTransaction
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
@@ -79,14 +79,12 @@ class server(Thread):
                 conn, addr = self.sock.accept()
                 connected = self.check_connected(host=addr[0], port=addr[1])
                 if not connected:
-                    logger.info(
-                        f"NODE:{self.host}:{self.port} New connection: {addr}")
+                    logger.info(f"NODE:{self.host}:{self.port} New connection: {addr}")
                     data = conn.recv(4096)
                     conn.sendall(server.id.encode("utf-8"))
                     client_id = data.decode("utf-8")
                     if Unl.node_is_unl(client_id):
-                        self.clients.append(client(conn, addr, client_id,
-                                                   self))
+                        self.clients.append(client(conn, addr, client_id, self))
                         server.save_connected_node(addr[0], addr[1], client_id)
                         return True
                 else:
@@ -98,7 +96,8 @@ class server(Thread):
     def stop(self):
         self.running = False
         socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(
-            (self.host, self.port))
+            (self.host, self.port)
+        )
         for c in self.clients:
             c.stop()
         time.sleep(1)
@@ -140,8 +139,7 @@ class server(Thread):
                 self.messages.append(data)
             self.direct_message(client, data)
         else:
-            logger.info(
-                f"NODE:{self.host}:{self.port} Message not valid: {data}")
+            logger.info(f"NODE:{self.host}:{self.port} Message not valid: {data}")
 
     def check_message(self, data):
         # remove sign from data
@@ -169,9 +167,7 @@ class server(Thread):
                     self.clients.append(client(conn, addr, client_id, self))
                     return True
             except socket.timeout:
-                logger.info(
-                    f"NODE:{self.host}:{self.port} Connection timeout: {addr}"
-                )
+                logger.info(f"NODE:{self.host}:{self.port} Connection timeout: {addr}")
 
     @staticmethod
     def get_connected_nodes():
@@ -203,8 +199,7 @@ class server(Thread):
         node_list["host"] = host
         node_list["port"] = port
 
-        node_id = sha256(
-            (node_id + host + str(port)).encode("utf-8")).hexdigest()
+        node_id = sha256((node_id + host + str(port)).encode("utf-8")).hexdigest()
         file_name = CONNECTED_NODES_PATH + f"{node_id}.json"
         os.chdir(get_config()["main_folder"])
         with open(file_name, "w") as connected_node_file:
@@ -219,8 +214,9 @@ class server(Thread):
         node_list = server.Server.get_connected_nodes()
 
         for element in node_list:
-            server.Server.connect(node_list[element]["host"],
-                                  node_list[element]["port"])
+            server.Server.connect(
+                node_list[element]["host"], node_list[element]["port"]
+            )
 
     @staticmethod
     def connected_node_delete(node):
@@ -229,8 +225,9 @@ class server(Thread):
         """
         print(node)
         os.chdir(get_config()["main_folder"])
-        node_id = sha256((node["id"] + node["host"] +
-                          str(node["port"])).encode("utf-8")).hexdigest()
+        node_id = sha256(
+            (node["id"] + node["host"] + str(node["port"])).encode("utf-8")
+        ).hexdigest()
         for entry in os.scandir(CONNECTED_NODES_PATH):
             if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
@@ -293,8 +290,7 @@ class server(Thread):
             self.send(data)
 
     def get_candidate_block(self, data, node):
-        logger.info("Getting candidate block: {}".format(
-            data["sequance_number"]))
+        logger.info("Getting candidate block: {}".format(data["sequance_number"]))
         if GetBlock().sequance_number != data["sequance_number"]:
             logger.info("Candidate block sequance number is not correct")
             return False
@@ -429,8 +425,7 @@ class server(Thread):
                 ChangeTransactionFee(system)
 
                 system.exclude_validators = []
-                perpetualTimer(system.consensus_timer,
-                               consensus_trigger).start()
+                perpetualTimer(system.consensus_timer, consensus_trigger).start()
                 SaveBlock(system)
 
             else:
@@ -471,8 +466,7 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(LOADING_BLOCKSHASH_PART_PATH,
-                          TEMP_BLOCKSHASH_PART_PATH)
+                os.rename(LOADING_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PART_PATH)
             else:
                 file = open(LOADING_BLOCKSHASH_PART_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
