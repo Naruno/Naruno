@@ -70,8 +70,8 @@ class Test_Node(unittest.TestCase):
                 for unl_element in temp_unl_node_list:
                     if unl_element == self.node_1.id or unl_element == self.node_2.id:
                         for node_element_of_unl in temp_get_as_node_type:
-                            if (self.node_0.host == node_element_of_unl.host
-                                    and self.node_0.port
+                            if (self.node_1.host == node_element_of_unl.host
+                                    and self.node_1.port
                                     == node_element_of_unl.port):
                                 get_as_node = True
                         in_unl_list = True
