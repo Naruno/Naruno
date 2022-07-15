@@ -67,7 +67,7 @@ class server(Thread):
         self.start()
 
     def run(self):
-        self.sock.settimeout(5.0)
+        self.sock.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
                 conn, addr = self.sock.accept()
@@ -153,7 +153,7 @@ class server(Thread):
         connected = False
         if not connected:
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            conn.settimeout(5.0)
+            conn.settimeout(10.0)
             addr = (host, port)
             conn.connect(addr)
             conn.send(server.id.encode("utf-8"))
