@@ -157,7 +157,7 @@ class Decentra_Network_Local:
                 for i_n in range(self.number_of_nodes):
                     if i != i_n:
                         urllib.request.urlopen(
-                            f"http://localhost:{8100 + i + 1}/node/connect/localhost/{8010 + i_n + 1}"
+                            f"http://localhost:{8100 + i + 1}/node/connect/0.0.0.0/{8010 + i_n + 1}"
                         )
                         time.sleep(1)
         else:
@@ -166,7 +166,7 @@ class Decentra_Network_Local:
                     for i_n in circle:
                         if i != i_n:
                             urllib.request.urlopen(
-                                f"http://localhost:{8100 + i + 1}/node/connect/localhost/{8010 + i_n + 1}"
+                                f"http://localhost:{8100 + i + 1}/node/connect/0.0.0.0/{8010 + i_n + 1}"
                             )
                             time.sleep(1)
 
