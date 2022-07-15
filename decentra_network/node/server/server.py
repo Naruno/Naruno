@@ -11,8 +11,9 @@ import json
 from hashlib import sha256
 import os
 
-from decentra_network.blockchain.block.change_transaction_fee import \
-    ChangeTransactionFee
+from decentra_network.blockchain.block.change_transaction_fee import (
+    ChangeTransactionFee,
+)
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import CONNECTED_NODES_PATH
@@ -28,8 +29,7 @@ from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.check.check_transaction import \
-    CheckTransaction
+from decentra_network.transactions.check.check_transaction import CheckTransaction
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
@@ -72,8 +72,7 @@ class server(Thread):
         while self.running:
             with contextlib.suppress(socket.timeout):
                 conn, addr = self.sock.accept()
-                connected = any(a_client.socket ==
-                                conn for a_client in self.clients)
+                connected = any(a_client.socket == conn for a_client in self.clients)
                 data = conn.recv(4096)
                 conn.send(server.id.encode("utf-8"))
                 client_id = data.decode("utf-8")
@@ -128,8 +127,9 @@ class server(Thread):
         )
 
     def connect(self, host, port):
-        connected = any(a_client.host == host and a_client.port ==
-                        port for a_client in self.clients)
+        connected = any(
+            a_client.host == host and a_client.port == port for a_client in self.clients
+        )
         if not connected:
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             addr = (host, port)
@@ -184,8 +184,9 @@ class server(Thread):
         node_list = server.Server.get_connected_nodes()
 
         for element in node_list:
-            server.Server.connect(node_list[element]["host"],
-                                  node_list[element]["port"])
+            server.Server.connect(
+                node_list[element]["host"], node_list[element]["port"]
+            )
 
     @staticmethod
     def connected_node_delete(node_id):
@@ -236,12 +237,9 @@ class server(Thread):
             signature_list.append(element.signature)
 
         data = {
-            "action":
-            "myblock",
-            "transaction":
-            new_list,
-            "sequance_number":
-            system.sequance_number,
+            "action": "myblock",
+            "transaction": new_list,
+            "sequance_number": system.sequance_number,
         }
         self.send(data)
 
@@ -251,19 +249,15 @@ class server(Thread):
         if system.raund_1 and not system.raund_2:
 
             data = {
-                "action":
-                "myblockhash",
-                "hash":
-                system.hash,
-                "sequance_number":
-                system.sequance_number,
+                "action": "myblockhash",
+                "hash": system.hash,
+                "sequance_number": system.sequance_number,
             }
 
             self.send(data)
 
     def get_candidate_block(self, data, node):
-        logger.info("Getting candidate block: {}".format(
-            data["sequance_number"]))
+        logger.info("Getting candidate block: {}".format(data["sequance_number"]))
         if GetBlock().sequance_number != data["sequance_number"]:
             logger.info("Candidate block sequance number is not correct")
             return False
@@ -319,11 +313,7 @@ class server(Thread):
             SendData = file.read(1024)
 
             if not SendData:
-                data = {
-                    "action": "fullaccounts",
-                    "byte":
-                    "end"
-                }
+                data = {"action": "fullaccounts", "byte": "end"}
                 if node is None:
                     self.send(data)
                 else:
@@ -336,7 +326,7 @@ class server(Thread):
 
             data = {
                 "action": "fullblockshash",
-                "byte": (SendData.decode(encoding="iso-8859-1"))
+                "byte": (SendData.decode(encoding="iso-8859-1")),
             }
             if node is None:
                 self.send(data)
@@ -346,11 +336,7 @@ class server(Thread):
             SendData = file.read(1024)
 
             if not SendData:
-                data = {
-                    "action": "fullblockshash",
-                    "byte":
-                    "end"
-                }
+                data = {"action": "fullblockshash", "byte": "end"}
                 if node is None:
                     self.send(data)
                 else:
@@ -363,7 +349,7 @@ class server(Thread):
 
             data = {
                 "action": "fullblockshash_part",
-                "byte": (SendData.decode(encoding="iso-8859-1"))
+                "byte": (SendData.decode(encoding="iso-8859-1")),
             }
             if node is None:
                 self.send(data)
@@ -373,11 +359,7 @@ class server(Thread):
             SendData = file.read(1024)
 
             if not SendData:
-                data = {
-                    "action": "fullblockshash_part",
-                    "byte":
-                    "end"
-                }
+                data = {"action": "fullblockshash_part", "byte": "end"}
                 if node is None:
                     self.send(data)
                 else:
@@ -410,8 +392,7 @@ class server(Thread):
                 ChangeTransactionFee(system)
 
                 system.exclude_validators = []
-                perpetualTimer(system.consensus_timer,
-                               consensus_trigger).start()
+                perpetualTimer(system.consensus_timer, consensus_trigger).start()
                 SaveBlock(system)
 
             else:
@@ -452,8 +433,7 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(LOADING_BLOCKSHASH_PART_PATH,
-                          TEMP_BLOCKSHASH_PART_PATH)
+                os.rename(LOADING_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PART_PATH)
             else:
                 file = open(LOADING_BLOCKSHASH_PART_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
