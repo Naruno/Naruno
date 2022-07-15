@@ -153,7 +153,6 @@ class server(Thread):
         connected = False
         if not connected:
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            conn.settimeout(10.0)
             addr = (host, port)
             conn.connect(addr)
             conn.send(server.id.encode("utf-8"))
