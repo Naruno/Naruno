@@ -66,12 +66,18 @@ class server(Thread):
 
         self.start()
 
+    def check_connected(self, host, port):
+        for a_client in self.clients:
+            if a_client.host == host and a_client.port == port:
+                return True
+        return False
+
     def run(self):
         self.sock.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
                 conn, addr = self.sock.accept()
-                connected = False
+                connected = self.check_connected(host=addr[0], port=addr[1])
                 if not connected:
                     logger.info(
                         f"NODE:{self.host}:{self.port} New connection: {addr}")
@@ -114,7 +120,7 @@ class server(Thread):
         data = self.prepare_message(data)
         logger.info(f"NODE:{self.host}:{self.port} Send: {data}")
         logger.info(
-            f"NODE:{self.host}:{self.port} Send to: {[[client.host, client.port] for client in self.clients]}"
+            f"NODE:{self.host}:{self.port} Send to: {[[a_client.host, a_client.port] for a_client in self.clients]}"
         )
         for a_client in self.clients:
             if a_client != except_client:
@@ -150,7 +156,7 @@ class server(Thread):
         )
 
     def connect(self, host, port):
-        connected = False
+        connected = self.check_connected(host=host, port=port)
         if not connected:
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             addr = (host, port)
