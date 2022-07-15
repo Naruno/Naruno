@@ -126,6 +126,7 @@ class server(Thread):
         sign = data["sign"]
         del data["sign"]
         message = str(data)
+        data["signature"] = sign
         return Ecdsa.verify(
                         message,
                         Signature.fromBase64(sign),
