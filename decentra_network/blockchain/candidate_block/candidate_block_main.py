@@ -25,3 +25,7 @@ class candidate_block:
             candidate_block_hashes = []
         self.candidate_blocks = candidate_blocks
         self.candidate_block_hashes = candidate_block_hashes
+
+        self.candidate_blocks = list(set(self.candidate_blocks))
+        self.candidate_block_hashes = list(set(self.candidate_block_hashes))
+
