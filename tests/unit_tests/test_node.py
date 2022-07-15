@@ -12,8 +12,8 @@ import copy
 import time
 import unittest
 
-from decentra_network.node.server.server import server
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
+from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 
 

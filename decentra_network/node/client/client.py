@@ -5,13 +5,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from posixpath import split
-from threading import Thread
+import contextlib
+import json
+import re
 import socket
 import time
-import json
-import contextlib
-import re
+from posixpath import split
+from threading import Thread
+
 from decentra_network.lib.log import get_logger
 
 logger = get_logger("NODE")
