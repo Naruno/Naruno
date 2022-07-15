@@ -14,7 +14,6 @@ from decentra_network.lib.config_system import get_config
 
 
 class Unl:
-
     @staticmethod
     def save_new_unl_node(node_id):
         """
