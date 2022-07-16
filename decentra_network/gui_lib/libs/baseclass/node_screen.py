@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+
 from kivy.core.clipboard import Clipboard
 from kivymd.toast import toast
 from kivymd.uix.button import MDFlatButton
@@ -18,7 +19,8 @@ from decentra_network.consensus.consensus_main import consensus_trigger
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
-from decentra_network.node.get_block_from_other_node import GetBlockFromOtherNode
+from decentra_network.node.get_block_from_other_node import \
+    GetBlockFromOtherNode
 from decentra_network.node.server.server import server
 
 

@@ -5,10 +5,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import argparse
-from flask import Flask, jsonify, request
-from waitress import serve
 import os
 import sys
+
+from flask import Flask, jsonify, request
+from waitress import serve
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -21,24 +22,22 @@ from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import debug_mode
-from decentra_network.lib.settings_system import test_mode
-from decentra_network.lib.settings_system import the_settings
+from decentra_network.lib.settings_system import (debug_mode, test_mode,
+                                                  the_settings)
 from decentra_network.lib.status import Status
-from decentra_network.node.get_block_from_other_node import GetBlockFromOtherNode
+from decentra_network.node.get_block_from_other_node import \
+    GetBlockFromOtherNode
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from decentra_network.transactions.send import send
 from decentra_network.wallet.delete_current_wallet import delete_current_wallet
-from decentra_network.wallet.print_wallets import print_wallets
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.print_wallets import print_wallets
 from decentra_network.wallet.wallet_selector import wallet_selector
 
 logger = get_logger("API")
