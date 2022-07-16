@@ -203,7 +203,7 @@ def menu():
                 SaveBlock(the_block)
                 server.Server.send_block_to_other_nodes()
                 logger.info("Consensus timer is started")
-                perpetualTimer(the_block.consensus_timer, consensus_trigger).start()
+                perpetualTimer(the_block.consensus_timer, consensus_trigger)
             else:
                 GetBlockFromOtherNode()
 

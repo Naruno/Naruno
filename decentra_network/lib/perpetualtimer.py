@@ -24,6 +24,9 @@ class perpetualTimer:
         self.hFunction = hFunction
         self.thread = Timer(self.t, self.handle_function)
 
+        if t != 0:
+            self.start()
+
     def handle_function(self):
         """
         Runs the function.
