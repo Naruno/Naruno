@@ -4,8 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 from threading import Timer
 
 
@@ -23,6 +21,9 @@ class perpetualTimer:
         self.t = t
         self.hFunction = hFunction
         self.thread = Timer(self.t, self.handle_function)
+
+        if t != 0:
+            self.start()
 
     def handle_function(self):
         """
