@@ -54,6 +54,9 @@ class server(Thread):
         save_messages=False,
         test=False,
         custom_TEMP_BLOCK_PATH=None,
+        custom_TEMP_ACCOUNTS_PATH=None,
+        custom_TEMP_BLOCKSHASH_PATH=None,
+        custom_TEMP_BLOCKSHASH_PART_PATH=None,
         custom_LOADING_BLOCK_PATH=None,
     ):
         self.__class__.Server = self
@@ -75,6 +78,9 @@ class server(Thread):
         self.TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH
                                 if custom_TEMP_BLOCK_PATH is None else
                                 custom_TEMP_BLOCK_PATH)
+        self.TEMP_ACCOUNTS_PATH = TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH is None else TEMP_ACCOUNTS_PATH
+        self.TEMP_BLOCKSHASH_PATH = TEMP_BLOCKSHASH_PATH if custom_TEMP_BLOCKSHASH_PATH is None else TEMP_BLOCKSHASH_PATH
+        self.TEMP_BLOCKSHASH_PART_PATH = TEMP_BLOCKSHASH_PART_PATH if custom_TEMP_BLOCKSHASH_PART_PATH is None else TEMP_BLOCKSHASH_PART_PATH
         self.LOADING_BLOCK_PATH = (LOADING_BLOCK_PATH
                                    if custom_LOADING_BLOCK_PATH is None else
                                    custom_LOADING_BLOCK_PATH)
@@ -446,7 +452,13 @@ class server(Thread):
 
                 system.exclude_validators = []
                 perpetualTimer(system.consensus_timer, consensus_trigger)
-                SaveBlock(system, system.TEMP_BLOCK_PATH)
+                SaveBlock(
+                    system, 
+                    custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
+                    custom_TEMP_ACCOUNTS_PATH=self.TEMP_ACCOUNTS_PATH,
+                    custom_TEMP_BLOCKSHASH_PATH=self.TEMP_BLOCKSHASH_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=self.TEMP_BLOCKSHASH_PART_PATH,
+                )
 
             else:
                 file = open(self.LOADING_BLOCK_PATH, "ab")
