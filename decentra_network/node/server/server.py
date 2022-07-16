@@ -47,14 +47,14 @@ class server(Thread):
     Server = None
     id = wallet_import(0, 0)
 
-    def __init__(self, 
-        host, 
-        port, 
-        save_messages=False, 
-        test=False,
-        custom_TEMP_BLOCK_PATH=None,
-        custom_LOADING_BLOCK_PATH=None
-    ):
+    def __init__(self,
+                 host,
+                 port,
+                 save_messages=False,
+                 test=False,
+                 custom_TEMP_BLOCK_PATH=None,
+                 custom_LOADING_BLOCK_PATH=None
+                 ):
         self.__class__.Server = self
         Thread.__init__(self)
         self.running = True
