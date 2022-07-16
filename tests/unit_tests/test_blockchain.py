@@ -285,11 +285,14 @@ class Test_Blockchain(unittest.TestCase):
             "db/test_SaveBlock_GetBlock_first_time_TEMP_ACCOUNTS_PATH.json")
         custom_TEMP_BLOCKSHASH_PATH = (
             "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")            
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
         the_accounts = GetAccounts(
@@ -314,11 +317,14 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = (
             "db/test_SaveBlock_GetBlock_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")                    
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
         block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
@@ -446,13 +452,15 @@ class Test_Blockchain(unittest.TestCase):
             "db/test_CreateBlock_from_zero_TEMP_ACCOUNTS_PATH.json")
         custom_TEMP_BLOCKSHASH_PATH = (
             "db/test_CreateBlock_from_zero_TEMP_BLOCKSHASH_PATH.json")
-
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")  
         block = CreateBlock(custom_TEMP_BLOCK_PATH)
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
         result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2)
@@ -464,6 +472,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_3,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
     def test_CreateBlock_migration(self):
@@ -478,7 +487,8 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_BLOCK_PATH_2 = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCKSHASH_PATH.json"
-
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")  
         block = CreateBlock(custom_TEMP_BLOCK_PATH)
         block.hash = None
         block.previous_hash = "Onuratakan"
@@ -487,6 +497,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
         result = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2)
