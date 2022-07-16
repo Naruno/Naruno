@@ -20,23 +20,20 @@ from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
 from decentra_network.consensus.consensus_main import consensus_trigger
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
-from decentra_network.lib.mix.mixlib import (
-    banner_maker,
-    menu_maker,
-    menu_space,
-    question_maker,
-    quit_menu_maker,
-)
+from decentra_network.lib.mix.mixlib import (banner_maker, menu_maker,
+                                             menu_space, question_maker,
+                                             quit_menu_maker)
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import debug_mode, test_mode, the_settings
+from decentra_network.lib.settings_system import (debug_mode, test_mode,
+                                                  the_settings)
 from decentra_network.lib.status import Status
-from decentra_network.node.get_block_from_other_node import GetBlockFromOtherNode
+from decentra_network.node.get_block_from_other_node import \
+    GetBlockFromOtherNode
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from decentra_network.transactions.print_transactions import PrintTransactions
 from decentra_network.transactions.send import send
 from decentra_network.wallet.delete_current_wallet import delete_current_wallet
