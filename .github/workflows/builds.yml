@@ -5,12 +5,18 @@ on:
     paths:
       - '.github/workflows/builds.yml'
       - 'decentra_network/**'  
-      - 'requirements/**'      
+      - 'requirements/**'  
+      - 'API.spec'
+      - 'CLI.spec'
+      - 'GUI-win32.spec'
   pull_request:
     paths:
       - '.github/workflows/builds.yml'
       - 'decentra_network/**'  
-      - 'requirements/**'    
+      - 'requirements/**'
+      - 'API.spec'
+      - 'CLI.spec'
+      - 'GUI-win32.spec'          
   release:
     types: [published]
   workflow_dispatch:

@@ -39,7 +39,7 @@ exe = EXE(
     entitlements_file=None,
 )
 coll = COLLECT(exe,
-               Tree('decentra_network/'),
+               Tree('.'),
                a.binaries,
                a.zipfiles,
                a.datas, 
