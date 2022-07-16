@@ -335,7 +335,8 @@ class server(Thread):
             node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
-        logger.info(f"Sending full chain to {node.id}:{node.host}:{node.port}")
+        log_text = "Sending full chain" if node is None else f"Sending full chain to {node.id}:{node.host}:{node.port}"
+        logger.info(log_text)
         file = open(self.TEMP_BLOCK_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
