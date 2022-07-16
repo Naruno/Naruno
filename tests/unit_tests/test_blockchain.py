@@ -35,7 +35,6 @@ from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 
-
 class Test_Blockchain(unittest.TestCase):
 
     def test_block_reset_start_time(self):
@@ -286,7 +285,7 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_BLOCKSHASH_PATH = (
             "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")            
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -318,7 +317,7 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_BLOCKSHASH_PATH = (
             "db/test_SaveBlock_GetBlock_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")                    
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -453,7 +452,7 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_BLOCKSHASH_PATH = (
             "db/test_CreateBlock_from_zero_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")  
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")
         block = CreateBlock(custom_TEMP_BLOCK_PATH)
         SaveBlock(
             block,
@@ -488,7 +487,7 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_ACCOUNTS_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_CreateBlock_migratation_from_uncomplated_block_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")  
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json")
         block = CreateBlock(custom_TEMP_BLOCK_PATH)
         block.hash = None
         block.previous_hash = "Onuratakan"

@@ -453,7 +453,7 @@ class server(Thread):
                 system.exclude_validators = []
                 perpetualTimer(system.consensus_timer, consensus_trigger)
                 SaveBlock(
-                    system, 
+                    system,
                     custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
                     custom_TEMP_ACCOUNTS_PATH=self.TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=self.TEMP_BLOCKSHASH_PATH,
