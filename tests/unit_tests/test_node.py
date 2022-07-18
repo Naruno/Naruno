@@ -42,8 +42,6 @@ class Test_Node(unittest.TestCase):
         cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
             ".json", "_2.json")
 
-
-
         cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
             ".json", "_0.json")
         cls.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
@@ -212,7 +210,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
 
-        got_block = GetBlock(custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+        got_block = GetBlock(
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
         got_block.newly = False
 
         print(the_block.dump_json())
@@ -222,7 +221,6 @@ class Test_Node(unittest.TestCase):
             the_block.dump_json(),
             got_block.dump_json(),
         )
-
 
     def test_send_full_accounts_get_full_accounts(self):
         the_block = Block("atakan123321")
@@ -250,11 +248,12 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
-        got_block = GetAccounts(custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
-
+        got_block = GetAccounts(
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
 
         self.assertEqual(len(got_block), 1)
-        self.assertEqual(got_block[0].dump_json(), {'address': 'atakan123321', 'balance': 1000000000, 'sequence_number': 0})
+        self.assertEqual(got_block[0].dump_json(), {
+                         'address': 'atakan123321', 'balance': 1000000000, 'sequence_number': 0})
 
 
 unittest.main(exit=False)
