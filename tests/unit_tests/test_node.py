@@ -312,7 +312,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
-            the_block.previous_hash,
+            [the_block.previous_hash],
         )
 
 
