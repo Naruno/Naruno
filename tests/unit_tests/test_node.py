@@ -120,7 +120,11 @@ class Test_Node(unittest.TestCase):
                 "Not deleted TEMP_BLOCK_PATH1")
 
         for a_client in cls.node_0.clients + cls.node_1.clients + cls.node_2.clients:
-            server.connected_node_delete(a_client)
+            the_dict = []
+            the_dict["id"] = a_client.id
+            the_dict["host"] = a_client.host
+            the_dict["port"] = a_client.port
+            server.connected_node_delete(the_dict)
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 
