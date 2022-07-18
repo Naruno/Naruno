@@ -58,6 +58,7 @@ class server(Thread):
         custom_TEMP_BLOCKSHASH_PATH=None,
         custom_TEMP_BLOCKSHASH_PART_PATH=None,
         custom_LOADING_BLOCK_PATH=None,
+        custom_LOADING_ACCOUNTS_PATH=None,
     ):
         self.__class__.Server = self
         Thread.__init__(self)
@@ -80,16 +81,17 @@ class server(Thread):
                                 custom_TEMP_BLOCK_PATH)
         self.TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
                                    if custom_TEMP_ACCOUNTS_PATH is None else
-                                   TEMP_ACCOUNTS_PATH)
+                                   custom_TEMP_ACCOUNTS_PATH)
         self.TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
                                      if custom_TEMP_BLOCKSHASH_PATH is None
-                                     else TEMP_BLOCKSHASH_PATH)
+                                     else custom_TEMP_BLOCKSHASH_PATH)
         self.TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
                                           custom_TEMP_BLOCKSHASH_PART_PATH is
-                                          None else TEMP_BLOCKSHASH_PART_PATH)
+                                          None else custom_TEMP_BLOCKSHASH_PART_PATH)
         self.LOADING_BLOCK_PATH = (LOADING_BLOCK_PATH
                                    if custom_LOADING_BLOCK_PATH is None else
                                    custom_LOADING_BLOCK_PATH)
+        self.LOADING_ACCOUNTS_PATH = LOADING_ACCOUNTS_PATH if custom_LOADING_ACCOUNTS_PATH is None else custom_LOADING_ACCOUNTS_PATH
 
         self.start()
 
@@ -334,7 +336,7 @@ class server(Thread):
             data["sender"] = node.id
             node.candidate_block_hash = data
 
-    def send_full_chain(self, node=None):
+    def exclude_validators(self, node=None):
         log_text = ("Sending full chain" if node is None else
                     f"Sending full chain to {node.id}:{node.host}:{node.port}")
         logger.info(log_text)
@@ -364,7 +366,8 @@ class server(Thread):
                     self.send_client(node, data)
 
     def send_full_accounts(self, node=None):
-        file = open(TEMP_ACCOUNTS_PATH, "rb")
+        the_TEMP_ACCOUNTS_PATH = self.TEMP_ACCOUNTS_PATH
+        file = open(the_TEMP_ACCOUNTS_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
 
@@ -449,7 +452,7 @@ class server(Thread):
 
                 os.rename(self.LOADING_BLOCK_PATH, self.TEMP_BLOCK_PATH)
 
-                from consensus.consensus_main import consensus_trigger
+                from decentra_network.consensus.consensus_main import consensus_trigger
 
                 from decentra_network.lib.perpetualtimer import perpetualTimer
 
@@ -458,7 +461,6 @@ class server(Thread):
 
                 ChangeTransactionFee(system)
 
-                system.exclude_validators = []
                 perpetualTimer(system.consensus_timer, consensus_trigger)
                 SaveBlock(
                     system,
@@ -515,10 +517,11 @@ class server(Thread):
                 file.close()
 
     def get_full_accounts(self, data, node):
-
+        the_TEMP_ACCOUNTS_PATH = self.TEMP_ACCOUNTS_PATH
+        the_LOADING_ACCOUNTS_PATH = self.LOADING_ACCOUNTS_PATH
         get_ok = False
 
-        if not os.path.exists(TEMP_ACCOUNTS_PATH):
+        if not os.path.exists(the_TEMP_ACCOUNTS_PATH):
             get_ok = True
         else:
             system = GetBlock()
@@ -527,9 +530,9 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(LOADING_ACCOUNTS_PATH, TEMP_ACCOUNTS_PATH)
+                os.rename(the_LOADING_ACCOUNTS_PATH, the_TEMP_ACCOUNTS_PATH)
             else:
-                file = open(LOADING_ACCOUNTS_PATH, "ab")
+                file = open(the_LOADING_ACCOUNTS_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
 

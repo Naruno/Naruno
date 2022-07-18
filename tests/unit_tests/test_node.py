@@ -184,10 +184,15 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
 
+        got_block = GetBlock(custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+        got_block.newly = False
+
+        print(the_block.dump_json())
+        print(got_block.dump_json())
+
         self.assertEqual(
             the_block.dump_json(),
-            GetBlock(custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1).
-            dump_json(),
+            got_block.dump_json(),
         )
 
 
