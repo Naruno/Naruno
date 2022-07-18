@@ -179,6 +179,10 @@ class server(Thread):
                 f"NODE:{self.host}:{self.port} Message not valid: {data}")
 
     def check_message(self, data):
+        if "id" not in data:
+            return False
+        if "signature" not in data:
+            return False
         # remove sign from data
         sign = data["signature"]
         del data["signature"]
