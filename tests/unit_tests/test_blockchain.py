@@ -395,6 +395,7 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_fromUser(self):
         block = Block("onur")
+        block.first_time = False
 
         the_json = {
             "sequance_number": 1,
