@@ -27,6 +27,8 @@ from decentra_network.node.unl import Unl
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.clean_up import CleanUp_tests
+
+
 class Test_Node(unittest.TestCase):
 
     @classmethod
@@ -110,7 +112,7 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH1,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH1,
             custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH1,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH1,            
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH1,
         )
         cls.node_2 = server(
             "127.0.0.1",
@@ -123,7 +125,7 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH2,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH2,
             custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH2,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH2,            
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH2,
         )
         Unl.save_new_unl_node(cls.node_0.id)
         Unl.save_new_unl_node(cls.node_1.id)
@@ -159,9 +161,6 @@ class Test_Node(unittest.TestCase):
             the_dict["host"] = a_client.host
             the_dict["port"] = a_client.port
             server.connected_node_delete(the_dict)
-
-
-
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 
@@ -335,7 +334,7 @@ class Test_Node(unittest.TestCase):
     def test_send_full_blockshash_part_get_full_blockshash_part(self):
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
-    
+
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
@@ -348,10 +347,14 @@ class Test_Node(unittest.TestCase):
         time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
 
-        self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH2))
-        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH0))
-        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH1))
-        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
+        self.assertFalse(os.path.isfile(
+            self.custom_TEMP_BLOCKSHASH_PART_PATH2))
+        self.assertFalse(os.path.isfile(
+            self.custom_LOADING_BLOCKSHASH_PART_PATH0))
+        self.assertFalse(os.path.isfile(
+            self.custom_LOADING_BLOCKSHASH_PART_PATH1))
+        self.assertFalse(os.path.isfile(
+            self.custom_LOADING_BLOCKSHASH_PART_PATH2))
 
         # Read custom_TEMP_BLOCKSHASH_PATH1 file
         with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
