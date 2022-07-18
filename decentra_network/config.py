@@ -18,9 +18,9 @@ TEMP_BLOCKSHASH_PART_PATH = "db/temp_blockshash_part.decentra_network.json"
 
 TEMP_CANDIDATE_BLOCKS_PATH = "db/temp_candidate_blocks.decentra_network.json"
 
-LOADING_BLOCK_PATH = "db/loading_block.decentra_network.json"
-LOADING_ACCOUNTS_PATH = "db/loading_block_accounts.decentra_network.json"
-LOADING_BLOCKSHASH_PATH = "db/loading_block_blockshash.decentra_network.json"
+LOADING_BLOCK_PATH =           "db/loading_block.decentra_network.json"
+LOADING_ACCOUNTS_PATH =        "db/loading_block_accounts.decentra_network.json"
+LOADING_BLOCKSHASH_PATH =      "db/loading_block_blockshash.decentra_network.json"
 LOADING_BLOCKSHASH_PART_PATH = "db/loading_block_blockshash_part.decentra_network.json"
 
 BLOCKS_PATH = "db/blocks/"
