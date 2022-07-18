@@ -12,12 +12,12 @@ import copy
 import time
 import unittest
 
+from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.config import LOADING_BLOCK_PATH, TEMP_BLOCK_PATH
-from decentra_network.config import LOADING_ACCOUNTS_PATH, TEMP_ACCOUNTS_PATH
+from decentra_network.config import (LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH)
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
