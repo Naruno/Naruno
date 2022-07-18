@@ -24,51 +24,53 @@ from decentra_network.config import (LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-
-
+from decentra_network.lib.config_system import get_config
+from decentra_network.lib.clean_up import CleanUp_tests
+from decentra_network.lib.clean_up import CleanUp_tests
 class Test_Node(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        CleanUp_tests()
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
-            ".json", "_0.json")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCK_PATH1 = TEMP_BLOCK_PATH.replace(
-            ".json", "_1.json")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
-            ".json", "_2.json")
+            ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
-            ".json", "_0.json")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
-            ".json", "_1.json")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
-            ".json", "_2.json")
+            ".json", "_2.json").replace("temp_", "test_temp_")
 
         cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
-            ".json", "_0.json")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
-            ".json", "_1.json")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
-            ".json", "_2.json")
+            ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_0.json")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_1.json")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_2.json")
+            ".json", "_2.json").replace("temp_", "test_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PATH1 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json")
+            ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json")
+            ".json", "_2.json").replace("temp_", "test_temp_")
 
         cls.node_0 = server(
             "127.0.0.1",
@@ -132,19 +134,15 @@ class Test_Node(unittest.TestCase):
         cls.node_2.join()
         cls.node_0.join()
 
-        os.remove(cls.custom_TEMP_BLOCK_PATH0) if os.path.exists(
-            cls.custom_TEMP_BLOCK_PATH0) else print(
-                "Not deleted TEMP_BLOCK_PATH0")
-        os.remove(cls.custom_TEMP_BLOCK_PATH1) if os.path.exists(
-            cls.custom_TEMP_BLOCK_PATH1) else print(
-                "Not deleted TEMP_BLOCK_PATH1")
-
         for a_client in cls.node_0.clients + cls.node_1.clients + cls.node_2.clients:
             the_dict = {}
             the_dict["id"] = a_client.id
             the_dict["host"] = a_client.host
             the_dict["port"] = a_client.port
             server.connected_node_delete(the_dict)
+
+
+
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 

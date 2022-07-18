@@ -35,9 +35,13 @@ from decentra_network.transactions.transaction import Transaction
 from decentra_network.transactions.pending.save_pending import SavePending
 from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.pending.delete_pending import DeletePending
-
+from decentra_network.lib.clean_up import CleanUp_tests
 
 class Test_Transactions(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        CleanUp_tests()
 
     def test_get_my_transaction_non(self):
         backup = GetMyTransaction()

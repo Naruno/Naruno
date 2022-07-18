@@ -11,10 +11,14 @@ import unittest
 
 from decentra_network.lib.settings_system import save_settings
 from decentra_network.lib.settings_system import the_settings
-
+from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_Settings(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        CleanUp_tests()
 
     def test_settings_by_creating_settings(self):
         temp_settings = the_settings()

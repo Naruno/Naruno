@@ -34,9 +34,13 @@ from decentra_network.node.client.client import client
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
-
+from decentra_network.lib.clean_up import CleanUp_tests
 
 class Test_Blockchain(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        CleanUp_tests()
 
     def test_block_reset_start_time(self):
         block = Block("onur")

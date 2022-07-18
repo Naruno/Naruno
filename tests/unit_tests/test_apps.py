@@ -14,10 +14,14 @@ from decentra_network.apps.apps_trigger import AppsTrigger
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.lib.config_system import get_config
 from decentra_network.transactions.transaction import Transaction
-
+from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_apps(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        CleanUp_tests()
 
     def test_AppsTrigger_App(self):
         block = Block("onur")

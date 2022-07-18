@@ -25,9 +25,13 @@ from decentra_network.wallet.ellipticcurve.wallet_delete import wallet_delete
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 from decentra_network.wallet.wallet_selector import wallet_selector
-
+from decentra_network.lib.clean_up import CleanUp_tests
 
 class Test_Wallet(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        CleanUp_tests()
 
     def test_wallet_by_creating_saving_importing_and_deleting_a_wallet(self):
 

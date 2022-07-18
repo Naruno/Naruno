@@ -10,10 +10,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
 from decentra_network.lib.config_system import get_config
-
+from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_Config(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        CleanUp_tests()
 
     def test_config_by_getting_and_saving_main_folder_config(self):
         finded_true_folder = False
