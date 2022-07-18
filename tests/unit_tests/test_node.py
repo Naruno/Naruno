@@ -272,6 +272,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts(self):
+        CleanUp_tests()          
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
         custom_TEMP_BLOCKSHASH_PATH = (
@@ -309,6 +310,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_get_full_blockshash(self):
+        CleanUp_tests()          
         the_block = Block("atakan123321222")
         the_block.consensus_timer = 0
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PART_PATH.json"
@@ -340,6 +342,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_part_get_full_blockshash_part(self):
+        CleanUp_tests()          
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
 
