@@ -176,21 +176,21 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_1.clients), 2)
         self.assertEqual(len(self.node_2.clients), 2)
 
-
     def test_false_message_type_not_id(self):
         first_message_len = len(self.node_1.messages)
-        data = {"signature":"true"}
-        self.node_0.send_client(self.node_0.clients[0], data, ready_to_send=True)
+        data = {"signature": "true"}
+        self.node_0.send_client(
+            self.node_0.clients[0], data, ready_to_send=True)
         time.sleep(2)
         self.assertEqual(len(self.node_1.messages), first_message_len)
 
     def test_false_message_type_not_signature(self):
         first_message_len = len(self.node_1.messages)
-        data = {"id":"true"}
-        self.node_0.send_client(self.node_0.clients[0], data, ready_to_send=True)
+        data = {"id": "true"}
+        self.node_0.send_client(
+            self.node_0.clients[0], data, ready_to_send=True)
         time.sleep(2)
         self.assertEqual(len(self.node_1.messages), first_message_len)
-
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 

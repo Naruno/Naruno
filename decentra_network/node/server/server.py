@@ -118,16 +118,16 @@ class server(Thread):
         self.sock.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
-                    conn, addr = self.sock.accept()
-                    logger.info(
-                        f"NODE:{self.host}:{self.port} New connection: {addr}")
-                    data = conn.recv(1024)
-                    conn.send(server.id.encode("utf-8"))
-                    client_id = data.decode("utf-8")
-                    if Unl.node_is_unl(client_id):
-                        self.clients.append(client(conn, addr, client_id,
-                                                   self))
-                        server.save_connected_node(addr[0], addr[1], client_id)
+                conn, addr = self.sock.accept()
+                logger.info(
+                    f"NODE:{self.host}:{self.port} New connection: {addr}")
+                data = conn.recv(1024)
+                conn.send(server.id.encode("utf-8"))
+                client_id = data.decode("utf-8")
+                if Unl.node_is_unl(client_id):
+                    self.clients.append(client(conn, addr, client_id,
+                                               self))
+                    server.save_connected_node(addr[0], addr[1], client_id)
             time.sleep(0.01)
 
     def stop(self):
