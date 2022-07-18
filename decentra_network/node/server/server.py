@@ -118,9 +118,7 @@ class server(Thread):
         self.sock.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
-                conn, addr = self.sock.accept()
-                connected = self.check_connected(host=addr[0], port=addr[1])
-                if not connected:
+                    conn, addr = self.sock.accept()
                     logger.info(
                         f"NODE:{self.host}:{self.port} New connection: {addr}")
                     data = conn.recv(1024)
@@ -130,11 +128,6 @@ class server(Thread):
                         self.clients.append(client(conn, addr, client_id,
                                                    self))
                         server.save_connected_node(addr[0], addr[1], client_id)
-                else:
-                    logger.info(
-                        f"NODE:{self.host}:{self.port}: Already connected {addr}"
-                    )
-                    conn.close()
             time.sleep(0.01)
 
     def stop(self):

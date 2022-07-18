@@ -169,6 +169,14 @@ class Test_Node(unittest.TestCase):
             the_dict["port"] = a_client.port
             server.connected_node_delete(the_dict)
 
+    def test_multiple_connection_from_same_server(self):
+        self.node_0.connect("127.0.0.1", 10001)
+        time.sleep(15)
+        self.assertEqual(len(self.node_0.clients), 2)
+        self.assertEqual(len(self.node_1.clients), 2)
+        self.assertEqual(len(self.node_2.clients), 2)
+
+
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 
         connection_closing_deleting = True
