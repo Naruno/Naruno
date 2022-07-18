@@ -15,7 +15,9 @@ import unittest
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.config import LOADING_BLOCK_PATH, TEMP_BLOCK_PATH
+from decentra_network.config import LOADING_ACCOUNTS_PATH, TEMP_ACCOUNTS_PATH
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
@@ -40,12 +42,30 @@ class Test_Node(unittest.TestCase):
         cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
             ".json", "_2.json")
 
+
+
+        cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
+            ".json", "_0.json")
+        cls.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
+            ".json", "_1.json")
+        cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
+            ".json", "_2.json")
+
+        cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
+            ".json", "_0.json")
+        cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
+            ".json", "_1.json")
+        cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
+            ".json", "_2.json")
+
         cls.node_0 = server(
             "127.0.0.1",
             10000,
             save_messages=True,
             custom_TEMP_BLOCK_PATH=cls.custom_TEMP_BLOCK_PATH0,
             custom_LOADING_BLOCK_PATH=cls.custom_LOADING_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=cls.custom_TEMP_ACCOUNTS_PATH0,
+            custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH0
         )
 
         cls.node_1 = server(
@@ -54,6 +74,8 @@ class Test_Node(unittest.TestCase):
             save_messages=True,
             custom_TEMP_BLOCK_PATH=cls.custom_TEMP_BLOCK_PATH1,
             custom_LOADING_BLOCK_PATH=cls.custom_LOADING_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=cls.custom_TEMP_ACCOUNTS_PATH1,
+            custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH1
         )
         cls.node_2 = server(
             "127.0.0.1",
@@ -61,6 +83,8 @@ class Test_Node(unittest.TestCase):
             save_messages=True,
             custom_TEMP_BLOCK_PATH=cls.custom_TEMP_BLOCK_PATH2,
             custom_LOADING_BLOCK_PATH=cls.custom_LOADING_BLOCK_PATH2,
+            custom_TEMP_ACCOUNTS_PATH=cls.custom_TEMP_ACCOUNTS_PATH2,
+            custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH2
         )
         Unl.save_new_unl_node(cls.node_0.id)
         Unl.save_new_unl_node(cls.node_1.id)
@@ -168,11 +192,15 @@ class Test_Node(unittest.TestCase):
         custom_TEMP_BLOCKSHASH_PATH = (
             "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PATH.json"
         )
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_chain(client)
@@ -194,6 +222,39 @@ class Test_Node(unittest.TestCase):
             the_block.dump_json(),
             got_block.dump_json(),
         )
+
+
+    def test_send_full_accounts_get_full_accounts(self):
+        the_block = Block("atakan123321")
+        the_block.consensus_timer = 0
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PATH.json"
+        )
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        client = self.node_0.clients[0]
+        self.node_0.send_full_accounts(client)
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
+
+        self.assertFalse(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
+
+        got_block = GetAccounts(custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
+
+
+        self.assertEqual(len(got_block), 1)
+        self.assertEqual(got_block[0].dump_json(), {"atakan123321": {"address": "atakan123321", "balance": 1000000000, "sequence_number": 0}})
 
 
 unittest.main(exit=False)
