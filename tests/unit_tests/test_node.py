@@ -254,7 +254,7 @@ class Test_Node(unittest.TestCase):
 
 
         self.assertEqual(len(got_block), 1)
-        self.assertEqual(got_block[0].dump_json(), {"atakan123321": {"address": "atakan123321", "balance": 1000000000, "sequence_number": 0}})
+        self.assertEqual(got_block[0].dump_json(), {'address': 'atakan123321', 'balance': 1000000000, 'sequence_number': 0})
 
 
 unittest.main(exit=False)
