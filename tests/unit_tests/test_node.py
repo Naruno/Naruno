@@ -43,11 +43,11 @@ class Test_Node(unittest.TestCase):
         cls.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -56,11 +56,11 @@ class Test_Node(unittest.TestCase):
         cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -69,11 +69,11 @@ class Test_Node(unittest.TestCase):
         cls.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -82,11 +82,11 @@ class Test_Node(unittest.TestCase):
         cls.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH0 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH1 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.node_0 = server(
             "127.0.0.1",
@@ -232,21 +232,18 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.messages[0], result)
 
     def test_send_full_chain_get_full_chain(self):
+        CleanUp_tests()
         the_block = Block("onur")
         the_block.consensus_timer = 0
-        custom_TEMP_ACCOUNTS_PATH = (
-            "db/test_send_full_chain_get_full_chain_custom_TEMP_ACCOUNTS_PATH.json"
-        )
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PATH.json"
-        )
-        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.replace(
+                ".json", "1.json"),
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
+            replace(".json", "1.json"),
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "1.json"),
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_chain(client)
@@ -271,18 +268,17 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts(self):
+        CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PATH.json"
-        )
-        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
+            replace(".json", "2.json"),
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "2.json"),
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts(client)
@@ -308,15 +304,16 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_get_full_blockshash(self):
+        CleanUp_tests()
         the_block = Block("atakan123321222")
         the_block.consensus_timer = 0
-        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_send_full_chain_get_full_chain_custom_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "3.json"),
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash(client)
@@ -339,6 +336,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_part_get_full_blockshash_part(self):
+        CleanUp_tests()
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
 
@@ -357,6 +355,335 @@ class Test_Node(unittest.TestCase):
 
         self.assertFalse(os.path.isfile(
             self.custom_TEMP_BLOCKSHASH_PART_PATH2))
+        self.assertFalse(
+            os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH0))
+        self.assertFalse(
+            os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH1))
+        self.assertFalse(
+            os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
+
+        # Read custom_TEMP_BLOCKSHASH_PATH1 file
+        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
+            got_block = json.load(f)
+
+        self.assertEqual(len(got_block), 0)
+        self.assertEqual(
+            got_block,
+            [],
+        )
+
+    def test_send_full_chain_get_full_chain_already_block(self):
+        CleanUp_tests()
+        the_block = Block("onur1321313213123")
+        the_block.consensus_timer = 0
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.replace(
+                ".json", "4.json"),
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
+            replace(".json", "4.json"),
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "4.json"),
+        )
+        the_block.dowload_true_block = server.id
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1.replace(
+                ".json", "4.json"),
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1.
+            replace(".json", "4.json"),
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH1.replace(".json", "4.json"),
+        )
+        the_block.dowload_true_block = ""
+        client = self.node_0.clients[0]
+        self.node_0.send_full_chain(client)
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
+
+        self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
+        print("\n\n\n")
+        print(self.custom_LOADING_BLOCK_PATH0)
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
+
+        got_block = GetBlock(
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+        got_block.newly = False
+
+        print(the_block.dump_json())
+        print(got_block.dump_json())
+
+        self.assertEqual(
+            the_block.dump_json(),
+            got_block.dump_json(),
+        )
+
+    def test_send_full_accounts_get_full_accounts_already_block(self):
+        CleanUp_tests()
+        the_block = Block("atakan123321")
+        the_block.consensus_timer = 0
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
+            replace(".json", "7.json"),
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "7.json"),
+        )
+        the_block.dowload_true_block = server.id
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PART_PATH1.
+            replace(".json", "7.json"),
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH1.replace(".json", "7.json"),
+        )
+        the_block.dowload_true_block = ""
+        client = self.node_0.clients[0]
+        self.node_0.send_full_accounts(client)
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
+
+        self.assertFalse(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
+
+        got_block = GetAccounts(
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
+
+        self.assertEqual(len(got_block), 1)
+        self.assertEqual(
+            got_block[0].dump_json(),
+            {
+                "address": "atakan123321",
+                "balance": 1000000000,
+                "sequence_number": 0
+            },
+        )
+
+    def test_send_full_blockshash_get_full_blockshash_already_block(self):
+        CleanUp_tests()
+        the_block = Block("atakan123321222")
+        the_block.consensus_timer = 0
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "8.json"),
+        )
+        the_block.dowload_true_block = server.id
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_LOADING_BLOCKSHASH_PART_PATH1.replace(".json", "8.json"),
+        )
+        the_block.dowload_true_block = ""
+        client = self.node_0.clients[0]
+        self.node_0.send_full_blockshash(client)
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
+
+        self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
+
+        # Read custom_TEMP_BLOCKSHASH_PATH1 file
+        with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
+            got_block = json.load(f)
+
+        self.assertEqual(len(got_block), 1)
+        self.assertEqual(
+            got_block,
+            [the_block.previous_hash],
+        )
+
+    def test_send_full_blockshash_part_get_full_blockshash_part_already_block(
+            self):
+        CleanUp_tests()
+        the_block = Block("atakan12332122212321")
+        the_block.consensus_timer = 0
+
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0,
+        )
+        the_block.dowload_true_block = server.id
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH1,
+        )
+        the_block.dowload_true_block = ""
+        client = self.node_0.clients[0]
+        self.node_0.send_full_blockshash_part(client)
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
+
+        self.assertFalse(os.path.isfile(
+            self.custom_TEMP_BLOCKSHASH_PART_PATH2))
+
+        self.assertFalse(
+            os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH0))
+        self.assertFalse(
+            os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH1))
+        self.assertFalse(
+            os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
+
+        # Read custom_TEMP_BLOCKSHASH_PATH1 file
+        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
+            got_block = json.load(f)
+
+        self.assertEqual(len(got_block), 0)
+        self.assertEqual(
+            got_block,
+            [],
+        )
+
+    def test_send_full_chain_get_full_chain_all_nodes(self):
+        CleanUp_tests()
+        the_block = Block("onur")
+        the_block.consensus_timer = 0
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.replace(
+                ".json", "1.json"),
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
+            replace(".json", "1.json"),
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "1.json"),
+        )
+        client = self.node_0.clients[0]
+        self.node_0.send_full_chain()
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
+
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
+
+        got_block = GetBlock(
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+        got_block.newly = False
+
+        print(the_block.dump_json())
+        print(got_block.dump_json())
+
+        self.assertEqual(
+            the_block.dump_json(),
+            got_block.dump_json(),
+        )
+
+    def test_send_full_accounts_get_full_accounts_all_nodes(self):
+        CleanUp_tests()
+        the_block = Block("atakan123321")
+        the_block.consensus_timer = 0
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
+            replace(".json", "2.json"),
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "2.json"),
+        )
+        client = self.node_0.clients[0]
+        self.node_0.send_full_accounts()
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
+
+        self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
+
+        got_block = GetAccounts(
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
+
+        self.assertEqual(len(got_block), 1)
+        self.assertEqual(
+            got_block[0].dump_json(),
+            {
+                "address": "atakan123321",
+                "balance": 1000000000,
+                "sequence_number": 0
+            },
+        )
+
+    def test_send_full_blockshash_get_full_blockshash_all_nodes(self):
+        CleanUp_tests()
+        the_block = Block("atakan123321222")
+        the_block.consensus_timer = 0
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "3.json"),
+        )
+        client = self.node_0.clients[0]
+        self.node_0.send_full_blockshash()
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
+
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
+
+        # Read custom_TEMP_BLOCKSHASH_PATH1 file
+        with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
+            got_block = json.load(f)
+
+        self.assertEqual(len(got_block), 1)
+        self.assertEqual(
+            got_block,
+            [the_block.previous_hash],
+        )
+
+    def test_send_full_blockshash_part_get_full_blockshash_part_all_nodes(
+            self):
+        CleanUp_tests()
+        the_block = Block("atakan12332122212321")
+        the_block.consensus_timer = 0
+
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0,
+        )
+        client = self.node_0.clients[0]
+        self.node_0.send_full_blockshash_part()
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
+
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH2))
         self.assertFalse(
             os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH0))
         self.assertFalse(
