@@ -1,7 +1,6 @@
 # Local db
 *.out
 *.json
-*.json*
 
 decentra_network/db/blocs/*
 decentra_network/db/pending_transactions/*
