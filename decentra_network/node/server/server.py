@@ -336,7 +336,7 @@ class server(Thread):
             data["sender"] = node.id
             node.candidate_block_hash = data
 
-    def exclude_validators(self, node=None):
+    def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
                     f"Sending full chain to {node.id}:{node.host}:{node.port}")
         logger.info(log_text)
