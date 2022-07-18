@@ -60,6 +60,7 @@ class server(Thread):
         custom_LOADING_BLOCK_PATH=None,
         custom_LOADING_ACCOUNTS_PATH=None,
         custom_LOADING_BLOCKSHASH_PATH=None,
+        custom_LOADING_BLOCKSHASH_PART_PATH=None,
     ):
         self.__class__.Server = self
         Thread.__init__(self)
@@ -99,6 +100,10 @@ class server(Thread):
         self.LOADING_BLOCKSHASH_PATH = (LOADING_BLOCKSHASH_PATH if
                                         custom_LOADING_BLOCKSHASH_PATH is None
                                         else custom_LOADING_BLOCKSHASH_PATH)
+        self.LOADING_BLOCKSHASH_PART_PATH = (
+            LOADING_BLOCKSHASH_PART_PATH
+            if custom_LOADING_BLOCKSHASH_PART_PATH is None else
+            custom_LOADING_BLOCKSHASH_PART_PATH)
 
         self.start()
 
@@ -421,7 +426,8 @@ class server(Thread):
                     self.send_client(node, data)
 
     def send_full_blockshash_part(self, node=None):
-        file = open(TEMP_BLOCKSHASH_PART_PATH, "rb")
+        the_TEMP_BLOCKSHASH_PART_PATH = self.TEMP_BLOCKSHASH_PART_PATH
+        file = open(the_TEMP_BLOCKSHASH_PART_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
 
@@ -506,10 +512,10 @@ class server(Thread):
                 file.close()
 
     def get_full_blockshash_part(self, data, node):
-
+        the_TEMP_BLOCKSHASH_PART_PATH = self.TEMP_BLOCKSHASH_PART_PATH
         get_ok = False
 
-        if not os.path.exists(TEMP_BLOCKSHASH_PART_PATH):
+        if not os.path.exists(the_TEMP_BLOCKSHASH_PART_PATH):
             get_ok = True
         else:
             system = GetBlock()
@@ -518,10 +524,10 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(LOADING_BLOCKSHASH_PART_PATH,
-                          TEMP_BLOCKSHASH_PART_PATH)
+                os.rename(self.LOADING_BLOCKSHASH_PART_PATH,
+                          the_TEMP_BLOCKSHASH_PART_PATH)
             else:
-                file = open(LOADING_BLOCKSHASH_PART_PATH, "ab")
+                file = open(self.LOADING_BLOCKSHASH_PART_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
 

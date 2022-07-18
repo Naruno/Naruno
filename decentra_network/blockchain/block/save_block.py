@@ -28,6 +28,7 @@ def SaveBlock(
     """
     Saves the current block to the TEMP_BLOCK_PATH.
     """
+    logger.info("Saving block to disk")
     if block.first_time:
         SaveAccounts(
             [Account(block.creator, block.coin_amount)],
@@ -42,9 +43,8 @@ def SaveBlock(
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         block.first_time = False
-    the_TEMP_BLOCK_PATH = (
-        TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
-    )
+    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
+                           else custom_TEMP_BLOCK_PATH)
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
         json.dump(block.dump_json(), block_file)
