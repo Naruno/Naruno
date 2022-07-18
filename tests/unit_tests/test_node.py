@@ -17,22 +17,17 @@ from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import (
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PATH,
-    LOADING_BLOCKSHASH_PART_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PATH,
-    TEMP_BLOCKSHASH_PART_PATH,
-)
+from decentra_network.config import (LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     LOADING_BLOCKSHASH_PART_PATH,
+                                     LOADING_BLOCKSHASH_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PART_PATH,
+                                     TEMP_BLOCKSHASH_PATH)
+from decentra_network.lib.clean_up import CleanUp_tests
+from decentra_network.lib.config_system import get_config
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_Node(unittest.TestCase):
