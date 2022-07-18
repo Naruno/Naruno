@@ -119,6 +119,9 @@ class Test_Node(unittest.TestCase):
             cls.custom_TEMP_BLOCK_PATH1) else print(
                 "Not deleted TEMP_BLOCK_PATH1")
 
+        for a_client in cls.node_0.clients + cls.node_1.clients + cls.node_2.clients:
+            server.connected_node_delete(a_client)
+
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 
         connection_closing_deleting = True
