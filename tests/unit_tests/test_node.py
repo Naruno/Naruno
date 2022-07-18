@@ -232,7 +232,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.messages[0], result)
 
     def test_send_full_chain_get_full_chain(self):
-               
+        CleanUp_tests()       
         the_block = Block("onur")
         the_block.consensus_timer = 0
         SaveBlock(
