@@ -9,22 +9,18 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import copy
+import json
 import time
 import unittest
-import json
 
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import (
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PATH,
-    LOADING_BLOCKSHASH_PATH,
-)
+from decentra_network.config import (LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     LOADING_BLOCKSHASH_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PATH)
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
