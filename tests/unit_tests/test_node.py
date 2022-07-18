@@ -55,7 +55,6 @@ class Test_Node(unittest.TestCase):
         cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
             ".json", "_2.json")
 
-
         cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
             ".json", "_0.json")
         cls.custom_TEMP_BLOCKSHASH_PATH1 = TEMP_BLOCKSHASH_PATH.replace(
@@ -90,7 +89,7 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=cls.custom_TEMP_ACCOUNTS_PATH1,
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH1,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH1,
-            custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH1,            
+            custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH1,
         )
         cls.node_2 = server(
             "127.0.0.1",
@@ -101,7 +100,7 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=cls.custom_TEMP_ACCOUNTS_PATH2,
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH2,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH2,
-            custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH2,            
+            custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH2,
         )
         Unl.save_new_unl_node(cls.node_0.id)
         Unl.save_new_unl_node(cls.node_1.id)
@@ -300,17 +299,15 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file 
+        # Read custom_TEMP_BLOCKSHASH_PATH1 file
         with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
             got_block = json.load(f)
-
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
             the_block.previous_hash,
         )
-
 
 
 unittest.main(exit=False)

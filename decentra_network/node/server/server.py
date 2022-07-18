@@ -496,7 +496,8 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(self.LOADING_BLOCKSHASH_PATH, the_TEMP_BLOCKSHASH_PATH)
+                os.rename(self.LOADING_BLOCKSHASH_PATH,
+                          the_TEMP_BLOCKSHASH_PATH)
             else:
                 file = open(self.LOADING_BLOCKSHASH_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
