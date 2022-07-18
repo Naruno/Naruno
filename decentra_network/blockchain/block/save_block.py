@@ -9,8 +9,8 @@ import os
 
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.blocks_hash import (SaveBlockshash,
-                                                           SaveBlockshash_part)
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.config import TEMP_BLOCK_PATH
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
