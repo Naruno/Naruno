@@ -11,6 +11,7 @@ import socket
 import time
 from hashlib import sha256
 from threading import Thread
+from shutil import move
 
 from decentra_network.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
@@ -464,7 +465,7 @@ class server(Thread):
 
             if str(data["byte"]) == "end":
 
-                os.rename(self.LOADING_BLOCK_PATH, self.TEMP_BLOCK_PATH)
+                move(self.LOADING_BLOCK_PATH, self.TEMP_BLOCK_PATH)
 
                 from decentra_network.consensus.consensus_main import \
                     consensus_trigger
@@ -503,7 +504,7 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(self.LOADING_BLOCKSHASH_PATH,
+                move(self.LOADING_BLOCKSHASH_PATH,
                           the_TEMP_BLOCKSHASH_PATH)
             else:
                 file = open(self.LOADING_BLOCKSHASH_PATH, "ab")
@@ -523,7 +524,7 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(self.LOADING_BLOCKSHASH_PART_PATH,
+                move(self.LOADING_BLOCKSHASH_PART_PATH,
                           the_TEMP_BLOCKSHASH_PART_PATH)
             else:
                 file = open(self.LOADING_BLOCKSHASH_PART_PATH, "ab")
@@ -544,7 +545,7 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                os.rename(the_LOADING_ACCOUNTS_PATH, the_TEMP_ACCOUNTS_PATH)
+                move(the_LOADING_ACCOUNTS_PATH, the_TEMP_ACCOUNTS_PATH)
             else:
                 file = open(the_LOADING_ACCOUNTS_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
