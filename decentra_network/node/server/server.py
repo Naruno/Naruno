@@ -336,7 +336,7 @@ class server(Thread):
     def get_candidate_block(self, data, node):
         logger.info("Getting candidate block: {}".format(
             data["sequance_number"]))
-        if GetBlock().sequance_number != data["sequance_number"]:
+        if GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH).sequance_number != data["sequance_number"]:
             logger.info("Candidate block sequance number is not correct")
             return False
 
@@ -344,7 +344,7 @@ class server(Thread):
 
     def get_candidate_block_hash(self, data, node):
 
-        if GetBlock().sequance_number == data["sequance_number"]:
+        if GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH).sequance_number == data["sequance_number"]:
             data["sender"] = node.id
             node.candidate_block_hash = data
 
@@ -456,7 +456,7 @@ class server(Thread):
         if not os.path.exists(self.TEMP_BLOCK_PATH):
             get_ok = True
         else:
-            system = GetBlock()
+            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
             if node.id == system.dowload_true_block:
                 get_ok = True
 
@@ -481,8 +481,7 @@ class server(Thread):
                     custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
                     custom_TEMP_ACCOUNTS_PATH=self.TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=self.TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=self.
-                    TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=self.TEMP_BLOCKSHASH_PART_PATH,
                 )
 
             else:
@@ -498,7 +497,7 @@ class server(Thread):
         if not os.path.exists(the_TEMP_BLOCKSHASH_PATH):
             get_ok = True
         else:
-            system = GetBlock()
+            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
             if node.id == system.dowload_true_block:
                 get_ok = True
 
@@ -518,7 +517,7 @@ class server(Thread):
         if not os.path.exists(the_TEMP_BLOCKSHASH_PART_PATH):
             get_ok = True
         else:
-            system = GetBlock()
+            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
             if node.id == system.dowload_true_block:
                 get_ok = True
 
@@ -539,7 +538,7 @@ class server(Thread):
         if not os.path.exists(the_TEMP_ACCOUNTS_PATH):
             get_ok = True
         else:
-            system = GetBlock()
+            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
             if node.id == system.dowload_true_block:
                 get_ok = True
 
@@ -571,7 +570,7 @@ class server(Thread):
         server.Server.send(data, except_client=except_client)
 
     def get_transaction(self, data, node):
-        block = GetBlock()
+        block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
         the_transaction = Transaction(
             data["sequance_number"],
             data["txsignature"],
@@ -584,7 +583,13 @@ class server(Thread):
         )
         if GetTransaction(block, the_transaction):
             server.send_transaction(the_transaction, except_client=node)
-            SaveBlock(block)
+            SaveBlock(
+                block,
+                custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
+                custom_TEMP_ACCOUNTS_PATH=self.TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=self.TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=self.TEMP_BLOCKSHASH_PART_PATH,         
+            )
 
     def send_block_to_other_nodes(self, node=None):
         """
