@@ -28,6 +28,7 @@ def SaveBlock(
     """
     Saves the current block to the TEMP_BLOCK_PATH.
     """
+    logger.info("Saving block to disk")
     if block.first_time:
         SaveAccounts(
             [Account(block.creator, block.coin_amount)],

@@ -18,9 +18,9 @@ from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import (LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
-                                     LOADING_BLOCKSHASH_PATH,
+                                     LOADING_BLOCKSHASH_PATH, LOADING_BLOCKSHASH_PART_PATH,
                                      TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-                                     TEMP_BLOCKSHASH_PATH)
+                                     TEMP_BLOCKSHASH_PATH, TEMP_BLOCKSHASH_PART_PATH)
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
@@ -72,6 +72,19 @@ class Test_Node(unittest.TestCase):
         cls.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
 
+        cls.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_0.json").replace("temp_", "test_temp_")
+        cls.custom_TEMP_BLOCKSHASH_PART_PATH1 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_1.json").replace("temp_", "test_temp_")
+        cls.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_2.json").replace("temp_", "test_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PART_PATH0 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_0.json").replace("temp_", "test_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PART_PATH1 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_1.json").replace("temp_", "test_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_2.json").replace("temp_", "test_temp_")
+
         cls.node_0 = server(
             "127.0.0.1",
             10000,
@@ -82,6 +95,8 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH0,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH0,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH0,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH0,
         )
 
         cls.node_1 = server(
@@ -94,6 +109,8 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH1,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH1,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH1,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH1,            
         )
         cls.node_2 = server(
             "127.0.0.1",
@@ -105,6 +122,8 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH2,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH2,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH2,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH2,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH2,            
         )
         Unl.save_new_unl_node(cls.node_0.id)
         Unl.save_new_unl_node(cls.node_1.id)
@@ -311,6 +330,37 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(
             got_block,
             [the_block.previous_hash],
+        )
+
+    def test_send_full_blockshash_part_get_full_blockshash_part(self):
+        the_block = Block("atakan12332122212321")
+        the_block.consensus_timer = 0
+    
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.custom_TEMP_BLOCKSHASH_PART_PATH0,
+        )
+        client = self.node_0.clients[0]
+        self.node_0.send_full_blockshash_part(client)
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
+
+        self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH2))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
+
+        # Read custom_TEMP_BLOCKSHASH_PATH1 file
+        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
+            got_block = json.load(f)
+
+        self.assertEqual(len(got_block), 0)
+        self.assertEqual(
+            got_block,
+            [],
         )
 
 
