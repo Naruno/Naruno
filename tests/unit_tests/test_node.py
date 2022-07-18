@@ -43,11 +43,11 @@ class Test_Node(unittest.TestCase):
         cls.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -56,11 +56,11 @@ class Test_Node(unittest.TestCase):
         cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -69,11 +69,11 @@ class Test_Node(unittest.TestCase):
         cls.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -82,11 +82,11 @@ class Test_Node(unittest.TestCase):
         cls.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
             ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH0 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH1 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.node_0 = server(
             "127.0.0.1",
@@ -399,6 +399,8 @@ class Test_Node(unittest.TestCase):
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
+        print("\n\n\n")
+        print(self.custom_LOADING_BLOCK_PATH0)        
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH0))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
@@ -525,6 +527,7 @@ class Test_Node(unittest.TestCase):
 
         self.assertFalse(os.path.isfile(
             self.custom_TEMP_BLOCKSHASH_PART_PATH2))
+
         self.assertFalse(
             os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH0))
         self.assertFalse(
