@@ -120,7 +120,7 @@ class Test_Node(unittest.TestCase):
                 "Not deleted TEMP_BLOCK_PATH1")
 
         for a_client in cls.node_0.clients + cls.node_1.clients + cls.node_2.clients:
-            the_dict = []
+            the_dict = {}
             the_dict["id"] = a_client.id
             the_dict["host"] = a_client.host
             the_dict["port"] = a_client.port
