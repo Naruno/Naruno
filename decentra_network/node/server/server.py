@@ -333,20 +333,12 @@ class server(Thread):
     def get_candidate_block(self, data, node):
         logger.info("Getting candidate block: {}".format(
             data["sequance_number"]))
-        if (GetBlock(
-                custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH).sequance_number !=
-                data["sequance_number"]):
-            logger.info("Candidate block sequance number is not correct")
-            return False
 
         node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node):
-
-        if (GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH).
-                sequance_number == data["sequance_number"]):
-            data["sender"] = node.id
-            node.candidate_block_hash = data
+        data["sender"] = node.id
+        node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
