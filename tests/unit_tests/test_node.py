@@ -412,6 +412,7 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "4.json"),
         )
         the_block.dowload_true_block = server.id
+        the_block.first_time = True
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
@@ -461,6 +462,7 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "7.json"),
         )
         the_block.dowload_true_block = server.id
+        the_block.first_time = True
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
@@ -507,6 +509,7 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "8.json"),
         )
         the_block.dowload_true_block = server.id
+        the_block.first_time = True        
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
@@ -551,6 +554,7 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH0,
         )
         the_block.dowload_true_block = server.id
+        the_block.first_time = True
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
