@@ -10,7 +10,10 @@ import os
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.config import TEMP_BLOCK_PATH
 from decentra_network.lib.config_system import get_config
+from decentra_network.lib.log import get_logger
 
+
+logger = get_logger("BLOCKCHAIN")
 
 def GetBlock(custom_TEMP_BLOCK_PATH=None):
     """
@@ -21,5 +24,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     )
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "r") as block_file:
-        the_block_json = json.load(block_file)
+        try:
+            the_block_json = json.load(block_file)
+        except json.JSONDecodeError:
+            logger.exception(f"Error while loading block file. {block_file}")
     return Block.load_json(the_block_json)
