@@ -738,5 +738,4 @@ class Test_Node(unittest.TestCase):
         temp_server.sock.close()
         self.assertEqual(len(self.node_0.clients), first_len_of_clients)
 
-
 unittest.main(exit=False)
