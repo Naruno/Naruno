@@ -730,5 +730,13 @@ class Test_Node(unittest.TestCase):
             [],
         )
 
+    def test_connection_timeout_client_side(self):
+        first_len_of_clients = len(self.node_0.clients)
+        temp_server = server("127.0.0.1", 10058, test=True)
+        self.node_0.connect("127.0.0.1", 10058)
+        time.sleep(10)
+        temp_server.stop()
+        self.assertEqual(len(self.node_0.clients), first_len_of_clients)
+
 
 unittest.main(exit=False)
