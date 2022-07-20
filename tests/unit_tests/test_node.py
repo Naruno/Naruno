@@ -10,7 +10,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import copy
 import json
-import socket
 import time
 import unittest
 
@@ -140,11 +139,11 @@ class Test_Node(unittest.TestCase):
         Unl.save_new_unl_node(cls.node_2.id)
         time.sleep(2)
         cls.node_0.connect("127.0.0.1", 10001)
-        time.sleep(10)
+        time.sleep(15)
         cls.node_0.connect("127.0.0.1", 10002)
-        time.sleep(10)
+        time.sleep(15)
         cls.node_2.connect("127.0.0.1", 10001)
-        time.sleep(10)
+        time.sleep(15)
 
         print(cls.node_0.clients)
         print(cls.node_1.clients)
@@ -172,7 +171,7 @@ class Test_Node(unittest.TestCase):
 
     def test_multiple_connection_from_same_server(self):
         self.node_0.connect("127.0.0.1", 10001)
-        time.sleep(10)
+        time.sleep(15)
         self.assertEqual(len(self.node_0.clients), 2)
         self.assertEqual(len(self.node_1.clients), 2)
         self.assertEqual(len(self.node_2.clients), 2)
@@ -203,23 +202,23 @@ class Test_Node(unittest.TestCase):
         get_as_node = False
 
         nodes_list = server.get_connected_nodes()
-        temp_unl_node_list = Unl.get_unl_nodes()
-        temp_get_as_node_type = Unl.get_as_node_type(temp_unl_node_list)
-        print("\n\n\n\n\n")
-        print(temp_get_as_node_type)
-
-        for node_element_of_unl in temp_get_as_node_type:
-            if (self.node_1.host == node_element_of_unl.host
-                    and self.node_1.port == node_element_of_unl.port):
-                get_as_node = True
-
         for element in nodes_list:
-            if element == self.node_1.id:
+            if element == self.node_1.id or element == self.node_2.id:
                 finded_node = True
 
-        for unl_element in temp_unl_node_list:
-            if unl_element == self.node_1.id or unl_element == self.node_2.id:
-                in_unl_list = True
+                temp_unl_node_list = Unl.get_unl_nodes()
+                temp_get_as_node_type = Unl.get_as_node_type(
+                    temp_unl_node_list)
+                for unl_element in temp_unl_node_list:
+                    if unl_element == self.node_1.id or unl_element == self.node_2.id:
+                        for node_element_of_unl in temp_get_as_node_type:
+                            if (self.node_1.host == node_element_of_unl.host
+                                    and self.node_1.port
+                                    == node_element_of_unl.port):
+                                get_as_node = True
+                        in_unl_list = True
+                        Unl.unl_node_delete(unl_element)
+                server.connected_node_delete(nodes_list[element])
 
         self.assertEqual(finded_node, True,
                          "Problem on connection saving system.")
@@ -273,7 +272,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_chain(client)
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
@@ -308,7 +307,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts(client)
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
@@ -343,7 +342,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash(client)
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
@@ -376,7 +375,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash_part(client)
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
 
         self.assertFalse(os.path.isfile(
@@ -427,7 +426,7 @@ class Test_Node(unittest.TestCase):
         the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_chain(client)
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
@@ -476,7 +475,7 @@ class Test_Node(unittest.TestCase):
         the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts(client)
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
@@ -510,7 +509,7 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "8.json"),
         )
         the_block.dowload_true_block = server.id
-        the_block.first_time = True
+        the_block.first_time = True        
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
@@ -522,7 +521,7 @@ class Test_Node(unittest.TestCase):
         the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash(client)
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
@@ -567,7 +566,7 @@ class Test_Node(unittest.TestCase):
         the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash_part(client)
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
 
         self.assertFalse(os.path.isfile(
@@ -606,7 +605,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_chain()
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
@@ -641,7 +640,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts()
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
@@ -676,7 +675,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash()
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
@@ -710,7 +709,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash_part()
-        time.sleep(3)
+        time.sleep(5)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH2))
@@ -730,14 +729,6 @@ class Test_Node(unittest.TestCase):
             got_block,
             [],
         )
-
-    def test_connection_timeout_client_side(self):
-        first_len_of_clients = len(self.node_0.clients)
-        temp_server = server("127.0.0.1", 10058, test=True)
-        self.node_0.connect("127.0.0.1", 10058)
-        time.sleep(10)
-        temp_server.stop()
-        self.assertEqual(len(self.node_0.clients), first_len_of_clients)
 
 
 unittest.main(exit=False)
