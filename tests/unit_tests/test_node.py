@@ -204,7 +204,7 @@ class Test_Node(unittest.TestCase):
 
         nodes_list = server.get_connected_nodes()
         temp_unl_node_list = Unl.get_unl_nodes()
-        temp_get_as_node_type = Unl.get_as_node_type(temp_unl_node_list)        
+        temp_get_as_node_type = Unl.get_as_node_type(temp_unl_node_list)
         print("\n\n\n\n\n")
         print(temp_get_as_node_type)
 
@@ -213,7 +213,6 @@ class Test_Node(unittest.TestCase):
                     and self.node_1.port
                     == node_element_of_unl.port):
                 get_as_node = True
-
 
         for element in nodes_list:
             if element == self.node_1.id:
@@ -512,7 +511,7 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "8.json"),
         )
         the_block.dowload_true_block = server.id
-        the_block.first_time = True        
+        the_block.first_time = True
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
@@ -739,7 +738,7 @@ class Test_Node(unittest.TestCase):
         self.node_0.connect("127.0.0.1", 10058)
         time.sleep(10)
         temp_server.stop()
-        self.assertEqual(len(self.node_0.clients), first_len_of_clients)        
+        self.assertEqual(len(self.node_0.clients), first_len_of_clients)
 
 
 unittest.main(exit=False)
