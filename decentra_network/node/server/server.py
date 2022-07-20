@@ -218,9 +218,6 @@ class server(Thread):
         Returns the connected nodes.
         """
 
-        if not os.path.exists(CONNECTED_NODES_PATH):
-            return {}
-
         the_pending_list = {}
         os.chdir(get_config()["main_folder"])
         for entry in os.scandir(CONNECTED_NODES_PATH):
