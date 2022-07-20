@@ -213,17 +213,19 @@ class server(Thread):
                 conn.close()
 
     @staticmethod
-    def get_connected_nodes():
+    def get_connected_nodes(custom_CONNECTED_NODES_PATH=None):
         """
         Returns the connected nodes.
         """
 
-        if not os.path.exists(CONNECTED_NODES_PATH):
+        the_CONNECTED_NODES_PATH = CONNECTED_NODES_PATH if custom_CONNECTED_NODES_PATH is None else custom_CONNECTED_NODES_PATH
+
+        if not os.path.exists(the_CONNECTED_NODES_PATH):
             return {}
 
         the_pending_list = {}
         os.chdir(get_config()["main_folder"])
-        for entry in os.scandir(CONNECTED_NODES_PATH):
+        for entry in os.scandir(the_CONNECTED_NODES_PATH):
             if entry.name != "README.md":
                 with open(entry.path, "r") as my_transaction_file:
                     loaded_json = json.load(my_transaction_file)
