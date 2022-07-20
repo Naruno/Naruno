@@ -63,7 +63,6 @@ class server(Thread):
         custom_LOADING_BLOCKSHASH_PATH=None,
         custom_LOADING_BLOCKSHASH_PART_PATH=None,
     ):
-        self.__class__.Server = self
         Thread.__init__(self)
         self.running = True
 
@@ -106,7 +105,9 @@ class server(Thread):
             if custom_LOADING_BLOCKSHASH_PART_PATH is None else
             custom_LOADING_BLOCKSHASH_PART_PATH)
 
-        self.start()
+        if not test:
+            self.__class__.Server = self
+            self.start()
 
     def check_connected(self, host, port):
         for a_client in self.clients:
