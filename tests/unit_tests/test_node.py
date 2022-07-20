@@ -734,8 +734,8 @@ class Test_Node(unittest.TestCase):
         first_len_of_clients = len(self.node_0.clients)
         temp_server = server("127.0.0.1", 10058, test=True)
         self.node_0.connect("127.0.0.1", 10058)
-        time.sleep(15)
-        temp_server.stop()
+        time.sleep(10)
+        temp_server.sock.close()
         self.assertEqual(len(self.node_0.clients), first_len_of_clients)
 
 
