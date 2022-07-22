@@ -89,8 +89,7 @@ def parse(hexadecimal):
         hexadecimal[lengthBytes : lengthBytes + length],
         hexadecimal[lengthBytes + length :],
     )
-    if len(content) < length:
-        raise Exception("missing bytes in DER parse")
+
 
     tagData = _getTagData(typeByte)
     if tagData["isConstructed"]:
@@ -114,17 +113,6 @@ def _parseOid(hexadecimal):
     return tuple(oidFromHex(hexadecimal))
 
 
-def _parseTime(hexadecimal):
-    string = _parseString(hexadecimal)
-    return datetime.strptime(string, "%y%m%d%H%M%SZ")
-
-
-def _parseString(hexadecimal):
-    return byteStringFromHex(hexadecimal).decode()
-
-
-def _parseNull(_content):
-    return None
 
 
 def _parseInteger(hexadecimal):
@@ -132,16 +120,12 @@ def _parseInteger(hexadecimal):
     bits = bitsFromHex(hexadecimal[0])
     if bits[0] == "0":  # negative numbers are encoded using two's complement
         return integer
-    bitCount = 4 * len(hexadecimal)
-    return integer - (2**bitCount)
+
 
 
 def _encodeInteger(number):
     hexadecimal = hexFromInt(abs(number))
-    if number < 0:
-        bitCount = 4 * len(hexadecimal)
-        twosComplement = (2**bitCount) + number
-        return hexFromInt(twosComplement)
+
     bits = bitsFromHex(hexadecimal[0])
     if (
         bits[0] == "1"
@@ -160,14 +144,7 @@ def _readLengthBytes(hexadecimal):
         length = lengthIndicator * 2
         return length, lengthBytes
 
-    lengthLength = (
-        lengthIndicator - 128
-    )  # nullifies first bit of byte (only used as long-form flag)
-    if lengthLength == 0:
-        raise Exception("indefinite length encoding located in DER")
-    lengthBytes += 2 * lengthLength
-    length = intFromHex(hexadecimal[2:lengthBytes]) * 2
-    return length, lengthBytes
+
 
 
 def _generateLengthBytes(hexadecimal):
@@ -175,10 +152,7 @@ def _generateLengthBytes(hexadecimal):
     length = hexFromInt(size)
     if size < 128:  # checks if first bit of byte should be 0 (a.k.a. short-form flag)
         return length.zfill(2)
-    lengthLength = (
-        128 + len(length) // 2
-    )  # +128 sets the first bit of the byte as 1 (a.k.a. long-form flag)
-    return hexFromInt(lengthLength) + length
+h
 
 
 def _getTagData(tag):
