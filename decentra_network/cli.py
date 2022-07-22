@@ -28,8 +28,6 @@ from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import (debug_mode, test_mode,
                                                   the_settings)
 from decentra_network.lib.status import Status
-from decentra_network.node.get_block_from_other_node import \
-    GetBlockFromOtherNode
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.my_transactions.save_to_my_transaction import \
@@ -202,7 +200,7 @@ def menu():
                 logger.info("Consensus timer is started")
                 perpetualTimer(the_block.consensus_timer, consensus_trigger)
             else:
-                GetBlockFromOtherNode()
+                server.Server.send_me_full_block()
 
         if choices_input == "status":
             print(Status())

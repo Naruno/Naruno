@@ -12,6 +12,7 @@ import time
 from hashlib import sha256
 from shutil import move
 from threading import Thread
+import random
 
 from decentra_network.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
@@ -320,8 +321,10 @@ class server(Thread):
         if "myblockhash" == data["action"]:
             self.get_candidate_block_hash(data, node)
 
-    def send_me_full_block(self, node):
-        self.send_client(node,  {"action":"sendmefullblock"})
+    def send_me_full_block(self, node=None):
+
+        the_node = node if node is not None else random.choice(self.clients)
+        self.send_client(the_node,  {"action":"sendmefullblock"})
 
     def send_my_block(self, block):
         system = block

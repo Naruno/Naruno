@@ -19,8 +19,6 @@ from decentra_network.consensus.consensus_main import consensus_trigger
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
-from decentra_network.node.get_block_from_other_node import \
-    GetBlockFromOtherNode
 from decentra_network.node.server.server import server
 
 
@@ -241,7 +239,7 @@ class NodeBox(MDGridLayout):
             server.Server.send_block_to_other_nodes()
             perpetualTimer(the_block.consensus_timer, consensus_trigger)
         else:
-            GetBlockFromOtherNode()
+            server.Server.send_me_full_block()
 
     def nd_id(self):
         Clipboard.copy(server.id)
