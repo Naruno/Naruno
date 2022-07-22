@@ -34,16 +34,18 @@ class Unl:
                 json.dump(nodes_list, unl_nodes_file, indent=4)
 
     @staticmethod
-    def get_unl_nodes():
+    def get_unl_nodes(custom_UNL_NODES_PATH=None):
         """
         Returns the UNL nodes list from UNL_NODES_PATH.
         """
 
-        if not os.path.exists(UNL_NODES_PATH):
+        the_UNL_NODES_PATH = UNL_NODES_PATH if custom_UNL_NODES_PATH is None else custom_UNL_NODES_PATH
+
+        if not os.path.exists(the_UNL_NODES_PATH):
             return {}
 
         os.chdir(get_config()["main_folder"])
-        with open(UNL_NODES_PATH, "r") as unl_nodes_file:
+        with open(the_UNL_NODES_PATH, "r") as unl_nodes_file:
             return json.load(unl_nodes_file)
 
     @staticmethod
