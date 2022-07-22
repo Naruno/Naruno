@@ -15,19 +15,15 @@ def ChangeTransactionFee(
     """
     Increase transaction fee by 0.01 DNC for each block.default_optimum_transaction_number argument
     """
-    pending_transactions = (
-        GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        if custom_pending_transactions is None
-        else custom_pending_transactions
-    )
-    if (
-        len(pending_transactions + block.validating_list)
-        // block.default_optimum_transaction_number
-    ) != 0:
-        increase = (
-            len(pending_transactions + block.validating_list)
-            // block.default_optimum_transaction_number
-        ) * block.default_increase_of_fee
+    pending_transactions = (GetPending(
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+                            if custom_pending_transactions is None else
+                            custom_pending_transactions)
+    if (len(pending_transactions + block.validating_list) //
+            block.default_optimum_transaction_number) != 0:
+        increase = (len(pending_transactions + block.validating_list) //
+                    block.default_optimum_transaction_number
+                    ) * block.default_increase_of_fee
         block.transaction_fee += increase
     else:
         block.transaction_fee = block.default_transaction_fee

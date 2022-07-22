@@ -12,11 +12,9 @@ from decentra_network.lib.config_system import get_config
 
 
 def DeletePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (
-        PENDING_TRANSACTIONS_PATH
-        if custom_PENDING_TRANSACTIONS_PATH is None
-        else custom_PENDING_TRANSACTIONS_PATH
-    )
+    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
+                                     custom_PENDING_TRANSACTIONS_PATH is None
+                                     else custom_PENDING_TRANSACTIONS_PATH)
     os.chdir(get_config()["main_folder"])
     file_name = sha256((tx.signature).encode("utf-8")).hexdigest()
     for entry in os.scandir(the_PENDING_TRANSACTIONS_PATH):

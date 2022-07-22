@@ -13,11 +13,9 @@ from decentra_network.lib.config_system import get_config
 
 
 def SavePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (
-        PENDING_TRANSACTIONS_PATH
-        if custom_PENDING_TRANSACTIONS_PATH is None
-        else custom_PENDING_TRANSACTIONS_PATH
-    )
+    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
+                                     custom_PENDING_TRANSACTIONS_PATH is None
+                                     else custom_PENDING_TRANSACTIONS_PATH)
     file_name = sha256((tx.signature).encode("utf-8")).hexdigest()
     the_path = the_PENDING_TRANSACTIONS_PATH + f"{file_name}.json"
     os.chdir(get_config()["main_folder"])

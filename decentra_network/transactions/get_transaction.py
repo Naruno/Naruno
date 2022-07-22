@@ -18,12 +18,12 @@ def GetTransaction(
     custom_PENDING_TRANSACTIONS_PATH=None,
 ):
     if CheckTransaction(
-        block,
-        the_transaction,
-        custom_current_time,
-        custom_sequence_number,
-        custom_balance,
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
+            block,
+            the_transaction,
+            custom_current_time,
+            custom_sequence_number,
+            custom_balance,
+            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
     ):
         SavePending(
             the_transaction,
