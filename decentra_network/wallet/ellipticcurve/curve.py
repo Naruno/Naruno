@@ -44,15 +44,6 @@ class CurveFp:
         self.nistName = nistName
         self.oid = oid  # ASN.1 Object Identifier
 
-    def contains(self, p):
-        """
-        Verify if the point `p` is on the curve
-
-        :param p: Point p = Point(x, y)
-        :return: boolean
-        """
-
-        return True
 
     def length(self):
         return (1 + len("%x" % self.N)) // 2
