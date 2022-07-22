@@ -809,11 +809,11 @@ class Test_Node(unittest.TestCase):
         self.node_0.connected_node_delete(node)
         the_list_after_delete = server.get_connected_nodes(
             custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
-        result = any( (the_list_after_delete[i]["host"] == "test"
-                    and the_list_after_delete[i]["port"] == 58
-                    and the_list_after_delete[i]["id"] == "onur") 
-                    for i in the_list_after_delete
-                )
+        result = any((the_list_after_delete[i]["host"] == "test"
+                      and the_list_after_delete[i]["port"] == 58
+                      and the_list_after_delete[i]["id"] == "onur")
+                     for i in the_list_after_delete
+                     )
         self.assertNotEqual(len(the_list_before_delete),
                             len(the_list_after_delete))
         self.assertFalse(result)
@@ -923,8 +923,6 @@ class Test_Node(unittest.TestCase):
         )
         CleanUp_tests()
 
-
-
     def test_send_my_block_get_candidate_block_no_trans(self):
         CleanUp_tests()
         print("\n\n\n\n\n\n")
@@ -935,17 +933,21 @@ class Test_Node(unittest.TestCase):
         the_block.sequance_number = 5858
         self.node_0.send_my_block(the_block)
         time.sleep(5)
-        self.assertEqual(self.node_1.clients[0].candidate_block["action"], "myblock")
-        self.assertEqual(self.node_1.clients[0].candidate_block["transaction"], [])
-        self.assertEqual(self.node_1.clients[0].candidate_block["sequance_number"], 5858)
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block["action"], "myblock")
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block["transaction"], [])
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block["sequance_number"], 5858)
 
-        self.assertEqual(self.node_2.clients[0].candidate_block["action"], "myblock")
-        self.assertEqual(self.node_2.clients[0].candidate_block["transaction"], [])
-        self.assertEqual(self.node_2.clients[0].candidate_block["sequance_number"], 5858)
-
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block["action"], "myblock")
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block["transaction"], [])
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block["sequance_number"], 5858)
 
         CleanUp_tests()
-
 
     def test_send_my_block_get_candidate_block(self):
         CleanUp_tests()
@@ -967,15 +969,21 @@ class Test_Node(unittest.TestCase):
         the_block.validating_list.append(the_transaction)
         self.node_0.send_my_block(the_block)
         time.sleep(5)
-        self.assertEqual(self.node_1.clients[0].candidate_block["action"], "myblock")
-        self.assertEqual(self.node_1.clients[0].candidate_block["transaction"], [{'sequance_number': 1, 'signature': 'MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==', 'toUser': 'onur', 'data': 'blockchain-lab', 'amount': 5000.0, 'transaction_fee': 0.02, 'transaction_time': 1656764224}])
-        self.assertEqual(self.node_1.clients[0].candidate_block["sequance_number"], 585858)
-        
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block["action"], "myblock")
+        self.assertEqual(self.node_1.clients[0].candidate_block["transaction"], [{'sequance_number': 1, 'signature': 'MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=',
+                         'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==', 'toUser': 'onur', 'data': 'blockchain-lab', 'amount': 5000.0, 'transaction_fee': 0.02, 'transaction_time': 1656764224}])
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block["sequance_number"], 585858)
 
-        self.assertEqual(self.node_2.clients[0].candidate_block["action"], "myblock")
-        self.assertEqual(self.node_2.clients[0].candidate_block["transaction"], [{'sequance_number': 1, 'signature': 'MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==', 'toUser': 'onur', 'data': 'blockchain-lab', 'amount': 5000.0, 'transaction_fee': 0.02, 'transaction_time': 1656764224}])
-        self.assertEqual(self.node_2.clients[0].candidate_block["sequance_number"], 585858)
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block["action"], "myblock")
+        self.assertEqual(self.node_2.clients[0].candidate_block["transaction"], [{'sequance_number': 1, 'signature': 'MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=',
+                         'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==', 'toUser': 'onur', 'data': 'blockchain-lab', 'amount': 5000.0, 'transaction_fee': 0.02, 'transaction_time': 1656764224}])
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block["sequance_number"], 585858)
 
         CleanUp_tests()
+
 
 unittest.main(exit=False)
