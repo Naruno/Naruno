@@ -296,9 +296,8 @@ class Test_Node(unittest.TestCase):
     def test_send_data_all(self):
         result = self.node_2.send({"action": "test"})
         time.sleep(2)
-
-        self.assertEqual(self.node_0.messages[0], result)
-        self.assertEqual(self.node_1.messages[0], result)
+        self.assertEqual(self.node_0.messages[-1], result)
+        self.assertEqual(self.node_1.messages[-1], result)
 
     def test_send_full_chain_get_full_chain(self):
         CleanUp_tests()
@@ -883,6 +882,43 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(pending_list_0), 0)
         self.assertEqual(len(pending_list_1), 1)
         self.assertEqual(len(pending_list_2), 1)
+        CleanUp_tests()
+
+    def test_send_block_to_other_nodes(self):
+        CleanUp_tests()
+        the_block = Block("onur")
+        the_block.consensus_timer = 0
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.custom_TEMP_BLOCKSHASH_PART_PATH0,
+        )
+        client = self.node_1.clients[0]
+        self.node_1.send_me_full_block(client)
+        time.sleep(5)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
+
+        self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
+
+        got_block = GetBlock(
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+        got_block.newly = False
+
+        print(the_block.dump_json())
+        print(got_block.dump_json())
+
+        self.assertEqual(
+            the_block.dump_json(),
+            got_block.dump_json(),
+        )
         CleanUp_tests()
 
 
