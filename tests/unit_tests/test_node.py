@@ -190,11 +190,15 @@ class Test_Node(unittest.TestCase):
             cls.node_2.connected_node_delete(the_dict)
 
     def test_multiple_connection_from_same_server(self):
+        first_len_clients_0 = len(self.node_0.clients)
+        first_len_clients_1 = len(self.node_1.clients)
+        first_len_clients_2 = len(self.node_2.clients)
         self.node_0.connect("127.0.0.1", 10001)
         time.sleep(15)
-        self.assertEqual(len(self.node_0.clients), 2)
-        self.assertEqual(len(self.node_1.clients), 2)
-        self.assertEqual(len(self.node_2.clients), 2)
+        self.assertEqual(len(self.node_0.clients), first_len_clients_0)
+        self.assertEqual(len(self.node_1.clients), first_len_clients_1)
+        self.assertEqual(len(self.node_2.clients), first_len_clients_2)
+
 
     def test_false_message_type_not_id(self):
         first_message_len = len(self.node_1.messages)
@@ -760,27 +764,17 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_0.clients), first_len_of_clients)
 
     def test_connectionfrommixdb(self):
-        for c in self.node_0.clients:
-            c.stop()
-        self.node_1.clients[0].stop()
-        self.node_2.clients[0].stop()
-        time.sleep(1)
-        for c in self.node_0.clients:
-            c.join()
-        self.node_1.clients[0].join()
-        self.node_2.clients[0].join()
-
-        self.node_0.clients = []
-        self.node_1.clients = [self.node_1.clients[1]]
-        self.node_2.clients = [self.node_2.clients[1]]
-        server.connectionfrommixdb(custom_server=self.node_0)
+        temp_node = server("127.0.0.1", 10058)
+        server.connectionfrommixdb(custom_server=temp_node, custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
         time.sleep(2)
-        self.node_0.clients.reverse()
-        self.node_1.clients.reverse()
-        self.node_2.clients.reverse()
         self.assertEqual(len(self.node_0.clients), 2)
-        self.assertEqual(len(self.node_1.clients), 2)
-        self.assertEqual(len(self.node_2.clients), 2)
+        self.assertEqual(len(temp_node.clients), 2)
+        self.assertEqual(len(self.node_1.clients), 3)
+        self.assertEqual(len(self.node_2.clients), 3)
+        temp_node.stop()
+        time.sleep(2)
+        temp_node.join()
+
 
     def test_connected_node_delete_and_save(self):
         self.node_0.save_connected_node("test", 58, "onur")
