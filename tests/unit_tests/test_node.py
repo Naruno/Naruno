@@ -89,9 +89,12 @@ class Test_Node(unittest.TestCase):
         cls.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
             ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
-        cls.custom_CONNECTED_NODES_PATH0 = CONNECTED_NODES_PATH.replace("connected_nodes", "connected_nodes_test_0")
-        cls.custom_CONNECTED_NODES_PATH1 = CONNECTED_NODES_PATH.replace("connected_nodes", "connected_nodes_test_1")
-        cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace("connected_nodes", "connected_nodes_test_2")
+        cls.custom_CONNECTED_NODES_PATH0 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_0")
+        cls.custom_CONNECTED_NODES_PATH1 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_1")
+        cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_2")
 
         cls.node_0 = server(
             "127.0.0.1",
@@ -221,7 +224,8 @@ class Test_Node(unittest.TestCase):
         in_unl_list = False
         get_as_node = False
 
-        nodes_list = server.get_connected_nodes(custom_CONNECTED_NODES_PATH=self.custom_CONNECTED_NODES_PATH2)
+        nodes_list = server.get_connected_nodes(
+            custom_CONNECTED_NODES_PATH=self.custom_CONNECTED_NODES_PATH2)
         for element in nodes_list:
             if element == self.node_1.host + str(self.node_1.port) + self.node_1.id:
                 finded_node = True
@@ -780,23 +784,24 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_1.clients), 2)
         self.assertEqual(len(self.node_2.clients), 2)
 
-
     def test_connected_node_delete_and_save(self):
         self.node_0.save_connected_node("test", 58, "onur")
         node = {}
         node["host"] = "test"
         node["port"] = 58
         node["id"] = "onur"
-        the_list_before_delete = server.get_connected_nodes(custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
+        the_list_before_delete = server.get_connected_nodes(
+            custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
         self.node_0.connected_node_delete(node)
-        the_list_after_delete = server.get_connected_nodes(custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
+        the_list_after_delete = server.get_connected_nodes(
+            custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
         result = False
         for i in the_list_after_delete:
             if the_list_after_delete[i]["host"] == "test" and the_list_after_delete[i]["port"] == 58 and the_list_after_delete[i]["id"] == "onur":
                 result = True
-        self.assertNotEqual(len(the_list_before_delete), len(the_list_after_delete))
+        self.assertNotEqual(len(the_list_before_delete),
+                            len(the_list_after_delete))
         self.assertFalse(result)
-
 
 
 unittest.main(exit=False)

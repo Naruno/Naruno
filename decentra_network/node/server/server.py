@@ -141,7 +141,7 @@ class server(Thread):
             c.stop()
         time.sleep(1)
         for c in self.clients:
-            c.join()           
+            c.join()
         self.sock.close()
 
     def prepare_message(self, data):
@@ -230,7 +230,8 @@ class server(Thread):
             if entry.name != "README.md":
                 with open(entry.path, "r") as my_transaction_file:
                     loaded_json = json.load(my_transaction_file)
-                    the_pending_list[loaded_json["host"] + str(loaded_json["port"]) + loaded_json["id"]] = loaded_json
+                    the_pending_list[loaded_json["host"] +
+                                     str(loaded_json["port"]) + loaded_json["id"]] = loaded_json
 
         return the_pending_list
 
@@ -258,10 +259,11 @@ class server(Thread):
         """
         the_server = server.Server if custom_server is None else custom_server
 
-        node_list = the_server.get_connected_nodes(custom_CONNECTED_NODES_PATH=the_server.CONNECTED_NODES_PATH)       
+        node_list = the_server.get_connected_nodes(
+            custom_CONNECTED_NODES_PATH=the_server.CONNECTED_NODES_PATH)
         for element in node_list:
             the_server.connect(node_list[element]["host"],
-                                  node_list[element]["port"])
+                               node_list[element]["port"])
 
     def connected_node_delete(self, node):
         """
