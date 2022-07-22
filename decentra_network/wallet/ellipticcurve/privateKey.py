@@ -24,29 +24,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
+from decentra_network.wallet.ellipticcurve.curve import getCurveByOid
+from decentra_network.wallet.ellipticcurve.curve import secp256k1
 from decentra_network.wallet.ellipticcurve.math import Math
-from decentra_network.wallet.ellipticcurve.utils.integer import RandomInteger
-from decentra_network.wallet.ellipticcurve.utils.pem import getPemContent, createPem
-from decentra_network.wallet.ellipticcurve.utils.binary import (
-    hexFromByteString,
-    byteStringFromHex,
-    intFromHex,
-    base64FromByteString,
-    byteStringFromBase64,
-)
-from decentra_network.wallet.ellipticcurve.utils.der import (
-    hexFromInt,
-    parse,
-    encodeConstructed,
-    DerFieldType,
-    encodePrimitive,
-)
-from decentra_network.wallet.ellipticcurve.curve import secp256k1, getCurveByOid
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
+from decentra_network.wallet.ellipticcurve.utils.binary import base64FromByteString
+from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromBase64
+from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromHex
+from decentra_network.wallet.ellipticcurve.utils.binary import hexFromByteString
+from decentra_network.wallet.ellipticcurve.utils.binary import intFromHex
+from decentra_network.wallet.ellipticcurve.utils.der import DerFieldType
+from decentra_network.wallet.ellipticcurve.utils.der import encodeConstructed
+from decentra_network.wallet.ellipticcurve.utils.der import encodePrimitive
+from decentra_network.wallet.ellipticcurve.utils.der import hexFromInt
+from decentra_network.wallet.ellipticcurve.utils.der import parse
+from decentra_network.wallet.ellipticcurve.utils.integer import RandomInteger
+from decentra_network.wallet.ellipticcurve.utils.pem import createPem
+from decentra_network.wallet.ellipticcurve.utils.pem import getPemContent
 
 
 class PrivateKey:
+
     def __init__(self, curve=secp256k1, secret=None):
         self.curve = curve
         self.secret = secret or RandomInteger.between(1, curve.N - 1)
@@ -61,9 +59,6 @@ class PrivateKey:
             P=curve.P,
         )
         return PublicKey(point=publicPoint, curve=curve)
-
-    def toString(self):
-        return hexFromInt(self.secret)
 
     def toDer(self):
         publicKeyString = self.publicKey().toString(encoded=True)
@@ -83,7 +78,8 @@ class PrivateKey:
 
     def toPem(self):
         der = self.toDer()
-        return createPem(content=base64FromByteString(der), template=_pemTemplate)
+        return createPem(content=base64FromByteString(der),
+                         template=_pemTemplate)
 
     @classmethod
     def fromPem(cls, string):
@@ -93,19 +89,12 @@ class PrivateKey:
     @classmethod
     def fromDer(cls, string):
         hexadecimal = hexFromByteString(string)
-        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[0]
-        if privateKeyFlag != 1:
-            raise Exception(
-                "Private keys should start with a '1' flag, but a '{flag}' was found instead".format(
-                    flag=privateKeyFlag
-                )
-            )
+        privateKeyFlag, secretHex, curveData, publicKeyString = parse(
+            hexadecimal)[0]
+
         curve = getCurveByOid(curveData[0])
         privateKey = cls.fromString(string=secretHex, curve=curve)
-        if privateKey.publicKey().toString(encoded=True) != publicKeyString[0]:
-            raise Exception(
-                "The public key described inside the private key file doesn't match the actual public key of the pair"
-            )
+
         return privateKey
 
     @classmethod

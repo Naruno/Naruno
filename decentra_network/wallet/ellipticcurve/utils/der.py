@@ -24,15 +24,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
 from datetime import datetime
-from decentra_network.wallet.ellipticcurve.utils.oid import oidToHex, oidFromHex
-from decentra_network.wallet.ellipticcurve.utils.binary import (
-    hexFromInt,
-    intFromHex,
-    byteStringFromHex,
-    bitsFromHex,
-)
+
+from decentra_network.wallet.ellipticcurve.utils.binary import bitsFromHex
+from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromHex
+from decentra_network.wallet.ellipticcurve.utils.binary import hexFromInt
+from decentra_network.wallet.ellipticcurve.utils.binary import intFromHex
+from decentra_network.wallet.ellipticcurve.utils.oid import oidFromHex
+from decentra_network.wallet.ellipticcurve.utils.oid import oidToHex
 
 
 class DerFieldType:
@@ -75,9 +74,9 @@ def encodePrimitive(tagType, value):
         value = _encodeInteger(value)
     if tagType == DerFieldType.object:
         value = oidToHex(value)
-    return "{tag}{size}{value}".format(
-        tag=_typeToHexTag[tagType], size=_generateLengthBytes(value), value=value
-    )
+    return "{tag}{size}{value}".format(tag=_typeToHexTag[tagType],
+                                       size=_generateLengthBytes(value),
+                                       value=value)
 
 
 def parse(hexadecimal):
@@ -86,22 +85,17 @@ def parse(hexadecimal):
     typeByte, hexadecimal = hexadecimal[:2], hexadecimal[2:]
     length, lengthBytes = _readLengthBytes(hexadecimal)
     content, hexadecimal = (
-        hexadecimal[lengthBytes : lengthBytes + length],
-        hexadecimal[lengthBytes + length :],
+        hexadecimal[lengthBytes:lengthBytes + length],
+        hexadecimal[lengthBytes + length:],
     )
-    if len(content) < length:
-        raise Exception("missing bytes in DER parse")
 
     tagData = _getTagData(typeByte)
     if tagData["isConstructed"]:
         content = parse(content)
 
     valueParser = {
-        DerFieldType.null: _parseNull,
         DerFieldType.object: _parseOid,
-        DerFieldType.utcTime: _parseTime,
         DerFieldType.integer: _parseInteger,
-        DerFieldType.printableString: _parseString,
     }.get(tagData["type"], _parseAny)
     return [valueParser(content)] + parse(hexadecimal)
 
@@ -114,37 +108,19 @@ def _parseOid(hexadecimal):
     return tuple(oidFromHex(hexadecimal))
 
 
-def _parseTime(hexadecimal):
-    string = _parseString(hexadecimal)
-    return datetime.strptime(string, "%y%m%d%H%M%SZ")
-
-
-def _parseString(hexadecimal):
-    return byteStringFromHex(hexadecimal).decode()
-
-
-def _parseNull(_content):
-    return None
-
-
 def _parseInteger(hexadecimal):
     integer = intFromHex(hexadecimal)
     bits = bitsFromHex(hexadecimal[0])
     if bits[0] == "0":  # negative numbers are encoded using two's complement
         return integer
-    bitCount = 4 * len(hexadecimal)
-    return integer - (2**bitCount)
 
 
 def _encodeInteger(number):
     hexadecimal = hexFromInt(abs(number))
-    if number < 0:
-        bitCount = 4 * len(hexadecimal)
-        twosComplement = (2**bitCount) + number
-        return hexFromInt(twosComplement)
+
     bits = bitsFromHex(hexadecimal[0])
     if (
-        bits[0] == "1"
+            bits[0] == "1"
     ):  # if first bit was left as 1, number would be parsed as a negative integer with two's complement
         hexadecimal = "00" + hexadecimal
     return hexadecimal
@@ -153,32 +129,19 @@ def _encodeInteger(number):
 def _readLengthBytes(hexadecimal):
     lengthBytes = 2
     lengthIndicator = intFromHex(hexadecimal[0:lengthBytes])
-    isShortForm = (
-        lengthIndicator < 128
-    )  # checks if first bit of byte is 1 (a.k.a. short-form)
+    isShortForm = (lengthIndicator < 128
+                   )  # checks if first bit of byte is 1 (a.k.a. short-form)
     if isShortForm:
         length = lengthIndicator * 2
         return length, lengthBytes
-
-    lengthLength = (
-        lengthIndicator - 128
-    )  # nullifies first bit of byte (only used as long-form flag)
-    if lengthLength == 0:
-        raise Exception("indefinite length encoding located in DER")
-    lengthBytes += 2 * lengthLength
-    length = intFromHex(hexadecimal[2:lengthBytes]) * 2
-    return length, lengthBytes
 
 
 def _generateLengthBytes(hexadecimal):
     size = len(hexadecimal) // 2
     length = hexFromInt(size)
-    if size < 128:  # checks if first bit of byte should be 0 (a.k.a. short-form flag)
+    # checks if first bit of byte should be 0 (a.k.a. short-form flag)
+    if size < 128:
         return length.zfill(2)
-    lengthLength = (
-        128 + len(length) // 2
-    )  # +128 sets the first bit of the byte as 1 (a.k.a. long-form flag)
-    return hexFromInt(lengthLength) + length
 
 
 def _getTagData(tag):

@@ -24,23 +24,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
+from decentra_network.wallet.ellipticcurve.utils.binary import base64FromByteString
+from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromBase64
+from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromHex
+from decentra_network.wallet.ellipticcurve.utils.binary import hexFromByteString
 from decentra_network.wallet.ellipticcurve.utils.compatibility import *
-from decentra_network.wallet.ellipticcurve.utils.der import (
-    parse,
-    encodeConstructed,
-    encodePrimitive,
-    DerFieldType,
-)
-from decentra_network.wallet.ellipticcurve.utils.binary import (
-    hexFromByteString,
-    byteStringFromHex,
-    base64FromByteString,
-    byteStringFromBase64,
-)
+from decentra_network.wallet.ellipticcurve.utils.der import DerFieldType
+from decentra_network.wallet.ellipticcurve.utils.der import encodeConstructed
+from decentra_network.wallet.ellipticcurve.utils.der import encodePrimitive
+from decentra_network.wallet.ellipticcurve.utils.der import parse
 
 
 class Signature:
+
     def __init__(self, r, s, recoveryId=None):
         self.r = r
         self.s = s
@@ -51,7 +47,6 @@ class Signature:
         encodedSequence = byteStringFromHex(hexadecimal)
         if not withRecoveryId:
             return encodedSequence
-        return toBytes(chr(27 + self.recoveryId)) + encodedSequence
 
     def toBase64(self, withRecoveryId=False):
         return base64FromByteString(self.toDer(withRecoveryId))
@@ -59,12 +54,6 @@ class Signature:
     @classmethod
     def fromDer(cls, string, recoveryByte=False):
         recoveryId = None
-        if recoveryByte:
-            recoveryId = (
-                string[0] if isinstance(string[0], intTypes) else ord(string[0])
-            )
-            recoveryId -= 27
-            string = string[1:]
 
         hexadecimal = hexFromByteString(string)
         return cls._fromString(string=hexadecimal, recoveryId=recoveryId)

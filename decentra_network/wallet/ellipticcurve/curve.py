@@ -24,7 +24,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
 #
 # Elliptic Curve Equation
 #
@@ -34,6 +33,7 @@ from decentra_network.wallet.ellipticcurve.point import Point
 
 
 class CurveFp:
+
     def __init__(self, A, B, P, N, Gx, Gy, name, oid, nistName=None):
         self.A = A
         self.B = B
@@ -43,21 +43,6 @@ class CurveFp:
         self.name = name
         self.nistName = nistName
         self.oid = oid  # ASN.1 Object Identifier
-
-    def contains(self, p):
-        """
-        Verify if the point `p` is on the curve
-
-        :param p: Point p = Point(x, y)
-        :return: boolean
-        """
-        if not 0 <= p.x <= self.P - 1:
-            return False
-        if not 0 <= p.y <= self.P - 1:
-            return False
-        if (p.y**2 - (p.x**3 + self.A * p.x + self.B)) % self.P != 0:
-            return False
-        return True
 
     def length(self):
         return (1 + len("%x" % self.N)) // 2
@@ -97,11 +82,5 @@ _curvesByOid = {tuple(curve.oid): curve for curve in supportedCurves}
 
 
 def getCurveByOid(oid):
-    if oid not in _curvesByOid:
-        raise Exception(
-            "Unknown curve with oid {oid}; The following are registered: {names}".format(
-                oid=".".join([str(number) for number in oid]),
-                names=", ".join([curve.name for curve in supportedCurves]),
-            )
-        )
+
     return _curvesByOid[oid]

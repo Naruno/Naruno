@@ -24,11 +24,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
 from decentra_network.wallet.ellipticcurve.point import Point
 
 
 class Math:
+
     @classmethod
     def multiply(cls, p, n, N, A, P):
         """
@@ -42,8 +42,7 @@ class Math:
         :return: Point that represents the sum of First and Second Point
         """
         return cls._fromJacobian(
-            cls._jacobianMultiply(cls._toJacobian(p), n, N, A, P), P
-        )
+            cls._jacobianMultiply(cls._toJacobian(p), n, N, A, P), P)
 
     @classmethod
     def add(cls, p, q, A, P):
@@ -70,8 +69,6 @@ class Math:
         :param n: Mod for division
         :return: Value representing the division
         """
-        if x == 0:
-            return 0
 
         lm = 1
         hm = 0
@@ -124,8 +121,6 @@ class Math:
         :param A: Coefficient of the first-order term of the equation Y^2 = X^3 + A*X + B (mod p)
         :return: Point that represents the sum of First and Second Point
         """
-        if p.y == 0:
-            return Point(0, 0, 0)
 
         ysq = (p.y**2) % P
         S = (4 * p.x * ysq) % P
@@ -147,18 +142,12 @@ class Math:
         :param A: Coefficient of the first-order term of the equation Y^2 = X^3 + A*X + B (mod p)
         :return: Point that represents the sum of First and Second Point
         """
-        if p.y == 0:
-            return q
-        if q.y == 0:
-            return p
 
         U1 = (p.x * q.z**2) % P
         U2 = (q.x * p.z**2) % P
         S1 = (p.y * q.z**3) % P
         S2 = (q.y * p.z**3) % P
 
-        if U1 == U2:
-            return Point(0, 0, 1) if S1 != S2 else cls._jacobianDouble(p, A, P)
         H = U2 - U1
         R = S2 - S1
         H2 = (H * H) % P
@@ -182,20 +171,16 @@ class Math:
         :param A: Coefficient of the first-order term of the equation Y^2 = X^3 + A*X + B (mod p)
         :return: Point that represents the sum of First and Second Point
         """
-        if p.y == 0 or n == 0:
-            return Point(0, 0, 1)
-
         if n == 1:
             return p
 
-        if n < 0 or n >= N:
-            return cls._jacobianMultiply(p, n % N, N, A, P)
-
         if (n % 2) == 0:
-            return cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P)
+            return cls._jacobianDouble(
+                cls._jacobianMultiply(p, n // 2, N, A, P), A, P)
 
         return cls._jacobianAdd(
-            cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P),
+            cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A,
+                                P),
             p,
             A,
             P,
