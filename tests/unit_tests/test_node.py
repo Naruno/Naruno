@@ -1008,7 +1008,6 @@ class Test_Node(unittest.TestCase):
 
         CleanUp_tests()
 
-
     def test_send_my_block_hash_get_candidate_block_hash(self):
         CleanUp_tests()
 
@@ -1016,13 +1015,19 @@ class Test_Node(unittest.TestCase):
         the_block.hash = 58585858
         self.node_0.send_my_block_hash(the_block)
         time.sleep(5)
-        self.assertEqual(self.node_1.clients[0].candidate_block_hash["action"], "myblockhash")
-        self.assertEqual(self.node_1.clients[0].candidate_block_hash["hash"], 58585858)
-        self.assertEqual(self.node_1.clients[0].candidate_block_hash["sequance_number"], 0)
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block_hash["action"], "myblockhash")
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block_hash["hash"], 58585858)
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block_hash["sequance_number"], 0)
 
-        self.assertEqual(self.node_2.clients[0].candidate_block_hash["action"], "myblockhash")
-        self.assertEqual(self.node_2.clients[0].candidate_block_hash["hash"], 58585858)
-        self.assertEqual(self.node_2.clients[0].candidate_block_hash["sequance_number"], 0)
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block_hash["action"], "myblockhash")
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block_hash["hash"], 58585858)
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block_hash["sequance_number"], 0)
         CleanUp_tests()
 
 

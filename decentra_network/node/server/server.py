@@ -324,7 +324,7 @@ class server(Thread):
     def send_me_full_block(self, node=None):
 
         the_node = node if node is not None else random.choice(self.clients)
-        self.send_client(the_node,  {"action":"sendmefullblock"})
+        self.send_client(the_node, {"action": "sendmefullblock"})
 
     def send_my_block(self, block):
         system = block
