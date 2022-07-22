@@ -14,7 +14,11 @@ from decentra_network.lib.config_system import get_config
 
 
 def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = PENDING_TRANSACTIONS_PATH if custom_PENDING_TRANSACTIONS_PATH is None else custom_PENDING_TRANSACTIONS_PATH
+    the_PENDING_TRANSACTIONS_PATH = (
+        PENDING_TRANSACTIONS_PATH
+        if custom_PENDING_TRANSACTIONS_PATH is None
+        else custom_PENDING_TRANSACTIONS_PATH
+    )
     the_pending_list = []
     os.chdir(get_config()["main_folder"])
     for entry in os.scandir(the_PENDING_TRANSACTIONS_PATH):

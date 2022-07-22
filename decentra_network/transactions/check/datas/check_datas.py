@@ -47,7 +47,8 @@ def Check_Datas(
         return False
 
     pending_transactions = GetPending(
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH
+    )
     for already_tx in pending_transactions + block.validating_list:
         if already_tx.signature == transaction.signature:
             return False

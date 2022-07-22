@@ -27,7 +27,9 @@ def GetTransaction(
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
     ):
         SavePending(
-            the_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+            the_transaction,
+            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
+        )
         return True
     else:
         return False

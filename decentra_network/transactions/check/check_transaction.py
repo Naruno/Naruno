@@ -32,8 +32,7 @@ def CheckTransaction(
         f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
     )
     ChangeTransactionFee(
-        block,
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH
+        block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH
     )
 
     if Check_Type(transaction):
