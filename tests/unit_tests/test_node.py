@@ -199,7 +199,6 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_1.clients), first_len_clients_1)
         self.assertEqual(len(self.node_2.clients), first_len_clients_2)
 
-
     def test_false_message_type_not_id(self):
         first_message_len = len(self.node_1.messages)
         data = {"signature": "true"}
@@ -765,7 +764,8 @@ class Test_Node(unittest.TestCase):
 
     def test_connectionfrommixdb(self):
         temp_node = server("127.0.0.1", 10058)
-        server.connectionfrommixdb(custom_server=temp_node, custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
+        server.connectionfrommixdb(
+            custom_server=temp_node, custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
         time.sleep(2)
         self.assertEqual(len(self.node_0.clients), 2)
         self.assertEqual(len(temp_node.clients), 2)
@@ -774,7 +774,6 @@ class Test_Node(unittest.TestCase):
         temp_node.stop()
         time.sleep(2)
         temp_node.join()
-
 
     def test_connected_node_delete_and_save(self):
         self.node_0.save_connected_node("test", 58, "onur")
