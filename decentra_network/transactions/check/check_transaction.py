@@ -22,6 +22,7 @@ def CheckTransaction(
     custom_current_time=None,
     custom_sequence_number=None,
     custom_balance=None,
+    custom_PENDING_TRANSACTIONS_PATH=None,
 ):
     """
     This function checks the transaction.
@@ -30,7 +31,10 @@ def CheckTransaction(
     logger.info(
         f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
     )
-    ChangeTransactionFee(block)
+    ChangeTransactionFee(
+        block,
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH
+    )
 
     if Check_Type(transaction):
         logger.info("Transaction type is correct")
@@ -48,6 +52,7 @@ def CheckTransaction(
         custom_current_time=custom_current_time,
         custom_balance=custom_balance,
         custom_sequence_number=custom_sequence_number,
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
     ):
         logger.info("Transaction balance is correct")
     else:

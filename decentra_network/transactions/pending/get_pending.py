@@ -13,10 +13,11 @@ from decentra_network.config import PENDING_TRANSACTIONS_PATH
 from decentra_network.lib.config_system import get_config
 
 
-def GetPending():
+def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
+    the_PENDING_TRANSACTIONS_PATH = PENDING_TRANSACTIONS_PATH if custom_PENDING_TRANSACTIONS_PATH is None else custom_PENDING_TRANSACTIONS_PATH
     the_pending_list = []
     os.chdir(get_config()["main_folder"])
-    for entry in os.scandir(PENDING_TRANSACTIONS_PATH):
+    for entry in os.scandir(the_PENDING_TRANSACTIONS_PATH):
         if entry.name != "README.md":
             with open(entry.path, "r") as my_transaction_file:
                 the_pending_list.append(

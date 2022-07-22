@@ -16,6 +16,7 @@ def GetTransaction(
     custom_current_time=None,
     custom_sequence_number=None,
     custom_balance=None,
+    custom_PENDING_TRANSACTIONS_PATH=None,
 ):
     if CheckTransaction(
         block,
@@ -23,8 +24,9 @@ def GetTransaction(
         custom_current_time,
         custom_sequence_number,
         custom_balance,
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
     ):
-        SavePending(the_transaction)
+        SavePending(the_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
         return True
     else:
         return False

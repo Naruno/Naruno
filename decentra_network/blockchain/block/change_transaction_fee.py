@@ -8,12 +8,16 @@
 from decentra_network.transactions.pending.get_pending import GetPending
 
 
-def ChangeTransactionFee(block, custom_pending_transactions=None):
+def ChangeTransactionFee(
+    block, 
+    custom_pending_transactions=None,
+    custom_PENDING_TRANSACTIONS_PATH=None,
+    ):
     """
     Increase transaction fee by 0.01 DNC for each block.default_optimum_transaction_number argument
     """
     pending_transactions = (
-        GetPending()
+        GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
         if custom_pending_transactions is None
         else custom_pending_transactions
     )

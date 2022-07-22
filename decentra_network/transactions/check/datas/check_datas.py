@@ -20,6 +20,7 @@ def Check_Datas(
     custom_current_time=None,
     custom_balance=None,
     custom_sequence_number=None,
+    custom_PENDING_TRANSACTIONS_PATH=None,
 ):
     """
     Check if the transaction datas are valid
@@ -45,7 +46,7 @@ def Check_Datas(
     else:
         return False
 
-    pending_transactions = GetPending()
+    pending_transactions = GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
     for already_tx in pending_transactions + block.validating_list:
         if already_tx.signature == transaction.signature:
             return False
