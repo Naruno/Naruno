@@ -22,6 +22,7 @@ from decentra_network.config import LOADING_ACCOUNTS_PATH
 from decentra_network.config import LOADING_BLOCK_PATH
 from decentra_network.config import LOADING_BLOCKSHASH_PART_PATH
 from decentra_network.config import LOADING_BLOCKSHASH_PATH
+from decentra_network.config import PENDING_TRANSACTIONS_PATH
 from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.config import TEMP_BLOCK_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
@@ -54,6 +55,7 @@ class server(Thread):
         port,
         save_messages=False,
         test=False,
+        custom_variables=False,
         custom_TEMP_BLOCK_PATH=None,
         custom_TEMP_ACCOUNTS_PATH=None,
         custom_TEMP_BLOCKSHASH_PATH=None,
@@ -63,6 +65,7 @@ class server(Thread):
         custom_LOADING_BLOCKSHASH_PATH=None,
         custom_LOADING_BLOCKSHASH_PART_PATH=None,
         custom_CONNECTED_NODES_PATH=None,
+        custom_PENDING_TRANSACTIONS_PATH=None,
     ):
         Thread.__init__(self)
         self.running = True
@@ -109,6 +112,13 @@ class server(Thread):
         self.CONNECTED_NODES_PATH = (CONNECTED_NODES_PATH
                                      if custom_CONNECTED_NODES_PATH is None
                                      else custom_CONNECTED_NODES_PATH)
+
+        self.PENDING_TRANSACTIONS_PATH = (
+            PENDING_TRANSACTIONS_PATH
+            if custom_PENDING_TRANSACTIONS_PATH is None else
+            custom_PENDING_TRANSACTIONS_PATH)
+
+        self.custom_variables = custom_variables
 
         if not test:
             self.__class__.Server = self
@@ -554,7 +564,14 @@ class server(Thread):
                 file.close()
 
     @staticmethod
-    def send_transaction(tx, except_client=None):
+    def send_transaction(
+        tx,
+        custom_current_time=None,
+        custom_sequence_number=None,
+        custom_balance=None,
+        except_client=None,
+        custom_server=None,
+    ):
         """
         Sends the given transaction to UNL nodes.
         """
@@ -569,8 +586,12 @@ class server(Thread):
             "amount": tx.amount,
             "transaction_fee": tx.transaction_fee,
             "transaction_time": tx.transaction_time,
+            "custom_current_time": custom_current_time,
+            "custom_sequence_number": custom_sequence_number,
+            "custom_balance": custom_balance,
         }
-        server.Server.send(data, except_client=except_client)
+        the_server = server.Server if custom_server is None else custom_server
+        the_server.send(data, except_client=except_client)
 
     def get_transaction(self, data, node):
         block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
@@ -584,8 +605,30 @@ class server(Thread):
             data["transaction_fee"],
             data["transaction_time"],
         )
-        if GetTransaction(block, the_transaction):
-            server.send_transaction(the_transaction, except_client=node)
+        custom_current_time = None
+        custom_sequence_number = None
+        custom_balance = None
+        if self.custom_variables:
+            custom_current_time = data["custom_current_time"]
+            custom_sequence_number = data["custom_sequence_number"]
+            custom_balance = data["custom_balance"]
+        logger.info(
+            f"NODE:{self.host}:{self.port} -{custom_current_time}-{custom_sequence_number}-{custom_balance}"
+        )
+        if GetTransaction(
+                block,
+                the_transaction,
+                custom_current_time=custom_current_time,
+                custom_sequence_number=custom_sequence_number,
+                custom_balance=custom_balance,
+                custom_PENDING_TRANSACTIONS_PATH=self.
+                PENDING_TRANSACTIONS_PATH,
+        ):
+            logger.info(f"NODE:{self.host}:{self.port} Transaction accepted")
+
+            server.send_transaction(the_transaction,
+                                    except_client=node,
+                                    custom_server=self)
             SaveBlock(
                 block,
                 custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,

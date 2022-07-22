@@ -7,6 +7,8 @@
 import os
 import sys
 
+from decentra_network.transactions.pending.get_pending import GetPending
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import copy
 import json
@@ -19,13 +21,15 @@ from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH, TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
+    PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+    TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.transaction import Transaction
 
 
 class Test_Node(unittest.TestCase):
@@ -93,6 +97,13 @@ class Test_Node(unittest.TestCase):
         cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
             "connected_nodes", "connected_nodes_test_2")
 
+        cls.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_0")
+        cls.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_1")
+        cls.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_2")
+
         cls.node_0 = server(
             "127.0.0.1",
             10000,
@@ -108,6 +119,9 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH=cls.
             custom_LOADING_BLOCKSHASH_PART_PATH0,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH0,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH0,
+            custom_variables=True,
         )
 
         cls.node_1 = server(
@@ -125,6 +139,9 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH=cls.
             custom_LOADING_BLOCKSHASH_PART_PATH1,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH1,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH1,
+            custom_variables=True,
         )
         cls.node_2 = server(
             "127.0.0.1",
@@ -141,6 +158,9 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH=cls.
             custom_LOADING_BLOCKSHASH_PART_PATH2,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH2,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH2,
+            custom_variables=True,
         )
         Unl.save_new_unl_node(cls.node_0.id)
         Unl.save_new_unl_node(cls.node_1.id)
@@ -797,6 +817,74 @@ class Test_Node(unittest.TestCase):
         self.assertNotEqual(len(the_list_before_delete),
                             len(the_list_after_delete))
         self.assertFalse(result)
+
+    def test_send_get_transaction(self):
+        CleanUp_tests()
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+
+        the_block = Block(the_transaction.fromUser)
+        the_block.max_tx_number = 2
+        the_block.transaction_delay_time = 60
+        the_block.minumum_transfer_amount = 1000
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0,
+        )
+
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH1,
+        )
+
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH2,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH2,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH2,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH2,
+        )
+
+        server.send_transaction(
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_sequence_number=0,
+            custom_balance=100000,
+            custom_server=self.node_0,
+        )
+
+        time.sleep(3)
+        pending_list_0 = GetPending(custom_PENDING_TRANSACTIONS_PATH=self.
+                                    node_0.PENDING_TRANSACTIONS_PATH)
+        pending_list_1 = GetPending(custom_PENDING_TRANSACTIONS_PATH=self.
+                                    node_1.PENDING_TRANSACTIONS_PATH)
+        pending_list_2 = GetPending(custom_PENDING_TRANSACTIONS_PATH=self.
+                                    node_2.PENDING_TRANSACTIONS_PATH)
+
+        self.assertEqual(len(pending_list_0), 0)
+        self.assertEqual(len(pending_list_1), 1)
+        self.assertEqual(len(pending_list_2), 1)
+        CleanUp_tests()
 
 
 unittest.main(exit=False)
