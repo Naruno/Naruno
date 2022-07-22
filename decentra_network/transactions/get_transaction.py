@@ -6,7 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from decentra_network.transactions.check.check_transaction import CheckTransaction
+from decentra_network.transactions.check.check_transaction import \
+    CheckTransaction
 from decentra_network.transactions.pending.save_pending import SavePending
 
 
