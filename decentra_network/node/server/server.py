@@ -320,6 +320,9 @@ class server(Thread):
         if "myblockhash" == data["action"]:
             self.get_candidate_block_hash(data, node)
 
+    def send_me_full_block(self, node):
+        self.send_client(node,  {"action":"sendmefullblock"})
+
     def send_my_block(self, block):
         system = block
 
