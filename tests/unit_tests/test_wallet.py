@@ -303,4 +303,9 @@ class Test_Wallet(unittest.TestCase):
         result = Address("onuratakan")
         self.assertEqual(result, "70c5360b9723e16c5c0f4d0f0c1edc7ef720def8")
 
+    def test_wallet_import_not_true_wallet_number(self):
+        temp_saved_wallet = get_saved_wallet()
+        number_of_wallet = len(temp_saved_wallet)
+        self.assertEqual(wallet_import(number_of_wallet+1, 0), False)
+
 unittest.main(exit=False)
