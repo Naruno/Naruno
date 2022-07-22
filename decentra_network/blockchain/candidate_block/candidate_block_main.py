@@ -20,12 +20,10 @@ class candidate_block:
         self, candidate_blocks: list = None, candidate_block_hashes: list = None
     ):
 
-        if candidate_blocks is None:
-            candidate_blocks = []
-        if candidate_block_hashes is None:
-            candidate_block_hashes = []
-        self.candidate_blocks = candidate_blocks
-        self.candidate_block_hashes = candidate_block_hashes
+        self.candidate_blocks = []
+        self.candidate_block_hashes = []
+        self.candidate_blocks.extend(candidate_blocks)
+        self.candidate_block_hashes.extend(candidate_block_hashes)
 
         #turn list items json dumps
         for i in range(len(self.candidate_blocks)):
