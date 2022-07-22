@@ -62,6 +62,7 @@ class server(Thread):
         custom_LOADING_ACCOUNTS_PATH=None,
         custom_LOADING_BLOCKSHASH_PATH=None,
         custom_LOADING_BLOCKSHASH_PART_PATH=None,
+        custom_CONNECTED_NODES_PATH=None,
     ):
         Thread.__init__(self)
         self.running = True
@@ -105,6 +106,10 @@ class server(Thread):
             if custom_LOADING_BLOCKSHASH_PART_PATH is None else
             custom_LOADING_BLOCKSHASH_PART_PATH)
 
+        self.CONNECTED_NODES_PATH = (CONNECTED_NODES_PATH
+                                     if custom_CONNECTED_NODES_PATH is None
+                                     else custom_CONNECTED_NODES_PATH)
+
         if not test:
             self.__class__.Server = self
             self.start()
@@ -127,7 +132,7 @@ class server(Thread):
                 client_id = data.decode("utf-8")
                 if Unl.node_is_unl(client_id):
                     self.clients.append(client(conn, addr, client_id, self))
-                    server.save_connected_node(addr[0], addr[1], client_id)
+                    self.save_connected_node(addr[0], addr[1], client_id)
             time.sleep(0.01)
 
     def stop(self):
@@ -206,6 +211,7 @@ class server(Thread):
                 client_id = conn.recv(1024).decode("utf-8")
                 if Unl.node_is_unl(client_id):
                     self.clients.append(client(conn, addr, client_id, self))
+                    self.save_connected_node(addr[0], addr[1], client_id)
                     return True
             except socket.timeout:
                 logger.info(
@@ -213,23 +219,28 @@ class server(Thread):
                 conn.close()
 
     @staticmethod
-    def get_connected_nodes():
+    def get_connected_nodes(custom_CONNECTED_NODES_PATH=None):
         """
         Returns the connected nodes.
         """
 
+        the_CONNECTED_NODES_PATH = (CONNECTED_NODES_PATH
+                                    if custom_CONNECTED_NODES_PATH is None else
+                                    custom_CONNECTED_NODES_PATH)
+
         the_pending_list = {}
         os.chdir(get_config()["main_folder"])
-        for entry in os.scandir(CONNECTED_NODES_PATH):
+        for entry in os.scandir(the_CONNECTED_NODES_PATH):
             if entry.name != "README.md":
                 with open(entry.path, "r") as my_transaction_file:
                     loaded_json = json.load(my_transaction_file)
-                    the_pending_list[loaded_json["id"]] = loaded_json
+                    the_pending_list[loaded_json["host"] +
+                                     str(loaded_json["port"]) +
+                                     loaded_json["id"]] = loaded_json
 
         return the_pending_list
 
-    @staticmethod
-    def save_connected_node(host, port, node_id):
+    def save_connected_node(self, host, port, node_id):
         """
         Saves the connected nodes.
         """
@@ -241,33 +252,35 @@ class server(Thread):
 
         node_id = sha256(
             (node_id + host + str(port)).encode("utf-8")).hexdigest()
-        file_name = CONNECTED_NODES_PATH + f"{node_id}.json"
+        file_name = self.CONNECTED_NODES_PATH + f"{node_id}.json"
         os.chdir(get_config()["main_folder"])
         with open(file_name, "w") as connected_node_file:
             json.dump(node_list, connected_node_file, indent=4)
 
     @staticmethod
-    def connectionfrommixdb():
+    def connectionfrommixdb(custom_server=None,
+                            custom_CONNECTED_NODES_PATH=None):
         """
         Connects to the mixdb.
         """
-
-        node_list = server.Server.get_connected_nodes()
-
+        the_server = server.Server if custom_server is None else custom_server
+        the_CONNECTED_NODES_PATH = (the_server.CONNECTED_NODES_PATH
+                                    if custom_CONNECTED_NODES_PATH is None else
+                                    custom_CONNECTED_NODES_PATH)
+        node_list = the_server.get_connected_nodes(
+            custom_CONNECTED_NODES_PATH=the_CONNECTED_NODES_PATH)
         for element in node_list:
-            server.Server.connect(node_list[element]["host"],
-                                  node_list[element]["port"])
+            the_server.connect(node_list[element]["host"],
+                               node_list[element]["port"])
 
-    @staticmethod
-    def connected_node_delete(node):
+    def connected_node_delete(self, node):
         """
         Deletes a connected node.
         """
-        print(node)
         os.chdir(get_config()["main_folder"])
         node_id = sha256((node["id"] + node["host"] +
                           str(node["port"])).encode("utf-8")).hexdigest()
-        for entry in os.scandir(CONNECTED_NODES_PATH):
+        for entry in os.scandir(self.CONNECTED_NODES_PATH):
             if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
 
