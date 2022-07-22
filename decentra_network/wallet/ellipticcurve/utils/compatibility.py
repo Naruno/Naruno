@@ -47,5 +47,3 @@ if pyVersion.major == 3:
 
     def safeHexFromBinary(byteString):
         return toString(hexlify(byteString))
-
-

@@ -58,14 +58,14 @@ class PublicKey:
         if encoded:
             return f"0004{string}"
 
-
     def toDer(self):
         hexadecimal = encodeConstructed(
             encodeConstructed(
                 encodePrimitive(DerFieldType.object, _ecdsaPublicKeyOid),
                 encodePrimitive(DerFieldType.object, self.curve.oid),
             ),
-            encodePrimitive(DerFieldType.bitString, self.toString(encoded=True)),
+            encodePrimitive(DerFieldType.bitString,
+                            self.toString(encoded=True)),
         )
         return byteStringFromHex(hexadecimal)
 
@@ -101,8 +101,6 @@ class PublicKey:
             y=intFromHex(ys),
         )
         publicKey = PublicKey(point=p, curve=curve)
-
-
 
         return publicKey
 

@@ -48,10 +48,10 @@ class Ecdsa:
             )
             r = randSignPoint.x % curve.N
             s = (
-                (numberMessage + r * privateKey.secret) * (Math.inv(randNum, curve.N))
+                (numberMessage + r * privateKey.secret) *
+                (Math.inv(randNum, curve.N))
             ) % curve.N
         recoveryId = randSignPoint.y & 1
-
 
         return Signature(r=r, s=s, recoveryId=recoveryId)
 

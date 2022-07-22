@@ -44,7 +44,6 @@ class CurveFp:
         self.nistName = nistName
         self.oid = oid  # ASN.1 Object Identifier
 
-
     def length(self):
         return (1 + len("%x" % self.N)) // 2
 

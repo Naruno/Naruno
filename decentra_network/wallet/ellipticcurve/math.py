@@ -71,7 +71,6 @@ class Math:
         :return: Value representing the division
         """
 
-
         lm = 1
         hm = 0
         low = x % n
@@ -124,7 +123,6 @@ class Math:
         :return: Point that represents the sum of First and Second Point
         """
 
-
         ysq = (p.y**2) % P
         S = (4 * p.x * ysq) % P
         M = (3 * p.x**2 + A * p.z**4) % P
@@ -146,12 +144,10 @@ class Math:
         :return: Point that represents the sum of First and Second Point
         """
 
-
         U1 = (p.x * q.z**2) % P
         U2 = (q.x * p.z**2) % P
         S1 = (p.y * q.z**3) % P
         S2 = (q.y * p.z**3) % P
-
 
         H = U2 - U1
         R = S2 - S1
@@ -183,7 +179,8 @@ class Math:
             return cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P)
 
         return cls._jacobianAdd(
-            cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P),
+            cls._jacobianDouble(cls._jacobianMultiply(
+                p, n // 2, N, A, P), A, P),
             p,
             A,
             P,

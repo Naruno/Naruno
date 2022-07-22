@@ -59,7 +59,6 @@ class Signature:
     def fromDer(cls, string, recoveryByte=False):
         recoveryId = None
 
-
         hexadecimal = hexFromByteString(string)
         return cls._fromString(string=hexadecimal, recoveryId=recoveryId)
 

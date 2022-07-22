@@ -62,8 +62,6 @@ class PrivateKey:
         )
         return PublicKey(point=publicPoint, curve=curve)
 
-
-
     def toDer(self):
         publicKeyString = self.publicKey().toString(encoded=True)
         hexadecimal = encodeConstructed(
@@ -92,7 +90,8 @@ class PrivateKey:
     @classmethod
     def fromDer(cls, string):
         hexadecimal = hexFromByteString(string)
-        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[0]
+        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[
+            0]
 
         curve = getCurveByOid(curveData[0])
         privateKey = cls.fromString(string=secretHex, curve=curve)
