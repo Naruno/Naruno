@@ -51,7 +51,6 @@ class Signature:
         encodedSequence = byteStringFromHex(hexadecimal)
         if not withRecoveryId:
             return encodedSequence
-        return toBytes(chr(27 + self.recoveryId)) + encodedSequence
 
     def toBase64(self, withRecoveryId=False):
         return base64FromByteString(self.toDer(withRecoveryId))
@@ -59,12 +58,7 @@ class Signature:
     @classmethod
     def fromDer(cls, string, recoveryByte=False):
         recoveryId = None
-        if recoveryByte:
-            recoveryId = (
-                string[0] if isinstance(string[0], intTypes) else ord(string[0])
-            )
-            recoveryId -= 27
-            string = string[1:]
+
 
         hexadecimal = hexFromByteString(string)
         return cls._fromString(string=hexadecimal, recoveryId=recoveryId)
