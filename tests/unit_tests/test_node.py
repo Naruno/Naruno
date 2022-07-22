@@ -1032,7 +1032,8 @@ class Test_Node(unittest.TestCase):
 
     def test_get_unl_nodes_not_exist(self):
         custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
-        self.assertEqual(Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH), {})
+        self.assertEqual(Unl.get_unl_nodes(
+            custom_UNL_NODES_PATH=custom_UNL_NODES_PATH), {})
 
 
 unittest.main(exit=False)
