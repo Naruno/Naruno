@@ -90,8 +90,7 @@ class PrivateKey:
     @classmethod
     def fromDer(cls, string):
         hexadecimal = hexFromByteString(string)
-        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[
-            0]
+        privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[0]
 
         curve = getCurveByOid(curveData[0])
         privateKey = cls.fromString(string=secretHex, curve=curve)

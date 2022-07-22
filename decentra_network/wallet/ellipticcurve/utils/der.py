@@ -86,8 +86,8 @@ def parse(hexadecimal):
     typeByte, hexadecimal = hexadecimal[:2], hexadecimal[2:]
     length, lengthBytes = _readLengthBytes(hexadecimal)
     content, hexadecimal = (
-        hexadecimal[lengthBytes: lengthBytes + length],
-        hexadecimal[lengthBytes + length:],
+        hexadecimal[lengthBytes : lengthBytes + length],
+        hexadecimal[lengthBytes + length :],
     )
 
     tagData = _getTagData(typeByte)
