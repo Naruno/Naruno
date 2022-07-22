@@ -57,7 +57,7 @@ class PublicKey:
         string = xHex + yHex
         if encoded:
             return f"0004{string}"
-        return string
+
 
     def toDer(self):
         hexadecimal = encodeConstructed(
@@ -83,13 +83,7 @@ class PublicKey:
         hexadecimal = hexFromByteString(string)
         curveData, pointString = parse(hexadecimal)[0]
         publicKeyOid, curveOid = curveData
-        if publicKeyOid != _ecdsaPublicKeyOid:
-            raise Exception(
-                "The Public Key Object Identifier (OID) should be {ecdsaPublicKeyOid}, but {actualOid} was found instead".format(
-                    ecdsaPublicKeyOid=_ecdsaPublicKeyOid,
-                    actualOid=publicKeyOid,
-                )
-            )
+
         curve = getCurveByOid(curveOid)
         return cls.fromString(string=pointString, curve=curve)
 
@@ -107,24 +101,9 @@ class PublicKey:
             y=intFromHex(ys),
         )
         publicKey = PublicKey(point=p, curve=curve)
-        if not validatePoint:
-            return publicKey
-        if p.isAtInfinity():
-            raise Exception("Public Key point is at infinity")
-        if not curve.contains(p):
-            raise Exception(
-                "Point ({x},{y}) is not valid for curve {name}".format(
-                    x=p.x, y=p.y, name=curve.name
-                )
-            )
-        if not Math.multiply(
-            p=p, n=curve.N, N=curve.N, A=curve.A, P=curve.P
-        ).isAtInfinity():
-            raise Exception(
-                "Point ({x},{y}) * {name}.N is not at infinity".format(
-                    x=p.x, y=p.y, name=curve.name
-                )
-            )
+
+
+
         return publicKey
 
 
