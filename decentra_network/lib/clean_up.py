@@ -19,7 +19,8 @@ def CleanUp_tests():
             if os.path.isfile(f"db/{the_file}"):
                 os.remove(f"db/{the_file}")
     for the_file in os.listdir(
-            "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"):
+        "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"
+    ):
         if the_file.endswith(".json"):
             os.remove(
                 f"db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/{the_file}"
