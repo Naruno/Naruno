@@ -176,14 +176,8 @@ class Math:
         :param A: Coefficient of the first-order term of the equation Y^2 = X^3 + A*X + B (mod p)
         :return: Point that represents the sum of First and Second Point
         """
-        if p.y == 0 or n == 0:
-            return Point(0, 0, 1)
-
         if n == 1:
             return p
-
-        if n < 0 or n >= N:
-            return cls._jacobianMultiply(p, n % N, N, A, P)
 
         if (n % 2) == 0:
             return cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P)
