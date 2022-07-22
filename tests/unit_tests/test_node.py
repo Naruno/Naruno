@@ -808,12 +808,11 @@ class Test_Node(unittest.TestCase):
         self.node_0.connected_node_delete(node)
         the_list_after_delete = server.get_connected_nodes(
             custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH)
-        result = False
-        for i in the_list_after_delete:
-            if (the_list_after_delete[i]["host"] == "test"
+        result = any( (the_list_after_delete[i]["host"] == "test"
                     and the_list_after_delete[i]["port"] == 58
-                    and the_list_after_delete[i]["id"] == "onur"):
-                result = True
+                    and the_list_after_delete[i]["id"] == "onur") 
+                    for i in the_list_after_delete
+                )
         self.assertNotEqual(len(the_list_before_delete),
                             len(the_list_after_delete))
         self.assertFalse(result)
