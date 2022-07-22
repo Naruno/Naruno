@@ -51,8 +51,7 @@ class Ecdsa:
                 (numberMessage + r * privateKey.secret) * (Math.inv(randNum, curve.N))
             ) % curve.N
         recoveryId = randSignPoint.y & 1
-        if randSignPoint.y > curve.N:
-            recoveryId += 2
+
 
         return Signature(r=r, s=s, recoveryId=recoveryId)
 
@@ -63,10 +62,7 @@ class Ecdsa:
         curve = publicKey.curve
         r = signature.r
         s = signature.s
-        if not 1 <= r <= curve.N - 1:
-            return False
-        if not 1 <= s <= curve.N - 1:
-            return False
+
         inv = Math.inv(s, curve.N)
         u1 = Math.multiply(
             curve.G, n=(numberMessage * inv) % curve.N, N=curve.N, A=curve.A, P=curve.P
@@ -75,6 +71,5 @@ class Ecdsa:
             publicKey.point, n=(r * inv) % curve.N, N=curve.N, A=curve.A, P=curve.P
         )
         v = Math.add(u1, u2, A=curve.A, P=curve.P)
-        if v.isAtInfinity():
-            return False
+
         return v.x % curve.N == r
