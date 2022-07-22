@@ -23,7 +23,7 @@ from decentra_network.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
     PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+    TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
@@ -1029,6 +1029,11 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(
             self.node_2.clients[0].candidate_block_hash["sequance_number"], 0)
         CleanUp_tests()
+
+    def test_get_unl_nodes_not_exist(self):
+        custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
+        self.assertEqual(
+            Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH), {})
 
 
 unittest.main(exit=False)
