@@ -264,9 +264,8 @@ class server(Thread):
         Connects to the mixdb.
         """
         the_server = server.Server if custom_server is None else custom_server
-
-        node_list = the_server.get_connected_nodes(
-            custom_CONNECTED_NODES_PATH=the_server.CONNECTED_NODES_PATH)
+        the_CONNECTED_NODES_PATH = the_server.CONNECTED_NODES_PATH if custom_CONNECTED_NODES_PATH is None else custom_CONNECTED_NODES_PATH
+        node_list = the_server.get_connected_nodes(custom_CONNECTED_NODES_PATH=the_CONNECTED_NODES_PATH)       
         for element in node_list:
             the_server.connect(node_list[element]["host"],
                                node_list[element]["port"])
