@@ -24,8 +24,5 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     )
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "r") as block_file:
-        try:
-            the_block_json = json.load(block_file)
-        except json.JSONDecodeError:
-            logger.exception(f"Error while loading block file. {block_file.read()}")
+        the_block_json = json.load(block_file)
     return Block.load_json(the_block_json)
