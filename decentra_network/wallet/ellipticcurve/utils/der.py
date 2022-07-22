@@ -79,17 +79,6 @@ def encodePrimitive(tagType, value):
         tag=_typeToHexTag[tagType], size=_generateLengthBytes(value), value=value
     )
 
-def _parseTime(hexadecimal):
-    string = _parseString(hexadecimal)
-    return datetime.strptime(string, "%y%m%d%H%M%SZ")
-
-
-def _parseString(hexadecimal):
-    return byteStringFromHex(hexadecimal).decode()
-
-
-def _parseNull(_content):
-    return None
 
 def parse(hexadecimal):
     if not hexadecimal:
@@ -107,11 +96,8 @@ def parse(hexadecimal):
         content = parse(content)
 
     valueParser = {
-        DerFieldType.null: _parseNull,
         DerFieldType.object: _parseOid,
-        DerFieldType.utcTime: _parseTime,
         DerFieldType.integer: _parseInteger,
-        DerFieldType.printableString: _parseString,
     }.get(tagData["type"], _parseAny)
     return [valueParser(content)] + parse(hexadecimal)
 
