@@ -347,15 +347,13 @@ class server(Thread):
     def send_my_block_hash(self, block):
         system = block
 
-        if system.raund_1 and not system.raund_2:
+        data = {
+            "action": "myblockhash",
+            "hash": system.hash,
+            "sequance_number": system.sequance_number,
+        }
 
-            data = {
-                "action": "myblockhash",
-                "hash": system.hash,
-                "sequance_number": system.sequance_number,
-            }
-
-            self.send(data)
+        self.send(data)
 
     def get_candidate_block(self, data, node):
         logger.info("Getting candidate block: {}".format(
