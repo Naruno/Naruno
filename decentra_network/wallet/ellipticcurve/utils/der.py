@@ -79,6 +79,17 @@ def encodePrimitive(tagType, value):
         tag=_typeToHexTag[tagType], size=_generateLengthBytes(value), value=value
     )
 
+def _parseTime(hexadecimal):
+    string = _parseString(hexadecimal)
+    return datetime.strptime(string, "%y%m%d%H%M%SZ")
+
+
+def _parseString(hexadecimal):
+    return byteStringFromHex(hexadecimal).decode()
+
+
+def _parseNull(_content):
+    return None
 
 def parse(hexadecimal):
     if not hexadecimal:
