@@ -62,8 +62,7 @@ class PrivateKey:
         )
         return PublicKey(point=publicPoint, curve=curve)
 
-    def toString(self):
-        return hexFromInt(self.secret)
+
 
     def toDer(self):
         publicKeyString = self.publicKey().toString(encoded=True)
@@ -94,18 +93,10 @@ class PrivateKey:
     def fromDer(cls, string):
         hexadecimal = hexFromByteString(string)
         privateKeyFlag, secretHex, curveData, publicKeyString = parse(hexadecimal)[0]
-        if privateKeyFlag != 1:
-            raise Exception(
-                "Private keys should start with a '1' flag, but a '{flag}' was found instead".format(
-                    flag=privateKeyFlag
-                )
-            )
+
         curve = getCurveByOid(curveData[0])
         privateKey = cls.fromString(string=secretHex, curve=curve)
-        if privateKey.publicKey().toString(encoded=True) != publicKeyString[0]:
-            raise Exception(
-                "The public key described inside the private key file doesn't match the actual public key of the pair"
-            )
+
         return privateKey
 
     @classmethod
