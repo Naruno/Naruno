@@ -24,15 +24,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
-from decentra_network.wallet.ellipticcurve.utils.binary import (
-    base64FromByteString, byteStringFromBase64, byteStringFromHex,
-    hexFromByteString)
+from decentra_network.wallet.ellipticcurve.utils.binary import base64FromByteString
+from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromBase64
+from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromHex
+from decentra_network.wallet.ellipticcurve.utils.binary import hexFromByteString
 from decentra_network.wallet.ellipticcurve.utils.compatibility import *
-from decentra_network.wallet.ellipticcurve.utils.der import (DerFieldType,
-                                                             encodeConstructed,
-                                                             encodePrimitive,
-                                                             parse)
+from decentra_network.wallet.ellipticcurve.utils.der import DerFieldType
+from decentra_network.wallet.ellipticcurve.utils.der import encodeConstructed
+from decentra_network.wallet.ellipticcurve.utils.der import encodePrimitive
+from decentra_network.wallet.ellipticcurve.utils.der import parse
 
 
 class Signature:

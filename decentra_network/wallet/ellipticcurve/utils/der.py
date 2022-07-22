@@ -24,13 +24,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
 from datetime import datetime
 
-from decentra_network.wallet.ellipticcurve.utils.binary import (
-    bitsFromHex, byteStringFromHex, hexFromInt, intFromHex)
-from decentra_network.wallet.ellipticcurve.utils.oid import (oidFromHex,
-                                                             oidToHex)
+from decentra_network.wallet.ellipticcurve.utils.binary import bitsFromHex
+from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromHex
+from decentra_network.wallet.ellipticcurve.utils.binary import hexFromInt
+from decentra_network.wallet.ellipticcurve.utils.binary import intFromHex
+from decentra_network.wallet.ellipticcurve.utils.oid import oidFromHex
+from decentra_network.wallet.ellipticcurve.utils.oid import oidToHex
 
 
 class DerFieldType:
