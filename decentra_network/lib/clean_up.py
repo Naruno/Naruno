@@ -18,10 +18,13 @@ def CleanUp_tests():
         if the_file.startswith("test_"):
             if os.path.isfile(f"db/{the_file}"):
                 os.remove(f"db/{the_file}")
-    for the_file in os.listdir("db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"):
+    for the_file in os.listdir(
+        "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"
+    ):
         if the_file.endswith(".json"):
             os.remove(
-                f"db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/{the_file}")
+                f"db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/{the_file}"
+            )
 
     for the_file in os.listdir("db/connected_nodes_test_0/"):
         if the_file.endswith(".json"):
