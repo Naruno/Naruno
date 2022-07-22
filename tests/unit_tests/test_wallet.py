@@ -17,7 +17,7 @@ from decentra_network.lib.settings_system import the_settings
 from decentra_network.wallet.delete_current_wallet import delete_current_wallet
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet 
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
 from decentra_network.wallet.print_wallets import print_wallets
 from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
@@ -26,6 +26,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 from decentra_network.wallet.wallet_selector import wallet_selector
 from decentra_network.lib.clean_up import CleanUp_tests
+
 
 class Test_Wallet(unittest.TestCase):
 
@@ -306,6 +307,7 @@ class Test_Wallet(unittest.TestCase):
     def test_wallet_import_not_true_wallet_number(self):
         temp_saved_wallet = get_saved_wallet()
         number_of_wallet = len(temp_saved_wallet)
-        self.assertEqual(wallet_import(number_of_wallet+1, 0), False)
+        self.assertEqual(wallet_import(number_of_wallet + 1, 0), False)
+
 
 unittest.main(exit=False)
