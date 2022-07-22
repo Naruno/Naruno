@@ -96,14 +96,12 @@ class Test_Node(unittest.TestCase):
         cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
             "connected_nodes", "connected_nodes_test_2")
 
-
         cls.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
             "pending_transactions", "pending_transactions_test_0")
         cls.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
             "pending_transactions", "pending_transactions_test_1")
         cls.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
             "pending_transactions", "pending_transactions_test_2")
-
 
         cls.node_0 = server(
             "127.0.0.1",
@@ -140,7 +138,7 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH1,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH1,
             custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH1,
-            custom_variables=True,            
+            custom_variables=True,
         )
         cls.node_2 = server(
             "127.0.0.1",
@@ -158,7 +156,7 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH2,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH2,
             custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH2,
-            custom_variables=True,        
+            custom_variables=True,
         )
         Unl.save_new_unl_node(cls.node_0.id)
         Unl.save_new_unl_node(cls.node_1.id)
@@ -869,15 +867,17 @@ class Test_Node(unittest.TestCase):
         )
 
         time.sleep(3)
-        pending_list_0 = GetPending(custom_PENDING_TRANSACTIONS_PATH=self.node_0.PENDING_TRANSACTIONS_PATH)
-        pending_list_1 = GetPending(custom_PENDING_TRANSACTIONS_PATH=self.node_1.PENDING_TRANSACTIONS_PATH)
-        pending_list_2 = GetPending(custom_PENDING_TRANSACTIONS_PATH=self.node_2.PENDING_TRANSACTIONS_PATH)
+        pending_list_0 = GetPending(
+            custom_PENDING_TRANSACTIONS_PATH=self.node_0.PENDING_TRANSACTIONS_PATH)
+        pending_list_1 = GetPending(
+            custom_PENDING_TRANSACTIONS_PATH=self.node_1.PENDING_TRANSACTIONS_PATH)
+        pending_list_2 = GetPending(
+            custom_PENDING_TRANSACTIONS_PATH=self.node_2.PENDING_TRANSACTIONS_PATH)
 
         self.assertEqual(len(pending_list_0), 0)
         self.assertEqual(len(pending_list_1), 1)
         self.assertEqual(len(pending_list_2), 1)
         CleanUp_tests()
-       
 
 
 unittest.main(exit=False)

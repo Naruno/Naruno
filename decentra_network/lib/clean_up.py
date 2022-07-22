@@ -44,4 +44,3 @@ def CleanUp_tests():
     for the_file in os.listdir("db/pending_transactions_test_2/"):
         if the_file.endswith(".json"):
             os.remove(f"db/pending_transactions_test_2/{the_file}")
-
