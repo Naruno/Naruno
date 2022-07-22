@@ -925,10 +925,7 @@ class Test_Node(unittest.TestCase):
 
     def test_send_my_block_get_candidate_block_no_trans(self):
         CleanUp_tests()
-        print("\n\n\n\n\n\n")
-        print(self.node_0.clients)
-        print(self.node_1.clients)
-        print(self.node_2.clients)
+
         the_block = Block("onuratakanulusoy")
         the_block.sequance_number = 5858
         self.node_0.send_my_block(the_block)
@@ -1009,6 +1006,28 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(
             self.node_2.clients[0].candidate_block["sequance_number"], 585858)
 
+        CleanUp_tests()
+
+    def test_send_my_block_hash_get_candidate_block_hash(self):
+        CleanUp_tests()
+
+        the_block = Block("onuratakanulusoy")
+        the_block.hash = 58585858
+        self.node_0.send_my_block_hash(the_block)
+        time.sleep(5)
+        self.assertEqual(self.node_1.clients[0].candidate_block_hash["action"],
+                         "myblockhash")
+        self.assertEqual(self.node_1.clients[0].candidate_block_hash["hash"],
+                         58585858)
+        self.assertEqual(
+            self.node_1.clients[0].candidate_block_hash["sequance_number"], 0)
+
+        self.assertEqual(self.node_2.clients[0].candidate_block_hash["action"],
+                         "myblockhash")
+        self.assertEqual(self.node_2.clients[0].candidate_block_hash["hash"],
+                         58585858)
+        self.assertEqual(
+            self.node_2.clients[0].candidate_block_hash["sequance_number"], 0)
         CleanUp_tests()
 
 

@@ -7,12 +7,12 @@
 import contextlib
 import json
 import os
+import random
 import socket
 import time
 from hashlib import sha256
 from shutil import move
 from threading import Thread
-import random
 
 from decentra_network.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
@@ -324,7 +324,7 @@ class server(Thread):
     def send_me_full_block(self, node=None):
 
         the_node = node if node is not None else random.choice(self.clients)
-        self.send_client(the_node,  {"action":"sendmefullblock"})
+        self.send_client(the_node, {"action": "sendmefullblock"})
 
     def send_my_block(self, block):
         system = block
@@ -347,15 +347,13 @@ class server(Thread):
     def send_my_block_hash(self, block):
         system = block
 
-        if system.raund_1 and not system.raund_2:
+        data = {
+            "action": "myblockhash",
+            "hash": system.hash,
+            "sequance_number": system.sequance_number,
+        }
 
-            data = {
-                "action": "myblockhash",
-                "hash": system.hash,
-                "sequance_number": system.sequance_number,
-            }
-
-            self.send(data)
+        self.send(data)
 
     def get_candidate_block(self, data, node):
         logger.info("Getting candidate block: {}".format(
