@@ -46,11 +46,9 @@ changelog:
       labels:
         - Backup
 
-    - title: Block
+    - title: Blockchain
       labels:
-        - Block
-        - Block-Time-Optimizer
-        - Hash-Calculation
+        - Blockchain
 
     - title: Transactions
       labels:
