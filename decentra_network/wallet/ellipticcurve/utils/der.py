@@ -152,7 +152,6 @@ def _generateLengthBytes(hexadecimal):
     length = hexFromInt(size)
     if size < 128:  # checks if first bit of byte should be 0 (a.k.a. short-form flag)
         return length.zfill(2)
-h
 
 
 def _getTagData(tag):
