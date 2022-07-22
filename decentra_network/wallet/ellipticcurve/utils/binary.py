@@ -66,18 +66,3 @@ def byteStringFromBase64(base64String):
 
 def bitsFromHex(hexadecimal):
     return format(intFromHex(hexadecimal), "b").zfill(4 * len(hexadecimal))
-
-
-class BinaryAscii:
-    @classmethod
-    def hexFromBinary(cls, data):
-        """
-        Return the hexadecimal representation of the binary data. Every byte of data is converted into the
-        corresponding 2-digit hex representation. The resulting string is therefore twice as long as the length of data.
-        :param data: binary
-        :return: hexadecimal string
-        """
-        return safeHexFromBinary(data)
-
-
-
