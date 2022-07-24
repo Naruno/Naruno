@@ -29,6 +29,7 @@ def GetTransaction(
             the_transaction,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
         )
+        PendingtoValidating(block)
         return True
     else:
         return False

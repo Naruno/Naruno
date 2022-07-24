@@ -74,7 +74,6 @@ def consensus_trigger():
 
             SaveBlock(block)
     else:
-        PendingtoValidating(block)
         if block.raund_1_starting_time is None:
             block.raund_1_starting_time = int(time.time())
             SaveBlock(block)
