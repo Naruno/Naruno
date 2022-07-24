@@ -23,6 +23,7 @@ from decentra_network.transactions.my_transactions.save_to_my_transaction import
 from decentra_network.transactions.my_transactions.validate_transaction import (
     ValidateTransaction,
 )
+from decentra_network.transactions.pending_to_validating import PendingtoValidating
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 logger = get_logger("CONSENSUS")
@@ -40,6 +41,8 @@ def consensus_trigger():
     logger.info(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
     )
+
+    PendingtoValidating(block)
 
     if block.validated:
         true_time = (
