@@ -19,12 +19,15 @@ def PendingtoValidating(block, custom_PENDING_TRANSACTIONS_PATH=None):
     if len(block.validating_list) < block.max_tx_number:
         if block.raund_2_starting_time is None:
             current_time = time.time()
-            raund_1_starting_time = (current_time
-                                     if block.raund_1_starting_time is None
-                                     else block.raund_1_starting_time)
-            if not (current_time -
-                    raund_1_starting_time) > (block.raund_1_time / 2):
-                for tx in GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH):
+            raund_1_starting_time = (
+                current_time
+                if block.raund_1_starting_time is None
+                else block.raund_1_starting_time
+            )
+            if not (current_time - raund_1_starting_time) > (block.raund_1_time / 2):
+                for tx in GetPending(
+                    custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH
+                ):
                     if len(block.validating_list) < block.max_tx_number:
                         block.validating_list.append(tx)
                         DeletePending(
