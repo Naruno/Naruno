@@ -77,7 +77,7 @@ class Decentra_Network_Docker:
         )
         for i in range(self.number_of_nodes):
             os.system(
-                f"docker run -v decentra-network-db-{i}:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs-{i}:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p {8100 + i + 1}:{8100 + i + 1} -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
+                f"docker run -v decentra-network-db-{i}:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs-{i}:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:7999 -dit {i}"
             )
 
     def debug_and_test_mode(self):
@@ -102,7 +102,7 @@ class Decentra_Network_Docker:
             "http://localhost:8000/node/start/172.19.0.2/7999")
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:{8100 + i + 1}/node/start/172.19.0.{i+3}/{8010 + i + 1}"
+                f"http://localhost:{8100 + i + 1}/node/start/172.19.0.{i+3}/7999"
             )
 
     def unl_nodes_settting(self):
