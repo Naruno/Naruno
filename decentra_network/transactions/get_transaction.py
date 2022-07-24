@@ -7,7 +7,7 @@
 from decentra_network.transactions.check.check_transaction import \
     CheckTransaction
 from decentra_network.transactions.pending.save_pending import SavePending
-
+from decentra_network.transactions.pending_to_validating import PendingtoValidating
 
 def GetTransaction(
     block,
@@ -29,6 +29,7 @@ def GetTransaction(
             the_transaction,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
         )
+        PendingtoValidating(block)
         return True
     else:
         return False
