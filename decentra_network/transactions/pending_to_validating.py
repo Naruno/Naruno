@@ -7,8 +7,8 @@
 
 import time
 
-from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.pending.delete_pending import DeletePending
+from decentra_network.transactions.pending.get_pending import GetPending
 
 
 def PendingtoValidating(block, custom_PENDING_TRANSACTIONS_PATH=None):

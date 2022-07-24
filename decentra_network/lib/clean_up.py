@@ -10,11 +10,11 @@ import time
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.transaction import Transaction
-from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.lib.config_system import get_config
+from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.send import send
+from decentra_network.transactions.transaction import Transaction
 
 
 def CleanUp_tests():

@@ -4,10 +4,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from ast import Delete
 import copy
 import os
 import sys
+from ast import Delete
 
 from requests import delete
 
@@ -15,37 +15,35 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import time
 import unittest
 
-from decentra_network.config import PENDING_TRANSACTIONS_PATH
 from decentra_network.accounts.account import Account
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.change_transaction_fee import (
-    ChangeTransactionFee,
-)
-from decentra_network.transactions.check.check_transaction import CheckTransaction
+from decentra_network.blockchain.block.change_transaction_fee import \
+    ChangeTransactionFee
+from decentra_network.config import PENDING_TRANSACTIONS_PATH
+from decentra_network.lib.clean_up import CleanUp_tests
+from decentra_network.transactions.check.check_transaction import \
+    CheckTransaction
 from decentra_network.transactions.check.datas.check_datas import Check_Datas
 from decentra_network.transactions.check.len.check_len import Check_Len
 from decentra_network.transactions.check.type.check_type import Check_Type
 from decentra_network.transactions.get_transaction import GetTransaction
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_my_transaction import (
-    SaveMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from decentra_network.transactions.my_transactions.validate_transaction import (
-    ValidateTransaction,
-)
-from decentra_network.transactions.pending_to_validating import PendingtoValidating
-from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
+from decentra_network.transactions.pending.delete_pending import DeletePending
+from decentra_network.transactions.pending.get_pending import GetPending
+from decentra_network.transactions.pending.save_pending import SavePending
+from decentra_network.transactions.pending_to_validating import \
+    PendingtoValidating
+from decentra_network.transactions.process_the_transaction import \
+    ProccesstheTransaction
 from decentra_network.transactions.send import send
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.transactions.pending.save_pending import SavePending
-from decentra_network.transactions.pending.get_pending import GetPending
-from decentra_network.transactions.pending.delete_pending import DeletePending
-from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_Transactions(unittest.TestCase):
