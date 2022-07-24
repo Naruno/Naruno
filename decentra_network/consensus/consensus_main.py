@@ -7,8 +7,8 @@
 import time
 
 from decentra_network.apps.apps_trigger import AppsTrigger
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           SaveBlockshash)
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.block.save_block_to_blockchain_db import \
