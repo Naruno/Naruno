@@ -8,6 +8,7 @@ from decentra_network.transactions.check.check_transaction import \
     CheckTransaction
 from decentra_network.transactions.pending.save_pending import SavePending
 
+
 def GetTransaction(
     block,
     the_transaction,
