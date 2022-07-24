@@ -60,16 +60,6 @@ def CleanUp_tests():
         if the_file.endswith(".json"):
             os.remove(f"db/pending_transactions_test_5/{the_file}")
 
-
-
-
-
-
-
-
-
-
-
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -84,16 +74,6 @@ def CleanUp_tests():
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         DeletePending(the_transaction)
-
-
-
-
-
-
-
-
-
-
 
         the_transaction_json = {
             "sequance_number": 1,
@@ -111,7 +91,6 @@ def CleanUp_tests():
         the_transaction1.signature = "11"
         DeletePending(the_transaction1)
 
-
         block = Block("onur")
         result = send(
             block,
@@ -123,27 +102,8 @@ def CleanUp_tests():
             custom_sequence_number=0,
             custom_balance=100000,
         )
-        
+
         DeletePending(result)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         the_transaction_json = {
             "sequance_number": 1,
@@ -160,17 +120,6 @@ def CleanUp_tests():
         the_transaction = Transaction.load_json(the_transaction_json)
         DeletePending(the_transaction)
 
-
-
-
-
-
-
-
-
-
-
-
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -183,5 +132,5 @@ def CleanUp_tests():
             "transaction_fee": 0,
             "transaction_time": 1656764224,
         }
-        the_transaction = Transaction.load_json(the_transaction_json)     
+        the_transaction = Transaction.load_json(the_transaction_json)
         DeletePending(the_transaction)

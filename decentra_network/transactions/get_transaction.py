@@ -9,6 +9,7 @@ from decentra_network.transactions.check.check_transaction import \
 from decentra_network.transactions.pending.save_pending import SavePending
 from decentra_network.transactions.pending_to_validating import PendingtoValidating
 
+
 def GetTransaction(
     block,
     the_transaction,

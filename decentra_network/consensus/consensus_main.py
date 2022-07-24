@@ -57,7 +57,8 @@ def consensus_trigger():
             )
         if int(time.time()) >= true_time:
             block.newly = False
-            logger.info("Consensus proccess is complated, the block will be reset")
+            logger.info(
+                "Consensus proccess is complated, the block will be reset")
 
             current_blockshash_list = GetBlockshash()
             reset_block = block.reset_the_block(current_blockshash_list)

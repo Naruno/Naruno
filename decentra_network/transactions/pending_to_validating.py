@@ -27,4 +27,5 @@ def PendingtoValidating(block, custom_PENDING_TRANSACTIONS_PATH=None):
                 for tx in GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH):
                     if len(block.validating_list) < block.max_tx_number:
                         block.validating_list.append(tx)
-                        DeletePending(tx, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+                        DeletePending(
+                            tx, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)

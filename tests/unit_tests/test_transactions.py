@@ -38,6 +38,7 @@ from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.lib.clean_up import CleanUp_tests
 
+
 class Test_Transactions(unittest.TestCase):
 
     @classmethod
@@ -140,29 +141,40 @@ class Test_Transactions(unittest.TestCase):
         temp_transaction_2 = Transaction(1, "2", "", "", "", 1, 1, 1)
         temp_transaction_3 = Transaction(1, "3", "", "", "", 1, 1, 1)
 
-        custom_PENDING_TRANSACTIONS_PATH = PENDING_TRANSACTIONS_PATH.replace("pending_transactions", "pending_transactions_test_3")
+        custom_PENDING_TRANSACTIONS_PATH = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_3")
 
-        SavePending(temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        SavePending(temp_transaction_2, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        SavePending(temp_transaction_3, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        SavePending(
+            temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        SavePending(temp_transaction_2,
+                    custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        SavePending(temp_transaction_3,
+                    custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
-        PendingtoValidating(block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        PendingtoValidating(
+            block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
-        pending_transactions = GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        pending_transactions = GetPending(
+            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
-        transaction_1_true = any(element.signature == temp_transaction.signature for element in pending_transactions)
-        transaction_2_true = any(element.signature == temp_transaction_2.signature for element in pending_transactions)
-        transaction_3_true = any(element.signature == temp_transaction_3.signature for element in pending_transactions)
+        transaction_1_true = any(
+            element.signature == temp_transaction.signature for element in pending_transactions)
+        transaction_2_true = any(
+            element.signature == temp_transaction_2.signature for element in pending_transactions)
+        transaction_3_true = any(
+            element.signature == temp_transaction_3.signature for element in pending_transactions)
 
-
-        DeletePending(temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        DeletePending(temp_transaction_2, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        DeletePending(temp_transaction_3, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        DeletePending(
+            temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        DeletePending(temp_transaction_2,
+                      custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        DeletePending(temp_transaction_3,
+                      custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(transaction_1_true, False)
         self.assertEqual(transaction_2_true, False)
-        self.assertEqual(transaction_3_true, True)    
+        self.assertEqual(transaction_3_true, True)
 
     def test_pending_to_validating_round_2_started(self):
 
@@ -174,16 +186,21 @@ class Test_Transactions(unittest.TestCase):
         temp_transaction_2 = Transaction(1, "5", "", "", "", 1, 1, 1)
         temp_transaction_3 = Transaction(1, "6", "", "", "", 1, 1, 1)
 
-        custom_PENDING_TRANSACTIONS_PATH = PENDING_TRANSACTIONS_PATH.replace("pending_transactions", "pending_transactions_test_4")
+        custom_PENDING_TRANSACTIONS_PATH = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_4")
 
-        SavePending(temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        SavePending(temp_transaction_2, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        SavePending(temp_transaction_3, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        SavePending(
+            temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        SavePending(temp_transaction_2,
+                    custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        SavePending(temp_transaction_3,
+                    custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
-        
-        PendingtoValidating(block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        PendingtoValidating(
+            block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
-        pending_transactions = GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        pending_transactions = GetPending(
+            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
         know_pending_number = 0
 
@@ -195,9 +212,12 @@ class Test_Transactions(unittest.TestCase):
             if transaction.signature == temp_transaction_3.signature:
                 know_pending_number += 1
 
-        DeletePending(temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        DeletePending(temp_transaction_2, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        DeletePending(temp_transaction_3, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH) 
+        DeletePending(
+            temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        DeletePending(temp_transaction_2,
+                      custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        DeletePending(temp_transaction_3,
+                      custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
         self.assertEqual(len(block.validating_list), 0)
         self.assertEqual(know_pending_number, 3)
@@ -209,21 +229,29 @@ class Test_Transactions(unittest.TestCase):
 
         temp_transaction = Transaction(1, "77", "", "", "", 1, 1, 1)
         temp_transaction_2 = Transaction(1, "88", "", "", "", 1, 1, 1)
-        custom_PENDING_TRANSACTIONS_PATH = PENDING_TRANSACTIONS_PATH.replace("pending_transactions", "pending_transactions_test_5")
+        custom_PENDING_TRANSACTIONS_PATH = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_5")
 
-        SavePending(temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        SavePending(temp_transaction_2, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        SavePending(
+            temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        SavePending(temp_transaction_2,
+                    custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
-        PendingtoValidating(block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        PendingtoValidating(
+            block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
-        pending_transactions = GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        pending_transactions = GetPending(
+            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
+        transaction_1_true = any(
+            element.signature == temp_transaction.signature for element in pending_transactions)
+        transaction_2_true = any(
+            element.signature == temp_transaction_2.signature for element in pending_transactions)
 
-        transaction_1_true = any(element.signature == temp_transaction.signature for element in pending_transactions)
-        transaction_2_true = any(element.signature == temp_transaction_2.signature for element in pending_transactions)
-
-        DeletePending(temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        DeletePending(temp_transaction_2, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        DeletePending(
+            temp_transaction, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        DeletePending(temp_transaction_2,
+                      custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(transaction_1_true, False)
@@ -243,7 +271,8 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block, custom_pending_transactions=[temp_transaction])
+        ChangeTransactionFee(
+            block, custom_pending_transactions=[temp_transaction])
 
         new_transaction_fee = block.transaction_fee
 
@@ -261,10 +290,10 @@ class Test_Transactions(unittest.TestCase):
 
         temp_transaction = Transaction(1, "10", "", "", "", 1, 1, 1)
 
-
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block, custom_pending_transactions=[temp_transaction])
+        ChangeTransactionFee(
+            block, custom_pending_transactions=[temp_transaction])
 
         new_transaction_fee = block.transaction_fee
 
@@ -993,7 +1022,7 @@ class Test_Transactions(unittest.TestCase):
             custom_sequence_number=0,
             custom_balance=100000,
         )
-        
+
         self.assertNotEqual(result, False)
         DeletePending(result)
 
@@ -1176,7 +1205,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(account_list[6].Address, "teaaast")
         self.assertEqual(account_list[6].sequance_number, 0)
 
-
     def test_SavePending_GetPending_DeletePending(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -1198,7 +1226,7 @@ class Test_Transactions(unittest.TestCase):
         for pending in pending_list:
             if pending.signature == the_transaction.signature:
                 result = True
-        
+
         DeletePending(the_transaction)
         self.assertEqual(result, True)
 
