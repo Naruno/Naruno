@@ -15,7 +15,6 @@ import urllib.request
 
 from auto_builders.docker import Decentra_Network_Docker
 
-
 temp_environment = Decentra_Network_Docker(3, 1)
 temp_environment.delete()
 temp_environment.install()

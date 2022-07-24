@@ -15,7 +15,6 @@ import urllib.request
 
 from auto_builders.local import Decentra_Network_Local
 
-
 temp_environment = Decentra_Network_Local(5, 2)
 temp_environment.delete()
 temp_environment.install()
