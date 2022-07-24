@@ -18,8 +18,8 @@ def PendingtoValidating(block):
 
     if len(block.validating_list) < block.max_tx_number:
         if block.raund_2_starting_time is None and not (
-            time.time() - block.raund_1_starting_time
-        ) > (block.raund_1_time / 2):
+                time.time() -
+                block.raund_1_starting_time) > (block.raund_1_time / 2):
             for tx in GetPending():
                 if len(block.validating_list) < block.max_tx_number:
                     block.validating_list.append(tx)
