@@ -214,7 +214,7 @@ class Test_Node(unittest.TestCase):
         first_len_clients_1 = len(self.node_1.clients)
         first_len_clients_2 = len(self.node_2.clients)
         self.node_0.connect("127.0.0.1", 10001)
-        time.sleep(15)
+        time.sleep(12)
         self.assertEqual(len(self.node_0.clients), first_len_clients_0)
         self.assertEqual(len(self.node_1.clients), first_len_clients_1)
         self.assertEqual(len(self.node_2.clients), first_len_clients_2)
@@ -315,7 +315,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_chain(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
@@ -350,7 +350,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
@@ -385,7 +385,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
@@ -418,7 +418,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash_part(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
 
         self.assertFalse(os.path.isfile(
@@ -469,7 +469,7 @@ class Test_Node(unittest.TestCase):
         the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_chain(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
@@ -518,7 +518,7 @@ class Test_Node(unittest.TestCase):
         the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
@@ -564,7 +564,7 @@ class Test_Node(unittest.TestCase):
         the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
@@ -609,7 +609,7 @@ class Test_Node(unittest.TestCase):
         the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash_part(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
 
         self.assertFalse(os.path.isfile(
@@ -648,7 +648,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_chain()
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
@@ -683,7 +683,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts()
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
@@ -718,7 +718,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash()
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
@@ -752,7 +752,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_0.clients[0]
         self.node_0.send_full_blockshash_part()
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH2))
@@ -899,7 +899,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_1.clients[0]
         self.node_1.send_me_full_block(client)
-        time.sleep(5)
+        time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
@@ -929,7 +929,7 @@ class Test_Node(unittest.TestCase):
         the_block = Block("onuratakanulusoy")
         the_block.sequance_number = 5858
         self.node_0.send_my_block(the_block)
-        time.sleep(5)
+        time.sleep(2)
         self.assertEqual(self.node_1.clients[0].candidate_block["action"],
                          "myblock")
         self.assertEqual(self.node_1.clients[0].candidate_block["transaction"],
@@ -965,7 +965,7 @@ class Test_Node(unittest.TestCase):
         the_transaction = Transaction.load_json(the_transaction_json)
         the_block.validating_list.append(the_transaction)
         self.node_0.send_my_block(the_block)
-        time.sleep(5)
+        time.sleep(2)
         self.assertEqual(self.node_1.clients[0].candidate_block["action"],
                          "myblock")
         self.assertEqual(
@@ -1014,7 +1014,7 @@ class Test_Node(unittest.TestCase):
         the_block = Block("onuratakanulusoy")
         the_block.hash = 58585858
         self.node_0.send_my_block_hash(the_block)
-        time.sleep(5)
+        time.sleep(2)
         self.assertEqual(self.node_1.clients[0].candidate_block_hash["action"],
                          "myblockhash")
         self.assertEqual(self.node_1.clients[0].candidate_block_hash["hash"],
