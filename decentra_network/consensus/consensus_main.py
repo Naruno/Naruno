@@ -11,17 +11,19 @@ from decentra_network.blockchain.block.blocks_hash import GetBlockshash
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.block.save_block_to_blockchain_db import \
-    SaveBlockstoBlockchainDB
+from decentra_network.blockchain.block.save_block_to_blockchain_db import (
+    SaveBlockstoBlockchainDB,
+)
 from decentra_network.consensus.consensus_first_round import consensus_round_1
 from decentra_network.consensus.consensus_second_round import consensus_round_2
 from decentra_network.lib.log import get_logger
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from decentra_network.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
-from decentra_network.transactions.pending_to_validating import \
-    PendingtoValidating
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
+from decentra_network.transactions.my_transactions.validate_transaction import (
+    ValidateTransaction,
+)
+from decentra_network.transactions.pending_to_validating import PendingtoValidating
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 logger = get_logger("CONSENSUS")
@@ -41,9 +43,11 @@ def consensus_trigger():
     )
 
     if block.validated:
-        true_time = (block.genesis_time + block.block_time +
-                     ((block.sequance_number + block.empty_block_number) *
-                      block.block_time))
+        true_time = (
+            block.genesis_time
+            + block.block_time
+            + ((block.sequance_number + block.empty_block_number) * block.block_time)
+        )
         if block.newly:
             true_time -= 1
             logger.info(
@@ -51,8 +55,7 @@ def consensus_trigger():
             )
         if int(time.time()) >= true_time:
             block.newly = False
-            logger.info(
-                "Consensus proccess is complated, the block will be reset")
+            logger.info("Consensus proccess is complated, the block will be reset")
 
             current_blockshash_list = GetBlockshash()
             reset_block = block.reset_the_block(current_blockshash_list)
@@ -71,6 +74,7 @@ def consensus_trigger():
 
             SaveBlock(block)
     else:
+        PendingtoValidating(block)
         if block.raund_1_starting_time is None:
             block.raund_1_starting_time = int(time.time())
             SaveBlock(block)
