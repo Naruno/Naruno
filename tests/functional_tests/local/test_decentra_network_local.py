@@ -15,7 +15,6 @@ import urllib.request
 from auto_builders.local import Decentra_Network_Local
 
 
-
 class Test_Decentra_Network_Local(unittest.TestCase):
 
     def test_multiple_transaction_with_time_difference(self):
@@ -29,23 +28,26 @@ class Test_Decentra_Network_Local(unittest.TestCase):
         temp_environment.run()
         temp_environment.start()
 
+        wallet_2_json = json.loads(urllib.request.urlopen(
+            "http://localhost:8101/wallet/create/123").read().decode())
+        wallet_2_address = wallet_2_json[0].replace(
+            "0) ", "").replace(" - CURRENTLY USED\n", "")
 
-        wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/create/123").read().decode())
-        wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
-
-        urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+        urllib.request.urlopen(
+            f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
         time.sleep(25)
-        balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1,4000.0,"A problem in same network one transaction -1.")
+        balance_wallet_1 = json.loads(urllib.request.urlopen(
+            "http://localhost:8101/wallet/balance").read().decode())
+        self.assertEqual(balance_wallet_1, 4000.0,
+                         "A problem in same network one transaction -1.")
 
-
-        
-
-
-        urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
+        urllib.request.urlopen(
+            f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
         time.sleep(25)
-        balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1,9000.0,"A problem in same network one transaction -3.")
+        balance_wallet_1 = json.loads(urllib.request.urlopen(
+            "http://localhost:8101/wallet/balance").read().decode())
+        self.assertEqual(balance_wallet_1, 9000.0,
+                         "A problem in same network one transaction -3.")
 
 
 unittest.main(exit=False)
