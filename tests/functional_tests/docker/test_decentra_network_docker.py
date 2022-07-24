@@ -39,9 +39,6 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         self.assertEqual(balance_wallet_1,4000.0,"A problem in same network one transaction -1.")
 
 
-        time.sleep(45)
-
-
         urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
         time.sleep(25)
         balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
