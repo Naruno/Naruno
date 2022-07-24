@@ -43,11 +43,9 @@ def consensus_trigger():
     PendingtoValidating(block)
 
     if block.validated:
-        true_time = (
-            block.genesis_time
-            + block.block_time
-            + ((block.sequance_number + block.empty_block_number) * block.block_time)
-        )
+        true_time = (block.genesis_time + block.block_time +
+                     ((block.sequance_number + block.empty_block_number) *
+                      block.block_time))
         if block.newly:
             true_time -= 1
             logger.info(
@@ -55,7 +53,8 @@ def consensus_trigger():
             )
         if int(time.time()) >= true_time:
             block.newly = False
-            logger.info("Consensus proccess is complated, the block will be reset")
+            logger.info(
+                "Consensus proccess is complated, the block will be reset")
 
             current_blockshash_list = GetBlockshash()
             reset_block = block.reset_the_block(current_blockshash_list)
