@@ -83,9 +83,9 @@ changelog:
       labels:
         - Setups
 
-    - title: Documentation
+    - title: Documentations
       labels:
-        - Documentation
+        - Docs
 
     - title: Tests
       labels:
