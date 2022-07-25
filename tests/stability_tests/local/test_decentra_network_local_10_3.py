@@ -43,6 +43,7 @@ class Test_Decentra_Network_Local(unittest.TestCase):
                 "http://localhost:8101/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1, 4000.0,
                          "A problem in same network one transaction -1.")
+        time.sleep(50)
 
         urllib.request.urlopen(
             f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
