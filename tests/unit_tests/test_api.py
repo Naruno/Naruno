@@ -9,7 +9,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
-from decentra_network.api import app
+from decentra_network.api.main import app
 from decentra_network.lib.clean_up import CleanUp_tests
 
 

@@ -167,3 +167,25 @@ jobs:
       with:
         name: decentra-network-gui-win32
         path: dist/Decentra-Network-GUI  
+
+  build-api-android:
+    name: Build API for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer --profile api android debug
+          workdir: test_app
+          buildozer_version: stable
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: decentra-network-api-android
+          path: ${{ steps.buildozer.outputs.filename }}

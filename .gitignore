@@ -1,3 +1,7 @@
+#buildozer
+.buildozer/
+bin/
+
 # Local db
 *.out
 *.json
