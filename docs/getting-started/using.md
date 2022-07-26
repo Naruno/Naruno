@@ -22,7 +22,7 @@ nav_order: 2
 
 ### API
 
-`python3 decentra_network/api.py`
+`python3 decentra_network/api/main.py`
 
 ## Pip
 
