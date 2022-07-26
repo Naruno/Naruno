@@ -179,6 +179,10 @@ jobs:
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
+        with:
+          command: buildozer --profile api android debug
+          workdir: .
+          buildozer_version: stable
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
