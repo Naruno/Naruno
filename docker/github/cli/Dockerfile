@@ -7,4 +7,4 @@ RUN apk --no-cache add git
 
 RUN git clone https://github.com/Decentra-Network/Decentra-Network
 
-CMD [ "python3", "Decentra-Network/decentra_network/cli.py"]
+CMD [ "python3", "Decentra-Network/decentra_network/cli/main.py"]
