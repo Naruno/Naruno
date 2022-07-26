@@ -181,7 +181,7 @@ jobs:
         id: buildozer
         with:
           command: buildozer --profile api android debug
-          workdir: test_app
+          workdir: .
           buildozer_version: stable
 
       - name: Upload artifacts
