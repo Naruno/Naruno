@@ -8,9 +8,7 @@
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-from main import start
+from decentra_network.api.main import start
 
 import kivy
 from kivy.app import App

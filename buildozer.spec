@@ -13,8 +13,9 @@ icon.filename = decentra_network/gui_lib/images/logo.ico
 
 [app@api]
 title = Decentra-Network-API
+package.name = decentra_network_api
 source.dir = decentra_network/api/buildozer/
-requirements = flask==2.0.0, waitress==2.1.2, werkzeug==2.0.3, Kivy==2.0.0
+requirements =  decentra_network, decentra_network_api, Kivy==2.0.0
 
 
 [buildozer]
