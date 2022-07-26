@@ -2,13 +2,13 @@
 title = Decentra-Network
 package.name = decentra_network
 package.domain = com.example
-source.dir = decentra_network/api/
+source.dir = decentra_network/
 source.include_exts = py,png,jpg,kv,atlas
 version = 0.25.0
 orientation = all
 fullscreen = 0
 android.permissions = INTERNET
-
+icon.filename = decentra_network/gui_lib/images/logo.ico
 
 
 [app@api]

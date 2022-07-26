@@ -169,9 +169,7 @@ jobs:
         path: dist/Decentra-Network-GUI  
 
   build-api-android:
-    name: Build API for Android
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
