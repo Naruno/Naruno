@@ -19,5 +19,5 @@ requirements =  decentra_network==0.25.0, Kivy==2.0.0, waitress==2.1.2, werkzeug
 
 
 [buildozer]
-log_level = 1
+log_level = 2
 warn_on_root = 1
