@@ -16,7 +16,6 @@ from decentra_network.api.main import start
 
 
 class Decentra_Network_API(App):
-
     def build(self):
         the_api = Thread(target=start)
         the_api.start()
