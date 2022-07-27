@@ -9,14 +9,13 @@ orientation = all
 fullscreen = 0
 android.permissions = INTERNET
 icon.filename = decentra_network/gui_lib/images/logo.ico
-
+p4a.local_recipes = recipes/src/python-for-android/recipes/
 
 [app@api]
 title = Decentra-Network-API
 package.name = decentra_network_api
 source.dir = decentra_network/api/buildozer/
-requirements =  decentra_network, decentra_network_api, Kivy==2.0.0
-
+requirements =  decentra_network==0.25.0, flask==2.0.0, waitress==2.1.2, werkzeug==2.0.3, Kivy==2.0.0
 
 [buildozer]
 log_level = 1
