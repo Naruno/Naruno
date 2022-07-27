@@ -24,7 +24,7 @@ class FlaskRecipe(PythonRecipe):
     This is almost always what you want to do."""
 
     # depends = ['Jinja2==3.1.2', 'MarkupSafe==2.1.1', 'Werkzeug==2.0.3', 'itsdangerous==2.1.2', 'click==8.1.3']
-    depends = ["Jinja2", "MarkupSafe", "Werkzeug", "itsdangerous", "click"]
+    depends = ["setuptools", "Jinja2", "MarkupSafe", "Werkzeug", "itsdangerous", "click"]
 
 
 recipe = FlaskRecipe()

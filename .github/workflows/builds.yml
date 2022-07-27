@@ -177,15 +177,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+      - name: Install dependencies
+        run: |
+          pip3 install buildozer
       - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
-        with:
-          command: buildozer --profile api android debug
+        run: |
+          buildozer --profile api android debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: decentra-network-api-android
-          path: ${{ steps.buildozer.outputs.filename }}
+          path: bin
