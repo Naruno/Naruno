@@ -170,6 +170,10 @@ jobs:
 
   build-api-android:
     runs-on: ubuntu-latest
+    environment: Builds    
+    strategy:
+      matrix:
+        python-version: [3.8]    
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -179,8 +183,6 @@ jobs:
         id: buildozer
         with:
           command: buildozer --profile api android debug
-          workdir: .
-          buildozer_version: stable
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
