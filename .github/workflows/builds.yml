@@ -179,20 +179,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: |
-          pip3 install buildozer
-          pip3 install Cython
-          sudo apt-get install build-essential
-          sudo apt-get install libstdc++6 
-          sudo apt-get install aidl           
       - name: Build with Buildozer
-        run: |
-          buildozer --profile api android debug
-          
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer --profile api android debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: decentra-network-api-android
-          path: bin
+          path: ${{ steps.buildozer.outputs.filename }} 
