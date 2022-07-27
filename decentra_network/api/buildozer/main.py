@@ -14,10 +14,12 @@ import kivy
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.app import App
+from threading import Thread
 
 class Decentra_Network_API(App):
     def build(self):
-        start()        
+        the_api = Thread(target=start)
+        the_api.start()
         return Label(text="Decentra-Network-API")
 
 
