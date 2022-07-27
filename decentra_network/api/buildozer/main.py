@@ -7,14 +7,13 @@
 
 import os
 import sys
-
-from decentra_network.api.main import start
+from threading import Thread
 
 import kivy
 from kivy.app import App
 from kivy.uix.label import Label
-from kivy.app import App
-from threading import Thread
+
+from decentra_network.api.main import start
 
 
 class Decentra_Network_API(App):

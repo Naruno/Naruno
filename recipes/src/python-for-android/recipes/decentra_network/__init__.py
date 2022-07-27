@@ -5,37 +5,35 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from pythonforandroid.recipe import PythonRecipe
-import os
-from os.path import basename, dirname, exists, isdir, isfile, join, realpath, split
+import fnmatch
 import glob
-from shutil import rmtree
-from six import with_metaclass
-
 import hashlib
+import os
+import shutil
+import time
+import urllib.request
+from os import curdir, environ, listdir, mkdir, unlink, walk
+from os.path import (basename, dirname, exists, isdir, isfile, join, realpath,
+                     split)
 from re import match
+from shutil import rmtree
+from sys import stdout
+from urllib.request import urlretrieve
 
 import sh
-import shutil
-import fnmatch
-import urllib.request
-from urllib.request import urlretrieve
-from os import listdir, unlink, environ, mkdir, curdir, walk
-from sys import stdout
-import time
+from pythonforandroid.recipe import PythonRecipe
+from six import with_metaclass
 
 try:
     from urlparse import urlparse
 except ImportError:
     from urllib.parse import urlparse
-from pythonforandroid.logger import logger, info, warning, debug, shprint, info_main
-from pythonforandroid.util import (
-    current_directory,
-    ensure_dir,
-    BuildInterruptingException,
-)
-from pythonforandroid.util import load_source as import_recipe
 
+from pythonforandroid.logger import (debug, info, info_main, logger, shprint,
+                                     warning)
+from pythonforandroid.util import (BuildInterruptingException,
+                                   current_directory, ensure_dir)
+from pythonforandroid.util import load_source as import_recipe
 
 url_opener = urllib.request.build_opener()
 url_orig_headers = url_opener.addheaders

@@ -16,9 +16,9 @@ os.environ["KIVY_NO_ARGS"] = "1"
 from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
+
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
-
 from decentra_network.lib.safety import safety_check
 
 Config.set("graphics", "width", "700")
