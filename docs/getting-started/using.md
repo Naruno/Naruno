@@ -10,19 +10,19 @@ nav_order: 2
 
 ### GUI Mode
 
-`python3 decentra_network/gui.py`
+`python3 decentra_network/gui/main.py`
 
 ### CLI With Menu
 
-`python3 decentra_network/cli.py -m`
+`python3 decentra_network/cli/main.py -m`
 
 ### CLI With Parameters
 
-`python3 decentra_network/cli.py -h`
+`python3 decentra_network/cli/main.py -h`
 
 ### API
 
-`python3 decentra_network/api.py`
+`python3 decentra_network/api/main.py`
 
 ## Pip
 

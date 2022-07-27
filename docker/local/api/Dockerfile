@@ -12,4 +12,4 @@ COPY Decentra-Network Decentra-Network
 
 RUN pip install --no-cache-dir -r Decentra-Network/requirements/api.txt
 
-CMD [ "python3", "Decentra-Network/decentra_network/api.py"]
+CMD [ "python3", "Decentra-Network/decentra_network/api/main.py"]

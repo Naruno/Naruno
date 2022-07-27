@@ -9,6 +9,7 @@ on:
       - 'API.spec'
       - 'CLI.spec'
       - 'GUI-win32.spec'
+      - 'buildozer.spec'
   pull_request:
     paths:
       - '.github/workflows/builds.yml'
@@ -16,7 +17,8 @@ on:
       - 'requirements/**'
       - 'API.spec'
       - 'CLI.spec'
-      - 'GUI-win32.spec'          
+      - 'GUI-win32.spec'    
+      - 'buildozer.spec'         
   release:
     types: [published]
   workflow_dispatch:
@@ -167,3 +169,24 @@ jobs:
       with:
         name: decentra-network-gui-win32
         path: dist/Decentra-Network-GUI  
+
+  build-api-android:
+    runs-on: ubuntu-latest
+    environment: Builds    
+    strategy:
+      matrix:
+        python-version: [3.8]    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer --profile api android debug
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: decentra-network-api-android
+          path: ${{ steps.buildozer.outputs.filename }} 
