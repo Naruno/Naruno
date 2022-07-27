@@ -4,7 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import fnmatch
 import glob
 import hashlib
@@ -12,9 +11,20 @@ import os
 import shutil
 import time
 import urllib.request
-from os import curdir, environ, listdir, mkdir, unlink, walk
-from os.path import (basename, dirname, exists, isdir, isfile, join, realpath,
-                     split)
+from os import curdir
+from os import environ
+from os import listdir
+from os import mkdir
+from os import unlink
+from os import walk
+from os.path import basename
+from os.path import dirname
+from os.path import exists
+from os.path import isdir
+from os.path import isfile
+from os.path import join
+from os.path import realpath
+from os.path import split
 from re import match
 from shutil import rmtree
 from sys import stdout
