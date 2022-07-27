@@ -16,6 +16,7 @@ from kivy.uix.label import Label
 from kivy.app import App
 from threading import Thread
 
+
 class Decentra_Network_API(App):
     def build(self):
         the_api = Thread(target=start)

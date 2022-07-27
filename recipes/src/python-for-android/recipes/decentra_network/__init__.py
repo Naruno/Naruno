@@ -27,7 +27,8 @@ try:
     from urlparse import urlparse
 except ImportError:
     from urllib.parse import urlparse
-from pythonforandroid.logger import (logger, info, warning, debug, shprint, info_main)
+from pythonforandroid.logger import (
+    logger, info, warning, debug, shprint, info_main)
 from pythonforandroid.util import (current_directory, ensure_dir,
                                    BuildInterruptingException)
 from pythonforandroid.util import load_source as import_recipe
@@ -36,6 +37,7 @@ from pythonforandroid.util import load_source as import_recipe
 url_opener = urllib.request.build_opener()
 url_orig_headers = url_opener.addheaders
 urllib.request.install_opener(url_opener)
+
 
 class DecentraNetworkRecipe(PythonRecipe):
     version = '0.25.0'
@@ -70,14 +72,15 @@ class DecentraNetworkRecipe(PythonRecipe):
         (internal) Download an ``url`` to a ``target``.
         """
         backup = os.getcwd()
-        the_directory = os.path.join(os.path.dirname(__file__), "..", "..", "..", "..", "..")
+        the_directory = os.path.join(os.path.dirname(
+            __file__), "..", "..", "..", "..", "..")
         os.chdir(the_directory)
         debug((f"\n\n{os.getcwd()}\n{self.version}\n{target}\n\n"))
         os.system("python3 setup.py sdist")
         time.sleep(5)
-        os.system(f"cp dist/decentra_network-{self.version}.tar.gz {backup}/{target}")
-        os.chdir(backup) 
-
+        os.system(
+            f"cp dist/decentra_network-{self.version}.tar.gz {backup}/{target}")
+        os.chdir(backup)
 
 
 recipe = DecentraNetworkRecipe()
