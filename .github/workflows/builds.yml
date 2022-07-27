@@ -180,9 +180,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip3 install buildozer
+          pip3 install Cython
       - name: Build with Buildozer
         run: |
           buildozer --profile api android debug
+          
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
