@@ -24,5 +24,5 @@ class Decentra_Network_API(App):
         return Label(text="Decentra-Network-API")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Decentra_Network_API().run()

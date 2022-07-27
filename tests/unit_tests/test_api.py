@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
@@ -14,7 +15,6 @@ from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_API(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
