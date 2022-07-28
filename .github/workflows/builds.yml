@@ -305,7 +305,7 @@ jobs:
 
 
   build-api-ios:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     environment: Builds    
     strategy:
       matrix:
@@ -327,7 +327,7 @@ jobs:
           path: ${{ steps.buildozer.outputs.filename }} 
 
   build-gui-ios:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     environment: Builds    
     strategy:
       matrix:
