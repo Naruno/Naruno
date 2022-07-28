@@ -10,6 +10,7 @@ on:
       - 'CLI.spec'
       - 'GUI-win32.spec'
       - 'buildozer.spec'
+      - 'recipes/**'
   pull_request:
     paths:
       - '.github/workflows/builds.yml'
@@ -18,7 +19,8 @@ on:
       - 'API.spec'
       - 'CLI.spec'
       - 'GUI-win32.spec'    
-      - 'buildozer.spec'         
+      - 'buildozer.spec'
+      - 'recipes/**'       
   release:
     types: [published]
   workflow_dispatch:
