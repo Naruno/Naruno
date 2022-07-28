@@ -11,6 +11,7 @@ on:
       - 'GUI.spec'
       - 'buildozer.spec'
       - 'recipes/**'
+
   pull_request:
     paths:
       - '.github/workflows/builds.yml'
