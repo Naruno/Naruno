@@ -205,7 +205,7 @@ jobs:
         path: dist/Decentra-Network-API  
 
 
-  build-gui-macos:
+  build-gui-ios:
     runs-on: ubuntu-latest
     environment: Builds    
     strategy:
@@ -219,12 +219,12 @@ jobs:
         id: buildozer
         with:
           buildozer_version: 1.4.0
-          command: buildozer --profile gui osx debug
+          command: buildozer --profile gui ios debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: decentra-network-gui-macos
+          name: decentra-network-gui-ios
           path: ${{ steps.buildozer.outputs.filename }} 
 
   build-gui-windows:
