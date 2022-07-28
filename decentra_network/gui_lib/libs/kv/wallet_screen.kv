@@ -16,7 +16,7 @@
     adaptive_height: True
     height:"120dp"
     padding: dp(24)
-    
+
 
 
     MDGridLayout:
@@ -33,7 +33,7 @@
     adaptive_height: True
     height:"120dp"
     padding: dp(24)
-    
+
 
 
     MDGridLayout:
@@ -47,12 +47,12 @@
             password: True
             size_hint_x: .5
             hint_text: "Password: "
-            mode: "fill"            
+            mode: "fill"
 
 <WalletBox>
     adaptive_height: True
-    
-    
+
+
 
     canvas.before:
         Color:
@@ -62,13 +62,13 @@
             pos: self.pos
 
     MDGridLayout:
-        size_hint_x: 1 
+        size_hint_x: 1
         size_hint_y: None
         height: self.minimum_height
         padding: dp(10)
         cols:2
         spacing: 10
-        
+
         AnchorLayout:
             size_hint_y: None
             height: but1.height
@@ -79,8 +79,8 @@
                 DecentraLabel:
                     text: "Wallets"
                     halign: "right"
-                    font_style: "Button"   
-        
+                    font_style: "Button"
+
 
         AnchorLayout:
             size_hint_y: None
@@ -92,7 +92,7 @@
                 DecentraLabel:
                     text: "Create Wallet"
                     halign: "right"
-                    font_style: "Button" 
+                    font_style: "Button"
 
         AnchorLayout:
             size_hint_y: None
@@ -104,8 +104,8 @@
                 DecentraLabel:
                     text: root.text
                     halign: "right"
-                    font_style: "Button" 
-    
+                    font_style: "Button"
+
         AnchorLayout:
             size_hint_y: None
             height: but2.height
@@ -118,7 +118,7 @@
                 DecentraLabel:
                     text: "Delete Wallet"
                     halign: "right"
-                    font_style: "Button" 
+                    font_style: "Button"
                     theme_text_color: "Custom"
                     text_color: 1, 0, 0, 1
                     line_color: 1, 0, 1, 1
