@@ -141,7 +141,7 @@ jobs:
         name: decentra-network-api-win32
         path: dist/Decentra-Network-API  
 
-  build-api-linux:
+  build-gui-linux:
 
     runs-on: ubuntu-latest
     environment: Builds       
