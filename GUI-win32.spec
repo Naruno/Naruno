@@ -10,11 +10,15 @@ import kivymd
 from os.path import dirname, abspath, join, basename
 
 uix = os.path.join(kivymd.path, f"uix{os.sep}")
+toast = os.path.join(kivymd.path, f"toast{os.sep}")
 
 a = Analysis(['decentra_network\\gui\\main.py'],
              pathex=[],
              binaries=[],
-             datas=[(uix, join("kivymd", basename(dirname(uix)))),],
+             datas=[
+                (uix, join("kivymd", basename(dirname(uix)))),
+                (toast, join("kivymd", basename(dirname(uix)))),
+             ],
              hiddenimports=["kivymd_extensions","kivymd_extensions.sweetalert"],
              hookspath=[kivymd_hooks_path],
              hooksconfig={},
