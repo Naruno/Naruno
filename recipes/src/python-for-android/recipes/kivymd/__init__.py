@@ -3,7 +3,7 @@ from pythonforandroid.recipe import PythonRecipe
 
 class KivymdRecipe(PythonRecipe):
     version = '0.104.2'
-    url = 'https://files.pythonhosted.org/packages/37/a1/460313db291c9cd4a128d4f58f08faf2bf3e4c9dc5ca935b489e06efd7f4/kivymd-0.104.2.tar.gz'
+    url = 'https://files.pythonhosted.org/packages/fd/19/5b6418474f860534482f1e261fbebd976cc9c7b75fa59cefb557cf257e7e/kivymd-0.104.2.tar.gz'
 
     #call_hostpython_via_targetpython = True
     '''If True, tries to install the module using the hostpython binary
@@ -27,5 +27,6 @@ class KivymdRecipe(PythonRecipe):
     depends = ["setuptools"]
     call_hostpython_via_targetpython = False
     install_in_hostpython = True
+
 
 recipe = KivymdRecipe()
