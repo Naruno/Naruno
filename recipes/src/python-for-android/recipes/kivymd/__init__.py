@@ -2,8 +2,8 @@ from pythonforandroid.recipe import PythonRecipe
 
 
 class KivymdRecipe(PythonRecipe):
-    version = '0.104.1'
-    url = 'https://files.pythonhosted.org/packages/37/a1/460313db291c9cd4a128d4f58f08faf2bf3e4c9dc5ca935b489e06efd7f4/kivymd-0.104.1.tar.gz'
+    version = '0.104.2'
+    url = 'https://files.pythonhosted.org/packages/37/a1/460313db291c9cd4a128d4f58f08faf2bf3e4c9dc5ca935b489e06efd7f4/kivymd-0.104.2.tar.gz'
 
     #call_hostpython_via_targetpython = True
     '''If True, tries to install the module using the hostpython binary

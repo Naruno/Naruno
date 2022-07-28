@@ -21,7 +21,7 @@ requirements =  decentra_network==0.25.0, Kivy==2.0.0, waitress==2.1.2, werkzeug
 title = Decentra-Network-GUI
 package.name = decentra_network_gui
 source.dir = decentra_network/gui/
-requirements =  decentra_network==0.25.0, Kivy==2.0.0, kivymd==0.104.1, kivymd_extensions.sweetalert==0.1.5
+requirements =  decentra_network==0.25.0, Kivy==2.0.0, kivymd==0.104.2, kivymd_extensions.sweetalert==0.1.5
 
 
 
