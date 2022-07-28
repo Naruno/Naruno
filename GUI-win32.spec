@@ -17,7 +17,7 @@ a = Analysis(['decentra_network\\gui\\main.py'],
              binaries=[],
              datas=[
                 (uix, join("kivymd", basename(dirname(uix)))),
-                (toast, join("kivymd", basename(dirname(uix)))),
+                (toast, join("kivymd", basename(dirname(toast)))),
              ],
              hiddenimports=["kivymd_extensions","kivymd_extensions.sweetalert"],
              hookspath=[kivymd_hooks_path],
