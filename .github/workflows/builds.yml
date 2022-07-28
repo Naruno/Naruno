@@ -204,35 +204,28 @@ jobs:
         name: decentra-network-api-win32
         path: dist/Decentra-Network-API  
 
-  build-gui-macos:
 
-    runs-on: macos-latest
-    environment: Builds       
+  build-gui-macos:
+    runs-on: ubuntu-latest
+    environment: Builds    
     strategy:
       matrix:
-        python-version: [3.8]
-
+        python-version: [3.8]    
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pyinstaller
-        python3 -m venv venv
-        source venv/bin/activate
-        pip3 install -r requirements/gui.txt        
-    - name: PyInstaller
-      run: |
-        pyinstaller GUI.spec
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          buildozer_version: 1.4.0
+          command: buildozer --profile gui osx debug
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: decentra-network-gui-macos
-        path: dist/Decentra-Network-GUI
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: decentra-network-gui-macos
+          path: ${{ steps.buildozer.outputs.filename }} 
 
   build-gui-windows:
 
