@@ -8,7 +8,7 @@ on:
       - 'requirements/**'  
       - 'API.spec'
       - 'CLI.spec'
-      - 'GUI.spec'
+      - 'GUI-win32.spec'
       - 'buildozer.spec'
       - 'recipes/**'
 
@@ -19,7 +19,7 @@ on:
       - 'requirements/**'
       - 'API.spec'
       - 'CLI.spec'
-      - 'GUI.spec'    
+      - 'GUI-win32.spec'    
       - 'buildozer.spec'
       - 'recipes/**'       
   release:
@@ -231,7 +231,7 @@ jobs:
     - name: PyInstaller
       run: |
         $env:KIVY_GL_BACKEND="angle_sdl2"
-        pyinstaller GUI.spec
+        pyinstaller GUI-win32.spec
     - uses: actions/upload-artifact@v2
       with:
         name: decentra-network-gui-win32
