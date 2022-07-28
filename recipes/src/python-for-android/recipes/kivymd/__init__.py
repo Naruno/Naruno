@@ -24,7 +24,9 @@ class KivymdRecipe(PythonRecipe):
     This is almost always what you want to do.'''
 
     # depends = []
-    depends = []
+    depends = ["setuptools"]
 
+    call_hostpython_via_targetpython = False
+    install_in_hostpython = True
 
 recipe = KivymdRecipe()
