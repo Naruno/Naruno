@@ -1,5 +1,6 @@
 <NavigationItem>
-    size_hint: None, None
+    size_hint_x: None
+    size_hint_y: None, None
     size: (dp(40), dp(40))
     pos_hint: {"center_x": .5, "center_y": .5}
 
@@ -7,7 +8,8 @@
         id: _icon
         icon: root.icon
         halign: "center"
-        size_hint: (None, None)
+        size_hint_x: None
+        size_hint_y: None
         size: (root.height, root.height)
         theme_text_color: "Custom"
         text_color: root.icon_color
@@ -28,7 +30,9 @@
 
 
 <NavigationBar>:
-    size_hint: (None, None)
+    size_hint_x: None
+    size_hint_y: None
+    size_hint_y: None
     height: dp(65)
 
     BoxLayout:
