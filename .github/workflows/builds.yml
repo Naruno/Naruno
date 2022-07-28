@@ -8,7 +8,7 @@ on:
       - 'requirements/**'  
       - 'API.spec'
       - 'CLI.spec'
-      - 'GUI-win32.spec'
+      - 'GUI.spec'
       - 'buildozer.spec'
       - 'recipes/**'
   pull_request:
@@ -18,7 +18,7 @@ on:
       - 'requirements/**'
       - 'API.spec'
       - 'CLI.spec'
-      - 'GUI-win32.spec'    
+      - 'GUI.spec'    
       - 'buildozer.spec'
       - 'recipes/**'       
   release:
@@ -140,6 +140,36 @@ jobs:
         name: decentra-network-api-win32
         path: dist/Decentra-Network-API  
 
+  build-api-linux:
+
+    runs-on: ubuntu-latest
+    environment: Builds       
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        python3 -m venv venv
+        source venv/bin/activate
+        pip3 install -r requirements/gui.txt        
+    - name: PyInstaller
+      run: |
+        pyinstaller GUI.spec
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: decentra-network-gui-linux
+        path: dist/Decentra-Network-GUI
+
   build-gui-windows:
 
     runs-on: windows-latest
@@ -166,7 +196,7 @@ jobs:
     - name: PyInstaller
       run: |
         $env:KIVY_GL_BACKEND="angle_sdl2"
-        pyinstaller GUI-win32.spec
+        pyinstaller GUI.spec
     - uses: actions/upload-artifact@v2
       with:
         name: decentra-network-gui-win32
