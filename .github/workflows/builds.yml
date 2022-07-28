@@ -141,9 +141,9 @@ jobs:
         name: decentra-network-api-win32
         path: dist/Decentra-Network-API  
 
-  build-gui-linux:
+  build-gui-macos:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     environment: Builds       
     strategy:
       matrix:
@@ -161,16 +161,14 @@ jobs:
         pip install pyinstaller
         python3 -m venv venv
         source venv/bin/activate
-        pip3 install -r requirements/gui.txt     
-        pip3 install kivy-deps.sdl2
-        pip3 install kivy-deps.glew           
+        pip3 install -r requirements/gui.txt        
     - name: PyInstaller
       run: |
         pyinstaller GUI.spec
 
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-gui-linux
+        name: decentra-network-gui-macos
         path: dist/Decentra-Network-GUI
 
   build-gui-windows:
