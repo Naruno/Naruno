@@ -15,8 +15,8 @@ setup(
     author_email="atadogan06@gmail.com",
     license="MPL-2.0",
     install_requires="""
-Kivy==2.0.0
-kivymd==0.104.1
+Kivy==2.1.0
+kivymd==0.104.2
 kivymd_extensions.sweetalert==0.1.5
 """,
     python_requires=">=3.8",

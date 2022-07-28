@@ -9,12 +9,16 @@ from kivymd import hooks_path as kivymd_hooks_path
 import kivymd
 from os.path import dirname, abspath, join, basename
 
-stiffscroll = os.path.join(kivymd.path, f"stiffscroll{os.sep}")
+uix = os.path.join(kivymd.path, f"uix{os.sep}")
+toast = os.path.join(kivymd.path, f"toast{os.sep}")
 
 a = Analysis(['decentra_network\\gui\\main.py'],
              pathex=[],
              binaries=[],
-             datas=[(stiffscroll, join("kivymd", basename(dirname(stiffscroll)))),],
+             datas=[
+                (uix, join("kivymd", basename(dirname(uix)))),
+                (toast, join("kivymd", basename(dirname(toast)))),
+             ],
              hiddenimports=["kivymd_extensions","kivymd_extensions.sweetalert"],
              hookspath=[kivymd_hooks_path],
              hooksconfig={},
