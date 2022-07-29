@@ -300,7 +300,9 @@ jobs:
         python3 -m pip install --user --upgrade pip virtualenv kivy-ios
         pip3 install buildozer     
         brew install cython
-        pip3 install Cython
+        brew install Cython
+        pip3 install Cython   
+        pip3 install cython   
 
     - name: Buildozer
       run: |
@@ -329,7 +331,9 @@ jobs:
         python3 -m pip install --user --upgrade pip virtualenv kivy-ios
         pip3 install buildozer     
         brew install cython
+        brew install Cython
         pip3 install Cython   
+        pip3 install cython   
 
     - name: Buildozer
       run: |
