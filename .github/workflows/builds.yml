@@ -356,7 +356,8 @@ jobs:
         pip3 install Cython==0.29.17 kivy-ios virtualenv 
         pip3 install buildozer==1.4.0
         
-        open /Applications/Python\ 3.8/Install\ Certificates.command
+        pip3 install --upgrade certifi
+
 
 
     - name: Buildozer
