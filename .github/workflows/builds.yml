@@ -11,6 +11,7 @@ on:
       - 'GUI-win32.spec'
       - 'buildozer.spec'
       - 'recipes/**'
+
   pull_request:
     paths:
       - '.github/workflows/builds.yml'
@@ -53,6 +54,37 @@ jobs:
       with:
         name: decentra-network-cli-linux
         path: dist/Decentra-Network-CLI
+
+
+  build-cli-macos:
+
+    runs-on: macos-latest
+    environment: Builds       
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+    - name: PyInstaller
+      run: |
+        pyinstaller CLI.spec
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: decentra-network-cli-macos
+        path: dist/Decentra-Network-CLI
+
+
+
   build-cli-windows:
 
     runs-on: windows-latest
@@ -110,6 +142,38 @@ jobs:
         name: decentra-network-api-linux
         path: dist/Decentra-Network-API
 
+
+  build-api-macos:
+
+    runs-on: macos-latest
+    environment: Builds       
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        python3 -m venv venv
+        source venv/bin/activate
+        pip3 install -r requirements/api.txt        
+    - name: PyInstaller
+      run: |
+        pyinstaller API.spec
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: decentra-network-api-macos
+        path: dist/Decentra-Network-API
+
+
   build-api-windows:
 
     runs-on: windows-latest
@@ -139,6 +203,7 @@ jobs:
       with:
         name: decentra-network-api-win32
         path: dist/Decentra-Network-API  
+
 
   build-gui-windows:
 
@@ -214,3 +279,4 @@ jobs:
         with:
           name: decentra-network-gui-android
           path: ${{ steps.buildozer.outputs.filename }} 
+
