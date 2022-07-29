@@ -304,11 +304,11 @@ jobs:
         brew install libffi
         brew install libtool
         brew install openssl
-        brew install openjdk-13-jdk
-        brew install patch
+        brew install java11
+        brew install gpatch
         brew install unzip
         brew install zip
-        brew install zlib1g-dev
+        brew install zlib
 
         pip3 install Cython==0.29.17 kivy-ios virtualenv 
         pip3 install buildozer==1.4.0
