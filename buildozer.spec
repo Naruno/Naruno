@@ -12,6 +12,7 @@ icon.filename = decentra_network/gui_lib/images/logo.ico
 p4a.local_recipes = recipes/src/python-for-android/recipes/
 
 ios.codesign.allowed = false
+osx.python_version = 3
 
 [app@api]
 title = Decentra-Network-API
