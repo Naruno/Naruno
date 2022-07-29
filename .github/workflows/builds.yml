@@ -299,7 +299,8 @@ jobs:
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake 
         python3 -m pip install --user --upgrade pip virtualenv kivy-ios
         pip3 install buildozer     
-        sudo ln -s /usr/bin/cython3 /usr/local/bin/cython    
+        brew install cython
+        pip3 install Cython
 
     - name: Buildozer
       run: |
@@ -327,7 +328,8 @@ jobs:
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
         python3 -m pip install --user --upgrade pip virtualenv kivy-ios
         pip3 install buildozer     
-        sudo ln -s /usr/bin/cython3 /usr/local/bin/cython    
+        brew install cython
+        pip3 install Cython   
 
     - name: Buildozer
       run: |
