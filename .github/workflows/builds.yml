@@ -298,7 +298,7 @@ jobs:
       run: |
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
         python3 -m pip install --user --upgrade pip virtualenv kivy-ios
-        pip3 install builozer     
+        pip3 install buildozer     
     - name: Buildozer
       run: |
         buildozer --profile api ios debug
@@ -324,7 +324,7 @@ jobs:
       run: |
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
         python3 -m pip install --user --upgrade pip virtualenv kivy-ios
-        pip3 install builozer     
+        pip3 install buildozer     
     - name: Buildozer
       run: |
         buildozer --profile gui ios debug
