@@ -298,7 +298,7 @@ jobs:
       run: |
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake 
         python3 -m pip install --user --upgrade pip virtualenv kivy-ios
-        python3 -m pip3 install --user Cython
+        python3 -m pip install --user Cython
 
     - name: Buildozer
       run: |
