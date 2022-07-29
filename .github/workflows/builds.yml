@@ -280,3 +280,57 @@ jobs:
           name: decentra-network-gui-android
           path: ${{ steps.buildozer.outputs.filename }} 
 
+
+
+  build-api-ios:
+    runs-on: macos-latest
+    environment: Builds       
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
+        python3 -m pip install --user --upgrade pip virtualenv kivy-ios
+        pip3 install builozer     
+    - name: Buildozer
+      run: |
+        buildozer --profile api ios debug
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: decentra-network-api-ios
+        path: bin/
+
+  build-gui-ios:
+    runs-on: macos-latest
+    environment: Builds       
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
+        python3 -m pip install --user --upgrade pip virtualenv kivy-ios
+        pip3 install builozer     
+    - name: Buildozer
+      run: |
+        buildozer --profile gui ios debug
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: decentra-network-gui-ios
+        path: bin/
+
