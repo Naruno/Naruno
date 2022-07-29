@@ -280,7 +280,7 @@ jobs:
           name: decentra-network-gui-android
           path: ${{ steps.buildozer.outputs.filename }} 
 
-  build-gui-ios:
+  build-api-ios:
     runs-on: macos-latest
     environment: Builds       
     strategy:
@@ -301,9 +301,9 @@ jobs:
 
     - name: Buildozer
       run: |
-        buildozer --profile gui ios debug
+        buildozer --profile api ios debug
 
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-gui-ios
+        name: decentra-network-api-ios
         path: bin/
