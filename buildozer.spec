@@ -11,6 +11,7 @@ android.permissions = INTERNET
 icon.filename = decentra_network/gui_lib/images/logo.ico
 p4a.local_recipes = recipes/src/python-for-android/recipes/
 
+s
 [app@api]
 title = Decentra-Network-API
 package.name = decentra_network_api
