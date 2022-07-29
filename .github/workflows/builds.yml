@@ -302,7 +302,7 @@ jobs:
         brew install gettext
         brew install git
         brew install libffi
-        brew install libltdl
+        brew install libtool
         brew install libssl-dev
         brew install libtool
         brew install openjdk-13-jdk
