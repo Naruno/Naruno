@@ -298,11 +298,10 @@ jobs:
       run: |
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake 
         python3 -m pip install --user --upgrade pip virtualenv kivy-ios
-        pip3 install buildozer     
-        brew install cython
-        brew install Cython
-        pip3 install Cython   
-        pip3 install cython   
+        python3 -m pip3 install --user Cython
+        sudo ln -s /usr/bin/cython /usr/local/bin/cython
+        cython
+        cython3
 
     - name: Buildozer
       run: |
@@ -312,35 +311,3 @@ jobs:
       with:
         name: decentra-network-api-ios
         path: bin/
-
-  build-gui-ios:
-    runs-on: macos-latest
-    environment: Builds       
-    strategy:
-      matrix:
-        python-version: [3.8]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
-        python3 -m pip install --user --upgrade pip virtualenv kivy-ios
-        pip3 install buildozer     
-        brew install cython
-        brew install Cython
-        pip3 install Cython   
-        pip3 install cython   
-
-    - name: Buildozer
-      run: |
-        buildozer --profile gui ios debug
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: decentra-network-gui-ios
-        path: bin/
-
