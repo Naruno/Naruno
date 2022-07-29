@@ -296,8 +296,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake cython 
-        python3 -m pip install --user --upgrade pip virtualenv kivy-ios
+        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake 
+        python3 -m pip install --user --upgrade pip virtualenv kivy-ios cython
         pip3 install buildozer     
     - name: Buildozer
       run: |
@@ -322,8 +322,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake cython 
-        python3 -m pip install --user --upgrade pip virtualenv kivy-ios
+        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
+        python3 -m pip install --user --upgrade pip virtualenv kivy-ios cython
         pip3 install buildozer     
     - name: Buildozer
       run: |
