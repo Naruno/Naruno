@@ -280,36 +280,6 @@ jobs:
           name: decentra-network-gui-android
           path: ${{ steps.buildozer.outputs.filename }} 
 
-
-
-  build-api-ios:
-    runs-on: macos-latest
-    environment: Builds       
-    strategy:
-      matrix:
-        python-version: [3.8]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake 
-        pip3 install virtualenv kivy-ios
-        pip3 install Cython        
-        pip3 install buildozer  
-
-    - name: Buildozer
-      run: |
-        buildozer --profile api ios debug
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: decentra-network-api-ios
-        path: bin/
-
   build-gui-ios:
     runs-on: macos-latest
     environment: Builds       
@@ -324,10 +294,9 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake 
-        pip3 install virtualenv kivy-ios
-        pip3 install Cython        
-        pip3 install buildozer  
+        brew install autoconf automake libtool pkg-config
+        brew link libtool
+        pip3 install Cython==0.29.17 
 
     - name: Buildozer
       run: |
