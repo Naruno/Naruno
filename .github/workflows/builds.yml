@@ -301,7 +301,7 @@ jobs:
         brew install cmake
         brew install gettext
         brew install git
-        brew install libffi-dev
+        brew install libffi
         brew install libltdl-dev
         brew install libssl-dev
         brew install libtool
