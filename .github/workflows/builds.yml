@@ -301,7 +301,7 @@ jobs:
         pip3 install buildozer     
     - name: Buildozer
       run: |
-        buildozer --profile api ios debug
+        buildozer --profile api osx debug
 
     - uses: actions/upload-artifact@v2
       with:
@@ -327,7 +327,7 @@ jobs:
         pip3 install buildozer     
     - name: Buildozer
       run: |
-        buildozer --profile gui ios debug
+        buildozer --profile gui osx debug
 
     - uses: actions/upload-artifact@v2
       with:
