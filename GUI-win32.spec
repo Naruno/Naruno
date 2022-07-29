@@ -12,9 +12,7 @@ from os.path import dirname, abspath, join, basename
 uix = os.path.join(kivymd.path, f"uix{os.sep}")
 toast = os.path.join(kivymd.path, f"toast{os.sep}")
 
-the_path = os.path.join("decentra_network", "gui", "main.py")
-
-a = Analysis([the_path],
+a = Analysis(['decentra_network\\gui\\main.py'],
              pathex=[],
              binaries=[],
              datas=[
@@ -34,7 +32,7 @@ pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 
 exe = EXE(pyz,
-          a.scripts,
+          a.scripts, 
           [],
           exclude_binaries=True,
           name='Decentra-Network-GUI',
@@ -51,8 +49,8 @@ coll = COLLECT(exe,
                Tree('.'),
                a.binaries,
                a.zipfiles,
-               a.datas,
-               *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
+               a.datas, 
+               *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)], 
                strip=False,
                upx=True,
                upx_exclude=[],
