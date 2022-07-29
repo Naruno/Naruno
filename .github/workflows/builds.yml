@@ -297,8 +297,9 @@ jobs:
     - name: Install dependencies
       run: |
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake 
-        python3 -m pip install --user --upgrade pip virtualenv kivy-ios cython
+        python3 -m pip install --user --upgrade pip virtualenv kivy-ios
         pip3 install buildozer     
+        pip3 install Cython
     - name: Buildozer
       run: |
         buildozer --profile api ios debug
@@ -323,8 +324,9 @@ jobs:
     - name: Install dependencies
       run: |
         brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer autoconf automake
-        python3 -m pip install --user --upgrade pip virtualenv kivy-ios cython
+        python3 -m pip install --user --upgrade pip virtualenv kivy-ios
         pip3 install buildozer     
+        pip3 install Cython
     - name: Buildozer
       run: |
         buildozer --profile gui ios debug
