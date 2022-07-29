@@ -322,6 +322,52 @@ jobs:
           name: decentra-network-gui-android
           path: ${{ steps.buildozer.outputs.filename }} 
 
+
+  build-api-ios:
+    runs-on: macos-latest
+    environment: Builds       
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        brew install pkg-config
+        brew install autoconf
+        brew install automake
+        brew install ccache
+        brew install cmake
+        brew install gettext
+        brew install git
+        brew install libffi
+        brew install libtool
+        brew install openssl
+        brew install java11
+        brew install gpatch
+        brew install unzip
+        brew install zip
+        brew install zlib
+
+        pip3 install Cython==0.29.17 kivy-ios virtualenv 
+        pip3 install buildozer==1.4.0
+        
+        open /Applications/Python\ 3.8/Install\ Certificates.command
+
+
+    - name: Buildozer
+      run: |
+        buildozer --profile api ios debug
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: decentra-network-api-ios
+        path: bin/
+
   build-gui-ios:
     runs-on: macos-latest
     environment: Builds       
