@@ -13,6 +13,7 @@ p4a.local_recipes = recipes/src/python-for-android/recipes/
 
 ios.codesign.allowed = false
 osx.python_version = 3
+osx.kivy_version = 2.1.0
 
 [app@api]
 title = Decentra-Network-API
