@@ -303,8 +303,7 @@ jobs:
         brew install git
         brew install libffi
         brew install libtool
-        brew install libssl-dev
-        brew install libtool
+        brew install openssl
         brew install openjdk-13-jdk
         brew install patch
         brew install unzip
