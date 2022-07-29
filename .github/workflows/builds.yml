@@ -294,10 +294,27 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        brew install autoconf automake libtool pkg-config
-        brew link libtool
+        brew install pkg-config
+        brew install autoconf
+        brew install automake
+        brew install build-essential
+        brew install ccache
+        brew install cmake
+        brew install gettext
+        brew install git
+        brew install libffi-dev
+        brew install libltdl-dev
+        brew install libssl-dev
+        brew install libtool
+        brew install openjdk-13-jdk
+        brew install patch
+        brew install unzip
+        brew install zip
+        brew install zlib1g-dev
+
         pip3 install Cython==0.29.17 kivy-ios virtualenv 
         pip3 install buildozer==1.4.0
+        
 
     - name: Buildozer
       run: |
