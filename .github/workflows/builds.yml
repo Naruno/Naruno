@@ -297,7 +297,6 @@ jobs:
         brew install pkg-config
         brew install autoconf
         brew install automake
-        brew install build-essential
         brew install ccache
         brew install cmake
         brew install gettext
