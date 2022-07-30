@@ -54,7 +54,7 @@ Now you can access the Decentra Network CLI in bash.
 
 `docker run -v decentra-network-api:/app/Decentra-Network/decentra_network/db/ --network=host -dit ghcr.io/decentra-network/api`
 
-Now Decentra Network Core broadcasts on port 8000 in API mode.
+Now Decentra Network broadcasts on port 8000 in API mode.
 
 ## Builds
 
