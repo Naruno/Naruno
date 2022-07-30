@@ -3,7 +3,7 @@
     <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
   </a>
 
-  <h3 align="center">Decentra Network Core</h3>
+  <h3 align="center">Decentra Network</h3>
 
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
@@ -93,9 +93,9 @@ The main features of Decentra Network are:
 - Built-in application structure
 - Custom wallet system
 
-The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network Core software, designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network software, designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
-**The Decentra-Network Core has 4 control areas:**
+**The Decentra-Network has 4 control areas:**
 
 ## GUI
 
