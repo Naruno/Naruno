@@ -93,14 +93,14 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        path: cli_macos_${{ github.event.release.tag_name }}.zip
+        path: dist/cli_macos_${{ github.event.release.tag_name }}.zip
 
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'cli_macos_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/cli_macos_${{ github.event.release.tag_name }}.zip'
 
 
   build-cli-windows:
