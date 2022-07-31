@@ -57,13 +57,11 @@ jobs:
       with:
         path: cli_linux_${{ github.event.release.tag_name }}.zip
     
-    - name: Upload the artifacts
+    - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
-      uses: skx/github-action-publish-binaries@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'cli_linux_${{ github.event.release.tag_name }}.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: 'cli_linux_${{ github.event.release.tag_name }}.zip'
 
   build-cli-macos:
 
@@ -96,13 +94,11 @@ jobs:
         path: cli_macos_${{ github.event.release.tag_name }}.zip
 
 
-    - name: Upload the artifacts
+    - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
-      uses: skx/github-action-publish-binaries@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'cli_macos_${{ github.event.release.tag_name }}.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: 'cli_macos_${{ github.event.release.tag_name }}.zip'
 
 
   build-cli-windows:
@@ -136,13 +132,11 @@ jobs:
       with:
         path: cli_win32_${{ github.event.release.tag_name }}.zip       
 
-    - name: Upload the artifacts
+    - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
-      uses: skx/github-action-publish-binaries@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'cli_win32_${{ github.event.release.tag_name }}.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: 'cli_win32_${{ github.event.release.tag_name }}.zip'
 
 
   build-api-linux:
@@ -179,13 +173,11 @@ jobs:
       with:
         path: api_linux_${{ github.event.release.tag_name }}.zip
 
-    - name: Upload the artifacts
+    - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
-      uses: skx/github-action-publish-binaries@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'api_linux_${{ github.event.release.tag_name }}.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: 'api_linux_${{ github.event.release.tag_name }}.zip'
 
 
   build-api-macos:
@@ -221,13 +213,11 @@ jobs:
       with:
         path: api_macos_${{ github.event.release.tag_name }}.zip
 
-    - name: Upload the artifacts
+    - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
-      uses: skx/github-action-publish-binaries@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'api_macos_${{ github.event.release.tag_name }}.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: 'api_macos_${{ github.event.release.tag_name }}.zip'
 
   build-api-windows:
 
@@ -263,13 +253,11 @@ jobs:
         path: api_win32_${{ github.event.release.tag_name }}.zip 
 
 
-    - name: Upload the artifacts
+    - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
-      uses: skx/github-action-publish-binaries@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'api_win32_${{ github.event.release.tag_name }}.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: 'api_win32_${{ github.event.release.tag_name }}.zip'
 
   build-gui-windows:
 
@@ -307,13 +295,11 @@ jobs:
       with:
         path: gui_win32_${{ github.event.release.tag_name }}.zip
 
-    - name: Upload the artifacts
+    - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
-      uses: skx/github-action-publish-binaries@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'gui_win32_${{ github.event.release.tag_name }}.zip'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: 'gui_win32_${{ github.event.release.tag_name }}.zip'
 
   build-api-android:
     runs-on: ubuntu-latest
@@ -339,13 +325,11 @@ jobs:
         with:
           path: api_android_${{ github.event.release.tag_name }}.zip
 
-      - name: Upload the artifacts
+      - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
-        uses: skx/github-action-publish-binaries@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'api_android_${{ github.event.release.tag_name }}.zip'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}        
+          files: 'api_android_${{ github.event.release.tag_name }}.zip'
 
 
   build-gui-android:
@@ -373,10 +357,8 @@ jobs:
         with:
           path: gui_android_${{ github.event.release.tag_name }}.zip
 
-      - name: Upload the artifacts
+      - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
-        uses: skx/github-action-publish-binaries@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'gui_android_${{ github.event.release.tag_name }}.zip'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}        
+          files: 'gui_android_${{ github.event.release.tag_name }}.zip'
