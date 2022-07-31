@@ -31,18 +31,12 @@ jobs:
         with:
           name: decentra-network-gource
           path: ./gource/gource.mp4
-      - name: Get release
-        id: get_release
-        uses: bruceadams/get-release@v1.2.3
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
       - name: Zip
-        run: zip gource_${{ steps.get_release.tag_name }} gource.mp4
+        run: zip gource_${{ github.event.release.tag_name }} ./gource/gource.mp4
       - name: Upload the artifacts
         if: github.event_name == 'release'
         uses: skx/github-action-publish-binaries@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.event.release.tag_name }}
         with:
           args: 'gource_${{ steps.get_release.tag_name }}.zip'
