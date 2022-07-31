@@ -55,6 +55,17 @@ jobs:
         name: decentra-network-cli-linux
         path: dist/Decentra-Network-CLI
 
+    - uses: actions/download-artifact@v3
+      if: github.event_name == 'release'
+      with:
+        name: decentra-network-cli-linux
+    - name: Upload the artifacts
+      if: github.event_name == 'release'
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'decentra-network-cli-linux'
 
   build-cli-macos:
 
@@ -83,6 +94,17 @@ jobs:
         name: decentra-network-cli-macos
         path: dist/Decentra-Network-CLI
 
+    - uses: actions/download-artifact@v3
+      if: github.event_name == 'release'
+      with:
+        name: decentra-network-cli-macos
+    - name: Upload the artifacts
+      if: github.event_name == 'release'
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'decentra-network-cli-macos'
 
 
   build-cli-windows:
@@ -111,6 +133,19 @@ jobs:
       with:
         name: decentra-network-cli-win32
         path: dist/Decentra-Network-CLI        
+
+    - uses: actions/download-artifact@v3
+      if: github.event_name == 'release'
+      with:
+        name: decentra-network-cli-win32
+    - name: Upload the artifacts
+      if: github.event_name == 'release'
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'decentra-network-cli-win32'
+
 
   build-api-linux:
 
@@ -141,6 +176,18 @@ jobs:
       with:
         name: decentra-network-api-linux
         path: dist/Decentra-Network-API
+
+    - uses: actions/download-artifact@v3
+      if: github.event_name == 'release'
+      with:
+        name: decentra-network-api-linux
+    - name: Upload the artifacts
+      if: github.event_name == 'release'
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'decentra-network-api-linux'
 
 
   build-api-macos:
@@ -173,6 +220,17 @@ jobs:
         name: decentra-network-api-macos
         path: dist/Decentra-Network-API
 
+    - uses: actions/download-artifact@v3
+      if: github.event_name == 'release'
+      with:
+        name: decentra-network-api-macos
+    - name: Upload the artifacts
+      if: github.event_name == 'release'
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'decentra-network-api-macos'
 
   build-api-windows:
 
@@ -204,6 +262,18 @@ jobs:
         name: decentra-network-api-win32
         path: dist/Decentra-Network-API  
 
+
+    - uses: actions/download-artifact@v3
+      if: github.event_name == 'release'
+      with:
+        name: decentra-network-api-win32
+    - name: Upload the artifacts
+      if: github.event_name == 'release'
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'decentra-network-api-win32'
 
   build-gui-windows:
 
@@ -237,6 +307,18 @@ jobs:
         name: decentra-network-gui-win32
         path: dist/Decentra-Network-GUI  
 
+    - uses: actions/download-artifact@v3
+      if: github.event_name == 'release'
+      with:
+        name: decentra-network-api-win32
+    - name: Upload the artifacts
+      if: github.event_name == 'release'
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'decentra-network-api-win32'
+
   build-api-android:
     runs-on: ubuntu-latest
     environment: Builds    
@@ -257,6 +339,19 @@ jobs:
         with:
           name: decentra-network-api-android
           path: ${{ steps.buildozer.outputs.filename }} 
+
+      - uses: actions/download-artifact@v3
+        if: github.event_name == 'release'
+        with:
+          name: decentra-network-api-android
+      - name: Upload the artifacts
+        if: github.event_name == 'release'
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: 'decentra-network-api-android'
+
 
   build-gui-android:
     runs-on: ubuntu-latest
@@ -280,3 +375,15 @@ jobs:
           name: decentra-network-gui-android
           path: ${{ steps.buildozer.outputs.filename }} 
 
+
+      - uses: actions/download-artifact@v3
+        if: github.event_name == 'release'
+        with:
+          name: decentra-network-gui-android
+      - name: Upload the artifacts
+        if: github.event_name == 'release'
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: 'decentra-network-gui-android'
