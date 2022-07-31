@@ -51,7 +51,7 @@ jobs:
         pyinstaller CLI.spec
 
     - name: Zip
-      run: zip -r cli_linux_${{ github.event.release.tag_name }} dist/Decentra-Network-CLI
+      run: zip -r cli_linux_${{ github.event.release.tag_name }} dist/Decentra-Network-CLI/
     
     - uses: actions/upload-artifact@v2
       with:
@@ -86,7 +86,9 @@ jobs:
         pyinstaller CLI.spec
 
     - name: Zip
-      run: zip -r cli_macos_${{ github.event.release.tag_name }} dist/Decentra-Network-CLI
+      run: |
+        cd dist
+        zip -r cli_macos_${{ github.event.release.tag_name }} Decentra-Network-CLI/
     
 
     - uses: actions/upload-artifact@v2
@@ -124,7 +126,7 @@ jobs:
         pyinstaller CLI.spec
 
     - name: Zip
-      run: Compress-Archive dist/Decentra-Network-CLI cli_win32_${{ github.event.release.tag_name }}.zip
+      run: Compress-Archive dist/Decentra-Network-CLI/ cli_win32_${{ github.event.release.tag_name }}.zip
     
 
 
@@ -166,7 +168,7 @@ jobs:
 
 
     - name: Zip
-      run: zip -r api_linux_${{ github.event.release.tag_name }} dist/Decentra-Network-API
+      run: zip -r api_linux_${{ github.event.release.tag_name }} dist/Decentra-Network-API/
     
 
     - uses: actions/upload-artifact@v2
@@ -206,7 +208,7 @@ jobs:
         pyinstaller API.spec
 
     - name: Zip
-      run: zip -r api_macos_${{ github.event.release.tag_name }} dist/Decentra-Network-API
+      run: zip -r api_macos_${{ github.event.release.tag_name }} dist/Decentra-Network-API/
     
 
     - uses: actions/upload-artifact@v2
@@ -245,7 +247,7 @@ jobs:
         pyinstaller API.spec
 
     - name: Zip
-      run: Compress-Archive dist/Decentra-Network-API api_win32_${{ github.event.release.tag_name }}.zip
+      run: Compress-Archive dist/Decentra-Network-API/ api_win32_${{ github.event.release.tag_name }}.zip
     
 
     - uses: actions/upload-artifact@v2
@@ -288,7 +290,7 @@ jobs:
         pyinstaller GUI-win32.spec
 
     - name: Zip
-      run: Compress-Archive dist/Decentra-Network-GUI gui_win32_${{ github.event.release.tag_name }}.zip
+      run: Compress-Archive dist/Decentra-Network-GUI/ gui_win32_${{ github.event.release.tag_name }}.zip
     
 
     - uses: actions/upload-artifact@v2
