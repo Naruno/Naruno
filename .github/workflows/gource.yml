@@ -36,7 +36,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: 'gource_${{ github.event.release.tag_name }}.zip'
-
       - name: 'Upload gource video'
         uses: actions/upload-artifact@v2
         with:

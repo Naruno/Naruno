@@ -50,22 +50,20 @@ jobs:
       run: |
         pyinstaller CLI.spec
 
+    - name: Zip
+      run: zip -r cli_linux_${{ github.event.release.tag_name }} dist/Decentra-Network-CLI
+    
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-cli-linux
-        path: dist/Decentra-Network-CLI
-
-    - uses: actions/download-artifact@v3
-      if: github.event_name == 'release'
-      with:
-        name: decentra-network-cli-linux
+        path: cli_linux_${{ github.event.release.tag_name }}
+    
     - name: Upload the artifacts
       if: github.event_name == 'release'
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'decentra-network-cli-linux'
+        args: 'cli_linux_${{ github.event.release.tag_name }}'
 
   build-cli-macos:
 
@@ -89,22 +87,22 @@ jobs:
       run: |
         pyinstaller CLI.spec
 
+    - name: Zip
+      run: zip -r cli_macos_${{ github.event.release.tag_name }} dist/Decentra-Network-CLI
+    
+
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-cli-macos
-        path: dist/Decentra-Network-CLI
+        path: cli_macos_${{ github.event.release.tag_name }}
 
-    - uses: actions/download-artifact@v3
-      if: github.event_name == 'release'
-      with:
-        name: decentra-network-cli-macos
+
     - name: Upload the artifacts
       if: github.event_name == 'release'
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'decentra-network-cli-macos'
+        args: 'cli_macos_${{ github.event.release.tag_name }}'
 
 
   build-cli-windows:
@@ -129,22 +127,22 @@ jobs:
       run: |
         pyinstaller CLI.spec
 
+    - name: Zip
+      run: zip -r cli_win32_${{ github.event.release.tag_name }} dist/Decentra-Network-CLI
+    
+
+
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-cli-win32
-        path: dist/Decentra-Network-CLI        
+        path: cli_win32_${{ github.event.release.tag_name }}       
 
-    - uses: actions/download-artifact@v3
-      if: github.event_name == 'release'
-      with:
-        name: decentra-network-cli-win32
     - name: Upload the artifacts
       if: github.event_name == 'release'
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'decentra-network-cli-win32'
+        args: 'cli_win32_${{ github.event.release.tag_name }}'
 
 
   build-api-linux:
@@ -172,22 +170,22 @@ jobs:
       run: |
         pyinstaller API.spec
 
+
+    - name: Zip
+      run: zip -r api_linux_${{ github.event.release.tag_name }} dist/Decentra-Network-API
+    
+
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-api-linux
-        path: dist/Decentra-Network-API
+        path: api_linux_${{ github.event.release.tag_name }}
 
-    - uses: actions/download-artifact@v3
-      if: github.event_name == 'release'
-      with:
-        name: decentra-network-api-linux
     - name: Upload the artifacts
       if: github.event_name == 'release'
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'decentra-network-api-linux'
+        args: 'api_linux_${{ github.event.release.tag_name }}'
 
 
   build-api-macos:
@@ -215,22 +213,21 @@ jobs:
       run: |
         pyinstaller API.spec
 
+    - name: Zip
+      run: zip -r api_macos_${{ github.event.release.tag_name }} dist/Decentra-Network-API
+    
+
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-api-macos
-        path: dist/Decentra-Network-API
+        path: api_macos_${{ github.event.release.tag_name }}
 
-    - uses: actions/download-artifact@v3
-      if: github.event_name == 'release'
-      with:
-        name: decentra-network-api-macos
     - name: Upload the artifacts
       if: github.event_name == 'release'
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'decentra-network-api-macos'
+        args: 'api_macos_${{ github.event.release.tag_name }}'
 
   build-api-windows:
 
@@ -257,23 +254,22 @@ jobs:
       run: |
         pyinstaller API.spec
 
+    - name: Zip
+      run: zip -r api_win32_${{ github.event.release.tag_name }} dist/Decentra-Network-API
+    
+
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-api-win32
-        path: dist/Decentra-Network-API  
+        path: api_win32_${{ github.event.release.tag_name }} 
 
 
-    - uses: actions/download-artifact@v3
-      if: github.event_name == 'release'
-      with:
-        name: decentra-network-api-win32
     - name: Upload the artifacts
       if: github.event_name == 'release'
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'decentra-network-api-win32'
+        args: 'api_win32_${{ github.event.release.tag_name }}'
 
   build-gui-windows:
 
@@ -302,22 +298,22 @@ jobs:
       run: |
         $env:KIVY_GL_BACKEND="angle_sdl2"
         pyinstaller GUI-win32.spec
+
+    - name: Zip
+      run: zip -r gui_win32_${{ github.event.release.tag_name }} dist/Decentra-Network-GUI
+    
+
     - uses: actions/upload-artifact@v2
       with:
-        name: decentra-network-gui-win32
-        path: dist/Decentra-Network-GUI  
+        path: gui_win32_${{ github.event.release.tag_name }}
 
-    - uses: actions/download-artifact@v3
-      if: github.event_name == 'release'
-      with:
-        name: decentra-network-api-win32
     - name: Upload the artifacts
       if: github.event_name == 'release'
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'decentra-network-api-win32'
+        args: 'gui_win32_${{ github.event.release.tag_name }}'
 
   build-api-android:
     runs-on: ubuntu-latest
@@ -334,23 +330,22 @@ jobs:
         with:
           command: buildozer --profile api android debug
 
+      - name: Zip
+        run: zip -r api_android_${{ github.event.release.tag_name }} ${{ steps.buildozer.outputs.filename }} 
+      
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: decentra-network-api-android
-          path: ${{ steps.buildozer.outputs.filename }} 
+          path: api_android_${{ github.event.release.tag_name }}
 
-      - uses: actions/download-artifact@v3
-        if: github.event_name == 'release'
-        with:
-          name: decentra-network-api-android
       - name: Upload the artifacts
         if: github.event_name == 'release'
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'decentra-network-api-android'
+          args: 'api_android_${{ github.event.release.tag_name }}'
 
 
   build-gui-android:
@@ -369,21 +364,19 @@ jobs:
           buildozer_version: 1.4.0
           command: buildozer --profile gui android debug
 
+      - name: Zip
+        run: zip -r gui_android_${{ github.event.release.tag_name }} ${{ steps.buildozer.outputs.filename }} 
+      
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: decentra-network-gui-android
-          path: ${{ steps.buildozer.outputs.filename }} 
+          path: gui_android_${{ github.event.release.tag_name }}
 
-
-      - uses: actions/download-artifact@v3
-        if: github.event_name == 'release'
-        with:
-          name: decentra-network-gui-android
       - name: Upload the artifacts
         if: github.event_name == 'release'
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'decentra-network-gui-android'
+          args: 'gui_android_${{ github.event.release.tag_name }}'
