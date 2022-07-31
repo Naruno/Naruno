@@ -67,6 +67,11 @@
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/builds.yml/badge.svg" alt="builds">
   <a/>
   </p>
+  <p align="center">
+
+  <img src="https://cloudback.it/badge/Decentra-Network/Decentra-Network" alt="backups">
+
+  </p>
 
   <p align="center">
    <a href="https://github.com/features/copilot/">
