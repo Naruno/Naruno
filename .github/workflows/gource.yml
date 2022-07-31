@@ -33,6 +33,7 @@ jobs:
           path: ./gource/gource.mp4
 
   release:
+    needs: [gource]  
     runs-on: ubuntu-latest  
     steps:
       - uses: actions/download-artifact@v3
