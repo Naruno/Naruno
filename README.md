@@ -69,7 +69,7 @@
   </p>
   <p align="center">
 
-  <img src="https://cloudback.it/badge/Decentra-Network/Decentra-Network" alt="backups">  
+  <img src="https://cloudback.it/badge/Decentra-Network/Decentra-Network" alt="backups">
 
   </p>
 
