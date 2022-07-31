@@ -31,21 +31,18 @@ jobs:
         with:
           name: decentra-network-gource
           path: ./gource/gource.mp4
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.2.3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
-  release:
-    needs: [gource]  
-    runs-on: ubuntu-latest  
-    steps:
-      - uses: actions/download-artifact@v3
-        if: github.event_name == 'release'
-        with:
-          name: decentra-network-gource
-      - name: Display structure of downloaded files
-        run: ls -R
+      - name: Zip
+        run: zip gource_${{ steps.get_release.tag_name }} gource.mp4
       - name: Upload the artifacts
         if: github.event_name == 'release'
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: '/home/runner/work/Decentra-Network/Decentra-Network/decentra-network-gource.zip'
+          args: 'gource_${{ steps.get_release.tag_name }}.zip'
