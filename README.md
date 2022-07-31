@@ -69,7 +69,7 @@
   .
    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/deploys.yml">
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/deploys.yml/badge.svg" alt="deploys">
-  <a/>  
+  <a/>
   </p>
   <p align="center">
 
