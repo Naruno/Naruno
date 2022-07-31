@@ -46,4 +46,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'decentra-network-gource.zip'
+          args: '/home/runner/work/Decentra-Network/Decentra-Network/decentra-network-gource.zip'
