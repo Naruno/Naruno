@@ -40,6 +40,8 @@ jobs:
         if: github.event_name == 'release'
         with:
           name: decentra-network-gource
+      - name: Display structure of downloaded files
+        run: ls -R
       - name: Upload the artifacts
         if: github.event_name == 'release'
         uses: skx/github-action-publish-binaries@master
