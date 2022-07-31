@@ -32,3 +32,12 @@ jobs:
         with:
           name: decentra-network-gource
           path: ./gource/gource.mp4
+
+
+      - name: Upload the artifacts
+        if: github.event_name == 'release'
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: './gource/gource.mp4'
