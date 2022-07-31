@@ -55,7 +55,7 @@ jobs:
     
     - uses: actions/upload-artifact@v2
       with:
-        path: cli_linux_${{ github.event.release.tag_name }}
+        path: cli_linux_${{ github.event.release.tag_name }}.zip
     
     - name: Upload the artifacts
       if: github.event_name == 'release'
@@ -63,7 +63,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'cli_linux_${{ github.event.release.tag_name }}'
+        args: 'cli_linux_${{ github.event.release.tag_name }}.zip'
 
   build-cli-macos:
 
@@ -93,7 +93,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        path: cli_macos_${{ github.event.release.tag_name }}
+        path: cli_macos_${{ github.event.release.tag_name }}.zip
 
 
     - name: Upload the artifacts
@@ -102,7 +102,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'cli_macos_${{ github.event.release.tag_name }}'
+        args: 'cli_macos_${{ github.event.release.tag_name }}.zip'
 
 
   build-cli-windows:
@@ -134,7 +134,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        path: cli_win32_${{ github.event.release.tag_name }}       
+        path: cli_win32_${{ github.event.release.tag_name }}.zip       
 
     - name: Upload the artifacts
       if: github.event_name == 'release'
@@ -142,7 +142,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'cli_win32_${{ github.event.release.tag_name }}'
+        args: 'cli_win32_${{ github.event.release.tag_name }}.zip'
 
 
   build-api-linux:
@@ -177,7 +177,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        path: api_linux_${{ github.event.release.tag_name }}
+        path: api_linux_${{ github.event.release.tag_name }}.zip
 
     - name: Upload the artifacts
       if: github.event_name == 'release'
@@ -185,7 +185,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'api_linux_${{ github.event.release.tag_name }}'
+        args: 'api_linux_${{ github.event.release.tag_name }}.zip'
 
 
   build-api-macos:
@@ -219,7 +219,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        path: api_macos_${{ github.event.release.tag_name }}
+        path: api_macos_${{ github.event.release.tag_name }}.zip
 
     - name: Upload the artifacts
       if: github.event_name == 'release'
@@ -227,7 +227,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'api_macos_${{ github.event.release.tag_name }}'
+        args: 'api_macos_${{ github.event.release.tag_name }}.zip'
 
   build-api-windows:
 
@@ -260,7 +260,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        path: api_win32_${{ github.event.release.tag_name }} 
+        path: api_win32_${{ github.event.release.tag_name }}.zip 
 
 
     - name: Upload the artifacts
@@ -269,7 +269,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'api_win32_${{ github.event.release.tag_name }}'
+        args: 'api_win32_${{ github.event.release.tag_name }}.zip'
 
   build-gui-windows:
 
@@ -305,7 +305,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        path: gui_win32_${{ github.event.release.tag_name }}
+        path: gui_win32_${{ github.event.release.tag_name }}.zip
 
     - name: Upload the artifacts
       if: github.event_name == 'release'
@@ -313,7 +313,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: 'gui_win32_${{ github.event.release.tag_name }}'
+        args: 'gui_win32_${{ github.event.release.tag_name }}.zip'
 
   build-api-android:
     runs-on: ubuntu-latest
@@ -337,7 +337,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          path: api_android_${{ github.event.release.tag_name }}
+          path: api_android_${{ github.event.release.tag_name }}.zip
 
       - name: Upload the artifacts
         if: github.event_name == 'release'
@@ -345,7 +345,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'api_android_${{ github.event.release.tag_name }}'
+          args: 'api_android_${{ github.event.release.tag_name }}.zip'
 
 
   build-gui-android:
@@ -371,7 +371,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          path: gui_android_${{ github.event.release.tag_name }}
+          path: gui_android_${{ github.event.release.tag_name }}.zip
 
       - name: Upload the artifacts
         if: github.event_name == 'release'
@@ -379,4 +379,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'gui_android_${{ github.event.release.tag_name }}'
+          args: 'gui_android_${{ github.event.release.tag_name }}.zip'
