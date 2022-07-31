@@ -41,4 +41,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: decentra-network-gource
-          path: ./gource/gource.mp4
+          path: gource_${{ github.event.release.tag_name }}.zip
