@@ -1,4 +1,4 @@
-# labeler "full" schema
+# labeler 'full' schema
 
 # enable labeler on issues, prs, or both.
 enable:
@@ -27,96 +27,73 @@ comments:
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
 
-  "Builds":
-    include:
-      - '\bbuilds:[s]?\b'
+  'Builds':
+    - '\bbuilds:[s]?\b'
 
-  "Wallet"
-    include:
-      - '\bwallet:[s]?\b'
+  'Wallet'
+    - '\bwallet:[s]?\b'
 
-  "Accounts"
-    include:
-      - '\baccounts:[s]?\b'
+  'Accounts'
+    - '\baccounts:[s]?\b'
 
-  "APPS"
-    include:
-      - '\bapps:[s]?\b'
+  'APPS'
+    - '\bapps:[s]?\b'
 
-  "Auto"-Builders
-    include:
-      - '\bauto_builders:[s]?\b'
+  'Auto'-Builders
+    - '\bauto_builders:[s]?\b'
 
 
-  "Blockchain"
-    include:
-      - '\bblockchain:[s]?\b'
+  'Blockchain'
+    - '\bblockchain:[s]?\b'
 
-  "Transactions"
-    include:
-      - '\btransactions:[s]?\b'
+  'Transactions'
+    - '\btransactions:[s]?\b'
 
-  "CLI"
-    include:
-      - '\bcli:[s]?\b'
+  'CLI'
+    - '\bcli:[s]?\b'
 
-  "Node"
-    include:
-      - '\bnode:[s]?\b'
+  'Node'
+    - '\bnode:[s]?\b'
 
-  "API"
-    include:
-      - '\bapi:[s]?\b'
+  'API'
+    - '\bapi:[s]?\b'
 
-  "Consensus"
-    include:
-      - '\bconsensus:[s]?\b'
+  'Consensus'
+    - '\bconsensus:[s]?\b'
 
-  "Packages"
-    include:
-      - '\bpackages:[s]?\b'
+  'Packages'
+    - '\bpackages:[s]?\b'
 
-  "Docs"
-    include:
-      - '\bdocs:[s]?\b'
+  'Docs'
+    - '\bdocs:[s]?\b'
 
-  "Tests"
-    include:
-      - '\btests:[s]?\b'
+  'Tests'
+    - '\btests:[s]?\b'
 
-  "GitHub"
-    include:
-      - '\bgitHub:[s]?\b'
+  'GitHub'
+    - '\bgitHub:[s]?\b'
 
-  "Google"
-    include:
-      - '\bgoogle:[s]?\b'
+  'Google'
+    - '\bgoogle:[s]?\b'
 
-  "GUI"
-    include:
-      - '\bgui:[s]?\b'
+  'GUI'
+    - '\bgui:[s]?\b'
 
-  "Licence"
-    include:
-      - '\blicence:[s]?\b'
+  'Licence'
+    - '\blicence:[s]?\b'
 
-  "Logging"
-    include:
-      - '\blogging:[s]?\b'
+  'Logging'
+    - '\blogging:[s]?\b'
 
-  "Debugging"
-    include:
-      - '\bdebugging:[s]?\b'
+  'Debugging'
+    - '\bdebugging:[s]?\b'
 
-  "Release"
-    include:
-      - '\brelease:[s]?\b'
+  'Release'
+    - '\brelease:[s]?\b'
 
-  "Settings"
-    include:
-      - '\bsettings:[s]?\b'
+  'Settings'
+    - '\bsettings:[s]?\b'
 
-  "libs"
-    include:
-      - '\blibs:[s]?\b'
+  'libs'
+    - '\blibs:[s]?\b'
 

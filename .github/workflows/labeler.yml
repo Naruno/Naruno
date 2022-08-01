@@ -1,10 +1,4 @@
 name: Labeler
-on: 
-  push:
-    paths:
-      - '.github/workflows/labeler.yml'
-      - '.github/labeler.yml'
-
   pull_request:
     paths:
       - '.github/workflows/labeler.yml'
