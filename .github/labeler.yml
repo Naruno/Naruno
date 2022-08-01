@@ -27,71 +27,71 @@ comments:
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
   'Builds':
-    - 'builds'
+    - '\bbuilds:'
 
   'Wallet'
-    - 'wallet'
+    - '\bwallet:'
 
   'Accounts'
-    - 'accounts'
+    - '\baccounts:'
 
   'APPS'
-    - 'apps'
+    - '\bapps:'
 
   'Auto'-Builders
-    - 'auto_builders'
+    - '\bauto_builders:'
 
   'Blockchain'
-    - 'blockchain'
+    - '\bblockchain:'
 
   'Transactions'
-    - 'transactions'
+    - '\btransactions:'
 
   'CLI'
-    - 'cli'
+    - '\bcli:'
 
   'Node'
-    - 'node'
+    - '\bnode:'
 
   'API'
-    - 'api'
+    - '\bapi:'
 
   'Consensus'
-    - 'consensus'
+    - '\bconsensus:'
 
   'Packages'
-    - 'packages'
+    - '\bpackages:'
 
   'Docs'
-    - 'docs'
+    - '\bdocs:'
 
   'Tests'
-    - 'tests'
+    - '\btests:'
 
   'GitHub'
-    - 'gitHub'
+    - '\bgitHub:'
 
   'Google'
-    - 'google'
+    - '\bgoogle:'
 
   'GUI'
-    - 'gui'
+    - '\bgui:'
 
   'Licence'
-    - 'licence'
+    - '\blicence:'
 
   'Logging'
-    - 'logging'
+    - '\blogging:'
 
   'Debugging'
-    - 'debugging'
+    - '\bdebugging:'
 
   'Release'
-    - 'release'
+    - '\brelease:'
 
   'Settings'
-    - 'settings'
+    - '\bsettings:'
 
   'libs'
-    - 'libs'
+    - '\blibs:'
 
