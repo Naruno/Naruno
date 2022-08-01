@@ -51,17 +51,19 @@ jobs:
         pyinstaller CLI.spec
 
     - name: Zip
-      run: zip -r cli_linux_${{ github.event.release.tag_name }} dist/Decentra-Network-CLI/
+      run: |
+        cd dist
+        zip -r cli_linux_${{ github.event.release.tag_name }} Decentra-Network-CLI/
     
     - uses: actions/upload-artifact@v2
       with:
-        path: cli_linux_${{ github.event.release.tag_name }}.zip
+        path: dist/cli_linux_${{ github.event.release.tag_name }}.zip
     
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'cli_linux_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/cli_linux_${{ github.event.release.tag_name }}.zip'
 
   build-cli-macos:
 
@@ -70,7 +72,6 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -84,18 +85,13 @@ jobs:
     - name: PyInstaller
       run: |
         pyinstaller CLI.spec
-
     - name: Zip
       run: |
         cd dist
         zip -r cli_macos_${{ github.event.release.tag_name }} Decentra-Network-CLI/
-    
-
     - uses: actions/upload-artifact@v2
       with:
         path: dist/cli_macos_${{ github.event.release.tag_name }}.zip
-
-
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
@@ -126,19 +122,21 @@ jobs:
         pyinstaller CLI.spec
 
     - name: Zip
-      run: Compress-Archive dist/Decentra-Network-CLI/ cli_win32_${{ github.event.release.tag_name }}.zip
+      run: |
+        cd dist
+        Compress-Archive Decentra-Network-CLI/ cli_win32_${{ github.event.release.tag_name }}.zip
     
 
 
     - uses: actions/upload-artifact@v2
       with:
-        path: cli_win32_${{ github.event.release.tag_name }}.zip       
+        path: dist/cli_win32_${{ github.event.release.tag_name }}.zip       
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'cli_win32_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/cli_win32_${{ github.event.release.tag_name }}.zip'
 
 
   build-api-linux:
@@ -168,18 +166,20 @@ jobs:
 
 
     - name: Zip
-      run: zip -r api_linux_${{ github.event.release.tag_name }} dist/Decentra-Network-API/
+      run: |
+        cd dist
+        zip -r api_linux_${{ github.event.release.tag_name }} Decentra-Network-API/
     
 
     - uses: actions/upload-artifact@v2
       with:
-        path: api_linux_${{ github.event.release.tag_name }}.zip
+        path: dist/api_linux_${{ github.event.release.tag_name }}.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'api_linux_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/api_linux_${{ github.event.release.tag_name }}.zip'
 
 
   build-api-macos:
@@ -208,18 +208,20 @@ jobs:
         pyinstaller API.spec
 
     - name: Zip
-      run: zip -r api_macos_${{ github.event.release.tag_name }} dist/Decentra-Network-API/
+      run: |
+        cd dist
+        zip -r api_macos_${{ github.event.release.tag_name }} Decentra-Network-API/
     
 
     - uses: actions/upload-artifact@v2
       with:
-        path: api_macos_${{ github.event.release.tag_name }}.zip
+        path: dist/api_macos_${{ github.event.release.tag_name }}.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'api_macos_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/api_macos_${{ github.event.release.tag_name }}.zip'
 
   build-api-windows:
 
@@ -247,19 +249,21 @@ jobs:
         pyinstaller API.spec
 
     - name: Zip
-      run: Compress-Archive dist/Decentra-Network-API/ api_win32_${{ github.event.release.tag_name }}.zip
+      run: |
+        cd dist
+        Compress-Archive Decentra-Network-API/ api_win32_${{ github.event.release.tag_name }}.zip
     
 
     - uses: actions/upload-artifact@v2
       with:
-        path: api_win32_${{ github.event.release.tag_name }}.zip 
+        path: dist/api_win32_${{ github.event.release.tag_name }}.zip 
 
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'api_win32_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/api_win32_${{ github.event.release.tag_name }}.zip'
 
   build-gui-windows:
 
@@ -290,18 +294,20 @@ jobs:
         pyinstaller GUI-win32.spec
 
     - name: Zip
-      run: Compress-Archive dist/Decentra-Network-GUI/ gui_win32_${{ github.event.release.tag_name }}.zip
+      run: |
+        cd dist
+        Compress-Archive Decentra-Network-GUI/ gui_win32_${{ github.event.release.tag_name }}.zip
     
 
     - uses: actions/upload-artifact@v2
       with:
-        path: gui_win32_${{ github.event.release.tag_name }}.zip
+        path: dist/gui_win32_${{ github.event.release.tag_name }}.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'gui_win32_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/gui_win32_${{ github.event.release.tag_name }}.zip'
 
   build-api-android:
     runs-on: ubuntu-latest
