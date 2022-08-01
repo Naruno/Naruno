@@ -325,7 +325,7 @@ jobs:
           command: buildozer --profile api android debug
 
       - name: Zip
-        run: zip -r api_android_${{ github.event.release.tag_name }} ${{ steps.buildozer.outputs.filename }} 
+        run: sudo zip -r api_android_${{ github.event.release.tag_name }} ${{ steps.buildozer.outputs.filename }} 
       
 
       - name: Upload artifacts
@@ -357,7 +357,7 @@ jobs:
           command: buildozer --profile gui android debug
 
       - name: Zip
-        run: zip -r gui_android_${{ github.event.release.tag_name }} ${{ steps.buildozer.outputs.filename }} 
+        run: sudo zip -r gui_android_${{ github.event.release.tag_name }} ${{ steps.buildozer.outputs.filename }} 
       
 
       - name: Upload artifacts
