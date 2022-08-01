@@ -24,8 +24,8 @@ comments:
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
   'bug':
-    - '\bbug[s]?\b'
-  'help wanted':
-    - '\bhelp( wanted)?\b'
+    - '\bbug\b'
+  'help':
+    - '\bhelp\b'
 
 
