@@ -25,94 +25,71 @@ comments:
 labels:
 
   "Builds":
-    include:
-      - '\bbuilds:[s]?\b'
+    - '\bbuilds'
 
   "Wallet"
-    include:
-      - '\bwallet:[s]?\b'
+    - '\bwallet'
 
   "Accounts"
-    include:
-      - '\baccounts:[s]?\b'
+    - '\baccounts'
 
   "APPS"
-    include:
-      - '\bapps:[s]?\b'
+    - '\bapps'
 
   "Auto"-Builders
-    include:
-      - '\bauto_builders:[s]?\b'
+    - '\bauto_builders'
 
 
   "Blockchain"
-    include:
-      - '\bblockchain:[s]?\b'
+    - '\bblockchain'
 
   "Transactions"
-    include:
-      - '\btransactions:[s]?\b'
+    - '\btransactions'
 
   "CLI"
-    include:
-      - '\bcli:[s]?\b'
+    - '\bcli'
 
   "Node"
-    include:
-      - '\bnode:[s]?\b'
+    - '\bnode'
 
   "API"
-    include:
-      - '\bapi:[s]?\b'
+    - '\bapi'
 
   "Consensus"
-    include:
-      - '\bconsensus:[s]?\b'
+    - '\bconsensus'
 
   "Packages"
-    include:
-      - '\bpackages:[s]?\b'
+    - '\bpackages'
 
   "Docs"
-    include:
-      - '\bdocs:[s]?\b'
+    - '\bdocs'
 
   "Tests"
-    include:
-      - '\btests:[s]?\b'
+    - '\btests'
 
   "GitHub"
-    include:
-      - '\bgitHub:[s]?\b'
+    - '\bgitHub'
 
   "Google"
-    include:
-      - '\bgoogle:[s]?\b'
+    - '\bgoogle'
 
   "GUI"
-    include:
-      - '\bgui:[s]?\b'
+    - '\bgui'
 
   "Licence"
-    include:
-      - '\blicence:[s]?\b'
+    - '\blicence'
 
   "Logging"
-    include:
-      - '\blogging:[s]?\b'
+    - '\blogging'
 
   "Debugging"
-    include:
-      - '\bdebugging:[s]?\b'
+    - '\bdebugging'
 
   "Release"
-    include:
-      - '\brelease:[s]?\b'
+    - '\brelease'
 
   "Settings"
-    include:
-      - '\bsettings:[s]?\b'
+    - '\bsettings'
 
   "libs"
-    include:
-      - '\blibs:[s]?\b'
+    - '\blibs'
