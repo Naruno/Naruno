@@ -28,72 +28,72 @@ comments:
 labels:
 
   'Builds':
-    - '\bbuilds:[s]?\b'
+    - '\bbuilds[s]?\b'
 
   'Wallet'
-    - '\bwallet:[s]?\b'
+    - '\bwallet[s]?\b'
 
   'Accounts'
-    - '\baccounts:[s]?\b'
+    - '\baccounts[s]?\b'
 
   'APPS'
-    - '\bapps:[s]?\b'
+    - '\bapps[s]?\b'
 
   'Auto'-Builders
-    - '\bauto_builders:[s]?\b'
+    - '\bauto_builders[s]?\b'
 
 
   'Blockchain'
-    - '\bblockchain:[s]?\b'
+    - '\bblockchain[s]?\b'
 
   'Transactions'
-    - '\btransactions:[s]?\b'
+    - '\btransactions[s]?\b'
 
   'CLI'
-    - '\bcli:[s]?\b'
+    - '\bcli[s]?\b'
 
   'Node'
-    - '\bnode:[s]?\b'
+    - '\bnode[s]?\b'
 
   'API'
-    - '\bapi:[s]?\b'
+    - '\bapi[s]?\b'
 
   'Consensus'
-    - '\bconsensus:[s]?\b'
+    - '\bconsensus[s]?\b'
 
   'Packages'
-    - '\bpackages:[s]?\b'
+    - '\bpackages[s]?\b'
 
   'Docs'
-    - '\bdocs:[s]?\b'
+    - '\bdocs[s]?\b'
 
   'Tests'
-    - '\btests:[s]?\b'
+    - '\btests[s]?\b'
 
   'GitHub'
-    - '\bgitHub:[s]?\b'
+    - '\bgitHub[s]?\b'
 
   'Google'
-    - '\bgoogle:[s]?\b'
+    - '\bgoogle[s]?\b'
 
   'GUI'
-    - '\bgui:[s]?\b'
+    - '\bgui[s]?\b'
 
   'Licence'
-    - '\blicence:[s]?\b'
+    - '\blicence[s]?\b'
 
   'Logging'
-    - '\blogging:[s]?\b'
+    - '\blogging[s]?\b'
 
   'Debugging'
-    - '\bdebugging:[s]?\b'
+    - '\bdebugging[s]?\b'
 
   'Release'
-    - '\brelease:[s]?\b'
+    - '\brelease[s]?\b'
 
   'Settings'
-    - '\bsettings:[s]?\b'
+    - '\bsettings[s]?\b'
 
   'libs'
-    - '\blibs:[s]?\b'
+    - '\blibs[s]?\b'
 
