@@ -25,7 +25,6 @@ comments:
 labels:
   'Builds':
     - '\bbuilds\b'
-
   'Wallet'
     - '\bwallet\b'
 
