@@ -11,5 +11,3 @@ arm64_set_path_and_python_version(){
       export PATH=$(pyenv prefix)/bin:$PATH
   fi
 }
-Footer
-© 2022 Git
