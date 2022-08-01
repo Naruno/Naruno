@@ -11,6 +11,7 @@ on:
       - 'GUI-win32.spec'
       - 'buildozer.spec'
       - 'recipes/**'
+      - '.ci/osx_ci.sh'
 
   pull_request:
     paths:
@@ -21,7 +22,8 @@ on:
       - 'CLI.spec'
       - 'GUI-win32.spec'    
       - 'buildozer.spec'
-      - 'recipes/**'       
+      - 'recipes/**'    
+      - '.ci/osx_ci.sh'   
   release:
     types: [published]
   workflow_dispatch:
