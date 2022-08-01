@@ -27,5 +27,25 @@ labels:
     - '\bbuilds\b'
   'Wallet':
     - '\bwallet\b'
+  'Accounts':
+    - '\baccounts\b'
+  'APPS':
+    - '\bapps\b'
+  'Auto-Builders':
+    - '\bauto_builders\b'
+  'Blockchain':
+    - '\bblockchain\b'
+  'Transactons':
+    - '\btransactions\b'
+  'CLI':
+    - '\bcli\b'
+  'Node':
+    - '\bnode\b'
+  'API':
+    - '\bapi\b'
+  'Consensus':
+    - '\bconsensus\b'
+  'Packages':
+    - '\bpackages\b'
 
 
