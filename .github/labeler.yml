@@ -36,9 +36,8 @@ labels:
   'APPS'
     - '\bapps\b'
 
-  'Auto'-Builders
+  'Auto-Builders'
     - '\bauto_builders\b'
-
 
   'Blockchain'
     - '\bblockchain\b'
