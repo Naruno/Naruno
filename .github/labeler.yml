@@ -47,5 +47,25 @@ labels:
     - '\bconsensus\b'
   'Packages':
     - '\bpackages\b'
+  'Docs':
+    - '\bdocs\b'
+  'Tests':
+    - '\btests\b'
+  'GitHub':
+    - '\bgithub\b'
+  'GUI':
+    - '\bgui\b'
+  'Licence':
+    - '\blicence\b'
+  'Logging':
+    - '\blogging\b'
+  'Debugging':
+    - '\bdebugging\b'
+  'Release':
+    - '\brelease\b'
+  'Settings':
+    - '\bsettings\b'
+  'libs':
+    - '\blibs\b'
 
 
