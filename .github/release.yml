@@ -71,17 +71,10 @@ changelog:
       labels:
         - Consensus
 
-    - title: Docker
-      labels:
-        - Docker
 
-    - title: Setup
+    - title: Packages
       labels:
-        - Setup
-
-    - title: Setups
-      labels:
-        - Setups
+        - Packages
 
     - title: Docs
       labels:

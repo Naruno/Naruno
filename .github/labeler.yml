@@ -1,0 +1,122 @@
+# labeler "full" schema
+
+# enable labeler on issues, prs, or both.
+enable:
+  issues: false
+  prs: true
+# comments object allows you to specify a different message for issues and prs
+
+comments:
+  issues: |
+    Thanks for opening this issue!
+    I have applied any labels matching special text in your title and description.
+
+    Please review the labels and make any necessary changes.
+  prs: |
+    Thanks for the contribution!
+    I have applied any labels matching special text in your title and description.
+
+    Please review the labels and make any necessary changes.
+
+# Labels is an object where:
+# - keys are labels
+# - values are objects of { include: [ pattern ], exclude: [ pattern ] }
+#    - pattern must be a valid regex, and is applied globally to
+#      title + description of issues and/or prs (see enabled config above)
+#    - 'include' patterns will associate a label if any of these patterns match
+#    - 'exclude' patterns will ignore this label if any of these patterns match
+labels:
+
+    "Builds":
+      include:
+        - '\bbuilds:[s]?\b'
+
+    "Wallet"
+      include:
+        - '\bwallet:[s]?\b'
+
+    "Accounts"
+      include:
+        - '\baccounts:[s]?\b'
+
+    "APPS"
+      include:
+        - '\bapps:[s]?\b'
+
+    "Auto"-Builders
+      include:
+        - '\bauto_builders:[s]?\b'
+
+
+    "Blockchain"
+      include:
+        - '\bblockchain:[s]?\b'
+
+    "Transactions"
+      include:
+        - '\btransactions:[s]?\b'
+
+    "CLI"
+      include:
+        - '\bcli:[s]?\b'
+
+    "Node"
+      include:
+        - '\bnode:[s]?\b'
+
+    "API"
+      include:
+        - '\bapi:[s]?\b'
+
+    "Consensus"
+      include:
+        - '\bconsensus:[s]?\b'
+
+    "Packages"
+      include:
+        - '\bpackages:[s]?\b'
+
+    "Docs"
+      include:
+        - '\bdocs:[s]?\b'
+
+    "Tests"
+      include:
+        - '\btests:[s]?\b'
+
+    "GitHub"
+      include:
+        - '\bgitHub:[s]?\b'
+
+    "Google"
+      include:
+        - '\bgoogle:[s]?\b'
+
+    "GUI"
+      include:
+        - '\bgui:[s]?\b'
+
+    "Licence"
+      include:
+        - '\blicence:[s]?\b'
+
+    "Logging"
+      include:
+        - '\blogging:[s]?\b'
+
+    "Debugging"
+      include:
+        - '\bdebugging:[s]?\b'
+
+    "Release"
+      include:
+        - '\brelease:[s]?\b'
+
+    "Settings"
+      include:
+        - '\bsettings:[s]?\b'
+
+    "libs"
+      include:
+        - '\blibs:[s]?\b'
+
