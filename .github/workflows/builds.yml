@@ -441,7 +441,6 @@ jobs:
         run: |
           source .ci/osx_ci.sh
           arm64_set_path_and_python_version ${{ matrix.python }}
-          buildozer init
 
       - name: Install dependencies
         run: |
