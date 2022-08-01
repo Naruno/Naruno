@@ -1,4 +1,4 @@
-# labeler 'full' schema
+# labeler "full" schema
 
 # enable labeler on issues, prs, or both.
 enable:
@@ -26,74 +26,72 @@ comments:
 #    - 'include' patterns will associate a label if any of these patterns match
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
-
   'Builds':
-    - '\bbuilds[s]?\b'
+    - 'builds'
 
   'Wallet'
-    - '\bwallet[s]?\b'
+    - 'wallet'
 
   'Accounts'
-    - '\baccounts[s]?\b'
+    - 'accounts'
 
   'APPS'
-    - '\bapps[s]?\b'
+    - 'apps'
 
   'Auto'-Builders
-    - '\bauto_builders[s]?\b'
-
+    - 'auto_builders'
 
   'Blockchain'
-    - '\bblockchain[s]?\b'
+    - 'blockchain'
 
   'Transactions'
-    - '\btransactions[s]?\b'
+    - 'transactions'
 
   'CLI'
-    - '\bcli[s]?\b'
+    - 'cli'
 
   'Node'
-    - '\bnode[s]?\b'
+    - 'node'
 
   'API'
-    - '\bapi[s]?\b'
+    - 'api'
 
   'Consensus'
-    - '\bconsensus[s]?\b'
+    - 'consensus'
 
   'Packages'
-    - '\bpackages[s]?\b'
+    - 'packages'
 
   'Docs'
-    - '\bdocs[s]?\b'
+    - 'docs'
 
   'Tests'
-    - '\btests[s]?\b'
+    - 'tests'
 
   'GitHub'
-    - '\bgitHub[s]?\b'
+    - 'gitHub'
 
   'Google'
-    - '\bgoogle[s]?\b'
+    - 'google'
 
   'GUI'
-    - '\bgui[s]?\b'
+    - 'gui'
 
   'Licence'
-    - '\blicence[s]?\b'
+    - 'licence'
 
   'Logging'
-    - '\blogging[s]?\b'
+    - 'logging'
 
   'Debugging'
-    - '\bdebugging[s]?\b'
+    - 'debugging'
 
   'Release'
-    - '\brelease[s]?\b'
+    - 'release'
 
   'Settings'
-    - '\bsettings[s]?\b'
+    - 'settings'
 
   'libs'
-    - '\blibs[s]?\b'
+    - 'libs'
 
