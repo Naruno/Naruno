@@ -1,7 +1,14 @@
 name: Labeler
 on: 
+  push:
+    paths:
+      - '.github/workflows/labeler.yml'
+      - '.github/labeler.yml'
+
   pull_request:
-    types: [opened, edited]
+    paths:
+      - '.github/workflows/labeler.yml'
+      - '.github/labeler.yml'
 
 jobs:
 
