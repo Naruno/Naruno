@@ -42,6 +42,13 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+        
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('CLI.spec') }}
+
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -78,6 +85,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('CLI.spec') }}
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -113,6 +125,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('CLI.spec') }}
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -153,6 +170,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('API.spec') }}
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -196,6 +218,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('API.spec') }}
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -237,6 +264,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('API.spec') }}
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -279,6 +311,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('GUI-win32.spec') }}
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
