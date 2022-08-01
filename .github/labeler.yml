@@ -25,3 +25,12 @@ comments:
 labels:
   'Builds':
     - '\bbuilds\b'
+
+  'Wallet'
+    - '\bwallet\b'
+
+  'Accounts'
+    - '\baccounts\b'
+
+  'APPS'
+    - '\bapps\b'
