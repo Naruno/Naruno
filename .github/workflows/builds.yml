@@ -411,8 +411,6 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}        
           files: 'gui_android_${{ github.event.release.tag_name }}.zip'
 
-
-
   build-api-ios:
     runs-on: macos-latest
     environment: Builds       
@@ -465,23 +463,23 @@ jobs:
           path: .buildozer
           key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
         
-    - name: buildozer ios debug
-      run: |
-        source .ci/osx_ci.sh
-        arm64_set_path_and_python_version ${{ matrix.python }}
-        buildozer --profile api ios debug
+      - name: buildozer ios debug
+        run: |
+          source .ci/osx_ci.sh
+          arm64_set_path_and_python_version ${{ matrix.python }}
+          buildozer --profile api ios debug
 
-      - name: Zip
-        run: sudo zip -r api_ios_${{ github.event.release.tag_name }} bin/
-      
+        - name: Zip
+          run: sudo zip -r api_ios_${{ github.event.release.tag_name }} bin/
+        
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          path: api_ios_${{ github.event.release.tag_name }}.zip
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            path: api_ios_${{ github.event.release.tag_name }}.zip
 
-      - uses: AButler/upload-release-assets@v2.0
-        if: github.event_name == 'release'
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}        
-          files: 'api_ios_${{ github.event.release.tag_name }}.zip'
+        - uses: AButler/upload-release-assets@v2.0
+          if: github.event_name == 'release'
+          with:
+            repo-token: ${{ secrets.GITHUB_TOKEN }}        
+            files: 'api_ios_${{ github.event.release.tag_name }}.zip'
