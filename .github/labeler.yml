@@ -23,9 +23,9 @@ comments:
 #    - 'include' patterns will associate a label if any of these patterns match
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
-  'Builds':
-    - '\bbuilds\b'
-  'Wallet'
-    - '\bwallet\b'
+  'bug':
+    - '\bbug[s]?\b'
+  'help wanted':
+    - '\bhelp( wanted)?\b'
 
 
