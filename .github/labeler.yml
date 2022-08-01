@@ -1,4 +1,4 @@
-# labeler "full" schema
+# labeler 'full' schema
 
 # enable labeler on issues, prs, or both.
 enable:
@@ -23,96 +23,49 @@ comments:
 #    - 'include' patterns will associate a label if any of these patterns match
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
+  'Builds':
+    - '\bbuilds\b'
+  'Wallet':
+    - '\bwallet\b'
+  'Accounts':
+    - '\baccounts\b'
+  'APPS':
+    - '\bapps\b'
+  'Auto-Builders':
+    - '\bauto_builders\b'
+  'Blockchain':
+    - '\bblockchain\b'
+  'Transactons':
+    - '\btransactions\b'
+  'CLI':
+    - '\bcli\b'
+  'Node':
+    - '\bnode\b'
+  'API':
+    - '\bapi\b'
+  'Consensus':
+    - '\bconsensus\b'
+  'Packages':
+    - '\bpackages\b'
+  'Docs':
+    - '\bdocs\b'
+  'Tests':
+    - '\btests\b'
+  'GitHub':
+    - '\bgithub\b'
+  'GUI':
+    - '\bgui\b'
+  'Licence':
+    - '\blicence\b'
+  'Logging':
+    - '\blogging\b'
+  'Debugging':
+    - '\bdebugging\b'
+  'Release':
+    - '\brelease\b'
+  'Settings':
+    - '\bsettings\b'
+  'libs':
+    - '\blibs\b'
 
-  "Builds":
-    include:
-      - '\bbuilds:[s]?\b'
 
-  "Wallet"
-    include:
-      - '\bwallet:[s]?\b'
-
-  "Accounts"
-    include:
-      - '\baccounts:[s]?\b'
-
-  "APPS"
-    include:
-      - '\bapps:[s]?\b'
-
-  "Auto"-Builders
-    include:
-      - '\bauto_builders:[s]?\b'
-
-
-  "Blockchain"
-    include:
-      - '\bblockchain:[s]?\b'
-
-  "Transactions"
-    include:
-      - '\btransactions:[s]?\b'
-
-  "CLI"
-    include:
-      - '\bcli:[s]?\b'
-
-  "Node"
-    include:
-      - '\bnode:[s]?\b'
-
-  "API"
-    include:
-      - '\bapi:[s]?\b'
-
-  "Consensus"
-    include:
-      - '\bconsensus:[s]?\b'
-
-  "Packages"
-    include:
-      - '\bpackages:[s]?\b'
-
-  "Docs"
-    include:
-      - '\bdocs:[s]?\b'
-
-  "Tests"
-    include:
-      - '\btests:[s]?\b'
-
-  "GitHub"
-    include:
-      - '\bgitHub:[s]?\b'
-
-  "Google"
-    include:
-      - '\bgoogle:[s]?\b'
-
-  "GUI"
-    include:
-      - '\bgui:[s]?\b'
-
-  "Licence"
-    include:
-      - '\blicence:[s]?\b'
-
-  "Logging"
-    include:
-      - '\blogging:[s]?\b'
-
-  "Debugging"
-    include:
-      - '\bdebugging:[s]?\b'
-
-  "Release"
-    include:
-      - '\brelease:[s]?\b'
-
-  "Settings"
-    include:
-      - '\bsettings:[s]?\b'
-
-  "libs"
-    include:
-      - '\blibs:[s]?\b'
