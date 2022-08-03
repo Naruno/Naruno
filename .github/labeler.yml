@@ -52,7 +52,7 @@ labels:
   'Tests':
     - '\btests\b'
   'GitHub':
-    - '\bgithub[s]?\b'
+    - '\bgithub\b'
   'GUI':
     - '\bgui\b'
   'Licence':
