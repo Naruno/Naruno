@@ -7,9 +7,21 @@ name: DevSkim
 
 on:
   push:
-    branches: [ master ]
+    paths:
+      - '.github/workflows/devskrim.yml'
+      - 'docker/**'
+      - 'setups/**'
+      - 'decentra_network/**'  
+      - 'requirements/**'
+      - 'tests/**'
   pull_request:
-    branches: [ master ]
+    paths:
+      - '.github/workflows/devskrim.yml'
+      - 'docker/**'
+      - 'setups/**'
+      - 'decentra_network/**'  
+      - 'requirements/**'
+      - 'tests/**'
   schedule:
     - cron: '43 6 * * 1'
 
