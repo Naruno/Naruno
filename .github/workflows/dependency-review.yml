@@ -8,11 +8,13 @@ name: 'Dependency Review'
 on:
   push:
     paths:
+      - '.github/workflows/dependency-review.yml'    
       - 'buildozer.spec'
       - 'setups/**'  
       - 'requirements/**'
   pull_request:
     paths:
+      - '.github/workflows/dependency-review.yml'        
       - 'buildozer.spec'
       - 'setups/**'  
       - 'requirements/**'
