@@ -2,7 +2,7 @@
 
 # enable labeler on issues, prs, or both.
 enable:
-  issues: false
+  issues: true
   prs: true
 # comments object allows you to specify a different message for issues and prs
 
