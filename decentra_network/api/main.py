@@ -54,6 +54,7 @@ swagger = Swagger(app)
 def index():
     return redirect("/apidocs", code=302)
 
+
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
     """
@@ -179,14 +180,13 @@ def delete_wallets_page():
           $ref: '#/definitions/error'          
         examples:         
           error: "A problem occurred"
-    """         
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if delete_current_wallet():
         return jsonify(print_wallets())
     else:
         return Response(jsonify({"error": "A problem occurred"}), status=500)
-
 
 
 @app.route("/send/coin/<address>/<amount>/<password>", methods=["GET"])
@@ -225,7 +225,7 @@ def send_coin_page(address, amount, password):
           $ref: '#/definitions/error'          
         examples:         
           error: "A problem occurred"
-    """    
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
@@ -237,6 +237,7 @@ def send_coin_page(address, amount, password):
         return jsonify("OK")
     else:
         return Response(jsonify({"error": "A problem occurred"}), status=500)
+
 
 @app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
            methods=["GET"])
@@ -279,7 +280,7 @@ def send_coin_data_page(address, amount, data, password):
           $ref: '#/definitions/error'          
         examples:         
           error: "A problem occurred"
-    """      
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
@@ -308,7 +309,7 @@ def balance_wallets_page():
           $ref: '#/definitions/balance'
         examples:
           2000
-    """  
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(GetBalance(GetBlock(), wallet_import(-1, 0)))
@@ -360,7 +361,7 @@ def node_stop_page():
           $ref: '#/definitions/balance'
         examples:
           OK
-    """    
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     server.Server.stop()
@@ -399,13 +400,13 @@ def node_connect_page(ip, port):
           $ref: '#/definitions/error'
         examples:
           error: "A problem occurred"
-    """  
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if server.Server.connect(str(ip), int(port)):
-      return jsonify("OK")
+        return jsonify("OK")
     else:
-      return Response(jsonify({"error": "A problem occurred"}), status=500)
+        return Response(jsonify({"error": "A problem occurred"}), status=500)
 
 
 @app.route("/node/connectmixdb", methods=["GET"])
@@ -423,7 +424,7 @@ def node_connectmixdb_page():
           $ref: '#/definitions/balance'
         examples:
           OK
-    """      
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     server.connectionfrommixdb()
@@ -456,7 +457,8 @@ def node_newunl_page():
         f"{request.remote_addr} {request.method} {request.url} {request.query_string}")
     request.query_string = request.query_string.decode("utf-8")
     if "node_id=" in request.query_string:
-      request.query_string = unquote_plus(request.query_string).replace("node_id=", "")
+        request.query_string = unquote_plus(
+            request.query_string).replace("node_id=", "")
     Unl.save_new_unl_node(request.query_string)
     return jsonify("OK")
 
@@ -476,7 +478,7 @@ def node_id_page():
           $ref: '#/definitions/node_id'
         examples:
           node_id_test
-    """  
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(server.id)
@@ -519,7 +521,7 @@ def settings_test_off_page():
           $ref: '#/definitions/success'
         examples:
           OK
-    """  
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     test_mode(False)
@@ -541,7 +543,7 @@ def settings_debug_on_page():
           $ref: '#/definitions/success'
         examples:
           OK
-    """  
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = True
@@ -564,7 +566,7 @@ def settings_debug_off_page():
           $ref: '#/definitions/success'
         examples:
           OK
-    """    
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = False
@@ -587,7 +589,7 @@ def block_get_page():
           $ref: '#/definitions/success'
         examples:
           OK
-    """    
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["test_mode"]:
@@ -624,7 +626,7 @@ def export_transaction_csv_page():
           $ref: '#/definitions/error'
         examples:
           error: "A problem occurred"
-    """   
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if export_the_transactions():
@@ -656,7 +658,7 @@ def export_transaction_json_page():
           $ref: '#/definitions/error'
         examples:
           error: "A problem occurred"
-    """     
+    """
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(
@@ -690,8 +692,7 @@ def start():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
