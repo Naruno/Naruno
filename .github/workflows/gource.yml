@@ -37,5 +37,5 @@ jobs:
       - name: 'Upload gource video'
         uses: actions/upload-artifact@v2
         with:
-          name: decentra-network-gource
+          name: gource_${{ github.event.release.tag_name }}
           path: gource_${{ github.event.release.tag_name }}.zip
