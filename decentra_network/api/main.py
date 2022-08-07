@@ -28,15 +28,16 @@ from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (debug_mode, test_mode,
-                                                  the_settings)
+from decentra_network.lib.settings_system import debug_mode, test_mode, the_settings
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
 from decentra_network.transactions.send import send
 from decentra_network.wallet.delete_current_wallet import delete_current_wallet
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
@@ -64,7 +65,7 @@ def print_wallets_page():
       wallet_list:
         type: string
       error:
-        type: string        
+        type: string
     responses:
       200:
         description: A list of wallets
@@ -72,16 +73,15 @@ def print_wallets_page():
           $ref: '#/definitions/wallet_list'
         examples:
           "0": "wallet_address - CURRENTLY USED"
-      500:   
-        description: A problem occurred    
+      500:
+        description: A problem occurred
         schema:
-          $ref: '#/definitions/error'          
-        examples:         
+          $ref: '#/definitions/error'
+        examples:
           error: "A problem occurred"
     """
 
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(print_wallets())
 
 
@@ -99,7 +99,7 @@ def wallet_change_page(number):
       wallet_list:
         type: string
       error:
-        type: string        
+        type: string
     responses:
       200:
         description: A list of wallets
@@ -107,15 +107,14 @@ def wallet_change_page(number):
           $ref: '#/definitions/wallet_list'
         examples:
           "0": "wallet_address - CURRENTLY USED"
-      500:   
-        description: A problem occurred    
+      500:
+        description: A problem occurred
         schema:
-          $ref: '#/definitions/error'          
-        examples:         
+          $ref: '#/definitions/error'
+        examples:
           error: "A problem occurred"
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if wallet_selector(number):
         return jsonify(print_wallets())
     else:
@@ -136,7 +135,7 @@ def create_wallet_page(password):
       wallet_list:
         type: string
       error:
-        type: string        
+        type: string
     responses:
       200:
         description: A list of wallets
@@ -144,15 +143,14 @@ def create_wallet_page(password):
           $ref: '#/definitions/wallet_list'
         examples:
           "0": "wallet_address - CURRENTLY USED"
-      500:   
-        description: A problem occurred    
+      500:
+        description: A problem occurred
         schema:
-          $ref: '#/definitions/error'          
-        examples:         
+          $ref: '#/definitions/error'
+        examples:
           error: "A problem occurred"
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     wallet_create(password)
     return jsonify(print_wallets())
 
@@ -166,7 +164,7 @@ def delete_wallets_page():
       wallet_list:
         type: string
       error:
-        type: string        
+        type: string
     responses:
       200:
         description: A list of wallets
@@ -174,15 +172,14 @@ def delete_wallets_page():
           $ref: '#/definitions/wallet_list'
         examples:
           "0": "wallet_address - CURRENTLY USED"
-      500:   
-        description: A problem occurred    
+      500:
+        description: A problem occurred
         schema:
-          $ref: '#/definitions/error'          
-        examples:         
+          $ref: '#/definitions/error'
+        examples:
           error: "A problem occurred"
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if delete_current_wallet():
         return jsonify(print_wallets())
     else:
@@ -198,11 +195,11 @@ def send_coin_page(address, amount, password):
       - name: address
         in: path
         type: string
-        required: true    
+        required: true
       - name: amount
         in: path
         type: number
-        required: true    
+        required: true
       - name: password
         in: path
         type: string
@@ -211,7 +208,7 @@ def send_coin_page(address, amount, password):
       success:
         type: string
       error:
-        type: string        
+        type: string
     responses:
       200:
         description: A list of wallets
@@ -219,15 +216,14 @@ def send_coin_page(address, amount, password):
           $ref: '#/definitions/success'
         examples:
           OK
-      500:   
-        description: A problem occurred    
+      500:
+        description: A problem occurred
         schema:
-          $ref: '#/definitions/error'          
-        examples:         
+          $ref: '#/definitions/error'
+        examples:
           error: "A problem occurred"
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
     send_tx = send(block, password, address, amount)
     if send_tx != False:
@@ -239,8 +235,7 @@ def send_coin_page(address, amount, password):
         return Response(jsonify({"error": "A problem occurred"}), status=500)
 
 
-@app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
-           methods=["GET"])
+@app.route("/send/coin-data/<address>/<amount>/<data>/<password>", methods=["GET"])
 def send_coin_data_page(address, amount, data, password):
     """
     Creates a new wallet.
@@ -249,15 +244,15 @@ def send_coin_data_page(address, amount, data, password):
       - name: address
         in: path
         type: string
-        required: true    
+        required: true
       - name: amount
         in: path
         type: number
-        required: true 
+        required: true
       - name: data
         in: path
         type: string
-        required: true           
+        required: true
       - name: password
         in: path
         type: string
@@ -266,7 +261,7 @@ def send_coin_data_page(address, amount, data, password):
       success:
         type: string
       error:
-        type: string        
+        type: string
     responses:
       200:
         description: A list of wallets
@@ -274,15 +269,14 @@ def send_coin_data_page(address, amount, data, password):
           $ref: '#/definitions/success'
         examples:
           OK
-      500:   
-        description: A problem occurred    
+      500:
+        description: A problem occurred
         schema:
-          $ref: '#/definitions/error'          
-        examples:         
+          $ref: '#/definitions/error'
+        examples:
           error: "A problem occurred"
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
     send_tx = send(block, password, address, amount, data)
     if send_tx != False:
@@ -301,7 +295,7 @@ def balance_wallets_page():
     ---
     definitions:
       balance:
-        type: string     
+        type: string
     responses:
       200:
         description: Balance of current wallet
@@ -310,8 +304,7 @@ def balance_wallets_page():
         examples:
           2000
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(GetBalance(GetBlock(), wallet_import(-1, 0)))
 
 
@@ -340,8 +333,7 @@ def node_start_page(ip, port):
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     server(str(ip), int(port))
     return jsonify("OK")
 
@@ -353,7 +345,7 @@ def node_stop_page():
     ---
     definitions:
       balance:
-        type: string     
+        type: string
     responses:
       200:
         description: Stop a node.
@@ -362,8 +354,7 @@ def node_stop_page():
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     server.Server.stop()
     return jsonify("OK")
 
@@ -401,8 +392,7 @@ def node_connect_page(ip, port):
         examples:
           error: "A problem occurred"
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if server.Server.connect(str(ip), int(port)):
         return jsonify("OK")
     else:
@@ -416,7 +406,7 @@ def node_connectmixdb_page():
     ---
     definitions:
       balance:
-        type: string     
+        type: string
     responses:
       200:
         description: Node connect to mixdb.
@@ -425,8 +415,7 @@ def node_connectmixdb_page():
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     server.connectionfrommixdb()
     return jsonify("OK")
 
@@ -454,11 +443,13 @@ def node_newunl_page():
     """
 
     logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.query_string}")
+        f"{request.remote_addr} {request.method} {request.url} {request.query_string}"
+    )
     request.query_string = request.query_string.decode("utf-8")
     if "node_id=" in request.query_string:
-        request.query_string = unquote_plus(
-            request.query_string).replace("node_id=", "")
+        request.query_string = unquote_plus(request.query_string).replace(
+            "node_id=", ""
+        )
     Unl.save_new_unl_node(request.query_string)
     return jsonify("OK")
 
@@ -479,8 +470,7 @@ def node_id_page():
         examples:
           node_id_test
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(server.id)
 
 
@@ -500,8 +490,7 @@ def settings_test_on_page():
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     test_mode(True)
     return jsonify("OK")
 
@@ -522,8 +511,7 @@ def settings_test_off_page():
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     test_mode(False)
     return jsonify("OK")
 
@@ -544,8 +532,7 @@ def settings_debug_on_page():
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = True
     debug_mode(True)
     return jsonify("OK")
@@ -567,8 +554,7 @@ def settings_debug_off_page():
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = False
     debug_mode(False)
     return jsonify("OK")
@@ -590,8 +576,7 @@ def block_get_page():
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["test_mode"]:
         the_block = CreateBlock()
         SaveBlock(the_block)
@@ -627,8 +612,7 @@ def export_transaction_csv_page():
         examples:
           error: "A problem occurred"
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if export_the_transactions():
         return jsonify("OK")
     else:
@@ -659,10 +643,8 @@ def export_transaction_json_page():
         examples:
           error: "A problem occurred"
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify(
-        [f"{str(i[0].__dict__)} | {str(i[1])}" for i in GetMyTransaction()])
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify([f"{str(i[0].__dict__)} | {str(i[1])}" for i in GetMyTransaction()])
 
 
 @app.route("/status", methods=["GET"])
@@ -681,8 +663,7 @@ def status_page():
         examples:
           OK
     """
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(Status())
 
 
@@ -695,11 +676,7 @@ def start():
         description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
-    parser.add_argument("-p",
-                        "--port",
-                        default=8000,
-                        type=int,
-                        help="Add new UNL node")
+    parser.add_argument("-p", "--port", default=8000, type=int, help="Add new UNL node")
 
     parser.add_argument(
         "-i",
