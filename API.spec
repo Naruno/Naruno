@@ -1,14 +1,22 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import flasgger
+
+from os.path import dirname, abspath, join, basename
 
 block_cipher = None
 
+flasgger_templates = join(flasgger.__path__[0], "ui2", "templates")
+flasgger_statics = join(flasgger.__path__[0], "ui2", "static")
 
 a = Analysis(
     ['decentra_network/api/main.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[
+        (flasgger_templates, join("templates")),
+        (flasgger_statics, join("flasgger_static")),
+        ],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
