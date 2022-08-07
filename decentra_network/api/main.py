@@ -47,6 +47,9 @@ from decentra_network.wallet.wallet_selector import wallet_selector
 logger = get_logger("API")
 
 app = Flask(__name__)
+app.config['SWAGGER'] = {
+    'title': 'API | Decentra Network',
+}
 swagger = Swagger(app)
 
 
