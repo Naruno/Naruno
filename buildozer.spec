@@ -15,7 +15,7 @@ p4a.local_recipes = recipes/src/python-for-android/recipes/
 title = Decentra-Network-API
 package.name = decentra_network_api
 source.dir = decentra_network/api/buildozer/
-requirements =  decentra_network==0.26.1, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.0.3, flask==2.0.0
+requirements =  decentra_network==0.26.1, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.0.3, flask==2.0.0, flasgger==0.9.5
 
 [app@gui]
 title = Decentra-Network-GUI

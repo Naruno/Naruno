@@ -228,6 +228,7 @@ class server(Thread):
                 logger.info(
                     f"NODE:{self.host}:{self.port} Connection timeout: {addr}")
                 conn.close()
+                return False
 
     @staticmethod
     def get_connected_nodes(custom_CONNECTED_NODES_PATH=None):
