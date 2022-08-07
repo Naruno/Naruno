@@ -10,7 +10,11 @@ import sys
 from urllib.parse import unquote_plus
 
 from flasgger import Swagger
-from flask import Flask, Response, jsonify, redirect, request
+from flask import Flask
+from flask import jsonify
+from flask import redirect
+from flask import request
+from flask import Response
 from waitress import serve
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
