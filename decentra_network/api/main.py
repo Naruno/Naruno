@@ -83,7 +83,8 @@ def print_wallets_page():
           error: "A problem occurred"
     """
 
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(print_wallets())
 
 
@@ -116,7 +117,8 @@ def wallet_change_page(number):
         examples:
           error: "A problem occurred"
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if wallet_selector(number):
         return jsonify(print_wallets())
     else:
@@ -152,7 +154,8 @@ def create_wallet_page(password):
         examples:
           error: "A problem occurred"
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     wallet_create(password)
     return jsonify(print_wallets())
 
@@ -181,7 +184,8 @@ def delete_wallets_page():
         examples:
           error: "A problem occurred"
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if delete_current_wallet():
         return jsonify(print_wallets())
     else:
@@ -225,7 +229,8 @@ def send_coin_page(address, amount, password):
         examples:
           error: "A problem occurred"
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
     send_tx = send(block, password, address, amount)
     if send_tx != False:
@@ -237,7 +242,8 @@ def send_coin_page(address, amount, password):
         return Response(jsonify({"error": "A problem occurred"}), status=500)
 
 
-@app.route("/send/coin-data/<address>/<amount>/<data>/<password>", methods=["GET"])
+@app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
+           methods=["GET"])
 def send_coin_data_page(address, amount, data, password):
     """
     Creates a new wallet.
@@ -278,7 +284,8 @@ def send_coin_data_page(address, amount, data, password):
         examples:
           error: "A problem occurred"
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     block = GetBlock()
     send_tx = send(block, password, address, amount, data)
     if send_tx != False:
@@ -306,7 +313,8 @@ def balance_wallets_page():
         examples:
           2000
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(GetBalance(GetBlock(), wallet_import(-1, 0)))
 
 
@@ -335,7 +343,8 @@ def node_start_page(ip, port):
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     server(str(ip), int(port))
     return jsonify("OK")
 
@@ -356,7 +365,8 @@ def node_stop_page():
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     server.Server.stop()
     return jsonify("OK")
 
@@ -394,7 +404,8 @@ def node_connect_page(ip, port):
         examples:
           error: "A problem occurred"
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if server.Server.connect(str(ip), int(port)):
         return jsonify("OK")
     else:
@@ -417,7 +428,8 @@ def node_connectmixdb_page():
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     server.connectionfrommixdb()
     return jsonify("OK")
 
@@ -450,8 +462,7 @@ def node_newunl_page():
     request.query_string = request.query_string.decode("utf-8")
     if "node_id=" in request.query_string:
         request.query_string = unquote_plus(request.query_string).replace(
-            "node_id=", ""
-        )
+            "node_id=", "")
     Unl.save_new_unl_node(request.query_string)
     return jsonify("OK")
 
@@ -472,7 +483,8 @@ def node_id_page():
         examples:
           node_id_test
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(server.id)
 
 
@@ -492,7 +504,8 @@ def settings_test_on_page():
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     test_mode(True)
     return jsonify("OK")
 
@@ -513,7 +526,8 @@ def settings_test_off_page():
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     test_mode(False)
     return jsonify("OK")
 
@@ -534,7 +548,8 @@ def settings_debug_on_page():
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = True
     debug_mode(True)
     return jsonify("OK")
@@ -556,7 +571,8 @@ def settings_debug_off_page():
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = False
     debug_mode(False)
     return jsonify("OK")
@@ -578,7 +594,8 @@ def block_get_page():
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["test_mode"]:
         the_block = CreateBlock()
         SaveBlock(the_block)
@@ -614,7 +631,8 @@ def export_transaction_csv_page():
         examples:
           error: "A problem occurred"
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if export_the_transactions():
         return jsonify("OK")
     else:
@@ -645,8 +663,10 @@ def export_transaction_json_page():
         examples:
           error: "A problem occurred"
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify([f"{str(i[0].__dict__)} | {str(i[1])}" for i in GetMyTransaction()])
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(
+        [f"{str(i[0].__dict__)} | {str(i[1])}" for i in GetMyTransaction()])
 
 
 @app.route("/status", methods=["GET"])
@@ -665,7 +685,8 @@ def status_page():
         examples:
           OK
     """
-    logger.info(f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(Status())
 
 
@@ -675,10 +696,15 @@ def start():
     """
 
     parser = argparse.ArgumentParser(
-        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description=
+        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
-    parser.add_argument("-p", "--port", default=8000, type=int, help="Add new UNL node")
+    parser.add_argument("-p",
+                        "--port",
+                        default=8000,
+                        type=int,
+                        help="Add new UNL node")
 
     parser.add_argument(
         "-i",
