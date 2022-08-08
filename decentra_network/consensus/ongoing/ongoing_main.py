@@ -26,7 +26,6 @@ from decentra_network.transactions.my_transactions.validate_transaction import (
 from decentra_network.transactions.pending_to_validating import PendingtoValidating
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
-from decentra_network.consensus.ongoing.first_time.first_time_main import first_time
 
 from decentra_network.blockchain.block.block_main import Block
 
