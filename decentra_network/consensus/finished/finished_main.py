@@ -34,7 +34,7 @@ from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS")
 
-def finished_main(block: Block):
+def finished_main(block: Block) -> None:
     if true_time(block):
         block.newly = False
         logger.info("Consensus proccess is complated, the block will be reset")

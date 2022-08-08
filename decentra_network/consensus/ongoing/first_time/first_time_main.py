@@ -26,23 +26,9 @@ from decentra_network.transactions.my_transactions.validate_transaction import (
 from decentra_network.transactions.pending_to_validating import PendingtoValidating
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
-from decentra_network.consensus.ongoing.first_time.first_time_main import first_time
-
 from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS")
 
-def ongoing_main(block: Block) -> None:
-
-    if block.round_1_starting_time is None:
-        logger.info("Round 1 first time is started")
-        first_time(block)
-        logger.info("Round 1 first time is finished")
-    if not block.round_1:
-        logger.info("First round is starting")
-        consensus_round_1(block)
-        logger.info("First round is done")
-    elif not block.round_2:
-        logger.info("Second round is starting")
-        consensus_round_2(block)
-        logger.info("Second round is done")
+def first_time(block: Block) -> None:
+    PendingtoValidating(block)
