@@ -26,28 +26,18 @@ from decentra_network.transactions.my_transactions.validate_transaction import (
 from decentra_network.transactions.pending_to_validating import PendingtoValidating
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
-from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
-from decentra_network.consensus.finished.finished_main import finished_main
-
 logger = get_logger("CONSENSUS")
 
-
-def consensus_trigger():
-    """
-    Consensus process consists of 2 stages. This function makes
-    the necessary redirects according to the situation and works
-    to shorten the block time.
-    """
-
-    block = GetBlock()
-
-    logger.info(
-        f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
-    )
-
-    if block.validated:
-        finished_main(block)
-    else:
-        ongoing_main(block)
-
-    logger.info("Consensus process is done")
+def ongoing_main(block):
+    PendingtoValidating(block)
+    if block.round_1_starting_time is None:
+        block.round_1_starting_time = int(time.time())
+        SaveBlock(block)
+    if not block.round_1:
+        logger.info("First round is starting")
+        consensus_round_1(block)
+        logger.info("First round is done")
+    elif not block.round_2:
+        logger.info("Second round is starting")
+        consensus_round_2(block)
+        logger.info("Second round is done")

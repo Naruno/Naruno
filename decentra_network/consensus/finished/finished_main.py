@@ -26,28 +26,36 @@ from decentra_network.transactions.my_transactions.validate_transaction import (
 from decentra_network.transactions.pending_to_validating import PendingtoValidating
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
-from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
-from decentra_network.consensus.finished.finished_main import finished_main
-
 logger = get_logger("CONSENSUS")
 
+def finished_main(block):
+        true_time = (
+            block.genesis_time
+            + block.block_time
+            + ((block.sequance_number + block.empty_block_number) * block.block_time)
+        )
+        if block.newly:
+            true_time -= 1
+            logger.info(
+                "Consensus proccess is complated but the time is not true, will be waiting for the true time"
+            )
+        if int(time.time()) >= true_time:
+            block.newly = False
+            logger.info("Consensus proccess is complated, the block will be reset")
 
-def consensus_trigger():
-    """
-    Consensus process consists of 2 stages. This function makes
-    the necessary redirects according to the situation and works
-    to shorten the block time.
-    """
+            current_blockshash_list = GetBlockshash()
+            reset_block = block.reset_the_block(current_blockshash_list)
+            if reset_block != False:
+                block2 = reset_block[0]
+                AppsTrigger(block2)
+                my_address = wallet_import(-1, 3)
+                my_public_key = wallet_import(-1, 0)
+                for tx in block2.validating_list:
+                    if tx.toUser == my_address:
+                        SavetoMyTransaction(tx, validated=True)
+                    elif tx.fromUser == my_public_key:
+                        ValidateTransaction(tx)
+                SaveBlockshash(current_blockshash_list)
+                SaveBlockstoBlockchainDB(block2)
 
-    block = GetBlock()
-
-    logger.info(
-        f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
-    )
-
-    if block.validated:
-        finished_main(block)
-    else:
-        ongoing_main(block)
-
-    logger.info("Consensus process is done")
+            SaveBlock(block)
