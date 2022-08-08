@@ -25,7 +25,7 @@ from decentra_network.blockchain.block.block_main import Block
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def time_difference_round_1(block: Block) -> bool:
+def time_difference(block: Block) -> bool:
 
     time_difference = int(time.time()) - block.start_time
     logger.info(f"Time difference is {time_difference}")
