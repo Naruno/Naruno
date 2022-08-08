@@ -90,7 +90,7 @@ class Block:
 
         self.start_time = int(time.time())
 
-        self.round_1_starting_time = None
+        self.round_1_starting_time = self.validated_time
         self.round_1 = False
 
         self.round_2_starting_time = None

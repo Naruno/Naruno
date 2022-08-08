@@ -159,42 +159,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(transaction_1_true, False)
         self.assertEqual(transaction_2_true, False)
-        self.assertEqual(transaction_3_true, True)    
-
-    def test_pending_to_validating_round_1_started(self):
-
-        block = Block("")
-        block.max_tx_number = 2
-        block.round_1_starting_time = 1
-
-        temp_transaction = Transaction(1, "4", "", "", "", 1, 1, 1)
-        temp_transaction_2 = Transaction(1, "5", "", "", "", 1, 1, 1)
-        temp_transaction_3 = Transaction(1, "6", "", "", "", 1, 1, 1)
-
-        SavePending(temp_transaction)
-        SavePending(temp_transaction_2)
-        SavePending(temp_transaction_3)
-
-        PendingtoValidating(block)
-
-        pending_transactions = GetPending()
-
-        know_pending_number = 0
-
-        for transaction in pending_transactions:
-            if transaction.signature == temp_transaction.signature:
-                know_pending_number += 1
-            if transaction.signature == temp_transaction_2.signature:
-                know_pending_number += 1
-            if transaction.signature == temp_transaction_3.signature:
-                know_pending_number += 1
-
-        DeletePending(temp_transaction)
-        DeletePending(temp_transaction_2)
-        DeletePending(temp_transaction_3) 
-
-        self.assertEqual(len(block.validating_list), 0)
-        self.assertEqual(know_pending_number, 3)
+        self.assertEqual(transaction_3_true, True)
 
     def test_pending_to_validating(self):
 
