@@ -47,3 +47,4 @@ def finished_main(block: Block) -> None:
             SaveBlockshash(current_blockshash_list)
             SaveBlockstoBlockchainDB(block2)
         SaveBlock(block)
+        PendingtoValidating(block)

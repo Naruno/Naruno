@@ -34,10 +34,6 @@ logger = get_logger("CONSENSUS")
 
 def ongoing_main(block: Block) -> None:
 
-    if block.round_1_starting_time is None:
-        logger.info("Round 1 first time is started")
-        first_time(block)
-        logger.info("Round 1 first time is finished")
     if not block.round_1:
         logger.info("First round is starting")
         consensus_round_1(block)

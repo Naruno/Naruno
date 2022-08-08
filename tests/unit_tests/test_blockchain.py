@@ -55,7 +55,6 @@ class Test_Blockchain(unittest.TestCase):
         block = Block("onur")
         current_blockshash_list = []
         block.reset_the_block(current_blockshash_list)
-        self.assertEqual(block.round_1_starting_time, None)
         self.assertEqual(block.round_1, False)
 
     def test_block_reset_round_2(self):

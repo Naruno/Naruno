@@ -66,7 +66,6 @@ class Block:
         self.max_tx_number = 2
         self.minumum_transfer_amount = 1000
 
-        self.round_1_starting_time = None
         self.round_1_time = 4
         self.round_1 = False
 
@@ -90,7 +89,6 @@ class Block:
 
         self.start_time = int(time.time())
 
-        self.round_1_starting_time = self.validated_time
         self.round_1 = False
 
         self.round_2_starting_time = None
