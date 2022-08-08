@@ -23,27 +23,18 @@ from decentra_network.transactions.my_transactions.save_to_my_transaction import
 from decentra_network.transactions.my_transactions.validate_transaction import (
     ValidateTransaction,
 )
-from decentra_network.transactions.pending_to_validating import PendingtoValidating
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
-
-from decentra_network.consensus.time.true_time.true_time import true_time
-
-from decentra_network.consensus.finished.transactions.transactions_main import transactions_main
 
 from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS")
 
-def finished_main(block: Block):
-    if true_time(block):
-        block.newly = False
-        logger.info("Consensus proccess is complated, the block will be reset")
-        current_blockshash_list = GetBlockshash()
-        reset_block = block.reset_the_block(current_blockshash_list)
-        if reset_block != False:
-            block2 = reset_block[0]
-            AppsTrigger(block2)
-            transactions_main(block2)
-            SaveBlockshash(current_blockshash_list)
-            SaveBlockstoBlockchainDB(block2)
-        SaveBlock(block)
+def true_time(block: Block) -> bool:
+    the_time = (
+        block.genesis_time
+        + block.block_time
+        + ((block.sequance_number + block.empty_block_number) * block.block_time)
+    )
+    if int(time.time()) >= the_time:    
+        return True
+    else:
+        return False

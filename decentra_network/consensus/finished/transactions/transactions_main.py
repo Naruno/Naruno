@@ -28,22 +28,30 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 from decentra_network.consensus.time.true_time.true_time import true_time
 
-from decentra_network.consensus.finished.transactions.transactions_main import transactions_main
-
 from decentra_network.blockchain.block.block_main import Block
+
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
 
 logger = get_logger("CONSENSUS")
 
-def finished_main(block: Block):
-    if true_time(block):
-        block.newly = False
-        logger.info("Consensus proccess is complated, the block will be reset")
-        current_blockshash_list = GetBlockshash()
-        reset_block = block.reset_the_block(current_blockshash_list)
-        if reset_block != False:
-            block2 = reset_block[0]
-            AppsTrigger(block2)
-            transactions_main(block2)
-            SaveBlockshash(current_blockshash_list)
-            SaveBlockstoBlockchainDB(block2)
-        SaveBlock(block)
+
+def transactions_main(block: Block) -> list:
+    """
+    This function is responsible for the transactions of the block.
+    Parameters:
+        block: The block that is going to be validated.
+    Returns:
+        list: The list of the transactions that are going to be validated.
+    """
+    new_my_transactions_list = None
+    my_address = wallet_import(-1, 3)
+    my_public_key = wallet_import(-1, 0)
+    custom_currently_list = GetMyTransaction()
+    for tx in block.validating_list:
+        if tx.toUser == my_address:
+            new_my_transactions_list = SavetoMyTransaction(tx, validated=True, custom_currently_list=custom_currently_list)
+        elif tx.fromUser == my_public_key:
+            new_my_transactions_list = ValidateTransaction(tx, custom_currently_list=custom_currently_list)
+    return new_my_transactions_list
