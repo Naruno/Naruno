@@ -44,15 +44,15 @@ def consensus_round_1(block):
     nodes = Unl.get_as_node_type(unl_nodes)
     server.Server.send_my_block(block)
     candidate_class = GetCandidateBlocks(custom_nodes_list=nodes)
-    time_difference = int(time.time()) - block.raund_1_starting_time
+    time_difference = int(time.time()) - block.round_1_starting_time
     logger.info(f"candidate block number {len(candidate_class.candidate_blocks)} limit {len(unl_nodes) * 80 / 100}")
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
 
         logger.info(f"Time difference is {time_difference}")
-        logger.info(f"block.raund_1_time is {block.raund_1_time}")
+        logger.info(f"block.round_1_time is {block.round_1_time}")
 
-        if time_difference > block.raund_1_time:
+        if time_difference > block.round_1_time:
             logger.info("True time")
             temp_validating_list = []
             for candidate_block in candidate_class.candidate_blocks[:]:
@@ -114,9 +114,9 @@ def consensus_round_1(block):
                 if GetTransaction(block, each_newly):
                     server.send_transaction(each_newly)
 
-            block.raund_1 = True
+            block.round_1 = True
 
-            block.raund_2_starting_time = int(time.time())
+            block.round_2_starting_time = int(time.time())
 
             account_list = GetAccounts()
             ProccesstheTransaction(block, account_list)

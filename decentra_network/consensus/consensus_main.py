@@ -75,14 +75,14 @@ def consensus_trigger():
             SaveBlock(block)
     else:
         PendingtoValidating(block)
-        if block.raund_1_starting_time is None:
-            block.raund_1_starting_time = int(time.time())
+        if block.round_1_starting_time is None:
+            block.round_1_starting_time = int(time.time())
             SaveBlock(block)
-        if not block.raund_1:
+        if not block.round_1:
             logger.info("First round is starting")
             consensus_round_1(block)
             logger.info("First round is done")
-        elif not block.raund_2:
+        elif not block.round_2:
             logger.info("Second round is starting")
             consensus_round_2(block)
             logger.info("Second round is done")

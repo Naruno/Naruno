@@ -17,7 +17,7 @@ def PendingtoValidating(block):
 
     if (
         len(block.validating_list) < block.max_tx_number
-        and block.raund_1_starting_time is None
+        and block.round_1_starting_time is None
     ):
         for tx in GetPending():
             if len(block.validating_list) < block.max_tx_number:

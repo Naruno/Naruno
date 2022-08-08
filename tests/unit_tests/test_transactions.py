@@ -165,7 +165,7 @@ class Test_Transactions(unittest.TestCase):
 
         block = Block("")
         block.max_tx_number = 2
-        block.raund_1_starting_time = 1
+        block.round_1_starting_time = 1
 
         temp_transaction = Transaction(1, "4", "", "", "", 1, 1, 1)
         temp_transaction_2 = Transaction(1, "5", "", "", "", 1, 1, 1)

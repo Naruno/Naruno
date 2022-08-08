@@ -51,19 +51,19 @@ class Test_Blockchain(unittest.TestCase):
         second_time = block.start_time
         self.assertNotEqual(first_time, second_time)
 
-    def test_block_reset_raund_1(self):
+    def test_block_reset_round_1(self):
         block = Block("onur")
         current_blockshash_list = []
         block.reset_the_block(current_blockshash_list)
-        self.assertEqual(block.raund_1_starting_time, None)
-        self.assertEqual(block.raund_1, False)
+        self.assertEqual(block.round_1_starting_time, None)
+        self.assertEqual(block.round_1, False)
 
-    def test_block_reset_raund_2(self):
+    def test_block_reset_round_2(self):
         block = Block("onur")
         current_blockshash_list = []
         block.reset_the_block(current_blockshash_list)
-        self.assertEqual(block.raund_2_starting_time, None)
-        self.assertEqual(block.raund_2, False)
+        self.assertEqual(block.round_2_starting_time, None)
+        self.assertEqual(block.round_2, False)
 
     def test_block_reset_validated(self):
         block = Block("onur")
