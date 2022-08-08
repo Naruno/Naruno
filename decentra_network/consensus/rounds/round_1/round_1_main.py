@@ -21,6 +21,8 @@ from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
 
+from decentra_network.consensus.time.time_difference import time_difference_round_1
+
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
@@ -44,15 +46,13 @@ def consensus_round_1(block):
     nodes = Unl.get_as_node_type(unl_nodes)
     server.Server.send_my_block(block)
     candidate_class = GetCandidateBlocks(custom_nodes_list=nodes)
-    time_difference = int(time.time()) - block.start_time
     logger.info(f"candidate block number {len(candidate_class.candidate_blocks)} limit {len(unl_nodes) * 80 / 100}")
     if len(candidate_class.candidate_blocks) > ((len(unl_nodes) * 80) / 100):
         logger.info("Enough candidate blocks received")
 
-        logger.info(f"Time difference is {time_difference}")
         logger.info(f"block.round_1_time is {block.round_1_time}")
 
-        if time_difference > block.round_1_time:
+        if time_difference_round_1():
             logger.info("True time")
             temp_validating_list = []
             for candidate_block in candidate_class.candidate_blocks[:]:
@@ -134,5 +134,8 @@ def consensus_round_1(block):
             logger.debug(f"Block hash {block.hash}")
 
             SaveBlock(block)
-
+            return True
+        else:
+            logger.info("False time round 1")
+            return False
     logger.info("First round is done")
