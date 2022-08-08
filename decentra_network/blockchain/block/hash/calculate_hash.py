@@ -38,7 +38,4 @@ def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
 
     the_hash = MerkleTree(main_list).getRootHash()
 
-    # Setting The Hashes
-    block.hash = the_hash
-
     return the_hash

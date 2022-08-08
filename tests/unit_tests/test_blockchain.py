@@ -265,6 +265,7 @@ class Test_Blockchain(unittest.TestCase):
         the_blocks_hash = ["atakan", "ulusoy", "sivas"]
         result = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
                                the_accounts)
+        block.hash = result
         self.assertEqual(
             part_of_blocks_hash,
             [
