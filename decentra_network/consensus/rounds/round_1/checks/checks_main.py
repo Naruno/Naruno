@@ -20,17 +20,21 @@ from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
+
+from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import time_difference_check
+from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import candidate_blocks_check
+
+from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
+
 from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def time_difference_check(block: Block) -> bool:
-
-    time_difference = int(time.time()) - block.start_time
-    logger.info(f"Time difference is {time_difference}")
-    if time_difference > block.round_1_time:
-        return True
-    else:
+def round_check(block: Block, candidate_class: candidate_block, unl_nodes: dict) -> bool:
+    if not candidate_blocks_check(candidate_class, unl_nodes):
+        return False
+    if not time_difference_check(block=block):
         return False
 
+    return True
