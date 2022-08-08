@@ -29,7 +29,7 @@ labels:
     - '\bwallet\b'
   'Accounts':
     - '\baccounts\b'
-  'APPS':
+  'Apps':
     - '\bapps\b'
   'Auto-Builders':
     - '\bauto_builders\b'
