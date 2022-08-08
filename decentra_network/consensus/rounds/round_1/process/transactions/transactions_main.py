@@ -27,9 +27,9 @@ from decentra_network.blockchain.candidate_block.candidate_block_main import can
 
 from decentra_network.blockchain.block.block_main import Block
 
-from decentra_network.consensus.rounds.round_1.process.find_validated.find_validated_main import find_validated
+from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import find_validated
 
-from decentra_network.consensus.rounds.round_1.process.find__newly.find_newly_main import find_newly
+from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import find_newly
 
 
 
