@@ -27,27 +27,19 @@ from decentra_network.blockchain.candidate_block.candidate_block_main import can
 
 from decentra_network.blockchain.block.block_main import Block
 
-from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import transactions_main
-
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def round_process(block: Block, candidate_class: candidate_block, unl_nodes: dict):
+def find_newly(block: Block, temp_validating_list: list):
+            newly_added_list = []
 
-            transactions_main(block, candidate_class = candidate_class, unl_nodes=unl_nodes)
+            for my_validating_list in block.validating_list[:]:
+                ok = any(
+                    (my_validating_list.signature == my_temp_validating_list.signature)
+                    for my_temp_validating_list in temp_validating_list[:]
+                )
 
-            block.round_1 = True
-            block.round_2_starting_time = int(time.time())
-
-            account_list = GetAccounts()
-            ProccesstheTransaction(block, account_list)
-            SaveAccounts(account_list)
-
-            part_of_blocks_hash = GetBlockshash_part()
-            the_blocks_hash = GetBlockshash()
-            block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash, account_list)
-
-
-            logger.debug(f"Block hash {block.hash}")
-
-            SaveBlock(block)
+                block.validating_list.remove(my_validating_list)
+                if not ok:
+                    newly_added_list.append(my_validating_list)
+            return newly_added_list

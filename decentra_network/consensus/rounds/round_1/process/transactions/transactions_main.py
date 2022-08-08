@@ -27,27 +27,25 @@ from decentra_network.blockchain.candidate_block.candidate_block_main import can
 
 from decentra_network.blockchain.block.block_main import Block
 
-from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import transactions_main
+from decentra_network.consensus.rounds.round_1.process.find_validated.find_validated_main import find_validated
+
+from decentra_network.consensus.rounds.round_1.process.find__newly.find_newly_main import find_newly
+
+
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def round_process(block: Block, candidate_class: candidate_block, unl_nodes: dict):
+def transactions_main(block: Block, candidate_class: candidate_block, unl_nodes: dict):
+            temp_validating_list = find_validated(block, candidate_class = candidate_class, unl_nodes=unl_nodes)
+            
+            block.validating_list = temp_validating_list
 
-            transactions_main(block, candidate_class = candidate_class, unl_nodes=unl_nodes)
-
-            block.round_1 = True
-            block.round_2_starting_time = int(time.time())
-
-            account_list = GetAccounts()
-            ProccesstheTransaction(block, account_list)
-            SaveAccounts(account_list)
-
-            part_of_blocks_hash = GetBlockshash_part()
-            the_blocks_hash = GetBlockshash()
-            block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash, account_list)
+            newly_added_list = find_newly(block, temp_validating_list = temp_validating_list)
 
 
-            logger.debug(f"Block hash {block.hash}")
+            logger.debug(f"Newly validating list {block.validating_list}")
 
-            SaveBlock(block)
+            for each_newly in newly_added_list:
+                if GetTransaction(block, each_newly):
+                    server.send_transaction(each_newly)
