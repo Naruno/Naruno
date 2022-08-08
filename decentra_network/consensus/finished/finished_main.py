@@ -46,5 +46,5 @@ def finished_main(block: Block) -> None:
             transactions_main(block2)
             SaveBlockshash(current_blockshash_list)
             SaveBlockstoBlockchainDB(block2)
+        PendingtoValidating(block)            
         SaveBlock(block)
-        PendingtoValidating(block)
