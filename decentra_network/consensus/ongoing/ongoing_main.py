@@ -29,9 +29,10 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 logger = get_logger("CONSENSUS")
 
 def ongoing_main(block):
-    PendingtoValidating(block)
+    
     if block.round_1_starting_time is None:
-        block.round_1_starting_time = int(time.time())
+        PendingtoValidating(block)        
+        block.round_1_starting_time = block.validated_time
         SaveBlock(block)
     if not block.round_1:
         logger.info("First round is starting")
