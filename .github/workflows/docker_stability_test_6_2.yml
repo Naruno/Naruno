@@ -20,6 +20,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -50,6 +54,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -80,6 +88,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -110,6 +122,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -140,6 +156,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -170,6 +190,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -200,6 +224,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -230,6 +258,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -260,6 +292,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -290,6 +326,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -320,6 +360,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -350,6 +394,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -380,6 +428,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -410,6 +462,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -440,6 +496,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -470,6 +530,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -500,6 +564,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -530,6 +598,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -560,6 +632,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -590,6 +666,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -620,6 +700,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -650,6 +734,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -680,6 +768,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -710,6 +802,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -740,6 +836,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -770,6 +870,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -800,6 +904,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -830,6 +938,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -860,6 +972,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -890,6 +1006,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -920,6 +1040,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -950,6 +1074,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -980,6 +1108,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1010,6 +1142,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1040,6 +1176,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1070,6 +1210,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1100,6 +1244,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1130,6 +1278,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1160,6 +1312,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1190,6 +1346,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1220,6 +1380,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1250,6 +1414,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1280,6 +1448,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1310,6 +1482,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1340,6 +1516,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1370,6 +1550,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1400,6 +1584,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1430,6 +1618,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1460,6 +1652,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1490,6 +1686,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1520,6 +1720,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1550,6 +1754,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1580,6 +1788,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1610,6 +1822,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1640,6 +1856,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1670,6 +1890,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1700,6 +1924,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1730,6 +1958,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1760,6 +1992,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1790,6 +2026,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1820,6 +2060,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1850,6 +2094,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1880,6 +2128,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1910,6 +2162,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1940,6 +2196,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -1970,6 +2230,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2000,6 +2264,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2030,6 +2298,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2060,6 +2332,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2090,6 +2366,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2120,6 +2400,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2150,6 +2434,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2180,6 +2468,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2210,6 +2502,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2240,6 +2536,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2270,6 +2570,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2300,6 +2604,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2330,6 +2638,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2360,6 +2672,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2390,6 +2706,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2420,6 +2740,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2450,6 +2774,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2480,6 +2808,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2510,6 +2842,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2540,6 +2876,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2570,6 +2910,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2600,6 +2944,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2630,6 +2978,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2660,6 +3012,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2690,6 +3046,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2720,6 +3080,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2750,6 +3114,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2780,6 +3148,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2810,6 +3182,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2840,6 +3216,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2870,6 +3250,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2900,6 +3284,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2930,6 +3318,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2960,6 +3352,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
@@ -2990,6 +3386,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_2.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install pytest
