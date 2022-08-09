@@ -11,10 +11,10 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def candidate_blocks_hashes_check(
-    candidate_class: candidate_block, unl_nodes: dict
-) -> bool:
-    if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80) / 100):
+def candidate_blocks_hashes_check(candidate_class: candidate_block,
+                                  unl_nodes: dict) -> bool:
+    if len(candidate_class.candidate_block_hashes) > (
+        (len(unl_nodes) * 80) / 100):
         return True
     else:
         return False
