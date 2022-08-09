@@ -30,9 +30,9 @@ from decentra_network.node.unl import Unl
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def process_candidate_blocks_hashes(
-    block: Block, candidate_class: candidate_block, unl_nodes: dict
-):
+def process_candidate_blocks_hashes(block: Block,
+                                    candidate_class: candidate_block,
+                                    unl_nodes: dict):
     for candidate_block_hash in candidate_class.candidate_block_hashes[:]:
         logger.debug(f"Candidate block hash {candidate_block_hash}")
 
@@ -43,10 +43,8 @@ def process_candidate_blocks_hashes(
 
         for other_block in candidate_class.candidate_block_hashes[:]:
 
-            if (
-                candidate_block_hash != other_block
-                and candidate_block_hash["hash"] == other_block["hash"]
-            ):
+            if (candidate_block_hash != other_block
+                    and candidate_block_hash["hash"] == other_block["hash"]):
                 tx_valid += 1
 
         logger.debug(f"Hash valid of  {candidate_block_hash} : {tx_valid}")

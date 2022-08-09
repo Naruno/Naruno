@@ -32,9 +32,8 @@ from decentra_network.transactions.process_the_transaction import \
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def round_check(
-    block: Block, candidate_class: candidate_block, unl_nodes: dict
-) -> bool:
+def round_check(block: Block, candidate_class: candidate_block,
+                unl_nodes: dict) -> bool:
     if not candidate_blocks_check(candidate_class, unl_nodes):
         return False
     if not time_difference_check(block=block):

@@ -34,11 +34,11 @@ from decentra_network.node.unl import Unl
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def round_process(block: Block, candidate_class: candidate_block, unl_nodes: dict):
+def round_process(block: Block, candidate_class: candidate_block,
+                  unl_nodes: dict):
 
     candidate_block_hash = process_candidate_blocks_hashes(
-        block, candidate_class, unl_nodes
-    )
+        block, candidate_class, unl_nodes)
 
     if block.hash == candidate_block_hash["hash"]:
         validate_main(block)

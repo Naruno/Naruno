@@ -47,8 +47,7 @@ def consensus_round_1(block: Block) -> bool:
 
     unl_nodes = Unl.get_unl_nodes()
     candidate_class = GetCandidateBlocks(
-        custom_nodes_list=Unl.get_as_node_type(unl_nodes)
-    )
+        custom_nodes_list=Unl.get_as_node_type(unl_nodes))
 
     if round_check(block, candidate_class, unl_nodes):
         round_process(block, candidate_class, unl_nodes)

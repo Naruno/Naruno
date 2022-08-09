@@ -22,9 +22,8 @@ from decentra_network.node.unl import Unl
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def round_check(
-    block: Block, candidate_class: candidate_block, unl_nodes: dict
-) -> bool:
+def round_check(block: Block, candidate_class: candidate_block,
+                unl_nodes: dict) -> bool:
     if not candidate_blocks_hashes_check(candidate_class, unl_nodes):
         return False
     if not time_difference_check(block=block):

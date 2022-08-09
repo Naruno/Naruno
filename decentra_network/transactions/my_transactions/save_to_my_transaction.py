@@ -17,9 +17,9 @@ from decentra_network.transactions.my_transactions.save_my_transaction import \
 from decentra_network.transactions.transaction import Transaction
 
 
-def SavetoMyTransaction(
-    tx: Transaction, validated: bool = False, custom_currently_list: list = None
-) -> list:
+def SavetoMyTransaction(tx: Transaction,
+                        validated: bool = False,
+                        custom_currently_list: list = None) -> list:
     """
     Saves the transaction to the transaction db.
     Parameters:
@@ -30,9 +30,8 @@ def SavetoMyTransaction(
         The list of the my transactions.
     """
 
-    currently_list = (
-        GetMyTransaction() if custom_currently_list is None else custom_currently_list
-    )
+    currently_list = (GetMyTransaction() if custom_currently_list is None else
+                      custom_currently_list)
     tx_list = [tx, validated]
     currently_list.append(tx_list)
 
