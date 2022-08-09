@@ -30,11 +30,12 @@ from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.block.save_block_to_blockchain_db import \
     SaveBlockstoBlockchainDB
+from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.node.client.client import client
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
-from decentra_network.lib.clean_up import CleanUp_tests
+
 
 class Test_Blockchain(unittest.TestCase):
 
@@ -51,19 +52,18 @@ class Test_Blockchain(unittest.TestCase):
         second_time = block.start_time
         self.assertNotEqual(first_time, second_time)
 
-    def test_block_reset_raund_1(self):
+    def test_block_reset_round_1(self):
         block = Block("onur")
         current_blockshash_list = []
         block.reset_the_block(current_blockshash_list)
-        self.assertEqual(block.raund_1_starting_time, None)
-        self.assertEqual(block.raund_1, False)
+        self.assertEqual(block.round_1, False)
 
-    def test_block_reset_raund_2(self):
+    def test_block_reset_round_2(self):
         block = Block("onur")
         current_blockshash_list = []
         block.reset_the_block(current_blockshash_list)
-        self.assertEqual(block.raund_2_starting_time, None)
-        self.assertEqual(block.raund_2, False)
+        self.assertEqual(block.round_2_starting_time, None)
+        self.assertEqual(block.round_2, False)
 
     def test_block_reset_validated(self):
         block = Block("onur")
@@ -266,6 +266,7 @@ class Test_Blockchain(unittest.TestCase):
         the_blocks_hash = ["atakan", "ulusoy", "sivas"]
         result = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
                                the_accounts)
+        block.hash = result
         self.assertEqual(
             part_of_blocks_hash,
             [

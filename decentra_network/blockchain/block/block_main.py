@@ -66,13 +66,12 @@ class Block:
         self.max_tx_number = 2
         self.minumum_transfer_amount = 1000
 
-        self.raund_1_starting_time = None
-        self.raund_1_time = 4
-        self.raund_1 = False
+        self.round_1_time = 4
+        self.round_1 = False
 
-        self.raund_2_starting_time = None
-        self.raund_2_time = 4
-        self.raund_2 = False
+        self.round_2_starting_time = None
+        self.round_2_time = 4
+        self.round_2 = False
 
         self.consensus_timer = 0.50
 
@@ -90,21 +89,17 @@ class Block:
 
         self.start_time = int(time.time())
 
-        self.raund_1_starting_time = None
-        self.raund_1 = False
+        self.round_1 = False
 
-        self.raund_2_starting_time = None
-        self.raund_2 = False
+        self.round_2_starting_time = None
+        self.round_2 = False
 
         self.validated = False
         self.validated_time = None
 
         # Resetting the node candidate blocks.
-        nodes = (
-            Unl.get_as_node_type(Unl.get_unl_nodes())
-            if custom_nodes is None
-            else custom_nodes
-        )
+        nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
+                 if custom_nodes is None else custom_nodes)
         for node in nodes:
             node.candidate_block = None
             node.candidate_block_hash = None
@@ -134,7 +129,8 @@ class Block:
         temp_block = copy.copy(self)
 
         temp_validating_list = [
-            transaction.dump_json() for transaction in temp_block.validating_list
+            transaction.dump_json()
+            for transaction in temp_block.validating_list
         ]
 
         temp_block.validating_list = temp_validating_list
