@@ -7,24 +7,22 @@
 import time
 
 from decentra_network.apps.apps_trigger import AppsTrigger
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash
-from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           SaveBlockshash)
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.block.save_block_to_blockchain_db import (
-    SaveBlockstoBlockchainDB,
-)
-from decentra_network.consensus.rounds.round_1.round_1_main import consensus_round_1
-from decentra_network.consensus.rounds.round_2.round_2_main import consensus_round_2
+from decentra_network.blockchain.block.save_block_to_blockchain_db import \
+    SaveBlockstoBlockchainDB
+from decentra_network.consensus.rounds.round_1.round_1_main import \
+    consensus_round_1
+from decentra_network.consensus.rounds.round_2.round_2_main import \
+    consensus_round_2
 from decentra_network.lib.log import get_logger
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from decentra_network.transactions.my_transactions.validate_transaction import (
-    ValidateTransaction,
-)
-
-from decentra_network.blockchain.block.block_main import Block
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 
 logger = get_logger("CONSENSUS")
 

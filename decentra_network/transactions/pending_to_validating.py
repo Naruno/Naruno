@@ -5,8 +5,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.pending.delete_pending import DeletePending
+from decentra_network.transactions.pending.get_pending import GetPending
 
 
 def PendingtoValidating(block):
