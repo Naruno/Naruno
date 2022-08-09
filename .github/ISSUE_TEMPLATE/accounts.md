@@ -1,7 +1,7 @@
 ---
 name: accounts
 about: If you want report any think about accounts, use this.
-title: ''
+title: 'accounts: '
 labels: Accounts
 assignees: ''
 
