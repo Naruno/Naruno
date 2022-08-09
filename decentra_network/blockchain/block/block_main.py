@@ -98,8 +98,11 @@ class Block:
         self.validated_time = None
 
         # Resetting the node candidate blocks.
-        nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
-                 if custom_nodes is None else custom_nodes)
+        nodes = (
+            Unl.get_as_node_type(Unl.get_unl_nodes())
+            if custom_nodes is None
+            else custom_nodes
+        )
         for node in nodes:
             node.candidate_block = None
             node.candidate_block_hash = None
@@ -129,8 +132,7 @@ class Block:
         temp_block = copy.copy(self)
 
         temp_validating_list = [
-            transaction.dump_json()
-            for transaction in temp_block.validating_list
+            transaction.dump_json() for transaction in temp_block.validating_list
         ]
 
         temp_block.validating_list = temp_validating_list
