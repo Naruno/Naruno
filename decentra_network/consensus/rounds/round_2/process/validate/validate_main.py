@@ -15,7 +15,6 @@ import time
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.lib.log import get_logger
 
-
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 

@@ -13,10 +13,7 @@
 
 
 from decentra_network.blockchain.block.block_main import Block
-
-
 from decentra_network.lib.log import get_logger
-
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 

@@ -6,9 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
-
 from decentra_network.lib.log import get_logger
-
 
 logger = get_logger("CONSENSUS")
 

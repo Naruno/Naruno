@@ -6,18 +6,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from decentra_network.blockchain.block.block_main import Block
-
-from decentra_network.blockchain.candidate_block.candidate_block_main import (
-    candidate_block,
-)
-from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import (
-    candidate_blocks_check,
-)
-from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import (
-    time_difference_check,
-)
+from decentra_network.blockchain.candidate_block.candidate_block_main import \
+    candidate_block
+from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import \
+    candidate_blocks_check
+from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import \
+    time_difference_check
 from decentra_network.lib.log import get_logger
-
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 

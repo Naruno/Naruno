@@ -14,21 +14,15 @@ import time
 
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import (
-    candidate_block,
-)
-
-from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import (
-    process_candidate_blocks_hashes,
-)
-from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import (
-    rescue_main,
-)
-from decentra_network.consensus.rounds.round_2.process.validate.validate_main import (
-    validate_main,
-)
+from decentra_network.blockchain.candidate_block.candidate_block_main import \
+    candidate_block
+from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
+    process_candidate_blocks_hashes
+from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import \
+    rescue_main
+from decentra_network.consensus.rounds.round_2.process.validate.validate_main import \
+    validate_main
 from decentra_network.lib.log import get_logger
-
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
