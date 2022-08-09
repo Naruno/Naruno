@@ -36,12 +36,10 @@ def ProccesstheTransaction(block, account_list):
 
                 Accounts.sequance_number += 1
                 from_user_list.append(Accounts)
-                block.edited_accounts.append(Accounts)
 
             elif Accounts.Address == trans.toUser:
                 Accounts.balance += float(trans.amount)
                 touser_inlist = True
-                block.edited_accounts.append(Accounts)
                 break
 
             for i in new_added_accounts_list:

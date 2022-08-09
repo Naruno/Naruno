@@ -49,8 +49,6 @@ class Block:
         self.sequance_number = 0
         self.empty_block_number = 0
 
-        self.edited_accounts = []
-
         self.validating_list = []
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02

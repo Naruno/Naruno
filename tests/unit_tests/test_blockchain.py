@@ -231,10 +231,8 @@ class Test_Blockchain(unittest.TestCase):
 
         the_account = Account("onur", "atakan", "ulusoy")
         the_accounts = [the_account, the_account, the_account]
-        block.edited_accounts.append(the_account)
         result = AccountsHash(block, the_accounts)
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        self.assertEqual(block.edited_accounts, [])
         self.assertEqual(
             result,
             "4cbc6f4516470078ef91f1eb33a0f7e99cc5f95808a3343a3e256cfee657d6f8")
@@ -246,10 +244,8 @@ class Test_Blockchain(unittest.TestCase):
 
         the_account = Account("onur", "atakan", "ulusoy")
         the_accounts = [the_account, the_account, the_account]
-        block.edited_accounts.append(the_account)
         result = AccountsHash(block, the_accounts)
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        self.assertEqual(block.edited_accounts, [])
         self.assertEqual(
             result,
             "4cbc6f4516470078ef91f1eb33a0f7e99cc5f95808a3343a3e256cfee657d6f8")
@@ -261,7 +257,6 @@ class Test_Blockchain(unittest.TestCase):
 
         the_account = Account("onur", "atakan", "ulusoy")
         the_accounts = [the_account, the_account, the_account]
-        block.edited_accounts.append(the_account)
         part_of_blocks_hash = ["onur"]
         the_blocks_hash = ["atakan", "ulusoy", "sivas"]
         result = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
@@ -276,7 +271,6 @@ class Test_Blockchain(unittest.TestCase):
         )
         self.assertEqual(the_blocks_hash, [])
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        self.assertEqual(block.edited_accounts, [])
         true_hash = "873a38de099d3d779b66c45537bc1d1865a506a59573a669d2fdbfca67d3634b"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
