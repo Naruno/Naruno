@@ -366,7 +366,7 @@ class Test_Node(unittest.TestCase):
             got_block[0].dump_json(),
             {
                 "address": "atakan123321",
-                "balance": 1000000000,
+                "balance": 10000000,
                 "sequence_number": 0
             },
         )
@@ -534,7 +534,7 @@ class Test_Node(unittest.TestCase):
             got_block[0].dump_json(),
             {
                 "address": "atakan123321",
-                "balance": 1000000000,
+                "balance": 10000000,
                 "sequence_number": 0
             },
         )
@@ -699,7 +699,7 @@ class Test_Node(unittest.TestCase):
             got_block[0].dump_json(),
             {
                 "address": "atakan123321",
-                "balance": 1000000000,
+                "balance": 10000000,
                 "sequence_number": 0
             },
         )
