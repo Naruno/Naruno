@@ -235,7 +235,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
         self.assertEqual(
             result,
-            "4cbc6f4516470078ef91f1eb33a0f7e99cc5f95808a3343a3e256cfee657d6f8")
+            "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96")
 
     def test_block_AccountsHash_enough_for_parting(self):
         block = Block("onur")
@@ -248,7 +248,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
         self.assertEqual(
             result,
-            "4cbc6f4516470078ef91f1eb33a0f7e99cc5f95808a3343a3e256cfee657d6f8")
+            "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96")
 
     def test_block_CalculateHash(self):
         block = Block("onur")
@@ -271,7 +271,7 @@ class Test_Blockchain(unittest.TestCase):
         )
         self.assertEqual(the_blocks_hash, [])
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        true_hash = "873a38de099d3d779b66c45537bc1d1865a506a59573a669d2fdbfca67d3634b"
+        true_hash = "c15854169ac8d9f49e0ed085c0135c68520aeda804404023939a5dbf3af936e9"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
 
