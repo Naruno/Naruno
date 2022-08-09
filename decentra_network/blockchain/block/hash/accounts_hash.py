@@ -12,8 +12,7 @@ def AccountsHash(block, the_accounts):
     Calculates and returns the hash of the accounts.
     """
 
-    account_list = MerkleTree(
-        [account.get_hash() for account in the_accounts]
-    ).getRootHash()
+    account_list = MerkleTree([account.get_hash()
+                               for account in the_accounts]).getRootHash()
 
     return MerkleTree(account_list).getRootHash()
