@@ -7,10 +7,14 @@
 import time
 
 from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.lib.log import get_logger
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+
+from decentra_network.consensus.rounds.round_2.checks.checks_main import round_check
+
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
@@ -37,12 +41,8 @@ def consensus_round_2(block):
 
     candidate_class = GetCandidateBlocks()
 
-    time_difference = int(time.time()) - block.round_2_starting_time
 
-    if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80) / 100):
-        logger.info("Enough candidate block hashes received")
-
-        if time_difference > block.round_2_time:
+    if round_check(block, candidate_class, unl_nodes):
             logger.info("True time")
 
             for candidate_block in candidate_class.candidate_block_hashes[:]:
