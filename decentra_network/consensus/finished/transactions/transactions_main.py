@@ -9,12 +9,15 @@ from decentra_network.blockchain.block.block_main import Block
 
 
 from decentra_network.lib.log import get_logger
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from decentra_network.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
+from decentra_network.transactions.my_transactions.validate_transaction import (
+    ValidateTransaction,
+)
 
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
@@ -36,10 +39,10 @@ def transactions_main(block: Block) -> list:
     for tx in block.validating_list:
         if tx.toUser == my_address:
             new_my_transactions_list = SavetoMyTransaction(
-                tx,
-                validated=True,
-                custom_currently_list=custom_currently_list)
+                tx, validated=True, custom_currently_list=custom_currently_list
+            )
         elif tx.fromUser == my_public_key:
             new_my_transactions_list = ValidateTransaction(
-                tx, custom_currently_list=custom_currently_list)
+                tx, custom_currently_list=custom_currently_list
+            )
     return new_my_transactions_list

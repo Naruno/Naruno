@@ -7,10 +7,8 @@
 
 from decentra_network.blockchain.block.block_main import Block
 
-from decentra_network.consensus.rounds.round_1.checks.checks_main import \
-    round_check
-from decentra_network.consensus.rounds.round_1.process.process_main import \
-    round_process
+from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
+from decentra_network.consensus.rounds.round_1.process.process_main import round_process
 from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
@@ -37,7 +35,8 @@ def consensus_round_1(block: Block) -> bool:
 
     unl_nodes = Unl.get_unl_nodes()
     candidate_class = GetCandidateBlocks(
-        custom_nodes_list=Unl.get_as_node_type(unl_nodes))
+        custom_nodes_list=Unl.get_as_node_type(unl_nodes)
+    )
 
     if round_check(block, candidate_class, unl_nodes):
         round_process(block, candidate_class, unl_nodes)
