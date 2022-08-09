@@ -28,13 +28,14 @@ from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS")
 
+
 def true_time(block: Block) -> bool:
     the_time = (
         block.genesis_time
         + block.block_time
         + ((block.sequance_number + block.empty_block_number) * block.block_time)
     )
-    if int(time.time()) >= the_time:    
+    if int(time.time()) >= the_time:
         return True
     else:
         return False

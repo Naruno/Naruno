@@ -34,6 +34,7 @@ from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS")
 
+
 def finished_main(block: Block) -> None:
     if true_time(block):
         block.newly = False
@@ -46,5 +47,5 @@ def finished_main(block: Block) -> None:
             transactions_main(block2)
             SaveBlockshash(current_blockshash_list)
             SaveBlockstoBlockchainDB(block2)
-        PendingtoValidating(block)            
+        PendingtoValidating(block)
         SaveBlock(block)

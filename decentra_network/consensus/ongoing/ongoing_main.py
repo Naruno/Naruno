@@ -31,6 +31,7 @@ from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS")
 
+
 def ongoing_main(block: Block) -> None:
 
     if not block.round_1:

@@ -35,11 +35,8 @@ def consensus_round_2(block):
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting"
     )
 
-
-    
     unl_nodes = Unl.get_unl_nodes()
     candidate_class = GetCandidateBlocks()
-
 
     if round_check(block, candidate_class, unl_nodes):
         round_process(block, candidate_class, unl_nodes)

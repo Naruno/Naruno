@@ -29,11 +29,11 @@ logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 def rescue_main(block: Block, candidate_block_hash: dict, unl_nodes: dict):
 
-                        sender = candidate_block_hash["sender"]
-                        logger.warning(
-                            f"Our block is not valid, the system will try to get true block from decentra_network.node {sender}"
-                        )
-                        node = server.Server
-                        unl_list = Unl.get_as_node_type([sender])
-                        node.send_client(unl_list[0],  {"action":"sendmefullblock"})
-                        block.dowload_true_block = sender
+    sender = candidate_block_hash["sender"]
+    logger.warning(
+        f"Our block is not valid, the system will try to get true block from decentra_network.node {sender}"
+    )
+    node = server.Server
+    unl_list = Unl.get_as_node_type([sender])
+    node.send_client(unl_list[0], {"action": "sendmefullblock"})
+    block.dowload_true_block = sender

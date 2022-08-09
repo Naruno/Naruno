@@ -31,15 +31,15 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
 def find_newly(block: Block, temp_validating_list: list):
-            newly_added_list = []
+    newly_added_list = []
 
-            for my_validating_list in block.validating_list[:]:
-                ok = any(
-                    (my_validating_list.signature == my_temp_validating_list.signature)
-                    for my_temp_validating_list in temp_validating_list[:]
-                )
+    for my_validating_list in block.validating_list[:]:
+        ok = any(
+            (my_validating_list.signature == my_temp_validating_list.signature)
+            for my_temp_validating_list in temp_validating_list[:]
+        )
 
-                block.validating_list.remove(my_validating_list)
-                if not ok:
-                    newly_added_list.append(my_validating_list)
-            return newly_added_list
+        block.validating_list.remove(my_validating_list)
+        if not ok:
+            newly_added_list.append(my_validating_list)
+    return newly_added_list

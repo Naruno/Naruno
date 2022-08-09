@@ -32,21 +32,20 @@ from decentra_network.consensus.rounds.round_1.process.transactions.find_validat
 from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import find_newly
 
 
-
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
 def transactions_main(block: Block, candidate_class: candidate_block, unl_nodes: dict) -> list:
-            temp_validating_list = find_validated(block, candidate_class = candidate_class, unl_nodes=unl_nodes)
-            
+    temp_validating_list = find_validated(
+        block, candidate_class=candidate_class, unl_nodes=unl_nodes)
 
+    newly_added_list = find_newly(
+        block, temp_validating_list=temp_validating_list)
 
-            newly_added_list = find_newly(block, temp_validating_list = temp_validating_list)
-            
-            block.validating_list = temp_validating_list
+    block.validating_list = temp_validating_list
 
-            logger.debug(f"Newly validating list {block.validating_list}")
+    logger.debug(f"Newly validating list {block.validating_list}")
 
-            for each_newly in newly_added_list:
-                if GetTransaction(block, each_newly):
-                    server.send_transaction(each_newly)
+    for each_newly in newly_added_list:
+        if GetTransaction(block, each_newly):
+            server.send_transaction(each_newly)

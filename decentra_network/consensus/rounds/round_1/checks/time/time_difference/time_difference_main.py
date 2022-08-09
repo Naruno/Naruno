@@ -33,4 +33,3 @@ def time_difference_check(block: Block) -> bool:
         return True
     else:
         return False
-

@@ -37,6 +37,7 @@ from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.lib.clean_up import CleanUp_tests
 
+
 class Test_Transactions(unittest.TestCase):
 
     @classmethod
@@ -147,10 +148,12 @@ class Test_Transactions(unittest.TestCase):
 
         pending_transactions = GetPending()
 
-        transaction_1_true = any(element.signature == temp_transaction.signature for element in pending_transactions)
-        transaction_2_true = any(element.signature == temp_transaction_2.signature for element in pending_transactions)
-        transaction_3_true = any(element.signature == temp_transaction_3.signature for element in pending_transactions)
-
+        transaction_1_true = any(
+            element.signature == temp_transaction.signature for element in pending_transactions)
+        transaction_2_true = any(
+            element.signature == temp_transaction_2.signature for element in pending_transactions)
+        transaction_3_true = any(
+            element.signature == temp_transaction_3.signature for element in pending_transactions)
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
@@ -176,9 +179,10 @@ class Test_Transactions(unittest.TestCase):
 
         pending_transactions = GetPending()
 
-
-        transaction_1_true = any(element.signature == temp_transaction.signature for element in pending_transactions)
-        transaction_2_true = any(element.signature == temp_transaction_2.signature for element in pending_transactions)
+        transaction_1_true = any(
+            element.signature == temp_transaction.signature for element in pending_transactions)
+        transaction_2_true = any(
+            element.signature == temp_transaction_2.signature for element in pending_transactions)
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
@@ -201,7 +205,8 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block, custom_pending_transactions=[temp_transaction])
+        ChangeTransactionFee(
+            block, custom_pending_transactions=[temp_transaction])
 
         new_transaction_fee = block.transaction_fee
 
@@ -219,10 +224,10 @@ class Test_Transactions(unittest.TestCase):
 
         temp_transaction = Transaction(1, "10", "", "", "", 1, 1, 1)
 
-
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(block, custom_pending_transactions=[temp_transaction])
+        ChangeTransactionFee(
+            block, custom_pending_transactions=[temp_transaction])
 
         new_transaction_fee = block.transaction_fee
 
@@ -951,7 +956,7 @@ class Test_Transactions(unittest.TestCase):
             custom_sequence_number=0,
             custom_balance=100000,
         )
-        
+
         self.assertNotEqual(result, False)
         DeletePending(result)
 
@@ -1134,7 +1139,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(account_list[6].Address, "teaaast")
         self.assertEqual(account_list[6].sequance_number, 0)
 
-
     def test_SavePending_GetPending_DeletePending(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -1156,7 +1160,7 @@ class Test_Transactions(unittest.TestCase):
         for pending in pending_list:
             if pending.signature == the_transaction.signature:
                 result = True
-        
+
         DeletePending(the_transaction)
         self.assertEqual(result, True)
 

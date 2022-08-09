@@ -34,20 +34,21 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 def round_process(block: Block, candidate_class: candidate_block, unl_nodes: dict):
 
-            transactions_main(block, candidate_class = candidate_class, unl_nodes=unl_nodes)
+    transactions_main(block, candidate_class=candidate_class,
+                      unl_nodes=unl_nodes)
 
-            block.round_1 = True
-            block.round_2_starting_time = int(time.time())
+    block.round_1 = True
+    block.round_2_starting_time = int(time.time())
 
-            account_list = GetAccounts()
-            ProccesstheTransaction(block, account_list)
-            SaveAccounts(account_list)
+    account_list = GetAccounts()
+    ProccesstheTransaction(block, account_list)
+    SaveAccounts(account_list)
 
-            part_of_blocks_hash = GetBlockshash_part()
-            the_blocks_hash = GetBlockshash()
-            block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash, account_list)
+    part_of_blocks_hash = GetBlockshash_part()
+    the_blocks_hash = GetBlockshash()
+    block.hash = CalculateHash(
+        block, part_of_blocks_hash, the_blocks_hash, account_list)
 
+    logger.debug(f"Block hash {block.hash}")
 
-            logger.debug(f"Block hash {block.hash}")
-
-            SaveBlock(block)
+    SaveBlock(block)
