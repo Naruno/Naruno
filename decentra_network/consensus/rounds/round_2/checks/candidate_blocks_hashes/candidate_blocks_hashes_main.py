@@ -25,7 +25,7 @@ from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_
 
 from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
 
-logger = get_logger("CONSENSUS_FIRST_ROUND")
+logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
 def candidate_blocks_hashes_check(candidate_class: candidate_block, unl_nodes: dict) -> bool:
