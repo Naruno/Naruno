@@ -15,9 +15,7 @@ def PendingtoValidating(block):
     if there are suitable conditions.
     """
 
-    if (
-        len(block.validating_list) < block.max_tx_number
-    ):
+    if len(block.validating_list) < block.max_tx_number:
         for tx in GetPending():
             if len(block.validating_list) < block.max_tx_number:
                 block.validating_list.append(tx)

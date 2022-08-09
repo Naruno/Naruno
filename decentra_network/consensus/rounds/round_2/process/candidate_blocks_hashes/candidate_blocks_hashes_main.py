@@ -21,15 +21,21 @@ from decentra_network.node.unl import Unl
 
 from decentra_network.consensus.rounds.round_2.checks.checks_main import round_check
 
-from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 from decentra_network.blockchain.block.block_main import Block
 
-from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import rescue_main
+from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import (
+    rescue_main,
+)
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def process_candidate_blocks_hashes(block: Block, candidate_class: candidate_block, unl_nodes: dict):
+def process_candidate_blocks_hashes(
+    block: Block, candidate_class: candidate_block, unl_nodes: dict
+):
     for candidate_block_hash in candidate_class.candidate_block_hashes[:]:
         logger.debug(f"Candidate block hash {candidate_block_hash}")
 

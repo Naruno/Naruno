@@ -28,7 +28,9 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 from decentra_network.consensus.time.true_time.true_time import true_time
 
-from decentra_network.consensus.finished.transactions.transactions_main import transactions_main
+from decentra_network.consensus.finished.transactions.transactions_main import (
+    transactions_main,
+)
 
 from decentra_network.blockchain.block.block_main import Block
 

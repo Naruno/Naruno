@@ -52,8 +52,10 @@ def transactions_main(block: Block) -> list:
     for tx in block.validating_list:
         if tx.toUser == my_address:
             new_my_transactions_list = SavetoMyTransaction(
-                tx, validated=True, custom_currently_list=custom_currently_list)
+                tx, validated=True, custom_currently_list=custom_currently_list
+            )
         elif tx.fromUser == my_public_key:
             new_my_transactions_list = ValidateTransaction(
-                tx, custom_currently_list=custom_currently_list)
+                tx, custom_currently_list=custom_currently_list
+            )
     return new_my_transactions_list

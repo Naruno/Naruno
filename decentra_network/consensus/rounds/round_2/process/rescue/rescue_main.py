@@ -21,7 +21,9 @@ from decentra_network.node.unl import Unl
 
 from decentra_network.consensus.rounds.round_2.checks.checks_main import round_check
 
-from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")

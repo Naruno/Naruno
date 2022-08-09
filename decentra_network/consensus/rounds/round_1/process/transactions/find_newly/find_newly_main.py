@@ -23,7 +23,9 @@ from decentra_network.transactions.process_the_transaction import ProccesstheTra
 
 from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
 
-from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 
 from decentra_network.blockchain.block.block_main import Block
 

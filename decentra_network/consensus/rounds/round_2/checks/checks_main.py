@@ -11,18 +11,26 @@ from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.lib.log import get_logger
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 
 from decentra_network.blockchain.block.block_main import Block
 
-from decentra_network.consensus.rounds.round_2.checks.time.time_difference.time_difference_main import time_difference_check
-from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import candidate_blocks_hashes_check
+from decentra_network.consensus.rounds.round_2.checks.time.time_difference.time_difference_main import (
+    time_difference_check,
+)
+from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import (
+    candidate_blocks_hashes_check,
+)
 
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def round_check(block: Block, candidate_class: candidate_block, unl_nodes: dict) -> bool:
+def round_check(
+    block: Block, candidate_class: candidate_block, unl_nodes: dict
+) -> bool:
     if not candidate_blocks_hashes_check(candidate_class, unl_nodes):
         return False
     if not time_difference_check(block=block):

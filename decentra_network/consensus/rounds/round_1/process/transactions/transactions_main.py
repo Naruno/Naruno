@@ -23,24 +23,32 @@ from decentra_network.transactions.process_the_transaction import ProccesstheTra
 
 from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
 
-from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 
 from decentra_network.blockchain.block.block_main import Block
 
-from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import find_validated
+from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import (
+    find_validated,
+)
 
-from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import find_newly
+from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import (
+    find_newly,
+)
 
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def transactions_main(block: Block, candidate_class: candidate_block, unl_nodes: dict) -> list:
+def transactions_main(
+    block: Block, candidate_class: candidate_block, unl_nodes: dict
+) -> list:
     temp_validating_list = find_validated(
-        block, candidate_class=candidate_class, unl_nodes=unl_nodes)
+        block, candidate_class=candidate_class, unl_nodes=unl_nodes
+    )
 
-    newly_added_list = find_newly(
-        block, temp_validating_list=temp_validating_list)
+    newly_added_list = find_newly(block, temp_validating_list=temp_validating_list)
 
     block.validating_list = temp_validating_list
 

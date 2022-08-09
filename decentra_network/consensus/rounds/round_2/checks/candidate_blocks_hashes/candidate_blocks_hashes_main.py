@@ -21,14 +21,20 @@ from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
 
-from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import time_difference_check
+from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import (
+    time_difference_check,
+)
 
-from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def candidate_blocks_hashes_check(candidate_class: candidate_block, unl_nodes: dict) -> bool:
+def candidate_blocks_hashes_check(
+    candidate_class: candidate_block, unl_nodes: dict
+) -> bool:
     if len(candidate_class.candidate_block_hashes) > ((len(unl_nodes) * 80) / 100):
         return True
     else:

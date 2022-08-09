@@ -21,9 +21,13 @@ from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
 
-from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import time_difference_check
+from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import (
+    time_difference_check,
+)
 
-from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 

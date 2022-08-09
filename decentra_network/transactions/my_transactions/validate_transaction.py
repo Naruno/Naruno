@@ -28,8 +28,9 @@ def ValidateTransaction(tx: Transaction, custom_currently_list: list = None) -> 
         The list of the my transactions.
     """
 
-    custom_currently_list = GetMyTransaction(
-    ) if custom_currently_list is None else custom_currently_list
+    custom_currently_list = (
+        GetMyTransaction() if custom_currently_list is None else custom_currently_list
+    )
     for i in custom_currently_list:
         if i[0].signature == tx.signature:
             i[1] = True
