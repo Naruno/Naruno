@@ -24,22 +24,15 @@ from decentra_network.consensus.rounds.round_2.checks.checks_main import round_c
 from decentra_network.blockchain.candidate_block.candidate_block_main import candidate_block
 from decentra_network.blockchain.block.block_main import Block
 
-from decentra_network.consensus.rounds.round_2.process.validate.validate_main import validate_main
 from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import rescue_main
-
 
 from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import process_candidate_blocks_hashes
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def round_process(block: Block, candidate_class: candidate_block, unl_nodes: dict):
-
-            candidate_block_hash = process_candidate_blocks_hashes(block, candidate_class, unl_nodes)
-
-            if block.hash == candidate_block_hash["hash"]:
-                validate_main(block)
-            else:
-                rescue_main(block, candidate_block_hash, unl_nodes)
-                        
-            SaveBlock(block)
+def validate_main(block: Block):
+    logger.info("Block approved")
+    block.validated = True
+    block.validated_time = int(time.time())
+    block.round_2 = True
