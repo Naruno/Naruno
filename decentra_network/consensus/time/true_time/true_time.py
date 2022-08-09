@@ -7,6 +7,7 @@
 import time
 
 from decentra_network.lib.log import get_logger
+from decentra_network.blockchain.block.block_main import Block
 
 logger = get_logger("CONSENSUS")
 
