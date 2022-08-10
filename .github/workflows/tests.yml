@@ -18,7 +18,10 @@ on:
       - 'decentra_network/**'  
       - 'requirements/**'
       - 'tests/**'
-      - 'auto_builders/**'      
+      - 'auto_builders/**'   
+  release:
+    types: [published]   
+  workflow_dispatch:
 
 jobs:
   lint_with_flake8:
