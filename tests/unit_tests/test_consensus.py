@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 import time
@@ -16,7 +17,6 @@ from decentra_network.consensus.time.true_time.true_time_main import true_time
 
 
 class Test_Consensus(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
