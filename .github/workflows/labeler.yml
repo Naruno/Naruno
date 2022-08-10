@@ -5,6 +5,9 @@ on:
   pull_request_target:
     types: [opened, edited]
 
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 jobs:
 
   labeler:

@@ -31,6 +31,9 @@ on:
 permissions:
   contents: read
 
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   OSSAR-Scan:
     # OSSAR runs on windows-latest.
