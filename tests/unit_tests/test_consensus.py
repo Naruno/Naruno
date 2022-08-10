@@ -8,12 +8,12 @@ import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-import unittest
 import time
+import unittest
 
-from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.consensus.time.true_time.true_time_main import true_time
+from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_Consensus(unittest.TestCase):
