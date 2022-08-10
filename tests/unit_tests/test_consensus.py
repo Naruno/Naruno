@@ -17,6 +17,7 @@ from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_Consensus(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
