@@ -14,6 +14,7 @@ from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -42,5 +43,6 @@ class Test_Consensus(unittest.TestCase):
         block.empty_block_number = 0
         time.sleep(1)
         self.assertTrue(true_time(block=block))
+
 
 unittest.main(exit=False)
