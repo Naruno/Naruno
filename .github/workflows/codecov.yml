@@ -21,6 +21,9 @@ on:
       - 'requirements/**'
       - 'tests/**'
       - 'auto_builders/**'      
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   run:
     runs-on: ${{ matrix.os }}

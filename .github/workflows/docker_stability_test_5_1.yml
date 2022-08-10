@@ -5,6 +5,9 @@ on:
       types: [published]
   workflow_dispatch:
 
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 jobs:
 
   build1:
