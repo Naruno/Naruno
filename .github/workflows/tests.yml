@@ -172,7 +172,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/functional_tests/local/test_decentra_network_local.py') }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/functional_tests/local/test_decentra_network_local.py') }}
 
     - name: Install dependencies and run tests
       run: |
@@ -216,7 +216,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('Decentra-Network/tests/functional_tests/docker/test_decentra_network_docker.py') }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/functional_tests/docker/test_decentra_network_docker.py') }}
 
     - name: Install dependencies and run tests
       run: |
