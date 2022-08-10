@@ -177,9 +177,11 @@ jobs:
         path: ${{ env.pythonLocation }}
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/functional_tests/local/test_decentra_network_local.py') }}
 
-    - name: Install dependencies and run tests
+    - name: Install dependencies
       run: |
         pip install pytest
+    - name: Test with pytest
+      run: |      
         cd ..
         pytest Decentra-Network/tests/functional_tests/local/test_decentra_network_local.py
     - name: Status Information
@@ -221,9 +223,11 @@ jobs:
         path: ${{ env.pythonLocation }}
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/functional_tests/docker/test_decentra_network_docker.py') }}
 
-    - name: Install dependencies and run tests
+    - name: Install dependencies
       run: |
         pip install pytest
+    - name: Test with pytest
+      run: |        
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/functional_tests/docker/test_decentra_network_docker.py
