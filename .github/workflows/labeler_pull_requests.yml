@@ -1,12 +1,10 @@
-name: Labeler
-on: 
-  issues:
-    types: [opened, edited]
+name: Labeler Pull Request
+on:
   pull_request_target:
     types: [opened, edited]
 
 concurrency: 
-  group: ${{ github.head_ref || github.run_id }}
+  group: ${{ github.ref }}
   cancel-in-progress: true
 jobs:
 
