@@ -32,7 +32,7 @@ on:
     - cron: '22 14 * * 5'
 
 concurrency: 
-  group: ${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   analyze:
