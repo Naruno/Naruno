@@ -37,7 +37,7 @@ class client(Thread):
         self.socket.settimeout(3.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
-                data = self.socket.recv(6425)
+                data = self.socket.recv(24825)
                 logger.info(
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}"
                 )            

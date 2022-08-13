@@ -182,7 +182,7 @@ class server(Thread):
         if not ready_to_send:
             data = self.prepare_message(data)
 
-
+        print(len(json.dumps(data).encode("utf-8")))
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         time.sleep(1)        
         return data
@@ -401,7 +401,7 @@ class server(Thread):
 
         the_TEMP_ACCOUNTS_PATH = self.TEMP_ACCOUNTS_PATH
         file = open(the_TEMP_ACCOUNTS_PATH, "rb")
-        SendData = file.read(1024)
+        SendData = file.read(4096)
         while SendData:
 
             data = {
@@ -415,7 +415,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(1024)
+            SendData = file.read(4096)
             if not SendData:
                 data = {"action": "fullaccounts", "byte": "end"}
                 if node is None:
@@ -651,7 +651,8 @@ class server(Thread):
         """
         Sends the block to the other nodes.
         """
-        self.send_full_chain(node=node)
         self.send_full_blockshash(node=node)
         self.send_full_blockshash_part(node=node)
         self.send_full_accounts(node=node)
+        time.sleep(1)
+        self.send_full_chain(node=node)
