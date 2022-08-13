@@ -94,7 +94,8 @@ class Test_Consensus(unittest.TestCase):
             result[result.index(each_result)][0] = result[result.index(
                 each_result)][0].dump_json()
         SaveMyTransaction(backup)
-        self.assertEqual(result, [[the_transaction.dump_json(), True], [the_transaction_2.dump_json(), True]])
+        self.assertEqual(result, [[the_transaction.dump_json(), True], [
+                         the_transaction_2.dump_json(), True]])
 
 
 unittest.main(exit=False)
