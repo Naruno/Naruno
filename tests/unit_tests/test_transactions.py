@@ -297,7 +297,7 @@ class Test_Transactions(unittest.TestCase):
         block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction[1] = 2
+        the_transaction.sequance_number = 2
         result = CheckTransaction(
             block,
             the_transaction,
@@ -740,7 +740,7 @@ class Test_Transactions(unittest.TestCase):
         block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction[1] = "1"
+        the_transaction.sequance_number = "1"
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
 
