@@ -15,7 +15,7 @@ from decentra_network.blockchain.block.blocks_hash import GetBlockshash
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
-from decentra_network.config import BLOCKS_PATH
+from decentra_network.config import BLOCKS_PATH, TEMP_ACCOUNTS_PATH
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 
@@ -51,7 +51,9 @@ def SaveBlockstoBlockchainDB(
         )
         SaveBlock(block, (the_BLOCKS_PATH + str(block.sequance_number) + ".block.json"))
 
-        shutil.copyfile(custom_TEMP_ACCOUNTS_PATH, (the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.db"))
+        the_TEMP_ACCOUNTS_PATH = TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH is None else custom_TEMP_ACCOUNTS_PATH
+
+        shutil.copyfile(the_TEMP_ACCOUNTS_PATH, (the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.db"))
 
         SaveBlockshash(
             GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
