@@ -5,11 +5,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+import sqlite3
 
 from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.lib.config_system import get_config
-
-import sqlite3
 
 
 def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None):

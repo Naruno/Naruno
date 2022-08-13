@@ -6,10 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           GetBlockshash_part)
+from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.config import BLOCKS_PATH
 
 

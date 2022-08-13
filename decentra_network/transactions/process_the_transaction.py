@@ -8,11 +8,10 @@
 import sqlite3
 import traceback
 
-
-from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
+from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
