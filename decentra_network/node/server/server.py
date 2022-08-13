@@ -183,7 +183,7 @@ class server(Thread):
             data = self.prepare_message(data)
 
         print(len(json.dumps(data).encode("utf-8")))
-        node.socket.sendall(json.dumps(data).encode("utf-8"))      
+        node.socket.sendall(json.dumps(data).encode("utf-8"))
         return data
 
     def get_message(self, client, data):
@@ -407,7 +407,6 @@ class server(Thread):
                 "action": "fullaccounts",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
             }
-
 
             if node is None:
                 self.send(data)

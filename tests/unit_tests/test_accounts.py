@@ -81,7 +81,6 @@ class Test_Accounts(unittest.TestCase):
         the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
                                 1)
 
-
         temp_path = "db/test_GetBalance_not_list_account.db"
 
         SaveAccounts(the_account, temp_path)
@@ -105,7 +104,6 @@ class Test_Accounts(unittest.TestCase):
                                 1)
         the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
                                 1)
-
 
         temp_path = "db/test_GetBalance_not_list_account.db"
 
@@ -157,7 +155,6 @@ class Test_Accounts(unittest.TestCase):
         the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
                                 3)
 
-
         temp_path = "db/test_GetSequanceNumber.db"
 
         SaveAccounts(the_account, temp_path)
@@ -193,13 +190,13 @@ class Test_Accounts(unittest.TestCase):
         result = GetAccounts(temp_path)
         result.execute("SELECT * FROM account_list")
         result_list = result.fetchall()
-        account_list = [('dbd811a12104827240153c8fd2f25a294a851ec8', 1, 10), ('15562b06dc6b1acd6e8c86031e564e0c451c7a73', 2, 15), ('7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1', 3, 20)]
+        account_list = [('dbd811a12104827240153c8fd2f25a294a851ec8', 1, 10), (
+            '15562b06dc6b1acd6e8c86031e564e0c451c7a73', 2, 15), ('7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1', 3, 20)]
         self.assertEqual(len(result_list), len(account_list))
         for i in range(3):
             self.assertEqual(result_list[i][0], account_list[i][0])
             self.assertEqual(result_list[i][1], account_list[i][1])
             self.assertEqual(result_list[i][2], account_list[i][2])
-
 
 
 unittest.main(exit=False)

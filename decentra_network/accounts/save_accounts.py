@@ -11,6 +11,7 @@ from decentra_network.lib.config_system import get_config
 
 import sqlite3
 
+
 def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None):
     """
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
@@ -21,12 +22,12 @@ def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None):
         if custom_TEMP_ACCOUNTS_PATH is None
         else custom_TEMP_ACCOUNTS_PATH
     )
-    os.chdir(get_config()["main_folder"])    
+    os.chdir(get_config()["main_folder"])
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
-    c = conn.cursor()        
+    c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS account_list (address text, sequance_number integer, balance integer)''')
 
-    c.execute("INSERT INTO account_list VALUES (?,?,?)", ( new_account.Address, new_account.sequance_number, new_account.balance))
+    c.execute("INSERT INTO account_list VALUES (?,?,?)",
+              (new_account.Address, new_account.sequance_number, new_account.balance))
     conn.commit()
     conn.close()
-    

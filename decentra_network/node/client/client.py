@@ -40,17 +40,18 @@ class client(Thread):
                 data = self.socket.recv(54825)
                 logger.info(
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}"
-                )            
-                data = data.decode("utf-8")           
+                )
+                data = data.decode("utf-8")
                 try:
                     data = json.loads(data.replace("\'", "\""))
                     self.server.get_message(self, data)
                 except json.decoder.JSONDecodeError:
-                    
+
                     splited_data = re.split(r"(?<=})\B(?={)", data)
-                    
+
                     for i in splited_data:
-                        self.server.get_message(self, json.loads(i.replace("\'", "\"")))
+                        self.server.get_message(
+                            self, json.loads(i.replace("\'", "\"")))
 
             time.sleep(0.01)
 

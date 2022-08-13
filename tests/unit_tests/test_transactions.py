@@ -46,6 +46,7 @@ from decentra_network.transactions.transaction import Transaction
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
 
+
 class Test_Transactions(unittest.TestCase):
 
     @classmethod
@@ -1056,9 +1057,11 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list = [the_transaction, the_transaction_2]
         temp_path = "db/test_ProccesstheTransaction_validating_list.db"
 
-        SaveAccounts(Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000), temp_path)
+        SaveAccounts(
+            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000), temp_path)
         account_list = GetAccounts(temp_path)
-        result = ProccesstheTransaction(block, account_list, custom_TEMP_ACCOUNTS_PATH=temp_path)
+        result = ProccesstheTransaction(
+            block, account_list, custom_TEMP_ACCOUNTS_PATH=temp_path)
         self.assertEqual(block.validating_list,
                          [the_transaction_2, the_transaction])
 
@@ -1106,15 +1109,21 @@ class Test_Transactions(unittest.TestCase):
 
         temp_path = "db/test_ProccesstheTransaction_account_list.db"
 
-        SaveAccounts(Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000), temp_path)
-        SaveAccounts(Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000), temp_path)
-        SaveAccounts(Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000), temp_path)
-        SaveAccounts(Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000), temp_path)
-        SaveAccounts(Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000), temp_path)
+        SaveAccounts(
+            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000), temp_path)
+        SaveAccounts(
+            Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000), temp_path)
+        SaveAccounts(
+            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000), temp_path)
+        SaveAccounts(
+            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000), temp_path)
+        SaveAccounts(
+            Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000), temp_path)
 
         account_list = GetAccounts(temp_path)
 
-        result = ProccesstheTransaction(block, account_list, custom_TEMP_ACCOUNTS_PATH=temp_path)
+        result = ProccesstheTransaction(
+            block, account_list, custom_TEMP_ACCOUNTS_PATH=temp_path)
         account_list = GetAccounts(temp_path)
         account_list.execute(f"SELECT * FROM account_list")
         account_list = account_list.fetchall()

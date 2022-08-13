@@ -32,8 +32,6 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
 
     new_added_accounts_list = []
     account_list = []
-    
-
 
     for trans in block.validating_list:
 
@@ -41,13 +39,16 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
         to_user_in_new_list = False
 
         address_of_fromUser = Address(trans.fromUser)
-        the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{address_of_fromUser}'")
+        the_account_list.execute(
+            f"SELECT * FROM account_list WHERE address = '{address_of_fromUser}'")
         first_list = the_account_list.fetchall()
-        the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
+        the_account_list.execute(
+            f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
         second_list = the_account_list.fetchall()
 
         for the_pulled_account in first_list + second_list:
-            account_list.append(Account(the_pulled_account[0], the_pulled_account[2], the_pulled_account[1]))
+            account_list.append(
+                Account(the_pulled_account[0], the_pulled_account[2], the_pulled_account[1]))
         for Accounts in account_list:
             touser_inlist = False
             if Accounts.Address == address_of_fromUser:
@@ -62,9 +63,9 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
                 break
 
         for i in new_added_accounts_list:
-                if i.Address == trans.toUser:
-                    i.balance += float(trans.amount)
-                    to_user_in_new_list = True
+            if i.Address == trans.toUser:
+                i.balance += float(trans.amount)
+                to_user_in_new_list = True
 
             # If not included in the account_list, add.
         if not touser_inlist and not to_user_in_new_list:
@@ -79,12 +80,11 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
     new_added_accounts_list = sorted(new_added_accounts_list,
                                      key=lambda x: x.Address)
 
-
-
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
     c = conn.cursor()
     for changed_account in from_user_list + to_user_list:
-        c.execute(f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'")
+        c.execute(
+            f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'")
         conn.commit()
     conn.close()
 
