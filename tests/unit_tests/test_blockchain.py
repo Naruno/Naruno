@@ -14,6 +14,7 @@ import unittest
 
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
                                                            GetBlockshash_part,
@@ -295,15 +296,17 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        the_accounts = GetAccounts(
+        the_accounts_c = GetAccounts(
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+        the_accounts_c.execute("SELECT * FROM account_list")
+        the_accounts = the_accounts_c.fetchall()
         the_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
 
         self.assertEqual(len(the_accounts), 1)
-        self.assertEqual(the_accounts[0].Address, "onur")
-        self.assertEqual(the_accounts[0].balance, block.coin_amount)
-        self.assertEqual(the_accounts[0].sequance_number, 0)
+        self.assertEqual(the_accounts[0][0], "onur")
+        self.assertEqual(the_accounts[0][2], block.coin_amount)
+        self.assertEqual(the_accounts[0][1], 0)
 
         self.assertEqual(len(the_blocks_hash), 1)
         self.assertEqual(the_blocks_hash[0], block.previous_hash)
@@ -412,9 +415,12 @@ class Test_Blockchain(unittest.TestCase):
         block.validating_list.append(loaded_transaction)
 
         custom_BLOCKS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH.db"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH.json"
+        the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
+                              1)
+        SaveAccounts(the_account, custom_TEMP_ACCOUNTS_PATH)
         SaveBlockstoBlockchainDB(
             block,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
@@ -440,7 +446,11 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(block_2.__dict__, block_2_normal.__dict__)
         self.assertEqual(result[0].validating_list[0].__dict__,
                          block.validating_list[0].__dict__)
-        self.assertEqual(result[1], [])
+        result[1].execute("SELECT * FROM account_list")
+        the_account_list = result[1].fetchall()
+        self.assertEqual(the_account_list[0][0], the_account.Address)
+        self.assertEqual(the_account_list[0][2], the_account.balance)
+        self.assertEqual(the_account_list[0][1], the_account.sequance_number)
         self.assertEqual(result[2], [])
         self.assertEqual(result[3], [])
 

@@ -31,7 +31,7 @@ def SaveBlock(
     logger.info("Saving block to disk")
     if block.first_time:
         SaveAccounts(
-            [Account(block.creator, block.coin_amount)],
+            Account(block.creator, block.coin_amount),
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         )
         SaveBlockshash(

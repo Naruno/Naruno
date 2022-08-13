@@ -7,8 +7,6 @@
 import os
 import sys
 
-from decentra_network.transactions.pending.get_pending import GetPending
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import copy
 import json
@@ -29,6 +27,7 @@ from decentra_network.lib.config_system import get_config
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.transaction import Transaction
 
 
@@ -52,17 +51,17 @@ class Test_Node(unittest.TestCase):
             ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".db", "_0.db").replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".db", "_1.db").replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".db", "_2.db").replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+            ".db", "_0.db").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+            ".db", "_1.db").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+            ".db", "_2.db").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -307,7 +306,7 @@ class Test_Node(unittest.TestCase):
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.replace(
-                ".json", "1.json"),
+                ".db", "1.db"),
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
             replace(".json", "1.json"),
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
@@ -360,15 +359,12 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetAccounts(
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
-
+        got_block.execute("SELECT * FROM account_list")
+        got_block = got_block.fetchall()
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0].dump_json(),
-            {
-                "address": "atakan123321",
-                "balance": 10000000,
-                "sequence_number": 0
-            },
+            got_block[0],
+            ("atakan123321", 0, 10000000),
         )
 
     def test_send_full_blockshash_get_full_blockshash(self):
@@ -448,7 +444,7 @@ class Test_Node(unittest.TestCase):
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.replace(
-                ".json", "4.json"),
+                ".db", "4.db"),
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
             replace(".json", "4.json"),
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
@@ -460,7 +456,7 @@ class Test_Node(unittest.TestCase):
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1.replace(
-                ".json", "4.json"),
+                ".db", "4.db"),
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1.
             replace(".json", "4.json"),
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
@@ -529,14 +525,12 @@ class Test_Node(unittest.TestCase):
         got_block = GetAccounts(
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
 
+        got_block.execute("SELECT * FROM account_list")
+        got_block = got_block.fetchall()
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0].dump_json(),
-            {
-                "address": "atakan123321",
-                "balance": 10000000,
-                "sequence_number": 0
-            },
+            got_block[0],
+            ("atakan123321", 0, 10000000),
         )
 
     def test_send_full_blockshash_get_full_blockshash_already_block(self):
@@ -640,7 +634,7 @@ class Test_Node(unittest.TestCase):
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.replace(
-                ".json", "1.json"),
+                ".db", "1.db"),
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
             replace(".json", "1.json"),
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
@@ -694,14 +688,12 @@ class Test_Node(unittest.TestCase):
         got_block = GetAccounts(
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
 
+        got_block.execute("SELECT * FROM account_list")
+        got_block = got_block.fetchall()
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0].dump_json(),
-            {
-                "address": "atakan123321",
-                "balance": 10000000,
-                "sequence_number": 0
-            },
+            got_block[0],
+            ("atakan123321", 0, 10000000),
         )
 
     def test_send_full_blockshash_get_full_blockshash_all_nodes(self):
@@ -899,7 +891,7 @@ class Test_Node(unittest.TestCase):
         )
         client = self.node_1.clients[0]
         self.node_1.send_me_full_block(client)
-        time.sleep(2)
+        time.sleep(15)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
