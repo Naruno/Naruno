@@ -10,7 +10,7 @@ from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
-def ProccesstheTransaction(block, account_list):
+def ProccesstheTransaction(block, the_account_list):
     """
     It performs the transactions in the block.vali list and
     puts the transactions in order.
@@ -22,13 +22,18 @@ def ProccesstheTransaction(block, account_list):
     temp_validating_list = block.validating_list
 
     new_added_accounts_list = []
+    account_list = []
 
     for trans in block.validating_list:
         touser_inlist = True
         to_user_in_new_list = False
 
         address_of_fromUser = Address(trans.fromUser)
+        the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{address_of_fromUser}'")
+        the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
 
+        for the_pulled_account in the_account_list.fetchall():
+            account_list.append(Account(the_pulled_account[0], the_pulled_account[2], the_pulled_account[1]))
         for Accounts in account_list:
             touser_inlist = False
             if Accounts.Address == address_of_fromUser:
@@ -59,4 +64,8 @@ def ProccesstheTransaction(block, account_list):
 
     new_added_accounts_list = sorted(new_added_accounts_list,
                                      key=lambda x: x.Address)
-    account_list.extend(new_added_accounts_list)
+    for new_added_account in new_added_accounts_list:
+        SaveAccounts(new_added_account)
+    for changed_account in account_list:
+        the_account_list.execute(f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'")
+    the_account_list.commit()

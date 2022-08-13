@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import os
+import sqlite3
 
 from decentra_network.accounts.account import Account
 from decentra_network.config import TEMP_ACCOUNTS_PATH
@@ -24,12 +25,14 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
     )
 
     os.chdir(get_config()["main_folder"])
+    create_table = False
     if not os.path.exists(the_TEMP_ACCOUNTS_PATH):
-        return []
-    with open(the_TEMP_ACCOUNTS_PATH, "r") as block_file:
-        the_accounts_json = json.load(block_file)
+        create_table = True
+    conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
+    c = conn.cursor()
 
-    return [
-        Account.load_json(the_accounts_json[account_json])
-        for account_json in the_accounts_json
-    ]
+    if create_table:
+        c.execute('''CREATE TABLE account_list (address text, sequance_number integer, balance integer)''')
+        conn.commit()
+
+    return c

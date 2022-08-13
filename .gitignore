@@ -5,6 +5,7 @@ bin/
 # Local db
 *.out
 *.json
+*.db
 
 decentra_network/db/blocs/*
 decentra_network/db/pending_transactions/*

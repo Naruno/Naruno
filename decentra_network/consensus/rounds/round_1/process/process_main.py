@@ -44,7 +44,6 @@ def round_process(block: Block, candidate_class: candidate_block,
 
     account_list = GetAccounts()
     ProccesstheTransaction(block, account_list)
-    SaveAccounts(account_list)
 
     part_of_blocks_hash = GetBlockshash_part()
     the_blocks_hash = GetBlockshash()

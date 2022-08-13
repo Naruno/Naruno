@@ -81,7 +81,14 @@ class Test_Accounts(unittest.TestCase):
         the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
                                 1)
 
-        account_list = [the_account, the_account_2, the_account_3]
+
+        temp_path = "db/test_GetBalance_not_list_account.db"
+
+        SaveAccounts(the_account, temp_path)
+        SaveAccounts(the_account_2, temp_path)
+        SaveAccounts(the_account_3, temp_path)
+
+        account_list = GetAccounts(temp_path)
 
         block = Block("alieren")
         block.minumum_transfer_amount = 5
@@ -99,7 +106,14 @@ class Test_Accounts(unittest.TestCase):
         the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
                                 1)
 
-        account_list = [the_account, the_account_2, the_account_3]
+
+        temp_path = "db/test_GetBalance_not_list_account.db"
+
+        SaveAccounts(the_account, temp_path)
+        SaveAccounts(the_account_2, temp_path)
+        SaveAccounts(the_account_3, temp_path)
+
+        account_list = GetAccounts(temp_path)
 
         block = Block("alieren")
         block.minumum_transfer_amount = 5
@@ -123,9 +137,13 @@ class Test_Accounts(unittest.TestCase):
                                 2)
         the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
                                 3)
+        temp_path = "db/test_GetSequanceNumber_not_list_account.db"
 
-        account_list = [the_account, the_account_2, the_account_3]
+        SaveAccounts(the_account, temp_path)
+        SaveAccounts(the_account_2, temp_path)
+        SaveAccounts(the_account_3, temp_path)
 
+        account_list = GetAccounts(temp_path)
         result = GetSequanceNumber("onuratakan", account_list=account_list)
 
         self.assertEqual(result, 0)
@@ -139,7 +157,14 @@ class Test_Accounts(unittest.TestCase):
         the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
                                 3)
 
-        account_list = [the_account, the_account_2, the_account_3]
+
+        temp_path = "db/test_GetSequanceNumber.db"
+
+        SaveAccounts(the_account, temp_path)
+        SaveAccounts(the_account_2, temp_path)
+        SaveAccounts(the_account_3, temp_path)
+
+        account_list = GetAccounts(temp_path)
 
         result = GetSequanceNumber("test_account", account_list=account_list)
         self.assertEqual(result, 1)
@@ -159,28 +184,22 @@ class Test_Accounts(unittest.TestCase):
         the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
                                 3)
 
-        account_list = [the_account, the_account_2, the_account_3]
+        temp_path = "db/test_SaveAccounts_GetAccounts.db"
 
-        temp_path = "db/test_SaveAccounts_GetAccounts.json"
-
-        SaveAccounts(account_list, temp_path)
+        SaveAccounts(the_account, temp_path)
+        SaveAccounts(the_account_2, temp_path)
+        SaveAccounts(the_account_3, temp_path)
 
         result = GetAccounts(temp_path)
-        self.assertEqual(len(result), len(account_list))
-        self.assertEqual(result[0].Address, account_list[0].Address)
-        self.assertEqual(result[0].balance, account_list[0].balance)
-        self.assertEqual(result[0].sequance_number,
-                         account_list[0].sequance_number)
+        result.execute("SELECT * FROM account_list")
+        result_list = result.fetchall()
+        account_list = [('dbd811a12104827240153c8fd2f25a294a851ec8', 1, 10), ('15562b06dc6b1acd6e8c86031e564e0c451c7a73', 2, 15), ('7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1', 3, 20)]
+        self.assertEqual(len(result_list), len(account_list))
+        for i in range(3):
+            self.assertEqual(result_list[i][0], account_list[i][0])
+            self.assertEqual(result_list[i][1], account_list[i][1])
+            self.assertEqual(result_list[i][2], account_list[i][2])
 
-        self.assertEqual(result[1].Address, account_list[1].Address)
-        self.assertEqual(result[1].balance, account_list[1].balance)
-        self.assertEqual(result[1].sequance_number,
-                         account_list[1].sequance_number)
-
-        self.assertEqual(result[2].Address, account_list[2].Address)
-        self.assertEqual(result[2].balance, account_list[2].balance)
-        self.assertEqual(result[2].sequance_number,
-                         account_list[2].sequance_number)
 
 
 unittest.main(exit=False)

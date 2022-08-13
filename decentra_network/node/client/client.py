@@ -37,16 +37,18 @@ class client(Thread):
         self.socket.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
-                data = self.socket.recv(4096)
+                data = self.socket.recv(6425)
                 logger.info(
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}"
-                )
-                data = data.decode("utf-8")
+                )            
+                data = data.decode("utf-8")           
                 try:
                     data = json.loads(data.replace("\'", "\""))
                     self.server.get_message(self, data)
-                except json.JSONDecodeError:
+                except json.decoder.JSONDecodeError:
+                    
                     splited_data = re.split(r"(?<=})\B(?={)", data)
+                    
                     for i in splited_data:
                         self.server.get_message(self, json.loads(i.replace("\'", "\"")))
 
