@@ -30,6 +30,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 
 class Test_Consensus(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -62,8 +63,10 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -88,9 +91,8 @@ class Test_Consensus(unittest.TestCase):
         result = GetMyTransaction()
 
         for each_result in result:
-            result[result.index(each_result)][0] = result[result.index(each_result)][
-                0
-            ].dump_json()
+            result[result.index(each_result)][0] = result[result.index(
+                each_result)][0].dump_json()
         SaveMyTransaction(backup)
         self.assertEqual(
             result,
