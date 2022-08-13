@@ -34,6 +34,5 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
     if create_table:
         c.execute('''CREATE TABLE account_list (address text, sequance_number integer, balance integer)''')
         conn.commit()
-        conn.close()
 
     return c
