@@ -32,9 +32,12 @@ from decentra_network.transactions.process_the_transaction import \
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def round_process(block: Block, candidate_class: candidate_block, unl_nodes: dict):
+def round_process(block: Block, candidate_class: candidate_block,
+                  unl_nodes: dict):
 
-    transactions_main(block, candidate_class=candidate_class, unl_nodes=unl_nodes)
+    transactions_main(block,
+                      candidate_class=candidate_class,
+                      unl_nodes=unl_nodes)
 
     block.round_1 = True
     block.round_2_starting_time = int(time.time())
@@ -44,9 +47,8 @@ def round_process(block: Block, candidate_class: candidate_block, unl_nodes: dic
 
     part_of_blocks_hash = GetBlockshash_part()
     the_blocks_hash = GetBlockshash()
-    block.hash = CalculateHash(
-        block, part_of_blocks_hash, the_blocks_hash, account_list
-    )
+    block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
+                               account_list)
 
     logger.debug(f"Block hash {block.hash}")
 
