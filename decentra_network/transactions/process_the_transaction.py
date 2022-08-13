@@ -4,6 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+import sqlite3
+
+
+from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
@@ -66,6 +71,8 @@ def ProccesstheTransaction(block, the_account_list):
                                      key=lambda x: x.Address)
     for new_added_account in new_added_accounts_list:
         SaveAccounts(new_added_account)
+    conn = sqlite3.connect(TEMP_ACCOUNTS_PATH)
+    c = conn.cursor()
     for changed_account in account_list:
-        the_account_list.execute(f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'")
-    the_account_list.commit()
+        c.execute(f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'")
+    conn.commit()

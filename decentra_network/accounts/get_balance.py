@@ -15,10 +15,9 @@ def GetBalance(block, user, account_list=None):
     """
 
     balance = -block.minumum_transfer_amount
-    user = Address(user)
+    address = Address(user)
     the_account_list = GetAccounts() if account_list is None else account_list
-
-    the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{user}'")
+    the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{address}'")
     for row in the_account_list.fetchall():
         balance += row[2]
     return balance

@@ -32,6 +32,8 @@ def Check_Datas(
                    float(transaction.transaction_fee)):
         logger.info("Balance is valid")
     else:
+        logger.error("Balance is not valid : " + str(balance) + " < " + str((float(transaction.amount) +
+                   float(transaction.transaction_fee))))
         return False
 
     if transaction.amount >= block.minumum_transfer_amount:
