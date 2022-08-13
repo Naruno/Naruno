@@ -1057,8 +1057,8 @@ class Test_Transactions(unittest.TestCase):
         temp_path = "db/test_ProccesstheTransaction_validating_list.db"
 
         SaveAccounts(Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000), temp_path)
-        account_list = GetAccounts(temp_path)        
-        result = ProccesstheTransaction(block, account_list)
+        account_list = GetAccounts(temp_path)
+        result = ProccesstheTransaction(block, account_list, custom_TEMP_ACCOUNTS_PATH=temp_path)
         self.assertEqual(block.validating_list,
                          [the_transaction_2, the_transaction])
 
@@ -1147,12 +1147,12 @@ class Test_Transactions(unittest.TestCase):
                          "6a4236cba1002b2919651677c7c520b67627aa2a")
         self.assertEqual(account_list[3][1], 1)
 
-        self.assertEqual(account_list[4][2], 94999.98)
+        self.assertEqual(account_list[4][2], 99999.98)
         self.assertEqual(account_list[4][0],
                          "d10d419bae75549222c5ffead625a9e0246ad3e6")
         self.assertEqual(account_list[4][1], 1)
 
-        self.assertEqual(account_list[5][2], 50000)
+        self.assertEqual(account_list[5][2], 15000)
         self.assertEqual(account_list[5][0], "onur")
         self.assertEqual(account_list[5][1], 0)
 

@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import sqlite3
+import traceback
 
 
 from decentra_network.config import TEMP_ACCOUNTS_PATH
@@ -26,12 +27,16 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
     the_TEMP_ACCOUNTS_PATH = TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH is None else custom_TEMP_ACCOUNTS_PATH
 
     from_user_list = []
+    to_user_list = []
     temp_validating_list = block.validating_list
 
     new_added_accounts_list = []
     account_list = []
+    
+
 
     for trans in block.validating_list:
+
         touser_inlist = True
         to_user_in_new_list = False
 
@@ -47,16 +52,16 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
             touser_inlist = False
             if Accounts.Address == address_of_fromUser:
                 Accounts.balance -= float(trans.amount) + trans.transaction_fee
-
                 Accounts.sequance_number += 1
                 from_user_list.append(Accounts)
 
             elif Accounts.Address == trans.toUser:
                 Accounts.balance += float(trans.amount)
                 touser_inlist = True
+                to_user_list.append(Accounts)
                 break
 
-            for i in new_added_accounts_list:
+        for i in new_added_accounts_list:
                 if i.Address == trans.toUser:
                     i.balance += float(trans.amount)
                     to_user_in_new_list = True
@@ -78,12 +83,10 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
 
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
     c = conn.cursor()
-    for changed_account in account_list:
+    for changed_account in from_user_list + to_user_list:
         c.execute(f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'")
-        conn.commit()     
-    conn.close()       
+        conn.commit()
+    conn.close()
 
     for new_added_account in new_added_accounts_list:
-        SaveAccounts(new_added_account, the_TEMP_ACCOUNTS_PATH)                         
-
-
+        SaveAccounts(new_added_account, the_TEMP_ACCOUNTS_PATH)
