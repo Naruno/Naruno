@@ -94,39 +94,7 @@ class Test_Consensus(unittest.TestCase):
             result[result.index(each_result)][0] = result[result.index(
                 each_result)][0].dump_json()
         SaveMyTransaction(backup)
-        self.assertEqual(
-            result,
-            [
-                [
-                    {
-                        "sequance_number": 1,
-                        "signature":
-                        "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-                        "fromUser":
-                        "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEBiwdGJ8HYs6GzhdtI+LyPOQ1mOQSSTx7ZPOzEIPqz4DsngIwzE2K7Zslxo9AzqFnBZSM9/n5a9XTlCzD29/qwQ==",
-                        "toUser": "onur",
-                        "data": "blockchain-lab",
-                        "amount": 5000.0,
-                        "transaction_fee": 0.02,
-                        "transaction_time": 1656764224,
-                    },
-                    True,
-                ],
-                [
-                    {
-                        "sequance_number": 1,
-                        "signature": "ulusoy",
-                        "fromUser": "onuratakan",
-                        "toUser": "640c45eba93f854ad9c4447a4af2a0b24487d680",
-                        "data": "blockchain-lab",
-                        "amount": 5000.0,
-                        "transaction_fee": 0.02,
-                        "transaction_time": 1656764224,
-                    },
-                    True,
-                ],
-            ],
-        )
+        self.assertEqual(result, [[the_transaction.dump_json(), True], [the_transaction_2.dump_json(), True]])
 
 
 unittest.main(exit=False)
