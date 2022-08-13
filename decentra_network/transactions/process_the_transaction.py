@@ -15,13 +15,15 @@ from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
-def ProccesstheTransaction(block, the_account_list):
+def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=None):
     """
     It performs the transactions in the block.vali list and
     puts the transactions in order.
 
     Queuing is required so that all nodes have the same transaction hash.
     """
+
+    the_TEMP_ACCOUNTS_PATH = TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH is None else custom_TEMP_ACCOUNTS_PATH
 
     from_user_list = []
     temp_validating_list = block.validating_list
@@ -35,9 +37,11 @@ def ProccesstheTransaction(block, the_account_list):
 
         address_of_fromUser = Address(trans.fromUser)
         the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{address_of_fromUser}'")
+        first_list = the_account_list.fetchall()
         the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
+        second_list = the_account_list.fetchall()
 
-        for the_pulled_account in the_account_list.fetchall():
+        for the_pulled_account in first_list + second_list:
             account_list.append(Account(the_pulled_account[0], the_pulled_account[2], the_pulled_account[1]))
         for Accounts in account_list:
             touser_inlist = False
@@ -69,10 +73,17 @@ def ProccesstheTransaction(block, the_account_list):
 
     new_added_accounts_list = sorted(new_added_accounts_list,
                                      key=lambda x: x.Address)
-    for new_added_account in new_added_accounts_list:
-        SaveAccounts(new_added_account)
-    conn = sqlite3.connect(TEMP_ACCOUNTS_PATH)
+
+
+
+    conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
     c = conn.cursor()
     for changed_account in account_list:
         c.execute(f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'")
-    conn.commit()
+        conn.commit()     
+    conn.close()       
+
+    for new_added_account in new_added_accounts_list:
+        SaveAccounts(new_added_account, the_TEMP_ACCOUNTS_PATH)                         
+
+

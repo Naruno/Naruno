@@ -34,7 +34,7 @@ class client(Thread):
             self.start()
 
     def run(self):
-        self.socket.settimeout(10.0)
+        self.socket.settimeout(3.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
                 data = self.socket.recv(6425)

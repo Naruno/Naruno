@@ -176,16 +176,15 @@ class server(Thread):
         for a_client in self.clients:
             if a_client != except_client:
                 self.send_client(a_client, data, ready_to_send=True)
-        time.sleep(1)
         return data
 
     def send_client(self, node, data, ready_to_send=False):
         if not ready_to_send:
             data = self.prepare_message(data)
-        else:
-            time.sleep(1)
+
 
         node.socket.sendall(json.dumps(data).encode("utf-8"))
+        time.sleep(1)        
         return data
 
     def get_message(self, client, data):
