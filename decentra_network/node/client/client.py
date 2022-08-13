@@ -18,7 +18,6 @@ logger = get_logger("NODE")
 
 
 class client(Thread):
-
     def __init__(self, socket, address, node_id, server, test=False):
         Thread.__init__(self)
         self.server = server
@@ -43,15 +42,14 @@ class client(Thread):
                 )
                 data = data.decode("utf-8")
                 try:
-                    data = json.loads(data.replace("\'", "\""))
+                    data = json.loads(data.replace("'", '"'))
                     self.server.get_message(self, data)
                 except json.decoder.JSONDecodeError:
 
                     splited_data = re.split(r"(?<=})\B(?={)", data)
 
                     for i in splited_data:
-                        self.server.get_message(
-                            self, json.loads(i.replace("\'", "\"")))
+                        self.server.get_message(self, json.loads(i.replace("'", '"')))
 
             time.sleep(0.01)
 

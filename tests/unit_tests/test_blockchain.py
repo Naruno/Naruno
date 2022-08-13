@@ -15,21 +15,25 @@ import unittest
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash,
-                                                           SaveBlockshash_part)
+from decentra_network.blockchain.block.blocks_hash import (
+    GetBlockshash,
+    GetBlockshash_part,
+    SaveBlockshash,
+    SaveBlockshash_part,
+)
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import \
-    GetBlockstoBlockchainDB
+from decentra_network.blockchain.block.get_block_from_blockchain_db import (
+    GetBlockstoBlockchainDB,
+)
 from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
 from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.block.save_block_to_blockchain_db import \
-    SaveBlockstoBlockchainDB
+from decentra_network.blockchain.block.save_block_to_blockchain_db import (
+    SaveBlockstoBlockchainDB,
+)
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.node.client.client import client
 from decentra_network.node.unl import Unl
@@ -39,7 +43,6 @@ from decentra_network.accounts.save_accounts import SaveAccounts
 
 
 class Test_Blockchain(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -92,8 +95,7 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list,
-                                       custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
         self.assertEqual(result, False)
 
     def test_block_reset_enough_transaction_result(self):
@@ -104,8 +106,7 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list,
-                                       custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
         self.assertNotEqual(result, False)
 
     def test_block_reset_enough_transaction_hash_configuration(self):
@@ -116,8 +117,7 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list,
-                                       custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
         self.assertEqual(result[0].hash, result[1].previous_hash)
 
     def test_block_reset_enough_transaction_blockshash_list(self):
@@ -128,8 +128,7 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list,
-                                       custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
         self.assertEqual(current_blockshash_list, [result[1].previous_hash])
 
     def test_block_reset_enough_transaction_sequance_number(self):
@@ -141,8 +140,7 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list,
-                                       custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
         true_sequence = result[0].sequance_number + 1
         self.assertEqual(result[1].sequance_number, true_sequence)
 
@@ -154,8 +152,7 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list,
-                                       custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
         self.assertEqual(result[1].validating_list, [])
 
     def test_block_reset_enough_transaction_hash(self):
@@ -166,8 +163,7 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         current_blockshash_list = []
-        result = block.reset_the_block(current_blockshash_list,
-                                       custom_nodes=nodes_2)
+        result = block.reset_the_block(current_blockshash_list, custom_nodes=nodes_2)
         self.assertEqual(result[1].hash, None)
 
     def test_block_TXHash_none(self):
@@ -187,8 +183,8 @@ class Test_Blockchain(unittest.TestCase):
 
         result = TransactionsHash(block)
         self.assertEqual(
-            result,
-            "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8")
+            result, "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
+        )
 
     def test_block_BlocksHash(self):
         block = Block("onur")
@@ -201,8 +197,8 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(part_of_blocks_hash, ["onur"])
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
         self.assertEqual(
-            result,
-            "f99f80322fa66623d9b332fb91eee976333b024f19905c490c20acdfecaa7a86")
+            result, "f99f80322fa66623d9b332fb91eee976333b024f19905c490c20acdfecaa7a86"
+        )
 
     def test_block_BlocksHash_enough_for_parting(self):
         block = Block("onur")
@@ -222,8 +218,8 @@ class Test_Blockchain(unittest.TestCase):
         )
         self.assertEqual(the_blocks_hash, [])
         self.assertEqual(
-            result,
-            "97fce529fae4a3fea934aca54ed8b3be5d8be9dd09b5761d353ae5d440edbdf9")
+            result, "97fce529fae4a3fea934aca54ed8b3be5d8be9dd09b5761d353ae5d440edbdf9"
+        )
 
     def test_block_AccountsHash(self):
         block = Block("onur")
@@ -235,8 +231,8 @@ class Test_Blockchain(unittest.TestCase):
         result = AccountsHash(block, the_accounts)
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
         self.assertEqual(
-            result,
-            "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96")
+            result, "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96"
+        )
 
     def test_block_AccountsHash_enough_for_parting(self):
         block = Block("onur")
@@ -248,8 +244,8 @@ class Test_Blockchain(unittest.TestCase):
         result = AccountsHash(block, the_accounts)
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
         self.assertEqual(
-            result,
-            "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96")
+            result, "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96"
+        )
 
     def test_block_CalculateHash(self):
         block = Block("onur")
@@ -260,8 +256,9 @@ class Test_Blockchain(unittest.TestCase):
         the_accounts = [the_account, the_account, the_account]
         part_of_blocks_hash = ["onur"]
         the_blocks_hash = ["atakan", "ulusoy", "sivas"]
-        result = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
-                               the_accounts)
+        result = CalculateHash(
+            block, part_of_blocks_hash, the_blocks_hash, the_accounts
+        )
         block.hash = result
         self.assertEqual(
             part_of_blocks_hash,
@@ -280,11 +277,14 @@ class Test_Blockchain(unittest.TestCase):
         block = Block("onur")
 
         custom_TEMP_BLOCK_PATH = (
-            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCK_PATH.json")
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCK_PATH.json"
+        )
         custom_TEMP_ACCOUNTS_PATH = (
-            "db/test_SaveBlock_GetBlock_first_time_TEMP_ACCOUNTS_PATH.json")
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_ACCOUNTS_PATH.json"
+        )
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PATH.json")
+            "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PATH.json"
+        )
         custom_TEMP_BLOCKSHASH_PART_PATH = (
             "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         )
@@ -297,11 +297,13 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         the_accounts_c = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH
+        )
         the_accounts_c.execute("SELECT * FROM account_list")
         the_accounts = the_accounts_c.fetchall()
         the_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
+        )
 
         self.assertEqual(len(the_accounts), 1)
         self.assertEqual(the_accounts[0][0], "onur")
@@ -319,7 +321,8 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_TEMP_BLOCKSHASH_PATH.json")
+            "db/test_SaveBlock_GetBlock_TEMP_BLOCKSHASH_PATH.json"
+        )
         custom_TEMP_BLOCKSHASH_PART_PATH = (
             "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         )
@@ -339,40 +342,47 @@ class Test_Blockchain(unittest.TestCase):
 
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockshash_TEMP_BLOCKSHASH_PATH.json"
         the_list = ["onur"]
-        SaveBlockshash(the_list,
-                       custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        SaveBlockshash(
+            the_list, custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
+        )
         the_list_2 = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
+        )
         self.assertEqual(the_list, the_list_2)
 
     def test_SaveBlockshash_part(self):
 
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlockshash_part_TEMP_BLOCKSHASH_PART_PATH.json")
+            "db/test_SaveBlockshash_part_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
         the_list = ["onur"]
         SaveBlockshash_part(
-            the_list,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+            the_list, custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        )
         the_list_2 = GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        )
         self.assertEqual(the_list, the_list_2)
 
     def test_GetBlockshash_non(self):
         custom_TEMP_BLOCKSHASH_PATH = (
-            f"db/test_GetBlockshash_non_TEMP_BLOCKSHASH_PATH.json")
+            f"db/test_GetBlockshash_non_TEMP_BLOCKSHASH_PATH.json"
+        )
         the_list = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
+        )
         self.assertEqual(the_list, [])
 
     def test_GetBlockshash_part_non(self):
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            f"db/test_GetBlockshash_part_non_TEMP_BLOCKSHASH_PART_PATH.json")
+            f"db/test_GetBlockshash_part_non_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
         the_list = GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        )
         self.assertEqual(the_list, [])
 
-    def test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction(
-            self):
+    def test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction(self):
         block = Block("onur")
         custom_BLOCKS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH.json"
@@ -418,8 +428,7 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH.db"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH.json"
-        the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
-                              1)
+        the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10, 1)
         SaveAccounts(the_account, custom_TEMP_ACCOUNTS_PATH)
         SaveBlockstoBlockchainDB(
             block,
@@ -444,8 +453,9 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(len(result), 4)
         self.assertEqual(block_2.__dict__, block_2_normal.__dict__)
-        self.assertEqual(result[0].validating_list[0].__dict__,
-                         block.validating_list[0].__dict__)
+        self.assertEqual(
+            result[0].validating_list[0].__dict__, block.validating_list[0].__dict__
+        )
         result[1].execute("SELECT * FROM account_list")
         the_account_list = result[1].fetchall()
         self.assertEqual(the_account_list[0][0], the_account.Address)
@@ -457,13 +467,17 @@ class Test_Blockchain(unittest.TestCase):
     def test_CreateBlock_from_zero(self):
         custom_TEMP_BLOCK_PATH = "db/test_CreateBlock_from_zero_TEMP_BLOCK_PATH.json"
         custom_TEMP_BLOCK_PATH_2 = (
-            "db/test_2_CreateBlock_from_zero_TEMP_BLOCK_PATH.json")
+            "db/test_2_CreateBlock_from_zero_TEMP_BLOCK_PATH.json"
+        )
         custom_TEMP_BLOCK_PATH_3 = (
-            "db/test_3_CreateBlock_from_zero_TEMP_BLOCK_PATH.json")
+            "db/test_3_CreateBlock_from_zero_TEMP_BLOCK_PATH.json"
+        )
         custom_TEMP_ACCOUNTS_PATH = (
-            "db/test_CreateBlock_from_zero_TEMP_ACCOUNTS_PATH.json")
+            "db/test_CreateBlock_from_zero_TEMP_ACCOUNTS_PATH.json"
+        )
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_CreateBlock_from_zero_TEMP_BLOCKSHASH_PATH.json")
+            "db/test_CreateBlock_from_zero_TEMP_BLOCKSHASH_PATH.json"
+        )
         custom_TEMP_BLOCKSHASH_PART_PATH = (
             "db/test_SaveBlock_GetBlock_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         )
@@ -490,7 +504,8 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_CreateBlock_migration(self):
         custom_TEMP_BLOCK_PATH_3 = (
-            "db/test_3_CreateBlock_from_zero_TEMP_BLOCK_PATH.json")
+            "db/test_3_CreateBlock_from_zero_TEMP_BLOCK_PATH.json"
+        )
         block = CreateBlock(custom_TEMP_BLOCK_PATH_3)
         result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_3)
         self.assertEqual(block.previous_hash, result.hash)
