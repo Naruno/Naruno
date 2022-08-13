@@ -8,30 +8,24 @@ import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+import copy
 import time
 import unittest
-import copy
 
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.consensus.finished.transactions.transactions_main import \
+    transactions_main
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_my_transaction import (
-    SaveMyTransaction,
-)
-
-from decentra_network.consensus.finished.transactions.transactions_main import (
-    transactions_main,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from decentra_network.transactions.my_transactions.validate_transaction import (
-    ValidateTransaction,
-)
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 
