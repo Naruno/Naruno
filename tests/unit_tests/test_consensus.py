@@ -34,6 +34,7 @@ from decentra_network.blockchain.block.save_block import SaveBlock
 
 from decentra_network.blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -126,9 +127,8 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
+        )
         self.assertFalse(result)
-
 
     def test_finished_main_no_reset(self):
         custom_TEMP_BLOCK_PATH = "db/test_finished_main_no_reset_TEMP_BLOCK_PATH.json"
@@ -149,7 +149,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
+        )
         time.sleep(1)
 
         result = finished_main(
@@ -159,7 +159,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
+        )
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
@@ -170,8 +170,6 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertFalse(result_2)
-
-
 
     def test_finished_main(self):
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
@@ -200,15 +198,15 @@ class Test_Consensus(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction.fromUser = wallet_import(-1, 0)      
-        block.validating_list = [the_transaction, the_transaction]        
+        the_transaction.fromUser = wallet_import(-1, 0)
+        block.validating_list = [the_transaction, the_transaction]
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
+        )
         time.sleep(1)
 
         result = finished_main(
@@ -218,7 +216,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
+        )
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
@@ -229,5 +227,6 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertIsNot(result_2, False)
+
 
 unittest.main(exit=False)
