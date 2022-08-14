@@ -27,7 +27,6 @@ def GetMyTransaction():
     with open(MY_TRANSACTION_PATH, "r") as my_transaction_file:
         the_transactions_json = json.load(my_transaction_file)
         for transaction in list(the_transactions_json.values()):
-            print(transaction)
             the_transactions.append(
                 [Transaction.load_json(transaction["tx"]), transaction["validated"]]
             )

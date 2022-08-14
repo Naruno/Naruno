@@ -18,20 +18,58 @@ from decentra_network.lib.log import get_logger
 from decentra_network.transactions.pending_to_validating import \
     PendingtoValidating
 
+
+from decentra_network.config import (
+    CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
+    PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+    TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH, BLOCKS_PATH)
+
 logger = get_logger("CONSENSUS")
 
 
-def finished_main(block: Block) -> None:
+def finished_main(
+    block: Block, 
+    custom_TEMP_BLOCK_PATH: str = None,
+    custom_BLOCKS_PATH: str = None,
+    custom_TEMP_ACCOUNTS_PATH: str = None,
+    custom_TEMP_BLOCKSHASH_PATH: str = None,    
+    custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
+    ) -> None:
     if true_time(block):
         block.newly = False
         logger.info("Consensus proccess is complated, the block will be reset")
-        current_blockshash_list = GetBlockshash()
+
+        the_BLOCKS_PATH = BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
+        the_TEMP_ACCOUNTS_PATH = TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH is None else custom_TEMP_ACCOUNTS_PATH
+        the_TEMP_BLOCKSHASH_PATH = TEMP_BLOCKSHASH_PATH if custom_TEMP_BLOCKSHASH_PATH is None else custom_TEMP_BLOCKSHASH_PATH
+        the_TEMP_BLOCKSHASH_PART_PATH = TEMP_BLOCKSHASH_PART_PATH if custom_TEMP_BLOCKSHASH_PART_PATH is None else custom_TEMP_BLOCKSHASH_PART_PATH
+
+        the_TEMP_BLOCK_PATH = TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
+
+        current_blockshash_list = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
         reset_block = block.reset_the_block(current_blockshash_list)
         if reset_block != False:
             block2 = reset_block[0]
             AppsTrigger(block2)
             transactions_main(block2)
-            SaveBlockshash(current_blockshash_list)
-            SaveBlockstoBlockchainDB(block2)
+            SaveBlockshash(current_blockshash_list, custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
+            SaveBlockstoBlockchainDB(
+                block2,
+                custom_BLOCKS_PATH=the_BLOCKS_PATH,
+                custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+                )
         PendingtoValidating(block)
-        SaveBlock(block)
+        SaveBlock(
+            block, 
+            custom_TEMP_BLOCK_PATH=the_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+            )
+        return True
+    else:
+        logger.info("Consensus proccess is complated, waiting for the true time")
+        return False
