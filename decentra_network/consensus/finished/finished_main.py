@@ -12,17 +12,10 @@ from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.block.save_block_to_blockchain_db import \
     SaveBlockstoBlockchainDB
 from decentra_network.config import BLOCKS_PATH
-from decentra_network.config import CONNECTED_NODES_PATH
-from decentra_network.config import LOADING_ACCOUNTS_PATH
-from decentra_network.config import LOADING_BLOCK_PATH
-from decentra_network.config import LOADING_BLOCKSHASH_PART_PATH
-from decentra_network.config import LOADING_BLOCKSHASH_PATH
-from decentra_network.config import PENDING_TRANSACTIONS_PATH
 from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.config import TEMP_BLOCK_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PATH
-from decentra_network.config import UNL_NODES_PATH
 from decentra_network.consensus.finished.transactions.transactions_main import \
     transactions_main
 from decentra_network.consensus.time.true_time.true_time_main import true_time
