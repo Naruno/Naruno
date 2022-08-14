@@ -39,7 +39,6 @@ def SaveBlockstoBlockchainDB(
     our_tx = any((validated_transaction.fromUser == my_public_key) or (
         validated_transaction.toUser == my_address)
                  for validated_transaction in block.validating_list)
-
     if our_tx:
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
@@ -68,6 +67,6 @@ def SaveBlockstoBlockchainDB(
             (the_BLOCKS_PATH + str(block.sequance_number) +
              ".blockshashpart.json"),
         )
-
+        return True
     else:
-        False
+        return False

@@ -25,6 +25,18 @@ def CleanUp_tests():
                 f"db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/{the_file}"
             )
 
+    for the_file in os.listdir("db/test_finished_main/"):
+        if the_file.endswith(".json") or the_file.endswith(".db"):
+            os.remove(f"db/test_finished_main/{the_file}")
+
+    for the_file in os.listdir("db/test_finished_main_false_time/"):
+        if the_file.endswith(".json") or the_file.endswith(".db"):
+            os.remove(f"db/test_finished_main_false_time/{the_file}")
+
+    for the_file in os.listdir("db/test_finished_main_no_reset/"):
+        if the_file.endswith(".json") or the_file.endswith(".db"):
+            os.remove(f"db/test_finished_main_no_reset/{the_file}")
+
     for the_file in os.listdir("db/connected_nodes_test_0/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
             os.remove(f"db/connected_nodes_test_0/{the_file}")

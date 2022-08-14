@@ -13,6 +13,10 @@ import time
 import unittest
 
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
+from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.finished.transactions.transactions_main import \
     transactions_main
 from decentra_network.consensus.time.true_time.true_time_main import true_time
@@ -101,6 +105,133 @@ class Test_Consensus(unittest.TestCase):
                 [the_transaction_2.dump_json(), True],
             ],
         )
+
+    def test_finished_main_false_time(self):
+        custom_BLOCKS_PATH = "db/test_finished_main_false_time/"
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_finished_main_false_time_TEMP_ACCOUNTS_PATH.json")
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PART_PATH.json")
+
+        block = Block("Onur")
+
+        block.genesis_time = int(time.time())
+        block.block_time = 1
+        block.sequance_number = 0
+        block.empty_block_number = 100
+
+        result = finished_main(
+            block=block,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertFalse(result)
+
+    def test_finished_main_no_reset(self):
+        custom_TEMP_BLOCK_PATH = "db/test_finished_main_no_reset_TEMP_BLOCK_PATH.json"
+        custom_BLOCKS_PATH = "db/test_finished_main_no_reset/"
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_finished_main_no_reset_TEMP_ACCOUNTS_PATH.json")
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PART_PATH.json")
+
+        block = Block("Onur")
+
+        block.genesis_time = int(time.time())
+        block.block_time = 1
+        block.sequance_number = 0
+        block.empty_block_number = 0
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        time.sleep(1)
+
+        result = finished_main(
+            block=block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertTrue(result)
+
+        result_2 = GetBlockstoBlockchainDB(
+            sequance_number=0,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertFalse(result_2)
+
+    def test_finished_main(self):
+        custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
+        custom_BLOCKS_PATH = "db/test_finished_main/"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_finished_main_TEMP_BLOCKSHASH_PART_PATH.json")
+
+        block = Block("Onur")
+
+        block.genesis_time = int(time.time())
+        block.block_time = 1
+        block.sequance_number = 0
+        block.empty_block_number = 0
+        block.max_tx_number = 3
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.fromUser = wallet_import(-1, 0)
+        block.validating_list = [the_transaction, the_transaction]
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        time.sleep(1)
+
+        result = finished_main(
+            block=block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertTrue(result)
+
+        result_2 = GetBlockstoBlockchainDB(
+            sequance_number=0,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertIsNot(result_2, False)
 
 
 unittest.main(exit=False)
