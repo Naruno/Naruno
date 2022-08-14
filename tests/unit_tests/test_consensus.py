@@ -13,18 +13,23 @@ import time
 import unittest
 
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.consensus.finished.transactions.transactions_main import \
-    transactions_main
+from decentra_network.consensus.finished.transactions.transactions_main import (
+    transactions_main,
+)
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_my_transaction import \
-    SaveMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from decentra_network.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_my_transaction import (
+    SaveMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
+from decentra_network.transactions.my_transactions.validate_transaction import (
+    ValidateTransaction,
+)
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
@@ -32,11 +37,12 @@ from decentra_network.consensus.finished.finished_main import finished_main
 
 from decentra_network.blockchain.block.save_block import SaveBlock
 
-from decentra_network.blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
+from decentra_network.blockchain.block.get_block_from_blockchain_db import (
+    GetBlockstoBlockchainDB,
+)
 
 
 class Test_Consensus(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -69,10 +75,8 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         the_transaction_json = {
             "sequance_number": 1,
-            "signature":
-            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser":
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -97,8 +101,9 @@ class Test_Consensus(unittest.TestCase):
         result = GetMyTransaction()
 
         for each_result in result:
-            result[result.index(each_result)][0] = result[result.index(
-                each_result)][0].dump_json()
+            result[result.index(each_result)][0] = result[result.index(each_result)][
+                0
+            ].dump_json()
         SaveMyTransaction(backup)
         self.assertEqual(
             result,
@@ -110,9 +115,15 @@ class Test_Consensus(unittest.TestCase):
 
     def test_finished_main_false_time(self):
         custom_BLOCKS_PATH = "db/test_finished_main_false_time/"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_false_time_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PATH.json"
-        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_finished_main_false_time_TEMP_ACCOUNTS_PATH.json"
+        )
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PATH.json"
+        )
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
 
         block = Block("Onur")
 
@@ -133,9 +144,15 @@ class Test_Consensus(unittest.TestCase):
     def test_finished_main_no_reset(self):
         custom_TEMP_BLOCK_PATH = "db/test_finished_main_no_reset_TEMP_BLOCK_PATH.json"
         custom_BLOCKS_PATH = "db/test_finished_main_no_reset/"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_no_reset_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PATH.json"
-        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_finished_main_no_reset_TEMP_ACCOUNTS_PATH.json"
+        )
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PATH.json"
+        )
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
 
         block = Block("Onur")
 
@@ -176,7 +193,9 @@ class Test_Consensus(unittest.TestCase):
         custom_BLOCKS_PATH = "db/test_finished_main/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_TEMP_BLOCKSHASH_PATH.json"
-        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_finished_main_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
 
         block = Block("Onur")
 
@@ -187,10 +206,8 @@ class Test_Consensus(unittest.TestCase):
         block.max_tx_number = 3
         the_transaction_json = {
             "sequance_number": 1,
-            "signature":
-            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser":
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,

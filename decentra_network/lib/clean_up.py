@@ -19,32 +19,24 @@ def CleanUp_tests():
             if os.path.isfile(f"db/{the_file}"):
                 os.remove(f"db/{the_file}")
     for the_file in os.listdir(
-            "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"):
+        "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"
+    ):
         if the_file.endswith(".json") or the_file.endswith(".db"):
             os.remove(
                 f"db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/{the_file}"
             )
 
-    for the_file in os.listdir(
-            "db/test_finished_main/"):
+    for the_file in os.listdir("db/test_finished_main/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(
-                f"db/test_finished_main/{the_file}"
-            )
+            os.remove(f"db/test_finished_main/{the_file}")
 
-    for the_file in os.listdir(
-            "db/test_finished_main_false_time/"):
+    for the_file in os.listdir("db/test_finished_main_false_time/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(
-                f"db/test_finished_main_false_time/{the_file}"
-            )
+            os.remove(f"db/test_finished_main_false_time/{the_file}")
 
-    for the_file in os.listdir(
-            "db/test_finished_main_no_reset/"):
+    for the_file in os.listdir("db/test_finished_main_no_reset/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(
-                f"db/test_finished_main_no_reset/{the_file}"
-            )
+            os.remove(f"db/test_finished_main_no_reset/{the_file}")
 
     for the_file in os.listdir("db/connected_nodes_test_0/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
