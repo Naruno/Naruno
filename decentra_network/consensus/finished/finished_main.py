@@ -6,34 +6,25 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.apps.apps_trigger import AppsTrigger
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash
-from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           SaveBlockshash)
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.block.save_block_to_blockchain_db import (
-    SaveBlockstoBlockchainDB,
-)
-from decentra_network.consensus.finished.transactions.transactions_main import (
-    transactions_main,
-)
+from decentra_network.blockchain.block.save_block_to_blockchain_db import \
+    SaveBlockstoBlockchainDB
+from decentra_network.config import (BLOCKS_PATH, CONNECTED_NODES_PATH,
+                                     LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     LOADING_BLOCKSHASH_PART_PATH,
+                                     LOADING_BLOCKSHASH_PATH,
+                                     PENDING_TRANSACTIONS_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PART_PATH,
+                                     TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
+from decentra_network.consensus.finished.transactions.transactions_main import \
+    transactions_main
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.log import get_logger
-from decentra_network.transactions.pending_to_validating import PendingtoValidating
-
-
-from decentra_network.config import (
-    CONNECTED_NODES_PATH,
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH,
-    LOADING_BLOCKSHASH_PATH,
-    PENDING_TRANSACTIONS_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH,
-    TEMP_BLOCKSHASH_PATH,
-    UNL_NODES_PATH,
-    BLOCKS_PATH,
-)
+from decentra_network.transactions.pending_to_validating import \
+    PendingtoValidating
 
 logger = get_logger("CONSENSUS")
 

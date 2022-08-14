@@ -13,33 +13,24 @@ import time
 import unittest
 
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.consensus.finished.transactions.transactions_main import (
-    transactions_main,
-)
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
+from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.consensus.finished.finished_main import finished_main
+from decentra_network.consensus.finished.transactions.transactions_main import \
+    transactions_main
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_my_transaction import (
-    SaveMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from decentra_network.transactions.my_transactions.validate_transaction import (
-    ValidateTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
-
-from decentra_network.consensus.finished.finished_main import finished_main
-
-from decentra_network.blockchain.block.save_block import SaveBlock
-
-from decentra_network.blockchain.block.get_block_from_blockchain_db import (
-    GetBlockstoBlockchainDB,
-)
 
 
 class Test_Consensus(unittest.TestCase):
