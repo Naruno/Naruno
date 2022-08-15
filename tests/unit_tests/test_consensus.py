@@ -36,6 +36,7 @@ from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -236,7 +237,6 @@ class Test_Consensus(unittest.TestCase):
         )
         self.assertIsNot(result_2, False)
 
-
     def test_candidate_blocks_check_false(self):
 
         the_transaction_json = {
@@ -262,9 +262,10 @@ class Test_Consensus(unittest.TestCase):
             "action": "myblockhash",
             "hash": "onur from tests",
             "sequance_number": 58
-        }        
+        }
 
-        CandidateBlock = candidate_block([data_block for i in range(7)], [data_block_hash for i in range(7)])
+        CandidateBlock = candidate_block([data_block for i in range(7)], [
+                                         data_block_hash for i in range(7)])
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, True)
@@ -294,13 +295,16 @@ class Test_Consensus(unittest.TestCase):
             "action": "myblockhash",
             "hash": "onur from tests",
             "sequance_number": 58
-        }        
+        }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)], [data_block_hash for i in range(7)])
+        CandidateBlock = candidate_block([data_block for i in range(8)], [
+                                         data_block_hash for i in range(7)])
         CandidateBlock.candidate_blocks = [data_block for i in range(8)]
-        CandidateBlock.candidate_blocks_hash = [data_block_hash for i in range(7)]
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)]
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, False)
+
 
 unittest.main(exit=False)
