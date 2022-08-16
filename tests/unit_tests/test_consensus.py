@@ -40,6 +40,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     candidate_blocks_hashes_check
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -310,7 +311,6 @@ class Test_Consensus(unittest.TestCase):
         result = candidate_blocks_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, False)
 
-
     def test_candidate_blocks_hashes_check_false(self):
 
         the_transaction_json = {
@@ -373,7 +373,8 @@ class Test_Consensus(unittest.TestCase):
 
         CandidateBlock = candidate_block([data_block for i in range(7)],
                                          [data_block_hash for i in range(8)])
-        CandidateBlock.candidate_block_hashes = [data_block_hash for i in range(8)]
+        CandidateBlock.candidate_block_hashes = [
+            data_block_hash for i in range(8)]
         CandidateBlock.candidate_blocks_hash = [
             data_block_hash for i in range(7)
         ]
