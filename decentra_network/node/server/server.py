@@ -176,14 +176,22 @@ class server(Thread):
         for a_client in self.clients:
             if a_client != except_client:
                 self.send_client(a_client, data, ready_to_send=True)
+        try:
+            del data["buffer"]        
+        except KeyError:
+            pass 
         return data
 
     def send_client(self, node, data, ready_to_send=False):
         if not ready_to_send:
             data = self.prepare_message(data)
-
-        print(len(json.dumps(data).encode("utf-8")))
+        if len(json.dumps(data).encode("utf-8")) < 24825:
+            data["buffer"] = " " * ((24825 - len(json.dumps(data).encode("utf-8")))-14)
         node.socket.sendall(json.dumps(data).encode("utf-8"))
+        try:
+            del data["buffer"]        
+        except KeyError:
+            pass
         return data
 
     def get_message(self, client, data):
@@ -649,8 +657,9 @@ class server(Thread):
         """
         Sends the block to the other nodes.
         """
+        self.send_full_chain(node=node)    
+        self.send_full_accounts(node=node)            
         self.send_full_blockshash(node=node)
         self.send_full_blockshash_part(node=node)
-        self.send_full_accounts(node=node)
-        time.sleep(1)
-        self.send_full_chain(node=node)
+
+
