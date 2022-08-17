@@ -73,7 +73,7 @@ class Decentra_Network_Docker:
     def run(self):
         time.sleep(5 * self.number_of_nodes)
         os.system(
-            "docker run -v decentra-network-db:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit decentra-network-api"
+            "docker run --sysctl net.ipv4.tcp_rmem=65536 -v decentra-network-db:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit decentra-network-api"
         )
         for i in range(self.number_of_nodes):
             os.system(
