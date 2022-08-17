@@ -193,6 +193,7 @@ class server(Thread):
             del data["buffer"]
         except KeyError:
             pass
+        time.sleep(0.02)
         return data
 
     def get_message(self, client, data):
