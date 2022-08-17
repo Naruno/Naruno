@@ -6,10 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
 import json
-import re
 import socket
 import time
-from posixpath import split
 from threading import Thread
 
 from decentra_network.lib.log import get_logger
