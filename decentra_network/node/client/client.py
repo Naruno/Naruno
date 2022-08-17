@@ -18,6 +18,7 @@ logger = get_logger("NODE")
 
 
 class client(Thread):
+
     def __init__(self, socket, address, node_id, server, test=False):
         Thread.__init__(self)
         self.server = server
