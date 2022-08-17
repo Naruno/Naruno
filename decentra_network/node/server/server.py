@@ -186,13 +186,14 @@ class server(Thread):
         if not ready_to_send:
             data = self.prepare_message(data)
         if len(json.dumps(data).encode("utf-8")) < 6525:
-            data["buffer"] = " " * ((6525 - len(json.dumps(data).encode("utf-8")))-14)
+            data["buffer"] = "0" * ((6525 - len(json.dumps(data).encode("utf-8")))-14)
         print(len(json.dumps(data).encode("utf-8")))
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         try:
             del data["buffer"]        
         except KeyError:
             pass
+        time.sleep(0.2)
         return data
 
     def get_message(self, client, data):
