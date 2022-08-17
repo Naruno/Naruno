@@ -37,11 +37,12 @@ class client(Thread):
         self.socket.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
-                data = self.socket.recv(24825)
+                data = self.socket.recv(6525)
                 logger.info(
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}"
                 )
                 data = data.decode("utf-8")
+                print(len(data))
                 try:
                     data = json.loads(data)
                 except Exception as e:
