@@ -190,10 +190,9 @@ class server(Thread):
         print(len(json.dumps(data).encode("utf-8")))
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         try:
-            del data["buffer"]        
+            del data["buffer"]
         except KeyError:
             pass
-        time.sleep(0.2)
         return data
 
     def get_message(self, client, data):
