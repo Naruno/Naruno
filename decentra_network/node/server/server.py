@@ -177,16 +177,17 @@ class server(Thread):
             if a_client != except_client:
                 self.send_client(a_client, data, ready_to_send=True)
         try:
-            del data["buffer"]        
+            del data["buffer"]
         except KeyError:
-            pass 
+            pass
         return data
 
     def send_client(self, node, data, ready_to_send=False):
         if not ready_to_send:
             data = self.prepare_message(data)
         if len(json.dumps(data).encode("utf-8")) < 6525:
-            data["buffer"] = "0" * ((6525 - len(json.dumps(data).encode("utf-8")))-14)
+            data["buffer"] = "0" * \
+                ((6525 - len(json.dumps(data).encode("utf-8"))) - 14)
         print(len(json.dumps(data).encode("utf-8")))
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         try:
@@ -659,9 +660,7 @@ class server(Thread):
         """
         Sends the block to the other nodes.
         """
-        self.send_full_chain(node=node)    
-        self.send_full_accounts(node=node)            
+        self.send_full_chain(node=node)
+        self.send_full_accounts(node=node)
         self.send_full_blockshash(node=node)
         self.send_full_blockshash_part(node=node)
-
-

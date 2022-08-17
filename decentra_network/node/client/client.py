@@ -48,7 +48,7 @@ class client(Thread):
                 except Exception as e:
                     print(data)
                 try:
-                    del data["buffer"]        
+                    del data["buffer"]
                 except KeyError:
                     pass
                 self.server.get_message(self, data)
