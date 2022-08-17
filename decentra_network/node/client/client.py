@@ -6,10 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
 import json
-import re
 import socket
 import time
-from posixpath import split
 from threading import Thread
 
 from decentra_network.lib.log import get_logger
@@ -34,24 +32,24 @@ class client(Thread):
             self.start()
 
     def run(self):
-        self.socket.settimeout(3.0)
+        self.socket.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
-                data = self.socket.recv(54825)
+                data = self.socket.recv(6525)
                 logger.info(
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}"
                 )
                 data = data.decode("utf-8")
+                print(len(data))
                 try:
-                    data = json.loads(data.replace("'", '"'))
-                    self.server.get_message(self, data)
-                except json.decoder.JSONDecodeError:
-
-                    splited_data = re.split(r"(?<=})\B(?={)", data)
-
-                    for i in splited_data:
-                        self.server.get_message(
-                            self, json.loads(i.replace("'", '"')))
+                    data = json.loads(data)
+                except Exception as e:
+                    print(data)
+                try:
+                    del data["buffer"]
+                except KeyError:
+                    pass
+                self.server.get_message(self, data)
 
             time.sleep(0.01)
 
