@@ -17,8 +17,8 @@ def ChangeTransactionFee(
     """
     pending_transactions = (GetPendingLen(
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-                            if custom_pending_transaction_len is None else
-                            custom_pending_transaction_len)
+        if custom_pending_transaction_len is None else
+        custom_pending_transaction_len)
     total_len = len(block.validating_list) + pending_transactions
     if (total_len //
             block.default_optimum_transaction_number) != 0:
