@@ -35,7 +35,7 @@ labels:
     - '\bauto_builders\b'
   'Blockchain':
     - '\bblockchain\b'
-  'Transactons':
+  'Transactions':
     - '\btransactions\b'
   'CLI':
     - '\bcli\b'
