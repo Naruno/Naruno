@@ -13,23 +13,28 @@ from decentra_network.transactions.transaction import Transaction
 
 
 def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
-                                     custom_PENDING_TRANSACTIONS_PATH is None
-                                     else custom_PENDING_TRANSACTIONS_PATH)
+    the_PENDING_TRANSACTIONS_PATH = (
+        PENDING_TRANSACTIONS_PATH
+        if custom_PENDING_TRANSACTIONS_PATH is None
+        else custom_PENDING_TRANSACTIONS_PATH
+    )
     the_pending_list = []
     os.chdir(get_config()["main_folder"])
     for entry in os.scandir(the_PENDING_TRANSACTIONS_PATH):
         if entry.name != "README.md":
             with open(entry.path, "r") as my_transaction_file:
                 the_pending_list.append(
-                    Transaction.load_json(json.load(my_transaction_file)))
+                    Transaction.load_json(json.load(my_transaction_file))
+                )
     return sorted(the_pending_list, key=lambda x: x.signature)
 
 
 def GetPendingLen(custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
-                                     custom_PENDING_TRANSACTIONS_PATH is None
-                                     else custom_PENDING_TRANSACTIONS_PATH)
+    the_PENDING_TRANSACTIONS_PATH = (
+        PENDING_TRANSACTIONS_PATH
+        if custom_PENDING_TRANSACTIONS_PATH is None
+        else custom_PENDING_TRANSACTIONS_PATH
+    )
     the_pending_list = []
     os.chdir(get_config()["main_folder"])
     for entry in os.scandir(the_PENDING_TRANSACTIONS_PATH):
