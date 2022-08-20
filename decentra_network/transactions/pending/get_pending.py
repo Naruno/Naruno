@@ -9,9 +9,9 @@ import os
 
 from decentra_network.config import PENDING_TRANSACTIONS_PATH
 from decentra_network.lib.config_system import get_config
+from decentra_network.transactions.pending.remove_same_pending import \
+    RemoveSamePending
 from decentra_network.transactions.transaction import Transaction
-
-from decentra_network.transactions.pending.remove_same_pending import RemoveSamePending
 
 
 def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
