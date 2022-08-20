@@ -37,10 +37,12 @@ from decentra_network.transactions.my_transactions.save_to_my_transaction import
 from decentra_network.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
 from decentra_network.transactions.pending.delete_pending import DeletePending
-from decentra_network.transactions.pending.get_pending import GetPending
+from decentra_network.transactions.pending.get_pending import GetPending, GetPendingLen
 from decentra_network.transactions.pending.save_pending import SavePending
 from decentra_network.transactions.pending_to_validating import \
     PendingtoValidating
+from decentra_network.transactions.pending.remove_same_pending import \
+    RemoveSamePending
 from decentra_network.transactions.process_the_transaction import \
     ProccesstheTransaction
 from decentra_network.transactions.send import send
@@ -1203,5 +1205,75 @@ class Test_Transactions(unittest.TestCase):
         DeletePending(the_transaction)
         self.assertEqual(result, True)
 
+
+    def test_RemoveSamePending_get_pending(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature": "test_RemoveSamePending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction_2 = copy.copy(the_transaction)
+        the_transaction_2.signature = "test_RemoveSamePending_2"
+        the_transaction_3 = copy.copy(the_transaction)
+        the_transaction_3.signature = "test_RemoveSamePending_3"
+        the_transaction_4 = copy.copy(the_transaction)
+
+        the_list = [the_transaction, the_transaction_2, the_transaction_3, the_transaction_4]
+
+        for transaction in the_list:
+            SavePending(transaction)
+
+        finded_same_transaction = 0
+
+        for transaction in GetPending():
+            if transaction.signature == the_transaction_4.signature:
+                finded_same_transaction += 1
+        
+        for the_transaction in the_list:
+            DeletePending(the_transaction)
+
+        self.assertEqual(finded_same_transaction, 1)
+
+    def test_RemoveSamePending_get_pending_len(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature": "test_RemoveSamePending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction_2 = copy.copy(the_transaction)
+        the_transaction_2.signature = "test_RemoveSamePending_2"
+        the_transaction_3 = copy.copy(the_transaction)
+        the_transaction_3.signature = "test_RemoveSamePending_3"
+        the_transaction_4 = copy.copy(the_transaction)
+
+        the_list = [the_transaction, the_transaction_2, the_transaction_3, the_transaction_4]
+
+
+        old_len = GetPendingLen()
+        for transaction in the_list:
+            SavePending(transaction)
+
+        finded_same_transaction = 0
+
+        new_len = GetPendingLen()
+        
+        for the_transaction in the_list:
+            DeletePending(the_transaction)
+
+        self.assertEqual(old_len+3, new_len)
 
 unittest.main(exit=False)
