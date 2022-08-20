@@ -38,5 +38,6 @@ def GetPendingLen(custom_PENDING_TRANSACTIONS_PATH=None):
     for entry in os.scandir(the_PENDING_TRANSACTIONS_PATH):
         if entry.name != "README.md":
             the_pending_list.append(1)
-    the_pending_list = RemoveSamePending(the_pending_list, custom_PENDING_TRANSACTIONS_PATH=the_PENDING_TRANSACTIONS_PATH)
+    the_pending_list = RemoveSamePending(
+        the_pending_list, custom_PENDING_TRANSACTIONS_PATH=the_PENDING_TRANSACTIONS_PATH)
     return len(the_pending_list)

@@ -14,7 +14,7 @@ from decentra_network.transactions.pending.delete_pending import DeletePending
 def RemoveSamePending(transactions: list, custom_PENDING_TRANSACTIONS_PATH=None) -> list:
     the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
                                      custom_PENDING_TRANSACTIONS_PATH is None
-                                     else custom_PENDING_TRANSACTIONS_PATH)    
+                                     else custom_PENDING_TRANSACTIONS_PATH)
     for tx in transactions:
         same = False
         for tx2 in transactions:
@@ -23,7 +23,7 @@ def RemoveSamePending(transactions: list, custom_PENDING_TRANSACTIONS_PATH=None)
                     same = True
                     break
         if same:
-            DeletePending(tx, custom_PENDING_TRANSACTIONS_PATH=the_PENDING_TRANSACTIONS_PATH) 
+            DeletePending(
+                tx, custom_PENDING_TRANSACTIONS_PATH=the_PENDING_TRANSACTIONS_PATH)
             transactions.remove(tx)
     return transactions
-

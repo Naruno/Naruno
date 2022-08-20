@@ -1205,7 +1205,6 @@ class Test_Transactions(unittest.TestCase):
         DeletePending(the_transaction)
         self.assertEqual(result, True)
 
-
     def test_RemoveSamePending_get_pending(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -1225,7 +1224,8 @@ class Test_Transactions(unittest.TestCase):
         the_transaction_3.signature = "test_RemoveSamePending_3"
         the_transaction_4 = copy.copy(the_transaction)
 
-        the_list = [the_transaction, the_transaction_2, the_transaction_3, the_transaction_4]
+        the_list = [the_transaction, the_transaction_2,
+                    the_transaction_3, the_transaction_4]
 
         for transaction in the_list:
             SavePending(transaction)
@@ -1235,7 +1235,7 @@ class Test_Transactions(unittest.TestCase):
         for transaction in GetPending():
             if transaction.signature == the_transaction_4.signature:
                 finded_same_transaction += 1
-        
+
         for the_transaction in the_list:
             DeletePending(the_transaction)
 
@@ -1260,8 +1260,8 @@ class Test_Transactions(unittest.TestCase):
         the_transaction_3.signature = "test_RemoveSamePending_3"
         the_transaction_4 = copy.copy(the_transaction)
 
-        the_list = [the_transaction, the_transaction_2, the_transaction_3, the_transaction_4]
-
+        the_list = [the_transaction, the_transaction_2,
+                    the_transaction_3, the_transaction_4]
 
         old_len = GetPendingLen()
         for transaction in the_list:
@@ -1270,10 +1270,11 @@ class Test_Transactions(unittest.TestCase):
         finded_same_transaction = 0
 
         new_len = GetPendingLen()
-        
+
         for the_transaction in the_list:
             DeletePending(the_transaction)
 
-        self.assertEqual(old_len+3, new_len)
+        self.assertEqual(old_len + 3, new_len)
+
 
 unittest.main(exit=False)
