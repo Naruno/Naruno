@@ -220,7 +220,8 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list.append(temp_transaction)
 
         ChangeTransactionFee(block,
-                             custom_pending_transactions=[temp_transaction])
+                             custom_pending_transaction_len=len(
+                                 [temp_transaction]))
 
         new_transaction_fee = block.transaction_fee
 
@@ -241,7 +242,8 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list.append(temp_transaction)
 
         ChangeTransactionFee(block,
-                             custom_pending_transactions=[temp_transaction])
+                             custom_pending_transaction_len=len(
+                                 [temp_transaction]))
 
         new_transaction_fee = block.transaction_fee
 
