@@ -13,54 +13,40 @@ import time
 import unittest
 
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.get_block_from_blockchain_db import (
-    GetBlockstoBlockchainDB,
-)
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import (
-    candidate_block,
-)
+from decentra_network.blockchain.candidate_block.candidate_block_main import \
+    candidate_block
 from decentra_network.consensus.finished.finished_main import finished_main
-from decentra_network.consensus.finished.transactions.transactions_main import (
-    transactions_main as transactions_main_finished,
-)
-from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import (
-    candidate_blocks_check,
-)
-from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
-from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import (
-    time_difference_check,
-)
-from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import (
-    find_newly,
-)
-from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import (
-    find_validated,
-)
-from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import (
-    candidate_blocks_hashes_check,
-)
+from decentra_network.consensus.finished.transactions.transactions_main import \
+    transactions_main as transactions_main_finished
+from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import \
+    candidate_blocks_check
+from decentra_network.consensus.rounds.round_1.checks.checks_main import \
+    round_check
+from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import \
+    time_difference_check
+from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
+    find_newly
+from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import \
+    find_validated
+from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import \
+    transactions_main as transactions_main_round_1
+from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
+    candidate_blocks_hashes_check
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_my_transaction import (
-    SaveMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from decentra_network.transactions.my_transactions.validate_transaction import (
-    ValidateTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
-
-
-from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import (
-    transactions_main as transactions_main_round_1,
-)
 
 
 class Test_Consensus(unittest.TestCase):
