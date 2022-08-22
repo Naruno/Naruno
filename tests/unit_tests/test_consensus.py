@@ -38,6 +38,7 @@ from decentra_network.transactions.my_transactions.validate_transaction import \
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
+from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import time_difference_check
 
 class Test_Consensus(unittest.TestCase):
 
@@ -381,5 +382,22 @@ class Test_Consensus(unittest.TestCase):
         result = candidate_blocks_hashes_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, False)
 
+
+    def test_time_difference_check_round_1_false_time(self):
+        block = Block("Onur")
+
+        block.start_time = time.time()
+        block.round_1_time = 2
+    
+        self.assertFalse(time_difference_check(block))
+    
+    def test_time_difference_check_round_1(self):
+        block = Block("Onur")
+
+        block.start_time = time.time()
+        block.round_1_time = 2
+        time.sleep(2.5)
+    
+        self.assertTrue(time_difference_check(block))
 
 unittest.main(exit=False)
