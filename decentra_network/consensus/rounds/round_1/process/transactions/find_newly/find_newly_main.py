@@ -30,7 +30,10 @@ from decentra_network.transactions.process_the_transaction import \
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def find_newly(block: Block, temp_validating_list: list):
+def find_newly(block: Block, temp_validating_list: list) -> list:
+    """
+    Finds not validated new transaction in our block remove than and return as a new list
+    """
     newly_added_list = []
 
     for my_validating_list in block.validating_list[:]:
