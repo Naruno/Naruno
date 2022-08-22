@@ -42,6 +42,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -475,7 +476,6 @@ class Test_Consensus(unittest.TestCase):
         block.round_1_time = 2
         self.assertFalse(round_check(block, CandidateBlock, unl_nodes))
 
-
     def test_round_check_round_1_false_true(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -511,7 +511,6 @@ class Test_Consensus(unittest.TestCase):
         block.round_1_time = 2
         time.sleep(4)
         self.assertFalse(round_check(block, CandidateBlock, unl_nodes))
-
 
     def test_round_check_round_1_true_true(self):
         the_transaction_json = {
@@ -552,5 +551,6 @@ class Test_Consensus(unittest.TestCase):
         block.round_1_time = 2
         time.sleep(4)
         self.assertTrue(round_check(block, CandidateBlock, unl_nodes))
+
 
 unittest.main(exit=False)
