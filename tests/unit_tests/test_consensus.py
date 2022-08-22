@@ -47,6 +47,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import \
     find_validated
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -581,7 +582,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(len(block.validating_list), 0)
         self.assertEqual(result[0].dump_json(), the_transaction_2.dump_json())
 
-
     def test_find_validated_1_node(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -614,10 +614,10 @@ class Test_Consensus(unittest.TestCase):
         validating_list = [the_transaction, the_transaction]
 
         data_block = {
-            "signature" : -1,
+            "signature": -1,
             "transaction": validating_list,
             "sequance_number": 58,
-        }     
+        }
         new_list = []
         for i in range(1):
             new_block = copy.copy(data_block)
@@ -629,9 +629,9 @@ class Test_Consensus(unittest.TestCase):
         ]
         unl_nodes = [i for i in range(1)]
         block = Block("Onur")
-        block.validating_list = [the_transaction]        
+        block.validating_list = [the_transaction]
         result = find_validated(block, CandidateBlock, unl_nodes)
-        self.assertEqual(result[0].dump_json(), the_transaction.dump_json())        
+        self.assertEqual(result[0].dump_json(), the_transaction.dump_json())
 
     def test_find_validated(self):
         the_transaction_json = {
@@ -665,10 +665,10 @@ class Test_Consensus(unittest.TestCase):
         validating_list = [the_transaction, the_transaction]
 
         data_block = {
-            "signature" : -1,
+            "signature": -1,
             "transaction": validating_list,
             "sequance_number": 58,
-        }     
+        }
         new_list = []
         for i in range(8):
             new_block = copy.copy(data_block)
@@ -680,8 +680,9 @@ class Test_Consensus(unittest.TestCase):
         ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
-        block.validating_list = [the_transaction]        
+        block.validating_list = [the_transaction]
         result = find_validated(block, CandidateBlock, unl_nodes)
-        self.assertEqual(result[0].dump_json(), the_transaction.dump_json())  
+        self.assertEqual(result[0].dump_json(), the_transaction.dump_json())
+
 
 unittest.main(exit=False)
