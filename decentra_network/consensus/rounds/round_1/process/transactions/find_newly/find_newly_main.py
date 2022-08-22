@@ -15,17 +15,16 @@ from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
-from decentra_network.consensus.rounds.round_1.checks.checks_main import \
-    round_check
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
+from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
 from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
-from decentra_network.transactions.process_the_transaction import \
-    ProccesstheTransaction
+from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -39,7 +38,8 @@ def find_newly(block: Block, temp_validating_list: list) -> list:
     for my_validating_list in block.validating_list[:]:
         ok = any(
             (my_validating_list.signature == my_temp_validating_list.signature)
-            for my_temp_validating_list in temp_validating_list[:])
+            for my_temp_validating_list in temp_validating_list[:]
+        )
 
         block.validating_list.remove(my_validating_list)
         if not ok:
