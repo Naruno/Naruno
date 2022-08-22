@@ -396,7 +396,7 @@ class Test_Consensus(unittest.TestCase):
 
         block.start_time = time.time()
         block.round_1_time = 2
-        time.sleep(2.5)
+        time.sleep(4)
 
         self.assertTrue(time_difference_check(block))
 
