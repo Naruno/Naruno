@@ -42,6 +42,8 @@ from decentra_network.transactions.my_transactions.validate_transaction import \
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
+from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
+    find_newly
 
 class Test_Consensus(unittest.TestCase):
 
@@ -551,6 +553,32 @@ class Test_Consensus(unittest.TestCase):
         block.round_1_time = 2
         time.sleep(4)
         self.assertTrue(round_check(block, CandidateBlock, unl_nodes))
+
+
+    def test_find_newly(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction_2 = copy.copy(the_transaction)
+        the_transaction_2.signature = "newMEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE="
+        block = Block("Onur")
+        block.validating_list = [the_transaction, the_transaction_2]
+        temp_validating_list = [the_transaction]
+        result = find_newly(block, temp_validating_list)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(len(block.validating_list), 0)
+        self.assertEqual(result[0].dump_json(), the_transaction_2.dump_json())
 
 
 unittest.main(exit=False)
