@@ -45,6 +45,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
     find_newly
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -553,7 +554,6 @@ class Test_Consensus(unittest.TestCase):
         block.round_1_time = 2
         time.sleep(4)
         self.assertTrue(round_check(block, CandidateBlock, unl_nodes))
-
 
     def test_find_newly(self):
         the_transaction_json = {
