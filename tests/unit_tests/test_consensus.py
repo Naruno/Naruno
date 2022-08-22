@@ -23,6 +23,8 @@ from decentra_network.consensus.finished.transactions.transactions_main import \
     transactions_main
 from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import \
     candidate_blocks_check
+from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import \
+    time_difference_check
 from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     candidate_blocks_hashes_check
 from decentra_network.consensus.time.true_time.true_time_main import true_time
@@ -380,6 +382,23 @@ class Test_Consensus(unittest.TestCase):
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_hashes_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, False)
+
+    def test_time_difference_check_round_1_false_time(self):
+        block = Block("Onur")
+
+        block.start_time = time.time()
+        block.round_1_time = 2
+
+        self.assertFalse(time_difference_check(block))
+
+    def test_time_difference_check_round_1(self):
+        block = Block("Onur")
+
+        block.start_time = time.time()
+        block.round_1_time = 2
+        time.sleep(4)
+
+        self.assertTrue(time_difference_check(block))
 
 
 unittest.main(exit=False)
