@@ -29,6 +29,8 @@ from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_
     time_difference_check
 from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
     find_newly
+from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import \
+    find_validated
 from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     candidate_blocks_hashes_check
 from decentra_network.consensus.time.true_time.true_time_main import true_time
@@ -578,6 +580,108 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(len(result), 1)
         self.assertEqual(len(block.validating_list), 0)
         self.assertEqual(result[0].dump_json(), the_transaction_2.dump_json())
+
+    def test_find_validated_1_node(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(1)],
+                                         [data_block_hash for i in range(7)])
+        validating_list = [the_transaction, the_transaction]
+
+        data_block = {
+            "signature": -1,
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+        new_list = []
+        for i in range(1):
+            new_block = copy.copy(data_block)
+            new_block["signature"] = i
+            new_list.append(new_block)
+        CandidateBlock.candidate_blocks = new_list
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
+        unl_nodes = [i for i in range(1)]
+        block = Block("Onur")
+        block.validating_list = [the_transaction]
+        result = find_validated(block, CandidateBlock, unl_nodes)
+        self.assertEqual(result[0].dump_json(), the_transaction.dump_json())
+
+    def test_find_validated(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(8)],
+                                         [data_block_hash for i in range(7)])
+        validating_list = [the_transaction, the_transaction]
+
+        data_block = {
+            "signature": -1,
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+        new_list = []
+        for i in range(8):
+            new_block = copy.copy(data_block)
+            new_block["signature"] = i
+            new_list.append(new_block)
+        CandidateBlock.candidate_blocks = new_list
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.validating_list = [the_transaction]
+        result = find_validated(block, CandidateBlock, unl_nodes)
+        self.assertEqual(result[0].dump_json(), the_transaction.dump_json())
 
 
 unittest.main(exit=False)
