@@ -50,3 +50,4 @@ def transactions_main(block: Block, candidate_class: candidate_block,
     for each_newly in newly_added_list:
         if GetTransaction(block, each_newly):
             server.send_transaction(each_newly)
+    return temp_validating_list
