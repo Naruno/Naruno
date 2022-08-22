@@ -50,6 +50,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import \
     transactions_main as transactions_main_round_1
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -633,7 +634,7 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         block.validating_list = [the_transaction]
         result = find_validated(block, CandidateBlock, unl_nodes)
-        self.assertEqual(len(result), 1)        
+        self.assertEqual(len(result), 1)
         self.assertEqual(result[0].dump_json(), the_transaction.dump_json())
 
     def test_find_validated(self):
@@ -685,9 +686,8 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         block.validating_list = [the_transaction]
         result = find_validated(block, CandidateBlock, unl_nodes)
-        self.assertEqual(len(result), 1)        
+        self.assertEqual(len(result), 1)
         self.assertEqual(result[0].dump_json(), the_transaction.dump_json())
-
 
     def test_transactions_main_round_1(self):
         the_transaction_json = {
