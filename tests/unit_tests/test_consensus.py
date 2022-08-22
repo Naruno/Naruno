@@ -44,6 +44,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 
 class Test_Consensus(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -76,8 +77,10 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -102,9 +105,8 @@ class Test_Consensus(unittest.TestCase):
         result = GetMyTransaction()
 
         for each_result in result:
-            result[result.index(each_result)][0] = result[result.index(each_result)][
-                0
-            ].dump_json()
+            result[result.index(each_result)][0] = result[result.index(
+                each_result)][0].dump_json()
         SaveMyTransaction(backup)
         self.assertEqual(
             result,
@@ -117,14 +119,11 @@ class Test_Consensus(unittest.TestCase):
     def test_finished_main_false_time(self):
         custom_BLOCKS_PATH = "db/test_finished_main_false_time/"
         custom_TEMP_ACCOUNTS_PATH = (
-            "db/test_finished_main_false_time_TEMP_ACCOUNTS_PATH.json"
-        )
+            "db/test_finished_main_false_time_TEMP_ACCOUNTS_PATH.json")
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PATH.json"
-        )
+            "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PART_PATH.json"
-        )
+            "db/test_finished_main_false_time_TEMP_BLOCKSHASH_PART_PATH.json")
 
         block = Block("Onur")
 
@@ -146,14 +145,11 @@ class Test_Consensus(unittest.TestCase):
         custom_TEMP_BLOCK_PATH = "db/test_finished_main_no_reset_TEMP_BLOCK_PATH.json"
         custom_BLOCKS_PATH = "db/test_finished_main_no_reset/"
         custom_TEMP_ACCOUNTS_PATH = (
-            "db/test_finished_main_no_reset_TEMP_ACCOUNTS_PATH.json"
-        )
+            "db/test_finished_main_no_reset_TEMP_ACCOUNTS_PATH.json")
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PATH.json"
-        )
+            "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PART_PATH.json"
-        )
+            "db/test_finished_main_no_reset_TEMP_BLOCKSHASH_PART_PATH.json")
 
         block = Block("Onur")
 
@@ -195,8 +191,7 @@ class Test_Consensus(unittest.TestCase):
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_finished_main_TEMP_BLOCKSHASH_PART_PATH.json"
-        )
+            "db/test_finished_main_TEMP_BLOCKSHASH_PART_PATH.json")
 
         block = Block("Onur")
 
@@ -207,8 +202,10 @@ class Test_Consensus(unittest.TestCase):
         block.max_tx_number = 3
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -250,8 +247,10 @@ class Test_Consensus(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -271,9 +270,8 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block(
-            [data_block for i in range(7)], [data_block_hash for i in range(7)]
-        )
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, True)
@@ -282,8 +280,10 @@ class Test_Consensus(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -303,11 +303,12 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block(
-            [data_block for i in range(8)], [data_block_hash for i in range(7)]
-        )
+        CandidateBlock = candidate_block([data_block for i in range(8)],
+                                         [data_block_hash for i in range(7)])
         CandidateBlock.candidate_blocks = [data_block for i in range(8)]
-        CandidateBlock.candidate_blocks_hash = [data_block_hash for i in range(7)]
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, False)
@@ -316,8 +317,10 @@ class Test_Consensus(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -337,9 +340,8 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block(
-            [data_block for i in range(7)], [data_block_hash for i in range(7)]
-        )
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_hashes_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, True)
@@ -348,8 +350,10 @@ class Test_Consensus(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -369,11 +373,14 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block(
-            [data_block for i in range(7)], [data_block_hash for i in range(8)]
-        )
-        CandidateBlock.candidate_block_hashes = [data_block_hash for i in range(8)]
-        CandidateBlock.candidate_blocks_hash = [data_block_hash for i in range(7)]
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(8)])
+        CandidateBlock.candidate_block_hashes = [
+            data_block_hash for i in range(8)
+        ]
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_hashes_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, False)
@@ -398,8 +405,10 @@ class Test_Consensus(unittest.TestCase):
     def test_round_check_round_1_false_false(self):
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -419,9 +428,8 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block(
-            [data_block for i in range(7)], [data_block_hash for i in range(7)]
-        )
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
 
@@ -432,8 +440,10 @@ class Test_Consensus(unittest.TestCase):
     def test_round_check_round_1_true_false(self):
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -453,11 +463,12 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block(
-            [data_block for i in range(8)], [data_block_hash for i in range(7)]
-        )
+        CandidateBlock = candidate_block([data_block for i in range(8)],
+                                         [data_block_hash for i in range(7)])
         CandidateBlock.candidate_blocks = [data_block for i in range(8)]
-        CandidateBlock.candidate_blocks_hash = [data_block_hash for i in range(7)]
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
 
@@ -468,8 +479,10 @@ class Test_Consensus(unittest.TestCase):
     def test_round_check_round_1_false_true(self):
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -489,9 +502,8 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block(
-            [data_block for i in range(7)], [data_block_hash for i in range(7)]
-        )
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
 
@@ -503,8 +515,10 @@ class Test_Consensus(unittest.TestCase):
     def test_round_check_round_1_true_true(self):
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -524,11 +538,12 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block(
-            [data_block for i in range(8)], [data_block_hash for i in range(7)]
-        )
+        CandidateBlock = candidate_block([data_block for i in range(8)],
+                                         [data_block_hash for i in range(7)])
         CandidateBlock.candidate_blocks = [data_block for i in range(8)]
-        CandidateBlock.candidate_blocks_hash = [data_block_hash for i in range(7)]
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
 
