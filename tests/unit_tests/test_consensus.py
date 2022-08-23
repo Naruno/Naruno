@@ -60,6 +60,8 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 from decentra_network.consensus.rounds.round_2.checks.time.time_difference.time_difference_main import \
     time_difference_check as time_difference_check_round_2
+
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -914,8 +916,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
         custom_server.stop()
@@ -995,10 +996,8 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
-
 
     def test_time_difference_check_round_2_false_time(self):
         block = Block("Onur")
@@ -1016,5 +1015,6 @@ class Test_Consensus(unittest.TestCase):
         time.sleep(4)
 
         self.assertTrue(time_difference_check_round_2(block))
+
 
 unittest.main(exit=False)
