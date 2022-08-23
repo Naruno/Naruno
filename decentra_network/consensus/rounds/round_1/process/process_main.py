@@ -36,8 +36,8 @@ def round_process(
     block: Block,
     candidate_class: candidate_block,
     unl_nodes: dict,
+    custom_TEMP_BLOCK_PATH: str = None,    
     custom_TEMP_ACCOUNTS_PATH: str = None,
-    custom_TEMP_BLOCK_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
 ) -> Block:
