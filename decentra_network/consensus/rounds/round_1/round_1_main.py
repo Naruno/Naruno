@@ -5,17 +5,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.consensus.rounds.round_1.checks.checks_main import \
-    round_check
-from decentra_network.consensus.rounds.round_1.process.process_main import \
-    round_process
+from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
+from decentra_network.consensus.rounds.round_1.process.process_main import round_process
 from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -29,7 +28,7 @@ def consensus_round_1(
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCK_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
-    custom_TEMP_BLOCKSHASH_PART_PATH: str = None
+    custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
 ) -> bool:
     """
     At this stage of the consensus process,
@@ -46,8 +45,11 @@ def consensus_round_1(
     )
 
     unl_nodes = Unl.get_unl_nodes() if custom_unl_nodes is None else custom_unl_nodes
-    candidate_class = GetCandidateBlocks(
-        custom_nodes_list=Unl.get_as_node_type(unl_nodes)) if custom_candidate_class is None else custom_candidate_class
+    candidate_class = (
+        GetCandidateBlocks(custom_nodes_list=Unl.get_as_node_type(unl_nodes))
+        if custom_candidate_class is None
+        else custom_candidate_class
+    )
 
     if round_check(block, candidate_class, unl_nodes):
         round_process(
@@ -57,7 +59,7 @@ def consensus_round_1(
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         return True
     else:
