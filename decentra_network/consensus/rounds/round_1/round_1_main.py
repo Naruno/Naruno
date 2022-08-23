@@ -44,12 +44,11 @@ def consensus_round_1(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting"
     )
 
-    unl_nodes = Unl.get_unl_nodes() if custom_unl_nodes is None else custom_unl_nodes
+    unl_nodes = Unl.get_unl_nodes(
+    ) if custom_unl_nodes is None else custom_unl_nodes
     candidate_class = (
         GetCandidateBlocks(custom_nodes_list=Unl.get_as_node_type(unl_nodes))
-        if custom_candidate_class is None
-        else custom_candidate_class
-    )
+        if custom_candidate_class is None else custom_candidate_class)
 
     if round_check(block, candidate_class, unl_nodes):
         round_process(
