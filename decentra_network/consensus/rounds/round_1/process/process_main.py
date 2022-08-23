@@ -33,7 +33,11 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
 def round_process(block: Block, candidate_class: candidate_block,
-                  unl_nodes: dict):
+                  unl_nodes: dict,
+                  custom_TEMP_ACCOUNTS_PATH: str = None,
+                  custom_TEMP_BLOCK_PATH: str = None,
+                  custom_TEMP_BLOCKSHASH_PATH: str = None,
+                  custom_TEMP_BLOCKSHASH_PART_PATH: str = None) -> Block:
 
     transactions_main(block,
                       candidate_class=candidate_class,
@@ -42,14 +46,21 @@ def round_process(block: Block, candidate_class: candidate_block,
     block.round_1 = True
     block.round_2_starting_time = int(time.time())
 
-    account_list = GetAccounts()
-    ProccesstheTransaction(block, account_list)
+    account_list = GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+    ProccesstheTransaction(block, account_list, custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
 
-    part_of_blocks_hash = GetBlockshash_part()
-    the_blocks_hash = GetBlockshash()
+    part_of_blocks_hash = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+    the_blocks_hash = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
     block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
                                account_list)
 
     logger.debug(f"Block hash {block.hash}")
 
-    SaveBlock(block)
+    SaveBlock(
+        block,
+        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        )
+    return block
