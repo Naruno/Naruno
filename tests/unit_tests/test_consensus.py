@@ -906,8 +906,8 @@ class Test_Consensus(unittest.TestCase):
         self.assertFalse(
             consensus_round_1(
                 block,
-                CandidateBlock,
-                unl_nodes,
+                custom_candidate_class=CandidateBlock,
+                custom_unl_nodes=unl_nodes,
                 custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
                 custom_server=custom_server,
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,

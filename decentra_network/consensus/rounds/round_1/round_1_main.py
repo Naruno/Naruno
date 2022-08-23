@@ -21,8 +21,8 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 def consensus_round_1(
     block: Block,
-    custom_candidate_class: candidate_block,
-    custom_unl_nodes: dict,
+    custom_candidate_class: candidate_block = None,
+    custom_unl_nodes: dict = None,
     custom_UNL_NODES_PATH: str = None,
     custom_server: server = server.Server,
     custom_TEMP_ACCOUNTS_PATH: str = None,
@@ -44,7 +44,7 @@ def consensus_round_1(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting"
     )
 
-    unl_nodes = Unl.get_unl_nodes(
+    unl_nodes = Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH
     ) if custom_unl_nodes is None else custom_unl_nodes
     candidate_class = (
         GetCandidateBlocks(custom_nodes_list=Unl.get_as_node_type(unl_nodes))
