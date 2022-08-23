@@ -22,6 +22,7 @@ from decentra_network.blockchain.block.get_block_from_blockchain_db import \
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
     candidate_block
+from decentra_network.config import UNL_NODES_PATH
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.finished.transactions.transactions_main import \
     transactions_main as transactions_main_finished
@@ -39,10 +40,13 @@ from decentra_network.consensus.rounds.round_1.process.transactions.find_validat
     find_validated
 from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import \
     transactions_main as transactions_main_round_1
+from decentra_network.consensus.rounds.round_1.round_1_main import \
+    consensus_round_1
 from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     candidate_blocks_hashes_check
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
+from decentra_network.node.server.server import server
 from decentra_network.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
 from decentra_network.transactions.my_transactions.save_my_transaction import \
@@ -834,6 +838,165 @@ class Test_Consensus(unittest.TestCase):
         block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
         self.assertEqual(result.dump_json(), block_2.dump_json())
+
+    def test_consensus_round_1_false(self):
+        custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_consensus_round_1_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_consensus_round_1_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_consensus_round_1_TEMP_BLOCKSHASH_PART_PATH.json")
+        custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
+
+        custom_server = server(
+            "127.0.0.1",
+            10000,
+        )
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
+        validating_list = [the_transaction, the_transaction]
+
+        data_block = {
+            "signature": -1,
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+        new_list = []
+        for i in range(7):
+            new_block = copy.copy(data_block)
+            new_block["signature"] = i
+            new_list.append(new_block)
+        CandidateBlock.candidate_blocks = new_list
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+
+        block.start_time = time.time()
+        block.round_1_time = 2
+        time.sleep(4)
+        self.assertFalse(
+            consensus_round_1(
+                block,
+                custom_candidate_class=CandidateBlock,
+                custom_unl_nodes=unl_nodes,
+                custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+                custom_server=custom_server,
+                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=
+                custom_TEMP_BLOCKSHASH_PART_PATH,
+            ))
+
+        custom_server.stop()
+
+        time.sleep(2)
+
+        custom_server.join()
+
+    def test_consensus_round_1(self):
+        custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_consensus_round_1_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_consensus_round_1_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_consensus_round_1_TEMP_BLOCKSHASH_PART_PATH.json")
+        custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
+
+        custom_server = None
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(8)],
+                                         [data_block_hash for i in range(7)])
+        validating_list = [the_transaction, the_transaction]
+
+        data_block = {
+            "signature": -1,
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+        new_list = []
+        for i in range(8):
+            new_block = copy.copy(data_block)
+            new_block["signature"] = i
+            new_list.append(new_block)
+        CandidateBlock.candidate_blocks = new_list
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+
+        block.start_time = time.time()
+        block.round_1_time = 2
+        time.sleep(4)
+        self.assertTrue(
+            consensus_round_1(
+                block,
+                CandidateBlock,
+                unl_nodes,
+                custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+                custom_server=custom_server,
+                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=
+                custom_TEMP_BLOCKSHASH_PART_PATH,
+            ))
 
 
 unittest.main(exit=False)
