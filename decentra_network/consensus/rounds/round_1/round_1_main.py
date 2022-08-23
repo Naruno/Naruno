@@ -45,7 +45,7 @@ def consensus_round_1(
     )
 
     unl_nodes = Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH
-    ) if custom_unl_nodes is None else custom_unl_nodes
+                                  ) if custom_unl_nodes is None else custom_unl_nodes
     candidate_class = (
         GetCandidateBlocks(custom_nodes_list=Unl.get_as_node_type(unl_nodes))
         if custom_candidate_class is None else custom_candidate_class)
@@ -62,5 +62,6 @@ def consensus_round_1(
         )
         return True
     else:
-        custom_server.send_my_block(block) if custom_server is not None else server.Server.send_my_block(block)
+        custom_server.send_my_block(
+            block) if custom_server is not None else server.Server.send_my_block(block)
         return False

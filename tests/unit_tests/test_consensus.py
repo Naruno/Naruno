@@ -913,8 +913,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
         custom_server.stop()
@@ -994,8 +993,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
 
