@@ -12,7 +12,11 @@ import copy
 import time
 import unittest
 
+from decentra_network.accounts.account import Account
+from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from decentra_network.blockchain.block.save_block import SaveBlock
@@ -27,6 +31,8 @@ from decentra_network.consensus.rounds.round_1.checks.checks_main import \
     round_check
 from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import \
     time_difference_check
+from decentra_network.consensus.rounds.round_1.process.process_main import \
+    round_process as round_process_round_1
 from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
     find_newly
 from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import \
@@ -738,6 +744,96 @@ class Test_Consensus(unittest.TestCase):
         result = transactions_main_round_1(block, CandidateBlock, unl_nodes)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0].dump_json(), the_transaction.dump_json())
+
+    def test_round_process_round_1(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(8)],
+                                         [data_block_hash for i in range(7)])
+        validating_list = [the_transaction, the_transaction]
+
+        data_block = {
+            "signature": -1,
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+        new_list = []
+        for i in range(8):
+            new_block = copy.copy(data_block)
+            new_block["signature"] = i
+            new_list.append(new_block)
+        CandidateBlock.candidate_blocks = new_list
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.validating_list = [the_transaction]
+        custom_TEMP_BLOCK_PATH = "db/test_round_process_round_1_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_round_process_round_1_TEMP_ACCOUNTS_PATH.json")
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_round_process_round_1_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_round_process_round_1_TEMP_BLOCKSHASH_PART_PATH.json")
+        old_block = copy.copy(block)
+        SaveAccounts(
+            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000),
+            custom_TEMP_ACCOUNTS_PATH,
+        )
+        result = round_process_round_1(
+            block,
+            CandidateBlock,
+            unl_nodes,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertEqual(len(result.validating_list), 1)
+        self.assertEqual(result.validating_list[0].dump_json(),
+                         the_transaction.dump_json())
+        self.assertEqual(result.round_1, True)
+        self.assertNotEqual(result.round_2_starting_time,
+                            old_block.round_2_starting_time)
+        self.assertNotEqual(result.hash, old_block.hash)
+
+        the_account_list = GetAccounts(
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+        the_account_list.execute(
+            f"SELECT * FROM account_list WHERE address = '{the_transaction.toUser}'"
+        )
+        second_list = the_account_list.fetchall()
+
+        self.assertEqual(second_list, [("onur", 0, 5000)])
+
+        block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+
+        self.assertEqual(result.dump_json(), block_2.dump_json())
 
 
 unittest.main(exit=False)
