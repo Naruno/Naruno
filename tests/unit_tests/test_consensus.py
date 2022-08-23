@@ -31,7 +31,7 @@ from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate
 from decentra_network.consensus.rounds.round_1.checks.checks_main import \
     round_check
 from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import \
-    time_difference_check
+    time_difference_check as time_difference_check_round_1
 from decentra_network.consensus.rounds.round_1.process.process_main import \
     round_process as round_process_round_1
 from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
@@ -58,7 +58,8 @@ from decentra_network.transactions.my_transactions.validate_transaction import \
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
-
+from decentra_network.consensus.rounds.round_2.checks.time.time_difference.time_difference_main import \
+    time_difference_check as time_difference_check_round_2
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -407,7 +408,7 @@ class Test_Consensus(unittest.TestCase):
         block.start_time = time.time()
         block.round_1_time = 2
 
-        self.assertFalse(time_difference_check(block))
+        self.assertFalse(time_difference_check_round_1(block))
 
     def test_time_difference_check_round_1(self):
         block = Block("Onur")
@@ -416,7 +417,7 @@ class Test_Consensus(unittest.TestCase):
         block.round_1_time = 2
         time.sleep(4)
 
-        self.assertTrue(time_difference_check(block))
+        self.assertTrue(time_difference_check_round_1(block))
 
     def test_round_check_round_1_false_false(self):
         the_transaction_json = {
@@ -998,5 +999,22 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
+
+    def test_time_difference_check_round_2_false_time(self):
+        block = Block("Onur")
+
+        block.round_2_starting_time = time.time()
+        block.round_2_time = 2
+
+        self.assertFalse(time_difference_check_round_2(block))
+
+    def test_time_difference_check_round_2(self):
+        block = Block("Onur")
+
+        block.round_2_starting_time = time.time()
+        block.round_2_time = 2
+        time.sleep(4)
+
+        self.assertTrue(time_difference_check_round_2(block))
 
 unittest.main(exit=False)
