@@ -61,6 +61,7 @@ from decentra_network.config import UNL_NODES_PATH
 
 from decentra_network.consensus.rounds.round_1.round_1_main import consensus_round_1
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -841,8 +842,6 @@ class Test_Consensus(unittest.TestCase):
 
         self.assertEqual(result.dump_json(), block_2.dump_json())
 
-
-
     def test_consensus_round_1_false(self):
         custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = (
@@ -857,7 +856,7 @@ class Test_Consensus(unittest.TestCase):
             "127.0.0.1",
             10000,
         )
-                
+
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -918,9 +917,8 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
         )
-
+        )
 
         custom_server.stop()
 
@@ -939,7 +937,7 @@ class Test_Consensus(unittest.TestCase):
         custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
 
         custom_server = None
-                
+
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -1000,7 +998,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
+        )
         )
 
 

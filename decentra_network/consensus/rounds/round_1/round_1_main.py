@@ -21,7 +21,7 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
 def consensus_round_1(
-    block: Block, 
+    block: Block,
     custom_candidate_class: candidate_block,
     custom_unl_nodes: dict,
     custom_UNL_NODES_PATH: str = None,
@@ -30,7 +30,7 @@ def consensus_round_1(
     custom_TEMP_BLOCK_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None
-    ) -> bool:
+) -> bool:
     """
     At this stage of the consensus process,
     The transactions of our and the unl nodes
@@ -58,7 +58,7 @@ def consensus_round_1(
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-            )
+        )
         return True
     else:
         custom_server.send_my_block(block)
