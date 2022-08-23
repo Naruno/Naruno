@@ -46,11 +46,15 @@ def round_process(block: Block, candidate_class: candidate_block,
     block.round_1 = True
     block.round_2_starting_time = int(time.time())
 
-    account_list = GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
-    ProccesstheTransaction(block, account_list, custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+    account_list = GetAccounts(
+        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+    ProccesstheTransaction(block, account_list,
+                           custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
 
-    part_of_blocks_hash = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
-    the_blocks_hash = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+    part_of_blocks_hash = GetBlockshash_part(
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+    the_blocks_hash = GetBlockshash(
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
     block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
                                account_list)
 
@@ -62,5 +66,5 @@ def round_process(block: Block, candidate_class: candidate_block,
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-        )
+    )
     return block

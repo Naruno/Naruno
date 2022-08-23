@@ -56,6 +56,7 @@ from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.accounts.account import Account
 from decentra_network.blockchain.block.get_block import GetBlock
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -809,27 +810,30 @@ class Test_Consensus(unittest.TestCase):
             block,
             CandidateBlock,
             unl_nodes,
-            custom_TEMP_ACCOUNTS_PATH = custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH,
-            custom_TEMP_BLOCKSHASH_PATH = custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH = custom_TEMP_BLOCKSHASH_PART_PATH
-            )
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        )
         self.assertEqual(len(result.validating_list), 1)
-        self.assertEqual(result.validating_list[0].dump_json(), the_transaction.dump_json())    
+        self.assertEqual(
+            result.validating_list[0].dump_json(), the_transaction.dump_json())
         self.assertEqual(result.round_1, True)
-        self.assertNotEqual(result.round_2_starting_time, old_block.round_2_starting_time)
+        self.assertNotEqual(result.round_2_starting_time,
+                            old_block.round_2_starting_time)
         self.assertNotEqual(result.hash, old_block.hash)
 
-        the_account_list = GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+        the_account_list = GetAccounts(
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
         the_account_list.execute(
             f"SELECT * FROM account_list WHERE address = '{the_transaction.toUser}'")
         second_list = the_account_list.fetchall()
-        
-        
+
         self.assertEqual(second_list, [('onur', 0, 5000)])
 
         block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
         self.assertEqual(result.dump_json(), block_2.dump_json())
+
 
 unittest.main(exit=False)
