@@ -24,7 +24,7 @@ def consensus_round_1(
     custom_candidate_class: candidate_block = None,
     custom_unl_nodes: dict = None,
     custom_UNL_NODES_PATH: str = None,
-    custom_server: server = server.Server,
+    custom_server: server = None,
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCK_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
@@ -62,5 +62,5 @@ def consensus_round_1(
         )
         return True
     else:
-        custom_server.send_my_block(block)
+        custom_server.send_my_block(block) if custom_server is not None else server.Server.send_my_block(block)
         return False
