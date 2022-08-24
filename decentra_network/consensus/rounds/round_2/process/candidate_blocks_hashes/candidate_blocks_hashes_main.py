@@ -36,5 +36,5 @@ def process_candidate_blocks_hashes(block: Block,
         logger.debug(f"Hash valid of  {candidate_block_hash} : {tx_valid}")
         if tx_valid >= ((len(unl_nodes) * 80) / 100):
             return candidate_block_hash
-        
+
     return False

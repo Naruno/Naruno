@@ -65,6 +65,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     process_candidate_blocks_hashes
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -919,8 +920,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
         custom_server.stop()
@@ -1000,8 +1000,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -1174,7 +1173,6 @@ class Test_Consensus(unittest.TestCase):
         time.sleep(4)
         self.assertTrue(round_check_round_2(block, CandidateBlock, unl_nodes))
 
-
     def test_process_candidate_blocks_hashes_false(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -1212,9 +1210,8 @@ class Test_Consensus(unittest.TestCase):
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
         block.hash = "onur from tests"
-        self.assertFalse(process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes))
-
-
+        self.assertFalse(process_candidate_blocks_hashes(
+            block, CandidateBlock, unl_nodes))
 
     def test_process_candidate_blocks_hashes(self):
         the_transaction_json = {
@@ -1255,7 +1252,8 @@ class Test_Consensus(unittest.TestCase):
         block.hash = "onur from tests"
         expected_result = copy.copy(data_block_hash)
         expected_result["sender"] = 0
-        self.assertEqual(process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes), expected_result)
+        self.assertEqual(process_candidate_blocks_hashes(
+            block, CandidateBlock, unl_nodes), expected_result)
 
 
 unittest.main(exit=False)
