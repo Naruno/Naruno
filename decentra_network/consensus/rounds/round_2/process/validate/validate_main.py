@@ -18,8 +18,9 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
-def validate_main(block: Block):
+def validate_main(block: Block) -> Block:
     logger.info("Block approved")
     block.validated = True
     block.validated_time = int(time.time())
     block.round_2 = True
+    return block

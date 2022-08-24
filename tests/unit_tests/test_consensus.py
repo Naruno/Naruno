@@ -50,6 +50,8 @@ from decentra_network.consensus.rounds.round_2.checks.time.time_difference.time_
     time_difference_check as time_difference_check_round_2
 from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     process_candidate_blocks_hashes
+from decentra_network.consensus.rounds.round_2.process.validate.validate_main import \
+    validate_main
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.node.server.server import server
@@ -1257,6 +1259,14 @@ class Test_Consensus(unittest.TestCase):
             process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes),
             expected_result,
         )
+
+    def test_validate_main(self):
+        block = Block("Onur")
+        old_block = copy.copy(block)
+        result = validate_main(block)
+        self.assertEqual(result.validated, True)
+        self.assertEqual(result.round_2, True)
+        self.assertNotEqual(old_block.validated_time, result.validated_time)
 
 
 unittest.main(exit=False)
