@@ -65,6 +65,8 @@ from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 
+from decentra_network.consensus.rounds.round_2.process.validate.validate_main import validate_main
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -1257,6 +1259,15 @@ class Test_Consensus(unittest.TestCase):
             process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes),
             expected_result,
         )
+
+
+    def test_validate_main(self):
+        block = Block("Onur")
+        old_block = copy.copy(block)
+        result = validate_main(block)
+        self.assertEqual(result.validated, True)
+        self.assertEqual(result.round_2, True)
+        self.assertNotEqual(old_block.validated_time, result.validated_time)
 
 
 unittest.main(exit=False)
