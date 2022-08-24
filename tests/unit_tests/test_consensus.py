@@ -29,7 +29,7 @@ from decentra_network.consensus.finished.transactions.transactions_main import \
 from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import \
     candidate_blocks_check
 from decentra_network.consensus.rounds.round_1.checks.checks_main import \
-    round_check
+    round_check as round_check_round_1
 from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import \
     time_difference_check as time_difference_check_round_1
 from decentra_network.consensus.rounds.round_1.process.process_main import \
@@ -44,6 +44,8 @@ from decentra_network.consensus.rounds.round_1.round_1_main import \
     consensus_round_1
 from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     candidate_blocks_hashes_check
+from decentra_network.consensus.rounds.round_2.checks.checks_main import \
+    round_check as round_check_round_2
 from decentra_network.consensus.rounds.round_2.checks.time.time_difference.time_difference_main import \
     time_difference_check as time_difference_check_round_2
 from decentra_network.consensus.time.true_time.true_time_main import true_time
@@ -453,7 +455,7 @@ class Test_Consensus(unittest.TestCase):
 
         block.start_time = time.time()
         block.round_1_time = 2
-        self.assertFalse(round_check(block, CandidateBlock, unl_nodes))
+        self.assertFalse(round_check_round_1(block, CandidateBlock, unl_nodes))
 
     def test_round_check_round_1_true_false(self):
         the_transaction_json = {
@@ -492,7 +494,7 @@ class Test_Consensus(unittest.TestCase):
 
         block.start_time = time.time()
         block.round_1_time = 2
-        self.assertFalse(round_check(block, CandidateBlock, unl_nodes))
+        self.assertFalse(round_check_round_1(block, CandidateBlock, unl_nodes))
 
     def test_round_check_round_1_false_true(self):
         the_transaction_json = {
@@ -528,7 +530,7 @@ class Test_Consensus(unittest.TestCase):
         block.start_time = time.time()
         block.round_1_time = 2
         time.sleep(4)
-        self.assertFalse(round_check(block, CandidateBlock, unl_nodes))
+        self.assertFalse(round_check_round_1(block, CandidateBlock, unl_nodes))
 
     def test_round_check_round_1_true_true(self):
         the_transaction_json = {
@@ -568,7 +570,7 @@ class Test_Consensus(unittest.TestCase):
         block.start_time = time.time()
         block.round_1_time = 2
         time.sleep(4)
-        self.assertTrue(round_check(block, CandidateBlock, unl_nodes))
+        self.assertTrue(round_check_round_1(block, CandidateBlock, unl_nodes))
 
     def test_find_newly(self):
         the_transaction_json = {
@@ -1016,6 +1018,159 @@ class Test_Consensus(unittest.TestCase):
         time.sleep(4)
 
         self.assertTrue(time_difference_check_round_2(block))
+
+    def test_round_check_round_2_false_false(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+
+        block.round_2_starting_time = time.time()
+        block.round_2_time = 2
+        self.assertFalse(round_check_round_2(block, CandidateBlock, unl_nodes))
+
+    def test_round_check_round_2_true_false(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(8)])
+        CandidateBlock.candidate_block_hashes = [
+            data_block_hash for i in range(8)
+        ]
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+
+        block.round_2_starting_time = time.time()
+        block.round_2_time = 2
+        self.assertFalse(round_check_round_2(block, CandidateBlock, unl_nodes))
+
+    def test_round_check_round_2_false_true(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+
+        block.round_2_starting_time = time.time()
+        block.round_2_time = 2
+        time.sleep(4)
+        self.assertFalse(round_check_round_2(block, CandidateBlock, unl_nodes))
+
+    def test_round_check_round_2_true_true(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(8)])
+        CandidateBlock.candidate_block_hashes = [
+            data_block_hash for i in range(8)
+        ]
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(7)
+        ]
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+
+        block.round_2_starting_time = time.time()
+        block.round_2_time = 2
+        time.sleep(4)
+        self.assertTrue(round_check_round_2(block, CandidateBlock, unl_nodes))
 
 
 unittest.main(exit=False)
