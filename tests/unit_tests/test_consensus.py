@@ -64,6 +64,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.consensus.rounds.round_2.checks.checks_main import \
     round_check as round_check_round_2
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -918,8 +919,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
         custom_server.stop()
@@ -999,8 +999,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -1019,35 +1018,6 @@ class Test_Consensus(unittest.TestCase):
         time.sleep(4)
 
         self.assertTrue(time_difference_check_round_2(block))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     def test_round_check_round_2_false_false(self):
         the_transaction_json = {
@@ -1108,7 +1078,6 @@ class Test_Consensus(unittest.TestCase):
             "hash": "onur from tests",
             "sequance_number": 58,
         }
-
 
         CandidateBlock = candidate_block([data_block for i in range(7)],
                                          [data_block_hash for i in range(8)])
@@ -1187,7 +1156,6 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-
         CandidateBlock = candidate_block([data_block for i in range(7)],
                                          [data_block_hash for i in range(8)])
         CandidateBlock.candidate_block_hashes = [
@@ -1203,5 +1171,6 @@ class Test_Consensus(unittest.TestCase):
         block.round_2_time = 2
         time.sleep(4)
         self.assertTrue(round_check_round_2(block, CandidateBlock, unl_nodes))
+
 
 unittest.main(exit=False)
