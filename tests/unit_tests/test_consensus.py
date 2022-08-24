@@ -62,6 +62,8 @@ from decentra_network.transactions.my_transactions.validate_transaction import \
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
+from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
+    process_candidate_blocks_hashes
 
 class Test_Consensus(unittest.TestCase):
 
@@ -1171,6 +1173,89 @@ class Test_Consensus(unittest.TestCase):
         block.round_2_time = 2
         time.sleep(4)
         self.assertTrue(round_check_round_2(block, CandidateBlock, unl_nodes))
+
+
+    def test_process_candidate_blocks_hashes_false(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
+        the_new_list = []
+        for i in range(7):
+            the_new_object = copy.copy(data_block_hash)
+            the_new_object["sender"] = i
+            the_new_list.append(the_new_object)
+        CandidateBlock.candidate_block_hashes = the_new_list
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.hash = "onur from tests"
+        self.assertFalse(process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes))
+
+
+
+    def test_process_candidate_blocks_hashes(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(8)])
+        the_new_list = []
+        for i in range(8):
+            the_new_object = copy.copy(data_block_hash)
+            the_new_object["sender"] = i
+            the_new_list.append(the_new_object)
+        CandidateBlock.candidate_block_hashes = the_new_list
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.hash = "onur from tests"
+        expected_result = copy.copy(data_block_hash)
+        expected_result["sender"] = 0
+        self.assertEqual(process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes), expected_result)
 
 
 unittest.main(exit=False)
