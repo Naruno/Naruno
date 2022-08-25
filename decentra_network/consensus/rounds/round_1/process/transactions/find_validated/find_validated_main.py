@@ -38,8 +38,7 @@ def find_validated(block: Block, candidate_class: candidate_block,
 
         for other_block_tx in candidate_block["transaction"]:
 
-            tx_valid = sum(other_block_tx.signature == my_txs.signature
-                           for my_txs in block.validating_list)
+            tx_valid = 1
 
             if len(candidate_class.candidate_blocks) != 1:
 
