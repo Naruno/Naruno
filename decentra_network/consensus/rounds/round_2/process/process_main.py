@@ -36,6 +36,6 @@ def round_process(block: Block, candidate_class: candidate_block,
     if block.hash == candidate_block_hash["hash"]:
         validate_main(block)
     else:
-        rescue_main(block, candidate_block_hash, unl_nodes)
+        rescue_main(block, candidate_block_hash)
 
     SaveBlock(block)
