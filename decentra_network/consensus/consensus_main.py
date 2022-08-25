@@ -10,8 +10,9 @@ from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
 from decentra_network.lib.log import get_logger
 
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 from decentra_network.node.client.client import client
 from decentra_network.node.server.server import server
 
@@ -37,8 +38,11 @@ def consensus_trigger(
     to shorten the block time.
     """
 
-    block = GetBlock(
-        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH) if custom_block is None else custom_block
+    block = (
+        GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        if custom_block is None
+        else custom_block
+    )
 
     logger.info(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
