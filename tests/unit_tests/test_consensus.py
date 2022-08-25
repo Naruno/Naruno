@@ -67,11 +67,23 @@ from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 
+from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import \
+    rescue_main
+
+
+from decentra_network.config import (
+    CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
+    PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+    TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
+from decentra_network.node.unl import Unl
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
+
 
     @classmethod
     def tearDownClass(cls):
@@ -1268,5 +1280,186 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(result.round_2, True)
         self.assertNotEqual(old_block.validated_time, result.validated_time)
 
+
+    def test_rescue_main(self):
+
+        self.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
+            ".json", "_0.json").replace("temp_", "test_temp_")
+        self.custom_TEMP_BLOCK_PATH1 = TEMP_BLOCK_PATH.replace(
+            ".json", "_1.json").replace("temp_", "test_temp_")
+        self.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
+            ".json", "_2.json").replace("temp_", "test_temp_")
+        self.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+        self.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+        self.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+
+        self.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
+            ".db", "_0.db").replace("temp_", "test_temp_")
+        self.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
+            ".db", "_1.db").replace("temp_", "test_temp_")
+        self.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
+            ".db", "_2.db").replace("temp_", "test_temp_")
+        self.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
+            ".db", "_0.db").replace("loading_", "test_loading_temp_")
+        self.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
+            ".db", "_1.db").replace("loading_", "test_loading_temp_")
+        self.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
+            ".db", "_2.db").replace("loading_", "test_loading_temp_")
+
+        self.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
+            ".json", "_0.json").replace("temp_", "test_temp_")
+        self.custom_TEMP_BLOCKSHASH_PATH1 = TEMP_BLOCKSHASH_PATH.replace(
+            ".json", "_1.json").replace("temp_", "test_temp_")
+        self.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
+            ".json", "_2.json").replace("temp_", "test_temp_")
+        self.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+        self.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+        self.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+
+        self.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_0.json").replace("temp_", "test_temp_")
+        self.custom_TEMP_BLOCKSHASH_PART_PATH1 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_1.json").replace("temp_", "test_temp_")
+        self.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_2.json").replace("temp_", "test_temp_")
+        self.custom_LOADING_BLOCKSHASH_PART_PATH0 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+        self.custom_LOADING_BLOCKSHASH_PART_PATH1 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+        self.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+
+        self.custom_CONNECTED_NODES_PATH0 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_0")
+        self.custom_CONNECTED_NODES_PATH1 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_1")
+        self.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_2")
+
+        self.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_0")
+        self.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_1")
+        self.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_2")
+
+        self.node_0 = server(
+            "127.0.0.1",
+            10000,
+            save_messages=True,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_LOADING_BLOCK_PATH=self.custom_LOADING_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_LOADING_ACCOUNTS_PATH=self.custom_LOADING_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_LOADING_BLOCKSHASH_PATH=self.custom_LOADING_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0,
+            custom_LOADING_BLOCKSHASH_PART_PATH=self.
+            custom_LOADING_BLOCKSHASH_PART_PATH0,
+            custom_CONNECTED_NODES_PATH=self.custom_CONNECTED_NODES_PATH0,
+            custom_PENDING_TRANSACTIONS_PATH=self.
+            custom_PENDING_TRANSACTIONS_PATH0,
+            custom_variables=True,
+        )
+
+        self.node_1 = server(
+            "127.0.0.1",
+            10001,
+            save_messages=True,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_LOADING_BLOCK_PATH=self.custom_LOADING_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_LOADING_ACCOUNTS_PATH=self.custom_LOADING_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_LOADING_BLOCKSHASH_PATH=self.custom_LOADING_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH1,
+            custom_LOADING_BLOCKSHASH_PART_PATH=self.
+            custom_LOADING_BLOCKSHASH_PART_PATH1,
+            custom_CONNECTED_NODES_PATH=self.custom_CONNECTED_NODES_PATH1,
+            custom_PENDING_TRANSACTIONS_PATH=self.
+            custom_PENDING_TRANSACTIONS_PATH1,
+            custom_variables=True,
+        )
+        self.node_2 = server(
+            "127.0.0.1",
+            10002,
+            save_messages=True,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH2,
+            custom_LOADING_BLOCK_PATH=self.custom_LOADING_BLOCK_PATH2,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH2,
+            custom_LOADING_ACCOUNTS_PATH=self.custom_LOADING_ACCOUNTS_PATH2,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH2,
+            custom_LOADING_BLOCKSHASH_PATH=self.custom_LOADING_BLOCKSHASH_PATH2,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH2,
+            custom_LOADING_BLOCKSHASH_PART_PATH=self.
+            custom_LOADING_BLOCKSHASH_PART_PATH2,
+            custom_CONNECTED_NODES_PATH=self.custom_CONNECTED_NODES_PATH2,
+            custom_PENDING_TRANSACTIONS_PATH=self.
+            custom_PENDING_TRANSACTIONS_PATH2,
+            custom_variables=True,
+        )
+        Unl.save_new_unl_node(self.node_0.id)
+        Unl.save_new_unl_node(self.node_1.id)
+        Unl.save_new_unl_node(self.node_2.id)
+        time.sleep(2)
+        self.node_0.connect("127.0.0.1", 10001)
+        self.node_0.connect("127.0.0.1", 10002)
+        time.sleep(2)
+        self.node_2.connect("127.0.0.1", 10001)
+
+        print(self.node_0.clients)
+        print(self.node_1.clients)
+        print(self.node_2.clients)
+        print("started")        
+        block = Block("Onur")
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+            "sender": self.node_0.id
+        }        
+        old_block = copy.copy(block)
+        result = rescue_main(block, data_block_hash, custom_server=self.node_1, custom_unl=self.node_1.clients[0])
+        self.assertEqual(result.dowload_true_block, data_block_hash["sender"])
+
+        self.node_0.stop()
+        self.node_1.stop()
+        self.node_2.stop()
+
+        time.sleep(2)
+
+        self.node_1.join()
+        self.node_2.join()
+        self.node_0.join()
+
+        for a_client in self.node_0.clients:
+            the_dict = {}
+            the_dict["id"] = a_client.id
+            the_dict["host"] = a_client.host
+            the_dict["port"] = a_client.port
+            self.node_0.connected_node_delete(the_dict)
+
+        for a_client in self.node_1.clients:
+            the_dict = {}
+            the_dict["id"] = a_client.id
+            the_dict["host"] = a_client.host
+            the_dict["port"] = a_client.port
+            self.node_1.connected_node_delete(the_dict)
+
+        for a_client in self.node_2.clients:
+            the_dict = {}
+            the_dict["id"] = a_client.id
+            the_dict["host"] = a_client.host
+            the_dict["port"] = a_client.port
+            self.node_2.connected_node_delete(the_dict)
 
 unittest.main(exit=False)
