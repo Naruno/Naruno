@@ -26,7 +26,6 @@ from decentra_network.consensus.rounds.round_2.process.validate.validate_main im
 from decentra_network.lib.log import get_logger
 
 
-
 from decentra_network.node.client.client import client
 from decentra_network.node.server.server import server
 
@@ -34,16 +33,16 @@ logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
 def round_process(
-                  block: Block, 
-                  candidate_class: candidate_block,
-                  unl_nodes: dict,
-                  custom_server: server = None,
-                  custom_unl: client = None,
-                  custom_TEMP_BLOCK_PATH: str = None,
-                  custom_TEMP_ACCOUNTS_PATH: str = None,
-                  custom_TEMP_BLOCKSHASH_PATH: str = None,
-                  custom_TEMP_BLOCKSHASH_PART_PATH: str = None
-                  ) -> bool:
+    block: Block,
+    candidate_class: candidate_block,
+    unl_nodes: dict,
+    custom_server: server = None,
+    custom_unl: client = None,
+    custom_TEMP_BLOCK_PATH: str = None,
+    custom_TEMP_ACCOUNTS_PATH: str = None,
+    custom_TEMP_BLOCKSHASH_PATH: str = None,
+    custom_TEMP_BLOCKSHASH_PART_PATH: str = None
+) -> bool:
 
     candidate_block_hash = process_candidate_blocks_hashes(
         block, candidate_class, unl_nodes)
@@ -53,7 +52,8 @@ def round_process(
         result = True
     else:
         if not candidate_block_hash["hash"] == False:
-            rescue_main(block, candidate_block_hash, custom_server=custom_server, custom_unl=custom_unl)
+            rescue_main(block, candidate_block_hash,
+                        custom_server=custom_server, custom_unl=custom_unl)
             result = False
 
     SaveBlock(

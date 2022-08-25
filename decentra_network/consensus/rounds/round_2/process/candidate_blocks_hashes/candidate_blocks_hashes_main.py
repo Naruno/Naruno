@@ -26,7 +26,6 @@ def process_candidate_blocks_hashes(block: Block,
 
         tx_valid = 1
 
-
         for other_block in candidate_class.candidate_block_hashes[:]:
             if (candidate_block_hash != other_block
                     and candidate_block_hash["hash"] == other_block["hash"]):

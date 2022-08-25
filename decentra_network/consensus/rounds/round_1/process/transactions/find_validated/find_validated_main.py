@@ -38,7 +38,6 @@ def find_validated(block: Block, candidate_class: candidate_block,
 
         for other_block_tx in candidate_block["transaction"]:
 
-
             tx_valid = 1
 
             if len(candidate_class.candidate_blocks) != 1:

@@ -76,6 +76,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.consensus.rounds.round_2.process.process_main import \
     round_process as round_process_round_2
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -218,6 +219,7 @@ class Test_Consensus(unittest.TestCase):
         print(cls.node_1.clients)
         print(cls.node_2.clients)
         print("started")
+
     @classmethod
     def tearDownClass(cls):
         cls.node_0.stop()
@@ -1030,7 +1032,6 @@ class Test_Consensus(unittest.TestCase):
             "db/test_consensus_round_1_TEMP_BLOCKSHASH_PART_PATH.json")
         custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
 
-
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -1091,10 +1092,8 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
-
 
     def test_consensus_round_1(self):
         custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
@@ -1167,8 +1166,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -1378,7 +1376,8 @@ class Test_Consensus(unittest.TestCase):
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
         block.hash = "onur from tests"
-        result = process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes)
+        result = process_candidate_blocks_hashes(
+            block, CandidateBlock, unl_nodes)
         self.assertEqual(result["hash"], False)
 
     def test_process_candidate_blocks_hashes(self):
@@ -1434,7 +1433,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertNotEqual(old_block.validated_time, result.validated_time)
 
     def test_rescue_main(self):
-
 
         block = Block("Onur")
         data_block_hash = {
@@ -1528,7 +1526,7 @@ class Test_Consensus(unittest.TestCase):
             "action": "myblockhash",
             "hash": "onur from tests",
             "sequance_number": 58,
-            "sender": self.node_0.id,            
+            "sender": self.node_0.id,
         }
 
         CandidateBlock = candidate_block([data_block for i in range(7)],
@@ -1558,7 +1556,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(result, False)
         self.assertEqual(block.dowload_true_block, 0)
 
-
     def test_round_process_round_2_true(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -1583,7 +1580,7 @@ class Test_Consensus(unittest.TestCase):
             "action": "myblockhash",
             "hash": "onur from tests",
             "sequance_number": 58,
-            "sender": self.node_0.id,            
+            "sender": self.node_0.id,
         }
 
         CandidateBlock = candidate_block([data_block for i in range(7)],
@@ -1614,4 +1611,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(block.validated, True)
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
+
+
 unittest.main(exit=False)
