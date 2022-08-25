@@ -22,11 +22,11 @@ logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
 def rescue_main(
-    block: Block, 
+    block: Block,
     candidate_block_hash: dict,
     custom_server: server = None,
     custom_unl: client = None
-    ) -> Block:
+) -> Block:
     sender = candidate_block_hash["sender"]
     logger.warning(
         f"Our block is not valid, the system will try to get true block from decentra_network.node {sender}"
@@ -34,6 +34,7 @@ def rescue_main(
     block.dowload_true_block = sender
     unl_list = Unl.get_as_node_type([sender])
     the_server = server.Server if custom_server is None else custom_server
-    the_unl_node = random.choice(unl_list) if custom_unl is None else custom_unl
+    the_unl_node = random.choice(
+        unl_list) if custom_unl is None else custom_unl
     the_server.send_client(the_unl_node, {"action": "sendmefullblock"})
     return block

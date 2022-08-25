@@ -78,12 +78,12 @@ from decentra_network.config import (
     TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
 from decentra_network.node.unl import Unl
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
-
 
     @classmethod
     def tearDownClass(cls):
@@ -933,8 +933,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
         custom_server.stop()
@@ -1014,8 +1013,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -1280,7 +1278,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(result.round_2, True)
         self.assertNotEqual(old_block.validated_time, result.validated_time)
 
-
     def test_rescue_main(self):
 
         self.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
@@ -1419,16 +1416,17 @@ class Test_Consensus(unittest.TestCase):
         print(self.node_0.clients)
         print(self.node_1.clients)
         print(self.node_2.clients)
-        print("started")        
+        print("started")
         block = Block("Onur")
         data_block_hash = {
             "action": "myblockhash",
             "hash": "onur from tests",
             "sequance_number": 58,
             "sender": self.node_0.id
-        }        
+        }
         old_block = copy.copy(block)
-        result = rescue_main(block, data_block_hash, custom_server=self.node_1, custom_unl=self.node_1.clients[0])
+        result = rescue_main(
+            block, data_block_hash, custom_server=self.node_1, custom_unl=self.node_1.clients[0])
         self.assertEqual(result.dowload_true_block, data_block_hash["sender"])
 
         self.node_0.stop()
@@ -1461,5 +1459,6 @@ class Test_Consensus(unittest.TestCase):
             the_dict["host"] = a_client.host
             the_dict["port"] = a_client.port
             self.node_2.connected_node_delete(the_dict)
+
 
 unittest.main(exit=False)
