@@ -79,6 +79,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -1094,8 +1095,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -1169,8 +1169,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -1799,17 +1798,16 @@ class Test_Consensus(unittest.TestCase):
         old_block = copy.copy(block)
         time.sleep(4)
         result = ongoing_main(
-                block,
-                CandidateBlock,
-                unl_nodes,
-                custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
-                custom_server=custom_server,
-                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
+            block,
+            CandidateBlock,
+            unl_nodes,
+            custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+            custom_server=custom_server,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
         self.assertEqual(len(result.validating_list), 1)
         self.assertEqual(result.validating_list[0].dump_json(),
                          the_transaction.dump_json())
@@ -1878,5 +1876,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(block.validated, True)
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
+
 
 unittest.main(exit=False)

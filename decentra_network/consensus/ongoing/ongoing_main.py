@@ -30,34 +30,34 @@ def ongoing_main(
     custom_TEMP_BLOCK_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
-    ) -> Block:
+) -> Block:
 
     if not block.round_1:
         logger.info("First round is starting")
         consensus_round_1(
             block,
-            custom_candidate_class = custom_candidate_class,
-            custom_unl_nodes = custom_unl_nodes,
-            custom_UNL_NODES_PATH = custom_UNL_NODES_PATH,
-            custom_server = custom_server,
-            custom_TEMP_ACCOUNTS_PATH = custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH,
-            custom_TEMP_BLOCKSHASH_PATH = custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH = custom_TEMP_BLOCKSHASH_PART_PATH,            
-            )
+            custom_candidate_class=custom_candidate_class,
+            custom_unl_nodes=custom_unl_nodes,
+            custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+            custom_server=custom_server,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
         logger.info("First round is done")
     elif not block.round_2:
         logger.info("Second round is starting")
         consensus_round_2(
             block,
-            candidate_class = custom_candidate_class,
-            unl_nodes = custom_unl_nodes,
-            custom_server = custom_server,
-            custom_unl = custom_unl,
-            custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH = custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH = custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH = custom_TEMP_BLOCKSHASH_PART_PATH,            
-            )
+            candidate_class=custom_candidate_class,
+            unl_nodes=custom_unl_nodes,
+            custom_server=custom_server,
+            custom_unl=custom_unl,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
         logger.info("Second round is done")
     return block
