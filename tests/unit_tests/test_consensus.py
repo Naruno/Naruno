@@ -73,16 +73,183 @@ from decentra_network.transactions.my_transactions.validate_transaction import \
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
+from decentra_network.consensus.rounds.round_2.process.process_main import \
+    round_process as round_process_round_2
 
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
+        cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
+            ".json", "_0.json").replace("temp_", "test_temp_")
+        cls.custom_TEMP_BLOCK_PATH1 = TEMP_BLOCK_PATH.replace(
+            ".json", "_1.json").replace("temp_", "test_temp_")
+        cls.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
+            ".json", "_2.json").replace("temp_", "test_temp_")
+        cls.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+        cls.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+        cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
+        cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
+            ".db", "_0.db").replace("temp_", "test_temp_")
+        cls.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
+            ".db", "_1.db").replace("temp_", "test_temp_")
+        cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
+            ".db", "_2.db").replace("temp_", "test_temp_")
+        cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
+            ".db", "_0.db").replace("loading_", "test_loading_temp_")
+        cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
+            ".db", "_1.db").replace("loading_", "test_loading_temp_")
+        cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
+            ".db", "_2.db").replace("loading_", "test_loading_temp_")
+
+        cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
+            ".json", "_0.json").replace("temp_", "test_temp_")
+        cls.custom_TEMP_BLOCKSHASH_PATH1 = TEMP_BLOCKSHASH_PATH.replace(
+            ".json", "_1.json").replace("temp_", "test_temp_")
+        cls.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
+            ".json", "_2.json").replace("temp_", "test_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+
+        cls.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_0.json").replace("temp_", "test_temp_")
+        cls.custom_TEMP_BLOCKSHASH_PART_PATH1 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_1.json").replace("temp_", "test_temp_")
+        cls.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_2.json").replace("temp_", "test_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PART_PATH0 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PART_PATH1 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+        cls.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+
+        cls.custom_CONNECTED_NODES_PATH0 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_0")
+        cls.custom_CONNECTED_NODES_PATH1 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_1")
+        cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
+            "connected_nodes", "connected_nodes_test_2")
+
+        cls.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_0")
+        cls.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_1")
+        cls.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
+            "pending_transactions", "pending_transactions_test_2")
+
+        cls.node_0 = server(
+            "127.0.0.1",
+            10000,
+            save_messages=True,
+            custom_TEMP_BLOCK_PATH=cls.custom_TEMP_BLOCK_PATH0,
+            custom_LOADING_BLOCK_PATH=cls.custom_LOADING_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=cls.custom_TEMP_ACCOUNTS_PATH0,
+            custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
+            custom_TEMP_BLOCKSHASH_PART_PATH0,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
+            custom_LOADING_BLOCKSHASH_PART_PATH0,
+            custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH0,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH0,
+            custom_variables=True,
+        )
+
+        cls.node_1 = server(
+            "127.0.0.1",
+            10001,
+            save_messages=True,
+            custom_TEMP_BLOCK_PATH=cls.custom_TEMP_BLOCK_PATH1,
+            custom_LOADING_BLOCK_PATH=cls.custom_LOADING_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=cls.custom_TEMP_ACCOUNTS_PATH1,
+            custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
+            custom_TEMP_BLOCKSHASH_PART_PATH1,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
+            custom_LOADING_BLOCKSHASH_PART_PATH1,
+            custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH1,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH1,
+            custom_variables=True,
+        )
+        cls.node_2 = server(
+            "127.0.0.1",
+            10002,
+            save_messages=True,
+            custom_TEMP_BLOCK_PATH=cls.custom_TEMP_BLOCK_PATH2,
+            custom_LOADING_BLOCK_PATH=cls.custom_LOADING_BLOCK_PATH2,
+            custom_TEMP_ACCOUNTS_PATH=cls.custom_TEMP_ACCOUNTS_PATH2,
+            custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH2,
+            custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH2,
+            custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH2,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
+            custom_TEMP_BLOCKSHASH_PART_PATH2,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
+            custom_LOADING_BLOCKSHASH_PART_PATH2,
+            custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH2,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH2,
+            custom_variables=True,
+        )
+        Unl.save_new_unl_node(cls.node_0.id)
+        Unl.save_new_unl_node(cls.node_1.id)
+        Unl.save_new_unl_node(cls.node_2.id)
+        time.sleep(2)
+        cls.node_0.connect("127.0.0.1", 10001)
+        cls.node_0.connect("127.0.0.1", 10002)
+        time.sleep(2)
+        cls.node_2.connect("127.0.0.1", 10001)
+
+        print(cls.node_0.clients)
+        print(cls.node_1.clients)
+        print(cls.node_2.clients)
+        print("started")
     @classmethod
     def tearDownClass(cls):
-        CleanUp_tests()
+        cls.node_0.stop()
+        cls.node_1.stop()
+        cls.node_2.stop()
+
+        time.sleep(2)
+
+        cls.node_1.join()
+        cls.node_2.join()
+        cls.node_0.join()
+
+        for a_client in cls.node_0.clients:
+            the_dict = {}
+            the_dict["id"] = a_client.id
+            the_dict["host"] = a_client.host
+            the_dict["port"] = a_client.port
+            cls.node_0.connected_node_delete(the_dict)
+
+        for a_client in cls.node_1.clients:
+            the_dict = {}
+            the_dict["id"] = a_client.id
+            the_dict["host"] = a_client.host
+            the_dict["port"] = a_client.port
+            cls.node_1.connected_node_delete(the_dict)
+
+        for a_client in cls.node_2.clients:
+            the_dict = {}
+            the_dict["id"] = a_client.id
+            the_dict["host"] = a_client.host
+            the_dict["port"] = a_client.port
+            cls.node_2.connected_node_delete(the_dict)
 
     def test_true_time_false(self):
         block = Block("Onur")
@@ -863,10 +1030,6 @@ class Test_Consensus(unittest.TestCase):
             "db/test_consensus_round_1_TEMP_BLOCKSHASH_PART_PATH.json")
         custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
 
-        custom_server = server(
-            "127.0.0.1",
-            10000,
-        )
 
         the_transaction_json = {
             "sequance_number": 1,
@@ -924,7 +1087,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_candidate_class=CandidateBlock,
                 custom_unl_nodes=unl_nodes,
                 custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
-                custom_server=custom_server,
+                custom_server=self.node_0,
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
@@ -932,11 +1095,6 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
-        custom_server.stop()
-
-        time.sleep(2)
-
-        custom_server.join()
 
     def test_consensus_round_1(self):
         custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
@@ -1220,8 +1378,8 @@ class Test_Consensus(unittest.TestCase):
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
         block.hash = "onur from tests"
-        self.assertFalse(
-            process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes))
+        result = process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes)
+        self.assertEqual(result["hash"], False)
 
     def test_process_candidate_blocks_hashes(self):
         the_transaction_json = {
@@ -1277,149 +1435,7 @@ class Test_Consensus(unittest.TestCase):
 
     def test_rescue_main(self):
 
-        self.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
-        self.custom_TEMP_BLOCK_PATH1 = TEMP_BLOCK_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
-        self.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
-        self.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
-        self.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
-        self.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
-        self.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_0.db").replace("temp_", "test_temp_")
-        self.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_1.db").replace("temp_", "test_temp_")
-        self.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_2.db").replace("temp_", "test_temp_")
-        self.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_0.db").replace("loading_", "test_loading_temp_")
-        self.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_1.db").replace("loading_", "test_loading_temp_")
-        self.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_2.db").replace("loading_", "test_loading_temp_")
-
-        self.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
-        self.custom_TEMP_BLOCKSHASH_PATH1 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
-        self.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
-        self.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
-        self.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
-        self.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
-
-        self.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
-        self.custom_TEMP_BLOCKSHASH_PART_PATH1 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
-        self.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
-        self.custom_LOADING_BLOCKSHASH_PART_PATH0 = (
-            LOADING_BLOCKSHASH_PART_PATH.replace(".json", "_0.json").replace(
-                "loading_", "test_loading_temp_"))
-        self.custom_LOADING_BLOCKSHASH_PART_PATH1 = (
-            LOADING_BLOCKSHASH_PART_PATH.replace(".json", "_1.json").replace(
-                "loading_", "test_loading_temp_"))
-        self.custom_LOADING_BLOCKSHASH_PART_PATH2 = (
-            LOADING_BLOCKSHASH_PART_PATH.replace(".json", "_2.json").replace(
-                "loading_", "test_loading_temp_"))
-
-        self.custom_CONNECTED_NODES_PATH0 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_0")
-        self.custom_CONNECTED_NODES_PATH1 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_1")
-        self.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_2")
-
-        self.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_0")
-        self.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_1")
-        self.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_2")
-
-        self.node_0 = server(
-            "127.0.0.1",
-            10000,
-            save_messages=True,
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
-            custom_LOADING_BLOCK_PATH=self.custom_LOADING_BLOCK_PATH0,
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
-            custom_LOADING_ACCOUNTS_PATH=self.custom_LOADING_ACCOUNTS_PATH0,
-            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
-            custom_LOADING_BLOCKSHASH_PATH=self.
-            custom_LOADING_BLOCKSHASH_PATH0,
-            custom_TEMP_BLOCKSHASH_PART_PATH=self.
-            custom_TEMP_BLOCKSHASH_PART_PATH0,
-            custom_LOADING_BLOCKSHASH_PART_PATH=self.
-            custom_LOADING_BLOCKSHASH_PART_PATH0,
-            custom_CONNECTED_NODES_PATH=self.custom_CONNECTED_NODES_PATH0,
-            custom_PENDING_TRANSACTIONS_PATH=self.
-            custom_PENDING_TRANSACTIONS_PATH0,
-            custom_variables=True,
-        )
-
-        self.node_1 = server(
-            "127.0.0.1",
-            10001,
-            save_messages=True,
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
-            custom_LOADING_BLOCK_PATH=self.custom_LOADING_BLOCK_PATH1,
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
-            custom_LOADING_ACCOUNTS_PATH=self.custom_LOADING_ACCOUNTS_PATH1,
-            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
-            custom_LOADING_BLOCKSHASH_PATH=self.
-            custom_LOADING_BLOCKSHASH_PATH1,
-            custom_TEMP_BLOCKSHASH_PART_PATH=self.
-            custom_TEMP_BLOCKSHASH_PART_PATH1,
-            custom_LOADING_BLOCKSHASH_PART_PATH=self.
-            custom_LOADING_BLOCKSHASH_PART_PATH1,
-            custom_CONNECTED_NODES_PATH=self.custom_CONNECTED_NODES_PATH1,
-            custom_PENDING_TRANSACTIONS_PATH=self.
-            custom_PENDING_TRANSACTIONS_PATH1,
-            custom_variables=True,
-        )
-        self.node_2 = server(
-            "127.0.0.1",
-            10002,
-            save_messages=True,
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH2,
-            custom_LOADING_BLOCK_PATH=self.custom_LOADING_BLOCK_PATH2,
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH2,
-            custom_LOADING_ACCOUNTS_PATH=self.custom_LOADING_ACCOUNTS_PATH2,
-            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH2,
-            custom_LOADING_BLOCKSHASH_PATH=self.
-            custom_LOADING_BLOCKSHASH_PATH2,
-            custom_TEMP_BLOCKSHASH_PART_PATH=self.
-            custom_TEMP_BLOCKSHASH_PART_PATH2,
-            custom_LOADING_BLOCKSHASH_PART_PATH=self.
-            custom_LOADING_BLOCKSHASH_PART_PATH2,
-            custom_CONNECTED_NODES_PATH=self.custom_CONNECTED_NODES_PATH2,
-            custom_PENDING_TRANSACTIONS_PATH=self.
-            custom_PENDING_TRANSACTIONS_PATH2,
-            custom_variables=True,
-        )
-        Unl.save_new_unl_node(self.node_0.id)
-        Unl.save_new_unl_node(self.node_1.id)
-        Unl.save_new_unl_node(self.node_2.id)
-        time.sleep(2)
-        self.node_0.connect("127.0.0.1", 10001)
-        self.node_0.connect("127.0.0.1", 10002)
-        time.sleep(2)
-        self.node_2.connect("127.0.0.1", 10001)
-
-        print(self.node_0.clients)
-        print(self.node_1.clients)
-        print(self.node_2.clients)
-        print("started")
         block = Block("Onur")
         data_block_hash = {
             "action": "myblockhash",
@@ -1436,36 +1452,166 @@ class Test_Consensus(unittest.TestCase):
         )
         self.assertEqual(result.dowload_true_block, data_block_hash["sender"])
 
-        self.node_0.stop()
-        self.node_1.stop()
-        self.node_2.stop()
+    def test_round_process_round_2_false_false(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
 
-        time.sleep(2)
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
 
-        self.node_1.join()
-        self.node_2.join()
-        self.node_0.join()
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+        }
 
-        for a_client in self.node_0.clients:
-            the_dict = {}
-            the_dict["id"] = a_client.id
-            the_dict["host"] = a_client.host
-            the_dict["port"] = a_client.port
-            self.node_0.connected_node_delete(the_dict)
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(7)])
+        the_new_list = []
+        for i in range(7):
+            the_new_object = copy.copy(data_block_hash)
+            the_new_object["sender"] = i
+            the_new_list.append(the_new_object)
+        CandidateBlock.candidate_block_hashes = the_new_list
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.hash = "onur from tests"
 
-        for a_client in self.node_1.clients:
-            the_dict = {}
-            the_dict["id"] = a_client.id
-            the_dict["host"] = a_client.host
-            the_dict["port"] = a_client.port
-            self.node_1.connected_node_delete(the_dict)
+        result = round_process_round_2(
+            block,
+            CandidateBlock,
+            unl_nodes,
+            custom_server=self.node_1,
+            custom_unl=self.node_1.clients[0],
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.custom_TEMP_BLOCKSHASH_PART_PATH1,
+        )
 
-        for a_client in self.node_2.clients:
-            the_dict = {}
-            the_dict["id"] = a_client.id
-            the_dict["host"] = a_client.host
-            the_dict["port"] = a_client.port
-            self.node_2.connected_node_delete(the_dict)
+        self.assertIsNone(result)
+
+    def test_round_process_round_2_false_true(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+            "sender": self.node_0.id,            
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(8)])
+        the_new_list = []
+        for i in range(8):
+            the_new_object = copy.copy(data_block_hash)
+            the_new_object["sender"] = i
+            the_new_list.append(the_new_object)
+        CandidateBlock.candidate_block_hashes = the_new_list
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.hash = "Different hash"
+
+        result = round_process_round_2(
+            block,
+            CandidateBlock,
+            unl_nodes,
+            custom_server=self.node_1,
+            custom_unl=self.node_1.clients[0],
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.custom_TEMP_BLOCKSHASH_PART_PATH1,
+        )
+
+        self.assertEqual(result, False)
+        self.assertEqual(block.dowload_true_block, 0)
 
 
+    def test_round_process_round_2_true(self):
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+            "sender": self.node_0.id,            
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(8)])
+        the_new_list = []
+        for i in range(8):
+            the_new_object = copy.copy(data_block_hash)
+            the_new_object["sender"] = i
+            the_new_list.append(the_new_object)
+        CandidateBlock.candidate_block_hashes = the_new_list
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.hash = "onur from tests"
+        old_block = copy.copy(block)
+        result = round_process_round_2(
+            block,
+            CandidateBlock,
+            unl_nodes,
+            custom_server=self.node_1,
+            custom_unl=self.node_1.clients[0],
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.custom_TEMP_BLOCKSHASH_PART_PATH1,
+        )
+
+        self.assertTrue(result)
+        self.assertEqual(block.validated, True)
+        self.assertEqual(block.round_2, True)
+        self.assertNotEqual(old_block.validated_time, block.validated_time)
 unittest.main(exit=False)
