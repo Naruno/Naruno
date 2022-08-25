@@ -24,20 +24,21 @@ def consensus_trigger(
     custom_unl_nodes: dict = None,
     custom_UNL_NODES_PATH: str = None,
     custom_server: server = None,
-    custom_unl: client = None,    
+    custom_unl: client = None,
     custom_TEMP_BLOCK_PATH: str = None,
     custom_BLOCKS_PATH: str = None,
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
-    ) -> Block:
+) -> Block:
     """
     Consensus process consists of 2 stages. This function makes
     the necessary redirects according to the situation and works
     to shorten the block time.
     """
 
-    block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH) if custom_block is None else custom_block
+    block = GetBlock(
+        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH) if custom_block is None else custom_block
 
     logger.info(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
@@ -46,25 +47,25 @@ def consensus_trigger(
     if block.validated:
         finished_main(
             block,
-            custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH,
-            custom_BLOCKS_PATH = custom_BLOCKS_PATH,
-            custom_TEMP_ACCOUNTS_PATH = custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH = custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH = custom_TEMP_BLOCKSHASH_PART_PATH,            
-            )
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
     else:
         ongoing_main(
             block,
-            custom_candidate_class = custom_candidate_class,
-            custom_unl_nodes = custom_unl_nodes,
-            custom_UNL_NODES_PATH = custom_UNL_NODES_PATH,
-            custom_server = custom_server,
-            custom_unl = custom_unl,
-            custom_TEMP_ACCOUNTS_PATH = custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH,
-            custom_TEMP_BLOCKSHASH_PATH = custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH = custom_TEMP_BLOCKSHASH_PART_PATH,        
-            )
+            custom_candidate_class=custom_candidate_class,
+            custom_unl_nodes=custom_unl_nodes,
+            custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+            custom_server=custom_server,
+            custom_unl=custom_unl,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
 
     logger.info("Consensus process is done")
     return block

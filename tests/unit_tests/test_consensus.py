@@ -80,6 +80,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 from decentra_network.consensus.consensus_main import consensus_trigger
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -1095,8 +1096,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -1170,8 +1170,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -1879,7 +1878,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
 
-
     def test_consensus_trigger_ongoing(self):
 
         the_transaction_json = {
@@ -1944,7 +1942,6 @@ class Test_Consensus(unittest.TestCase):
 
     def test_consensus_trigger_finished(self):
 
-
         custom_TEMP_BLOCK_PATH = "db/test_consensus_trigger_finished.json"
         custom_BLOCKS_PATH = "db/test_consensus_trigger_finished/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_consensus_trigger_finished_TEMP_ACCOUNTS_PATH.json"
@@ -2002,5 +1999,6 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertIsNot(result_2, False)
+
 
 unittest.main(exit=False)
