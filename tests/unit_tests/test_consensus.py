@@ -78,6 +78,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.consensus.rounds.round_2.round_2_main import \
     consensus_round_2
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -1093,8 +1094,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -1168,8 +1168,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -1618,7 +1617,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
 
-
     def test_consensus_round_2_false(self):
         the_transaction_json = {
             "sequance_number": 1,
@@ -1673,9 +1671,8 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH1,
-        )            
-        self.assertFalse(result)     
-
+        )
+        self.assertFalse(result)
 
     def test_consensus_round_2(self):
         the_transaction_json = {
@@ -1731,10 +1728,11 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH1,
-        )            
+        )
         self.assertTrue(result)
         self.assertEqual(block.validated, True)
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
+
 
 unittest.main(exit=False)

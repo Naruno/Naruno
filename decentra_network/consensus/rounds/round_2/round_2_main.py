@@ -36,7 +36,7 @@ def consensus_round_2(
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
-    ) -> bool:
+) -> bool:
     """
     At this stage of the consensus process,
     The blocks (block hashes) of our and the
@@ -66,8 +66,8 @@ def consensus_round_2(
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,            
-            )
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
         result = True
     else:
         logger.info("Our block hash is sending to the unl nodes")
