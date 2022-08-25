@@ -49,9 +49,8 @@ def consensus_round_2(
     )
 
     unl_nodes = Unl.get_unl_nodes() if unl_nodes is None else unl_nodes
-    candidate_class = (
-        GetCandidateBlocks() if candidate_class is None else candidate_class
-    )
+    candidate_class = (GetCandidateBlocks()
+                       if candidate_class is None else candidate_class)
 
     result = None
     if round_check(block, candidate_class, unl_nodes):
