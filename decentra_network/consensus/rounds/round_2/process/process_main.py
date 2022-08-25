@@ -43,8 +43,7 @@ def round_process(
 ) -> bool:
 
     candidate_block_hash = process_candidate_blocks_hashes(
-        block, candidate_class, unl_nodes
-    )
+        block, candidate_class, unl_nodes)
     result = None
     if block.hash == candidate_block_hash["hash"]:
         validate_main(block)
