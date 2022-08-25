@@ -27,6 +27,7 @@ from decentra_network.config import (
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
     PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
     TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
+from decentra_network.consensus.consensus_main import consensus_trigger
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.finished.transactions.transactions_main import \
     transactions_main as transactions_main_finished
@@ -1877,6 +1878,131 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(block.validated, True)
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
+
+    def test_consensus_trigger_ongoing(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequance_number": 58,
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "sequance_number": 58,
+            "sender": self.node_0.id,
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(7)],
+                                         [data_block_hash for i in range(8)])
+        the_new_list = []
+        for i in range(8):
+            the_new_object = copy.copy(data_block_hash)
+            the_new_object["sender"] = i
+            the_new_list.append(the_new_object)
+        CandidateBlock.candidate_block_hashes = the_new_list
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.round_1 = True
+        block.hash = "onur from tests"
+        old_block = copy.copy(block)
+
+        block.round_2_starting_time = time.time()
+        block.round_2_time = 2
+        time.sleep(4)
+        result = consensus_trigger(
+            block,
+            CandidateBlock,
+            unl_nodes,
+            custom_server=self.node_1,
+            custom_unl=self.node_1.clients[0],
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH1,
+        )
+        self.assertTrue(result)
+        self.assertEqual(block.validated, True)
+        self.assertEqual(block.round_2, True)
+        self.assertNotEqual(old_block.validated_time, block.validated_time)
+
+    def test_consensus_trigger_finished(self):
+
+        custom_TEMP_BLOCK_PATH = "db/test_consensus_trigger_finished.json"
+        custom_BLOCKS_PATH = "db/test_consensus_trigger_finished/"
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_consensus_trigger_finished_TEMP_ACCOUNTS_PATH.json")
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_consensus_trigger_finished_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_consensus_trigger_finished_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
+
+        block = Block("Onur")
+        block.validated = True
+
+        block.genesis_time = int(time.time())
+        block.block_time = 1
+        block.sequance_number = 0
+        block.empty_block_number = 0
+        block.max_tx_number = 3
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.fromUser = wallet_import(-1, 0)
+        block.validating_list = [the_transaction, the_transaction]
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        time.sleep(1)
+
+        result = consensus_trigger(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertTrue(result)
+
+        result_2 = GetBlockstoBlockchainDB(
+            sequance_number=0,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertIsNot(result_2, False)
 
 
 unittest.main(exit=False)
