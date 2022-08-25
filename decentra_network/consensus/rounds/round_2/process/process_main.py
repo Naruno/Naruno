@@ -15,14 +15,18 @@ from xmlrpc.client import Boolean
 
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
-from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
-    process_candidate_blocks_hashes
-from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import \
-    rescue_main
-from decentra_network.consensus.rounds.round_2.process.validate.validate_main import \
-    validate_main
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
+from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import (
+    process_candidate_blocks_hashes,
+)
+from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import (
+    rescue_main,
+)
+from decentra_network.consensus.rounds.round_2.process.validate.validate_main import (
+    validate_main,
+)
 from decentra_network.lib.log import get_logger
 
 
@@ -41,19 +45,24 @@ def round_process(
     custom_TEMP_BLOCK_PATH: str = None,
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
-    custom_TEMP_BLOCKSHASH_PART_PATH: str = None
+    custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
 ) -> bool:
 
     candidate_block_hash = process_candidate_blocks_hashes(
-        block, candidate_class, unl_nodes)
+        block, candidate_class, unl_nodes
+    )
     result = None
     if block.hash == candidate_block_hash["hash"]:
         validate_main(block)
         result = True
     else:
         if not candidate_block_hash["hash"] == False:
-            rescue_main(block, candidate_block_hash,
-                        custom_server=custom_server, custom_unl=custom_unl)
+            rescue_main(
+                block,
+                candidate_block_hash,
+                custom_server=custom_server,
+                custom_unl=custom_unl,
+            )
             result = False
 
     SaveBlock(
@@ -61,6 +70,6 @@ def round_process(
         custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
     return result

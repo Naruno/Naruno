@@ -15,23 +15,23 @@ from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
-from decentra_network.consensus.rounds.round_1.checks.checks_main import \
-    round_check
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
+from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
 from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
-from decentra_network.transactions.process_the_transaction import \
-    ProccesstheTransaction
+from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def find_validated(block: Block, candidate_class: candidate_block,
-                   unl_nodes: dict) -> list:
+def find_validated(
+    block: Block, candidate_class: candidate_block, unl_nodes: dict
+) -> list:
     temp_validating_list = []
     for candidate_block in candidate_class.candidate_blocks[:]:
         logger.debug(f"Candidate block {str(candidate_block)}")
@@ -52,19 +52,16 @@ def find_validated(block: Block, candidate_class: candidate_block,
             else:
                 tx_valid += 1
 
-            logger.debug(
-                f"Tx valid of {other_block_tx.signature} : {tx_valid}")
+            logger.debug(f"Tx valid of {other_block_tx.signature} : {tx_valid}")
             if tx_valid > (len(unl_nodes) / 2):
 
                 already_in_ok = False
                 for alrady_tx in temp_validating_list[:]:
 
                     if other_block_tx.signature == alrady_tx.signature:
-                        logger.warning(
-                            "The transaction is already in the list")
+                        logger.warning("The transaction is already in the list")
                         already_in_ok = True
                 if not already_in_ok:
-                    logger.info(
-                        f"Transaction is valid ({other_block_tx.signature})")
+                    logger.info(f"Transaction is valid ({other_block_tx.signature})")
                     temp_validating_list.append(other_block_tx)
     return temp_validating_list
