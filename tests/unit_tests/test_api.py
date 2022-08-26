@@ -23,8 +23,11 @@ class Test_API(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
+        backup = sys.argv
+        sys.argv = [sys.argv[0]]
         cls.proc = multiprocessing.Process(target=start, args=("7777",))
         cls.proc.start()
+        sys.argv = backup
         time.sleep(2)
     
     @classmethod
