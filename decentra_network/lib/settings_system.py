@@ -50,7 +50,7 @@ def t_mode_settings(new_value):
     save_settings(settings)
 
 
-def debug_mode(new_value):
+def d_mode_settings(new_value):
     """
     Changes the debug_mode setting.
 

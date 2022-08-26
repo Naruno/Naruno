@@ -24,7 +24,7 @@ from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (debug_mode, t_mode_settings,
+from decentra_network.lib.settings_system import (d_mode_settings, t_mode_settings,
                                                   the_settings)
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
@@ -179,7 +179,7 @@ def settings_debug_on_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = True
-    debug_mode(True)
+    d_mode_settings(True)
     return jsonify("OK")
 
 
@@ -188,7 +188,7 @@ def settings_debug_off_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     app.config["DEBUG"] = False
-    debug_mode(False)
+    d_mode_settings(False)
     return jsonify("OK")
 
 
