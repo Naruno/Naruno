@@ -9,22 +9,15 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
-
 from unittest import mock
 
 from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.mix.mixlib import (
-    starting_text_centered,
-    ended_text_centered,
-    printcentertext,
-    banner_maker,
-    menu_maker,
-    quit_menu_maker,
-    menu_space,
-    menu_seperator,
-    menu_title,
-    question_maker,
-)
+from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
+                                             menu_maker, menu_seperator,
+                                             menu_space, menu_title,
+                                             printcentertext, question_maker,
+                                             quit_menu_maker,
+                                             starting_text_centered)
 
 
 class Test_Lib(unittest.TestCase):
