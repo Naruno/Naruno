@@ -26,7 +26,7 @@ SOFTWARE.
 """
 
 
-def starting_text_centered():
+def starting_text_centered() -> str:
     """
     Prints the STARTING message between space.
     """
@@ -35,8 +35,10 @@ def starting_text_centered():
     print(" STARTING")
     print(" ")
 
+    return "\nSTARTING\n"
 
-def ended_text_centered():
+
+def ended_text_centered() -> str:
     """
     Prints the ENDED message between space.
     """
@@ -44,8 +46,10 @@ def ended_text_centered():
     print(" ENDED")
     print(" ")
 
+    return "\nENDED\n"
 
-def printcentertext(text):
+
+def printcentertext(text) -> str:
     """
     Prints the text between spaces.
 
@@ -56,6 +60,8 @@ def printcentertext(text):
     print(" ")
     print(text)
     print(" ")
+
+    return "\n" + text + "\n"
 
 
 def banner_maker(sc_name, description, author):
@@ -68,23 +74,9 @@ def banner_maker(sc_name, description, author):
       * author: Author of the script.
     """
 
-    return (
-        (
-            (
-                (
-                    (
-                        f"""Script Name    : {sc_name}"""
-                        + """\n"""
-                        + """Description    : """
-                    )
-                    + description
-                )
-                + """\n"""
-            )
-            + """Author         : """
-        )
-        + author
-    ) + """\n"""
+    return (((((f"""Script Name    : {sc_name}""" + """\n""" +
+                """Description    : """) + description) + """\n""") +
+             """Author         : """) + author) + """\n"""
 
 
 def question_maker(question_text=None, mode=None):
@@ -103,12 +95,12 @@ def question_maker(question_text=None, mode=None):
         elif mode == "anykeytocontinue":
             question_text = "Press any key to continue..."
         else:
-            raise ValueError("the mode variable contains an unplanned value")
+            question_text = "Please enter main option: "
 
     return input(question_text)
 
 
-def menu_maker(menu_number, menu_text):
+def menu_maker(menu_number, menu_text) -> str:
     """
     Returns a string in the form of a menu.
 
@@ -119,7 +111,7 @@ def menu_maker(menu_number, menu_text):
     return f"{str(menu_number)}) {menu_text}" + "\n"
 
 
-def quit_menu_maker(mode):
+def quit_menu_maker(mode) -> str:
     """
     Returns a quit string by mode.
 
@@ -132,12 +124,12 @@ def quit_menu_maker(mode):
     elif mode == "sub":
         quit_menu_maker_result = "\n0) Quit sub menu \n"
     else:
-        raise ValueError("the mode variable contains the unplanned value")
+        quit_menu_maker_result = "\n0) Quit \n"
 
     return quit_menu_maker_result
 
 
-def menu_space():
+def menu_space() -> str:
     """
     Returns a string in the form of a space.
     """
@@ -145,7 +137,7 @@ def menu_space():
     return "\n"
 
 
-def menu_seperator():
+def menu_seperator() -> str:
     """
     Returns a string in the form of a seperator.
     """
@@ -153,7 +145,7 @@ def menu_seperator():
     return "\n" + "*** \n" + "\n"
 
 
-def menu_title(menu_title_text):
+def menu_title(menu_title_text) -> str:
     """
     Returns a string in the form of a title.
 
