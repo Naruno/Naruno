@@ -37,6 +37,7 @@ from decentra_network.node.unl import Unl
 from decentra_network.lib.settings_system import save_settings, test_mode
 from decentra_network.lib.settings_system import the_settings
 
+
 class pywall_none:
 
     def __init__(self):
@@ -573,5 +574,6 @@ class Test_Lib(unittest.TestCase):
         self.assertTrue(new_settings["test_mode"])
 
         test_mode(temp_settings["test_mode"])
+
 
 unittest.main(exit=False)
