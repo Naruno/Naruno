@@ -7,6 +7,9 @@ bin/
 *.json
 *.db
 
+#export
+*.csv
+
 decentra_network/db/blocs/*
 decentra_network/db/pending_transactions/*
 decentra_network/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
