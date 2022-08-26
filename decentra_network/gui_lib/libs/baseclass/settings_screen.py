@@ -8,11 +8,8 @@
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 
-from decentra_network.lib.settings_system import (
-    the_settings,
-    t_mode_settings,
-    debug_mode,
-)
+from decentra_network.lib.settings_system import (debug_mode, t_mode_settings,
+                                                  the_settings)
 
 
 class SettingsScreen(MDScreen):
