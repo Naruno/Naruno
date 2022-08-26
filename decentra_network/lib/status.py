@@ -5,13 +5,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
-from decentra_network.blockchain.block.block_main import Block
 
+from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
 
 
 def Status(
