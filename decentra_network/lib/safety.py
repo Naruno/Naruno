@@ -12,24 +12,29 @@ logger = get_logger("Safety")
 
 
 def safety_check(
-        interface=None,
-        timeout=None,
-        exit_on_error=True,
-        custom_pywall=None,
-        custom_debug_mode=None):
+    interface=None,
+    timeout=None,
+    exit_on_error=True,
+    custom_pywall=None,
+    custom_debug_mode=None,
+):
     logger.info("Checking safety")
     try:
         the_import_string = "from pywall import pywall"
-        pywall_class = exec(
-            the_import_string) if custom_pywall is None else custom_pywall
+        pywall_class = (
+            exec(the_import_string) if custom_pywall is None else custom_pywall
+        )
         the_pywall = pywall() if custom_pywall is None else custom_pywall()
         the_pywall.iface = the_pywall.iface if interface is None else interface
         the_pywall.timeout = the_pywall.timeout if timeout is None else timeout
 
         control = the_pywall.control()
 
-        debug_mode = the_settings(
-        )["debug_mode"] if custom_debug_mode is None else custom_debug_mode
+        debug_mode = (
+            the_settings()["debug_mode"]
+            if custom_debug_mode is None
+            else custom_debug_mode
+        )
 
         if control is not None:
             if control:
@@ -40,8 +45,7 @@ def safety_check(
                 logger.info("Safe")
                 return True
         elif debug_mode:
-            logger.info(
-                "Control check is none but passing because of debug mode")
+            logger.info("Control check is none but passing because of debug mode")
             return None
         else:
             logger.info("NOT Safe (Control check is None)")
