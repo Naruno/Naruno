@@ -23,6 +23,7 @@ from decentra_network.config import (
     TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH,
     UNL_NODES_PATH)
 from decentra_network.lib.clean_up import CleanUp_tests
+from decentra_network.lib.config_system import get_config
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                              menu_maker, menu_seperator,
@@ -30,6 +31,7 @@ from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                              printcentertext, question_maker,
                                              quit_menu_maker,
                                              starting_text_centered)
+from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import (d_mode_settings,
                                                   save_settings,
@@ -37,6 +39,18 @@ from decentra_network.lib.settings_system import (d_mode_settings,
                                                   the_settings)
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+
+
+def perpetual_time_test():
+    os.chdir(get_config()["main_folder"])
+    with open("test_perpetual_time_test.txt", "w") as f:
+        f.write("Hello World")
+
+
+def perpetual_time_test_t_0():
+    os.chdir(get_config()["main_folder"])
+    with open("test_perpetual_time_test_t_0.txt", "w") as f:
+        f.write("Hello World")
 
 
 class pywall_none:
@@ -585,6 +599,24 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(new_settings["debug_mode"], changed_value)
 
         t_mode_settings(temp_settings["debug_mode"])
+
+    def test_perpetualTimer_0(self):
+        the_timer = perpetualTimer(
+            0,
+            perpetual_time_test_t_0,
+        )
+        time.sleep(2.5)
+        self.assertFalse(os.path.exists("test_perpetual_time_test_t_0.txt"))
+        the_timer.cancel()
+
+    def test_perpetualTimer(self):
+        the_timer = perpetualTimer(
+            1,
+            perpetual_time_test,
+        )
+        time.sleep(2.5)
+        self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
+        the_timer.cancel()
 
 
 unittest.main(exit=False)
