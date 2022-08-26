@@ -35,7 +35,7 @@ class Test_API(unittest.TestCase):
         cls.proc.terminate()
 
     def test_api_debug_by_response_status_code(self):
-        response = urllib.request.urlopen("http://0.0.0.0:7777/wallet/print")
+        response = urllib.request.urlopen("http://localhost:7777/wallet/print")
         self.assertEqual(response.status, 200, "A problem on the API.")
 
 
