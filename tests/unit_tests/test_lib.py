@@ -566,7 +566,7 @@ class Test_Lib(unittest.TestCase):
 
     def test_test_mode(self):
         temp_settings = the_settings()
-        changed_value = True if temp_settings["test_mode"] is True else False
+        changed_value = True if temp_settings["test_mode"] is False else False
         test_mode(changed_value)
         new_settings = the_settings()
 
