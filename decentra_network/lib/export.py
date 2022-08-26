@@ -14,12 +14,18 @@ from decentra_network.transactions.my_transactions.get_my_transaction import (
 )
 
 
-def export_the_transactions(custom_transactions: list = None, custom_MY_TRANSACTION_EXPORT_PATH: str = None) -> bool:
+def export_the_transactions(
+    custom_transactions: list = None, custom_MY_TRANSACTION_EXPORT_PATH: str = None
+) -> bool:
     """
     Export the transactions to a CSV file.
     """
     obj = GetMyTransaction() if custom_transactions is None else custom_transactions
-    filename = MY_TRANSACTION_EXPORT_PATH if custom_MY_TRANSACTION_EXPORT_PATH is None else custom_MY_TRANSACTION_EXPORT_PATH
+    filename = (
+        MY_TRANSACTION_EXPORT_PATH
+        if custom_MY_TRANSACTION_EXPORT_PATH is None
+        else custom_MY_TRANSACTION_EXPORT_PATH
+    )
     if len(obj) == 0:
         return False
     os.chdir(get_config()["main_folder"])
