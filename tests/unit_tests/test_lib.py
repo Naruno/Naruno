@@ -46,13 +46,6 @@ def perpetual_time_test():
     with open("test_perpetual_time_test.txt", "w") as f:
         f.write("Hello World")
 
-
-def perpetual_time_test_t_0():
-    os.chdir(get_config()["main_folder"])
-    with open("test_perpetual_time_test_t_0.txt", "w") as f:
-        f.write("Hello World")
-
-
 class pywall_none:
 
     def __init__(self):
@@ -603,10 +596,10 @@ class Test_Lib(unittest.TestCase):
     def test_perpetualTimer_0(self):
         the_timer = perpetualTimer(
             0,
-            perpetual_time_test_t_0,
+            perpetual_time_test,
         )
         time.sleep(2.5)
-        self.assertFalse(os.path.exists("test_perpetual_time_test_t_0.txt"))
+        self.assertFalse(os.path.exists("test_perpetual_time_test.txt"))
         the_timer.cancel()
 
     def test_perpetualTimer(self):
@@ -617,6 +610,7 @@ class Test_Lib(unittest.TestCase):
         time.sleep(2.5)
         self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
         the_timer.cancel()
+        os.remove("test_perpetual_time_test.txt")
 
 
 unittest.main(exit=False)
