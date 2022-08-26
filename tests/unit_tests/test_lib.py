@@ -21,6 +21,7 @@ from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
 
 
 class Test_Lib(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -41,24 +42,9 @@ class Test_Lib(unittest.TestCase):
 
         self.assertEqual(
             banner_maker(sc_name, description, author),
-            (
-                (
-                    (
-                        (
-                            (
-                                f"""Script Name    : {sc_name}"""
-                                + """\n"""
-                                + """Description    : """
-                            )
-                            + description
-                        )
-                        + """\n"""
-                    )
-                    + """Author         : """
-                )
-                + author
-            )
-            + """\n""",
+            (((((f"""Script Name    : {sc_name}""" + """\n""" +
+                 """Description    : """) + description) + """\n""") +
+              """Author         : """) + author) + """\n""",
         )
 
     def test_menu_maker(self):
