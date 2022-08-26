@@ -6,31 +6,34 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+import time
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
-from decentra_network.api.main import app
+import urllib
+
+from decentra_network.api.main import start
 from decentra_network.lib.clean_up import CleanUp_tests
 
+import multiprocessing
 
 class Test_API(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
-
-    def setUp(self):
-        self.ctx = app.app_context()
-        self.ctx.push()
-        self.client = app.test_client()
-
-    def tearDown(self):
-        self.ctx.pop()
+        cls.proc = multiprocessing.Process(target=start, args=("7777",))
+        cls.proc.start()
+        time.sleep(2)
+    
+    @classmethod
+    def tearDownClass(cls):
+        cls.proc.terminate()
 
     def test_api_debug_by_response_status_code(self):
-        response = self.client.get("/wallet/print")
-        self.assertEqual(response.status_code, 200, "A problem on the API.")
+        response = urllib.request.urlopen("http://0.0.0.0:7777/wallet/print")
+        self.assertEqual(response.status, 200, "A problem on the API.")
 
 
 unittest.main(exit=False)

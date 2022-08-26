@@ -233,7 +233,7 @@ def status_page():
     return jsonify(Status())
 
 
-def start():
+def start(port=None):
     """
     Start the API server.
     """
@@ -264,6 +264,8 @@ def start():
     )
 
     args = parser.parse_args()
+
+    args.port = args.port if port is None else int(port)
 
     safety_check(args.interface, args.timeout)
 
