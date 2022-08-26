@@ -30,8 +30,39 @@ from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                              printcentertext, question_maker,
                                              quit_menu_maker,
                                              starting_text_centered)
+from decentra_network.lib.safety import safety_check
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+
+
+class pywall_none:
+
+    def __init__(self):
+        self.iface = "eth0"
+        self.timeout = 10
+
+    def control(self):
+        return None
+
+
+class pywall_true:
+
+    def __init__(self):
+        self.iface = "eth0"
+        self.timeout = 10
+
+    def control(self):
+        return True
+
+
+class pywall_false:
+
+    def __init__(self):
+        self.iface = "eth0"
+        self.timeout = 10
+
+    def control(self):
+        return False
 
 
 class Test_Lib(unittest.TestCase):
@@ -448,6 +479,40 @@ class Test_Lib(unittest.TestCase):
 1,MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=,MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==,onur,blockchain-lab,5000.0,0.02,1656764224,validated
 """
             self.assertEqual(content, expected_content)
+
+    def test_safety_check_no_module(self):
+        result = safety_check()
+        self.assertIsNone(result)
+
+    def test_safety_check_none_false(self):
+        result = safety_check(
+            custom_pywall=pywall_none,
+            custom_debug_mode=False,
+            exit_on_error=False,
+        )
+        self.assertFalse(result)
+
+    def test_safety_check_none_true(self):
+        result = safety_check(
+            custom_pywall=pywall_none,
+            custom_debug_mode=True,
+            exit_on_error=False,
+        )
+        self.assertIsNone(result)
+
+    def test_safety_check_true(self):
+        result = safety_check(
+            custom_pywall=pywall_true,
+            exit_on_error=False,
+        )
+        self.assertFalse(result)
+
+    def test_safety_check_false(self):
+        result = safety_check(
+            custom_pywall=pywall_false,
+            exit_on_error=False,
+        )
+        self.assertTrue(result)
 
 
 unittest.main(exit=False)
