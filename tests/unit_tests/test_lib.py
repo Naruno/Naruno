@@ -23,10 +23,10 @@ class Test_Lib(unittest.TestCase):
 
     def test_starting_text_centered(self):
         self.assertEqual(starting_text_centered(), "\nSTARTING\n")
-    
+
     def test_ended_text_centered(self):
         self.assertEqual(ended_text_centered(), "\nENDED\n")
-    
+
     def test_printcentertext(self):
         self.assertEqual(printcentertext("text"), "\ntext\n")
 
@@ -36,28 +36,28 @@ class Test_Lib(unittest.TestCase):
         author = "sc_description"
 
         self.assertEqual(banner_maker(sc_name, description, author), (
-        (
             (
                 (
                     (
-                        f"""Script Name    : {sc_name}"""
-                        + """\n"""
-                        + """Description    : """
+                        (
+                            f"""Script Name    : {sc_name}"""
+                            + """\n"""
+                            + """Description    : """
+                        )
+                        + description
                     )
-                    + description
+                    + """\n"""
                 )
-                + """\n"""
+                + """Author         : """
             )
-            + """Author         : """
-        )
-        + author
-    ) + """\n""")
+            + author
+        ) + """\n""")
 
     def test_menu_maker(self):
         menu_number = 1
         menu_text = "menu_text"
         self.assertEqual(menu_maker(menu_number, menu_text),
-            f"{str(menu_number)}) {menu_text}" + "\n")
+                         f"{str(menu_number)}) {menu_text}" + "\n")
 
     def test_quit_menu_maker_main(self):
         self.assertEqual(quit_menu_maker("main"), '\n0) Quit \n')
@@ -70,13 +70,12 @@ class Test_Lib(unittest.TestCase):
 
     def test_menu_space(self):
         self.assertEqual(menu_space(), '\n')
-    
+
     def test_menu_seperator(self):
         self.assertEqual(menu_seperator(), '\n*** \n\n')
-    
+
     def test_menu_title(self):
         self.assertEqual(menu_title("title"), '\n*** title *** \n\n')
-
 
     def test_question_maker_custom_Text(self):
         question_text = "question_text"
@@ -98,5 +97,6 @@ class Test_Lib(unittest.TestCase):
     def test_question_maker_other(self):
         with mock.patch('builtins.input', return_value=1):
             self.assertEqual(question_maker(mode="maina"), 1)
+
 
 unittest.main(exit=False)
