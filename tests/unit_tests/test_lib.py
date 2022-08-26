@@ -570,7 +570,7 @@ class Test_Lib(unittest.TestCase):
         test_mode(changed_value)
         new_settings = the_settings()
 
-        self.assertTrue(new_settings["test_mode"])
+        self.assertEqual(new_settings["test_mode"], changed_value)
 
         test_mode(temp_settings["test_mode"])
 
