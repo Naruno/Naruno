@@ -190,10 +190,8 @@ class server(Thread):
                 (6525 - len(json.dumps(data).encode("utf-8"))) - 14)
         print(len(json.dumps(data).encode("utf-8")))
         node.socket.sendall(json.dumps(data).encode("utf-8"))
-        try:
+        with contextlib.suppress(KeyError):
             del data["buffer"]
-        except KeyError:
-            pass
         time.sleep(0.02)
         return data
 
