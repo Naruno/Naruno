@@ -35,26 +35,33 @@ from decentra_network.node.unl import Unl
 
 from decentra_network.lib.safety import safety_check
 
+
 class pywall_none:
     def __init__(self):
         self.iface = "eth0"
         self.timeout = 10
+
     def control(self):
         return None
+
 
 class pywall_true:
     def __init__(self):
         self.iface = "eth0"
         self.timeout = 10
+
     def control(self):
         return True
+
 
 class pywall_false:
     def __init__(self):
         self.iface = "eth0"
         self.timeout = 10
+
     def control(self):
         return False
+
 
 class Test_Lib(unittest.TestCase):
 
@@ -477,32 +484,33 @@ class Test_Lib(unittest.TestCase):
 
     def test_safety_check_none_false(self):
         result = safety_check(
-            custom_pywall=pywall_none, 
+            custom_pywall=pywall_none,
             custom_debug_mode=False,
             exit_on_error=False,
-            )
+        )
         self.assertFalse(result)
 
     def test_safety_check_none_true(self):
         result = safety_check(
-            custom_pywall=pywall_none, 
+            custom_pywall=pywall_none,
             custom_debug_mode=True,
             exit_on_error=False,
-            )
+        )
         self.assertIsNone(result)
 
     def test_safety_check_true(self):
         result = safety_check(
-            custom_pywall=pywall_true, 
+            custom_pywall=pywall_true,
             exit_on_error=False,
-            )
+        )
         self.assertFalse(result)
 
     def test_safety_check_false(self):
         result = safety_check(
-            custom_pywall=pywall_false, 
+            custom_pywall=pywall_false,
             exit_on_error=False,
-            )
+        )
         self.assertTrue(result)
+
 
 unittest.main(exit=False)
