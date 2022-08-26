@@ -34,6 +34,8 @@ from decentra_network.lib.safety import safety_check
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 
+from decentra_network.lib.settings_system import save_settings, test_mode
+from decentra_network.lib.settings_system import the_settings
 
 class pywall_none:
 
@@ -514,5 +516,62 @@ class Test_Lib(unittest.TestCase):
         )
         self.assertTrue(result)
 
+    def test_settings_by_creating_settings(self):
+        temp_settings = the_settings()
+        self.assertIsNotNone(temp_settings["test_mode"],
+                             "A problem on the test_mode.")
+        self.assertIsNotNone(temp_settings["debug_mode"],
+                             "A problem on the debug_mode.")
+
+    def test_settings_by_saving_and_getting_new_settings(self):
+        backup_settings = the_settings()
+
+        temp_settings = the_settings()
+
+        temp_settings["test_mode"] = True
+        temp_settings["debug_mode"] = True
+        save_settings(temp_settings)
+
+        temp_test_settings = the_settings()
+        self.assertEqual(
+            temp_test_settings["test_mode"],
+            True,
+            "A problem on the saving the settings.",
+        )
+        self.assertEqual(
+            temp_test_settings["debug_mode"],
+            True,
+            "A problem on the saving the settings.",
+        )
+
+        temp_test_settings["test_mode"] = False
+        temp_test_settings["debug_mode"] = False
+        save_settings(temp_test_settings)
+
+        temp_test_settings2 = the_settings()
+        self.assertEqual(
+            temp_test_settings2["test_mode"],
+            False,
+            "A problem on the saving the settings.",
+        )
+        self.assertEqual(
+            temp_test_settings2["debug_mode"],
+            False,
+            "A problem on the saving the settings.",
+        )
+
+        temp_test_settings2["test_mode"] = backup_settings["test_mode"]
+        temp_test_settings2["debug_mode"] = backup_settings["debug_mode"]
+        save_settings(temp_test_settings2)
+
+    def test_test_mode(self):
+        temp_settings = the_settings()
+        changed_value = True if temp_settings["test_mode"] is True else False
+        test_mode(changed_value)
+        new_settings = the_settings()
+
+        self.assertTrue(new_settings["test_mode"])
+
+        test_mode(temp_settings["test_mode"])
 
 unittest.main(exit=False)
