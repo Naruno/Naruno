@@ -33,6 +33,7 @@ from decentra_network.node.unl import Unl
 
 from decentra_network.lib.export import export_the_transactions
 
+
 class Test_Lib(unittest.TestCase):
 
     @classmethod
@@ -395,7 +396,8 @@ class Test_Lib(unittest.TestCase):
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
 
     def test_export_the_transactions_false(self):
-        custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace("my_transaction", "test_my_transaction_false")
+        custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
+            "my_transaction", "test_my_transaction_false")
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -410,12 +412,14 @@ class Test_Lib(unittest.TestCase):
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         custom_transactions = []
-        result = export_the_transactions(custom_transactions=custom_transactions, custom_MY_TRANSACTION_EXPORT_PATH=custom_MY_TRANSACTION_EXPORT_PATH)
+        result = export_the_transactions(custom_transactions=custom_transactions,
+                                         custom_MY_TRANSACTION_EXPORT_PATH=custom_MY_TRANSACTION_EXPORT_PATH)
         self.assertFalse(result)
         self.assertFalse(os.path.exists(custom_MY_TRANSACTION_EXPORT_PATH))
 
     def test_export_the_transactions(self):
-        custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace("my_transaction", "test_my_transaction")
+        custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
+            "my_transaction", "test_my_transaction")
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -429,15 +433,17 @@ class Test_Lib(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        custom_transactions = [[the_transaction, "validated"]]        
-        result = export_the_transactions(custom_transactions=custom_transactions, custom_MY_TRANSACTION_EXPORT_PATH=custom_MY_TRANSACTION_EXPORT_PATH)
+        custom_transactions = [[the_transaction, "validated"]]
+        result = export_the_transactions(custom_transactions=custom_transactions,
+                                         custom_MY_TRANSACTION_EXPORT_PATH=custom_MY_TRANSACTION_EXPORT_PATH)
         self.assertTrue(result)
-        #read the file and check the content
+        # read the file and check the content
         with open(custom_MY_TRANSACTION_EXPORT_PATH, "r") as f:
             content = f.read()
             expected_content = """sequance_number,signature,fromUser,toUser,data,amount,transaction_fee,transaction_time,is_valid
 1,MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=,MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==,onur,blockchain-lab,5000.0,0.02,1656764224,validated
 """
             self.assertEqual(content, expected_content)
+
 
 unittest.main(exit=False)
