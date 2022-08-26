@@ -43,14 +43,16 @@ from decentra_network.lib.config_system import get_config
 
 
 def perpetual_time_test():
-    os.chdir(get_config()["main_folder"])    
+    os.chdir(get_config()["main_folder"])
     with open("test_perpetual_time_test.txt", "w") as f:
         f.write("Hello World")
 
+
 def perpetual_time_test_t_0():
-    os.chdir(get_config()["main_folder"])    
+    os.chdir(get_config()["main_folder"])
     with open("test_perpetual_time_test_t_0.txt", "w") as f:
         f.write("Hello World")
+
 
 class pywall_none:
 
@@ -599,7 +601,6 @@ class Test_Lib(unittest.TestCase):
 
         t_mode_settings(temp_settings["debug_mode"])
 
-
     def test_perpetualTimer_0(self):
         the_timer = perpetualTimer(0, perpetual_time_test_t_0, )
         time.sleep(2.5)
@@ -611,5 +612,6 @@ class Test_Lib(unittest.TestCase):
         time.sleep(2.5)
         self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
         the_timer.cancel()
+
 
 unittest.main(exit=False)
