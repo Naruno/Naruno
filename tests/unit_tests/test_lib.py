@@ -19,9 +19,11 @@ from unittest import mock
 from decentra_network.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
-    PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
+    MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
+    TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH,
+    UNL_NODES_PATH)
 from decentra_network.lib.clean_up import CleanUp_tests
+from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                              menu_maker, menu_seperator,
                                              menu_space, menu_title,
@@ -392,6 +394,60 @@ class Test_Lib(unittest.TestCase):
         )
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
+
+    def test_export_the_transactions_false(self):
+        custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
+            "my_transaction", "test_my_transaction_false")
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = []
+        result = export_the_transactions(
+            custom_transactions=custom_transactions,
+            custom_MY_TRANSACTION_EXPORT_PATH=custom_MY_TRANSACTION_EXPORT_PATH,
+        )
+        self.assertFalse(result)
+        self.assertFalse(os.path.exists(custom_MY_TRANSACTION_EXPORT_PATH))
+
+    def test_export_the_transactions(self):
+        custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
+            "my_transaction", "test_my_transaction")
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = [[the_transaction, "validated"]]
+        result = export_the_transactions(
+            custom_transactions=custom_transactions,
+            custom_MY_TRANSACTION_EXPORT_PATH=custom_MY_TRANSACTION_EXPORT_PATH,
+        )
+        self.assertTrue(result)
+        # read the file and check the content
+        with open(custom_MY_TRANSACTION_EXPORT_PATH, "r") as f:
+            content = f.read()
+            expected_content = """sequance_number,signature,fromUser,toUser,data,amount,transaction_fee,transaction_time,is_valid
+1,MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=,MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==,onur,blockchain-lab,5000.0,0.02,1656764224,validated
+"""
+            self.assertEqual(content, expected_content)
 
 
 unittest.main(exit=False)

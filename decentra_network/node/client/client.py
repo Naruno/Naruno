@@ -40,14 +40,10 @@ class client(Thread):
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}"
                 )
                 data = data.decode("utf-8")
-                print(len(data))
-                try:
+                with contextlib.suppress(json.decoder.JSONDecodeError):
                     data = json.loads(data)
-                    with contextlib.suppress(KeyError):
-                        del data["buffer"]
-                except Exception as e:
-                    print(data)
-
+                with contextlib.suppress(KeyError):
+                    del data["buffer"]
                 self.server.get_message(self, data)
 
             time.sleep(0.01)
