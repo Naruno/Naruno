@@ -8,7 +8,7 @@
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 
-from decentra_network.lib.settings_system import the_settings, test_mode, debug_mode
+from decentra_network.lib.settings_system import the_settings, t_mode_settings, debug_mode
 
 
 class SettingsScreen(MDScreen):
@@ -24,4 +24,4 @@ class SettingsBox(MDGridLayout):
         debug_mode(value)
 
     def T_Status_Changing(self, instance, value):
-        test_mode(value)
+        t_mode_settings(value)

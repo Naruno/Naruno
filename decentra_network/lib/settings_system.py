@@ -36,7 +36,7 @@ def create_and_save_the_settings(test_mode_settings=False, debug_mode_settings=T
     return temp_json
 
 
-def test_mode(new_value):
+def t_mode_settings(new_value):
     """
     Changes the test_mode setting.
 

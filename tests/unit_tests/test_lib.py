@@ -31,7 +31,7 @@ from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                              quit_menu_maker,
                                              starting_text_centered)
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (save_settings, test_mode,
+from decentra_network.lib.settings_system import (save_settings, t_mode_settings,
                                                   the_settings)
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
@@ -564,15 +564,15 @@ class Test_Lib(unittest.TestCase):
         temp_test_settings2["debug_mode"] = backup_settings["debug_mode"]
         save_settings(temp_test_settings2)
 
-    def test_test_mode(self):
+    def test_testa_mode(self):
         temp_settings = the_settings()
         changed_value = True if temp_settings["test_mode"] is False else False
-        test_mode(changed_value)
+        t_mode_settings(changed_value)
         new_settings = the_settings()
 
         self.assertEqual(new_settings["test_mode"], changed_value)
 
-        test_mode(temp_settings["test_mode"])
+        t_mode_settings(temp_settings["test_mode"])
 
 
 unittest.main(exit=False)

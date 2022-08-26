@@ -25,7 +25,7 @@ from decentra_network.lib.mix.mixlib import (banner_maker, menu_maker,
                                              quit_menu_maker)
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (debug_mode, test_mode,
+from decentra_network.lib.settings_system import (debug_mode, t_mode_settings,
                                                   the_settings)
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
@@ -173,9 +173,9 @@ def menu():
         if choices_input == "ndid":
             print(server.id)
         if choices_input == "testmodeon":
-            test_mode(True)
+            t_mode_settings(True)
         if choices_input == "testmodeoff":
-            test_mode(False)
+            t_mode_settings(False)
         if choices_input == "debugmodeon":
             debug_mode(True)
         if choices_input == "debugmodeoff":
@@ -321,9 +321,9 @@ def arguments():
         print(server.id)
 
     if args.testmodeon:
-        test_mode(True)
+        t_mode_settings(True)
     if args.testmodeoff:
-        test_mode(False)
+        t_mode_settings(False)
     if args.debugmodeon:
         debug_mode(True)
     if args.debugmodeoff:
