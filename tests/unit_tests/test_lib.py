@@ -32,6 +32,8 @@ from decentra_network.config import (
     TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+
+
 class Test_Lib(unittest.TestCase):
 
     @classmethod
@@ -293,8 +295,8 @@ class Test_Lib(unittest.TestCase):
             "transaction_fee": 0.02,
             "transaction_time": 1656764224,
         }
-        the_transaction = Transaction.load_json(the_transaction_json)   
-        custom_transactions = [[the_transaction,"validated"]]        
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = [[the_transaction, "validated"]]
         custom_new_block.validating_list = [the_transaction]
         result = Status(
             custom_first_block=custom_first_block,
@@ -303,11 +305,13 @@ class Test_Lib(unittest.TestCase):
             custom_transactions=custom_transactions,
         )
         self.assertEqual(result["status"], "Not working")
-        self.assertEqual(result["last_transaction_of_block"], str(the_transaction.dump_json()))
+        self.assertEqual(result["last_transaction_of_block"], str(
+            the_transaction.dump_json()))
         self.assertEqual(result["transactions_of_us"], str(
-                [f"{str(i[0].__dict__)} | {str(i[1])}" for i in custom_transactions]
-            ))
-        self.assertEqual(result["connected_nodes"], ['127.0.0.1:10001', '127.0.0.1:10002'])
+            [f"{str(i[0].__dict__)} | {str(i[1])}" for i in custom_transactions]
+        ))
+        self.assertEqual(result["connected_nodes"], [
+                         '127.0.0.1:10001', '127.0.0.1:10002'])
 
     def test_status_empty(self):
         custom_first_block = Block("Onur")
@@ -326,8 +330,8 @@ class Test_Lib(unittest.TestCase):
             "transaction_fee": 0.02,
             "transaction_time": 1656764224,
         }
-        the_transaction = Transaction.load_json(the_transaction_json)   
-        custom_transactions = [[the_transaction,"validated"]]        
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = [[the_transaction, "validated"]]
         custom_new_block.validating_list = [the_transaction]
         result = Status(
             custom_first_block=custom_first_block,
@@ -336,11 +340,13 @@ class Test_Lib(unittest.TestCase):
             custom_transactions=custom_transactions,
         )
         self.assertEqual(result["status"], "Working")
-        self.assertEqual(result["last_transaction_of_block"], str(the_transaction.dump_json()))
+        self.assertEqual(result["last_transaction_of_block"], str(
+            the_transaction.dump_json()))
         self.assertEqual(result["transactions_of_us"], str(
-                [f"{str(i[0].__dict__)} | {str(i[1])}" for i in custom_transactions]
-            ))
-        self.assertEqual(result["connected_nodes"], ['127.0.0.1:10001', '127.0.0.1:10002'])
+            [f"{str(i[0].__dict__)} | {str(i[1])}" for i in custom_transactions]
+        ))
+        self.assertEqual(result["connected_nodes"], [
+                         '127.0.0.1:10001', '127.0.0.1:10002'])
 
     def test_status(self):
         custom_first_block = Block("Onur")
@@ -359,8 +365,8 @@ class Test_Lib(unittest.TestCase):
             "transaction_fee": 0.02,
             "transaction_time": 1656764224,
         }
-        the_transaction = Transaction.load_json(the_transaction_json)   
-        custom_transactions = [[the_transaction,"validated"]]        
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = [[the_transaction, "validated"]]
         custom_new_block.validating_list = [the_transaction]
         result = Status(
             custom_first_block=custom_first_block,
@@ -369,11 +375,13 @@ class Test_Lib(unittest.TestCase):
             custom_transactions=custom_transactions,
         )
         self.assertEqual(result["status"], "Working")
-        self.assertEqual(result["last_transaction_of_block"], str(the_transaction.dump_json()))
+        self.assertEqual(result["last_transaction_of_block"], str(
+            the_transaction.dump_json()))
         self.assertEqual(result["transactions_of_us"], str(
-                [f"{str(i[0].__dict__)} | {str(i[1])}" for i in custom_transactions]
-            ))
-        self.assertEqual(result["connected_nodes"], ['127.0.0.1:10001', '127.0.0.1:10002'])
+            [f"{str(i[0].__dict__)} | {str(i[1])}" for i in custom_transactions]
+        ))
+        self.assertEqual(result["connected_nodes"], [
+                         '127.0.0.1:10001', '127.0.0.1:10002'])
 
 
 unittest.main(exit=False)
