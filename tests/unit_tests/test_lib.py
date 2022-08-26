@@ -16,40 +16,28 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 from unittest import mock
 
-from decentra_network.config import (
-    CONNECTED_NODES_PATH,
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH,
-    LOADING_BLOCKSHASH_PATH,
-    MY_TRANSACTION_EXPORT_PATH,
-    PENDING_TRANSACTIONS_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH,
-    TEMP_BLOCKSHASH_PATH,
-    UNL_NODES_PATH,
-)
+from decentra_network.config import (CONNECTED_NODES_PATH,
+                                     LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     LOADING_BLOCKSHASH_PART_PATH,
+                                     LOADING_BLOCKSHASH_PATH,
+                                     MY_TRANSACTION_EXPORT_PATH,
+                                     PENDING_TRANSACTIONS_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PART_PATH,
+                                     TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.export import export_the_transactions
-from decentra_network.lib.mix.mixlib import (
-    banner_maker,
-    ended_text_centered,
-    menu_maker,
-    menu_seperator,
-    menu_space,
-    menu_title,
-    printcentertext,
-    question_maker,
-    quit_menu_maker,
-    starting_text_centered,
-)
+from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
+                                             menu_maker, menu_seperator,
+                                             menu_space, menu_title,
+                                             printcentertext, question_maker,
+                                             quit_menu_maker,
+                                             starting_text_centered)
 from decentra_network.lib.safety import safety_check
+from decentra_network.lib.settings_system import (save_settings, test_mode,
+                                                  the_settings)
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-
-from decentra_network.lib.settings_system import save_settings, test_mode
-from decentra_network.lib.settings_system import the_settings
 
 
 class pywall_none:
