@@ -43,10 +43,11 @@ class client(Thread):
                 print(len(data))
                 try:
                     data = json.loads(data)
+                    with contextlib.suppress(KeyError):
+                        del data["buffer"]
                 except Exception as e:
                     print(data)
-                with contextlib.suppress(KeyError):
-                    del data["buffer"]
+
                 self.server.get_message(self, data)
 
             time.sleep(0.01)
