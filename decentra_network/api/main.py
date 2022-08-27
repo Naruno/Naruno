@@ -12,7 +12,7 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from waitress import serve
-
+from waitress.server import create_server
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from decentra_network.accounts.get_balance import GetBalance
@@ -233,7 +233,7 @@ def status_page():
     return jsonify(Status())
 
 
-def start(port=None):
+def start(port=None, test=False):
     """
     Start the API server.
     """
@@ -270,8 +270,8 @@ def start(port=None):
     safety_check(args.interface, args.timeout)
 
     logger.info(f"Starting API on port {args.port}")
-    serve(app, host="0.0.0.0", port=args.port)
-
+    result = serve(app, host="0.0.0.0", port=args.port) if test is False else create_server(app, host="0.0.0.0", port=args.port)
+    return result
 
 if __name__ == "__main__":
     start()

@@ -16,7 +16,7 @@ import urllib
 from decentra_network.api.main import start
 from decentra_network.lib.clean_up import CleanUp_tests
 
-import multiprocessing
+import threading
 
 class Test_API(unittest.TestCase):
 
@@ -25,14 +25,15 @@ class Test_API(unittest.TestCase):
         CleanUp_tests()
         backup = sys.argv
         sys.argv = [sys.argv[0]]
-        cls.proc = multiprocessing.Process(target=start, args=("7777",))
+        cls.result = start(port=7777, test=True)
+        cls.proc = threading.Thread(target=cls.result.run)
         cls.proc.start()
         sys.argv = backup
         time.sleep(2)
     
     @classmethod
     def tearDownClass(cls):
-        cls.proc.terminate()
+        cls.result.close()
 
     def test_api_debug_by_response_status_code(self):
         response = urllib.request.urlopen("http://localhost:7777/wallet/print")
