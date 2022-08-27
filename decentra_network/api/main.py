@@ -45,6 +45,11 @@ logger = get_logger("API")
 
 app = Flask(__name__)
 
+custom_block = None
+custom_current_time = None
+custom_sequence_number = None
+custom_balance = None
+custom_server = None
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
@@ -81,13 +86,28 @@ def delete_wallets_page():
 def send_coin_page(address, amount, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = GetBlock()
-    send_tx = send(block, password, address, amount)
+    block = GetBlock() if custom_block is None else custom_block
+    send_tx = send(
+        block, 
+        password, 
+        address, 
+        amount,
+        custom_current_time=custom_current_time,
+        custom_sequence_number=custom_sequence_number,
+        custom_balance=custom_balance
+        )
     if send_tx != False:
         SavetoMyTransaction(send_tx)
-        server.send_transaction(send_tx)
+        server.send_transaction(
+            send_tx,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_server=custom_server          
+            )
         SaveBlock(block)
-    return jsonify("OK")
+    result = send_tx.dump_json() if send_tx != False else False
+    return jsonify(result)
 
 
 @app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
@@ -95,13 +115,28 @@ def send_coin_page(address, amount, password):
 def send_coin_data_page(address, amount, data, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = GetBlock()
-    send_tx = send(block, password, address, amount, data)
+    block = GetBlock() if custom_block is None else custom_block
+    send_tx = send(
+        block, 
+        password, 
+        address, 
+        amount,
+        custom_current_time=custom_current_time,
+        custom_sequence_number=custom_sequence_number,
+        custom_balance=custom_balance
+        )
     if send_tx != False:
         SavetoMyTransaction(send_tx)
-        server.send_transaction(send_tx)
+        server.send_transaction(
+            send_tx,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_server=custom_server          
+            )
         SaveBlock(block)
-    return jsonify("OK")
+    result = send_tx.dump_json() if send_tx != False else False
+    return jsonify(result)
 
 
 @app.route("/wallet/balance", methods=["GET"])
