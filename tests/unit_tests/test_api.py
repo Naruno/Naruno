@@ -48,24 +48,22 @@ decentra_network.api.main.custom_sequence_number = 0
 decentra_network.api.main.custom_balance = 100000
 
 
-
-
 decentra_network.api.main.custom_TEMP_BLOCK_PATH = (
-            "db/test_API_BLOCK_PATH.json")
+    "db/test_API_BLOCK_PATH.json")
 decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH = (
-            "db/test_API_ACCOUNTS_PATH.json")
+    "db/test_API_ACCOUNTS_PATH.json")
 decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_API_BLOCKSHASH_PATH.json")
+    "db/test_API_BLOCKSHASH_PATH.json")
 decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_API_BLOCKSHASH_PART_PATH.json"
-        )
+    "db/test_API_BLOCKSHASH_PART_PATH.json"
+)
+
+
 class Test_API(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
-
-
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -335,8 +333,8 @@ class Test_API(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_send_coin_page(self):
-    
-        backup = GetMyTransaction()        
+
+        backup = GetMyTransaction()
         backup_settings = the_settings()
 
         original_saved_wallets = get_saved_wallet()
@@ -350,11 +348,11 @@ class Test_API(unittest.TestCase):
             f"http://localhost:7777/send/coin/<address>/5000/{password}")
         response_result = response.read()
 
-
         time.sleep(3)
 
         self.assertNotEqual(response_result, b'false\n')
-        the_tx = Transaction.load_json(json.loads(response_result.decode("utf-8")))
+        the_tx = Transaction.load_json(
+            json.loads(response_result.decode("utf-8")))
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)
@@ -363,4 +361,6 @@ class Test_API(unittest.TestCase):
         SaveMyTransaction(backup)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
+
+
 unittest.main(exit=False)
