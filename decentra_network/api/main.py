@@ -51,6 +51,11 @@ custom_sequence_number = None
 custom_balance = None
 custom_server = None
 
+custom_TEMP_BLOCK_PATH = None
+custom_TEMP_ACCOUNTS_PATH = None, 
+custom_TEMP_BLOCKSHASH_PATH = None, 
+custom_TEMP_BLOCKSHASH_PART_PATH= None
+
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
     logger.info(
@@ -86,7 +91,9 @@ def delete_wallets_page():
 def send_coin_page(address, amount, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = GetBlock() if custom_block is None else custom_block
+    block = GetBlock(
+        custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH   
+    ) if custom_block is None else custom_block
     send_tx = send(
         block, 
         password, 
@@ -103,9 +110,15 @@ def send_coin_page(address, amount, password):
             custom_current_time=custom_current_time,
             custom_sequence_number=custom_sequence_number,
             custom_balance=custom_balance,
-            custom_server=custom_server          
+            custom_server=custom_server
             )
-        SaveBlock(block)
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH = custom_TEMP_ACCOUNTS_PATH, 
+            custom_TEMP_BLOCKSHASH_PATH = custom_TEMP_BLOCKSHASH_PATH, 
+            custom_TEMP_BLOCKSHASH_PART_PATH= custom_TEMP_BLOCKSHASH_PART_PATH            
+            )
     result = send_tx.dump_json() if send_tx != False else False
     return jsonify(result)
 
@@ -115,12 +128,15 @@ def send_coin_page(address, amount, password):
 def send_coin_data_page(address, amount, data, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = GetBlock() if custom_block is None else custom_block
+    block = GetBlock(
+        custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH   
+    ) if custom_block is None else custom_block
     send_tx = send(
         block, 
         password, 
         address, 
         amount,
+        data=data,
         custom_current_time=custom_current_time,
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance
@@ -134,7 +150,13 @@ def send_coin_data_page(address, amount, data, password):
             custom_balance=custom_balance,
             custom_server=custom_server          
             )
-        SaveBlock(block)
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH = custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH = custom_TEMP_ACCOUNTS_PATH, 
+            custom_TEMP_BLOCKSHASH_PATH = custom_TEMP_BLOCKSHASH_PATH, 
+            custom_TEMP_BLOCKSHASH_PART_PATH= custom_TEMP_BLOCKSHASH_PART_PATH            
+            )
     result = send_tx.dump_json() if send_tx != False else False
     return jsonify(result)
 

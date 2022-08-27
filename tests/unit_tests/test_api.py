@@ -8,13 +8,23 @@ import json
 import os
 import sys
 import time
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+from decentra_network.blockchain.block.save_block import SaveBlock
+
+from decentra_network.transactions.pending.get_pending import GetPendingLen
+
+from decentra_network.transactions.pending.delete_pending import DeletePending
+
+from decentra_network.transactions.transaction import Transaction
 
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.config import CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.my_transactions.get_my_transaction import GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import SaveMyTransaction
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import threading
 import unittest
@@ -22,7 +32,7 @@ import urllib
 
 import decentra_network
 
-from decentra_network.api.main import start, custom_block, custom_current_time, custom_sequence_number, custom_balance, custom_server
+from decentra_network.api.main import start
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.settings_system import save_settings, the_settings
 from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
@@ -33,10 +43,22 @@ from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 
 decentra_network.api.main.custom_block = Block("Onur")
-decentra_network.api.main.custom_current_time = (int(time.time()) + 5)
+decentra_network.api.main.custom_current_time = (int(time.time()) + 25)
 decentra_network.api.main.custom_sequence_number = 0
 decentra_network.api.main.custom_balance = 100000
 
+
+
+
+decentra_network.api.main.custom_TEMP_BLOCK_PATH = (
+            "db/test_API_BLOCK_PATH.json")
+decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_API_ACCOUNTS_PATH.json")
+decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_API_BLOCKSHASH_PATH.json")
+decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_API_BLOCKSHASH_PART_PATH.json"
+        )
 class Test_API(unittest.TestCase):
 
     @classmethod
@@ -192,6 +214,7 @@ class Test_API(unittest.TestCase):
 
         sys.argv = backup
         decentra_network.api.main.custom_server = cls.node_0
+        time.sleep(2)
 
     @classmethod
     def tearDownClass(cls):
@@ -312,19 +335,32 @@ class Test_API(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_send_coin_page(self):
+    
+        backup = GetMyTransaction()        
         backup_settings = the_settings()
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
+        SaveMyTransaction([])
 
         password = "123"
         response = urllib.request.urlopen(
             f"http://localhost:7777/wallet/create/{password}")
         response = urllib.request.urlopen(
             f"http://localhost:7777/send/coin/<address>/5000/{password}")
+        response_result = response.read()
+
+
+        time.sleep(3)
+
+        self.assertNotEqual(response_result, b'false\n')
+        the_tx = Transaction.load_json(json.loads(response_result.decode("utf-8")))
+
+        new_my_transactions = GetMyTransaction()
+        self.assertEqual(len(new_my_transactions), 1)
+
+        DeletePending(the_tx)
+        SaveMyTransaction(backup)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
-
-        self.assertNotEqual(response.read(), b"False")
-
 unittest.main(exit=False)
