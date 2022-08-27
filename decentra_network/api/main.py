@@ -57,9 +57,10 @@ custom_TEMP_ACCOUNTS_PATH = None
 custom_TEMP_BLOCKSHASH_PATH = None
 custom_TEMP_BLOCKSHASH_PART_PATH = None
 
-account_list=None
+account_list = None
 
 custom_wallet = None
+
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
@@ -168,8 +169,10 @@ def send_coin_data_page(address, amount, data, password):
 def balance_wallets_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    the_wallet = wallet_import(-1, 0) if custom_wallet is None else custom_wallet
-    the_block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH) if custom_block is None else custom_block
+    the_wallet = wallet_import(-1,
+                               0) if custom_wallet is None else custom_wallet
+    the_block = GetBlock(
+        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH) if custom_block is None else custom_block
     return jsonify(GetBalance(the_block, the_wallet, account_list=account_list))
 
 
@@ -301,8 +304,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
