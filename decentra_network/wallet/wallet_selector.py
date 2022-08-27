@@ -34,7 +34,6 @@ def wallet_selector(new_wallet_number):
             new_wallet_from_function = change_wallet(int(new_wallet_number))
             logger.info("New Wallets:")
             print_wallets()
-            new_wallet_from_function = True
 
         else:
             logger.error("There is no such wallet")

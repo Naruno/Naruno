@@ -61,7 +61,7 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
         result = response.read()
 
-        self.assertEqual(result, b'true\n')
+        self.assertEqual(result, b'1\n')
 
         control = False
         if "CURRENTLY USED" in print_wallets()[1]:
