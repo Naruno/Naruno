@@ -9,8 +9,10 @@ import os
 import sys
 import time
 
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
+    get_saved_wallet
+from decentra_network.wallet.ellipticcurve.save_wallet_list import \
+    save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 
