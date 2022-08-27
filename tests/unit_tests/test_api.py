@@ -8,8 +8,12 @@ import json
 import os
 import sys
 import time
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+
+from decentra_network.accounts.account import Account
+from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.accounts.save_accounts import SaveAccounts
 
 import threading
 import unittest
@@ -54,6 +58,17 @@ decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = (
 decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
     "db/test_API_BLOCKSHASH_PART_PATH.json")
 
+
+
+
+the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
+                                1)
+temp_path = "db/Test_API.db"
+SaveAccounts(the_account_2, temp_path)
+
+decentra_network.api.main.account_list = GetAccounts(temp_path)
+
+decentra_network.api.main.custom_wallet = "test_account_2"
 
 class Test_API(unittest.TestCase):
 
@@ -245,6 +260,8 @@ class Test_API(unittest.TestCase):
 
         cls.result.close()
 
+        CleanUp_tests()
+
     def test_print_wallets_page(self):
         response = urllib.request.urlopen("http://localhost:7777/wallet/print")
         result = str(json.loads(response.read())).replace("'", """\"""")
@@ -390,5 +407,12 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
+    def test_balance_wallets_page(self):
+        response = urllib.request.urlopen(
+            "http://localhost:7777/wallet/balance"
+        )
+        response_result = response.read()
+        print(response_result)
+        self.assertEqual(response_result, b'-985\n')
 
 unittest.main(exit=False)

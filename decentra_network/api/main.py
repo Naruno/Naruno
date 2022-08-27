@@ -53,10 +53,13 @@ custom_balance = None
 custom_server = None
 
 custom_TEMP_BLOCK_PATH = None
-custom_TEMP_ACCOUNTS_PATH = (None, )
-custom_TEMP_BLOCKSHASH_PATH = (None, )
+custom_TEMP_ACCOUNTS_PATH = None
+custom_TEMP_BLOCKSHASH_PATH = None
 custom_TEMP_BLOCKSHASH_PART_PATH = None
 
+account_list=None
+
+custom_wallet = None
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
@@ -165,7 +168,9 @@ def send_coin_data_page(address, amount, data, password):
 def balance_wallets_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify(GetBalance(GetBlock(), wallet_import(-1, 0)))
+    the_wallet = wallet_import(-1, 0) if custom_wallet is None else custom_wallet
+    the_block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH) if custom_block is None else custom_block
+    return jsonify(GetBalance(the_block, the_wallet, account_list=account_list))
 
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
