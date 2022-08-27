@@ -12,6 +12,7 @@ from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wal
 from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
@@ -24,7 +25,6 @@ import threading
 
 
 class Test_API(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -59,11 +59,10 @@ class Test_API(unittest.TestCase):
         temp_private_key = wallet_create(password)
         temp_private_key_2 = wallet_create(password)
 
-        response = urllib.request.urlopen(
-            "http://localhost:7777/wallet/change/1")
+        response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
         result = response.read()
 
-        self.assertEqual(result, b'1\n')
+        self.assertEqual(result, b"1\n")
 
         control = False
         if "CURRENTLY USED" in print_wallets()[1]:
