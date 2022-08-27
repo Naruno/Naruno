@@ -4,10 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import json
 import os
 import sys
 import time
-
+from decentra_network.wallet.print_wallets import print_wallets
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
@@ -37,7 +38,10 @@ class Test_API(unittest.TestCase):
 
     def test_api_debug_by_response_status_code(self):
         response = urllib.request.urlopen("http://localhost:7777/wallet/print")
-        self.assertEqual(response.status, 200, "A problem on the API.")
+        result = str(json.loads(response.read())).replace("'", """\"""")
+        data = str(json.dumps(print_wallets()))
+        self.assertEqual(result, data)
+
 
 
 unittest.main(exit=False)
