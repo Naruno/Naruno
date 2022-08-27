@@ -18,16 +18,13 @@ import urllib
 from decentra_network.api.main import start
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.settings_system import save_settings, the_settings
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
-    get_saved_wallet
-from decentra_network.wallet.ellipticcurve.save_wallet_list import \
-    save_wallet_list
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 
 
 class Test_API(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -64,8 +61,7 @@ class Test_API(unittest.TestCase):
         temp_private_key = wallet_create(password)
         temp_private_key_2 = wallet_create(password)
 
-        response = urllib.request.urlopen(
-            "http://localhost:7777/wallet/change/1")
+        response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
         result = str(json.loads(response.read())).replace("'", """\"""")
 
         data = str(json.dumps(print_wallets()))
@@ -89,9 +85,11 @@ class Test_API(unittest.TestCase):
         password = "123"
 
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
         result = str(json.loads(response.read())).replace("'", """\"""")
 
         data = str(json.dumps(print_wallets()))
@@ -111,13 +109,13 @@ class Test_API(unittest.TestCase):
         password = "123"
 
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
-        response = urllib.request.urlopen(
-            "http://localhost:7777/wallet/change/1")
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/delete")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
+        response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
+        response = urllib.request.urlopen(f"http://localhost:7777/wallet/delete")
         result = str(json.loads(response.read())).replace("'", """\"""")
 
         data = str(json.dumps(print_wallets()))
