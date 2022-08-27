@@ -22,6 +22,7 @@ from decentra_network.lib.clean_up import CleanUp_tests
 
 import threading
 
+
 class Test_API(unittest.TestCase):
 
     @classmethod
@@ -36,7 +37,7 @@ class Test_API(unittest.TestCase):
 
         sys.argv = backup
         time.sleep(2)
-    
+
     @classmethod
     def tearDownClass(cls):
         cls.result.close()
@@ -58,7 +59,8 @@ class Test_API(unittest.TestCase):
         temp_private_key = wallet_create(password)
         temp_private_key_2 = wallet_create(password)
 
-        response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
+        response = urllib.request.urlopen(
+            "http://localhost:7777/wallet/change/1")
         result = response.read()
 
         self.assertEqual(result, b'1\n')
@@ -69,5 +71,6 @@ class Test_API(unittest.TestCase):
 
         self.assertTrue(control)
         save_wallet_list(original_saved_wallets)
+
 
 unittest.main(exit=False)
