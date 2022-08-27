@@ -115,7 +115,7 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen(
             f"http://localhost:7777/wallet/create/{password}")
         response = urllib.request.urlopen(
-            "http://localhost:7777/wallet/change/1")            
+            "http://localhost:7777/wallet/change/1")
         response = urllib.request.urlopen(
             f"http://localhost:7777/wallet/delete")
         result = str(json.loads(response.read())).replace("'", """\"""")
