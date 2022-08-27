@@ -8,20 +8,21 @@ import json
 import os
 import sys
 import time
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
+
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
+    get_saved_wallet
+from decentra_network.wallet.ellipticcurve.save_wallet_list import \
+    save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+import threading
 import unittest
-
 import urllib
 
 from decentra_network.api.main import start
 from decentra_network.lib.clean_up import CleanUp_tests
-
-import threading
 
 
 class Test_API(unittest.TestCase):
