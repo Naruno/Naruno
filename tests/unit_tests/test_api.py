@@ -29,6 +29,7 @@ from decentra_network.wallet.print_wallets import print_wallets
 
 
 class Test_API(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -65,7 +66,8 @@ class Test_API(unittest.TestCase):
         temp_private_key = wallet_create(password)
         temp_private_key_2 = wallet_create(password)
 
-        response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
+        response = urllib.request.urlopen(
+            "http://localhost:7777/wallet/change/1")
         result = str(json.loads(response.read())).replace("'", """\"""")
 
         data = str(json.dumps(print_wallets()))
