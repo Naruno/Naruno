@@ -358,5 +358,37 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
+    def test_send_coin_data_page(self):
+
+        backup = GetMyTransaction()
+        backup_settings = the_settings()
+
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+        SaveMyTransaction([])
+
+        password = "123"
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/wallet/create/{password}")
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/send/coin-data/<address>/5000/<data>/{password}"
+        )
+        response_result = response.read()
+
+        time.sleep(3)
+
+        self.assertNotEqual(response_result, b"false\n")
+        the_tx = Transaction.load_json(
+            json.loads(response_result.decode("utf-8")))
+        self.assertEqual(the_tx.data, "<data>")
+
+        new_my_transactions = GetMyTransaction()
+        self.assertEqual(len(new_my_transactions), 1)
+
+        DeletePending(the_tx)
+        SaveMyTransaction(backup)
+        save_settings(backup_settings)
+        save_wallet_list(original_saved_wallets)
+
 
 unittest.main(exit=False)
