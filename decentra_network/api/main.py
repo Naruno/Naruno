@@ -13,7 +13,6 @@ from flask import jsonify
 from flask import request
 from waitress import serve
 from waitress.server import create_server
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from decentra_network.accounts.get_balance import GetBalance
@@ -58,8 +57,8 @@ def print_wallets_page():
 def wallet_change_page(number):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    result = wallet_selector(number)
-    return jsonify(result)
+    wallet_selector(number)
+    return jsonify(print_wallets())
 
 
 @app.route("/wallet/create/<password>", methods=["GET"])
@@ -271,10 +270,8 @@ def start(port=None, test=False):
     safety_check(args.interface, args.timeout)
 
     logger.info(f"Starting API on port {args.port}")
-    result = (serve(app, host="0.0.0.0", port=args.port) if test is False else
-              create_server(app, host="0.0.0.0", port=args.port))
+    result = serve(app, host="0.0.0.0", port=args.port) if test is False else create_server(app, host="0.0.0.0", port=args.port)
     return result
-
 
 if __name__ == "__main__":
     start()
