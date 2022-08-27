@@ -102,5 +102,31 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
+    def test_delete_wallets_page(self):
+        backup_settings = the_settings()
+
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/wallet/create/{password}")
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/wallet/create/{password}")
+        response = urllib.request.urlopen(
+            "http://localhost:7777/wallet/change/1")            
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/wallet/delete")
+        result = str(json.loads(response.read())).replace("'", """\"""")
+
+        data = str(json.dumps(print_wallets()))
+
+        self.assertEqual(result, data)
+        self.assertEqual(len(print_wallets()), 1)
+
+        save_settings(backup_settings)
+        save_wallet_list(original_saved_wallets)
+
 
 unittest.main(exit=False)
