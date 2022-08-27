@@ -13,6 +13,7 @@ from flask import jsonify
 from flask import request
 from waitress import serve
 from waitress.server import create_server
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from decentra_network.accounts.get_balance import GetBalance
@@ -44,6 +45,17 @@ from decentra_network.wallet.wallet_selector import wallet_selector
 logger = get_logger("API")
 
 app = Flask(__name__)
+
+custom_block = None
+custom_current_time = None
+custom_sequence_number = None
+custom_balance = None
+custom_server = None
+
+custom_TEMP_BLOCK_PATH = None
+custom_TEMP_ACCOUNTS_PATH = (None, )
+custom_TEMP_BLOCKSHASH_PATH = (None, )
+custom_TEMP_BLOCKSHASH_PART_PATH = None
 
 
 @app.route("/wallet/print", methods=["GET"])
@@ -81,13 +93,35 @@ def delete_wallets_page():
 def send_coin_page(address, amount, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = GetBlock()
-    send_tx = send(block, password, address, amount)
+    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+             if custom_block is None else custom_block)
+    send_tx = send(
+        block,
+        password,
+        address,
+        amount,
+        custom_current_time=custom_current_time,
+        custom_sequence_number=custom_sequence_number,
+        custom_balance=custom_balance,
+    )
     if send_tx != False:
         SavetoMyTransaction(send_tx)
-        server.send_transaction(send_tx)
-        SaveBlock(block)
-    return jsonify("OK")
+        server.send_transaction(
+            send_tx,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_server=custom_server,
+        )
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+    result = send_tx.dump_json() if send_tx != False else False
+    return jsonify(result)
 
 
 @app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
@@ -95,13 +129,36 @@ def send_coin_page(address, amount, password):
 def send_coin_data_page(address, amount, data, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = GetBlock()
-    send_tx = send(block, password, address, amount, data)
+    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+             if custom_block is None else custom_block)
+    send_tx = send(
+        block,
+        password,
+        address,
+        amount,
+        data=data,
+        custom_current_time=custom_current_time,
+        custom_sequence_number=custom_sequence_number,
+        custom_balance=custom_balance,
+    )
     if send_tx != False:
         SavetoMyTransaction(send_tx)
-        server.send_transaction(send_tx)
-        SaveBlock(block)
-    return jsonify("OK")
+        server.send_transaction(
+            send_tx,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_server=custom_server,
+        )
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+    result = send_tx.dump_json() if send_tx != False else False
+    return jsonify(result)
 
 
 @app.route("/wallet/balance", methods=["GET"])
@@ -270,8 +327,10 @@ def start(port=None, test=False):
     safety_check(args.interface, args.timeout)
 
     logger.info(f"Starting API on port {args.port}")
-    result = serve(app, host="0.0.0.0", port=args.port) if test is False else create_server(app, host="0.0.0.0", port=args.port)
+    result = (serve(app, host="0.0.0.0", port=args.port) if test is False else
+              create_server(app, host="0.0.0.0", port=args.port))
     return result
+
 
 if __name__ == "__main__":
     start()
