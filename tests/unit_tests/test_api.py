@@ -56,7 +56,7 @@ class Test_API(unittest.TestCase):
 
     def test_change_wallet_page(self):
         backup_settings = the_settings()
-     
+
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -77,9 +77,9 @@ class Test_API(unittest.TestCase):
         if "CURRENTLY USED" in print_wallets()[1]:
             control = True
 
-
         self.assertTrue(control)
-        save_settings(backup_settings)   
+        save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
+
 
 unittest.main(exit=False)
