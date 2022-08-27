@@ -9,6 +9,8 @@ import os
 import sys
 import time
 
+from decentra_network.lib.settings_system import save_settings, the_settings
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import threading
@@ -53,6 +55,8 @@ class Test_API(unittest.TestCase):
         self.assertEqual(result, data)
 
     def test_change_wallet_page(self):
+        backup_settings = the_settings()
+     
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -73,8 +77,9 @@ class Test_API(unittest.TestCase):
         if "CURRENTLY USED" in print_wallets()[1]:
             control = True
 
-        save_wallet_list(original_saved_wallets)
-        self.assertTrue(control)
 
+        self.assertTrue(control)
+        save_settings(backup_settings)   
+        save_wallet_list(original_saved_wallets)
 
 unittest.main(exit=False)
