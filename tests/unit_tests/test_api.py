@@ -63,16 +63,19 @@ class Test_API(unittest.TestCase):
 
         response = urllib.request.urlopen(
             "http://localhost:7777/wallet/change/1")
-        result = response.read()
+        result = str(json.loads(response.read())).replace("'", """\"""")
 
-        self.assertEqual(result, b"1\n")
+        data = str(json.dumps(print_wallets()))
+
+        self.assertEqual(result, data)
 
         control = False
         if "CURRENTLY USED" in print_wallets()[1]:
             control = True
 
-        self.assertTrue(control)
         save_wallet_list(original_saved_wallets)
+        self.assertTrue(control)
+
 
 
 unittest.main(exit=False)
