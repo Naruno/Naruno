@@ -10,7 +10,6 @@ import sys
 import time
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import threading
@@ -83,7 +82,6 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
-
     def test_create_wallet_page(self):
         backup_settings = the_settings()
 
@@ -92,11 +90,10 @@ class Test_API(unittest.TestCase):
 
         password = "123"
 
-
         response = urllib.request.urlopen(
             f"http://localhost:7777/wallet/create/{password}")
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")            
+            f"http://localhost:7777/wallet/create/{password}")
         result = str(json.loads(response.read())).replace("'", """\"""")
 
         data = str(json.dumps(print_wallets()))
@@ -104,8 +101,8 @@ class Test_API(unittest.TestCase):
         self.assertEqual(result, data)
         self.assertEqual(len(print_wallets()), 2)
 
-
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
+
 
 unittest.main(exit=False)
