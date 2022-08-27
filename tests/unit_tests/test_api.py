@@ -8,6 +8,9 @@ import json
 import os
 import sys
 import time
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
+from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
@@ -26,9 +29,11 @@ class Test_API(unittest.TestCase):
         CleanUp_tests()
         backup = sys.argv
         sys.argv = [sys.argv[0]]
+
         cls.result = start(port=7777, test=True)
         cls.proc = threading.Thread(target=cls.result.run)
         cls.proc.start()
+
         sys.argv = backup
         time.sleep(2)
     
@@ -36,12 +41,33 @@ class Test_API(unittest.TestCase):
     def tearDownClass(cls):
         cls.result.close()
 
-    def test_api_debug_by_response_status_code(self):
+    def test_print_wallets_page(self):
         response = urllib.request.urlopen("http://localhost:7777/wallet/print")
         result = str(json.loads(response.read())).replace("'", """\"""")
+
         data = str(json.dumps(print_wallets()))
+
         self.assertEqual(result, data)
 
+    def test_change_wallet_page(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
 
+        password = "123"
+
+        temp_private_key = wallet_create(password)
+        temp_private_key_2 = wallet_create(password)
+
+        response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
+        result = response.read()
+
+        self.assertEqual(result, b'true\n')
+
+        control = False
+        if "CURRENTLY USED" in print_wallets()[1]:
+            control = True
+
+        self.assertTrue(control)
+        save_wallet_list(original_saved_wallets)
 
 unittest.main(exit=False)

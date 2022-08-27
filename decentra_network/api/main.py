@@ -57,8 +57,8 @@ def print_wallets_page():
 def wallet_change_page(number):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    wallet_selector(number)
-    return jsonify(print_wallets())
+    result = wallet_selector(number)
+    return jsonify(result)
 
 
 @app.route("/wallet/create/<password>", methods=["GET"])
