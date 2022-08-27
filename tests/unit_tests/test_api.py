@@ -24,6 +24,7 @@ from decentra_network.wallet.ellipticcurve.save_wallet_list import \
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 
+
 class Test_API(unittest.TestCase):
 
     @classmethod
