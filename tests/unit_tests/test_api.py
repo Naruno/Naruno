@@ -389,4 +389,5 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
+
 unittest.main(exit=False)
