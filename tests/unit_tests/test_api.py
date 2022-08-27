@@ -9,9 +9,6 @@ import os
 import sys
 import time
 
-from decentra_network.lib.settings_system import save_settings
-from decentra_network.lib.settings_system import the_settings
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import threading
@@ -20,6 +17,7 @@ import urllib
 
 from decentra_network.api.main import start
 from decentra_network.lib.clean_up import CleanUp_tests
+from decentra_network.lib.settings_system import save_settings, the_settings
 from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
     get_saved_wallet
 from decentra_network.wallet.ellipticcurve.save_wallet_list import \
@@ -79,6 +77,28 @@ class Test_API(unittest.TestCase):
             control = True
 
         self.assertTrue(control)
+        save_settings(backup_settings)
+        save_wallet_list(original_saved_wallets)
+
+    def test_create_wallet_page(self):
+        backup_settings = the_settings()
+
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/wallet/create/{password}")
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/wallet/create/{password}")
+        result = str(json.loads(response.read())).replace("'", """\"""")
+
+        data = str(json.dumps(print_wallets()))
+
+        self.assertEqual(result, data)
+        self.assertEqual(len(print_wallets()), 2)
+
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
