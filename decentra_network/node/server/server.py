@@ -81,6 +81,7 @@ class server(Thread):
         self.clients = []
 
         self.messages = []
+        self.our_messages = []
         self.save_messages = save_messages
 
         self.TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH
@@ -193,6 +194,8 @@ class server(Thread):
         with contextlib.suppress(KeyError):
             del data["buffer"]
         time.sleep(0.02)
+        if self.save_messages:
+            self.our_messages.append(data)
         return data
 
     def get_message(self, client, data):

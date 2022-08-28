@@ -13,6 +13,7 @@ from flask import jsonify
 from flask import request
 from waitress import serve
 from waitress.server import create_server
+import decentra_network
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -63,6 +64,8 @@ custom_wallet = None
 
 custom_CONNECTED_NODES_PATH = None
 
+custom_consensus_trigger = None
+custom_consensus_trigger_result = None
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
@@ -268,12 +271,23 @@ def settings_debug_off_page():
 def block_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    the_server = server.Server if custom_server is None else custom_server
     if the_settings()["test_mode"]:
-        the_block = CreateBlock()
-        SaveBlock(the_block)
-        server.Server.send_block_to_other_nodes()
+        the_block = CreateBlock(
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH
+        )
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )        
+        the_server.send_block_to_other_nodes()
         logger.info("Consensus timer is started")
-        perpetualTimer(the_block.consensus_timer, consensus_trigger)
+        the_consensus_trigger = consensus_trigger if custom_consensus_trigger is None else custom_consensus_trigger
+        trigger = perpetualTimer(the_block.consensus_timer, the_consensus_trigger)
+        decentra_network.api.main.custom_consensus_trigger_result = trigger
     else:
         server.Server.send_me_full_block()
     return jsonify("OK")
