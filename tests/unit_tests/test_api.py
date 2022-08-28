@@ -31,7 +31,10 @@ from decentra_network.config import (
     PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
     TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
 from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.settings_system import save_settings, the_settings
+from decentra_network.lib.config_system import get_config
+from decentra_network.lib.settings_system import (save_settings,
+                                                  t_mode_settings,
+                                                  the_settings)
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.my_transactions.get_my_transaction import \
@@ -67,6 +70,15 @@ SaveAccounts(the_account_2, temp_path)
 decentra_network.api.main.account_list = GetAccounts(temp_path)
 
 decentra_network.api.main.custom_wallet = "test_account_2"
+
+
+def perpetual_time_test():
+    os.chdir(get_config()["main_folder"])
+    with open("test_block_get_page_off_test.txt", "w") as f:
+        f.write("Hello World")
+
+
+decentra_network.api.main.custom_consensus_trigger = perpetual_time_test
 
 
 class Test_API(unittest.TestCase):
@@ -523,6 +535,61 @@ class Test_API(unittest.TestCase):
         new_settings = the_settings()
         self.assertEqual(new_settings["debug_mode"],
                          temp_settings["debug_mode"])
+
+    def test_block_get_page_off_test(self):
+        temp_settings = the_settings()
+        t_mode_settings(False)
+        first_len = len(self.node_0.our_messages)
+
+        response = urllib.request.urlopen("http://localhost:7777/block/get")
+        time.sleep(2)
+        second_len = len(self.node_0.our_messages)
+
+        self.assertNotEqual(first_len, second_len)
+
+        self.assertEqual(self.node_0.our_messages[-1]["action"],
+                         "sendmefullblock")
+
+        t_mode_settings(temp_settings["test_mode"])
+
+    def test_block_get_page(self):
+
+        backup_1 = copy.copy(decentra_network.api.main.custom_TEMP_BLOCK_PATH)
+        backup_2 = copy.copy(
+            decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH)
+        backup_3 = copy.copy(
+            decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH)
+        backup_4 = copy.copy(
+            decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH)
+
+        decentra_network.api.main.custom_TEMP_BLOCK_PATH = self.node_0.TEMP_BLOCK_PATH
+        decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH = (
+            self.node_0.TEMP_ACCOUNTS_PATH)
+        decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = (
+            self.node_0.TEMP_BLOCKSHASH_PATH)
+        decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
+            self.node_0.TEMP_BLOCKSHASH_PART_PATH)
+
+        temp_settings = the_settings()
+        t_mode_settings(True)
+
+        response = urllib.request.urlopen("http://localhost:7777/block/get")
+        time.sleep(2)
+
+        self.assertTrue(os.path.exists("test_block_get_page_off_test.txt"))
+        os.remove("test_block_get_page_off_test.txt")
+
+        t_mode_settings(temp_settings["test_mode"])
+        decentra_network.api.main.custom_consensus_trigger_result.cancel()
+
+        decentra_network.api.main.custom_TEMP_BLOCK_PATH = backup_1
+        decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH = backup_2
+        decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = backup_3
+        decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = backup_4
+
+        self.assertEqual(self.node_0.our_messages[-1]["action"],
+                         "fullblockshash_part")
+        self.assertEqual(self.node_0.our_messages[-1]["byte"], "end")
 
 
 unittest.main(exit=False)
