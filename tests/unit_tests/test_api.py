@@ -483,5 +483,13 @@ class Test_API(unittest.TestCase):
         self.assertTrue(Unl.node_is_unl(key))
         Unl.unl_node_delete(key)
 
+    def test_node_id_page(self):
+        response = urllib.request.urlopen(f"http://localhost:7777/node/id")
+        self.assertEqual(
+            ((((response.read()).decode("utf-8")).replace("'", "")).replace(
+                """\"""", "")).replace("\n", ""),
+            server.id,
+        )
+
 
 unittest.main(exit=False)
