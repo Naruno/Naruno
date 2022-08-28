@@ -429,7 +429,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/node/stop") 
         time.sleep(2)                       
         first_len = len(self.node_0.clients)
-        with contextlib.suppress(ConnectionRefusedError, OSError):
+        with contextlib.suppress(ConnectionRefusedError):
             self.node_0.connect("localhost", 7779)
         time.sleep(2)
         second_len = len(self.node_0.clients)
