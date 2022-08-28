@@ -505,7 +505,7 @@ class Test_API(unittest.TestCase):
             f"http://localhost:7777/settings/test/{default}")
 
         new_settings = the_settings()
-        self.assertEqual(new_settings["test_mode"], temp_settings["debug_mode"])
+        self.assertEqual(new_settings["test_mode"], temp_settings["test_mode"])
 
     def test_settings_debug_on_off_page(self):
         temp_settings = the_settings()
