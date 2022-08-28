@@ -285,7 +285,6 @@ class server(Thread):
         """
         Connects to the mixdb.
         """
-        print(custom_server)
         the_server = server.Server if custom_server is None else custom_server
         the_CONNECTED_NODES_PATH = (the_server.CONNECTED_NODES_PATH
                                     if custom_CONNECTED_NODES_PATH is None else
@@ -293,8 +292,11 @@ class server(Thread):
         node_list = the_server.get_connected_nodes(
             custom_CONNECTED_NODES_PATH=the_CONNECTED_NODES_PATH)
         for element in node_list:
-            the_server.connect(node_list[element]["host"],
-                               node_list[element]["port"])
+            with contextlib.suppress(Exception):
+                the_server.connect(
+                    node_list[element]["host"],
+                    node_list[element]["port"],
+                )
 
     def connected_node_delete(self, node):
         """
