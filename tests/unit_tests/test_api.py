@@ -415,7 +415,7 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen(
             "http://localhost:7777/node/start/localhost/7778")
         first_len = len(self.node_0.clients)
-        time.sleep(2)        
+        time.sleep(2)
         self.node_0.connect("localhost", 7778)
         time.sleep(2)
         second_len = len(self.node_0.clients)
@@ -424,15 +424,16 @@ class Test_API(unittest.TestCase):
     def test_node_stop_page(self):
         response = urllib.request.urlopen(
             "http://localhost:7777/node/start/localhost/7779")
-        time.sleep(2)            
+        time.sleep(2)
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/stop") 
-        time.sleep(2)                       
+            "http://localhost:7777/node/stop")
+        time.sleep(2)
         first_len = len(self.node_0.clients)
         with contextlib.suppress(ConnectionRefusedError):
             self.node_0.connect("localhost", 7779)
         time.sleep(2)
         second_len = len(self.node_0.clients)
         self.assertEqual(first_len, second_len)
+
 
 unittest.main(exit=False)
