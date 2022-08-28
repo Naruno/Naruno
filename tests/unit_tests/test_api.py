@@ -593,8 +593,6 @@ class Test_API(unittest.TestCase):
                          "fullblockshash_part")
         self.assertEqual(self.node_0.our_messages[-1]["byte"], "end")
 
-
-
     def test_export_the_transactions(self):
         custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
             "my_transaction", "test_export_the_transactions")
@@ -614,7 +612,8 @@ class Test_API(unittest.TestCase):
         custom_transactions = [[the_transaction, "validated"]]
         decentra_network.api.main.custom_transactions = custom_transactions
         decentra_network.api.main.custom_MY_TRANSACTION_EXPORT_PATH = custom_MY_TRANSACTION_EXPORT_PATH
-        response = urllib.request.urlopen("http://localhost:7777/export/transactions/csv")
+        response = urllib.request.urlopen(
+            "http://localhost:7777/export/transactions/csv")
         # read the file and check the content
         with open(custom_MY_TRANSACTION_EXPORT_PATH, "r") as f:
             content = f.read()
@@ -623,24 +622,23 @@ class Test_API(unittest.TestCase):
 """
             self.assertEqual(content, expected_content)
 
-
-
     def test_export_transaction_json_page(self):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, validated=True)
 
-
-        response = urllib.request.urlopen("http://localhost:7777/export/transactions/json")
+        response = urllib.request.urlopen(
+            "http://localhost:7777/export/transactions/json")
 
         expected_result = "[{sequance_number: 1, signature: , fromUser: , toUser: , data: , amount: 1.0, transaction_fee: 1.0, transaction_time: 1} | True]"
 
         self.assertEqual(
             str((((response.read()).decode("utf-8")).replace("'", "")).replace(
                 """\"""", "")).replace("\n", ""),
-                 expected_result
+            expected_result
         )
 
-
         SaveMyTransaction(backup)
+
+
 unittest.main(exit=False)
