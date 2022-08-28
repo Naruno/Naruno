@@ -15,7 +15,6 @@ from waitress import serve
 from waitress.server import create_server
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-import decentra_network
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.get_block import GetBlock
@@ -288,7 +287,8 @@ def block_get_page():
                                  custom_consensus_trigger)
         trigger = perpetualTimer(the_block.consensus_timer,
                                  the_consensus_trigger)
-        decentra_network.api.main.custom_consensus_trigger_result = trigger
+        global custom_consensus_trigger_result
+        custom_consensus_trigger_result = trigger
     else:
         the_server.send_me_full_block()
     return jsonify("OK")
