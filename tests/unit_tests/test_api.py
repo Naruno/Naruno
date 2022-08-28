@@ -507,5 +507,22 @@ class Test_API(unittest.TestCase):
         new_settings = the_settings()
         self.assertEqual(new_settings["test_mode"], temp_settings["test_mode"])
 
+    def test_settings_debug_on_off_page(self):
+        temp_settings = the_settings()
+        changed_value = "on" if temp_settings["debug_mode"] is False else "off"
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/settings/debug/{changed_value}")
+        new_settings = the_settings()
+        expected_alue = True if changed_value == "on" else False
+        self.assertEqual(new_settings["debug_mode"], expected_alue)
+
+        default = "off" if temp_settings["debug_mode"] is False else "on"
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/settings/debug/{default}")
+
+        new_settings = the_settings()
+        self.assertEqual(new_settings["debug_mode"],
+                         temp_settings["debug_mode"])
+
 
 unittest.main(exit=False)
