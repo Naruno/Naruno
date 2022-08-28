@@ -521,7 +521,8 @@ class Test_API(unittest.TestCase):
             f"http://localhost:7777/settings/debug/{default}")
 
         new_settings = the_settings()
-        self.assertEqual(new_settings["debug_mode"], temp_settings["debug_mode"])
+        self.assertEqual(new_settings["debug_mode"],
+                         temp_settings["debug_mode"])
 
 
 unittest.main(exit=False)
