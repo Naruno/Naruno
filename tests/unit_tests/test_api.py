@@ -477,10 +477,11 @@ class Test_API(unittest.TestCase):
         decentra_network.api.main.custom_CONNECTED_NODES_PATH = backup_2
 
     def test_node_newunl_page(self):
-        key = f"onuratakan{str(int(time.time()))}"  
+        key = f"onuratakan{str(int(time.time()))}"
         response = urllib.request.urlopen(
             f"http://localhost:7777/node/newunl/?{key}")
         self.assertTrue(Unl.node_is_unl(key))
-        Unl.unl_node_delete(key) 
+        Unl.unl_node_delete(key)
+
 
 unittest.main(exit=False)
