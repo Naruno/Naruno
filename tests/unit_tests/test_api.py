@@ -434,7 +434,7 @@ class Test_API(unittest.TestCase):
         second_len = len(self.node_0.clients)
         self.assertEqual(first_len, second_len)
 
-    def test_node_start_page(self):
+    def test_node_connect_page(self):
         response = urllib.request.urlopen(
             "http://localhost:7777/node/start/localhost/7780")
         first_len = len(self.node_0.clients)
