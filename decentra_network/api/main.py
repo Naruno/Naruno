@@ -61,6 +61,7 @@ account_list = None
 
 custom_wallet = None
 
+custom_CONNECTED_NODES_PATH = None
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
@@ -205,7 +206,10 @@ def node_connect_page(ip, port):
 def node_connectmixdb_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    server.connectionfrommixdb()
+    server.connectionfrommixdb(
+        custom_server=custom_server,
+        custom_CONNECTED_NODES_PATH=custom_CONNECTED_NODES_PATH,
+    )
     return jsonify("OK")
 
 

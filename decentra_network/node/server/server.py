@@ -285,6 +285,7 @@ class server(Thread):
         """
         Connects to the mixdb.
         """
+        print(custom_server)
         the_server = server.Server if custom_server is None else custom_server
         the_CONNECTED_NODES_PATH = (the_server.CONNECTED_NODES_PATH
                                     if custom_CONNECTED_NODES_PATH is None else
