@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 import json
 import os
 import sys
@@ -412,12 +413,26 @@ class Test_API(unittest.TestCase):
 
     def test_node_start_page(self):
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/start/0.0.0.0/7778")
+            "http://localhost:7777/node/start/localhost/7778")
         first_len = len(self.node_0.clients)
-        self.node_0.connect("0.0.0.0", 7778)
+        time.sleep(2)
+        self.node_0.connect("localhost", 7778)
         time.sleep(2)
         second_len = len(self.node_0.clients)
         self.assertNotEqual(first_len, second_len)
+
+    def test_node_stop_page(self):
+        response = urllib.request.urlopen(
+            "http://localhost:7777/node/start/localhost/7779")
+        time.sleep(2)
+        response = urllib.request.urlopen("http://localhost:7777/node/stop")
+        time.sleep(2)
+        first_len = len(self.node_0.clients)
+        with contextlib.suppress(ConnectionRefusedError):
+            self.node_0.connect("localhost", 7779)
+        time.sleep(2)
+        second_len = len(self.node_0.clients)
+        self.assertEqual(first_len, second_len)
 
 
 unittest.main(exit=False)
