@@ -642,4 +642,41 @@ class Test_API(unittest.TestCase):
         SaveMyTransaction(backup)
 
 
+    def test_status_page(self):
+        custom_first_block = Block("Onur")
+        custom_new_block = Block("Onur")
+        custom_new_block.sequance_number += 1
+        custom_connections = self.node_0.clients
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = [[the_transaction, "validated"]]
+        custom_new_block.validating_list = [the_transaction]
+        decentra_network.api.main.custom_first_block = custom_first_block
+        decentra_network.api.main.custom_new_block = custom_new_block
+        decentra_network.api.main.custom_connections = custom_connections
+        decentra_network.api.main.custom_transactions = custom_transactions
+        result = urllib.request.urlopen("http://localhost:7777/status")
+        result = json.loads(result.read().decode("utf-8"))
+        self.assertEqual(result["status"], "Working")
+        self.assertEqual(result["last_transaction_of_block"],
+                         str(the_transaction.dump_json()))
+        self.assertEqual(
+            result["transactions_of_us"],
+            str([
+                f"{str(i[0].__dict__)} | {str(i[1])}"
+                for i in custom_transactions
+            ]),
+        )       
+
 unittest.main(exit=False)

@@ -69,6 +69,11 @@ custom_transactions = None
 custom_MY_TRANSACTION_EXPORT_PATH = None
 
 
+custom_UNL_NODES_PATH = None
+custom_first_block = None
+custom_new_block = None
+custom_connections = None
+
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
     logger.info(
@@ -320,7 +325,14 @@ def export_transaction_json_page():
 def status_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify(Status())
+    return jsonify(Status(
+        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+        custom_first_block=custom_first_block,
+        custom_new_block=custom_new_block,
+        custom_connections = custom_connections,
+        custom_transactions = custom_transactions,
+    ))
 
 
 def start(port=None, test=False):
