@@ -413,21 +413,24 @@ class Test_API(unittest.TestCase):
 
     def test_node_start_page(self):
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/start/0.0.0.0/7778")
+            "http://localhost:7777/node/start/localhost/7778")
         first_len = len(self.node_0.clients)
-        self.node_0.connect("0.0.0.0", 7778)
+        time.sleep(2)        
+        self.node_0.connect("localhost", 7778)
         time.sleep(2)
         second_len = len(self.node_0.clients)
         self.assertNotEqual(first_len, second_len)
 
     def test_node_stop_page(self):
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/start/0.0.0.0/7779")
+            "http://localhost:7777/node/start/localhost/7779")
+        time.sleep(2)            
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/stop")            
+            "http://localhost:7777/node/stop") 
+        time.sleep(2)                       
         first_len = len(self.node_0.clients)
         with contextlib.suppress(ConnectionRefusedError, OSError):
-            self.node_0.connect("0.0.0.0", 7779)
+            self.node_0.connect("localhost", 7779)
         time.sleep(2)
         second_len = len(self.node_0.clients)
         self.assertEqual(first_len, second_len)
