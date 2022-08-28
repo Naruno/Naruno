@@ -289,7 +289,7 @@ def block_get_page():
         trigger = perpetualTimer(the_block.consensus_timer, the_consensus_trigger)
         decentra_network.api.main.custom_consensus_trigger_result = trigger
     else:
-        server.Server.send_me_full_block()
+        the_server.send_me_full_block()
     return jsonify("OK")
 
 
