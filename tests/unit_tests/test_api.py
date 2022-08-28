@@ -447,7 +447,6 @@ class Test_API(unittest.TestCase):
         second_len = len(self.node_0.clients)
         self.assertNotEqual(first_len, second_len)
 
-
     def test_node_connectmixdb_page(self):
         first_len_0 = len(self.node_0.clients)
         first_len_1 = len(self.node_1.clients)
@@ -455,10 +454,12 @@ class Test_API(unittest.TestCase):
 
         temp_node = server("127.0.0.1", 10058)
         backup_1 = copy.copy(decentra_network.api.main.custom_server)
-        backup_2 = copy.copy(decentra_network.api.main.custom_CONNECTED_NODES_PATH)
-        decentra_network.api.main.custom_server=temp_node
-        decentra_network.api.main.custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH
-        response = urllib.request.urlopen("http://localhost:7777/node/connectmixdb")
+        backup_2 = copy.copy(
+            decentra_network.api.main.custom_CONNECTED_NODES_PATH)
+        decentra_network.api.main.custom_server = temp_node
+        decentra_network.api.main.custom_CONNECTED_NODES_PATH = self.node_0.CONNECTED_NODES_PATH
+        response = urllib.request.urlopen(
+            "http://localhost:7777/node/connectmixdb")
         time.sleep(2)
 
         second_len_0 = len(self.node_0.clients)
@@ -471,7 +472,8 @@ class Test_API(unittest.TestCase):
         time.sleep(2)
         temp_node.join()
 
-        decentra_network.api.main.custom_server=backup_1
-        decentra_network.api.main.custom_CONNECTED_NODES_PATH=backup_2    
+        decentra_network.api.main.custom_server = backup_1
+        decentra_network.api.main.custom_CONNECTED_NODES_PATH = backup_2
+
 
 unittest.main(exit=False)
