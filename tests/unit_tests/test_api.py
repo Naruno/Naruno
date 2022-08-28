@@ -485,7 +485,7 @@ class Test_API(unittest.TestCase):
 
     def test_node_id_page(self):
         response = urllib.request.urlopen(f"http://localhost:7777/node/id")
-        self.assertEqual((((response.read()).decode("utf-8")).replace("'", "")).replace("""\"""", ""),
+        self.assertEqual(((((response.read()).decode("utf-8")).replace("'", "")).replace("""\"""", "")).replace("\n", ""),
                          server.id)
 
 
