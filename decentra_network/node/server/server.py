@@ -292,8 +292,11 @@ class server(Thread):
         node_list = the_server.get_connected_nodes(
             custom_CONNECTED_NODES_PATH=the_CONNECTED_NODES_PATH)
         for element in node_list:
-            the_server.connect(node_list[element]["host"],
-                               node_list[element]["port"])
+            with contextlib.suppress(Exception):
+                the_server.connect(
+                    node_list[element]["host"],
+                    node_list[element]["port"],
+                )
 
     def connected_node_delete(self, node):
         """

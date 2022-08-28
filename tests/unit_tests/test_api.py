@@ -5,10 +5,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+import copy
 import json
 import os
 import sys
 import time
+from urllib import response
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -444,6 +446,35 @@ class Test_API(unittest.TestCase):
         time.sleep(2)
         second_len = len(self.node_0.clients)
         self.assertNotEqual(first_len, second_len)
+
+    def test_node_connectmixdb_page(self):
+        first_len_0 = len(self.node_0.clients)
+        first_len_1 = len(self.node_1.clients)
+        first_len_2 = len(self.node_2.clients)
+
+        temp_node = server("127.0.0.1", 10058)
+        backup_1 = copy.copy(decentra_network.api.main.custom_server)
+        backup_2 = copy.copy(
+            decentra_network.api.main.custom_CONNECTED_NODES_PATH)
+        decentra_network.api.main.custom_server = temp_node
+        decentra_network.api.main.custom_CONNECTED_NODES_PATH = (
+            self.node_0.CONNECTED_NODES_PATH)
+        response = urllib.request.urlopen(
+            "http://localhost:7777/node/connectmixdb")
+        time.sleep(2)
+
+        second_len_0 = len(self.node_0.clients)
+        second_len_1 = len(self.node_1.clients)
+        second_len_2 = len(self.node_2.clients)
+        self.assertEqual(first_len_0, second_len_0)
+        self.assertNotEqual(first_len_1, second_len_1)
+        self.assertNotEqual(first_len_2, second_len_2)
+        temp_node.stop()
+        time.sleep(2)
+        temp_node.join()
+
+        decentra_network.api.main.custom_server = backup_1
+        decentra_network.api.main.custom_CONNECTED_NODES_PATH = backup_2
 
 
 unittest.main(exit=False)
