@@ -13,10 +13,10 @@ from flask import jsonify
 from flask import request
 from waitress import serve
 from waitress.server import create_server
-import decentra_network
+
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-
+import decentra_network
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.get_block import GetBlock

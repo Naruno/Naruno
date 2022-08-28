@@ -12,14 +12,15 @@ import sys
 import time
 from urllib import response
 
-from decentra_network.lib.config_system import get_config
+
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 
 import threading
 import unittest
 import urllib
-
+from decentra_network.lib.config_system import get_config
 import decentra_network
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
