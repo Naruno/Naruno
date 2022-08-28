@@ -502,4 +502,6 @@ class Test_API(unittest.TestCase):
         default = "off" if temp_settings["test_mode"] is False else "on"
         response = urllib.request.urlopen(f"http://localhost:7777/settings/test/{default}")
 
+        new_settings = the_settings()
+        self.assertEqual(new_settings["test_mode"], temp_settings["test_mode"])
 unittest.main(exit=False)
