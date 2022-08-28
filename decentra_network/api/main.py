@@ -65,6 +65,9 @@ custom_CONNECTED_NODES_PATH = None
 custom_consensus_trigger = None
 custom_consensus_trigger_result = None
 
+custom_transactions = None
+custom_MY_TRANSACTION_EXPORT_PATH = None
+
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
@@ -298,10 +301,11 @@ def block_get_page():
 def export_transaction_csv_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    if export_the_transactions():
-        return jsonify("OK")
-    else:
-        return jsonify("You have not a transaction")
+    return jsonify(
+        export_the_transactions(
+            custom_transactions=custom_transactions,
+            custom_MY_TRANSACTION_EXPORT_PATH=custom_MY_TRANSACTION_EXPORT_PATH,
+        ))
 
 
 @app.route("/export/transactions/json", methods=["GET"])
