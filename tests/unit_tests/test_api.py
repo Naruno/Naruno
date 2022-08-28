@@ -11,8 +11,10 @@ import os
 import sys
 import time
 from urllib import response
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+from decentra_network.transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+
 
 import threading
 import unittest
@@ -27,7 +29,7 @@ from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
+    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH, MY_TRANSACTION_EXPORT_PATH,
     PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
     TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
 from decentra_network.lib.clean_up import CleanUp_tests
@@ -592,4 +594,53 @@ class Test_API(unittest.TestCase):
         self.assertEqual(self.node_0.our_messages[-1]["byte"], "end")
 
 
+
+    def test_export_the_transactions(self):
+        custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
+            "my_transaction", "test_export_the_transactions")
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = [[the_transaction, "validated"]]
+        decentra_network.api.main.custom_transactions = custom_transactions
+        decentra_network.api.main.custom_MY_TRANSACTION_EXPORT_PATH = custom_MY_TRANSACTION_EXPORT_PATH
+        response = urllib.request.urlopen("http://localhost:7777/export/transactions/csv")
+        # read the file and check the content
+        with open(custom_MY_TRANSACTION_EXPORT_PATH, "r") as f:
+            content = f.read()
+            expected_content = """sequance_number,signature,fromUser,toUser,data,amount,transaction_fee,transaction_time,is_valid
+1,MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=,MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==,onur,blockchain-lab,5000.0,0.02,1656764224,validated
+"""
+            self.assertEqual(content, expected_content)
+
+
+
+    def test_export_transaction_json_page(self):
+        backup = GetMyTransaction()
+        new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, validated=True)
+
+
+        response = urllib.request.urlopen("http://localhost:7777/export/transactions/json")
+
+        expected_result = "[{sequance_number: 1, signature: , fromUser: , toUser: , data: , amount: 1.0, transaction_fee: 1.0, transaction_time: 1} | True]"
+
+        self.assertEqual(
+            str((((response.read()).decode("utf-8")).replace("'", "")).replace(
+                """\"""", "")).replace("\n", ""),
+                 expected_result
+        )
+
+
+        SaveMyTransaction(backup)
 unittest.main(exit=False)
