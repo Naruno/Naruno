@@ -67,6 +67,7 @@ custom_CONNECTED_NODES_PATH = None
 custom_consensus_trigger = None
 custom_consensus_trigger_result = None
 
+
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
     logger.info(
@@ -282,11 +283,12 @@ def block_get_page():
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )        
+        )
         the_server.send_block_to_other_nodes()
         logger.info("Consensus timer is started")
         the_consensus_trigger = consensus_trigger if custom_consensus_trigger is None else custom_consensus_trigger
-        trigger = perpetualTimer(the_block.consensus_timer, the_consensus_trigger)
+        trigger = perpetualTimer(
+            the_block.consensus_timer, the_consensus_trigger)
         decentra_network.api.main.custom_consensus_trigger_result = trigger
     else:
         the_server.send_me_full_block()
@@ -324,8 +326,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
