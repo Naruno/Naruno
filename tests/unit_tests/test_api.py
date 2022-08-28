@@ -407,8 +407,16 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen(
             "http://localhost:7777/wallet/balance")
         response_result = response.read()
-        print(response_result)
+
         self.assertEqual(response_result, b"-985\n")
 
+    def test_node_start_page(self):
+        response = urllib.request.urlopen(
+            "http://localhost:7777/node/start/0.0.0.0/7778")
+        first_len = len(self.node_0.clients)
+        self.node_0.connect("0.0.0.0", 7778)
+        time.sleep(2)
+        second_len = len(self.node_0.clients)
+        self.assertNotEqual(first_len, second_len)
 
 unittest.main(exit=False)
