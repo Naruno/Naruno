@@ -28,25 +28,36 @@ from decentra_network.api.main import start
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import (
-    CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
-    PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+    CONNECTED_NODES_PATH,
+    LOADING_ACCOUNTS_PATH,
+    LOADING_BLOCK_PATH,
+    LOADING_BLOCKSHASH_PART_PATH,
+    LOADING_BLOCKSHASH_PATH,
+    PENDING_TRANSACTIONS_PATH,
+    TEMP_ACCOUNTS_PATH,
+    TEMP_BLOCK_PATH,
+    TEMP_BLOCKSHASH_PART_PATH,
+    TEMP_BLOCKSHASH_PATH,
+)
 from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.settings_system import save_settings, t_mode_settings, the_settings
+from decentra_network.lib.settings_system import (
+    save_settings,
+    t_mode_settings,
+    the_settings,
+)
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_my_transaction import \
-    SaveMyTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_my_transaction import (
+    SaveMyTransaction,
+)
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPendingLen
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
-    get_saved_wallet
-from decentra_network.wallet.ellipticcurve.save_wallet_list import \
-    save_wallet_list
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 
@@ -58,9 +69,11 @@ decentra_network.api.main.custom_balance = 100000
 decentra_network.api.main.custom_TEMP_BLOCK_PATH = "db/test_API_BLOCK_PATH.json"
 decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH = "db/test_API_ACCOUNTS_PATH.json"
 decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = (
-    "db/test_API_BLOCKSHASH_PATH.json")
+    "db/test_API_BLOCKSHASH_PATH.json"
+)
 decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
-    "db/test_API_BLOCKSHASH_PART_PATH.json")
+    "db/test_API_BLOCKSHASH_PART_PATH.json"
+)
 
 the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15, 1)
 temp_path = "db/Test_API.db"
@@ -81,76 +94,105 @@ decentra_network.api.main.custom_consensus_trigger = perpetual_time_test
 
 
 class Test_API(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCK_PATH1 = TEMP_BLOCK_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+            ".json", "_0.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+            ".json", "_1.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+            ".json", "_2.json"
+        ).replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_0.db").replace("temp_", "test_temp_")
+            ".db", "_0.db"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_1.db").replace("temp_", "test_temp_")
+            ".db", "_1.db"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_2.db").replace("temp_", "test_temp_")
+            ".db", "_2.db"
+        ).replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_0.db").replace("loading_", "test_loading_temp_")
+            ".db", "_0.db"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_1.db").replace("loading_", "test_loading_temp_")
+            ".db", "_1.db"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_2.db").replace("loading_", "test_loading_temp_")
+            ".db", "_2.db"
+        ).replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PATH1 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+            ".json", "_0.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+            ".json", "_1.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+            ".json", "_2.json"
+        ).replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PART_PATH1 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH0 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+            ".json", "_0.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH1 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+            ".json", "_1.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+            ".json", "_2.json"
+        ).replace("loading_", "test_loading_temp_")
 
         cls.custom_CONNECTED_NODES_PATH0 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_0")
+            "connected_nodes", "connected_nodes_test_0"
+        )
         cls.custom_CONNECTED_NODES_PATH1 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_1")
+            "connected_nodes", "connected_nodes_test_1"
+        )
         cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_2")
+            "connected_nodes", "connected_nodes_test_2"
+        )
 
         cls.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_0")
+            "pending_transactions", "pending_transactions_test_0"
+        )
         cls.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_1")
+            "pending_transactions", "pending_transactions_test_1"
+        )
         cls.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_2")
+            "pending_transactions", "pending_transactions_test_2"
+        )
 
         cls.node_0 = server(
             "127.0.0.1",
@@ -162,13 +204,10 @@ class Test_API(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH0,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH0,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH0,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
-            custom_TEMP_BLOCKSHASH_PART_PATH0,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
-            custom_LOADING_BLOCKSHASH_PART_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH0,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH0,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH0,
-            custom_PENDING_TRANSACTIONS_PATH=cls.
-            custom_PENDING_TRANSACTIONS_PATH0,
+            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH0,
             custom_variables=True,
         )
 
@@ -182,13 +221,10 @@ class Test_API(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH1,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH1,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH1,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
-            custom_TEMP_BLOCKSHASH_PART_PATH1,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
-            custom_LOADING_BLOCKSHASH_PART_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH1,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH1,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH1,
-            custom_PENDING_TRANSACTIONS_PATH=cls.
-            custom_PENDING_TRANSACTIONS_PATH1,
+            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH1,
             custom_variables=True,
         )
         cls.node_2 = server(
@@ -201,13 +237,10 @@ class Test_API(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH2,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH2,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH2,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
-            custom_TEMP_BLOCKSHASH_PART_PATH2,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
-            custom_LOADING_BLOCKSHASH_PART_PATH2,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH2,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH2,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH2,
-            custom_PENDING_TRANSACTIONS_PATH=cls.
-            custom_PENDING_TRANSACTIONS_PATH2,
+            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH2,
             custom_variables=True,
         )
         Unl.save_new_unl_node(cls.node_0.id)
@@ -291,8 +324,7 @@ class Test_API(unittest.TestCase):
         temp_private_key = wallet_create(password)
         temp_private_key_2 = wallet_create(password)
 
-        response = urllib.request.urlopen(
-            "http://localhost:7777/wallet/change/1")
+        response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
         result = str(json.loads(response.read())).replace("'", """\"""")
 
         data = str(json.dumps(print_wallets()))
@@ -316,9 +348,11 @@ class Test_API(unittest.TestCase):
         password = "123"
 
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
         result = str(json.loads(response.read())).replace("'", """\"""")
 
         data = str(json.dumps(print_wallets()))
@@ -338,13 +372,13 @@ class Test_API(unittest.TestCase):
         password = "123"
 
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
-        response = urllib.request.urlopen(
-            "http://localhost:7777/wallet/change/1")
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/delete")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
+        response = urllib.request.urlopen("http://localhost:7777/wallet/change/1")
+        response = urllib.request.urlopen(f"http://localhost:7777/wallet/delete")
         result = str(json.loads(response.read())).replace("'", """\"""")
 
         data = str(json.dumps(print_wallets()))
@@ -366,16 +400,17 @@ class Test_API(unittest.TestCase):
 
         password = "123"
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
         response = urllib.request.urlopen(
-            f"http://localhost:7777/send/coin/<address>/5000/{password}")
+            f"http://localhost:7777/send/coin/<address>/5000/{password}"
+        )
         response_result = response.read()
 
         time.sleep(3)
 
         self.assertNotEqual(response_result, b"false\n")
-        the_tx = Transaction.load_json(
-            json.loads(response_result.decode("utf-8")))
+        the_tx = Transaction.load_json(json.loads(response_result.decode("utf-8")))
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)
@@ -396,7 +431,8 @@ class Test_API(unittest.TestCase):
 
         password = "123"
         response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
+            f"http://localhost:7777/wallet/create/{password}"
+        )
         response = urllib.request.urlopen(
             f"http://localhost:7777/send/coin-data/<address>/5000/<data>/{password}"
         )
@@ -405,8 +441,7 @@ class Test_API(unittest.TestCase):
         time.sleep(3)
 
         self.assertNotEqual(response_result, b"false\n")
-        the_tx = Transaction.load_json(
-            json.loads(response_result.decode("utf-8")))
+        the_tx = Transaction.load_json(json.loads(response_result.decode("utf-8")))
         self.assertEqual(the_tx.data, "<data>")
 
         new_my_transactions = GetMyTransaction()
@@ -418,15 +453,15 @@ class Test_API(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_balance_wallets_page(self):
-        response = urllib.request.urlopen(
-            "http://localhost:7777/wallet/balance")
+        response = urllib.request.urlopen("http://localhost:7777/wallet/balance")
         response_result = response.read()
 
         self.assertEqual(response_result, b"-985\n")
 
     def test_node_start_page(self):
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/start/localhost/7778")
+            "http://localhost:7777/node/start/localhost/7778"
+        )
         first_len = len(self.node_0.clients)
         time.sleep(2)
         self.node_0.connect("localhost", 7778)
@@ -436,7 +471,8 @@ class Test_API(unittest.TestCase):
 
     def test_node_stop_page(self):
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/start/localhost/7779")
+            "http://localhost:7777/node/start/localhost/7779"
+        )
         time.sleep(2)
         response = urllib.request.urlopen("http://localhost:7777/node/stop")
         time.sleep(2)
@@ -449,11 +485,13 @@ class Test_API(unittest.TestCase):
 
     def test_node_connect_page(self):
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/start/localhost/7780")
+            "http://localhost:7777/node/start/localhost/7780"
+        )
         first_len = len(self.node_0.clients)
         time.sleep(2)
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/connect/127.0.0.1/10000")
+            "http://localhost:7777/node/connect/127.0.0.1/10000"
+        )
         time.sleep(2)
         second_len = len(self.node_0.clients)
         self.assertNotEqual(first_len, second_len)
@@ -465,13 +503,12 @@ class Test_API(unittest.TestCase):
 
         temp_node = server("127.0.0.1", 10058)
         backup_1 = copy.copy(decentra_network.api.main.custom_server)
-        backup_2 = copy.copy(
-            decentra_network.api.main.custom_CONNECTED_NODES_PATH)
+        backup_2 = copy.copy(decentra_network.api.main.custom_CONNECTED_NODES_PATH)
         decentra_network.api.main.custom_server = temp_node
         decentra_network.api.main.custom_CONNECTED_NODES_PATH = (
-            self.node_0.CONNECTED_NODES_PATH)
-        response = urllib.request.urlopen(
-            "http://localhost:7777/node/connectmixdb")
+            self.node_0.CONNECTED_NODES_PATH
+        )
+        response = urllib.request.urlopen("http://localhost:7777/node/connectmixdb")
         time.sleep(2)
 
         second_len_0 = len(self.node_0.clients)
@@ -489,16 +526,18 @@ class Test_API(unittest.TestCase):
 
     def test_node_newunl_page(self):
         key = f"onuratakan{str(int(time.time()))}"
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/node/newunl/?{key}")
+        response = urllib.request.urlopen(f"http://localhost:7777/node/newunl/?{key}")
         self.assertTrue(Unl.node_is_unl(key))
         Unl.unl_node_delete(key)
 
     def test_node_id_page(self):
         response = urllib.request.urlopen(f"http://localhost:7777/node/id")
         self.assertEqual(
-            ((((response.read()).decode("utf-8")).replace("'", "")).replace(
-                """\"""", "")).replace("\n", ""),
+            (
+                (((response.read()).decode("utf-8")).replace("'", "")).replace(
+                    """\"""", ""
+                )
+            ).replace("\n", ""),
             server.id,
         )
 
@@ -506,14 +545,16 @@ class Test_API(unittest.TestCase):
         temp_settings = the_settings()
         changed_value = "on" if temp_settings["test_mode"] is False else "off"
         response = urllib.request.urlopen(
-            f"http://localhost:7777/settings/test/{changed_value}")
+            f"http://localhost:7777/settings/test/{changed_value}"
+        )
         new_settings = the_settings()
         expected_alue = True if changed_value == "on" else False
         self.assertEqual(new_settings["test_mode"], expected_alue)
 
         default = "off" if temp_settings["test_mode"] is False else "on"
         response = urllib.request.urlopen(
-            f"http://localhost:7777/settings/test/{default}")
+            f"http://localhost:7777/settings/test/{default}"
+        )
 
         new_settings = the_settings()
         self.assertEqual(new_settings["test_mode"], temp_settings["test_mode"])
@@ -522,56 +563,57 @@ class Test_API(unittest.TestCase):
         temp_settings = the_settings()
         changed_value = "on" if temp_settings["debug_mode"] is False else "off"
         response = urllib.request.urlopen(
-            f"http://localhost:7777/settings/debug/{changed_value}")
+            f"http://localhost:7777/settings/debug/{changed_value}"
+        )
         new_settings = the_settings()
         expected_alue = True if changed_value == "on" else False
         self.assertEqual(new_settings["debug_mode"], expected_alue)
 
         default = "off" if temp_settings["debug_mode"] is False else "on"
         response = urllib.request.urlopen(
-            f"http://localhost:7777/settings/debug/{default}")
+            f"http://localhost:7777/settings/debug/{default}"
+        )
 
         new_settings = the_settings()
-        self.assertEqual(new_settings["debug_mode"],
-                         temp_settings["debug_mode"])
+        self.assertEqual(new_settings["debug_mode"], temp_settings["debug_mode"])
 
     def test_block_get_page_off_test(self):
         temp_settings = the_settings()
         t_mode_settings(False)
         first_len = len(self.node_0.our_messages)
 
-        response = urllib.request.urlopen(
-            "http://localhost:7777/block/get")
+        response = urllib.request.urlopen("http://localhost:7777/block/get")
         time.sleep(2)
         second_len = len(self.node_0.our_messages)
 
         self.assertNotEqual(first_len, second_len)
 
-        self.assertEqual(
-            self.node_0.our_messages[-1]["action"], "sendmefullblock")
+        self.assertEqual(self.node_0.our_messages[-1]["action"], "sendmefullblock")
 
         t_mode_settings(temp_settings["test_mode"])
 
     def test_block_get_page(self):
 
         backup_1 = copy.copy(decentra_network.api.main.custom_TEMP_BLOCK_PATH)
-        backup_2 = copy.copy(
-            decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH)
-        backup_3 = copy.copy(
-            decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH)
-        backup_4 = copy.copy(
-            decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH)
+        backup_2 = copy.copy(decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH)
+        backup_3 = copy.copy(decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH)
+        backup_4 = copy.copy(decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH)
 
         decentra_network.api.main.custom_TEMP_BLOCK_PATH = self.node_0.TEMP_BLOCK_PATH
-        decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH = self.node_0.TEMP_ACCOUNTS_PATH
-        decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = self.node_0.TEMP_BLOCKSHASH_PATH
-        decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = self.node_0.TEMP_BLOCKSHASH_PART_PATH
+        decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH = (
+            self.node_0.TEMP_ACCOUNTS_PATH
+        )
+        decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = (
+            self.node_0.TEMP_BLOCKSHASH_PATH
+        )
+        decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
+            self.node_0.TEMP_BLOCKSHASH_PART_PATH
+        )
 
         temp_settings = the_settings()
         t_mode_settings(True)
 
-        response = urllib.request.urlopen(
-            "http://localhost:7777/block/get")
+        response = urllib.request.urlopen("http://localhost:7777/block/get")
         time.sleep(2)
 
         self.assertTrue(os.path.exists("test_block_get_page_off_test.txt"))
@@ -585,8 +627,7 @@ class Test_API(unittest.TestCase):
         decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = backup_3
         decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = backup_4
 
-        self.assertEqual(
-            self.node_0.our_messages[-1]["action"], "fullblockshash_part")
+        self.assertEqual(self.node_0.our_messages[-1]["action"], "fullblockshash_part")
         self.assertEqual(self.node_0.our_messages[-1]["byte"], "end")
 
 
