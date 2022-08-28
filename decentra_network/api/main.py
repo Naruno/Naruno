@@ -74,6 +74,7 @@ custom_first_block = None
 custom_new_block = None
 custom_connections = None
 
+
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
     logger.info(
@@ -330,8 +331,8 @@ def status_page():
         custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
         custom_first_block=custom_first_block,
         custom_new_block=custom_new_block,
-        custom_connections = custom_connections,
-        custom_transactions = custom_transactions,
+        custom_connections=custom_connections,
+        custom_transactions=custom_transactions,
     ))
 
 
@@ -341,8 +342,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",

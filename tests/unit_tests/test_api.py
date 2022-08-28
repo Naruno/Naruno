@@ -641,7 +641,6 @@ class Test_API(unittest.TestCase):
 
         SaveMyTransaction(backup)
 
-
     def test_status_page(self):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
@@ -677,6 +676,7 @@ class Test_API(unittest.TestCase):
                 f"{str(i[0].__dict__)} | {str(i[1])}"
                 for i in custom_transactions
             ]),
-        )       
+        )
+
 
 unittest.main(exit=False)
