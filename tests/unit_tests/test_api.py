@@ -440,9 +440,10 @@ class Test_API(unittest.TestCase):
         first_len = len(self.node_0.clients)
         time.sleep(2)
         response = urllib.request.urlopen(
-            "http://localhost:7777/node/connect/127.0.0.1/10000")        
+            "http://localhost:7777/node/connect/127.0.0.1/10000")
         time.sleep(2)
         second_len = len(self.node_0.clients)
         self.assertNotEqual(first_len, second_len)
+
 
 unittest.main(exit=False)
