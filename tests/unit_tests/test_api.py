@@ -23,33 +23,29 @@ from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.api.main import start
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import (
-    CONNECTED_NODES_PATH,
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH,
-    LOADING_BLOCKSHASH_PATH,
-    PENDING_TRANSACTIONS_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH,
-    TEMP_BLOCKSHASH_PATH,
-)
+from decentra_network.config import (CONNECTED_NODES_PATH,
+                                     LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     LOADING_BLOCKSHASH_PART_PATH,
+                                     LOADING_BLOCKSHASH_PATH,
+                                     PENDING_TRANSACTIONS_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PART_PATH,
+                                     TEMP_BLOCKSHASH_PATH)
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.settings_system import save_settings, the_settings
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_my_transaction import (
-    SaveMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPendingLen
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
+    get_saved_wallet
+from decentra_network.wallet.ellipticcurve.save_wallet_list import \
+    save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 
