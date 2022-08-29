@@ -7,6 +7,8 @@
 import os
 import sys
 
+import contextlib
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from decentra_network.lib.config_system import get_config
@@ -17,7 +19,9 @@ def CleanUp_tests():
     for the_file in os.listdir("db/"):
         if the_file.startswith("test_"):
             if os.path.isfile(f"db/{the_file}"):
-                os.remove(f"db/{the_file}")
+                with contextlib.suppress(PermissionError):
+                    os.remove(f"db/{the_file}")
+
     for the_file in os.listdir(
             "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
