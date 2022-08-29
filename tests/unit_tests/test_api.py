@@ -66,7 +66,7 @@ decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
     "db/test_API_BLOCKSHASH_PART_PATH.json")
 
 the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15, 1)
-temp_path = "db/Test_API.db"
+temp_path = "db/test_API.db"
 SaveAccounts(the_account_2, temp_path)
 
 decentra_network.api.main.account_list = GetAccounts(temp_path)
