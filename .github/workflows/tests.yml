@@ -192,21 +192,6 @@ jobs:
         curl http://localhost:8000/status
         curl http://localhost:8101/status
         curl http://localhost:8102/status
-    - name: Archive logs of Node 0
-      uses: actions/upload-artifact@v3
-      with:
-        name: log-report-functional-test-local-ubuntu-latest-node-0
-        path: /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs/*.log 
-    - name: Archive logs of Node 1
-      uses: actions/upload-artifact@v3
-      with:
-        name: log-report-functional-test-local-ubuntu-latest-node-1
-        path: /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs/*.log 
-    - name: Archive logs of Node 2
-      uses: actions/upload-artifact@v3
-      with:
-        name: log-report-functional-test-local-ubuntu-latest-node-2
-        path: /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs/*.log 
 
   functional-test-docker-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
@@ -247,20 +232,5 @@ jobs:
         sudo cp -r /var/lib/docker/volumes/decentra-network-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs
         sudo cp -r /var/lib/docker/volumes/decentra-network-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs
         sudo cp -r /var/lib/docker/volumes/decentra-network-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs
-    - name: Archive logs of Node 0
-      uses: actions/upload-artifact@v3
-      with:
-        name: log-report-functional-test-docker-ubuntu-latest-node-0
-        path: /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs/*.log 
-    - name: Archive logs of Node 1
-      uses: actions/upload-artifact@v3
-      with:
-        name: log-report-functional-test-docker-ubuntu-latest-node-1
-        path: /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs/*.log 
-    - name: Archive logs of Node 2
-      uses: actions/upload-artifact@v3
-      with:
-        name: log-report-functional-test-docker-ubuntu-latest-node-2
-        path: /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs/*.log 
 
 
