@@ -63,18 +63,18 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r cli_linux_${{ github.event.release.tag_name }} Decentra-Network-CLI/
+        zip -r cli_linux_decentra_network Decentra-Network-CLI/
     
     - uses: actions/upload-artifact@v2
       with:
-        name: cli_linux_${{ github.event.release.tag_name }}
-        path: dist/cli_linux_${{ github.event.release.tag_name }}.zip
+        name: cli_linux_decentra_network
+        path: dist/cli_linux_decentra_network.zip
     
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/cli_linux_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/cli_linux_decentra_network.zip'
 
   build-cli-macos:
 
@@ -104,16 +104,16 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r cli_macos_${{ github.event.release.tag_name }} Decentra-Network-CLI/
+        zip -r cli_macos_decentra_network Decentra-Network-CLI/
     - uses: actions/upload-artifact@v2
       with:
-        name: cli_macos_${{ github.event.release.tag_name }}
-        path: dist/cli_macos_${{ github.event.release.tag_name }}.zip
+        name: cli_macos_decentra_network
+        path: dist/cli_macos_decentra_network.zip
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/cli_macos_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/cli_macos_decentra_network.zip'
 
 
   build-cli-windows:
@@ -146,20 +146,20 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Decentra-Network-CLI/ cli_win32_${{ github.event.release.tag_name }}.zip
+        Compress-Archive Decentra-Network-CLI/ cli_win32_decentra_network.zip
     
 
 
     - uses: actions/upload-artifact@v2
       with:
-        name: cli_win32_${{ github.event.release.tag_name }}
-        path: dist/cli_win32_${{ github.event.release.tag_name }}.zip       
+        name: cli_win32_decentra_network
+        path: dist/cli_win32_decentra_network.zip       
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/cli_win32_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/cli_win32_decentra_network.zip'
 
 
   build-api-linux:
@@ -196,19 +196,19 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r api_linux_${{ github.event.release.tag_name }} Decentra-Network-API/
+        zip -r api_linux_decentra_network Decentra-Network-API/
     
 
     - uses: actions/upload-artifact@v2
       with:
-        name: api_linux_${{ github.event.release.tag_name }}
-        path: dist/api_linux_${{ github.event.release.tag_name }}.zip
+        name: api_linux_decentra_network
+        path: dist/api_linux_decentra_network.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/api_linux_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/api_linux_decentra_network.zip'
 
 
   build-api-macos:
@@ -244,19 +244,19 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r api_macos_${{ github.event.release.tag_name }} Decentra-Network-API/
+        zip -r api_macos_decentra_network Decentra-Network-API/
     
 
     - uses: actions/upload-artifact@v2
       with:
-        name: api_macos_${{ github.event.release.tag_name }}
-        path: dist/api_macos_${{ github.event.release.tag_name }}.zip
+        name: api_macos_decentra_network
+        path: dist/api_macos_decentra_network.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/api_macos_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/api_macos_decentra_network.zip'
 
   build-api-windows:
 
@@ -291,20 +291,20 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Decentra-Network-API/ api_win32_${{ github.event.release.tag_name }}.zip
+        Compress-Archive Decentra-Network-API/ api_win32_decentra_network.zip
     
 
     - uses: actions/upload-artifact@v2
       with:
-        name: api_win32_${{ github.event.release.tag_name }}
-        path: dist/api_win32_${{ github.event.release.tag_name }}.zip 
+        name: api_win32_decentra_network
+        path: dist/api_win32_decentra_network.zip 
 
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/api_win32_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/api_win32_decentra_network.zip'
 
   build-gui-windows:
 
@@ -342,19 +342,19 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Decentra-Network-GUI/ gui_win32_${{ github.event.release.tag_name }}.zip
+        Compress-Archive Decentra-Network-GUI/ gui_win32_decentra_network.zip
     
 
     - uses: actions/upload-artifact@v2
       with:
-        name: gui_win32_${{ github.event.release.tag_name }}
-        path: dist/gui_win32_${{ github.event.release.tag_name }}.zip
+        name: gui_win32_decentra_network
+        path: dist/gui_win32_decentra_network.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/gui_win32_${{ github.event.release.tag_name }}.zip'
+        files: 'dist/gui_win32_decentra_network.zip'
 
   build-api-android:
     runs-on: ubuntu-latest
@@ -391,20 +391,20 @@ jobs:
           command: buildozer --profile api android debug
 
       - name: Zip
-        run: sudo zip -r api_android_${{ github.event.release.tag_name }} ${{ steps.buildozer.outputs.filename }} 
+        run: sudo zip -r api_android_decentra_network ${{ steps.buildozer.outputs.filename }} 
       
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: api_android_${{ github.event.release.tag_name }}
-          path: api_android_${{ github.event.release.tag_name }}.zip
+          name: api_android_decentra_network
+          path: api_android_decentra_network.zip
 
       - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}        
-          files: 'api_android_${{ github.event.release.tag_name }}.zip'
+          files: 'api_android_decentra_network.zip'
 
 
   build-gui-android:
@@ -443,17 +443,17 @@ jobs:
           command: buildozer --profile gui android debug
 
       - name: Zip
-        run: sudo zip -r gui_android_${{ github.event.release.tag_name }} ${{ steps.buildozer.outputs.filename }} 
+        run: sudo zip -r gui_android_decentra_network ${{ steps.buildozer.outputs.filename }} 
       
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: gui_android_${{ github.event.release.tag_name }}
-          path: gui_android_${{ github.event.release.tag_name }}.zip
+          name: gui_android_decentra_network
+          path: gui_android_decentra_network.zip
 
       - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}        
-          files: 'gui_android_${{ github.event.release.tag_name }}.zip'
+          files: 'gui_android_decentra_network.zip'
