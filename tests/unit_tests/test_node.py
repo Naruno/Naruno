@@ -950,12 +950,10 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block["transaction"],
                          [])
 
-
         self.assertEqual(self.node_2.clients[0].candidate_block["action"],
                          "myblock")
         self.assertEqual(self.node_2.clients[0].candidate_block["transaction"],
                          [])
-
 
         CleanUp_tests()
 
@@ -996,7 +994,6 @@ class Test_Node(unittest.TestCase):
             }],
         )
 
-
         self.assertEqual(self.node_2.clients[0].candidate_block["action"],
                          "myblock")
         self.assertEqual(
@@ -1015,7 +1012,6 @@ class Test_Node(unittest.TestCase):
             }],
         )
 
-
         CleanUp_tests()
 
     def test_send_my_block_hash_get_candidate_block_hash(self):
@@ -1029,7 +1025,6 @@ class Test_Node(unittest.TestCase):
                          "myblockhash")
         self.assertEqual(self.node_1.clients[0].candidate_block_hash["hash"],
                          58585858)
-
 
         self.assertEqual(self.node_2.clients[0].candidate_block_hash["action"],
                          "myblockhash")
