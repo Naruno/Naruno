@@ -250,16 +250,15 @@ class Test_Node(unittest.TestCase):
         self.node_0.time_control = 1
         self.node_1.time_control = 1        
         first_message_len = len(self.node_1.messages)
-        data = {"signature": "true","id": "true", "timestamp": time.time()}
+        data = {"signature": "true","id": "true", "timestamp": str(int(time.time()))}
         self.node_0.send_client(self.node_0.clients[0],
                                 data,
                                 ready_to_send=True)
 
         time.sleep(2)
-        self.assertEqual(len(self.node_1.messages), first_message_len)
         self.node_0.time_control = 10
         self.node_1.time_control = 10
-
+        self.assertEqual(len(self.node_1.messages), first_message_len)
 
     def test_node_by_connection_saving_and_unl_nodes_system(self):
 
