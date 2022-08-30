@@ -250,7 +250,8 @@ class Test_Node(unittest.TestCase):
         self.node_0.time_control = 1
         self.node_1.time_control = 1        
         first_message_len = len(self.node_1.messages)
-        data = {"signature": "true","id": "true", "timestamp": str(int(time.time()))}
+        data = {"signature": "true","id": "true", "timestamp": time.time()}
+        time.sleep(2)
         self.node_0.send_client(self.node_0.clients[0],
                                 data,
                                 ready_to_send=True)

@@ -164,7 +164,7 @@ class server(Thread):
 
     def prepare_message(self, data):
         data["id"] = server.id
-        data["timestamp"] = str(int(time.time()))
+        data["timestamp"] = str(time.time())
         sign = Ecdsa.sign(
             str(data),
             PrivateKey.fromPem(wallet_import(0, 1)),
@@ -220,22 +220,19 @@ class server(Thread):
             return False
         if "timestamp" not in data:
             return False
-        time_control = time.time() - int(data["timestamp"])
-        if time_control > self.time_control:
+        the_control = time.time() - float(data["timestamp"])
+        if the_control > self.time_control:
             return False
         # remove sign from data
         sign = data["signature"]
         del data["signature"]
         message = str(data)
         data["signature"] = sign
-        try:
-            return Ecdsa.verify(
+        return Ecdsa.verify(
                 message,
                 Signature.fromBase64(sign),
                 PublicKey.fromPem(data["id"]),
-            )
-        except TypeError:
-            print(data)
+        )
             
 
     def connect(self, host, port):
