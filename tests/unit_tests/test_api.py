@@ -53,6 +53,8 @@ from decentra_network.wallet.ellipticcurve.save_wallet_list import \
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
 
+from decentra_network.accounts.get_balance import GetBalance
+
 decentra_network.api.main.custom_block = Block("Onur")
 decentra_network.api.main.custom_current_time = int(time.time()) + 25
 decentra_network.api.main.custom_sequence_number = 0
@@ -424,8 +426,10 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen(
             "http://localhost:7777/wallet/balance")
         response_result = response.read()
-
-        self.assertEqual(response_result, b"-985\n")
+        the_balance_int = float((response_result.decode("utf-8")).replace("\n", ""))
+     
+        self.assertEqual(the_balance_int, float(GetBalance(decentra_network.api.main.custom_block, decentra_network.api.main.custom_wallet,
+                              account_list=decentra_network.api.main.account_list)))
 
     def test_node_start_page(self):
         response = urllib.request.urlopen(
