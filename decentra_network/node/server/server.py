@@ -67,6 +67,7 @@ class server(Thread):
         custom_LOADING_BLOCKSHASH_PART_PATH=None,
         custom_CONNECTED_NODES_PATH=None,
         custom_PENDING_TRANSACTIONS_PATH=None,
+        time_control=None,
     ):
         Thread.__init__(self)
         self.running = True
@@ -122,6 +123,8 @@ class server(Thread):
 
         self.custom_variables = custom_variables
 
+        self.time_control = 10 if time_control is None else time_control
+
         if not test:
             self.__class__.Server = self
             self.start()
@@ -160,6 +163,7 @@ class server(Thread):
 
     def prepare_message(self, data):
         data["id"] = server.id
+        data["timestamp"] = str(time.time())
         sign = Ecdsa.sign(
             str(data),
             PrivateKey.fromPem(wallet_import(0, 1)),
@@ -212,6 +216,11 @@ class server(Thread):
         if "id" not in data:
             return False
         if "signature" not in data:
+            return False
+        if "timestamp" not in data:
+            return False
+        the_control = time.time() - float(data["timestamp"])
+        if the_control > self.time_control:
             return False
         # remove sign from data
         sign = data["signature"]
