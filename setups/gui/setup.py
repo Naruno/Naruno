@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="decentra_network_gui",
-    version="0.26.1",
+    version="0.27.0",
     description="""This is GUI mode installer for Decentra Network""",
     url="https://decentra-network.github.io/Decentra-Network/",
     author="Decentra Network Developers",
