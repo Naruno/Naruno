@@ -123,7 +123,6 @@ class server(Thread):
 
         self.custom_variables = custom_variables
 
-
         self.time_control = 10 if time_control is None else time_control
 
         if not test:
@@ -229,11 +228,10 @@ class server(Thread):
         message = str(data)
         data["signature"] = sign
         return Ecdsa.verify(
-                message,
-                Signature.fromBase64(sign),
-                PublicKey.fromPem(data["id"]),
+            message,
+            Signature.fromBase64(sign),
+            PublicKey.fromPem(data["id"]),
         )
-            
 
     def connect(self, host, port):
         connected = self.check_connected(host=host, port=port)
