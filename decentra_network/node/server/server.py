@@ -366,7 +366,6 @@ class server(Thread):
         data = {
             "action": "myblock",
             "transaction": new_list,
-            "sequance_number": system.sequance_number,
         }
         self.send(data)
 
@@ -376,14 +375,11 @@ class server(Thread):
         data = {
             "action": "myblockhash",
             "hash": system.hash,
-            "sequance_number": system.sequance_number,
         }
 
         self.send(data)
 
     def get_candidate_block(self, data, node):
-        logger.info("Getting candidate block: {}".format(
-            data["sequance_number"]))
 
         node.candidate_block = data
 

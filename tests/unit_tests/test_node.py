@@ -943,29 +943,23 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
         the_block = Block("onuratakanulusoy")
-        the_block.sequance_number = 5858
         self.node_0.send_my_block(the_block)
         time.sleep(2)
         self.assertEqual(self.node_1.clients[0].candidate_block["action"],
                          "myblock")
         self.assertEqual(self.node_1.clients[0].candidate_block["transaction"],
                          [])
-        self.assertEqual(
-            self.node_1.clients[0].candidate_block["sequance_number"], 5858)
 
         self.assertEqual(self.node_2.clients[0].candidate_block["action"],
                          "myblock")
         self.assertEqual(self.node_2.clients[0].candidate_block["transaction"],
                          [])
-        self.assertEqual(
-            self.node_2.clients[0].candidate_block["sequance_number"], 5858)
 
         CleanUp_tests()
 
     def test_send_my_block_get_candidate_block(self):
         CleanUp_tests()
         the_block = Block("onuratakanulusoy")
-        the_block.sequance_number = 585858
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -999,8 +993,6 @@ class Test_Node(unittest.TestCase):
                 "transaction_time": 1656764224,
             }],
         )
-        self.assertEqual(
-            self.node_1.clients[0].candidate_block["sequance_number"], 585858)
 
         self.assertEqual(self.node_2.clients[0].candidate_block["action"],
                          "myblock")
@@ -1019,8 +1011,6 @@ class Test_Node(unittest.TestCase):
                 "transaction_time": 1656764224,
             }],
         )
-        self.assertEqual(
-            self.node_2.clients[0].candidate_block["sequance_number"], 585858)
 
         CleanUp_tests()
 
@@ -1035,15 +1025,12 @@ class Test_Node(unittest.TestCase):
                          "myblockhash")
         self.assertEqual(self.node_1.clients[0].candidate_block_hash["hash"],
                          58585858)
-        self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash["sequance_number"], 0)
 
         self.assertEqual(self.node_2.clients[0].candidate_block_hash["action"],
                          "myblockhash")
         self.assertEqual(self.node_2.clients[0].candidate_block_hash["hash"],
                          58585858)
-        self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash["sequance_number"], 0)
+
         CleanUp_tests()
 
     def test_get_unl_nodes_not_exist(self):
