@@ -380,8 +380,6 @@ class server(Thread):
         self.send(data)
 
     def get_candidate_block(self, data, node):
-        logger.info("Getting candidate block: {}".format(
-            data["sequance_number"]))
 
         node.candidate_block = data
 
