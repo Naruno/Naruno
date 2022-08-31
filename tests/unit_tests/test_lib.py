@@ -4,17 +4,20 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import copy
 import os
 import sys
 import time
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.status import Status
-from decentra_network.transactions.transaction import Transaction
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 from unittest import mock
+
+
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.lib.cache import Cache
+from decentra_network.lib.status import Status
+from decentra_network.transactions.transaction import Transaction
 
 from decentra_network.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
@@ -612,5 +615,32 @@ class Test_Lib(unittest.TestCase):
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
 
+
+    def test_cache_save(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_save")
+        self.assertEqual(Cache.cache["test"], "test_cache_save")
+        Cache.cache = backup
+
+    def test_cache_get(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        self.assertEqual(Cache.get("test"), "test_cache_get")
+        Cache.cache = backup
+
+    def test_cache_clear(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        Cache.clear()
+        self.assertEqual(Cache.cache, {})
+        Cache.cache = backup
+
+    def test_cache_pop(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        self.assertEqual(Cache.get("test"), "test_cache_get")
+        Cache.pop("test")
+        self.assertEqual(Cache.get("test"), None)
+        Cache.cache = backup
 
 unittest.main(exit=False)
