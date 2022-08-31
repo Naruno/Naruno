@@ -21,6 +21,7 @@ import urllib
 import decentra_network
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.api.main import start
 from decentra_network.blockchain.block.block_main import Block
@@ -52,8 +53,6 @@ from decentra_network.wallet.ellipticcurve.save_wallet_list import \
     save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.print_wallets import print_wallets
-
-from decentra_network.accounts.get_balance import GetBalance
 
 decentra_network.api.main.custom_block = Block("Onur")
 decentra_network.api.main.custom_current_time = int(time.time()) + 25
@@ -90,6 +89,7 @@ class Test_API(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
+        decentra_network.api.main.account_list = GetAccounts(temp_path)
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -426,10 +426,18 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen(
             "http://localhost:7777/wallet/balance")
         response_result = response.read()
-        the_balance_int = float((response_result.decode("utf-8")).replace("\n", ""))
-     
-        self.assertEqual(the_balance_int, float(GetBalance(decentra_network.api.main.custom_block, decentra_network.api.main.custom_wallet,
-                              account_list=decentra_network.api.main.account_list)))
+        the_balance_int = float(
+            (response_result.decode("utf-8")).replace("\n", ""))
+
+        self.assertEqual(
+            the_balance_int,
+            float(
+                GetBalance(
+                    decentra_network.api.main.custom_block,
+                    decentra_network.api.main.custom_wallet,
+                    account_list=decentra_network.api.main.account_list,
+                )),
+        )
 
     def test_node_start_page(self):
         response = urllib.request.urlopen(

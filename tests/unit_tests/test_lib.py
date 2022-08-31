@@ -4,24 +4,23 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import copy
 import os
 import sys
 import time
-
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.status import Status
-from decentra_network.transactions.transaction import Transaction
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 from unittest import mock
 
+from decentra_network.blockchain.block.block_main import Block
 from decentra_network.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
     MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
     TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH,
     UNL_NODES_PATH)
+from decentra_network.lib.cache import Cache
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.export import export_the_transactions
@@ -37,14 +36,17 @@ from decentra_network.lib.settings_system import (d_mode_settings,
                                                   save_settings,
                                                   t_mode_settings,
                                                   the_settings)
+from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.transaction import Transaction
 
 
 def perpetual_time_test():
     os.chdir(get_config()["main_folder"])
     with open("test_perpetual_time_test.txt", "w") as f:
         f.write("Hello World")
+
 
 class pywall_none:
 
@@ -611,6 +613,47 @@ class Test_Lib(unittest.TestCase):
         self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
+
+    def test_cache_save(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_save")
+        self.assertEqual(Cache.cache["test"], "test_cache_save")
+        Cache.cache = backup
+
+    def test_cache_get(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        self.assertEqual(Cache.get("test"), "test_cache_get")
+        Cache.cache = backup
+
+    def test_cache_get_key_error(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        self.assertEqual(Cache.get("asdadadtest"), None)
+        Cache.cache = backup
+
+    def test_cache_clear(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        Cache.clear()
+        self.assertEqual(Cache.cache, {})
+        Cache.cache = backup
+
+    def test_cache_pop_keyerror(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        self.assertEqual(Cache.get("test"), "test_cache_get")
+        Cache.pop("aatest")
+        self.assertEqual(Cache.get("test"), "test_cache_get")
+        Cache.cache = backup
+
+    def test_cache_pop(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        self.assertEqual(Cache.get("test"), "test_cache_get")
+        Cache.pop("test")
+        self.assertEqual(Cache.get("test"), None)
+        Cache.cache = backup
 
 
 unittest.main(exit=False)

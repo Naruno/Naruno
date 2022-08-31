@@ -9,6 +9,7 @@ import os
 
 from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PATH
+from decentra_network.lib.cache import Cache
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 
@@ -50,12 +51,21 @@ def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
     the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
                                 if custom_TEMP_BLOCKSHASH_PATH is None else
                                 custom_TEMP_BLOCKSHASH_PATH)
-    os.chdir(get_config()["main_folder"])
-    if not os.path.exists(the_TEMP_BLOCKSHASH_PATH):
-        return []
 
-    with open(the_TEMP_BLOCKSHASH_PATH, "r") as block_file:
-        return json.load(block_file)
+    the_cache = Cache.get(the_TEMP_BLOCKSHASH_PATH)
+    if the_cache is None:
+        os.chdir(get_config()["main_folder"])
+        if not os.path.exists(the_TEMP_BLOCKSHASH_PATH):
+            result = []
+            Cache.save(the_TEMP_BLOCKSHASH_PATH, result)
+            return result
+
+        with open(the_TEMP_BLOCKSHASH_PATH, "r") as block_file:
+            result = json.load(block_file)
+            Cache.save(the_TEMP_BLOCKSHASH_PATH, result)
+            return result
+    else:
+        return the_cache
 
 
 def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
@@ -65,9 +75,18 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
                                      custom_TEMP_BLOCKSHASH_PART_PATH is None
                                      else custom_TEMP_BLOCKSHASH_PART_PATH)
-    os.chdir(get_config()["main_folder"])
-    if not os.path.exists(the_TEMP_BLOCKSHASH_PART_PATH):
-        return []
 
-    with open(the_TEMP_BLOCKSHASH_PART_PATH, "r") as block_file:
-        return json.load(block_file)
+    the_cache = Cache.get(the_TEMP_BLOCKSHASH_PART_PATH)
+    if the_cache is None:
+        os.chdir(get_config()["main_folder"])
+        if not os.path.exists(the_TEMP_BLOCKSHASH_PART_PATH):
+            result = []
+            Cache.save(the_TEMP_BLOCKSHASH_PART_PATH, result)
+            return result
+
+        with open(the_TEMP_BLOCKSHASH_PART_PATH, "r") as block_file:
+            result = json.load(block_file)
+            Cache.save(the_TEMP_BLOCKSHASH_PART_PATH, result)
+            return result
+    else:
+        return the_cache
