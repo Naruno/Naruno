@@ -16,9 +16,8 @@ from decentra_network.lib.config_system import get_config
 
 
 def CleanUp_tests():
-
     for i in Cache.cache:
-        if i.startswith("test_") and i.endswith("_conn"):
+        if i.startswith("db/test_") and i.endswith("_conn"):
             Cache.get(i).close()
 
     os.chdir(get_config()["main_folder"])
