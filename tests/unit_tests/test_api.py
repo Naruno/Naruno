@@ -90,6 +90,7 @@ class Test_API(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
+        decentra_network.api.main.account_list = GetAccounts(temp_path)
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")

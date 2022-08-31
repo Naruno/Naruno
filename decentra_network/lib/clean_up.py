@@ -20,6 +20,8 @@ def CleanUp_tests(close=True):
         for i in Cache.cache:
             if i.startswith("db/test_") and i.endswith("_conn"):
                 Cache.get(i).close()
+                Cache.pop(i)
+
 
     os.chdir(get_config()["main_folder"])
     for the_file in os.listdir("db/"):

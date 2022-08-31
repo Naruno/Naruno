@@ -26,8 +26,8 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
                               custom_TEMP_ACCOUNTS_PATH)
 
     the_cache = Cache.get(the_TEMP_ACCOUNTS_PATH)
-
-    if the_cache is None:
+    the_cache_2 = Cache.get(f"{the_TEMP_ACCOUNTS_PATH}_conn")
+    if the_cache is None or the_cache_2 is None:
         os.chdir(get_config()["main_folder"])
         conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH, check_same_thread=False)
         c = conn.cursor()
