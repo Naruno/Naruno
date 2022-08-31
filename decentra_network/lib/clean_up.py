@@ -18,7 +18,7 @@ from decentra_network.lib.config_system import get_config
 def CleanUp_tests(close=True):
     if close:
         for i in Cache.cache:
-            if i.startswith("db/test_") and i.endswith("_conn"):
+            if i.startswith("db/test_") and i.endswith("_conn") and Cache.get(i) is not None:
                 Cache.get(i).close()
                 Cache.pop(i)
 
