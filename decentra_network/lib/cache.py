@@ -24,7 +24,4 @@ class Cache:
   
   @staticmethod
   def pop(key):
-    try:
-      Cache.cache[key] = None
-    except KeyError:
-      pass
+    Cache.cache[key] = None
