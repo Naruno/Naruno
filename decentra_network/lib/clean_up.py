@@ -32,25 +32,32 @@ def CleanUp_tests():
 
     for the_file in os.listdir("db/test_finished_main/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(f"db/test_finished_main/{the_file}")
+            with contextlib.suppress(PermissionError):
+                os.remove(f"db/test_finished_main/{the_file}")
 
     for the_file in os.listdir("db/test_consensus_trigger_finished/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(f"db/test_consensus_trigger_finished/{the_file}")
+            with contextlib.suppress(PermissionError):
+                os.remove(f"db/test_consensus_trigger_finished/{the_file}")
 
     for the_file in os.listdir("db/connected_nodes_test_0/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(f"db/connected_nodes_test_0/{the_file}")
+            with contextlib.suppress(PermissionError):
+                os.remove(f"db/connected_nodes_test_0/{the_file}")
     for the_file in os.listdir("db/connected_nodes_test_1/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(f"db/connected_nodes_test_1/{the_file}")
+            with contextlib.suppress(PermissionError):
+                os.remove(f"db/connected_nodes_test_1/{the_file}")
     for the_file in os.listdir("db/connected_nodes_test_2/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(f"db/connected_nodes_test_2/{the_file}")
+            with contextlib.suppress(PermissionError):
+                os.remove(f"db/connected_nodes_test_2/{the_file}")
 
     for the_file in os.listdir("db/pending_transactions_test_1/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(f"db/pending_transactions_test_1/{the_file}")
+            with contextlib.suppress(PermissionError):
+                os.remove(f"db/pending_transactions_test_1/{the_file}")
     for the_file in os.listdir("db/pending_transactions_test_2/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
-            os.remove(f"db/pending_transactions_test_2/{the_file}")
+            with contextlib.suppress(PermissionError):
+                os.remove(f"db/pending_transactions_test_2/{the_file}")
