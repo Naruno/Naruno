@@ -13,7 +13,6 @@ from decentra_network.lib.cache import Cache
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 
-
 logger = get_logger("BLOCKCHAIN")
 
 
