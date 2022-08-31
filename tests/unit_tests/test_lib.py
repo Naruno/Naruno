@@ -646,7 +646,7 @@ class Test_Lib(unittest.TestCase):
         Cache.save("test", "test_cache_get")
         self.assertEqual(Cache.get("test"), "test_cache_get")
         Cache.pop("aatest")
-        self.assertEqual(Cache.get("test"), None)
+        self.assertEqual(Cache.get("test"), "test_cache_get")
         Cache.cache = backup
 
     def test_cache_pop(self):
