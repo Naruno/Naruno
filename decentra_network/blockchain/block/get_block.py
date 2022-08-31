@@ -9,6 +9,7 @@ import os
 
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.config import TEMP_BLOCK_PATH
+from decentra_network.lib.cache import Cache
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 
@@ -22,7 +23,12 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     the_TEMP_BLOCK_PATH = (
         TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
     )
-    os.chdir(get_config()["main_folder"])
-    with open(the_TEMP_BLOCK_PATH, "r") as block_file:
-        the_block_json = json.load(block_file)
-    return Block.load_json(the_block_json)
+    the_cache = Cache.get(the_TEMP_BLOCK_PATH)
+
+    if the_cache is None:
+        os.chdir(get_config()["main_folder"])
+        with open(the_TEMP_BLOCK_PATH, "r") as block_file:
+            the_block_json = json.load(block_file)
+        return Block.load_json(the_block_json)
+    else:
+        return the_cache
