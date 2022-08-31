@@ -16,6 +16,7 @@ from decentra_network.lib.log import get_logger
 
 logger = get_logger("BLOCKCHAIN")
 
+
 def GetBlock(custom_TEMP_BLOCK_PATH=None):
     """
     Returns the block.

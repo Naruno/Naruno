@@ -6,22 +6,23 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.class cache:
 
 class Cache:
-  cache = {}
+    cache = {}
 
-  @staticmethod
-  def get(key):
-    try:
-      return Cache.cache[key]
-    except KeyError:
-      return None
-  @staticmethod
-  def save (key, value):
-    Cache.cache[key] = value
+    @staticmethod
+    def get(key):
+        try:
+            return Cache.cache[key]
+        except KeyError:
+            return None
 
-  @staticmethod
-  def clear():
-    Cache.cache = {}
-  
-  @staticmethod
-  def pop(key):
-    Cache.cache[key] = None
+    @staticmethod
+    def save(key, value):
+        Cache.cache[key] = value
+
+    @staticmethod
+    def clear():
+        Cache.cache = {}
+
+    @staticmethod
+    def pop(key):
+        Cache.cache[key] = None

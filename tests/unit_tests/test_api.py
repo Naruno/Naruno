@@ -427,10 +427,11 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen(
             "http://localhost:7777/wallet/balance")
         response_result = response.read()
-        the_balance_int = float((response_result.decode("utf-8")).replace("\n", ""))
-     
+        the_balance_int = float(
+            (response_result.decode("utf-8")).replace("\n", ""))
+
         self.assertEqual(the_balance_int, float(GetBalance(decentra_network.api.main.custom_block, decentra_network.api.main.custom_wallet,
-                              account_list=decentra_network.api.main.account_list)))
+                                                           account_list=decentra_network.api.main.account_list)))
 
     def test_node_start_page(self):
         response = urllib.request.urlopen(

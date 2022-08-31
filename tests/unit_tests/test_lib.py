@@ -49,6 +49,7 @@ def perpetual_time_test():
     with open("test_perpetual_time_test.txt", "w") as f:
         f.write("Hello World")
 
+
 class pywall_none:
 
     def __init__(self):
@@ -615,7 +616,6 @@ class Test_Lib(unittest.TestCase):
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
 
-
     def test_cache_save(self):
         backup = copy.copy(Cache.cache)
         Cache.save("test", "test_cache_save")
@@ -656,5 +656,6 @@ class Test_Lib(unittest.TestCase):
         Cache.pop("test")
         self.assertEqual(Cache.get("test"), None)
         Cache.cache = backup
+
 
 unittest.main(exit=False)
