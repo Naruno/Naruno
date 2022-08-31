@@ -37,6 +37,7 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
         conn.commit()
 
         Cache.save(the_TEMP_ACCOUNTS_PATH, c)
+        Cache.save(f"{the_TEMP_ACCOUNTS_PATH}_conn", conn)
         return c
     else:
         return the_cache
