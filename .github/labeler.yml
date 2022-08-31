@@ -65,7 +65,7 @@ labels:
     - '\brelease\b'
   'Settings':
     - '\bsettings\b'
-  'libs':
-    - '\blibs\b'
+  'lib':
+    - '\blib\b'
 
 

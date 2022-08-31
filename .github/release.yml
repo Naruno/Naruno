@@ -103,6 +103,10 @@ changelog:
       labels:
         - Licence
 
+    - title: Library
+      labels:
+        - Lib
+
     - title: Logging
       labels:
         - Logging
