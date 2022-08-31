@@ -323,7 +323,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.messages[-1], result)
 
     def test_send_full_chain_get_full_chain(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("onur")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -359,7 +359,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -392,7 +392,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_get_full_blockshash(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan123321222")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -424,7 +424,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_part_get_full_blockshash_part(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
 
@@ -461,7 +461,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_chain_get_full_chain_already_block(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("onur1321313213123")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -512,7 +512,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts_already_block(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -558,7 +558,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_get_full_blockshash_already_block(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan123321222")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -602,7 +602,7 @@ class Test_Node(unittest.TestCase):
 
     def test_send_full_blockshash_part_get_full_blockshash_part_already_block(
             self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
 
@@ -651,7 +651,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_chain_get_full_chain_all_nodes(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("onur")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -687,7 +687,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts_all_nodes(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -721,7 +721,7 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_get_full_blockshash_all_nodes(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan123321222")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -754,7 +754,7 @@ class Test_Node(unittest.TestCase):
 
     def test_send_full_blockshash_part_get_full_blockshash_part_all_nodes(
             self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
 
@@ -834,7 +834,7 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(result)
 
     def test_send_get_transaction(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -899,10 +899,10 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(pending_list_0), 0)
         self.assertEqual(len(pending_list_1), 1)
         self.assertEqual(len(pending_list_2), 1)
-        CleanUp_tests()
+        CleanUp_tests(close=False)
 
     def test_send_block_to_other_nodes(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("onur")
         the_block.consensus_timer = 0
         SaveBlock(
@@ -937,10 +937,10 @@ class Test_Node(unittest.TestCase):
             the_block.dump_json(),
             got_block.dump_json(),
         )
-        CleanUp_tests()
+        CleanUp_tests(close=False)
 
     def test_send_my_block_get_candidate_block_no_trans(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
 
         the_block = Block("onuratakanulusoy")
         self.node_0.send_my_block(the_block)
@@ -955,10 +955,10 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_2.clients[0].candidate_block["transaction"],
                          [])
 
-        CleanUp_tests()
+        CleanUp_tests(close=False)
 
     def test_send_my_block_get_candidate_block(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
         the_block = Block("onuratakanulusoy")
         the_transaction_json = {
             "sequance_number": 1,
@@ -1012,10 +1012,10 @@ class Test_Node(unittest.TestCase):
             }],
         )
 
-        CleanUp_tests()
+        CleanUp_tests(close=False)
 
     def test_send_my_block_hash_get_candidate_block_hash(self):
-        CleanUp_tests()
+        CleanUp_tests(close=False)
 
         the_block = Block("onuratakanulusoy")
         the_block.hash = 58585858
@@ -1031,7 +1031,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_2.clients[0].candidate_block_hash["hash"],
                          58585858)
 
-        CleanUp_tests()
+        CleanUp_tests(close=False)
 
     def test_get_unl_nodes_not_exist(self):
         custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")

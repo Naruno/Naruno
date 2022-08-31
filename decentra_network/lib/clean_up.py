@@ -15,10 +15,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from decentra_network.lib.config_system import get_config
 
 
-def CleanUp_tests():
-    for i in Cache.cache:
-        if i.startswith("db/test_") and i.endswith("_conn"):
-            Cache.get(i).close()
+def CleanUp_tests(close=True):
+    if close:
+        for i in Cache.cache:
+            if i.startswith("db/test_") and i.endswith("_conn"):
+                Cache.get(i).close()
 
     os.chdir(get_config()["main_folder"])
     for the_file in os.listdir("db/"):
