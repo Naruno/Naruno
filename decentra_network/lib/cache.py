@@ -10,7 +10,10 @@ class Cache:
 
   @staticmethod
   def get(key):
-    return Cache.cache[key]  
+    try:
+      return Cache.cache[key]
+    except KeyError:
+      return None
   @staticmethod
   def save (key, value):
     Cache.cache[key] = value
@@ -21,4 +24,7 @@ class Cache:
   
   @staticmethod
   def pop(key):
-    Cache.cache[key] = None
+    try:
+      Cache.cache[key] = None
+    except KeyError:
+      pass
