@@ -628,11 +628,25 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(Cache.get("test"), "test_cache_get")
         Cache.cache = backup
 
+    def test_cache_get_key_error(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        self.assertEqual(Cache.get("asdadadtest"), None)
+        Cache.cache = backup
+
     def test_cache_clear(self):
         backup = copy.copy(Cache.cache)
         Cache.save("test", "test_cache_get")
         Cache.clear()
         self.assertEqual(Cache.cache, {})
+        Cache.cache = backup
+
+    def test_cache_pop_keyerror(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get")
+        self.assertEqual(Cache.get("test"), "test_cache_get")
+        Cache.pop("aatest")
+        self.assertEqual(Cache.get("test"), None)
         Cache.cache = backup
 
     def test_cache_pop(self):
