@@ -17,11 +17,8 @@ from decentra_network.lib.config_system import get_config
 
 def CleanUp_tests():
     for i in Cache.cache:
-        if (
-            i.startswith("db/test_")
-            and i.endswith("_conn")
-            and Cache.get(i) is not None
-        ):
+        if (i.startswith("db/test_") and i.endswith("_conn")
+                and Cache.get(i) is not None):
             Cache.get(i).close()
     Cache.clear()
 
@@ -33,8 +30,7 @@ def CleanUp_tests():
                 os.remove(f"db/{the_file}")
 
     for the_file in os.listdir(
-        "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"
-    ):
+            "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
 
             os.remove(

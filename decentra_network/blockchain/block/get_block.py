@@ -20,9 +20,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     """
     Returns the block.
     """
-    the_TEMP_BLOCK_PATH = (
-        TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
-    )
+    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
+                           else custom_TEMP_BLOCK_PATH)
     the_cache = Cache.get(the_TEMP_BLOCK_PATH)
 
     if the_cache is None:
