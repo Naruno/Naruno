@@ -29,6 +29,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
         os.chdir(get_config()["main_folder"])
         with open(the_TEMP_BLOCK_PATH, "r") as block_file:
             the_block_json = json.load(block_file)
-        return Block.load_json(the_block_json)
+        result = Block.load_json(the_block_json)
+        Cache.save(the_TEMP_BLOCK_PATH, result)
+        return result
     else:
         return the_cache
