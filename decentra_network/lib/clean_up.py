@@ -19,7 +19,7 @@ def CleanUp_tests():
     for i in Cache.cache:
         if i.startswith("db/test_") and i.endswith("_conn") and Cache.get(i) is not None:
             Cache.get(i).close()
-            Cache.pop(i)
+    Cache.clear()
 
 
     os.chdir(get_config()["main_folder"])
