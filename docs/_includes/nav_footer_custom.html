@@ -3,6 +3,13 @@
 <button id="theme-toggle" onclick="modeSwitcher()" class="btn js-toggle-dark-mode" href="#">Dark Mode</button>
 
 <script>
+	const theme = localStorage.getItem('theme');
+		if (theme === "dark") {
+			document.documentElement.setAttribute('data-theme', 'dark');
+		}
+</script>
+
+<script>
         const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
     
         if (theme === "dark") {
@@ -33,10 +40,5 @@
         }
 </script>
 
-<script>
-	const theme = localStorage.getItem('theme');
-		if (theme === "dark") {
-			document.documentElement.setAttribute('data-theme', 'dark');
-		}
-</script>
+
 </footer>
