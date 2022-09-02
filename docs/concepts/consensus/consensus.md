@@ -36,7 +36,7 @@ This function is run for ongoing consensus process.
 And return the block.
 
 
-# Consensus Ongoin System | Federated Byzantine Agreement (FBA)
+# Consensus Ongoing System | Federated Byzantine Agreement (FBA)
 The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got his power from it's participant method. For the success on this theory, our FBA implementation that on the ongoing_main is use two stages, the first stage is the Round 1, and the second stage is Round 2.
 
 ## Round 1
