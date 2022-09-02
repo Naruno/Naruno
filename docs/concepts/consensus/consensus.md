@@ -15,7 +15,7 @@ Blockchain is have a distributed concept, which means the data is stored on mult
 The Proof of Work is a amazing start for Blockchain technology, but it's not the best method, because it's need a lot of energy and time to reach the consensus. The Proof of Work is the first method that reach the consensus, but it's not the best method, and there is a lot of other methods that can reach the consensus with less energy and time. We use the best method, The Federated Byzantine Agreement, is our consensus method.
 
 
-# Circulation System
+# Consensus Circulation System
 ## Heart
 The Heart is most important part, it's run the stages after a decision.
 
@@ -36,7 +36,7 @@ This function is run for ongoing consensus process.
 And return the block.
 
 
-# Consensus | Federated Byzantine Agreement (FBA)
+# Consensus Ongoin System | Federated Byzantine Agreement (FBA)
 The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got his power from it's participant method. For the success on this theory, our FBA implementation that on the ongoing_main is use two stages, the first stage is the Round 1, and the second stage is Round 2.
 
 ## Round 1
@@ -44,9 +44,86 @@ The first stage of consensus will sync the transaction that selected as True fro
 
 When a node got enough candidate block (80% of UNL Nodes) the proccessing is starts and transaction process and the transaction that selected from majority will be added to the block. After the transaction process is done, the new block is created and ready to round 2.
 
+### Comunication
+```mermaid
+sequenceDiagram
+    participant Node_A
+    participant Node_B
+    participant Node_C
+    
+            
+    Node_A->>+Node_B: transaction_a and transaction_b should be in Block 15
+    Node_A->>+Node_C: transaction_a and transaction_b should be in Block 15
+
+    Node_B->>+Node_A: transaction_b should be in Block 15
+    Node_B->>+Node_C: transaction_b should be in Block 15
+
+    Node_C->>+Node_A: transaction_b should be in Block 15
+    Node_C->>+Node_B: transaction_b should be in Block 15
+```
+
+### Decision
+```mermaid
+classDiagram
+    Node_0_validating_list_not_validated --|> Node_B
+    Node_0_validating_list_not_validated --|> Node_C
+    Node_0_validating_list_not_validated: +transaction_a
+    Node_0_validating_list_not_validated: +transaction_b
+
+    Node_0_validating_list_validated <|-- Node_B
+    Node_0_validating_list_validated <|-- Node_C
+    Node_0_validating_list_validated: +transaction_b
+
+    class Node_B{
+      +transaction_B
+    }
+    class Node_C{
+      +transaction_B
+    }
+```	
+
 ## Round 2
 The last stage of consensus is the round 2, in this stage the block hash that created in the round 1 will be validated by the nodes. The nodes send self block hash to UNL nodes. When the block got enough validation result (80% same of UNL Nodes) the block will be added to the blockchain as a validated block.
 
+### Comunication
+```mermaid
+sequenceDiagram
+    participant Node_A
+    participant Node_B
+    participant Node_C
+    
+            
+    Node_A->>+Node_B: The new block hash is 321
+    Node_A->>+Node_C: The new block hash is 321
+
+    Node_B->>+Node_A: The new block hash is 123
+    Node_B->>+Node_C: The new block hash is 123
+
+    Node_C->>+Node_A: The new block hash is 123
+    Node_C->>+Node_B: The new block hash is 123
+```
+
+### Decision
+```mermaid
+classDiagram
+    Node_0_block_not_validated --|> Node_B
+    Node_0_block_not_validated --|> Node_C
+    Node_0_block_not_validated: HASH 321
+
+    Node_0_block_validated <|-- Node_B
+    Node_0_block_validated <|-- Node_C
+    Node_0_block_validated: HASH 123
+
+    class Node_B{
+      HASH 123
+    }
+    class Node_C{
+      HASH 123
+    }
+```	
+
+
+## Consensus Diagram
 
 ```mermaid
 flowchart RL
