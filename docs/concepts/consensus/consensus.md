@@ -63,9 +63,6 @@ flowchart RL
             heartbeat --> consensus_trigger
         end
 
-        %% add in-line style
-        Heart:::someclass
-        classDef someclass fill:#5ec295;
 
 
         subgraph consensus_trigger
@@ -131,10 +128,6 @@ flowchart RL
 
         end    
     end
-
-    %% add in-line style
-    Circulation:::someclass_2
-    classDef someclass_2 fill:#5ec295;
 
     subgraph consensus_round_1
         direction TB
