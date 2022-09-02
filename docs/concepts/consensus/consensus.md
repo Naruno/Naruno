@@ -43,5 +43,28 @@ flowchart LR
     classDef someclass fill:#5ec295;
 ```
 
+### consensus_trigger
+Consensus trigger is a starter by checking the block status if block is ready to be added to the blockchain (validated), it will add the block to the blockchain and start the finished processes. If the block is not ready, it will start ongoing processes.
 
+```mermaid
+flowchart LR
+    subgraph def consensus_trigger
+        direction TB
+
+        validated{block.validated}
+        finished_main[[finished_main]]
+        ongoing_main[ongoing_main]
+
+        return[return block]
+
+        validated -- True --> finished_main
+        validated -- False --> ongoing_main
+
+        finished_main --o return
+
+        ongoing_main --o return
+
+
+    end
+```
 
