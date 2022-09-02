@@ -1,10 +1,31 @@
 
-@media print {
+@media (min-width: 50rem) {
     .side-bar {
-        width: calc((0% - 1064px)/2 + 264px);
-        min-width: 264px;
+        width: calc((0% - 1064px)/2 + 264px) !important;
     }
     .main {
-        margin-left: 248px;
+        margin-left: 248px !important;
     }
 }
+
+
+@media (min-width: 66.5rem) {
+    .side-bar {
+        width: calc((0% - 1064px)/2 + 264px) !important;
+    }
+    .main {
+        margin-left: 248px !important;
+    }
+}
+
+// Print-only styles.
+@media print {
+    .side-bar,
+    .page-header {
+      display: none;
+    }
+    .main-content {
+      max-width: auto;
+      margin: 1em;
+    }
+  }
