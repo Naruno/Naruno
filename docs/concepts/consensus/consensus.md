@@ -30,7 +30,7 @@ flowchart LR
         direction TB
 
         perpetualTimer[perpetualTimer]
-        heartbeat[[2 Beat in a second]]
+        heartbeat[2 Beat in a second]
         consensus_triggerd[consensus_trigger]
 
 
