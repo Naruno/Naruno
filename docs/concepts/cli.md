@@ -1,6 +1,6 @@
 ---
 title: CLI
-parent: Systems
+parent: Concepts
 nav_order: 6
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Transactions
-parent: Systems
+parent: Concepts
 nav_order: 2
 ---
 

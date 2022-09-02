@@ -1,6 +1,6 @@
 ---
 title: Functions
-parent: Systems
+parent: Concepts
 nav_order: 5
 ---
 

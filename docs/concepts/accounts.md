@@ -1,6 +1,6 @@
 ---
 title: Accounts
-parent: Systems
+parent: Concepts
 nav_order: 1
 ---
 
