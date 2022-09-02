@@ -35,6 +35,19 @@ This function is run for ongoing consensus process.
 
 And return the block.
 
+
+# Consensus | Federated Byzantine Agreement (FBA)
+The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got his power from it's participant method. For the success on this theory, our FBA implementation that on the ongoing_main is use two stages, the first stage is the Round 1, and the second stage is Round 2.
+
+## Round 1
+The first stage of consensus will sync the transaction that selected as True from majority. For this every node send self candidate block that include suggested transactions.
+
+When a node got enough candidate block (100% of UNL Nodes) the proccessing is starts and transaction process and the transaction that selected from majority will be added to the block. After the transaction process is done, the new block is created and ready to round 2.
+
+## Round 2
+The last stage of consensus is the round 2, in this stage the block hash that created in the round 1 will be validated by the nodes. The nodes send self block hash to UNL nodes. When the block got enough validation result (80% same of UNL Nodes) the block will be added to the blockchain as a validated block.
+
+
 ```mermaid
 flowchart RL
     subgraph Circulation
@@ -121,10 +134,29 @@ flowchart RL
 
     %% add in-line style
     Circulation:::someclass_2
-    classDef someclass_2 fill:#5ec295;    
+    classDef someclass_2 fill:#5ec295;
+
+    subgraph consensus_round_1
+        direction TB
+
+        round_checkconsensus_round_1{round_check}
+        returnTrueconsensus_round_1[return True]
+        returnFalseconsensus_round_1[return False]
+
+        round_checkconsensus_round_1 -- True --> round_processconsensus_round_1 --o returnTrueconsensus_round_1
+        round_checkconsensus_round_1 -- False --> send_my_block --o returnFalseconsensus_round_1
+
+    end   
+
+    subgraph consensus_round_2
+        direction TB
+
+        round_checkconsensus_round_2{round_check}
+        returnTrueconsensus_round_2[return True]
+        returnFalseconsensus_round_2[return False]
+
+        round_checkconsensus_round_2 -- True --> round_processconsensus_round_2 --o returnTrueconsensus_round_2
+        round_checkconsensus_round_2 -- False --> send_my_block_hash --o returnFalseconsensus_round_2
+
+    end   
 ```
-
-
-# Consensus System | Federated Byzantine Agreement (FBA)
-The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got his power from it's participant method. For the success on this theory, our FBA implementation that on the ongoing_main is use two stages, the first stage is the round 1, and the second stage is round 2.
-
