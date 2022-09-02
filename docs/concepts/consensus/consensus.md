@@ -45,6 +45,14 @@ The first stage of consensus will sync the transaction that selected as True fro
 When a node got enough candidate block (80% of UNL Nodes) the proccessing is starts and transaction process and the transaction that selected from majority will be added to the block. After the transaction process is done, the new block is created and ready to round 2.
 
 ### Comunication
+Every node send self block to the network and the network send the block to the other nodes.
+
+These process runs in the 
+- 'decentra_network.node.server.server.send_my_block' 
+- 'decentra_network.node.server.server.get_candidate_block'
+
+functions.
+
 ```mermaid
 sequenceDiagram
     participant Node_A
@@ -52,17 +60,23 @@ sequenceDiagram
     participant Node_C
     
             
-    Node_A->>+Node_B: transaction_a and transaction_b should be in Block 15
-    Node_A->>+Node_C: transaction_a and transaction_b should be in Block 15
+    Node_A->>+Node_B: transaction_a and transaction_b is True
+    Node_A->>+Node_C: transaction_a and transaction_b is True
 
-    Node_B->>+Node_A: transaction_b should be in Block 15
-    Node_B->>+Node_C: transaction_b should be in Block 15
+    Node_B->>+Node_A: transaction_b is True
+    Node_B->>+Node_C: transaction_b is True
 
-    Node_C->>+Node_A: transaction_b should be in Block 15
-    Node_C->>+Node_B: transaction_b should be in Block 15
+    Node_C->>+Node_A: transaction_b is True
+    Node_C->>+Node_B: transaction_b is True
 ```
 
 ### Decision
+When a node got enough candidate block (80% of UNL Nodes) it's run a decision mechanism with this:
+
+- 'decentra_network.consensus.rounds.round_1.process.transactions.transactions_main.transactions_main' 
+
+function.
+
 ```mermaid
 classDiagram
     Node_0_validating_list_not_validated --|> Node_B
@@ -86,6 +100,14 @@ classDiagram
 The last stage of consensus is the round 2, in this stage the block hash that created in the round 1 will be validated by the nodes. The nodes send self block hash to UNL nodes. When the block got enough validation result (80% same of UNL Nodes) the block will be added to the blockchain as a validated block.
 
 ### Comunication
+In this stage every node send self block hash to other UNL nodes with this 
+
+- 'decentra_network.node.server.server.send_my_block_hash'' 
+- 'decentra_network.node.server.server.get_candidate_block_hash'
+
+functions.
+
+
 ```mermaid
 sequenceDiagram
     participant Node_A
@@ -104,6 +126,12 @@ sequenceDiagram
 ```
 
 ### Decision
+When a node got enough candidate block hash (80% of UNL Nodes) it's run a decision mechanism with this:
+
+- 'decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main.process_candidate_blocks_hashes' 
+
+function.
+
 ```mermaid
 classDiagram
     Node_0_block_not_validated --|> Node_B
@@ -124,6 +152,7 @@ classDiagram
 
 
 ## Consensus Diagram
+This diagram includes main process except some endpoint functions contents.
 
 ```mermaid
 flowchart RL
