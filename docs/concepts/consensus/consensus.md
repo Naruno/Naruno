@@ -117,6 +117,7 @@ flowchart RL
             block.round_1 -- False --> consensus_round_1
 
             consensus_round_1 --o returnBlock
+            consensus_round_2 --o returnBlock
 
         end    
     end
