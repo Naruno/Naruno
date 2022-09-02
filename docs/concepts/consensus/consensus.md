@@ -15,10 +15,7 @@ Blockchain is have a distributed concept, which means the data is stored on mult
 The Proof of Work is a amazing start for Blockchain technology, but it's not the best method, because it's need a lot of energy and time to reach the consensus. The Proof of Work is the first method that reach the consensus, but it's not the best method, and there is a lot of other methods that can reach the consensus with less energy and time. We use the best method, The Federated Byzantine Agreement, is our consensus method.
 
 
-## Federated Byzantine Agreement (FBA)
-The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got power from it's participant method. For the success on this theory, our FBA implementation is use two stages, the first stage is the Pre-Consensus (Round 1), and the second stage is the Consensus (Round 2). And we use Heart to  run this two stages.
-
-# Decentra Network Consensus Circulation System
+# Circulation System
 ## Heart
 The Heart is most important part, it's run the stages after a decision.
 
@@ -40,7 +37,7 @@ And return the block.
 
 ```mermaid
 flowchart RL
-    subgraph Consensus Mechanism Circulatory System
+    subgraph Circulation
         subgraph Heart
             direction TB
 
@@ -121,4 +118,13 @@ flowchart RL
 
         end    
     end
+
+    %% add in-line style
+    Circulation:::someclass_2
+    classDef someclass_2 fill:#5ec295;    
 ```
+
+
+# Consensus System | Federated Byzantine Agreement (FBA)
+The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got his power from it's participant method. For the success on this theory, our FBA implementation that on the ongoing_main is use two stages, the first stage is the round 1, and the second stage is round 2.
+
