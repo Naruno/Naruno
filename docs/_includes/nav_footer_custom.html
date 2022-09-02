@@ -14,8 +14,10 @@
     
         if (theme === "dark") {
             document.getElementById("theme-toggle").innerHTML = "Light Mode";
+            jtd.setTheme('dark');
         } else if (theme === "light") {
             document.getElementById("theme-toggle").innerHTML = "Dark Mode";
+            jtd.setTheme('light');
         } else if  (userPrefers === "dark") {
             document.documentElement.setAttribute('data-theme', 'dark');
             window.localStorage.setItem('theme', 'dark');
