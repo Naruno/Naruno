@@ -18,7 +18,8 @@ The Proof of Work is a amazing start for Blockchain technology, but it's not the
 ## Federated Byzantine Agreement (FBA)
 The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got power from it's participant method. For the success on this theory, our FBA implementation is use two stages, the first stage is the Pre-Consensus (Round 1), and the second stage is the Consensus (Round 2). And we use Heart to  run this two stages.
 
-### Heart
+# Decentra Network Consensus
+## Heart
 The Heart is most important part, it's run the stages after a decision.
 
 Heart beat in two times in a second and runs the 'decentra_network.consensus.consensus_main.consensus_trigger' functions
