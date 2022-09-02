@@ -98,3 +98,33 @@ flowchart LR
 
     end
 ```
+
+## ongoing_main
+This function is run for ongoing consensus process. 
+
+- If block.round_1 is False it will run the consensus_round_1 function.
+- If block.round_1 is True and block.round_2 is False its start consensus_round_2.
+
+And return the block.
+
+```mermaid
+flowchart LR
+    subgraph def ongoing_main
+        direction TB
+
+        block.round_1{block.round_1}
+
+        block.round_2{block.round_2} 
+
+        return[return Block]
+
+        block.round_1 -- True --> block.round_2
+        block.round_2 -- True --> return
+        block.round_2 -- False --> consensus_round_2
+        block.round_1 -- False --> consensus_round_1
+
+        consensus_round_1 --o return
+
+    end
+
+```
