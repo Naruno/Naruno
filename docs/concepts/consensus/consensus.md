@@ -42,7 +42,7 @@ The Federated Byzantine Agreement goal is reach success with no centralization t
 ## Round 1
 The first stage of consensus will sync the transaction that selected as True from majority. For this every node send self candidate block that include suggested transactions.
 
-When a node got enough candidate block (100% of UNL Nodes) the proccessing is starts and transaction process and the transaction that selected from majority will be added to the block. After the transaction process is done, the new block is created and ready to round 2.
+When a node got enough candidate block (80% of UNL Nodes) the proccessing is starts and transaction process and the transaction that selected from majority will be added to the block. After the transaction process is done, the new block is created and ready to round 2.
 
 ## Round 2
 The last stage of consensus is the round 2, in this stage the block hash that created in the round 1 will be validated by the nodes. The nodes send self block hash to UNL nodes. When the block got enough validation result (80% same of UNL Nodes) the block will be added to the blockchain as a validated block.
