@@ -2,7 +2,7 @@
 layout: default
 title: The Consensus
 parent: Consensus
-grand_parent: Systems
+grand_parent: Concepts
 nav_order: 1
 ---
 

@@ -2,7 +2,7 @@
 layout: default
 title: First Round
 parent: Consensus
-grand_parent: Systems
+grand_parent: Concepts
 nav_order: 2
 ---
 
