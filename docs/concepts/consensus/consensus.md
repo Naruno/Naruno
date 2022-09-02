@@ -28,11 +28,9 @@ Heart beat in two times in a second and runs the 'decentra_network.consensus.con
 Consensus trigger is a starter by checking the block status if block is ready to be added to the blockchain (validated), it will add the block to the blockchain and start the finished processes. If the block is not ready, it will start consensus processes.
 
 
-## finished_main
+#### finished_main
 Finished main is a function that will run after the block is validated. It will check the block status for resetting if if its suitable (Have an transaction) the finished_main will save the block and run apps and transaction saver other wise function that not do these just saves and calls PendingtoValidating.
-
-
-## ongoing_main
+#### ongoing_main
 This function is run for ongoing consensus process. 
 
 - If block.round_1 is False it will run the consensus_round_1 function.
