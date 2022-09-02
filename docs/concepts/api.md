@@ -1,16 +1,18 @@
 ---
 title: API
-parent: Systems
+parent: Concepts
 nav_order: 5
 ---
 
 # Accessing to The API
+
 In normal usage (api.py) the default host is 0.0.0.0 and port is 8000.
 
-In auto_builders based instalation the host is 0.0.0.0 and port is 
-increase by node number. For example: 
+In auto_builders based instalation the host is 0.0.0.0 and port is
+increase by node number. For example:
+
 - 1st node port is 8000
-- 2nd node port is 8101 
+- 2nd node port is 8101
 - 3rd node port is 8102
 
 # API Referance
