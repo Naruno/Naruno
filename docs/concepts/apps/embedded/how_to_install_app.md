@@ -6,6 +6,9 @@ nav_order: 1
 ---
 
 # On github
+
 ## Git Clone
+
 ### Go to Apps Directory (Decentra-Network/decentra_network/app)
+
 `git clone github_link`
