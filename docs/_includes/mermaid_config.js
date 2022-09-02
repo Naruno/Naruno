@@ -1,1 +1,3 @@
-{ theme: "base" }
+{
+  theme: "base";
+}
