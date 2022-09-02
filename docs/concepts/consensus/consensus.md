@@ -3,7 +3,7 @@ layout: default
 title: Consensus
 parent: Concepts
 nav_order: 4
-has_children: true
+has_children: False
 ---
 
 # The Consensus
@@ -44,7 +44,7 @@ flowchart LR
 ```
 
 ### consensus_trigger
-Consensus trigger is a starter by checking the block status if block is ready to be added to the blockchain (validated), it will add the block to the blockchain and start the finished processes. If the block is not ready, it will start ongoing processes.
+Consensus trigger is a starter by checking the block status if block is ready to be added to the blockchain (validated), it will add the block to the blockchain and start the finished processes. If the block is not ready, it will start consensus processes.
 
 ```mermaid
 flowchart LR
