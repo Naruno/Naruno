@@ -23,6 +23,7 @@ The Federated Byzantine Agreement goal is reach success with no centralization t
 The Heart is most important part, it's run the stages after a decision.
 
 Heart beat in two times in a second and runs the 'decentra_network.consensus.consensus_main.consensus_trigger' functions
+
 ```mermaid
 flowchart LR
     subgraph Heart
