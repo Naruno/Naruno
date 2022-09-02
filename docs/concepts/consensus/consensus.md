@@ -68,3 +68,33 @@ flowchart LR
     end
 ```
 
+## finished_main
+Finished main is a function that will run after the block is validated. It will check the block status for resetting if if its suitable (Have an transaction) the finished_main will save the block and run apps and transaction saver other wise function that not do these just saves and calls PendingtoValidating.
+
+```mermaid
+flowchart LR
+    subgraph def finished_main
+        direction TB
+
+        true_time{true_time}
+
+
+        returntrue[return True]
+        returnfalse[return False]
+
+        PendingtoValidating[PendingtoValidating]
+        SaveBlock[SaveBlock]
+
+        true_time -- True --> block.reset_the_block
+        true_time -- False --o returnfalse
+
+        block.reset_the_block -- True --o AppsTrigger --- transactions_main --- SaveBlockshash --- SaveBlockstoBlockchainDB --o PendingtoValidating --- SaveBlock
+                        
+        block.reset_the_block -- False --o PendingtoValidating --- SaveBlock
+
+
+        SaveBlock --o returntrue
+
+
+    end
+```
