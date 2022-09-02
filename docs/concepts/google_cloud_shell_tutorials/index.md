@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Google Cloud Shell Tutorials
-grand_parent: Concepts
+parent: Concepts
 nav_order: 5
 ---
 
