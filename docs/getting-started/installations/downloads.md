@@ -8,7 +8,7 @@ nav_order: 2
 
 
 # Dowloads for Users
-| OS | Type | Address | 
+| OS | Type | Address |
 |---|---|---|
 | Windows | CLI | a |
 
