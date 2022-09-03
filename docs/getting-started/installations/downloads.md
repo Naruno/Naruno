@@ -8,7 +8,7 @@ nav_order: 2
 
 
 # Dowloads for Users
-| OS | Type  | Address
+| OS | Type | Address
 |---|---|---|
 | Windows | CLI | [cli_win32_decentra_network.zip](https://github.com/Decentra-Network/Decentra-Network/releases/download/latest/cli_win32_decentra_network.zip) |
 | Windows | API | [api_win32_decentra_network.zip](https://github.com/Decentra-Network/Decentra-Network/releases/download/latest/api_win32_decentra_network.zip) |
