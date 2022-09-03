@@ -1,14 +1,14 @@
 ---
-title: Building a Test Network
-parent: Getting Started
+title: Manuel
+parent: Building Test Network
+grand_parent: Getting Started
 nav_order: 2
 ---
 
-# Building a Test Network [![Open in Cloud Shell](https://img.shields.io/badge/Open%20in%20Cloud%20Shell-Tutorial-5ec205)](https://ssh.cloud.google.com/cloudshell/open?shellonly=true&cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=docs/getting-started/building_test_network.md)
+# Building a Test Network [![Open in Cloud Shell](https://img.shields.io/badge/Open%20in%20Cloud%20Shell-Tutorial-5ec205)](https://ssh.cloud.google.com/cloudshell/open?shellonly=true&cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=docs/getting-started/building_test_network/manuel.md)
 A test network can do all the things a production network can do, but it is not connected to the main Decentra Network. This means that you can test your code without worrying about affecting the main network. You can also use a test network to test your code in a controlled environment. And all is free and yours to use. So let's get started.
 
 ## Prerequisites
-- 3 node at least
 - Free 6 ports
 - Phisical or virtual network connection for each node
 - Safe place for node 0
@@ -39,11 +39,11 @@ We need to set `test` mode on for node 0
 python Decentra-Network-0/decentra_network/cli/main.py --testmodeon
 ```
 ### Step 3.2: Configuring debug mode of each node
-And we should setting the `debug` mode on for each node
+And we should setting the `debug` mode off for each node because otherwise the node prints a lot of unnecessary information.
 ```bash
-python Decentra-Network-0/decentra_network/cli/main.py --debugmodeon
-python Decentra-Network-1/decentra_network/cli/main.py --debugmodeon
-python Decentra-Network-2/decentra_network/cli/main.py --debugmodeon
+python Decentra-Network-0/decentra_network/cli/main.py --debugmodeoff
+python Decentra-Network-1/decentra_network/cli/main.py --debugmodeoff
+python Decentra-Network-2/decentra_network/cli/main.py --debugmodeoff
 ```
 
 ### Step 3.3: Creating the wallets of each node
@@ -105,7 +105,7 @@ Nodes are communicate over a tcp socket. So we need to start the node protocol f
 
 You can switch to menu for node 0, node 1 and node 2 with the following command:
 ```bash
-python Decentra-Network-1/decentra_network/cli/main.py --menu
+python Decentra-Network-10/decentra_network/cli/main.py --menu
 ```
 switch another terminal and run:
 ```bash
@@ -151,3 +151,5 @@ If everything is ok, you can see and check the test network with the following c
 
 - Menu Of Node 0:
 Type `status` and enter
+
+If status is equal to "Working" there is no problem.
