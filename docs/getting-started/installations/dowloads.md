@@ -33,87 +33,87 @@ nav_order: 2
 
 ## Git
 ### Windows
-'''console
+```console
 git clone https://github.com/Decentra-Network/Decentra-Network.git
-'''
+```
 ### Linux
-'''console
+```console
 git clone https://github.com/Decentra-Network/Decentra-Network.git
-'''
+```
 ### MacOS
-'''console
+```console
 git clone https://github.com/Decentra-Network/Decentra-Network.git
-'''
+```
 
 
 # Download latest Release for Developers
 ## Pip
 ### Windows
 CLI
-'''console
+```console
 pip install decentra-networ
-'''
+```
 +API
-'''console
+```console
 pip install decentra-network-api
-'''
+```
 +GUI
-'''console
+```console
 pip install decentra-network-gui
-'''
+```
 ### Linux
 CLI
-'''console
+```console
 pip install decentra-networ
-'''
+```
 +API
-'''console
+```console
 pip install decentra-network-api
-'''
+```
 +GUI
-'''console
+```console
 pip install decentra-network-gui
-'''
+```
 
 ### MacOS
 CLI
-'''console
+```console
 pip install decentra-networ
-'''
+```
 +API
-'''console
+```console
 pip install decentra-network-api
-'''
+```
 +GUI
-'''console
+```console
 pip install decentra-network-gui
-'''
+```
 
 ## Docker
 ### Windows
 CLI
-'''console
+```console
 docker pull ghcr.io/decentra-network/cli:latest
-'''
+```
 API
-'''console
+```console
 docker pull ghcr.io/decentra-network/api:latest
-'''
+```
 ### Linux
 CLI
-'''console
+```console
 docker pull ghcr.io/decentra-network/cli:latest
-'''
+```
 API
-'''console
+```console
 docker pull ghcr.io/decentra-network/api:latest
-'''
+```
 ### MacOS
 CLI
-'''console
+```console
 docker pull ghcr.io/decentra-network/cli:latest
-'''
+```
 API
-'''console
+```console
 docker pull ghcr.io/decentra-network/api:latest
-'''
+```
