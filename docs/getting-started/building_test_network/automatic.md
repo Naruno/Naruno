@@ -31,7 +31,7 @@ cd test_network
 python Decentra-Network/auto_builders/local.py -nn 3 -scn 1 -d -i -s -r
 ```
 
-## Step 6: Testing the Circulation
+## Step 3: Testing the Circulation
 If everything is ok, you can see and check the test network with the following command:
 
 ```bash
