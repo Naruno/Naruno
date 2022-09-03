@@ -1,7 +1,7 @@
 ---
 title: Functions
-parent: Concepts
-nav_order: 5
+
+nav_order: 8
 ---
 
 # Function Referances
