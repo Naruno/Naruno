@@ -16,7 +16,7 @@ The core elements of an [account](https://github.com/Decentra-Network/Decentra-N
 ```mermaid
 classDiagram
     class Accounts
-    Accounts : +String address
+    Accounts : +string address
     Accounts : +integer sequance_number
     Accounts : +float balance    
     Accounts : +get_hash(amount)
