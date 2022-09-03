@@ -50,7 +50,11 @@ python Decentra-Network-2/decentra_network/cli/main.py --debugmodeon
 In Decentra Network we use password protected wallets. But for the first wallet we dont use password because first wallet is used for the node communication. So you must be in safe place for node 0. You can create the wallets with the following command:
 ```bash
 python Decentra-Network-0/decentra_network/cli/main.py --createwallet password
+```
+```bash
 python Decentra-Network-1/decentra_network/cli/main.py --createwallet password
+```
+```bash
 python Decentra-Network-2/decentra_network/cli/main.py --createwallet password
 ```
 
@@ -67,7 +71,11 @@ Decentra Network nodes dont connect any stranger node. So we need to introduce o
 First you need to get the ids of node 0, node 1 and node 2. You can get the ids with the following command:
 ```bash
 python Decentra-Network-0/decentra_network/cli/main.py --ndid
+```
+```bash
 python Decentra-Network-1/decentra_network/cli/main.py --ndid
+```
+```bash
 python Decentra-Network-2/decentra_network/cli/main.py --ndid
 ```
 
