@@ -1,6 +1,8 @@
 ---
 layout: default
-title: User Installation
+title: User
+parent: Installation
+grand_parent: Getting Started
 nav_order: 1
 has_children: true
 ---
