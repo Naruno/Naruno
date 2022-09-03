@@ -1,6 +1,5 @@
 ---
-title: API
-parent: Concepts
+title: APIs
 nav_order: 5
 ---
 

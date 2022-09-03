@@ -1,6 +1,5 @@
 ---
-title: CLI
-parent: Concepts
+title: Command Line Interface
 nav_order: 6
 ---
 

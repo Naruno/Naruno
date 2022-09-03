@@ -1,5 +1,5 @@
 ---
-title: Function Test
+title: Tests
 nav_order: 7
 ---
 
