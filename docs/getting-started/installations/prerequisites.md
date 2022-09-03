@@ -1,11 +1,16 @@
 ---
+layout: default
 title: Prerequisites
-parent: Developer
-grand_parent: Installation
-nav_order: 1
+parent: Installation
+grand_parent: Getting Started
+nav_order: 2
 ---
 
-# Prerequisites
+# Prerequisites for Users
+You don't need to install anything to use the software. You can dowload directy.
+
+
+# Prerequisites for Developers
 
 ### Windows
 - [Python >=3.8](https://www.python.org/downloads/)
