@@ -51,7 +51,7 @@ git clone https://github.com/Decentra-Network/Decentra-Network.git
 ### Windows
 CLI
 ```console
-pip install decentra-networ
+pip install decentra-network
 ```
 +API
 ```console
@@ -64,7 +64,7 @@ pip install decentra-network-gui
 ### Linux
 CLI
 ```console
-pip install decentra-networ
+pip install decentra-network
 ```
 +API
 ```console
@@ -78,7 +78,7 @@ pip install decentra-network-gui
 ### MacOS
 CLI
 ```console
-pip install decentra-networ
+pip install decentra-network
 ```
 +API
 ```console
