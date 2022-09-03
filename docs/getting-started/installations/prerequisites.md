@@ -3,7 +3,7 @@ layout: default
 title: Prerequisites
 parent: Installation
 grand_parent: Getting Started
-nav_order: 2
+nav_order: 1
 ---
 
 # Prerequisites for Users
