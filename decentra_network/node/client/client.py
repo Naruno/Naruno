@@ -36,7 +36,7 @@ class client(Thread):
         while self.running:
             with contextlib.suppress(socket.timeout):
                 data = self.socket.recv(6525)
-                logger.info(
+                logger.debug(
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}"
                 )
                 data = data.decode("utf-8")

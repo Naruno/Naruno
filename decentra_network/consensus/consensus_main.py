@@ -39,7 +39,7 @@ def consensus_trigger(
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
 
-    logger.info(
+    logger.debug(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
     )
 
@@ -66,5 +66,5 @@ def consensus_trigger(
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-    logger.info("Consensus process is done")
+    logger.debug("Consensus process is done")
     return block

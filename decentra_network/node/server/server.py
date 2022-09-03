@@ -174,8 +174,7 @@ class server(Thread):
 
     def send(self, data, except_client=None):
         data = self.prepare_message(data)
-        logger.info(f"NODE:{self.host}:{self.port} Send: {data}")
-        logger.info(
+        logger.debug(
             f"NODE:{self.host}:{self.port} Send to: {[[a_client.host, a_client.port] for a_client in self.clients]}"
         )
         for a_client in self.clients:
@@ -204,12 +203,12 @@ class server(Thread):
 
     def get_message(self, client, data):
         if self.check_message(data):
-            logger.info(f"NODE:{self.host}:{self.port} New message: {data}")
+            logger.debug(f"NODE:{self.host}:{self.port} New message: {data}")
             if self.save_messages:
                 self.messages.append(data)
             self.direct_message(client, data)
         else:
-            logger.info(
+            logger.debug(
                 f"NODE:{self.host}:{self.port} Message not valid: {data}")
 
     def check_message(self, data):
@@ -322,7 +321,7 @@ class server(Thread):
                 os.remove(entry.path)
 
     def direct_message(self, node, data):
-        logger.info("Directing message: {}".format(data["action"]))
+        logger.debug("Directing message: {}".format(data["action"]))
         if "sendmefullblock" == data["action"]:
             self.send_block_to_other_nodes(node)
 
@@ -390,7 +389,7 @@ class server(Thread):
     def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
                     f"Sending full chain to {node.id}:{node.host}:{node.port}")
-        logger.info(log_text)
+        logger.debug(log_text)
         file = open(self.TEMP_BLOCK_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
@@ -490,7 +489,7 @@ class server(Thread):
                     self.send_client(node, data)
 
     def get_full_chain(self, data, node):
-        logger.info("Getting full chain")
+        logger.debug("Getting full chain")
         get_ok = False
 
         if not os.path.exists(self.TEMP_BLOCK_PATH):
@@ -639,7 +638,7 @@ class server(Thread):
             custom_current_time = data["custom_current_time"]
             custom_sequence_number = data["custom_sequence_number"]
             custom_balance = data["custom_balance"]
-        logger.info(
+        logger.debug(
             f"NODE:{self.host}:{self.port} -{custom_current_time}-{custom_sequence_number}-{custom_balance}"
         )
         if GetTransaction(
@@ -651,7 +650,7 @@ class server(Thread):
                 custom_PENDING_TRANSACTIONS_PATH=self.
                 PENDING_TRANSACTIONS_PATH,
         ):
-            logger.info(f"NODE:{self.host}:{self.port} Transaction accepted")
+            logger.debug(f"NODE:{self.host}:{self.port} Transaction accepted")
 
             server.send_transaction(the_transaction,
                                     except_client=node,

@@ -40,7 +40,7 @@ def consensus_round_1(
       round 1 to be done
     """
 
-    logger.info(
+    logger.debug(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting"
     )
 
