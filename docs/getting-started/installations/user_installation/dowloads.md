@@ -1,7 +1,7 @@
 ---
 title: Downloads
-parent: User Installation 
-grand_parent: Getting Started
+parent: User
+grand_parent: Installation
 nav_order: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Downloads
-parent: Developer 
+parent: Developer
 grand_parent: Installation
 nav_order: 2
 ---

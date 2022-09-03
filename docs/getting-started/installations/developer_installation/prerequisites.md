@@ -1,7 +1,7 @@
 ---
 title: Prerequisites
-parent: User Installation 
-grand_parent: Getting Started
+parent: Developer
+grand_parent: Installation
 nav_order: 1
 ---
 
