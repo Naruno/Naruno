@@ -15,6 +15,7 @@ has_children: false
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br>
+    <br>
     <a href="https://docs.decentranetwork.org/getting-started/installations/" class="btn btn-blue">Installations</a>
     <a href="https://docs.decentranetwork.org/getting-started/tests/" class="btn btn-purple">Tests</a>
     <a href="https://docs.decentranetwork.org/getting-started/building_test_network/" class="btn btn-green">Building Test Network</a>    
@@ -33,7 +34,6 @@ This network should be realistic, stable and functional because futures are base
 
 This network is Decentra Network.
 
-<br>
 
 # Decentra Network
 Decentra Network is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure. 
