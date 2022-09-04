@@ -1,5 +1,6 @@
 ---
 title: Stability
+parent: Tests
 grand_parent: Getting Started
 nav_order: 3
 ---
