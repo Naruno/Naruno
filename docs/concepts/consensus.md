@@ -2,7 +2,7 @@
 layout: default
 title: Consensus
 parent: Concepts
-nav_order: 4
+nav_order: 6
 has_children: False
 ---
 
@@ -15,29 +15,24 @@ Blockchain is have a distributed concept, which means the data is stored on mult
 The Proof of Work is a amazing start for Blockchain technology, but it's not the best method, because it's need a lot of energy and time to reach the consensus. The Proof of Work is the first method that reach the consensus, but it's not the best method, and there is a lot of other methods that can reach the consensus with less energy and time. We use the best method, The Federated Byzantine Agreement, is our consensus method.
 
 
-# Consensus Circulation System
-## Heart
-The Heart is most important part, it's run the stages after a decision.
 
-Heart beat in two times in a second and runs the 'decentra_network.consensus.consensus_main.consensus_trigger' functions
 
-### consensus_trigger
+The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got his power from it's participant method. For the success on this theory, our FBA implementation that on the ongoing_main is use two stages, the first stage is the Round 1, and the second stage is Round 2.
+
+
+## consensus_trigger
 Consensus trigger is a starter by checking the block status if block is ready to be added to the blockchain (validated), it will add the block to the blockchain and start the finished processes. If the block is not ready, it will start consensus processes.
 
 
-#### finished_main
+## finished_main
 Finished main is a function that will run after the block is validated. It will check the block status for resetting if if its suitable (Have an transaction) the finished_main will save the block and run apps and transaction saver other wise function that not do these just saves and calls PendingtoValidating.
-#### ongoing_main
+## ongoing_main
 This function is run for ongoing consensus process. 
 
 - If block.round_1 is False it will run the consensus_round_1 function.
 - If block.round_1 is True and block.round_2 is False its start consensus_round_2.
 
 And return the block.
-
-
-# Consensus Ongoing System | Federated Byzantine Agreement (FBA)
-The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got his power from it's participant method. For the success on this theory, our FBA implementation that on the ongoing_main is use two stages, the first stage is the Round 1, and the second stage is Round 2.
 
 ## Round 1
 The first stage of consensus will sync the transaction that selected as True from majority. For this every node send self candidate block that include suggested transactions.
@@ -156,22 +151,8 @@ This diagram includes main process except some endpoint functions contents.
 
 ```mermaid
 flowchart RL
-    subgraph Circulation
-        subgraph Heart
-            direction TB
 
-            perpetualTimer[perpetualTimer]
-            heartbeat[2 Beat in a second]
-            consensus_trigger[consensus_trigger]
-
-
-            perpetualTimer --- heartbeat
-            heartbeat --> consensus_trigger
-        end
-
-
-
-        subgraph consensus_trigger
+    subgraph consensus_trigger
             direction TB
 
             validated{block.validated}
@@ -188,7 +169,7 @@ flowchart RL
             ongoing_main --o return
 
 
-        end
+
 
         subgraph finished_main
             direction TB
@@ -258,4 +239,5 @@ flowchart RL
         round_checkconsensus_round_2 -- False --> send_my_block_hash --o returnFalseconsensus_round_2
 
     end   
+
 ```

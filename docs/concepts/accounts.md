@@ -1,7 +1,7 @@
 ---
 title: Accounts
 parent: Concepts
-nav_order: 1
+nav_order: 2
 ---
 # The Accounts
 The most important area of the Decentra Network Blockchain is Accounts. It makes the **Blockchain light**.
