@@ -3,6 +3,10 @@ remote_theme: pmarsceill/just-the-docs
 title: Decentra Network Documents
 color_scheme: light
 
+
+logo: "/assets/images/logo.png"
+
+
 ga_tracking: UA-207926211-1
 
 # Aux links for the upper right navigation
