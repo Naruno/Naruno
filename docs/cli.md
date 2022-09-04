@@ -1,5 +1,5 @@
 ---
-title: Command Line Interface
+title: CLIs
 nav_order: 5
 ---
 
