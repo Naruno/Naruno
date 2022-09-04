@@ -41,7 +41,7 @@ This network is Decentra Network.
 # Decentra Network
 Decentra Network is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure. 
 
-Our work is based on the real princibles of blockchain and the real world. We are present the real world with the real blockchain. 
+We are present the real blockchain which based on the real princibles. 
 
 We are Fast, Secure, and Decentralized.
 
