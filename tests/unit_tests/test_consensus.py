@@ -269,10 +269,10 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
 
         block.genesis_time = int(time.time())
-        block.block_time = 1
-        block.sequance_number = 0
-        block.empty_block_number = 0
-        time.sleep(1)
+        block.block_time = 2
+        block.sequance_number = 1
+        block.empty_block_number = 1
+        time.sleep(7)
         self.assertTrue(true_time(block=block))
 
     def test_transactions_main_finished(self):
