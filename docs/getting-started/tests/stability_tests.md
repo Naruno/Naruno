@@ -1,6 +1,5 @@
 ---
-title: Stability Tests
-parent: Tests
+title: Stability
 grand_parent: Getting Started
 nav_order: 3
 ---

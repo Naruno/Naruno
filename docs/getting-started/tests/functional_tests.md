@@ -1,5 +1,5 @@
 ---
-title: Functional Tests
+title: Functional
 parent: Tests
 grand_parent: Getting Started
 nav_order: 2
