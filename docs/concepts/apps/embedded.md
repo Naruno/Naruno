@@ -1,9 +1,17 @@
 ---
-title: Definition For App
-parent: Embedded
-grand_parent: Apps
-nav_order: 3
+layout: default
+title: Embedded
+parent: Apps
+grand_parent: Concepts
+nav_order: 1
 ---
+
+# Create
+
+- Decentra-Network
+  - apps
+    - App_Name
+      - app_name_main.py
 
 # Explanation
 
@@ -36,3 +44,12 @@ def app_name_main_tx(tx):
 ```
 
 You must use sys.exit() to exit the app when you are done.
+
+
+# On github
+
+## Git Clone
+
+### Go to Apps Directory (Decentra-Network/decentra_network/apps)
+
+`git clone github_link`

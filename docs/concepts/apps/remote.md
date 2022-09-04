@@ -1,8 +1,9 @@
 ---
-title: Using
-parent: Remote
-grand_parent: Apps
-nav_order: 1
+layout: default
+title: Remote
+parent: Apps
+grand_parent: Concepts
+nav_order: 2
 ---
 
 # Using
