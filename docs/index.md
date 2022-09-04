@@ -24,7 +24,7 @@ has_children: false
     ·
     <a href="https://docs.decentranetwork.org/getting-started/building_test_network/">Building Test Network</a>
   </p>
-
+</p>
 <br>
 <br>
 
@@ -45,4 +45,10 @@ We are present the real blockchain which based on the real princibles.
 
 We are Fast, Secure, and Decentralized.
 
-<img src="https://user-images.githubusercontent.com/41792982/188309512-79c9b150-5a3f-4e91-8118-813842294362.png" alt="mockup">
+<br>
+
+## Use cases
+Decentra Network is ready to all situation that needs security, privacy and setllement. When a system use Decentra Network, it will be not worry about security, privacy and setllement. All proccess will be done by its Decentra Network.
+
+## Compatibility
+Our work is suitable for all compatibility needs, from the smart watch to the supercomputers.
