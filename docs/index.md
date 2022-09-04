@@ -78,3 +78,12 @@ Decentra Network is written in **PEP8** format and **only** needs dependent libr
 
 1. TOC
 {:toc}
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
