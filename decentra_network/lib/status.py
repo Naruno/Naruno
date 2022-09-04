@@ -25,11 +25,13 @@ def Status(
     Returns the status of the network.
     """
 
-    first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+    first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                            no_cache=True)
                    if custom_first_block is None else custom_first_block)
 
     time.sleep(25)
-    new_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+    new_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                          no_cache=True)
                  if custom_new_block is None else custom_new_block)
 
     connections = (Unl.get_as_node_type(
