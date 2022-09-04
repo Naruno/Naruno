@@ -45,6 +45,7 @@ We are present the real blockchain which based on the real princibles.
 
 We are Fast, Secure, and Decentralized.
 
+<br>
 
 - Less than 7 Seconds block time (Confirmation Time)
 - Low size (~20mb per 1m user)
@@ -60,8 +61,6 @@ We are Fast, Secure, and Decentralized.
 - Built-in application structure
 - Custom wallet system
 
-Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI and API . Decentra Network designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
-
-
 <br>
 
+Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI and API . Decentra Network designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
