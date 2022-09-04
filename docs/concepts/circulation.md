@@ -24,3 +24,4 @@ flowchart RL
             heartbeat --> consensus_trigger
         end
     end
+```
