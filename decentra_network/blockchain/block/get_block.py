@@ -16,7 +16,7 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("BLOCKCHAIN")
 
 
-def GetBlock(custom_TEMP_BLOCK_PATH=None):
+def GetBlock(custom_TEMP_BLOCK_PATH=None, no_cache=False):
     """
     Returns the block.
     """
@@ -24,12 +24,12 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
                            else custom_TEMP_BLOCK_PATH)
     the_cache = Cache.get(the_TEMP_BLOCK_PATH)
 
-    if the_cache is None:
+    if the_cache is None or no_cache:
         os.chdir(get_config()["main_folder"])
         with open(the_TEMP_BLOCK_PATH, "r") as block_file:
             the_block_json = json.load(block_file)
         result = Block.load_json(the_block_json)
-        Cache.save(the_TEMP_BLOCK_PATH, result)
+        Cache.save(the_TEMP_BLOCK_PATH, result) if not no_cache else None
         return result
     else:
         return the_cache
