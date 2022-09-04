@@ -2,7 +2,7 @@
 layout: default
 title: Architecture
 parent: Concepts
-nav_order: 5
+nav_order: 1
 has_children: False
 ---
 
@@ -21,7 +21,7 @@ We are use three layers of the Decentra Network architecture:
 
 
 
-```Mermaid
+```mermaid
 flowchart LR
 DN[Decentra Network]
 
