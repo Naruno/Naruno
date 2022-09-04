@@ -16,9 +16,9 @@ has_children: false
     Develop or use applications in your independent, decentralized application network.
     <br>
     <br>
-    <a href="https://docs.decentranetwork.org/getting-started/installations/" class="btn btn-blue">Installations</a>
-    <a href="https://docs.decentranetwork.org/getting-started/tests/" class="btn btn-purple">Tests</a>
-    <a href="https://docs.decentranetwork.org/getting-started/building_test_network/" class="btn btn-green">Building Test Network</a>    
+    <a href="https://docs.decentranetwork.org/getting-started/" class="btn btn-blue">Getting Started</a>
+    <a href="https://docs.decentranetwork.org/concepts/" class="btn btn-purple">Concepts</a>
+    <a href="https://docs.decentranetwork.org/referances/" class="btn btn-green">Referances</a>    
   </p>
 </p>
 
@@ -62,3 +62,12 @@ Decentra Network is written in **PEP8** format and **only** needs dependent libr
 - In-chain developer incentives
 - Built-in application structure
 - Custom wallet system
+
+# Table of Contents
+- [Introduction](https://docs.decentranetwork.org/)
+- [Getting Started](https://docs.decentranetwork.org/getting-started/)
+- [Concepts](https://docs.decentranetwork.org/concepts/)
+- [References](https://docs.decentranetwork.org/references/)
+- [Release Notes](https://docs.decentranetwork.org/release-notes/)
+
+
