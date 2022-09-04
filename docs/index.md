@@ -18,13 +18,16 @@ has_children: false
     <a href="https://decentranetwork.org/"><strong>Explore the website »</strong></a>
     <br />
     <br />
-    <a href="https://docs.decentranetwork.org/getting-started/installations/" class="btn btn-blue">Installations</a>
-    ·
-    <a href="https://docs.decentranetwork.org/getting-started/tests/" class="btn btn-purple">Tests</a>
-    ·
-    <a href="https://docs.decentranetwork.org/getting-started/building_test_network/" class="btn btn-green">Building Test Network</a>    
+
   </p>
 </p>
+
+<p align="center">
+    <a href="https://docs.decentranetwork.org/getting-started/installations/" class="btn btn-blue">Installations</a>
+    <a href="https://docs.decentranetwork.org/getting-started/tests/" class="btn btn-purple">Tests</a>
+    <a href="https://docs.decentranetwork.org/getting-started/building_test_network/" class="btn btn-green">Building Test Network</a>    
+</p>
+
 <br>
 <br>
 
@@ -37,6 +40,7 @@ This network should be realistic, stable and functional because futures are base
 
 This network is Decentra Network.
 
+<br>
 
 # Decentra Network
 Decentra Network is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure. 
@@ -47,6 +51,11 @@ We are Fast, Secure, and Decentralized.
 
 <br>
 
+Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI and API . Decentra Network designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+
+<br>
+
+## Features
 - Less than 7 Seconds block time (Confirmation Time)
 - Low size (~20mb per 1m user)
 - 10k+ transactions per second
@@ -60,7 +69,3 @@ We are Fast, Secure, and Decentralized.
 - In-chain developer incentives
 - Built-in application structure
 - Custom wallet system
-
-<br>
-
-Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI and API . Decentra Network designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
