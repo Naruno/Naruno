@@ -5,6 +5,14 @@ nav_order: 1
 has_children: false
 ---
 
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
 <p align="center">
   <a href="https://github.com/Decentra-Network/Decentra-Network">
     <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
@@ -70,20 +78,3 @@ Decentra Network is written in **PEP8** format and **only** needs dependent libr
 - [References](https://docs.decentranetwork.org/references/)
 - [Release Notes](https://docs.decentranetwork.org/release-notes/)
 
-# Navigation Structure
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
-<details open markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {: .text-delta }
-1. TOC
-{:toc}
-</details>
