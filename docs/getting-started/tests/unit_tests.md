@@ -6,7 +6,7 @@ nav_order: 1
 ---
 
 # Unit Tests
-Tests are a great way to verify that your installation is working as expected. In this section, we will run the Unit Tests.
+Unit tests are a great way to verify that your installation is working as expected. In this section, we will run the Unit Tests.
 
 ## Prerequisites
 Before you begin, make sure you have the following:
