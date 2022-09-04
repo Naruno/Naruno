@@ -47,8 +47,25 @@ We are Fast, Secure, and Decentralized.
 
 <br>
 
-## Use cases
-Decentra Network is ready to all situation that needs security, privacy and setllement. When a system use Decentra Network, it will be not worry about security, privacy and setllement. All proccess will be done by its Decentra Network.
 
-## Compatibility
-Our work is suitable for all compatibility needs, from the smart watch to the supercomputers.
+- Less than 7 Seconds block time (Confirmation Time)
+- Low size (~20mb per 1m user)
+- 10k+ transactions per second
+- Low Transaction Fee
+- Custom and low cost Token, NTF etc. Creation system (Scheduled Feature)
+- Usability even on mobile devices
+- Environmentally Friendly
+- Asymptotic security against Sybil attacks (51 Attack)
+- Completely decentralized structure
+- Official community officers supported in-chain
+- In-chain developer incentives
+- Built-in application structure
+- Custom wallet system
+
+<br>
+
+Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI and API . Decentra Network designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+
+
+<br>
+
