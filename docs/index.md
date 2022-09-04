@@ -18,11 +18,11 @@ has_children: false
     <a href="https://decentranetwork.org/"><strong>Explore the website »</strong></a>
     <br />
     <br />
-    <button type="button" name="button" class="btn-blue" href="https://docs.decentranetwork.org/getting-started/installations/">Installations</button>
+    <a href="https://docs.decentranetwork.org/getting-started/installations/" class="btn btn-blue">Installations</a>
     ·
-    <button type="button" name="button" class="btn-purple" href="https://docs.decentranetwork.org/getting-started/tests/">Tests</button>
+    <a href="https://docs.decentranetwork.org/getting-started/tests/" class="btn btn-purple">Tests</a>
     ·
-    <button type="button" name="button" class="btn-green" href="https://docs.decentranetwork.org/getting-started/building_test_network/">Building Test Network</button>    
+    <a href="https://docs.decentranetwork.org/getting-started/building_test_network/" class="btn btn-green">Building Test Network</a>    
   </p>
 </p>
 <br>
