@@ -31,7 +31,7 @@ nav_order: 2
 
 | OS | Tool | Type | Command |
 |---|---|---|---|
-| Cross Platform | git | Source Code | `git https://github.com/Decentra-Network/Decentra-Network.git` |
+| Cross Platform | git | Source Code | `git clone https://github.com/Decentra-Network/Decentra-Network.git` |
 |---|
 | Cross Platform | pip | CLI | `pip install decentra-network` |
 | Cross Platform | pip | API | `pip install decentra-network-api` |
