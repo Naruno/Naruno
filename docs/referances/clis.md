@@ -1,6 +1,7 @@
 ---
 title: CLIs
-nav_order: 5
+parent: References
+nav_order: 2
 ---
 
 # CLI Arguments
