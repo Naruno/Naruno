@@ -70,4 +70,11 @@ Decentra Network is written in **PEP8** format and **only** needs dependent libr
 - [References](https://docs.decentranetwork.org/references/)
 - [Release Notes](https://docs.decentranetwork.org/release-notes/)
 
+# Navigation Structure
+{: .no_toc }
 
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
