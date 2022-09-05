@@ -6,7 +6,7 @@ nav_order: 1
 
 # Accessing to The API
 
-In normal usage (api.py) the default host is 0.0.0.0 and port is 8000.
+In normal usage (api/main.py) the default host is 0.0.0.0 and port is 8000.
 
 In auto_builders based instalation the host is 0.0.0.0 and port is
 increase by node number. For example:
@@ -40,3 +40,21 @@ increase by node number. For example:
 | GET    | /export/transactions/csv                         | Exports transactions to csv                                                              |
 | GET    | /export/transactions/json                        | Exports transactions to json                                                             |
 | GET    | /status                                          | Returns the status of network                                                            |
+
+
+# Starting the API
+For starting the API you should run the api/main.py file. If you use the [Automatic Building a Test Network](https://docs.decentranetwork.org/building_a_test_network/automatic.html) you don't need to start API manually. The API will start automatically with the node.
+
+Otherwise you can start the API with the following command:
+
+```bash
+python Decentra-Network/decentra_network/api/main.py
+```
+
+Also you can give the -p parameter for changing the port of the API. For example:
+
+```bash
+python Decentra-Network/decentra_network/api/main.py -p 8000
+```
+
+*If you use [Building a Test Network](https://docs.decentranetwork.org/building_a_test_network/) you should change "Decentra-Network" to ex. "Decentra-Network-0".*
