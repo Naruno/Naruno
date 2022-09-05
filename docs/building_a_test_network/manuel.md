@@ -1,6 +1,6 @@
 ---
 title: Manuel
-parent: Building Test Network
+parent: Building a Test Network
 nav_order: 2
 ---
 
