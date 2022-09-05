@@ -156,7 +156,7 @@ def app_name_main_tx(tx):
   sys.exit()
 ```
 
-# Expectations
+## Expectations
 
 With this app, you can send a public message to a user that you dont know his/her ip address and not using a server. 
 
