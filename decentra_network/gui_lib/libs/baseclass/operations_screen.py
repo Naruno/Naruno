@@ -90,7 +90,7 @@ class OperationBox(MDGridLayout):
                 == sha256(text_list[0].encode("utf-8")).hexdigest()
             ):
                 block = GetBlock()
-                send_tx = send(block, text_list[0], receiver_adress, float(amount))
+                send_tx = send(text_list[0], receiver_adress, amount=float(amount), block=block)
                 if send_tx != False:
                     from decentra_network.node.server.server import server
 

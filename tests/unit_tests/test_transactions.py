@@ -925,12 +925,12 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_amount_type(self):
         block = Block("onur")
-        result = send(block, "123", "onur", "atakan", "1ulusoy")
+        result = send("123", "onur", amount="atakan", data="1ulusoy", block=block)
         self.assertEqual(result, False)
 
     def test_send_false_amount_type_negative(self):
         block = Block("onur")
-        result = send(block, "123", "onur", -500, "2ulusoy")
+        result = send("123", "onur", amount=-500, data="2ulusoy", block=block)
         self.assertEqual(result, False)
 
     def test_send_false_big_data(self):
@@ -938,40 +938,40 @@ class Test_Transactions(unittest.TestCase):
         data = "a"
         for i in range(int((block.max_data_size / block.max_tx_number))):
             data += "a"
-        result = send(block, "123", "onur", 500, data)
+        result = send("123", "onur", amount=500, data=data, block=block)
         self.assertEqual(result, False)
 
     def test_send_false_decimal_amount(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 500.001, "3ulusoy")
+        result = send("123", "onur", amount=500.001, data="3ulusoy", block=block)
         self.assertEqual(result, False)
 
     def test_send_false_amount_lower_than_minumum(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 500, "4ulusoy")
+        result = send("123", "onur", amount=500, data="4ulusoy", block=block)
         self.assertEqual(result, False)
 
     def test_send_false_pass(self):
         block = Block("onur")
-        result = send(block, "1235", "onur", 5000, "5ulusoy")
+        result = send("1235", "onur", amount=5000, data="5ulusoy", block=block)
         self.assertEqual(result, False)
 
     def test_send_false_check(self):
         block = Block("onur")
-        result = send(block, "123", "onur", 5000, "6ulusoy", custom_balance=5)
+        result = send("123", "onur", amount=5000, data="6ulusoy", custom_balance=5, block=block)
         self.assertEqual(result, False)
 
     def test_send_true(self):
         block = Block("onur")
         result = send(
-            block,
             "123",
             "onur",
-            5000,
-            "77ulusoy",
+            amount=5000,
+            data="77ulusoy",
             custom_current_time=(int(time.time()) + 5),
             custom_sequence_number=0,
             custom_balance=100000,
+            block=block
         )
 
         self.assertNotEqual(result, False)

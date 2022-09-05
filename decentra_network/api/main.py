@@ -112,10 +112,10 @@ def send_coin_page(address, amount, password):
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
     send_tx = send(
-        block,
         password,
         address,
-        amount,
+        amount=amount,
+        block=block,
         custom_current_time=custom_current_time,
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,
@@ -148,11 +148,11 @@ def send_coin_data_page(address, amount, data, password):
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
     send_tx = send(
-        block,
         password,
         address,
-        amount,
+        amount=amount,
         data=data,
+        block=block,
         custom_current_time=custom_current_time,
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,

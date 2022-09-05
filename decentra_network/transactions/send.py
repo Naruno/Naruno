@@ -16,15 +16,18 @@ from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
+from decentra_network.blockchain.block.get_block import GetBlock
+
+
 logger = get_logger("TRANSACTIONS")
 
 
 def send(
-    block,
     password,
     to_user,
-    amount,
+    amount=None,
     data="",
+    block=None,
     custom_current_time=None,
     custom_sequence_number=None,
     custom_balance=None,
@@ -39,6 +42,9 @@ def send(
         data: The data of the transaction.
 
     """
+    block = block if block is not None else GetBlock()
+
+    amount = amount if amount is not None else block.minumum_transfer_amount
 
     try:
         amount = float(amount)

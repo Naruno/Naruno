@@ -133,10 +133,10 @@ def menu():
         if choices_input == "sc":
             block = GetBlock()
             send_tx = send(
-                block,
                 getpass("Password: "),
                 input("Please write receiver adress: "),
-                input("Coin Amount (ex. 1.0): "),
+                amount=input("Coin Amount (ex. 1.0): "),
+                block=block,
             )
             if send_tx != False:
                 SavetoMyTransaction(send_tx)
@@ -145,11 +145,11 @@ def menu():
         if choices_input == "scd":
             block = GetBlock()
             send_tx = send(
-                block,
                 getpass("Password: "),
                 input("Please write receiver adress: "),
-                input("Coin Amount (ex. 1.0): "),
-                input("Data: "),
+                amount=input("Coin Amount (ex. 1.0): "),
+                data=input("Data: "),
+                block=block,                
             )
             if send_tx != False:
                 SavetoMyTransaction(send_tx)

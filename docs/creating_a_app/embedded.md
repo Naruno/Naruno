@@ -11,18 +11,21 @@ nav_order: 1
 If you want to develop applications inside Decentra network you can use our Apps Engine. The Apps engine gives you new data and you can send data with Decentra Network send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
 
 ## Prerequisites
-- A Network (You can check the [Building Test Network](https://docs.decentranetwork.org/building_test_network/))
+- A Network (You can check the [Building Test Network](https://docs.decentranetwork.org/building_test_network/) for this)
 
 
 ## First Stage: Generating the Sceleton
 
 The embedded applications must have a communication section that written in python. And this files must be in some rules.
+
+
 - Decentra-Network
   - decentra_network
     - apps
       - App_Name
         - App_Name_main.py
 
+*If you use a test network you can change the "Decentra-Network" folder with your test network node folders ex. "Decentra-Network-0".*
 
 
 In this files you should write a function that catch the new datas of your application. Decentra Network will send the new data to this function but you must check and organize your data.
@@ -32,12 +35,180 @@ When a transaction is confirmed, the function here is triggered.
 ```python
 // App_Name_main.py
 
-def app_name_send_tx(action, data):
+def app_name_send_tx(action, data, password):
   return    
 
-def app_name_main_tx(data):
+def app_name_main_tx(tx):
   return    
 ```
 
-*You must use sys.exit() to exit the app when you are done. Because the applications are running on a Thread.
+*You must use sys.exit() in your `app_name_main_tx` function to exit the app when you are done. Because the applications are running on a Thread.
 
+
+
+## Second Stage: Sending the Data
+
+You can send a data for your appplication with send function, you can import this function from Decentra Network.
+
+```python
+from decentra_network.transaction.send import send
+```
+
+Before the sending you must determine the data, for this first you must create a dictionary and determine a action for your data. The action is a string, we are use this for processing the data in getting function.
+
+
+```python
+data = {
+  "action": "app_name_action_name",
+  "data": "data"
+}
+```
+
+After that you can send the data with send function. The send function has 3 parameters. 
+
+- The first parameter is the password of wallet, you can be able to get from installation.
+
+- Second parameter is to_user, with this parameter you can choose the user that you want to send the data. Example in a messaging app you can send the data to message recipient. This parameter should be a string that equal 40 characters.
+
+And the last parameter is the data, you can pass the data that you created before.
+
+
+```python
+send(
+  "123", # Password
+  "Decentra-Network-00000000000000000000002", 
+  data=data,
+)
+```
+
+And in the final we must combine the send system to App_Name_main.py file. You must use the `app_name_send_tx` function for this. And now we are settings from your applications.
+
+```python
+// App_Name_main.py
+
+from decentra_network.transaction.send import send
+
+def app_name_send_tx(action, app_data, password, to_user) -> bool:
+  combined_data = {
+    "action": action,
+    "data": app_data
+  }
+
+  result = send(
+    password,
+    to_user,
+    data=data,
+  )
+
+  return result # True or False
+
+def app_name_main_tx(tx):
+  return   
+
+```
+
+## Third Stage: Getting the Data
+
+When you send the data, the data will be available in the to_user. You can get the data in to_user with `app_name_main_tx` function.
+
+
+Firtly we must check the action of data. If the action is equal to the action that we determined before, we can process the data.
+
+In this examples if the action is equal to "app_name_action_name" we will print the data.
+
+```python
+def app_name_main_tx(tx):
+  if tx.data["action"] == "app_name_action_name":
+    print(tx.data["data"])
+```
+
+
+## Final
+```python
+// App_Name_main.py
+
+from decentra_network.transaction.send import send
+
+def app_name_send_tx(action, app_data, password, to_user) -> bool:
+  combined_data = {
+    "action": action,
+    "data": app_data
+  }
+
+  result = send(
+    password,
+    to_user,
+    data=data,
+  )
+
+  return result # True or False
+
+def app_name_main_tx(tx):
+  if tx.data["action"] == "app_name_action_name":
+    print(tx.data["data"])
+```
+
+# Expectations
+
+With this app, you can send a public message to a user that you dont know his/her ip address and not using a server. 
+
+You can use this app for safe and private messaging but if you want more, you should sending the datas far from Decentra Network (We have best methods for transactions but this situation is same for all blockchains) and after a while you should save the datas in Decentra Network. This is a good way for mostly of the applications.
+
+Example of a message sending:
+
+The first user is sending a message to the second user.
+
+```python
+from decentra_network.apps.app_name.app_name_main import app_name_send_tx
+
+app_name_send_tx(
+  "app_name_action_name", # Action
+  "Hello World", # Data
+  "123", # Password
+  "Decentra-Network-00000000000000000000002", # To User
+)
+```
+
+The second user device is getting the message and print the data.
+
+```bash
+> Hello World
+```
+
+## Next Steps
+You should save the datas for using in a frontend or backend service, for this you can use this type for your `app_name_main_tx` function.
+
+Firstly you should import the pickle library.
+
+```python
+import pickle
+```
+
+```python
+
+def get_list():
+  try:
+    with open("app_name_action_name.pickle", "rb") as f:
+      return pickle.load(f)
+  except:
+    return []
+
+def add_to_list(data):
+  old = get_list()
+  old.append(data)
+  with open("app_name_action_name.pickle", "wb") as f:
+    pickle.dump(old, f)
+
+def app_name_main_tx(tx):
+  if tx.data["action"] == "app_name_action_name":
+    print(tx.data["data"])
+    add_to_list(tx)
+```
+
+Now you can access all datas from the `get_list` function.
+
+```python
+from decentra_network.apps.app_name.app_name_main import get_list
+
+print(get_list())
+```
