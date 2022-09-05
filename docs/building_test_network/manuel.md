@@ -1,7 +1,6 @@
 ---
 title: Manuel
 parent: Building Test Network
-grand_parent: Getting Started
 nav_order: 2
 ---
 
