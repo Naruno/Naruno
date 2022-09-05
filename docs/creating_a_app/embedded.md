@@ -35,11 +35,13 @@ When a transaction is confirmed, the function here is triggered.
 ```python
 // App_Name_main.py
 
-def app_name_send_tx(action, data, password):
+import sys
+
+def app_name_send_tx(action, app_data, password, to_user):
   return    
 
 def app_name_main_tx(tx):
-  return    
+  sys.exit()  
 ```
 
 *You must use sys.exit() in your `app_name_main_tx` function to exit the app when you are done. Because the applications are running on a Thread.
@@ -86,6 +88,8 @@ And in the final we must combine the send system to App_Name_main.py file. You m
 ```python
 // App_Name_main.py
 
+import sys
+
 from decentra_network.transaction.send import send
 
 def app_name_send_tx(action, app_data, password, to_user) -> bool:
@@ -103,7 +107,7 @@ def app_name_send_tx(action, app_data, password, to_user) -> bool:
   return result # True or False
 
 def app_name_main_tx(tx):
-  return   
+  sys.exit()
 
 ```
 
@@ -120,12 +124,15 @@ In this examples if the action is equal to "app_name_action_name" we will print 
 def app_name_main_tx(tx):
   if tx.data["action"] == "app_name_action_name":
     print(tx.data["data"])
+  sys.exit()
 ```
 
 
 ## Final
 ```python
 // App_Name_main.py
+
+import sys
 
 from decentra_network.transaction.send import send
 
@@ -146,6 +153,7 @@ def app_name_send_tx(action, app_data, password, to_user) -> bool:
 def app_name_main_tx(tx):
   if tx.data["action"] == "app_name_action_name":
     print(tx.data["data"])
+  sys.exit()
 ```
 
 # Expectations
@@ -203,6 +211,7 @@ def app_name_main_tx(tx):
   if tx.data["action"] == "app_name_action_name":
     print(tx.data["data"])
     add_to_list(tx)
+  sys.exit()
 ```
 
 Now you can access all datas from the `get_list` function.
