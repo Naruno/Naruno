@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Remote
-parent: Apps
-grand_parent: Concepts
+parent: Creating a APP
 nav_order: 2
 ---
 
