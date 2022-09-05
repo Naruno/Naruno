@@ -4,3 +4,9 @@ title: Creating a APP
 nav_order: 3
 has_children: true
 ---
+
+# Creating a APP
+
+If you decided to type of APP you want to create, you can start to create it. In this section we will show you how to create a APP in Decentra Network. Also you should check our [Apps](https://docs.decentranetwork.org/concepts/apps.html) concept to understand how Apps work in Decentra Network.
+
+Lastly before you start to create a APP, you must be create a Test Network from the [Getting Started](https://docs.decentranetwork.org/getting-started/) section.
