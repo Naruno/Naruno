@@ -95,7 +95,7 @@ After this command if the result is not equal to "false" the sent successfully.
 
 
 
-And in the final we can combine this operations at `decentra_network_integration.py` with `decentra_network_integration_send` function.
+And in the final we can combine this operations at `decentra_network_integration.py` with `Integration.send` function.
 
 
 ```python
@@ -127,7 +127,7 @@ class Integration:
 
 ```
 
-Now you can use `decentra_network_integration_send` functions as you want.
+Now you can use `Integration.send` functions as you want.
 
 Ex. Sending a message
 
