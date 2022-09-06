@@ -145,12 +145,10 @@ def send_coin_page(address, amount, password):
 def send_coin_data_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
-    address = str(request.form["to_user"])
-    amount = float(request.form["amount"])
-    data = str(request.form["data"])
-    password = str(request.form["password"])
-    print("bbbbbbbbbbbbbb")
-    print(address, amount, data, password)        
+    address = str(request.form["to_user"]) if "to_user" in request.form else None
+    amount = float(request.form["amount"]) if "amount" in request.form else None
+    data = str(request.form["data"]) if "data" in request.form else None
+    password = str(request.form["password"]) if "password" in request.form else None      
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
     send_tx = send(
