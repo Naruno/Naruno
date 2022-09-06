@@ -203,13 +203,13 @@ class server(Thread):
 
     def get_message(self, client, data):
         if self.check_message(data):
-            logger.debug(f"NODE:{self.host}:{self.port} New message: {data}")
+            logger.debug(f"NODE:{self.host}:{self.port} New message: data")
             if self.save_messages:
                 self.messages.append(data)
             self.direct_message(client, data)
         else:
             logger.debug(
-                f"NODE:{self.host}:{self.port} Message not valid: {data}")
+                f"NODE:{self.host}:{self.port} Message not valid: data")
 
     def check_message(self, data):
         if "id" not in data:

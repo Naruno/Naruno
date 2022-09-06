@@ -37,7 +37,7 @@ class client(Thread):
             with contextlib.suppress(socket.timeout):
                 data = self.socket.recv(6525)
                 logger.debug(
-                    f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data {data}"
+                    f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data"
                 )
                 data = data.decode("utf-8")
                 with contextlib.suppress(json.decoder.JSONDecodeError):
