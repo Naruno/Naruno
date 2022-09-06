@@ -53,6 +53,8 @@ data = {
   "action": "app_name_action_name",
   "data": "data"
 }
+
+data = str(data)
 ```
 
 After that you can send the data with `/send` API. The API has 3 post parameters. 
@@ -99,6 +101,8 @@ class Integration:
       "action": action,
       "data": app_data
     }
+
+    data = str(data)
 
     request_body = {
       "password": password,
@@ -180,6 +184,8 @@ And the final is
         "action": action,
         "data": app_data
       }
+
+      data = str(data)
 
       request_body = {
         "password": password,
