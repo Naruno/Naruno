@@ -413,7 +413,7 @@ class Test_API(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        response = requests.post('http://localhost:7777/send', data=request_body)        
+        response = requests.post('http://localhost:7777/send/', data=request_body)        
         response_result = response.text
         print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         print(response_result)
