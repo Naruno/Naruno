@@ -17,21 +17,13 @@ If you want to develop applications outside of Decentra network you can use [API
 
 ## First Stage: Generating the Sceleton
 
-The embedded applications must have a communication section that written in python. And this files must be in some rules.
+The remote application that we will create in the next sections should be have a integrastion system. For this we will use 
 
 
-- Decentra-Network
-  - decentra_network
-    - apps
-      - App_Name
-        - App_Name_main.py
-
-*If you use a test network you can change the "Decentra-Network" folder with your test network node folders ex. "Decentra-Network-0".*
+- decentra_network_integration.py
 
 
-In this files you should write a function that catch the new datas of your application. Decentra Network will send the new data to this function but you must check and organize your data.
-
-When a transaction is confirmed, the function here is triggered.
+In this file we have a two class function, the first one is send we will use for sending data, and the second one is get we will trigger this in some time and we will get the new data from the network.
 
 ```python
 // decentra_network_integration.py
@@ -44,9 +36,6 @@ class Integration:
   def get():
     return
 ```
-
-*You must use sys.exit() in your `app_name_main_tx` function to exit the app when you are done. Because the applications are running on a Thread.
-
 
 
 ## Second Stage: Sending the Data
