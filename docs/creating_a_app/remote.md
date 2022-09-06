@@ -95,7 +95,7 @@ After this command if the result is not equal to "false" the sent successfully.
 
 
 
-And in the final we can combine this operations at `decentra_network_integration.py` with `Integration.send` function.
+And in the end of this section we can combine this operations at `decentra_network_integration.py` with `Integration.send` function.
 
 
 ```python
