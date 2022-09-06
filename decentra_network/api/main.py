@@ -104,8 +104,7 @@ def delete_wallets_page():
     delete_current_wallet()
     return jsonify(print_wallets())
 
-
-@app.route("/send/coin/<address>/<amount>/<password>", methods=["GET"])
+@app.route("/send_old/coin/<address>/<amount>/<password>", methods=["GET"])
 def send_coin_page(address, amount, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
@@ -140,11 +139,18 @@ def send_coin_page(address, amount, password):
     return jsonify(result)
 
 
-@app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
-           methods=["GET"])
-def send_coin_data_page(address, amount, data, password):
+
+@app.route("/send",
+           methods=["POST"])
+def send_coin_data_page():
     logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    address = str(request.form["to_user"])
+    amount = float(request.form["amount"])
+    data = str(request.form["data"])
+    password = str(request.form["password"])
+    print("bbbbbbbbbbbbbb")
+    print(address, amount, data, password)        
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
     send_tx = send(

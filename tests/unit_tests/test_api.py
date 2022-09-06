@@ -18,6 +18,8 @@ import threading
 import unittest
 import urllib
 
+import requests
+
 import decentra_network
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
@@ -360,6 +362,8 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
+
+
     def test_send_coin_page(self):
 
         backup = GetMyTransaction()
@@ -373,7 +377,7 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen(
             f"http://localhost:7777/wallet/create/{password}")
         response = urllib.request.urlopen(
-            f"http://localhost:7777/send/coin/<address>/5000/{password}")
+            f"http://localhost:7777/send_old/coin/<address>/5000/{password}")
         response_result = response.read()
 
         time.sleep(3)
@@ -390,6 +394,7 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
+
     def test_send_coin_data_page(self):
 
         backup = GetMyTransaction()
@@ -402,16 +407,21 @@ class Test_API(unittest.TestCase):
         password = "123"
         response = urllib.request.urlopen(
             f"http://localhost:7777/wallet/create/{password}")
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/send/coin-data/<address>/5000/<data>/{password}"
-        )
-        response_result = response.read()
-
+        request_body = {
+            "data": "<data>",
+            "address": "<address>",
+            "amount": 5000,
+            "password": password,
+        }
+        response = requests.post('http://localhost:7777/send', data=request_body)        
+        response_result = response.text
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        print(response_result)
         time.sleep(3)
 
-        self.assertNotEqual(response_result, b"false\n")
+        self.assertNotEqual(response_result, "false")
         the_tx = Transaction.load_json(
-            json.loads(response_result.decode("utf-8")))
+            json.loads(response_result))
         self.assertEqual(the_tx.data, "<data>")
 
         new_my_transactions = GetMyTransaction()
