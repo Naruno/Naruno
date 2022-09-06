@@ -409,7 +409,7 @@ class Test_API(unittest.TestCase):
             f"http://localhost:7777/wallet/create/{password}")
         request_body = {
             "data": "<data>",
-            "address": "<address>",
+            "to_user": "<address>",
             "amount": 5000,
             "password": password,
         }

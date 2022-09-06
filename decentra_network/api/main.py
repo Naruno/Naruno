@@ -140,7 +140,7 @@ def send_coin_page(address, amount, password):
 
 
 
-@app.route("/send",
+@app.route("/send/",
            methods=["POST"])
 def send_coin_data_page():
     logger.info(
