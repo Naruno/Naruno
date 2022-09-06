@@ -230,22 +230,19 @@ Integration.send(
 )
 ```
 
-The second user device is ready to getting the message and print the data. Fot this we will use `Integration.get` function.
+The second user device is ready to getting the message and print the data. Fot this we will use `Integration.get` function in a loop for getting new datas every 3 seconds.
+
+
 
 ```python
+import time
+
 from decentra_network_integration import Integration
 
-import time
-```
-
-And now we can run the function in a loop.
-
-```python
 while True:
   Integration.get()
   time.sleep(3)
 ```
-
 
 ```bash
 > Hello World
