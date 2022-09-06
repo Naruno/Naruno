@@ -4,7 +4,7 @@ parent: Building a Test Network
 nav_order: 1
 ---
 
-# Building a Test Network [![Open in Cloud Shell](https://img.shields.io/badge/Open%20in%20Cloud%20Shell-Tutorial-5ec205)](https://ssh.cloud.google.com/cloudshell/open?shellonly=true&cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=docs/getting-started/building_test_network/automatic.md)
+# Building a Test Network [![Open in Cloud Shell](https://img.shields.io/badge/Open%20in%20Cloud%20Shell-Tutorial-5ec205)](https://ssh.cloud.google.com/cloudshell/open?shellonly=true&cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=docs/building_test_network/automatic.md)
 A test network can do all the things a production network can do, but it is not connected to the main Decentra Network. This means that you can test your code without worrying about affecting the main network. You can also use a test network to test your code in a controlled environment. And all is free and yours to use. So let's get started.
 
 ## Prerequisites
