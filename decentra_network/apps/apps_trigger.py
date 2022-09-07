@@ -40,6 +40,8 @@ def AppsTrigger(block):
                         and ".py" in entry.name
                         and "_main" in entry.name
                     ):
+                        if "test" in entry.name and block.sequance_number != 1:
+                            return
                         logger.debug(f"Starting thread for file {entry.name}")
                         import_command = f"from decentra_network.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
                         tx_command = f"{entry.name.replace('.py','')}_tx(trans)"

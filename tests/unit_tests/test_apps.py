@@ -23,8 +23,24 @@ class Test_apps(unittest.TestCase):
     def setUpClass(cls):
         CleanUp_tests()
 
+    def test_AppsTrigger_App_not_test_app(self):
+        block = Block("onur")
+        block.sequance_number = 2
+        the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
+        the_transaction.transaction_time = time.time()
+        block.validating_list.append(the_transaction)
+        AppsTrigger(block)
+        time.sleep(2)
+        os.chdir(get_config()["main_folder"])
+        self.assertFalse(
+            os.path.isfile(
+                f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
+            ))
+
+
     def test_AppsTrigger_App(self):
         block = Block("onur")
+        block.sequance_number = 1
         the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
         the_transaction.transaction_time = time.time()
         block.validating_list.append(the_transaction)
