@@ -212,10 +212,15 @@ app_name_send_tx(
 )
 ```
 
-The second user device is getting the message and print the data.
+The second user device is getting the message and print the data to `app_name.log` that be found at 
+- Decentra Network
+  - decentra_network
+    - logs
+      - app_name.log
 
-```bash
-> Hello World
+```log
+// app_name.log
+2022-09-07 18:03:02,399 - app_name - INFO - Hello World
 ```
 
 ## Next Steps
