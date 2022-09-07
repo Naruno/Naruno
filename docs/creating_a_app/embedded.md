@@ -121,9 +121,12 @@ Firtly we must check the action of data. If the action is equal to the action th
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
 Firstly we will import the `wallet_import` from `decentra_network.wallet.ellipticcurve.wallet_import` for checking transactions came us or not.
+And we will import `get_logger` from `decentra_network.lib.log` of Decentra Network for printing.
 
 ```python
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.lib.log import get_logger
+
 ```
 
 After we will import json
@@ -135,12 +138,15 @@ import json
 Now we are ready for function:
 
 ```python
+
+logger = get_logger("app_name")
+
 def app_name_main_tx(tx):
   if wallet_import(-1, 3) == tx.toUser:
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
-        print(tx["app_data"])
+        logger.info(tx["app_data"])
   sys.exit()
 ```
 
@@ -154,6 +160,9 @@ import sys
 
 from decentra_network.transactions.send import send
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.lib.log import get_logger
+
+logger = get_logger("app_name")
 
 def app_name_send_tx(action, app_data, password, to_user) -> bool:
   combined_data = {
@@ -174,7 +183,7 @@ def app_name_main_tx(tx):
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
-        print(tx["app_data"])
+        logger.info(tx["app_data"])
   sys.exit()
 
 
@@ -237,7 +246,7 @@ def app_name_main_tx(tx):
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
-        print(tx["app_data"])
+        logger.info(tx["app_data"])
         add_to_list(tx)
   sys.exit()
 ```
