@@ -19,6 +19,7 @@ from decentra_network.transactions.transaction import Transaction
 
 
 class Test_apps(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -35,8 +36,7 @@ class Test_apps(unittest.TestCase):
         self.assertFalse(
             os.path.isfile(
                 f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
-            )
-        )
+            ))
 
     def test_AppsTrigger_App(self):
         block = Block("onur")
@@ -50,8 +50,7 @@ class Test_apps(unittest.TestCase):
         self.assertTrue(
             os.path.isfile(
                 f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
-            )
-        )
+            ))
 
 
 unittest.main(exit=False)
