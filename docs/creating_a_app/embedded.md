@@ -139,14 +139,15 @@ Now we are ready for function:
 
 ```python
 
-logger = get_logger("app_name")
+
 
 def app_name_main_tx(tx):
+  app_name_logger = get_logger("app_name")
   if wallet_import(-1, 3) == tx.toUser:
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
-        logger.info(tx["app_data"])
+        app_name_logger.info(tx["app_data"])
   sys.exit()
 ```
 
@@ -162,7 +163,6 @@ from decentra_network.transactions.send import send
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.lib.log import get_logger
 
-logger = get_logger("app_name")
 
 def app_name_send_tx(action, app_data, password, to_user) -> bool:
   combined_data = {
@@ -179,11 +179,12 @@ def app_name_send_tx(action, app_data, password, to_user) -> bool:
   return result # True or False
 
 def app_name_main_tx(tx):
+  app_name_logger = get_logger("app_name")
   if wallet_import(-1, 3) == tx.toUser:
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
-        logger.info(tx["app_data"])
+        app_name_logger.info(tx["app_data"])
   sys.exit()
 
 
@@ -242,11 +243,12 @@ def add_to_list(data):
     pickle.dump(old, f)
 
 def app_name_main_tx(tx):
+  app_name_logger = get_logger("app_name")
   if wallet_import(-1, 3) == tx.toUser:
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
-        logger.info(tx["app_data"])
+        app_name_logger.info(tx["app_data"])
         add_to_list(tx)
   sys.exit()
 ```
