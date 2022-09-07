@@ -120,10 +120,17 @@ Firtly we must check the action of data. If the action is equal to the action th
 
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
+Firstly we will import the `Wallet_Import` from `decentra_network.wallet.elipticcurve.wallet_import` for checking transactions came us or not.
+
+```python
+from decentra_network.wallet.elipticcurve.wallet_import import Wallet_Import
+```
+
 ```python
 def app_name_main_tx(tx):
-  if tx.data["action"] == "app_name_action_name":
-    print(tx.data["data"])
+  if Wallet_Import(-1, 3) == tx.to_user:
+    if tx.data["action"] == "app_name_action_name":
+      print(tx.data["data"])
   sys.exit()
 ```
 
@@ -135,6 +142,7 @@ def app_name_main_tx(tx):
 import sys
 
 from decentra_network.transaction.send import send
+from decentra_network.wallet.elipticcurve.wallet_import import Wallet_Import
 
 def app_name_send_tx(action, app_data, password, to_user) -> bool:
   combined_data = {
@@ -151,8 +159,9 @@ def app_name_send_tx(action, app_data, password, to_user) -> bool:
   return result # True or False
 
 def app_name_main_tx(tx):
-  if tx.data["action"] == "app_name_action_name":
-    print(tx.data["data"])
+  if Wallet_Import(-1, 3) == tx.to_user:
+    if tx.data["action"] == "app_name_action_name":
+      print(tx.data["data"])
   sys.exit()
 ```
 
@@ -208,9 +217,10 @@ def add_to_list(data):
     pickle.dump(old, f)
 
 def app_name_main_tx(tx):
-  if tx.data["action"] == "app_name_action_name":
-    print(tx.data["data"])
-    add_to_list(tx)
+  if Wallet_Import(-1, 3) == tx.to_user:
+    if tx.data["action"] == "app_name_action_name":
+      print(tx.data["data"])
+      add_to_list(tx)
   sys.exit()
 ```
 
