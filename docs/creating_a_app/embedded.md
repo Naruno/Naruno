@@ -53,7 +53,7 @@ def app_name_main_tx(tx):
 You can send a data for your appplication with send function, you can import this function from Decentra Network.
 
 ```python
-from decentra_network.transaction.send import send
+from decentra_network.transactions.send import send
 ```
 
 Before the sending you must determine the data, for this first you must create a dictionary and determine a action for your data. The action is a string, we are use this for processing the data in getting function.
@@ -62,7 +62,7 @@ Before the sending you must determine the data, for this first you must create a
 ```python
 data = {
   "action": "app_name_action_name",
-  "data": "data"
+  "app_data": "data"
 }
 ```
 
@@ -90,12 +90,12 @@ And in the final we must combine the send system to App_Name_main.py file. You m
 
 import sys
 
-from decentra_network.transaction.send import send
+from decentra_network.transactions.send import send
 
 def app_name_send_tx(action, app_data, password, to_user) -> bool:
-  combined_data = {
+  data = {
     "action": action,
-    "data": app_data
+    "app_data": app_data
   }
 
   result = send(
@@ -120,17 +120,27 @@ Firtly we must check the action of data. If the action is equal to the action th
 
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
-Firstly we will import the `Wallet_Import` from `decentra_network.wallet.elipticcurve.wallet_import` for checking transactions came us or not.
+Firstly we will import the `wallet_import` from `decentra_network.wallet.ellipticcurve.wallet_import` for checking transactions came us or not.
 
 ```python
-from decentra_network.wallet.elipticcurve.wallet_import import Wallet_Import
+from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 ```
+
+After we will import json
+
+```python
+import json
+```
+
+Now we are ready for function:
 
 ```python
 def app_name_main_tx(tx):
-  if Wallet_Import(-1, 3) == tx.to_user:
-    if tx.data["action"] == "app_name_action_name":
-      print(tx.data["data"])
+  if wallet_import(-1, 3) == tx.toUser:
+    tx = tx.data.replace("'", '"')
+    tx = json.loads(tx)
+    if tx["action"] == "app_name_action_name":
+        print(tx["app_data"])
   sys.exit()
 ```
 
@@ -139,30 +149,36 @@ def app_name_main_tx(tx):
 ```python
 // App_Name_main.py
 
+import json
 import sys
 
-from decentra_network.transaction.send import send
-from decentra_network.wallet.elipticcurve.wallet_import import Wallet_Import
+from decentra_network.transactions.send import send
+from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
 def app_name_send_tx(action, app_data, password, to_user) -> bool:
   combined_data = {
     "action": action,
-    "data": app_data
+    "app_data": app_data
   }
 
   result = send(
     password,
     to_user,
-    data=data,
+    data=combined_data,
   )
 
   return result # True or False
 
 def app_name_main_tx(tx):
-  if Wallet_Import(-1, 3) == tx.to_user:
-    if tx.data["action"] == "app_name_action_name":
-      print(tx.data["data"])
+  if wallet_import(-1, 3) == tx.toUser:
+    tx = tx.data.replace("'", '"')
+    tx = json.loads(tx)
+    if tx["action"] == "app_name_action_name":
+        print(tx["app_data"])
   sys.exit()
+
+
+
 ```
 
 ## Expectations
@@ -217,10 +233,12 @@ def add_to_list(data):
     pickle.dump(old, f)
 
 def app_name_main_tx(tx):
-  if Wallet_Import(-1, 3) == tx.to_user:
-    if tx.data["action"] == "app_name_action_name":
-      print(tx.data["data"])
-      add_to_list(tx)
+  if wallet_import(-1, 3) == tx.toUser:
+    tx = tx.data.replace("'", '"')
+    tx = json.loads(tx)
+    if tx["action"] == "app_name_action_name":
+        print(tx["app_data"])
+        add_to_list(tx)
   sys.exit()
 ```
 
