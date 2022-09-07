@@ -37,7 +37,6 @@ class Test_apps(unittest.TestCase):
                 f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
             ))
 
-
     def test_AppsTrigger_App(self):
         block = Block("onur")
         block.sequance_number = 1
