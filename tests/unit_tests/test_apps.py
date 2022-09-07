@@ -13,9 +13,9 @@ import unittest
 
 from decentra_network.apps.apps_trigger import AppsTrigger
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_apps(unittest.TestCase):
