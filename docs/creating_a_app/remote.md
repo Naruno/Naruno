@@ -139,12 +139,60 @@ Integration.send(
 
 When you send the data, the data will be available in the to_user. You can get the manualy with `	/export/transactions/json` API.
 
+So we will request at first the data with `requests.get` and then we will read as json with `response.json()`
+
+```python
+response = requests.get('http://0.0.0.0:8000/export/transactions/json')
+transactions = response.json()
+```
+
 When we get the transactions we should find news for apps. For this we will prepare a cache mechanism, every time we get the transactions we will remove the old transactions from the cache and add the new transactions to the cache.
 
+In our mechanism we will look for the transaction is already in the cache or not. If the transaction is not in the cache we will add the transaction to the cache and we will return the transaction data as new.
 
-After we get the new datas, firstly we must check the action of data. If the action is equal to the action that we determined before, we can process the data.
+Firstly we will create a cache list in class.
+
+```python
+class Integration:
+
+  cache = []
+```
+
+And after we can use this.
+
+```python
+for transaction in transactions:
+  if transaction in Integration.cache:
+    transactions.remove(transaction)
+  else:
+    Integration.cache.append(transaction)
+```
+
+And not we hava a new data list in `transactions` variable. before the process we will transform the data for using in our app.
+
+```python
+for transaction in transactions:
+  transaction = transaction.replace("\'", "\"")
+  transaction = transaction.replace("\"data\":", "\"data\": \"I\",")
+  transaction = transaction.replace("}\"", "")
+  transaction = transaction.replace("\"{", "")
+  transaction = transaction.replace(" | True", "")
+
+  transaction = json.loads(transaction)
+``` 
+
+At last we get the new datas, firstly we must check the action of data. If the action is equal to the action that we determined before, we can process the data.
 
 In this examples if the action is equal to "app_name_action_name" we will print the data.
+
+```python
+  if transaction["action"] == "app_name_action_name":
+    print(transaction["app_data"])
+```
+
+
+Okay, now we can combine this operations at `decentra_network_integration.py` with `Integration.get` function.
+
 
 ```python	
 
