@@ -8,9 +8,12 @@
 
 class Cache:
     cache = {}
+    status = True
 
     @staticmethod
     def get(key):
+        if not Cache.status:
+            return None
         try:
             return Cache.cache[key]
         except KeyError:
@@ -18,6 +21,8 @@ class Cache:
 
     @staticmethod
     def save(key, value):
+        if not Cache.status:
+            return None
         Cache.cache[key] = value
 
     @staticmethod
@@ -27,3 +32,11 @@ class Cache:
     @staticmethod
     def pop(key):
         Cache.cache[key] = None
+
+    @staticmethod
+    def disable():
+        Cache.status = False
+    
+    @staticmethod
+    def enable():
+        Cache.status = True
