@@ -20,7 +20,6 @@ from decentra_network.config import (
     MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
     TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH,
     UNL_NODES_PATH)
-from decentra_network.lib.cache import Cache
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.export import export_the_transactions
@@ -614,46 +613,6 @@ class Test_Lib(unittest.TestCase):
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
 
-    def test_cache_save(self):
-        backup = copy.copy(Cache.cache)
-        Cache.save("test", "test_cache_save")
-        self.assertEqual(Cache.cache["test"], "test_cache_save")
-        Cache.cache = backup
-
-    def test_cache_get(self):
-        backup = copy.copy(Cache.cache)
-        Cache.save("test", "test_cache_get")
-        self.assertEqual(Cache.get("test"), "test_cache_get")
-        Cache.cache = backup
-
-    def test_cache_get_key_error(self):
-        backup = copy.copy(Cache.cache)
-        Cache.save("test", "test_cache_get")
-        self.assertEqual(Cache.get("asdadadtest"), None)
-        Cache.cache = backup
-
-    def test_cache_clear(self):
-        backup = copy.copy(Cache.cache)
-        Cache.save("test", "test_cache_get")
-        Cache.clear()
-        self.assertEqual(Cache.cache, {})
-        Cache.cache = backup
-
-    def test_cache_pop_keyerror(self):
-        backup = copy.copy(Cache.cache)
-        Cache.save("test", "test_cache_get")
-        self.assertEqual(Cache.get("test"), "test_cache_get")
-        Cache.pop("aatest")
-        self.assertEqual(Cache.get("test"), "test_cache_get")
-        Cache.cache = backup
-
-    def test_cache_pop(self):
-        backup = copy.copy(Cache.cache)
-        Cache.save("test", "test_cache_get")
-        self.assertEqual(Cache.get("test"), "test_cache_get")
-        Cache.pop("test")
-        self.assertEqual(Cache.get("test"), None)
-        Cache.cache = backup
 
 
 unittest.main(exit=False)
