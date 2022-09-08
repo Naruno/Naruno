@@ -14,7 +14,9 @@ from flask import request
 from waitress import serve
 from waitress.server import create_server
 
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+from decentra_network.lib.cache import Cache
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.get_block import GetBlock
