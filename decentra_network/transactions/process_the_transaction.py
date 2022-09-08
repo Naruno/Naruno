@@ -5,14 +5,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import sqlite3
-import traceback
+import threading
 
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.config import TEMP_ACCOUNTS_PATH
+from decentra_network.lib.cache import Cache
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
+lock = threading.Lock()
 
 def ProccesstheTransaction(block,
                            the_account_list,
@@ -41,13 +43,17 @@ def ProccesstheTransaction(block,
         to_user_in_new_list = False
 
         address_of_fromUser = Address(trans.fromUser)
-        the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{address_of_fromUser}'"
-        )
-        first_list = the_account_list.fetchall()
-        the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
-        second_list = the_account_list.fetchall()
+        try:
+            lock.acquire(True)
+            the_account_list.execute(
+                f"SELECT * FROM account_list WHERE address = '{address_of_fromUser}'"
+            )
+            first_list = the_account_list.fetchall()
+            the_account_list.execute(
+                f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
+            second_list = the_account_list.fetchall()
+        finally:
+            lock.release()
 
         for the_pulled_account in first_list + second_list:
             account_list.append(
@@ -84,14 +90,15 @@ def ProccesstheTransaction(block,
     new_added_accounts_list = sorted(new_added_accounts_list,
                                      key=lambda x: x.Address)
 
-    conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
-    c = conn.cursor()
-    for changed_account in from_user_list + to_user_list:
-        c.execute(
-            f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'"
-        )
-        conn.commit()
-    conn.close()
+    try:
+        lock.acquire(True)
+        for changed_account in from_user_list + to_user_list:
+            the_account_list.execute(
+                f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'"
+            )
+        Cache.get(f"{the_TEMP_ACCOUNTS_PATH}_conn").commit()
+    finally:
+        lock.release()
 
     for new_added_account in new_added_accounts_list:
         SaveAccounts(new_added_account, the_TEMP_ACCOUNTS_PATH)
