@@ -38,7 +38,7 @@ has been changed to use a cache if there is a cache available.
 * lib: Added caching system by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1062
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.27.1-alpha...test
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.27.1-alpha...v0.28.0-alpha
 
 # Credits
 

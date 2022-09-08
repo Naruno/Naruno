@@ -133,7 +133,7 @@ Removed sequance number from node system and added empty block number to hash ca
 * Some improvements for empty block numbers by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1059
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.26.1-alpha...test
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.26.1-alpha...v0.27.0-alpha
 
 # Credits
 

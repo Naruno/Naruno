@@ -30,7 +30,7 @@ Removed "Core" expression.
 * docs: Removed "Core" name by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/893
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.26.0-alpha...fdsfds
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.26.0-alpha...v0.26.1-alpha
 
 # Credits
 

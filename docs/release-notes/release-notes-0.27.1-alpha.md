@@ -32,7 +32,7 @@ Fixed the github release based event outputs.
 * github: ${{ github.event.release.tag_name }} changed to decentra_network
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.27.0-alpha...test
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.27.0-alpha...v0.27.1-alpha
 
 # Credits
 

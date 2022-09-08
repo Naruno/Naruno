@@ -56,7 +56,7 @@ All of docs are edited and updated.
 * api: Added `/send` api for all transaction sendin operations
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.28.0-alpha...test
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.28.0-alpha...v0.29.0-alpha
 # Credits
 
 Thanks to everyone who directly contributed to this release:
