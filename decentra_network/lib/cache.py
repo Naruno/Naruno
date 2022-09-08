@@ -11,7 +11,6 @@ class Cache:
 
     @staticmethod
     def get(key):
-        Cache.cache = {}
         try:
             return Cache.cache[key]
         except KeyError:
