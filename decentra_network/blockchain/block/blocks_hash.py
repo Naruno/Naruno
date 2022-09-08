@@ -69,7 +69,6 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
                                      custom_TEMP_BLOCKSHASH_PART_PATH is None
                                      else custom_TEMP_BLOCKSHASH_PART_PATH)
 
-
     os.chdir(get_config()["main_folder"])
     if not os.path.exists(the_TEMP_BLOCKSHASH_PART_PATH):
         result = []
@@ -78,4 +77,3 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     with open(the_TEMP_BLOCKSHASH_PART_PATH, "r") as block_file:
         result = json.load(block_file)
         return result
-
