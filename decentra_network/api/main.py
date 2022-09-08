@@ -108,7 +108,7 @@ def delete_wallets_page():
 def send_coin_page(address, amount, password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, no_cache=True)
              if custom_block is None else custom_block)
     send_tx = send(
         password,
@@ -149,7 +149,7 @@ def send_coin_data_page():
     amount = float(request.form["amount"]) if "amount" in request.form else None
     data = str(request.form["data"]) if "data" in request.form else None
     password = str(request.form["password"]) if "password" in request.form else None      
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, no_cache=True)
              if custom_block is None else custom_block)
     send_tx = send(
         password,
@@ -187,7 +187,7 @@ def balance_wallets_page():
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     the_wallet = wallet_import(-1,
                                0) if custom_wallet is None else custom_wallet
-    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, no_cache=True)
                  if custom_block is None else custom_block)
     return jsonify(GetBalance(the_block, the_wallet,
                               account_list=account_list))
