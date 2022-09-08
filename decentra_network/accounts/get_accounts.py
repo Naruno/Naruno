@@ -10,7 +10,6 @@ import sqlite3
 
 from decentra_network.accounts.account import Account
 from decentra_network.config import TEMP_ACCOUNTS_PATH
-
 from decentra_network.lib.config_system import get_config
 
 
