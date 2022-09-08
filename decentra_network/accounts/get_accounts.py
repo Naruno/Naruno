@@ -23,19 +23,15 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
                               if custom_TEMP_ACCOUNTS_PATH is None else
                               custom_TEMP_ACCOUNTS_PATH)
 
-    the_cache = Cache.get(the_TEMP_ACCOUNTS_PATH)
-    the_cache_2 = Cache.get(f"{the_TEMP_ACCOUNTS_PATH}_conn")
-    if the_cache is None or the_cache_2 is None:
-        os.chdir(get_config()["main_folder"])
-        conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH, check_same_thread=False)
-        c = conn.cursor()
-        c.execute(
-            """CREATE TABLE IF NOT EXISTS account_list (address text, sequance_number integer, balance integer)"""
-        )
-        conn.commit()
 
-        Cache.save(the_TEMP_ACCOUNTS_PATH, c)
-        Cache.save(f"{the_TEMP_ACCOUNTS_PATH}_conn", conn)
-        return c
-    else:
-        return the_cache
+    os.chdir(get_config()["main_folder"])
+    conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH, check_same_thread=False)
+    c = conn.cursor()
+    c.execute(
+            """CREATE TABLE IF NOT EXISTS account_list (address text, sequance_number integer, balance integer)"""
+    )
+    conn.commit()
+
+
+    return c
+
