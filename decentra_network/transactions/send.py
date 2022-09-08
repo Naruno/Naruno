@@ -31,6 +31,7 @@ def send(
     custom_current_time=None,
     custom_sequence_number=None,
     custom_balance=None,
+    no_cache=False,
 ):
     """
     The main function for sending the transaction.
@@ -80,7 +81,7 @@ def send(
                 ]
             )
 
-            sequance_number = GetSequanceNumber(my_public_key) + 1
+            sequance_number = GetSequanceNumber(my_public_key, no_cache=no_cache) + 1
 
             # Get the current fee
             transaction_fee = block.transaction_fee

@@ -118,6 +118,7 @@ def send_coin_page(address, amount, password):
         custom_current_time=custom_current_time,
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,
+        no_cache=True,
     )
     if send_tx != False:
         SavetoMyTransaction(send_tx)
@@ -160,6 +161,7 @@ def send_coin_data_page():
         custom_current_time=custom_current_time,
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,
+        no_cache=True,
     )
     if send_tx != False:
         SavetoMyTransaction(send_tx)
@@ -190,7 +192,7 @@ def balance_wallets_page():
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, no_cache=True)
                  if custom_block is None else custom_block)
     return jsonify(GetBalance(the_block, the_wallet,
-                              account_list=account_list))
+                              account_list=account_list, no_cache=True))
 
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])

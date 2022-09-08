@@ -10,14 +10,14 @@ from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
-def GetBalance(block, user, account_list=None):
+def GetBalance(block, user, account_list=None, no_cache=False):
     """
     Returns the users balance.
     """
 
     balance = -block.minumum_transfer_amount
     address = Address(user)
-    the_account_list = GetAccounts() if account_list is None else account_list
+    the_account_list = GetAccounts(no_cache=no_cache) if account_list is None else account_list
     the_account_list.execute(
         f"SELECT * FROM account_list WHERE address = '{address}'")
     for row in the_account_list.fetchall():

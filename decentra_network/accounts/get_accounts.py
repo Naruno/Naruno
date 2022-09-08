@@ -14,7 +14,7 @@ from decentra_network.lib.cache import Cache
 from decentra_network.lib.config_system import get_config
 
 
-def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
+def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None, no_cache=False):
     """
     Returns the accounts from TEMP_ACCOUNTS_PATH.
     """
@@ -25,7 +25,7 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
 
     the_cache = Cache.get(the_TEMP_ACCOUNTS_PATH)
     the_cache_2 = Cache.get(f"{the_TEMP_ACCOUNTS_PATH}_conn")
-    if the_cache is None or the_cache_2 is None:
+    if the_cache is None or the_cache_2 is None or no_cache:
         os.chdir(get_config()["main_folder"])
         conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH, check_same_thread=False)
         c = conn.cursor()
@@ -34,8 +34,8 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
         )
         conn.commit()
 
-        Cache.save(the_TEMP_ACCOUNTS_PATH, c)
-        Cache.save(f"{the_TEMP_ACCOUNTS_PATH}_conn", conn)
+        Cache.save(the_TEMP_ACCOUNTS_PATH, c) if not no_cache else None
+        Cache.save(f"{the_TEMP_ACCOUNTS_PATH}_conn", conn) if not no_cache else None
         return c
     else:
         return the_cache
