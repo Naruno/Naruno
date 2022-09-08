@@ -620,6 +620,16 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(Cache.cache["test"], "test_cache_save")
         Cache.cache = backup
 
+
+    def test_cache_get_disable_enable(self):
+        backup = copy.copy(Cache.cache)
+        Cache.save("test", "test_cache_get_disable_enable")
+        Cache.disable()
+        self.assertEqual(Cache.get("test"), None)
+        Cache.enable()
+        self.assertEqual(Cache.get("test"), "test_cache_get_disable_enable")
+        Cache.cache = backup
+
     def test_cache_get(self):
         backup = copy.copy(Cache.cache)
         Cache.save("test", "test_cache_get")

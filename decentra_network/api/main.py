@@ -183,14 +183,17 @@ def send_coin_data_page():
 
 @app.route("/wallet/balance", methods=["GET"])
 def balance_wallets_page():
+    Cache.disable()
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     the_wallet = wallet_import(-1,
                                0) if custom_wallet is None else custom_wallet
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    return jsonify(GetBalance(the_block, the_wallet,
+    result = jsonify(GetBalance(the_block, the_wallet,
                               account_list=account_list))
+    Cache.enable()
+    return result 
 
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
