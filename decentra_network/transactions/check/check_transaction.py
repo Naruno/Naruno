@@ -4,8 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.blockchain.block.change_transaction_fee import \
-    ChangeTransactionFee
+from decentra_network.blockchain.block.change_transaction_fee import (
+    ChangeTransactionFee,
+)
 from decentra_network.lib.log import get_logger
 from decentra_network.transactions.check.datas.check_datas import Check_Datas
 from decentra_network.transactions.check.len.check_len import Check_Len
@@ -27,12 +28,10 @@ def CheckTransaction(
     This function checks the transaction.
     """
 
-    logger.info(
-        f"{transaction.signature}: Checking the transaction started"
-    )
+    logger.info(f"{transaction.signature}: Checking the transaction started")
     ChangeTransactionFee(
-        block,
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH
+    )
 
     if Check_Type(transaction):
         pass
@@ -47,12 +46,12 @@ def CheckTransaction(
         return False
 
     if Check_Datas(
-            block,
-            transaction,
-            custom_current_time=custom_current_time,
-            custom_balance=custom_balance,
-            custom_sequence_number=custom_sequence_number,
-            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
+        block,
+        transaction,
+        custom_current_time=custom_current_time,
+        custom_balance=custom_balance,
+        custom_sequence_number=custom_sequence_number,
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
     ):
         pass
     else:
@@ -65,7 +64,5 @@ def CheckTransaction(
         logger.debug("Transaction sign is not correct")
         return False
 
-    logger.info(
-        f"{transaction.signature}: Checking the transaction finished as valid"
-    )
+    logger.info(f"{transaction.signature}: Checking the transaction finished as valid")
     return True
