@@ -57,7 +57,7 @@ data = {
 data = json.dumps(data)
 ```
 
-After that you can send the data with `/send` API. The API has 3 post parameters. 
+After that you can send the data with `/send/` API. The API has 3 post parameters. 
 
 - The first parameter is the password of wallet, you can be able to get from installation.
 
@@ -75,7 +75,7 @@ request_body = {
 And now we are send this via `requests.post`
 
 ```python
-response = requests.post('http://0.0.0.0:8000/send', data=request_body)
+response = requests.post('http://0.0.0.0:8000/send/', data=request_body)
 ```
 
 After the request you can check the response with `response.text`. If the response is not equal to "false" the data is sent successfully.
@@ -110,7 +110,7 @@ class Integration:
       "data": data,  
     }
 
-    response = requests.post('http://0.0.0.0:8000/send', data=request_body)
+    response = requests.post('http://0.0.0.0:8000/send/', data=request_body)
 
     return True if response.text != "false" else False
 
