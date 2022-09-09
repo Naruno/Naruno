@@ -110,10 +110,13 @@ def delete_wallets_page():
 def send_coin_data_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
-    address = str(request.form["to_user"]) if "to_user" in request.form else None
-    amount = float(request.form["amount"]) if "amount" in request.form else None
+    address = str(request.form["to_user"]
+                  ) if "to_user" in request.form else None
+    amount = float(request.form["amount"]
+                   ) if "amount" in request.form else None
     data = str(request.form["data"]) if "data" in request.form else None
-    password = str(request.form["password"]) if "password" in request.form else None      
+    password = str(request.form["password"]
+                   ) if "password" in request.form else None
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
     send_tx = send(
@@ -311,8 +314,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
