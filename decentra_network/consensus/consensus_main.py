@@ -9,8 +9,9 @@ import threading
 
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
 from decentra_network.lib.cache import Cache
@@ -43,8 +44,11 @@ def consensus_trigger(
     # set Cache.true_thread
     Cache.true_thread = threading.current_thread().name
 
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-             if custom_block is None else custom_block)
+    block = (
+        GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        if custom_block is None
+        else custom_block
+    )
 
     logger.debug(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"

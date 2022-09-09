@@ -19,9 +19,11 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
     Returns the accounts from TEMP_ACCOUNTS_PATH.
     """
 
-    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                              if custom_TEMP_ACCOUNTS_PATH is None else
-                              custom_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = (
+        TEMP_ACCOUNTS_PATH
+        if custom_TEMP_ACCOUNTS_PATH is None
+        else custom_TEMP_ACCOUNTS_PATH
+    )
 
     the_cache = Cache.get(the_TEMP_ACCOUNTS_PATH)
     the_cache_2 = Cache.get(f"{the_TEMP_ACCOUNTS_PATH}_conn")
