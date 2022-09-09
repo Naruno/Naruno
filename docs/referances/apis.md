@@ -48,13 +48,13 @@ For starting the API you should run the api/main.py file. If you use the [Automa
 Otherwise you can start the API with the following command:
 
 ```bash
-python Decentra-Network/decentra_network/api/main.py
+python3 Decentra-Network/decentra_network/api/main.py
 ```
 
 Also you can give the -p parameter for changing the port of the API. For example:
 
 ```bash
-python Decentra-Network/decentra_network/api/main.py -p 8000
+python3 Decentra-Network/decentra_network/api/main.py -p 8000
 ```
 
 *If you use [Building a Test Network](https://docs.decentranetwork.org/building_a_test_network/) you should change "Decentra-Network" to ex. "Decentra-Network-0".*

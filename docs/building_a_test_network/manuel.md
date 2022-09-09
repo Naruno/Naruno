@@ -35,12 +35,12 @@ Now we have unconfigured nodes. We need to configure them.
 ### Step 3.1: Configuring test mode of Node 0
 We need to set `test` mode on for node 0
 ```bash
-python Decentra-Network-0/decentra_network/cli/main.py --testmodeon
+python3 Decentra-Network-0/decentra_network/cli/main.py --testmodeon
 ```
 ### Step 3.2: Configuring debug mode of each node
 And we should setting the `debug` mode off for each node because otherwise the node prints a lot of unnecessary information.
 ```bash
-python Decentra-Network-0/decentra_network/cli/main.py --debugmodeoff
+python3 Decentra-Network-0/decentra_network/cli/main.py --debugmodeoff
 python Decentra-Network-1/decentra_network/cli/main.py --debugmodeoff
 python Decentra-Network-2/decentra_network/cli/main.py --debugmodeoff
 ```
@@ -48,18 +48,18 @@ python Decentra-Network-2/decentra_network/cli/main.py --debugmodeoff
 ### Step 3.3: Creating the wallets of each node
 In Decentra Network we use password protected wallets. But for the first wallet we dont use password because first wallet is used for the node communication. So you must be in safe place for node 0. You can create the wallets with the following command:
 ```bash
-python Decentra-Network-0/decentra_network/cli/main.py --createwallet password
+python3 Decentra-Network-0/decentra_network/cli/main.py --createwallet password
 ```
 ```bash
-python Decentra-Network-1/decentra_network/cli/main.py --createwallet password
+python3 Decentra-Network-1/decentra_network/cli/main.py --createwallet password
 ```
 ```bash
-python Decentra-Network-2/decentra_network/cli/main.py --createwallet password
+python3 Decentra-Network-2/decentra_network/cli/main.py --createwallet password
 ```
 
 Now you can check your wallet with
 ```bash
-python Decentra-Network-0/decentra_network/cli/main.py --printwallet
+python3 Decentra-Network-0/decentra_network/cli/main.py --printwallet
 ``` 
 command.
 
@@ -69,33 +69,33 @@ Decentra Network nodes dont connect any stranger node. So we need to introduce o
 
 First you need to get the ids of node 0, node 1 and node 2. You can get the ids with the following command:
 ```bash
-python Decentra-Network-0/decentra_network/cli/main.py --ndid
+python3 Decentra-Network-0/decentra_network/cli/main.py --ndid
 ```
 ```bash
-python Decentra-Network-1/decentra_network/cli/main.py --ndid
+python3 Decentra-Network-1/decentra_network/cli/main.py --ndid
 ```
 ```bash
-python Decentra-Network-2/decentra_network/cli/main.py --ndid
+python3 Decentra-Network-2/decentra_network/cli/main.py --ndid
 ```
 
 #### Step 3.4.1: Configuring the UNL nodes for Node 0
 Now you can configure the UNL nodes for node 0 with the following command:
 ```bash
-python Decentra-Network-0/decentra_network/cli/main.py --ndnewunl node_1_id
+python3 Decentra-Network-0/decentra_network/cli/main.py --ndnewunl node_1_id
 python Decentra-Network-0/decentra_network/cli/main.py --ndnewunl node_2_id
 ```
 
 #### Step 3.4.2: Configuring the UNL nodes for Node 1
 Now you can configure the UNL nodes for node 0 with the following command:
 ```bash
-python Decentra-Network-1/decentra_network/cli/main.py --ndnewunl node_0_id
+python3 Decentra-Network-1/decentra_network/cli/main.py --ndnewunl node_0_id
 python Decentra-Network-1/decentra_network/cli/main.py --ndnewunl node_2_id
 ```
 
 #### Step 3.4.3: Configuring the UNL nodes for Node 2
 Now you can configure the UNL nodes for node 0 with the following command:
 ```bash
-python Decentra-Network-2/decentra_network/cli/main.py --ndnewunl node_0_id
+python3 Decentra-Network-2/decentra_network/cli/main.py --ndnewunl node_0_id
 python Decentra-Network-2/decentra_network/cli/main.py --ndnewunl node_1_id
 ```
 
@@ -104,15 +104,15 @@ Nodes are communicate over a tcp socket. So we need to start the node protocol f
 
 You can switch to menu for node 0, node 1 and node 2 with the following command:
 ```bash
-python Decentra-Network-10/decentra_network/cli/main.py --menu
+python3 Decentra-Network-10/decentra_network/cli/main.py --menu
 ```
 switch another terminal and run:
 ```bash
-python Decentra-Network-1/decentra_network/cli/main.py --menu
+python3 Decentra-Network-1/decentra_network/cli/main.py --menu
 ```
 switch another terminal and run:
 ```bash
-python Decentra-Network-2/decentra_network/cli/main.py --menu
+python3 Decentra-Network-2/decentra_network/cli/main.py --menu
 ```
 
 
