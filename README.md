@@ -102,7 +102,7 @@ The main features of Decentra Network are:
 - Built-in application structure
 - Custom wallet system
 
-The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network software, designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network software, designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
 **The Decentra-Network has 4 control areas:**
 

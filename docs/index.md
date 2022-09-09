@@ -44,7 +44,7 @@ We are Fast, Secure, and Decentralized.
 
 <br>
 
-Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI and API . Decentra Network designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network that designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
 <br>
 
