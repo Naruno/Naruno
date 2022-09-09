@@ -10,6 +10,7 @@ import hashlib
 import os
 import shutil
 import time
+import urllib.request
 from os import curdir
 from os import environ
 from os import listdir
@@ -29,7 +30,6 @@ from shutil import rmtree
 from sys import stdout
 from urllib.request import urlretrieve
 
-import requests
 import sh
 from pythonforandroid.recipe import PythonRecipe
 from six import with_metaclass
