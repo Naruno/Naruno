@@ -6,10 +6,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.lib.log import get_logger
 
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.transactions.transaction import Transaction
+
 logger = get_logger("TRANSACTIONS")
 
 
-def Check_Len(block, transaction):
+def Check_Len(block: Block, transaction: Transaction):
     """
     Check if the transaction lenght is valid
     """
@@ -31,13 +34,25 @@ def Check_Len(block, transaction):
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
 
-    if len(str(transaction.amount).split(".")[1]) <= decimal_amount:
-        logger.info("The decimal amount of transaction.amount is true.")
+    if type(transaction.amount) == float:
+        if len(str(transaction.amount).split(".")[1]) <= decimal_amount:
+            logger.info("The decimal amount of transaction.amount is true.")
+        else:
+            return False
+
+    if type(transaction.transaction_fee) == float:
+        if len(str(transaction.transaction_fee).split(".")[1]) <= decimal_amount:
+            logger.info("The decimal amount of transaction.transaction_fee is true.")
+        else:
+            return False
+
+    if transaction.amount <= block.coin_amount:
+        logger.info("The amount is true")
     else:
         return False
-
-    if len(str(transaction.transaction_fee).split(".")[1]) <= decimal_amount:
-        logger.info("The decimal amount of transaction.transaction_fee is true.")
+    
+    if transaction.transaction_fee <= block.coin_amount:
+        logger.info("The transaction fee is true")
     else:
         return False
 
