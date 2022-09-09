@@ -435,6 +435,15 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
+
+        result_cache = GetBlockstoBlockchainDB(
+            block.sequance_number,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
         block_2 = copy.copy(result[0])
         block_2_normal = copy.copy(block)
 
@@ -452,6 +461,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_account_list[0][1], the_account.sequance_number)
         self.assertEqual(result[2], [])
         self.assertEqual(result[3], [])
+        self.assertEqual(result, result_cache)
 
     def test_CreateBlock_from_zero(self):
         custom_TEMP_BLOCK_PATH = "db/test_CreateBlock_from_zero_TEMP_BLOCK_PATH.json"
