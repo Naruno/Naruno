@@ -698,6 +698,31 @@ class Test_Transactions(unittest.TestCase):
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
 
+    def test_check_transaction_false_amount_bigger_than_coin_amount(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.amount = block.coin_amount + 1
+        result = Check_Len(block, the_transaction)
+        self.assertEqual(result, False)
+
     def test_check_transaction_false_transaction_fee_decimal(self):
 
         the_transaction_json = {
@@ -720,6 +745,32 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.transaction_fee = 0.001
+        result = Check_Len(block, the_transaction)
+        self.assertEqual(result, False)
+
+    def test_check_transaction_false_transaction_fee_bigger_than_coin_amount(
+            self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.transaction_fee = block.coin_amount + 1
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
 
@@ -925,7 +976,11 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_amount_type(self):
         block = Block("onur")
-        result = send("123", "onur", amount="atakan", data="1ulusoy", block=block)
+        result = send("123",
+                      "onur",
+                      amount="atakan",
+                      data="1ulusoy",
+                      block=block)
         self.assertEqual(result, False)
 
     def test_send_false_amount_type_negative(self):
@@ -943,7 +998,11 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_decimal_amount(self):
         block = Block("onur")
-        result = send("123", "onur", amount=500.001, data="3ulusoy", block=block)
+        result = send("123",
+                      "onur",
+                      amount=500.001,
+                      data="3ulusoy",
+                      block=block)
         self.assertEqual(result, False)
 
     def test_send_false_amount_lower_than_minumum(self):
@@ -958,7 +1017,12 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_check(self):
         block = Block("onur")
-        result = send("123", "onur", amount=5000, data="6ulusoy", custom_balance=5, block=block)
+        result = send("123",
+                      "onur",
+                      amount=5000,
+                      data="6ulusoy",
+                      custom_balance=5,
+                      block=block)
         self.assertEqual(result, False)
 
     def test_send_true(self):
@@ -971,7 +1035,7 @@ class Test_Transactions(unittest.TestCase):
             custom_current_time=(int(time.time()) + 5),
             custom_sequence_number=0,
             custom_balance=100000,
-            block=block
+            block=block,
         )
 
         self.assertNotEqual(result, False)
