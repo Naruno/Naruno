@@ -40,7 +40,7 @@ def consensus_trigger(
     to shorten the block time.
     """
 
-    #set Cache.true_thread
+    # set Cache.true_thread
     Cache.true_thread = threading.current_thread().name
 
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)

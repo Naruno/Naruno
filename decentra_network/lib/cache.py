@@ -7,6 +7,7 @@
 
 import threading
 
+
 class Cache:
     cache = {}
     true_thread = None
@@ -14,7 +15,7 @@ class Cache:
     @staticmethod
     def get(key):
         if Cache.true_thread is not None:
-            #Check thread name to true_thread
+            # Check thread name to true_thread
             if threading.current_thread().name != Cache.true_thread:
                 return None
         try:
