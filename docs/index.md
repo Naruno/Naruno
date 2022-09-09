@@ -26,19 +26,20 @@ has_children: false
 <br>
 
 # Introduction
+
 From the beginning of internet, all systems are designed as an client or server. With this the data security, authority and our futures are in the hands of a few.
 
-From 2008 to today, the world has seen the rise of cryptocurrencies. These cryptocurrencies are the first step to a decentralized world. But they are not enough. We need a decentralized network that can be used by everyone. 
+From 2008 to today, the world has seen the rise of cryptocurrencies. These cryptocurrencies are the first step to a decentralized world. But they are not enough. We need a decentralized network that can be used by everyone.
 
 This network should be realistic, stable and functional because futures are based on the present. So this network must be able to be used by everyone, everywhere and for everything.
 
 This network is Decentra Network.
 
-
 # Decentra Network
-Decentra Network is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure. 
 
-We are present the real blockchain which based on the real princibles. 
+Decentra Network is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure.
+
+We are present the real blockchain which based on the real princibles.
 
 We are Fast, Secure, and Decentralized.
 
@@ -49,6 +50,7 @@ Decentra Network is written in **PEP8** format and **only** needs dependent libr
 <br>
 
 ## Features
+
 - Less than 7 Seconds block time (Confirmation Time)
 - Low size (~20mb per 1m user)
 - 10k+ transactions per second
