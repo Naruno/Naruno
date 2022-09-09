@@ -11,6 +11,7 @@ from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.config import TEMP_ACCOUNTS_PATH
+from decentra_network.lib.cache import Cache
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
@@ -92,6 +93,8 @@ def ProccesstheTransaction(block,
         )
         conn.commit()
     conn.close()
+    Cache.pop(the_TEMP_ACCOUNTS_PATH)
+    Cache.pop(f"{the_TEMP_ACCOUNTS_PATH}_conn")
 
     for new_added_account in new_added_accounts_list:
         SaveAccounts(new_added_account, the_TEMP_ACCOUNTS_PATH)
