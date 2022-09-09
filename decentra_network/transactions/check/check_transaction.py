@@ -28,20 +28,22 @@ def CheckTransaction(
     """
 
     logger.info(
-        f"Checking the transaction started {block.sequance_number}:{transaction.signature}"
+        f"{transaction.signature}: Checking the transaction started"
     )
     ChangeTransactionFee(
         block,
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
     if Check_Type(transaction):
-        logger.info("Transaction type is correct")
+        pass
     else:
+        logger.debug("The transaction type is not valid")
         return False
 
     if Check_Len(block, transaction):
-        logger.info("Transaction len is correct")
+        pass
     else:
+        logger.debug("Transaction len is not correct")
         return False
 
     if Check_Datas(
@@ -52,16 +54,18 @@ def CheckTransaction(
             custom_sequence_number=custom_sequence_number,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
     ):
-        logger.info("Transaction balance is correct")
+        pass
     else:
+        logger.debug("Transaction datas are not correct")
         return False
 
     if Check_Sign(transaction):
-        logger.info("Transaction sign is correct")
+        pass
     else:
+        logger.debug("Transaction sign is not correct")
         return False
 
     logger.info(
-        f"Checking the transaction finished {block.sequance_number}:{transaction.signature}"
+        f"{transaction.signature}: Checking the transaction finished as valid"
     )
     return True

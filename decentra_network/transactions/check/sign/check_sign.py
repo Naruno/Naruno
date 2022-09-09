@@ -30,8 +30,9 @@ def Check_Sign(transaction):
         Signature.fromBase64(transaction.signature),
         PublicKey.fromPem(transaction.fromUser),
     ):
-        logger.info("The signature is valid")
+        pass
     else:
+        logger.debug("The signature is not valid")
         return False
 
     return True

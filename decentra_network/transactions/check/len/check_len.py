@@ -17,44 +17,51 @@ def Check_Len(block: Block, transaction: Transaction):
     """
 
     if (block.max_data_size / block.max_tx_number) >= len(transaction.data):
-        logger.info("Data len is true")
+        pass
     else:
+        logger.debug("Transaction data len is not correct")
         return False
 
     if len(transaction.fromUser) == 120:
-        logger.info("The from user is correct")
+        pass
     else:
+        logger.debug("The from user is not correct")
         return False
 
     if len(transaction.toUser) <= 40:
-        logger.info("The to user is correct")
+        pass
     else:
+        logger.debug("The to user is not correct")
         return False
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
 
     if type(transaction.amount) == float:
         if len(str(transaction.amount).split(".")[1]) <= decimal_amount:
-            logger.info("The decimal amount of transaction.amount is true.")
+            pass
         else:
+            logger.debug("The decimal amount of transaction.amount is not true.")
             return False
 
     if type(transaction.transaction_fee) == float:
         if len(str(
                 transaction.transaction_fee).split(".")[1]) <= decimal_amount:
-            logger.info(
-                "The decimal amount of transaction.transaction_fee is true.")
+            pass
         else:
+            logger.debug(
+                "The decimal amount of transaction.transaction_fee is not true.")
             return False
 
     if transaction.amount <= block.coin_amount:
-        logger.info("The amount is true")
+        pass
     else:
+        logger.debug("The amount is not true")
         return False
 
     if transaction.transaction_fee <= block.coin_amount:
-        logger.info("The transaction fee is true")
+        pass
     else:
+        logger.debug("The transaction fee is not true")
         return False
 
     return True
