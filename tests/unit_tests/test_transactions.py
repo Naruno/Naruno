@@ -698,7 +698,6 @@ class Test_Transactions(unittest.TestCase):
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
 
-
     def test_check_transaction_false_amount_bigger_than_coin_amount(self):
 
         the_transaction_json = {
@@ -723,7 +722,6 @@ class Test_Transactions(unittest.TestCase):
         the_transaction.amount = block.coin_amount + 1
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
-
 
     def test_check_transaction_false_transaction_fee_decimal(self):
 
@@ -977,7 +975,8 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_amount_type(self):
         block = Block("onur")
-        result = send("123", "onur", amount="atakan", data="1ulusoy", block=block)
+        result = send("123", "onur", amount="atakan",
+                      data="1ulusoy", block=block)
         self.assertEqual(result, False)
 
     def test_send_false_amount_type_negative(self):
@@ -995,7 +994,8 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_decimal_amount(self):
         block = Block("onur")
-        result = send("123", "onur", amount=500.001, data="3ulusoy", block=block)
+        result = send("123", "onur", amount=500.001,
+                      data="3ulusoy", block=block)
         self.assertEqual(result, False)
 
     def test_send_false_amount_lower_than_minumum(self):
@@ -1010,7 +1010,8 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_check(self):
         block = Block("onur")
-        result = send("123", "onur", amount=5000, data="6ulusoy", custom_balance=5, block=block)
+        result = send("123", "onur", amount=5000, data="6ulusoy",
+                      custom_balance=5, block=block)
         self.assertEqual(result, False)
 
     def test_send_true(self):
