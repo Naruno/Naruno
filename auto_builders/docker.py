@@ -33,7 +33,7 @@ class Decentra_Network_Docker:
 
         random_amount = (int(
             10 * (self.number_of_security_circle / self.number_of_nodes))
-                         if self.number_of_security_circle != 1 else 0)
+            if self.number_of_security_circle != 1 else 0)
 
         for _ in range(random_amount):
             random_circle = random.randint(0, len(self.circles) - 1)
@@ -178,8 +178,7 @@ class Decentra_Network_Docker:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")
