@@ -9,7 +9,6 @@ from decentra_network.blockchain.block.blocks_hash import GetBlockshash
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.config import BLOCKS_PATH
-from decentra_network.lib.cache import Cache
 
 
 def GetBlockstoBlockchainDB(
@@ -26,24 +25,19 @@ def GetBlockstoBlockchainDB(
 
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
-        the_cache = Cache.get(the_BLOCKS_PATH)
-        if the_cache is None:
-            the_block = GetBlock(
-                (the_BLOCKS_PATH + str(sequance_number) + ".block.json"))
-            the_accounts = GetAccounts(
-                (the_BLOCKS_PATH + str(sequance_number) + ".accounts.db"))
-            the_blockshash = GetBlockshash(the_BLOCKS_PATH +
-                                           str(sequance_number) +
-                                           ".blockshash.json")
-            the_blockshashpart = GetBlockshash_part(the_BLOCKS_PATH +
-                                                    str(sequance_number) +
-                                                    ".blockshashpart.json")
-            result = [
-                the_block, the_accounts, the_blockshash, the_blockshashpart
-            ]
-            Cache.save(the_BLOCKS_PATH, result)
-            return result
-        else:
-            return the_cache
+
+        the_block = GetBlock(
+            (the_BLOCKS_PATH + str(sequance_number) + ".block.json"))
+        the_accounts = GetAccounts(
+            (the_BLOCKS_PATH + str(sequance_number) + ".accounts.db"))
+        the_blockshash = GetBlockshash(the_BLOCKS_PATH + str(sequance_number) +
+                                       ".blockshash.json")
+        the_blockshashpart = GetBlockshash_part(the_BLOCKS_PATH +
+                                                str(sequance_number) +
+                                                ".blockshashpart.json")
+        result = [the_block, the_accounts, the_blockshash, the_blockshashpart]
+
+        return result
+
     except FileNotFoundError:
         return False

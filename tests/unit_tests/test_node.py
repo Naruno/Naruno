@@ -475,11 +475,10 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "4.json"),
         )
-        the_block_2 = copy.copy(the_block)
-        the_block_2.dowload_true_block = server.id
-        the_block_2.first_time = True
+        the_block.dowload_true_block = server.id
+        the_block.first_time = True
         SaveBlock(
-            the_block_2,
+            the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1.replace(
                 ".db", "4.db"),
@@ -488,14 +487,15 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH1.replace(".json", "4.json"),
         )
-        the_block_2.dowload_true_block = ""
+        the_block.dowload_true_block = ""
         client = self.node_0.clients[0]
         self.node_0.send_full_chain(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
 
         self.assertFalse(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
-
+        print("\n\n\n")
+        print(self.custom_LOADING_BLOCK_PATH0)
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH0))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
@@ -504,11 +504,8 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
         got_block.newly = False
 
-        self.assertEqual(the_block.dowload_true_block, "")
-        self.assertEqual(got_block.dowload_true_block, server.id)
-
-        the_block.dowload_true_block = ""
-        got_block.dowload_true_block = ""
+        print(the_block.dump_json())
+        print(got_block.dump_json())
 
         self.assertEqual(
             the_block.dump_json(),
