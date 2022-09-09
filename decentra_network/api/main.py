@@ -113,7 +113,7 @@ def send_coin_data_page():
         request.form["to_user"]) if "to_user" in request.form else None
     amount = float(
         request.form["amount"]) if "amount" in request.form else None
-    data = str(request.form["data"]) if "data" in request.form else None
+    data = str(request.form["data"]) if "data" in request.form else ""
     password = str(
         request.form["password"]) if "password" in request.form else None
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
