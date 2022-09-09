@@ -362,39 +362,6 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
-
-
-    def test_send_coin_page(self):
-
-        backup = GetMyTransaction()
-        backup_settings = the_settings()
-
-        original_saved_wallets = get_saved_wallet()
-        save_wallet_list({})
-        SaveMyTransaction([])
-
-        password = "123"
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/send_old/coin/<address>/5000/{password}")
-        response_result = response.read()
-
-        time.sleep(3)
-
-        self.assertNotEqual(response_result, b"false\n")
-        the_tx = Transaction.load_json(
-            json.loads(response_result.decode("utf-8")))
-
-        new_my_transactions = GetMyTransaction()
-        self.assertEqual(len(new_my_transactions), 1)
-
-        DeletePending(the_tx)
-        SaveMyTransaction(backup)
-        save_settings(backup_settings)
-        save_wallet_list(original_saved_wallets)
-
-
     def test_send_coin_data_page(self):
 
         backup = GetMyTransaction()
@@ -413,15 +380,15 @@ class Test_API(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        response = requests.post('http://localhost:7777/send/', data=request_body)        
+        response = requests.post("http://localhost:7777/send/",
+                                 data=request_body)
         response_result = response.text
         print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         print(response_result)
         time.sleep(3)
 
         self.assertNotEqual(response_result, "false")
-        the_tx = Transaction.load_json(
-            json.loads(response_result))
+        the_tx = Transaction.load_json(json.loads(response_result))
         self.assertEqual(the_tx.data, "<data>")
 
         new_my_transactions = GetMyTransaction()

@@ -29,7 +29,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -65,7 +65,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -100,7 +100,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -135,7 +135,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -170,7 +170,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -205,7 +205,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -240,7 +240,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -275,7 +275,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -310,7 +310,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -345,7 +345,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -380,7 +380,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -415,7 +415,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -450,7 +450,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -485,7 +485,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -520,7 +520,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -555,7 +555,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -590,7 +590,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -625,7 +625,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -660,7 +660,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -695,7 +695,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -730,7 +730,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -765,7 +765,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -800,7 +800,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -835,7 +835,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -870,7 +870,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -905,7 +905,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -940,7 +940,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -975,7 +975,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1010,7 +1010,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1045,7 +1045,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1080,7 +1080,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1115,7 +1115,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1150,7 +1150,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1185,7 +1185,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1220,7 +1220,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1255,7 +1255,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1290,7 +1290,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1325,7 +1325,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1360,7 +1360,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1395,7 +1395,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1430,7 +1430,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1465,7 +1465,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1500,7 +1500,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1535,7 +1535,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1570,7 +1570,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1605,7 +1605,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1640,7 +1640,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1675,7 +1675,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1710,7 +1710,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1745,7 +1745,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1780,7 +1780,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1815,7 +1815,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1850,7 +1850,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1885,7 +1885,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1920,7 +1920,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1955,7 +1955,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -1990,7 +1990,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2025,7 +2025,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2060,7 +2060,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2095,7 +2095,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2130,7 +2130,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2165,7 +2165,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2200,7 +2200,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2235,7 +2235,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2270,7 +2270,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2305,7 +2305,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2340,7 +2340,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2375,7 +2375,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2410,7 +2410,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2445,7 +2445,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2480,7 +2480,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2515,7 +2515,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2550,7 +2550,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2585,7 +2585,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2620,7 +2620,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2655,7 +2655,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2690,7 +2690,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2725,7 +2725,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2760,7 +2760,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2795,7 +2795,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2830,7 +2830,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2865,7 +2865,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2900,7 +2900,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2935,7 +2935,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -2970,7 +2970,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3005,7 +3005,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3040,7 +3040,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3075,7 +3075,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3110,7 +3110,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3145,7 +3145,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3180,7 +3180,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3215,7 +3215,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3250,7 +3250,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3285,7 +3285,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3320,7 +3320,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3355,7 +3355,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3390,7 +3390,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3425,7 +3425,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3460,7 +3460,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         
@@ -3495,7 +3495,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_7_2.py') }}            
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         

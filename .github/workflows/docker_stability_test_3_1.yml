@@ -29,7 +29,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -60,7 +60,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -91,7 +91,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -122,7 +122,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -153,7 +153,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -184,7 +184,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -215,7 +215,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -246,7 +246,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -277,7 +277,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -308,7 +308,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -339,7 +339,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -370,7 +370,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -401,7 +401,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -432,7 +432,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -463,7 +463,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -494,7 +494,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -525,7 +525,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -556,7 +556,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -587,7 +587,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -618,7 +618,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -649,7 +649,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -680,7 +680,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -711,7 +711,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -742,7 +742,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -773,7 +773,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -804,7 +804,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -835,7 +835,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -866,7 +866,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -897,7 +897,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -928,7 +928,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -959,7 +959,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -990,7 +990,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1021,7 +1021,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1052,7 +1052,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1083,7 +1083,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1114,7 +1114,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1145,7 +1145,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1176,7 +1176,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1207,7 +1207,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1238,7 +1238,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1269,7 +1269,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1300,7 +1300,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1331,7 +1331,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1362,7 +1362,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1393,7 +1393,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1424,7 +1424,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1455,7 +1455,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1486,7 +1486,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1517,7 +1517,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1548,7 +1548,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1579,7 +1579,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1610,7 +1610,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1641,7 +1641,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1672,7 +1672,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1703,7 +1703,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1734,7 +1734,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1765,7 +1765,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1796,7 +1796,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1827,7 +1827,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1858,7 +1858,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1889,7 +1889,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1920,7 +1920,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1951,7 +1951,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -1982,7 +1982,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2013,7 +2013,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2044,7 +2044,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2075,7 +2075,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2106,7 +2106,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2137,7 +2137,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2168,7 +2168,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2199,7 +2199,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2230,7 +2230,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2261,7 +2261,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2292,7 +2292,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2323,7 +2323,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2354,7 +2354,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2385,7 +2385,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2416,7 +2416,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2447,7 +2447,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2478,7 +2478,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2509,7 +2509,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2540,7 +2540,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2571,7 +2571,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2602,7 +2602,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2633,7 +2633,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2664,7 +2664,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2695,7 +2695,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2726,7 +2726,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2757,7 +2757,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2788,7 +2788,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2819,7 +2819,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2850,7 +2850,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2881,7 +2881,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2912,7 +2912,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2943,7 +2943,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -2974,7 +2974,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -3005,7 +3005,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -3036,7 +3036,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -3067,7 +3067,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
@@ -3098,7 +3098,7 @@ jobs:
         key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
-        pip install pytest
+        pip install pytest requests
         
         cd ..
         docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
