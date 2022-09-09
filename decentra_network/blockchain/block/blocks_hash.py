@@ -7,8 +7,8 @@
 import json
 import os
 
-from decentra_network.config import (TEMP_BLOCKSHASH_PART_PATH,
-                                     TEMP_BLOCKSHASH_PATH)
+from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
+from decentra_network.config import TEMP_BLOCKSHASH_PATH
 from decentra_network.lib.cache import Cache
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
