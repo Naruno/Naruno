@@ -27,7 +27,7 @@ cp -r -f Decentra-Network test_network/Decentra-Network
 In this steep we will generate 3 node and we will put them in the "test_network" folder. You can generate the nodes with the following command:
 ```bash
 cd test_network
-python Decentra-Network/auto_builders/local.py -nn 3 -scn 1 -d -i -s -r
+python3 Decentra-Network/auto_builders/local.py -nn 3 -scn 1 -d -i -s -r
 ```
 
 ## Step 3: Testing the Circulation

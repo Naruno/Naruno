@@ -41,8 +41,8 @@ python3 Decentra-Network-0/decentra_network/cli/main.py --testmodeon
 And we should setting the `debug` mode off for each node because otherwise the node prints a lot of unnecessary information.
 ```bash
 python3 Decentra-Network-0/decentra_network/cli/main.py --debugmodeoff
-python Decentra-Network-1/decentra_network/cli/main.py --debugmodeoff
-python Decentra-Network-2/decentra_network/cli/main.py --debugmodeoff
+python3 Decentra-Network-1/decentra_network/cli/main.py --debugmodeoff
+python3 Decentra-Network-2/decentra_network/cli/main.py --debugmodeoff
 ```
 
 ### Step 3.3: Creating the wallets of each node
@@ -82,21 +82,21 @@ python3 Decentra-Network-2/decentra_network/cli/main.py --ndid
 Now you can configure the UNL nodes for node 0 with the following command:
 ```bash
 python3 Decentra-Network-0/decentra_network/cli/main.py --ndnewunl node_1_id
-python Decentra-Network-0/decentra_network/cli/main.py --ndnewunl node_2_id
+python3 Decentra-Network-0/decentra_network/cli/main.py --ndnewunl node_2_id
 ```
 
 #### Step 3.4.2: Configuring the UNL nodes for Node 1
 Now you can configure the UNL nodes for node 0 with the following command:
 ```bash
 python3 Decentra-Network-1/decentra_network/cli/main.py --ndnewunl node_0_id
-python Decentra-Network-1/decentra_network/cli/main.py --ndnewunl node_2_id
+python3 Decentra-Network-1/decentra_network/cli/main.py --ndnewunl node_2_id
 ```
 
 #### Step 3.4.3: Configuring the UNL nodes for Node 2
 Now you can configure the UNL nodes for node 0 with the following command:
 ```bash
 python3 Decentra-Network-2/decentra_network/cli/main.py --ndnewunl node_0_id
-python Decentra-Network-2/decentra_network/cli/main.py --ndnewunl node_1_id
+python3 Decentra-Network-2/decentra_network/cli/main.py --ndnewunl node_1_id
 ```
 
 ### Step 3.5: Starting the node protocol
