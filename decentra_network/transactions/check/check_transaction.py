@@ -29,8 +29,8 @@ def CheckTransaction(
 
     logger.info(f"{transaction.signature}: Checking the transaction started")
     ChangeTransactionFee(
-        block, custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH
-    )
+        block,
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
 
     if Check_Type(transaction):
         pass
@@ -45,12 +45,12 @@ def CheckTransaction(
         return False
 
     if Check_Datas(
-        block,
-        transaction,
-        custom_current_time=custom_current_time,
-        custom_balance=custom_balance,
-        custom_sequence_number=custom_sequence_number,
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
+            block,
+            transaction,
+            custom_current_time=custom_current_time,
+            custom_balance=custom_balance,
+            custom_sequence_number=custom_sequence_number,
+            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
     ):
         pass
     else:
@@ -63,5 +63,6 @@ def CheckTransaction(
         logger.debug("Transaction sign is not correct")
         return False
 
-    logger.info(f"{transaction.signature}: Checking the transaction finished as valid")
+    logger.info(
+        f"{transaction.signature}: Checking the transaction finished as valid")
     return True
