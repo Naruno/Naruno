@@ -10,7 +10,7 @@ import os
 import random
 import sys
 import time
-import urllib.request
+import requests
 
 
 class Decentra_Network_Docker:

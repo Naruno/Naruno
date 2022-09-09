@@ -104,41 +104,6 @@ def delete_wallets_page():
     delete_current_wallet()
     return jsonify(print_wallets())
 
-@app.route("/send_old/coin/<address>/<amount>/<password>", methods=["GET"])
-def send_coin_page(address, amount, password):
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-             if custom_block is None else custom_block)
-    send_tx = send(
-        password,
-        address,
-        amount=amount,
-        block=block,
-        custom_current_time=custom_current_time,
-        custom_sequence_number=custom_sequence_number,
-        custom_balance=custom_balance,
-    )
-    if send_tx != False:
-        SavetoMyTransaction(send_tx)
-        server.send_transaction(
-            send_tx,
-            custom_current_time=custom_current_time,
-            custom_sequence_number=custom_sequence_number,
-            custom_balance=custom_balance,
-            custom_server=custom_server,
-        )
-        SaveBlock(
-            block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )
-    result = send_tx.dump_json() if send_tx != False else False
-    return jsonify(result)
-
-
 
 @app.route("/send/",
            methods=["POST"])

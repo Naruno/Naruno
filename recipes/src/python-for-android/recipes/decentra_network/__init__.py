@@ -10,7 +10,7 @@ import hashlib
 import os
 import shutil
 import time
-import urllib.request
+import requests
 from os import curdir
 from os import environ
 from os import listdir

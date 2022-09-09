@@ -11,7 +11,7 @@ import random
 import signal
 import sys
 import time
-import urllib.request
+import requests
 
 
 class Decentra_Network_Local:

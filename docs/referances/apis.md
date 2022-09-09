@@ -24,7 +24,6 @@ increase by node number. For example:
 | GET    | /wallet/create/:password                         | Creates a new wallet with the given password                                             |
 | GET    | /wallet/delete                                   | Deletes the currenly wallet                                                              |
 | GET    | /wallet/balance                                  | Returns the balance of the currently wallet                                              |
-| GET    | /send_old/coin/:address/:amount/:password            | Send coin with the given address, amount and password of currently wallet                |
 | POST    | /send | Send coin, data with given addresss and password. |
 | GET    | /node/start/:ip/:port                            | Starts a node server with the given ip and port                                          |
 | GET    | /node/stop                                       | Stops the node server                                                                    |
