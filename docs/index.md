@@ -18,7 +18,7 @@ has_children: false
     <br>
     <a href="https://docs.decentranetwork.org/getting-started/" class="btn btn-blue">Getting Started</a>
     <a href="https://docs.decentranetwork.org/building_a_test_network/" class="btn btn-purple">Building a Test Network</a>
-    <a href="https://docs.decentranetwork.org/creating_a_app/" class="btn btn-green">Creating a APP</a>    
+    <a href="https://docs.decentranetwork.org/creating_a_app/" class="btn btn-green">Creating a APP</a>
   </p>
 </p>
 
@@ -26,29 +26,31 @@ has_children: false
 <br>
 
 # Introduction
+
 From the beginning of internet, all systems are designed as an client or server. With this the data security, authority and our futures are in the hands of a few.
 
-From 2008 to today, the world has seen the rise of cryptocurrencies. These cryptocurrencies are the first step to a decentralized world. But they are not enough. We need a decentralized network that can be used by everyone. 
+From 2008 to today, the world has seen the rise of cryptocurrencies. These cryptocurrencies are the first step to a decentralized world. But they are not enough. We need a decentralized network that can be used by everyone.
 
 This network should be realistic, stable and functional because futures are based on the present. So this network must be able to be used by everyone, everywhere and for everything.
 
 This network is Decentra Network.
 
-
 # Decentra Network
-Decentra Network is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure. 
 
-We are present the real blockchain which based on the real princibles. 
+Decentra Network is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure.
+
+We are present the real blockchain which based on the real princibles.
 
 We are Fast, Secure, and Decentralized.
 
 <br>
 
-Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI and API . Decentra Network designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network that designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
 <br>
 
 ## Features
+
 - Less than 7 Seconds block time (Confirmation Time)
 - Low size (~20mb per 1m user)
 - 10k+ transactions per second
