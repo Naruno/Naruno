@@ -4,12 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+import threading
+
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
+from decentra_network.lib.cache import Cache
 from decentra_network.lib.log import get_logger
 from decentra_network.node.client.client import client
 from decentra_network.node.server.server import server
@@ -35,6 +39,9 @@ def consensus_trigger(
     the necessary redirects according to the situation and works
     to shorten the block time.
     """
+
+    #set Cache.true_thread
+    Cache.true_thread = threading.current_thread().name
 
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)

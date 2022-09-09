@@ -5,12 +5,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.class cache:
 
+import threading
 
 class Cache:
     cache = {}
+    true_thread = None
 
     @staticmethod
     def get(key):
+        if Cache.true_thread is not None:
+            #Check thread name to true_thread
+            if threading.current_thread().name != Cache.true_thread:
+                return None
         try:
             return Cache.cache[key]
         except KeyError:
