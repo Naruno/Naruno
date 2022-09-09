@@ -27,6 +27,7 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
                                 custom_TEMP_BLOCKSHASH_PATH)
     with open(the_TEMP_BLOCKSHASH_PATH, "w") as block_file:
         json.dump(the_blockshash, block_file)
+    Cache.pop(the_TEMP_BLOCKSHASH_PATH)
 
 
 def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
@@ -42,6 +43,7 @@ def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
         f"Saving blockshash part to disk ({the_TEMP_BLOCKSHASH_PART_PATH})")
     with open(the_TEMP_BLOCKSHASH_PART_PATH, "w") as block_file:
         json.dump(the_blockshash, block_file)
+    Cache.pop(the_TEMP_BLOCKSHASH_PART_PATH)
 
 
 def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):

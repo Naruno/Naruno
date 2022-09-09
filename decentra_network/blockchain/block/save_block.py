@@ -12,6 +12,7 @@ from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.config import TEMP_BLOCK_PATH
+from decentra_network.lib.cache import Cache
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 
@@ -48,3 +49,4 @@ def SaveBlock(
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
         json.dump(block.dump_json(), block_file)
+    Cache.pop(the_TEMP_BLOCK_PATH)
