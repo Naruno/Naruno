@@ -11,10 +11,10 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 import time
 import unittest
+
 import requests
 
 from auto_builders.local import Decentra_Network_Local
-
 
 temp_environment = Decentra_Network_Local(10, 3)
 temp_environment.delete()

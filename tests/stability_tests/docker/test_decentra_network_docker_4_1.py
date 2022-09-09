@@ -11,10 +11,10 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 import time
 import unittest
+
 import requests
 
 from auto_builders.docker import Decentra_Network_Docker
-
 
 temp_environment = Decentra_Network_Docker(4, 1)
 temp_environment.delete()
