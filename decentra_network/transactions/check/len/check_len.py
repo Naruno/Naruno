@@ -40,8 +40,10 @@ def Check_Len(block: Block, transaction: Transaction):
             return False
 
     if type(transaction.transaction_fee) == float:
-        if len(str(transaction.transaction_fee).split(".")[1]) <= decimal_amount:
-            logger.info("The decimal amount of transaction.transaction_fee is true.")
+        if len(str(
+                transaction.transaction_fee).split(".")[1]) <= decimal_amount:
+            logger.info(
+                "The decimal amount of transaction.transaction_fee is true.")
         else:
             return False
 
