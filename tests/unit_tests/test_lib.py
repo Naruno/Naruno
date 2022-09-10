@@ -612,7 +612,7 @@ class Test_Lib(unittest.TestCase):
         )
         time.sleep(3.5)
         self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
-        #open and read the file after the 2.5 seconds
+        # open and read the file after the 2.5 seconds
         with open("test_perpetual_time_test.txt", "r") as f:
             content = f.read()
         self.assertEqual(len(content), 33)
