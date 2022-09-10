@@ -39,6 +39,7 @@ from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
+from decentra_network.lib.performance_analyzers.heartbeat_db import heartbeat_generic_db_analyzer
 
 
 def perpetual_time_test():
@@ -619,5 +620,9 @@ class Test_Lib(unittest.TestCase):
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
 
+
+    def test_heartbeat_generic_db_analyzer(self):
+        result = heartbeat_generic_db_analyzer()
+        self.assertLessEqual(result[0]+result[1], 1)
 
 unittest.main(exit=False)

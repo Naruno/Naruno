@@ -12,6 +12,9 @@ import copy
 import time
 import unittest
 
+from speed_calculator import calculate
+
+
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
@@ -1924,7 +1927,7 @@ class Test_Consensus(unittest.TestCase):
         block.round_2_starting_time = time.time()
         block.round_2_time = 2
         time.sleep(4)
-        result = consensus_trigger(
+        result = calculate(consensus_trigger,
             block,
             CandidateBlock,
             unl_nodes,
@@ -1936,7 +1939,8 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH1,
         )
-        self.assertTrue(result)
+        self.assertTrue(result[1])
+        self.assertLess(result[0], 0.5)
         self.assertEqual(block.validated, True)
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
@@ -1985,15 +1989,16 @@ class Test_Consensus(unittest.TestCase):
         )
         time.sleep(1)
 
-        result = consensus_trigger(
+
+        result = calculate(consensus_trigger,
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )
-        self.assertTrue(result)
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        self.assertTrue(result[1])
+        self.assertLess(result[0], 0.5)
 
         result_2 = GetBlockstoBlockchainDB(
             sequance_number=0,
