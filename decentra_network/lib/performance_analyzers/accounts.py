@@ -65,8 +65,7 @@ class Accounts_IO_Performance_Analyzer:
 
         SaveAccounts(
             self.the_account_list,
-            custom_TEMP_ACCOUNTS_PATH=
-            "db/Accounts_Performance_Analyzer_accounts.pf",
+            custom_TEMP_ACCOUNTS_PATH="db/Accounts_Performance_Analyzer_accounts.pf",
         )
 
     def get_operation(self):
@@ -76,4 +75,3 @@ class Accounts_IO_Performance_Analyzer:
 
         the_accounts = GetAccounts(
             "db/Accounts_Performance_Analyzer_accounts.pf")
-

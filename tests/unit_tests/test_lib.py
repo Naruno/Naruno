@@ -613,16 +613,16 @@ class Test_Lib(unittest.TestCase):
         )
         time.sleep(3.5)
         self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
-        #open and read the file after the 2.5 seconds
+        # open and read the file after the 2.5 seconds
         with open("test_perpetual_time_test.txt", "r") as f:
             content = f.read()
         self.assertEqual(len(content), 33)
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
 
-
     def test_heartbeat_generic_db_analyzer(self):
         result = heartbeat_generic_db_analyzer()
-        self.assertLessEqual(result[0]+result[1], 1)
+        self.assertLessEqual(result[0] + result[1], 1)
+
 
 unittest.main(exit=False)

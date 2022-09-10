@@ -1098,8 +1098,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -1173,8 +1172,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -1928,17 +1926,17 @@ class Test_Consensus(unittest.TestCase):
         block.round_2_time = 2
         time.sleep(4)
         result = calculate(consensus_trigger,
-            block,
-            CandidateBlock,
-            unl_nodes,
-            custom_server=self.node_1,
-            custom_unl=self.node_1.clients[0],
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
-            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
-            custom_TEMP_BLOCKSHASH_PART_PATH=self.
-            custom_TEMP_BLOCKSHASH_PART_PATH1,
-        )
+                           block,
+                           CandidateBlock,
+                           unl_nodes,
+                           custom_server=self.node_1,
+                           custom_unl=self.node_1.clients[0],
+                           custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1,
+                           custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+                           custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1,
+                           custom_TEMP_BLOCKSHASH_PART_PATH=self.
+                           custom_TEMP_BLOCKSHASH_PART_PATH1,
+                           )
         self.assertTrue(result[1])
         self.assertLess(result[0], 0.5)
         self.assertEqual(block.validated, True)
@@ -1989,14 +1987,13 @@ class Test_Consensus(unittest.TestCase):
         )
         time.sleep(1)
 
-
         result = calculate(consensus_trigger,
-            block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+                           block,
+                           custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                           custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+                           custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                           custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                           custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
         self.assertTrue(result[1])
         self.assertLess(result[0], 0.5)
 

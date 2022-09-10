@@ -71,4 +71,3 @@ class Block_IO_Performance_Analyzer:
         """
 
         GetBlock("db/Block_Performance_Analyzer_block.pf")
-
