@@ -15,7 +15,6 @@ from speed_calculator import calculate
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
-
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
@@ -49,7 +48,8 @@ class Block_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation),
             calculate(self.get_operation),
-            os.path.getsize("db/Block_Performance_Analyzer_block.pf") / 1000000,
+            os.path.getsize("db/Block_Performance_Analyzer_block.pf") /
+            1000000,
         )
 
         os.remove("db/Block_Performance_Analyzer_block.pf")
@@ -96,7 +96,8 @@ class Accounts_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation),
             calculate(self.get_operation),
-            os.path.getsize("db/Accounts_Performance_Analyzer_accounts.pf") / 1000000,
+            os.path.getsize("db/Accounts_Performance_Analyzer_accounts.pf") /
+            1000000,
         )
 
         os.remove("db/Accounts_Performance_Analyzer_accounts.pf")
@@ -110,7 +111,8 @@ class Accounts_IO_Performance_Analyzer:
 
         SaveAccounts(
             self.the_account_list,
-            custom_TEMP_ACCOUNTS_PATH="db/Accounts_Performance_Analyzer_accounts.pf",
+            custom_TEMP_ACCOUNTS_PATH=
+            "db/Accounts_Performance_Analyzer_accounts.pf",
         )
 
     def get_operation(self):
@@ -118,7 +120,8 @@ class Accounts_IO_Performance_Analyzer:
         This function is used to analyze the performance of GetBlock
         """
 
-        the_accounts = GetAccounts("db/Accounts_Performance_Analyzer_accounts.pf")
+        the_accounts = GetAccounts(
+            "db/Accounts_Performance_Analyzer_accounts.pf")
 
 
 class Blockshash_IO_Performance_Analyzer:
@@ -155,7 +158,8 @@ class Blockshash_IO_Performance_Analyzer:
 
         SaveBlockshash(
             self.blocks_hash,
-            custom_TEMP_BLOCKSHASH_PATH="db/Blockshash_Performance_Analyzer_blockshash.pf",
+            custom_TEMP_BLOCKSHASH_PATH=
+            "db/Blockshash_Performance_Analyzer_blockshash.pf",
         )
 
     def get_operation(self):
@@ -163,9 +167,8 @@ class Blockshash_IO_Performance_Analyzer:
         This function is used to analyze the performance of GetBlock
         """
 
-        GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH="db/Blockshash_Performance_Analyzer_blockshash.pf"
-        )
+        GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=
+                      "db/Blockshash_Performance_Analyzer_blockshash.pf")
 
 
 class Blockshash_part_IO_Performance_Analyzer:
@@ -196,8 +199,9 @@ class Blockshash_part_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation),
             calculate(self.get_operation),
-            os.path.getsize("db/Blockshash_part_Performance_Analyzer_blockshash.pf")
-            / 1000000,
+            os.path.getsize(
+                "db/Blockshash_part_Performance_Analyzer_blockshash.pf") /
+            1000000,
         )
 
         os.remove("db/Blockshash_part_Performance_Analyzer_blockshash.pf")
@@ -211,7 +215,8 @@ class Blockshash_part_IO_Performance_Analyzer:
 
         SaveBlockshash_part(
             self.blocks_hash,
-            custom_TEMP_BLOCKSHASH_PART_PATH="db/Blockshash_part_Performance_Analyzer_blockshash.pf",
+            custom_TEMP_BLOCKSHASH_PART_PATH=
+            "db/Blockshash_part_Performance_Analyzer_blockshash.pf",
         )
 
     def get_operation(self):
@@ -220,8 +225,8 @@ class Blockshash_part_IO_Performance_Analyzer:
         """
 
         GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH="db/Blockshash_part_Performance_Analyzer_blockshash.pf"
-        )
+            custom_TEMP_BLOCKSHASH_PART_PATH=
+            "db/Blockshash_part_Performance_Analyzer_blockshash.pf")
 
 
 if __name__ == "__main__":
@@ -246,9 +251,11 @@ if __name__ == "__main__":
     print("--------------------------------")
     print(
         "Total heartbeats save: ",
-        the_block_analysis[0] + the_accounts_analysis[0] + the_blockshash_analysis[0],
+        the_block_analysis[0] + the_accounts_analysis[0] +
+        the_blockshash_analysis[0],
     )
     print(
         "Total heartbeats get: ",
-        the_block_analysis[1] + the_accounts_analysis[1] + the_blockshash_analysis[1],
+        the_block_analysis[1] + the_accounts_analysis[1] +
+        the_blockshash_analysis[1],
     )
