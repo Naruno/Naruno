@@ -61,7 +61,8 @@ class Blockshash_IO_Performance_Analyzer:
 
         SaveBlockshash(
             self.blocks_hash,
-            custom_TEMP_BLOCKSHASH_PATH="db/Blockshash_Performance_Analyzer_blockshash.pf",
+            custom_TEMP_BLOCKSHASH_PATH=
+            "db/Blockshash_Performance_Analyzer_blockshash.pf",
         )
 
     def get_operation(self):
@@ -69,6 +70,5 @@ class Blockshash_IO_Performance_Analyzer:
         This function is used to analyze the performance of GetBlock
         """
 
-        GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH="db/Blockshash_Performance_Analyzer_blockshash.pf"
-        )
+        GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=
+                      "db/Blockshash_Performance_Analyzer_blockshash.pf")

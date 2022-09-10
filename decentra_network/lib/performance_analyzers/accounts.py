@@ -50,7 +50,8 @@ class Accounts_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation)[0],
             calculate(self.get_operation)[0],
-            os.path.getsize("db/Accounts_Performance_Analyzer_accounts.pf") / 1000000,
+            os.path.getsize("db/Accounts_Performance_Analyzer_accounts.pf") /
+            1000000,
         )
 
         os.remove("db/Accounts_Performance_Analyzer_accounts.pf")
@@ -64,7 +65,8 @@ class Accounts_IO_Performance_Analyzer:
 
         SaveAccounts(
             self.the_account_list,
-            custom_TEMP_ACCOUNTS_PATH="db/Accounts_Performance_Analyzer_accounts.pf",
+            custom_TEMP_ACCOUNTS_PATH=
+            "db/Accounts_Performance_Analyzer_accounts.pf",
         )
 
     def get_operation(self):
@@ -72,4 +74,5 @@ class Accounts_IO_Performance_Analyzer:
         This function is used to analyze the performance of GetBlock
         """
 
-        the_accounts = GetAccounts("db/Accounts_Performance_Analyzer_accounts.pf")
+        the_accounts = GetAccounts(
+            "db/Accounts_Performance_Analyzer_accounts.pf")
