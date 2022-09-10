@@ -182,7 +182,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pytest requests
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |      
         cd ..
@@ -213,7 +213,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pytest requests
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |        
         cd ..
