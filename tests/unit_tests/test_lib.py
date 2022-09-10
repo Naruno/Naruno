@@ -595,8 +595,7 @@ class Test_Lib(unittest.TestCase):
         t_mode_settings(temp_settings["debug_mode"])
 
     def test_perpetualTimer_0(self):
-        if os.path.exists("test_perpetual_time_test.txt"):
-            os.remove("test_perpetual_time_test.txt")
+
         the_timer = perpetualTimer(
             0,
             perpetual_time_test,
@@ -606,8 +605,7 @@ class Test_Lib(unittest.TestCase):
         the_timer.cancel()
 
     def test_perpetualTimer(self):
-        if os.path.exists("test_perpetual_time_test.txt"):
-            os.remove("test_perpetual_time_test.txt")
+
         the_timer = perpetualTimer(
             1,
             perpetual_time_test,
