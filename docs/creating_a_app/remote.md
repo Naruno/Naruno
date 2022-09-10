@@ -14,6 +14,13 @@ If you want to develop applications outside of Decentra network you can use [API
 - A Network (You can check the [Building Test Network](https://docs.decentranetwork.org/building_test_network/) for this)
 - Running API (You can check the [Starting the API](https://docs.decentranetwork.org/referances/apis.html#starting-the-api) for this)
 
+### Installing requirements
+
+```bash
+pip3 install -r https://github.com/Decentra-Network/Decentra-Network/raw/master/requirements/remote_app.txt
+```
+
+
 ## First Stage: Generating the Sceleton
 
 The remote application that we will create in the next sections should be have a integrastion system. For this we will use
