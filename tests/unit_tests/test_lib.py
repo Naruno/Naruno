@@ -29,6 +29,8 @@ from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                              printcentertext, question_maker,
                                              quit_menu_maker,
                                              starting_text_centered)
+from decentra_network.lib.performance_analyzers.heartbeat_db import \
+    heartbeat_generic_db_analyzer
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import (d_mode_settings,
@@ -612,12 +614,16 @@ class Test_Lib(unittest.TestCase):
         )
         time.sleep(3.5)
         self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
-        #open and read the file after the 2.5 seconds
+        # open and read the file after the 2.5 seconds
         with open("test_perpetual_time_test.txt", "r") as f:
             content = f.read()
         self.assertEqual(len(content), 33)
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
+
+    def test_heartbeat_generic_db_analyzer(self):
+        result = heartbeat_generic_db_analyzer()
+        self.assertLessEqual(result[0] + result[1], 10)
 
 
 unittest.main(exit=False)

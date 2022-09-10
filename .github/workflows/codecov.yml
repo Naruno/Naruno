@@ -47,7 +47,8 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements/api.txt
-        pip install -r requirements/gui.txt      
+        pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt     
         pip install pytest
         pip install coverage
     - name: Generate coverage report

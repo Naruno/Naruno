@@ -84,6 +84,7 @@ jobs:
         pip install pytest
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
@@ -119,6 +120,7 @@ jobs:
         pip install pytest
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
@@ -153,6 +155,7 @@ jobs:
         pip install pytest
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
