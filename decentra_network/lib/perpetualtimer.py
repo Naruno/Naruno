@@ -4,10 +4,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from threading import Timer
+from threading import Event, Thread, Timer
 
 
-class perpetualTimer:
+class perpetualTimer(Timer):
     """
     It trig the functions at time intervals, independent of the main process.
 
@@ -16,23 +16,17 @@ class perpetualTimer:
       * hFunction: The function to be triggered.
     """
 
-    def __init__(self, t, hFunction):
-        self.t = t
-        self.thread = Timer(self.t, hFunction)
+    def __init__(self, interval, function, args=None, kwargs=None):
+        Thread.__init__(self)
+        self.interval = interval
+        self.function = function
+        self.args = args if args is not None else []
+        self.kwargs = kwargs if kwargs is not None else {}
+        self.finished = Event()
 
-        if t != 0:
+        if self.interval != 0:
             self.start()
 
-    def start(self):
-        """
-        Cancels the perpetualTimer.
-        """
-
-        self.thread.start()
-
-    def cancel(self):
-        """
-        Cancels the perpetualTimer.
-        """
-
-        self.thread.cancel()
+    def run(self):
+        while not self.finished.wait(self.interval):
+            self.function(*self.args, **self.kwargs)

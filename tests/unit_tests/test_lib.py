@@ -43,7 +43,7 @@ from decentra_network.transactions.transaction import Transaction
 
 def perpetual_time_test():
     os.chdir(get_config()["main_folder"])
-    with open("test_perpetual_time_test.txt", "w") as f:
+    with open("test_perpetual_time_test.txt", "a") as f:
         f.write("Hello World")
 
 
@@ -595,6 +595,8 @@ class Test_Lib(unittest.TestCase):
         t_mode_settings(temp_settings["debug_mode"])
 
     def test_perpetualTimer_0(self):
+        if os.path.exists("test_perpetual_time_test.txt"):
+            os.remove("test_perpetual_time_test.txt")
         the_timer = perpetualTimer(
             0,
             perpetual_time_test,
@@ -604,12 +606,18 @@ class Test_Lib(unittest.TestCase):
         the_timer.cancel()
 
     def test_perpetualTimer(self):
+        if os.path.exists("test_perpetual_time_test.txt"):
+            os.remove("test_perpetual_time_test.txt")
         the_timer = perpetualTimer(
             1,
             perpetual_time_test,
         )
-        time.sleep(2.5)
+        time.sleep(3.5)
         self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
+        #open and read the file after the 2.5 seconds
+        with open("test_perpetual_time_test.txt", "r") as f:
+            content = f.read()
+        self.assertEqual(len(content), 33)
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
 
