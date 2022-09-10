@@ -15,10 +15,18 @@ from speed_calculator import calculate
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
-from decentra_network.lib.performance_analyzers.block import Block_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.accounts import Accounts_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.blockshash import Blockshash_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.blockshash_part import Blockshash_part_IO_Performance_Analyzer
+from decentra_network.lib.performance_analyzers.block import (
+    Block_IO_Performance_Analyzer,
+)
+from decentra_network.lib.performance_analyzers.accounts import (
+    Accounts_IO_Performance_Analyzer,
+)
+from decentra_network.lib.performance_analyzers.blockshash import (
+    Blockshash_IO_Performance_Analyzer,
+)
+from decentra_network.lib.performance_analyzers.blockshash_part import (
+    Blockshash_part_IO_Performance_Analyzer,
+)
 
 
 def heartbeat_generic_db_analyzer():
@@ -30,4 +38,7 @@ def heartbeat_generic_db_analyzer():
     the_accounts_analysis = the_accounts.analyze()
     the_blockshash_analysis = the_blockshash.analyze()
 
-    return the_block_analysis[0] + the_accounts_analysis[0] + the_blockshash_analysis[0], the_block_analysis[1] + the_accounts_analysis[1] + the_blockshash_analysis[1]
+    return (
+        the_block_analysis[0] + the_accounts_analysis[0] + the_blockshash_analysis[0],
+        the_block_analysis[1] + the_accounts_analysis[1] + the_blockshash_analysis[1],
+    )
