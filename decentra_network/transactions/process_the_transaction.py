@@ -14,7 +14,9 @@ from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
-def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=None):
+def ProccesstheTransaction(block,
+                           the_account_list,
+                           custom_TEMP_ACCOUNTS_PATH=None):
     """
     It performs the transactions in the block.vali list and
     puts the transactions in order.
@@ -22,11 +24,9 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
     Queuing is required so that all nodes have the same transaction hash.
     """
 
-    the_TEMP_ACCOUNTS_PATH = (
-        TEMP_ACCOUNTS_PATH
-        if custom_TEMP_ACCOUNTS_PATH is None
-        else custom_TEMP_ACCOUNTS_PATH
-    )
+    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
+                              if custom_TEMP_ACCOUNTS_PATH is None else
+                              custom_TEMP_ACCOUNTS_PATH)
 
     from_user_list = []
     to_user_list = []
@@ -46,16 +46,13 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
         )
         first_list = the_account_list.fetchall()
         the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{trans.toUser}'"
-        )
+            f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
         second_list = the_account_list.fetchall()
 
         for the_pulled_account in first_list + second_list:
             account_list.append(
-                Account(
-                    the_pulled_account[0], the_pulled_account[2], the_pulled_account[1]
-                )
-            )
+                Account(the_pulled_account[0], the_pulled_account[2],
+                        the_pulled_account[1]))
         for Accounts in account_list:
             touser_inlist = False
             if Accounts.Address == address_of_fromUser:
@@ -76,13 +73,16 @@ def ProccesstheTransaction(block, the_account_list, custom_TEMP_ACCOUNTS_PATH=No
 
             # If not included in the account_list, add.
         if not touser_inlist and not to_user_in_new_list:
-            new_added_accounts_list.append(Account(trans.toUser, float(trans.amount)))
+            new_added_accounts_list.append(
+                Account(trans.toUser, float(trans.amount)))
 
     # Syncs new sorted list to block.validating_list
 
-    block.validating_list = sorted(temp_validating_list, key=lambda x: x.fromUser)
+    block.validating_list = sorted(temp_validating_list,
+                                   key=lambda x: x.fromUser)
 
-    new_added_accounts_list = sorted(new_added_accounts_list, key=lambda x: x.Address)
+    new_added_accounts_list = sorted(new_added_accounts_list,
+                                     key=lambda x: x.Address)
 
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
     c = conn.cursor()

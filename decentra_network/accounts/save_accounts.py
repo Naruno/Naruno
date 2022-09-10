@@ -16,11 +16,9 @@ def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None):
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
 
-    the_TEMP_ACCOUNTS_PATH = (
-        TEMP_ACCOUNTS_PATH
-        if custom_TEMP_ACCOUNTS_PATH is None
-        else custom_TEMP_ACCOUNTS_PATH
-    )
+    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
+                              if custom_TEMP_ACCOUNTS_PATH is None else
+                              custom_TEMP_ACCOUNTS_PATH)
     os.chdir(get_config()["main_folder"])
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
     c = conn.cursor()
@@ -36,7 +34,8 @@ def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None):
     else:
         c.execute(
             """INSERT INTO account_list VALUES (?, ?, ?)""",
-            (new_account.Address, new_account.sequance_number, new_account.balance),
+            (new_account.Address, new_account.sequance_number,
+             new_account.balance),
         )
     conn.commit()
     conn.close()
