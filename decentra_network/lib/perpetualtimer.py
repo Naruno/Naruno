@@ -14,25 +14,14 @@ class perpetualTimer:
     perpetualTimer class consists of 3 elements:
       * t: The time interval of perpetualTimer.
       * hFunction: The function to be triggered.
-      * thread: The threading timer function.
     """
 
     def __init__(self, t, hFunction):
         self.t = t
-        self.hFunction = hFunction
-        self.thread = Timer(self.t, self.handle_function)
+        self.thread = Timer(self.t, hFunction)
 
         if t != 0:
             self.start()
-
-    def handle_function(self):
-        """
-        Runs the function.
-        """
-
-        self.hFunction()
-        self.thread = Timer(self.t, self.handle_function)
-        self.thread.start()
 
     def start(self):
         """
