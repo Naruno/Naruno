@@ -306,20 +306,24 @@ def status_page():
             custom_transactions=custom_transactions,
         ))
 
+
 @app.errorhandler(500)
 def handle_exception(e):
     logger.exception(f"500: {e}")
     return jsonify("500"), 500
+
 
 @app.errorhandler(404)
 def page_not_found(e):
     logger.error(f"404: {e}")
     return jsonify("404"), 404
 
+
 @app.errorhandler(405)
 def method_not_allowed(e):
     logger.error(f"405: {e}")
     return jsonify("405"), 405
+
 
 def start(port=None, test=False):
     """
@@ -327,8 +331,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
