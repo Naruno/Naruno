@@ -93,5 +93,4 @@ def ProccesstheTransaction(block,
         conn.commit()
     conn.close()
 
-    for new_added_account in new_added_accounts_list:
-        SaveAccounts(new_added_account, the_TEMP_ACCOUNTS_PATH)
+    SaveAccounts(new_added_accounts_list, the_TEMP_ACCOUNTS_PATH)
