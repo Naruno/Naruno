@@ -4,8 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import gc
-
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
@@ -69,5 +67,4 @@ def consensus_trigger(
         )
 
     logger.debug("Consensus process is done")
-    gc.collect()
     return block
