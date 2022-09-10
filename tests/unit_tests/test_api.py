@@ -667,5 +667,22 @@ class Test_API(unittest.TestCase):
             ]),
         )
 
+    def test_404_page(self):
+        response = requests.get("http://localhost:7777/404")
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.text, '"404"\n')
+
+    def test_405_page(self):
+        response = requests.post("http://localhost:7777/status",
+                                 data={"data": "test"})
+        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.text, '"405"\n')
+
+    def test_500_page(self):
+        response = requests.post("http://localhost:7777/send/",
+                                 data={"data": "test"})
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.text, '"500"\n')
+
 
 unittest.main(exit=False)
