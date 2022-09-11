@@ -7,8 +7,8 @@
 import os
 import sys
 
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part)
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import copy
