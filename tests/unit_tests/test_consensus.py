@@ -1940,7 +1940,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH1,
         )
         self.assertTrue(result[1])
-        self.assertLess(result[0], 0.5)
+        self.assertLess(result[0], 1)
         self.assertEqual(block.validated, True)
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
@@ -1999,7 +1999,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertTrue(result[1])
-        self.assertLess(result[0], 0.5)
+        self.assertLess(result[0], 1)
 
         result_2 = GetBlockstoBlockchainDB(
             sequance_number=0,

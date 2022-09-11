@@ -393,6 +393,8 @@ class Test_Blockchain(unittest.TestCase):
                               1)
         SaveAccounts(the_account, custom_TEMP_ACCOUNTS_PATH)
         SaveBlockshash(block.previous_hash, custom_TEMP_BLOCKSHASH_PATH)
+        SaveBlockshash_part(block.previous_hash,
+                            custom_TEMP_BLOCKSHASH_PART_PATH)
         SaveBlockstoBlockchainDB(
             block,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
@@ -423,7 +425,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_account_list[0][2], the_account.balance)
         self.assertEqual(the_account_list[0][1], the_account.sequance_number)
         self.assertEqual(result[2], [block.previous_hash])
-        self.assertEqual(result[3], [])
+        self.assertEqual(result[3], [block.previous_hash])
 
     def test_CreateBlock_from_zero(self):
         custom_TEMP_BLOCK_PATH = "db/test_CreateBlock_from_zero_TEMP_BLOCK_PATH.json"

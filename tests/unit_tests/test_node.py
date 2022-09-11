@@ -8,6 +8,7 @@ import os
 import sys
 
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import copy
@@ -452,14 +453,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(
             os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
+                                       custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 0)
+        self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
-            [],
+            [the_block.previous_hash],
         )
 
     def test_send_full_chain_get_full_chain_already_block(self):
@@ -642,14 +642,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(
             os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
+                                       custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 0)
+        self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
-            [],
+            [the_block.previous_hash],
         )
 
     def test_send_full_chain_get_full_chain_all_nodes(self):
@@ -679,9 +678,6 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
         got_block.newly = False
-
-        print(the_block.dump_json())
-        print(got_block.dump_json())
 
         self.assertEqual(
             the_block.dump_json(),
@@ -780,14 +776,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(
             os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
+                                       custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 0)
+        self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
-            [],
+            [the_block.previous_hash],
         )
 
     def test_connection_timeout_client_side(self):

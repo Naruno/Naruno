@@ -61,12 +61,12 @@ def SaveBlockstoBlockchainDB(
              ".blockshash.json"),
         )
 
-        SaveBlockshash_part(
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+        shutil.copyfile(
+            custom_TEMP_BLOCKSHASH_PART_PATH,
             (the_BLOCKS_PATH + str(block.sequance_number) +
              ".blockshashpart.json"),
         )
+
         return True
     else:
         return False

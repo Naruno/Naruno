@@ -192,7 +192,6 @@ class server(Thread):
         if len(json.dumps(data).encode("utf-8")) < 6525:
             data["buffer"] = "0" * (
                 (6525 - len(json.dumps(data).encode("utf-8"))) - 14)
-        print(len(json.dumps(data).encode("utf-8")))
         node.socket.sendall(json.dumps(data).encode("utf-8"))
         with contextlib.suppress(KeyError):
             del data["buffer"]

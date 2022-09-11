@@ -39,7 +39,7 @@ def SaveBlock(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         )
         SaveBlockshash_part(
-            [],
+            [block.previous_hash],
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         block.first_time = False
