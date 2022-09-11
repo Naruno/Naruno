@@ -78,7 +78,7 @@ class Block:
 
         self.dowload_true_block = ""
 
-    def reset_the_block(self, current_blockshash_list, custom_nodes=None):
+    def reset_the_block(self, custom_nodes=None):
         """
         When the block is verified and if block have a transaction
         and if block have at least half of the max_tx_number transaction,it saves the block
@@ -106,7 +106,6 @@ class Block:
             block2 = copy.copy(self)
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
-            current_blockshash_list.append(self.previous_hash)
             self.sequance_number = self.sequance_number + 1
             self.validating_list = []
             self.hash = None

@@ -55,15 +55,13 @@ def finished_main(
                                if custom_TEMP_BLOCK_PATH is None else
                                custom_TEMP_BLOCK_PATH)
 
-        current_blockshash_list = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
-        reset_block = block.reset_the_block(current_blockshash_list)
+        reset_block = block.reset_the_block()
         if reset_block != False:
             block2 = reset_block[0]
             AppsTrigger(block2)
             transactions_main(block2)
             SaveBlockshash(
-                current_blockshash_list,
+                reset_block[1].previous_hash,
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
             )
             SaveBlockstoBlockchainDB(
