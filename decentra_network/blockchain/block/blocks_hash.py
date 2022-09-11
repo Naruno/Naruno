@@ -25,7 +25,6 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
     the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
                                 if custom_TEMP_BLOCKSHASH_PATH is None else
                                 custom_TEMP_BLOCKSHASH_PATH)
-    
 
     conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PATH)
     c = conn.cursor()
@@ -45,7 +44,6 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
         )
     conn.commit()
     conn.close()
-
 
 
 def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
@@ -85,7 +83,6 @@ def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
     conn.close()
 
     return result
-
 
 
 def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):

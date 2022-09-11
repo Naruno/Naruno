@@ -36,7 +36,8 @@ def finished_main(
 ) -> None:
     if true_time(block):
         block.newly = False
-        logger.debug("Consensus proccess is complated, the block will be reset")
+        logger.debug(
+            "Consensus proccess is complated, the block will be reset")
 
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)

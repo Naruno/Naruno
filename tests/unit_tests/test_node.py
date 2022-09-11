@@ -416,10 +416,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
-
         got_block = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
-        
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
@@ -595,9 +593,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
         # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        got_block = GetBlockshash(  
+        got_block = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
-        
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
@@ -749,7 +746,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
-        
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
