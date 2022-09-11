@@ -76,3 +76,7 @@ class Accounts_IO_Performance_Analyzer:
 
         the_accounts = GetAccounts(
             "db/Accounts_Performance_Analyzer_accounts.pf")
+
+
+if __name__ == "__main__":
+    print(Accounts_IO_Performance_Analyzer().analyze())

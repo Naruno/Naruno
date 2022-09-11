@@ -77,3 +77,7 @@ class Blockshash_IO_Performance_Analyzer:
 
         GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=
                       "db/Blockshash_Performance_Analyzer_blockshash.pf")
+
+
+if __name__ == "__main__":
+    print(Blockshash_IO_Performance_Analyzer().analyze())
