@@ -41,6 +41,8 @@ def heartbeat_generic_db_analyzer():
         the_blockshash_analysis[0] + the_blockshash_part_analysis[0],
         the_block_analysis[1] + the_accounts_analysis[1] +
         the_blockshash_analysis[1] + the_blockshash_part_analysis[1],
+        the_block_analysis[2] + the_accounts_analysis[2] +
+        the_blockshash_analysis[2] + the_blockshash_part_analysis[2],        
     )
 
 
