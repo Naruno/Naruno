@@ -97,7 +97,8 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
 
     os.chdir(get_config()["main_folder"])
 
-    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PART_PATH, check_same_thread=False)
+    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PART_PATH,
+                           check_same_thread=False)
     c = conn.cursor()
     c.execute("""CREATE TABLE IF NOT EXISTS blockshash_part_list (hash text)""")
     c.execute("""SELECT * FROM blockshash_part_list""")
@@ -107,4 +108,3 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     conn.close()
 
     return result
-

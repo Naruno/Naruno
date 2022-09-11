@@ -454,7 +454,7 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlockshash_part(
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
-            custom_TEMP_BLOCKSHASH_PART_PATH1)            
+            custom_TEMP_BLOCKSHASH_PART_PATH1)
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
@@ -679,7 +679,6 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
         got_block.newly = False
-
 
         self.assertEqual(
             the_block.dump_json(),
