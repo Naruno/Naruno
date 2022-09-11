@@ -38,7 +38,7 @@ def SaveBlockstoBlockchainDB(
     my_address = wallet_import(-1, 3)
     our_tx = any((validated_transaction.fromUser == my_public_key) or (
         validated_transaction.toUser == my_address)
-                 for validated_transaction in block.validating_list)
+        for validated_transaction in block.validating_list)
     if our_tx:
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
@@ -62,8 +62,8 @@ def SaveBlockstoBlockchainDB(
         )
 
         SaveBlockshash_part(
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             (the_BLOCKS_PATH + str(block.sequance_number) +
              ".blockshashpart.json"),
         )
