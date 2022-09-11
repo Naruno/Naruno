@@ -7,6 +7,8 @@
 import os
 import sys
 
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import copy
 import json
@@ -414,9 +416,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
@@ -592,8 +593,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
         # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
@@ -743,9 +744,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(

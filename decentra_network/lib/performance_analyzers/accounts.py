@@ -74,5 +74,8 @@ class Accounts_IO_Performance_Analyzer:
         This function is used to analyze the performance of GetBlock
         """
 
-        the_accounts = GetAccounts(
-            "db/Accounts_Performance_Analyzer_accounts.pf")
+        GetAccounts("db/Accounts_Performance_Analyzer_accounts.pf")
+
+
+if __name__ == "__main__":
+    print(Accounts_IO_Performance_Analyzer().analyze())

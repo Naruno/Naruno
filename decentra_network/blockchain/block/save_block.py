@@ -35,7 +35,7 @@ def SaveBlock(
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         )
         SaveBlockshash(
-            [block.previous_hash],
+            block.previous_hash,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         )
         SaveBlockshash_part(

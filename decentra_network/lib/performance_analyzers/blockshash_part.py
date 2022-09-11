@@ -83,3 +83,7 @@ class Blockshash_part_IO_Performance_Analyzer:
         GetBlockshash_part(
             custom_TEMP_BLOCKSHASH_PART_PATH=
             "db/Blockshash_part_Performance_Analyzer_blockshash.pf")
+
+
+if __name__ == "__main__":
+    print(Blockshash_part_IO_Performance_Analyzer().analyze())

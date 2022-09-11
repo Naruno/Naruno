@@ -42,3 +42,7 @@ def heartbeat_generic_db_analyzer():
         the_block_analysis[1] + the_accounts_analysis[1] +
         the_blockshash_analysis[1] + the_blockshash_part_analysis[1],
     )
+
+
+if __name__ == "__main__":
+    print(heartbeat_generic_db_analyzer())

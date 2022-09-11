@@ -55,12 +55,12 @@ def SaveBlockstoBlockchainDB(
             (the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.db"),
         )
 
-        SaveBlockshash(
-            GetBlockshash(
-                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+        shutil.copyfile(
+            custom_TEMP_BLOCKSHASH_PATH,
             (the_BLOCKS_PATH + str(block.sequance_number) +
              ".blockshash.json"),
         )
+
         SaveBlockshash_part(
             GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
                                custom_TEMP_BLOCKSHASH_PART_PATH),
