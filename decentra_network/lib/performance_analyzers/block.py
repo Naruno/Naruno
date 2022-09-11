@@ -48,7 +48,8 @@ class Block_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation)[0],
             calculate(self.get_operation)[0],
-            os.path.getsize("db/Block_Performance_Analyzer_block.pf") / 1000000,
+            os.path.getsize("db/Block_Performance_Analyzer_block.pf") /
+            1000000,
         )
 
         os.remove("db/Block_Performance_Analyzer_block.pf")
