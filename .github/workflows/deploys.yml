@@ -45,6 +45,9 @@ jobs:
         python setup.py sdist
         twine upload dist/*        
         cd ..
+        cd tests
+        python setup.py sdist
+        twine upload dist/*  
         cd ..
         
 
