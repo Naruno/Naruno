@@ -36,6 +36,8 @@ nav_order: 2
 | Cross Platform | pip | CLI | `pip install decentra-network` |
 | Cross Platform | pip | API | `pip install decentra-network-api` |
 | Cross Platform | pip | GUI | `pip install decentra-network-gui` |
+| Cross Platform | pip | Tests Requirement | `pip install decentra-network-tests` |
+| Cross Platform | pip | Tool for Remote App | `pip install decentra-network-remote-app` |
 |---|
 | Cross Platform | docker | CLI | `docker pull ghcr.io/decentra-network/cli:latest` |
 | Cross Platform | docker | API | `docker pull ghcr.io/decentra-network/api:latest` |

@@ -17,7 +17,7 @@ If you want to develop applications outside of Decentra network you can use [API
 ### Installing requirements
 
 ```bash
-pip3 install -r https://github.com/Decentra-Network/Decentra-Network/raw/master/requirements/remote_app.txt
+pip3 install decentra-network-remote-app
 ```
 
 ## First Stage: Generating the Sceleton
