@@ -10,7 +10,7 @@ setup(
     name="decentra_network_gui",
     version="0.29.1",
     description="""This is GUI mode installer for Decentra Network""",
-    url="https://decentra-network.github.io/Decentra-Network/",
+    url="https://docs.decentranetwork.org/",
     author="Decentra Network Developers",
     author_email="onur@decentranetwork.org",
     license="MPL-2.0",
