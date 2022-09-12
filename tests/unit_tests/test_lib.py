@@ -623,7 +623,7 @@ class Test_Lib(unittest.TestCase):
 
     def test_heartbeat_generic_db_analyzer(self):
         result = heartbeat_generic_db_analyzer()
-        self.assertLessEqual(result[0] + result[1], 100)
+        self.assertLess(result[0] + result[1], 9)
 
 
 unittest.main(exit=False)
