@@ -19,6 +19,8 @@ from decentra_network.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 from decentra_network.consensus.rounds.round_1.checks.checks_main import \
     round_check
+from decentra_network.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
 from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
     find_newly
 from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import \
@@ -45,8 +47,12 @@ def transactions_main(block: Block, candidate_class: candidate_block,
 
     block.validating_list = temp_validating_list
 
+    Remove_Duplicates(block)
+
     logger.debug(f"Newly validating list {block.validating_list}")
 
-    
-    [server.send_transaction(each_newly) if GetTransaction(block, each_newly) else None for each_newly in newly_added_list]
+    [
+        server.send_transaction(each_newly) if GetTransaction(
+            block, each_newly) else None for each_newly in newly_added_list
+    ]
     return temp_validating_list
