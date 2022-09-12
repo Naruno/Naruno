@@ -41,6 +41,10 @@ jobs:
         python setup.py sdist
         twine upload dist/*
         cd ..
+        cd remote_app
+        python setup.py sdist
+        twine upload dist/*        
+        cd ..
         cd ..
         
 
