@@ -23,4 +23,3 @@ def Remove_Duplicates(block: Block):
     block.validating_list = new_validating_list
 
     return block
-

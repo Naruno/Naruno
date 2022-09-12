@@ -50,6 +50,6 @@ def transactions_main(block: Block, candidate_class: candidate_block,
 
     logger.debug(f"Newly validating list {block.validating_list}")
 
-    
-    [server.send_transaction(each_newly) if GetTransaction(block, each_newly) else None for each_newly in newly_added_list]
+    [server.send_transaction(each_newly) if GetTransaction(
+        block, each_newly) else None for each_newly in newly_added_list]
     return temp_validating_list
