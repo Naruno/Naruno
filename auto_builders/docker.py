@@ -48,7 +48,7 @@ class Decentra_Network_Docker:
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(25)
+        time.sleep(50)
 
     def install(self):
         self._command_to_system(

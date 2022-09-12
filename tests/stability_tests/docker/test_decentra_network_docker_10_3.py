@@ -45,14 +45,14 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
                 "password": "123"
             },
         )
-        time.sleep(25)
+        time.sleep(50)
         balance_wallet_1 = json.loads(
             urllib.request.urlopen(
                 "http://localhost:8101/wallet/balance").read().decode())
         self.assertEqual(balance_wallet_1, 4000.0,
                          "A problem in same network one transaction -1.")
 
-        time.sleep(45)
+        time.sleep(100)
 
         requests.post(
             "http://localhost:8000/send/",
@@ -62,7 +62,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
                 "password": "123"
             },
         )
-        time.sleep(25)
+        time.sleep(50)
         balance_wallet_1 = json.loads(
             urllib.request.urlopen(
                 "http://localhost:8101/wallet/balance").read().decode())

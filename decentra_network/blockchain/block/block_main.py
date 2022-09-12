@@ -41,7 +41,7 @@ class Block:
         self.creator = creator
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
-        self.block_time = 11
+        self.block_time = 22
 
         self.newly = False
 
@@ -64,11 +64,11 @@ class Block:
         self.max_tx_number = 2
         self.minumum_transfer_amount = 1000
 
-        self.round_1_time = 4
+        self.round_1_time = 10
         self.round_1 = False
 
         self.round_2_starting_time = None
-        self.round_2_time = 4
+        self.round_2_time = 10
         self.round_2 = False
 
         self.consensus_timer = 0.50

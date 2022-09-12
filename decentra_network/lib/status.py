@@ -28,7 +28,7 @@ def Status(
     first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                    if custom_first_block is None else custom_first_block)
 
-    time.sleep(25)
+    time.sleep(50)
     new_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_new_block is None else custom_new_block)
 
