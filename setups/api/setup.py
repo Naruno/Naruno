@@ -12,7 +12,7 @@ setup(
     description="""This is API mode installer for Decentra Network""",
     url="https://decentra-network.github.io/Decentra-Network/",
     author="Decentra Network Developers",
-    author_email="atadogan06@gmail.com",
+    author_email="onur@decentranetwork.org",
     license="MPL-2.0",
     install_requires="""
 flask==2.0.0

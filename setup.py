@@ -10,7 +10,7 @@ from io import open
 
 setup(
     author       = "Decentra Network Developers",
-    author_email = "atadogan06@gmail.com",
+    author_email = "onur@decentranetwork.org",
 
     packages     = ["decentra_network"],
 
