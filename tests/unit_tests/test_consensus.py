@@ -80,6 +80,7 @@ from decentra_network.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
 
 
 class Test_Consensus(unittest.TestCase):
@@ -2009,6 +2010,29 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertIsNot(result_2, False)
+
+
+
+    def test_Remove_Duplicates(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature": "test_SavePending_GetPending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+
+        block = Block("onur")
+        block.validating_list = [the_transaction, copy.copy(the_transaction)]
+        block = Remove_Duplicates(block)
+        self.assertEqual(len(block.validating_list), 1)
+
 
 
 unittest.main(exit=False)
