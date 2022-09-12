@@ -103,7 +103,7 @@ changelog:
       labels:
         - Licence
 
-    - title: Library
+    - title: Lib
       labels:
         - Lib
 
