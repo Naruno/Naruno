@@ -16,7 +16,8 @@ def Remove_Duplicates(block: Block):
     """
     new_validating_list = []
     for tx in block.validating_list:
-        if not any(tx.signature == tx2.signature for tx2 in new_validating_list):
+        if not any(tx.signature == tx2.signature
+                   for tx2 in new_validating_list):
             new_validating_list.append(tx)
     block.validating_list = new_validating_list
 

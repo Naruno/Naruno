@@ -36,14 +36,14 @@ from decentra_network.transactions.process_the_transaction import \
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def transactions_main(
-    block: Block, candidate_class: candidate_block, unl_nodes: dict
-) -> list:
-    temp_validating_list = find_validated(
-        block, candidate_class=candidate_class, unl_nodes=unl_nodes
-    )
+def transactions_main(block: Block, candidate_class: candidate_block,
+                      unl_nodes: dict) -> list:
+    temp_validating_list = find_validated(block,
+                                          candidate_class=candidate_class,
+                                          unl_nodes=unl_nodes)
 
-    newly_added_list = find_newly(block, temp_validating_list=temp_validating_list)
+    newly_added_list = find_newly(block,
+                                  temp_validating_list=temp_validating_list)
 
     block.validating_list = temp_validating_list
 
@@ -52,9 +52,7 @@ def transactions_main(
     logger.debug(f"Newly validating list {block.validating_list}")
 
     [
-        server.send_transaction(each_newly)
-        if GetTransaction(block, each_newly)
-        else None
-        for each_newly in newly_added_list
+        server.send_transaction(each_newly) if GetTransaction(
+            block, each_newly) else None for each_newly in newly_added_list
     ]
     return temp_validating_list
