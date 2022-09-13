@@ -33,9 +33,8 @@ def SavetoMyTransaction(
         The list of the my transactions.
     """
 
-    currently_list = (
-        GetMyTransaction() if custom_currently_list is None else custom_currently_list
-    )
+    currently_list = (GetMyTransaction() if custom_currently_list is None else
+                      custom_currently_list)
     tx_list = [tx, validated, sended]
     currently_list.append(tx_list)
 
