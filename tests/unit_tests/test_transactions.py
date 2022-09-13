@@ -85,7 +85,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], True)
 
-
     def test_get_my_transaction_not_sended(self):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
@@ -107,8 +106,6 @@ class Test_Transactions(unittest.TestCase):
         SaveMyTransaction(backup)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], True)
-
-
 
     def test_validate_my_transaction(self):
         backup = GetMyTransaction()
