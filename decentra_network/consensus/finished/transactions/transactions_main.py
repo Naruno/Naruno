@@ -26,7 +26,7 @@ def transactions_main(block: Block) -> list:
         list: The list of the transactions that are going to be validated.
     """
     new_my_transactions_list = None
-    my_address = wallet_import_all( 3)
+    my_address = wallet_import_all(3)
     my_public_key = wallet_import_all(0)
     custom_currently_list = GetMyTransaction()
     for tx in block.validating_list:
