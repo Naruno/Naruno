@@ -6,6 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
+
+from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
+from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import copy
@@ -280,6 +284,13 @@ class Test_Consensus(unittest.TestCase):
         self.assertTrue(true_time(block=block))
 
     def test_transactions_main_finished(self):
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+
+        password = "123"
+        wallet_create(password)
+        wallet_create(password)
+
         backup = GetMyTransaction()
         block = Block("Onur")
         the_transaction_json = {
@@ -295,15 +306,25 @@ class Test_Consensus(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction.fromUser = wallet_import(-1, 0)
+        the_transaction.fromUser = wallet_import(0, 0)
         block.validating_list.append(the_transaction)
 
         the_transaction_2 = copy.copy(the_transaction)
         the_transaction_2.signature = "ulusoy"
         the_transaction_2.fromUser = "onuratakan"
-        the_transaction_2.toUser = wallet_import(-1, 3)
+        the_transaction_2.toUser = wallet_import(1, 3)
 
         block.validating_list.append(the_transaction_2)
+
+
+
+        the_transaction_3 = copy.copy(the_transaction)
+        the_transaction_3.signature = "aaulusoy"
+        the_transaction_3.fromUser = "onuratakan"
+        the_transaction_3.toUser = wallet_import(0, 3)
+
+        block.validating_list.append(the_transaction_3)
+
 
         SavetoMyTransaction(the_transaction)
 
@@ -315,11 +336,13 @@ class Test_Consensus(unittest.TestCase):
             result[result.index(each_result)][0] = result[result.index(
                 each_result)][0].dump_json()
         SaveMyTransaction(backup)
+        save_wallet_list(original_saved_wallets)
         self.assertEqual(
             result,
             [
                 [the_transaction.dump_json(), True],
                 [the_transaction_2.dump_json(), True],
+                [the_transaction_3.dump_json(), True],
             ],
         )
 
