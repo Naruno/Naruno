@@ -10,10 +10,12 @@ from typing import List
 
 from decentra_network.config import MY_TRANSACTION_PATH
 from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_my_transaction import \
-    SaveMyTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_my_transaction import (
+    SaveMyTransaction,
+)
 from decentra_network.transactions.transaction import Transaction
 
 
@@ -33,8 +35,9 @@ def SavetoMyTransaction(
         The list of the my transactions.
     """
 
-    currently_list = (GetMyTransaction() if custom_currently_list is None else
-                      custom_currently_list)
+    currently_list = (
+        GetMyTransaction() if custom_currently_list is None else custom_currently_list
+    )
     tx_list = [tx, validated, sended]
     currently_list.append(tx_list)
 
