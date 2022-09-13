@@ -129,7 +129,7 @@ def send_coin_data_page():
         custom_balance=custom_balance,
     )
     if send_tx != False:
-        SavetoMyTransaction(send_tx)
+        SavetoMyTransaction(send_tx, sended=True)
         server.send_transaction(
             send_tx,
             custom_current_time=custom_current_time,

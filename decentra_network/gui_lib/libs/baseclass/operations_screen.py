@@ -94,7 +94,7 @@ class OperationBox(MDGridLayout):
                 if send_tx != False:
                     from decentra_network.node.server.server import server
 
-                    SavetoMyTransaction(send_tx)
+                    SavetoMyTransaction(send_tx, sended=True)
                     server.send_transaction(send_tx)
                     SaveBlock(block)
             else:

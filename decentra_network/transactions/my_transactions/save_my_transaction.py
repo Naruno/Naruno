@@ -24,6 +24,7 @@ def SaveMyTransaction(transaction_list):
             tx[0].signature: {
                 "tx": tx[0].dump_json(),
                 "validated": tx[1],
+                "sended": tx[2],
             }
             for tx in transaction_list
         }

@@ -139,7 +139,7 @@ def menu():
                 block=block,
             )
             if send_tx != False:
-                SavetoMyTransaction(send_tx)
+                SavetoMyTransaction(send_tx, sended=True)
                 server.send_transaction(send_tx)
                 SaveBlock(block)
         if choices_input == "scd":
@@ -152,7 +152,7 @@ def menu():
                 block=block,                
             )
             if send_tx != False:
-                SavetoMyTransaction(send_tx)
+                SavetoMyTransaction(send_tx, sended=True)
                 server.send_transaction(send_tx)
                 SaveBlock(block)
         if choices_input == "gb":
