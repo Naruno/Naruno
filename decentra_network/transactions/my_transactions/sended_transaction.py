@@ -19,7 +19,7 @@ from decentra_network.transactions.transaction import Transaction
 
 
 def SendedTransaction(tx: Transaction,
-                        custom_currently_list: list = None) -> list:
+                      custom_currently_list: list = None) -> list:
     """
     Set sendedn the transaction.
     Parameters:
