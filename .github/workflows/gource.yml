@@ -24,7 +24,7 @@ jobs:
         with:
           gource_title: 'Decentra Network'
           logo_url: 'https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png'
-          gource_resolution: '1080p'
+          gource_resolution: '720p'
           gource_fps: 60
           gource_font_size: 40
           avatars_auto_fetch: true
