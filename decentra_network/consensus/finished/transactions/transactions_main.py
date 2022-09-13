@@ -10,6 +10,7 @@ from decentra_network.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
 from decentra_network.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
+from decentra_network.transactions.my_transactions.sended_transaction import SendedTransaction
 from decentra_network.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import_all
@@ -38,4 +39,6 @@ def transactions_main(block: Block) -> list:
         elif tx.fromUser in my_public_key:
             new_my_transactions_list = ValidateTransaction(
                 tx, custom_currently_list=custom_currently_list)
+            new_my_transactions_list = SendedTransaction(
+                tx, custom_currently_list=custom_currently_list)                
     return new_my_transactions_list

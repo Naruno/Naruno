@@ -340,9 +340,9 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(
             result,
             [
-                [the_transaction.dump_json(), True],
-                [the_transaction_2.dump_json(), True],
-                [the_transaction_3.dump_json(), True],
+                [the_transaction.dump_json(), True, True],
+                [the_transaction_2.dump_json(), True, False],
+                [the_transaction_3.dump_json(), True, False],
             ],
         )
 
