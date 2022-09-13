@@ -19,12 +19,10 @@ from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.settings_system import the_settings
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from decentra_network.transactions.send import send
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 
@@ -85,16 +83,17 @@ class OperationBox(MDGridLayout):
         amount = text_list[1]
 
         if float(amount) >= GetBlock().minumum_transfer_amount:
-            if (
-                wallet_import(int(the_settings()["wallet"]), 2)
-                == sha256(text_list[0].encode("utf-8")).hexdigest()
-            ):
+            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
+                    text_list[0].encode("utf-8")).hexdigest()):
                 block = GetBlock()
-                send_tx = send(text_list[0], receiver_adress, amount=float(amount), block=block)
+                send_tx = send(text_list[0],
+                               receiver_adress,
+                               amount=float(amount),
+                               block=block)
                 if send_tx != False:
                     from decentra_network.node.server.server import server
 
-                    SavetoMyTransaction(send_tx)
+                    SavetoMyTransaction(send_tx, sended=True)
                     server.send_transaction(send_tx)
                     SaveBlock(block)
             else:
@@ -135,16 +134,16 @@ class OperationBox(MDGridLayout):
         if len(transactions) != 0:
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {
-                tx[
-                    0
-                ]: f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
+                tx[0]:
+                f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
                 for tx in transactions
             }
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.
+                    callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:

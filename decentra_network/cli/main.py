@@ -139,7 +139,7 @@ def menu():
                 block=block,
             )
             if send_tx != False:
-                SavetoMyTransaction(send_tx)
+                SavetoMyTransaction(send_tx, sended=True)
                 server.send_transaction(send_tx)
                 SaveBlock(block)
         if choices_input == "scd":
@@ -149,10 +149,10 @@ def menu():
                 input("Please write receiver adress: "),
                 amount=input("Coin Amount (ex. 1.0): "),
                 data=input("Data: "),
-                block=block,                
+                block=block,
             )
             if send_tx != False:
-                SavetoMyTransaction(send_tx)
+                SavetoMyTransaction(send_tx, sended=True)
                 server.send_transaction(send_tx)
                 SaveBlock(block)
         if choices_input == "gb":

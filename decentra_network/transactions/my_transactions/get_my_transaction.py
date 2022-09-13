@@ -12,7 +12,7 @@ from decentra_network.lib.config_system import get_config
 from decentra_network.transactions.transaction import Transaction
 
 
-def GetMyTransaction():
+def GetMyTransaction() -> list:
     """
     Returns the transaction db.
     """
@@ -29,6 +29,7 @@ def GetMyTransaction():
         for transaction in list(the_transactions_json.values()):
             the_transactions.append([
                 Transaction.load_json(transaction["tx"]),
-                transaction["validated"]
+                transaction["validated"],
+                transaction["sended"],
             ])
     return the_transactions

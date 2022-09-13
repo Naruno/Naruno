@@ -6,9 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
 
-from decentra_network.wallet.ellipticcurve.save_wallet_list import save_wallet_list
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
+    get_saved_wallet
+from decentra_network.wallet.ellipticcurve.save_wallet_list import \
+    save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -316,15 +318,12 @@ class Test_Consensus(unittest.TestCase):
 
         block.validating_list.append(the_transaction_2)
 
-
-
         the_transaction_3 = copy.copy(the_transaction)
         the_transaction_3.signature = "aaulusoy"
         the_transaction_3.fromUser = "onuratakan"
         the_transaction_3.toUser = wallet_import(0, 3)
 
         block.validating_list.append(the_transaction_3)
-
 
         SavetoMyTransaction(the_transaction)
 
@@ -340,9 +339,9 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(
             result,
             [
-                [the_transaction.dump_json(), True],
-                [the_transaction_2.dump_json(), True],
-                [the_transaction_3.dump_json(), True],
+                [the_transaction.dump_json(), True, True],
+                [the_transaction_2.dump_json(), True, False],
+                [the_transaction_3.dump_json(), True, False],
             ],
         )
 

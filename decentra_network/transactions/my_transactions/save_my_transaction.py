@@ -9,9 +9,8 @@ import os
 
 from decentra_network.config import MY_TRANSACTION_PATH
 from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
 
 
 def SaveMyTransaction(transaction_list):
@@ -24,6 +23,7 @@ def SaveMyTransaction(transaction_list):
             tx[0].signature: {
                 "tx": tx[0].dump_json(),
                 "validated": tx[1],
+                "sended": tx[2],
             }
             for tx in transaction_list
         }
