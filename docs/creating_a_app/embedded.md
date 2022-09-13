@@ -120,11 +120,11 @@ Firtly we must check the action of data. If the action is equal to the action th
 
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
-Firstly we will import the `wallet_import` from `decentra_network.wallet.ellipticcurve.wallet_import` for checking transactions came us or not.
+Firstly we will import the `wallet_import_all` from `decentra_network.wallet.ellipticcurve.wallet_import` for checking transactions came us or not.
 And we will import `get_logger` from `decentra_network.lib.log` of Decentra Network for printing.
 
 ```python
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import_all
 from decentra_network.lib.log import get_logger
 
 ```
@@ -143,7 +143,7 @@ Now we are ready for function:
 
 def app_name_main_tx(tx):
   app_name_logger = get_logger("app_name")
-  if wallet_import(-1, 3) == tx.toUser:
+  if tx.toUser in wallet_import_all(3):
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
@@ -160,7 +160,7 @@ import json
 import sys
 
 from decentra_network.transactions.send import send
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import_all
 from decentra_network.lib.log import get_logger
 
 
@@ -180,7 +180,7 @@ def app_name_send_tx(action, app_data, password, to_user) -> bool:
 
 def app_name_main_tx(tx):
   app_name_logger = get_logger("app_name")
-  if wallet_import(-1, 3) == tx.toUser:
+  if tx.toUser in wallet_import_all(3):
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
@@ -249,7 +249,7 @@ def add_to_list(data):
 
 def app_name_main_tx(tx):
   app_name_logger = get_logger("app_name")
-  if wallet_import(-1, 3) == tx.toUser:
+  if tx.toUser in wallet_import_all(3):
     tx = tx.data.replace("'", '"')
     tx = json.loads(tx)
     if tx["action"] == "app_name_action_name":
