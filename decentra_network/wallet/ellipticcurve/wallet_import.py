@@ -107,6 +107,15 @@ def wallet_import(wallet, mode, password=None):
         return False
 
 
+def wallet_import_all(mode, password=None):
+    temp_saved_wallet = get_saved_wallet()
+    the_result = []
+
+    for account in temp_saved_wallet:
+        the_result.append(wallet_import(account, mode, password))
+    return the_result
+
+
 def Address(publickey):
     the_public_key = "".join(
         [l.strip() for l in publickey.splitlines() if l and not l.startswith("-----")]
