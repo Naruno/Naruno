@@ -30,7 +30,8 @@ class NavigationItem(ThemableBehavior, ButtonBehavior, BoxLayout):
         return super().on_release()
 
     def _button_expand(self):
-        label_anim = Animation(opacity=1, transition="in_sine", duration=self.duration)
+        label_anim = Animation(
+            opacity=1, transition="in_sine", duration=self.duration)
         label_anim.start(self.ids._label)
 
         anim = Animation(
@@ -43,7 +44,8 @@ class NavigationItem(ThemableBehavior, ButtonBehavior, BoxLayout):
 
     def _button_shrink(self):
 
-        label_anim = Animation(opacity=0, transition="out_sine", duration=self.duration)
+        label_anim = Animation(
+            opacity=0, transition="out_sine", duration=self.duration)
         label_anim.start(self.ids._label)
 
         but_anim = Animation(
