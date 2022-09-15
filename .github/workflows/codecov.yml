@@ -27,7 +27,7 @@ concurrency:
 jobs:
   run:
     runs-on: ${{ matrix.os }}
-    environment: Tests 
+    environment: Codecov 
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
