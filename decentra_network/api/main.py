@@ -308,20 +308,15 @@ def transaction_sended_not_validated_page():
         GetMyTransaction(sended=True, validated=False, turn_json=True))
 
 
-@app.route("/transactions/received/validated", methods=["GET"])
-def transaction_received_validated_page():
+
+
+
+@app.route("/transactions/received", methods=["GET"])
+def transaction_received_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(
-        GetMyTransaction(sended=False, validated=True, turn_json=True))
-
-
-@app.route("/transactions/received/not_validated", methods=["GET"])
-def transaction_received_not_validated_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify(
-        GetMyTransaction(sended=False, validated=False, turn_json=True))
+        GetMyTransaction(sended=False, turn_json=True))
 
 @app.route("/transactions/all", methods=["GET"])
 def transaction_all_page():
