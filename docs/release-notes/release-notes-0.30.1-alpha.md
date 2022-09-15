@@ -19,20 +19,20 @@ There have been no compatibility changes.
 # Notable changes
 
 ## Consensus
-Added a Remove_Duplicates function to round 1.
 
+Added a Remove_Duplicates function to round 1.
 
 # 0.30.1-alpha change log
 
 <!-- Release notes generated using configuration in .github/release.yml at master -->
 
 ## What's Changed
-### Consensus
-* consensus: Removed duplicated transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1131
 
+### Consensus
+
+- consensus: Removed duplicated transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1131
 
 **Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.30.0-alpha...0.30.1-alpha
-
 
 # Credits
 
