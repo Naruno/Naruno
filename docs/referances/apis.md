@@ -36,6 +36,10 @@ increase by node number. For example:
 | GET    | /settings/debug/on        | Sets the debug mode on                            |
 | GET    | /settings/debug/off       | Sets the debug mode off                           |
 | GET    | /block/get                | Gets block from other nodes                       |
+| GET    | /transactions/sended/validated  | Returns sended validated transactions as json                       |
+| GET    | /transactions/sended/not_validated  | Returns sended not validated transactions as json                       |
+| GET    | /transactions/received  | Returns received transactions as json                       |
+| GET    | /transactions/all  | Returns all transactions as json                       |
 | GET    | /export/transactions/csv  | Exports transactions to csv                       |
 | GET    | /export/transactions/json | Exports transactions to json                      |
 | GET    | /status                   | Returns the status of network                     |
