@@ -292,6 +292,38 @@ def export_transaction_json_page():
         [f"{str(i[0].__dict__)} | {str(i[1])}" for i in GetMyTransaction()])
 
 
+@app.route("/transactions/sended/validated", methods=["GET"])
+def transaction_sended_validated_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(
+        GetMyTransaction(sended=True, validated=True, turn_json=True))
+
+
+@app.route("/transactions/sended/not_validated", methods=["GET"])
+def transaction_sended_not_validated_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(
+        GetMyTransaction(sended=True, validated=False, turn_json=True))
+
+
+@app.route("/transactions/received/validated", methods=["GET"])
+def transaction_received_validated_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(
+        GetMyTransaction(sended=False, validated=True, turn_json=True))
+
+
+@app.route("/transactions/received/not_validated", methods=["GET"])
+def transaction_received_not_validated_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(
+        GetMyTransaction(sended=False, validated=False, turn_json=True))
+
+
 @app.route("/status", methods=["GET"])
 def status_page():
     logger.info(
