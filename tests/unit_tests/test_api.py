@@ -703,8 +703,8 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/sended/validated")
 
         result = response.read()
-        result = result.decode("utf-8")
-        result = result.replace("\n", "")
+        
+        
         result = json.loads(result)
 
         self.assertEqual(
@@ -737,8 +737,8 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/sended/not_validated")
 
         result = response.read()
-        result = result.decode("utf-8")
-        result = result.replace("\n", "")
+        
+        
         result = json.loads(result)
 
         self.assertEqual(
@@ -771,8 +771,8 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/received/validated")
 
         result = response.read()
-        result = result.decode("utf-8")
-        result = result.replace("\n", "")
+        
+        
         result = json.loads(result)
 
         self.assertEqual(
@@ -805,8 +805,8 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/received/not_validated")
 
         result = response.read()
-        result = result.decode("utf-8")
-        result = result.replace("\n", "")
+        
+        
         result = json.loads(result)
 
         self.assertEqual(
