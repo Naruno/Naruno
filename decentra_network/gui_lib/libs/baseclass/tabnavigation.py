@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.core.window import Window
