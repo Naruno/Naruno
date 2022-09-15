@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 
-from decentra_network.lib.settings_system import (d_mode_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+from decentra_network.lib.settings_system import d_mode_settings
+from decentra_network.lib.settings_system import t_mode_settings
+from decentra_network.lib.settings_system import the_settings
 
 
 class SettingsScreen(MDScreen):

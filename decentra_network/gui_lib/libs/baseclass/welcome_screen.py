@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 from kivy.clock import Clock
 from kivy.uix.progressbar import ProgressBar
 from kivymd.uix.screen import MDScreen
