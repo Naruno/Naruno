@@ -31,7 +31,7 @@ Added a Remove_Duplicates function to round 1.
 * consensus: Removed duplicated transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1131
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.29.1-alpha...0.30.1-alpha
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.30.0-alpha...0.30.1-alpha
 
 
 # Credits
