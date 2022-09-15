@@ -19,7 +19,7 @@ There have been no compatibility changes.
 # Notable changes
 
 ## API
-Added new APIs for getting the transactions about wallets. Like sended, received, validated, not validated.
+Added new APIs for getting the transactions about wallets. Like sended, received, validated and not validated.
 
 ## GitHub
 Seperated environments for codecov, unit, functional and stability tests.
@@ -29,10 +29,13 @@ Seperated environments for codecov, unit, functional and stability tests.
 <!-- Release notes generated using configuration in .github/release.yml at master -->
 
 ## What's Changed
-### API
+### Transactions
 * api: Added new /transactions/ based APIs that seperated by sended or received and validated or not validated by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1148
+* api: Added `/transactions/all` API for getting all transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1154
+* api: Removed some useless parts of new `/transactions/` APIs by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1156
 ### Docs
 * docs: Fixed 0.30.1 full changelog link by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1151
+* docs: Added new API docs by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1155
 ### GitHub
 * github: Changed environments by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1149
 
