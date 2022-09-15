@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from kivymd.uix.screen import MDScreen
-
-from kivy.uix.progressbar import ProgressBar
 from kivy.clock import Clock
+from kivy.uix.progressbar import ProgressBar
+from kivymd.uix.screen import MDScreen
 
 
 class DecentraWelcomeScreen(MDScreen):
