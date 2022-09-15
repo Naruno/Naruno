@@ -90,7 +90,7 @@ class Test_API(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.maxDiff = None        
+        cls.maxDiff = None
         CleanUp_tests()
         decentra_network.api.main.account_list = GetAccounts(temp_path)
 
@@ -704,8 +704,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/sended/validated")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -738,8 +737,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/sended/not_validated")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -772,8 +770,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/received/validated")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -806,8 +803,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/received/not_validated")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -821,7 +817,6 @@ class Test_API(unittest.TestCase):
         )
 
         SaveMyTransaction(backup)
-
 
     def test_transaction_all_page(self):
         backup = GetMyTransaction()
@@ -841,8 +836,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/all")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -866,5 +860,6 @@ class Test_API(unittest.TestCase):
         )
 
         SaveMyTransaction(backup)
+
 
 unittest.main(exit=False)
