@@ -107,6 +107,147 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], True)
 
+    def test_get_my_transaction_just_sended(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+        new_transaction = Transaction(1, "af", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False)
+
+        new_transaction = Transaction(1, "a", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True)
+
+        result = GetMyTransaction(sended=True)
+
+        SaveMyTransaction(backup)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][0].signature, new_transaction.signature)
+        self.assertEqual(result[0][2], True)
+
+    def test_get_my_transaction_just_validated(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+        new_transaction = Transaction(1, "bf", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, validated=False)
+
+        new_transaction = Transaction(1, "b", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, validated=True)
+
+        result = GetMyTransaction(validated=True)
+
+        SaveMyTransaction(backup)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][0].signature, new_transaction.signature)
+        self.assertEqual(result[0][1], True)
+
+    def test_get_my_transaction_just_sended_validated(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+
+        new_transaction = Transaction(1, "cf", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=True)
+
+        new_transaction = Transaction(1, "cff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=False)
+
+        new_transaction = Transaction(1, "c", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=True)
+
+        result = GetMyTransaction(sended=True, validated=True)
+
+        SaveMyTransaction(backup)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][0].signature, new_transaction.signature)
+        self.assertEqual(result[0][1], True)
+        self.assertEqual(result[0][2], True)
+
+    def test_get_my_transaction_just_sended_no_validated(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+
+        new_transaction = Transaction(1, "df", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=False)
+
+        new_transaction = Transaction(1, "dff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=True)
+
+        new_transaction = Transaction(1, "d", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=False)
+
+        result = GetMyTransaction(sended=True, validated=False)
+
+        SaveMyTransaction(backup)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][0].signature, new_transaction.signature)
+        self.assertEqual(result[0][1], False)
+        self.assertEqual(result[0][2], True)
+
+    def test_get_my_transaction_just_received(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+
+        new_transaction = Transaction(1, "ef", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True)
+
+        new_transaction = Transaction(1, "e", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False)
+
+        result = GetMyTransaction(sended=False)
+
+        SaveMyTransaction(backup)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][0].signature, new_transaction.signature)
+        self.assertEqual(result[0][2], False)
+
+    def test_get_my_transaction_just_received_validated(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+
+        new_transaction = Transaction(1, "ff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=True)
+
+        new_transaction = Transaction(1, "fff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=False)
+
+        new_transaction = Transaction(1, "f", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=True)
+
+        result = GetMyTransaction(sended=False, validated=True)
+
+        SaveMyTransaction(backup)
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][0].signature, new_transaction.signature)
+        self.assertEqual(result[0][1], True)
+        self.assertEqual(result[0][2], False)
+
+    def test_get_my_transaction_just_received_no_validated(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+
+        new_transaction = Transaction(1, "gf", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=False)
+
+        new_transaction = Transaction(1, "gff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=True)
+
+        new_transaction = Transaction(1, "g", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=False)
+
+        result = GetMyTransaction(sended=False, validated=False)
+
+        SaveMyTransaction(backup)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][0].signature, new_transaction.signature)
+        self.assertEqual(result[0][1], False)
+        self.assertEqual(result[0][2], False)
+
     def test_validate_my_transaction(self):
         backup = GetMyTransaction()
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)

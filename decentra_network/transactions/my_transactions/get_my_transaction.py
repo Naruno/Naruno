@@ -12,7 +12,7 @@ from decentra_network.lib.config_system import get_config
 from decentra_network.transactions.transaction import Transaction
 
 
-def GetMyTransaction() -> list:
+def GetMyTransaction(sended=None, validated=None) -> list:
     """
     Returns the transaction db.
     """
@@ -32,4 +32,11 @@ def GetMyTransaction() -> list:
                 transaction["validated"],
                 transaction["sended"],
             ])
+
+    if sended is not None:
+        the_transactions = [tx for tx in the_transactions if tx[2] == sended]
+    
+    if validated is not None:
+        the_transactions = [tx for tx in the_transactions if tx[1] == validated]
+    
     return the_transactions
