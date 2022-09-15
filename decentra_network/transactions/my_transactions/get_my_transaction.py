@@ -27,19 +27,19 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     with open(MY_TRANSACTION_PATH, "r") as my_transaction_file:
         the_transactions_json = json.load(my_transaction_file)
         for transaction in list(the_transactions_json.values()):
-            the_transactions.append(
-                [
-                    Transaction.load_json(transaction["tx"]),
-                    transaction["validated"],
-                    transaction["sended"],
-                ]
-            )
+            the_transactions.append([
+                Transaction.load_json(transaction["tx"]),
+                transaction["validated"],
+                transaction["sended"],
+            ])
 
     if sended is not None:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
 
     if validated is not None:
-        the_transactions = [tx for tx in the_transactions if tx[1] == validated]
+        the_transactions = [
+            tx for tx in the_transactions if tx[1] == validated
+        ]
 
     if turn_json:
         the_transactions = {
