@@ -323,6 +323,12 @@ def transaction_received_not_validated_page():
     return jsonify(
         GetMyTransaction(sended=False, validated=False, turn_json=True))
 
+@app.route("/transactions/all", methods=["GET"])
+def transaction_all_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(
+        GetMyTransaction(turn_json=True))
 
 @app.route("/status", methods=["GET"])
 def status_page():

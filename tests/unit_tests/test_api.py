@@ -90,6 +90,7 @@ class Test_API(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        cls.maxDiff = None        
         CleanUp_tests()
         decentra_network.api.main.account_list = GetAccounts(temp_path)
 
@@ -821,5 +822,49 @@ class Test_API(unittest.TestCase):
 
         SaveMyTransaction(backup)
 
+
+    def test_transaction_all_page(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+        new_transaction = Transaction(1, "gf", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=False)
+
+        new_transaction = Transaction(1, "gff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=True)
+
+        new_transaction = Transaction(1, "c", "", "", {"data": "dadata"}, 1, 1,
+                                      1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=False)
+
+        response = urllib.request.urlopen(
+            "http://localhost:7777/transactions/all")
+
+        result = response.read()
+        
+        
+        result = json.loads(result)
+
+        self.assertEqual(
+            result["0"]["transaction"]["data"],
+            "",
+        )
+
+        self.assertEqual(
+            result["1"]["transaction"]["data"],
+            "",
+        )
+
+        self.assertEqual(
+            result["2"]["transaction"]["data"],
+            "{'data': 'dadata'}",
+        )
+
+        self.assertEqual(
+            str(result),
+            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+        )
+
+        SaveMyTransaction(backup)
 
 unittest.main(exit=False)
