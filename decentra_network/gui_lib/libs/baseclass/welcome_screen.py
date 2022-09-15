@@ -12,7 +12,8 @@ class DecentraWelcomeScreen(MDScreen):
 
     def __init__(self, *args, **kwargs):
         super(DecentraWelcomeScreen, self).__init__(*args, **kwargs)
-        self.update_bar_trigger = Clock.schedule_interval(self.update_bar, 0.01)
+        self.update_bar_trigger = Clock.schedule_interval(
+            self.update_bar, 0.01)
 
     def update_bar(self, dt):
         if self.ids.pb.value < 100:
