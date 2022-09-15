@@ -75,7 +75,7 @@ Fixed perpetual timer structure and added performance analyzers.
 
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.29.1-alpha...0.30.0-alpha
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.29.1-alpha...v0.30.0-alpha
 
 
 # Credits
