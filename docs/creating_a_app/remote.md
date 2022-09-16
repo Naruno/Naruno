@@ -42,10 +42,11 @@ class Integration:
 
 ## Second Stage: Sending the Data
 
-Firtly we are importing the requests library for sending the data to the API.
+Firtly we are importing the requests and json library for using in sending the data to the API.
 
 ```python
 import requests
+import json
 ```
 
 Before the sending you must determine the data, for this first you must create a dictionary and determine a action for your data. The action is a string, we are use this for processing the data in getting function.
@@ -93,6 +94,7 @@ And in the end of this section we can combine this operations at `decentra_netwo
 // decentra_network_integration.py
 
 import requests
+import json
 
 class Integration:
 
@@ -212,6 +214,7 @@ class Integration:
 // decentra_network_integration.py
 
   import requests
+  import json
 
   class Integration:
     cache = []
