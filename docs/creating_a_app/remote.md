@@ -11,7 +11,7 @@ If you want to develop applications outside of Decentra network you can use [API
 
 ## Prerequisites
 
-- A Network (You can check the [Building Test Network](https://docs.decentranetwork.org/building_test_network/) for this)
+- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.org/building_a_test_network/) for this)
 - Running API (You can check the [Starting the API](https://docs.decentranetwork.org/referances/apis.html#starting-the-api) for this)
 
 ### Installing requirements
