@@ -90,7 +90,7 @@ class Test_API(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.maxDiff = None        
+        cls.maxDiff = None
         CleanUp_tests()
         decentra_network.api.main.account_list = GetAccounts(temp_path)
 
@@ -613,25 +613,6 @@ class Test_API(unittest.TestCase):
 """
             self.assertEqual(content, expected_content)
 
-    def test_export_transaction_json_page(self):
-        backup = GetMyTransaction()
-        SaveMyTransaction({})
-        new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
-        SavetoMyTransaction(new_transaction, validated=True)
-
-        response = urllib.request.urlopen(
-            "http://localhost:7777/export/transactions/json")
-
-        expected_result = "[{sequance_number: 1, signature: , fromUser: , toUser: , data: , amount: 1.0, transaction_fee: 1.0, transaction_time: 1} | True]"
-
-        self.assertEqual(
-            str((((response.read()).decode("utf-8")).replace("'", "")).replace(
-                """\"""", "")).replace("\n", ""),
-            expected_result,
-        )
-
-        SaveMyTransaction(backup)
-
     def test_status_page(self):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
@@ -704,8 +685,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/sended/validated")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -738,8 +718,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/sended/not_validated")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -772,8 +751,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/received")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -781,14 +759,12 @@ class Test_API(unittest.TestCase):
             "{'data': 'dadata'}",
         )
 
-
         self.assertEqual(
             str(result),
             """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
         )
 
         SaveMyTransaction(backup)
-
 
     def test_transaction_all_page(self):
         backup = GetMyTransaction()
@@ -808,8 +784,7 @@ class Test_API(unittest.TestCase):
             "http://localhost:7777/transactions/all")
 
         result = response.read()
-        
-        
+
         result = json.loads(result)
 
         self.assertEqual(
@@ -833,5 +808,6 @@ class Test_API(unittest.TestCase):
         )
 
         SaveMyTransaction(backup)
+
 
 unittest.main(exit=False)
