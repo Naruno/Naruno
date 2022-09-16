@@ -163,17 +163,20 @@ class Integration:
 And after we can use this.
 
 ```python
-for transaction in transactions:
-  if transaction in Integration.cache:
-    transactions.remove(transaction)
-  else:
-    Integration.cache.append(transaction)
+
+      new_dict = {}
+      for transaction in transactions:
+        if transaction in Integration.cache:
+          continue
+        else:
+          new_dict[transaction] = transactions[transaction]
+          Integration.cache.append(transaction)
 ```
 
 And not we hava a new data list in `transactions` variable. before the process we will transform the data for using in our app.
 
 ```python
-for transaction in transactions:
+      for transaction in new_dict:
 ```
 
 At last we get the new datas, firstly we must check the action of data. If the action is equal to the action that we determined before, we can process the data.
@@ -181,8 +184,9 @@ At last we get the new datas, firstly we must check the action of data. If the a
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
 ```python
-  if transaction["data"]["action"] == "app_name_action_name":
-    print(transaction["data"]["app_data"])
+        new_dict[transaction]["transaction"]["data"] = json.loads(new_dict[transaction]["transaction"]["data"])
+        if new_dict[transaction]["transaction"]["data"]["action"] == "app_name_action_name":
+          print(new_dict[transaction]["transaction"]["data"]["app_data"])
 ```
 
 Okay, now we can combine this operations at `decentra_network_integration.py` with `Integration.get` function.
@@ -197,15 +201,19 @@ class Integration:
       response = requests.get('http://0.0.0.0:8000/transactions/received')
       transactions = response.json()
 
+      new_dict = {}
+
       for transaction in transactions:
         if transaction in Integration.cache:
-          transactions.remove(transaction)
+          continue
         else:
+          new_dict[transaction] = transactions[transaction]
           Integration.cache.append(transaction)
-      for transaction in transactions:
+      for transaction in new_dict:
 
-        if transaction["data"]["action"] == "app_name_action_name":
-          print(transaction["data"]["app_data"])
+        new_dict[transaction]["transaction"]["data"] = json.loads(new_dict[transaction]["transaction"]["data"])
+        if new_dict[transaction]["transaction"]["data"]["action"] == "app_name_action_name":
+          print(new_dict[transaction]["transaction"]["data"]["app_data"])
 ```
 
 ## Final
@@ -213,10 +221,10 @@ class Integration:
 ```python
 // decentra_network_integration.py
 
-  import requests
-  import json
+import requests
+import json
 
-  class Integration:
+class Integration:
     cache = []
 
     def send(action, app_data, password, to_user) -> bool:
@@ -246,15 +254,19 @@ class Integration:
       response = requests.get('http://0.0.0.0:8000/transactions/received')
       transactions = response.json()
 
+      new_dict = {}
+
       for transaction in transactions:
         if transaction in Integration.cache:
-          transactions.remove(transaction)
+          continue
         else:
+          new_dict[transaction] = transactions[transaction]
           Integration.cache.append(transaction)
-      for transaction in transactions:
+      for transaction in new_dict:
 
-        if transaction["data"]["action"] == "app_name_action_name":
-          print(transaction["data"]["app_data"])
+        new_dict[transaction]["transaction"]["data"] = json.loads(new_dict[transaction]["transaction"]["data"])
+        if new_dict[transaction]["transaction"]["data"]["action"] == "app_name_action_name":
+          print(new_dict[transaction]["transaction"]["data"]["app_data"])
 ```
 
 ## Expectations
