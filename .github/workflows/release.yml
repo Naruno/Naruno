@@ -22,7 +22,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Decentra Network ${{ github.ref }}
-          body: |
-            We are working on this, please wait for a while.
+          body_path: docs/release-notes/release-notes-0.31.1-alpha.md
           draft: false
           prerelease: true
