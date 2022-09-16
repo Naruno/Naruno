@@ -7,7 +7,7 @@
 import contextlib
 import copy
 import json
-    import os
+import os
 import sys
 import time
 from urllib import response
