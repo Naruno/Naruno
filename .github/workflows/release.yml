@@ -23,5 +23,5 @@ jobs:
           release_name: Decentra Network ${{ github.ref }}
           body: |
             We are working on this, please wait for a while.
-          draft: true
-          prerelease: false
+          draft: false
+          prerelease: true
