@@ -284,8 +284,6 @@ def export_transaction_csv_page():
         ))
 
 
-
-
 @app.route("/transactions/sended/validated", methods=["GET"])
 def transaction_sended_validated_page():
     logger.info(
@@ -302,9 +300,6 @@ def transaction_sended_not_validated_page():
         GetMyTransaction(sended=True, validated=False, turn_json=True))
 
 
-
-
-
 @app.route("/transactions/received", methods=["GET"])
 def transaction_received_page():
     logger.info(
@@ -312,12 +307,14 @@ def transaction_received_page():
     return jsonify(
         GetMyTransaction(sended=False, turn_json=True))
 
+
 @app.route("/transactions/all", methods=["GET"])
 def transaction_all_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(
         GetMyTransaction(turn_json=True))
+
 
 @app.route("/status", methods=["GET"])
 def status_page():
@@ -358,8 +355,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
