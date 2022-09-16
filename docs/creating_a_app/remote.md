@@ -137,12 +137,12 @@ Integration.send(
 
 ## Third Stage: Getting the Data
 
-When you send the data, the data will be available in the to_user. You can get the manualy with ` /export/transactions/json` API.
+When you send the data, the data will be available in the to_user. You can get the manualy with `/transactions/received` API.
 
 So we will request at first the data with `requests.get` and then we will read as json with `response.json()`
 
 ```python
-response = requests.get('http://0.0.0.0:8000/export/transactions/json')
+response = requests.get('http://0.0.0.0:8000/transactions/received')
 transactions = response.json()
 ```
 
@@ -172,13 +172,6 @@ And not we hava a new data list in `transactions` variable. before the process w
 
 ```python
 for transaction in transactions:
-  transaction = transaction.replace("\'", "\"")
-  transaction = transaction.replace("\"data\":", "\"data\": \"I\",")
-  transaction = transaction.replace("}\"", "")
-  transaction = transaction.replace("\"{", "")
-  transaction = transaction.replace(" | True", "")
-
-  transaction = json.loads(transaction)
 ```
 
 At last we get the new datas, firstly we must check the action of data. If the action is equal to the action that we determined before, we can process the data.
@@ -186,8 +179,8 @@ At last we get the new datas, firstly we must check the action of data. If the a
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
 ```python
-  if transaction["action"] == "app_name_action_name":
-    print(transaction["app_data"])
+  if transaction["data"]["action"] == "app_name_action_name":
+    print(transaction["data"]["app_data"])
 ```
 
 Okay, now we can combine this operations at `decentra_network_integration.py` with `Integration.get` function.
@@ -199,7 +192,7 @@ class Integration:
 
     def get():
 
-      response = requests.get('http://0.0.0.0:8000/export/transactions/json')
+      response = requests.get('http://0.0.0.0:8000/transactions/received')
       transactions = response.json()
 
       for transaction in transactions:
@@ -208,15 +201,9 @@ class Integration:
         else:
           Integration.cache.append(transaction)
       for transaction in transactions:
-        transaction = transaction.replace("\'", "\"")
-        transaction = transaction.replace("\"data\":", "\"data\": \"I\",")
-        transaction = transaction.replace("}\"", "")
-        transaction = transaction.replace("\"{", "")
-        transaction = transaction.replace(" | True", "")
 
-        transaction = json.loads(transaction)
-        if transaction["action"] == "app_name_action_name":
-          print(transaction["app_data"])
+        if transaction["data"]["action"] == "app_name_action_name":
+          print(transaction["data"]["app_data"])
 ```
 
 ## Final
@@ -253,7 +240,7 @@ class Integration:
 
     def get():
 
-      response = requests.get('http://0.0.0.0:8000/export/transactions/json')
+      response = requests.get('http://0.0.0.0:8000/transactions/received')
       transactions = response.json()
 
       for transaction in transactions:
@@ -262,15 +249,9 @@ class Integration:
         else:
           Integration.cache.append(transaction)
       for transaction in transactions:
-        transaction = transaction.replace("\'", "\"")
-        transaction = transaction.replace("\"data\":", "\"data\": \"I\",")
-        transaction = transaction.replace("}\"", "")
-        transaction = transaction.replace("\"{", "")
-        transaction = transaction.replace(" | True", "")
 
-        transaction = json.loads(transaction)
-        if transaction["action"] == "app_name_action_name":
-          print(transaction["app_data"])
+        if transaction["data"]["action"] == "app_name_action_name":
+          print(transaction["data"]["app_data"])
 ```
 
 ## Expectations

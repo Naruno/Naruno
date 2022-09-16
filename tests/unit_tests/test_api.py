@@ -613,24 +613,6 @@ class Test_API(unittest.TestCase):
 """
             self.assertEqual(content, expected_content)
 
-    def test_export_transaction_json_page(self):
-        backup = GetMyTransaction()
-        SaveMyTransaction({})
-        new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
-        SavetoMyTransaction(new_transaction, validated=True)
-
-        response = urllib.request.urlopen(
-            "http://localhost:7777/export/transactions/json")
-
-        expected_result = "[{sequance_number: 1, signature: , fromUser: , toUser: , data: , amount: 1.0, transaction_fee: 1.0, transaction_time: 1} | True]"
-
-        self.assertEqual(
-            str((((response.read()).decode("utf-8")).replace("'", "")).replace(
-                """\"""", "")).replace("\n", ""),
-            expected_result,
-        )
-
-        SaveMyTransaction(backup)
 
     def test_status_page(self):
         custom_first_block = Block("Onur")

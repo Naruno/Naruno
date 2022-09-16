@@ -284,12 +284,6 @@ def export_transaction_csv_page():
         ))
 
 
-@app.route("/export/transactions/json", methods=["GET"])
-def export_transaction_json_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    return jsonify(
-        [f"{str(i[0].__dict__)} | {str(i[1])}" for i in GetMyTransaction()])
 
 
 @app.route("/transactions/sended/validated", methods=["GET"])

@@ -41,7 +41,6 @@ increase by node number. For example:
 | GET    | /transactions/received             | Returns received transactions as json             |
 | GET    | /transactions/all                  | Returns all transactions as json                  |
 | GET    | /export/transactions/csv           | Exports transactions to csv                       |
-| GET    | /export/transactions/json          | Exports transactions to json                      |
 | GET    | /status                            | Returns the status of network                     |
 
 # Starting the API
