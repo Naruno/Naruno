@@ -7,6 +7,7 @@ has_children: False
 ---
 
 # The Circulation
+
 Circulation system is most important and most basic part. Its just run the consensus trigger functions in every 0.50s. But its keep alive the your Decentra Network.
 
 ```mermaid
