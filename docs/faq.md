@@ -37,8 +37,6 @@ Because smart contacts are not developed for developing decentralized applicatio
 
 Decentra Network is have a heart and when the heart is beating the circulation is start. Circulation is the process that runs consensus, and the consensus is process everyting in Decentra Network. Its basic and important process for Decentra Network. We use this method for high performance in slow hardwares.
 
-
 ## How can i learn Decentra Network?
 
 Decentra Network have a professional structure, this structure can be light for developers. We recommend firstly you to read our documentation for learning Decentra Network. After you can dive into our code and you can learn our code. Also you can join our community and you can ask your questions.
-
