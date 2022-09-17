@@ -2,7 +2,7 @@
 layout: default
 title: Consensus
 parent: Concepts
-nav_order: 5
+nav_order: 6
 has_children: False
 ---
 
@@ -14,20 +14,19 @@ Blockchain is have a distributed concept, which means the data is stored on mult
 
 The Proof of Work is a amazing start for Blockchain technology, but it's not the best method, because it's need a lot of energy and time to reach the consensus. The Proof of Work is the first method that reach the consensus, but it's not the best method, and there is a lot of other methods that can reach the consensus with less energy and time. We use the best method, The Federated Byzantine Agreement, is our consensus method.
 
-
-
-
 The Federated Byzantine Agreement goal is reach success with no centralization trend, no safety risk (Preventing sybil attacks) and fast speed. FBA got his power from it's participant method. For the success on this theory, our FBA implementation that on the ongoing_main is use two stages, the first stage is the Round 1, and the second stage is Round 2.
 
-
 ## consensus_trigger
+
 Consensus trigger is a starter by checking the block status if block is ready to be added to the blockchain (validated), it will add the block to the blockchain and start the finished processes. If the block is not ready, it will start consensus processes.
 
-
 ## finished_main
+
 Finished main is a function that will run after the block is validated. It will check the block status for resetting if if its suitable (Have an transaction) the finished_main will save the block and run apps and transaction saver other wise function that not do these just saves and calls PendingtoValidating.
+
 ## ongoing_main
-This function is run for ongoing consensus process. 
+
+This function is run for ongoing consensus process.
 
 - If block.round_1 is False it will run the consensus_round_1 function.
 - If block.round_1 is True and block.round_2 is False its start consensus_round_2.
@@ -35,15 +34,18 @@ This function is run for ongoing consensus process.
 And return the block.
 
 ## Round 1
+
 The first stage of consensus will sync the transaction that selected as True from majority. For this every node send self candidate block that include suggested transactions.
 
 When a node got enough candidate block (80% of UNL Nodes) the proccessing is starts and transaction process and the transaction that selected from majority will be added to the block. After the transaction process is done, the new block is created and ready to round 2.
 
 ### Comunication
+
 Every node send self block to the network and the network send the block to the other nodes.
 
-These process runs in the 
-- 'decentra_network.node.server.server.send_my_block' 
+These process runs in the
+
+- 'decentra_network.node.server.server.send_my_block'
 - 'decentra_network.node.server.server.get_candidate_block'
 
 functions.
@@ -53,8 +55,8 @@ sequenceDiagram
     participant Node_A
     participant Node_B
     participant Node_C
-    
-            
+
+
     Node_A->>+Node_B: transaction_a and transaction_b is True
     Node_A->>+Node_C: transaction_a and transaction_b is True
 
@@ -66,9 +68,10 @@ sequenceDiagram
 ```
 
 ### Decision
+
 When a node got enough candidate block (80% of UNL Nodes) it's run a decision mechanism with this:
 
-- 'decentra_network.consensus.rounds.round_1.process.transactions.transactions_main.transactions_main' 
+- 'decentra_network.consensus.rounds.round_1.process.transactions.transactions_main.transactions_main'
 
 function.
 
@@ -89,27 +92,28 @@ classDiagram
     class Node_C{
       +transaction_B
     }
-```	
+```
 
 ## Round 2
+
 The last stage of consensus is the round 2, in this stage the block hash that created in the round 1 will be validated by the nodes. The nodes send self block hash to UNL nodes. When the block got enough validation result (80% same of UNL Nodes) the block will be added to the blockchain as a validated block.
 
 ### Comunication
-In this stage every node send self block hash to other UNL nodes with this 
 
-- 'decentra_network.node.server.server.send_my_block_hash'' 
+In this stage every node send self block hash to other UNL nodes with this
+
+- 'decentra_network.node.server.server.send_my_block_hash''
 - 'decentra_network.node.server.server.get_candidate_block_hash'
 
 functions.
-
 
 ```mermaid
 sequenceDiagram
     participant Node_A
     participant Node_B
     participant Node_C
-    
-            
+
+
     Node_A->>+Node_B: The new block hash is 321
     Node_A->>+Node_C: The new block hash is 321
 
@@ -121,9 +125,10 @@ sequenceDiagram
 ```
 
 ### Decision
+
 When a node got enough candidate block hash (80% of UNL Nodes) it's run a decision mechanism with this:
 
-- 'decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main.process_candidate_blocks_hashes' 
+- 'decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main.process_candidate_blocks_hashes'
 
 function.
 
@@ -143,10 +148,10 @@ classDiagram
     class Node_C{
       HASH 123
     }
-```	
-
+```
 
 ## Consensus Diagram
+
 This diagram includes main process except some endpoint functions contents.
 
 ```mermaid
@@ -187,7 +192,7 @@ flowchart RL
             true_time -- False --o returnfalse
 
             block.reset_the_block -- True --o AppsTrigger --- transactions_main --- SaveBlockshash --- SaveBlockstoBlockchainDB --o PendingtoValidating --- SaveBlock
-                            
+
             block.reset_the_block -- False --o PendingtoValidating --- SaveBlock
 
 
@@ -201,7 +206,7 @@ flowchart RL
 
             block.round_1{block.round_1}
 
-            block.round_2{block.round_2} 
+            block.round_2{block.round_2}
 
             returnBlock[return Block]
 
@@ -213,7 +218,7 @@ flowchart RL
             consensus_round_1 --o returnBlock
             consensus_round_2 --o returnBlock
 
-        end    
+        end
     end
 
     subgraph consensus_round_1
@@ -226,7 +231,7 @@ flowchart RL
         round_checkconsensus_round_1 -- True --> round_processconsensus_round_1 --o returnTrueconsensus_round_1
         round_checkconsensus_round_1 -- False --> send_my_block --o returnFalseconsensus_round_1
 
-    end   
+    end
 
     subgraph consensus_round_2
         direction TB
@@ -238,6 +243,6 @@ flowchart RL
         round_checkconsensus_round_2 -- True --> round_processconsensus_round_2 --o returnTrueconsensus_round_2
         round_checkconsensus_round_2 -- False --> send_my_block_hash --o returnFalseconsensus_round_2
 
-    end   
+    end
 
 ```

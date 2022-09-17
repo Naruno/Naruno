@@ -1,7 +1,7 @@
 ---
 title: Transactions
 parent: Concepts
-nav_order: 3
+nav_order: 4
 ---
 
 # The Transactions
@@ -28,15 +28,14 @@ classDiagram
     Transaction : +string signature
     Transaction : +string fromUser
     Transaction : +string toUser
-    Transaction : +string data        
-    Transaction : +float amount        
-    Transaction : +float transaction_fee        
-    Transaction : +integer time_of_transaction                    
+    Transaction : +string data
+    Transaction : +float amount
+    Transaction : +float transaction_fee
+    Transaction : +integer time_of_transaction
     Transaction : +dump_json(amount)
-    Transaction : +load_json(amount)    
+    Transaction : +load_json(amount)
 
 ```
-
 
 # Dynamic Transaction Fee System
 
@@ -50,7 +49,7 @@ flowchart RL
     subgraph ChangeTransactionFee
         direction TB
 
- 
+
 
 
         a{Number of Transactions // Optimum Number of Transaction} -- != 0 --> b[block.transaction_fee = Rate * Extra Number of Transaction]

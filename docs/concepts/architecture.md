@@ -2,7 +2,7 @@
 layout: default
 title: Architecture
 parent: Concepts
-nav_order: 1
+nav_order: 2
 has_children: False
 ---
 
@@ -13,11 +13,12 @@ The Decentra Network is a decentralized network of nodes that run the Decentra N
 We are use three layers of the Decentra Network architecture:
 
 ## Layer 1: Decisions
+
 We have a frontends and backend in this layer, the fronends are the CLI, API, and GUI. The backend is the circulation. This layer is responsible for making decisions.
 
 ## Layer 2: Processing
-This layer is responsible for processing the decisions made in the Layer 1.  We are controlling the concept system and we are continue to blockchain in this layer.
 
+This layer is responsible for processing the decisions made in the Layer 1. We are controlling the concept system and we are continue to blockchain in this layer.
 
 ```mermaid
 flowchart LR
