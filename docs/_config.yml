@@ -11,6 +11,11 @@ aux_links:
   "Decentra Network on GitHub":
     - "//github.com/Decentra-Network/Decentra-Network"
 
+# External navigation links
+nav_external_links:
+  - title: DecentraNetwork.org
+    url: https://decentranetwork.org/
+
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: false
 
