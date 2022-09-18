@@ -18,6 +18,7 @@ setup(
 requests==2.28.0
 pytest==7.1.2
 speed_calculator==0.4.1
+decentra_network_api==0.31.1
 """,
     python_requires=">=3.8",
     zip_safe=False,
