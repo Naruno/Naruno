@@ -19,6 +19,12 @@ git clone https://github.com/Decentra-Network/Decentra-Network.git
 
 ## Installing requirements
 
+### API
+```bash
+pip3 install decentra-network-api
+```
+### Tests
 ```bash
 pip3 install decentra-network-tests
 ```
+
