@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+import shutil
 
 from decentra_network.apps.apps_trigger import AppsTrigger
 from decentra_network.blockchain.block.block_main import Block
@@ -24,6 +25,7 @@ from decentra_network.consensus.finished.transactions.transactions_main import \
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.mix.merkle_root import MerkleTree
+from decentra_network.lib.settings_system import save_settings, the_settings
 from decentra_network.transactions.pending_to_validating import \
     PendingtoValidating
 
@@ -61,14 +63,12 @@ def finished_main(
                                custom_TEMP_BLOCK_PATH)
 
         reset_block = block.reset_the_block()
+        settings = the_settings()
         if reset_block != False:
             block2 = reset_block[0]
-            AppsTrigger(block2)
+
+            new_tx_from_us = False
             new_transactions_list = transactions_main(block2)
-            SaveBlockshash(
-                reset_block[1].previous_hash,
-                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-            )
             if new_transactions_list is not None:
                 SaveBlockstoBlockchainDB(
                     block2,
@@ -78,15 +78,38 @@ def finished_main(
                     custom_TEMP_BLOCKSHASH_PART_PATH=
                     the_TEMP_BLOCKSHASH_PART_PATH,
                 )
+                new_tx_from_us = True
+                settings["save_blockshash"] = True
+                save_settings(settings)    
 
-        the_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
-        if len(the_blocks_hash) == block.part_amount:
-            SaveBlockshash_part(
-                MerkleTree(the_blocks_hash).getRootHash(),
-                custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+
+            AppsTrigger(block2)
+
+            SaveBlockshash(
+                reset_block[1].previous_hash,
+                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
             )
-            os.remove(the_TEMP_BLOCKSHASH_PATH)
+
+            the_blocks_hash = GetBlockshash(
+                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH) 
+            if len(the_blocks_hash) == block.part_amount:
+                SaveBlockshash_part(
+                    MerkleTree(the_blocks_hash).getRootHash(),
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+                )
+                if settings["save_blockshash"] == True:
+                    shutil.copyfile(
+                        the_TEMP_BLOCKSHASH_PATH,
+                        (the_BLOCKS_PATH + str(block.sequance_number) +
+                        ".blockshash_full.json"),
+                    )
+                    if not new_tx_from_us:
+                        settings["save_blockshash"] = False
+                        save_settings(settings)
+                os.remove(the_TEMP_BLOCKSHASH_PATH)            
+
+
+
 
         PendingtoValidating(block)
         SaveBlock(
