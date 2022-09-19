@@ -76,13 +76,12 @@ def finished_main(
                     custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
 
-
-        the_blocks_hash = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
+        the_blocks_hash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
         if len(the_blocks_hash) == block.part_amount:
-            SaveBlockshash_part(MerkleTree(the_blocks_hash).getRootHash(), custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH)
+            SaveBlockshash_part(MerkleTree(the_blocks_hash).getRootHash(
+            ), custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH)
             os.remove(the_TEMP_BLOCKSHASH_PATH)
-
-
 
         PendingtoValidating(block)
         SaveBlock(
