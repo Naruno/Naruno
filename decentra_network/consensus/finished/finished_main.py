@@ -4,9 +4,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import os
 from decentra_network.apps.apps_trigger import AppsTrigger
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash, SaveBlockshash_part
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.block.save_block_to_blockchain_db import \
@@ -20,6 +21,7 @@ from decentra_network.consensus.finished.transactions.transactions_main import \
     transactions_main
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.log import get_logger
+from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.transactions.pending_to_validating import \
     PendingtoValidating
 
@@ -73,6 +75,15 @@ def finished_main(
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
                     custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
+
+
+        the_blocks_hash = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
+        if len(the_blocks_hash) == block.part_amount:
+            SaveBlockshash_part(MerkleTree(the_blocks_hash).getRootHash(), custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH)
+            os.remove(the_TEMP_BLOCKSHASH_PATH)
+
+
+
         PendingtoValidating(block)
         SaveBlock(
             block,
