@@ -40,32 +40,25 @@ def finished_main(
 ) -> None:
     if true_time(block):
         block.newly = False
-        logger.debug("Consensus proccess is complated, the block will be reset")
+        logger.debug(
+            "Consensus proccess is complated, the block will be reset")
 
-        the_BLOCKS_PATH = (
-            BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
-        )
-        the_TEMP_ACCOUNTS_PATH = (
-            TEMP_ACCOUNTS_PATH
-            if custom_TEMP_ACCOUNTS_PATH is None
-            else custom_TEMP_ACCOUNTS_PATH
-        )
-        the_TEMP_BLOCKSHASH_PATH = (
-            TEMP_BLOCKSHASH_PATH
-            if custom_TEMP_BLOCKSHASH_PATH is None
-            else custom_TEMP_BLOCKSHASH_PATH
-        )
+        the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
+                           custom_BLOCKS_PATH)
+        the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
+                                  if custom_TEMP_ACCOUNTS_PATH is None else
+                                  custom_TEMP_ACCOUNTS_PATH)
+        the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
+                                    if custom_TEMP_BLOCKSHASH_PATH is None else
+                                    custom_TEMP_BLOCKSHASH_PATH)
         the_TEMP_BLOCKSHASH_PART_PATH = (
             TEMP_BLOCKSHASH_PART_PATH
-            if custom_TEMP_BLOCKSHASH_PART_PATH is None
-            else custom_TEMP_BLOCKSHASH_PART_PATH
-        )
+            if custom_TEMP_BLOCKSHASH_PART_PATH is None else
+            custom_TEMP_BLOCKSHASH_PART_PATH)
 
-        the_TEMP_BLOCK_PATH = (
-            TEMP_BLOCK_PATH
-            if custom_TEMP_BLOCK_PATH is None
-            else custom_TEMP_BLOCK_PATH
-        )
+        the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH
+                               if custom_TEMP_BLOCK_PATH is None else
+                               custom_TEMP_BLOCK_PATH)
 
         reset_block = block.reset_the_block()
         if reset_block != False:
@@ -82,12 +75,12 @@ def finished_main(
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
                     custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=
+                    the_TEMP_BLOCKSHASH_PART_PATH,
                 )
 
         the_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
         if len(the_blocks_hash) == block.part_amount:
             SaveBlockshash_part(
                 MerkleTree(the_blocks_hash).getRootHash(),
@@ -105,5 +98,6 @@ def finished_main(
         )
         return True
     else:
-        logger.debug("Consensus proccess is complated, waiting for the true time")
+        logger.debug(
+            "Consensus proccess is complated, waiting for the true time")
         return False
