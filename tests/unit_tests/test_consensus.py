@@ -415,6 +415,8 @@ class Test_Consensus(unittest.TestCase):
         self.assertFalse(result_2)
 
     def test_finished_main_no_save(self):
+        backup = GetMyTransaction()
+
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
@@ -470,8 +472,10 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertEqual(result_2, False)
+        SaveMyTransaction(backup)
 
     def test_finished_main_save_from(self):
+        backup = GetMyTransaction()        
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
@@ -528,9 +532,11 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertIsNot(result_2, False)
+        SaveMyTransaction(backup)
 
 
     def test_finished_main_save_to(self):
+        backup = GetMyTransaction()        
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
@@ -587,6 +593,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertIsNot(result_2, False)
+        SaveMyTransaction(backup)
 
     def test_candidate_blocks_check_false(self):
 
