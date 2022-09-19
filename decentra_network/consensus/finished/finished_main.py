@@ -76,8 +76,7 @@ def finished_main(
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
                     custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 new_tx_from_us = True
                 settings["save_blockshash"] = True
@@ -95,8 +94,7 @@ def finished_main(
             if len(the_blocks_hash) == block.part_amount:
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 if settings["save_blockshash"] == True:
                     shutil.copyfile(

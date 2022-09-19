@@ -40,7 +40,6 @@ def CleanUp_tests():
 
             os.remove(f"db/test_finished_main_2/{the_file}")
 
-
     for the_file in os.listdir("db/test_consensus_trigger_finished/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
 
