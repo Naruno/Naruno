@@ -75,13 +75,11 @@ def finished_main(
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
                     custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 new_tx_from_us = True
                 settings["save_blockshash"] = True
-                save_settings(settings)    
-
+                save_settings(settings)
 
             AppsTrigger(block2)
 
@@ -91,7 +89,7 @@ def finished_main(
             )
 
             the_blocks_hash = GetBlockshash(
-                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH) 
+                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
             if len(the_blocks_hash) == block.part_amount:
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
@@ -101,15 +99,12 @@ def finished_main(
                     shutil.copyfile(
                         the_TEMP_BLOCKSHASH_PATH,
                         (the_BLOCKS_PATH + str(block.sequance_number) +
-                        ".blockshash_full.json"),
+                         ".blockshash_full.json"),
                     )
                     if not new_tx_from_us:
                         settings["save_blockshash"] = False
                         save_settings(settings)
-                os.remove(the_TEMP_BLOCKSHASH_PATH)            
-
-
-
+                os.remove(the_TEMP_BLOCKSHASH_PATH)
 
         PendingtoValidating(block)
         SaveBlock(
