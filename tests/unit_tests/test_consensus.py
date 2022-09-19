@@ -9,7 +9,8 @@ import sys
 from turtle import settiltangle
 
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
-from decentra_network.lib.settings_system import save_settings, the_settings
+from decentra_network.lib.settings_system import save_settings
+from decentra_network.lib.settings_system import the_settings
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
