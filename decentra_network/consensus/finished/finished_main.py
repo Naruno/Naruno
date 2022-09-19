@@ -60,18 +60,19 @@ def finished_main(
         if reset_block != False:
             block2 = reset_block[0]
             AppsTrigger(block2)
-            transactions_main(block2)
+            new_transactions_list = transactions_main(block2)
             SaveBlockshash(
                 reset_block[1].previous_hash,
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
             )
-            SaveBlockstoBlockchainDB(
-                block2,
-                custom_BLOCKS_PATH=the_BLOCKS_PATH,
-                custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
-                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
-            )
+            if new_transactions_list is not None:
+                SaveBlockstoBlockchainDB(
+                    block2,
+                    custom_BLOCKS_PATH=the_BLOCKS_PATH,
+                    custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
+                    custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+                )
         PendingtoValidating(block)
         SaveBlock(
             block,
