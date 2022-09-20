@@ -7,8 +7,6 @@
 import os
 import sys
 
-from decentra_network.lib.mix.merkle_root import MerkleTree
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import copy
@@ -26,6 +24,7 @@ from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
+from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
     candidate_block
@@ -75,6 +74,8 @@ from decentra_network.consensus.rounds.round_2.round_2_main import \
     consensus_round_2
 from decentra_network.consensus.time.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
+from decentra_network.lib.mix.merkle_root import MerkleTree
+from decentra_network.lib.settings_system import save_settings, the_settings
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.my_transactions.get_my_transaction import \
@@ -479,6 +480,11 @@ class Test_Consensus(unittest.TestCase):
         SaveMyTransaction(backup)
 
     def test_finished_main_save_from(self):
+        backup_the_settings = the_settings()
+        settings = copy.copy(backup_the_settings)
+        settings["save_blockshash"] = False
+        save_settings(settings)
+
         backup = GetMyTransaction()
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
@@ -538,7 +544,17 @@ class Test_Consensus(unittest.TestCase):
         self.assertIsNot(result_2, False)
         SaveMyTransaction(backup)
 
+        settings = the_settings()
+        self.assertEqual(settings["save_blockshash"], True)
+
+        save_settings(backup_the_settings)
+
     def test_finished_main_save_to(self):
+        backup_the_settings = the_settings()
+        settings = copy.copy(backup_the_settings)
+        settings["save_blockshash"] = False
+        save_settings(settings)
+
         backup = GetMyTransaction()
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
@@ -598,14 +614,22 @@ class Test_Consensus(unittest.TestCase):
         self.assertIsNot(result_2, False)
         SaveMyTransaction(backup)
 
+        settings = the_settings()
+        self.assertEqual(settings["save_blockshash"], True)
+
+        save_settings(backup_the_settings)
+
     def test_finished_main_save_from_no_part(self):
         backup = GetMyTransaction()
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_finished_main_save_from_no_part_TEMP_BLOCKSHASH_PATH.json"
+        )
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_finished_main_TEMP_BLOCKSHASH_PART_PATH.json")
+            "db/test_finished_main_save_from_no_part_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
 
         block = Block("Onurdsadsaas")
         block.hash = "new_hash"
@@ -677,9 +701,11 @@ class Test_Consensus(unittest.TestCase):
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_finished_main_save_from_part_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_finished_main_TEMP_BLOCKSHASH_PART_PATH.json")
+            "db/test_finished_main_save_from_part_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
 
         block = Block("Onurdsadsaas")
         block.hash = "new_hash"
@@ -746,6 +772,336 @@ class Test_Consensus(unittest.TestCase):
             the_blockshash_part,
             [Block("Onurdsadasdsaddsaas").previous_hash, expected_hash],
         )
+
+    def test_finished_main_save_from_part_save_blockshash(self):
+        backup_the_settings = the_settings()
+        settings = copy.copy(backup_the_settings)
+        settings["save_blockshash"] = True
+        save_settings(settings)
+
+        backup = GetMyTransaction()
+        custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
+        custom_BLOCKS_PATH = "db/test_finished_main/"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_save_from_part_save_blockshash_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_save_from_part_save_blockshash_TEMP_BLOCKSHASH_PART_PATH.json"
+
+        block = Block("Onurdsadsaas")
+        block.hash = "new_hash"
+
+        block.genesis_time = int(time.time())
+        block.block_time = 1
+        block.sequance_number = 0
+        block.empty_block_number = 0
+        block.max_tx_number = 3
+        block.part_amount = 2
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.fromUser = wallet_import(-1, 0)
+        block.validating_list = [the_transaction, the_transaction]
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        time.sleep(1)
+
+        result = finished_main(
+            block=block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertTrue(result)
+
+        result_2 = GetBlockstoBlockchainDB(
+            sequance_number=0,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertIsNot(result_2, False)
+        SaveMyTransaction(backup)
+
+        the_blockshash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        the_blockshash_part = GetBlockshash_part(
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        expected_hash = MerkleTree(
+            [Block("Onurdsadasdsaddsaas").previous_hash,
+             "new_hash"]).getRootHash()
+        self.assertEqual(the_blockshash, [])
+        self.assertEqual(
+            the_blockshash_part,
+            [Block("Onurdsadasdsaddsaas").previous_hash, expected_hash],
+        )
+
+        settings = the_settings()
+        self.assertEqual(settings["save_blockshash"], True)
+
+        save_settings(backup_the_settings)
+
+        Saved_blocks_hash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
+
+        self.assertEqual(
+            Saved_blocks_hash,
+            [Block("Onurdsadasdsaddsaas").previous_hash, "new_hash"])
+
+    def test_finished_main_save_from_part_no_save_blockshash(self):
+        backup_the_settings = the_settings()
+        settings = copy.copy(backup_the_settings)
+        settings["save_blockshash"] = True
+        save_settings(settings)
+
+        backup = GetMyTransaction()
+        custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
+        custom_BLOCKS_PATH = "db/test_finished_main/"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_TEMP_BLOCKSHASH_PART_PATH.json"
+
+        block = Block("Onurdsadsaas")
+        block.hash = "new_hash"
+
+        block.genesis_time = int(time.time())
+        block.block_time = 1
+        block.sequance_number = 0
+        block.empty_block_number = 0
+        block.max_tx_number = 3
+        block.part_amount = 2
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.fromUser = wallet_import(-1, 0)
+        block.validating_list = [the_transaction, the_transaction]
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        hash_1 = CalculateHash(
+            block,
+            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
+                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash(
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
+        )
+        block.hash = hash_1
+
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        time.sleep(1)
+
+        result = finished_main(
+            block=block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertTrue(result)
+
+        result_2 = GetBlockstoBlockchainDB(
+            sequance_number=0,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertIsNot(result_2, False)
+        SaveMyTransaction(backup)
+
+        the_blockshash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        the_blockshash_part = GetBlockshash_part(
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        expected_hash = MerkleTree(
+            [Block("Onurdsadasdsaddsaas").previous_hash,
+             hash_1]).getRootHash()
+        self.assertEqual(the_blockshash, [])
+        self.assertEqual(
+            the_blockshash_part,
+            [Block("Onurdsadasdsaddsaas").previous_hash, expected_hash],
+        )
+
+        settings = the_settings()
+        self.assertEqual(settings["save_blockshash"], True)
+
+        save_settings(backup_the_settings)
+
+        Saved_blocks_hash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
+
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
+
+        hash_2 = CalculateHash(
+            result_2[0],
+            result_2[3],
+            result_2[2],
+            result_2[1],
+        )
+
+        self.assertEqual(hash_2, hash_1)
+
+        self.assertEqual(Saved_blocks_hash[1], hash_1)
+
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_1]).getRootHash()
+        self.assertEqual(the_blockshash_part[1], the_hash_part)
+
+    def test_finished_main_save_from_part_no_save_blockshash_disable_saving(
+            self):
+        backup_the_settings = the_settings()
+        settings = copy.copy(backup_the_settings)
+        settings["save_blockshash"] = True
+        save_settings(settings)
+
+        backup = GetMyTransaction()
+        custom_TEMP_BLOCK_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_disable_saving.json"
+        custom_BLOCKS_PATH = "db/test_finished_main_2/"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_disable_saving_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_disable_saving_TEMP_BLOCKSHASH_PART_PATH.json"
+
+        block = Block("Onurdsadsaas")
+        block.hash = "new_hash"
+
+        block.genesis_time = int(time.time())
+        block.block_time = 1
+        block.sequance_number = 0
+        block.empty_block_number = 0
+        block.max_tx_number = 3
+        block.part_amount = 2
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block.validating_list = [the_transaction, the_transaction]
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        hash_1 = CalculateHash(
+            block,
+            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
+                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash(
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
+        )
+        block.hash = hash_1
+
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        time.sleep(1)
+
+        result = finished_main(
+            block=block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertTrue(result)
+
+        result_2 = GetBlockstoBlockchainDB(
+            sequance_number=0,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertEqual(result_2, False)
+        SaveMyTransaction(backup)
+
+        the_blockshash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        the_blockshash_part = GetBlockshash_part(
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        expected_hash = MerkleTree(
+            [Block("Onurdsadasdsaddsaas").previous_hash,
+             hash_1]).getRootHash()
+        self.assertEqual(the_blockshash, [])
+        self.assertEqual(
+            the_blockshash_part,
+            [Block("Onurdsadasdsaddsaas").previous_hash, expected_hash],
+        )
+
+        settings = the_settings()
+        self.assertEqual(settings["save_blockshash"], False)
+
+        save_settings(backup_the_settings)
+
+        Saved_blocks_hash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
+
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
 
     def test_candidate_blocks_check_false(self):
 
