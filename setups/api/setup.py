@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="decentra_network_api",
-    version="0.31.1",
+    version="0.31.2",
     description="""This is API mode installer for Decentra Network""",
     url="https://docs.decentranetwork.org/",
     author="Decentra Network Developers",
