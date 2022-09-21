@@ -9,7 +9,9 @@ import json
 import os
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
+from decentra_network.blockchain.block.get_block_from_blockchain_db import (
+    GetBlockstoBlockchainDB,
+)
 
 from decentra_network.config import MY_TRANSACTION_PATH
 from decentra_network.lib.config_system import get_config
@@ -31,8 +33,7 @@ def GetProof(
 
     the_PROOF_PATH = PROOF_PATH if custom_PROOF_PATH is None else custom_PROOF_PATH
 
-    the_BLOCKS_PATH = (
-        BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH)
+    the_BLOCKS_PATH = BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
 
     os.chdir(get_config()["main_folder"])
     sequance_number = None
@@ -53,23 +54,30 @@ def GetProof(
         custom_BLOCKS_PATH=the_BLOCKS_PATH,
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
-    full_blockshash_sequance_number = (
-        result[0].sequance_number + (result[0].part_amount - result[0].sequance_number))
+    full_blockshash_sequance_number = result[0].sequance_number + (
+        result[0].part_amount - result[0].sequance_number
+    )
 
-    full_blockshash_path = (the_BLOCKS_PATH + str(full_blockshash_sequance_number - 1) +
-                            ".blockshash_full.json")
+    full_blockshash_path = (
+        the_BLOCKS_PATH
+        + str(full_blockshash_sequance_number - 1)
+        + ".blockshash_full.json"
+    )
 
-    block_path = (the_BLOCKS_PATH + str(sequance_number) + ".block.json")
-    account_path = (the_BLOCKS_PATH + str(sequance_number) + ".accounts.db")
-    blockshash_path = (the_BLOCKS_PATH +
-                       str(sequance_number) + ".blockshash.json")
+    block_path = the_BLOCKS_PATH + str(sequance_number) + ".block.json"
+    account_path = the_BLOCKS_PATH + str(sequance_number) + ".accounts.db"
+    blockshash_path = the_BLOCKS_PATH + str(sequance_number) + ".blockshash.json"
     blockshashpart_path = (
-        the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json")
+        the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json"
+    )
 
-    proof_path = the_PROOF_PATH + \
-        sha256((tx.signature).encode("utf-8")).hexdigest() + ".proof.zip"
+    proof_path = (
+        the_PROOF_PATH
+        + sha256((tx.signature).encode("utf-8")).hexdigest()
+        + ".proof.zip"
+    )
 
     with ZipFile(proof_path, "w") as zip:
         zip.write(full_blockshash_path)
