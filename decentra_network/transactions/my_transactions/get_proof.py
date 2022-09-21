@@ -4,22 +4,19 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from hashlib import sha256
 import json
 import os
+from hashlib import sha256
+from zipfile import ZipFile
+
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import (
-    GetBlockstoBlockchainDB,
-)
-
-from decentra_network.config import MY_TRANSACTION_PATH
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
+from decentra_network.config import (BLOCKS_PATH, MY_TRANSACTION_PATH,
+                                     PROOF_PATH)
 from decentra_network.lib.config_system import get_config
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.config import BLOCKS_PATH
-from decentra_network.config import PROOF_PATH
-
-from zipfile import ZipFile
 
 
 def GetProof(
