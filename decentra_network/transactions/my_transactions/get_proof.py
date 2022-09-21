@@ -19,18 +19,20 @@ from decentra_network.config import PROOF_PATH
 
 from zipfile import ZipFile
 
+
 def GetProof(
-    tx: Transaction, 
-    custom_PROOF_PATH=None, 
+    tx: Transaction,
+    custom_PROOF_PATH=None,
     custom_BLOCKS_PATH=None,
     custom_TEMP_ACCOUNTS_PATH=None,
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
-    ):
+):
 
     the_PROOF_PATH = PROOF_PATH if custom_PROOF_PATH is None else custom_PROOF_PATH
 
-    the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH)
+    the_BLOCKS_PATH = (
+        BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH)
 
     os.chdir(get_config()["main_folder"])
     sequance_number = None
@@ -52,19 +54,22 @@ def GetProof(
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-        )
-    full_blockshash_sequance_number = (result[0].sequance_number + (result[0].part_amount - result[0].sequance_number))
-    
-    
+    )
+    full_blockshash_sequance_number = (
+        result[0].sequance_number + (result[0].part_amount - result[0].sequance_number))
+
     full_blockshash_path = (the_BLOCKS_PATH + str(full_blockshash_sequance_number - 1) +
-                         ".blockshash_full.json")
+                            ".blockshash_full.json")
 
     block_path = (the_BLOCKS_PATH + str(sequance_number) + ".block.json")
     account_path = (the_BLOCKS_PATH + str(sequance_number) + ".accounts.db")
-    blockshash_path = (the_BLOCKS_PATH + str(sequance_number) + ".blockshash.json")
-    blockshashpart_path = (the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json")
-    
-    proof_path = the_PROOF_PATH + sha256((tx.signature).encode("utf-8")).hexdigest() + ".proof.zip"
+    blockshash_path = (the_BLOCKS_PATH +
+                       str(sequance_number) + ".blockshash.json")
+    blockshashpart_path = (
+        the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json")
+
+    proof_path = the_PROOF_PATH + \
+        sha256((tx.signature).encode("utf-8")).hexdigest() + ".proof.zip"
 
     with ZipFile(proof_path, "w") as zip:
         zip.write(full_blockshash_path)
@@ -72,7 +77,5 @@ def GetProof(
         zip.write(account_path)
         zip.write(blockshash_path)
         zip.write(blockshashpart_path)
-    
+
     return proof_path
-
-

@@ -1438,8 +1438,6 @@ class Test_Transactions(unittest.TestCase):
         DeletePending(the_transaction)
         self.assertEqual(result, True)
 
-
-
     def test_GetProof_no_transaction(self):
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
@@ -1487,8 +1485,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1523,7 +1521,6 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertIsNot(result_2, False)
-        
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
@@ -1551,7 +1548,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(Saved_blocks_hash,
                          [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
 
-
         hash_2 = CalculateHash(
             result_2[0],
             result_2[3],
@@ -1565,22 +1561,18 @@ class Test_Transactions(unittest.TestCase):
 
         the_hash_part = MerkleTree([Saved_blocks_hash[0],
                                     hash_1]).getRootHash()
-        self.assertEqual(the_blockshash_part[1], the_hash_part)        
-
+        self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         the_transaction_2 = Transaction.load_json(the_transaction_json)
         the_transaction_2.signature = "a"
 
         result = GetProof(
-            the_transaction_2, 
+            the_transaction_2,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
-            )
+        )
 
         self.assertIsNone(result)
         SaveMyTransaction(backup)
-
-
-
 
     def test_GetProof_CheckProof(self):
         backup_the_settings = the_settings()
@@ -1629,8 +1621,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1665,7 +1657,6 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertIsNot(result_2, False)
-        
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
@@ -1706,25 +1697,21 @@ class Test_Transactions(unittest.TestCase):
 
         the_hash_part = MerkleTree([Saved_blocks_hash[0],
                                     hash_1]).getRootHash()
-        self.assertEqual(the_blockshash_part[1], the_hash_part)        
-
-
+        self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         result = GetProof(
-            the_transaction, 
+            the_transaction,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
-            )
+        )
 
         self.assertIsNotNone(result)
 
-
-        #Open result zip file
+        # Open result zip file
         zip_file = zipfile.ZipFile(result, 'r')
-        #Extract all files
+        # Extract all files
         zip_file.extractall("db/test_proof_extracted/")
-        #Close the zip file
+        # Close the zip file
         zip_file.close()
-
 
         list_of_files = []
         custom_BLOCKS_PATH_from_proof = None
@@ -1732,7 +1719,7 @@ class Test_Transactions(unittest.TestCase):
             if os.path.isdir("db/test_proof_extracted/db/" + file):
                 custom_BLOCKS_PATH_from_proof = "db/test_proof_extracted/db/" + file + "/"
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
-                    
+
                     list_of_files.append(file_2)
 
         self.assertIn("0.block.json", list_of_files)
@@ -1741,14 +1728,12 @@ class Test_Transactions(unittest.TestCase):
         self.assertIn("0.blockshash.json", list_of_files)
         self.assertIn("1.blockshash_full.json", list_of_files)
 
-
-
         result_2 = GetBlockstoBlockchainDB(
             sequance_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
         )
         self.assertIsNot(result_2, False)
-        
+
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
                                          str(block.sequance_number) +
@@ -1762,11 +1747,13 @@ class Test_Transactions(unittest.TestCase):
         )
 
         self.assertEqual(len(result_2[0].validating_list), 2)
-        self.assertEqual(result_2[0].validating_list[0].dump_json(), the_transaction.dump_json())
-        self.assertEqual(result_2[0].validating_list[1].dump_json(), the_transaction.dump_json())
+        self.assertEqual(
+            result_2[0].validating_list[0].dump_json(), the_transaction.dump_json())
+        self.assertEqual(
+            result_2[0].validating_list[1].dump_json(), the_transaction.dump_json())
 
         self.assertEqual(Saved_blocks_hash,
-                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])    
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
         self.assertEqual(hash_2, hash_1)
         the_hash_part = MerkleTree([Saved_blocks_hash[0],
                                     hash_2]).getRootHash()
@@ -1778,12 +1765,10 @@ class Test_Transactions(unittest.TestCase):
                 is_in = True
         self.assertTrue(is_in)
 
-
-        self.assertEqual(CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH), True)
-
+        self.assertEqual(CheckProof(
+            result, custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH), True)
 
         SaveMyTransaction(backup)
-
 
     def test_GetProof_CheckProof_false(self):
         backup_the_settings = the_settings()
@@ -1832,8 +1817,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1868,7 +1853,6 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertIsNot(result_2, False)
-        
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
@@ -1909,25 +1893,21 @@ class Test_Transactions(unittest.TestCase):
 
         the_hash_part = MerkleTree([Saved_blocks_hash[0],
                                     hash_1]).getRootHash()
-        self.assertEqual(the_blockshash_part[1], the_hash_part)        
-
-
+        self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         result = GetProof(
-            the_transaction, 
+            the_transaction,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
-            )
+        )
 
         self.assertIsNotNone(result)
 
-
-        #Open result zip file
+        # Open result zip file
         zip_file = zipfile.ZipFile(result, 'r')
-        #Extract all files
+        # Extract all files
         zip_file.extractall("db/test_proof_extracted/")
-        #Close the zip file
+        # Close the zip file
         zip_file.close()
-
 
         list_of_files = []
         custom_BLOCKS_PATH_from_proof = None
@@ -1935,7 +1915,7 @@ class Test_Transactions(unittest.TestCase):
             if os.path.isdir("db/test_proof_extracted/db/" + file):
                 custom_BLOCKS_PATH_from_proof = "db/test_proof_extracted/db/" + file + "/"
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
-                    
+
                     list_of_files.append(file_2)
 
         self.assertIn("0.block.json", list_of_files)
@@ -1944,14 +1924,12 @@ class Test_Transactions(unittest.TestCase):
         self.assertIn("0.blockshash.json", list_of_files)
         self.assertIn("1.blockshash_full.json", list_of_files)
 
-
-
         result_2 = GetBlockstoBlockchainDB(
             sequance_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
         )
         self.assertIsNot(result_2, False)
-        
+
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
                                          str(block.sequance_number) +
@@ -1965,11 +1943,13 @@ class Test_Transactions(unittest.TestCase):
         )
 
         self.assertEqual(len(result_2[0].validating_list), 2)
-        self.assertEqual(result_2[0].validating_list[0].dump_json(), the_transaction.dump_json())
-        self.assertEqual(result_2[0].validating_list[1].dump_json(), the_transaction.dump_json())
+        self.assertEqual(
+            result_2[0].validating_list[0].dump_json(), the_transaction.dump_json())
+        self.assertEqual(
+            result_2[0].validating_list[1].dump_json(), the_transaction.dump_json())
 
         self.assertEqual(Saved_blocks_hash,
-                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])    
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
         self.assertEqual(hash_2, hash_1)
         the_hash_part = MerkleTree([Saved_blocks_hash[0],
                                     hash_2]).getRootHash()
@@ -1981,17 +1961,17 @@ class Test_Transactions(unittest.TestCase):
                 is_in = True
         self.assertTrue(is_in)
 
+        false_part = custom_TEMP_BLOCKSHASH_PART_PATH.replace(
+            "TEMP_BLOCKSHASH_PART_PATH", "TEMP_BLOCKSHASH_PART_PATH_2")
+        SaveBlockshash_part(
+            ["abc", "abc"], custom_TEMP_BLOCKSHASH_PART_PATH=false_part)
 
-        false_part = custom_TEMP_BLOCKSHASH_PART_PATH.replace("TEMP_BLOCKSHASH_PART_PATH", "TEMP_BLOCKSHASH_PART_PATH_2")
-        SaveBlockshash_part(["abc", "abc"], custom_TEMP_BLOCKSHASH_PART_PATH=false_part)
-
-        self.assertEqual(CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH), True)
-        self.assertEqual(CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part), False)
-
+        self.assertEqual(CheckProof(
+            result, custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH), True)
+        self.assertEqual(CheckProof(
+            result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part), False)
 
         SaveMyTransaction(backup)
-
-
 
 
 unittest.main(exit=False)
