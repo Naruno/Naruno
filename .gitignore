@@ -9,6 +9,7 @@ bin/
 
 #export
 *.csv
+*proof.zip
 
 #Performance Analyzers
 *.pf
