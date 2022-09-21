@@ -1549,6 +1549,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(Saved_blocks_hash,
                          [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
 
+
         hash_2 = CalculateHash(
             result_2[0],
             result_2[3],
@@ -1757,6 +1758,11 @@ class Test_Transactions(unittest.TestCase):
             result_2[2],
             result_2[1],
         )
+
+        self.assertEqual(len(result_2[0].validating_list), 2)
+        self.assertEqual(result_2[0].validating_list[0].dump_json(), the_transaction.dump_json())
+        self.assertEqual(result_2[0].validating_list[1].dump_json(), the_transaction.dump_json())
+
         self.assertEqual(Saved_blocks_hash,
                          [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])    
         self.assertEqual(hash_2, hash_1)
