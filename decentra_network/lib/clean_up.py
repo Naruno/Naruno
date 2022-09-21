@@ -29,11 +29,20 @@ def CleanUp_tests():
             os.remove(
                 f"db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/{the_file}"
             )
+        if the_file == "db":
+            os.rmdir(
+                f"db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/{the_file}"
+            )
 
     for the_file in os.listdir("db/test_finished_main/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
 
             os.remove(f"db/test_finished_main/{the_file}")
+
+    for the_file in os.listdir("db/test_proof_extracted/"):
+        if the_file.endswith(".json") or the_file.endswith(".db") or the_file.endswith(".dn"):
+
+            os.remove(f"db/test_proof_extracted/{the_file}")
 
     for the_file in os.listdir("db/test_finished_main_2/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):

@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from hashlib import sha256
 import json
 import os
 from decentra_network.accounts.get_accounts import GetAccounts
@@ -14,11 +15,20 @@ from decentra_network.config import MY_TRANSACTION_PATH
 from decentra_network.lib.config_system import get_config
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.config import BLOCKS_PATH
-
+from decentra_network.config import PROOF_PATH
 
 from zipfile import ZipFile
 
-def GetProof(tx, proof_path, custom_BLOCKS_PATH=None):
+def GetProof(
+    tx: Transaction, 
+    custom_PROOF_PATH=None, 
+    custom_BLOCKS_PATH=None,
+    custom_TEMP_ACCOUNTS_PATH=None,
+    custom_TEMP_BLOCKSHASH_PATH=None,
+    custom_TEMP_BLOCKSHASH_PART_PATH=None,
+    ):
+
+    the_PROOF_PATH = PROOF_PATH if custom_PROOF_PATH is None else custom_PROOF_PATH
 
     the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH)
 
@@ -29,18 +39,24 @@ def GetProof(tx, proof_path, custom_BLOCKS_PATH=None):
         if file.endswith(".block.json"):
             with open(the_BLOCKS_PATH + file, "r") as block_file:
                 the_block_json = json.load(block_file)
-            for transaction in the_block_json["transactions"]:
-                if transaction["hash"] == tx.hash:
+            for transaction in the_block_json["validating_list"]:
+                if transaction["signature"] == tx.signature:
                     sequance_number = file.split(".")[0]
 
     if sequance_number is None:
-        return False
+        return None
 
-    result = GetBlockstoBlockchainDB(sequance_number)
-    full_blockshash_sequance_number = (result[0].sequance_number + (result[0].sequance_number - result[0].part_amount))
+    result = GetBlockstoBlockchainDB(
+        sequance_number,
+        custom_BLOCKS_PATH=the_BLOCKS_PATH,
+        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        )
+    full_blockshash_sequance_number = (result[0].sequance_number + (result[0].part_amount - result[0].sequance_number))
     
     
-    full_blockshash_path = (the_BLOCKS_PATH + str(full_blockshash_sequance_number) +
+    full_blockshash_path = (the_BLOCKS_PATH + str(full_blockshash_sequance_number - 1) +
                          ".blockshash_full.json")
 
     block_path = (the_BLOCKS_PATH + str(sequance_number) + ".block.json")
@@ -48,14 +64,15 @@ def GetProof(tx, proof_path, custom_BLOCKS_PATH=None):
     blockshash_path = (the_BLOCKS_PATH + str(sequance_number) + ".blockshash.json")
     blockshashpart_path = (the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json")
     
+    proof_path = the_PROOF_PATH + sha256((tx.signature).encode("utf-8")).hexdigest() + ".proof.zip"
 
-    with ZipFile(proof_path + tx.hash + ".proof.zip", "w") as zip:
+    with ZipFile(proof_path, "w") as zip:
         zip.write(full_blockshash_path)
         zip.write(block_path)
         zip.write(account_path)
         zip.write(blockshash_path)
         zip.write(blockshashpart_path)
     
-    return True
+    return proof_path
 
 

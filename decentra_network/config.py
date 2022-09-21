@@ -34,3 +34,6 @@ MY_TRANSACTION_PATH = "db/my_transaction.decentra_network.json"
 MY_TRANSACTION_EXPORT_PATH = "db/my_transaction.csv"
 
 LOGS_PATH = "logs"
+
+
+PROOF_PATH = "db/proof/"
