@@ -55,27 +55,21 @@ def GetProof(
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
     full_blockshash_sequance_number = result[0].sequance_number + (
-        result[0].part_amount - result[0].sequance_number
-    )
+        result[0].part_amount - result[0].sequance_number)
 
-    full_blockshash_path = (
-        the_BLOCKS_PATH
-        + str(full_blockshash_sequance_number - 1)
-        + ".blockshash_full.json"
-    )
+    full_blockshash_path = (the_BLOCKS_PATH +
+                            str(full_blockshash_sequance_number - 1) +
+                            ".blockshash_full.json")
 
     block_path = the_BLOCKS_PATH + str(sequance_number) + ".block.json"
     account_path = the_BLOCKS_PATH + str(sequance_number) + ".accounts.db"
-    blockshash_path = the_BLOCKS_PATH + str(sequance_number) + ".blockshash.json"
-    blockshashpart_path = (
-        the_BLOCKS_PATH + str(sequance_number) + ".blockshashpart.json"
-    )
+    blockshash_path = the_BLOCKS_PATH + str(
+        sequance_number) + ".blockshash.json"
+    blockshashpart_path = (the_BLOCKS_PATH + str(sequance_number) +
+                           ".blockshashpart.json")
 
-    proof_path = (
-        the_PROOF_PATH
-        + sha256((tx.signature).encode("utf-8")).hexdigest()
-        + ".proof.zip"
-    )
+    proof_path = (the_PROOF_PATH + sha256(
+        (tx.signature).encode("utf-8")).hexdigest() + ".proof.zip")
 
     with ZipFile(proof_path, "w") as zip:
         zip.write(full_blockshash_path)
