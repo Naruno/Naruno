@@ -38,7 +38,9 @@ With this operation you have a proof and now you can share any node this proof a
 ```mermaid
 flowchart LR
     OtherNode[Other Node]
-    OtherNode -->|Check Proof| proof[Proof of TX 1]
+    OtherNode --> proof
+    OtherNode -->AnyBlock
+    proof[Proof of TX 1]
     proof --> check
     AnyBlock[Any Block]
     AnyBlock --> check
