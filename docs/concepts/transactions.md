@@ -32,8 +32,8 @@ classDiagram
     Transaction : +float amount
     Transaction : +float transaction_fee
     Transaction : +integer time_of_transaction
-    Transaction : +dump_json(amount)
-    Transaction : +load_json(amount)
+    Transaction : +dump_json()
+    Transaction : +load_json(json)
 
 ```
 
