@@ -13,6 +13,9 @@ from flask import jsonify
 from flask import request
 from waitress import serve
 from waitress.server import create_server
+from decentra_network.transactions.my_transactions.check_proof import CheckProof
+
+from decentra_network.transactions.my_transactions.get_proof import GetProof
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from decentra_network.accounts.get_balance import GetBalance
@@ -327,6 +330,47 @@ def status_page():
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
         ))
+
+
+
+@app.route("/proof/get/", methods=["POST"])
+def proof_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    signature = str(
+        request.form["signature"]) if "signature" in request.form else None        
+    custom_PROOF_PATH = str(
+        request.form["custom_PROOF_PATH"]) if "custom_PROOF_PATH" in request.form else None
+    custom_BLOCKS_PATH = str(
+        request.form["custom_BLOCKS_PATH"]) if "custom_BLOCKS_PATH" in request.form else None
+    custom_TEMP_ACCOUNTS_PATH = str(
+        request.form["custom_TEMP_ACCOUNTS_PATH"]) if "custom_TEMP_ACCOUNTS_PATH" in request.form else None
+    custom_TEMP_BLOCKSHASH_PATH = str(
+        request.form["custom_TEMP_BLOCKSHASH_PATH"]) if "custom_TEMP_BLOCKSHASH_PATH" in request.form else None
+    custom_TEMP_BLOCKSHASH_PART_PATH = str(
+        request.form["custom_TEMP_BLOCKSHASH_PART_PATH"]) if "custom_TEMP_BLOCKSHASH_PART_PATH" in request.form else None
+                                     
+    return jsonify(GetProof(
+        signature,
+        custom_PROOF_PATH=custom_PROOF_PATH,
+        custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        ))
+@app.route("/proof/check/", methods=["POST"])
+def proof_check_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    path = str(
+        request.form["path"]) if "path" in request.form else None
+    custom_TEMP_BLOCKSHASH_PART_PATH = str(
+        request.form["custom_TEMP_BLOCKSHASH_PART_PATH"]) if "custom_TEMP_BLOCKSHASH_PART_PATH" in request.form else None        
+    return jsonify(CheckProof(
+        path,
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        ))
+
 
 
 @app.errorhandler(500)
