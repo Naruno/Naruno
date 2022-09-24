@@ -14,8 +14,9 @@ from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
 from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import \
-    GetBlockstoBlockchainDB
+from decentra_network.blockchain.block.get_block_from_blockchain_db import (
+    GetBlockstoBlockchainDB,
+)
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.config import BLOCKS_PATH
 from decentra_network.config import EXTRACTED_PROOFS_PATH
@@ -69,8 +70,7 @@ def CheckProof(
         custom_BLOCKS_PATH=the_proof_path,
     )
 
-    Saved_blocks_hash = GetBlockshash(
-        custom_TEMP_BLOCKSHASH_PATH=full_blockshash_path)
+    Saved_blocks_hash = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=full_blockshash_path)
 
     hash_2 = CalculateHash(
         result_2[0],
@@ -82,7 +82,8 @@ def CheckProof(
     the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_2]).getRootHash()
 
     the_blockshash_part = GetBlockshash_part(
-        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+    )
 
     is_in = False
     for i in the_blockshash_part:
