@@ -379,10 +379,10 @@ def arguments():
         wallet_selector(args.wallet)
 
     if args.getproof is not None:
-        GetProof(args.getproof)
+        print(GetProof(args.getproof))
 
     if args.checkproof is not None:
-        CheckProof(args.checkproof)
+        print(CheckProof(args.checkproof))
 
     if args.menu:
         menu()
