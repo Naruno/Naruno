@@ -13,8 +13,8 @@ import time
 import zipfile
 from urllib import response
 
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part)
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
 from decentra_network.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from decentra_network.consensus.finished.finished_main import finished_main
