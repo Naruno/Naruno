@@ -1491,8 +1491,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1627,8 +1627,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1775,8 +1775,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -1832,8 +1831,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1985,8 +1984,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )

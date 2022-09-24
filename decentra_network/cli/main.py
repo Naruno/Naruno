@@ -56,8 +56,7 @@ def show_menu():
     print(
         banner_maker(
             sc_name="Decentra Network",
-            description=
-            "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
+            description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
             author="Decentra Network Developers",
         ))
 
@@ -213,13 +212,10 @@ def menu():
         if choices_input == "status":
             print(Status())
 
-
-
         if choices_input == "getproof":
             print(GetProof(input("Please write the transaction signature: ")))
         if choices_input == "checkproof":
             print(CheckProof(input("Please write the path of proof: ")))
-
 
         if choices_input == "0":
             exit()
@@ -231,8 +227,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument("-pw",
@@ -300,7 +295,6 @@ def arguments():
                         "--status",
                         action="store_true",
                         help="Exports the transaction as csv")
-
 
     parser.add_argument("-gp",
                         "--getproof",
@@ -383,14 +377,11 @@ def arguments():
     if args.wallet is not None:
         wallet_selector(args.wallet)
 
-
-
     if args.getproof is not None:
         GetProof(args.getproof)
 
     if args.checkproof is not None:
         CheckProof(args.checkproof)
-
 
     if args.menu:
         menu()
