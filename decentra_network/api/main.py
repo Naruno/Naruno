@@ -332,13 +332,12 @@ def status_page():
         ))
 
 
-
 @app.route("/proof/get/", methods=["POST"])
 def proof_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     signature = str(
-        request.form["signature"]) if "signature" in request.form else None        
+        request.form["signature"]) if "signature" in request.form else None
     custom_PROOF_PATH = str(
         request.form["custom_PROOF_PATH"]) if "custom_PROOF_PATH" in request.form else None
     custom_BLOCKS_PATH = str(
@@ -349,7 +348,7 @@ def proof_get_page():
         request.form["custom_TEMP_BLOCKSHASH_PATH"]) if "custom_TEMP_BLOCKSHASH_PATH" in request.form else None
     custom_TEMP_BLOCKSHASH_PART_PATH = str(
         request.form["custom_TEMP_BLOCKSHASH_PART_PATH"]) if "custom_TEMP_BLOCKSHASH_PART_PATH" in request.form else None
-                                     
+
     return jsonify(GetProof(
         signature,
         custom_PROOF_PATH=custom_PROOF_PATH,
@@ -357,7 +356,9 @@ def proof_get_page():
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        ))
+    ))
+
+
 @app.route("/proof/check/", methods=["POST"])
 def proof_check_page():
     logger.info(
@@ -365,12 +366,11 @@ def proof_check_page():
     path = str(
         request.form["path"]) if "path" in request.form else None
     custom_TEMP_BLOCKSHASH_PART_PATH = str(
-        request.form["custom_TEMP_BLOCKSHASH_PART_PATH"]) if "custom_TEMP_BLOCKSHASH_PART_PATH" in request.form else None        
+        request.form["custom_TEMP_BLOCKSHASH_PART_PATH"]) if "custom_TEMP_BLOCKSHASH_PART_PATH" in request.form else None
     return jsonify(CheckProof(
         path,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        ))
-
+    ))
 
 
 @app.errorhandler(500)
@@ -397,8 +397,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",

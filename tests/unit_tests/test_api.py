@@ -819,15 +819,7 @@ class Test_API(unittest.TestCase):
 
         SaveMyTransaction(backup)
 
-
-
     def test_GetProof_CheckProof_page(self):
-
-
-
-
-
-
 
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
@@ -875,8 +867,8 @@ class Test_API(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -958,9 +950,7 @@ class Test_API(unittest.TestCase):
             "custom_BLOCKS_PATH": custom_BLOCKS_PATH
         }
         result = json.loads((requests.post("http://localhost:7777/proof/get/",
-                                 data=request_body)).text)
-
-
+                                           data=request_body)).text)
 
         self.assertIsNotNone(result)
 
@@ -1029,7 +1019,7 @@ class Test_API(unittest.TestCase):
             "custom_TEMP_BLOCKSHASH_PART_PATH": custom_TEMP_BLOCKSHASH_PART_PATH
         }
         result_check_proof = json.loads((requests.post("http://localhost:7777/proof/check/",
-                                 data=request_body)).text)
+                                                       data=request_body)).text)
 
         self.assertEqual(
             result_check_proof,
@@ -1037,5 +1027,6 @@ class Test_API(unittest.TestCase):
         )
 
         SaveMyTransaction(backup)
+
 
 unittest.main(exit=False)
