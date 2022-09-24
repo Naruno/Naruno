@@ -21,7 +21,7 @@ from decentra_network.transactions.transaction import Transaction
 
 
 def GetProof(
-    tx: Transaction,
+    signature: str,
     custom_PROOF_PATH=None,
     custom_BLOCKS_PATH=None,
     custom_TEMP_ACCOUNTS_PATH=None,
@@ -41,7 +41,7 @@ def GetProof(
             with open(the_BLOCKS_PATH + file, "r") as block_file:
                 the_block_json = json.load(block_file)
             for transaction in the_block_json["validating_list"]:
-                if transaction["signature"] == tx.signature:
+                if transaction["signature"] == signature:
                     sequance_number = file.split(".")[0]
 
     if sequance_number is None:
@@ -69,7 +69,7 @@ def GetProof(
                            ".blockshashpart.json")
 
     proof_path = (the_PROOF_PATH + sha256(
-        (tx.signature).encode("utf-8")).hexdigest() + ".proof.zip")
+        (signature).encode("utf-8")).hexdigest() + ".proof.zip")
 
     with ZipFile(proof_path, "w") as zip:
         zip.write(full_blockshash_path)

@@ -8,10 +8,8 @@ import copy
 import os
 import sys
 
-from decentra_network.transactions.my_transactions.check_proof import \
-    CheckProof
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 import time
 import unittest
 import zipfile
@@ -39,6 +37,8 @@ from decentra_network.transactions.check.datas.check_datas import Check_Datas
 from decentra_network.transactions.check.len.check_len import Check_Len
 from decentra_network.transactions.check.type.check_type import Check_Type
 from decentra_network.transactions.get_transaction import GetTransaction
+from decentra_network.transactions.my_transactions.check_proof import \
+    CheckProof
 from decentra_network.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
 from decentra_network.transactions.my_transactions.get_proof import GetProof
@@ -1571,7 +1571,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction_2.signature = "a"
 
         result = GetProof(
-            the_transaction_2,
+            the_transaction_2.signature,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
         )
 
@@ -1704,7 +1704,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         result = GetProof(
-            the_transaction,
+            the_transaction.signature,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
         )
 
@@ -1909,7 +1909,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         result = GetProof(
-            the_transaction,
+            the_transaction.signature,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
         )
 
