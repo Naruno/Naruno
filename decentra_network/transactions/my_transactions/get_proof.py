@@ -27,7 +27,7 @@ def GetProof(
     custom_TEMP_ACCOUNTS_PATH=None,
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
-):
+) -> str:
 
     the_PROOF_PATH = PROOF_PATH if custom_PROOF_PATH is None else custom_PROOF_PATH
 

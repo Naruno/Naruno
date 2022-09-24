@@ -29,7 +29,7 @@ from decentra_network.transactions.transaction import Transaction
 def CheckProof(
     proof,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
-):
+) -> bool:
     os.chdir(get_config()["main_folder"])
 
     splitted_proof = proof.split(".")
