@@ -41,7 +41,10 @@ def CheckProof(
         # Create the folder
         os.makedirs(the_proof_path)
 
-    zip_file = zipfile.ZipFile(proof, "r")
+    try:
+        zip_file = zipfile.ZipFile(proof, "r")
+    except FileNotFoundError:
+        return None
     zip_file.extractall(the_proof_path)
     zip_file.close()
 
