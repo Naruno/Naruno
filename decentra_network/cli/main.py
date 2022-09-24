@@ -41,6 +41,10 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.wallet.print_wallets import print_wallets
 from decentra_network.wallet.wallet_selector import wallet_selector
 
+from decentra_network.transactions.my_transactions.check_proof import \
+    CheckProof
+from decentra_network.transactions.my_transactions.get_proof import GetProof
+
 logger = get_logger("CLI")
 
 
@@ -86,6 +90,9 @@ def show_menu():
           menu_maker(menu_number="status", menu_text="Prints the status") +
           menu_space() + menu_maker(menu_number="getblock",
                                     menu_text="Get block From Other Nodes") +
+          menu_space() +
+          menu_maker(menu_number="getproof", menu_text="Get Proof") +
+          menu_maker(menu_number="checkproof", menu_text="Check Proof") +
           menu_space())
 
     print(quit_menu_maker(mode="main"))
@@ -206,6 +213,14 @@ def menu():
         if choices_input == "status":
             print(Status())
 
+
+
+        if choices_input == "getproof":
+            print(GetProof(input("Please write the transaction signature: ")))
+        if choices_input == "checkproof":
+            print(CheckProof(input("Please write the path of proof: ")))
+
+
         if choices_input == "0":
             exit()
 
@@ -286,6 +301,17 @@ def arguments():
                         action="store_true",
                         help="Exports the transaction as csv")
 
+
+    parser.add_argument("-gp",
+                        "--getproof",
+                        type=str,
+                        help="Get proof of given transaction signature")
+
+    parser.add_argument("-cp",
+                        "--checkproof",
+                        type=str,
+                        help="Checks the given proof")
+
     parser.add_argument(
         "-m",
         "--menu",
@@ -356,6 +382,15 @@ def arguments():
 
     if args.wallet is not None:
         wallet_selector(args.wallet)
+
+
+
+    if args.getproof is not None:
+        GetProof(args.getproof)
+
+    if args.checkproof is not None:
+        CheckProof(args.checkproof)
+
 
     if args.menu:
         menu()

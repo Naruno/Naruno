@@ -23,3 +23,5 @@ nav_order: 2
 | -returntrans | --returntransactions   | NO         | Prints transactions                            |
 | -st          | --status               | NO         | Prints the status of network                   |
 | -m           | --menu                 | NO         | Opens the cli menu                             |
+| -gp      | --getproof             | str:signature     | Get proof of given transaction signature                |
+| -cp      | --checkproof             | str:path_of_proof     | Checks the given proof                |
