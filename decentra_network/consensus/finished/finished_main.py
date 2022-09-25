@@ -9,7 +9,7 @@ import shutil
 
 from decentra_network.apps.apps_trigger import AppsTrigger
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.blockchain.block.save_block import SaveBlock
@@ -98,6 +98,8 @@ def finished_main(
                     custom_TEMP_BLOCKSHASH_PART_PATH=
                     the_TEMP_BLOCKSHASH_PART_PATH,
                 )
+                the_blockshas_part = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH)
+                block.part_amount_cache = MerkleTree(the_blockshas_part).getRootHash()
                 if settings["save_blockshash"] == True:
                     shutil.copyfile(
                         the_TEMP_BLOCKSHASH_PATH,
