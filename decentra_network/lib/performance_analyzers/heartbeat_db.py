@@ -11,17 +11,23 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
-from decentra_network.lib.performance_analyzers.transactions import Transactions_IO_Performance_Analyzer
+from decentra_network.lib.performance_analyzers.transactions import (
+    Transactions_IO_Performance_Analyzer,
+)
 
 
-from decentra_network.lib.performance_analyzers.accounts import \
-    Accounts_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.block import \
-    Block_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.blockshash import \
-    Blockshash_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.blockshash_part import \
-    Blockshash_part_IO_Performance_Analyzer
+from decentra_network.lib.performance_analyzers.accounts import (
+    Accounts_IO_Performance_Analyzer,
+)
+from decentra_network.lib.performance_analyzers.block import (
+    Block_IO_Performance_Analyzer,
+)
+from decentra_network.lib.performance_analyzers.blockshash import (
+    Blockshash_IO_Performance_Analyzer,
+)
+from decentra_network.lib.performance_analyzers.blockshash_part import (
+    Blockshash_part_IO_Performance_Analyzer,
+)
 
 
 def heartbeat_generic_db_analyzer():
@@ -38,16 +44,20 @@ def heartbeat_generic_db_analyzer():
     the_transactions_analysis = the_transactions.analyze()
 
     return (
-        the_block_analysis[0] + the_accounts_analysis[0] +
-        the_blockshash_analysis[0] + the_blockshash_part_analysis[0]
+        the_block_analysis[0]
+        + the_accounts_analysis[0]
+        + the_blockshash_analysis[0]
+        + the_blockshash_part_analysis[0]
         + the_transactions_analysis[0],
-
-        the_block_analysis[1] + the_accounts_analysis[1] +
-        the_blockshash_analysis[1] + the_blockshash_part_analysis[1]
+        the_block_analysis[1]
+        + the_accounts_analysis[1]
+        + the_blockshash_analysis[1]
+        + the_blockshash_part_analysis[1]
         + the_transactions_analysis[1],
-
-        the_block_analysis[2] + the_accounts_analysis[2] +
-        the_blockshash_analysis[2] + the_blockshash_part_analysis[2]
+        the_block_analysis[2]
+        + the_accounts_analysis[2]
+        + the_blockshash_analysis[2]
+        + the_blockshash_part_analysis[2]
         + the_transactions_analysis[2],
     )
 

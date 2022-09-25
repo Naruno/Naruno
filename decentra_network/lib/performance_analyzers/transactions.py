@@ -21,10 +21,12 @@ from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash,
-                                                           SaveBlockshash_part)
+from decentra_network.blockchain.block.blocks_hash import (
+    GetBlockshash,
+    GetBlockshash_part,
+    SaveBlockshash,
+    SaveBlockshash_part,
+)
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
@@ -41,10 +43,8 @@ class Transactions_IO_Performance_Analyzer:
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature":
-            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser":
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -57,7 +57,8 @@ class Transactions_IO_Performance_Analyzer:
         self.block.minumum_transfer_amount = 1000
 
         self.the_transaction_list = [
-            the_transaction for i in range(self.block.max_tx_number)]
+            the_transaction for i in range(self.block.max_tx_number)
+        ]
 
     def analyze(self) -> float:
         """
@@ -67,8 +68,7 @@ class Transactions_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation)[0],
             calculate(self.get_operation)[0],
-            os.path.getsize("db/Block_Performance_Analyzer_block.pf") /
-            1000000,
+            os.path.getsize("db/Block_Performance_Analyzer_block.pf") / 1000000,
         )
 
         os.remove("db/Block_Performance_Analyzer_block.pf")
