@@ -14,11 +14,8 @@ from flask import request
 from waitress import serve
 from waitress.server import create_server
 
-from decentra_network.transactions.my_transactions.check_proof import \
-    CheckProof
-from decentra_network.transactions.my_transactions.get_proof import GetProof
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.get_block import GetBlock
@@ -34,8 +31,11 @@ from decentra_network.lib.settings_system import (d_mode_settings,
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.my_transactions.check_proof import \
+    CheckProof
 from decentra_network.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
+from decentra_network.transactions.my_transactions.get_proof import GetProof
 from decentra_network.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 from decentra_network.transactions.send import send
