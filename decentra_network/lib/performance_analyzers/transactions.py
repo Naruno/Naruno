@@ -4,18 +4,20 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import hashlib
 import os
 import sys
-import time
 
 from speed_calculator import calculate
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
-from decentra_network.lib.mix.merkle_root import MerkleTree
+from decentra_network.transactions.check.check_transaction import CheckTransaction
+
+
+
+
 from decentra_network.transactions.transaction import Transaction
+
 
 
 from decentra_network.accounts.account import Account
@@ -27,23 +29,18 @@ from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
                                                            SaveBlockshash,
                                                            SaveBlockshash_part)
 from decentra_network.blockchain.block.get_block import GetBlock
+from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.lib.mix.merkle_root import MerkleTree
 
 
-class Block_IO_Performance_Analyzer:
+class Transactions_IO_Performance_Analyzer:
     """
     This class is used to analyze the performance of GetBlock
     """
 
     def __init__(self):
         self.block = Block("test")
-        self.block.first_time = False
-
-        self.block.hash = hashlib.sha256("test".encode()).hexdigest()
-        self.block.round_2_starting_time = time.time()
-        self.block.validated_time = time.time()
-
-
 
         the_transaction_json = {
             "sequance_number": 1,
@@ -58,7 +55,11 @@ class Block_IO_Performance_Analyzer:
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        self.block.validating_list = [the_transaction for i in range(self.block.max_tx_number)]
+        self.block = Block(the_transaction.fromUser)
+        self.block.transaction_delay_time = 60
+        self.block.minumum_transfer_amount = 1000
+
+        self.the_transaction_list = [the_transaction for i in range(self.block.max_tx_number)]
 
     def analyze(self) -> float:
         """
@@ -80,21 +81,20 @@ class Block_IO_Performance_Analyzer:
         """
         This function is used to analyze the performance of GetBlock
         """
+
         SaveBlock(
             self.block,
             custom_TEMP_BLOCK_PATH="db/Block_Performance_Analyzer_block.pf",
         )
 
-        main_list = [
-            self.block.previous_hash,
-            str(self.block.sequance_number),
-            str(self.block.empty_block_number),
-            str(self.block.default_transaction_fee),
-            str(self.block.default_increase_of_fee),
-            str(self.block.default_optimum_transaction_number),
-        ]
-
-        MerkleTree(main_list).getRootHash()
+        for the_transaction in self.the_transaction_list:
+            CheckTransaction(
+                self.block,
+                the_transaction,
+                custom_current_time=(the_transaction.transaction_time + 5),
+                custom_sequence_number=0,
+                custom_balance=100000,
+            )
 
     def get_operation(self):
         """
@@ -105,4 +105,4 @@ class Block_IO_Performance_Analyzer:
 
 
 if __name__ == "__main__":
-    print(Block_IO_Performance_Analyzer().analyze())
+    print(Transactions_IO_Performance_Analyzer().analyze())
