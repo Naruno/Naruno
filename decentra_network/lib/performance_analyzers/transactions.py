@@ -11,26 +11,21 @@ from speed_calculator import calculate
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
-from decentra_network.transactions.check.check_transaction import CheckTransaction
-
-
-from decentra_network.transactions.transaction import Transaction
-
-
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (
-    GetBlockshash,
-    GetBlockshash_part,
-    SaveBlockshash,
-    SaveBlockshash_part,
-)
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           GetBlockshash_part,
+                                                           SaveBlockshash,
+                                                           SaveBlockshash_part)
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.lib.mix.merkle_root import MerkleTree
+from decentra_network.transactions.check.check_transaction import \
+    CheckTransaction
+from decentra_network.transactions.transaction import Transaction
 
 
 class Transactions_IO_Performance_Analyzer:
