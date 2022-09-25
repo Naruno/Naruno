@@ -21,10 +21,12 @@ from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash,
-                                                           SaveBlockshash_part)
+from decentra_network.blockchain.block.blocks_hash import (
+    GetBlockshash,
+    GetBlockshash_part,
+    SaveBlockshash,
+    SaveBlockshash_part,
+)
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 
@@ -50,8 +52,7 @@ class Block_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation)[0],
             calculate(self.get_operation)[0],
-            os.path.getsize("db/Block_Performance_Analyzer_block.pf") /
-            1000000,
+            os.path.getsize("db/Block_Performance_Analyzer_block.pf") / 1000000,
         )
 
         os.remove("db/Block_Performance_Analyzer_block.pf")
