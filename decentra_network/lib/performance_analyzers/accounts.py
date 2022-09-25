@@ -4,12 +4,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import contextlib
-import hashlib
 import os
 import sys
-import time
-from cgitb import reset
 
 from speed_calculator import calculate
 
@@ -24,7 +20,9 @@ from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
                                                            SaveBlockshash,
                                                            SaveBlockshash_part)
 from decentra_network.blockchain.block.get_block import GetBlock
+from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.lib.mix.merkle_root import MerkleTree
 
 
 class Accounts_IO_Performance_Analyzer:
@@ -41,6 +39,15 @@ class Accounts_IO_Performance_Analyzer:
 
         for i in range(self.block.max_tx_number):
             self.the_account_list.append(self.account)
+
+        SaveAccounts(
+            self.the_account_list,
+            custom_TEMP_ACCOUNTS_PATH=
+            "db/Accounts_Performance_Analyzer_accounts_2.pf",
+        )
+
+        self.getted_accounts = GetAccounts(
+            "db/Accounts_Performance_Analyzer_accounts_2.pf")
 
     def analyze(self) -> float:
         """
@@ -68,6 +75,8 @@ class Accounts_IO_Performance_Analyzer:
             custom_TEMP_ACCOUNTS_PATH=
             "db/Accounts_Performance_Analyzer_accounts.pf",
         )
+
+        AccountsHash(self.block, self.getted_accounts)
 
     def get_operation(self):
         """

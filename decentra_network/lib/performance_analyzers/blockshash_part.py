@@ -13,6 +13,8 @@ from cgitb import reset
 
 from speed_calculator import calculate
 
+from decentra_network.lib.mix.merkle_root import MerkleTree
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 from decentra_network.accounts.account import Account
@@ -82,6 +84,8 @@ class Blockshash_part_IO_Performance_Analyzer:
             custom_TEMP_BLOCKSHASH_PART_PATH=
             "db/Blockshash_part_Performance_Analyzer_blockshash.pf",
         )
+
+        MerkleTree(self.blocks_hash).getRootHash()
 
     def get_operation(self):
         """
