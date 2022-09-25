@@ -14,7 +14,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from decentra_network.lib.performance_analyzers.transactions import Transactions_IO_Performance_Analyzer
 
 
-
 from decentra_network.lib.performance_analyzers.accounts import \
     Accounts_IO_Performance_Analyzer
 from decentra_network.lib.performance_analyzers.block import \

@@ -14,10 +14,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from decentra_network.transactions.check.check_transaction import CheckTransaction
 
 
-
-
 from decentra_network.transactions.transaction import Transaction
-
 
 
 from decentra_network.accounts.account import Account
@@ -59,7 +56,8 @@ class Transactions_IO_Performance_Analyzer:
         self.block.transaction_delay_time = 60
         self.block.minumum_transfer_amount = 1000
 
-        self.the_transaction_list = [the_transaction for i in range(self.block.max_tx_number)]
+        self.the_transaction_list = [
+            the_transaction for i in range(self.block.max_tx_number)]
 
     def analyze(self) -> float:
         """

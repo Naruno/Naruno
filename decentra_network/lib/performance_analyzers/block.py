@@ -43,8 +43,6 @@ class Block_IO_Performance_Analyzer:
         self.block.round_2_starting_time = time.time()
         self.block.validated_time = time.time()
 
-
-
         the_transaction_json = {
             "sequance_number": 1,
             "signature":
@@ -58,7 +56,8 @@ class Block_IO_Performance_Analyzer:
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        self.block.validating_list = [the_transaction for i in range(self.block.max_tx_number)]
+        self.block.validating_list = [
+            the_transaction for i in range(self.block.max_tx_number)]
 
     def analyze(self) -> float:
         """
