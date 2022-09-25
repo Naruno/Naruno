@@ -13,6 +13,8 @@ from cgitb import reset
 
 from speed_calculator import calculate
 
+from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 from decentra_network.accounts.account import Account
@@ -71,6 +73,8 @@ class Blockshash_IO_Performance_Analyzer:
             custom_TEMP_BLOCKSHASH_PATH=
             "db/Blockshash_Performance_Analyzer_blockshash.pf",
         )
+
+        BlocksHash(self.block, [], self.blocks_hash)
 
     def get_operation(self):
         """

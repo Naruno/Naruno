@@ -13,6 +13,8 @@ from cgitb import reset
 
 from speed_calculator import calculate
 
+from decentra_network.lib.mix.merkle_root import MerkleTree
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 from decentra_network.accounts.account import Account
@@ -64,6 +66,18 @@ class Block_IO_Performance_Analyzer:
             self.block,
             custom_TEMP_BLOCK_PATH="db/Block_Performance_Analyzer_block.pf",
         )
+
+
+        main_list = [
+            self.block.previous_hash,
+            str(self.block.sequance_number),
+            str(self.block.empty_block_number),
+            str(self.block.default_transaction_fee),
+            str(self.block.default_increase_of_fee),
+            str(self.block.default_optimum_transaction_number),
+        ]
+
+        MerkleTree(main_list).getRootHash()
 
     def get_operation(self):
         """
