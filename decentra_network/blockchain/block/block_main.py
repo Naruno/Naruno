@@ -60,6 +60,7 @@ class Block:
         self.part_amount = 100000
 
         self.hash = None
+        self.part_amount_cache = previous_hash
 
         self.max_tx_number = 2
         self.minumum_transfer_amount = 1000
