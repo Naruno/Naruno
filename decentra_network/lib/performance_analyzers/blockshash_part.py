@@ -53,8 +53,7 @@ class Blockshash_part_IO_Performance_Analyzer:
 
         SaveBlockshash_part(
             self.blocks_hash,
-            custom_TEMP_BLOCKSHASH_PART_PATH=
-            "db/Blockshash_part_Performance_Analyzer_blockshash.pf",
+            custom_TEMP_BLOCKSHASH_PART_PATH="db/Blockshash_part_Performance_Analyzer_blockshash.pf",
         )
 
     def analyze(self) -> float:
@@ -81,8 +80,7 @@ class Blockshash_part_IO_Performance_Analyzer:
 
         SaveBlockshash_part(
             self.the_hash,
-            custom_TEMP_BLOCKSHASH_PART_PATH=
-            "db/Blockshash_part_Performance_Analyzer_blockshash.pf",
+            custom_TEMP_BLOCKSHASH_PART_PATH="db/Blockshash_part_Performance_Analyzer_blockshash.pf",
         )
 
         MerkleTree(self.blocks_hash).getRootHash()
@@ -93,8 +91,7 @@ class Blockshash_part_IO_Performance_Analyzer:
         """
 
         GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH=
-            "db/Blockshash_part_Performance_Analyzer_blockshash.pf")
+            custom_TEMP_BLOCKSHASH_PART_PATH="db/Blockshash_part_Performance_Analyzer_blockshash.pf")
 
 
 if __name__ == "__main__":

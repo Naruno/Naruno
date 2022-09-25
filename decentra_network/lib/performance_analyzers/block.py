@@ -67,7 +67,6 @@ class Block_IO_Performance_Analyzer:
             custom_TEMP_BLOCK_PATH="db/Block_Performance_Analyzer_block.pf",
         )
 
-
         main_list = [
             self.block.previous_hash,
             str(self.block.sequance_number),
