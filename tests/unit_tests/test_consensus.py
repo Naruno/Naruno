@@ -679,6 +679,11 @@ class Test_Consensus(unittest.TestCase):
         expected_new_time = true_time(block, return_result=True)
         self.assertEqual(expected_new_time, True)
 
+        expected_round_1_true_time = time_difference_check_round_1(block, return_result=True)
+        expected_true_time = ((block.genesis_time + block.block_time + (
+        (block.sequance_number + block.empty_block_number) * block.block_time)))
+        self.assertEqual(expected_round_1_true_time, expected_true_time + block.round_2_time - 1)
+
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
@@ -695,8 +700,6 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
         the_blockshash_part = GetBlockshash_part(
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
-        print(the_blockshash)
-        print(the_blockshash_part)
         self.assertEqual(
             the_blockshash,
             [Block("Onurdsadasdsaddsaas").previous_hash, "new_hash"])
@@ -952,6 +955,10 @@ class Test_Consensus(unittest.TestCase):
         expected_new_time = true_time(block, return_result=True)
         now_time = int(time.time()) + 3
         self.assertLessEqual(expected_new_time, now_time)
+
+        expected_round_1_true_time = time_difference_check_round_1(block, return_result=True)
+        self.assertEqual(expected_round_1_true_time, expected_new_time + block.round_2_time - 1)
+
 
         self.assertTrue(result)
 

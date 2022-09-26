@@ -49,6 +49,7 @@ class Block:
         self.sequance_number = 0
         self.empty_block_number = 0
         self.gap_block_number = 2
+        self.hard_block_number = 2
 
         self.validating_list = []
         self.transaction_fee = 0.02
@@ -87,7 +88,8 @@ class Block:
         and makes the edits for the new block.
         """
 
-        self.start_time = int(time.time())
+        self.start_time = (self.genesis_time + (
+        (self.sequance_number + self.empty_block_number) * self.block_time)) + self.block_time
 
         self.round_1 = False
 
