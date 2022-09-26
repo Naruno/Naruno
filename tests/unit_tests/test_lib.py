@@ -621,9 +621,11 @@ class Test_Lib(unittest.TestCase):
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
 
-    def test_heartbeat_generic_db_analyzer(self):
+    def test_heartbeat_db_analyzer(self):
+        block = Block("Onur")
         result = heartbeat_generic_db_analyzer()
-        self.assertLess(result[0] + result[1], 9)
+        self.assertLess(result[0][0] + result[0][1], ((block.round_1_time - 2) + block.hard_block_number * block.block_time))
+        self.assertLess(result[1][0] + result[1][1], block.round_1_time - 2)
 
 
 unittest.main(exit=False)
