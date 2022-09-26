@@ -624,7 +624,8 @@ class Test_Lib(unittest.TestCase):
     def test_heartbeat_db_analyzer(self):
         block = Block("Onur")
         result = heartbeat_generic_db_analyzer()
-        self.assertLess(result[0][0] + result[0][1], ((block.round_1_time - 2) + block.hard_block_number * block.block_time))
+        self.assertLess(result[0][0] + result[0][1], ((block.round_1_time -
+                        2) + block.hard_block_number * block.block_time))
         self.assertLess(result[1][0] + result[1][1], block.round_1_time - 2)
 
 

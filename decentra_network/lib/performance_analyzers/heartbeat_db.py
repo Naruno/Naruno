@@ -34,21 +34,26 @@ def heartbeat_generic_db_analyzer():
     the_blockshash_part_analysis = the_blockshash_part.analyze()
     the_transactions_analysis = the_transactions.analyze()
 
-
-    save_total = the_block_analysis[0] + the_accounts_analysis[0] + the_blockshash_analysis[0] + the_blockshash_part_analysis[0] + the_transactions_analysis[0]
-    get_total = the_block_analysis[1] + the_accounts_analysis[1] + the_blockshash_analysis[1] + the_blockshash_part_analysis[1] + the_transactions_analysis[1]
-    size_total = the_block_analysis[2] + the_accounts_analysis[2] + the_blockshash_analysis[2] + the_blockshash_part_analysis[2] + the_transactions_analysis[2]
+    save_total = the_block_analysis[0] + the_accounts_analysis[0] + \
+        the_blockshash_analysis[0] + \
+        the_blockshash_part_analysis[0] + the_transactions_analysis[0]
+    get_total = the_block_analysis[1] + the_accounts_analysis[1] + \
+        the_blockshash_analysis[1] + \
+        the_blockshash_part_analysis[1] + the_transactions_analysis[1]
+    size_total = the_block_analysis[2] + the_accounts_analysis[2] + \
+        the_blockshash_analysis[2] + \
+        the_blockshash_part_analysis[2] + the_transactions_analysis[2]
 
     return [
         [
-        save_total,
-        get_total,
-        size_total,
+            save_total,
+            get_total,
+            size_total,
         ],
         [
-        save_total - the_blockshash_part_analysis[0],
-        get_total - the_blockshash_part_analysis[1],
-        size_total - the_blockshash_part_analysis[2],
+            save_total - the_blockshash_part_analysis[0],
+            get_total - the_blockshash_part_analysis[1],
+            size_total - the_blockshash_part_analysis[2],
         ]
     ]
 
