@@ -86,6 +86,7 @@ class Block_IO_Performance_Analyzer:
             self.block.previous_hash,
             str(self.block.sequance_number),
             str(self.block.empty_block_number),
+            str(self.block.gap_block_number),
             str(self.block.default_transaction_fee),
             str(self.block.default_increase_of_fee),
             str(self.block.default_optimum_transaction_number),

@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+from xmlrpc.client import NOT_WELLFORMED_ERROR
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -663,7 +664,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         time.sleep(1)
-
+        gap_block = copy.copy(block.empty_block_number)
         result = finished_main(
             block=block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -672,6 +673,12 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
+        new_gap_block = copy.copy(block.empty_block_number)
+        self.assertEqual(gap_block, new_gap_block)
+        time.sleep(1)
+        expected_new_time = true_time(block, return_result=True)
+        self.assertEqual(expected_new_time, True)
+
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
@@ -930,7 +937,7 @@ class Test_Consensus(unittest.TestCase):
         )
 
         time.sleep(1)
-
+        gap_block = copy.copy(block.empty_block_number)
         result = finished_main(
             block=block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -939,6 +946,13 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
+        new_gap_block = copy.copy(block.empty_block_number)
+        self.assertNotEqual(gap_block, new_gap_block)
+        self.assertEqual((gap_block + block.gap_block_number), new_gap_block)
+        expected_new_time = true_time(block, return_result=True)
+        now_time = int(time.time()) + 3
+        self.assertLessEqual(expected_new_time, now_time)
+
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(

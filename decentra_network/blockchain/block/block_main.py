@@ -48,6 +48,7 @@ class Block:
         self.previous_hash = previous_hash
         self.sequance_number = 0
         self.empty_block_number = 0
+        self.gap_block_number = 2
 
         self.validating_list = []
         self.transaction_fee = 0.02
