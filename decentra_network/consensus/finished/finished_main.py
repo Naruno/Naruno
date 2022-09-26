@@ -95,6 +95,7 @@ def finished_main(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
             if len(the_blocks_hash) == block.part_amount:
                 block.empty_block_number += block.gap_block_number
+                block.start_time += block.hard_block_number * block.block_time
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
                     custom_TEMP_BLOCKSHASH_PART_PATH=
