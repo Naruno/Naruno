@@ -89,7 +89,7 @@ class Block:
         """
 
         self.start_time = (self.genesis_time + (
-        (self.sequance_number + self.empty_block_number) * self.block_time)) + self.block_time
+            (self.sequance_number + self.empty_block_number) * self.block_time)) + self.block_time
 
         self.round_1 = False
 

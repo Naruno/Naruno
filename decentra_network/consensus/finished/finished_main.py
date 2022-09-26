@@ -77,8 +77,7 @@ def finished_main(
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
                     custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 new_tx_from_us = True
                 settings["save_blockshash"] = True
@@ -95,15 +94,14 @@ def finished_main(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
             if len(the_blocks_hash) == block.part_amount:
                 block.empty_block_number += block.gap_block_number
-                block.start_time += (block.hard_block_number * block.block_time)
+                block.start_time += (block.hard_block_number *
+                                     block.block_time)
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 the_blockshas_part = GetBlockshash_part(
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH)
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH)
                 block.part_amount_cache = MerkleTree(
                     the_blockshas_part).getRootHash()
                 if settings["save_blockshash"] == True:

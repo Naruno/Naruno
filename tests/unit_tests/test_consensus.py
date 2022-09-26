@@ -679,10 +679,12 @@ class Test_Consensus(unittest.TestCase):
         expected_new_time = true_time(block, return_result=True)
         self.assertEqual(expected_new_time, True)
 
-        expected_round_1_true_time = time_difference_check_round_1(block, return_result=True)
+        expected_round_1_true_time = time_difference_check_round_1(
+            block, return_result=True)
         expected_true_time = ((block.genesis_time + block.block_time + (
-        (block.sequance_number + block.empty_block_number) * block.block_time)))
-        self.assertEqual(expected_round_1_true_time, expected_true_time + block.round_2_time - 1)
+            (block.sequance_number + block.empty_block_number) * block.block_time)))
+        self.assertEqual(expected_round_1_true_time,
+                         expected_true_time + block.round_2_time - 1)
 
         self.assertTrue(result)
 
@@ -923,8 +925,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -956,9 +958,10 @@ class Test_Consensus(unittest.TestCase):
         now_time = int(time.time()) + 3
         self.assertLessEqual(expected_new_time, now_time)
 
-        expected_round_1_true_time = time_difference_check_round_1(block, return_result=True)
-        self.assertEqual(expected_round_1_true_time, expected_new_time + block.round_2_time - 1)
-
+        expected_round_1_true_time = time_difference_check_round_1(
+            block, return_result=True)
+        self.assertEqual(expected_round_1_true_time,
+                         expected_new_time + block.round_2_time - 1)
 
         self.assertTrue(result)
 
@@ -1060,8 +1063,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1773,8 +1776,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -1848,8 +1850,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
