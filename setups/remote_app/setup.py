@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="decentra_network_remote_app",
-    version="0.33.0",
+    version="0.34.0",
     description="""This is a tool for apps on Decentra Network""",
     url="https://docs.decentranetwork.org/",
     author="Decentra Network Developers",
