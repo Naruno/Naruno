@@ -15,7 +15,16 @@ def PendingtoValidating(block):
     """
 
     if len(block.validating_list) < block.max_tx_number:
-        for tx in GetPending():
+        for tx in OrderbyFee(GetPending()):
             if len(block.validating_list) < block.max_tx_number:
                 block.validating_list.append(tx)
                 DeletePending(tx)
+
+
+def OrderbyFee(transactions: list):
+    """
+    Sorts transactions by fee.
+    """
+
+    transactions.sort(key=lambda x: x.transaction_fee, reverse=True)
+    return transactions
