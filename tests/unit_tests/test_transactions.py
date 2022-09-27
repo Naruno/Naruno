@@ -317,9 +317,9 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        temp_transaction = Transaction(1, "1", "", "", "", 1, 1, 1)
-        temp_transaction_2 = Transaction(1, "2", "", "", "", 1, 1, 1)
-        temp_transaction_3 = Transaction(1, "3", "", "", "", 1, 1, 1)
+        temp_transaction = Transaction(1, "1", "", "", "", 1, 15, 1)
+        temp_transaction_2 = Transaction(1, "2", "", "", "", 1, 10, 1)
+        temp_transaction_3 = Transaction(1, "3", "", "", "", 1, 5, 1)
 
         SavePending(temp_transaction)
         SavePending(temp_transaction_2)
