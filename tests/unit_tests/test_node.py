@@ -353,7 +353,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
-        
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -504,7 +503,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
-        
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -678,7 +676,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
-        
 
         self.assertEqual(
             the_block.dump_json(),
@@ -941,7 +938,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
-        
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -951,7 +947,6 @@ class Test_Node(unittest.TestCase):
             got_block.dump_json(),
         )
         CleanUp_tests()
-
 
     def test_send_block_to_other_nodes(self):
         CleanUp_tests()
@@ -968,7 +963,6 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH0,
         )
         client = self.node_1.clients[0]
-
 
         self.node_0.send_block_to_other_nodes()
 
@@ -990,9 +984,7 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
         got_block_2 = GetBlock(
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH2)        
-
-
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH2)
 
         self.assertEqual(
             the_block.dump_json(),
@@ -1000,8 +992,6 @@ class Test_Node(unittest.TestCase):
             got_block_2.dump_json(),
         )
         CleanUp_tests()
-
-
 
     def test_send_my_block_get_candidate_block_no_trans(self):
         CleanUp_tests()
