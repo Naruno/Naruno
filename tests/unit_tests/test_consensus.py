@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
-from xmlrpc.client import NOT_WELLFORMED_ERROR
+
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 

@@ -7,11 +7,13 @@
 import os
 import sys
 
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
 from decentra_network.consensus.finished.finished_main import finished_main
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 import copy
 import json
 import time
