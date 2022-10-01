@@ -977,7 +977,6 @@ class Test_Consensus(unittest.TestCase):
         print("expected_round_1_true_time", expected_round_1_true_time)
         print("expected_new_time", expected_new_time)
         self.assertEqual(expected_new_time, block.start_time + (block.block_time * (block.sequance_number + block.empty_block_number - block.hard_block_number)))
-        self.assertEqual("1", 1)
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
