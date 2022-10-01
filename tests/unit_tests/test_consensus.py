@@ -896,7 +896,9 @@ class Test_Consensus(unittest.TestCase):
         block.hash = "new_hash"
 
         block.genesis_time = int(time.time())
-        block.block_time = 1
+        block.block_time = 3
+        block.round_1_time = 1
+        block.round_2_time = 1
         block.sequance_number = 0
         block.empty_block_number = 0
         block.max_tx_number = 3
@@ -942,8 +944,10 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        time.sleep(1)
+        time.sleep(3)
         gap_block = copy.copy(block.empty_block_number)
+        print("gap_block", gap_block)
+        print(block.sequance_number)
         result = finished_main(
             block=block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -952,18 +956,35 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
+        print(block.sequance_number)
         new_gap_block = copy.copy(block.empty_block_number)
+        print("new_gap_block", new_gap_block)
         self.assertNotEqual(gap_block, new_gap_block)
         self.assertEqual((gap_block + block.gap_block_number), new_gap_block)
-        expected_new_time = true_time(block, return_result=True)
-        now_time = int(time.time()) + 3
-        self.assertLessEqual(expected_new_time, now_time)
-
         expected_round_1_true_time = time_difference_check_round_1(
             block, return_result=True)
-        self.assertEqual(expected_round_1_true_time,
-                         expected_new_time + block.round_2_time - 1)
+        expected_new_time = true_time(block, return_result=True)
+        real_now_time = int(time.time())
+        self.assertLessEqual(
+            block.start_time - block.hard_block_number * block.block_time,
+            real_now_time)
+        print("time", int(time.time()))
+        print("hard", block.hard_block_number)
+        print("gap", block.gap_block_number)
+        print("block_time", block.block_time)
+        print("round_1_time", block.round_1_time)
+        print("round_2_time", block.round_2_time)
+        print("block_start_time", block.start_time)
 
+        print("expected_round_1_true_time", expected_round_1_true_time)
+        print("expected_new_time", expected_new_time)
+        self.assertEqual(
+            expected_new_time,
+            block.start_time +
+            (block.block_time *
+             (block.sequance_number + block.empty_block_number -
+              block.hard_block_number)),
+        )
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
