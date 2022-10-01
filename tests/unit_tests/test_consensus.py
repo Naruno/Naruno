@@ -831,7 +831,6 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         time.sleep(1)
-
         result = finished_main(
             block=block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -948,6 +947,7 @@ class Test_Consensus(unittest.TestCase):
         gap_block = copy.copy(block.empty_block_number)
         print("gap_block", gap_block)
         print(block.sequance_number)
+        self.assertEqual(block.sync, False)
         result = finished_main(
             block=block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -956,6 +956,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
+        self.assertEqual(block.sync, True)
         print(block.sequance_number)
         new_gap_block = copy.copy(block.empty_block_number)
         print("new_gap_block", new_gap_block)
