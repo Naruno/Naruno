@@ -43,8 +43,6 @@ class Block:
         self.start_time = int(time.time())
         self.block_time = 22
 
-        self.newly = False
-
         self.previous_hash = previous_hash
         self.sequance_number = 0
         self.empty_block_number = 0
@@ -80,6 +78,7 @@ class Block:
         self.validated_time = None
 
         self.dowload_true_block = ""
+        self.sync = False
 
     def reset_the_block(self, custom_nodes=None):
         """

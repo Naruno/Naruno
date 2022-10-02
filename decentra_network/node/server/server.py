@@ -80,6 +80,7 @@ class server(Thread):
         self.sock.listen(1)
 
         self.clients = []
+        self.sync_clients = []
 
         self.messages = []
         self.our_messages = []
@@ -509,7 +510,6 @@ class server(Thread):
                 from decentra_network.lib.perpetualtimer import perpetualTimer
 
                 system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
-                system.newly = True
 
                 ChangeTransactionFee(system)
 
@@ -663,11 +663,14 @@ class server(Thread):
                 TEMP_BLOCKSHASH_PART_PATH,
             )
 
-    def send_block_to_other_nodes(self, node=None):
+    def send_block_to_other_nodes(self, node=None, sync=False):
         """
         Sends the block to the other nodes.
         """
-        self.send_full_chain(node=node)
-        self.send_full_accounts(node=node)
-        self.send_full_blockshash(node=node)
-        self.send_full_blockshash_part(node=node)
+        if node is None or sync:
+            self.send_full_chain(node=node)
+            self.send_full_accounts(node=node)
+            self.send_full_blockshash(node=node)
+            self.send_full_blockshash_part(node=node)
+        else:
+            self.sync_clients.append(node)

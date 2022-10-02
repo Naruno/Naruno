@@ -28,6 +28,7 @@ from decentra_network.lib.log import get_logger
 from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.lib.settings_system import save_settings
 from decentra_network.lib.settings_system import the_settings
+from decentra_network.node.server.server import server
 from decentra_network.transactions.pending_to_validating import \
     PendingtoValidating
 
@@ -41,28 +42,31 @@ def finished_main(
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
+    custom_server: server = None,
 ) -> None:
+    the_server = None
+    if custom_server is None:
+        the_server = server.Server
+    else:
+        the_server = custom_server
+
+    the_BLOCKS_PATH = BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
+    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
+                              if custom_TEMP_ACCOUNTS_PATH is None else
+                              custom_TEMP_ACCOUNTS_PATH)
+    the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
+                                if custom_TEMP_BLOCKSHASH_PATH is None else
+                                custom_TEMP_BLOCKSHASH_PATH)
+    the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
+                                     custom_TEMP_BLOCKSHASH_PART_PATH is None
+                                     else custom_TEMP_BLOCKSHASH_PART_PATH)
+
+    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
+                           else custom_TEMP_BLOCK_PATH)
+
     if true_time(block):
-        block.newly = False
         logger.debug(
             "Consensus proccess is complated, the block will be reset")
-
-        the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
-                           custom_BLOCKS_PATH)
-        the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                                  if custom_TEMP_ACCOUNTS_PATH is None else
-                                  custom_TEMP_ACCOUNTS_PATH)
-        the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
-                                    if custom_TEMP_BLOCKSHASH_PATH is None else
-                                    custom_TEMP_BLOCKSHASH_PATH)
-        the_TEMP_BLOCKSHASH_PART_PATH = (
-            TEMP_BLOCKSHASH_PART_PATH
-            if custom_TEMP_BLOCKSHASH_PART_PATH is None else
-            custom_TEMP_BLOCKSHASH_PART_PATH)
-
-        the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH
-                               if custom_TEMP_BLOCK_PATH is None else
-                               custom_TEMP_BLOCK_PATH)
 
         reset_block = block.reset_the_block()
         settings = the_settings()
@@ -96,6 +100,7 @@ def finished_main(
             if len(the_blocks_hash) == block.part_amount:
                 block.empty_block_number += block.gap_block_number
                 block.start_time += block.hard_block_number * block.block_time
+                block.sync = True
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
                     custom_TEMP_BLOCKSHASH_PART_PATH=
@@ -127,6 +132,21 @@ def finished_main(
         )
         return True
     else:
+        if block.sync == True:
+            block.sync = False
+            SaveBlock(
+                block,
+                custom_TEMP_BLOCK_PATH=the_TEMP_BLOCK_PATH,
+                custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+            )
+            [
+                the_server.send_block_to_other_nodes(sync_client, sync=True)
+                for sync_client in the_server.sync_clients
+            ]
+            the_server.sync_clients = []
+
         logger.debug(
             "Consensus proccess is complated, waiting for the true time")
         return False
