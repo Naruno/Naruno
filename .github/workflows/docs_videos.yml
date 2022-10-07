@@ -25,7 +25,7 @@ jobs:
     steps:
 
       - name: Creating
-        run: mkdir ./results
+        run: mkdir /github/workspace/results
 
       - uses: actions/checkout@v2
       - name: Rendering Scenes
@@ -37,9 +37,9 @@ jobs:
           args: "-qk"
 
       - name: Moving
-        run: mv ./outputs/Node_Scene.mp4 ./results/Node_k.mp4
+        run: mv ./github/workspace/outputs/Node_Scene.mp4 /github/workspace/results/Node_k.mp4
       - name: Remove output file from repo
-        run: rm -f ./outputs/Node_Scene.mp4
+        run: rm -r -f ./github/workspace/outputs
         
 
       - name: Rendering Scenes
