@@ -1,8 +1,8 @@
-from unicodedata import name
-from manim import *
-
-import sys
 import os
+import sys
+from unicodedata import name
+
+from manim import *
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 

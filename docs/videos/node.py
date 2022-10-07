@@ -1,13 +1,12 @@
+import os
+import sys
 from unicodedata import name
+
 from manim import *
 
-import sys
-import os
-
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from docs.videos.main import Decentra_Network_Scene
 from decentra_network.lib.config_system import get_config
+from docs.videos.main import Decentra_Network_Scene
 
 
 class Node_Scene(Decentra_Network_Scene):
