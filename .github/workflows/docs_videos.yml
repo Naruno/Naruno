@@ -1,0 +1,55 @@
+name: Docs Videos
+
+on: 
+  push:
+    paths:
+      - '.github/workflows/docs_videos.yml'
+      - 'decentra_network/gui_lib/images/logo.ico'  
+
+  pull_request:
+    paths:
+      - '.github/workflows/docs_videos.yml'
+      - 'decentra_network/gui_lib/images/logo.ico'    
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+
+  node:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rendering Scenes
+        uses: manim-kindergarten/manim_action_renderer@master
+        id: renderer
+        with:
+          source_file: docs/videos/node.py
+          scene_names: Node
+          args: "--high_quality"
+      - name: Save output as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Videos
+          path: ${{ steps.renderer.outputs.video_path }}
+
+        
+
+      - name: Zip
+        run: |
+          zip -r node_docs_videos_decentra_network ${{ steps.renderer.outputs.video_path }}
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: node_docs_videos_decentra_network
+          path: node_docs_videos_decentra_network.zip
+      
+      - uses: AButler/upload-release-assets@v2.0
+        if: github.event_name == 'release'
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          files: 'node_docs_videos_decentra_network.zip'
