@@ -10,6 +10,7 @@ from docs.videos.main import Decentra_Network_Scene
 
 
 class Node_Scene(Decentra_Network_Scene):
+
     def construct(self):
         self.set_title("Node")
         self.settings()
