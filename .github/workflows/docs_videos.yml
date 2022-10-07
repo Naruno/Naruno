@@ -30,7 +30,7 @@ jobs:
         with:
           source_file: docs/videos/node.py
           scene_names: Node
-          args: "--high_quality"
+          args: "-qk"
       - name: Save output as artifacts
         uses: actions/upload-artifact@v2
         with:
