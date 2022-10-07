@@ -11,7 +11,6 @@ from decentra_network.lib.config_system import get_config
 
 
 class Node_Scene(Decentra_Network_Scene):
-
     def construct(self):
         self.set_title("Node")
         self.settings()
