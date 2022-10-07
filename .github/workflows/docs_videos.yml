@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Rendering Scenes
-        uses: manim-kindergarten/manim_action_renderer@master
+        uses: pavelzw/manim_community_renderer@master
         id: renderer
         with:
           source_file: docs/videos/node.py
