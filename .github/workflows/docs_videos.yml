@@ -23,6 +23,10 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+
+      - name: Creating
+        run: mkdir ./results
+
       - uses: actions/checkout@v2
       - name: Rendering Scenes
         uses: pavelzw/manim_community_renderer@master
@@ -31,6 +35,11 @@ jobs:
           source_file: docs/videos/node.py
           scene_names: Node
           args: "-qk"
+
+      - name: Moving
+        run: mv ./outputs/Node_Scene.mp4 ./results/Node_k.mp4
+      - name: Remove output file from repo
+        run: rm -f ./outputs/Node_Scene.mp4
         
 
       - name: Rendering Scenes
