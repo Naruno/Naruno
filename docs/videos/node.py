@@ -5,15 +5,12 @@ import sys
 import os
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from docs.videos.main import Decentra_Network_Scene
 from decentra_network.lib.config_system import get_config
 
 
-
 class Node_Scene(Decentra_Network_Scene):
-
 
     def construct(self):
         self.set_title("Node")
@@ -29,6 +26,7 @@ class Node_Scene(Decentra_Network_Scene):
 
         self.clear_scren()
         self.intro_logo()
+
 
 if __name__ == "__main__":
     Node_Scene().render()
