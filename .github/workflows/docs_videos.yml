@@ -23,60 +23,19 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-
-      - name: Creating
-        run: mkdir /github/workspace/results
-
       - uses: actions/checkout@v2
       - name: Rendering Scenes
         uses: pavelzw/manim_community_renderer@master
-        id: node_render_k
-        with:
-          source_file: docs/videos/node.py
-          scene_names: Node
-          args: "-qk"
-
-      - name: Moving
-        run: mv ./github/workspace/outputs/Node_Scene.mp4 /github/workspace/results/Node_k.mp4
-      - name: Remove output file from repo
-        run: rm -r -f ./github/workspace/outputs
-        
-
-      - name: Rendering Scenes
-        uses: pavelzw/manim_community_renderer@master
-        id: node_render_p
-        with:
-          source_file: docs/videos/node.py
-          scene_names: Node
-          args: "-qp"
-
-      - name: Rendering Scenes
-        uses: pavelzw/manim_community_renderer@master
-        id: node_render_h
+        id: renderer
         with:
           source_file: docs/videos/node.py
           scene_names: Node
           args: "-qh"
-
-      - name: Rendering Scenes
-        uses: pavelzw/manim_community_renderer@master
-        id: node_render_m
-        with:
-          source_file: docs/videos/node.py
-          scene_names: Node
-          args: "-qm"
-
-      - name: Rendering Scenes
-        uses: pavelzw/manim_community_renderer@master
-        id: node_render_l
-        with:
-          source_file: docs/videos/node.py
-          scene_names: Node
-          args: "-ql"
+        
 
       - name: Zip
         run: |
-          zip -r node_docs_videos_decentra_network ./outputs/
+          zip -r node_docs_videos_decentra_network ${{ steps.renderer.outputs.video_path }}
       
       - uses: actions/upload-artifact@v2
         with:
