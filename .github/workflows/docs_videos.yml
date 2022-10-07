@@ -31,12 +31,6 @@ jobs:
           source_file: docs/videos/node.py
           scene_names: Node
           args: "-qk"
-      - name: Save output as artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: Videos
-          path: ${{ steps.renderer.outputs.video_path }}
-
         
 
       - name: Zip
