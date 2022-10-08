@@ -274,10 +274,13 @@ After the 5 block we are see blockshash and blockshash part layer system. With t
 ## Block Types
 
 ### Normal
+
 The normal block is default and most used block. In this block we are save the blocks hash to blockshash_part list and all of other system are same as normal.
 
 ### Hard
+
 When the blockshash part list is full, we are switch to hard block. In this block we increase the start time of block as manualy. With this increase evey participant can be able to calculate the blockshash part list. After this we are save the blockshash part list to blockshash list and reset the blockshash part list. After this we are switch to gap blocks for sync.
 
 ### Gap
+
 This block type is for sync and came after hard block. In this block we are increase end time of block as manualy. And we are send the block to waiting sync nodes. After this we are switch to normal block.
