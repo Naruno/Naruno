@@ -29,6 +29,7 @@ def CheckTransaction(
     """
 
     logger.info(f"{transaction.signature}: Checking the transaction started")
+    logger.debug(transaction.dump_json())
     ChangeTransactionFee(
         block,
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)

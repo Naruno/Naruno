@@ -77,6 +77,8 @@ custom_first_block = None
 custom_new_block = None
 custom_connections = None
 
+custom_account_list = None
+
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
@@ -131,6 +133,7 @@ def send_coin_data_page():
         custom_current_time=custom_current_time,
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,
+        custom_account_list=custom_account_list
     )
     if send_tx != False:
         SavetoMyTransaction(send_tx, sended=True)

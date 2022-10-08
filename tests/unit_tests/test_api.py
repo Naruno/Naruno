@@ -12,15 +12,15 @@ import sys
 import time
 import zipfile
 from urllib import response
-
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash
 from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
 from decentra_network.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from decentra_network.consensus.finished.finished_main import finished_main
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.ellipticcurve.wallet_import import Address, wallet_import
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 
 import threading
 import unittest
@@ -83,6 +83,13 @@ temp_path = "db/test_API.db"
 SaveAccounts(the_account_2, temp_path)
 
 decentra_network.api.main.account_list = GetAccounts(temp_path)
+
+a_account = Account("<address>", 1000)
+SaveAccounts([a_account],
+                     "db/test_send_coin_data_page_data.db")
+the_accounts = GetAccounts(
+            "db/test_send_coin_data_page_data.db")
+decentra_network.api.main.custom_account_list = the_accounts
 
 decentra_network.api.main.custom_wallet = "test_account_2"
 
@@ -401,6 +408,43 @@ class Test_API(unittest.TestCase):
         self.assertNotEqual(response_result, "false")
         the_tx = Transaction.load_json(json.loads(response_result))
         self.assertEqual(the_tx.data, "<data>")
+
+        new_my_transactions = GetMyTransaction()
+        self.assertEqual(len(new_my_transactions), 1)
+
+        DeletePending(the_tx)
+        SaveMyTransaction(backup)
+        save_settings(backup_settings)
+        save_wallet_list(original_saved_wallets)
+
+
+    def test_send_coin_data_page_data_no_arg(self):
+
+        backup = GetMyTransaction()
+        backup_settings = the_settings()
+
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+        SaveMyTransaction([])
+
+        password = "123"
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/wallet/create/{password}")
+        request_body = {
+            "to_user": "<address>",
+            "password": password,
+        }
+        response = requests.post("http://localhost:7777/send/",
+                                 data=request_body)
+        response_result = response.text
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        print(response_result)
+        time.sleep(3)
+
+        self.assertNotEqual(response_result, "false")
+        the_tx = Transaction.load_json(json.loads(response_result))
+        self.assertEqual(the_tx.data, "")
+        self.assertEqual(the_tx.amount, 0.0)
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)

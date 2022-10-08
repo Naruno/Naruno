@@ -50,7 +50,7 @@ def Check_Datas(
     if transaction.transaction_fee >= block.transaction_fee:
         pass
     else:
-        logger.error("Transaction fee is not reached")
+        logger.error(f"Transaction fee is not reached {transaction.transaction_fee}-{block.transaction_fee}")
         return False
 
     pending_transactions = GetPending(
