@@ -69,64 +69,64 @@ def send(
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
     if len(str(amount).split(".")[1]) > decimal_amount:
-        logger.error(f"The amount of decimal places is more than {decimal_amount}.")
+        logger.error(
+            f"The amount of decimal places is more than {decimal_amount}.")
         return False
 
-    
     if (
-            wallet_import(int(the_settings()["wallet"]), 2)
-            == sha256(password.encode("utf-8")).hexdigest()
+        wallet_import(int(the_settings()["wallet"]), 2)
+        == sha256(password.encode("utf-8")).hexdigest()
+    ):
+
+        my_private_key = wallet_import(-1, 1, password)
+        my_public_key = "".join(
+            [
+                l.strip()
+                for l in wallet_import(-1, 0).splitlines()
+                if l and not l.startswith("-----")
+            ]
+        )
+
+        sequance_number = GetSequanceNumber(my_public_key) + 1
+
+        # Get the current fee
+        transaction_fee = block.transaction_fee
+
+        tx_time = int(time.time())
+        the_transaction = Transaction(
+            sequance_number,
+            Ecdsa.sign(
+                (str(sequance_number) + my_public_key + str(to_user) + str(data))
+                + str(amount)
+                + str(transaction_fee)
+                + str(tx_time),
+                PrivateKey.fromPem(my_private_key),
+            ).toBase64(),
+            my_public_key,
+            to_user,
+            data,
+            amount,
+            transaction_fee,
+            tx_time,
+        )
+
+        if GetTransaction(
+            block,
+            the_transaction,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_account_list=custom_account_list,
         ):
 
-            my_private_key = wallet_import(-1, 1, password)
-            my_public_key = "".join(
-                [
-                    l.strip()
-                    for l in wallet_import(-1, 0).splitlines()
-                    if l and not l.startswith("-----")
-                ]
-            )
+            del my_private_key
+            del password
 
-            sequance_number = GetSequanceNumber(my_public_key) + 1
-
-            # Get the current fee
-            transaction_fee = block.transaction_fee
-
-            tx_time = int(time.time())
-            the_transaction = Transaction(
-                sequance_number,
-                Ecdsa.sign(
-                    (str(sequance_number) + my_public_key + str(to_user) + str(data))
-                    + str(amount)
-                    + str(transaction_fee)
-                    + str(tx_time),
-                    PrivateKey.fromPem(my_private_key),
-                ).toBase64(),
-                my_public_key,
-                to_user,
-                data,
-                amount,
-                transaction_fee,
-                tx_time,
-            )
-
-            if GetTransaction(
-                block,
-                the_transaction,
-                custom_current_time=custom_current_time,
-                custom_sequence_number=custom_sequence_number,
-                custom_balance=custom_balance,
-                custom_account_list=custom_account_list,
-            ):
-
-                del my_private_key
-                del password
-
-                return the_transaction
-            else:
-                logger.error("The transaction is not valid.")
-                return False
+            return the_transaction
+        else:
+            logger.error("The transaction is not valid.")
+            return False
 
     else:
-            logger.error("Password is not correct")
-            return False
+        logger.error("Password is not correct")
+        return False

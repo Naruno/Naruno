@@ -779,15 +779,17 @@ class Test_Transactions(unittest.TestCase):
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.amount = 10
         a_account = Account(Address(the_transaction.toUser), 1000)
-        SaveAccounts([a_account], "db/test_check_transaction_false_amount_high_account.db")
-        the_accounts = GetAccounts("db/test_check_transaction_false_amount_high_account.db")
+        SaveAccounts(
+            [a_account], "db/test_check_transaction_false_amount_high_account.db")
+        the_accounts = GetAccounts(
+            "db/test_check_transaction_false_amount_high_account.db")
         result = Check_Datas(
             block,
             the_transaction,
             custom_current_time=(the_transaction.transaction_time + 5),
             custom_balance=100000,
             custom_sequence_number=0,
-            custom_account_list = the_accounts
+            custom_account_list=the_accounts
         )
         self.assertEqual(result, True)
 
@@ -1213,8 +1215,6 @@ class Test_Transactions(unittest.TestCase):
                       block=block)
         self.assertEqual(result, False)
 
-
-
     def test_send_false_pass(self):
         block = Block("onur")
         result = send("1235", "onur", amount=5000, data="5ulusoy", block=block)
@@ -1233,8 +1233,10 @@ class Test_Transactions(unittest.TestCase):
     def test_send_true_just_data(self):
         block = Block("onur")
         a_account = Account(Address("onur"), 1000)
-        SaveAccounts([a_account], "db/test_check_transaction_false_amount_high_account.db")
-        the_accounts = GetAccounts("db/test_check_transaction_false_amount_high_account.db")
+        SaveAccounts(
+            [a_account], "db/test_check_transaction_false_amount_high_account.db")
+        the_accounts = GetAccounts(
+            "db/test_check_transaction_false_amount_high_account.db")
         result = send(
             "123",
             "onur",
@@ -1544,8 +1546,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1680,8 +1682,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1828,8 +1830,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -1885,8 +1886,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2038,8 +2039,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -2098,8 +2098,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2251,8 +2251,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result + "onur",
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             None,
         )
