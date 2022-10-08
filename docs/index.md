@@ -51,7 +51,7 @@ Decentra Network is written in **PEP8** format and **only** needs dependent libr
 
 ## Features
 
-- Less than 7 Seconds block time (Confirmation Time)
+- Less than 3-5 Seconds block time
 - Low size (~20mb per 1m user)
 - 10k+ transactions per second
 - Low Transaction Fee
@@ -64,3 +64,5 @@ Decentra Network is written in **PEP8** format and **only** needs dependent libr
 - In-chain developer incentives
 - Built-in application structure
 - Custom wallet system
+
+\*Some features will be adjusted in stable release.
