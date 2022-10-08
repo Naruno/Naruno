@@ -22,6 +22,7 @@ def CheckTransaction(
     custom_sequence_number=None,
     custom_balance=None,
     custom_PENDING_TRANSACTIONS_PATH=None,
+    custom_account_list=None,
 ):
     """
     This function checks the transaction.
@@ -51,6 +52,7 @@ def CheckTransaction(
             custom_balance=custom_balance,
             custom_sequence_number=custom_sequence_number,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
+            custom_account_list=custom_account_list
     ):
         pass
     else:

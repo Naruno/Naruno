@@ -16,6 +16,7 @@ def GetTransaction(
     custom_sequence_number=None,
     custom_balance=None,
     custom_PENDING_TRANSACTIONS_PATH=None,
+    custom_account_list=None,
 ):
     if CheckTransaction(
             block,
@@ -24,6 +25,7 @@ def GetTransaction(
             custom_sequence_number,
             custom_balance,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
+            custom_account_list=custom_account_list,
     ):
         SavePending(
             the_transaction,

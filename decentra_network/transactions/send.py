@@ -11,6 +11,7 @@ from decentra_network.accounts.get_sequance_number import GetSequanceNumber
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.transactions.get_transaction import GetTransaction
+from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
@@ -31,6 +32,7 @@ def send(
     custom_current_time=None,
     custom_sequence_number=None,
     custom_balance=None,
+    custom_account_list=None,
 ):
     """
     The main function for sending the transaction.
@@ -44,7 +46,12 @@ def send(
     """
     block = block if block is not None else GetBlock()
 
-    amount = amount if amount is not None else block.minumum_transfer_amount
+    the_minumum_amount = 0
+    if GetBalance(block, to_user, account_list=custom_account_list) >= 0:
+        pass
+    else:
+        the_minumum_amount = block.minumum_transfer_amount
+    amount = amount if amount is not None else the_minumum_amount
 
     try:
         amount = float(amount)
@@ -65,8 +72,8 @@ def send(
         logger.error(f"The amount of decimal places is more than {decimal_amount}.")
         return False
 
-    if amount >= block.minumum_transfer_amount:
-        if (
+    
+    if (
             wallet_import(int(the_settings()["wallet"]), 2)
             == sha256(password.encode("utf-8")).hexdigest()
         ):
@@ -109,6 +116,7 @@ def send(
                 custom_current_time=custom_current_time,
                 custom_sequence_number=custom_sequence_number,
                 custom_balance=custom_balance,
+                custom_account_list=custom_account_list,
             ):
 
                 del my_private_key
@@ -119,9 +127,6 @@ def send(
                 logger.error("The transaction is not valid.")
                 return False
 
-        else:
+    else:
             logger.error("Password is not correct")
             return False
-    else:
-        logger.error(f"The amount is too low. minumum:{block.minumum_transfer_amount}")
-        return False

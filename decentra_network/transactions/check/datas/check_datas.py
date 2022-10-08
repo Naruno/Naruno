@@ -21,6 +21,7 @@ def Check_Datas(
     custom_balance=None,
     custom_sequence_number=None,
     custom_PENDING_TRANSACTIONS_PATH=None,
+    custom_account_list=None,
 ):
     """
     Check if the transaction datas are valid
@@ -38,8 +39,11 @@ def Check_Datas(
     if transaction.amount >= block.minumum_transfer_amount:
         pass
     else:
-        logger.error("Minimum transfer amount is not reached")
-        return False
+        if GetBalance(block, transaction.toUser, account_list=custom_account_list) >= 0:
+            pass
+        else:
+            logger.error("Minimum transfer amount is not reached")
+            return False
 
     if transaction.transaction_fee >= block.transaction_fee:
         pass

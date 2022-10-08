@@ -8,6 +8,8 @@ import copy
 import os
 import sys
 
+from decentra_network.accounts.get_balance import GetBalance
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import time
@@ -58,7 +60,7 @@ from decentra_network.transactions.process_the_transaction import \
     ProccesstheTransaction
 from decentra_network.transactions.send import send
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.ellipticcurve.wallet_import import Address, wallet_import
 
 
 class Test_Transactions(unittest.TestCase):
@@ -744,7 +746,7 @@ class Test_Transactions(unittest.TestCase):
         block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction.amount = 10
+        the_transaction.amount = 0
         result = Check_Datas(
             block,
             the_transaction,
@@ -753,6 +755,41 @@ class Test_Transactions(unittest.TestCase):
             custom_sequence_number=0,
         )
         self.assertEqual(result, False)
+
+    def test_check_transaction_false_amount_high_account(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.amount = 10
+        a_account = Account(Address(the_transaction.toUser), 1000)
+        SaveAccounts([a_account], "db/test_check_transaction_false_amount_high_account.db")
+        the_accounts = GetAccounts("db/test_check_transaction_false_amount_high_account.db")
+        result = Check_Datas(
+            block,
+            the_transaction,
+            custom_current_time=(the_transaction.transaction_time + 5),
+            custom_balance=100000,
+            custom_sequence_number=0,
+            custom_account_list = the_accounts
+        )
+        self.assertEqual(result, True)
 
     def test_check_transaction_false_transaction_fee(self):
 
@@ -1176,10 +1213,7 @@ class Test_Transactions(unittest.TestCase):
                       block=block)
         self.assertEqual(result, False)
 
-    def test_send_false_amount_lower_than_minumum(self):
-        block = Block("onur")
-        result = send("123", "onur", amount=500, data="4ulusoy", block=block)
-        self.assertEqual(result, False)
+
 
     def test_send_false_pass(self):
         block = Block("onur")
@@ -1196,6 +1230,26 @@ class Test_Transactions(unittest.TestCase):
                       block=block)
         self.assertEqual(result, False)
 
+    def test_send_true_just_data(self):
+        block = Block("onur")
+        a_account = Account(Address("onur"), 1000)
+        SaveAccounts([a_account], "db/test_check_transaction_false_amount_high_account.db")
+        the_accounts = GetAccounts("db/test_check_transaction_false_amount_high_account.db")
+        result = send(
+            "123",
+            "onur",
+            data="77ulusoy",
+            custom_current_time=(int(time.time()) + 5),
+            custom_sequence_number=0,
+            custom_balance=100000,
+            block=block,
+            custom_account_list=the_accounts,
+        )
+
+        self.assertNotEqual(result, False)
+        self.assertEqual(result.amount, 0)
+        DeletePending(result)
+
     def test_send_true(self):
         block = Block("onur")
         result = send(
@@ -1210,6 +1264,7 @@ class Test_Transactions(unittest.TestCase):
         )
 
         self.assertNotEqual(result, False)
+        self.assertEqual(result.amount, 5000)
         DeletePending(result)
 
     def test_get_transaction_false(self):
