@@ -1,3 +1,6 @@
+#manim exports
+media/*
+
 #buildozer
 .buildozer/
 bin/
