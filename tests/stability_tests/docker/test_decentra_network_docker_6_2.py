@@ -62,6 +62,15 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
             },
         )
         time.sleep(50)
+        requests.post(
+            "http://localhost:8000/send/",
+            {
+                "to_user": wallet_2_address,
+                "amount": 5000,
+                "password": "123"
+            },
+        )
+        time.sleep(50)
         balance_wallet_1 = json.loads(
             urllib.request.urlopen(
                 "http://localhost:8101/wallet/balance").read().decode())
