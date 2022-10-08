@@ -21,7 +21,6 @@ from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.wallet.ellipticcurve.wallet_import import Address, wallet_import
 
 
-
 import threading
 import unittest
 import urllib
@@ -86,9 +85,9 @@ decentra_network.api.main.account_list = GetAccounts(temp_path)
 
 a_account = Account("<address>", 1000)
 SaveAccounts([a_account],
-                     "db/test_send_coin_data_page_data.db")
+             "db/test_send_coin_data_page_data.db")
 the_accounts = GetAccounts(
-            "db/test_send_coin_data_page_data.db")
+    "db/test_send_coin_data_page_data.db")
 decentra_network.api.main.custom_account_list = the_accounts
 
 decentra_network.api.main.custom_wallet = "test_account_2"
@@ -416,7 +415,6 @@ class Test_API(unittest.TestCase):
         SaveMyTransaction(backup)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
-
 
     def test_send_coin_data_page_data_no_arg(self):
 
@@ -911,8 +909,8 @@ class Test_API(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
