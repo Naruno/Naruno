@@ -88,7 +88,7 @@
 Decentra Network is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
 The main features of Decentra Network are:
 
-- Less than 7 Seconds block time (Confirmation Time)
+- Less than 3-5 Seconds block time
 - Low size (~20mb per 1m user)
 - 10k+ transactions per second
 - Low Transaction Fee
@@ -101,6 +101,8 @@ The main features of Decentra Network are:
 - In-chain developer incentives
 - Built-in application structure
 - Custom wallet system
+
+*Some features will be adjusted in stable release.
 
 The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network software, designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
