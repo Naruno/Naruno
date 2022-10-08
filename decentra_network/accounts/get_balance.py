@@ -20,7 +20,8 @@ def GetBalance(block, user, account_list=None):
     for address in check_list:
         the_account_list = GetAccounts() if account_list is None else account_list
         the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{address}'")
+            f"SELECT * FROM account_list WHERE address = '{address}'"
+        )
         for row in the_account_list.fetchall():
             balance += row[2]
     return balance
