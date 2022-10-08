@@ -69,8 +69,7 @@ def send(
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
     if len(str(amount).split(".")[1]) > decimal_amount:
-        logger.error(
-            f"The amount of decimal places is more than {decimal_amount}.")
+        logger.error(f"The amount of decimal places is more than {decimal_amount}.")
         return False
 
     if (
