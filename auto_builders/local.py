@@ -49,7 +49,7 @@ class Decentra_Network_Local:
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(75)
+        time.sleep(50)
 
     def install(self):
         time.sleep(1 * self.number_of_nodes)
