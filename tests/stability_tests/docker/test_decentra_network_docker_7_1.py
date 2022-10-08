@@ -58,7 +58,7 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
             "http://localhost:8000/send/",
             {
                 "to_user": wallet_2_address,
-                
+
                 "password": "123"
             },
         )
