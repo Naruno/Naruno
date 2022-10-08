@@ -27,6 +27,19 @@ def Check_Datas(
     Check if the transaction datas are valid
     """
 
+    pending_transactions = GetPending(
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+    for already_tx in pending_transactions + block.validating_list:
+        if already_tx.signature == transaction.signature:
+            logger.error("Transaction is already in the pending list")
+            return False
+
+    for tx in pending_transactions + block.validating_list:
+        if (tx.fromUser == transaction.fromUser
+                and tx.signature != transaction.signature):
+            logger.info("Multiple transaction in one account")
+            return False
+
     balance = (GetBalance(block, transaction.fromUser)
                if custom_balance is None else custom_balance)
     if balance >= (float(transaction.amount) +
@@ -54,19 +67,6 @@ def Check_Datas(
             f"Transaction fee is not reached {transaction.transaction_fee}-{block.transaction_fee}"
         )
         return False
-
-    pending_transactions = GetPending(
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-    for already_tx in pending_transactions + block.validating_list:
-        if already_tx.signature == transaction.signature:
-            logger.error("Transaction is already in the pending list")
-            return False
-
-    for tx in pending_transactions + block.validating_list:
-        if (tx.fromUser == transaction.fromUser
-                and tx.signature != transaction.signature):
-            logger.info("Multiple transaction in one account")
-            return False
 
     get_sequance_number = (GetSequanceNumber(transaction.fromUser)
                            if custom_sequence_number is None else
