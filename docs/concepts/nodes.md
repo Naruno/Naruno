@@ -76,3 +76,6 @@ Node_3 <--> Node_4
 Node_6 <--> Node_7
 
 ```
+
+## Syncing
+When you want to syncing from an node in Decentra Network, the node will include your node to sync wait list. When the Gap blocks are camed the node will send the block to your node. This syncing is very fast because the blocks are verry small and you just need last block.
