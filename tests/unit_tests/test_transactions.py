@@ -65,6 +65,7 @@ from decentra_network.wallet.ellipticcurve.wallet_import import (Address,
 
 
 class Test_Transactions(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
@@ -333,16 +334,13 @@ class Test_Transactions(unittest.TestCase):
 
         transaction_1_true = any(
             element.signature == temp_transaction.signature
-            for element in pending_transactions
-        )
+            for element in pending_transactions)
         transaction_2_true = any(
             element.signature == temp_transaction_2.signature
-            for element in pending_transactions
-        )
+            for element in pending_transactions)
         transaction_3_true = any(
             element.signature == temp_transaction_3.signature
-            for element in pending_transactions
-        )
+            for element in pending_transactions)
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
@@ -370,12 +368,10 @@ class Test_Transactions(unittest.TestCase):
 
         transaction_1_true = any(
             element.signature == temp_transaction.signature
-            for element in pending_transactions
-        )
+            for element in pending_transactions)
         transaction_2_true = any(
             element.signature == temp_transaction_2.signature
-            for element in pending_transactions
-        )
+            for element in pending_transactions)
 
         DeletePending(temp_transaction)
         DeletePending(temp_transaction_2)
@@ -398,9 +394,9 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list.append(temp_transaction)
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(
-            block, custom_pending_transaction_len=len([temp_transaction])
-        )
+        ChangeTransactionFee(block,
+                             custom_pending_transaction_len=len(
+                                 [temp_transaction]))
 
         new_transaction_fee = block.transaction_fee
 
@@ -420,9 +416,9 @@ class Test_Transactions(unittest.TestCase):
 
         block.validating_list.append(temp_transaction)
 
-        ChangeTransactionFee(
-            block, custom_pending_transaction_len=len([temp_transaction])
-        )
+        ChangeTransactionFee(block,
+                             custom_pending_transaction_len=len(
+                                 [temp_transaction]))
 
         new_transaction_fee = block.transaction_fee
 
@@ -433,8 +429,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -460,8 +458,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -489,8 +489,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -518,8 +520,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -547,8 +551,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -576,8 +582,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -605,8 +613,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -634,8 +644,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -660,8 +672,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -686,8 +700,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -714,8 +730,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -743,8 +761,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -760,12 +780,10 @@ class Test_Transactions(unittest.TestCase):
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.amount = 10
         a_account = Account(Address(the_transaction.toUser), 1000)
-        SaveAccounts(
-            [a_account], "db/test_check_transaction_false_amount_high_account.db"
-        )
+        SaveAccounts([a_account],
+                     "db/test_check_transaction_false_amount_high_account.db")
         the_accounts = GetAccounts(
-            "db/test_check_transaction_false_amount_high_account.db"
-        )
+            "db/test_check_transaction_false_amount_high_account.db")
         result = Check_Datas(
             block,
             the_transaction,
@@ -780,8 +798,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -809,8 +829,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -839,8 +861,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -854,17 +878,20 @@ class Test_Transactions(unittest.TestCase):
         block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        result = Check_Datas(
-            block, the_transaction, custom_balance=100000, custom_sequence_number=0
-        )
+        result = Check_Datas(block,
+                             the_transaction,
+                             custom_balance=100000,
+                             custom_sequence_number=0)
         self.assertEqual(result, False)
 
     def test_check_transaction_false_amount_decimal(self):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -886,8 +913,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -909,8 +938,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -928,12 +959,15 @@ class Test_Transactions(unittest.TestCase):
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
 
-    def test_check_transaction_false_transaction_fee_bigger_than_coin_amount(self):
+    def test_check_transaction_false_transaction_fee_bigger_than_coin_amount(
+            self):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -955,8 +989,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -978,8 +1014,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1001,8 +1039,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1024,8 +1064,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1047,8 +1089,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1070,8 +1114,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1093,8 +1139,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1116,8 +1164,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1137,7 +1187,11 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_amount_type(self):
         block = Block("onur")
-        result = send("123", "onur", amount="atakan", data="1ulusoy", block=block)
+        result = send("123",
+                      "onur",
+                      amount="atakan",
+                      data="1ulusoy",
+                      block=block)
         self.assertEqual(result, False)
 
     def test_send_false_amount_type_negative(self):
@@ -1155,7 +1209,11 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_decimal_amount(self):
         block = Block("onur")
-        result = send("123", "onur", amount=500.001, data="3ulusoy", block=block)
+        result = send("123",
+                      "onur",
+                      amount=500.001,
+                      data="3ulusoy",
+                      block=block)
         self.assertEqual(result, False)
 
     def test_send_false_pass(self):
@@ -1165,20 +1223,21 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_false_check(self):
         block = Block("onur")
-        result = send(
-            "123", "onur", amount=5000, data="6ulusoy", custom_balance=5, block=block
-        )
+        result = send("123",
+                      "onur",
+                      amount=5000,
+                      data="6ulusoy",
+                      custom_balance=5,
+                      block=block)
         self.assertEqual(result, False)
 
     def test_send_true_just_data(self):
         block = Block("onur")
         a_account = Account(Address("onur"), 1000)
-        SaveAccounts(
-            [a_account], "db/test_check_transaction_false_amount_high_account.db"
-        )
+        SaveAccounts([a_account],
+                     "db/test_check_transaction_false_amount_high_account.db")
         the_accounts = GetAccounts(
-            "db/test_check_transaction_false_amount_high_account.db"
-        )
+            "db/test_check_transaction_false_amount_high_account.db")
         result = send(
             "123",
             "onur",
@@ -1215,8 +1274,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1242,8 +1303,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1270,8 +1333,10 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1289,20 +1354,23 @@ class Test_Transactions(unittest.TestCase):
         temp_path = "db/test_ProccesstheTransaction_validating_list.db"
 
         SaveAccounts(
-            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000), temp_path
-        )
+            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000),
+            temp_path)
         account_list = GetAccounts(temp_path)
-        result = ProccesstheTransaction(
-            block, account_list, custom_TEMP_ACCOUNTS_PATH=temp_path
-        )
-        self.assertEqual(block.validating_list, [the_transaction_2, the_transaction])
+        result = ProccesstheTransaction(block,
+                                        account_list,
+                                        custom_TEMP_ACCOUNTS_PATH=temp_path)
+        self.assertEqual(block.validating_list,
+                         [the_transaction_2, the_transaction])
 
     def test_ProccesstheTransaction_account_list(self):
 
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1340,26 +1408,26 @@ class Test_Transactions(unittest.TestCase):
         temp_path = "db/test_ProccesstheTransaction_account_list.db"
 
         SaveAccounts(
-            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000), temp_path
-        )
+            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000),
+            temp_path)
         SaveAccounts(
-            Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000), temp_path
-        )
+            Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000),
+            temp_path)
         SaveAccounts(
-            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000), temp_path
-        )
+            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000),
+            temp_path)
         SaveAccounts(
-            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000), temp_path
-        )
+            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000),
+            temp_path)
         SaveAccounts(
-            Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000), temp_path
-        )
+            Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000),
+            temp_path)
 
         account_list = GetAccounts(temp_path)
 
-        result = ProccesstheTransaction(
-            block, account_list, custom_TEMP_ACCOUNTS_PATH=temp_path
-        )
+        result = ProccesstheTransaction(block,
+                                        account_list,
+                                        custom_TEMP_ACCOUNTS_PATH=temp_path)
         account_list = GetAccounts(temp_path)
         account_list.execute(f"SELECT * FROM account_list")
         account_list = account_list.fetchall()
@@ -1373,23 +1441,28 @@ class Test_Transactions(unittest.TestCase):
         ]
         self.assertEqual(block.validating_list, true_list)
         self.assertEqual(account_list[0][2], 100000 - 5000 - 0.02)
-        self.assertEqual(account_list[0][0], "2ffd1f6bed8614f4cd01fc7159ac950604272773")
+        self.assertEqual(account_list[0][0],
+                         "2ffd1f6bed8614f4cd01fc7159ac950604272773")
         self.assertEqual(account_list[0][1], 1)
 
         self.assertEqual(account_list[1][2], 94999.98)
-        self.assertEqual(account_list[1][0], "73cd109827c0de9fa211c0d062eab13584ea6bb8")
+        self.assertEqual(account_list[1][0],
+                         "73cd109827c0de9fa211c0d062eab13584ea6bb8")
         self.assertEqual(account_list[1][1], 1)
 
         self.assertEqual(account_list[2][2], 94999.98)
-        self.assertEqual(account_list[2][0], "08fe9bfc6521565c601a3785c5f5fb0a406279e6")
+        self.assertEqual(account_list[2][0],
+                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6")
         self.assertEqual(account_list[2][1], 1)
 
         self.assertEqual(account_list[3][2], 94999.98)
-        self.assertEqual(account_list[3][0], "6a4236cba1002b2919651677c7c520b67627aa2a")
+        self.assertEqual(account_list[3][0],
+                         "6a4236cba1002b2919651677c7c520b67627aa2a")
         self.assertEqual(account_list[3][1], 1)
 
         self.assertEqual(account_list[4][2], 99999.98)
-        self.assertEqual(account_list[4][0], "d10d419bae75549222c5ffead625a9e0246ad3e6")
+        self.assertEqual(account_list[4][0],
+                         "d10d419bae75549222c5ffead625a9e0246ad3e6")
         self.assertEqual(account_list[4][1], 1)
 
         self.assertEqual(account_list[5][2], 15000)
@@ -1404,7 +1477,8 @@ class Test_Transactions(unittest.TestCase):
         the_transaction_json = {
             "sequance_number": 1,
             "signature": "test_SavePending_GetPending",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1433,14 +1507,11 @@ class Test_Transactions(unittest.TestCase):
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main_3/"
         custom_TEMP_ACCOUNTS_PATH = (
-            "db/test_GetProof_no_transaction_TEMP_ACCOUNTS_PATH.json"
-        )
+            "db/test_GetProof_no_transaction_TEMP_ACCOUNTS_PATH.json")
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_GetProof_no_transaction_TEMP_BLOCKSHASH_PATH.json"
-        )
+            "db/test_GetProof_no_transaction_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_GetProof_no_transaction_TEMP_BLOCKSHASH_PART_PATH.json"
-        )
+            "db/test_GetProof_no_transaction_TEMP_BLOCKSHASH_PART_PATH.json")
 
         block = Block("Onurdsadsaas")
         block.hash = "new_hash"
@@ -1453,8 +1524,10 @@ class Test_Transactions(unittest.TestCase):
         block.part_amount = 2
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1474,10 +1547,10 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(
-                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-            ),
-            GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
+                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash(
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
         )
         block.hash = hash_1
@@ -1512,14 +1585,12 @@ class Test_Transactions(unittest.TestCase):
         self.assertIsNot(result_2, False)
 
         the_blockshash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
         the_blockshash_part = GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
         expected_hash = MerkleTree(
-            [Block("Onurdsadasdsaddsaas").previous_hash, hash_1]
-        ).getRootHash()
+            [Block("Onurdsadasdsaddsaas").previous_hash,
+             hash_1]).getRootHash()
         self.assertEqual(the_blockshash, [])
         self.assertEqual(
             the_blockshash_part,
@@ -1532,16 +1603,12 @@ class Test_Transactions(unittest.TestCase):
         save_settings(backup_the_settings)
 
         Saved_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=(
-                custom_BLOCKS_PATH
-                + str(block.sequance_number)
-                + ".blockshash_full.json"
-            )
-        )
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
 
-        self.assertEqual(
-            Saved_blocks_hash, [Block("Onurdsadasdsaddsaas").previous_hash, hash_1]
-        )
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
 
         hash_2 = CalculateHash(
             result_2[0],
@@ -1554,7 +1621,8 @@ class Test_Transactions(unittest.TestCase):
 
         self.assertEqual(Saved_blocks_hash[1], hash_1)
 
-        the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_1]).getRootHash()
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_1]).getRootHash()
         self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         the_transaction_2 = Transaction.load_json(the_transaction_json)
@@ -1592,8 +1660,10 @@ class Test_Transactions(unittest.TestCase):
         block.part_amount = 2
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1613,10 +1683,10 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(
-                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-            ),
-            GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
+                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash(
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
         )
         block.hash = hash_1
@@ -1651,14 +1721,12 @@ class Test_Transactions(unittest.TestCase):
         self.assertIsNot(result_2, False)
 
         the_blockshash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
         the_blockshash_part = GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
         expected_hash = MerkleTree(
-            [Block("Onurdsadasdsaddsaas").previous_hash, hash_1]
-        ).getRootHash()
+            [Block("Onurdsadasdsaddsaas").previous_hash,
+             hash_1]).getRootHash()
         self.assertEqual(the_blockshash, [])
         self.assertEqual(
             the_blockshash_part,
@@ -1671,16 +1739,12 @@ class Test_Transactions(unittest.TestCase):
         save_settings(backup_the_settings)
 
         Saved_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=(
-                custom_BLOCKS_PATH
-                + str(block.sequance_number)
-                + ".blockshash_full.json"
-            )
-        )
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
 
-        self.assertEqual(
-            Saved_blocks_hash, [Block("Onurdsadasdsaddsaas").previous_hash, hash_1]
-        )
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
 
         hash_2 = CalculateHash(
             result_2[0],
@@ -1693,7 +1757,8 @@ class Test_Transactions(unittest.TestCase):
 
         self.assertEqual(Saved_blocks_hash[1], hash_1)
 
-        the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_1]).getRootHash()
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_1]).getRootHash()
         self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         result = GetProof(
@@ -1715,8 +1780,7 @@ class Test_Transactions(unittest.TestCase):
         for file in os.listdir("db/test_proof_extracted/db/"):
             if os.path.isdir("db/test_proof_extracted/db/" + file):
                 custom_BLOCKS_PATH_from_proof = (
-                    "db/test_proof_extracted/db/" + file + "/"
-                )
+                    "db/test_proof_extracted/db/" + file + "/")
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
 
                     list_of_files.append(file_2)
@@ -1734,12 +1798,9 @@ class Test_Transactions(unittest.TestCase):
         self.assertIsNot(result_2, False)
 
         Saved_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=(
-                custom_BLOCKS_PATH_from_proof
-                + str(block.sequance_number)
-                + ".blockshash_full.json"
-            )
-        )
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
 
         hash_2 = CalculateHash(
             result_2[0],
@@ -1749,18 +1810,16 @@ class Test_Transactions(unittest.TestCase):
         )
 
         self.assertEqual(len(result_2[0].validating_list), 2)
-        self.assertEqual(
-            result_2[0].validating_list[0].dump_json(), the_transaction.dump_json()
-        )
-        self.assertEqual(
-            result_2[0].validating_list[1].dump_json(), the_transaction.dump_json()
-        )
+        self.assertEqual(result_2[0].validating_list[0].dump_json(),
+                         the_transaction.dump_json())
+        self.assertEqual(result_2[0].validating_list[1].dump_json(),
+                         the_transaction.dump_json())
 
-        self.assertEqual(
-            Saved_blocks_hash, [Block("Onurdsadasdsaddsaas").previous_hash, hash_2]
-        )
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
         self.assertEqual(hash_2, hash_1)
-        the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_2]).getRootHash()
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_2]).getRootHash()
 
         # Check the_hash_part is in the the_blockshash_part
         is_in = False
@@ -1772,7 +1831,8 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=
+                custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -1790,11 +1850,9 @@ class Test_Transactions(unittest.TestCase):
         custom_BLOCKS_PATH = "db/test_finished_main/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_GetProof_CheckProof_false_TEMP_BLOCKSHASH_PATH.json"
-        )
+            "db/test_GetProof_CheckProof_false_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_GetProof_CheckProof_false_TEMP_BLOCKSHASH_PART_PATH.json"
-        )
+            "db/test_GetProof_CheckProof_false_TEMP_BLOCKSHASH_PART_PATH.json")
 
         block = Block("Onurdsadsaas")
         block.hash = "new_hash"
@@ -1807,8 +1865,10 @@ class Test_Transactions(unittest.TestCase):
         block.part_amount = 2
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -1828,10 +1888,10 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(
-                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-            ),
-            GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
+                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash(
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
         )
         block.hash = hash_1
@@ -1866,14 +1926,12 @@ class Test_Transactions(unittest.TestCase):
         self.assertIsNot(result_2, False)
 
         the_blockshash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
         the_blockshash_part = GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
         expected_hash = MerkleTree(
-            [Block("Onurdsadasdsaddsaas").previous_hash, hash_1]
-        ).getRootHash()
+            [Block("Onurdsadasdsaddsaas").previous_hash,
+             hash_1]).getRootHash()
         self.assertEqual(the_blockshash, [])
         self.assertEqual(
             the_blockshash_part,
@@ -1886,16 +1944,12 @@ class Test_Transactions(unittest.TestCase):
         save_settings(backup_the_settings)
 
         Saved_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=(
-                custom_BLOCKS_PATH
-                + str(block.sequance_number)
-                + ".blockshash_full.json"
-            )
-        )
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
 
-        self.assertEqual(
-            Saved_blocks_hash, [Block("Onurdsadasdsaddsaas").previous_hash, hash_1]
-        )
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
 
         hash_2 = CalculateHash(
             result_2[0],
@@ -1908,7 +1962,8 @@ class Test_Transactions(unittest.TestCase):
 
         self.assertEqual(Saved_blocks_hash[1], hash_1)
 
-        the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_1]).getRootHash()
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_1]).getRootHash()
         self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         result = GetProof(
@@ -1930,8 +1985,7 @@ class Test_Transactions(unittest.TestCase):
         for file in os.listdir("db/test_proof_extracted/db/"):
             if os.path.isdir("db/test_proof_extracted/db/" + file):
                 custom_BLOCKS_PATH_from_proof = (
-                    "db/test_proof_extracted/db/" + file + "/"
-                )
+                    "db/test_proof_extracted/db/" + file + "/")
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
 
                     list_of_files.append(file_2)
@@ -1949,12 +2003,9 @@ class Test_Transactions(unittest.TestCase):
         self.assertIsNot(result_2, False)
 
         Saved_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=(
-                custom_BLOCKS_PATH_from_proof
-                + str(block.sequance_number)
-                + ".blockshash_full.json"
-            )
-        )
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
 
         hash_2 = CalculateHash(
             result_2[0],
@@ -1964,18 +2015,16 @@ class Test_Transactions(unittest.TestCase):
         )
 
         self.assertEqual(len(result_2[0].validating_list), 2)
-        self.assertEqual(
-            result_2[0].validating_list[0].dump_json(), the_transaction.dump_json()
-        )
-        self.assertEqual(
-            result_2[0].validating_list[1].dump_json(), the_transaction.dump_json()
-        )
+        self.assertEqual(result_2[0].validating_list[0].dump_json(),
+                         the_transaction.dump_json())
+        self.assertEqual(result_2[0].validating_list[1].dump_json(),
+                         the_transaction.dump_json())
 
-        self.assertEqual(
-            Saved_blocks_hash, [Block("Onurdsadasdsaddsaas").previous_hash, hash_2]
-        )
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
         self.assertEqual(hash_2, hash_1)
-        the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_2]).getRootHash()
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_2]).getRootHash()
 
         # Check the_hash_part is in the the_blockshash_part
         is_in = False
@@ -1985,20 +2034,21 @@ class Test_Transactions(unittest.TestCase):
         self.assertTrue(is_in)
 
         false_part = custom_TEMP_BLOCKSHASH_PART_PATH.replace(
-            "TEMP_BLOCKSHASH_PART_PATH", "TEMP_BLOCKSHASH_PART_PATH_2"
-        )
-        SaveBlockshash_part(["abc", "abc"], custom_TEMP_BLOCKSHASH_PART_PATH=false_part)
+            "TEMP_BLOCKSHASH_PART_PATH", "TEMP_BLOCKSHASH_PART_PATH_2")
+        SaveBlockshash_part(["abc", "abc"],
+                            custom_TEMP_BLOCKSHASH_PART_PATH=false_part)
 
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=
+                custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
         self.assertEqual(
-            CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part), False
-        )
+            CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part),
+            False)
 
         SaveMyTransaction(backup)
 
@@ -2013,11 +2063,9 @@ class Test_Transactions(unittest.TestCase):
         custom_BLOCKS_PATH = "db/test_finished_main/"
         custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_GetProof_CheckProof_none_TEMP_BLOCKSHASH_PATH.json"
-        )
+            "db/test_GetProof_CheckProof_none_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_GetProof_CheckProof_none_TEMP_BLOCKSHASH_PART_PATH.json"
-        )
+            "db/test_GetProof_CheckProof_none_TEMP_BLOCKSHASH_PART_PATH.json")
 
         block = Block("Onurdsadsaas")
         block.hash = "new_hash"
@@ -2030,8 +2078,10 @@ class Test_Transactions(unittest.TestCase):
         block.part_amount = 2
         the_transaction_json = {
             "sequance_number": 1,
-            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -2051,10 +2101,10 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(
-                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-            ),
-            GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
+                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash(
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
         )
         block.hash = hash_1
@@ -2089,14 +2139,12 @@ class Test_Transactions(unittest.TestCase):
         self.assertIsNot(result_2, False)
 
         the_blockshash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
         the_blockshash_part = GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
-        )
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
         expected_hash = MerkleTree(
-            [Block("Onurdsadasdsaddsaas").previous_hash, hash_1]
-        ).getRootHash()
+            [Block("Onurdsadasdsaddsaas").previous_hash,
+             hash_1]).getRootHash()
         self.assertEqual(the_blockshash, [])
         self.assertEqual(
             the_blockshash_part,
@@ -2109,16 +2157,12 @@ class Test_Transactions(unittest.TestCase):
         save_settings(backup_the_settings)
 
         Saved_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=(
-                custom_BLOCKS_PATH
-                + str(block.sequance_number)
-                + ".blockshash_full.json"
-            )
-        )
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
 
-        self.assertEqual(
-            Saved_blocks_hash, [Block("Onurdsadasdsaddsaas").previous_hash, hash_1]
-        )
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
 
         hash_2 = CalculateHash(
             result_2[0],
@@ -2131,7 +2175,8 @@ class Test_Transactions(unittest.TestCase):
 
         self.assertEqual(Saved_blocks_hash[1], hash_1)
 
-        the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_1]).getRootHash()
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_1]).getRootHash()
         self.assertEqual(the_blockshash_part[1], the_hash_part)
 
         result = GetProof(
@@ -2153,8 +2198,7 @@ class Test_Transactions(unittest.TestCase):
         for file in os.listdir("db/test_proof_extracted/db/"):
             if os.path.isdir("db/test_proof_extracted/db/" + file):
                 custom_BLOCKS_PATH_from_proof = (
-                    "db/test_proof_extracted/db/" + file + "/"
-                )
+                    "db/test_proof_extracted/db/" + file + "/")
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
 
                     list_of_files.append(file_2)
@@ -2172,12 +2216,9 @@ class Test_Transactions(unittest.TestCase):
         self.assertIsNot(result_2, False)
 
         Saved_blocks_hash = GetBlockshash(
-            custom_TEMP_BLOCKSHASH_PATH=(
-                custom_BLOCKS_PATH_from_proof
-                + str(block.sequance_number)
-                + ".blockshash_full.json"
-            )
-        )
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
 
         hash_2 = CalculateHash(
             result_2[0],
@@ -2187,18 +2228,16 @@ class Test_Transactions(unittest.TestCase):
         )
 
         self.assertEqual(len(result_2[0].validating_list), 2)
-        self.assertEqual(
-            result_2[0].validating_list[0].dump_json(), the_transaction.dump_json()
-        )
-        self.assertEqual(
-            result_2[0].validating_list[1].dump_json(), the_transaction.dump_json()
-        )
+        self.assertEqual(result_2[0].validating_list[0].dump_json(),
+                         the_transaction.dump_json())
+        self.assertEqual(result_2[0].validating_list[1].dump_json(),
+                         the_transaction.dump_json())
 
-        self.assertEqual(
-            Saved_blocks_hash, [Block("Onurdsadasdsaddsaas").previous_hash, hash_2]
-        )
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
         self.assertEqual(hash_2, hash_1)
-        the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_2]).getRootHash()
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_2]).getRootHash()
 
         # Check the_hash_part is in the the_blockshash_part
         is_in = False
@@ -2208,20 +2247,21 @@ class Test_Transactions(unittest.TestCase):
         self.assertTrue(is_in)
 
         false_part = custom_TEMP_BLOCKSHASH_PART_PATH.replace(
-            "TEMP_BLOCKSHASH_PART_PATH", "TEMP_BLOCKSHASH_PART_PATH_2"
-        )
-        SaveBlockshash_part(["abc", "abc"], custom_TEMP_BLOCKSHASH_PART_PATH=false_part)
+            "TEMP_BLOCKSHASH_PART_PATH", "TEMP_BLOCKSHASH_PART_PATH_2")
+        SaveBlockshash_part(["abc", "abc"],
+                            custom_TEMP_BLOCKSHASH_PART_PATH=false_part)
 
         self.assertEqual(
             CheckProof(
                 result + "onur",
-                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=
+                custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             None,
         )
         self.assertEqual(
-            CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part), False
-        )
+            CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part),
+            False)
 
         SaveMyTransaction(backup)
 
