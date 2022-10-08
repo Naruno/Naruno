@@ -65,4 +65,4 @@ Decentra Network is written in **PEP8** format and **only** needs dependent libr
 - Built-in application structure
 - Custom wallet system
 
-*Some features will be adjusted in stable release.
+\*Some features will be adjusted in stable release.
