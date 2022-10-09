@@ -21,31 +21,11 @@ def Check_Datas(
     custom_balance=None,
     custom_sequence_number=None,
     custom_PENDING_TRANSACTIONS_PATH=None,
+    custom_account_list=None,
 ):
     """
     Check if the transaction datas are valid
     """
-
-    balance = (GetBalance(block, transaction.fromUser)
-               if custom_balance is None else custom_balance)
-    if balance >= (float(transaction.amount) +
-                   float(transaction.transaction_fee)):
-        pass
-    else:
-        logger.error("Balance is not valid")
-        return False
-
-    if transaction.amount >= block.minumum_transfer_amount:
-        pass
-    else:
-        logger.error("Minimum transfer amount is not reached")
-        return False
-
-    if transaction.transaction_fee >= block.transaction_fee:
-        pass
-    else:
-        logger.error("Transaction fee is not reached")
-        return False
 
     pending_transactions = GetPending(
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
@@ -59,6 +39,34 @@ def Check_Datas(
                 and tx.signature != transaction.signature):
             logger.info("Multiple transaction in one account")
             return False
+
+    balance = (GetBalance(block, transaction.fromUser)
+               if custom_balance is None else custom_balance)
+    if balance >= (float(transaction.amount) +
+                   float(transaction.transaction_fee)):
+        pass
+    else:
+        logger.error("Balance is not valid")
+        return False
+
+    if transaction.amount >= block.minumum_transfer_amount:
+        pass
+    else:
+        if GetBalance(block,
+                      transaction.toUser,
+                      account_list=custom_account_list) >= 0:
+            pass
+        else:
+            logger.error("Minimum transfer amount is not reached")
+            return False
+
+    if transaction.transaction_fee >= block.transaction_fee:
+        pass
+    else:
+        logger.error(
+            f"Transaction fee is not reached {transaction.transaction_fee}-{block.transaction_fee}"
+        )
+        return False
 
     get_sequance_number = (GetSequanceNumber(transaction.fromUser)
                            if custom_sequence_number is None else

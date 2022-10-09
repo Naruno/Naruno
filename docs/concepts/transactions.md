@@ -37,6 +37,10 @@ classDiagram
 
 ```
 
+## Minumum Transaction Amount
+
+In Decentra Network the accounts need to have a DNC for including in the network. With this if the receiver account does not have a DNC, you must send a minimum amount of DNC to the receiver account. Otherwise, you can use transactions amount as 0. But in all situations, you must send a transaction fee.
+
 # Dynamic Transaction Fee System
 
 Transaction fees are determined by a special mechanism, and must be charged at a fee that the majority of the network can accept, sometimes the network may not accept the standard transaction fee.
