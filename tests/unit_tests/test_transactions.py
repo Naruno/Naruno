@@ -1110,7 +1110,7 @@ class Test_Transactions(unittest.TestCase):
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
 
-    def test_check_transaction_false_amount_type(self):
+    def test_check_transaction_false_amount_type_str(self):
 
         the_transaction_json = {
             "sequance_number": 1,
@@ -1132,6 +1132,31 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.amount = "1"
+        result = Check_Type(the_transaction)
+        self.assertEqual(result, False)
+
+    def test_check_transaction_false_amount_type_negative(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.amount = -15.0
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
 
