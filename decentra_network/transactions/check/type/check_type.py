@@ -49,6 +49,13 @@ def Check_Type(transaction):
         logger.debug("amount is not int&&float")
         return False
 
+
+    if transaction.amount >= 0:
+        pass
+    else:
+        logger.debug("amount is negative")
+        return False
+
     if isinstance(transaction.transaction_fee, (int, float)):
         pass
     else:
