@@ -45,7 +45,7 @@ def send(
     block = block if block is not None else GetBlock()
 
     the_minumum_amount = 0
-    if GetBalance(block, to_user, account_list=custom_account_list) >= 0:
+    if GetBalance(block, to_user, account_list=custom_account_list, dont_convert=True) >= 0:
         pass
     else:
         the_minumum_amount = block.minumum_transfer_amount
