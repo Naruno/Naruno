@@ -17,7 +17,7 @@ def GetBalance(block, user, account_list=None, dont_convert=False):
 
     balance = -block.minumum_transfer_amount
     address = Address(user) if not dont_convert else user
-    
+
     the_account_list = GetAccounts(
     ) if account_list is None else account_list
     the_account_list.execute(
