@@ -28,27 +28,22 @@ def Check_Datas(
     """
 
     pending_transactions = GetPending(
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH
-    )
+        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
     for already_tx in pending_transactions + block.validating_list:
         if already_tx.signature == transaction.signature:
             logger.error("Transaction is already in the pending list")
             return False
 
     for tx in pending_transactions + block.validating_list:
-        if (
-            tx.fromUser == transaction.fromUser
-            and tx.signature != transaction.signature
-        ):
+        if (tx.fromUser == transaction.fromUser
+                and tx.signature != transaction.signature):
             logger.info("Multiple transaction in one account")
             return False
 
-    balance = (
-        GetBalance(block, transaction.fromUser)
-        if custom_balance is None
-        else custom_balance
-    )
-    if balance >= (float(transaction.amount) + float(transaction.transaction_fee)):
+    balance = (GetBalance(block, transaction.fromUser)
+               if custom_balance is None else custom_balance)
+    if balance >= (float(transaction.amount) +
+                   float(transaction.transaction_fee)):
         pass
     else:
         logger.error("Balance is not valid")
@@ -57,15 +52,12 @@ def Check_Datas(
     if transaction.amount >= block.minumum_transfer_amount:
         pass
     else:
-        if (
-            GetBalance(
+        if (GetBalance(
                 block,
                 transaction.toUser,
                 account_list=custom_account_list,
                 dont_convert=True,
-            )
-            >= 0
-        ):
+        ) >= 0):
             pass
         else:
             logger.error("Minimum transfer amount is not reached")
@@ -79,21 +71,19 @@ def Check_Datas(
         )
         return False
 
-    get_sequance_number = (
-        GetSequanceNumber(transaction.fromUser)
-        if custom_sequence_number is None
-        else custom_sequence_number
-    )
+    get_sequance_number = (GetSequanceNumber(transaction.fromUser)
+                           if custom_sequence_number is None else
+                           custom_sequence_number)
     if transaction.sequance_number == (get_sequance_number + 1):
         pass
     else:
         logger.error("Sequance number is not valid")
         return False
 
-    current_time = (
-        int(time.time()) if custom_current_time is None else custom_current_time
-    )
-    if (current_time - transaction.transaction_time) <= block.transaction_delay_time:
+    current_time = (int(time.time())
+                    if custom_current_time is None else custom_current_time)
+    if (current_time -
+            transaction.transaction_time) <= block.transaction_delay_time:
         pass
     else:
         logger.error("Transaction time is not valid")
