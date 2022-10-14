@@ -52,9 +52,12 @@ def Check_Datas(
     if transaction.amount >= block.minumum_transfer_amount:
         pass
     else:
-        if GetBalance(block,
-                      transaction.toUser,
-                      account_list=custom_account_list) >= 0:
+        if (GetBalance(
+                block,
+                transaction.toUser,
+                account_list=custom_account_list,
+                dont_convert=True,
+        ) >= 0):
             pass
         else:
             logger.error("Minimum transfer amount is not reached")

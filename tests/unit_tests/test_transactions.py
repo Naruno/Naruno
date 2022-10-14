@@ -779,7 +779,7 @@ class Test_Transactions(unittest.TestCase):
 
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.amount = 10
-        a_account = Account(Address(the_transaction.toUser), 1000)
+        a_account = Account(the_transaction.toUser, 1000)
         SaveAccounts([a_account],
                      "db/test_check_transaction_false_amount_high_account.db")
         the_accounts = GetAccounts(
@@ -1258,7 +1258,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_send_true_just_data(self):
         block = Block("onur")
-        a_account = Account(Address("onur"), 1000)
+        a_account = Account("onur", 1000)
         SaveAccounts([a_account],
                      "db/test_check_transaction_false_amount_high_account.db")
         the_accounts = GetAccounts(
