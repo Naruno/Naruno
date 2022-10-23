@@ -5,19 +5,17 @@ parent: Creating a APP
 nav_order: 1
 ---
 
-
 # Creating a Embedded APP
 
 If you want to develop applications inside Decentra network you can use our Apps Engine. The Apps engine gives you new data and you can send data with Decentra Network send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
 
 ## Prerequisites
-- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.net/building_a_test_network/) for this)
 
+- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.net/building_a_test_network/) for this)
 
 ## First Stage: Generating the Sceleton
 
 The embedded applications must have a communication section that written in python. And this files must be in some rules.
-
 
 - Decentra-Network
   - decentra_network
@@ -25,8 +23,7 @@ The embedded applications must have a communication section that written in pyth
       - App_Name
         - App_Name_main.py
 
-*If you use a test network you can change the "Decentra-Network" folder with your test network node folders ex. "Decentra-Network-0".*
-
+_If you use a test network you can change the "Decentra-Network" folder with your test network node folders ex. "Decentra-Network-0"._
 
 In this files you should write a function that catch the new datas of your application. Decentra Network will send the new data to this function but you must check and organize your data.
 
@@ -38,15 +35,13 @@ When a transaction is confirmed, the function here is triggered.
 import sys
 
 def app_name_send_tx(action, app_data, password, to_user):
-  return    
+  return
 
 def app_name_main_tx(tx):
-  sys.exit()  
+  sys.exit()
 ```
 
-*You must use sys.exit() in your `app_name_main_tx` function to exit the app when you are done. Because the applications are running on a Thread.
-
-
+\*You must use sys.exit() in your `app_name_main_tx` function to exit the app when you are done. Because the applications are running on a Thread.
 
 ## Second Stage: Sending the Data
 
@@ -58,7 +53,6 @@ from decentra_network.transactions.send import send
 
 Before the sending you must determine the data, for this first you must create a dictionary and determine a action for your data. The action is a string, we are use this for processing the data in getting function.
 
-
 ```python
 data = {
   "action": "app_name_action_name",
@@ -66,7 +60,7 @@ data = {
 }
 ```
 
-After that you can send the data with send function. The send function has 3 parameters. 
+After that you can send the data with send function. The send function has 3 parameters.
 
 - The first parameter is the password of wallet, you can be able to get from installation.
 
@@ -74,11 +68,10 @@ After that you can send the data with send function. The send function has 3 par
 
 And the last parameter is the data, you can pass the data that you created before.
 
-
 ```python
 send(
   "123", # Password
-  "Decentra-Network-00000000000000000000002", 
+  "Decentra-Network-00000000000000000000002",
   data=data,
 )
 ```
@@ -115,7 +108,6 @@ def app_name_main_tx(tx):
 
 When you send the data, the data will be available in the to_user. You can get the data in to_user with `app_name_main_tx` function.
 
-
 Firtly we must check the action of data. If the action is equal to the action that we determined before, we can process the data.
 
 In this examples if the action is equal to "app_name_action_name" we will print the data.
@@ -151,8 +143,8 @@ def app_name_main_tx(tx):
   sys.exit()
 ```
 
-
 ## Final
+
 ```python
 // App_Name_main.py
 
@@ -193,7 +185,7 @@ def app_name_main_tx(tx):
 
 ## Expectations
 
-With this app, you can send a public message to a user that you dont know his/her ip address and not using a server. 
+With this app, you can send a public message to a user that you dont know his/her ip address and not using a server.
 
 You can use this app for safe and private messaging but if you want more, you should sending the datas far from Decentra Network (We have best methods for transactions but this situation is same for all blockchains) and after a while you should save the datas in Decentra Network. This is a good way for mostly of the applications.
 
@@ -212,7 +204,8 @@ app_name_send_tx(
 )
 ```
 
-The second user device is getting the message and print the data to `app_name.log` that be found at 
+The second user device is getting the message and print the data to `app_name.log` that be found at
+
 - Decentra Network
   - decentra_network
     - logs
@@ -224,6 +217,7 @@ The second user device is getting the message and print the data to `app_name.lo
 ```
 
 ## Next Steps
+
 You should save the datas for using in a frontend or backend service, for this you can use this type for your `app_name_main_tx` function.
 
 Firstly you should import the pickle library.
