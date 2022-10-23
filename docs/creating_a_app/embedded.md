@@ -11,7 +11,7 @@ nav_order: 1
 If you want to develop applications inside Decentra network you can use our Apps Engine. The Apps engine gives you new data and you can send data with Decentra Network send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
 
 ## Prerequisites
-- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.org/building_a_test_network/) for this)
+- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.net/building_a_test_network/) for this)
 
 
 ## First Stage: Generating the Sceleton

@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     author="Decentra Network Developers",
-    author_email="onur@decentranetwork.org",
+    author_email="onur@decentranetwork.net",
     packages=["decentra_network"],
     name="decentra_network",
     version="0.35.2",

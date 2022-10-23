@@ -24,7 +24,7 @@ Changed the test run command with true version.
 
 ### App
 
-Changed the old wiki links with docs.decentranetwork.org links.
+Changed the old wiki links with docs.decentranetwork.net links.
 
 # 0.18.3-alpha change log
 

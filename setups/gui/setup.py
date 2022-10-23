@@ -10,9 +10,9 @@ setup(
     name="decentra_network_gui",
     version="0.35.2",
     description="""This is GUI mode installer for Decentra Network""",
-    url="https://docs.decentranetwork.org/",
+    url="https://docs.decentranetwork.net/",
     author="Decentra Network Developers",
-    author_email="onur@decentranetwork.org",
+    author_email="onur@decentranetwork.net",
     license="MPL-2.0",
     install_requires="""
 Kivy==2.1.0
