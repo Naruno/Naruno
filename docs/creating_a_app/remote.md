@@ -7,12 +7,12 @@ nav_order: 1
 
 # Creating a Remote APP
 
-If you want to develop applications outside of Decentra network you can use [APIs](https://docs.decentranetwork.org/referances/apis.html). The APIs gives you new data and you can send data with Decentra Network send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
+If you want to develop applications outside of Decentra network you can use [APIs](https://docs.decentranetwork.net/referances/apis.html). The APIs gives you new data and you can send data with Decentra Network send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
 
 ## Prerequisites
 
-- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.org/building_a_test_network/) for this)
-- Running API (You can check the [Starting the API](https://docs.decentranetwork.org/referances/apis.html#starting-the-api) for this)
+- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.net/building_a_test_network/) for this)
+- Running API (You can check the [Starting the API](https://docs.decentranetwork.net/referances/apis.html#starting-the-api) for this)
 
 ### Installing requirements
 

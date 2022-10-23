@@ -10,9 +10,9 @@ setup(
     name="decentra_network_tests",
     version="0.35.2",
     description="""This is a tool for tests on Decentra Network""",
-    url="https://docs.decentranetwork.org/",
+    url="https://docs.decentranetwork.net/",
     author="Decentra Network Developers",
-    author_email="onur@decentranetwork.org",
+    author_email="onur@decentranetwork.net",
     license="MPL-2.0",
     install_requires="""
 requests==2.28.0

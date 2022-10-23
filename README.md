@@ -8,7 +8,7 @@
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br />
-    <a href="https://decentranetwork.org/"><strong>Explore the website »</strong></a>
+    <a href="https://decentranetwork.net/"><strong>Explore the website »</strong></a>
     <br />
   </p>
   <p align="center">
@@ -145,7 +145,7 @@ It has been developed to make web api control easier and to provide control by o
 
 # Documents
 
-Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://docs.decentranetwork.org/) website.
+Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://docs.decentranetwork.net/) website.
 
 # Contribute
 
