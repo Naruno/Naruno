@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from cgitb import reset
 import os
 import shutil
 
@@ -87,6 +88,16 @@ def finished_main(
                 new_tx_from_us = True
                 settings["save_blockshash"] = True
                 save_settings(settings)
+            if block2.sequance_number == 0:
+                SaveBlockstoBlockchainDB(
+                    block2,
+                    custom_BLOCKS_PATH=the_BLOCKS_PATH,
+                    custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
+                    custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=
+                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    force=True,
+                )   
 
             AppsTrigger(block2)
 
@@ -120,6 +131,12 @@ def finished_main(
                     if not new_tx_from_us:
                         settings["save_blockshash"] = False
                         save_settings(settings)
+                elif block.sequance_number == block.part_amount:
+                    shutil.copyfile(
+                        the_TEMP_BLOCKSHASH_PATH,
+                        (the_BLOCKS_PATH + str(block.sequance_number) +
+                         ".blockshash_full.json"),
+                    )
                 os.remove(the_TEMP_BLOCKSHASH_PATH)
 
         PendingtoValidating(block)
