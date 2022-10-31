@@ -131,7 +131,7 @@ def finished_main(
                     if not new_tx_from_us:
                         settings["save_blockshash"] = False
                         save_settings(settings)
-                elif block.sequance_number == block.part_amount:
+                elif block.sequance_number - 1 == block.part_amount:
                     shutil.copyfile(
                         the_TEMP_BLOCKSHASH_PATH,
                         (the_BLOCKS_PATH + str(block.sequance_number) +

@@ -941,6 +941,9 @@ class Test_Consensus(unittest.TestCase):
             [Block("Onurdsadasdsaddsaas").previous_hash, expected_hash],
         )
 
+
+
+
     def test_finished_main_save_from_part_save_blockshash_first_part(self):
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
@@ -950,9 +953,9 @@ class Test_Consensus(unittest.TestCase):
         backup = GetMyTransaction()
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_save_from_part_save_blockshash_first_part_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_save_from_part_save_blockshash_first_part_TEMP_BLOCKSHASH_PATH.json"
-        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_save_from_part_save_blockshash_first_part_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_save_from_part_save_blockshash_first_parta_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_save_from_part_save_blockshash_first_parta_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_save_from_part_save_blockshash_first_parta_TEMP_BLOCKSHASH_PART_PATH.json"
 
         block = Block("Onurdsadsaas")
         block.hash = "new_hash"
@@ -976,7 +979,6 @@ class Test_Consensus(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction.fromUser = wallet_import(-1, 0)
         block.validating_list = [the_transaction, the_transaction]
         SaveBlock(
             block,
