@@ -941,9 +941,6 @@ class Test_Consensus(unittest.TestCase):
             [Block("Onurdsadasdsaddsaas").previous_hash, expected_hash],
         )
 
-
-
-
     def test_finished_main_save_from_part_save_blockshash_first_part(self):
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
@@ -1083,8 +1080,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1242,8 +1239,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1955,8 +1952,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -2030,8 +2026,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):

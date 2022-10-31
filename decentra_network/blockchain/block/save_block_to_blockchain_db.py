@@ -39,7 +39,7 @@ def SaveBlockstoBlockchainDB(
     my_address = wallet_import(-1, 3)
     our_tx = any((validated_transaction.fromUser == my_public_key) or (
         validated_transaction.toUser == my_address)
-                 for validated_transaction in block.validating_list)
+        for validated_transaction in block.validating_list)
     if our_tx or force:
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
