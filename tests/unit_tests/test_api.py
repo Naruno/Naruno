@@ -10,28 +10,38 @@ import json
 import os
 import sys
 import time
+import zipfile
 from urllib import response
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-
 import threading
 import unittest
 import urllib
 
+import requests
+
 import decentra_network
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.api.main import start
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           GetBlockshash_part)
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
+from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
     MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
     TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
+from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.lib.settings_system import (save_settings,
                                                   t_mode_settings,
                                                   the_settings)
@@ -51,9 +61,9 @@ from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
 from decentra_network.wallet.ellipticcurve.save_wallet_list import \
     save_wallet_list
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
+from decentra_network.wallet.ellipticcurve.wallet_import import (Address,
+                                                                 wallet_import)
 from decentra_network.wallet.print_wallets import print_wallets
-
-from decentra_network.accounts.get_balance import GetBalance
 
 decentra_network.api.main.custom_block = Block("Onur")
 decentra_network.api.main.custom_current_time = int(time.time()) + 25
@@ -73,6 +83,11 @@ SaveAccounts(the_account_2, temp_path)
 
 decentra_network.api.main.account_list = GetAccounts(temp_path)
 
+a_account = Account("<address>", 1000)
+SaveAccounts([a_account], "db/test_send_coin_data_page_data.db")
+the_accounts = GetAccounts("db/test_send_coin_data_page_data.db")
+decentra_network.api.main.custom_account_list = the_accounts
+
 decentra_network.api.main.custom_wallet = "test_account_2"
 
 
@@ -89,7 +104,9 @@ class Test_API(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        cls.maxDiff = None
         CleanUp_tests()
+        decentra_network.api.main.account_list = GetAccounts(temp_path)
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -360,36 +377,6 @@ class Test_API(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
-    def test_send_coin_page(self):
-
-        backup = GetMyTransaction()
-        backup_settings = the_settings()
-
-        original_saved_wallets = get_saved_wallet()
-        save_wallet_list({})
-        SaveMyTransaction([])
-
-        password = "123"
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/wallet/create/{password}")
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/send/coin/<address>/5000/{password}")
-        response_result = response.read()
-
-        time.sleep(3)
-
-        self.assertNotEqual(response_result, b"false\n")
-        the_tx = Transaction.load_json(
-            json.loads(response_result.decode("utf-8")))
-
-        new_my_transactions = GetMyTransaction()
-        self.assertEqual(len(new_my_transactions), 1)
-
-        DeletePending(the_tx)
-        SaveMyTransaction(backup)
-        save_settings(backup_settings)
-        save_wallet_list(original_saved_wallets)
-
     def test_send_coin_data_page(self):
 
         backup = GetMyTransaction()
@@ -402,17 +389,58 @@ class Test_API(unittest.TestCase):
         password = "123"
         response = urllib.request.urlopen(
             f"http://localhost:7777/wallet/create/{password}")
-        response = urllib.request.urlopen(
-            f"http://localhost:7777/send/coin-data/<address>/5000/<data>/{password}"
-        )
-        response_result = response.read()
-
+        request_body = {
+            "data": "<data>",
+            "to_user": "<address>",
+            "amount": 5000,
+            "password": password,
+        }
+        response = requests.post("http://localhost:7777/send/",
+                                 data=request_body)
+        response_result = response.text
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        print(response_result)
         time.sleep(3)
 
-        self.assertNotEqual(response_result, b"false\n")
-        the_tx = Transaction.load_json(
-            json.loads(response_result.decode("utf-8")))
+        self.assertNotEqual(response_result, "false")
+        the_tx = Transaction.load_json(json.loads(response_result))
         self.assertEqual(the_tx.data, "<data>")
+
+        new_my_transactions = GetMyTransaction()
+        self.assertEqual(len(new_my_transactions), 1)
+
+        DeletePending(the_tx)
+        SaveMyTransaction(backup)
+        save_settings(backup_settings)
+        save_wallet_list(original_saved_wallets)
+
+    def test_send_coin_data_page_data_no_arg(self):
+
+        backup = GetMyTransaction()
+        backup_settings = the_settings()
+
+        original_saved_wallets = get_saved_wallet()
+        save_wallet_list({})
+        SaveMyTransaction([])
+
+        password = "123"
+        response = urllib.request.urlopen(
+            f"http://localhost:7777/wallet/create/{password}")
+        request_body = {
+            "to_user": "<address>",
+            "password": password,
+        }
+        response = requests.post("http://localhost:7777/send/",
+                                 data=request_body)
+        response_result = response.text
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        print(response_result)
+        time.sleep(3)
+
+        self.assertNotEqual(response_result, "false")
+        the_tx = Transaction.load_json(json.loads(response_result))
+        self.assertEqual(the_tx.data, "")
+        self.assertEqual(the_tx.amount, 0.0)
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)
@@ -426,10 +454,18 @@ class Test_API(unittest.TestCase):
         response = urllib.request.urlopen(
             "http://localhost:7777/wallet/balance")
         response_result = response.read()
-        the_balance_int = float((response_result.decode("utf-8")).replace("\n", ""))
-     
-        self.assertEqual(the_balance_int, float(GetBalance(decentra_network.api.main.custom_block, decentra_network.api.main.custom_wallet,
-                              account_list=decentra_network.api.main.account_list)))
+        the_balance_int = float(
+            (response_result.decode("utf-8")).replace("\n", ""))
+
+        self.assertEqual(
+            the_balance_int,
+            float(
+                GetBalance(
+                    decentra_network.api.main.custom_block,
+                    decentra_network.api.main.custom_wallet,
+                    account_list=decentra_network.api.main.account_list,
+                )),
+        )
 
     def test_node_start_page(self):
         response = urllib.request.urlopen(
@@ -627,24 +663,6 @@ class Test_API(unittest.TestCase):
 """
             self.assertEqual(content, expected_content)
 
-    def test_export_transaction_json_page(self):
-        backup = GetMyTransaction()
-        new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
-        SavetoMyTransaction(new_transaction, validated=True)
-
-        response = urllib.request.urlopen(
-            "http://localhost:7777/export/transactions/json")
-
-        expected_result = "[{sequance_number: 1, signature: , fromUser: , toUser: , data: , amount: 1.0, transaction_fee: 1.0, transaction_time: 1} | True]"
-
-        self.assertEqual(
-            str((((response.read()).decode("utf-8")).replace("'", "")).replace(
-                """\"""", "")).replace("\n", ""),
-            expected_result,
-        )
-
-        SaveMyTransaction(backup)
-
     def test_status_page(self):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
@@ -681,6 +699,376 @@ class Test_API(unittest.TestCase):
                 for i in custom_transactions
             ]),
         )
+
+    def test_404_page(self):
+        response = requests.get("http://localhost:7777/404")
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.text, '"404"\n')
+
+    def test_405_page(self):
+        response = requests.post("http://localhost:7777/status",
+                                 data={"data": "test"})
+        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.text, '"405"\n')
+
+    def test_500_page(self):
+        response = requests.post("http://localhost:7777/send/",
+                                 data={"data": "test"})
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.text, '"500"\n')
+
+    def test_transaction_sended_validated_page(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+        new_transaction = Transaction(1, "cf", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=True)
+
+        new_transaction = Transaction(1, "cff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=False)
+
+        new_transaction = Transaction(1, "c", "", "", {"data": "dadata"}, 1, 1,
+                                      1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=True)
+
+        response = urllib.request.urlopen(
+            "http://localhost:7777/transactions/sended/validated")
+
+        result = response.read()
+
+        result = json.loads(result)
+
+        self.assertEqual(
+            result["0"]["transaction"]["data"],
+            "{'data': 'dadata'}",
+        )
+
+        self.assertEqual(
+            str(result),
+            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
+        )
+
+        SaveMyTransaction(backup)
+
+    def test_transaction_sended_not_validated_page(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+        new_transaction = Transaction(1, "df", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=False)
+
+        new_transaction = Transaction(1, "dff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=True)
+
+        new_transaction = Transaction(1, "c", "", "", {"data": "dadata"}, 1, 1,
+                                      1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=False)
+
+        response = urllib.request.urlopen(
+            "http://localhost:7777/transactions/sended/not_validated")
+
+        result = response.read()
+
+        result = json.loads(result)
+
+        self.assertEqual(
+            result["0"]["transaction"]["data"],
+            "{'data': 'dadata'}",
+        )
+
+        self.assertEqual(
+            str(result),
+            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+        )
+
+        SaveMyTransaction(backup)
+
+    def test_transaction_received_page(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+        new_transaction = Transaction(1, "ff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=True)
+
+        new_transaction = Transaction(1, "fff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=False)
+
+        new_transaction = Transaction(1, "c", "", "", {"data": "dadata"}, 1, 1,
+                                      1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=True)
+
+        response = urllib.request.urlopen(
+            "http://localhost:7777/transactions/received")
+
+        result = response.read()
+
+        result = json.loads(result)
+
+        self.assertEqual(
+            result["1"]["transaction"]["data"],
+            "{'data': 'dadata'}",
+        )
+
+        self.assertEqual(
+            str(result),
+            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
+        )
+
+        SaveMyTransaction(backup)
+
+    def test_transaction_all_page(self):
+        backup = GetMyTransaction()
+        SaveMyTransaction({})
+
+        new_transaction = Transaction(1, "gf", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=True, validated=False)
+
+        new_transaction = Transaction(1, "gff", "", "", "", 1, 1, 1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=True)
+
+        new_transaction = Transaction(1, "c", "", "", {"data": "dadata"}, 1, 1,
+                                      1)
+        SavetoMyTransaction(new_transaction, sended=False, validated=False)
+
+        response = urllib.request.urlopen(
+            "http://localhost:7777/transactions/all")
+
+        result = response.read()
+
+        result = json.loads(result)
+
+        self.assertEqual(
+            result["0"]["transaction"]["data"],
+            "",
+        )
+
+        self.assertEqual(
+            result["1"]["transaction"]["data"],
+            "",
+        )
+
+        self.assertEqual(
+            result["2"]["transaction"]["data"],
+            "{'data': 'dadata'}",
+        )
+
+        self.assertEqual(
+            str(result),
+            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+        )
+
+        SaveMyTransaction(backup)
+
+    def test_GetProof_CheckProof_page(self):
+
+        backup_the_settings = the_settings()
+        settings = copy.copy(backup_the_settings)
+        settings["save_blockshash"] = True
+        save_settings(settings)
+
+        backup = GetMyTransaction()
+        custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
+        custom_BLOCKS_PATH = "db/test_finished_main/"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_TEMP_BLOCKSHASH_PART_PATH.json"
+
+        block = Block("Onurdsadsaas")
+        block.hash = "new_hash"
+
+        block.genesis_time = int(time.time())
+        block.block_time = 1
+        block.sequance_number = 0
+        block.empty_block_number = 0
+        block.max_tx_number = 3
+        block.part_amount = 2
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_transaction.fromUser = wallet_import(-1, 0)
+        block.validating_list = [the_transaction, the_transaction]
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        hash_1 = CalculateHash(
+            block,
+            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
+                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash(
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+            GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
+        )
+        block.hash = hash_1
+
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        time.sleep(1)
+
+        result = finished_main(
+            block=block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertTrue(result)
+
+        result_2 = GetBlockstoBlockchainDB(
+            sequance_number=0,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        self.assertIsNot(result_2, False)
+
+        the_blockshash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        the_blockshash_part = GetBlockshash_part(
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        expected_hash = MerkleTree(
+            [Block("Onurdsadasdsaddsaas").previous_hash,
+             hash_1]).getRootHash()
+        self.assertEqual(the_blockshash, [])
+        self.assertEqual(
+            the_blockshash_part,
+            [Block("Onurdsadasdsaddsaas").previous_hash, expected_hash],
+        )
+
+        settings = the_settings()
+        self.assertEqual(settings["save_blockshash"], True)
+
+        save_settings(backup_the_settings)
+
+        Saved_blocks_hash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
+
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
+
+        hash_2 = CalculateHash(
+            result_2[0],
+            result_2[3],
+            result_2[2],
+            result_2[1],
+        )
+
+        self.assertEqual(hash_2, hash_1)
+
+        self.assertEqual(Saved_blocks_hash[1], hash_1)
+
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_1]).getRootHash()
+        self.assertEqual(the_blockshash_part[1], the_hash_part)
+
+        request_body = {
+            "signature": the_transaction.signature,
+            "custom_BLOCKS_PATH": custom_BLOCKS_PATH,
+        }
+        result = json.loads((requests.post("http://localhost:7777/proof/get/",
+                                           data=request_body)).text)
+
+        self.assertIsNotNone(result)
+
+        # Open result zip file
+        zip_file = zipfile.ZipFile(result, "r")
+        # Extract all files
+        zip_file.extractall("db/test_proof_extracted/")
+        # Close the zip file
+        zip_file.close()
+
+        list_of_files = []
+        custom_BLOCKS_PATH_from_proof = None
+        for file in os.listdir("db/test_proof_extracted/db/"):
+            if os.path.isdir("db/test_proof_extracted/db/" + file):
+                custom_BLOCKS_PATH_from_proof = (
+                    "db/test_proof_extracted/db/" + file + "/")
+                for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
+
+                    list_of_files.append(file_2)
+
+        self.assertIn("0.block.json", list_of_files)
+        self.assertIn("0.blockshashpart.json", list_of_files)
+        self.assertIn("0.accounts.db", list_of_files)
+        self.assertIn("0.blockshash.json", list_of_files)
+        self.assertIn("1.blockshash_full.json", list_of_files)
+
+        result_2 = GetBlockstoBlockchainDB(
+            sequance_number=0,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
+        )
+        self.assertIsNot(result_2, False)
+
+        Saved_blocks_hash = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
+                                         str(block.sequance_number) +
+                                         ".blockshash_full.json"))
+
+        hash_2 = CalculateHash(
+            result_2[0],
+            result_2[3],
+            result_2[2],
+            result_2[1],
+        )
+
+        self.assertEqual(len(result_2[0].validating_list), 2)
+        self.assertEqual(result_2[0].validating_list[0].dump_json(),
+                         the_transaction.dump_json())
+        self.assertEqual(result_2[0].validating_list[1].dump_json(),
+                         the_transaction.dump_json())
+
+        self.assertEqual(Saved_blocks_hash,
+                         [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
+        self.assertEqual(hash_2, hash_1)
+        the_hash_part = MerkleTree([Saved_blocks_hash[0],
+                                    hash_2]).getRootHash()
+
+        # Check the_hash_part is in the the_blockshash_part
+        is_in = False
+        for i in the_blockshash_part:
+            if i == the_hash_part:
+                is_in = True
+        self.assertTrue(is_in)
+
+        request_body = {
+            "path": result,
+            "custom_TEMP_BLOCKSHASH_PART_PATH":
+            custom_TEMP_BLOCKSHASH_PART_PATH,
+        }
+        result_check_proof = json.loads(
+            (requests.post("http://localhost:7777/proof/check/",
+                           data=request_body)).text)
+
+        self.assertEqual(
+            result_check_proof,
+            True,
+        )
+
+        SaveMyTransaction(backup)
 
 
 unittest.main(exit=False)

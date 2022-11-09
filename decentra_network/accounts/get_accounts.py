@@ -28,6 +28,5 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
     c.execute(
         """CREATE TABLE IF NOT EXISTS account_list (address text, sequance_number integer, balance integer)"""
     )
-    conn.commit()
 
     return c

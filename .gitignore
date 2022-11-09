@@ -1,3 +1,6 @@
+#manim exports
+media/*
+
 #buildozer
 .buildozer/
 bin/
@@ -9,6 +12,10 @@ bin/
 
 #export
 *.csv
+*proof.zip
+
+#Performance Analyzers
+*.pf
 
 #test
 *.txt

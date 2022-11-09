@@ -19,6 +19,7 @@ There have been no compatibility changes.
 # Notable changes
 
 ## Docs
+
 Removed "Core" expression.
 
 # 0.26.1-alpha change log
@@ -26,11 +27,12 @@ Removed "Core" expression.
 <!-- Release notes generated using configuration in .github/release.yml at master -->
 
 ## What's Changed
+
 ### Docs
-* docs: Removed "Core" name by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/893
 
+- docs: Removed "Core" name by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/893
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.26.0-alpha...fdsfds
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.26.0-alpha...v0.26.1-alpha
 
 # Credits
 

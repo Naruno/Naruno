@@ -21,60 +21,72 @@ def Check_Datas(
     custom_balance=None,
     custom_sequence_number=None,
     custom_PENDING_TRANSACTIONS_PATH=None,
+    custom_account_list=None,
 ):
     """
     Check if the transaction datas are valid
     """
 
-    balance = (GetBalance(block, transaction.fromUser)
-               if custom_balance is None else custom_balance)
-    if balance >= (float(transaction.amount) +
-                   float(transaction.transaction_fee)):
-        logger.info("Balance is valid")
-    else:
-        logger.error("Balance is not valid : " + str(balance) + " < " +
-                     str((float(transaction.amount) +
-                          float(transaction.transaction_fee))))
-        return False
-
-    if transaction.amount >= block.minumum_transfer_amount:
-        logger.info("Minimum transfer amount is reached")
-    else:
-        return False
-
-    if transaction.transaction_fee >= block.transaction_fee:
-        logger.info("Transaction fee is reached")
-    else:
-        return False
-
     pending_transactions = GetPending(
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
     for already_tx in pending_transactions + block.validating_list:
         if already_tx.signature == transaction.signature:
+            logger.error("Transaction is already in the pending list")
             return False
-    logger.info("Transaction is new")
 
     for tx in pending_transactions + block.validating_list:
         if (tx.fromUser == transaction.fromUser
                 and tx.signature != transaction.signature):
-
             logger.info("Multiple transaction in one account")
             return False
+
+    balance = (GetBalance(block, transaction.fromUser)
+               if custom_balance is None else custom_balance)
+    if balance >= (float(transaction.amount) +
+                   float(transaction.transaction_fee)):
+        pass
+    else:
+        logger.error("Balance is not valid")
+        return False
+
+    if transaction.amount >= block.minumum_transfer_amount:
+        pass
+    else:
+        if (GetBalance(
+                block,
+                transaction.toUser,
+                account_list=custom_account_list,
+                dont_convert=True,
+        ) >= 0):
+            pass
+        else:
+            logger.error("Minimum transfer amount is not reached")
+            return False
+
+    if transaction.transaction_fee >= block.transaction_fee:
+        pass
+    else:
+        logger.error(
+            f"Transaction fee is not reached {transaction.transaction_fee}-{block.transaction_fee}"
+        )
+        return False
 
     get_sequance_number = (GetSequanceNumber(transaction.fromUser)
                            if custom_sequence_number is None else
                            custom_sequence_number)
     if transaction.sequance_number == (get_sequance_number + 1):
-        logger.info("Sequance number is valid")
+        pass
     else:
+        logger.error("Sequance number is not valid")
         return False
 
     current_time = (int(time.time())
                     if custom_current_time is None else custom_current_time)
     if (current_time -
             transaction.transaction_time) <= block.transaction_delay_time:
-        logger.info("Transaction time is valid")
+        pass
     else:
+        logger.error("Transaction time is not valid")
         return False
 
     return True

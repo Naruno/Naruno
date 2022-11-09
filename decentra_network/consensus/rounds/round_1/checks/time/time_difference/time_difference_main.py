@@ -12,11 +12,10 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def time_difference_check(block: Block) -> bool:
+def time_difference_check(block: Block, return_result=False) -> bool:
 
-    time_difference = int(time.time()) - block.start_time
-    logger.info(f"Time difference is {time_difference}")
-    if time_difference > block.round_1_time:
+    the_time = block.start_time + block.round_1_time
+    if int(time.time()) >= the_time:
         return True
     else:
-        return False
+        return False if return_result is False else the_time

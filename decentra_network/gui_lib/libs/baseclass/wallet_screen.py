@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-#
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+
 from kivy.core.clipboard import Clipboard
 from kivy.properties import StringProperty
 from kivymd.uix.bottomsheet import MDListBottomSheet
@@ -17,7 +14,8 @@ from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.lib.settings_system import change_wallet
 from decentra_network.lib.settings_system import the_settings
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
+    get_saved_wallet
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.ellipticcurve.wallet_delete import wallet_delete
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
@@ -158,9 +156,11 @@ class WalletBox(MDGridLayout):
 
     def delete_the_wallet(self, widget):
         saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]), 0)
+        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]),
+                                               0)
         for each_wallet in saved_wallets:
-            if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
+            if selected_wallet_pubkey == saved_wallets[each_wallet][
+                    "publickey"]:
                 change_wallet(0)
                 wallet_delete(each_wallet)
                 self.reflesh_balance()

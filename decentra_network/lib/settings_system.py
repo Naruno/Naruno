@@ -31,6 +31,7 @@ def create_and_save_the_settings(test_mode_settings=False,
         "test_mode": test_mode_settings,
         "debug_mode": debug_mode_settings,
         "wallet": 0,
+        "save_blockshash": True,
     }
 
     save_settings(temp_json)

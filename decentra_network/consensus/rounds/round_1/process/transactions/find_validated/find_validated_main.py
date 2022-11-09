@@ -64,7 +64,7 @@ def find_validated(block: Block, candidate_class: candidate_block,
                             "The transaction is already in the list")
                         already_in_ok = True
                 if not already_in_ok:
-                    logger.info(
+                    logger.debug(
                         f"Transaction is valid ({other_block_tx.signature})")
                     temp_validating_list.append(other_block_tx)
     return temp_validating_list

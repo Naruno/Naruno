@@ -25,6 +25,7 @@ def SaveBlockstoBlockchainDB(
     custom_TEMP_ACCOUNTS_PATH=None,
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
+    force=False,
 ):
     """
     Adds the block to the blockchain database
@@ -39,7 +40,7 @@ def SaveBlockstoBlockchainDB(
     our_tx = any((validated_transaction.fromUser == my_public_key) or (
         validated_transaction.toUser == my_address)
                  for validated_transaction in block.validating_list)
-    if our_tx:
+    if our_tx or force:
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
         SaveBlock(
@@ -55,18 +56,18 @@ def SaveBlockstoBlockchainDB(
             (the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.db"),
         )
 
-        SaveBlockshash(
-            GetBlockshash(
-                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
+        shutil.copyfile(
+            custom_TEMP_BLOCKSHASH_PATH,
             (the_BLOCKS_PATH + str(block.sequance_number) +
              ".blockshash.json"),
         )
-        SaveBlockshash_part(
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+
+        shutil.copyfile(
+            custom_TEMP_BLOCKSHASH_PART_PATH,
             (the_BLOCKS_PATH + str(block.sequance_number) +
              ".blockshashpart.json"),
         )
+
         return True
     else:
         return False

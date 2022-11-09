@@ -15,6 +15,7 @@ from waitress import serve
 from waitress.server import create_server
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.get_block import GetBlock
@@ -30,8 +31,11 @@ from decentra_network.lib.settings_system import (d_mode_settings,
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.my_transactions.check_proof import \
+    CheckProof
 from decentra_network.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
+from decentra_network.transactions.my_transactions.get_proof import GetProof
 from decentra_network.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 from decentra_network.transactions.send import send
@@ -73,6 +77,8 @@ custom_first_block = None
 custom_new_block = None
 custom_connections = None
 
+custom_account_list = None
+
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
@@ -105,60 +111,32 @@ def delete_wallets_page():
     return jsonify(print_wallets())
 
 
-@app.route("/send/coin/<address>/<amount>/<password>", methods=["GET"])
-def send_coin_page(address, amount, password):
+@app.route("/send/", methods=["POST"])
+def send_coin_data_page():
     logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    address = str(
+        request.form["to_user"]) if "to_user" in request.form else None
+    amount = float(
+        request.form["amount"]) if "amount" in request.form else None
+    data = str(request.form["data"]) if "data" in request.form else ""
+    password = str(
+        request.form["password"]) if "password" in request.form else None
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
     send_tx = send(
-        block,
         password,
         address,
-        amount,
-        custom_current_time=custom_current_time,
-        custom_sequence_number=custom_sequence_number,
-        custom_balance=custom_balance,
-    )
-    if send_tx != False:
-        SavetoMyTransaction(send_tx)
-        server.send_transaction(
-            send_tx,
-            custom_current_time=custom_current_time,
-            custom_sequence_number=custom_sequence_number,
-            custom_balance=custom_balance,
-            custom_server=custom_server,
-        )
-        SaveBlock(
-            block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )
-    result = send_tx.dump_json() if send_tx != False else False
-    return jsonify(result)
-
-
-@app.route("/send/coin-data/<address>/<amount>/<data>/<password>",
-           methods=["GET"])
-def send_coin_data_page(address, amount, data, password):
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-             if custom_block is None else custom_block)
-    send_tx = send(
-        block,
-        password,
-        address,
-        amount,
+        amount=amount,
         data=data,
+        block=block,
         custom_current_time=custom_current_time,
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,
+        custom_account_list=custom_account_list,
     )
     if send_tx != False:
-        SavetoMyTransaction(send_tx)
+        SavetoMyTransaction(send_tx, sended=True)
         server.send_transaction(
             send_tx,
             custom_current_time=custom_current_time,
@@ -313,12 +291,34 @@ def export_transaction_csv_page():
         ))
 
 
-@app.route("/export/transactions/json", methods=["GET"])
-def export_transaction_json_page():
+@app.route("/transactions/sended/validated", methods=["GET"])
+def transaction_sended_validated_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(
-        [f"{str(i[0].__dict__)} | {str(i[1])}" for i in GetMyTransaction()])
+        GetMyTransaction(sended=True, validated=True, turn_json=True))
+
+
+@app.route("/transactions/sended/not_validated", methods=["GET"])
+def transaction_sended_not_validated_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(
+        GetMyTransaction(sended=True, validated=False, turn_json=True))
+
+
+@app.route("/transactions/received", methods=["GET"])
+def transaction_received_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(GetMyTransaction(sended=False, turn_json=True))
+
+
+@app.route("/transactions/all", methods=["GET"])
+def transaction_all_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    return jsonify(GetMyTransaction(turn_json=True))
 
 
 @app.route("/status", methods=["GET"])
@@ -334,6 +334,70 @@ def status_page():
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
         ))
+
+
+@app.route("/proof/get/", methods=["POST"])
+def proof_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    signature = str(
+        request.form["signature"]) if "signature" in request.form else None
+    custom_PROOF_PATH = (str(request.form["custom_PROOF_PATH"])
+                         if "custom_PROOF_PATH" in request.form else None)
+    custom_BLOCKS_PATH = (str(request.form["custom_BLOCKS_PATH"])
+                          if "custom_BLOCKS_PATH" in request.form else None)
+    custom_TEMP_ACCOUNTS_PATH = (str(request.form["custom_TEMP_ACCOUNTS_PATH"])
+                                 if "custom_TEMP_ACCOUNTS_PATH" in request.form
+                                 else None)
+    custom_TEMP_BLOCKSHASH_PATH = (
+        str(request.form["custom_TEMP_BLOCKSHASH_PATH"])
+        if "custom_TEMP_BLOCKSHASH_PATH" in request.form else None)
+    custom_TEMP_BLOCKSHASH_PART_PATH = (
+        str(request.form["custom_TEMP_BLOCKSHASH_PART_PATH"])
+        if "custom_TEMP_BLOCKSHASH_PART_PATH" in request.form else None)
+
+    return jsonify(
+        GetProof(
+            signature,
+            custom_PROOF_PATH=custom_PROOF_PATH,
+            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        ))
+
+
+@app.route("/proof/check/", methods=["POST"])
+def proof_check_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    path = str(request.form["path"]) if "path" in request.form else None
+    custom_TEMP_BLOCKSHASH_PART_PATH = (
+        str(request.form["custom_TEMP_BLOCKSHASH_PART_PATH"])
+        if "custom_TEMP_BLOCKSHASH_PART_PATH" in request.form else None)
+    return jsonify(
+        CheckProof(
+            path,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        ))
+
+
+@app.errorhandler(500)
+def handle_exception(e):
+    logger.exception(f"500: {e}")
+    return jsonify("500"), 500
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    logger.error(f"404: {e}")
+    return jsonify("404"), 404
+
+
+@app.errorhandler(405)
+def method_not_allowed(e):
+    logger.error(f"405: {e}")
+    return jsonify("405"), 405
 
 
 def start(port=None, test=False):

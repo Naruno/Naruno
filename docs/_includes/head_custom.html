@@ -15,3 +15,38 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
+
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+<style>
+
+body {
+    font-family: 'Poppins' !important;
+}
+
+// Print-only styles.
+@media print {
+    .side-bar,
+    .page-header {
+      display: none;
+    }
+    .main-content {
+      max-width: auto;
+      margin: 1em;
+    }
+}
+
+
+@media (min-width: 31.25rem){
+    .site-title {
+        font-size: 17px !important;
+    }
+}
+@media (min-width: 50rem) {  
+    .site-title {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+}
+
+</style>

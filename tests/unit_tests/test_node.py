@@ -8,6 +8,7 @@ import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 import copy
 import json
 import time
@@ -15,6 +16,8 @@ import unittest
 
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           GetBlockshash_part)
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import (
@@ -22,6 +25,7 @@ from decentra_network.config import (
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
     PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
     TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
+from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
@@ -35,6 +39,7 @@ class Test_Node(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        cls.maxDiff = None
         CleanUp_tests()
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
@@ -348,7 +353,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
-        got_block.newly = False
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -413,9 +417,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
@@ -450,14 +453,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(
             os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
+                                       custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 0)
+        self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
-            [],
+            [the_block.previous_hash],
         )
 
     def test_send_full_chain_get_full_chain_already_block(self):
@@ -501,7 +503,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
-        got_block.newly = False
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -591,8 +592,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
         # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
@@ -640,14 +641,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(
             os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
+                                       custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 0)
+        self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
-            [],
+            [the_block.previous_hash],
         )
 
     def test_send_full_chain_get_full_chain_all_nodes(self):
@@ -676,10 +676,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
-        got_block.newly = False
-
-        print(the_block.dump_json())
-        print(got_block.dump_json())
 
         self.assertEqual(
             the_block.dump_json(),
@@ -742,9 +738,8 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH1))
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCKSHASH_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
@@ -779,14 +774,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(
             os.path.isfile(self.custom_LOADING_BLOCKSHASH_PART_PATH2))
 
-        # Read custom_TEMP_BLOCKSHASH_PATH1 file
-        with open(self.custom_TEMP_BLOCKSHASH_PART_PATH1, "r") as f:
-            got_block = json.load(f)
+        got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
+                                       custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 0)
+        self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
-            [],
+            [the_block.previous_hash],
         )
 
     def test_connection_timeout_client_side(self):
@@ -901,10 +895,12 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(pending_list_2), 1)
         CleanUp_tests()
 
-    def test_send_block_to_other_nodes(self):
+    def test_send_block_to_other_nodes_node(self):
         CleanUp_tests()
         the_block = Block("onur")
         the_block.consensus_timer = 0
+        the_block.sync = True
+        the_block.sequance_number += 15
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
@@ -914,7 +910,21 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH0,
         )
         client = self.node_1.clients[0]
+        print(self.node_0.sync_clients)
+
         self.node_1.send_me_full_block(client)
+        print(self.node_0.sync_clients)
+        finished_main(
+            block=the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0,
+            custom_server=self.node_0,
+        )
+        self.assertEqual(the_block.sync, False)
+        print(self.node_0.sync_clients)
         time.sleep(15)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
@@ -928,7 +938,6 @@ class Test_Node(unittest.TestCase):
 
         got_block = GetBlock(
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
-        got_block.newly = False
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -936,6 +945,51 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(
             the_block.dump_json(),
             got_block.dump_json(),
+        )
+        CleanUp_tests()
+
+    def test_send_block_to_other_nodes(self):
+        CleanUp_tests()
+        the_block = Block("onur")
+        the_block.consensus_timer = 0
+        the_block.sync = True
+        the_block.sequance_number += 15
+        SaveBlock(
+            the_block,
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
+            custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=self.
+            custom_TEMP_BLOCKSHASH_PART_PATH0,
+        )
+        client = self.node_1.clients[0]
+
+        self.node_0.send_block_to_other_nodes()
+
+        time.sleep(15)
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
+
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH2))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH2))
+        self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH2))
+
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH0))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH1))
+        self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
+
+        got_block = GetBlock(
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+        got_block_2 = GetBlock(
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH2)
+
+        self.assertEqual(
+            the_block.dump_json(),
+            got_block.dump_json(),
+            got_block_2.dump_json(),
         )
         CleanUp_tests()
 

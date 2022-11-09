@@ -30,7 +30,7 @@ jobs:
   lint_with_flake8:
 
     runs-on: ubuntu-latest
-    environment: Tests 
+    environment: LINT Tests 
     strategy:
       matrix:
         python-version: [3.8]
@@ -61,7 +61,7 @@ jobs:
     needs: lint_with_flake8
 
     runs-on: ubuntu-latest
-    environment: Tests 
+    environment: UNIT Tests 
     strategy:
       matrix:
         python-version: [3.8]
@@ -84,6 +84,7 @@ jobs:
         pip install pytest
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
@@ -97,7 +98,7 @@ jobs:
     needs: lint_with_flake8
 
     runs-on: macos-latest
-    environment: Tests     
+    environment: UNIT Tests
     strategy:
       matrix:
         python-version: [3.8]
@@ -119,6 +120,7 @@ jobs:
         pip install pytest
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
@@ -131,7 +133,7 @@ jobs:
     needs: lint_with_flake8
 
     runs-on: windows-latest
-    environment: Tests     
+    environment: UNIT Tests
     strategy:
       matrix:
         python-version: [3.8]
@@ -153,6 +155,7 @@ jobs:
         pip install pytest
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
         pytest tests/unit_tests
@@ -165,7 +168,7 @@ jobs:
   functional-test-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
     runs-on: ubuntu-latest
-    environment: Tests 
+    environment: FUNCTIONAL Tests
     strategy:
       matrix:
         python-version: [3.8]
@@ -182,7 +185,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pytest
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |      
         cd ..
@@ -196,7 +199,7 @@ jobs:
   functional-test-docker-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
     runs-on: ubuntu-latest
-    environment: Tests 
+    environment: FUNCTIONAL Tests
     strategy:
       matrix:
         python-version: [3.8]
@@ -213,7 +216,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pytest
+        pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |        
         cd ..

@@ -22,8 +22,10 @@ def GetBlockstoBlockchainDB(
     Gets the block from the blockchain database
     """
     try:
+
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
+
         the_block = GetBlock(
             (the_BLOCKS_PATH + str(sequance_number) + ".block.json"))
         the_accounts = GetAccounts(
@@ -33,7 +35,9 @@ def GetBlockstoBlockchainDB(
         the_blockshashpart = GetBlockshash_part(the_BLOCKS_PATH +
                                                 str(sequance_number) +
                                                 ".blockshashpart.json")
+        result = [the_block, the_accounts, the_blockshash, the_blockshashpart]
 
-        return [the_block, the_accounts, the_blockshash, the_blockshashpart]
+        return result
+
     except FileNotFoundError:
         return False

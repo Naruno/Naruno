@@ -34,20 +34,20 @@ class Block:
     def __init__(
         self,
         creator,
-        previous_hash="fb8b69c2276c8316c64a5d34b5f3063d1f8b8dc17cda7ee84fa1343978d464a9-f86b4d545fe18264dc489f5af6782b9f4986fe3a9bf03b3fec417df9e8fd97d4",
+        previous_hash="916b93f9b5c81576a32c645f7135f097db75481932bcd0211e8f81cb8ba6a11e",
     ):
         self.coin_amount = 10000000
         self.first_time = True
         self.creator = creator
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
-        self.block_time = 11
-
-        self.newly = False
+        self.block_time = 22
 
         self.previous_hash = previous_hash
         self.sequance_number = 0
         self.empty_block_number = 0
+        self.hard_block_number = 2
+        self.gap_block_number = self.hard_block_number + 2
 
         self.validating_list = []
         self.transaction_fee = 0.02
@@ -60,15 +60,16 @@ class Block:
         self.part_amount = 100000
 
         self.hash = None
+        self.part_amount_cache = previous_hash
 
         self.max_tx_number = 2
         self.minumum_transfer_amount = 1000
 
-        self.round_1_time = 4
+        self.round_1_time = 10
         self.round_1 = False
 
         self.round_2_starting_time = None
-        self.round_2_time = 4
+        self.round_2_time = 10
         self.round_2 = False
 
         self.consensus_timer = 0.50
@@ -77,15 +78,18 @@ class Block:
         self.validated_time = None
 
         self.dowload_true_block = ""
+        self.sync = False
 
-    def reset_the_block(self, current_blockshash_list, custom_nodes=None):
+    def reset_the_block(self, custom_nodes=None):
         """
         When the block is verified and if block have a transaction
         and if block have at least half of the max_tx_number transaction,it saves the block
         and makes the edits for the new block.
         """
 
-        self.start_time = int(time.time())
+        self.start_time = (self.genesis_time +
+                           ((self.sequance_number + self.empty_block_number) *
+                            self.block_time)) + self.block_time
 
         self.round_1 = False
 
@@ -106,7 +110,6 @@ class Block:
             block2 = copy.copy(self)
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
-            current_blockshash_list.append(self.previous_hash)
             self.sequance_number = self.sequance_number + 1
             self.validating_list = []
             self.hash = None

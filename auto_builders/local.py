@@ -11,7 +11,9 @@ import random
 import signal
 import sys
 import time
-import urllib.request
+import urllib
+
+import requests
 
 
 class Decentra_Network_Local:
@@ -40,24 +42,24 @@ class Decentra_Network_Local:
             self.circles[random_circle].append(random_node)
 
     def start(self):
-        time.sleep(5 * self.number_of_nodes)
+        time.sleep(1 * self.number_of_nodes)
         self.debug_and_test_mode()
         self.creating_the_wallets()
         self.starting_the_nodest()
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(30)
+        time.sleep(50)
 
     def install(self):
-        time.sleep(5 * self.number_of_nodes)
+        time.sleep(1 * self.number_of_nodes)
         os.system("pip3 install -r Decentra-Network/requirements/api.txt")
         os.system("cp -r -f Decentra-Network Decentra-Network-0")
         for i in range(self.number_of_nodes):
             os.system(f"cp -r -f Decentra-Network Decentra-Network-{i+1}")
 
     def delete(self):
-        time.sleep(5 * self.number_of_nodes)
+        time.sleep(1 * self.number_of_nodes)
         os.system("rm -r -f Decentra-Network-*")
 
         for line in os.popen("ps ax | grep python3 | grep -v grep"):
@@ -69,7 +71,7 @@ class Decentra_Network_Local:
             os.system(f"rm -r -f Decentra-Network-{i + 1}.out")
 
     def run(self):
-        time.sleep(5 * self.number_of_nodes)
+        time.sleep(1 * self.number_of_nodes)
         os.system(
             "nohup python3 Decentra-Network-0/decentra_network/api/main.py >> Decentra-Network-0.out &"
         )
@@ -143,7 +145,7 @@ class Decentra_Network_Local:
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
                 f"http://localhost:8000/node/connect/0.0.0.0/{8010 + i + 1}")
-        time.sleep(15)
+        time.sleep(1 * self.number_of_nodes)
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
                 for i_n in range(self.number_of_nodes):
@@ -151,7 +153,7 @@ class Decentra_Network_Local:
                         urllib.request.urlopen(
                             f"http://localhost:{8100 + i + 1}/node/connect/0.0.0.0/{8010 + i_n + 1}"
                         )
-                time.sleep(15)
+                time.sleep(1 * self.number_of_nodes)
 
         else:
             for circle in self.circles:
@@ -161,7 +163,7 @@ class Decentra_Network_Local:
                             urllib.request.urlopen(
                                 f"http://localhost:{8100 + i + 1}/node/connect/0.0.0.0/{8010 + i_n + 1}"
                             )
-                    time.sleep(15)
+                    time.sleep(1 * self.number_of_nodes)
 
     def creating_the_block(self):
         time.sleep(1 * self.number_of_nodes)

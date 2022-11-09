@@ -7,13 +7,15 @@
 import json
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 import time
 import unittest
-import urllib.request
+import urllib
+
+import requests
 
 from auto_builders.docker import Decentra_Network_Docker
-
 
 
 class Test_Decentra_Network_Docker(unittest.TestCase):
@@ -29,23 +31,52 @@ class Test_Decentra_Network_Docker(unittest.TestCase):
         temp_environment.run()
         temp_environment.start()
 
+        wallet_2_json = json.loads(
+            urllib.request.urlopen(
+                "http://localhost:8101/wallet/create/123").read().decode())
+        wallet_2_address = (wallet_2_json[0].replace("0) ", "").replace(
+            " - CURRENTLY USED\n", ""))
 
-        wallet_2_json = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/create/123").read().decode())
-        wallet_2_address = wallet_2_json[0].replace("0) ", "").replace(" - CURRENTLY USED\n", "")
+        requests.post(
+            "http://localhost:8000/send/",
+            {
+                "to_user": wallet_2_address,
+                "amount": 5000,
+                "password": "123"
+            },
+        )
+        time.sleep(50)
+        balance_wallet_1 = json.loads(
+            urllib.request.urlopen(
+                "http://localhost:8101/wallet/balance").read().decode())
+        self.assertEqual(balance_wallet_1, 4000.0,
+                         "A problem in same network one transaction -1.")
 
-        urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-        time.sleep(25)
-        balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1,4000.0,"A problem in same network one transaction -1.")
+        time.sleep(100)
 
-
-        time.sleep(45)
-
-
-        urllib.request.urlopen(f"http://localhost:8000/send/coin/{wallet_2_address}/5000/123")
-        time.sleep(25)
-        balance_wallet_1 = json.loads(urllib.request.urlopen("http://localhost:8101/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1,9000.0,"A problem in same network one transaction -3.")
+        requests.post(
+            "http://localhost:8000/send/",
+            {
+                "to_user": wallet_2_address,
+                "amount": 500,
+                "password": "123"
+            },
+        )
+        time.sleep(50)
+        requests.post(
+            "http://localhost:8000/send/",
+            {
+                "to_user": wallet_2_address,
+                "amount": 5000,
+                "password": "123"
+            },
+        )
+        time.sleep(50)
+        balance_wallet_1 = json.loads(
+            urllib.request.urlopen(
+                "http://localhost:8101/wallet/balance").read().decode())
+        self.assertEqual(balance_wallet_1, 9500.0,
+                         "A problem in same network one transaction -3.")
 
 
 unittest.main(exit=False)

@@ -4,18 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import copy
 import os
 import sys
 import time
-
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.status import Status
-from decentra_network.transactions.transaction import Transaction
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 from unittest import mock
 
+from decentra_network.blockchain.block.block_main import Block
 from decentra_network.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
@@ -31,20 +29,25 @@ from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                              printcentertext, question_maker,
                                              quit_menu_maker,
                                              starting_text_centered)
+from decentra_network.lib.performance_analyzers.heartbeat_db import \
+    heartbeat_generic_db_analyzer
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import (d_mode_settings,
                                                   save_settings,
                                                   t_mode_settings,
                                                   the_settings)
+from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.transaction import Transaction
 
 
 def perpetual_time_test():
     os.chdir(get_config()["main_folder"])
-    with open("test_perpetual_time_test.txt", "w") as f:
+    with open("test_perpetual_time_test.txt", "a") as f:
         f.write("Hello World")
+
 
 class pywall_none:
 
@@ -594,6 +597,7 @@ class Test_Lib(unittest.TestCase):
         t_mode_settings(temp_settings["debug_mode"])
 
     def test_perpetualTimer_0(self):
+
         the_timer = perpetualTimer(
             0,
             perpetual_time_test,
@@ -603,14 +607,29 @@ class Test_Lib(unittest.TestCase):
         the_timer.cancel()
 
     def test_perpetualTimer(self):
+
         the_timer = perpetualTimer(
             1,
             perpetual_time_test,
         )
-        time.sleep(2.5)
+        time.sleep(3.5)
         self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
+        # open and read the file after the 2.5 seconds
+        with open("test_perpetual_time_test.txt", "r") as f:
+            content = f.read()
+        self.assertEqual(len(content), 33)
         the_timer.cancel()
         os.remove("test_perpetual_time_test.txt")
+
+    def test_heartbeat_db_analyzer(self):
+        block = Block("Onur")
+        result = heartbeat_generic_db_analyzer()
+        self.assertLess(
+            result[0][0] + result[0][1],
+            ((block.round_1_time - 2) +
+             block.hard_block_number * block.block_time),
+        )
+        self.assertLess(result[1][0] + result[1][1], block.round_1_time - 2)
 
 
 unittest.main(exit=False)

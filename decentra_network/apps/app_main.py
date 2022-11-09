@@ -6,6 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from threading import Thread
 
+import copy
+
 from decentra_network.lib.log import get_logger
 
 logger = get_logger("APP")
@@ -29,6 +31,7 @@ class app(Thread):
         """
         exec(self.import_command)
         # lgtm [py/unused-loop-variable]
-        for trans in self.block.validating_list:
+        protected_list = copy.copy(self.block.validating_list)
+        for trans in protected_list:
             logger.debug(f"Application triggering for tx {trans.__dict__}")
             exec(self.func)

@@ -8,11 +8,11 @@ from setuptools import setup
 
 setup(
     name="decentra_network_api",
-    version="0.27.1",
+    version="0.37.0",
     description="""This is API mode installer for Decentra Network""",
-    url="https://decentra-network.github.io/Decentra-Network/",
+    url="https://docs.decentranetwork.net/",
     author="Decentra Network Developers",
-    author_email="atadogan06@gmail.com",
+    author_email="onur@decentranetwork.net",
     license="MPL-2.0",
     install_requires="""
 flask==2.0.0

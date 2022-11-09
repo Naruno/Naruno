@@ -8,7 +8,7 @@
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br />
-    <a href="https://decentranetwork.org/"><strong>Explore the website »</strong></a>
+    <a href="https://decentranetwork.net/"><strong>Explore the website »</strong></a>
     <br />
   </p>
   <p align="center">
@@ -43,7 +43,7 @@
   .
   <a href="https://codebeat.co/projects/github-com-decentra-network-decentra-network-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
   .
-  <a href="https://www.codacy.com/gh/Decentra-Network/Decentra-Network/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Decentra-Network/Decentra-Network&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
+  <a href="https://www.codacy.com/gh/Decentra-Network/Decentra-Network/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Decentra-Network/Decentra-Network&amp;utm_campaign=Badge_Grade"><img src="https://.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
   </p>
 
   <p align="center">
@@ -88,7 +88,7 @@
 Decentra Network is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
 The main features of Decentra Network are:
 
-- Less than 7 Seconds block time (Confirmation Time)
+- Less than 3-5 Seconds block time
 - Low size (~20mb per 1m user)
 - 10k+ transactions per second
 - Low Transaction Fee
@@ -102,7 +102,9 @@ The main features of Decentra Network are:
 - Built-in application structure
 - Custom wallet system
 
-The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network software, designed with a focus on the **community on the Github platform**, In addition, **UNIT** tests of some systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+\*Some features will be adjusted in stable release.
+
+The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network software, designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
 **The Decentra-Network has 4 control areas:**
 
@@ -143,7 +145,7 @@ It has been developed to make web api control easier and to provide control by o
 
 # Documents
 
-Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://docs.decentranetwork.org/) website.
+Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://docs.decentranetwork.net/) website.
 
 # Contribute
 

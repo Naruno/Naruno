@@ -10,7 +10,9 @@ import os
 import random
 import sys
 import time
-import urllib.request
+import urllib
+
+import requests
 
 
 class Decentra_Network_Docker:
@@ -39,14 +41,14 @@ class Decentra_Network_Docker:
             self.circles[random_circle].append(random_node)
 
     def start(self):
-        time.sleep(5 * self.number_of_nodes)
+        time.sleep(1 * self.number_of_nodes)
         self.debug_and_test_mode()
         self.creating_the_wallets()
         self.starting_the_nodest()
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(30)
+        time.sleep(50)
 
     def install(self):
         self._command_to_system(
@@ -66,12 +68,12 @@ class Decentra_Network_Docker:
         os.system("docker network rm dn-net")
 
     def _command_to_system(self, first_command: str, second_command: str):
-        time.sleep(5 * self.number_of_nodes)
+        time.sleep(1 * self.number_of_nodes)
         os.system(first_command)
         os.system(second_command)
 
     def run(self):
-        time.sleep(5 * self.number_of_nodes)
+        time.sleep(1 * self.number_of_nodes)
         os.system(
             "docker run --sysctl net.ipv4.tcp_rmem=65536 -v decentra-network-db:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit decentra-network-api"
         )
@@ -148,7 +150,7 @@ class Decentra_Network_Docker:
             urllib.request.urlopen(
                 f"http://localhost:8000/node/connect/172.19.0.{i+3}/{8010 + i + 1}"
             )
-        time.sleep(15)
+        time.sleep(1 * self.number_of_nodes)
 
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
@@ -157,7 +159,7 @@ class Decentra_Network_Docker:
                         urllib.request.urlopen(
                             f"http://localhost:{8100 + i + 1}/node/connect/172.19.0.{i_n+3}/{8010 + i_n + 1}"
                         )
-                time.sleep(15)
+                time.sleep(1 * self.number_of_nodes)
         else:
             for circle in self.circles:
                 for i in circle:
@@ -166,7 +168,7 @@ class Decentra_Network_Docker:
                             urllib.request.urlopen(
                                 f"http://localhost:{8100 + i + 1}/node/connect/172.19.0.{i_n+3}/{8010 + i_n + 1}"
                             )
-                    time.sleep(15)
+                    time.sleep(1 * self.number_of_nodes)
 
     def creating_the_block(self):
         time.sleep(1 * self.number_of_nodes)

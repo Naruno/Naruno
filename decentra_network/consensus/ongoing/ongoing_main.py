@@ -32,7 +32,7 @@ def ongoing_main(
 ) -> Block:
 
     if not block.round_1:
-        logger.info("First round is starting")
+        logger.debug("First round is starting")
         consensus_round_1(
             block,
             custom_candidate_class=custom_candidate_class,
@@ -44,9 +44,9 @@ def ongoing_main(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        logger.info("First round is done")
+        logger.debug("First round is done")
     elif not block.round_2:
-        logger.info("Second round is starting")
+        logger.debug("Second round is starting")
         consensus_round_2(
             block,
             candidate_class=custom_candidate_class,
@@ -58,5 +58,5 @@ def ongoing_main(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        logger.info("Second round is done")
+        logger.debug("Second round is done")
     return block

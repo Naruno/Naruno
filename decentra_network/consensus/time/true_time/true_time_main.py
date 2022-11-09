@@ -12,10 +12,10 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("CONSENSUS")
 
 
-def true_time(block: Block) -> bool:
+def true_time(block: Block, return_result=False) -> bool:
     the_time = (block.genesis_time + block.block_time + (
         (block.sequance_number + block.empty_block_number) * block.block_time))
     if int(time.time()) >= the_time:
         return True
     else:
-        return False
+        return False if return_result is False else the_time

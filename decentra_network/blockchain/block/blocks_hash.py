@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import os
+import sqlite3
 
 from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PATH
@@ -24,8 +25,20 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
     the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
                                 if custom_TEMP_BLOCKSHASH_PATH is None else
                                 custom_TEMP_BLOCKSHASH_PATH)
-    with open(the_TEMP_BLOCKSHASH_PATH, "w") as block_file:
-        json.dump(the_blockshash, block_file)
+
+    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PATH)
+    c = conn.cursor()
+    c.execute("""CREATE TABLE IF NOT EXISTS blockshash_list (hash text)""")
+    if type(the_blockshash) == list:
+        for i in the_blockshash:
+            c.execute("""INSERT INTO blockshash_list VALUES (?)""", (i, ))
+    else:
+        c.execute(
+            """INSERT INTO blockshash_list VALUES (?)""",
+            (the_blockshash, ),
+        )
+    conn.commit()
+    conn.close()
 
 
 def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
@@ -37,10 +50,20 @@ def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
     the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
                                      custom_TEMP_BLOCKSHASH_PART_PATH is None
                                      else custom_TEMP_BLOCKSHASH_PART_PATH)
-    logger.info(
-        f"Saving blockshash part to disk ({the_TEMP_BLOCKSHASH_PART_PATH})")
-    with open(the_TEMP_BLOCKSHASH_PART_PATH, "w") as block_file:
-        json.dump(the_blockshash, block_file)
+    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PART_PATH)
+    c = conn.cursor()
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS blockshash_part_list (hash text)""")
+    if type(the_blockshash) == list:
+        for i in the_blockshash:
+            c.execute("""INSERT INTO blockshash_part_list VALUES (?)""", (i, ))
+    else:
+        c.execute(
+            """INSERT INTO blockshash_part_list VALUES (?)""",
+            (the_blockshash, ),
+        )
+    conn.commit()
+    conn.close()
 
 
 def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
@@ -50,12 +73,19 @@ def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
     the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
                                 if custom_TEMP_BLOCKSHASH_PATH is None else
                                 custom_TEMP_BLOCKSHASH_PATH)
-    os.chdir(get_config()["main_folder"])
-    if not os.path.exists(the_TEMP_BLOCKSHASH_PATH):
-        return []
 
-    with open(the_TEMP_BLOCKSHASH_PATH, "r") as block_file:
-        return json.load(block_file)
+    os.chdir(get_config()["main_folder"])
+
+    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PATH, check_same_thread=False)
+    c = conn.cursor()
+    c.execute("""CREATE TABLE IF NOT EXISTS blockshash_list (hash text)""")
+    c.execute("""SELECT * FROM blockshash_list""")
+    result = c.fetchall()
+
+    result = [i[0] for i in result]
+    conn.close()
+
+    return result
 
 
 def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
@@ -65,9 +95,18 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
                                      custom_TEMP_BLOCKSHASH_PART_PATH is None
                                      else custom_TEMP_BLOCKSHASH_PART_PATH)
-    os.chdir(get_config()["main_folder"])
-    if not os.path.exists(the_TEMP_BLOCKSHASH_PART_PATH):
-        return []
 
-    with open(the_TEMP_BLOCKSHASH_PART_PATH, "r") as block_file:
-        return json.load(block_file)
+    os.chdir(get_config()["main_folder"])
+
+    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PART_PATH,
+                           check_same_thread=False)
+    c = conn.cursor()
+    c.execute(
+        """CREATE TABLE IF NOT EXISTS blockshash_part_list (hash text)""")
+    c.execute("""SELECT * FROM blockshash_part_list""")
+    result = c.fetchall()
+
+    result = [i[0] for i in result]
+    conn.close()
+
+    return result
