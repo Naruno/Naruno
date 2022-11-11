@@ -7,6 +7,10 @@
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPending
 
+from decentra_network.lib.log import get_logger
+
+
+logger = get_logger("TRANSACTIONS")
 
 def PendingtoValidating(block):
     """
