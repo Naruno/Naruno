@@ -135,6 +135,11 @@ class server(Thread):
             if a_client.host == host and a_client.port == port:
                 return True
         return False
+    logger.info("New node")
+    logger.debug("Host: ", host)
+    logger.debug("self.clients:", "self.clients")
+    logger.debug("Port: ", port)
+    
 
     def run(self):
         self.sock.settimeout(10.0)
