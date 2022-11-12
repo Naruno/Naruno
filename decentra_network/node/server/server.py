@@ -131,9 +131,15 @@ class server(Thread):
             self.start()
 
     def check_connected(self, host, port):
+        logger.info("New node")
+        logger.debug(f"self.clients: {self.clients}")
+        logger.debug(f"Port: {port}")
+        logger.debug(f"Host: {host}")
         for a_client in self.clients:
             if a_client.host == host and a_client.port == port:
+                logger.warning("Already connected")
                 return True
+        logger.info("New connection")
         return False
 
     def run(self):
