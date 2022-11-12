@@ -139,9 +139,8 @@ class server(Thread):
             if a_client.host == host and a_client.port == port:
                 logger.warning("Already connected")
                 return True
-        logger.info("New connection")       
+        logger.info("New connection")
         return False
-            
 
     def run(self):
         self.sock.settimeout(10.0)
