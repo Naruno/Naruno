@@ -15,11 +15,12 @@ from decentra_network.lib.settings_system import the_settings
 
 global_logger = []
 
+
 def get_logger(name):
     logger = logging.getLogger(name)
 
     if not any(element == logger
-            for element in global_logger):
+               for element in global_logger):
 
         level = logging.DEBUG if the_settings()["debug_mode"] else logging.INFO
         logger.setLevel(level)
@@ -36,7 +37,8 @@ def get_logger(name):
         logger.addHandler(ch)
         # file
         main_folder = get_config()["main_folder"]
-        fh = logging.FileHandler(os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
+        fh = logging.FileHandler(os.path.join(
+            main_folder, LOGS_PATH, f"{name}.log"))
         fh.setLevel(level)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
