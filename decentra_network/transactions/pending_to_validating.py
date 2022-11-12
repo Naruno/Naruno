@@ -12,6 +12,7 @@ from decentra_network.lib.log import get_logger
 
 logger = get_logger("TRANSACTIONS")
 
+
 def PendingtoValidating(block):
     """
     Adds transactions to the verification list
@@ -21,7 +22,7 @@ def PendingtoValidating(block):
     first_validating_list_len = len(block.validating_list)
     first_max_tx_number = block.max_tx_number
     logger.debug(f"Currently tx amount: {first_validating_list_len}")
-    logger.debug(f"Validating list capacity: {first_max_tx_number}")    
+    logger.debug(f"Validating list capacity: {first_max_tx_number}")
     if len(block.validating_list) < block.max_tx_number:
         for tx in OrderbyFee(GetPending()):
             if len(block.validating_list) < block.max_tx_number:
@@ -30,9 +31,12 @@ def PendingtoValidating(block):
                 block.validating_list.append(tx)
                 DeletePending(tx)
             else:
-                logger.info(f"TX {tx.signature} is can not moved to validating list")
+                logger.info(
+                    f"TX {tx.signature} is can not moved to validating list")
     else:
         logger.info("List is full")
+
+
 def OrderbyFee(transactions: list):
     """
     Sorts transactions by fee.
