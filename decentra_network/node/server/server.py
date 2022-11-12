@@ -68,6 +68,7 @@ class server(Thread):
         custom_CONNECTED_NODES_PATH=None,
         custom_PENDING_TRANSACTIONS_PATH=None,
         time_control=None,
+        custom_id=None,
     ):
         Thread.__init__(self)
         self.running = True
@@ -126,6 +127,9 @@ class server(Thread):
 
         self.time_control = 10 if time_control is None else time_control
 
+
+        self.custom_id = custom_id
+
         if not test:
             self.__class__.Server = self
             self.start()
@@ -151,7 +155,8 @@ class server(Thread):
                 logger.info(
                     f"NODE:{self.host}:{self.port} New connection: {addr}")
                 data = conn.recv(1024)
-                conn.send(server.id.encode("utf-8"))
+                the_id = server.id if self.custom_id is None else self.custom_id
+                conn.send(the_id.encode("utf-8"))
                 client_id = data.decode("utf-8")
                 if Unl.node_is_unl(client_id):
                     
