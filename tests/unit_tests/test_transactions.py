@@ -380,6 +380,36 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(transaction_1_true, False)
         self.assertEqual(transaction_2_true, False)
 
+    def test_pending_to_validating_full_list(self):
+
+        block = Block("")
+        block.validating_list = [Transaction(1, "717", "", "", "", 1, 1, 1),Transaction(1, "7b7", "", "", "", 1, 1, 1)]
+        block.max_tx_number = 2
+
+        temp_transaction = Transaction(1, "77", "", "", "", 1, 1, 1)
+        temp_transaction_2 = Transaction(1, "88", "", "", "", 1, 1, 1)
+
+        SavePending(temp_transaction)
+        SavePending(temp_transaction_2)
+
+        PendingtoValidating(block)
+
+        pending_transactions = GetPending()
+
+        transaction_1_true = any(
+            element.signature == temp_transaction.signature
+            for element in pending_transactions)
+        transaction_2_true = any(
+            element.signature == temp_transaction_2.signature
+            for element in pending_transactions)
+
+        DeletePending(temp_transaction)
+        DeletePending(temp_transaction_2)
+
+        self.assertEqual(len(block.validating_list), 2)
+        self.assertEqual(transaction_1_true, True)
+        self.assertEqual(transaction_2_true, True)
+
     def test_change_transaction_fee_increasing(self):
 
         block = Block("")
