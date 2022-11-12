@@ -5,7 +5,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.transactions.pending.get_pending import GetPendingLen
+from decentra_network.lib.log import get_logger
 
+logger = get_logger("BLOCKCHAIN")
 
 def ChangeTransactionFee(
     block,
