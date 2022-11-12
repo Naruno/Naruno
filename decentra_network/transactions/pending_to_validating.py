@@ -29,7 +29,8 @@ def PendingtoValidating(block):
                 block.validating_list.append(tx)
                 DeletePending(tx)
             else:
-                logger.info(f"TX {tx.signature} is can not moved to validating list")
+                logger.info(
+                    f"TX {tx.signature} is can not moved to validating list")
     else:
         logger.info("List is full")
 
