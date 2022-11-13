@@ -15,9 +15,11 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 def time_difference_check(block: Block, return_result=False) -> bool:
 
     the_time = block.start_time + block.round_1_time
+    current_time = int(time.time())
     logger.info("Round 1 time control started")
-    logger.debug(the_time)
-    if int(time.time()) >= the_time:
+    logger.debug(f"current_time: {current_time}")
+    logger.debug(f"the_time: {the_time}")
+    if current_time >= the_time:
         logger.info("Time is true")
         return True
     else:
