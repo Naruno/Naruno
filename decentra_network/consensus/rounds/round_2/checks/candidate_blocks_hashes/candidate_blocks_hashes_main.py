@@ -13,8 +13,15 @@ logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 def candidate_blocks_hashes_check(candidate_class: candidate_block,
                                   unl_nodes: dict) -> bool:
+    logger.info("Candidate block control started for round 2")
+    logger.debug(
+        f"len(candidate_class.candidate_block_hashes): {len(candidate_class.candidate_block_hashes)}"
+    )
+    logger.debug(f"len(unl_nodes): {len(unl_nodes)}")
     if len(candidate_class.candidate_block_hashes) >= (
         (len(unl_nodes) * 80) / 100):
         return True
+        logger.info("Candidate block number is True")
     else:
+        logger.info("Candidate block number is not True")
         return False
