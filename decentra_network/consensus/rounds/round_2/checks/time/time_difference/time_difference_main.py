@@ -13,7 +13,7 @@ logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
 def time_difference_check(block: Block) -> bool:
-    
+
     true_time = block.round_2_starting_time + block.round_2_time
     current_time = int(time.time())
     logger.info("Round 2 time control started")
