@@ -16,7 +16,7 @@ def time_difference_check(block: Block) -> bool:
     
     true_time = block.round_2_starting_time + block.round_2_time
     logger.info("Round 2 time control started")
-    logger.debug(the_time)
+    logger.debug(true_time)
     if int(time.time()) >= true_time:
         logger.info("Time is true")
         return True
