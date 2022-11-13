@@ -2,6 +2,6 @@ enabled: true
 
 auto: true
 
-pull_requests: false
+pull_requests: true
 
 request_review: author
