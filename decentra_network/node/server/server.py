@@ -68,6 +68,7 @@ class server(Thread):
         custom_CONNECTED_NODES_PATH=None,
         custom_PENDING_TRANSACTIONS_PATH=None,
         time_control=None,
+        custom_id=None,
     ):
         Thread.__init__(self)
         self.running = True
@@ -126,6 +127,8 @@ class server(Thread):
 
         self.time_control = 10 if time_control is None else time_control
 
+        self.custom_id = custom_id
+
         if not test:
             self.__class__.Server = self
             self.start()
@@ -143,6 +146,7 @@ class server(Thread):
         return False
 
     def run(self):
+        logger.info("Server started and listen new connections")
         self.sock.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
@@ -150,11 +154,18 @@ class server(Thread):
                 logger.info(
                     f"NODE:{self.host}:{self.port} New connection: {addr}")
                 data = conn.recv(1024)
-                conn.send(server.id.encode("utf-8"))
+                the_id = server.id if self.custom_id is None else self.custom_id
+                conn.send(the_id.encode("utf-8"))
                 client_id = data.decode("utf-8")
                 if Unl.node_is_unl(client_id):
+
+                    logger.info(f"Added node: {client_id}")
                     self.clients.append(client(conn, addr, client_id, self))
                     self.save_connected_node(addr[0], addr[1], client_id)
+                else:
+                    logger.info(
+                        f"This connection want dont accepted because its not unl: {client_id}"
+                    )
             time.sleep(0.01)
 
     def stop(self):
