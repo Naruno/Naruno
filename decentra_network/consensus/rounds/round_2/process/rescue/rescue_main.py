@@ -27,6 +27,8 @@ def rescue_main(
     custom_server: server = None,
     custom_unl: client = None,
 ) -> Block:
+    logger.info("Rescue operation is started")
+    logger.debug(f"First block: {block}")
     sender = candidate_block_hash["sender"]
     logger.warning(
         f"Our block is not valid, the system will try to get true block from decentra_network.node {sender}"
@@ -37,4 +39,5 @@ def rescue_main(
     the_unl_node = random.choice(
         unl_list) if custom_unl is None else custom_unl
     the_server.send_client(the_unl_node, {"action": "sendmefullblock"})
+    logger.debug(f"End block: {block}")
     return block
