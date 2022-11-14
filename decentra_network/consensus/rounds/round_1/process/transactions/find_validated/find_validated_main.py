@@ -31,9 +31,8 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 logger.info("Finding process of validating list is started.")
 
 
-def find_validated(
-    block: Block, candidate_class: candidate_block, unl_nodes: dict
-) -> list:
+def find_validated(block: Block, candidate_class: candidate_block,
+                   unl_nodes: dict) -> list:
     temp_validating_list = []
     logger.debug(f"First temp_validating_list: {temp_validating_list}")
     for candidate_block in candidate_class.candidate_blocks[:]:
@@ -55,17 +54,20 @@ def find_validated(
             else:
                 tx_valid += 1
 
-            logger.debug(f"Tx valid of {other_block_tx.signature} : {tx_valid}")
+            logger.debug(
+                f"Tx valid of {other_block_tx.signature} : {tx_valid}")
             if tx_valid > (len(unl_nodes) / 2):
 
                 already_in_ok = False
                 for alrady_tx in temp_validating_list[:]:
 
                     if other_block_tx.signature == alrady_tx.signature:
-                        logger.warning("The transaction is already in the list")
+                        logger.warning(
+                            "The transaction is already in the list")
                         already_in_ok = True
                 if not already_in_ok:
-                    logger.debug(f"Transaction is valid ({other_block_tx.signature})")
+                    logger.debug(
+                        f"Transaction is valid ({other_block_tx.signature})")
                     temp_validating_list.append(other_block_tx)
     logger.debug(f"First temp_validating_list: {temp_validating_list}")
     return temp_validating_list
