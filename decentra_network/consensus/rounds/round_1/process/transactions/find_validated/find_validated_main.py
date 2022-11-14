@@ -30,6 +30,7 @@ from decentra_network.transactions.process_the_transaction import \
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 logger.info("Finding process of validating list is started.")
 
+
 def find_validated(block: Block, candidate_class: candidate_block,
                    unl_nodes: dict) -> list:
     temp_validating_list = []
@@ -68,5 +69,5 @@ def find_validated(block: Block, candidate_class: candidate_block,
                     logger.debug(
                         f"Transaction is valid ({other_block_tx.signature})")
                     temp_validating_list.append(other_block_tx)
-    logger.debug(f"First temp_validating_list: {temp_validating_list}")                
+    logger.debug(f"First temp_validating_list: {temp_validating_list}")
     return temp_validating_list
