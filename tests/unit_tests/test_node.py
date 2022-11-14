@@ -793,10 +793,13 @@ class Test_Node(unittest.TestCase):
 
     def test_connection_not_unl_client_side(self):
         first_len_of_clients = len(self.node_0.clients)
-        temp_server = server("127.0.0.1",
-                             10079,
-                             test=True,
-                             custom_id=server.id.replace("a", "b"))
+        temp_server = server(
+            "127.0.0.1",
+            10079,
+            test=True,
+            custom_id=
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
+        )
         temp_server.start()
         self.node_0.connect("127.0.0.1", 10079)
         time.sleep(10)
