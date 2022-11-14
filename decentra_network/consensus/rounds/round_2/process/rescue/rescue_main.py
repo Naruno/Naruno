@@ -38,6 +38,7 @@ def rescue_main(
     the_server = server.Server if custom_server is None else custom_server
     the_unl_node = random.choice(
         unl_list) if custom_unl is None else custom_unl
+    logger.info(f"True block requested from {the_unl_node}")
     the_server.send_client(the_unl_node, {"action": "sendmefullblock"})
     logger.debug(f"End block: {block}")
     return block
