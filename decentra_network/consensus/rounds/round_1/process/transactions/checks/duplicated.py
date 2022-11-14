@@ -19,10 +19,8 @@ def Remove_Duplicates(block: Block):
 
     new_validating_list = []
     for tx in block.validating_list:
-        if not any(tx.signature == tx2.signature
-                   for tx2 in new_validating_list):
-            logger.info(
-                f"tx: {tx} will be removed because its added more than one")
+        if not any(tx.signature == tx2.signature for tx2 in new_validating_list):
+            logger.info(f"tx: {tx} will be removed because its added more than one")
             new_validating_list.append(tx)
     block.validating_list = new_validating_list
     logger.debug(f"End block.validatin_list: {block.validating_list}")
