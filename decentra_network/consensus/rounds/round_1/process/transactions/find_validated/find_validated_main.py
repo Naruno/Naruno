@@ -28,11 +28,11 @@ from decentra_network.transactions.process_the_transaction import \
     ProccesstheTransaction
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
-logger.info("Finding process of validating list is started.")
 
 
 def find_validated(block: Block, candidate_class: candidate_block,
                    unl_nodes: dict) -> list:
+    logger.info("Finding process of validating list is started.")
     temp_validating_list = []
     logger.debug(f"First temp_validating_list: {temp_validating_list}")
     for candidate_block in candidate_class.candidate_blocks[:]:
