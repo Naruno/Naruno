@@ -9,10 +9,10 @@ import time
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash,
-                                                           SaveBlockshash_part)
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
