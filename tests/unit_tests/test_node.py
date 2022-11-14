@@ -796,7 +796,7 @@ class Test_Node(unittest.TestCase):
         temp_server = server("127.0.0.1",
                              10079,
                              test=True,
-                             custom_id=server.id.replace("a", "b"))
+                             custom_id="MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==")
         temp_server.start()
         self.node_0.connect("127.0.0.1", 10079)
         time.sleep(10)
