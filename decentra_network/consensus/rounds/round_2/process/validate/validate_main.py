@@ -19,8 +19,12 @@ logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 
 def validate_main(block: Block) -> Block:
-    logger.debug("Block approved")
+    logger.info("Validating process is started")
     block.validated = True
     block.validated_time = int(time.time())
     block.round_2 = True
+    logger.debug(f"block.validated: {block.validated}")
+    logger.debug(f"block.validated_time: {block.validated_time}")
+    logger.debug(f"block.round_2: {block.round_2}")
+
     return block
