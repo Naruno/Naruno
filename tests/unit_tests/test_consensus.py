@@ -2854,7 +2854,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         self.assertTrue(result[1])
-        self.assertLess(result[0], 1)
+        self.assertLess(result[0], 2)
 
         result_2 = GetBlockstoBlockchainDB(
             sequance_number=0,
