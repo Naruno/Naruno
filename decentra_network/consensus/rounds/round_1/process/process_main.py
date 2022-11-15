@@ -41,7 +41,7 @@ def round_process(
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
 ) -> Block:
-    logger.info("Transaction processing for round 1 is started")
+    logger.info("Processing for round 1 is started")
     logger.debug(f"First block: {block}")
     transactions_main(block,
                       candidate_class=candidate_class,
@@ -60,6 +60,9 @@ def round_process(
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
     the_blocks_hash = GetBlockshash(
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+    logger.debug(f"part_of_blocks_hash: {part_of_blocks_hash}")
+    logger.debug(f"the_blocks_hash: {the_blocks_hash}")
+    logger.debug(f"account_list: {account_list}")
     block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
                                account_list)
 
