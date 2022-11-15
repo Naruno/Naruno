@@ -72,6 +72,6 @@ def consensus_round_2(
         the_server = server.Server if custom_server is None else custom_server
         the_server.send_my_block_hash(block)
         result = False
-    logger.info(f"result is: {result}")
+    logger.info(f"result: {result}")
     logger.info("second round is done")
     return result
