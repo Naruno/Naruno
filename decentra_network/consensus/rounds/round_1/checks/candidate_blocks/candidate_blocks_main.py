@@ -11,7 +11,8 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def candidate_blocks_check(candidate_class: candidate_block, unl_nodes: dict) -> bool:
+def candidate_blocks_check(candidate_class: candidate_block,
+                           unl_nodes: dict) -> bool:
     logger.info("Candidate block control started for round 2")
     logger.debug(
         f"len(candidate_class.candidate_blocks): {len(candidate_class.candidate_blocks)}"
