@@ -44,14 +44,15 @@ def consensus_round_2(
       round 2 to be done
     """
 
-    logger.debug(
-        f"BLOCK#{block.sequance_number}:{block.empty_block_number} Second round is starting"
+    logger.info(
+        f"BLOCK#{block.sequance_number}:{block.empty_block_number} second round is starting"
     )
 
     unl_nodes = Unl.get_unl_nodes() if unl_nodes is None else unl_nodes
     candidate_class = (GetCandidateBlocks()
                        if candidate_class is None else candidate_class)
-
+    logger.debug(f"unl_nodes: {unl_nodes}")
+    logger.debug(f"unl_nodes: {candidate_class}")
     result = None
     if round_check(block, candidate_class, unl_nodes):
         round_process(
@@ -71,6 +72,6 @@ def consensus_round_2(
         the_server = server.Server if custom_server is None else custom_server
         the_server.send_my_block_hash(block)
         result = False
-
-    logger.debug("Second round is done")
+    logger.info(f"result is: {result}")
+    logger.info("second round is done")
     return result
