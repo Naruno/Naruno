@@ -41,7 +41,8 @@ def round_process(
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
 ) -> Block:
-
+    logger.info("Transaction processing for round 1 is started")
+    logger.debug(f"First block: {block}")
     transactions_main(block,
                       candidate_class=candidate_class,
                       unl_nodes=unl_nodes)
@@ -71,4 +72,5 @@ def round_process(
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
+    logger.debug(f"End block: {block}")
     return block
