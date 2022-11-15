@@ -9,7 +9,6 @@ import hashlib
 import os
 import sys
 import time
-from cgitb import reset
 
 from speed_calculator import calculate
 

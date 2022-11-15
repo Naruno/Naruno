@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import shutil
-from cgitb import reset
 
 from decentra_network.apps.apps_trigger import AppsTrigger
 from decentra_network.blockchain.block.block_main import Block
