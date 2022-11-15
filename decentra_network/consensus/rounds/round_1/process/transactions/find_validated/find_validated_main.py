@@ -32,7 +32,9 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 def find_validated(block: Block, candidate_class: candidate_block,
                    unl_nodes: dict) -> list:
+    logger.info("Finding process of validating list is started.")
     temp_validating_list = []
+    logger.debug(f"First temp_validating_list: {temp_validating_list}")
     for candidate_block in candidate_class.candidate_blocks[:]:
         logger.debug(f"Candidate block {str(candidate_block)}")
 
@@ -67,4 +69,5 @@ def find_validated(block: Block, candidate_class: candidate_block,
                     logger.debug(
                         f"Transaction is valid ({other_block_tx.signature})")
                     temp_validating_list.append(other_block_tx)
+    logger.debug(f"First temp_validating_list: {temp_validating_list}")
     return temp_validating_list
