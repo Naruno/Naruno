@@ -34,7 +34,9 @@ def find_newly(block: Block, temp_validating_list: list) -> list:
     """
     Finds not validated new transaction in our block remove than and return as a new list
     """
+    logger.info("Find new transactions process is started")
     newly_added_list = []
+    logger.debug(f"First newly_added_list: {newly_added_list}")
 
     for my_validating_list in block.validating_list[:]:
         ok = any(
@@ -42,6 +44,13 @@ def find_newly(block: Block, temp_validating_list: list) -> list:
             for my_temp_validating_list in temp_validating_list[:])
 
         block.validating_list.remove(my_validating_list)
+        logger.info(
+            f"tx: {my_validating_list} will removed fron block.validating_list"
+        )
         if not ok:
+            logger.info(
+                f"tx: {temp_validating_list} will added to temp validating list"
+            )
             newly_added_list.append(my_validating_list)
+    logger.debug(f"End newly_added_list: {newly_added_list}")
     return newly_added_list
