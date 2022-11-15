@@ -52,7 +52,7 @@ def consensus_round_2(
     candidate_class = (GetCandidateBlocks()
                        if candidate_class is None else candidate_class)
     logger.debug(f"unl_nodes: {unl_nodes}")
-    logger.debug(f"unl_nodes: {candidate_class}")
+    logger.debug(f"candidate_class: {candidate_class}")
     result = None
     if round_check(block, candidate_class, unl_nodes):
         round_process(
