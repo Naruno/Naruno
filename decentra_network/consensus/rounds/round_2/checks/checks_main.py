@@ -18,10 +18,10 @@ logger = get_logger("CONSENSUS_SECOND_ROUND")
 
 def round_check(block: Block, candidate_class: candidate_block,
                 unl_nodes: dict) -> bool:
-    logger.info("Round checking is started")
+    logger.info("Round 2 checking is started")
     if not candidate_blocks_hashes_check(candidate_class, unl_nodes):
         return False
     if not time_difference_check(block=block):
         return False
-    logger.info("checking is True")
+    logger.info("Round 2 checking is True")
     return True
