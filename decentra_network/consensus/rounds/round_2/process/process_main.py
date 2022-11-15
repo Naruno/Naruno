@@ -45,6 +45,7 @@ def round_process(
     logger.debug(f"First block: {block}")
     candidate_block_hash = process_candidate_blocks_hashes(
         block, candidate_class, unl_nodes)
+    logger.debug(f"candidate_block_hash: {candidate_block_hash}")
     result = None
     if block.hash == candidate_block_hash["hash"]:
         validate_main(block)
@@ -67,5 +68,5 @@ def round_process(
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
     logger.debug(f"End block: {block}")
-    logger.info(f"Process result is: {result}")
+    logger.info(f"Round 1 process result is: {result}")
     return result
