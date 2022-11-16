@@ -6,11 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from plyer import notification as plyer_notification
+from plyer.utils import platform
+
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
-
-
-from plyer.utils import platform
 
 logger = get_logger("LIB")
 
