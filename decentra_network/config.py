@@ -39,4 +39,4 @@ PROOF_PATH = "db/proof/"
 
 EXTRACTED_PROOFS_PATH = "db/extracted_proofs/"
 
-QR_CORE_PATH = "db/qrs/"
+QR_CODE_PATH = "db/qrs/"

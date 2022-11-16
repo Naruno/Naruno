@@ -10,7 +10,7 @@ import qrcode
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.colormasks import SolidFillColorMask
 
-from decentra_network.config import QR_CORE_PATH
+from decentra_network.config import QR_CODE_PATH
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 
@@ -36,8 +36,10 @@ def qr(data):
         color_mask=SolidFillColorMask(front_color=(94, 194, 149)),
     )
 
-    location = f"{main_folder}/{QR_CORE_PATH}{data}.png"
+    location = f"{main_folder}/{QR_CODE_PATH}{data}.png"
     logger.info(f"location: {location}")
     qr_img.save(location)
     logger.info("Qr code generator is finished.")
     return location
+
+qr("Gök_Bora_YILMAZ")
