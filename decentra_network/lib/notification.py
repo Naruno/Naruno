@@ -31,4 +31,5 @@ def notification(title, message):
 
     logger.debug(f"icon: {icon}")
     plyer_notification.notify(
-        title=title, message=message, app_icon=icon, app_name=app_name, timeout=timeout)
+        title=title, message=message, app_icon=icon, app_name=app_name, timeout=timeout
+    )
