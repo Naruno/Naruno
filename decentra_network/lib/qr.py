@@ -16,36 +16,30 @@ import os
 
 logger = get_logger("LIB")
 
-#data ya debnug
-# En son locationa info
+
 def qr(data):
     logger.info("Qr code generator is started")
-    logger.debug(data)
+    logger.debug(f"data: {data}")
 
 
 
-    os.chdir(get_config()["main_folder"])
+    main_folder = get_config()["main_folder"]
     qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H)
     
     qr.add_data(data)
     qr.make(fit = True)
 
-    icon = "/gui_lib/images/logo_w_bc.png"
+    icon = f"{main_folder}/gui_lib/images/logo_w_bc.png"
     logger.debug(icon)
-
 
     qr_img = qr.make_image(
         image_factory=StyledPilImage, 
-        embeded_image_path=icon
-        color_mask=SolidFillColorMask(front_color=(94, 194, 149))    
+        embeded_image_path=icon,
+        color_mask=SolidFillColorMask(front_color=(94, 194, 149))
         )
     
-    location = f"{QR_CORE_PATH}{data}.png"
+    location = f"{main_folder}/{QR_CORE_PATH}{data}.png"
     logger.info(f"location: {location}")
     qr_img.save(location)
     logger.info("Qr code generator is finished.")
     return location
-
-# Olduk bile hacım ama benim kaçmam lazım sana zahmet bunu komple pull çek
-
-qr("Ali_Eren")
