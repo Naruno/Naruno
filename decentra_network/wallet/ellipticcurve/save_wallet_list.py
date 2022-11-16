@@ -41,9 +41,7 @@ def save_to_wallet_list(publicKey, privateKey, password):
     wallet_list[publicKey]["publickey"] = publicKey.replace("\n", "")
     wallet_list[publicKey]["privatekey"] = privateKey
 
-    wallet_list[publicKey]["password_sha256"] = sha256(
-        password
-    ).hexdigest()
+    wallet_list[publicKey]["password_sha256"] = sha256(password).hexdigest()
 
     save_wallet_list(wallet_list)
 
