@@ -45,9 +45,10 @@ def send(
     block = block if block is not None else GetBlock()
 
     the_minumum_amount = 0
-    if (GetBalance(
-            block, to_user, account_list=custom_account_list,
-            dont_convert=True) >= 0):
+    if (
+        GetBalance(block, to_user, account_list=custom_account_list, dont_convert=True)
+        >= 0
+    ):
         pass
     else:
         the_minumum_amount = block.minumum_transfer_amount
@@ -69,19 +70,20 @@ def send(
 
     decimal_amount = len(str(block.transaction_fee).split(".")[1])
     if len(str(amount).split(".")[1]) > decimal_amount:
-        logger.error(
-            f"The amount of decimal places is more than {decimal_amount}.")
+        logger.error(f"The amount of decimal places is more than {decimal_amount}.")
         return False
 
-    password = password.encode('utf-8')
-    if (wallet_import(int(the_settings()["wallet"]),
-                      2) == sha256(password).hexdigest()):
+    password = password.encode("utf-8")
+    if wallet_import(int(the_settings()["wallet"]), 2) == sha256(password).hexdigest():
 
         my_private_key = wallet_import(-1, 1, password)
-        my_public_key = "".join([
-            l.strip() for l in wallet_import(-1, 0).splitlines()
-            if l and not l.startswith("-----")
-        ])
+        my_public_key = "".join(
+            [
+                l.strip()
+                for l in wallet_import(-1, 0).splitlines()
+                if l and not l.startswith("-----")
+            ]
+        )
 
         sequance_number = GetSequanceNumber(my_public_key) + 1
 
@@ -92,9 +94,10 @@ def send(
         the_transaction = Transaction(
             sequance_number,
             Ecdsa.sign(
-                (str(sequance_number) + my_public_key + str(to_user) +
-                 str(data)) + str(amount) + str(transaction_fee) +
-                str(tx_time),
+                (str(sequance_number) + my_public_key + str(to_user) + str(data))
+                + str(amount)
+                + str(transaction_fee)
+                + str(tx_time),
                 PrivateKey.fromPem(my_private_key),
             ).toBase64(),
             my_public_key,
@@ -106,12 +109,12 @@ def send(
         )
 
         if GetTransaction(
-                block,
-                the_transaction,
-                custom_current_time=custom_current_time,
-                custom_sequence_number=custom_sequence_number,
-                custom_balance=custom_balance,
-                custom_account_list=custom_account_list,
+            block,
+            the_transaction,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_account_list=custom_account_list,
         ):
 
             del my_private_key
