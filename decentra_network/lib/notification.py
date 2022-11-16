@@ -28,6 +28,8 @@ def notification(title, message):
         icon = f"{main_folder}/gui_lib/images/logo.png"
 
     logger.debug(f"icon: {icon}")
-    plyer_notification.notify(
-        title=title, message=message, app_icon=icon, app_name=app_name, timeout=timeout
-    )
+    plyer_notification.notify(title=title,
+                              message=message,
+                              app_icon=icon,
+                              app_name=app_name,
+                              timeout=timeout)
