@@ -4,6 +4,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import os
+
 import qrcode
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.colormasks import SolidFillColorMask
@@ -11,8 +13,6 @@ from qrcode.image.styles.colormasks import SolidFillColorMask
 from decentra_network.config import QR_CORE_PATH
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
-import os
-
 
 logger = get_logger("LIB")
 
