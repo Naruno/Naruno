@@ -14,6 +14,7 @@ from plyer.utils import platform
 
 logger = get_logger("LIB")
 
+
 def notification(title, message):
     logger.info("Notification system is started")
     app_name = "Decentra Network"
@@ -29,4 +30,5 @@ def notification(title, message):
         icon = f"{main_folder}/gui_lib/images/logo.png"
 
     logger.debug(f"icon: {icon}")
-    plyer_notification.notify(title=title, message=message, app_icon=icon, app_name=app_name, timeout=timeout)
+    plyer_notification.notify(
+        title=title, message=message, app_icon=icon, app_name=app_name, timeout=timeout)
