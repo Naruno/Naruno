@@ -73,8 +73,9 @@ def send(
             f"The amount of decimal places is more than {decimal_amount}.")
         return False
 
-    if wallet_import(int(the_settings()["wallet"]),
-                     2) == sha256(password).hexdigest():
+    password = password.encode('utf-8')
+    if (wallet_import(int(the_settings()["wallet"]),
+                      2) == sha256(password).hexdigest()):
 
         my_private_key = wallet_import(-1, 1, password)
         my_public_key = "".join([
