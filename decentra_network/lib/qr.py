@@ -33,7 +33,7 @@ def qr(data):
     qr_img = qr.make_image(
         image_factory=StyledPilImage,
         embeded_image_path=icon,
-        color_mask=SolidFillColorMask(front_color=(94, 194, 149))
+        color_mask=SolidFillColorMask(front_color=(94, 194, 149)),
     )
 
     location = f"{main_folder}/{QR_CORE_PATH}{data}.png"
