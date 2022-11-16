@@ -19,6 +19,7 @@ Kivy==2.1.0
 kivymd==0.104.2
 qrcode==7.3.1
 kivymd_extensions.sweetalert==0.1.5
+plyer==2.1.0
 """,
     python_requires=">=3.8",
     zip_safe=False,
