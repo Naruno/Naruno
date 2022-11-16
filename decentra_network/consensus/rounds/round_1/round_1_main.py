@@ -40,15 +40,17 @@ def consensus_round_1(
       round 1 to be done
     """
 
-    logger.debug(
+    logger.info(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting"
     )
 
     unl_nodes = (Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH)
                  if custom_unl_nodes is None else custom_unl_nodes)
+    logger.debug(f"unl_nodes: {unl_nodes}")                
     candidate_class = (
         GetCandidateBlocks(custom_nodes_list=Unl.get_as_node_type(unl_nodes))
         if custom_candidate_class is None else custom_candidate_class)
+    logger.debug(f"candidate_class: {candidate_class}")    
 
     if round_check(block, candidate_class, unl_nodes):
         round_process(
@@ -60,9 +62,11 @@ def consensus_round_1(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
+        logger.info("Round 1 check is True")
         return True
     else:
         custom_server.send_my_block(
             block
         ) if custom_server is not None else server.Server.send_my_block(block)
+        logger.info("Round 1 check is False")
         return False
