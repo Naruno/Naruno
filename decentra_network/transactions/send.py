@@ -74,7 +74,7 @@ def send(
         return False
 
     if (wallet_import(int(the_settings()["wallet"]),
-                      2) == sha256(password.encode("utf-8")).hexdigest()):
+                      2) == sha256(password).hexdigest()):
 
         my_private_key = wallet_import(-1, 1, password)
         my_public_key = "".join([

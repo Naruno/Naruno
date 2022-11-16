@@ -298,7 +298,7 @@ class Test_Wallet(unittest.TestCase):
 
         temp_private_key = wallet_create(password)
         result = wallet_import(-1, 2)
-        true_pass = sha256(password.encode("utf-8")).hexdigest()
+        true_pass = sha256(password).hexdigest()
         save_wallet_list(original_saved_wallets)
         self.assertEqual(result, true_pass)
 
