@@ -69,10 +69,10 @@
                 id: but1
                 icon: "send-circle-outline"
                 on_press: root.send_coin()
-                DecentraLabel:
-                    text: "Send Coin"
-                    halign: "right"
-                    font_style: "Button"
+                text: "Send Coin"
+                halign: "right"
+                font_style: "Button"                
+
 
         AnchorLayout:
             size_hint_y: None
@@ -83,10 +83,10 @@
                 width:240
 
                 on_press: root.export_transaction_csv()
-                DecentraLabel:
-                    text: "Export Transactions CSV"
-                    halign: "right"
-                    font_style: "Button"
+                text: "Export Transactions CSV"
+                halign: "right"
+                font_style: "Button"                  
+
 
         AnchorLayout:
             size_hint_y: None
@@ -100,7 +100,6 @@
                 icon: "history"
                 width:240
                 on_press: root.transaction_history()
-                DecentraLabel:
-                    text: "View Transactions History"
-                    halign: "right"
-                    font_style: "Button"
+                text: "View Transactions History"
+                halign: "right"
+                font_style: "Button"                   

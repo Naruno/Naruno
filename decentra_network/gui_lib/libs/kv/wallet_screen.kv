@@ -76,11 +76,9 @@
                 id: but1
                 icon: "wallet-outline"
                 on_press: root.show_example_list_bottom_sheet()
-                DecentraLabel:
-                    text: "Wallets"
-                    halign: "right"
-                    font_style: "Button"
-
+                text:  "Wallets"
+                halign: "right"
+                font_style: "Button"
 
         AnchorLayout:
             size_hint_y: None
@@ -89,10 +87,9 @@
                 id: but2
                 icon: "wallet-plus-outline"
                 on_press: root.Wallet_Create()
-                DecentraLabel:
-                    text: "Create Wallet"
-                    halign: "right"
-                    font_style: "Button"
+                text: "Create Wallet"
+                halign: "right"
+                font_style: "Button"
 
         AnchorLayout:
             size_hint_y: None
@@ -101,11 +98,9 @@
                 id: but3
                 icon: "safe"
                 on_press: root.reflesh_balance()
-                DecentraLabel:
-                    text: root.text
-                    halign: "right"
-                    font_style: "Button"
-
+                text: root.text
+                halign: "right"
+                font_style: "Button"
         AnchorLayout:
             size_hint_y: None
             height: but2.height
@@ -114,11 +109,7 @@
                 icon: "delete"
                 on_press: root.Wallet_Delete()
                 text_color: 1, 0, 0, 1
+                text: "Delete Wallet"
+                halign: "right"
+                font_style: "Button"
 
-                DecentraLabel:
-                    text: "Delete Wallet"
-                    halign: "right"
-                    font_style: "Button"
-                    theme_text_color: "Custom"
-                    text_color: 1, 0, 0, 1
-                    line_color: 1, 0, 1, 1
