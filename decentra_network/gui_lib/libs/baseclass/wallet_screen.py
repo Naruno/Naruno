@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import os
-from turtle import width
 
 from kivy.core.clipboard import Clipboard
 from kivy.properties import StringProperty
