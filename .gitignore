@@ -20,6 +20,7 @@ bin/
 #test
 *.txt
 
+decentra_network/db/qrs/*
 decentra_network/db/blocs/*
 decentra_network/db/pending_transactions/*
 decentra_network/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import os
+from turtle import width
 
 from kivy.core.clipboard import Clipboard
 from kivy.properties import StringProperty
@@ -19,6 +20,8 @@ from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.ellipticcurve.wallet_delete import wallet_delete
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+
+from decentra_network.lib.qr import qr
 
 
 class WalletScreen(MDScreen):
@@ -165,3 +168,8 @@ class WalletBox(MDGridLayout):
                 wallet_delete(each_wallet)
                 self.reflesh_balance()
                 self.dismiss_delete_wallet_alert_dialog(widget)
+
+    def wallet_qr(self):
+        address = wallet_import(-1, 3)
+        location_of_qr = qr(address)
+        SweetAlert().fire(text=address, image=location_of_qr, height_image = "400px")
