@@ -29,4 +29,5 @@ class QrcodeRecipe(PythonRecipe):
     call_hostpython_via_targetpython = False
     install_in_hostpython = True
 
+
 recipe = QrcodeRecipe()

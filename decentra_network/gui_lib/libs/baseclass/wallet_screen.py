@@ -171,4 +171,4 @@ class WalletBox(MDGridLayout):
     def wallet_qr(self):
         address = wallet_import(-1, 3)
         location_of_qr = qr(address)
-        SweetAlert().fire(text=address, image=location_of_qr, height_image = "400px")
+        SweetAlert().fire(text=address, image=location_of_qr, height_image="400px")
