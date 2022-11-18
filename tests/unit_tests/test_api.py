@@ -463,7 +463,7 @@ class Test_API(unittest.TestCase):
                 GetBalance(
                     decentra_network.api.main.custom_wallet,
                     account_list=decentra_network.api.main.account_list,
-                    block=block,
+                    block=decentra_network.api.main.custom_block,
                 )),
         )
 
