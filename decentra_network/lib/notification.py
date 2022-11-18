@@ -13,7 +13,7 @@ logger = get_logger("LIB")
 def notification(title, message, custom_plyer=None):
     try:
         the_import_string = "from plyer import notification as plyer_notification"
-        xec(the_import_string) if custom_plyer is None else exec(custom_plyer)
+        exec(the_import_string) if custom_plyer is None else exec(custom_plyer)
         from plyer.utils import platform
 
         logger.info("Notification system is started")
