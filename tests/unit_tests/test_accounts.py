@@ -187,15 +187,15 @@ class Test_Accounts(unittest.TestCase):
 
         result = GetBalance("test_account", account_list=account_list,
         custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        self.assertEqual(result, 0)
+        self.assertEqual(result, None)
         result_2 = GetBalance("test_account_2",
                               account_list=account_list,
                               custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        self.assertEqual(result_2, 0)
+        self.assertEqual(result_2, None)
         result_3 = GetBalance("test_account_3",
                               account_list=account_list,
                               custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        self.assertEqual(result_3, 0)
+        self.assertEqual(result_3, None)
 
     def test_GetSequanceNumber_not_list_account(self):
 
