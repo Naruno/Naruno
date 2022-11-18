@@ -18,6 +18,8 @@ from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 
 
+from decentra_network.lib.qr import qr
+
 class NodeScreen(MDScreen):
     pass
 
@@ -243,6 +245,12 @@ class NodeBox(MDGridLayout):
             "The ID has been copied to your clipboard.",
             type="success",
         )
+
+    def nd_id_qr(self):
+        location_of_qr = qr(server.id)
+        SweetAlert().fire(text=server.id,
+                          image=location_of_qr,
+                          height_image="400px") 
 
     def status(self):
         toast("Calculating...")
