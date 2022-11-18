@@ -12,6 +12,7 @@ from kivymd_extensions.sweetalert import SweetAlert
 
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.get_block import GetBlock
+from decentra_network.lib.qr import qr
 from decentra_network.lib.settings_system import change_wallet
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
@@ -165,3 +166,10 @@ class WalletBox(MDGridLayout):
                 wallet_delete(each_wallet)
                 self.reflesh_balance()
                 self.dismiss_delete_wallet_alert_dialog(widget)
+
+    def wallet_qr(self):
+        address = wallet_import(-1, 3)
+        location_of_qr = qr(address)
+        SweetAlert().fire(text=address,
+                          image=location_of_qr,
+                          height_image="400px")

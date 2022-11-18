@@ -41,5 +41,3 @@ def qr(data):
     qr_img.save(location)
     logger.info("Qr code generator is finished.")
     return location
-
-qr("Gök_Bora_YILMAZ")
