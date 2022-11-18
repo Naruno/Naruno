@@ -20,7 +20,7 @@ def GetBalance(user, account_list=None, dont_convert=False, block=None, custom_T
         try:
             block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         except FileNotFoundError:
-            return 0
+            return None
 
     balance = -block.minumum_transfer_amount
     address = Address(user) if not dont_convert else user
