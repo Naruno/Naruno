@@ -33,7 +33,7 @@ def qr(data):
         qr.add_data(data)
         qr.make(fit=True)
         icon = f"{main_folder}/gui_lib/images/logo_w_bc.png"
-        logger.debug(icon)
+        logger.debug(f"icon: {icon}")
         qr_img = qr.make_image(
             image_factory=StyledPilImage,
             embeded_image_path=icon,
