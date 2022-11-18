@@ -16,10 +16,8 @@ from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.accounts.get_sequance_number import GetSequanceNumber
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.clean_up import CleanUp_tests
-
-
 from decentra_network.blockchain.block.save_block import SaveBlock
+from decentra_network.lib.clean_up import CleanUp_tests
 
 
 class Test_Accounts(unittest.TestCase):
