@@ -21,6 +21,7 @@ from decentra_network.lib.clean_up import CleanUp_tests
 
 from decentra_network.blockchain.block.save_block import SaveBlock
 
+
 class Test_Accounts(unittest.TestCase):
 
     @classmethod
@@ -95,7 +96,8 @@ class Test_Accounts(unittest.TestCase):
         block = Block("alieren")
         block.minumum_transfer_amount = 5
 
-        result = GetBalance("the_account_4", account_list=account_list, block=block)
+        result = GetBalance(
+            "the_account_4", account_list=account_list, block=block)
 
         self.assertEqual(result, -5)
 
@@ -119,7 +121,8 @@ class Test_Accounts(unittest.TestCase):
         block = Block("alieren")
         block.minumum_transfer_amount = 5
 
-        result = GetBalance("test_account", account_list=account_list, block=block)
+        result = GetBalance(
+            "test_account", account_list=account_list, block=block)
         self.assertEqual(result, 5)
         result_2 = GetBalance("test_account_2",
                               account_list=account_list, block=block)
@@ -127,7 +130,6 @@ class Test_Accounts(unittest.TestCase):
         result_3 = GetBalance("test_account_3",
                               account_list=account_list, block=block)
         self.assertEqual(result_3, 15)
-
 
     def test_GetBalance_non_block(self):
 
@@ -148,11 +150,11 @@ class Test_Accounts(unittest.TestCase):
 
         block = Block("alieren")
         block.minumum_transfer_amount = 5
-        custom_TEMP_BLOCK_PATH= "db/test_GetBalance_non_block.db"
+        custom_TEMP_BLOCK_PATH = "db/test_GetBalance_non_block.db"
         SaveBlock(block, custom_TEMP_BLOCK_PATH)
 
         result = GetBalance("test_account", account_list=account_list,
-        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(result, 5)
         result_2 = GetBalance("test_account_2",
                               account_list=account_list,
@@ -162,7 +164,6 @@ class Test_Accounts(unittest.TestCase):
                               account_list=account_list,
                               custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(result_3, 15)
-
 
     def test_GetBalance_non_block_non_record(self):
 
@@ -183,10 +184,10 @@ class Test_Accounts(unittest.TestCase):
 
         block = Block("alieren")
         block.minumum_transfer_amount = 5
-        custom_TEMP_BLOCK_PATH= "db/test_GetBalance_non_block_no_record.db"
+        custom_TEMP_BLOCK_PATH = "db/test_GetBalance_non_block_no_record.db"
 
         result = GetBalance("test_account", account_list=account_list,
-        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(result, None)
         result_2 = GetBalance("test_account_2",
                               account_list=account_list,
