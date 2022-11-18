@@ -249,7 +249,7 @@ class NodeBox(MDGridLayout):
         location_of_qr = qr(server.id)
         SweetAlert().fire(text=server.id,
                           image=location_of_qr,
-                          height_image="400px")
+                          height_image="450px")
 
     def status(self):
         toast("Calculating...")
