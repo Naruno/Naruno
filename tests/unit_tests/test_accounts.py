@@ -16,6 +16,7 @@ from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.accounts.get_sequance_number import GetSequanceNumber
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.lib.clean_up import CleanUp_tests
 
 
@@ -93,7 +94,9 @@ class Test_Accounts(unittest.TestCase):
         block = Block("alieren")
         block.minumum_transfer_amount = 5
 
-        result = GetBalance(block, "the_account_4", account_list=account_list)
+        result = GetBalance("the_account_4",
+                            account_list=account_list,
+                            block=block)
 
         self.assertEqual(result, -5)
 
@@ -117,16 +120,99 @@ class Test_Accounts(unittest.TestCase):
         block = Block("alieren")
         block.minumum_transfer_amount = 5
 
-        result = GetBalance(block, "test_account", account_list=account_list)
+        result = GetBalance("test_account",
+                            account_list=account_list,
+                            block=block)
         self.assertEqual(result, 5)
-        result_2 = GetBalance(block,
-                              "test_account_2",
-                              account_list=account_list)
+        result_2 = GetBalance("test_account_2",
+                              account_list=account_list,
+                              block=block)
         self.assertEqual(result_2, 10)
-        result_3 = GetBalance(block,
-                              "test_account_3",
-                              account_list=account_list)
+        result_3 = GetBalance("test_account_3",
+                              account_list=account_list,
+                              block=block)
         self.assertEqual(result_3, 15)
+
+    def test_GetBalance_non_block(self):
+
+        the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
+                              1)
+        the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
+                                1)
+        the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
+                                1)
+
+        temp_path = "db/test_GetBalance_non_block_account.db"
+
+        SaveAccounts(the_account, temp_path)
+        SaveAccounts(the_account_2, temp_path)
+        SaveAccounts(the_account_3, temp_path)
+
+        account_list = GetAccounts(temp_path)
+
+        block = Block("alieren")
+        block.minumum_transfer_amount = 5
+        custom_TEMP_BLOCK_PATH = "db/test_GetBalance_non_block.db"
+        SaveBlock(block, custom_TEMP_BLOCK_PATH)
+
+        result = GetBalance(
+            "test_account",
+            account_list=account_list,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        )
+        self.assertEqual(result, 5)
+        result_2 = GetBalance(
+            "test_account_2",
+            account_list=account_list,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        )
+        self.assertEqual(result_2, 10)
+        result_3 = GetBalance(
+            "test_account_3",
+            account_list=account_list,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        )
+        self.assertEqual(result_3, 15)
+
+    def test_GetBalance_non_block_non_record(self):
+
+        the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
+                              1)
+        the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
+                                1)
+        the_account_3 = Account("7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1", 20,
+                                1)
+
+        temp_path = "db/test_GetBalance_not_list_account.db"
+
+        SaveAccounts(the_account, temp_path)
+        SaveAccounts(the_account_2, temp_path)
+        SaveAccounts(the_account_3, temp_path)
+
+        account_list = GetAccounts(temp_path)
+
+        block = Block("alieren")
+        block.minumum_transfer_amount = 5
+        custom_TEMP_BLOCK_PATH = "db/test_GetBalance_non_block_no_record.db"
+
+        result = GetBalance(
+            "test_account",
+            account_list=account_list,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        )
+        self.assertEqual(result, None)
+        result_2 = GetBalance(
+            "test_account_2",
+            account_list=account_list,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        )
+        self.assertEqual(result_2, None)
+        result_3 = GetBalance(
+            "test_account_3",
+            account_list=account_list,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        )
+        self.assertEqual(result_3, None)
 
     def test_GetSequanceNumber_not_list_account(self):
 
