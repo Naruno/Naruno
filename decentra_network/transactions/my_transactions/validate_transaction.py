@@ -18,6 +18,7 @@ from decentra_network.transactions.my_transactions.save_my_transaction import \
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.lib.notification import notification
 
+
 def ValidateTransaction(tx: Transaction,
                         custom_currently_list: list = None) -> list:
     """

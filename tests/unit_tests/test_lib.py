@@ -633,8 +633,8 @@ class Test_Lib(unittest.TestCase):
         )
         self.assertLess(result[1][0] + result[1][1], block.round_1_time - 2)
 
-
     def test_notification_not(self):
-        notification("test","trest", custom_plyer="import sdadasda")
+        notification("test", "trest", custom_plyer="import sdadasda")
+
 
 unittest.main(exit=False)
