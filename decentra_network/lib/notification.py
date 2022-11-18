@@ -10,7 +10,7 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("LIB")
 
 
-def notification(title, message, custom_plyer):
+def notification(title, message, custom_plyer=None):
     try:
         the_import_string = "from plyer import notification as plyer_notification"
         xec(the_import_string) if custom_plyer is None else exec(custom_plyer)
