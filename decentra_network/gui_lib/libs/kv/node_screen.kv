@@ -166,12 +166,22 @@
                 halign: "right"
                 font_style: "Button"
 
-
         AnchorLayout:
             size_hint_y: None
             height: but8.height
             MDRoundFlatIconButton:
                 id: but8
+                icon: "qrcode"
+                on_press: root.nd_id_qr()
+                text: "QR Code of your ID"
+                halign: "right"
+                font_style: "Button"
+
+        AnchorLayout:
+            size_hint_y: None
+            height: but9.height
+            MDRoundFlatIconButton:
+                id: but9
                 icon: "lifebuoy"
                 on_press: root.status()
                 width:240

@@ -13,6 +13,7 @@ from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.consensus.consensus_main import consensus_trigger
 from decentra_network.lib.perpetualtimer import perpetualTimer
+from decentra_network.lib.qr import qr
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
@@ -243,6 +244,12 @@ class NodeBox(MDGridLayout):
             "The ID has been copied to your clipboard.",
             type="success",
         )
+
+    def nd_id_qr(self):
+        location_of_qr = qr(server.id)
+        SweetAlert().fire(text=server.id,
+                          image=location_of_qr,
+                          height_image="450px")
 
     def status(self):
         toast("Calculating...")
