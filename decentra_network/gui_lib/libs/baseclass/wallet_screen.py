@@ -15,8 +15,7 @@ from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.lib.qr import qr
 from decentra_network.lib.settings_system import change_wallet
 from decentra_network.lib.settings_system import the_settings
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
-    get_saved_wallet
+from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet
 from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
 from decentra_network.wallet.ellipticcurve.wallet_delete import wallet_delete
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
@@ -152,11 +151,9 @@ class WalletBox(MDGridLayout):
 
     def delete_the_wallet(self, widget):
         saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]),
-                                               0)
+        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]), 0)
         for each_wallet in saved_wallets:
-            if selected_wallet_pubkey == saved_wallets[each_wallet][
-                    "publickey"]:
+            if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
                 change_wallet(0)
                 wallet_delete(each_wallet)
                 self.reflesh_balance()
@@ -165,9 +162,7 @@ class WalletBox(MDGridLayout):
     def wallet_qr(self):
         address = wallet_import(-1, 3)
         location_of_qr = qr(address)
-        SweetAlert().fire(text=address,
-                          image=location_of_qr,
-                          height_image="400px")
+        SweetAlert().fire(text=address, image=location_of_qr, height_image="400px")
 
     def wallet_copy(self):
         Clipboard.copy(wallet_import(-1, 3))
