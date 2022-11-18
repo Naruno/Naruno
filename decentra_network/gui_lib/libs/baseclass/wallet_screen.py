@@ -76,11 +76,6 @@ class WalletBox(MDGridLayout):
         if args[0] != the_settings()["wallet"]:
             change_wallet(int(args[0]))
             self.reflesh_balance()
-        Clipboard.copy(wallet_import(int(args[0]), 3))
-        SweetAlert().fire(
-            "The address has been copied to your clipboard.",
-            type="success",
-        )
 
     def show_example_list_bottom_sheet(self):
         bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
@@ -173,3 +168,10 @@ class WalletBox(MDGridLayout):
         SweetAlert().fire(text=address,
                           image=location_of_qr,
                           height_image="400px")
+
+    def wallet_copy(self):
+        Clipboard.copy(wallet_import(-1, 3))
+        SweetAlert().fire(
+            "The address has been copied to your clipboard.",
+            type="success",
+        )
