@@ -101,6 +101,7 @@
                 text: root.text
                 halign: "right"
                 font_style: "Button"
+               
         AnchorLayout:
             size_hint_y: None
             height: but2.height
@@ -117,8 +118,18 @@
             height: but4.height
             MDRoundFlatIconButton:
                 id: but4
+                icon: "content-copy"
+                on_press: root.wallet_copy()
+                text: "Copy the your Address"
+                halign: "right"
+                font_style: "Button" 
+        AnchorLayout:
+            size_hint_y: None
+            height: but5.height
+            MDRoundFlatIconButton:
+                id: but5
                 icon: "qrcode"
                 on_press: root.wallet_qr()
-                text: "QR Code"
+                text: "QR Code of your Address"
                 halign: "right"
-                font_style: "Button"
+                font_style: "Button" 
