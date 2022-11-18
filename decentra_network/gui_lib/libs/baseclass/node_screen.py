@@ -20,6 +20,7 @@ from decentra_network.node.server.server import server
 
 from decentra_network.lib.qr import qr
 
+
 class NodeScreen(MDScreen):
     pass
 
@@ -250,7 +251,7 @@ class NodeBox(MDGridLayout):
         location_of_qr = qr(server.id)
         SweetAlert().fire(text=server.id,
                           image=location_of_qr,
-                          height_image="400px") 
+                          height_image="400px")
 
     def status(self):
         toast("Calculating...")
