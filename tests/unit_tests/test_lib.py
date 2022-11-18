@@ -42,6 +42,8 @@ from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
 
+from decentra_network.lib.notification import notification
+
 
 def perpetual_time_test():
     os.chdir(get_config()["main_folder"])
@@ -631,5 +633,8 @@ class Test_Lib(unittest.TestCase):
         )
         self.assertLess(result[1][0] + result[1][1], block.round_1_time - 2)
 
+
+    def test_notification_not(self):
+        notification("test","trest", custom_plyer="import sdadasda")
 
 unittest.main(exit=False)

@@ -12,9 +12,10 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("LIB")
 
 
-def notification(title, message):
+def notification(title, message, custom_plyer):
     try:
-        from plyer import notification as plyer_notification
+        the_import_string = "from plyer import notification as plyer_notification"
+        xec(the_import_string) if custom_plyer is None else exec(custom_plyer)
         from plyer.utils import platform        
         logger.info("Notification system is started")
         app_name = "Decentra Network"
