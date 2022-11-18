@@ -28,6 +28,7 @@ def qr(data):
     logger.info(f"location: {location}")
 
     if not os.path.exists(location):
+        logger.info("Qr code is not exist, it will be created")
         qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H)
         qr.add_data(data)
         qr.make(fit=True)
@@ -39,6 +40,8 @@ def qr(data):
             color_mask=SolidFillColorMask(front_color=(94, 194, 149)),
         )
         qr_img.save(location)
+    else:
+        logger.info("Qr code already exists")
 
     logger.info("Qr code generator is finished.")
     return location
