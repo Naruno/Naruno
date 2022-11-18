@@ -37,5 +37,5 @@ def notification(title, message):
                                   timeout=timeout)
     except ImportError:
         logger.info("Passing notification system (no plyer)")
-    except NotImplementedError
+    except NotImplementedError:
         logger.info("Passing notification system (no usable implementation found for notification)")
