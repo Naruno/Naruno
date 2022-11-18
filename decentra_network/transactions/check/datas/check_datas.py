@@ -40,7 +40,7 @@ def Check_Datas(
             logger.info("Multiple transaction in one account")
             return False
 
-    balance = (GetBalance(block, transaction.fromUser)
+    balance = (GetBalance(transaction.fromUser, block=block, )
                if custom_balance is None else custom_balance)
     if balance >= (float(transaction.amount) +
                    float(transaction.transaction_fee)):
@@ -53,10 +53,10 @@ def Check_Datas(
         pass
     else:
         if (GetBalance(
-                block,
                 transaction.toUser,
                 account_list=custom_account_list,
                 dont_convert=True,
+                block=block,
         ) >= 0):
             pass
         else:

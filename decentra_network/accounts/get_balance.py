@@ -7,13 +7,20 @@
 import sqlite3
 
 from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
-def GetBalance(block, user, account_list=None, dont_convert=False):
+def GetBalance(user, account_list=None, dont_convert=False, block=None, custom_TEMP_BLOCK_PATH=None):
     """
     Returns the users balance.
     """
+
+    if block is None:
+        try:
+            block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        except FileNotFoundError:
+            return 0
 
     balance = -block.minumum_transfer_amount
     address = Address(user) if not dont_convert else user

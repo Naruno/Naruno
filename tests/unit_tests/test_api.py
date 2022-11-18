@@ -461,9 +461,9 @@ class Test_API(unittest.TestCase):
             the_balance_int,
             float(
                 GetBalance(
-                    decentra_network.api.main.custom_block,
                     decentra_network.api.main.custom_wallet,
                     account_list=decentra_network.api.main.account_list,
+                    block=block
                 )),
         )
 

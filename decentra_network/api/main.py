@@ -163,8 +163,8 @@ def balance_wallets_page():
                                0) if custom_wallet is None else custom_wallet
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    return jsonify(GetBalance(the_block, the_wallet,
-                              account_list=account_list))
+    return jsonify(GetBalance(the_wallet,
+                              account_list=account_list, block=the_block))
 
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
