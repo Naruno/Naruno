@@ -6,19 +6,16 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import os
-
 from distutils.log import info
 
 from decentra_network.config import MY_TRANSACTION_PATH
 from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_my_transaction import (
-    SaveMyTransaction,
-)
-from decentra_network.transactions.transaction import Transaction
 from decentra_network.lib.notification import notification
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
+from decentra_network.transactions.transaction import Transaction
 
 
 def SendedTransaction(tx: Transaction, custom_currently_list: list = None) -> list:
