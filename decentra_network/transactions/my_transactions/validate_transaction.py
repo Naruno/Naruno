@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import os
+
 from distutils.log import info
 
 from decentra_network.config import MY_TRANSACTION_PATH
