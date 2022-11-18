@@ -17,6 +17,7 @@ def notification(title, message, custom_plyer):
         the_import_string = "from plyer import notification as plyer_notification"
         xec(the_import_string) if custom_plyer is None else exec(custom_plyer)
         from plyer.utils import platform
+
         logger.info("Notification system is started")
         app_name = "Decentra Network"
         timeout = 10
@@ -31,13 +32,16 @@ def notification(title, message, custom_plyer):
             icon = f"{main_folder}/gui_lib/images/logo.png"
 
         logger.debug(f"icon: {icon}")
-        plyer_notification.notify(title=title,
-                                  message=message,
-                                  app_icon=icon,
-                                  app_name=app_name,
-                                  timeout=timeout)
+        plyer_notification.notify(
+            title=title,
+            message=message,
+            app_icon=icon,
+            app_name=app_name,
+            timeout=timeout,
+        )
     except ImportError:
         logger.info("Passing notification system (no plyer)")
     except NotImplementedError:
         logger.info(
-            "Passing notification system (no usable implementation found for notification)")
+            "Passing notification system (no usable implementation found for notification)"
+        )

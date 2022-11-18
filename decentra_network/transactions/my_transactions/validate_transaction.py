@@ -11,16 +11,17 @@ from distutils.log import info
 
 from decentra_network.config import MY_TRANSACTION_PATH
 from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_my_transaction import \
-    SaveMyTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_my_transaction import (
+    SaveMyTransaction,
+)
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.lib.notification import notification
 
 
-def ValidateTransaction(tx: Transaction,
-                        custom_currently_list: list = None) -> list:
+def ValidateTransaction(tx: Transaction, custom_currently_list: list = None) -> list:
     """
     Validates the transaction.
     Parameters:
@@ -31,9 +32,9 @@ def ValidateTransaction(tx: Transaction,
 
     notification("Validated TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
 
-    custom_currently_list = (GetMyTransaction()
-                             if custom_currently_list is None else
-                             custom_currently_list)
+    custom_currently_list = (
+        GetMyTransaction() if custom_currently_list is None else custom_currently_list
+    )
     for i in custom_currently_list:
         if i[0].signature == tx.signature:
             i[1] = True
