@@ -15,6 +15,8 @@ from decentra_network.transactions.my_transactions.get_my_transaction import \
 from decentra_network.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
 from decentra_network.transactions.transaction import Transaction
+from decentra_network.lib.notification import notification
+from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
 def SavetoMyTransaction(
@@ -32,6 +34,13 @@ def SavetoMyTransaction(
     Returns:
         The list of the my transactions.
     """
+    if not sended and validated:
+        notification("Incoming TX", f"{tx.data}:{tx.amount} from {Address(tx.fromUser)}")
+    elif sended and not validated:
+        notification("Sended TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
+    elif sended and validated: 
+        notification("Validated TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
+   
 
     currently_list = (GetMyTransaction() if custom_currently_list is None else
                       custom_currently_list)

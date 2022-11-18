@@ -16,7 +16,7 @@ from decentra_network.transactions.my_transactions.get_my_transaction import \
 from decentra_network.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
 from decentra_network.transactions.transaction import Transaction
-
+from decentra_network.lib.notification import notification
 
 def ValidateTransaction(tx: Transaction,
                         custom_currently_list: list = None) -> list:
@@ -27,6 +27,8 @@ def ValidateTransaction(tx: Transaction,
     Returns:
         The list of the my transactions.
     """
+
+    notification("Validated TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
 
     custom_currently_list = (GetMyTransaction()
                              if custom_currently_list is None else

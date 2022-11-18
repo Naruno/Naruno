@@ -16,6 +16,7 @@ from decentra_network.transactions.my_transactions.get_my_transaction import \
 from decentra_network.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
 from decentra_network.transactions.transaction import Transaction
+from decentra_network.lib.notification import notification
 
 
 def SendedTransaction(tx: Transaction,
@@ -27,6 +28,8 @@ def SendedTransaction(tx: Transaction,
     Returns:
         The list of the my transactions.
     """
+
+    notification("Sended TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
 
     custom_currently_list = (GetMyTransaction()
                              if custom_currently_list is None else
