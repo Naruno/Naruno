@@ -218,7 +218,6 @@ Decentra Network is a completely community driven project, you can contribute in
   <a/>
   </p>
 
-
 <br/>
 <p align="center">
 
