@@ -4,14 +4,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import shutil
 import os
+import shutil
 import sys
 import time
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-from decentra_network.lib.config_system import get_config
 from decentra_network.config import BACKUPS_PATH
+from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 
 logger = get_logger("LIB")
