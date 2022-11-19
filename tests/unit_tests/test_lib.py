@@ -34,7 +34,7 @@ from decentra_network.lib.performance_analyzers.heartbeat_db import \
     heartbeat_generic_db_analyzer
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (d_mode_settings,
+from decentra_network.lib.settings_system import (d_mode_settings, mt_settings,
                                                   save_settings,
                                                   t_mode_settings,
                                                   the_settings)
@@ -597,6 +597,17 @@ class Test_Lib(unittest.TestCase):
 
         t_mode_settings(temp_settings["debug_mode"])
 
+
+    def test_mt_settings(self):
+        temp_settings = the_settings()
+        changed_value = True if temp_settings["mute_notifications"] is False else False
+        mt_settings(changed_value)
+        new_settings = the_settings()
+
+        self.assertEqual(new_settings["mute_notifications"], changed_value)
+
+        mt_settings(temp_settings["mute_notifications"])
+
     def test_perpetualTimer_0(self):
 
         the_timer = perpetualTimer(
@@ -635,5 +646,27 @@ class Test_Lib(unittest.TestCase):
     def test_notification_not(self):
         notification("test", "trest", raise_plyer=True)
 
+    def test_notification_mt_True(self):
+
+        temp_settings = the_settings()
+        changed_value = True
+        mt_settings(changed_value)
+        
+
+        self.assertEqual(notification("test", "trest"), False)
+
+        mt_settings(temp_settings["mute_notifications"])
+
+    def test_notification_mt_False(self):
+
+        temp_settings = the_settings()
+        changed_value = False
+        mt_settings(changed_value)
+        
+
+        self.assertNotEqual(notification("test", "trest"), False)
+
+        mt_settings(temp_settings["mute_notifications"])
+        
 
 unittest.main(exit=False)

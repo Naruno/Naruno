@@ -33,7 +33,6 @@
             text: "DEBUG MODE"
             halign: "center"
             font_style: "Button"
-
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'center'
@@ -46,8 +45,6 @@
             text: "TEST MODE"
             halign: "center"
             font_style: "Button" 
-
-
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'center'
@@ -56,3 +53,13 @@
                 on_active: root.T_Status_Changing(self, self.active)         
  
 
+        DecentraLabel:
+            text: "MUTE NOTIFICATIONS"
+            halign: "center"
+            font_style: "Button"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.mt_first_status
+                on_active: root.MT_Status_Changing(self, self.active)

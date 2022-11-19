@@ -6,11 +6,17 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
+from decentra_network.lib.settings_system import the_settings
 
 logger = get_logger("LIB")
 
 
 def notification(title, message, raise_plyer=False):
+
+    if the_settings()["mute_notifications"] == True:
+        logger.info("Notifications are muted")
+        return False
+
     try:
         if raise_plyer:
             raise ImportError
