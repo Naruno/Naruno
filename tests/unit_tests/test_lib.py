@@ -597,7 +597,6 @@ class Test_Lib(unittest.TestCase):
 
         t_mode_settings(temp_settings["debug_mode"])
 
-
     def test_mt_settings(self):
         temp_settings = the_settings()
         changed_value = True if temp_settings["mute_notifications"] is False else False
@@ -651,7 +650,6 @@ class Test_Lib(unittest.TestCase):
         temp_settings = the_settings()
         changed_value = True
         mt_settings(changed_value)
-        
 
         self.assertEqual(notification("test", "trest"), False)
 
@@ -662,11 +660,10 @@ class Test_Lib(unittest.TestCase):
         temp_settings = the_settings()
         changed_value = False
         mt_settings(changed_value)
-        
 
         self.assertNotEqual(notification("test", "trest"), False)
 
         mt_settings(temp_settings["mute_notifications"])
-        
+
 
 unittest.main(exit=False)

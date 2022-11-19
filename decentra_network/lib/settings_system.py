@@ -64,6 +64,7 @@ def d_mode_settings(new_value):
     settings["debug_mode"] = new_value
     save_settings(settings)
 
+
 def mt_settings(new_value):
     """
     Changes the mute_notifications setting.

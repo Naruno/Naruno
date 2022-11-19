@@ -14,11 +14,10 @@ class SettingsScreen(MDScreen):
 
 class SettingsBox(MDGridLayout):
     cols = 2
-    
+
     d_first_status = the_settings()["debug_mode"]
     t_first_status = the_settings()["test_mode"]
     mt_first_status = the_settings()["mute_notifications"]
-    
 
     def D_Status_Changing(self, instance, value):
         d_mode_settings(value)
