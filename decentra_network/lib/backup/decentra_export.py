@@ -24,7 +24,7 @@ def decentra_export():
     result_file = f"{main_folder}/{BACKUPS_PATH}{int(time.time())}"
     logger.debug(f"zip_dir: {zip_dir}")
     logger.debug(f"result_file: {result_file}.zip")
-    shutil.make_archive(result_file, 'zip', zip_dir)
+    shutil.make_archive(result_file, "zip", zip_dir)
     logger.info("Export complated")
 
     return f"{result_file}.zip"
