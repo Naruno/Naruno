@@ -6,11 +6,17 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
+from decentra_network.lib.settings_system import the_settings
 
 logger = get_logger("LIB")
 
 
 def notification(title, message, raise_plyer=False):
+
+    if the_settings()["mute_notifications"] == True:
+        logger.info("Notifications are muted")
+        return False
+
     try:
         if raise_plyer:
             raise ImportError
@@ -28,10 +34,9 @@ def notification(title, message, raise_plyer=False):
         logger.debug(f"title: {title}")
         logger.debug(f"message: {message}")
         main_folder = get_config()["main_folder"]
-        if platform == "win":
-            icon = f"{main_folder}/gui_lib/images/logo_win.ico"
-        else:
-            icon = f"{main_folder}/gui_lib/images/logo.png"
+
+        icon = (f"{main_folder}/gui_lib/images/logo_win.ico" if platform
+                == "win" else f"{main_folder}/gui_lib/images/logo.png")
 
         logger.debug(f"icon: {icon}")
         plyer_notification.notify(
