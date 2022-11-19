@@ -648,7 +648,6 @@ class Test_Lib(unittest.TestCase):
     def test_notification_not(self):
         notification("test", "trest", raise_plyer=True)
 
-
     def test_notification_mt_True(self):
 
         temp_settings = the_settings()
@@ -680,5 +679,6 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(new_settings["debug_mode"], changed_value)
         decentra_import(backup)
         self.assertNotEqual(the_settings()["debug_mode"], changed_value)
+
 
 unittest.main(exit=False)
