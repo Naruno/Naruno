@@ -44,6 +44,9 @@ from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
 
 
+from decentra_network.lib.backup.decentra_export import decentra_export
+from decentra_network.lib.backup.decentra_import import decentra_import
+
 def perpetual_time_test():
     os.chdir(get_config()["main_folder"])
     with open("test_perpetual_time_test.txt", "a") as f:
@@ -634,6 +637,22 @@ class Test_Lib(unittest.TestCase):
 
     def test_notification_not(self):
         notification("test", "trest", raise_plyer=True)
+
+
+    def test_export_import(self):
+        backup = decentra_export()
+        temp_settings = the_settings()
+
+        changed_value = True if temp_settings["debug_mode"] is False else False
+        d_mode_settings(changed_value)
+        new_settings = the_settings()
+
+        self.assertEqual(new_settings["debug_mode"], changed_value)
+        decentra_import(backup)
+        self.assertNotEqual(the_settings()["debug_mode"], changed_value)
+
+       
+        
 
 
 unittest.main(exit=False)
