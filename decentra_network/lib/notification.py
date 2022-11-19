@@ -37,7 +37,6 @@ def notification(title, message, raise_plyer=False):
 
         icon = f"{main_folder}/gui_lib/images/logo_win.ico" if platform == "win" else f"{main_folder}/gui_lib/images/logo.png"
 
-
         logger.debug(f"icon: {icon}")
         plyer_notification.notify(
             title=title,
