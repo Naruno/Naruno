@@ -20,6 +20,8 @@ from decentra_network.config import (
     MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
     TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH,
     UNL_NODES_PATH)
+from decentra_network.lib.backup.decentra_export import decentra_export
+from decentra_network.lib.backup.decentra_import import decentra_import
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.export import export_the_transactions
@@ -665,6 +667,18 @@ class Test_Lib(unittest.TestCase):
         self.assertNotEqual(notification("test", "trest"), False)
 
         mt_settings(temp_settings["mute_notifications"])
+
+    def test_export_import(self):
+        backup = decentra_export()
+        temp_settings = the_settings()
+
+        changed_value = True if temp_settings["debug_mode"] is False else False
+        d_mode_settings(changed_value)
+        new_settings = the_settings()
+
+        self.assertEqual(new_settings["debug_mode"], changed_value)
+        decentra_import(backup)
+        self.assertNotEqual(the_settings()["debug_mode"], changed_value)
 
 
 unittest.main(exit=False)
