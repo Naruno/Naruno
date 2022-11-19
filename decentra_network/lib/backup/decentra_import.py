@@ -6,7 +6,6 @@
 import os
 import shutil
 import sys
-import time
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from decentra_network.lib.config_system import get_config
@@ -19,8 +18,6 @@ def decentra_import(export_location):
     logger.info("Import system is started")
     main_folder = get_config()["main_folder"]
     target_location = f"{main_folder}/db/"
-    # shutil.rmtree(target_location)
-    # os.makedirs(target_location)
     logger.debug(f"export_location: {export_location}")
     logger.debug(f"target_location: {target_location}")
     shutil.unpack_archive(export_location, target_location)
