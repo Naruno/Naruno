@@ -1,0 +1,44 @@
+name: Gource
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  gource:
+    runs-on: ubuntu-latest
+    environment: Builds   
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: 'Gource Action'
+        uses: nbprojekt/gource-action@v1
+        with:
+          gource_title: 'Decentra Network'
+          logo_url: 'https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png'
+          gource_resolution: '720p'
+          gource_fps: 60
+          gource_font_size: 40
+          avatars_auto_fetch: true
+
+
+      - name: Zip
+        run: zip gource_decentra_network ./gource/gource.mp4
+      - uses: AButler/upload-release-assets@v2.0
+        if: github.event_name == 'release'
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }} 
+          files: 'gource_decentra_network.zip'
+      - name: 'Upload gource video'
+        uses: actions/upload-artifact@v2
+        with:
+          name: gource_decentra_network
+          path: gource_decentra_network.zip
