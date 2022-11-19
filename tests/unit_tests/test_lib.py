@@ -29,6 +29,7 @@ from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                              printcentertext, question_maker,
                                              quit_menu_maker,
                                              starting_text_centered)
+from decentra_network.lib.notification import notification
 from decentra_network.lib.performance_analyzers.heartbeat_db import \
     heartbeat_generic_db_analyzer
 from decentra_network.lib.perpetualtimer import perpetualTimer
@@ -630,6 +631,9 @@ class Test_Lib(unittest.TestCase):
              block.hard_block_number * block.block_time),
         )
         self.assertLess(result[1][0] + result[1][1], block.round_1_time - 2)
+
+    def test_notification_not(self):
+        notification("test", "trest", raise_plyer=True)
 
 
 unittest.main(exit=False)
