@@ -27,9 +27,6 @@
    </a>
   <br> <br>
 
-
-
-
   </p>
   <p align="center">
   <img src="https://img.shields.io/github/v/release/Decentra-Network/Decentra-Network" alt="release_version">
