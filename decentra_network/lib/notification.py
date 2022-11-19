@@ -34,10 +34,9 @@ def notification(title, message, raise_plyer=False):
         logger.debug(f"title: {title}")
         logger.debug(f"message: {message}")
         main_folder = get_config()["main_folder"]
-        if platform == "win":
-            icon = f"{main_folder}/gui_lib/images/logo_win.ico"
-        else:
-            icon = f"{main_folder}/gui_lib/images/logo.png"
+
+        icon = f"{main_folder}/gui_lib/images/logo_win.ico" if platform == "win" else f"{main_folder}/gui_lib/images/logo.png"
+
 
         logger.debug(f"icon: {icon}")
         plyer_notification.notify(
