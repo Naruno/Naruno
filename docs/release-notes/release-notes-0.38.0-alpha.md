@@ -113,7 +113,7 @@ We fix multiple logging bug and we add QR code, notification and backup system.
 * lib: Added backup system by @alieren196 in https://github.com/Decentra-Network/Decentra-Network/pull/1318
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.37.0-alpha...v0.38.0-alph
+**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.37.0-alpha...v0.38.0-alpha
 
 # Credits
 
