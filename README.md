@@ -227,7 +227,7 @@ Decentra Network is a completely community driven project, you can contribute in
   </p>
 </p>
 
-# Sponsor
+# Sponsors
 
 <p align="center">
    <a href="https://narin.net.tr/">
