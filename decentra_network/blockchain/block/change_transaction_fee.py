@@ -24,7 +24,11 @@ def ChangeTransactionFee(
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
                             if custom_pending_transaction_len is None else
                             custom_pending_transaction_len)
-    total_len = len(block.validating_list) + pending_transactions
+    validating_list_len = 0
+    for tx in block.validating_list:
+        if tx.fromUser != "DN":
+            validating_list_len += 1
+    total_len = validating_list_len + pending_transactions
     logger.debug(f"total_len: {total_len}")
     logger.debug(
         f"block.default_optimum_transaction_number {block.default_optimum_transaction_number}"

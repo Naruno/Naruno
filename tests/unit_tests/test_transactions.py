@@ -1418,8 +1418,11 @@ class Test_Transactions(unittest.TestCase):
         result = ProccesstheTransaction(block,
                                         account_list,
                                         custom_TEMP_ACCOUNTS_PATH=temp_path)
-        self.assertEqual(block.validating_list,
-                         [the_transaction_2, the_transaction])
+        self.assertEqual(len(block.validating_list), 3)
+        self.assertEqual(block.validating_list[0], the_transaction_2)
+        self.assertEqual(block.validating_list[1].toUser, block.fee_address)
+        self.assertEqual(block.validating_list[1].amount, 0.04)
+        self.assertEqual(block.validating_list[2], the_transaction)
 
     def test_ProccesstheTransaction_account_list(self):
 
@@ -1483,13 +1486,18 @@ class Test_Transactions(unittest.TestCase):
 
         account_list = GetAccounts(temp_path)
 
-        result = ProccesstheTransaction(block,
-                                        account_list,
-                                        custom_TEMP_ACCOUNTS_PATH=temp_path)
+        custom_fee_address = "onurtheprofessional"
+
+        result = ProccesstheTransaction(
+            block,
+            account_list,
+            custom_TEMP_ACCOUNTS_PATH=temp_path,
+            custom_fee_address=custom_fee_address,
+        )
         account_list = GetAccounts(temp_path)
         account_list.execute(f"SELECT * FROM account_list")
         account_list = account_list.fetchall()
-        self.assertEqual(len(account_list), 7)
+        self.assertEqual(len(account_list), 8)
         true_list = [
             the_transaction_4,
             the_transaction_5,
@@ -1497,7 +1505,14 @@ class Test_Transactions(unittest.TestCase):
             the_transaction_3,
             the_transaction,
         ]
-        self.assertEqual(block.validating_list, true_list)
+        self.assertEqual(block.validating_list[0], the_transaction_4)
+        self.assertEqual(block.validating_list[1], the_transaction_5)
+        self.assertEqual(block.validating_list[2], the_transaction_2)
+        self.assertEqual(block.validating_list[3], the_transaction_3)
+        self.assertEqual(block.validating_list[4].toUser,
+                         "onurtheprofessional")
+        self.assertEqual(block.validating_list[4].amount, 0.1)
+        self.assertEqual(block.validating_list[5], the_transaction)
         self.assertEqual(account_list[0][2], 100000 - 5000 - 0.02)
         self.assertEqual(account_list[0][0],
                          "2ffd1f6bed8614f4cd01fc7159ac950604272773")
@@ -1527,9 +1542,154 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(account_list[5][0], "onur")
         self.assertEqual(account_list[5][1], 0)
 
-        self.assertEqual(account_list[6][2], 5000)
-        self.assertEqual(account_list[6][0], "teaaast")
+        self.assertEqual(account_list[6][2], 0.1)
+        self.assertEqual(account_list[6][0], "onurtheprofessional")
         self.assertEqual(account_list[6][1], 0)
+
+        self.assertEqual(account_list[7][2], 5000)
+        self.assertEqual(account_list[7][0], "teaaast")
+        self.assertEqual(account_list[7][1], 0)
+
+    def test_ProccesstheTransaction_account_list_with_shares(self):
+
+        the_transaction_json = {
+            "sequance_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        block = Block(the_transaction.fromUser)
+        block.sequance_number = 10
+        block.max_tx_number = 2
+        block.transaction_delay_time = 60
+        block.minumum_transfer_amount = 1000
+
+        the_transaction_2 = Transaction.load_json(the_transaction_json)
+        the_transaction_2.fromUser = "B"
+        the_transaction_2.toUser = "d10d419bae75549222c5ffead625a9e0246ad3e6"
+
+        the_transaction_3 = Transaction.load_json(the_transaction_json)
+        the_transaction_3.fromUser = "C"
+
+        the_transaction_4 = Transaction.load_json(the_transaction_json)
+        the_transaction_4.fromUser = "A"
+
+        the_transaction_5 = Transaction.load_json(the_transaction_json)
+        the_transaction_5.fromUser = "Atakan"
+        the_transaction_5.toUser = "teaaast"
+
+        block.validating_list = [
+            the_transaction,
+            the_transaction_2,
+            the_transaction_3,
+            the_transaction_4,
+            the_transaction_5,
+        ]
+
+        temp_path = "db/test_ProccesstheTransaction_account_list_with_shares.db"
+
+        SaveAccounts(
+            Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000),
+            temp_path)
+        SaveAccounts(
+            Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000),
+            temp_path)
+        SaveAccounts(
+            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000),
+            temp_path)
+        SaveAccounts(
+            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000),
+            temp_path)
+        SaveAccounts(
+            Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000),
+            temp_path)
+
+        account_list = GetAccounts(temp_path)
+
+        custom_shares = [["abc", 10, 10, 40], ["bca", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+
+        result = ProccesstheTransaction(
+            block,
+            account_list,
+            custom_TEMP_ACCOUNTS_PATH=temp_path,
+            custom_shares=custom_shares,
+            custom_fee_address=custom_fee_address,
+        )
+        account_list = GetAccounts(temp_path)
+        account_list.execute(f"SELECT * FROM account_list")
+        account_list = account_list.fetchall()
+        self.assertEqual(len(account_list), 10)
+        true_list = [
+            the_transaction_4,
+            the_transaction_5,
+            the_transaction_2,
+            the_transaction_3,
+            the_transaction,
+        ]
+
+        self.assertEqual(block.validating_list[0], the_transaction_4)
+        self.assertEqual(block.validating_list[1], the_transaction_5)
+        self.assertEqual(block.validating_list[2], the_transaction_2)
+        self.assertEqual(block.validating_list[3], the_transaction_3)
+        self.assertEqual(block.validating_list[4].toUser, "abc")
+        self.assertEqual(block.validating_list[4].amount, 10)
+        self.assertEqual(block.validating_list[5].toUser, "bca")
+        self.assertEqual(block.validating_list[5].amount, 15)
+        self.assertEqual(block.validating_list[6].toUser, "onuratakanulusoy")
+        self.assertEqual(block.validating_list[6].amount, 0.1)
+        self.assertEqual(block.validating_list[7], the_transaction)
+        self.assertEqual(account_list[0][2], 100000 - 5000 - 0.02)
+        self.assertEqual(account_list[0][0],
+                         "2ffd1f6bed8614f4cd01fc7159ac950604272773")
+        self.assertEqual(account_list[0][1], 1)
+
+        self.assertEqual(account_list[1][2], 94999.98)
+        self.assertEqual(account_list[1][0],
+                         "73cd109827c0de9fa211c0d062eab13584ea6bb8")
+        self.assertEqual(account_list[1][1], 1)
+
+        self.assertEqual(account_list[2][2], 94999.98)
+        self.assertEqual(account_list[2][0],
+                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6")
+        self.assertEqual(account_list[2][1], 1)
+
+        self.assertEqual(account_list[3][2], 94999.98)
+        self.assertEqual(account_list[3][0],
+                         "6a4236cba1002b2919651677c7c520b67627aa2a")
+        self.assertEqual(account_list[3][1], 1)
+
+        self.assertEqual(account_list[4][2], 99999.98)
+        self.assertEqual(account_list[4][0],
+                         "d10d419bae75549222c5ffead625a9e0246ad3e6")
+        self.assertEqual(account_list[4][1], 1)
+
+        self.assertEqual(account_list[5][2], 10)
+        self.assertEqual(account_list[5][0], "abc")
+        self.assertEqual(account_list[5][1], 0)
+
+        self.assertEqual(account_list[6][2], 15)
+        self.assertEqual(account_list[6][0], "bca")
+        self.assertEqual(account_list[6][1], 0)
+
+        self.assertEqual(account_list[9][2], 5000)
+        self.assertEqual(account_list[9][0], "teaaast")
+        self.assertEqual(account_list[9][1], 0)
+
+        self.assertEqual(account_list[8][2], 0.1)
+        self.assertEqual(account_list[8][0], "onuratakanulusoy")
+        self.assertEqual(account_list[8][1], 0)
+
+        self.assertEqual(account_list[7][2], 15000)
+        self.assertEqual(account_list[7][0], "onur")
+        self.assertEqual(account_list[7][1], 0)
 
     def test_SavePending_GetPending_DeletePending(self):
         the_transaction_json = {

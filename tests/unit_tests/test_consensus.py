@@ -1853,6 +1853,7 @@ class Test_Consensus(unittest.TestCase):
             Account("2ffd1f6bed8614f4cd01fc7159ac950604272773", 100000),
             custom_TEMP_ACCOUNTS_PATH,
         )
+        custom_fee_address = "onuratakanulusoy"
         result = round_process_round_1(
             block,
             CandidateBlock,
@@ -1861,10 +1862,13 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            custom_fee_address=custom_fee_address,
         )
-        self.assertEqual(len(result.validating_list), 1)
-        self.assertEqual(result.validating_list[0].dump_json(),
+        self.assertEqual(len(result.validating_list), 2)
+        self.assertEqual(result.validating_list[1].dump_json(),
                          the_transaction.dump_json())
+        self.assertEqual(result.validating_list[0].toUser, "onuratakanulusoy")
+        self.assertEqual(result.validating_list[0].amount, 0.02)
         self.assertEqual(result.round_1, True)
         self.assertNotEqual(result.round_2_starting_time,
                             old_block.round_2_starting_time)
@@ -2656,6 +2660,7 @@ class Test_Consensus(unittest.TestCase):
         block.round_1_time = 2
         old_block = copy.copy(block)
         time.sleep(4)
+        custom_fee_address = "onurtheprofessional"
         result = ongoing_main(
             block,
             CandidateBlock,
@@ -2666,10 +2671,14 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            custom_fee_address=custom_fee_address,
         )
-        self.assertEqual(len(result.validating_list), 1)
-        self.assertEqual(result.validating_list[0].dump_json(),
+        self.assertEqual(len(result.validating_list), 2)
+        self.assertEqual(result.validating_list[1].dump_json(),
                          the_transaction.dump_json())
+        self.assertEqual(result.validating_list[0].toUser,
+                         "onurtheprofessional")
+        self.assertEqual(result.validating_list[0].amount, 0.02)
         self.assertEqual(result.round_1, True)
         self.assertNotEqual(result.round_2_starting_time,
                             old_block.round_2_starting_time)

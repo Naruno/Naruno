@@ -31,6 +31,7 @@ from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.block.save_block_to_blockchain_db import \
     SaveBlockstoBlockchainDB
+from decentra_network.blockchain.block.shares import shares
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.node.client.client import client
 from decentra_network.node.unl import Unl
@@ -498,6 +499,139 @@ class Test_Blockchain(unittest.TestCase):
         result = Block.load_json(block.dump_json())
 
         self.assertEqual(block.dump_json(), result.dump_json())
+
+    def test_shares_start(self):
+        block = Block("onur")
+
+        custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+        the_txs = shares(block,
+                         custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
+        self.assertEqual(len(the_txs), 0)
+
+    def test_shares_low(self):
+        block = Block("onur")
+        block.sequance_number = 5
+
+        custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+        the_txs = shares(block,
+                         custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
+        self.assertEqual(len(the_txs), 0)
+
+    def test_shares_big(self):
+        block = Block("onur")
+        block.sequance_number = 15
+
+        custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+        the_txs = shares(block,
+                         custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
+        self.assertEqual(len(the_txs), 0)
+
+    def test_shares_more_times_one(self):
+        block = Block("onur")
+        block.validating_list = [
+            Transaction(1, "", "", "", 1, 1, 1000, 1),
+            Transaction(1, "", "", "", 1, 1, 250, 1),
+        ]
+        block.sequance_number = 20
+
+        custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+        the_txs = shares(block,
+                         custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
+        self.assertEqual(len(the_txs), 3)
+        self.assertEqual(the_txs[0].toUser, "atakan")
+        self.assertEqual(the_txs[0].amount, 10)
+        self.assertEqual(the_txs[1].toUser, "ulusoy")
+        self.assertEqual(the_txs[1].amount, 15)
+
+        self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
+        self.assertEqual(the_txs[2].amount, 1250)
+
+    def test_shares_more_times_twice(self):
+        block = Block("onur")
+        block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
+        block.sequance_number = 30
+
+        custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+        the_txs = shares(block,
+                         custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
+        self.assertEqual(len(the_txs), 3)
+        self.assertEqual(the_txs[0].toUser, "atakan")
+        self.assertEqual(the_txs[0].amount, 10)
+        self.assertEqual(the_txs[1].toUser, "ulusoy")
+        self.assertEqual(the_txs[1].amount, 15)
+
+        self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
+        self.assertEqual(the_txs[2].amount, 1000)
+
+    def test_shares_more_times_last(self):
+        block = Block("onur")
+        block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
+        block.sequance_number = 40
+
+        custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+        the_txs = shares(block,
+                         custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
+        self.assertEqual(len(the_txs), 3)
+        self.assertEqual(the_txs[0].toUser, "atakan")
+        self.assertEqual(the_txs[0].amount, 10)
+        self.assertEqual(the_txs[1].toUser, "ulusoy")
+        self.assertEqual(the_txs[1].amount, 15)
+
+        self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
+        self.assertEqual(the_txs[2].amount, 1000)
+
+    def test_shares_more_times_more_last(self):
+        block = Block("onur")
+        block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
+        block.sequance_number = 50
+
+        custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+        the_txs = shares(block,
+                         custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
+        self.assertEqual(len(the_txs), 1)
+        self.assertEqual(the_txs[0].toUser, "onuratakanulusoy")
+        self.assertEqual(the_txs[0].amount, 1000)
+
+    def test_shares(self):
+        block = Block("onur")
+        block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
+        block.sequance_number = 10
+
+        custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
+        custom_fee_address = "onuratakanulusoy"
+        the_txs = shares(block,
+                         custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
+        self.assertEqual(len(the_txs), 3)
+        self.assertEqual(the_txs[0].toUser, "atakan")
+        self.assertEqual(the_txs[0].amount, 10)
+        self.assertEqual(the_txs[1].toUser, "ulusoy")
+        self.assertEqual(the_txs[1].amount, 15)
+
+        self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
+        self.assertEqual(the_txs[2].amount, 1000)
 
 
 unittest.main(exit=False)
