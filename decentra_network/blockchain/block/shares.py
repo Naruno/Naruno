@@ -49,16 +49,17 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
     fee = 0
     for tx in block.validating_list:
         fee += tx.transaction_fee
-    tx_list.append(
-        Transaction(
-            0,
-            "DN",
-            "DN",
-            the_fee_address,
-            "NP",
-            fee,
-            0,
-            the_time,
-        ))
+    if fee > 0:
+        tx_list.append(
+            Transaction(
+                0,
+                "DN",
+                "DN",
+                the_fee_address,
+                "NP",
+                fee,
+                0,
+                the_time,
+            ))
 
     return tx_list

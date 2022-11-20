@@ -509,9 +509,8 @@ class Test_Blockchain(unittest.TestCase):
                          custom_shares=custom_shares,
                          custom_fee_address=custom_fee_address)
 
-        self.assertEqual(len(the_txs), 1)
-        self.assertEqual(the_txs[0].toUser, "onuratakanulusoy")
-        self.assertEqual(the_txs[0].amount, 0)
+        self.assertEqual(len(the_txs), 0)
+
 
     def test_shares_low(self):
         block = Block("onur")
@@ -523,9 +522,8 @@ class Test_Blockchain(unittest.TestCase):
                          custom_shares=custom_shares,
                          custom_fee_address=custom_fee_address)
 
-        self.assertEqual(len(the_txs), 1)
-        self.assertEqual(the_txs[0].toUser, "onuratakanulusoy")
-        self.assertEqual(the_txs[0].amount, 0)
+        self.assertEqual(len(the_txs), 0)
+
 
     def test_shares_big(self):
         block = Block("onur")
@@ -537,9 +535,8 @@ class Test_Blockchain(unittest.TestCase):
                          custom_shares=custom_shares,
                          custom_fee_address=custom_fee_address)
 
-        self.assertEqual(len(the_txs), 1)
-        self.assertEqual(the_txs[0].toUser, "onuratakanulusoy")
-        self.assertEqual(the_txs[0].amount, 0)
+        self.assertEqual(len(the_txs), 0)
+
 
     def test_shares_more_times_one(self):
         block = Block("onur")
