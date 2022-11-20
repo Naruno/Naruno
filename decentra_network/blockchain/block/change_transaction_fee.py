@@ -20,10 +20,11 @@ def ChangeTransactionFee(
     """
     logger.info("Calculating the transaction fee")
     logger.info(f"Start fee is: {block.transaction_fee}")
-    pending_transactions = (GetPendingLen(
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-        if custom_pending_transaction_len is None else
-        custom_pending_transaction_len)
+    pending_transactions = (
+        GetPendingLen(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        if custom_pending_transaction_len is None
+        else custom_pending_transaction_len
+    )
     validating_list_len = 0
     for tx in block.validating_list:
         if tx.fromUser != "DN":
@@ -33,11 +34,11 @@ def ChangeTransactionFee(
     logger.debug(
         f"block.default_optimum_transaction_number {block.default_optimum_transaction_number}"
     )
-    logger.debug(
-        f"block.default_increase_of_fee {block.default_increase_of_fee}")
+    logger.debug(f"block.default_increase_of_fee {block.default_increase_of_fee}")
     if (total_len // block.default_optimum_transaction_number) != 0:
-        increase = (total_len // block.default_optimum_transaction_number
-                    ) * block.default_increase_of_fee
+        increase = (
+            total_len // block.default_optimum_transaction_number
+        ) * block.default_increase_of_fee
         block.transaction_fee += increase
         logger.info("Transaction fee will be increased")
 
