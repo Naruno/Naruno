@@ -5,10 +5,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+import sys
 
 import qrcode
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.colormasks import SolidFillColorMask
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from decentra_network.config import QR_CODE_PATH
 from decentra_network.lib.config_system import get_config
@@ -25,7 +28,7 @@ def qr(data):
     main_folder = get_config()["main_folder"]
     data_sha256 = sha256(data.encode("utf-8")).hexdigest()
     location = f"{main_folder}/{QR_CODE_PATH}{data_sha256}.png"
-    logger.info(f"location: {location}")
+    
 
     if not os.path.exists(location):
         logger.info("Qr code is not exist, it will be created")
@@ -43,5 +46,9 @@ def qr(data):
     else:
         logger.info("Qr code already exists")
 
+    logger.info(f"location: {location}")
     logger.info("Qr code generator is finished.")
     return location
+
+if __name__ == "__main__":
+    qr("Ali_Eren_TABAK")

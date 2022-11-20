@@ -4,6 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import os
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.settings_system import the_settings
@@ -52,3 +57,6 @@ def notification(title, message, raise_plyer=False):
         logger.info(
             "Passing notification system (no usable implementation found for notification)"
         )
+
+if __name__ == "__main__":
+    notification("Bahri Can", "Ergül")
