@@ -46,7 +46,7 @@ def ongoing_main(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             custom_shares=custom_shares,
-            custom_fee_address=custom_fee_address,            
+            custom_fee_address=custom_fee_address,
         )
         logger.debug("First round is done")
     elif not block.round_2:

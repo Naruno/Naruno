@@ -30,7 +30,7 @@ def consensus_round_1(
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     custom_shares=None,
-    custom_fee_address=None,    
+    custom_fee_address=None,
 ) -> bool:
     """
     At this stage of the consensus process,
@@ -64,7 +64,7 @@ def consensus_round_1(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             custom_shares=custom_shares,
-            custom_fee_address=custom_fee_address,               
+            custom_fee_address=custom_fee_address,
         )
         logger.info("Round 1 check is True")
         return True

@@ -1080,8 +1080,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1239,8 +1239,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1868,7 +1868,7 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(result.validating_list[1].dump_json(),
                          the_transaction.dump_json())
         self.assertEqual(result.validating_list[0].toUser, "onuratakanulusoy")
-        self.assertEqual(result.validating_list[0].amount, 0.02)  
+        self.assertEqual(result.validating_list[0].amount, 0.02)
         self.assertEqual(result.round_1, True)
         self.assertNotEqual(result.round_2_starting_time,
                             old_block.round_2_starting_time)
@@ -1956,8 +1956,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -2031,8 +2030,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -2676,8 +2674,9 @@ class Test_Consensus(unittest.TestCase):
         self.assertEqual(len(result.validating_list), 2)
         self.assertEqual(result.validating_list[1].dump_json(),
                          the_transaction.dump_json())
-        self.assertEqual(result.validating_list[0].toUser, "onurtheprofessional")
-        self.assertEqual(result.validating_list[0].amount, 0.02)  
+        self.assertEqual(
+            result.validating_list[0].toUser, "onurtheprofessional")
+        self.assertEqual(result.validating_list[0].amount, 0.02)
         self.assertEqual(result.round_1, True)
         self.assertNotEqual(result.round_2_starting_time,
                             old_block.round_2_starting_time)

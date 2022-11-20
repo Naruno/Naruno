@@ -9,7 +9,6 @@ import os
 import sys
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import time
 import unittest
@@ -39,6 +38,7 @@ from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.blockchain.block.shares import shares
+
 
 class Test_Blockchain(unittest.TestCase):
 
@@ -506,8 +506,9 @@ class Test_Blockchain(unittest.TestCase):
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
-        the_txs = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
-        
+        the_txs = shares(block, custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
         self.assertEqual(len(the_txs), 1)
         self.assertEqual(the_txs[0].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[0].amount, 0)
@@ -518,12 +519,12 @@ class Test_Blockchain(unittest.TestCase):
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
-        the_txs = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
-        
+        the_txs = shares(block, custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
         self.assertEqual(len(the_txs), 1)
         self.assertEqual(the_txs[0].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[0].amount, 0)
-
 
     def test_shares_big(self):
         block = Block("onur")
@@ -531,21 +532,24 @@ class Test_Blockchain(unittest.TestCase):
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
-        the_txs = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
-        
+        the_txs = shares(block, custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
         self.assertEqual(len(the_txs), 1)
         self.assertEqual(the_txs[0].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[0].amount, 0)
 
     def test_shares_more_times_one(self):
         block = Block("onur")
-        block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1), Transaction(1, "", "", "", 1, 1, 250, 1)]
+        block.validating_list = [Transaction(
+            1, "", "", "", 1, 1, 1000, 1), Transaction(1, "", "", "", 1, 1, 250, 1)]
         block.sequance_number = 20
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
-        the_txs = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
-        
+        the_txs = shares(block, custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
         self.assertEqual(len(the_txs), 3)
         self.assertEqual(the_txs[0].toUser, "atakan")
         self.assertEqual(the_txs[0].amount, 10)
@@ -555,7 +559,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[2].amount, 1250)
 
-
     def test_shares_more_times_twice(self):
         block = Block("onur")
         block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
@@ -563,8 +566,9 @@ class Test_Blockchain(unittest.TestCase):
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
-        the_txs = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
-        
+        the_txs = shares(block, custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
         self.assertEqual(len(the_txs), 3)
         self.assertEqual(the_txs[0].toUser, "atakan")
         self.assertEqual(the_txs[0].amount, 10)
@@ -574,7 +578,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[2].amount, 1000)
 
-
     def test_shares_more_times_last(self):
         block = Block("onur")
         block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
@@ -582,8 +585,9 @@ class Test_Blockchain(unittest.TestCase):
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
-        the_txs = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
-        
+        the_txs = shares(block, custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
         self.assertEqual(len(the_txs), 3)
         self.assertEqual(the_txs[0].toUser, "atakan")
         self.assertEqual(the_txs[0].amount, 10)
@@ -600,8 +604,9 @@ class Test_Blockchain(unittest.TestCase):
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
-        the_txs = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
-        
+        the_txs = shares(block, custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
         self.assertEqual(len(the_txs), 1)
         self.assertEqual(the_txs[0].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[0].amount, 1000)
@@ -613,8 +618,9 @@ class Test_Blockchain(unittest.TestCase):
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
-        the_txs = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
-        
+        the_txs = shares(block, custom_shares=custom_shares,
+                         custom_fee_address=custom_fee_address)
+
         self.assertEqual(len(the_txs), 3)
         self.assertEqual(the_txs[0].toUser, "atakan")
         self.assertEqual(the_txs[0].amount, 10)
@@ -623,5 +629,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[2].amount, 1000)
+
 
 unittest.main(exit=False)

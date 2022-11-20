@@ -29,7 +29,8 @@ def ProccesstheTransaction(block,
 
     from_user_list = []
     to_user_list = []
-    the_shares = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
+    the_shares = shares(block, custom_shares=custom_shares,
+                        custom_fee_address=custom_fee_address)
     block.validating_list = block.validating_list + the_shares
     temp_validating_list = block.validating_list
 

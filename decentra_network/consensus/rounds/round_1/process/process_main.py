@@ -40,8 +40,8 @@ def round_process(
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
-    custom_shares = None,
-    custom_fee_address = None,
+    custom_shares=None,
+    custom_fee_address=None,
 ) -> Block:
     logger.info("Processing for round 1 is started")
     logger.debug(f"First block: {block}")

@@ -13,8 +13,7 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("BLOCKCHAIN")
 
 
-
-def shares(block: Block, custom_shares = None, custom_fee_address=None) -> list:
+def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
     """
     It returns the transactions that needed for locked shares distribution.
     """
@@ -24,7 +23,6 @@ def shares(block: Block, custom_shares = None, custom_fee_address=None) -> list:
     logger.debug(f"block.sequance_number: {block.sequance_number}")
     logger.debug(f"the_shares: {the_shares}")
     logger.debug(f"the_fee_address: {the_fee_address}")
-
 
     tx_list = []
 
@@ -37,17 +35,16 @@ def shares(block: Block, custom_shares = None, custom_fee_address=None) -> list:
             if not block.sequance_number > share[3]:
                 tx_list.append(
                     Transaction(
-                        0, 
-                        "DN", 
-                        "DN", 
-                        share[0], 
-                        "NP", 
-                        share[1], 
-                        0, 
+                        0,
+                        "DN",
+                        "DN",
+                        share[0],
+                        "NP",
+                        share[1],
+                        0,
                         the_time,
                     )
                 )
-    
 
     fee = 0
     for tx in block.validating_list:
@@ -64,6 +61,5 @@ def shares(block: Block, custom_shares = None, custom_fee_address=None) -> list:
             the_time,
         )
     )
-
 
     return tx_list
