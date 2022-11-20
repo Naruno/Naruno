@@ -1613,7 +1613,7 @@ class Test_Transactions(unittest.TestCase):
 
         account_list = GetAccounts(temp_path)
 
-        custom_shares = [["abc", 10, 10], ["bca", 15, 10]]
+        custom_shares = [["abc", 10, 10, 40], ["bca", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
 
         result = ProccesstheTransaction(
