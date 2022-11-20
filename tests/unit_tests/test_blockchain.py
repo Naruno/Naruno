@@ -16,25 +16,21 @@ from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (
-    GetBlockshash,
-    GetBlockshash_part,
-    SaveBlockshash,
-    SaveBlockshash_part,
-)
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           GetBlockshash_part,
+                                                           SaveBlockshash,
+                                                           SaveBlockshash_part)
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import (
-    GetBlockstoBlockchainDB,
-)
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
 from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
 from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.block.save_block_to_blockchain_db import (
-    SaveBlockstoBlockchainDB,
-)
+from decentra_network.blockchain.block.save_block_to_blockchain_db import \
+    SaveBlockstoBlockchainDB
 from decentra_network.blockchain.block.shares import shares
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.node.client.client import client
