@@ -511,7 +511,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(len(the_txs), 0)
 
-
     def test_shares_low(self):
         block = Block("onur")
         block.sequance_number = 5
@@ -524,7 +523,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(len(the_txs), 0)
 
-
     def test_shares_big(self):
         block = Block("onur")
         block.sequance_number = 15
@@ -536,7 +534,6 @@ class Test_Blockchain(unittest.TestCase):
                          custom_fee_address=custom_fee_address)
 
         self.assertEqual(len(the_txs), 0)
-
 
     def test_shares_more_times_one(self):
         block = Block("onur")

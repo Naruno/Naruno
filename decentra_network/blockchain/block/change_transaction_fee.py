@@ -22,8 +22,8 @@ def ChangeTransactionFee(
     logger.info(f"Start fee is: {block.transaction_fee}")
     pending_transactions = (GetPendingLen(
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-                            if custom_pending_transaction_len is None else
-                            custom_pending_transaction_len)
+        if custom_pending_transaction_len is None else
+        custom_pending_transaction_len)
     validating_list_len = 0
     for tx in block.validating_list:
         if tx.fromUser != "DN":
