@@ -15,19 +15,19 @@ from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
 from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
-from decentra_network.consensus.rounds.round_1.checks.checks_main import \
-    round_check
-from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import \
-    transactions_main
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
+from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
+from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import (
+    transactions_main,
+)
 from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
-from decentra_network.transactions.process_the_transaction import \
-    ProccesstheTransaction
+from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -45,28 +45,32 @@ def round_process(
 ) -> Block:
     logger.info("Processing for round 1 is started")
     logger.debug(f"First block: {block}")
-    transactions_main(block,
-                      candidate_class=candidate_class,
-                      unl_nodes=unl_nodes)
+    transactions_main(block, candidate_class=candidate_class, unl_nodes=unl_nodes)
 
     block.round_1 = True
     block.round_2_starting_time = int(time.time())
 
-    account_list = GetAccounts(
-        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
-    ProccesstheTransaction(block,
-                           account_list,
-                           custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
+    account_list = GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+    ProccesstheTransaction(
+        block,
+        account_list,
+        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+        custom_shares=custom_shares,
+        custom_fee_address=custom_fee_address,
+    )
 
     part_of_blocks_hash = GetBlockshash_part(
-        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+    )
     the_blocks_hash = GetBlockshash(
-        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
+    )
     logger.debug(f"part_of_blocks_hash: {part_of_blocks_hash}")
     logger.debug(f"the_blocks_hash: {the_blocks_hash}")
     logger.debug(f"account_list: {account_list}")
-    block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
-                               account_list)
+    block.hash = CalculateHash(
+        block, part_of_blocks_hash, the_blocks_hash, account_list
+    )
 
     logger.debug(f"Block hash {block.hash}")
 
