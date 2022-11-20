@@ -10,6 +10,23 @@
     <br />
     <a href="https://decentranetwork.net/"><strong>Explore the website »</strong></a>
     <br />
+    </p>
+    <br>
+    <p align="center">
+    <a href="https://docs.decentranetwork.net/getting-started/installations/downloads.html#dowloads-for-users">
+    <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="android">
+    </a>
+    <a href="https://docs.decentranetwork.net/getting-started/installations/downloads.html#dowloads-for-users">
+   <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="linux">
+   </a>
+   <a href="https://docs.decentranetwork.net/getting-started/installations/downloads.html#dowloads-for-users">
+   <img src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macos">
+   </a>
+   <a href="https://docs.decentranetwork.net/getting-started/installations/downloads.html#dowloads-for-users">
+   <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="windows">
+   </a>
+  <br> <br>
+
   </p>
   <p align="center">
   <img src="https://img.shields.io/github/v/release/Decentra-Network/Decentra-Network" alt="release_version">
