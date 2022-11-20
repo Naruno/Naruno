@@ -34,18 +34,19 @@ def shares(block: Block, custom_shares = None, custom_fee_address=None) -> list:
     for share in the_shares:
         rate = (block.sequance_number / share[2])
         if rate.is_integer() and rate != 0.0:
-            tx_list.append(
-                Transaction(
-                    0, 
-                    "DN", 
-                    "DN", 
-                    share[0], 
-                    "NP", 
-                    share[1], 
-                    0, 
-                    the_time,
+            if not block.sequance_number > share[3]:
+                tx_list.append(
+                    Transaction(
+                        0, 
+                        "DN", 
+                        "DN", 
+                        share[0], 
+                        "NP", 
+                        share[1], 
+                        0, 
+                        the_time,
+                    )
                 )
-            )
     
 
     fee = 0
