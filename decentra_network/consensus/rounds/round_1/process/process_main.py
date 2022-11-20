@@ -40,6 +40,8 @@ def round_process(
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
+    custom_shares = None,
+    custom_fee_address = None,
 ) -> Block:
     logger.info("Processing for round 1 is started")
     logger.debug(f"First block: {block}")
@@ -54,7 +56,7 @@ def round_process(
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
     ProccesstheTransaction(block,
                            account_list,
-                           custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+                           custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
 
     part_of_blocks_hash = GetBlockshash_part(
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)

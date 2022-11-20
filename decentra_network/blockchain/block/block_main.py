@@ -80,6 +80,9 @@ class Block:
         self.dowload_true_block = ""
         self.sync = False
 
+        self.shares = []
+        self.fee_address = creator
+
     def reset_the_block(self, custom_nodes=None):
         """
         When the block is verified and if block have a transaction

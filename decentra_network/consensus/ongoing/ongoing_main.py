@@ -29,6 +29,8 @@ def ongoing_main(
     custom_TEMP_BLOCK_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
+    custom_shares=None,
+    custom_fee_address=None,
 ) -> Block:
 
     if not block.round_1:
@@ -43,6 +45,8 @@ def ongoing_main(
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            custom_shares=custom_shares,
+            custom_fee_address=custom_fee_address,            
         )
         logger.debug("First round is done")
     elif not block.round_2:
@@ -57,6 +61,7 @@ def ongoing_main(
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+
         )
         logger.debug("Second round is done")
     return block

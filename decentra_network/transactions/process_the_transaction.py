@@ -5,18 +5,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import sqlite3
-import traceback
 
 from decentra_network.accounts.account import Account
-from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
+from decentra_network.blockchain.block.shares import shares
 from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 
 def ProccesstheTransaction(block,
                            the_account_list,
-                           custom_TEMP_ACCOUNTS_PATH=None):
+                           custom_TEMP_ACCOUNTS_PATH=None, custom_shares=None, custom_fee_address=None):
     """
     It performs the transactions in the block.vali list and
     puts the transactions in order.
@@ -30,6 +29,8 @@ def ProccesstheTransaction(block,
 
     from_user_list = []
     to_user_list = []
+    the_shares = shares(block, custom_shares=custom_shares, custom_fee_address=custom_fee_address)
+    block.validating_list = block.validating_list + the_shares
     temp_validating_list = block.validating_list
 
     new_added_accounts_list = []
