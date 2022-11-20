@@ -19,9 +19,8 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
     """
     logger.info("Share distribution started.")
     the_shares = block.shares if custom_shares is None else custom_shares
-    the_fee_address = (
-        block.fee_address if custom_fee_address is None else custom_fee_address
-    )
+    the_fee_address = (block.fee_address
+                       if custom_fee_address is None else custom_fee_address)
     logger.debug(f"block.sequance_number: {block.sequance_number}")
     logger.debug(f"the_shares: {the_shares}")
     logger.debug(f"the_fee_address: {the_fee_address}")
@@ -45,8 +44,7 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
                         share[1],
                         0,
                         the_time,
-                    )
-                )
+                    ))
 
     fee = 0
     for tx in block.validating_list:
@@ -62,7 +60,6 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
                 fee,
                 0,
                 the_time,
-            )
-        )
+            ))
 
     return tx_list
