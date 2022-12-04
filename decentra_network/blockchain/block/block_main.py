@@ -34,7 +34,7 @@ class Block:
     def __init__(
         self,
         creator,
-        previous_hash="916b93f9b5c81576a32c645f7135f097db75481932bcd0211e8f81cb8ba6a11e",
+        previous_hash="1a00d983803e3adcbda2ed40ecba828083221648a90150267d8b0fd500c59750",
     ):
         self.coin_amount = 10000000
         self.first_time = True
