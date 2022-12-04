@@ -163,7 +163,7 @@ class Test_Blockchain(unittest.TestCase):
             "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8")
 
     def test_block_BlocksHash(self):
-        block = Block("onur")
+        block = Block("onur", previous_hash="ulusoy")
 
         block.part_amount = 3
 
@@ -174,10 +174,10 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
         self.assertEqual(
             result,
-            "8e7a62a33fedee6ae4541d5b1e52f5c63e4638dc8cbb35f023f440ddfbd80f55")
+            "15476a4f0d177ff1a01f24746507ada567583ac037dfabf6f1be1e174d069ced")
 
     def test_block_BlocksHash_enough_for_parting(self):
-        block = Block("onur")
+        block = Block("onur", previous_hash="ulusoy")
 
         block.part_amount = 2
 
@@ -194,7 +194,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
         self.assertEqual(
             result,
-            "8e7a62a33fedee6ae4541d5b1e52f5c63e4638dc8cbb35f023f440ddfbd80f55")
+            "15476a4f0d177ff1a01f24746507ada567583ac037dfabf6f1be1e174d069ced")
 
     def test_block_AccountsHash(self):
         block = Block("onur")
@@ -223,7 +223,7 @@ class Test_Blockchain(unittest.TestCase):
             "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96")
 
     def test_block_CalculateHash(self):
-        block = Block("onur")
+        block = Block("onur", previous_hash="ulusoy")
 
         block.part_amount = 2
 
@@ -242,7 +242,7 @@ class Test_Blockchain(unittest.TestCase):
         )
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        true_hash = "2721029c720922b4281b4e8ba132e0390582a2def521d25b0f6322a7aee3df9f"
+        true_hash = "ea42e7be8e81a68aae0a090ac60d4af673a612f856763d7edf6e2e50c300796c"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
 
