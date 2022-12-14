@@ -39,6 +39,11 @@ class client(Thread):
                 logger.debug(
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data"
                 )
+
+                # check if a destination node is closed
+                if not data:
+                    break
+
                 data = data.decode("utf-8")
                 with contextlib.suppress(json.decoder.JSONDecodeError):
                     data = json.loads(data)
