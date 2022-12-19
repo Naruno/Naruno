@@ -40,7 +40,6 @@ class client(Thread):
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data"
                 )
 
-                # check if a destination node is closed
                 if not data:
                     break
 
