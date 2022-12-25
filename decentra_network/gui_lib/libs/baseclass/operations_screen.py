@@ -75,8 +75,9 @@ class OperationBox(MDGridLayout):
     def sent_the_coins(self, widget):
 
         text_list = self.get_send_coin_dialog_text()
-        receiver_adress = text_list[2]
-        amount = text_list[1]
+        receiver_adress = text_list[3]
+        amount = text_list[2]
+        data = text_list[1]
 
         if float(amount) >= GetBlock().minumum_transfer_amount:
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
@@ -85,6 +86,7 @@ class OperationBox(MDGridLayout):
                 send_tx = send(text_list[0],
                                receiver_adress,
                                amount=float(amount),
+                               data=str(data),
                                block=block)
                 if send_tx != False:
                     from decentra_network.node.server.server import server
