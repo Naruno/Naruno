@@ -73,16 +73,17 @@ class OperationBox(MDGridLayout):
         return text_list
 
     def sent_the_coins(self, widget):
+        the_block = GetBlock()
 
         text_list = self.get_send_coin_dialog_text()
         receiver_adress = text_list[3]
         amount = text_list[2]
         data = text_list[1]
 
-        if float(amount) >= GetBlock().minumum_transfer_amount:
+        if float(amount) >= the_block.minumum_transfer_amount:
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
                     text_list[0].encode("utf-8")).hexdigest()):
-                block = GetBlock()
+                block = the_block
                 send_tx = send(
                     text_list[0],
                     receiver_adress,
@@ -111,6 +112,14 @@ class OperationBox(MDGridLayout):
         self.send_coin_dialog.dismiss()
 
     def send_coin(self):
+        try:
+            GetBlock()
+        except FileNotFoundError:
+            SweetAlert().fire(
+                "Please connect to an network.",
+                type="failure",
+            )
+            return False
         self.show_send_coin_dialog()
 
     def export_transaction_csv(self):
