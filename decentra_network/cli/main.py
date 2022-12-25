@@ -18,6 +18,8 @@ from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
 from decentra_network.consensus.consensus_main import consensus_trigger
+from decentra_network.lib.backup.decentra_export import decentra_export
+from decentra_network.lib.backup.decentra_import import decentra_import
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.mix.mixlib import (banner_maker, menu_maker,
@@ -92,6 +94,9 @@ def show_menu():
           menu_space() +
           menu_maker(menu_number="getproof", menu_text="Get Proof") +
           menu_maker(menu_number="checkproof", menu_text="Check Proof") +
+          menu_space() +
+          menu_maker(menu_number="dnexport", menu_text="Export backup") +
+          menu_maker(menu_number="dnimport", menu_text="Import backup") +
           menu_space())
 
     print(quit_menu_maker(mode="main"))
@@ -217,6 +222,13 @@ def menu():
         if choices_input == "checkproof":
             print(CheckProof(input("Please write the path of proof: ")))
 
+        if choices_input == "dnexport":
+            print(decentra_export())
+        if choices_input == "dnimport":
+            print(
+                decentra_import(
+                    input("Please write the path of exported backup: ")))
+
         if choices_input == "0":
             exit()
 
@@ -307,6 +319,16 @@ def arguments():
                         type=str,
                         help="Checks the given proof")
 
+    parser.add_argument("-dnexport",
+                        "--dnexport",
+                        action="store_true",
+                        help="Export backup")
+
+    parser.add_argument("-dnimport",
+                        "--dnimport",
+                        type=str,
+                        help="Import backup")
+
     parser.add_argument(
         "-m",
         "--menu",
@@ -383,6 +405,12 @@ def arguments():
 
     if args.checkproof is not None:
         print(CheckProof(args.checkproof))
+
+    if args.dnexport is not None:
+        print(decentra_export())
+
+    if args.dnimport is not None:
+        decentra_import(args.dnimport)
 
     if args.menu:
         menu()
