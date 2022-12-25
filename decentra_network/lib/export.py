@@ -9,9 +9,8 @@ import os
 
 from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
 from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
 
 
 def export_the_transactions(
