@@ -91,7 +91,6 @@ class OperationBox(MDGridLayout):
                     block=block,
                 )
                 if send_tx != False:
-                    
 
                     from decentra_network.node.server.server import server
                     if server.Server is None:

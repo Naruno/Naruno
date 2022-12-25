@@ -116,9 +116,8 @@ class NodeBox(MDGridLayout):
 
     def stop_node_server(self):
         if not self.check_node_server():
-            return False        
+            return False
         server.Server.stop()
-        
 
     def connect_to_know_node(self):
         server.connectionfrommixdb()
@@ -167,10 +166,8 @@ class NodeBox(MDGridLayout):
         port = text_list[0]
 
         if not self.check_node_server():
-            return False        
+            return False
         server.Server.connect(ip, int(port))
-        
-            
 
         self.connect_a_node_dialog.dismiss()
 
@@ -244,7 +241,7 @@ class NodeBox(MDGridLayout):
 
     def get_block(self):
         if not self.check_node_server():
-            return False        
+            return False
         if the_settings()["test_mode"]:
             the_block = CreateBlock()
             SaveBlock(the_block)
