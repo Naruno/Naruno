@@ -28,11 +28,13 @@ def export_the_transactions(
         return False
     os.chdir(get_config()["main_folder"])
     with open(filename, "w", newline="", encoding="utf-8") as csvfile:
-        fieldnames = list(obj[0][0].__dict__.keys()) + ["is_valid"]
+        fieldnames = list(obj[0][0].__dict__.keys()) + ["validated"
+                                                        ] + ["sended"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for obj in obj:
             trans = obj[0].__dict__
-            trans["is_valid"] = obj[1]
+            trans["validated"] = obj[1]
+            trans["sended"] = obj[2]
             writer.writerow(trans)
     return True
