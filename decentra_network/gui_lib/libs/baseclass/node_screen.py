@@ -105,8 +105,20 @@ class NodeBox(MDGridLayout):
 
     # End
 
+    def check_node_server(self):
+        if server.Server is None:
+            SweetAlert().fire(
+                "Please start the node server",
+                type="failure",
+            )
+            return False
+        return True
+
     def stop_node_server(self):
+        if not self.check_node_server():
+            return False        
         server.Server.stop()
+        
 
     def connect_to_know_node(self):
         server.connectionfrommixdb()
@@ -154,10 +166,11 @@ class NodeBox(MDGridLayout):
         ip = text_list[1]
         port = text_list[0]
 
-        print(ip)
-        print(port)
-
+        if not self.check_node_server():
+            return False        
         server.Server.connect(ip, int(port))
+        
+            
 
         self.connect_a_node_dialog.dismiss()
 
@@ -230,6 +243,8 @@ class NodeBox(MDGridLayout):
         self.show_add_unl_node_dialog()
 
     def get_block(self):
+        if not self.check_node_server():
+            return False        
         if the_settings()["test_mode"]:
             the_block = CreateBlock()
             SaveBlock(the_block)
