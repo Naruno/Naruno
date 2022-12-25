@@ -9,27 +9,28 @@ import os
 
 from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
 from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
 
 
 def export_the_transactions(
-        custom_transactions: list = None,
-        custom_MY_TRANSACTION_EXPORT_PATH: str = None) -> bool:
+    custom_transactions: list = None, custom_MY_TRANSACTION_EXPORT_PATH: str = None
+) -> bool:
     """
     Export the transactions to a CSV file.
     """
-    obj = GetMyTransaction(
-    ) if custom_transactions is None else custom_transactions
-    filename = (MY_TRANSACTION_EXPORT_PATH
-                if custom_MY_TRANSACTION_EXPORT_PATH is None else
-                custom_MY_TRANSACTION_EXPORT_PATH)
+    obj = GetMyTransaction() if custom_transactions is None else custom_transactions
+    filename = (
+        MY_TRANSACTION_EXPORT_PATH
+        if custom_MY_TRANSACTION_EXPORT_PATH is None
+        else custom_MY_TRANSACTION_EXPORT_PATH
+    )
     if len(obj) == 0:
         return False
     os.chdir(get_config()["main_folder"])
     with open(filename, "w", newline="", encoding="utf-8") as csvfile:
-        fieldnames = list(obj[0][0].__dict__.keys()) + \
-            ["validated"] + ["sended"]
+        fieldnames = list(obj[0][0].__dict__.keys()) + ["validated"] + ["sended"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for obj in obj:
