@@ -669,6 +669,9 @@ class Test_Lib(unittest.TestCase):
         mt_settings(temp_settings["mute_notifications"])
 
     def test_export_import(self):
+        """
+        Test that the `decentra_export` and `decentra_import` functions work correctly.
+        """
         backup = decentra_export()
         temp_settings = the_settings()
 
@@ -679,6 +682,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(new_settings["debug_mode"], changed_value)
         decentra_import(backup)
         self.assertNotEqual(the_settings()["debug_mode"], changed_value)
+
 
 
 unittest.main(exit=False)

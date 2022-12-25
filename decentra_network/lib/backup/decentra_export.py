@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
-#
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import shutil
 import sys
 import time
+from typing import Union
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from decentra_network.config import BACKUPS_PATH
@@ -16,7 +12,13 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("LIB")
 
 
-def decentra_export():
+def decentra_export() -> Union[str, None]:
+    """
+    Create a ZIP archive of the `db` folder in the main directory of the application.
+    
+    Returns:
+        The path of the created ZIP file, or None if the ZIP file could not be created.
+    """
     logger.info("Export system is started")
     main_folder = get_config()["main_folder"]
     zip_dir = f"{main_folder}/db/"
@@ -27,3 +29,6 @@ def decentra_export():
     logger.info("Export complated")
 
     return f"{result_file}.zip"
+
+if __name__ == "__main__":
+    decentra_export()
