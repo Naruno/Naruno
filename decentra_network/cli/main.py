@@ -406,7 +406,7 @@ def arguments():
     if args.checkproof is not None:
         print(CheckProof(args.checkproof))
 
-    if args.dnexport is not None:
+    if args.dnexport:
         print(decentra_export())
 
     if args.dnimport is not None:
