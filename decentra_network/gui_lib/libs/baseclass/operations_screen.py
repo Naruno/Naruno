@@ -118,7 +118,7 @@ class OperationBox(MDGridLayout):
             SweetAlert().fire(
                 "Please connect to an network.",
                 type="failure",
-            )         
+            )
             return False
         self.show_send_coin_dialog()
 
