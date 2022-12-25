@@ -41,9 +41,9 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "dngui = decentra_network.gui:start",
-            "dncli = decentra_network.cli:start",
-            "dnapi = decentra_network.api:start",
+            "dngui = decentra_network.gui.main:start",
+            "dncli = decentra_network.cli.main:start",
+            "dnapi = decentra_network.api.main:start",
         ],
     },
     license="MPL-2.0",
