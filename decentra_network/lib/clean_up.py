@@ -23,6 +23,14 @@ def CleanUp_tests():
                 with contextlib.suppress(PermissionError):
                     os.remove(f"db/{the_file}")
 
+
+    for the_file in os.listdir("apps/testing_app/"):
+        if the_file.endswith(".tx"):
+            if os.path.isfile(f"apps/testing_app/{the_file}"):
+                with contextlib.suppress(PermissionError):
+                    os.remove(f"apps/testing_app/{the_file}")
+
+
     for the_file in os.listdir(
             "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"):
         if the_file.endswith(".json") or the_file.endswith(".db"):
@@ -75,3 +83,7 @@ def CleanUp_tests():
         if the_file.endswith(".json") or the_file.endswith(".db"):
 
             os.remove(f"db/pending_transactions_test_2/{the_file}")
+
+
+if __name__ == "__main__":
+    CleanUp_tests()
