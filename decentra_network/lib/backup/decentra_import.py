@@ -13,7 +13,7 @@ logger = get_logger("LIB")
 def decentra_import(export_location: str) -> None:
     """
     Extract a ZIP archive to the `db` folder in the main directory of the application.
-    
+
     Args:
         export_location: The location of the ZIP archive to be extracted.
     """

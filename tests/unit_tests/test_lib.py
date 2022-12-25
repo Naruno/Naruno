@@ -684,5 +684,4 @@ class Test_Lib(unittest.TestCase):
         self.assertNotEqual(the_settings()["debug_mode"], changed_value)
 
 
-
 unittest.main(exit=False)

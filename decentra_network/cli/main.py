@@ -59,8 +59,7 @@ def show_menu():
     print(
         banner_maker(
             sc_name="Decentra Network",
-            description=
-            "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
+            description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
             author="Decentra Network Developers",
         ))
 
@@ -98,7 +97,7 @@ def show_menu():
           menu_maker(menu_number="checkproof", menu_text="Check Proof") +
           menu_space() +
           menu_maker(menu_number="dnexport", menu_text="Export backup") +
-          menu_maker(menu_number="dnimport", menu_text="Import backup") +          
+          menu_maker(menu_number="dnimport", menu_text="Import backup") +
           menu_space())
 
     print(quit_menu_maker(mode="main"))
@@ -227,7 +226,8 @@ def menu():
         if choices_input == "dnexport":
             print(decentra_export())
         if choices_input == "dnimport":
-            print(decentra_import(input("Please write the path of exported backup: ")))
+            print(decentra_import(
+                input("Please write the path of exported backup: ")))
 
         if choices_input == "0":
             exit()
@@ -239,8 +239,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument("-pw",
@@ -318,7 +317,6 @@ def arguments():
                         "--checkproof",
                         type=str,
                         help="Checks the given proof")
-
 
     parser.add_argument("-dnexport",
                         "--dnexport",
@@ -407,14 +405,11 @@ def arguments():
     if args.checkproof is not None:
         print(CheckProof(args.checkproof))
 
-
     if args.dnexport is not None:
         print(decentra_export())
 
     if args.dnimport is not None:
         decentra_import(args.dnimport)
-
-
 
     if args.menu:
         menu()

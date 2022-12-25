@@ -15,7 +15,7 @@ logger = get_logger("LIB")
 def decentra_export() -> Union[str, None]:
     """
     Create a ZIP archive of the `db` folder in the main directory of the application.
-    
+
     Returns:
         The path of the created ZIP file, or None if the ZIP file could not be created.
     """
@@ -29,6 +29,7 @@ def decentra_export() -> Union[str, None]:
     logger.info("Export complated")
 
     return f"{result_file}.zip"
+
 
 if __name__ == "__main__":
     decentra_export()
