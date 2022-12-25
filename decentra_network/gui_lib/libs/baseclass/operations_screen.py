@@ -92,7 +92,15 @@ class OperationBox(MDGridLayout):
                     block=block,
                 )
                 if send_tx != False:
+
                     from decentra_network.node.server.server import server
+
+                    if server.Server is None:
+                        SweetAlert().fire(
+                            "Please start the node server",
+                            type="failure",
+                        )
+                        return False
 
                     SavetoMyTransaction(send_tx, sended=True)
                     server.send_transaction(send_tx)
