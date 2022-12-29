@@ -58,7 +58,7 @@
   .
   <a href="https://codebeat.co/projects/github-com-decentra-network-decentra-network-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
   .
-  <a href="https://www.codacy.com/gh/Decentra-Network/Decentra-Network/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Decentra-Network/Decentra-Network&amp;utm_campaign=Badge_Grade"><img src="https://.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
+  <a href="https://www.codacy.com/gh/Decentra-Network/Decentra-Network/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Decentra-Network/Decentra-Network&amp;utm_campaign=Badge_Grade"><img  alt="codacy badge" src="https://app.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
   </p>
 
   <p align="center">
