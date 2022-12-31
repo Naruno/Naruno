@@ -50,7 +50,8 @@ from flask_cors import CORS
 logger = get_logger("API")
 
 app = Flask(__name__)
-CORS(app, resources={r"/export/block/*": {"origins": "*"}, r"/status": {"origins": "*"}})
+CORS(app, resources={r"/export/block/*": {"origins": "*"},
+     r"/status": {"origins": "*"}})
 
 custom_block = None
 custom_current_time = None
@@ -418,8 +419,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",
