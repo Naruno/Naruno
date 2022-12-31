@@ -1070,5 +1070,17 @@ class Test_API(unittest.TestCase):
 
         SaveMyTransaction(backup)
 
+    def test_export_block_json_page(self):
+        response = urllib.request.urlopen(
+            "http://localhost:7777/export/block/json")
+        response_result = json.loads((response.read()).decode("utf-8"))
+        retrivied_block = Block.load_json(response_result)
+        true_block = decentra_network.api.main.custom_block
+
+        self.assertEqual(
+            retrivied_block.dump_json(),
+            true_block.dump_json(),
+        )
+
 
 unittest.main(exit=False)
