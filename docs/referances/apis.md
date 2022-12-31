@@ -44,6 +44,7 @@ increase by node number. For example:
 | GET    | /status                            | Returns the status of network                      |
 | POST   | /proof/get/                        | Returns the given transaction proof from signature |
 | POST   | /proof/check/                      | Returns the check result of given proof path       |
+| POST   | /block/get/                        | Returns the currently block as json                |
 
 # Starting the API
 

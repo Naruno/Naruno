@@ -382,6 +382,15 @@ def proof_check_page():
         ))
 
 
+@app.route("/export/block/json", methods=["GET"])
+def export_block_json_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+    return jsonify(the_block.dump_json())
+
+
 @app.errorhandler(500)
 def handle_exception(e):
     logger.exception(f"500: {e}")
