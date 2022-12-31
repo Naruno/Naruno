@@ -25,3 +25,6 @@ nav_order: 2
 | -m           | --menu                 | NO                | Opens the cli menu                             |
 | -gp          | --getproof             | str:signature     | Get proof of given transaction signature       |
 | -cp          | --checkproof           | str:path_of_proof | Checks the given proof                         |
+
+| -dnexport          | --dnexport           | NO | Backup and export the DB                         |
+| -dnimport          | --dnimport           | str:path_of_backup_file | Imports the DB from given backup file                         |
