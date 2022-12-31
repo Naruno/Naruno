@@ -45,9 +45,12 @@ from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
 from decentra_network.wallet.print_wallets import print_wallets
 from decentra_network.wallet.wallet_selector import wallet_selector
 
+from flask_cors import CORS
+
 logger = get_logger("API")
 
 app = Flask(__name__)
+CORS(app, resources={r"/export/block/*": {"origins": "*"}, r"/status": {"origins": "*"}})
 
 custom_block = None
 custom_current_time = None
