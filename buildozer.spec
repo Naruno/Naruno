@@ -16,7 +16,7 @@ android.api = 27
 title = Decentra-Network-API
 package.name = decentra_network_api
 source.dir = decentra_network/api/buildozer/
-requirements =  decentra_network==0.39.0, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.0.3, flask==2.0.0
+requirements =  decentra_network==0.39.0, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.0.3, flask==2.0.0, flask_cors==3.0.10
 
 [app@gui]
 title = Decentra-Network-GUI
