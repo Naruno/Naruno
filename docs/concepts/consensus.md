@@ -2,7 +2,7 @@
 layout: default
 title: Consensus
 parent: Concepts
-nav_order: 7
+nav_order: 8
 has_children: False
 ---
 
