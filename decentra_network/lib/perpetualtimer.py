@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 from threading import Event, Thread, Timer
 
 
@@ -29,4 +30,5 @@ class perpetualTimer(Timer):
 
     def run(self):
         while not self.finished.wait(self.interval):
-            self.function(*self.args, **self.kwargs)
+            with contextlib.suppress(Exception):
+                self.function(*self.args, **self.kwargs)
