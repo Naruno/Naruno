@@ -53,10 +53,17 @@ def find_validated(block: Block, candidate_class: candidate_block,
                                 tx_valid += 1
             else:
                 tx_valid += 1
+            
+            ok = any(
+            (other_block_tx.signature == my_temp_validating_list.signature)
+            for my_temp_validating_list in block.validating_list[:])
+
+            if ok:
+                tx_valid += 1
 
             logger.debug(
                 f"Tx valid of {other_block_tx.signature} : {tx_valid}")
-            if tx_valid > (len(unl_nodes) / 2):
+            if tx_valid > ((len(unl_nodes) + 1) / 2):
 
                 already_in_ok = False
                 for alrady_tx in temp_validating_list[:]:
