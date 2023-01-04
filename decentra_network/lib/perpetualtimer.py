@@ -5,7 +5,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
-from threading import Event, Thread, Timer
+from threading import Event
+from threading import Thread
+from threading import Timer
 
 
 class perpetualTimer(Timer):
