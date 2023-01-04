@@ -57,7 +57,7 @@ def consensus_trigger(
             block
         ) if custom_server is not None else server.Server.send_my_block(block)
         the_server = server.Server if custom_server is None else custom_server
-        the_server.send_my_block_hash(block)        
+        the_server.send_my_block_hash(block)
         ongoing_main(
             block,
             custom_candidate_class=custom_candidate_class,
