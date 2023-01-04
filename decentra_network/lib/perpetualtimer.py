@@ -17,12 +17,13 @@ class perpetualTimer(Timer):
       * hFunction: The function to be triggered.
     """
 
-    def __init__(self, interval, function, args=None, kwargs=None):
+    def __init__(self, interval, function, args=None, kwargs=None, stoppable=False):
         Thread.__init__(self)
         self.interval = interval
         self.function = function
         self.args = args if args is not None else []
         self.kwargs = kwargs if kwargs is not None else {}
+        self.stoppable = stoppable
         self.finished = Event()
 
         if self.interval != 0:
@@ -30,5 +31,6 @@ class perpetualTimer(Timer):
 
     def run(self):
         while not self.finished.wait(self.interval):
-            with contextlib.suppress(Exception):
+            
+            with contextlib.suppress(Exception) if self.stoppable == False else True: 
                 self.function(*self.args, **self.kwargs)
