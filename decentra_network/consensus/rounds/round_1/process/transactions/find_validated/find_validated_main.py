@@ -53,10 +53,10 @@ def find_validated(block: Block, candidate_class: candidate_block,
                                 tx_valid += 1
             else:
                 tx_valid += 1
-            
+
             ok = any(
-            (other_block_tx.signature == my_temp_validating_list.signature)
-            for my_temp_validating_list in block.validating_list[:])
+                (other_block_tx.signature == my_temp_validating_list.signature)
+                for my_temp_validating_list in block.validating_list[:])
 
             if ok:
                 tx_valid += 1
