@@ -1,6 +1,6 @@
 ---
-title: Frequently Asked Questions
-nav_order: 7
+title: Videos
+nav_order: 8
 ---
 
 # Videos
