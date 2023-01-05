@@ -6,9 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import (
-    candidate_block,
-)
+from decentra_network.blockchain.candidate_block.candidate_block_main import \
+    candidate_block
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
 from decentra_network.lib.log import get_logger
