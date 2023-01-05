@@ -5,12 +5,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
-from decentra_network.consensus.rounds.round_1.checks.checks_main import \
-    round_check
-from decentra_network.consensus.rounds.round_1.process.process_main import \
-    round_process
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
+from decentra_network.consensus.rounds.round_1.checks.checks_main import round_check
+from decentra_network.consensus.rounds.round_1.process.process_main import round_process
 from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
@@ -46,12 +45,17 @@ def consensus_round_1(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting"
     )
 
-    unl_nodes = (Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH)
-                 if custom_unl_nodes is None else custom_unl_nodes)
+    unl_nodes = (
+        Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH)
+        if custom_unl_nodes is None
+        else custom_unl_nodes
+    )
     logger.debug(f"unl_nodes: {unl_nodes}")
     candidate_class = (
         GetCandidateBlocks(custom_nodes_list=Unl.get_as_node_type(unl_nodes))
-        if custom_candidate_class is None else custom_candidate_class)
+        if custom_candidate_class is None
+        else custom_candidate_class
+    )
     logger.debug(f"candidate_class: {candidate_class}")
 
     custom_server.send_my_block(
