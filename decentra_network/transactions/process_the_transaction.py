@@ -33,6 +33,13 @@ def ProccesstheTransaction(
 
     from_user_list = []
     to_user_list = []
+
+    clean_list = []
+    for unclear in block.validating_list:
+        if not unclear.signature == "DN":
+            clean_list.append(unclear)
+    block.validating_list = clean_list
+
     the_shares = shares(block,
                         custom_shares=custom_shares,
                         custom_fee_address=custom_fee_address)
