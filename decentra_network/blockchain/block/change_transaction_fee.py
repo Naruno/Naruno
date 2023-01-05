@@ -26,7 +26,7 @@ def ChangeTransactionFee(
                             custom_pending_transaction_len)
     validating_list_len = 0
     for tx in block.validating_list:
-        if tx.fromUser != "DN":
+        if tx.signature != "DN":
             validating_list_len += 1
     total_len = validating_list_len + pending_transactions
     logger.debug(f"total_len: {total_len}")

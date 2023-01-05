@@ -38,7 +38,7 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
                     Transaction(
                         0,
                         "DN",
-                        "DN",
+                        "DNB",
                         share[0],
                         "NP",
                         share[1],
@@ -54,7 +54,7 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
             Transaction(
                 0,
                 "DN",
-                "DN",
+                "DNA",
                 the_fee_address,
                 "NP",
                 fee,
