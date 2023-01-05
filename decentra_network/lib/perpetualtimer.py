@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+import json
 from threading import Event, Thread, Timer
 
 
@@ -17,13 +18,12 @@ class perpetualTimer(Timer):
       * hFunction: The function to be triggered.
     """
 
-    def __init__(self, interval, function, args=None, kwargs=None, stoppable=False):
+    def __init__(self, interval, function, args=None, kwargs=None):
         Thread.__init__(self)
         self.interval = interval
         self.function = function
         self.args = args if args is not None else []
         self.kwargs = kwargs if kwargs is not None else {}
-        self.stoppable = stoppable
         self.finished = Event()
 
         if self.interval != 0:
@@ -31,6 +31,5 @@ class perpetualTimer(Timer):
 
     def run(self):
         while not self.finished.wait(self.interval):
-            
-            with contextlib.suppress(Exception) if self.stoppable == False else True: 
+            with contextlib.suppress(json.decoder.JSONDecodeError):
                 self.function(*self.args, **self.kwargs)
