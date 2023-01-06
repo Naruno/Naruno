@@ -8,7 +8,7 @@ has_children: False
 
 # The Circulation
 
-Circulation system is most important and most basic part. Its just run the consensus trigger functions in every 1.50s. But its keep alive the your Decentra Network.
+Circulation system is most important and most basic part. Its just run the consensus trigger functions in every 2s. But its keep alive the your Decentra Network.
 
 ```mermaid
 flowchart RL
