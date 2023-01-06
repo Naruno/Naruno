@@ -15,7 +15,7 @@ For integrating apps with Decentra Network you need to change send and get funct
 
 ## Send Function
 
-Example you have a messaging application and you want to send a message to another user. And already you have a function for sending messages. Example with socket, for integrastion with Decentra Network just your need changing the socket with our send function. We can handle the sending message to other users.
+Example you have a messaging application and you want to send a message to another user. And already you have a function for sending messages. Example with socket, for integrations with Decentra Network just your need changing the socket with our send function. We can handle the sending message to other users.
 
 ## Get Function
 
@@ -57,17 +57,17 @@ end
 
 ## Embedded Apps
 
-Embedded apps organized by our Apps engine. Apps engine is give basic and fast integration infrustructure for decentralized apps.
+Embedded apps organized by our Apps engine. Apps engine is give basic and fast integration infrastructure for decentralized apps.
 
-When a transaction approved by the network, if this transaction recipient is the user of Decentra Network installation the engine is start.
+When a transaction is approved by the network, if this transaction's recipient is the user of Decentra Network installation the engine is start.
 
-If the engine find a app send the transaction to the app. The app can process the transaction for its own purpose. For example, the app can send a notification to the user.
+If the engine finds an app send the transaction to the app. The app can process the transaction for its own purpose. For example, the app can send a notification to the user.
 
 Also apps can uses send transactions functions for sending datas.
 
 ## Remote Apps
 
-Remote apps are running outside of Decentra Network. Remote apps can uses API for sending and getting datas.
+Remote apps are running outside of Decentra Network. Remote apps can uses API for sending and getting data.
 
 ```mermaid
 flowchart LR
