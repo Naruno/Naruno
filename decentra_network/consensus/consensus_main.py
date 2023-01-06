@@ -43,11 +43,6 @@ def consensus_trigger(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
     )
 
-
-
-            
-
-
     if block.validated:
         finished_main(
             block,

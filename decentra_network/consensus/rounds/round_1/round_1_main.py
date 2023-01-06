@@ -54,8 +54,6 @@ def consensus_round_1(
         if custom_candidate_class is None else custom_candidate_class)
     logger.debug(f"candidate_class: {candidate_class}")
 
-
-
     if round_check(block, candidate_class, unl_nodes):
         round_process(
             block,
@@ -73,7 +71,7 @@ def consensus_round_1(
     else:
         custom_server.send_my_block(
 
-        block) if custom_server is not None else server.Server.send_my_block(
+            block) if custom_server is not None else server.Server.send_my_block(
 
             block)
         logger.info("Round 1 check is False")
