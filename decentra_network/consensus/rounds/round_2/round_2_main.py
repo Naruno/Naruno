@@ -69,11 +69,6 @@ def consensus_round_2(
         )
         result = True
     else:
-        logger.debug("Our block hash is sending to the unl nodes")
-
-        the_server = server.Server if custom_server is None else custom_server
-
-        the_server.send_my_block_hash(block)
         result = False
     logger.info(f"result: {result}")
     logger.info("second round is done")
