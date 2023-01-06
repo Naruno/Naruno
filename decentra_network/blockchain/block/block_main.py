@@ -102,7 +102,6 @@ class Block:
         self.validated = False
         self.validated_time = None
 
-
         if len(self.validating_list) >= (self.max_tx_number / 2):
             block2 = copy.copy(self)
             # Resetting and setting the new elements.
