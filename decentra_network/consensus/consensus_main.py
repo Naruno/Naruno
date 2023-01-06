@@ -44,9 +44,13 @@ def consensus_trigger(
     )
 
 
-
+    custom_server.send_my_block(
+        block) if custom_server is not None else server.Server.send_my_block(
+            block)
             
-
+    logger.debug("Our block hash is sending to the unl nodes")
+    the_server = server.Server if custom_server is None else custom_server
+    the_server.send_my_block_hash(block)
 
     if block.validated:
         finished_main(

@@ -71,10 +71,5 @@ def consensus_round_1(
         logger.info("Round 1 check is True")
         return True
     else:
-        custom_server.send_my_block(
-
-        block) if custom_server is not None else server.Server.send_my_block(
-
-            block)
         logger.info("Round 1 check is False")
         return False
