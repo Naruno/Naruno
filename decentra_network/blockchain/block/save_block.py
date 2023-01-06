@@ -51,4 +51,4 @@ def SaveBlock(
         json.dump(block.dump_json(), block_file)
     time.sleep(0.1)
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
-        json.dump(block.dump_json(), block_file)    
+        json.dump(block.dump_json(), block_file)
