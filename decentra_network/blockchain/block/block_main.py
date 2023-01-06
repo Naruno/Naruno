@@ -90,10 +90,9 @@ class Block:
         and makes the edits for the new block.
         """
 
-        self.start_time = (
-            self.genesis_time
-            + ((self.sequance_number + self.empty_block_number) * self.block_time)
-        ) + self.block_time
+        self.start_time = (self.genesis_time +
+                           ((self.sequance_number + self.empty_block_number) *
+                            self.block_time)) + self.block_time
 
         self.round_1 = False
 
@@ -127,7 +126,8 @@ class Block:
         temp_block = copy.copy(self)
 
         temp_validating_list = [
-            transaction.dump_json() for transaction in temp_block.validating_list
+            transaction.dump_json()
+            for transaction in temp_block.validating_list
         ]
 
         temp_block.validating_list = temp_validating_list
