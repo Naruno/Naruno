@@ -27,7 +27,7 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
 
     tx_list = []
 
-    the_time = time.time()
+    the_time = block.start_time
     logger.debug(f"the_time: {the_time}")
 
     for share in the_shares:
