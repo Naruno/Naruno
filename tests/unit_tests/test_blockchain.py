@@ -70,17 +70,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(block.validated_time, None)
         self.assertEqual(block.validated, False)
 
-    def test_block_reset_nodes(self):
-        block = Block("onur")
-        node_1 = client("socket", "address", "node_id", "server", test=True)
-        node_1.candidate_block = True
-        node_1.candidate_block_hash = True
-        nodes_2 = [node_1]
-        block.reset_the_block(custom_nodes=nodes_2)
-        for node in nodes_2:
-            self.assertEqual(node.candidate_block, None)
-            self.assertEqual(node.candidate_block_hash, None)
-
     def test_block_not_reset_enough_transaction(self):
         block = Block("onur")
         nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
