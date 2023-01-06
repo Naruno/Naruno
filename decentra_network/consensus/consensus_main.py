@@ -43,13 +43,7 @@ def consensus_trigger(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
     )
 
-    custom_server.send_my_block(
-        block) if custom_server is not None else server.Server.send_my_block(
-            block)
 
-    logger.debug("Our block hash is sending to the unl nodes")
-    the_server = server.Server if custom_server is None else custom_server
-    the_server.send_my_block_hash(block)
 
     if block.validated:
         finished_main(
@@ -61,6 +55,13 @@ def consensus_trigger(
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
     else:
+        custom_server.send_my_block(
+            block) if custom_server is not None else server.Server.send_my_block(
+                block)
+
+        logger.debug("Our block hash is sending to the unl nodes")
+        the_server = server.Server if custom_server is None else custom_server
+        the_server.send_my_block_hash(block)        
         ongoing_main(
             block,
             custom_candidate_class=custom_candidate_class,
