@@ -29,7 +29,7 @@ def GetCandidateBlocks(custom_nodes_list=None):
     for node in nodes:
         if node.candidate_block is not None:
             the_candidate_blocks.append(node.candidate_block)
-        if node.candidate_block_hash is not None:
+        if node.candidate_block_hash is not None and not node.candidate_block_hash["hash"] == None:
             the_candidate_block_hashes.append(node.candidate_block_hash)
 
     return candidate_block(the_candidate_blocks, the_candidate_block_hashes)
