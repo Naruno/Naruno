@@ -686,9 +686,9 @@ class server(Thread):
         Sends the block to the other nodes.
         """
         if node is None or sync:
-            self.send_full_chain(node=node)
             self.send_full_accounts(node=node)
             self.send_full_blockshash(node=node)
             self.send_full_blockshash_part(node=node)
+            self.send_full_chain(node=node)
         else:
             self.sync_clients.append(node)
