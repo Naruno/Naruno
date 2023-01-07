@@ -17,11 +17,8 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
     candidate_block class
     """
 
-    nodes = (
-        Unl.get_as_node_type(Unl.get_unl_nodes())
-        if custom_nodes_list is None
-        else custom_nodes_list
-    )
+    nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
+             if custom_nodes_list is None else custom_nodes_list)
 
     the_candidate_blocks = []
     the_candidate_block_hashes = []
@@ -40,19 +37,15 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
         for element in block.validating_list:
             new_list.append(element.dump_json())
             signature_list.append(element.signature)
-        the_candidate_blocks.append(
-            {
-                "action": "myblock",
-                "transaction": new_list,
-            }
-        )
+        the_candidate_blocks.append({
+            "action": "myblock",
+            "transaction": new_list,
+        })
 
-        the_candidate_block_hashes.append(
-            data={
-                "action": "myblockhash",
-                "hash": block.hash,
-            }
-        )
+        the_candidate_block_hashes.append(data={
+            "action": "myblockhash",
+            "hash": block.hash,
+        })
 
     not_none_the_candidate_blocks = []
 
