@@ -372,13 +372,7 @@ class server(Thread):
     def send_my_block(self, block):
         system = block
 
-        new_list = []
 
-        signature_list = []
-
-        for element in system.validating_list:
-            new_list.append(element.dump_json())
-            signature_list.append(element.signature)
 
         data = {
             "action": "myblock",
