@@ -67,7 +67,7 @@ def consensus_trigger(
     else:
 
 
-        perpetualTimer(0, data_sending).start()
+        perpetualTimer(0, data_sending)
 
         ongoing_main(
             block,
