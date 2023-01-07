@@ -23,8 +23,8 @@ def process_candidate_blocks_hashes(block: Block,
                                     unl_nodes: dict) -> dict:
     logger.info("Control process of candidate block hashes is started.")
 
-    current_hash = {"signature": "A", "hash": "A", "previous_hash": "A"}
-    previous_hash = {"signature": "A", "hash": "A", "previous_hash": "A"}
+    current_hash = {"signature": "A", "hash": False, "previous_hash": False}
+    previous_hash = {"signature": "A", "hash": False, "previous_hash": False}
 
     for candidate_block_hash in candidate_class.candidate_block_hashes[:]:
         logger.debug(f"Candidate block hash {candidate_block_hash}")
@@ -68,7 +68,7 @@ def process_candidate_blocks_hashes(block: Block,
 
 
 
-    if current_hash != {"signature": "A", "hash": "A", "previous_hash": "A"} or previous_hash != {"signature": "A", "hash": "A", "previous_hash": "A"}:
+    if current_hash != {"signature": "A", "hash": False, "previous_hash": False} or previous_hash != {"signature": "A", "hash": False, "previous_hash": False}:
         if current_hash["signature"] == "self":
             for other in candidate_class.candidate_block_hashes[:]:
                 if current_hash != other and current_hash["hash"] == other["hash"]:
