@@ -35,7 +35,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
 
         signature_list = []
 
-        a_time = str(time.time())
+        a_time = "self"
 
         for element in block.validating_list:
             new_list.append(element.dump_json())
