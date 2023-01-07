@@ -4,6 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+import threading
+
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
@@ -45,7 +48,19 @@ def consensus_trigger(
     )
 
 
-    def data_sending():
+    def data_sending(
+    custom_block: Block = None,
+    custom_candidate_class: candidate_block = None,
+    custom_unl_nodes: dict = None,
+    custom_UNL_NODES_PATH: str = None,
+    custom_server: server = None,
+    custom_unl: client = None,
+    custom_TEMP_BLOCK_PATH: str = None,
+    custom_BLOCKS_PATH: str = None,
+    custom_TEMP_ACCOUNTS_PATH: str = None,
+    custom_TEMP_BLOCKSHASH_PATH: str = None,
+    custom_TEMP_BLOCKSHASH_PART_PATH: str = None,        
+    ):
         custom_server.send_my_block(
             block) if custom_server is not None else server.Server.send_my_block(
                 block)
@@ -66,8 +81,23 @@ def consensus_trigger(
         )
     else:
 
-
-        perpetualTimer(0, data_sending)
+        threading.Thread(
+            target=data_sending, 
+            args=
+            (
+                custom_block,
+                custom_candidate_class,
+                custom_unl_nodes,
+                custom_UNL_NODES_PATH,
+                custom_server,
+                custom_unl,
+                custom_TEMP_BLOCK_PATH,
+                custom_BLOCKS_PATH,
+                custom_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH,                
+                ),
+            ).start()
 
         ongoing_main(
             block,
