@@ -45,13 +45,15 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             {
                 "action": "myblock",
                 "transaction": new_list,
-            })
+            }
+        )
 
         the_candidate_block_hashes.append(
             data={
                 "action": "myblockhash",
                 "hash": block.hash,
-            })
+            }
+        )
 
     not_none_the_candidate_blocks = []
 
