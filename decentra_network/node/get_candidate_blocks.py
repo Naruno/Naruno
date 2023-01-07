@@ -33,7 +33,6 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
         if node.candidate_block_hash is not None:
             the_candidate_block_hashes.append(node.candidate_block_hash)
 
-
     if block is not None:
         new_list = []
 
@@ -41,19 +40,18 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
 
         for element in block.validating_list:
             new_list.append(element.dump_json())
-            signature_list.append(element.signature)        
+            signature_list.append(element.signature)
         the_candidate_blocks.append(
-        {
-            "action": "myblock",
-            "transaction": new_list,
-        })
+            {
+                "action": "myblock",
+                "transaction": new_list,
+            })
 
         the_candidate_block_hashes.append(
-                    data = {
-            "action": "myblockhash",
-            "hash": block.hash,
-        })
-
+            data={
+                "action": "myblockhash",
+                "hash": block.hash,
+            })
 
     not_none_the_candidate_blocks = []
 

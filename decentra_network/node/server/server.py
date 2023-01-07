@@ -372,8 +372,6 @@ class server(Thread):
     def send_my_block(self, block):
         system = block
 
-
-
         data = {
             "action": "myblock",
             "transaction": new_list,
