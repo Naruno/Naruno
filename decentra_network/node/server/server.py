@@ -392,6 +392,7 @@ class server(Thread):
         data = {
             "action": "myblockhash",
             "hash": system.hash,
+            "previous_hash": system.previous_hash,
         }
 
         self.send(data)

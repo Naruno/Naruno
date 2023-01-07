@@ -47,7 +47,7 @@ def round_process(
         block, candidate_class, unl_nodes)
     logger.debug(f"candidate_block_hash: {candidate_block_hash}")
     result = None
-    if block.hash == candidate_block_hash["hash"]:
+    if block.hash == candidate_block_hash["hash"] or block.hash == candidate_block_hash["previous_hash"]:
         validate_main(block)
         result = True
     else:

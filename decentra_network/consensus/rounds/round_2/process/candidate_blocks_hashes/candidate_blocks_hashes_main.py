@@ -22,6 +22,10 @@ def process_candidate_blocks_hashes(block: Block,
                                     candidate_class: candidate_block,
                                     unl_nodes: dict) -> dict:
     logger.info("Control process of candidate block hashes is started.")
+
+    current_hash = "0"
+    previous_hash = "0"
+
     for candidate_block_hash in candidate_class.candidate_block_hashes[:]:
         logger.debug(f"Candidate block hash {candidate_block_hash}")
 
@@ -40,6 +44,30 @@ def process_candidate_blocks_hashes(block: Block,
         if tx_valid >= ((len(unl_nodes) * 80) / 100):
             logger.info(
                 f"candidate_block_hash: {candidate_block_hash} is validated.")
-            return candidate_block_hash
+            current_hash = candidate_block_hash
+
+    for candidate_block_hash in candidate_class.candidate_block_hashes[:]:
+        logger.debug(f"Candidate block hash {candidate_block_hash}")
+
+        tx_valid = 1
+
+        for other_block in candidate_class.candidate_block_hashes[:]:
+            if (candidate_block_hash != other_block
+                    and candidate_block_hash["previous_hash"] == other_block["previous_hash"]):
+                tx_valid += 1
+                logger.debug(
+                    f"candidate_block_hash: {candidate_block_hash} validated from {other_block}"
+                )
+        logger.debug(f"Hash valid of  {candidate_block_hash} : {tx_valid}")
+        logger.info(
+            f"candidate_block_hash: {candidate_block_hash} is validated.")
+        if tx_valid >= ((len(unl_nodes) * 80) / 100):
+            logger.info(
+                f"candidate_block_hash: {candidate_block_hash} is validated.")
+            previous_hash = candidate_block_hash
+
+    if current_hash != "0" or previous_hash != "0":
+        return {"hash": current_hash, "previous_hash": previous_hash}
+
     logger.warning("All candidate_block_hashes can not be validated.")
-    return {"hash": False}
+    return {"hash": False, "previous_hash": False}

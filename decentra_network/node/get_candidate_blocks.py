@@ -49,6 +49,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
         the_candidate_block_hashes.append({
             "action": "myblockhash",
             "hash": block.hash,
+            "previous_hash": block.previous_hash,
             "signature": a_time,
         })
 
