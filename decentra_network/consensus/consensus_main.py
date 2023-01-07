@@ -11,6 +11,7 @@ from decentra_network.blockchain.candidate_block.candidate_block_main import \
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
 from decentra_network.lib.log import get_logger
+from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.node.client.client import client
 from decentra_network.node.server.server import server
 
@@ -44,6 +45,15 @@ def consensus_trigger(
     )
 
 
+    def data_sending():
+        custom_server.send_my_block(
+            block) if custom_server is not None else server.Server.send_my_block(
+                block)
+
+        logger.debug("Our block hash is sending to the unl nodes")
+        the_server = server.Server if custom_server is None else custom_server
+        the_server.send_my_block_hash(block)
+
 
     if block.validated:
         finished_main(
@@ -55,13 +65,10 @@ def consensus_trigger(
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
     else:
-        custom_server.send_my_block(
-            block) if custom_server is not None else server.Server.send_my_block(
-                block)
 
-        logger.debug("Our block hash is sending to the unl nodes")
-        the_server = server.Server if custom_server is None else custom_server
-        the_server.send_my_block_hash(block)        
+
+        perpetualTimer(0, data_sending).start()
+
         ongoing_main(
             block,
             custom_candidate_class=custom_candidate_class,
