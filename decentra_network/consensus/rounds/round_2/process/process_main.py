@@ -51,7 +51,7 @@ def round_process(
         validate_main(block)
         result = True
     else:
-        if not candidate_block_hash["hash"] == False:
+        if not candidate_block_hash["hash"]["hash"] == False:
             rescue_main(
                 block,
                 candidate_block_hash,
