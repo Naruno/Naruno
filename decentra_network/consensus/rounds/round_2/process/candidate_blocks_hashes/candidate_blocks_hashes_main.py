@@ -66,19 +66,20 @@ def process_candidate_blocks_hashes(block: Block,
                 f"candidate_block_hash: {candidate_block_hash} is validated.")
             previous_hash = candidate_block_hash
 
-    if current_hash["signature"] == "self":
-        for other in candidate_class.candidate_block_hashes[:]:
-            if current_hash != other and current_hash["hash"] == other["hash"]:
-                current_hash = other
-                break
-                
-    if previous_hash["signature"] == "self":
-        for other in candidate_class.candidate_block_hashes[:]:
-            if previous_hash != other and previous_hash["previous_hash"] == other["previous_hash"]:
-                previous_hash = other
-                break
+
 
     if current_hash != "A" or previous_hash != "A":
+        if current_hash["signature"] == "self":
+            for other in candidate_class.candidate_block_hashes[:]:
+                if current_hash != other and current_hash["hash"] == other["hash"]:
+                    current_hash = other
+                    break
+                    
+        if previous_hash["signature"] == "self":
+            for other in candidate_class.candidate_block_hashes[:]:
+                if previous_hash != other and previous_hash["previous_hash"] == other["previous_hash"]:
+                    previous_hash = other
+                    break        
         return {"hash": current_hash, "previous_hash": previous_hash}
 
     logger.warning("All candidate_block_hashes can not be validated.")
