@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import time
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
     candidate_block
@@ -34,17 +35,21 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
 
         signature_list = []
 
+        a_time = str(time.time())
+
         for element in block.validating_list:
             new_list.append(element.dump_json())
             signature_list.append(element.signature)
         the_candidate_blocks.append({
             "action": "myblock",
             "transaction": new_list,
+            "signature": a_time,
         })
 
         the_candidate_block_hashes.append({
             "action": "myblockhash",
             "hash": block.hash,
+            "signature": a_time,
         })
 
     not_none_the_candidate_blocks = []
