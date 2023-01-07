@@ -83,4 +83,4 @@ def process_candidate_blocks_hashes(block: Block,
         return {"hash": current_hash, "previous_hash": previous_hash}
 
     logger.warning("All candidate_block_hashes can not be validated.")
-    return {"hash": False, "previous_hash": False}
+    return {"hash": {"hash": False}, "previous_hash": {"previous_hash": False}}
