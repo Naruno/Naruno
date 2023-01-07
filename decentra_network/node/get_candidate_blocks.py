@@ -42,7 +42,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             "transaction": new_list,
         })
 
-        the_candidate_block_hashes.append(data={
+        the_candidate_block_hashes.append({
             "action": "myblockhash",
             "hash": block.hash,
         })
