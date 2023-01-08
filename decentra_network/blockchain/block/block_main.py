@@ -57,7 +57,7 @@ class Block:
         self.transaction_delay_time = 60
         self.max_data_size = 1000000
 
-        self.part_amount = 100000
+        self.part_amount = 1000
 
         self.hash = None
         self.part_amount_cache = previous_hash
