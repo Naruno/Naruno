@@ -294,6 +294,43 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block.__dict__, block_2.__dict__)
 
+
+    def test_SaveBlock_GetBlock_olds(self):
+        block = Block("onur")
+        block_2 = Block("onur")
+        block_2.sequance_number = 1
+        block_2.empty_block_number = 1
+
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_SaveBlock_GetBlock_oldsk_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
+        SaveBlock(
+            block_2,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )        
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + block.empty_block_number)), True)
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block_2.sequance_number + block_2.empty_block_number)), True)
+
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + block.empty_block_number)), False)
+
+        self.assertEqual(block_2.__dict__, block_3.__dict__)
+
     def test_SaveBlockshash(self):
 
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockshash_TEMP_BLOCKSHASH_PATH.json"

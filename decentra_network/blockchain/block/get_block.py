@@ -32,28 +32,23 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     # So we need to get the highest number and delete others
     # We need to get the highest number
     highest_number = 0
-    for file in os.listdir(get_config()["main_folder"] + "/db"):
-        if file.startswith(the_TEMP_BLOCK_PATH):
-            number = int(file.replace(the_TEMP_BLOCK_PATH, ""))
+    for file in os.listdir("db/"):
+        if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:           
+            number = int(("db/" + file).replace(the_TEMP_BLOCK_PATH, ""))
             if number > highest_number:
                 highest_number = number
-    
-    # We need to delete all other files
-    for file in os.listdir(get_config()["main_folder"] + "/db"):
-        if file.startswith(the_TEMP_BLOCK_PATH):
-            number = int(file.replace(the_TEMP_BLOCK_PATH, ""))
-            if number != highest_number:
-                os.remove(file)
+            else:
+                os.remove("db/" + file)
 
-    # We need to load the highest number
     highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + str(highest_number)
+
 
 
     with open(the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
     result_normal = Block.load_json(the_block_json)
 
-    with open(the_TEMP_BLOCK_PATH, "r") as block_file:
+    with open(highest_the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
     result_highest = Block.load_json(the_block_json)
 
