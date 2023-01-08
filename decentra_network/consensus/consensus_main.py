@@ -60,14 +60,15 @@ def consensus_trigger(
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,        
-    ):
-        custom_server.send_my_block(
-            block) if custom_server is not None else server.Server.send_my_block(
-                block)
-
-        logger.debug("Our block hash is sending to the unl nodes")
-        the_server = server.Server if custom_server is None else custom_server
-        the_server.send_my_block_hash(block)
+    ):  
+        if not block.round_1:
+            custom_server.send_my_block(
+                block) if custom_server is not None else server.Server.send_my_block(
+                    block)
+        elif not block.round_2:
+            logger.debug("Our block hash is sending to the unl nodes")
+            the_server = server.Server if custom_server is None else custom_server
+            the_server.send_my_block_hash(block)
 
 
     if block.validated:
