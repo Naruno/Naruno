@@ -44,7 +44,7 @@ class Blockshash_part_IO_Performance_Analyzer:
         blocks_in_a_day = seconds_in_a_day / self.block.block_time
 
         # how many blocks in a year
-        blocks_in_a_year = blocks_in_a_day * 365
+        blocks_in_a_year = (blocks_in_a_day * 365) // self.block.part_amount
         self.blocks_hash = [
             self.the_hash for i in range(int(blocks_in_a_year))
         ]

@@ -37,7 +37,9 @@ class Accounts_IO_Performance_Analyzer:
 
         self.the_account_list = []
 
-        for i in range(self.block.max_tx_number):
+        print(self.block.coin_amount // self.block.minumum_transfer_amount)
+
+        for i in range(self.block.coin_amount // self.block.minumum_transfer_amount):
             self.the_account_list.append(self.account)
 
         SaveAccounts(

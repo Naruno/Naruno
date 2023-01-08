@@ -11,10 +11,10 @@ import sys
 import time
 
 from speed_calculator import calculate
-
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+
 
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
