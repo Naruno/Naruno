@@ -1080,8 +1080,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1239,8 +1239,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1962,8 +1962,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -2040,8 +2039,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -2301,7 +2299,8 @@ class Test_Consensus(unittest.TestCase):
         expected_result = copy.copy(data_block_hash)
         expected_result["sender"] = 8
         self.assertEqual(
-            process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes)["hash"],
+            process_candidate_blocks_hashes(
+                block, CandidateBlock, unl_nodes)["hash"],
             expected_result,
         )
 
@@ -2319,9 +2318,9 @@ class Test_Consensus(unittest.TestCase):
         data_block_hash = {
             "action": "myblockhash",
             "hash": {
-                "hash":"onur from tests",
-                "sender":self.node_0.id
-                },
+                "hash": "onur from tests",
+                "sender": self.node_0.id
+            },
             "sequance_number": 58,
             "sender": self.node_0.id,
         }
@@ -2583,7 +2582,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature":"a"
+            "signature": "a"
         }
 
         data_block_hash = {
@@ -2592,7 +2591,7 @@ class Test_Consensus(unittest.TestCase):
             "previous_hash": "onur",
             "sequance_number": 58,
             "sender": self.node_0.id,
-            "signature":"a"
+            "signature": "a"
         }
 
         CandidateBlock = candidate_block([data_block for i in range(8)],
@@ -2657,7 +2656,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature":"a",
+            "signature": "a",
         }
 
         data_block_hash = {
@@ -2665,7 +2664,7 @@ class Test_Consensus(unittest.TestCase):
             "hash": "onur from tests",
             "previous_hash": "previous_hash",
             "sequance_number": 58,
-            "signature":"a",
+            "signature": "a",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(9)],
@@ -2676,7 +2675,7 @@ class Test_Consensus(unittest.TestCase):
             "signature": -1,
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature":"a",
+            "signature": "a",
         }
         new_list = []
         for i in range(9):
@@ -2736,7 +2735,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature":"a"
+            "signature": "a"
         }
 
         data_block_hash = {
@@ -2745,7 +2744,7 @@ class Test_Consensus(unittest.TestCase):
             "previous_hash": "onur from tests",
             "sequance_number": 58,
             "sender": self.node_0.id,
-            "signature":"a"
+            "signature": "a"
         }
 
         CandidateBlock = candidate_block([data_block for i in range(8)],
