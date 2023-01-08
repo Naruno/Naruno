@@ -630,7 +630,7 @@ class Test_API(unittest.TestCase):
         decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = backup_4
 
         self.assertEqual(self.node_0.our_messages[-1]["action"],
-                         "fullblockshash_part")
+                         "fullblock")
         self.assertEqual(self.node_0.our_messages[-1]["byte"], "end")
 
     def test_export_the_transactions(self):

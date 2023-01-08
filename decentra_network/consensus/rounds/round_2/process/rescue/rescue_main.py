@@ -29,7 +29,7 @@ def rescue_main(
 ) -> Block:
     logger.info("Rescue operation is started")
     logger.debug(f"First block: {block}")
-    sender = candidate_block_hash["sender"]
+    sender = candidate_block_hash["hash"]["sender"]
     logger.warning(
         f"Our block is not valid, the system will try to get true block from decentra_network.node {sender}"
     )
