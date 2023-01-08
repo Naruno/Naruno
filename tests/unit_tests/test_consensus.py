@@ -2318,7 +2318,10 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         data_block_hash = {
             "action": "myblockhash",
-            "hash": "onur from tests",
+            "hash": {
+                "hash":"onur from tests",
+                "sender":self.node_0.id
+                },
             "sequance_number": 58,
             "sender": self.node_0.id,
         }
