@@ -46,11 +46,20 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
                 os.remove(file)
 
     # We need to load the highest number
-    the_TEMP_BLOCK_PATH += str(highest_number)
+    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + str(highest_number)
 
 
     with open(the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
-    result = Block.load_json(the_block_json)
+    result_normal = Block.load_json(the_block_json)
 
-    return result
+    with open(the_TEMP_BLOCK_PATH, "r") as block_file:
+        the_block_json = json.load(block_file)
+    result_highest = Block.load_json(the_block_json)
+
+    if result_normal.sequance_number + result_normal.empty_block_number > result_highest.sequance_number + result_highest.empty_block_number:
+        return result_normal
+    else:
+        return result_highest
+
+
