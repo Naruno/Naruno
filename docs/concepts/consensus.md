@@ -37,7 +37,7 @@ And return the block.
 
 The first stage of consensus will sync the transaction that selected as True from majority. For this every node send self candidate block that include suggested transactions.
 
-When a node got enough candidate block (80% of UNL Nodes) the proccessing is starts and transaction process and the transaction that selected from majority will be added to the block. After the transaction process is done, the new block is created and ready to round 2.
+When a node got enough candidate block (Majority of UNL Nodes) the proccessing is starts and transaction process and the transaction that selected from majority will be added to the block. After the transaction process is done, the new block is created and ready to round 2.
 
 ### Comunication
 
@@ -69,7 +69,7 @@ sequenceDiagram
 
 ### Decision
 
-When a node got enough candidate block (80% of UNL Nodes) it's run a decision mechanism with this:
+When a node got enough candidate block (Majority of UNL Nodes) it's run a decision mechanism with this:
 
 - 'decentra_network.consensus.rounds.round_1.process.transactions.transactions_main.transactions_main'
 
@@ -126,7 +126,7 @@ sequenceDiagram
 
 ### Decision
 
-When a node got enough candidate block hash (80% of UNL Nodes) it's run a decision mechanism with this:
+When a node got enough candidate block hash (Majority of UNL Nodes) it's run a decision mechanism with this:
 
 - 'decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main.process_candidate_blocks_hashes'
 

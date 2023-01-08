@@ -1355,7 +1355,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature": "onur"
+            "signature": "onur",
         }
 
         data_block_hash = {
@@ -1363,7 +1363,7 @@ class Test_Consensus(unittest.TestCase):
             "hash": "onur from tests",
             "previous_hash": "onur",
             "sequance_number": 58,
-            "signature": "onur"
+            "signature": "onur",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(9)],
@@ -1428,7 +1428,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature": "onur"
+            "signature": "onur",
         }
 
         data_block_hash = {
@@ -1436,7 +1436,7 @@ class Test_Consensus(unittest.TestCase):
             "hash": "onur from tests",
             "previous_hash": "onur from tests",
             "sequance_number": 58,
-            "signature": "onur"
+            "signature": "onur",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(8)],
@@ -1826,8 +1826,8 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(7)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         validating_list = [the_transaction, the_transaction]
 
         data_block = {
@@ -1836,13 +1836,13 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
         new_list = []
-        for i in range(8):
+        for i in range(6):
             new_block = copy.copy(data_block)
             new_block["signature"] = i
             new_list.append(new_block)
         CandidateBlock.candidate_blocks = new_list
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(7)
+            data_block_hash for i in range(6)
         ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
@@ -1928,8 +1928,8 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(7)],
-                                         [data_block_hash for i in range(7)])
+        CandidateBlock = candidate_block([data_block for i in range(5)],
+                                         [data_block_hash for i in range(5)])
         validating_list = [the_transaction, the_transaction]
 
         data_block = {
@@ -1938,13 +1938,13 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
         new_list = []
-        for i in range(7):
+        for i in range(5):
             new_block = copy.copy(data_block)
             new_block["signature"] = i
             new_list.append(new_block)
         CandidateBlock.candidate_blocks = new_list
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(7)
+            data_block_hash for i in range(5)
         ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
@@ -2232,7 +2232,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature": "signature"
+            "signature": "signature",
         }
 
         data_block_hash = {
@@ -2240,7 +2240,7 @@ class Test_Consensus(unittest.TestCase):
             "hash": "onur from tests",
             "sequance_number": 58,
             "previous_hash": "previous_hash",
-            "signature": "signature"
+            "signature": "signature",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(8)],
@@ -2276,7 +2276,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature": "signature"
+            "signature": "signature",
         }
 
         data_block_hash = {
@@ -2284,7 +2284,7 @@ class Test_Consensus(unittest.TestCase):
             "hash": "onur from tests",
             "previous_hash": "previous_hash",
             "sequance_number": 58,
-            "signature": "signature"
+            "signature": "signature",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(8)],
@@ -2301,7 +2301,8 @@ class Test_Consensus(unittest.TestCase):
         expected_result = copy.copy(data_block_hash)
         expected_result["sender"] = 8
         self.assertEqual(
-            process_candidate_blocks_hashes(block, CandidateBlock, unl_nodes)["hash"],
+            process_candidate_blocks_hashes(block, CandidateBlock,
+                                            unl_nodes)["hash"],
             expected_result,
         )
 
@@ -2319,9 +2320,9 @@ class Test_Consensus(unittest.TestCase):
         data_block_hash = {
             "action": "myblockhash",
             "hash": {
-                "hash":"onur from tests",
-                "sender":self.node_0.id
-                },
+                "hash": "onur from tests",
+                "sender": self.node_0.id
+            },
             "sequance_number": 58,
             "sender": self.node_0.id,
         }
@@ -2417,7 +2418,7 @@ class Test_Consensus(unittest.TestCase):
             "previous_hash": "previous_hash",
             "sequance_number": 58,
             "sender": self.node_0.id,
-            "signature": "a"
+            "signature": "a",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(8)],
@@ -2478,10 +2479,10 @@ class Test_Consensus(unittest.TestCase):
             "signature": "signature",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(9)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         the_new_list = []
-        for i in range(9):
+        for i in range(6):
             the_new_object = copy.copy(data_block_hash)
             the_new_object["sender"] = i
             the_new_list.append(the_new_object)
@@ -2535,10 +2536,10 @@ class Test_Consensus(unittest.TestCase):
             "sender": self.node_0.id,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(7)],
-                                         [data_block_hash for i in range(7)])
+        CandidateBlock = candidate_block([data_block for i in range(5)],
+                                         [data_block_hash for i in range(5)])
         the_new_list = []
-        for i in range(7):
+        for i in range(5):
             the_new_object = copy.copy(data_block_hash)
             the_new_object["sender"] = i
             the_new_list.append(the_new_object)
@@ -2583,7 +2584,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature":"a"
+            "signature": "a",
         }
 
         data_block_hash = {
@@ -2592,7 +2593,7 @@ class Test_Consensus(unittest.TestCase):
             "previous_hash": "onur",
             "sequance_number": 58,
             "sender": self.node_0.id,
-            "signature":"a"
+            "signature": "a",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(8)],
@@ -2657,7 +2658,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature":"a",
+            "signature": "a",
         }
 
         data_block_hash = {
@@ -2665,7 +2666,7 @@ class Test_Consensus(unittest.TestCase):
             "hash": "onur from tests",
             "previous_hash": "previous_hash",
             "sequance_number": 58,
-            "signature":"a",
+            "signature": "a",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(9)],
@@ -2676,7 +2677,7 @@ class Test_Consensus(unittest.TestCase):
             "signature": -1,
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature":"a",
+            "signature": "a",
         }
         new_list = []
         for i in range(9):
@@ -2736,7 +2737,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequance_number": 58,
-            "signature":"a"
+            "signature": "a",
         }
 
         data_block_hash = {
@@ -2745,7 +2746,7 @@ class Test_Consensus(unittest.TestCase):
             "previous_hash": "onur from tests",
             "sequance_number": 58,
             "sender": self.node_0.id,
-            "signature":"a"
+            "signature": "a",
         }
 
         CandidateBlock = candidate_block([data_block for i in range(8)],
