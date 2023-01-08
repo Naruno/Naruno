@@ -41,7 +41,7 @@ def process_candidate_blocks_hashes(block: Block,
         logger.debug(f"Hash valid of  {candidate_block_hash} : {tx_valid}")
         logger.info(
             f"candidate_block_hash: {candidate_block_hash} is validated.")
-        if tx_valid >= (((len(unl_nodes)+1) * 80) / 100):
+        if tx_valid > (((len(unl_nodes)+1) * 50) / 100):
             logger.info(
                 f"candidate_block_hash: {candidate_block_hash} is validated.")
             current_hash = candidate_block_hash
@@ -61,7 +61,7 @@ def process_candidate_blocks_hashes(block: Block,
         logger.debug(f"Hash valid of  {candidate_block_hash} : {tx_valid}")
         logger.info(
             f"candidate_block_hash: {candidate_block_hash} is validated.")
-        if tx_valid >= (((len(unl_nodes)+1) * 80) / 100):
+        if tx_valid > (((len(unl_nodes)+1) * 50) / 100):
             logger.info(
                 f"candidate_block_hash: {candidate_block_hash} is validated.")
             previous_hash = candidate_block_hash
