@@ -643,6 +643,7 @@ class Test_Lib(unittest.TestCase):
             ((block.round_1_time - 2) +
              block.hard_block_number * block.block_time),
         )
+        self.assertLess(result[0][2], 120)
         self.assertLess(result[1][0] + result[1][1], block.round_1_time - 2)
 
     def test_notification_not(self):

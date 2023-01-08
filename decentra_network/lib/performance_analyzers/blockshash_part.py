@@ -11,10 +11,10 @@ import sys
 import time
 
 from speed_calculator import calculate
-
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from decentra_network.lib.mix.merkle_root import MerkleTree
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+
 
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
@@ -45,7 +45,6 @@ class Blockshash_part_IO_Performance_Analyzer:
 
         # how many blocks in a year
         blocks_in_a_year = blocks_in_a_day * 365
-
         self.blocks_hash = [
             self.the_hash for i in range(int(blocks_in_a_year))
         ]
