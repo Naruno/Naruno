@@ -82,16 +82,14 @@ def consensus_trigger(
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
     else:
-        first_empty = block.empty_block_number
         block.sync_empty_blocks()
-        if first_empty != block.empty_block_number:
-                SaveBlock(
-                    block,
-                    custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                    custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-                    custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-                )
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
         threading.Thread(
             target=data_sending, 
             args=
