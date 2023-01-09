@@ -50,7 +50,7 @@ def round_process(
                       unl_nodes=unl_nodes)
 
     block.round_1 = True
-    block.round_2_starting_time = int(time.time())
+    block.round_2_starting_time = block.start_time + block.round_1_time
 
     account_list = GetAccounts(
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
