@@ -126,7 +126,8 @@ class Block:
             sequance_number_time = (self.genesis_time  + ((self.sequance_number) * self.block_time))
             extra =  int(time.time()) - sequance_number_time
             adding = extra // self.block_time
-            self.empty_block_number = adding
+            gap_blocks = (self.sequance_number // self.part_amount) * self.gap_block_number
+            self.empty_block_number = adding + gap_blocks
             return False
 
     def dump_json(self):
