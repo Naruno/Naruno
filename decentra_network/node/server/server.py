@@ -231,24 +231,35 @@ class server(Thread):
 
     def check_message(self, data):
         if "id" not in data:
+            logger.debug("No id")
             return False
         if "signature" not in data:
+            logger.debug("No signature")
             return False
         if "timestamp" not in data:
+            logger.debug("No timestamp")
             return False
         the_control = time.time() - float(data["timestamp"])
         if the_control > self.time_control:
+            logger.debug("Time control is not true")
             return False
         # remove sign from data
         sign = data["signature"]
         del data["signature"]
         message = str(data)
         data["signature"] = sign
-        return Ecdsa.verify(
+
+        signature_verify = Ecdsa.verify(
             message,
             Signature.fromBase64(sign),
             PublicKey.fromPem(data["id"]),
         )
+
+        if not signature_verify:
+            logger.debug("Signature not valid")
+            return False
+
+        return True
 
     def connect(self, host, port):
         connected = self.check_connected(host=host, port=port)

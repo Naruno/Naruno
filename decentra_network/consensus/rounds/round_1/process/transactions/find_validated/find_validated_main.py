@@ -36,7 +36,7 @@ def find_validated(block: Block, candidate_class: candidate_block,
     temp_validating_list = []
     logger.debug(f"First temp_validating_list: {temp_validating_list}")
     for candidate_block in candidate_class.candidate_blocks[:]:
-        logger.debug(f"Candidate block {str(candidate_block)}")
+        logger.debug(f"Candidate block {candidate_block}")
 
         for other_block_tx in candidate_block["transaction"]:
 
@@ -63,7 +63,7 @@ def find_validated(block: Block, candidate_class: candidate_block,
                 for alrady_tx in temp_validating_list[:]:
 
                     if other_block_tx.signature == alrady_tx.signature:
-                        logger.warning(
+                        logger.debug(
                             "The transaction is already in the list")
                         already_in_ok = True
                 if not already_in_ok:

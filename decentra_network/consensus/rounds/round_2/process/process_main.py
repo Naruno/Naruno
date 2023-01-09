@@ -42,7 +42,7 @@ def round_process(
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
 ) -> bool:
     logger.info("Processing of round 2 is started")
-    logger.debug(f"First block: {block}")
+    logger.debug(f"First block: {block.dump_json()}")
     candidate_block_hash = process_candidate_blocks_hashes(
         block, candidate_class, unl_nodes)
     logger.debug(f"candidate_block_hash: {candidate_block_hash}")
@@ -67,6 +67,6 @@ def round_process(
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
-    logger.debug(f"End block: {block}")
-    logger.info(f"Round 1 process result is: {result}")
+    logger.debug(f"End block: {block.dump_json()}")
+    logger.info(f"Round 2 process result is: {result}")
     return result

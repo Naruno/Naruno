@@ -52,7 +52,7 @@ def consensus_round_1(
     candidate_class = (
         GetCandidateBlocks(custom_nodes_list=Unl.get_as_node_type(unl_nodes), block=block)
         if custom_candidate_class is None else custom_candidate_class)
-    logger.debug(f"candidate_class: {candidate_class}")
+    logger.debug(f"candidate_class: {candidate_class.__dict__}")
 
     if round_check(block, candidate_class, unl_nodes):
         round_process(
@@ -69,5 +69,5 @@ def consensus_round_1(
         logger.info("Round 1 check is True")
         return True
     else:
-        logger.info("Round 1 check is False")
+        logger.warning("Round 1 check is False")
         return False

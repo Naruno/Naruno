@@ -44,7 +44,7 @@ def round_process(
     custom_fee_address=None,
 ) -> Block:
     logger.info("Processing for round 1 is started")
-    logger.debug(f"First block: {block}")
+    logger.debug(f"First block: {block.dump_json()}")
     transactions_main(block,
                       candidate_class=candidate_class,
                       unl_nodes=unl_nodes)
@@ -81,5 +81,5 @@ def round_process(
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
-    logger.debug(f"End block: {block}")
+    logger.debug(f"End block: {block.dump_json()}")
     return block

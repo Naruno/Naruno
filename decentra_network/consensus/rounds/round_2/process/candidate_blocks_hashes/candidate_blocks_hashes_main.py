@@ -35,19 +35,16 @@ def process_candidate_blocks_hashes(block: Block,
             if (candidate_block_hash != other_block
                     and candidate_block_hash["hash"] == other_block["hash"]):
                 tx_valid += 1
-                logger.debug(
-                    f"candidate_block_hash: {candidate_block_hash} validated from {other_block}"
-                )
+
         logger.debug(f"Hash valid of  {candidate_block_hash} : {tx_valid}")
-        logger.info(
-            f"candidate_block_hash: {candidate_block_hash} is validated.")
+
         if tx_valid > (((len(unl_nodes)+1) * 50) / 100):
             logger.info(
                 f"candidate_block_hash: {candidate_block_hash} is validated.")
             current_hash = candidate_block_hash
 
     for candidate_block_hash in candidate_class.candidate_block_hashes[:]:
-        logger.debug(f"Candidate block hash {candidate_block_hash}")
+        logger.debug(f"Candidate block hash previous_hash {candidate_block_hash}")
 
         tx_valid = 1
 
@@ -55,15 +52,10 @@ def process_candidate_blocks_hashes(block: Block,
             if (candidate_block_hash != other_block
                     and candidate_block_hash["previous_hash"] == other_block["previous_hash"]):
                 tx_valid += 1
-                logger.debug(
-                    f"candidate_block_hash: {candidate_block_hash} validated from {other_block}"
-                )
-        logger.debug(f"Hash valid of  {candidate_block_hash} : {tx_valid}")
-        logger.info(
-            f"candidate_block_hash: {candidate_block_hash} is validated.")
+        logger.debug(f"Hash valid of previous_hash  {candidate_block_hash} : {tx_valid}")
         if tx_valid > (((len(unl_nodes)+1) * 50) / 100):
             logger.info(
-                f"candidate_block_hash: {candidate_block_hash} is validated.")
+                f"candidate_block_hash previous_hash: {candidate_block_hash} is validated.")
             previous_hash = candidate_block_hash
 
 
@@ -82,5 +74,5 @@ def process_candidate_blocks_hashes(block: Block,
                     break        
         return {"hash": current_hash, "previous_hash": previous_hash}
 
-    logger.warning("All candidate_block_hashes can not be validated.")
+    logger.debug("All candidate_block_hashes can not be validated.")
     return {"hash": {"hash": False}, "previous_hash": {"previous_hash": False}}

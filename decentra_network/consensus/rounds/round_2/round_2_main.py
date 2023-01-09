@@ -54,7 +54,6 @@ def consensus_round_2(
     logger.debug(f"unl_nodes: {unl_nodes}")
     logger.debug(f"candidate_class: {candidate_class}")
 
-    result = None
     if round_check(block, candidate_class, unl_nodes):
         round_process(
             block,
@@ -67,9 +66,10 @@ def consensus_round_2(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        result = True
+        
+        logger.info("Round 2 check is True")
+        return True
     else:
-        result = False
-    logger.info(f"result: {result}")
-    logger.info("second round is done")
-    return result
+        logger.warning("Round 2 check is False")
+        return False
+
