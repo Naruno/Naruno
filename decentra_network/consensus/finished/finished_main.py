@@ -108,6 +108,7 @@ def finished_main(
             the_blocks_hash = GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
             if len(the_blocks_hash) == block.part_amount:
+                block.sync_empty_blocks()
                 block.empty_block_number += block.gap_block_number
                 block.start_time += block.hard_block_number * block.block_time
                 block.sync = True
