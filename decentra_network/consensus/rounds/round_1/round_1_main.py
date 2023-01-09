@@ -56,7 +56,15 @@ def consensus_round_1(
         if custom_candidate_class is None else custom_candidate_class)
     logger.debug(f"candidate_class: {candidate_class.__dict__}")
 
-    if round_check(block, candidate_class, unl_nodes):
+    if round_check(
+        block, 
+        candidate_class, 
+        unl_nodes,
+        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,        
+        ):
         round_process(
             block,
             candidate_class,
@@ -71,13 +79,6 @@ def consensus_round_1(
         logger.info("Round 1 check is True")
         return True
     else:
-        PendingtoValidating(block)
-        SaveBlock(
-            block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )        
+       
         logger.warning("Round 1 check is False")
         return False

@@ -12,7 +12,14 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def time_difference_check(block: Block, return_result=False) -> bool:
+def time_difference_check(
+    block: Block, 
+    return_result=False,
+    custom_TEMP_ACCOUNTS_PATH: str = None,
+    custom_TEMP_BLOCK_PATH: str = None,
+    custom_TEMP_BLOCKSHASH_PATH: str = None,
+    custom_TEMP_BLOCKSHASH_PART_PATH: str = None,    
+    ) -> bool:
 
     the_time = block.start_time + block.round_1_time
     current_time = int(time.time())
@@ -23,5 +30,14 @@ def time_difference_check(block: Block, return_result=False) -> bool:
         logger.info("Time is true")
         return True
     else:
+        if not current_time >= the_time - (block.round_1_time / 2):
+            PendingtoValidating(block)
+            SaveBlock(
+                block,
+                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            )     
         logger.info("Time is not true")
         return False if return_result is False else the_time
