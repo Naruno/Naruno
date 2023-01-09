@@ -132,6 +132,10 @@ class Block:
         adding = extra // self.block_time
         self.empty_block_number = adding
 
+        self.start_time = (self.genesis_time +
+                           ((self.sequance_number + self.empty_block_number) *
+                            self.block_time)) + self.block_time        
+
     def dump_json(self):
         """
         Dumps the block as json.
