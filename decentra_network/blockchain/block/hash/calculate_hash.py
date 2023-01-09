@@ -28,7 +28,6 @@ def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
     main_list = [
         block.previous_hash,
         str(block.sequance_number),
-        str(block.empty_block_number),
         str(block.gap_block_number),
         blocks_hash,
         accounts_hash,
