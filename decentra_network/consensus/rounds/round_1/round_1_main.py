@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 from decentra_network.consensus.rounds.round_1.checks.checks_main import \
@@ -15,6 +16,7 @@ from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.pending_to_validating import PendingtoValidating
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -69,5 +71,13 @@ def consensus_round_1(
         logger.info("Round 1 check is True")
         return True
     else:
+        PendingtoValidating(block)
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=the_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+        )        
         logger.warning("Round 1 check is False")
         return False
