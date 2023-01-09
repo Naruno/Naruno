@@ -40,7 +40,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
                 highest_number = number
                 highest_the_TEMP_BLOCK_PATH = "db/" + file
             else:
-                os.remove("db/" + file)
+                with contextlib.suppress(FileNotFoundError):
+                    os.remove("db/" + file)
 
 
 
