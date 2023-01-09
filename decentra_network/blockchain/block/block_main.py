@@ -134,7 +134,7 @@ class Block:
 
         self.start_time = (self.genesis_time +
                            ((self.sequance_number + self.empty_block_number) *
-                            self.block_time)) + self.block_time        
+                            self.block_time))
 
     def dump_json(self):
         """
