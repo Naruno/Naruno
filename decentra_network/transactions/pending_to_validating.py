@@ -23,7 +23,7 @@ def PendingtoValidating(block):
     logger.debug(f"Validating list capacity: {first_max_tx_number}")
 
     pending_list_txs = GetPending()
-    [server.send_transaction(i) for i in pending_list_txs]
+    [server.send_transaction(i) for i in pending_list_txs + block.validating_list]
 
     if len(block.validating_list) < block.max_tx_number:
         for tx in OrderbyFee(pending_list_txs):
