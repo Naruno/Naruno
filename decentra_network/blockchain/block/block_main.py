@@ -123,7 +123,10 @@ class Block:
             logger.info(
                 "New block not created because no transaction enought to create a new block"
             )
-            self.empty_block_number += 1
+            sequance_number_time = (self.genesis_time + self.block_time + ((self.sequance_number) * self.block_time))
+            extra =  int(time.time()) - sequance_number_time
+            adding = extra // self.block_time
+            self.empty_block_number = adding
             return False
 
     def dump_json(self):
