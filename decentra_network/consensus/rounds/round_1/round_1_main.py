@@ -74,10 +74,10 @@ def consensus_round_1(
         PendingtoValidating(block)
         SaveBlock(
             block,
-            custom_TEMP_BLOCK_PATH=the_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )        
         logger.warning("Round 1 check is False")
         return False
