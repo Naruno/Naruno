@@ -90,7 +90,22 @@ def consensus_trigger(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        threading.Thread(
+
+
+        ongoing_main(
+            block,
+            custom_candidate_class=custom_candidate_class,
+            custom_unl_nodes=custom_unl_nodes,
+            custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+            custom_server=custom_server,
+            custom_unl=custom_unl,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+    threading.Thread(
             target=data_sending, 
             args=
             (
@@ -107,19 +122,6 @@ def consensus_trigger(
                 custom_TEMP_BLOCKSHASH_PART_PATH,                
                 ),
             ).start()
-
-        ongoing_main(
-            block,
-            custom_candidate_class=custom_candidate_class,
-            custom_unl_nodes=custom_unl_nodes,
-            custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
-            custom_server=custom_server,
-            custom_unl=custom_unl,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )
 
     logger.debug("Consensus process is done")
     return block
