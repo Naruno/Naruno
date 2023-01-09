@@ -117,6 +117,7 @@ class Block:
             self.validating_list = []
             self.hash = None
             logger.info("New block created")
+            self.sync_empty_blocks()
             logger.debug(self.__dict__)
             return [block2, self]
         else:
