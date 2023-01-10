@@ -112,7 +112,8 @@ def finished_main(
             if len(the_blocks_hash) == block.part_amount:
                 block.sync_empty_blocks()
                 block.empty_block_number += block.gap_block_number
-                time.sleep(block.hard_block_number * block.block_time)
+                difference = (block.start_time +  (block.hard_block_number * block.empty_block_number)) - int(time.time())
+                time.sleep(difference)
                 block.sync = True
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
