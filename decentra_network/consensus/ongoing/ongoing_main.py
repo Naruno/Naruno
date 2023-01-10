@@ -34,15 +34,16 @@ def ongoing_main(
     custom_fee_address=None,
 ) -> Block:
 
-    if not block.round_1:
-        block.sync_empty_blocks()
-        SaveBlock(
+    block.sync_empty_blocks()
+    SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )        
+        )    
+
+    if not block.round_1:    
         logger.debug("First round is starting")
         consensus_round_1(
             block,
