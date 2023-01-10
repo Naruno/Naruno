@@ -236,13 +236,13 @@ class server(Thread):
         if "signature" not in data:
             logger.debug("No signature")
             return False
-        #if "timestamp" not in data:
-        #    logger.debug("No timestamp")
-        #    return False
-        the_control = time.time() - float(data["timestamp"])
-        if the_control > self.time_control:
-            logger.debug("Time control is not true")
+        if "timestamp" not in data:
+            logger.debug("No timestamp")
             return False
+        #the_control = time.time() - float(data["timestamp"])
+        #if the_control > self.time_control:
+        #    logger.debug("Time control is not true")
+        #    return False
         # remove sign from data
         sign = data["signature"]
         del data["signature"]
