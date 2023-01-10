@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 from decentra_network.lib.log import get_logger
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPending
@@ -23,7 +24,8 @@ def PendingtoValidating(block):
     logger.debug(f"Validating list capacity: {first_max_tx_number}")
 
     pending_list_txs = GetPending()
-    [server.send_transaction(i) for i in pending_list_txs + block.validating_list]
+    with contextlib.suppress(Exception):
+        [server.send_transaction(i) for i in pending_list_txs + block.validating_list]
 
     if len(block.validating_list) < block.max_tx_number:
         for tx in OrderbyFee(pending_list_txs):

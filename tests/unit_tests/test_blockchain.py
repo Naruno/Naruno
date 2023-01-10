@@ -47,11 +47,21 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_block_reset_start_time(self):
         block = Block("onur")
+        block.block_time = 1
         first_time = block.start_time
         time.sleep(2)
         block.reset_the_block()
         second_time = block.start_time
         self.assertNotEqual(first_time, second_time)
+
+    def test_block_reset_start_time_none(self):
+        block = Block("onur")
+        block.block_time = 3
+        first_time = block.start_time
+        time.sleep(2)
+        block.reset_the_block()
+        second_time = block.start_time
+        self.assertEqual(first_time, second_time)
 
     def test_block_reset_round_1(self):
         block = Block("onur")
@@ -297,9 +307,11 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_SaveBlock_GetBlock_olds(self):
         block = Block("onur")
+        block.sequance_number = 0
+        block.validating_list = []
         block_2 = Block("onur")
         block_2.sequance_number = 1
-        block_2.empty_block_number = 1
+        block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
         custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_TEMP_ACCOUNTS_PATH.json"
@@ -324,12 +336,14 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + block.empty_block_number)), True)
-        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block_2.sequance_number + block_2.empty_block_number)), True)
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block_2.sequance_number + len(block_2.validating_list))), True)
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + block.empty_block_number)), False)
 
-        self.assertEqual(block_2.__dict__, block_3.__dict__)
+        
+
+        self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
     def test_SaveBlockshash(self):
 

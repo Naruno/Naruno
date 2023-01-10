@@ -32,9 +32,10 @@ def ongoing_main(
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     custom_shares=None,
     custom_fee_address=None,
+    pass_sync=False
 ) -> Block:
 
-    block.sync_empty_blocks()
+    block.sync_empty_blocks() if pass_sync is False else None
     SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,

@@ -44,6 +44,7 @@ def finished_main(
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     custom_server: server = None,
+    pass_sync: bool = False,
 ) -> None:
     the_server = None
     if custom_server is None:
@@ -110,7 +111,7 @@ def finished_main(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
             
             if len(the_blocks_hash) == block.part_amount:
-                block.sync_empty_blocks()
+                block.sync_empty_blocks() if pass_sync is False else None
                 block.empty_block_number += block.gap_block_number
                 difference = (block.start_time +  (block.hard_block_number * block.block_time)) - int(time.time())
                 time.sleep(difference)

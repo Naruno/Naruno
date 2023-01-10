@@ -38,15 +38,18 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
                     os.remove("db/" + file)
 
 
+    result_normal = Block("non")
 
-
-    with open(the_TEMP_BLOCK_PATH, "r") as block_file:
-        the_block_json = json.load(block_file)
-    result_normal = Block.load_json(the_block_json)
+    with contextlib.suppress(json.decoder.JSONDecodeError):
+        with open(the_TEMP_BLOCK_PATH, "r") as block_file:
+            the_block_json = json.load(block_file)
+            result_normal = Block.load_json(the_block_json)
 
     with open(highest_the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
-    result_highest = Block.load_json(the_block_json)
+        result_highest = Block.load_json(the_block_json)
+
+    
 
     if result_normal.sequance_number + result_normal.empty_block_number > result_highest.sequance_number + result_highest.empty_block_number:
         return result_normal
