@@ -25,13 +25,6 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
 
     os.chdir(get_config()["main_folder"])
 
-    # Files are looking like this:
-    # db/temp_block.decentra_network.json2
-    # db/temp_block.decentra_network.json3
-    # db/temp_block.decentra_network.json4
-
-    # So we need to get the highest number and delete others
-    # We need to get the highest number
     highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH
     highest_number = 0
     for file in os.listdir("db/"):

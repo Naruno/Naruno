@@ -4,6 +4,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
+import os
 import time
 
 from decentra_network.accounts.get_accounts import GetAccounts
@@ -21,6 +23,7 @@ from decentra_network.consensus.rounds.round_1.checks.checks_main import \
     round_check
 from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import \
     transactions_main
+from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
@@ -28,6 +31,7 @@ from decentra_network.node.unl import Unl
 from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.process_the_transaction import \
     ProccesstheTransaction
+from decentra_network.config import TEMP_BLOCK_PATH
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -73,6 +77,20 @@ def round_process(
                                account_list)
 
     logger.debug(f"Block hash {block.hash}")
+
+
+    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
+                           else custom_TEMP_BLOCK_PATH)
+    os.chdir(get_config()["main_folder"])
+    highest_number = block.sequance_number + len(block.validating_list)
+    for file in os.listdir("db/"):
+        if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:           
+            number = int(("db/" + file).replace(the_TEMP_BLOCK_PATH, ""))
+            if number > highest_number:
+                with contextlib.suppress(FileNotFoundError):
+                    os.remove("db/" + file)
+
+
 
     SaveBlock(
         block,
