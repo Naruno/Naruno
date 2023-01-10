@@ -18,8 +18,8 @@ def candidate_blocks_hashes_check(candidate_class: candidate_block,
         f"len(candidate_class.candidate_block_hashes): {len(candidate_class.candidate_block_hashes)}"
     )
     logger.debug(f"len(unl_nodes): {len(unl_nodes)}")
-    if len(candidate_class.candidate_block_hashes) > ((
-        (len(unl_nodes) + 1) * 50) / 100):
+    if len(candidate_class.candidate_block_hashes) >= ((
+        (len(unl_nodes) + 1) * 80) / 100):
         logger.info("Candidate block hash number is True")
         return True
     else:
