@@ -1367,11 +1367,11 @@ class Test_Consensus(unittest.TestCase):
             "signature": "onur",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(9)],
-                                         [data_block_hash for i in range(8)])
-        CandidateBlock.candidate_blocks = [data_block for i in range(9)]
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
+        CandidateBlock.candidate_blocks = [data_block for i in range(6)]
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(8)
+            data_block_hash for i in range(6)
         ]
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_check(CandidateBlock, unl_nodes)
@@ -1440,13 +1440,13 @@ class Test_Consensus(unittest.TestCase):
             "signature": "onur",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(9)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         CandidateBlock.candidate_block_hashes = [
-            data_block_hash for i in range(9)
+            data_block_hash for i in range(6)
         ]
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(8)
+            data_block_hash for i in range(6)
         ]
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_hashes_check(CandidateBlock, unl_nodes)
@@ -1530,9 +1530,9 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
+        CandidateBlock = candidate_block([data_block for i in range(6)],
                                          [data_block_hash for i in range(7)])
-        CandidateBlock.candidate_blocks = [data_block for i in range(8)]
+        CandidateBlock.candidate_blocks = [data_block for i in range(6)]
         CandidateBlock.candidate_blocks_hash = [
             data_block_hash for i in range(7)
         ]
@@ -1605,11 +1605,11 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(9)],
-                                         [data_block_hash for i in range(8)])
-        CandidateBlock.candidate_blocks = [data_block for i in range(9)]
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
+        CandidateBlock.candidate_blocks = [data_block for i in range(6)]
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(8)
+            data_block_hash for i in range(6)
         ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
@@ -1723,7 +1723,7 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
+        CandidateBlock = candidate_block([data_block for i in range(6)],
                                          [data_block_hash for i in range(7)])
         validating_list = [the_transaction, the_transaction]
 
@@ -1733,7 +1733,7 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
         new_list = []
-        for i in range(8):
+        for i in range(6):
             new_block = copy.copy(data_block)
             new_block["signature"] = i
             new_list.append(new_block)
@@ -1775,7 +1775,7 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
+        CandidateBlock = candidate_block([data_block for i in range(6)],
                                          [data_block_hash for i in range(7)])
         validating_list = [the_transaction, the_transaction]
 
@@ -1785,7 +1785,7 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
         new_list = []
-        for i in range(8):
+        for i in range(6):
             new_block = copy.copy(data_block)
             new_block["signature"] = i
             new_list.append(new_block)
@@ -2007,8 +2007,8 @@ class Test_Consensus(unittest.TestCase):
             "signature": "onur",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(9)],
-                                         [data_block_hash for i in range(8)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         validating_list = [the_transaction, the_transaction]
 
         data_block = {
@@ -2017,13 +2017,13 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
         new_list = []
-        for i in range(9):
+        for i in range(6):
             new_block = copy.copy(data_block)
             new_block["signature"] = i
             new_list.append(new_block)
         CandidateBlock.candidate_blocks = new_list
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(8)
+            data_block_hash for i in range(6)
         ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
@@ -2123,9 +2123,9 @@ class Test_Consensus(unittest.TestCase):
         }
 
         CandidateBlock = candidate_block([data_block for i in range(7)],
-                                         [data_block_hash for i in range(8)])
+                                         [data_block_hash for i in range(6)])
         CandidateBlock.candidate_block_hashes = [
-            data_block_hash for i in range(8)
+            data_block_hash for i in range(6)
         ]
         CandidateBlock.candidate_blocks_hash = [
             data_block_hash for i in range(7)
@@ -2199,13 +2199,13 @@ class Test_Consensus(unittest.TestCase):
             "sequance_number": 58,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(9)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         CandidateBlock.candidate_block_hashes = [
-            data_block_hash for i in range(9)
+            data_block_hash for i in range(6)
         ]
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(8)
+            data_block_hash for i in range(6)
         ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
@@ -2288,10 +2288,10 @@ class Test_Consensus(unittest.TestCase):
             "signature": "signature",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(9)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         the_new_list = []
-        for i in range(9):
+        for i in range(6):
             the_new_object = copy.copy(data_block_hash)
             the_new_object["sender"] = i
             the_new_list.append(the_new_object)
@@ -2300,7 +2300,7 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         block.hash = "onur from tests"
         expected_result = copy.copy(data_block_hash)
-        expected_result["sender"] = 8
+        expected_result["sender"] = 5
         self.assertEqual(
             process_candidate_blocks_hashes(block, CandidateBlock,
                                             unl_nodes)["hash"],
@@ -2422,10 +2422,10 @@ class Test_Consensus(unittest.TestCase):
             "signature": "a",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(9)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         the_new_list = []
-        for i in range(9):
+        for i in range(6):
             the_new_object = copy.copy(data_block_hash)
             the_new_object["sender"] = i
             the_new_list.append(the_new_object)
@@ -2448,7 +2448,7 @@ class Test_Consensus(unittest.TestCase):
         )
 
         self.assertEqual(result, False)
-        self.assertEqual(block.dowload_true_block, 8)
+        self.assertEqual(block.dowload_true_block, 5)
 
     def test_round_process_round_2_true(self):
         the_transaction_json = {
@@ -2597,10 +2597,10 @@ class Test_Consensus(unittest.TestCase):
             "signature": "a",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(9)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         the_new_list = []
-        for i in range(9):
+        for i in range(6):
             the_new_object = copy.copy(data_block_hash)
             the_new_object["sender"] = i
             the_new_list.append(the_new_object)
@@ -2670,8 +2670,8 @@ class Test_Consensus(unittest.TestCase):
             "signature": "a",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(9)],
-                                         [data_block_hash for i in range(8)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         validating_list = [the_transaction, the_transaction]
 
         data_block = {
@@ -2681,13 +2681,13 @@ class Test_Consensus(unittest.TestCase):
             "signature": "a",
         }
         new_list = []
-        for i in range(9):
+        for i in range(6):
             new_block = copy.copy(data_block)
             new_block["signature"] = i
             new_list.append(new_block)
         CandidateBlock.candidate_blocks = new_list
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(8)
+            data_block_hash for i in range(6)
         ]
         unl_nodes = [i for i in range(10)]
         block = Block("Onur")
@@ -2750,10 +2750,10 @@ class Test_Consensus(unittest.TestCase):
             "signature": "a",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(9)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         the_new_list = []
-        for i in range(9):
+        for i in range(6):
             the_new_object = copy.copy(data_block_hash)
             the_new_object["sender"] = i
             the_new_list.append(the_new_object)
@@ -2816,10 +2816,10 @@ class Test_Consensus(unittest.TestCase):
             "signature": "a",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(8)],
-                                         [data_block_hash for i in range(9)])
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
         the_new_list = []
-        for i in range(9):
+        for i in range(6):
             the_new_object = copy.copy(data_block_hash)
             the_new_object["sender"] = i
             the_new_list.append(the_new_object)

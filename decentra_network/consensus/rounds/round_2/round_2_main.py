@@ -37,7 +37,7 @@ def consensus_round_2(
     At this stage of the consensus process,
     The blocks (block hashes) of our and the
     unl nodes are compared and the block accepted
-    by 80 percent is approved.
+    by majority approving.
 
     Inputs:
       * block: The block (class) we want consensus
