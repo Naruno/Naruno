@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.blockchain.block.block_main import Block
+from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 from decentra_network.consensus.rounds.round_1.round_1_main import \
