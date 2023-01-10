@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import shutil
+import time
 
 from decentra_network.apps.apps_trigger import AppsTrigger
 from decentra_network.blockchain.block.block_main import Block
@@ -107,10 +108,11 @@ def finished_main(
 
             the_blocks_hash = GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
+            
             if len(the_blocks_hash) == block.part_amount:
                 block.sync_empty_blocks()
                 block.empty_block_number += block.gap_block_number
-                block.start_time += block.hard_block_number * block.block_time
+                time.sleep(block.hard_block_number * block.block_time)
                 block.sync = True
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
