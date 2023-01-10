@@ -48,7 +48,8 @@ class client(Thread):
                     data = json.loads(data)
                 with contextlib.suppress(KeyError):
                     del data["buffer"]
-                self.server.get_message(self, data)
+                with contextlib.suppress(Exception):
+                    self.server.get_message(self, data)
 
             time.sleep(0.01)
 
