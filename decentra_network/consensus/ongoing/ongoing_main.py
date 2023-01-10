@@ -34,6 +34,14 @@ def ongoing_main(
 ) -> Block:
 
     if not block.round_1:
+        block.sync_empty_blocks()
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )        
         logger.debug("First round is starting")
         consensus_round_1(
             block,
