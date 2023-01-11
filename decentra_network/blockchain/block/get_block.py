@@ -37,12 +37,13 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
                 with contextlib.suppress(FileNotFoundError):
                     os.remove("db/" + file)
 
-    if os.path.exists(highest_the_TEMP_BLOCK_PATH + "|2"):
-                    highest_the_TEMP_BLOCK_PATH +=  "|2"
-    elif os.path.exists(highest_the_TEMP_BLOCK_PATH + "|1"):
-                    highest_the_TEMP_BLOCK_PATH += "|1"
-    else:
-                    highest_the_TEMP_BLOCK_PATH +=  "|0"
+    if highest_the_TEMP_BLOCK_PATH != the_TEMP_BLOCK_PATH:
+        if os.path.exists(highest_the_TEMP_BLOCK_PATH + "|2"):
+                        highest_the_TEMP_BLOCK_PATH +=  "|2"
+        elif os.path.exists(highest_the_TEMP_BLOCK_PATH + "|1"):
+                        highest_the_TEMP_BLOCK_PATH += "|1"
+        else:
+                        highest_the_TEMP_BLOCK_PATH +=  "|0"
 
 
     result_normal = Block("non")
