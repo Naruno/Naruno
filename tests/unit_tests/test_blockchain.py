@@ -305,6 +305,87 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(block.__dict__, block_2.__dict__)
 
 
+    def test_SaveBlock_GetBlock_olds_secondly(self):
+        self.maxDiff = None
+        block = Block("onur")
+        block.round_1 = False
+        block_round_2 = False
+        block_2 = Block("onur")
+        block_2.round_1 = True
+        block_3 = Block("onur")
+        block_3.round_1 = True
+        block_3.round_2 = True
+
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_secondly_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
+
+        SaveBlock(
+            block_2,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        self.assertEqual(block_2.__dict__, block_result.__dict__)
+
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        self.assertEqual(block_2.__dict__, block_result.__dict__)
+
+
+        SaveBlock(
+            block_3,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        self.assertEqual(block_3.__dict__, block_result.__dict__)
+
+        SaveBlock(
+            block_2,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        self.assertEqual(block_3.__dict__, block_result.__dict__)
+
+
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        self.assertEqual(block_3.__dict__, block_result.__dict__)
+
     def test_SaveBlock_GetBlock_olds(self):
         block = Block("onur")
         block.sequance_number = 0

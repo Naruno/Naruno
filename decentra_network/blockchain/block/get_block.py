@@ -29,13 +29,20 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     highest_number = 0
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:           
-            number = int(("db/" + file).replace(the_TEMP_BLOCK_PATH, ""))
-            if number > highest_number:
+            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[0])
+            if number >= highest_number:
                 highest_number = number
-                highest_the_TEMP_BLOCK_PATH = "db/" + file
+                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("|")[0]
             else:
                 with contextlib.suppress(FileNotFoundError):
                     os.remove("db/" + file)
+
+    if os.path.exists(highest_the_TEMP_BLOCK_PATH + "|2"):
+                    highest_the_TEMP_BLOCK_PATH +=  "|2"
+    elif os.path.exists(highest_the_TEMP_BLOCK_PATH + "|1"):
+                    highest_the_TEMP_BLOCK_PATH += "|1"
+    else:
+                    highest_the_TEMP_BLOCK_PATH +=  "|0"
 
 
     result_normal = Block("non")

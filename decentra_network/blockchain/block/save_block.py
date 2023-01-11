@@ -47,7 +47,12 @@ def SaveBlock(
         block.first_time = False
     the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
                            else custom_TEMP_BLOCK_PATH)
-    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list))
+    secondly_situation = 0
+    if block.round_1:
+        secondly_situation += 1
+    if block.round_2:
+        secondly_situation += 1
+    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list)) + "|" + str(secondly_situation)
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
         json.dump(block.dump_json(), block_file)
