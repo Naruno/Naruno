@@ -60,9 +60,15 @@ def SaveBlock(
     with contextlib.suppress(FileNotFoundError):
         if secondly_situation == 2:
             os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1))
+            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0))
     with contextlib.suppress(FileNotFoundError):
         if secondly_situation == 1:
             os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0))
+            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2))
+    with contextlib.suppress(FileNotFoundError):
+        if secondly_situation == 0:
+            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1))
+            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2))
 
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
