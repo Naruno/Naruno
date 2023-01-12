@@ -38,8 +38,10 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
                     highest_number = number
                     highest_second_number = 0
                 else:
-                    if high_number >= highest_second_number and int(file.split("|")[2]) == 0:
-                        highest_second_number = high_number
+                    if high_number >= highest_second_number:
+                        if not os.path.exists("db/" + file.split("|")[0]  + "|" + file.split("|")[1] + "|" + str(high_number) + "|2"):
+                            if not os.path.exists("db/" + file.split("|")[0]  + "|" + file.split("|")[1] + "|" + str(high_number) + "|1"):
+                                highest_second_number = high_number
                 highest_the_TEMP_BLOCK_PATH = "db/" + file.split("|")[0]  + "|" + file.split("|")[1] + "|" + str(high_number)
 
     for file in os.listdir("db/"):
