@@ -54,6 +54,8 @@ def SaveBlock(
     if block.round_2:
         secondly_situation += 1
     highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(secondly_situation)
+    print("saving")
+    print(highest_the_TEMP_BLOCK_PATH)
 
     with contextlib.suppress(FileNotFoundError):
         if secondly_situation == 2:

@@ -35,14 +35,21 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
             high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[2])
             if number >= highest_number:
                 if number != highest_number:
+                    highest_number = number
                     highest_second_number = 0
                 else:
                     if high_number >= highest_second_number and int(file.split("|")[2]) == 0:
                         highest_second_number = high_number
-                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("|")[0] + "|" + str(highest_second_number) + "|" + file.split("|")[2]
-            else:
+                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("|")[0]  + "|" + file.split("|")[2] + "|" + str(high_number)
+
+    for file in os.listdir("db/"):
+        if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
+            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])
+            if not number >= highest_number:
+                
                 with contextlib.suppress(FileNotFoundError):
                     os.remove("db/" + file)
+
 
     if highest_the_TEMP_BLOCK_PATH != the_TEMP_BLOCK_PATH:
         if os.path.exists(highest_the_TEMP_BLOCK_PATH + "|2"):
@@ -60,14 +67,44 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
             the_block_json = json.load(block_file)
             result_normal = Block.load_json(the_block_json)
 
+    print("highest_the_TEMP_BLOCK_PATH", highest_the_TEMP_BLOCK_PATH)
+
     with open(highest_the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
         result_highest = Block.load_json(the_block_json)
 
     
 
-    if result_normal.sequance_number + result_normal.empty_block_number > result_highest.sequance_number + result_highest.empty_block_number:
+    if result_normal.sequance_number > result_highest.sequance_number:
         return result_normal
+    elif result_normal.sequance_number == result_highest.sequance_number:
+        print("equal sequance_number")
+        result_normal_situation = 0
+        result_highest_situation = 0
+        if result_normal.round_1:
+            result_normal_situation += 1
+        if result_normal.round_2:
+            result_normal_situation += 1
+
+        if result_highest.round_1:
+            result_highest_situation += 1
+        if result_highest.round_2:
+            result_highest_situation += 1
+
+        if result_normal_situation > result_highest_situation:
+            print("result_normal_situation > result_highest_situation")
+            return result_normal
+        elif result_normal_situation == result_highest_situation:
+            print("result_normal_situation == result_highest_situation")
+            if len(result_normal.validating_list) > len(result_highest.validating_list):
+                print("len(result_normal.validating_list) > len(result_highest.validating_list)")
+                return result_normal
+            else:
+                print("len(result_normal.validating_list) < len(result_highest.validating_list)")
+                return result_highest
+        else:
+            return result_highest
+        
     else:
         return result_highest
 

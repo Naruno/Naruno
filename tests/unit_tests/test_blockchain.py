@@ -306,6 +306,7 @@ class Test_Blockchain(unittest.TestCase):
 
 
     def test_SaveBlock_GetBlock_olds_specific_situation_1(self):
+        self.maxDiff = None
         block = Block("onur")
         block.round_1 = True
         block_2 = Block("onur")
@@ -337,9 +338,10 @@ class Test_Blockchain(unittest.TestCase):
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
-        self.assertEqual(block.__dict__, block_3.__dict__)
+        self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
     def test_SaveBlock_GetBlock_olds_specific_situation_2(self):
+        self.maxDiff = None
         block = Block("onur")
         block.round_1 = False
         block_2 = Block("onur")
@@ -347,12 +349,12 @@ class Test_Blockchain(unittest.TestCase):
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
 
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_BLOCKSHASH_PATH.json")
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_BLOCKSHASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_1_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_2_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         )
         SaveBlock(
             block,
@@ -490,13 +492,15 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number + block.empty_block_number)), True)
-        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block_2.sequance_number + len(block_2.validating_list))), True)
-
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|0"), True)
+    
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block_2.sequance_number) + "|" + str(len(block_2.validating_list)) + "|0"), True)
+        print("started block_3 saving")
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number + block.empty_block_number)), False)
+        print(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|0")
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|0"), False)
 
-        
+        self.maxDiff = None
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
