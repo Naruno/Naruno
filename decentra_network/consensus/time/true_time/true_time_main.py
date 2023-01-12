@@ -13,7 +13,7 @@ logger = get_logger("CONSENSUS")
 
 
 def true_time(block: Block, return_result=False) -> bool:
-    the_time = (block.genesis_time + (
+    the_time = (block.genesis_time + block.block_time + (
         (block.sequance_number + block.empty_block_number) * block.block_time))
     current_time = int(time.time())
     logger.info("Consensus time control started")
