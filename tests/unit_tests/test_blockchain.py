@@ -388,7 +388,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        self.assertEqual(block.__dict__, block_result.__dict__)
+        self.assertEqual(block_3.__dict__, block_result.__dict__)
 
     def test_SaveBlock_GetBlock_olds(self):
         block = Block("onur")
