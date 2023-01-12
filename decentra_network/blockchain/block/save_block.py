@@ -54,21 +54,26 @@ def SaveBlock(
     if block.round_2:
         secondly_situation += 1
     highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(secondly_situation)
-    print("saving")
-    print(highest_the_TEMP_BLOCK_PATH)
 
-    with contextlib.suppress(FileNotFoundError):
-        if secondly_situation == 2:
-            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1))
-            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0))
-    with contextlib.suppress(FileNotFoundError):
-        if secondly_situation == 1:
-            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0))
-            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2))
-    with contextlib.suppress(FileNotFoundError):
-        if secondly_situation == 0:
-            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1))
-            os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2))
+    print("highest_the_TEMP_BLOCK_PATH ", highest_the_TEMP_BLOCK_PATH)
+    print("secondly_situation ", secondly_situation)
+    if secondly_situation == 2:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1))
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0))
+
+    if secondly_situation == 1:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0))
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2))
+    
+    if secondly_situation == 0:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1))
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2))
 
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
