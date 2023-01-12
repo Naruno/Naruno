@@ -34,7 +34,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
             number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])
             high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[2])
             if number >= highest_number:
-                if number > highest_number:
+                if number != highest_number:
                     highest_second_number = 0
                 else:
                     if high_number >= highest_second_number and int(file.split("|")[2]) == 0:
