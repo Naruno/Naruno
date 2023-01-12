@@ -27,12 +27,22 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
 
     highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH
     highest_number = 0
+
+    highest_second_number = 0
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:           
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[0])
+            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])
+            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[2])
             if number >= highest_number:
-                highest_number = number
-                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("|")[0]
+                if number > highest_number:
+                    highest_second_number = 0
+                else:
+                    if high_number >= highest_second_number:
+                        highest_second_number = high_number
+                    else:
+                        with contextlib.suppress(FileNotFoundError):
+                            os.remove("db/" + file)                        
+                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("|")[0] + "|" + file.split("|")[1] + "|" + file.split("|")[2]
             else:
                 with contextlib.suppress(FileNotFoundError):
                     os.remove("db/" + file)

@@ -345,13 +345,14 @@ class Test_Blockchain(unittest.TestCase):
 
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list)) + "|" + str(0)))
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list)) + "|" + str(1)))
+
+        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
+        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))
         self.assertEqual(block_2.__dict__, block_result.__dict__)
 
 
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list)) + "|" + str(0)))
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list)) + "|" + str(1)))
+        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
+        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_2.__dict__, block_result.__dict__)
 
@@ -363,9 +364,9 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list)) + "|" + str(0)))
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list)) + "|" + str(1)))        
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + len(block.validating_list)) + "|" + str(2)))  
+        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
+        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))        
+        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2)))  
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_3.__dict__, block_result.__dict__)
 
@@ -420,11 +421,11 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + block.empty_block_number)), True)
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number + block.empty_block_number)), True)
         self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block_2.sequance_number + len(block_2.validating_list))), True)
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + str(block.sequance_number + block.empty_block_number)), False)
+        self.assertEqual(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number + block.empty_block_number)), False)
 
         
 
