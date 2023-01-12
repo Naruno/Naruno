@@ -124,7 +124,7 @@ class Block:
             logger.info(
                 "New block not created because no transaction enought to create a new block"
             )
-            self.empty_block_number = self.empty_block_number + 1
+            self.sync_empty_blocks()
             return False
 
     def sync_empty_blocks(self):

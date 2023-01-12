@@ -65,7 +65,7 @@ def finished_main(
 
     the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
                            else custom_TEMP_BLOCK_PATH)
-
+    block.sync_empty_blocks() if pass_sync is False else None
     if true_time(block):
         logger.debug(
             "Consensus proccess is complated, the block will be reset")
@@ -111,7 +111,7 @@ def finished_main(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
             
             if len(the_blocks_hash) == block.part_amount:
-                block.sync_empty_blocks() if pass_sync is False else None
+                
                 block.empty_block_number += block.gap_block_number
                 difference = (block.start_time +  (block.hard_block_number * block.block_time)) - int(time.time())
                 time.sleep(difference)
@@ -153,6 +153,7 @@ def finished_main(
         )
         return True
     else:
+        
         if block.sync == True:
             block.sync = False
             SaveBlock(
