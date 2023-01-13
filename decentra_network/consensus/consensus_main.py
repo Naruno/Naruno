@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import contextlib
 import threading
 
 from decentra_network.blockchain.block.block_main import Block
@@ -64,6 +65,7 @@ def consensus_trigger(
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,        
     ):
+      
         custom_server.send_my_block(
             block) if custom_server is not None else server.Server.send_my_block(
                 block)
@@ -72,6 +74,8 @@ def consensus_trigger(
         the_server = server.Server if custom_server is None else custom_server
         the_server.send_my_block_hash(block)
 
+        with contextlib.suppress(Exception):
+                [the_server.send_transaction(i) for i in block.validating_list]  
 
     if block.validated:
         finished_main(
