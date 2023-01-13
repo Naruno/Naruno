@@ -91,19 +91,14 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
         if result_highest.round_2:
             result_highest_situation += 1
 
-        if result_normal_situation > result_highest_situation:
-            print("result_normal_situation > result_highest_situation")
-            return result_normal
-        elif result_normal_situation == result_highest_situation:
-            print("result_normal_situation == result_highest_situation")
-            if len(result_normal.validating_list) > len(result_highest.validating_list):
+
+        if len(result_normal.validating_list) > len(result_highest.validating_list):
                 print("len(result_normal.validating_list) > len(result_highest.validating_list)")
                 return result_normal
-            else:
+        else:
                 print("len(result_normal.validating_list) < len(result_highest.validating_list)")
                 return result_highest
-        else:
-            return result_highest
+
         
     else:
         return result_highest
