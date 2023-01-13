@@ -134,7 +134,7 @@ class Block:
             extra =  int(time.time()) - sequance_number_time
             adding = extra // self.block_time
             secondly_empty_block = adding
-            if first_empty_block != secondly_empty_block:
+            if not first_empty_block > secondly_empty_block:
                 self.empty_block_number = adding
                 self.start_time = (self.genesis_time + ((self.sequance_number + self.empty_block_number) * self.block_time))
                 if self.round_1:
