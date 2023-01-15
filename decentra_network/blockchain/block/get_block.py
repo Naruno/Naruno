@@ -41,7 +41,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
             if number >= highest_number:
                 if number != highest_number:
                     highest_number = number
-                    highest_second_number = 0
+                    highest_second_number = high_number
                 else:
 
                     if high_number >= highest_second_number:
