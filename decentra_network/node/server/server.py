@@ -422,7 +422,7 @@ class server(Thread):
 
             node.candidate_block_history.append(copy.copy(node.candidate_block))
 
-            node.candidate_block = data
+        node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node: client):
         if node.candidate_block_hash is None:
@@ -434,8 +434,8 @@ class server(Thread):
 
             node.candidate_block_hash_history.append(copy.copy(node.candidate_block_hash))
 
-            data["sender"] = node.id
-            node.candidate_block_hash = data
+        data["sender"] = node.id
+        node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
