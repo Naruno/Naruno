@@ -413,22 +413,23 @@ class server(Thread):
         self.send(data)
 
     def get_candidate_block(self, data, node: client):
+        if data["sequence_number"] > node.candidate_block["sequence_number"]:
+            if len(node.candidate_block_history) >= 5:
+                node.candidate_block_history.pop(0)
 
-        if len(node.candidate_block_history) >= 5:
-            node.candidate_block_history.pop(0)
+            node.candidate_block_history.append(copy.copy(node.candidate_block))
 
-        node.candidate_block_history.append(copy.copy(node.candidate_block))
-
-        node.candidate_block = data
+            node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node: client):
-        if len(node.candidate_block_hash_history) >= 5:
-            node.candidate_block_hash_history.pop(0)
+        if data["sequence_number"] > node.candidate_block_hash["sequence_number"]:
+            if len(node.candidate_block_hash_history) >= 5:
+                node.candidate_block_hash_history.pop(0)
 
-        node.candidate_block_hash_history.append(copy.copy(node.candidate_block_hash))
+            node.candidate_block_hash_history.append(copy.copy(node.candidate_block_hash))
 
-        data["sender"] = node.id
-        node.candidate_block_hash = data
+            data["sender"] = node.id
+            node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
