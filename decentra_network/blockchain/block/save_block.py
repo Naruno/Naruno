@@ -27,6 +27,7 @@ def SaveBlock(
     custom_TEMP_ACCOUNTS_PATH=None,
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
+    delete_old_validating_list=False,
 ):
     """
     Saves the current block to the TEMP_BLOCK_PATH.
@@ -55,8 +56,16 @@ def SaveBlock(
         secondly_situation += 1
     highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(secondly_situation)
 
-    print("highest_the_TEMP_BLOCK_PATH ", highest_the_TEMP_BLOCK_PATH)
-    print("secondly_situation ", secondly_situation)
+    if delete_old_validating_list:
+        os.chdir(get_config()["main_folder"])
+        for file in os.listdir("db/"):
+            if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
+                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])
+                high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[2])
+                if number == block.sequance_number and high_number != len(block.validating_list):
+                    with contextlib.suppress(FileNotFoundError):
+                        os.remove("db/" + file)
+
     if secondly_situation == 2:
             with contextlib.suppress(FileNotFoundError):
                 os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1))

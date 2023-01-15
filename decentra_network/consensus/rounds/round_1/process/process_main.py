@@ -98,6 +98,7 @@ def round_process(
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        delete_old_validating_list=True,
     )
     logger.debug(f"End block: {block.dump_json()}")
     return block

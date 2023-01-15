@@ -570,6 +570,46 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
 
+    def test_SaveBlock_GetBlock_olds_specific_situation_8(self):
+        self.maxDiff = None
+        block = Block("onur")
+        block.sequance_number = 1322
+        block.round_1 = True
+        block.round_2 = False
+        block_2 = Block("onur")
+        block_2.sequance_number = 1322
+        block_2.round_1 = False
+        block_2.round_2 = False
+        block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
+
+
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_8_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
+        SaveBlock(
+            block_2,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )        
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            delete_old_validating_list=True
+        )
+
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+
+        self.assertEqual(block.dump_json(), block_3.dump_json())
+
     def test_SaveBlock_GetBlock_olds_secondly(self):
         self.maxDiff = None
         block = Block("onur")

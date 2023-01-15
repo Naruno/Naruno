@@ -33,11 +33,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
             number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])
             high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[2])
-            print("a")
-            print("number ", number)
-            print("high_number ", high_number)
-            print("highest_number ", highest_number)
-            print("highest_second_number ", highest_second_number)
+
             if number >= highest_number:
                 if number != highest_number:
                     highest_number = number
@@ -74,7 +70,6 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
             the_block_json = json.load(block_file)
             result_normal = Block.load_json(the_block_json)
 
-    print("highest_the_TEMP_BLOCK_PATH", highest_the_TEMP_BLOCK_PATH)
 
     with open(highest_the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
@@ -85,7 +80,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
     if result_normal.sequance_number > result_highest.sequance_number:
         return result_normal
     elif result_normal.sequance_number == result_highest.sequance_number:
-        print("equal sequance_number")
+
         result_normal_situation = 0
         result_highest_situation = 0
         if result_normal.round_1:
@@ -100,10 +95,10 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
 
 
         if len(result_normal.validating_list) > len(result_highest.validating_list):
-                print("len(result_normal.validating_list) > len(result_highest.validating_list)")
+
                 return result_normal
         else:
-                print("len(result_normal.validating_list) < len(result_highest.validating_list)")
+
                 return result_highest
 
         
