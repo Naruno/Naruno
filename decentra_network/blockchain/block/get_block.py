@@ -16,7 +16,7 @@ from decentra_network.lib.log import get_logger
 logger = get_logger("BLOCKCHAIN")
 
 
-def GetBlock(custom_TEMP_BLOCK_PATH=None):
+def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
     """
     Returns the block.
     """
@@ -75,7 +75,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None):
         the_block_json = json.load(block_file)
         result_highest = Block.load_json(the_block_json)
 
-    
+    if get_normal_block:
+        return result_normal
 
     if result_normal.sequance_number > result_highest.sequance_number:
         return result_normal

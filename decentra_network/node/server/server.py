@@ -539,7 +539,7 @@ class server(Thread):
                     consensus_trigger
                 from decentra_network.lib.perpetualtimer import perpetualTimer
 
-                system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
+                system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, get_normal_block=True)
 
                 ChangeTransactionFee(system)
 

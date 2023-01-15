@@ -20,6 +20,7 @@ bin/
 
 #Performance Analyzers
 *.pf
+*.pf**
 *.pf2
 
 #test

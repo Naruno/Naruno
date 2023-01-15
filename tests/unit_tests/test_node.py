@@ -963,6 +963,7 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0,
             custom_server=self.node_0,
+            pass_sync=True,
         )
         self.assertEqual(the_block.sync, False)
         print(self.node_0.sync_clients)

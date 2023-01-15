@@ -84,6 +84,9 @@ def SaveBlock(
             with contextlib.suppress(FileNotFoundError):
                 os.remove(the_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2))
 
+    print("the_TEMP_BLOCK_PATH: " + the_TEMP_BLOCK_PATH)
+    print("highest_the_TEMP_BLOCK_PATH: " + highest_the_TEMP_BLOCK_PATH)
+
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
         json.dump(block.dump_json(), block_file)
