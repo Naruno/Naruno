@@ -300,8 +300,17 @@ class Test_Node(unittest.TestCase):
                          "Problem on UNL get as node system.")
 
     def test_GetCandidateBlocks(self):
+        the_block = Block("atakan")
         client_1 = self.node_2.clients[1]
         client_2 = self.node_2.clients[0]
+        client_2.candidate_block = None
+        client_2.candidate_block_history = None
+        client_2.candidate_block_hash = None
+        client_2.candidate_block_hash_history = None
+        client_1.candidate_block = None
+        client_1.candidate_block_history = None
+        client_1.candidate_block_hash = None
+        client_1.candidate_block_hash_history = None         
         value_1 = {
             "action":
             "myblock",
@@ -341,9 +350,147 @@ class Test_Node(unittest.TestCase):
         client_2.candidate_block_hash = value_3
         client_1.candidate_block = value_1
         client_1.candidate_block_hash = value_2
-        result = GetCandidateBlocks()
-        self.assertEqual(result.candidate_blocks, [value_1])
+        result = GetCandidateBlocks(block=the_block)
+        self.assertEqual(result.candidate_blocks, [value_1, {'action': 'myblock', 'transaction': [], 'signature': 'self'}])
         self.assertEqual(result.candidate_block_hashes, [value_3])
+
+
+    def test_GetCandidateBlocks_different_squance_number(self):
+        self.maxDiff = None
+        the_block = Block("Onur")
+        the_block.sequance_number = 0
+        client_1 = self.node_2.clients[1]
+        client_2 = self.node_2.clients[0]
+        client_2.candidate_block = None
+        client_2.candidate_block_history = None
+        client_2.candidate_block_hash = None
+        client_2.candidate_block_hash_history = None
+        client_1.candidate_block = None
+        client_1.candidate_block_history = None
+        client_1.candidate_block_hash = None
+        client_1.candidate_block_hash_history = None        
+        value_1 = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            2,
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }
+        value_1_old = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            0,
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }
+        value_1_old_1 = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            1,
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }                 
+        value_2 = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            2,
+            "hash": None,
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }
+        value_2_old = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            0,
+            "hash": None,
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }
+        value_2_old_1 = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            1,
+            "hash": None,
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }                 
+        value_3 = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            2,
+            "hash": "None",
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }  
+        value_3_old = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            0,
+            "hash": "None",
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }    
+        value_3_old_1 = {
+            "action":
+            "myblock",
+            "transaction": [],
+            "sequance_number":
+            1,
+            "hash": "None",
+            "id":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
+            "signature":
+            "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
+        }                         
+        client_2.candidate_block = value_1
+        client_2.candidate_block_history = [value_1_old, value_1_old_1]
+        client_2.candidate_block_hash = value_3
+        client_2.candidate_block_hash_history = [value_3_old, value_3_old_1]
+        client_1.candidate_block = value_1
+        client_1.candidate_block_history = [value_1_old, value_1_old_1]
+        client_1.candidate_block_hash = value_2
+        client_1.candidate_block_hash_history = [value_2_old, value_2_old_1]
+        result = GetCandidateBlocks(block=the_block)
+        print(result.candidate_blocks)
+        self.assertEqual(result.candidate_blocks, [value_1_old, {'action': 'myblock', 'transaction': [], 'signature': 'self'}])
+        self.assertEqual(result.candidate_block_hashes, [value_3_old])
+
+        the_block.sequance_number = 1
+        result = GetCandidateBlocks(block=the_block)
+        self.assertEqual(result.candidate_blocks, [value_1_old_1, {'action': 'myblock', 'transaction': [], 'signature': 'self'}])
+        self.assertEqual(result.candidate_block_hashes, [value_3_old_1])
 
     def test_send_data_all(self):
         result = self.node_2.send({"action": "test"})
