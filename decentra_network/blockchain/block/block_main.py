@@ -106,8 +106,12 @@ class Block:
         nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
                  if custom_nodes is None else custom_nodes)
         for node in nodes:
+            if len(node.candidate_block_history) >= 5:
+                node.candidate_block_history.pop(0)
             node.candidate_block_history.append(copy.copy(node.candidate_block))
             node.candidate_block = None
+            if len(node.candidate_block_hash_history) >= 5:
+                node.candidate_block_hash_history.pop(0)            
             node.candidate_block_hash_history.append(copy.copy(node.candidate_block_hash))
             node.candidate_block_hash = None
 
