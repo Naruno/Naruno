@@ -102,9 +102,6 @@ class Block:
         self.validated = False
         self.validated_time = None
 
-
-
-
         if len(self.validating_list) >= (self.max_tx_number / 2):
             block2 = copy.copy(self)
             # Resetting and setting the new elements.
@@ -126,13 +123,15 @@ class Block:
     def sync_empty_blocks(self):
         if not self.validated:
             first_empty_block = self.empty_block_number
-            sequance_number_time = (self.genesis_time  + ((self.sequance_number) * self.block_time))
-            extra =  int(time.time()) - sequance_number_time
+            sequance_number_time = (
+                self.genesis_time + ((self.sequance_number) * self.block_time))
+            extra = int(time.time()) - sequance_number_time
             adding = extra // self.block_time
             secondly_empty_block = adding
             if not first_empty_block > secondly_empty_block:
                 self.empty_block_number = adding
-            self.start_time = (self.genesis_time + ((self.sequance_number + self.empty_block_number) * self.block_time))
+            self.start_time = (
+                self.genesis_time + ((self.sequance_number + self.empty_block_number) * self.block_time))
             if self.round_1:
                 self.round_2_starting_time = self.start_time + self.round_1_time
 

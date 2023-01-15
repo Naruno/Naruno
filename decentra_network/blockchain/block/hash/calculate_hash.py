@@ -51,11 +51,11 @@ def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
         str(block.round_1_time),
         str(block.round_2_time),
         str(block.validated_time),
-                        
+
         str(block.shares),
         str(block.fee_address),
 
-      
+
 
 
     ]
