@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+import copy
 import json
 import os
 import random
@@ -13,6 +14,7 @@ import time
 from hashlib import sha256
 from shutil import move
 from threading import Thread
+from decentra_network.blockchain.block.block_main import Block
 
 from decentra_network.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
@@ -380,7 +382,7 @@ class server(Thread):
         the_node = node if node is not None else random.choice(self.clients)
         self.send_client(the_node, {"action": "sendmefullblock"})
 
-    def send_my_block(self, block):
+    def send_my_block(self, block: Block):
         system = block
 
         new_list = []
@@ -394,6 +396,7 @@ class server(Thread):
         data = {
             "action": "myblock",
             "transaction": new_list,
+            "sequence_number": system.sequance_number,
         }
         self.send(data)
 
@@ -404,15 +407,26 @@ class server(Thread):
             "action": "myblockhash",
             "hash": system.hash,
             "previous_hash": system.previous_hash,
+            "sequence_number": system.sequance_number,
         }
 
         self.send(data)
 
-    def get_candidate_block(self, data, node):
+    def get_candidate_block(self, data, node: client):
+
+        if len(node.candidate_block_history) >= 5:
+            node.candidate_block_history.pop(0)
+
+        node.candidate_block_history.append(copy.copy(node.candidate_block))
 
         node.candidate_block = data
 
-    def get_candidate_block_hash(self, data, node):
+    def get_candidate_block_hash(self, data, node: client):
+        if len(node.candidate_block_hash_history) >= 5:
+            node.candidate_block_hash_history.pop(0)
+
+        node.candidate_block_hash_history.append(copy.copy(node.candidate_block_hash))
+
         data["sender"] = node.id
         node.candidate_block_hash = data
 

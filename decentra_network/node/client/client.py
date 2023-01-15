@@ -26,6 +26,8 @@ class client(Thread):
         self.id = node_id
         self.candidate_block = None
         self.candidate_block_hash = None
+        self.candidate_block_history = []
+        self.candidate_block_hash_history = []
 
         self.running = True
         if not test:
