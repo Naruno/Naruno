@@ -415,7 +415,6 @@ class server(Thread):
     def get_candidate_block(self, data, node: client):
         if node.candidate_block is None:
             node.candidate_block = data
-            return
         if data["sequence_number"] > node.candidate_block["sequence_number"]:
             if len(node.candidate_block_history) >= 5:
                 node.candidate_block_history.pop(0)
@@ -427,7 +426,6 @@ class server(Thread):
     def get_candidate_block_hash(self, data, node: client):
         if node.candidate_block_hash is None:
             node.candidate_block_hash = data
-            return        
         if data["sequence_number"] > node.candidate_block_hash["sequence_number"]:
             if len(node.candidate_block_hash_history) >= 5:
                 node.candidate_block_hash_history.pop(0)
