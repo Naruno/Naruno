@@ -27,7 +27,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
     for node in nodes:
         if node.candidate_block is not None:
 
-            if node.candidate_block["sequence_number"] == block.sequance_number:
+            if int(node.candidate_block["sequence_number"]) == block.sequance_number:
                 the_candidate_blocks.append(node.candidate_block)
             else:
                 for i in node.candidate_block_history:
@@ -35,7 +35,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
                         the_candidate_blocks.append(i)
         if node.candidate_block_hash is not None:
 
-            if node.candidate_block_hash["sequence_number"] == block.sequance_number:
+            if int(node.candidate_block_hash["sequence_number"]) == block.sequance_number:
                 the_candidate_block_hashes.append(node.candidate_block_hash)
             else:
                 for i in node.candidate_block_hash_history:
