@@ -43,11 +43,8 @@ def consensus_trigger(
     to shorten the block time.
     """
 
-    block = (
-        GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        if custom_block is None
-        else custom_block
-    )
+    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+             if custom_block is None else custom_block)
 
     logger.debug(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
