@@ -52,7 +52,7 @@ class Block:
         self.validating_list = []
         self.transaction_fee = 0.02
         self.default_transaction_fee = 0.02
-        self.default_optimum_transaction_number = 1
+        self.default_optimum_transaction_number = 200
         self.default_increase_of_fee = 0.01
         self.transaction_delay_time = 60
         self.max_data_size = 1000000
@@ -62,7 +62,7 @@ class Block:
         self.hash = None
         self.part_amount_cache = previous_hash
 
-        self.max_tx_number = 2
+        self.max_tx_number = 200
         self.minumum_transfer_amount = 1000
 
         self.round_1_time = 10
