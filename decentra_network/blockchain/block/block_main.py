@@ -90,9 +90,10 @@ class Block:
         and makes the edits for the new block.
         """
 
-        self.start_time = (self.genesis_time +
-                           ((self.sequance_number + self.empty_block_number) *
-                            self.block_time)) + self.block_time
+        self.start_time = (
+            self.genesis_time
+            + ((self.sequance_number + self.empty_block_number) * self.block_time)
+        ) + self.block_time
 
         self.round_1 = False
 
@@ -123,15 +124,17 @@ class Block:
     def sync_empty_blocks(self):
         if not self.validated:
             first_empty_block = self.empty_block_number
-            sequance_number_time = (
-                self.genesis_time + ((self.sequance_number) * self.block_time))
+            sequance_number_time = self.genesis_time + (
+                (self.sequance_number) * self.block_time
+            )
             extra = int(time.time()) - sequance_number_time
             adding = extra // self.block_time
             secondly_empty_block = adding
             if not first_empty_block > secondly_empty_block:
                 self.empty_block_number = adding
-            self.start_time = (
-                self.genesis_time + ((self.sequance_number + self.empty_block_number) * self.block_time))
+            self.start_time = self.genesis_time + (
+                (self.sequance_number + self.empty_block_number) * self.block_time
+            )
             if self.round_1:
                 self.round_2_starting_time = self.start_time + self.round_1_time
 
@@ -142,8 +145,7 @@ class Block:
         temp_block = copy.copy(self)
 
         temp_validating_list = [
-            transaction.dump_json()
-            for transaction in temp_block.validating_list
+            transaction.dump_json() for transaction in temp_block.validating_list
         ]
 
         temp_block.validating_list = temp_validating_list

@@ -11,8 +11,9 @@ import threading
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
+from decentra_network.blockchain.candidate_block.candidate_block_main import (
+    candidate_block,
+)
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
 from decentra_network.lib.log import get_logger
@@ -36,7 +37,7 @@ def consensus_trigger(
     custom_TEMP_ACCOUNTS_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
-    pass_sync: bool = False
+    pass_sync: bool = False,
 ) -> Block:
     """
     Consensus process consists of 2 stages. This function makes
@@ -44,8 +45,11 @@ def consensus_trigger(
     to shorten the block time.
     """
 
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-             if custom_block is None else custom_block)
+    block = (
+        GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        if custom_block is None
+        else custom_block
+    )
 
     logger.debug(
         f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
@@ -66,8 +70,8 @@ def consensus_trigger(
     ):
 
         custom_server.send_my_block(
-            block) if custom_server is not None else server.Server.send_my_block(
-                block)
+            block
+        ) if custom_server is not None else server.Server.send_my_block(block)
 
         logger.debug("Our block hash is sending to the unl nodes")
         the_server = server.Server if custom_server is None else custom_server
@@ -75,8 +79,10 @@ def consensus_trigger(
 
         pending_list_txs = GetPending()
         with contextlib.suppress(Exception):
-            [the_server.send_transaction(
-                i) for i in pending_list_txs + block.validating_list]
+            [
+                the_server.send_transaction(i)
+                for i in pending_list_txs + block.validating_list
+            ]
 
     if block.validated:
         finished_main(
@@ -86,7 +92,7 @@ def consensus_trigger(
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            pass_sync=pass_sync
+            pass_sync=pass_sync,
         )
     else:
 
@@ -101,7 +107,7 @@ def consensus_trigger(
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            pass_sync=pass_sync
+            pass_sync=pass_sync,
         )
 
     threading.Thread(
