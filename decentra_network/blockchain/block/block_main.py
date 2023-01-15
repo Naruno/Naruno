@@ -102,12 +102,7 @@ class Block:
         self.validated = False
         self.validated_time = None
 
-        # Resetting the node candidate blocks.
-        nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
-                 if custom_nodes is None else custom_nodes)
-        for node in nodes:
-            node.candidate_block = None
-            node.candidate_block_hash = None
+
 
         if len(self.validating_list) >= (self.max_tx_number / 2):
             block2 = copy.copy(self)
