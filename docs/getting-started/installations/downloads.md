@@ -20,7 +20,6 @@ nav_order: 2
 |---|
 | MacOS | CLI | [cli_macos_decentra_network.zip](https://github.com/Decentra-Network/Decentra-Network/releases/latest/download/cli_macos_decentra_network.zip) |
 | MacOS | API | [api_macos_decentra_network.zip](https://github.com/Decentra-Network/Decentra-Network/releases/latest/download/api_macos_decentra_network.zip) |
-| MacOS | GUI | [gui_macos_decentra_network.zip](https://github.com/Decentra-Network/Decentra-Network/releases/latest/download/gui_macos_decentra_network.zip) |
 |---|
 | Android | API | [api_android_decentra_network.zip](https://github.com/Decentra-Network/Decentra-Network/releases/latest/download/api_android_decentra_network.zip) |
 | Android | GUI | [gui_android_decentra_network.zip](https://github.com/Decentra-Network/Decentra-Network/releases/latest/download/gui_android_decentra_network.zip) |
