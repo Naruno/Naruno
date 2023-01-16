@@ -13,7 +13,7 @@ import unittest
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.accounts.get_sequance_number import GetSequanceNumber
+from decentra_network.accounts.get_sequence_number import GetSequanceNumber
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.save_block import SaveBlock
