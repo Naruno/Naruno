@@ -2318,6 +2318,70 @@ class Test_Consensus(unittest.TestCase):
             expected_result,
         )
 
+
+    def test_process_candidate_blocks_hashes_change_self_hashes(self):
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequence_number": 58,
+            "signature": "signature",
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "previous_hash": "previous_hash",
+            "sequence_number": 58,
+            "signature": "signature",
+        }
+
+        data_block_hash_self = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "previous_hash": "previous_hash",
+            "sequence_number": 58,
+            "signature": "self",
+        }
+
+        the_candidate_block_hash_list = [data_block_hash for i in range(6)]
+        the_candidate_block_hash_list[5] = data_block_hash_self
+
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         the_candidate_block_hash_list)
+        the_new_list = []
+        for i in range(6):
+            the_new_object = copy.copy(data_block_hash)
+            the_new_object["sender"] = i
+            if i == 5:
+                the_new_object["signature"] = "self"
+            the_new_list.append(the_new_object)
+        CandidateBlock.candidate_block_hashes = the_new_list
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+        block.hash = "onur from tests"
+        expected_result = copy.copy(data_block_hash)
+        expected_result["sender"] = 0
+        self.assertEqual(
+            process_candidate_blocks_hashes(block, CandidateBlock,
+                                            unl_nodes)["hash"],
+            expected_result,
+        )
+
+
+
     def test_validate_main(self):
         block = Block("Onur")
         old_block = copy.copy(block)
