@@ -1027,4 +1027,79 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_txs[2].amount, 1000)
 
 
+    def test_blockchain_sync_empty_blocks_validated(self):
+
+        block = Block("onur")
+        block.block_time = 0.5
+        block.validated = True
+
+        first_block = block.dump_json()
+        block.sync_empty_blocks()
+        second_block = block.dump_json()
+
+        self.assertEqual(first_block, second_block)
+
+
+    def test_blockchain_sync_empty_blocks_not_validated(self):
+
+        block = Block("onur")
+        block.block_time = 0.5
+        block.validated = False
+
+        first_block = block.dump_json()
+        time.sleep(1)
+        block.sync_empty_blocks()
+        second_block = block.dump_json()
+
+        self.assertNotEqual(first_block, second_block)
+
+
+    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_equal(self):
+
+        block = Block("onur")
+        block.sequence_number = 1
+        block.empty_block_number = 3
+        block.block_time = 0.5
+        block.validated = False
+
+        first_block = copy.copy(block)
+        time.sleep(2)
+        block.sync_empty_blocks()
+        second_block = copy.copy(block)
+
+        self.assertEqual(first_block.empty_block_number, second_block.empty_block_number)
+        self.assertEqual(first_block.start_time + 2, second_block.start_time)
+
+
+    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_not_equal(self):
+
+        block = Block("onur")
+        block.sequence_number = 1
+        block.empty_block_number = 2
+        block.block_time = 0.5
+        block.validated = False
+
+        first_block = copy.copy(block)
+        time.sleep(2)
+        block.sync_empty_blocks()
+        second_block = copy.copy(block)
+
+        self.assertEqual(first_block.empty_block_number +1, second_block.empty_block_number)
+        self.assertEqual(first_block.start_time + (first_block.block_time * (first_block.empty_block_number + first_block.sequence_number)) + first_block.block_time, second_block.start_time)
+
+    def test_blockchain_sync_empty_blocks_round_2_times(self):
+
+        block = Block("onur")
+        block.block_time = 0.5
+        block.round_1 = True
+
+        first_round_2_time = block.round_2_starting_time
+        block.sync_empty_blocks()
+        second_round_2_time = block.round_2_starting_time
+
+        self.assertNotEqual(first_round_2_time, second_round_2_time)
+        self.assertEqual(first_round_2_time, None)
+        self.assertEqual(second_round_2_time, block.start_time + block.round_1_time)
+
+
 unittest.main(exit=False)
