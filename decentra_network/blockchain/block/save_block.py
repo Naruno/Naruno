@@ -28,6 +28,7 @@ def SaveBlock(
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
     delete_old_validating_list=False,
+    just_save_normal=False
 ):
     """
     Saves the current block to the TEMP_BLOCK_PATH.
@@ -84,11 +85,10 @@ def SaveBlock(
             with contextlib.suppress(FileNotFoundError):
                 os.remove(the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(2))
 
-    print("the_TEMP_BLOCK_PATH: " + the_TEMP_BLOCK_PATH)
-    print("highest_the_TEMP_BLOCK_PATH: " + highest_the_TEMP_BLOCK_PATH)
 
     os.chdir(get_config()["main_folder"])
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
         json.dump(block.dump_json(), block_file)
-    with open(highest_the_TEMP_BLOCK_PATH, "w") as block_file:
-        json.dump(block.dump_json(), block_file)
+    if not just_save_normal:
+        with open(highest_the_TEMP_BLOCK_PATH, "w") as block_file:
+            json.dump(block.dump_json(), block_file)
