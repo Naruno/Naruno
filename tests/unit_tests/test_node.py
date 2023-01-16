@@ -351,7 +351,7 @@ class Test_Node(unittest.TestCase):
         client_1.candidate_block = value_1
         client_1.candidate_block_hash = value_2
         result = GetCandidateBlocks(block=the_block)
-        self.assertEqual(result.candidate_blocks, [value_1, {'action': 'myblock', 'transaction': [], 'signature': 'self'}])
+        self.assertEqual(result.candidate_blocks, [value_1, {'action': 'myblock', 'transaction': [], 'signature': 'self', 'sequence_number': 0}])
         self.assertEqual(result.candidate_block_hashes, [value_3])
 
 
@@ -484,12 +484,12 @@ class Test_Node(unittest.TestCase):
         client_1.candidate_block_hash_history = [value_2_old, value_2_old_1]
         result = GetCandidateBlocks(block=the_block)
         print(result.candidate_blocks)
-        self.assertEqual(result.candidate_blocks, [value_1_old, {'action': 'myblock', 'transaction': [], 'signature': 'self'}])
+        self.assertEqual(result.candidate_blocks, [value_1_old, {'action': 'myblock', 'transaction': [], 'signature': 'self', 'sequence_number': 0}])
         self.assertEqual(result.candidate_block_hashes, [value_3_old])
 
         the_block.sequence_number = 1
         result = GetCandidateBlocks(block=the_block)
-        self.assertEqual(result.candidate_blocks, [value_1_old_1, {'action': 'myblock', 'transaction': [], 'signature': 'self'}])
+        self.assertEqual(result.candidate_blocks, [value_1_old_1, {'action': 'myblock', 'transaction': [], 'signature': 'self', 'sequence_number': 1}])
         self.assertEqual(result.candidate_block_hashes, [value_3_old_1])
 
     def test_send_data_all(self):

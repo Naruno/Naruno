@@ -223,6 +223,7 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_block_CalculateHash(self):
         block = Block("onur", previous_hash="ulusoy")
+        block.genesis_time = 1
 
         block.part_amount = 2
 
@@ -241,7 +242,7 @@ class Test_Blockchain(unittest.TestCase):
         )
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        true_hash = "4a03d2d7346a69ab8af3af7b42cb9fae33f674e32428983974b60287de7529c9"
+        true_hash = "7ec37a4e492b32975d69c20fd6b7fedff61f16b123dc35a53be0284805491b96"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
 
