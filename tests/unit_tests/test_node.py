@@ -301,6 +301,20 @@ class Test_Node(unittest.TestCase):
 
     def test_GetCandidateBlocks(self):
         the_block = Block("atakan")
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        the_block.validating_list = [the_transaction] 
         client_1 = self.node_2.clients[1]
         client_2 = self.node_2.clients[0]
         client_2.candidate_block = None
@@ -351,7 +365,8 @@ class Test_Node(unittest.TestCase):
         client_1.candidate_block = value_1
         client_1.candidate_block_hash = value_2
         result = GetCandidateBlocks(block=the_block)
-        self.assertEqual(result.candidate_blocks, [value_1, {'action': 'myblock', 'transaction': [], 'signature': 'self', 'sequence_number': 0}])
+        result.candidate_blocks[1]["transaction"][0] = result.candidate_blocks[1]["transaction"][0].dump_json()
+        self.assertEqual(result.candidate_blocks, [value_1, {'action': 'myblock', 'transaction': [the_transaction.dump_json()], 'signature': 'self', 'sequence_number': 0}])
         self.assertEqual(result.candidate_block_hashes, [value_3])
 
 
