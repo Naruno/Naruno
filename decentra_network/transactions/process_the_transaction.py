@@ -71,7 +71,7 @@ def ProccesstheTransaction(
             touser_inlist = False
             if Accounts.Address == address_of_fromUser:
                 Accounts.balance -= float(trans.amount) + trans.transaction_fee
-                Accounts.sequance_number += 1
+                Accounts.sequence_number += 1
                 from_user_list.append(Accounts)
 
             elif Accounts.Address == trans.toUser:
@@ -102,7 +102,7 @@ def ProccesstheTransaction(
     c = conn.cursor()
     for changed_account in from_user_list + to_user_list:
         c.execute(
-            f"UPDATE account_list SET balance = {changed_account.balance}, sequance_number = {changed_account.sequance_number} WHERE address = '{changed_account.Address}'"
+            f"UPDATE account_list SET balance = {changed_account.balance}, sequence_number = {changed_account.sequence_number} WHERE address = '{changed_account.Address}'"
         )
         conn.commit()
     conn.close()

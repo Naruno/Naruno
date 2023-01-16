@@ -34,7 +34,7 @@ def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
         str(block.genesis_time),
         str(block.block_time),
         str(block.previous_hash),
-        str(block.sequance_number),
+        str(block.sequence_number),
         str(block.hard_block_number),
         str(block.gap_block_number),
         str(block.transaction_fee),

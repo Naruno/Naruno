@@ -13,7 +13,7 @@ class Transaction:
     The transaction class.
 
     Transaction class consists of 8 elements:
-      * sequance_number: A number from the account class that ensures that
+      * sequence_number: A number from the account class that ensures that
       each transaction is valid once.
       * signature: A signature proving that the sender approved the transaction.
       * fromUser: Sender's public key.
@@ -26,7 +26,7 @@ class Transaction:
 
     def __init__(
         self,
-        sequance_number,
+        sequence_number,
         signature,
         fromUser,
         toUser,
@@ -35,7 +35,7 @@ class Transaction:
         transaction_fee,
         time_of_transaction,
     ):
-        self.sequance_number = int(sequance_number)
+        self.sequence_number = int(sequence_number)
         self.signature = str(signature)
         self.fromUser = str(fromUser)
         self.toUser = str(toUser)

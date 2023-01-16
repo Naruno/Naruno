@@ -34,7 +34,7 @@ def GetProof(
     the_BLOCKS_PATH = BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
 
     os.chdir(get_config()["main_folder"])
-    sequance_number = None
+    sequence_number = None
 
     for file in os.listdir(the_BLOCKS_PATH):
         if file.endswith(".block.json"):
@@ -42,30 +42,30 @@ def GetProof(
                 the_block_json = json.load(block_file)
             for transaction in the_block_json["validating_list"]:
                 if transaction["signature"] == signature:
-                    sequance_number = file.split(".")[0]
+                    sequence_number = file.split(".")[0]
 
-    if sequance_number is None:
+    if sequence_number is None:
         return None
 
     result = GetBlockstoBlockchainDB(
-        sequance_number,
+        sequence_number,
         custom_BLOCKS_PATH=the_BLOCKS_PATH,
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
-    full_blockshash_sequance_number = result[0].sequance_number + (
-        result[0].part_amount - result[0].sequance_number)
+    full_blockshash_sequence_number = result[0].sequence_number + (
+        result[0].part_amount - result[0].sequence_number)
 
     full_blockshash_path = (the_BLOCKS_PATH +
-                            str(full_blockshash_sequance_number - 1) +
+                            str(full_blockshash_sequence_number - 1) +
                             ".blockshash_full.json")
 
-    block_path = the_BLOCKS_PATH + str(sequance_number) + ".block.json"
-    account_path = the_BLOCKS_PATH + str(sequance_number) + ".accounts.db"
+    block_path = the_BLOCKS_PATH + str(sequence_number) + ".block.json"
+    account_path = the_BLOCKS_PATH + str(sequence_number) + ".accounts.db"
     blockshash_path = the_BLOCKS_PATH + str(
-        sequance_number) + ".blockshash.json"
-    blockshashpart_path = (the_BLOCKS_PATH + str(sequance_number) +
+        sequence_number) + ".blockshash.json"
+    blockshashpart_path = (the_BLOCKS_PATH + str(sequence_number) +
                            ".blockshashpart.json")
 
     proof_path = (the_PROOF_PATH + sha256(

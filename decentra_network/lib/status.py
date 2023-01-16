@@ -57,9 +57,9 @@ def Status(
         "connected_nodes": connected_nodes,
     }
 
-    status_json["status"] = ("Not working" if (first_block.sequance_number +
+    status_json["status"] = ("Not working" if (first_block.sequence_number +
                                                first_block.empty_block_number)
-                             == (new_block.sequance_number +
+                             == (new_block.sequence_number +
                                  new_block.empty_block_number) else "Working")
 
     return status_json

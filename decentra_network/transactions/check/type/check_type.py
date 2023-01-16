@@ -13,10 +13,10 @@ def Check_Type(transaction):
     """
     Check if the transaction type is valid
     """
-    if isinstance(transaction.sequance_number, int):
+    if isinstance(transaction.sequence_number, int):
         pass
     else:
-        logger.debug("sequance_number is not int")
+        logger.debug("sequence_number is not int")
         return False
 
     if isinstance(transaction.signature, str):

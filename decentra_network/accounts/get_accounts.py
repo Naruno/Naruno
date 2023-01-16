@@ -26,7 +26,7 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH, check_same_thread=False)
     c = conn.cursor()
     c.execute(
-        """CREATE TABLE IF NOT EXISTS account_list (address text, sequance_number integer, balance integer)"""
+        """CREATE TABLE IF NOT EXISTS account_list (address text, sequence_number integer, balance integer)"""
     )
 
     return c

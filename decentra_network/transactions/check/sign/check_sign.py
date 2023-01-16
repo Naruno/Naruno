@@ -18,7 +18,7 @@ def Check_Sign(transaction):
     """
 
     if Ecdsa.verify(
-        (str(transaction.sequance_number) + str(transaction.fromUser) +
+        (str(transaction.sequence_number) + str(transaction.fromUser) +
          str(transaction.toUser) + str(transaction.data) +
          str(transaction.amount) + str(transaction.transaction_fee) +
          str(transaction.transaction_time)),

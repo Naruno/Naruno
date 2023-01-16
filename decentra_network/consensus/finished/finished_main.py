@@ -89,7 +89,7 @@ def finished_main(
                 new_tx_from_us = True
                 settings["save_blockshash"] = True
                 save_settings(settings)
-            if block2.sequance_number == 0:
+            if block2.sequence_number == 0:
                 SaveBlockstoBlockchainDB(
                     block2,
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
@@ -129,16 +129,16 @@ def finished_main(
                 if settings["save_blockshash"] == True:
                     shutil.copyfile(
                         the_TEMP_BLOCKSHASH_PATH,
-                        (the_BLOCKS_PATH + str(block.sequance_number) +
+                        (the_BLOCKS_PATH + str(block.sequence_number) +
                          ".blockshash_full.json"),
                     )
                     if not new_tx_from_us:
                         settings["save_blockshash"] = False
                         save_settings(settings)
-                elif block.sequance_number - 1 == block.part_amount:
+                elif block.sequence_number - 1 == block.part_amount:
                     shutil.copyfile(
                         the_TEMP_BLOCKSHASH_PATH,
-                        (the_BLOCKS_PATH + str(block.sequance_number) +
+                        (the_BLOCKS_PATH + str(block.sequence_number) +
                          ".blockshash_full.json"),
                     )
                 os.remove(the_TEMP_BLOCKSHASH_PATH)

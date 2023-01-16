@@ -78,9 +78,9 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
     if get_normal_block:
         return result_normal
 
-    if result_normal.sequance_number > result_highest.sequance_number:
+    if result_normal.sequence_number > result_highest.sequence_number:
         return result_normal
-    elif result_normal.sequance_number == result_highest.sequance_number:
+    elif result_normal.sequence_number == result_highest.sequence_number:
 
         result_normal_situation = 0
         result_highest_situation = 0

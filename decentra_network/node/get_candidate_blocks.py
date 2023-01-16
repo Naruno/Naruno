@@ -29,21 +29,21 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             if node.candidate_block is None:
                 continue
             else:
-                if int(node.candidate_block["sequence_number"]) == block.sequance_number:
+                if int(node.candidate_block["sequence_number"]) == block.sequence_number:
                     the_candidate_blocks.append(node.candidate_block)
                 else:
                     for i in node.candidate_block_history:
-                        if i["sequence_number"] == block.sequance_number:
+                        if i["sequence_number"] == block.sequence_number:
                             the_candidate_blocks.append(i)
         if node.candidate_block_hash is not None:
             if node.candidate_block_hash is None:
                 continue
             else:
-                if int(node.candidate_block_hash["sequence_number"]) == block.sequance_number:
+                if int(node.candidate_block_hash["sequence_number"]) == block.sequence_number:
                     the_candidate_block_hashes.append(node.candidate_block_hash)
                 else:
                     for i in node.candidate_block_hash_history:
-                        if i["sequence_number"] == block.sequance_number:
+                        if i["sequence_number"] == block.sequence_number:
                             the_candidate_block_hashes.append(i)
 
     if block is not None:
@@ -60,7 +60,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             "action": "myblock",
             "transaction": new_list,
             "signature": a_time,
-            "sequance_number": block.sequance_number,
+            "sequence_number": block.sequence_number,
         })
 
         the_candidate_block_hashes.append({
@@ -68,7 +68,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             "hash": block.hash,
             "previous_hash": block.previous_hash,
             "signature": a_time,
-            "sequance_number": block.sequance_number,
+            "sequence_number": block.sequence_number,
         })
 
     not_none_the_candidate_blocks = []

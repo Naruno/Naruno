@@ -44,7 +44,7 @@ class Block:
         self.block_time = 22
 
         self.previous_hash = previous_hash
-        self.sequance_number = 0
+        self.sequence_number = 0
         self.empty_block_number = 0
         self.hard_block_number = 2
         self.gap_block_number = self.hard_block_number + 2
@@ -91,7 +91,7 @@ class Block:
         """
 
         self.start_time = (self.genesis_time +
-                           ((self.sequance_number + self.empty_block_number) *
+                           ((self.sequence_number + self.empty_block_number) *
                             self.block_time)) + self.block_time
 
         self.round_1 = False
@@ -106,7 +106,7 @@ class Block:
             block2 = copy.copy(self)
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
-            self.sequance_number = self.sequance_number + 1
+            self.sequence_number = self.sequence_number + 1
             self.validating_list = []
             self.hash = None
             logger.info("New block created")
@@ -123,15 +123,15 @@ class Block:
     def sync_empty_blocks(self):
         if not self.validated:
             first_empty_block = self.empty_block_number
-            sequance_number_time = self.genesis_time + (
-                (self.sequance_number) * self.block_time)
-            extra = int(time.time()) - sequance_number_time
+            sequence_number_time = self.genesis_time + (
+                (self.sequence_number) * self.block_time)
+            extra = int(time.time()) - sequence_number_time
             adding = extra // self.block_time
             secondly_empty_block = adding
             if not first_empty_block > secondly_empty_block:
                 self.empty_block_number = adding
             self.start_time = self.genesis_time + (
-                (self.sequance_number + self.empty_block_number) *
+                (self.sequence_number + self.empty_block_number) *
                 self.block_time)
             if self.round_1:
                 self.round_2_starting_time = self.start_time + self.round_1_time

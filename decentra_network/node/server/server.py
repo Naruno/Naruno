@@ -396,7 +396,7 @@ class server(Thread):
         data = {
             "action": "myblock",
             "transaction": new_list,
-            "sequence_number": system.sequance_number,
+            "sequence_number": system.sequence_number,
         }
         self.send(data)
 
@@ -407,7 +407,7 @@ class server(Thread):
             "action": "myblockhash",
             "hash": system.hash,
             "previous_hash": system.previous_hash,
-            "sequence_number": system.sequance_number,
+            "sequence_number": system.sequence_number,
         }
 
         self.send(data)
@@ -654,7 +654,7 @@ class server(Thread):
 
         data = {
             "action": "transactionrequest",
-            "sequance_number": tx.sequance_number,
+            "sequence_number": tx.sequence_number,
             "txsignature": tx.signature,
             "fromUser": tx.fromUser,
             "to_user": tx.toUser,
@@ -672,7 +672,7 @@ class server(Thread):
     def get_transaction(self, data, node):
         block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
         the_transaction = Transaction(
-            data["sequance_number"],
+            data["sequence_number"],
             data["txsignature"],
             data["fromUser"],
             data["to_user"],

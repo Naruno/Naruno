@@ -14,15 +14,15 @@ class Account:
 
     Account class consists of 3 elements:
       * PublicKey: Public key created with ECDSA.
-      * sequance_number: Makes each transaction single use,
+      * sequence_number: Makes each transaction single use,
         incrementing 1 after each transaction.
       * balance: The amount of dnc coins of account.
     """
 
-    def __init__(self, PublicKey, balance, sequance_number=0):
+    def __init__(self, PublicKey, balance, sequence_number=0):
         self.Address = PublicKey
 
-        self.sequance_number = sequance_number
+        self.sequence_number = sequence_number
         self.balance = balance
 
     def get_hash(self, encoding="ascii"):
@@ -40,7 +40,7 @@ class Account:
         return {
             "address": self.Address,
             "balance": self.balance,
-            "sequence_number": self.sequance_number,
+            "sequence_number": self.sequence_number,
         }
 
     @staticmethod

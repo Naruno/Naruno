@@ -10,11 +10,11 @@ from decentra_network.wallet.ellipticcurve.wallet_import import Address
 
 def GetSequanceNumber(user, account_list=None):
     user = Address(user)
-    sequance_number = 0
+    sequence_number = 0
     the_account_list = GetAccounts() if account_list is None else account_list
     the_account_list.execute(
         f"SELECT * FROM account_list WHERE address = '{user}'")
     for Accounts in the_account_list.fetchall():
-        sequance_number = Accounts[1]
-        return sequance_number
-    return sequance_number
+        sequence_number = Accounts[1]
+        return sequence_number
+    return sequence_number

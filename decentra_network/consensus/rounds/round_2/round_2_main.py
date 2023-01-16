@@ -45,7 +45,7 @@ def consensus_round_2(
     """
 
     logger.info(
-        f"BLOCK#{block.sequance_number}:{block.empty_block_number} second round is starting"
+        f"BLOCK#{block.sequence_number}:{block.empty_block_number} second round is starting"
     )
 
     unl_nodes = Unl.get_unl_nodes() if unl_nodes is None else unl_nodes

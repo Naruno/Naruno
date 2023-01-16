@@ -45,7 +45,7 @@ def SaveBlockstoBlockchainDB(
                            custom_BLOCKS_PATH)
         SaveBlock(
             block,
-            (the_BLOCKS_PATH + str(block.sequance_number) + ".block.json"))
+            (the_BLOCKS_PATH + str(block.sequence_number) + ".block.json"))
 
         the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
                                   if custom_TEMP_ACCOUNTS_PATH is None else
@@ -53,18 +53,18 @@ def SaveBlockstoBlockchainDB(
 
         shutil.copyfile(
             the_TEMP_ACCOUNTS_PATH,
-            (the_BLOCKS_PATH + str(block.sequance_number) + ".accounts.db"),
+            (the_BLOCKS_PATH + str(block.sequence_number) + ".accounts.db"),
         )
 
         shutil.copyfile(
             custom_TEMP_BLOCKSHASH_PATH,
-            (the_BLOCKS_PATH + str(block.sequance_number) +
+            (the_BLOCKS_PATH + str(block.sequence_number) +
              ".blockshash.json"),
         )
 
         shutil.copyfile(
             custom_TEMP_BLOCKSHASH_PART_PATH,
-            (the_BLOCKS_PATH + str(block.sequance_number) +
+            (the_BLOCKS_PATH + str(block.sequence_number) +
              ".blockshashpart.json"),
         )
 

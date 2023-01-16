@@ -8,7 +8,7 @@ import time
 from hashlib import sha256
 
 from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.accounts.get_sequance_number import GetSequanceNumber
+from decentra_network.accounts.get_sequence_number import GetSequanceNumber
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.settings_system import the_settings
@@ -83,16 +83,16 @@ def send(
             if l and not l.startswith("-----")
         ])
 
-        sequance_number = GetSequanceNumber(my_public_key) + 1
+        sequence_number = GetSequanceNumber(my_public_key) + 1
 
         # Get the current fee
         transaction_fee = block.transaction_fee
 
         tx_time = int(time.time())
         the_transaction = Transaction(
-            sequance_number,
+            sequence_number,
             Ecdsa.sign(
-                (str(sequance_number) + my_public_key + str(to_user) +
+                (str(sequence_number) + my_public_key + str(to_user) +
                  str(data)) + str(amount) + str(transaction_fee) +
                 str(tx_time),
                 PrivateKey.fromPem(my_private_key),

@@ -82,7 +82,7 @@ def round_process(
     the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
                            else custom_TEMP_BLOCK_PATH)
     os.chdir(get_config()["main_folder"])
-    highest_number = block.sequance_number + len(block.validating_list)
+    highest_number = block.sequence_number + len(block.validating_list)
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:           
             number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])

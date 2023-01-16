@@ -41,7 +41,7 @@ class Block_IO_Performance_Analyzer:
         self.block.validated_time = time.time()
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -84,7 +84,7 @@ class Block_IO_Performance_Analyzer:
 
         main_list = [
             self.block.previous_hash,
-            str(self.block.sequance_number),
+            str(self.block.sequence_number),
             str(self.block.empty_block_number),
             str(self.block.gap_block_number),
             str(self.block.default_transaction_fee),

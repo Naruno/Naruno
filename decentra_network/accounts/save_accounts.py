@@ -23,18 +23,18 @@ def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None):
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
     c = conn.cursor()
     c.execute(
-        """CREATE TABLE IF NOT EXISTS account_list (address text, sequance_number integer, balance integer)"""
+        """CREATE TABLE IF NOT EXISTS account_list (address text, sequence_number integer, balance integer)"""
     )
     if type(new_account) == list:
         for account in new_account:
             c.execute(
                 """INSERT INTO account_list VALUES (?, ?, ?)""",
-                (account.Address, account.sequance_number, account.balance),
+                (account.Address, account.sequence_number, account.balance),
             )
     else:
         c.execute(
             """INSERT INTO account_list VALUES (?, ?, ?)""",
-            (new_account.Address, new_account.sequance_number,
+            (new_account.Address, new_account.sequence_number,
              new_account.balance),
         )
     conn.commit()

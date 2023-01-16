@@ -12,7 +12,7 @@ from decentra_network.config import BLOCKS_PATH
 
 
 def GetBlockstoBlockchainDB(
-    sequance_number,
+    sequence_number,
     custom_BLOCKS_PATH=None,
     custom_TEMP_ACCOUNTS_PATH=None,
     custom_TEMP_BLOCKSHASH_PATH=None,
@@ -27,13 +27,13 @@ def GetBlockstoBlockchainDB(
                            custom_BLOCKS_PATH)
 
         the_block = GetBlock(
-            (the_BLOCKS_PATH + str(sequance_number) + ".block.json"))
+            (the_BLOCKS_PATH + str(sequence_number) + ".block.json"))
         the_accounts = GetAccounts(
-            (the_BLOCKS_PATH + str(sequance_number) + ".accounts.db"))
-        the_blockshash = GetBlockshash(the_BLOCKS_PATH + str(sequance_number) +
+            (the_BLOCKS_PATH + str(sequence_number) + ".accounts.db"))
+        the_blockshash = GetBlockshash(the_BLOCKS_PATH + str(sequence_number) +
                                        ".blockshash.json")
         the_blockshashpart = GetBlockshash_part(the_BLOCKS_PATH +
-                                                str(sequance_number) +
+                                                str(sequence_number) +
                                                 ".blockshashpart.json")
         result = [the_block, the_accounts, the_blockshash, the_blockshashpart]
 

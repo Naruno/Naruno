@@ -56,16 +56,16 @@ def CheckProof(
 
     print(the_proof_path)
     full_blockshash_path = None
-    sequance_number = None
+    sequence_number = None
     for file in os.listdir(the_proof_path):
         if file.endswith(".blockshash_full.json"):
             full_blockshash_path = the_proof_path + file
         if file.endswith(".block.json"):
             splitted_name = file.split(".")
-            sequance_number = splitted_name[0]
+            sequence_number = splitted_name[0]
 
     result_2 = GetBlockstoBlockchainDB(
-        sequance_number=sequance_number,
+        sequence_number=sequence_number,
         custom_BLOCKS_PATH=the_proof_path,
     )
 

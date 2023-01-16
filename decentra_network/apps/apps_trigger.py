@@ -19,7 +19,7 @@ def AppsTrigger(block):
     """
 
     logger.info(
-        f"Triggering applications for block {block.sequance_number}:{block.empty_block_number}"
+        f"Triggering applications for block {block.sequence_number}:{block.empty_block_number}"
     )
 
     for folder_entry in os.scandir("apps"):
@@ -35,7 +35,7 @@ def AppsTrigger(block):
                     logger.debug(f"Found file {entry.name}")
                     if (entry.name[0] != "_" and ".py" in entry.name
                             and "_main" in entry.name):
-                        if "test" in entry.name and block.sequance_number != 1:
+                        if "test" in entry.name and block.sequence_number != 1:
                             return
                         logger.debug(f"Starting thread for file {entry.name}")
                         import_command = f"from decentra_network.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"

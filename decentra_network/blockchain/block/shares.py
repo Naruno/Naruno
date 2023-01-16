@@ -21,7 +21,7 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
     the_shares = block.shares if custom_shares is None else custom_shares
     the_fee_address = (block.fee_address
                        if custom_fee_address is None else custom_fee_address)
-    logger.debug(f"block.sequance_number: {block.sequance_number}")
+    logger.debug(f"block.sequence_number: {block.sequence_number}")
     logger.debug(f"the_shares: {the_shares}")
     logger.debug(f"the_fee_address: {the_fee_address}")
 
@@ -31,9 +31,9 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
     logger.debug(f"the_time: {the_time}")
 
     for share in the_shares:
-        rate = block.sequance_number / share[2]
+        rate = block.sequence_number / share[2]
         if rate.is_integer() and rate != 0.0:
-            if not block.sequance_number > share[3]:
+            if not block.sequence_number > share[3]:
                 tx_list.append(
                     Transaction(
                         0,

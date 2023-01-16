@@ -7,7 +7,7 @@
 import time
 
 from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.accounts.get_sequance_number import GetSequanceNumber
+from decentra_network.accounts.get_sequence_number import GetSequanceNumber
 from decentra_network.lib.log import get_logger
 from decentra_network.transactions.pending.get_pending import GetPending
 
@@ -73,10 +73,10 @@ def Check_Datas(
         )
         return False
 
-    get_sequance_number = (GetSequanceNumber(transaction.fromUser)
+    get_sequence_number = (GetSequanceNumber(transaction.fromUser)
                            if custom_sequence_number is None else
                            custom_sequence_number)
-    if transaction.sequance_number == (get_sequance_number + 1):
+    if transaction.sequence_number == (get_sequence_number + 1):
         pass
     else:
         logger.error("Sequance number is not valid")

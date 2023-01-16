@@ -47,7 +47,7 @@ def consensus_trigger(
              if custom_block is None else custom_block)
 
     logger.debug(
-        f"BLOCK#{block.sequance_number}:{block.empty_block_number} Consensus process started"
+        f"BLOCK#{block.sequence_number}:{block.empty_block_number} Consensus process started"
     )
 
     def data_sending(

@@ -45,7 +45,7 @@ def consensus_round_1(
     """
 
     logger.info(
-        f"BLOCK#{block.sequance_number}:{block.empty_block_number} First round is starting"
+        f"BLOCK#{block.sequence_number}:{block.empty_block_number} First round is starting"
     )
 
     unl_nodes = (Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH)
