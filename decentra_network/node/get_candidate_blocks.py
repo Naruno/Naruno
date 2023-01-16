@@ -34,7 +34,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
                         if i["sequence_number"] == block.sequence_number:
                             the_candidate_blocks.append(i)
         else:
-            continue
+            pass
         if node.candidate_block_hash is not None:
 
                 if int(node.candidate_block_hash["sequence_number"]) == block.sequence_number:
@@ -44,7 +44,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
                         if i["sequence_number"] == block.sequence_number:
                             the_candidate_block_hashes.append(i)
         else:
-            continue
+            pass
 
     if block is not None:
         new_list = []
