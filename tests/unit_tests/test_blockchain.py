@@ -611,6 +611,45 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
 
+
+    def test_SaveBlock_GetBlock_olds_specific_situation_9(self):
+        self.maxDiff = None
+        block = Block("onur")
+        block.sequence_number = 1322
+
+        block_2 = Block("onur")
+        block_2.sequence_number = 1323
+
+
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_9_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        )
+        SaveBlock(
+            block_2,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )        
+        SaveBlock(
+            block,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+        )
+
+        self.assertEqual(os.path.exists("db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json-1322-0-0"), True)
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+
+        self.assertEqual(os.path.exists("db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json-1322-0-0"), False)
+
+        self.assertEqual(block_2.dump_json(), block_3.dump_json())
+
     def test_SaveBlock_GetBlock_olds_secondly(self):
         self.maxDiff = None
         block = Block("onur")
