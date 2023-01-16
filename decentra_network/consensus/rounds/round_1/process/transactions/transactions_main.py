@@ -50,8 +50,6 @@ def transactions_main(block: Block, candidate_class: candidate_block,
     Remove_Duplicates(block)
 
     logger.debug(f"Newly validating list {block.validating_list}")
-
-    for each_newly in newly_added_list:
-        GetTransaction(block, each_newly) 
+        
     
     return temp_validating_list
