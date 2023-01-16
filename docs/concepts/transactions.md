@@ -24,7 +24,7 @@ The core elements of an [transaction](https://github.com/Decentra-Network/Decent
 ```mermaid
 classDiagram
     class Transaction
-    Transaction : +integer sequance_number
+    Transaction : +integer sequence_number
     Transaction : +string signature
     Transaction : +string fromUser
     Transaction : +string toUser

@@ -109,17 +109,17 @@ class Test_Blockchain(unittest.TestCase):
         result = block.reset_the_block(custom_nodes=nodes_2)
         self.assertEqual(result[0].hash, result[1].previous_hash)
 
-    def test_block_reset_enough_transaction_sequance_number(self):
+    def test_block_reset_enough_transaction_sequence_number(self):
         block = Block("onur")
-        block.sequance_number = 0
+        block.sequence_number = 0
         block.hash = "onur"
         nodes = Unl.get_as_node_type(Unl.get_unl_nodes())
         nodes_2 = nodes.copy()
         block.max_tx_number = 3
         block.validating_list = [1, 2]
         result = block.reset_the_block(custom_nodes=nodes_2)
-        true_sequence = result[0].sequance_number + 1
-        self.assertEqual(result[1].sequance_number, true_sequence)
+        true_sequence = result[0].sequence_number + 1
+        self.assertEqual(result[1].sequence_number, true_sequence)
 
     def test_block_reset_enough_transaction_validating_list(self):
         block = Block("onur")
@@ -532,11 +532,11 @@ class Test_Blockchain(unittest.TestCase):
     def test_SaveBlock_GetBlock_olds_specific_situation_7(self):
         self.maxDiff = None
         block = Block("onur")
-        block.sequance_number = 1322
+        block.sequence_number = 1322
         block.round_1 = True
         block.round_2 = False
         block_2 = Block("onur")
-        block_2.sequance_number = 1322
+        block_2.sequence_number = 1322
         block_2.round_1 = False
         block_2.round_2 = False
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
@@ -573,11 +573,11 @@ class Test_Blockchain(unittest.TestCase):
     def test_SaveBlock_GetBlock_olds_specific_situation_8(self):
         self.maxDiff = None
         block = Block("onur")
-        block.sequance_number = 1322
+        block.sequence_number = 1322
         block.round_1 = True
         block.round_2 = False
         block_2 = Block("onur")
-        block_2.sequance_number = 1322
+        block_2.sequence_number = 1322
         block_2.round_1 = False
         block_2.round_2 = False
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
@@ -651,13 +651,13 @@ class Test_Blockchain(unittest.TestCase):
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
 
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))
+        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequence_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
+        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequence_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))
         self.assertEqual(block_2.__dict__, block_result.__dict__)
 
 
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))
+        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequence_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
+        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequence_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_2.__dict__, block_result.__dict__)
 
@@ -669,9 +669,9 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))        
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequance_number) + "|" + str(len(block.validating_list)) + "|" + str(2)))  
+        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequence_number) + "|" + str(len(block.validating_list)) + "|" + str(0)))
+        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequence_number) + "|" + str(len(block.validating_list)) + "|" + str(1)))        
+        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "|" + str(block.sequence_number) + "|" + str(len(block.validating_list)) + "|" + str(2)))  
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_3.__dict__, block_result.__dict__)
 
@@ -748,7 +748,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         result = GetBlockstoBlockchainDB(
-            block.sequance_number,
+            block.sequence_number,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
@@ -762,7 +762,7 @@ class Test_Blockchain(unittest.TestCase):
         block.first_time = False
 
         the_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature": "",
             "fromUser": wallet_import(-1, 0),
             "toUser": "",
@@ -794,7 +794,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         result = GetBlockstoBlockchainDB(
-            block.sequance_number,
+            block.sequence_number,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
@@ -814,7 +814,7 @@ class Test_Blockchain(unittest.TestCase):
         the_account_list = result[1].fetchall()
         self.assertEqual(the_account_list[0][0], the_account.Address)
         self.assertEqual(the_account_list[0][2], the_account.balance)
-        self.assertEqual(the_account_list[0][1], the_account.sequance_number)
+        self.assertEqual(the_account_list[0][1], the_account.sequence_number)
         self.assertEqual(result[2], [block.previous_hash])
         self.assertEqual(result[3], [block.previous_hash])
 
@@ -905,7 +905,7 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_shares_low(self):
         block = Block("onur")
-        block.sequance_number = 5
+        block.sequence_number = 5
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
@@ -917,7 +917,7 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_shares_big(self):
         block = Block("onur")
-        block.sequance_number = 15
+        block.sequence_number = 15
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
@@ -933,7 +933,7 @@ class Test_Blockchain(unittest.TestCase):
             Transaction(1, "", "", "", 1, 1, 1000, 1),
             Transaction(1, "", "", "", 1, 1, 250, 1),
         ]
-        block.sequance_number = 20
+        block.sequence_number = 20
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
@@ -953,7 +953,7 @@ class Test_Blockchain(unittest.TestCase):
     def test_shares_more_times_twice(self):
         block = Block("onur")
         block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
-        block.sequance_number = 30
+        block.sequence_number = 30
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
@@ -973,7 +973,7 @@ class Test_Blockchain(unittest.TestCase):
     def test_shares_more_times_last(self):
         block = Block("onur")
         block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
-        block.sequance_number = 40
+        block.sequence_number = 40
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
@@ -993,7 +993,7 @@ class Test_Blockchain(unittest.TestCase):
     def test_shares_more_times_more_last(self):
         block = Block("onur")
         block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
-        block.sequance_number = 50
+        block.sequence_number = 50
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"
@@ -1008,7 +1008,7 @@ class Test_Blockchain(unittest.TestCase):
     def test_shares(self):
         block = Block("onur")
         block.validating_list = [Transaction(1, "", "", "", 1, 1, 1000, 1)]
-        block.sequance_number = 10
+        block.sequence_number = 10
 
         custom_shares = [["atakan", 10, 10, 40], ["ulusoy", 15, 10, 40]]
         custom_fee_address = "onuratakanulusoy"

@@ -18,7 +18,7 @@ The core elements of an [account](https://github.com/Decentra-Network/Decentra-N
 classDiagram
     class Accounts
     Accounts : +string address
-    Accounts : +integer sequance_number
+    Accounts : +integer sequence_number
     Accounts : +float balance
     Accounts : +get_hash(amount)
     Accounts : +dump_json(amount)

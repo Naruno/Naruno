@@ -637,7 +637,7 @@ class Test_API(unittest.TestCase):
         custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
             "my_transaction", "test_export_the_transactions")
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -658,7 +658,7 @@ class Test_API(unittest.TestCase):
         # read the file and check the content
         with open(custom_MY_TRANSACTION_EXPORT_PATH, "r") as f:
             content = f.read()
-            expected_content = """sequance_number,signature,fromUser,toUser,data,amount,transaction_fee,transaction_time,validated,sended
+            expected_content = """sequence_number,signature,fromUser,toUser,data,amount,transaction_fee,transaction_time,validated,sended
 1,MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=,MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==,onur,blockchain-lab,5000.0,0.02,1656764224,validated,not_sended
 """
             self.assertEqual(content, expected_content)
@@ -666,10 +666,10 @@ class Test_API(unittest.TestCase):
     def test_status_page(self):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
-        custom_new_block.sequance_number += 1
+        custom_new_block.sequence_number += 1
         custom_connections = self.node_0.clients
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -745,7 +745,7 @@ class Test_API(unittest.TestCase):
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
+            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
         )
 
         SaveMyTransaction(backup)
@@ -778,7 +778,7 @@ class Test_API(unittest.TestCase):
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
         SaveMyTransaction(backup)
@@ -811,7 +811,7 @@ class Test_API(unittest.TestCase):
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
+            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
         )
 
         SaveMyTransaction(backup)
@@ -854,7 +854,7 @@ class Test_API(unittest.TestCase):
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequance_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequance_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
         SaveMyTransaction(backup)
@@ -878,12 +878,12 @@ class Test_API(unittest.TestCase):
 
         block.genesis_time = int(time.time())
         block.block_time = 1
-        block.sequance_number = 0
+        block.sequence_number = 0
         block.empty_block_number = 0
         block.max_tx_number = 3
         block.part_amount = 2
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -937,7 +937,7 @@ class Test_API(unittest.TestCase):
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
@@ -965,7 +965,7 @@ class Test_API(unittest.TestCase):
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         self.assertEqual(Saved_blocks_hash,
@@ -1019,14 +1019,14 @@ class Test_API(unittest.TestCase):
         self.assertIn("1.blockshash_full.json", list_of_files)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
         )
         self.assertIsNot(result_2, False)
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         hash_2 = CalculateHash(

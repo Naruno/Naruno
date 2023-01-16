@@ -16,7 +16,7 @@ Block is the main part of blockchain. It contains the information of:
 | -------- | ------------------ | ------- | ----------------------------------------------- |
 | inside   | previous_hash      | string  | The hash of previously block                    |
 | inside   | hash               | string  | This block hash                                 |
-| inside   | sequance_number    | integer | This block number                               |
+| inside   | sequence_number    | integer | This block number                               |
 | inside   | empty_block_number | integer | A integer that increase with empty blocks       |
 | inside   | creator            | string  | The creator of this block its take all of coins |
 | inside   | coin_amount        | float   | Total coin amount                               |
@@ -40,7 +40,7 @@ Every blocks are a backup for our blockchain because they are have current `bloc
 Block time is stable on Decentra Network, we can calculate all blocks time with this formula:
 
 ```python
-the_time = (block.genesis_time + block.block_time + ((block.sequance_number + block.empty_block_number) * block.block_time))
+the_time = (block.genesis_time + block.block_time + ((block.sequence_number + block.empty_block_number) * block.block_time))
 ```
 
 We use this because we want to set some gap blocks for new nodes syncing process. Also out consensus system must be stable about times.

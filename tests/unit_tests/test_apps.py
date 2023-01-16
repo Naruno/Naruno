@@ -26,7 +26,7 @@ class Test_apps(unittest.TestCase):
 
     def test_AppsTrigger_App_not_test_app(self):
         block = Block("onur")
-        block.sequance_number = 2
+        block.sequence_number = 2
         the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
         the_transaction.transaction_time = time.time()
         block.validating_list.append(the_transaction)
@@ -40,7 +40,7 @@ class Test_apps(unittest.TestCase):
 
     def test_AppsTrigger_App(self):
         block = Block("onur")
-        block.sequance_number = 1
+        block.sequence_number = 1
         the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
         the_transaction.transaction_time = time.time()
         block.validating_list.append(the_transaction)

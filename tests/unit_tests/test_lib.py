@@ -332,7 +332,7 @@ class Test_Lib(unittest.TestCase):
         custom_new_block = Block("Onur")
         custom_connections = self.node_0.clients
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -371,7 +371,7 @@ class Test_Lib(unittest.TestCase):
         custom_new_block.empty_block_number += 1
         custom_connections = self.node_0.clients
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -407,10 +407,10 @@ class Test_Lib(unittest.TestCase):
     def test_status(self):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
-        custom_new_block.sequance_number += 1
+        custom_new_block.sequence_number += 1
         custom_connections = self.node_0.clients
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -447,7 +447,7 @@ class Test_Lib(unittest.TestCase):
         custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
             "my_transaction", "test_my_transaction_false")
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -471,7 +471,7 @@ class Test_Lib(unittest.TestCase):
         custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
             "my_transaction", "test_my_transaction")
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -492,7 +492,7 @@ class Test_Lib(unittest.TestCase):
         # read the file and check the content
         with open(custom_MY_TRANSACTION_EXPORT_PATH, "r") as f:
             content = f.read()
-            expected_content = """sequance_number,signature,fromUser,toUser,data,amount,transaction_fee,transaction_time,validated,sended
+            expected_content = """sequence_number,signature,fromUser,toUser,data,amount,transaction_fee,transaction_time,validated,sended
 1,MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=,MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==,onur,blockchain-lab,5000.0,0.02,1656764224,validated,not_sended
 """
             self.assertEqual(content, expected_content)

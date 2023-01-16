@@ -284,7 +284,7 @@ class Test_Transactions(unittest.TestCase):
         dumped_transaction = new_transaction.dump_json()
 
         the_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature": "",
             "fromUser": "",
             "toUser": "",
@@ -299,7 +299,7 @@ class Test_Transactions(unittest.TestCase):
     def test_load_transaction(self):
 
         the_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature": "",
             "fromUser": "",
             "toUser": "",
@@ -461,7 +461,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_true(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -490,7 +490,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_seuance_number(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -508,7 +508,7 @@ class Test_Transactions(unittest.TestCase):
         block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction.sequance_number = 2
+        the_transaction.sequence_number = 2
         result = CheckTransaction(
             block,
             the_transaction,
@@ -521,7 +521,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_signature(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -552,7 +552,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_fromUser(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -583,7 +583,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_toUser(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -614,7 +614,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_already_got(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -645,7 +645,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_bad_type_fromUser(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -676,7 +676,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_true_len_data(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -704,7 +704,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_len_data(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -732,7 +732,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_balance(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -762,7 +762,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_amount(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -793,7 +793,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_amount_high_account(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -830,7 +830,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_transaction_fee(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -861,7 +861,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_multiple_transaction_from_one_user(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -893,7 +893,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_wrong_time(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -920,7 +920,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_amount_decimal(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -945,7 +945,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_amount_bigger_than_coin_amount(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -970,7 +970,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_transaction_fee_decimal(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -996,7 +996,7 @@ class Test_Transactions(unittest.TestCase):
             self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1018,10 +1018,10 @@ class Test_Transactions(unittest.TestCase):
         result = Check_Len(block, the_transaction)
         self.assertEqual(result, False)
 
-    def test_check_transaction_false_sequance_number_type(self):
+    def test_check_transaction_false_sequence_number_type(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1039,14 +1039,14 @@ class Test_Transactions(unittest.TestCase):
         block.minumum_transfer_amount = 1000
 
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_transaction.sequance_number = "1"
+        the_transaction.sequence_number = "1"
         result = Check_Type(the_transaction)
         self.assertEqual(result, False)
 
     def test_check_transaction_false_signature_type(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1071,7 +1071,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_fromUser_type(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1096,7 +1096,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_toUser_type(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1121,7 +1121,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_data_type(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1146,7 +1146,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_amount_type_str(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1171,7 +1171,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_amount_type_negative(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1196,7 +1196,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_transaction_fee_type(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1221,7 +1221,7 @@ class Test_Transactions(unittest.TestCase):
     def test_check_transaction_false_transaction_time_type(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1331,7 +1331,7 @@ class Test_Transactions(unittest.TestCase):
     def test_get_transaction_false(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1360,7 +1360,7 @@ class Test_Transactions(unittest.TestCase):
     def test_get_transaction_true(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1390,7 +1390,7 @@ class Test_Transactions(unittest.TestCase):
     def test_ProccesstheTransaction_validating_list(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1427,7 +1427,7 @@ class Test_Transactions(unittest.TestCase):
     def test_ProccesstheTransaction_account_list(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1553,7 +1553,7 @@ class Test_Transactions(unittest.TestCase):
     def test_ProccesstheTransaction_account_list_with_shares(self):
 
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1566,7 +1566,7 @@ class Test_Transactions(unittest.TestCase):
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         block = Block(the_transaction.fromUser)
-        block.sequance_number = 10
+        block.sequence_number = 10
         block.max_tx_number = 2
         block.transaction_delay_time = 60
         block.minumum_transfer_amount = 1000
@@ -1693,7 +1693,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_SavePending_GetPending_DeletePending(self):
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature": "test_SavePending_GetPending",
             "fromUser":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
@@ -1736,12 +1736,12 @@ class Test_Transactions(unittest.TestCase):
 
         block.genesis_time = int(time.time())
         block.block_time = 1
-        block.sequance_number = 0
+        block.sequence_number = 0
         block.empty_block_number = 0
         block.max_tx_number = 3
         block.part_amount = 2
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1795,7 +1795,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
@@ -1823,7 +1823,7 @@ class Test_Transactions(unittest.TestCase):
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         self.assertEqual(Saved_blocks_hash,
@@ -1873,12 +1873,12 @@ class Test_Transactions(unittest.TestCase):
 
         block.genesis_time = int(time.time())
         block.block_time = 1
-        block.sequance_number = 0
+        block.sequence_number = 0
         block.empty_block_number = 0
         block.max_tx_number = 3
         block.part_amount = 2
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1932,7 +1932,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
@@ -1960,7 +1960,7 @@ class Test_Transactions(unittest.TestCase):
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         self.assertEqual(Saved_blocks_hash,
@@ -2012,14 +2012,14 @@ class Test_Transactions(unittest.TestCase):
         self.assertIn("1.blockshash_full.json", list_of_files)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
         )
         self.assertIsNot(result_2, False)
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         hash_2 = CalculateHash(
@@ -2079,12 +2079,12 @@ class Test_Transactions(unittest.TestCase):
 
         block.genesis_time = int(time.time())
         block.block_time = 1
-        block.sequance_number = 0
+        block.sequence_number = 0
         block.empty_block_number = 0
         block.max_tx_number = 3
         block.part_amount = 2
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -2138,7 +2138,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
@@ -2166,7 +2166,7 @@ class Test_Transactions(unittest.TestCase):
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         self.assertEqual(Saved_blocks_hash,
@@ -2218,14 +2218,14 @@ class Test_Transactions(unittest.TestCase):
         self.assertIn("1.blockshash_full.json", list_of_files)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
         )
         self.assertIsNot(result_2, False)
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         hash_2 = CalculateHash(
@@ -2293,12 +2293,12 @@ class Test_Transactions(unittest.TestCase):
 
         block.genesis_time = int(time.time())
         block.block_time = 1
-        block.sequance_number = 0
+        block.sequence_number = 0
         block.empty_block_number = 0
         block.max_tx_number = 3
         block.part_amount = 2
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -2352,7 +2352,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
@@ -2380,7 +2380,7 @@ class Test_Transactions(unittest.TestCase):
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         self.assertEqual(Saved_blocks_hash,
@@ -2432,14 +2432,14 @@ class Test_Transactions(unittest.TestCase):
         self.assertIn("1.blockshash_full.json", list_of_files)
 
         result_2 = GetBlockstoBlockchainDB(
-            sequance_number=0,
+            sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
         )
         self.assertIsNot(result_2, False)
 
         Saved_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=(custom_BLOCKS_PATH_from_proof +
-                                         str(block.sequance_number) +
+                                         str(block.sequence_number) +
                                          ".blockshash_full.json"))
 
         hash_2 = CalculateHash(

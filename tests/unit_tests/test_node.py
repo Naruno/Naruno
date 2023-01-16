@@ -315,7 +315,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
@@ -326,7 +326,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             0,
             "hash": None,
             "id":
@@ -338,7 +338,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             0,
             "hash": "None",
             "id":
@@ -358,7 +358,7 @@ class Test_Node(unittest.TestCase):
     def test_GetCandidateBlocks_different_squance_number(self):
         self.maxDiff = None
         the_block = Block("Onur")
-        the_block.sequance_number = 0
+        the_block.sequence_number = 0
         client_1 = self.node_2.clients[1]
         client_2 = self.node_2.clients[0]
         client_2.candidate_block = None
@@ -373,7 +373,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             2,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
@@ -384,7 +384,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
@@ -395,7 +395,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             1,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
@@ -406,7 +406,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             2,
             "hash": None,
             "id":
@@ -418,7 +418,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             0,
             "hash": None,
             "id":
@@ -430,7 +430,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             1,
             "hash": None,
             "id":
@@ -442,7 +442,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             2,
             "hash": "None",
             "id":
@@ -454,7 +454,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             0,
             "hash": "None",
             "id":
@@ -466,7 +466,7 @@ class Test_Node(unittest.TestCase):
             "action":
             "myblock",
             "transaction": [],
-            "sequance_number":
+            "sequence_number":
             1,
             "hash": "None",
             "id":
@@ -487,7 +487,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(result.candidate_blocks, [value_1_old, {'action': 'myblock', 'transaction': [], 'signature': 'self'}])
         self.assertEqual(result.candidate_block_hashes, [value_3_old])
 
-        the_block.sequance_number = 1
+        the_block.sequence_number = 1
         result = GetCandidateBlocks(block=the_block)
         self.assertEqual(result.candidate_blocks, [value_1_old_1, {'action': 'myblock', 'transaction': [], 'signature': 'self'}])
         self.assertEqual(result.candidate_block_hashes, [value_3_old_1])
@@ -1018,7 +1018,7 @@ class Test_Node(unittest.TestCase):
     def test_send_get_transaction(self):
         CleanUp_tests()
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1088,7 +1088,7 @@ class Test_Node(unittest.TestCase):
         the_block = Block("onur")
         the_block.consensus_timer = 0
         the_block.sync = True
-        the_block.sequance_number += 15
+        the_block.sequence_number += 15
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
@@ -1142,7 +1142,7 @@ class Test_Node(unittest.TestCase):
         the_block = Block("onur")
         the_block.consensus_timer = 0
         the_block.sync = True
-        the_block.sequance_number += 15
+        the_block.sequence_number += 15
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
@@ -1204,7 +1204,7 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
         the_block = Block("onuratakanulusoy")
         the_transaction_json = {
-            "sequance_number": 1,
+            "sequence_number": 1,
             "signature":
             "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
             "fromUser":
@@ -1224,7 +1224,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(
             self.node_1.clients[0].candidate_block["transaction"],
             [{
-                "sequance_number": 1,
+                "sequence_number": 1,
                 "signature":
                 "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
                 "fromUser":
@@ -1242,7 +1242,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(
             self.node_2.clients[0].candidate_block["transaction"],
             [{
-                "sequance_number": 1,
+                "sequence_number": 1,
                 "signature":
                 "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
                 "fromUser":
