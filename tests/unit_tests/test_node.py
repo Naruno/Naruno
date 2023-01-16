@@ -1298,6 +1298,10 @@ class Test_Node(unittest.TestCase):
 
 
     def test_send_my_block_get_candidate_block_multiple(self):
+        self.node_1.clients[0].candidate_block = None
+        self.node_1.clients[0].candidate_block_history = []
+        self.node_2.clients[0].candidate_block = None
+        self.node_2.clients[0].candidate_block_history = []        
         self.maxDiff = None
         CleanUp_tests()
 
@@ -1444,6 +1448,19 @@ class Test_Node(unittest.TestCase):
 
 
     def test_send_my_block_get_candidate_block_multiple_with_function_try(self):
+        self.node_1.clients[0].candidate_block = None
+        self.node_1.clients[0].candidate_block_history = []
+        self.node_1.clients[1].candidate_block = None
+        self.node_1.clients[1].candidate_block_history = []  
+        self.node_2.clients[0].candidate_block = None
+        self.node_2.clients[0].candidate_block_history = []
+        self.node_2.clients[1].candidate_block = None
+        self.node_2.clients[1].candidate_block_history = []  
+        self.node_0.clients[0].candidate_block = None
+        self.node_0.clients[0].candidate_block_history = []
+        self.node_0.clients[1].candidate_block = None
+        self.node_0.clients[1].candidate_block_history = []  
+
         self.maxDiff = None
         CleanUp_tests()
 
@@ -1501,21 +1518,23 @@ class Test_Node(unittest.TestCase):
         time.sleep(2)
 
 
-        candidate_blocks = GetCandidateBlocks(block=the_block)
+        nodes = [self.node_2.clients[0], self.node_2.clients[1]]
+
+        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
 
         the_block.sequence_number = 2
-        candidate_blocks = GetCandidateBlocks(block=the_block)
+        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
 
 
         the_block.sequence_number = 1
-        candidate_blocks = GetCandidateBlocks(block=the_block)
+        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 1)
 
 
         the_block.sequence_number = 6
-        candidate_blocks = GetCandidateBlocks(block=the_block)
+        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
 
         CleanUp_tests()
