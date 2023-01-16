@@ -85,7 +85,7 @@ def round_process(
     highest_number = block.sequence_number + len(block.validating_list)
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:           
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])
+            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
             if number > highest_number:
                 with contextlib.suppress(FileNotFoundError):
                     os.remove("db/" + file)

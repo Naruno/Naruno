@@ -31,8 +31,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
     highest_second_number = 0
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])
-            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[2])
+            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
+            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])
 
             if number >= highest_number:
                 if number != highest_number:
@@ -43,11 +43,11 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
                     if high_number >= highest_second_number:
 
                         highest_second_number = high_number
-                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("|")[0]  + "|" + file.split("|")[1] + "|" + str(highest_second_number)
+                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("-")[0]  + "-" + file.split("-")[1] + "-" + str(highest_second_number)
 
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("|")[1])
+            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
             if not number >= highest_number:
                 
                 with contextlib.suppress(FileNotFoundError):
@@ -55,12 +55,12 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
 
 
     if highest_the_TEMP_BLOCK_PATH != the_TEMP_BLOCK_PATH:
-        if os.path.exists(highest_the_TEMP_BLOCK_PATH + "|2"):
-                        highest_the_TEMP_BLOCK_PATH +=  "|2"
-        elif os.path.exists(highest_the_TEMP_BLOCK_PATH + "|1"):
-                        highest_the_TEMP_BLOCK_PATH += "|1"
+        if os.path.exists(highest_the_TEMP_BLOCK_PATH + "-2"):
+                        highest_the_TEMP_BLOCK_PATH +=  "-2"
+        elif os.path.exists(highest_the_TEMP_BLOCK_PATH + "-1"):
+                        highest_the_TEMP_BLOCK_PATH += "-1"
         else:
-                        highest_the_TEMP_BLOCK_PATH +=  "|0"
+                        highest_the_TEMP_BLOCK_PATH +=  "-0"
 
 
     result_normal = Block("non")
