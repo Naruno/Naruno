@@ -1422,7 +1422,86 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block_history[4]["sequence_number"],
                             6)  
         self.assertEqual(self.node_2.clients[0].candidate_block_history[4]["sequence_number"],
-                            6) 
+                            6)
+
+        CleanUp_tests()
+
+
+
+    def test_send_my_block_get_candidate_block_multiple_with_function_try(self):
+        self.maxDiff = None
+        CleanUp_tests()
+
+        the_block = Block("onuratakanulusoy")
+        self.node_1.send_my_block(the_block)
+        self.node_0.send_my_block(the_block)
+        time.sleep(2)
+
+
+
+        the_block.sequence_number = 1
+        self.node_1.send_my_block(the_block)
+        self.node_0.send_my_block(the_block)
+        time.sleep(2)
+
+    
+
+
+
+        the_block.sequence_number = 2
+        self.node_1.send_my_block(the_block)
+        self.node_0.send_my_block(the_block)
+        time.sleep(2)
+
+                               
+
+
+        the_block.sequence_number = 3
+        self.node_1.send_my_block(the_block)
+        self.node_0.send_my_block(the_block)
+        time.sleep(2)
+
+        the_block.sequence_number = 4
+        self.node_1.send_my_block(the_block)
+        self.node_0.send_my_block(the_block)
+        time.sleep(2)
+
+
+        the_block.sequence_number = 5
+        self.node_1.send_my_block(the_block)
+        self.node_0.send_my_block(the_block)
+        time.sleep(2)
+                                
+
+        the_block.sequence_number = 6
+        self.node_1.send_my_block(the_block)
+        self.node_0.send_my_block(the_block)
+        time.sleep(2)
+
+
+
+        the_block.sequence_number = 7
+        self.node_1.send_my_block(the_block)
+        self.node_0.send_my_block(the_block)
+        time.sleep(2)
+
+
+        candidate_blocks = GetCandidateBlocks(block=the_block)
+        self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
+
+        the_block.sequence_number = 2
+        candidate_blocks = GetCandidateBlocks(block=the_block)
+        self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
+
+
+        the_block.sequence_number = 1
+        candidate_blocks = GetCandidateBlocks(block=the_block)
+        self.assertEqual(len(candidate_blocks.candidate_blocks), 1)
+
+
+        the_block.sequence_number = 6
+        candidate_blocks = GetCandidateBlocks(block=the_block)
+        self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
 
         CleanUp_tests()
 
