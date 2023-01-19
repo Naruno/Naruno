@@ -37,18 +37,20 @@ class SettingsBox(MDGridLayout):
 
     def show_dialog(self):
         button_ok = MDRaisedButton(
-            text='OK',
+            text="OK",
             font_size=16,
             on_release=self.callback,
         )
         button_cancel = MDFlatButton(
-            text='CANCEL',
+            text="CANCEL",
             font_size=16,
             on_release=self.callback,
         )
         self.alert = SweetAlert()
         self.alert.fire(
-            'The app will restart.', buttons=[button_ok, button_cancel], type="info",
+            "The app will restart.",
+            buttons=[button_ok, button_cancel],
+            type="info",
         )
 
     def callback(self, instance_button):
