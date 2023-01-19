@@ -14,51 +14,36 @@ import unittest
 from unittest import mock
 
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.config import (
-    CONNECTED_NODES_PATH,
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH,
-    LOADING_BLOCKSHASH_PATH,
-    MY_TRANSACTION_EXPORT_PATH,
-    PENDING_TRANSACTIONS_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH,
-    TEMP_BLOCKSHASH_PATH,
-    UNL_NODES_PATH,
-)
+from decentra_network.config import (CONNECTED_NODES_PATH,
+                                     LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     LOADING_BLOCKSHASH_PART_PATH,
+                                     LOADING_BLOCKSHASH_PATH,
+                                     MY_TRANSACTION_EXPORT_PATH,
+                                     PENDING_TRANSACTIONS_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PART_PATH,
+                                     TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
 from decentra_network.lib.backup.decentra_export import decentra_export
 from decentra_network.lib.backup.decentra_import import decentra_import
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.export import export_the_transactions
-from decentra_network.lib.mix.mixlib import (
-    banner_maker,
-    ended_text_centered,
-    menu_maker,
-    menu_seperator,
-    menu_space,
-    menu_title,
-    printcentertext,
-    question_maker,
-    quit_menu_maker,
-    starting_text_centered,
-)
+from decentra_network.lib.mix.mixlib import (banner_maker, ended_text_centered,
+                                             menu_maker, menu_seperator,
+                                             menu_space, menu_title,
+                                             printcentertext, question_maker,
+                                             quit_menu_maker,
+                                             starting_text_centered)
 from decentra_network.lib.notification import notification
-from decentra_network.lib.performance_analyzers.heartbeat_db import (
-    heartbeat_generic_db_analyzer,
-)
+from decentra_network.lib.performance_analyzers.heartbeat_db import \
+    heartbeat_generic_db_analyzer
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (
-    d_mode_settings,
-    mt_settings,
-    dark_mode_settings,
-    save_settings,
-    t_mode_settings,
-    the_settings,
-)
+from decentra_network.lib.settings_system import (d_mode_settings,
+                                                  dark_mode_settings,
+                                                  mt_settings, save_settings,
+                                                  t_mode_settings,
+                                                  the_settings)
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl

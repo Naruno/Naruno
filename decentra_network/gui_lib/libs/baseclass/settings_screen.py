@@ -1,17 +1,17 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import time
+
+from kivy.app import App
+from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
-
-from decentra_network.lib.settings_system import d_mode_settings
-from decentra_network.lib.settings_system import mt_settings
-from decentra_network.lib.settings_system import dark_mode_settings
-from decentra_network.lib.settings_system import t_mode_settings
-from decentra_network.lib.settings_system import the_settings
-from kivy.app import App
 from kivymd_extensions.sweetalert import SweetAlert
-from kivymd.uix.button import MDRaisedButton, MDFlatButton
+
+from decentra_network.lib.settings_system import (d_mode_settings,
+                                                  dark_mode_settings,
+                                                  mt_settings, t_mode_settings,
+                                                  the_settings)
 
 
 class SettingsScreen(MDScreen):
