@@ -61,13 +61,13 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_start_node_server_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}Poppins-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.start_node_server_func,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}Poppins-Bold",
                     ),
                 ],
             )
@@ -138,13 +138,13 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_connect_a_node_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}Poppins-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.connect_a_node_func,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}Poppins-Bold",
                     ),
                 ],
             )
@@ -197,13 +197,13 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_add_unl_node_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}Poppins-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.add_unl_node_func,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}Poppins-Bold",
                     ),
                 ],
             )

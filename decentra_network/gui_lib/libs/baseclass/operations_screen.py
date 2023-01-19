@@ -49,13 +49,13 @@ class OperationBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_send_coin_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}Poppins-Bold",
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.sent_the_coins,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}RobotoCondensed-Bold",
+                        font_name=f"{self.FONT_PATH}Poppins-Bold",
                     ),
                 ],
             )
