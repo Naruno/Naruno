@@ -71,7 +71,8 @@ class GUI(MDApp):
         """
 
         self.theme_cls.primary_palette = "Green"
-        FONT_PATH = os.path.join(os.environ['DECENTRA_ROOT'],"gui_lib", "fonts")
+        FONT_PATH = os.path.join(
+            os.environ['DECENTRA_ROOT'], "gui_lib", "fonts")
 
         self.theme_cls.font_styles.update({
             "H1": [os.path.join(FONT_PATH, "Poppins-Light"), 96, False, -1.5],
@@ -100,8 +101,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument(
