@@ -744,7 +744,7 @@ class Test_Consensus(unittest.TestCase):
             pass_sync=True,
         )
         new_gap_block = copy.copy(block.empty_block_number)
-        #self.assertEqual(gap_block, new_gap_block)
+        # self.assertEqual(gap_block, new_gap_block)
         time.sleep(3)
         expected_new_time = true_time(block, return_result=True)
         self.assertEqual(expected_new_time, True)
@@ -1090,8 +1090,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1143,13 +1143,13 @@ class Test_Consensus(unittest.TestCase):
 
         print("expected_round_1_true_time", expected_round_1_true_time)
         print("expected_new_time", expected_new_time)
-        #self.assertEqual(
+        # self.assertEqual(
         #    expected_new_time,
         #    block.start_time +
         #    (block.block_time *
         #     (block.sequence_number + block.empty_block_number -
         #      block.hard_block_number)),
-        #)
+        # )
         self.assertTrue(result)
 
         result_2 = GetBlockstoBlockchainDB(
@@ -1250,8 +1250,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1974,8 +1974,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -2052,8 +2051,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -2318,7 +2316,6 @@ class Test_Consensus(unittest.TestCase):
             expected_result,
         )
 
-
     def test_process_candidate_blocks_hashes_change_self_hashes(self):
         the_transaction_json = {
             "sequence_number": 1,
@@ -2379,8 +2376,6 @@ class Test_Consensus(unittest.TestCase):
                                             unl_nodes)["hash"],
             expected_result,
         )
-
-
 
     def test_validate_main(self):
         block = Block("Onur")
