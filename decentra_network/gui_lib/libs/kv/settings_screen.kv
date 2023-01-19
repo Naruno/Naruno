@@ -19,8 +19,7 @@
 
 
     canvas.before:
-        Color:
-            rgba: gch("#ffffff")
+
         Rectangle:
             size: self.size
             pos: self.pos
@@ -63,3 +62,15 @@
             MDSwitch:
                 active: root.mt_first_status
                 on_active: root.MT_Status_Changing(self, self.active)
+
+
+        DecentraLabel:
+            text: "DARK MODE"
+            halign: "center"
+            font_style: "Button"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.dark_mode_first_status
+                on_active: root.DARK_MODE_Status_Changing(self, self.active)

@@ -18,6 +18,7 @@ from kivymd.app import MDApp
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.safety import safety_check
+from decentra_network.lib.settings_system import the_settings
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
@@ -69,8 +70,10 @@ class GUI(MDApp):
         """
         Some configurations.
         """
+        value = the_settings()["dark_mode"]
+        self.theme_cls.theme_style = "Dark" if value else "Light"
+        self.theme_cls.primary_palette = "Green"  # "Purple", "Red"
 
-        self.theme_cls.primary_palette = "Green"
         FONT_PATH = os.path.join(os.environ["DECENTRA_ROOT"], "gui_lib",
                                  "fonts")
 
@@ -107,6 +110,11 @@ class GUI(MDApp):
         })
 
         return Builder.load_string(KV)
+
+    def restart(self):
+        self.root.clear_widgets()
+        self.stop()
+        return GUI().run()
 
 
 def arguments():
