@@ -45,11 +45,11 @@ flowchart LR
         end
     end
 
-    send_1 -- data --> send_d
-    get_d -- data --> get_1
+    send_1 -- data1 --> send_d
+    get_d -- data2 --> get_1
 
-    send_2 -- data --> send_d
-    get_d -- data --> get_2
+    send_2 -- data1 --> send_d
+    get_d -- data2 --> get_2
 
 end
 
