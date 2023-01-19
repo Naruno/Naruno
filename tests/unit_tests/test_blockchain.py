@@ -58,7 +58,7 @@ class Test_Blockchain(unittest.TestCase):
         block = Block("onur")
         block.block_time = 3
         first_time = block.start_time
-        time.sleep(2)
+        time.sleep(1)
         block.reset_the_block()
         second_time = block.start_time
         self.assertEqual(first_time, second_time)
