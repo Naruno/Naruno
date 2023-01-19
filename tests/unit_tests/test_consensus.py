@@ -745,7 +745,7 @@ class Test_Consensus(unittest.TestCase):
         )
         new_gap_block = copy.copy(block.empty_block_number)
         self.assertEqual(gap_block, new_gap_block)
-        time.sleep(1)
+        time.sleep(2)
         expected_new_time = true_time(block, return_result=True)
         self.assertEqual(expected_new_time, True)
 
