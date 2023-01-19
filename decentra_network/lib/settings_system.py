@@ -33,6 +33,7 @@ def create_and_save_the_settings(test_mode_settings=False,
         "wallet": 0,
         "save_blockshash": True,
         "mute_notifications": False,
+        "dark_mode": True,
     }
 
     save_settings(temp_json)
@@ -77,6 +78,17 @@ def mt_settings(new_value):
     settings["mute_notifications"] = new_value
     save_settings(settings)
 
+def dark_mode_settings(new_value):
+    """
+    Changes the mute_notifications setting.
+
+    Inputs:
+      * new_value: New value for the mute_notifications
+    """
+
+    settings = the_settings()
+    settings["dark_mode"] = new_value
+    save_settings(settings)
 
 def change_wallet(new_value):
     """
