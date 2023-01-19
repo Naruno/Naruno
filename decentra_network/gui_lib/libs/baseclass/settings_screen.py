@@ -12,6 +12,8 @@ from decentra_network.lib.settings_system import the_settings
 from kivy.app import App
 from kivymd_extensions.sweetalert import SweetAlert
 from kivymd.uix.button import MDRaisedButton, MDFlatButton
+
+
 class SettingsScreen(MDScreen):
     pass
 
@@ -46,7 +48,7 @@ class SettingsBox(MDGridLayout):
         )
         self.alert = SweetAlert()
         self.alert.fire(
-            'The app will restart.', buttons=[button_ok, button_cancel],type="info",
+            'The app will restart.', buttons=[button_ok, button_cancel], type="info",
         )
 
     def callback(self, instance_button):
@@ -57,9 +59,8 @@ class SettingsBox(MDGridLayout):
 
         else:
             self.alert.dismiss()
-        
 
     def DARK_MODE_Status_Changing(self, instance, value):
-        
+
         dark_mode_settings(value)
-        self.show_dialog()  
+        self.show_dialog()

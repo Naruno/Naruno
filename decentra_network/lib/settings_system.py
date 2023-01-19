@@ -78,6 +78,7 @@ def mt_settings(new_value):
     settings["mute_notifications"] = new_value
     save_settings(settings)
 
+
 def dark_mode_settings(new_value):
     """
     Changes the mute_notifications setting.
@@ -89,6 +90,7 @@ def dark_mode_settings(new_value):
     settings = the_settings()
     settings["dark_mode"] = new_value
     save_settings(settings)
+
 
 def change_wallet(new_value):
     """

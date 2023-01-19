@@ -8,7 +8,6 @@ import os
 import sys
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import argparse
 
@@ -35,9 +34,6 @@ KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
 for kv_file in os.listdir(KV_DIR):
     with open(os.path.join(KV_DIR, kv_file), encoding="utf-8") as kv:
         Builder.load_string(kv.read())
-
-
-
 
 
 KV = """
@@ -122,14 +118,14 @@ class GUI(MDApp):
         self.stop()
         return GUI().run()
 
+
 def arguments():
     """
     This function parses the arguments and makes the directions.
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument(
