@@ -705,7 +705,7 @@ class Test_Consensus(unittest.TestCase):
         block.hash = "new_hash"
 
         block.genesis_time = int(time.time())
-        block.block_time = 1
+        block.block_time = 2
         block.sequence_number = 0
         block.empty_block_number = 0
         block.max_tx_number = 3
@@ -755,7 +755,7 @@ class Test_Consensus(unittest.TestCase):
             (block.sequence_number + block.empty_block_number) *
             block.block_time))
         self.assertEqual(expected_round_1_true_time,
-                         expected_true_time + block.round_2_time - 1)
+                         expected_true_time + block.round_2_time - 2)
 
         self.assertTrue(result)
 
