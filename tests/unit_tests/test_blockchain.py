@@ -58,7 +58,7 @@ class Test_Blockchain(unittest.TestCase):
         block = Block("onur")
         block.block_time = 3
         first_time = block.start_time
-        time.sleep(2)
+        time.sleep(1)
         block.reset_the_block()
         second_time = block.start_time
         self.assertEqual(first_time, second_time)
@@ -305,7 +305,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block.__dict__, block_2.__dict__)
 
-
     def test_SaveBlock_GetBlock_olds_specific_situation_1(self):
         self.maxDiff = None
         block = Block("onur")
@@ -314,14 +313,12 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_1 = True
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_1_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_1_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_1_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -349,14 +346,12 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_1 = False
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_2_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_2_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_2_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -376,7 +371,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
     def test_SaveBlock_GetBlock_olds_specific_situation_3(self):
         self.maxDiff = None
         block = Block("onur")
@@ -387,14 +381,12 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_2 = False
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_3_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_3_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_3_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_3_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_3_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_3_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_3_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_3_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -424,14 +416,12 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_2 = False
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_4_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -451,7 +441,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
     def test_SaveBlock_GetBlock_olds_specific_situation_5(self):
         self.maxDiff = None
         block = Block("onur")
@@ -461,14 +450,12 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_1 = False
         block_2.round_2 = False
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_5_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_5_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_5_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_5_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_5_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_5_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_5_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_5_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         print("saave1")
         SaveBlock(
             block,
@@ -491,7 +478,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
     def test_SaveBlock_GetBlock_olds_specific_situation_6(self):
         self.maxDiff = None
         block = Block("onur")
@@ -502,21 +488,19 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_2 = False
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_4_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_4_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             block_2,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )        
+        )
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -542,21 +526,19 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_2 = False
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_7_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_7_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_7_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_7_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_7_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_7_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_7_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_7_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             block_2,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )        
+        )
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -570,7 +552,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
     def test_SaveBlock_GetBlock_olds_specific_situation_8(self):
         self.maxDiff = None
         block = Block("onur")
@@ -583,34 +564,31 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_2 = False
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_8_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_8_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_8_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             block_2,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )        
+        )
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            delete_old_validating_list=True
+            delete_old_validating_list=True,
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
-
 
     def test_SaveBlock_GetBlock_olds_specific_situation_9(self):
         self.maxDiff = None
@@ -620,21 +598,19 @@ class Test_Blockchain(unittest.TestCase):
         block_2 = Block("onur")
         block_2.sequence_number = 1323
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_9_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json"
         )
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_9_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
         SaveBlock(
             block_2,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )        
+        )
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -643,13 +619,22 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        self.assertEqual(os.path.exists("db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json-1322-0-0"), True)
+        self.assertEqual(
+            os.path.exists(
+                "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json-1322-0-0"
+            ),
+            True,
+        )
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
-        self.assertEqual(os.path.exists("db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json-1322-0-0"), False)
+        self.assertEqual(
+            os.path.exists(
+                "db/test_SaveBlock_GetBlock_olds_specific_situation_9_TEMP_BLOCK_PATH.json-1322-0-0"
+            ),
+            False,
+        )
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
-
 
     def test_SaveBlock_GetBlock_olds_specific_situation_10(self):
         self.maxDiff = None
@@ -659,15 +644,13 @@ class Test_Blockchain(unittest.TestCase):
         block_2 = Block("onur")
         block_2.sequence_number = 1323
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_10_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_10_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_10_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_10_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_10_TEMP_BLOCK_PATH.json"
         )
-       
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_10_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_10_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_10_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -682,17 +665,12 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            just_save_normal=True
-        ) 
+            just_save_normal=True,
+        )
 
-        
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
-
-
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
-
-
 
     def test_SaveBlock_GetBlock_olds_specific_situation_11(self):
         self.maxDiff = None
@@ -703,15 +681,13 @@ class Test_Blockchain(unittest.TestCase):
         block_2.sequence_number = 1322
         block_2.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_11_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_11_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_11_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_11_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_11_TEMP_BLOCK_PATH.json"
         )
-       
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_11_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_11_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_11_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -726,16 +702,12 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            just_save_normal=True
-        ) 
+            just_save_normal=True,
+        )
 
-        
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
-
-
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
-
 
     def test_SaveBlock_GetBlock_olds_specific_situation_12(self):
         self.maxDiff = None
@@ -744,17 +716,14 @@ class Test_Blockchain(unittest.TestCase):
         block.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
         block_2 = Block("onur")
         block_2.sequence_number = 1322
-        
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_12_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_12_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_12_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_12_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_12_TEMP_BLOCK_PATH.json"
         )
-       
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_12_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_12_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_12_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -769,16 +738,13 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            just_save_normal=True
-        ) 
+            just_save_normal=True,
+        )
 
-        
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, get_normal_block=True)
-
-
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                           get_normal_block=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
-
 
     def test_SaveBlock_GetBlock_olds_specific_situation_13(self):
         self.maxDiff = None
@@ -787,17 +753,14 @@ class Test_Blockchain(unittest.TestCase):
         block.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
         block_2 = Block("onur")
         block_2.sequence_number = 1322
-        
 
-
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_13_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_13_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_13_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_specific_situation_13_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_specific_situation_13_TEMP_BLOCK_PATH.json"
         )
-       
+        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_13_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_13_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_specific_situation_13_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -812,16 +775,13 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            just_save_normal=True
-        ) 
+            just_save_normal=True,
+        )
 
-        
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, get_normal_block=False)
-
-
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                           get_normal_block=False)
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
-
 
     def test_SaveBlock_GetBlock_olds_secondly(self):
         self.maxDiff = None
@@ -834,13 +794,14 @@ class Test_Blockchain(unittest.TestCase):
         block_3.round_1 = True
         block_3.round_2 = True
 
-        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_BLOCK_PATH.json"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCK_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_BLOCK_PATH.json")
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_ACCOUNTS_PATH.json")
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_BLOCKSHASH_PATH.json")
-        custom_TEMP_BLOCKSHASH_PART_PATH = (
-            "db/test_SaveBlock_GetBlock_olds_secondly_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
+            "db/test_SaveBlock_GetBlock_olds_secondly_TEMP_BLOCKSHASH_PATH.json"
         )
+        custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_olds_secondly_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
 
         SaveBlock(
             block,
@@ -858,22 +819,28 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-
-
-
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
-
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(0)))
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(1)))
+        self.assertFalse(
+            os.path.exists(custom_TEMP_BLOCK_PATH + "-" +
+                           str(block.sequence_number) + "-" +
+                           str(len(block.validating_list)) + "-" + str(0)))
+        self.assertTrue(
+            os.path.exists(custom_TEMP_BLOCK_PATH + "-" +
+                           str(block.sequence_number) + "-" +
+                           str(len(block.validating_list)) + "-" + str(1)))
         self.assertEqual(block_2.__dict__, block_result.__dict__)
 
-
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(0)))
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(1)))
+        self.assertFalse(
+            os.path.exists(custom_TEMP_BLOCK_PATH + "-" +
+                           str(block.sequence_number) + "-" +
+                           str(len(block.validating_list)) + "-" + str(0)))
+        self.assertTrue(
+            os.path.exists(custom_TEMP_BLOCK_PATH + "-" +
+                           str(block.sequence_number) + "-" +
+                           str(len(block.validating_list)) + "-" + str(1)))
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_2.__dict__, block_result.__dict__)
-
 
         SaveBlock(
             block_3,
@@ -882,9 +849,18 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(0)))
-        self.assertFalse(os.path.exists(custom_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(1)))        
-        self.assertTrue(os.path.exists(custom_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(2)))  
+        self.assertFalse(
+            os.path.exists(custom_TEMP_BLOCK_PATH + "-" +
+                           str(block.sequence_number) + "-" +
+                           str(len(block.validating_list)) + "-" + str(0)))
+        self.assertFalse(
+            os.path.exists(custom_TEMP_BLOCK_PATH + "-" +
+                           str(block.sequence_number) + "-" +
+                           str(len(block.validating_list)) + "-" + str(1)))
+        self.assertTrue(
+            os.path.exists(custom_TEMP_BLOCK_PATH + "-" +
+                           str(block.sequence_number) + "-" +
+                           str(len(block.validating_list)) + "-" + str(2)))
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_3.__dict__, block_result.__dict__)
 
@@ -898,7 +874,6 @@ class Test_Blockchain(unittest.TestCase):
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_2.__dict__, block_result.__dict__)
 
-
         SaveBlock(
             block_3,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -908,7 +883,6 @@ class Test_Blockchain(unittest.TestCase):
         )
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_3.__dict__, block_result.__dict__)
-
 
     def test_SaveBlockshash(self):
 
@@ -1238,7 +1212,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[2].amount, 1000)
 
-
     def test_blockchain_sync_empty_blocks_validated(self):
 
         block = Block("onur")
@@ -1250,7 +1223,6 @@ class Test_Blockchain(unittest.TestCase):
         second_block = block.dump_json()
 
         self.assertEqual(first_block, second_block)
-
 
     def test_blockchain_sync_empty_blocks_not_validated(self):
 
@@ -1265,8 +1237,8 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertNotEqual(first_block, second_block)
 
-
-    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_equal(self):
+    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_equal(
+            self):
 
         block = Block("onur")
         block.sequence_number = 1
@@ -1279,11 +1251,12 @@ class Test_Blockchain(unittest.TestCase):
         block.sync_empty_blocks()
         second_block = copy.copy(block)
 
-        self.assertEqual(first_block.empty_block_number, second_block.empty_block_number)
+        self.assertEqual(first_block.empty_block_number,
+                         second_block.empty_block_number)
         self.assertEqual(first_block.start_time + 2, second_block.start_time)
 
-
-    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_not_equal(self):
+    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_not_equal(
+            self):
 
         block = Block("onur")
         block.sequence_number = 1
@@ -1296,8 +1269,15 @@ class Test_Blockchain(unittest.TestCase):
         block.sync_empty_blocks()
         second_block = copy.copy(block)
 
-        self.assertEqual(first_block.empty_block_number +1, second_block.empty_block_number)
-        self.assertEqual(first_block.start_time + (first_block.block_time * (first_block.empty_block_number + first_block.sequence_number)) + first_block.block_time, second_block.start_time)
+        self.assertEqual(first_block.empty_block_number + 1,
+                         second_block.empty_block_number)
+        self.assertEqual(
+            first_block.start_time +
+            (first_block.block_time *
+             (first_block.empty_block_number + first_block.sequence_number)) +
+            first_block.block_time,
+            second_block.start_time,
+        )
 
     def test_blockchain_sync_empty_blocks_round_2_times(self):
 
@@ -1311,7 +1291,8 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertNotEqual(first_round_2_time, second_round_2_time)
         self.assertEqual(first_round_2_time, None)
-        self.assertEqual(second_round_2_time, block.start_time + block.round_1_time)
+        self.assertEqual(second_round_2_time,
+                         block.start_time + block.round_1_time)
 
 
 unittest.main(exit=False)
