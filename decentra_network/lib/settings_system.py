@@ -33,7 +33,7 @@ def create_and_save_the_settings(test_mode_settings=False,
         "wallet": 0,
         "save_blockshash": True,
         "mute_notifications": False,
-        "dark_mode": False,
+        "dark_mode": True,
     }
 
     save_settings(temp_json)
