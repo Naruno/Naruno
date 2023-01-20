@@ -12,6 +12,7 @@ from decentra_network.wallet.ellipticcurve.utils.der import parse
 
 
 class Signature:
+
     def __init__(self, r, s, recoveryId=None):
         self.r = r
         self.s = s

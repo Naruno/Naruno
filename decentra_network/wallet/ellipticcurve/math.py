@@ -4,6 +4,7 @@ from decentra_network.wallet.ellipticcurve.point import Point
 
 
 class Math:
+
     @classmethod
     def multiply(cls, p, n, N, A, P):
         """
@@ -17,8 +18,7 @@ class Math:
         :return: Point that represents the sum of First and Second Point
         """
         return cls._fromJacobian(
-            cls._jacobianMultiply(cls._toJacobian(p), n, N, A, P), P
-        )
+            cls._jacobianMultiply(cls._toJacobian(p), n, N, A, P), P)
 
     @classmethod
     def add(cls, p, q, A, P):
@@ -151,10 +151,12 @@ class Math:
             return p
 
         if (n % 2) == 0:
-            return cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P)
+            return cls._jacobianDouble(
+                cls._jacobianMultiply(p, n // 2, N, A, P), A, P)
 
         return cls._jacobianAdd(
-            cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A, P),
+            cls._jacobianDouble(cls._jacobianMultiply(p, n // 2, N, A, P), A,
+                                P),
             p,
             A,
             P,

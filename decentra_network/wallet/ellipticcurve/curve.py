@@ -9,6 +9,7 @@ from decentra_network.wallet.ellipticcurve.point import Point
 
 
 class CurveFp:
+
     def __init__(self, A, B, P, N, Gx, Gy, name, oid, nistName=None):
         self.A = A
         self.B = B

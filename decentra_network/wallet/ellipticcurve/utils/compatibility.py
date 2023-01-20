@@ -7,7 +7,7 @@ from sys import version_info as pyVersion
 if pyVersion.major == 3:
     # py3 constants and conversion functions
 
-    stringTypes = (str,)
+    stringTypes = (str, )
     intTypes = (int, float)
 
     def toString(string, encoding="utf-8"):
