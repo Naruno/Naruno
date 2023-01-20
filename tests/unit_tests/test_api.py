@@ -62,7 +62,7 @@ from decentra_network.wallet.save_wallet_list import \
     save_wallet_list
 from decentra_network.wallet.wallet_create import wallet_create
 from decentra_network.wallet.wallet_import import (Address,
-                                                                 wallet_import)
+                                                   wallet_import)
 from decentra_network.wallet.print_wallets import print_wallets
 
 decentra_network.api.main.custom_block = Block("Onur")
@@ -907,8 +907,8 @@ class Test_API(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),

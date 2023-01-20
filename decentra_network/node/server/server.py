@@ -241,8 +241,8 @@ class server(Thread):
         if "timestamp" not in data:
             logger.debug("No timestamp")
             return False
-        #the_control = time.time() - float(data["timestamp"])
-        #if the_control > self.time_control:
+        # the_control = time.time() - float(data["timestamp"])
+        # if the_control > self.time_control:
         #    logger.debug("Time control is not true")
         #    return False
         # remove sign from data
@@ -420,19 +420,21 @@ class server(Thread):
             if len(node.candidate_block_history) >= 5:
                 node.candidate_block_history.pop(0)
 
-            node.candidate_block_history.append(copy.copy(node.candidate_block))
+            node.candidate_block_history.append(
+                copy.copy(node.candidate_block))
 
         node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node: client):
         if node.candidate_block_hash is None:
             node.candidate_block_hash = data
-            return        
+            return
         if data["sequence_number"] > node.candidate_block_hash["sequence_number"]:
             if len(node.candidate_block_hash_history) >= 5:
                 node.candidate_block_hash_history.pop(0)
 
-            node.candidate_block_hash_history.append(copy.copy(node.candidate_block_hash))
+            node.candidate_block_hash_history.append(
+                copy.copy(node.candidate_block_hash))
 
         data["sender"] = node.id
         node.candidate_block_hash = data
@@ -560,7 +562,8 @@ class server(Thread):
                     consensus_trigger
                 from decentra_network.lib.perpetualtimer import perpetualTimer
 
-                system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, get_normal_block=True)
+                system = GetBlock(
+                    custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, get_normal_block=True)
 
                 ChangeTransactionFee(system)
 

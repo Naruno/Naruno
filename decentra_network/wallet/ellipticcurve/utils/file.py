@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-
 class File:
     @classmethod
     def read(cls, path, mode="r"):

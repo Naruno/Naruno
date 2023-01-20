@@ -21,7 +21,7 @@ from decentra_network.lib.encryption import decrypt
 from decentra_network.lib.encryption import encrypt
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet 
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
 from decentra_network.wallet.save_wallet_list import save_to_wallet_list
 from decentra_network.wallet.wallet_create import wallet_create
 
@@ -99,7 +99,8 @@ def wallet_import_all(mode, password=None):
 
 def Address(publickey):
     the_public_key = "".join(
-        [l.strip() for l in publickey.splitlines() if l and not l.startswith("-----")]
+        [l.strip() for l in publickey.splitlines()
+         if l and not l.startswith("-----")]
     )
     return sha256(
         sha256(the_public_key.encode("utf-8")).hexdigest().encode("utf-8")

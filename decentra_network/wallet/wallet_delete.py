@@ -11,7 +11,7 @@ import os
 from decentra_network.config import *
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet 
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
 
 logger = get_logger("WALLET")
 

@@ -7,7 +7,7 @@
 
 
 from decentra_network.wallet.wallet_import import wallet_import
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet 
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
 
 from decentra_network.lib.mix.mixlib import menu_maker
 from decentra_network.lib.settings_system import the_settings

@@ -11,7 +11,7 @@ from hashlib import sha256
 
 from decentra_network.config import *
 from decentra_network.lib.config_system import get_config
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet 
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
 
 
 def save_to_wallet_list(publicKey, privateKey, password):
