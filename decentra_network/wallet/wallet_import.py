@@ -4,18 +4,20 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import json
 import os
-from base64 import b64decode, b64encode
-from binascii import hexlify, unhexlify
+from base64 import b64decode
+from base64 import b64encode
+from binascii import hexlify
+from binascii import unhexlify
 from hashlib import sha256
 from random import SystemRandom
 from sys import version_info as pyVersion
 
 from decentra_network.config import *
 from decentra_network.lib.config_system import get_config
-from decentra_network.lib.encryption import decrypt, encrypt
+from decentra_network.lib.encryption import decrypt
+from decentra_network.lib.encryption import encrypt
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 from decentra_network.wallet.get_saved_wallet import get_saved_wallet

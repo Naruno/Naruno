@@ -9,12 +9,13 @@ import shutil
 
 from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash,
-                                                           SaveBlockshash_part)
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash
+from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
+from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import BLOCKS_PATH, TEMP_ACCOUNTS_PATH
+from decentra_network.config import BLOCKS_PATH
+from decentra_network.config import TEMP_ACCOUNTS_PATH
 from decentra_network.wallet.wallet_import import wallet_import
 
 

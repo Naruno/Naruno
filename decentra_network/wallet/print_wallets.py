@@ -4,8 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-
 from decentra_network.lib.mix.mixlib import menu_maker
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.wallet.get_saved_wallet import get_saved_wallet

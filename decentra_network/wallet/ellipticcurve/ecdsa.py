@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 from hashlib import sha256
 
 from decentra_network.wallet.ellipticcurve.math import Math

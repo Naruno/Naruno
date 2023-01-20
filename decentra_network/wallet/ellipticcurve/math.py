@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 from decentra_network.wallet.ellipticcurve.point import Point
 
 

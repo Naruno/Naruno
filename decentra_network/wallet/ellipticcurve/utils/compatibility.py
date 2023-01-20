@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
-from binascii import hexlify, unhexlify
+from binascii import hexlify
+from binascii import unhexlify
 from sys import version_info as pyVersion
 
 if pyVersion.major == 3:
