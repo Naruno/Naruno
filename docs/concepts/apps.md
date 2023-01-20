@@ -22,19 +22,19 @@ Example you have a messaging application and you want to send a message to anoth
 In above example the user that receiving the message is have a function with socket for getting the messages. For integration with Decentra Network user should changing the get function with our get function. We give the messages to the user.
 
 ```mermaid
-flowchart TB      
+flowchart TB
     subgraph Applications Functions
         subgraph user_1[User 1]
             subgraph APP_1
                 send_1[Send Functions]
                 get_1[Get Functions]
             end
-    
+
 
             subgraph dn1[Decentra Network 1]
-                send_d1[Send Functions]  
+                send_d1[Send Functions]
                 get_d1[Get Functions]
-              
+
             end
         end
 
@@ -45,12 +45,12 @@ flowchart TB
             subgraph dn2[Decentra Network 2]
                 send_d2[Send Functions]
                 get_d2[Get Functions]
-            end            
+            end
             subgraph APP_2
                 send_2[Send Functions]
                 get_2[Get Functions]
             end
-    
+
         end
 
         send_1 -- data_1 --> send_d1
@@ -58,11 +58,11 @@ flowchart TB
 
         send_2 -- data_2 --> send_d2
         get_d2 -- data_1 --> get_2
-        
+
 
         user_1 --- Decentra_Network[Decentra Network] --- user_2
 
-    
+
     end
 
 
