@@ -11,6 +11,5 @@ def getPemContent(pem, template):
 
 
 def createPem(content, template):
-    lines = [content[start: start + 64]
-             for start in range(0, len(content), 64)]
+    lines = [content[start : start + 64] for start in range(0, len(content), 64)]
     return template.format(content="\n".join(lines))

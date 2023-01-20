@@ -11,11 +11,9 @@ from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.wallet.wallet_import import Address
 
 
-def GetBalance(user,
-               account_list=None,
-               dont_convert=False,
-               block=None,
-               custom_TEMP_BLOCK_PATH=None):
+def GetBalance(
+    user, account_list=None, dont_convert=False, block=None, custom_TEMP_BLOCK_PATH=None
+):
     """
     Returns the users balance.
     """
@@ -30,8 +28,7 @@ def GetBalance(user,
     address = Address(user) if not dont_convert else user
 
     the_account_list = GetAccounts() if account_list is None else account_list
-    the_account_list.execute(
-        f"SELECT * FROM account_list WHERE address = '{address}'")
+    the_account_list.execute(f"SELECT * FROM account_list WHERE address = '{address}'")
     for row in the_account_list.fetchall():
         balance += row[2]
     return balance

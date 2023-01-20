@@ -6,16 +6,19 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.lib.log import get_logger
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from decentra_network.transactions.my_transactions.sended_transaction import \
-    SendedTransaction
-from decentra_network.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
-from decentra_network.wallet.wallet_import import \
-    wallet_import_all
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
+from decentra_network.transactions.my_transactions.sended_transaction import (
+    SendedTransaction,
+)
+from decentra_network.transactions.my_transactions.validate_transaction import (
+    ValidateTransaction,
+)
+from decentra_network.wallet.wallet_import import wallet_import_all
 
 logger = get_logger("CONSENSUS")
 
@@ -35,12 +38,13 @@ def transactions_main(block: Block) -> list:
     for tx in block.validating_list:
         if tx.toUser in my_address:
             new_my_transactions_list = SavetoMyTransaction(
-                tx,
-                validated=True,
-                custom_currently_list=custom_currently_list)
+                tx, validated=True, custom_currently_list=custom_currently_list
+            )
         elif tx.fromUser in my_public_key:
             new_my_transactions_list = ValidateTransaction(
-                tx, custom_currently_list=custom_currently_list)
+                tx, custom_currently_list=custom_currently_list
+            )
             new_my_transactions_list = SendedTransaction(
-                tx, custom_currently_list=custom_currently_list)
+                tx, custom_currently_list=custom_currently_list
+            )
     return new_my_transactions_list

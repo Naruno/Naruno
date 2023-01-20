@@ -20,7 +20,6 @@ from decentra_network.wallet.ellipticcurve.utils.pem import getPemContent
 
 
 class PublicKey:
-
     def __init__(self, point, curve):
         self.point = point
         self.curve = curve
@@ -39,15 +38,13 @@ class PublicKey:
                 encodePrimitive(DerFieldType.object, _ecdsaPublicKeyOid),
                 encodePrimitive(DerFieldType.object, self.curve.oid),
             ),
-            encodePrimitive(DerFieldType.bitString,
-                            self.toString(encoded=True)),
+            encodePrimitive(DerFieldType.bitString, self.toString(encoded=True)),
         )
         return byteStringFromHex(hexadecimal)
 
     def toPem(self):
         der = self.toDer()
-        return createPem(content=base64FromByteString(der),
-                         template=_pemTemplate)
+        return createPem(content=base64FromByteString(der), template=_pemTemplate)
 
     @classmethod
     def fromPem(cls, string):
