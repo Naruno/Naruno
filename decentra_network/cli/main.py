@@ -41,8 +41,8 @@ from decentra_network.transactions.my_transactions.save_to_my_transaction import
 from decentra_network.transactions.print_transactions import PrintTransactions
 from decentra_network.transactions.send import send
 from decentra_network.wallet.delete_current_wallet import delete_current_wallet
-from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.wallet_create import wallet_create
+from decentra_network.wallet.wallet_import import wallet_import
 from decentra_network.wallet.print_wallets import print_wallets
 from decentra_network.wallet.wallet_selector import wallet_selector
 

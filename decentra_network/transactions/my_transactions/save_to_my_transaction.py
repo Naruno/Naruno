@@ -16,7 +16,7 @@ from decentra_network.transactions.my_transactions.get_my_transaction import \
 from decentra_network.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.wallet_import import Address
+from decentra_network.wallet.wallet_import import Address
 
 
 def SavetoMyTransaction(

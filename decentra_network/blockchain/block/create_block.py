@@ -8,7 +8,7 @@ from contextlib import suppress
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.lib.log import get_logger
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.wallet_import import wallet_import
 
 logger = get_logger("BLOCKCHAIN")
 

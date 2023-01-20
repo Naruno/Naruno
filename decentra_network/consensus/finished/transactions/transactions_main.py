@@ -14,7 +14,7 @@ from decentra_network.transactions.my_transactions.sended_transaction import \
     SendedTransaction
 from decentra_network.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
-from decentra_network.wallet.ellipticcurve.wallet_import import \
+from decentra_network.wallet.wallet_import import \
     wallet_import_all
 
 logger = get_logger("CONSENSUS")

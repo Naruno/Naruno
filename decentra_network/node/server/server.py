@@ -43,7 +43,7 @@ from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
 from decentra_network.wallet.ellipticcurve.signature import Signature
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.wallet_import import wallet_import
 
 logger = get_logger("NODE")
 
