@@ -13,7 +13,7 @@ setup(
     author_email="onur@decentranetwork.net",
     packages=["decentra_network"],
     name="decentra_network",
-    version="0.40.0",
+    version="0.41.0",
     url="https://github.com/Decentra-Network/Decentra-Network",
     description=
     "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
