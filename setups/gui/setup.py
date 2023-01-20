@@ -21,6 +21,6 @@ qrcode==7.3.1
 kivymd_extensions.sweetalert==0.1.5
 plyer==2.1.0
 """,
-    python_requires=">=3.8",
+    python_requires=">=3.8, <=3.10",
     zip_safe=False,
 )
