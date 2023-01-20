@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-from decentra_network.wallet.ellipticcurve.utils.binary import intFromHex, hexFromInt
+from decentra_network.wallet.ellipticcurve.utils.binary import (hexFromInt,
+                                                                intFromHex)
 
 
 def oidFromHex(hexadecimal):

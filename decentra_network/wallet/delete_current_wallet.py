@@ -6,16 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from decentra_network.wallet.wallet_import import wallet_import
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-
-from decentra_network.wallet.wallet_delete import wallet_delete
-
-
-from decentra_network.lib.settings_system import the_settings, change_wallet
-
-
 from decentra_network.lib.log import get_logger
+from decentra_network.lib.settings_system import change_wallet, the_settings
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.wallet_delete import wallet_delete
+from decentra_network.wallet.wallet_import import wallet_import
 
 logger = get_logger("WALLET")
 

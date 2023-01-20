@@ -6,11 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from decentra_network.wallet.wallet_import import wallet_import
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-
 from decentra_network.lib.mix.mixlib import menu_maker
 from decentra_network.lib.settings_system import the_settings
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.wallet_import import wallet_import
 
 
 def print_wallets():

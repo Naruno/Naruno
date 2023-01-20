@@ -13,8 +13,7 @@ from kivymd_extensions.sweetalert import SweetAlert
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.lib.qr import qr
-from decentra_network.lib.settings_system import change_wallet
-from decentra_network.lib.settings_system import the_settings
+from decentra_network.lib.settings_system import change_wallet, the_settings
 from decentra_network.wallet.get_saved_wallet import get_saved_wallet
 from decentra_network.wallet.wallet_create import wallet_create
 from decentra_network.wallet.wallet_delete import wallet_delete

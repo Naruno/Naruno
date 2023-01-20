@@ -5,7 +5,8 @@ from hashlib import sha256
 
 from decentra_network.wallet.ellipticcurve.math import Math
 from decentra_network.wallet.ellipticcurve.signature import Signature
-from decentra_network.wallet.ellipticcurve.utils.binary import numberFromByteString
+from decentra_network.wallet.ellipticcurve.utils.binary import \
+    numberFromByteString
 from decentra_network.wallet.ellipticcurve.utils.compatibility import *
 from decentra_network.wallet.ellipticcurve.utils.integer import RandomInteger
 

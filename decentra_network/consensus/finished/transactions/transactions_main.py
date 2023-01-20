@@ -6,18 +6,14 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.lib.log import get_logger
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from decentra_network.transactions.my_transactions.sended_transaction import (
-    SendedTransaction,
-)
-from decentra_network.transactions.my_transactions.validate_transaction import (
-    ValidateTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.sended_transaction import \
+    SendedTransaction
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from decentra_network.wallet.wallet_import import wallet_import_all
 
 logger = get_logger("CONSENSUS")
