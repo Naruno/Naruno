@@ -46,6 +46,9 @@ from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
 
+from decentra_network.lib.sign import sign
+from decentra_network.lib.verify import verify
+
 
 def perpetual_time_test():
     os.chdir(get_config()["main_folder"])
@@ -694,6 +697,13 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(new_settings["debug_mode"], changed_value)
         decentra_import(backup)
         self.assertNotEqual(the_settings()["debug_mode"], changed_value)
+
+
+    def test_sign_verify(self):
+        signed = sign("Onur & Ali Eren", "123")
+        result = verify(signed)
+        os.remove(signed)
+        self.assertTrue(result)
 
 
 unittest.main(exit=False)
