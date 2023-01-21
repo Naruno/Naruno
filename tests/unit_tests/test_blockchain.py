@@ -1259,13 +1259,13 @@ class Test_Blockchain(unittest.TestCase):
             self):
 
         block = Block("onur")
-        block.sequence_number = 1
-        block.empty_block_number = 2
-        block.block_time = 0.5
+        block.sequence_number = 0
+        block.empty_block_number = 1
+        block.block_time = 3
         block.validated = False
 
         first_block = copy.copy(block)
-        time.sleep(2)
+        time.sleep(7.5)
         block.sync_empty_blocks()
         second_block = copy.copy(block)
 
