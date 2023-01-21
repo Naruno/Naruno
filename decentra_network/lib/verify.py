@@ -49,4 +49,5 @@ def verify(path: str) -> bool:
 
 if __name__ == "__main__":
     from decentra_network.lib.sign import sign
+
     print(verify(sign("Onur Atakan", "123")))
