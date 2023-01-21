@@ -7,22 +7,15 @@
 import json
 import os
 import sys
-
 from hashlib import sha256
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
-from decentra_network.wallet.wallet_import import wallet_import
-from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
-
 from decentra_network.config import SIGNS_PATH
-
-
 from decentra_network.lib.config_system import get_config
-
+from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
 from decentra_network.wallet.ellipticcurve.signature import Signature
+from decentra_network.wallet.wallet_import import wallet_import
 
 
 def verify(path: str) -> bool:
