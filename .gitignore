@@ -26,6 +26,10 @@ bin/
 #test
 *.txt
 
+#signs
+*.dnsign
+
+
 decentra_network/db/qrs/*
 decentra_network/db/blocs/*
 decentra_network/db/pending_transactions/*
