@@ -11,6 +11,8 @@ SETTING_PATH = "db/settings.json"
 CONNECTED_NODES_PATH = "db/connected_nodes/"
 UNL_NODES_PATH = "db/unl_nodes.json"
 
+SIGNS_PATH = "db/signs/"
+
 TEMP_BLOCK_PATH = "db/temp_block.decentra_network.json"
 TEMP_ACCOUNTS_PATH = "db/temp_accounts.decentra_network.db"
 TEMP_BLOCKSHASH_PATH = "db/temp_blockshash.decentra_network.json"
