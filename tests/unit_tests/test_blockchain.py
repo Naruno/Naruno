@@ -36,7 +36,7 @@ from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.node.client.client import client
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.wallet_import import wallet_import
 
 
 class Test_Blockchain(unittest.TestCase):

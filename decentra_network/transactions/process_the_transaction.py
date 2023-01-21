@@ -10,7 +10,7 @@ from decentra_network.accounts.account import Account
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.shares import shares
 from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.wallet.ellipticcurve.wallet_import import Address
+from decentra_network.wallet.wallet_import import Address
 
 
 def ProccesstheTransaction(

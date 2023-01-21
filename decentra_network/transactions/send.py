@@ -16,7 +16,7 @@ from decentra_network.transactions.get_transaction import GetTransaction
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.wallet_import import wallet_import
 
 logger = get_logger("TRANSACTIONS")
 

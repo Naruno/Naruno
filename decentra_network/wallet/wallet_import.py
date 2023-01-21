@@ -1,29 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-"""
-MIT License
-
-Copyright (c) 2021 Decentra Network Developers
-Copyright (c) 2018 Stark Bank S.A.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import os
 from base64 import b64decode
@@ -40,9 +20,9 @@ from decentra_network.lib.encryption import decrypt
 from decentra_network.lib.encryption import encrypt
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import get_saved_wallet 
-from decentra_network.wallet.ellipticcurve.save_wallet_list import save_to_wallet_list
-from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
+from decentra_network.wallet.save_wallet_list import save_to_wallet_list
+from decentra_network.wallet.wallet_create import wallet_create
 
 
 def wallet_import(wallet, mode, password=None):
@@ -94,13 +74,10 @@ def wallet_import(wallet, mode, password=None):
 
     elif mode == 3:
         my_address = temp_saved_wallet[account]["publickey"]
-        my_address = "".join(
-            [
-                l.strip()
-                for l in my_address.splitlines()
-                if l and not l.startswith("-----")
-            ]
-        )
+        my_address = "".join([
+            l.strip() for l in my_address.splitlines()
+            if l and not l.startswith("-----")
+        ])
         my_address = Address(my_address)
         return my_address
     else:
@@ -117,9 +94,10 @@ def wallet_import_all(mode, password=None):
 
 
 def Address(publickey):
-    the_public_key = "".join(
-        [l.strip() for l in publickey.splitlines() if l and not l.startswith("-----")]
-    )
+    the_public_key = "".join([
+        l.strip() for l in publickey.splitlines()
+        if l and not l.startswith("-----")
+    ])
     return sha256(
-        sha256(the_public_key.encode("utf-8")).hexdigest().encode("utf-8")
-    ).hexdigest()[-40:]
+        sha256(the_public_key.encode("utf-8")).hexdigest().encode(
+            "utf-8")).hexdigest()[-40:]
