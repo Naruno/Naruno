@@ -112,11 +112,11 @@ Firtly we must check the action of data. If the action is equal to the action th
 
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
-Firstly we will import the `wallet_import_all` from `decentra_network.wallet.ellipticcurve.wallet_import` for checking transactions came us or not.
+Firstly we will import the `wallet_import_all` from `decentra_network.wallet.wallet_import` for checking transactions came us or not.
 And we will import `get_logger` from `decentra_network.lib.log` of Decentra Network for printing.
 
 ```python
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import_all
+from decentra_network.wallet.wallet_import import wallet_import_all
 from decentra_network.lib.log import get_logger
 
 ```
@@ -152,7 +152,7 @@ import json
 import sys
 
 from decentra_network.transactions.send import send
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import_all
+from decentra_network.wallet.wallet_import import wallet_import_all
 from decentra_network.lib.log import get_logger
 
 

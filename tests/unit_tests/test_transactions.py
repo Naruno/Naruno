@@ -60,8 +60,7 @@ from decentra_network.transactions.process_the_transaction import \
     ProccesstheTransaction
 from decentra_network.transactions.send import send
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.wallet_import import (Address,
-                                                                 wallet_import)
+from decentra_network.wallet.wallet_import import Address, wallet_import
 
 
 class Test_Transactions(unittest.TestCase):

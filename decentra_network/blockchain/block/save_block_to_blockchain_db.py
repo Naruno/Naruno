@@ -16,7 +16,7 @@ from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import BLOCKS_PATH
 from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.wallet_import import wallet_import
 
 
 def SaveBlockstoBlockchainDB(

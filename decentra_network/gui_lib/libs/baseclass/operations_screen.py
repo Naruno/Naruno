@@ -20,7 +20,7 @@ from decentra_network.transactions.my_transactions.get_my_transaction import \
 from decentra_network.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 from decentra_network.transactions.send import send
-from decentra_network.wallet.ellipticcurve.wallet_import import wallet_import
+from decentra_network.wallet.wallet_import import wallet_import
 
 
 class OperationScreen(MDScreen):

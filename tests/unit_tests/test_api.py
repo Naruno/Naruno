@@ -56,14 +56,11 @@ from decentra_network.transactions.my_transactions.save_to_my_transaction import
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPendingLen
 from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.get_saved_wallet import \
-    get_saved_wallet
-from decentra_network.wallet.ellipticcurve.save_wallet_list import \
-    save_wallet_list
-from decentra_network.wallet.ellipticcurve.wallet_create import wallet_create
-from decentra_network.wallet.ellipticcurve.wallet_import import (Address,
-                                                                 wallet_import)
+from decentra_network.wallet.get_saved_wallet import get_saved_wallet
 from decentra_network.wallet.print_wallets import print_wallets
+from decentra_network.wallet.save_wallet_list import save_wallet_list
+from decentra_network.wallet.wallet_create import wallet_create
+from decentra_network.wallet.wallet_import import Address, wallet_import
 
 decentra_network.api.main.custom_block = Block("Onur")
 decentra_network.api.main.custom_current_time = int(time.time()) + 25
@@ -629,8 +626,7 @@ class Test_API(unittest.TestCase):
         decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = backup_3
         decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = backup_4
 
-        self.assertEqual(self.node_0.our_messages[-1]["action"],
-                         "fullblock")
+        self.assertEqual(self.node_0.our_messages[-1]["action"], "fullblock")
         self.assertEqual(self.node_0.our_messages[-1]["byte"], "end")
 
     def test_export_the_transactions(self):
