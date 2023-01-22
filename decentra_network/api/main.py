@@ -14,9 +14,14 @@ from flask import request
 from waitress import serve
 from waitress.server import create_server
 
+
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from flask_cors import CORS
+
+from decentra_network.lib.sign import sign
+from decentra_network.lib.verify import verify
 
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.create_block import CreateBlock
@@ -378,6 +383,7 @@ def proof_get_page():
         ))
 
 
+
 @app.route("/proof/check/", methods=["POST"])
 def proof_check_page():
     logger.info(
@@ -392,6 +398,34 @@ def proof_check_page():
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         ))
 
+
+
+@app.route("/sign/", methods=["POST"])
+def sign_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    data = str(
+        request.form["data"]) if "data" in request.form else None
+
+    password = str(
+        request.form["password"]) if "password" in request.form else None
+
+    return jsonify(
+        sign(
+            data,
+            password,
+        ))
+
+@app.route("/verify/", methods=["POST"])
+def verify_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    path = str(request.form["path"]) if "path" in request.form else None
+
+    return jsonify(
+        verify(
+            path,
+        ))
 
 @app.route("/export/block/json", methods=["GET"])
 def export_block_json_page():

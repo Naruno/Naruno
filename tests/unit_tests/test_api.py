@@ -1080,4 +1080,26 @@ class Test_API(unittest.TestCase):
         )
 
 
+
+    def test_sign_verify(self):
+
+        request_body = {
+            "data": "Onur Atakan",
+            "password": "123",
+        }
+        request = json.loads(requests.post("http://localhost:7777/sign/",
+                                 data=request_body).text)
+
+        request_body = {
+            "path": request,
+
+        }
+        response = json.loads(requests.post("http://localhost:7777/verify/",
+                                 data=request_body).text)        
+
+
+        self.assertTrue(response)
+
+
+
 unittest.main(exit=False)

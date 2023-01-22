@@ -33,8 +33,6 @@ def sign(data: str, password: str) -> str:
         password (str): Password of the current wallet
     """
 
-
-
     my_private_key = wallet_import(-1, 1, password)
     signature = Ecdsa.sign(
                 data,

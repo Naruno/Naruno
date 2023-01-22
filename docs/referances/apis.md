@@ -45,6 +45,9 @@ increase by node number. For example:
 | POST   | /proof/get/                        | Returns the given transaction proof from signature |
 | POST   | /proof/check/                      | Returns the check result of given proof path       |
 | POST   | /block/get/                        | Returns the currently block as json                |
+| POST   | /sign/                        | Signs and returns the signed data file from given data and password |
+| POST   | /verify/                      | Return the verify result of given path of signed data       |
+
 
 # Starting the API
 
