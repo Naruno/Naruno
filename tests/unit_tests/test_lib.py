@@ -716,4 +716,8 @@ class Test_Lib(unittest.TestCase):
         os.remove(signed)
         self.assertFalse(result)
 
+    def test_sign_verify_false_pass(self):
+        signed = sign("Onur & Ali Eren", str(time.time()))
+        self.assertEqual(signed, "None")
+
 unittest.main(exit=False)

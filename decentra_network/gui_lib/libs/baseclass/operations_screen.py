@@ -203,12 +203,17 @@ class OperationBox(MDGridLayout):
         data = text_list[1]
         path = sign(data, text_list[0])
 
-        Clipboard.copy(path)
-
-        SweetAlert().fire(
-            f"Signed data file created in {path}, The file has been copied to your clipboard.",
-            type="success",
-        )
+        if path == "None":
+            SweetAlert().fire(
+                "Password is not correct",
+                type="failure",
+            )
+        else:
+            Clipboard.copy(path)
+            SweetAlert().fire(
+                f"Signed data file created in {path}, The file has been copied to your clipboard.",
+                type="success",
+            )
 
         del text_list
 
