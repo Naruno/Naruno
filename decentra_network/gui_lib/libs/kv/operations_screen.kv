@@ -44,6 +44,48 @@
             hint_text: "Password: "
             mode: "fill"
 
+<Sign_Box>
+    adaptive_height: True
+    height:"120dp"
+    padding: dp(24)
+
+
+
+    MDGridLayout:
+        adaptive_height: True
+
+
+        cols: 2
+
+        MDTextField:
+            size_hint_x: .5
+            hint_text: "Data: "
+            mode: "fill"
+        MDTextField:
+            password: True
+            size_hint_x: .5
+            hint_text: "Password: "
+            mode: "fill"
+
+
+<Verify_Box>
+    adaptive_height: True
+    height:"120dp"
+    padding: dp(24)
+
+
+
+    MDGridLayout:
+        adaptive_height: True
+
+
+        cols: 2
+
+        MDTextField:
+            size_hint_x: .5
+            hint_text: "Path: "
+            mode: "fill"
+
 
 <OperationBox>
     adaptive_height: True
@@ -104,5 +146,33 @@
                 width:240
                 on_press: root.transaction_history()
                 text: "View Transactions History"
+                halign: "right"
+                font_style: "Button"
+
+
+
+
+        AnchorLayout:
+            size_hint_y: None
+            height: but5.height
+            MDRoundFlatIconButton:
+                id: but5
+                icon: "signature-text"
+                width:240
+                on_press: root.sign()
+                text: "Sign Data"
+                halign: "right"
+                font_style: "Button"
+
+
+        AnchorLayout:
+            size_hint_y: None
+            height: but6.height
+            MDRoundFlatIconButton:
+                id: but6
+                icon: "file-check-outline"
+                width:240
+                on_press: root.verify()
+                text: "Verify Signed Data"
                 halign: "right"
                 font_style: "Button"
