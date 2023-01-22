@@ -244,7 +244,6 @@ def menu():
 
 
         input("Press enter to continue (screen will be cleaned)...")
-        # Clear the screen with cross-platform support
         os.system("cls" if os.name == "nt" else "clear")
 
 
