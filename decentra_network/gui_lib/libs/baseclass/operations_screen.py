@@ -15,10 +15,12 @@ from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.settings_system import the_settings
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
 from decentra_network.transactions.send import send
 from decentra_network.wallet.wallet_import import wallet_import
 from decentra_network.lib.sign import sign
@@ -163,8 +165,10 @@ class OperationBox(MDGridLayout):
         data = text_list[1]
 
         if float(amount) >= the_block.minumum_transfer_amount:
-            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
-                    text_list[0].encode("utf-8")).hexdigest()):
+            if (
+                wallet_import(int(the_settings()["wallet"]), 2)
+                == sha256(text_list[0].encode("utf-8")).hexdigest()
+            ):
                 block = the_block
                 send_tx = send(
                     text_list[0],
@@ -287,16 +291,16 @@ class OperationBox(MDGridLayout):
         if len(transactions) != 0:
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {
-                tx[0]:
-                f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
+                tx[
+                    0
+                ]: f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
                 for tx in transactions
             }
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.
-                    callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:
