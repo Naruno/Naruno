@@ -46,6 +46,10 @@ from decentra_network.wallet.wallet_create import wallet_create
 from decentra_network.wallet.wallet_import import wallet_import
 from decentra_network.wallet.wallet_selector import wallet_selector
 
+
+from decentra_network.lib.sign import sign
+from decentra_network.lib.verify import verify
+
 logger = get_logger("CLI")
 
 
@@ -97,6 +101,9 @@ def show_menu():
           menu_space() +
           menu_maker(menu_number="dnexport", menu_text="Export backup") +
           menu_maker(menu_number="dnimport", menu_text="Import backup") +
+          menu_space() +
+          menu_maker(menu_number="sign", menu_text="Sign and export an data") +
+          menu_maker(menu_number="verify", menu_text="Verify the signed data") +
           menu_space())
 
     print(quit_menu_maker(mode="main"))
@@ -228,6 +235,12 @@ def menu():
             print(
                 decentra_import(
                     input("Please write the path of exported backup: ")))
+
+        if choices_input == "sign":
+            print(sign(input("Please write the data: "), getpass("Password: ")))
+
+        if choices_input == "verify":
+            print(verify(input("Please write the signed data path: ")))
 
         if choices_input == "0":
             exit()
