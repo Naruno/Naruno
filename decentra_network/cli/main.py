@@ -241,6 +241,13 @@ def menu():
         if choices_input == "verify":
             print(verify(input("Please write the signed data path: ")))
 
+
+
+        input("Press enter to continue (screen will be cleaned)...")
+        # Clear the screen with cross-platform support
+        os.system("cls" if os.name == "nt" else "clear")
+
+
         if choices_input == "0":
             exit()
 
