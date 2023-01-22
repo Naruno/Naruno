@@ -40,11 +40,12 @@ def sign(data: str, password: str) -> str:
     sign_json = {
         "data": data,
         "signature": signature,
-        "publickey": wallet_import(-1, 0)
+        "publickey": wallet_import(-1, 0),
     }
 
-    sign_path = os.path.join(SIGNS_PATH, sha256(
-        (signature).encode("utf-8")).hexdigest() + ".dnsign")
+    sign_path = os.path.join(
+        SIGNS_PATH, sha256((signature).encode("utf-8")).hexdigest() + ".dnsign"
+    )
 
     os.chdir(get_config()["main_folder"])
     with open(sign_path, "w") as sign_file:
