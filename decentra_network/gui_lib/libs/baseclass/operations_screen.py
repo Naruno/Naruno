@@ -24,6 +24,7 @@ from decentra_network.wallet.wallet_import import wallet_import
 from decentra_network.lib.sign import sign
 from decentra_network.lib.verify import verify
 
+
 class OperationScreen(MDScreen):
     pass
 
@@ -31,10 +32,14 @@ class OperationScreen(MDScreen):
 class Send_Coin_Box(MDGridLayout):
     cols = 2
 
+
 class Sign_Box(MDGridLayout):
     cols = 2
+
+
 class Verify_Box(MDGridLayout):
     cols = 2
+
 
 class OperationBox(MDGridLayout):
     cols = 2
@@ -119,7 +124,6 @@ class OperationBox(MDGridLayout):
 
         self.verify_dialog.open()
 
-
     def get_send_coin_dialog_text(self):
         text_list = []
         for obj in self.send_coin_dialog.content_cls.children:
@@ -129,7 +133,6 @@ class OperationBox(MDGridLayout):
                 sub_obj.text = ""
 
         return text_list
-
 
     def get_sign_dialog_text(self):
         text_list = []
@@ -193,9 +196,7 @@ class OperationBox(MDGridLayout):
 
         self.send_coin_dialog.dismiss()
 
-
     def sign_the_data(self, widget):
-
 
         text_list = self.get_sign_dialog_text()
 
@@ -204,18 +205,16 @@ class OperationBox(MDGridLayout):
 
         Clipboard.copy(path)
 
-
         SweetAlert().fire(
-                            f"Signed data file created in {path}, The file has been copied to your clipboard.",
-                            type="success",
-                        )
+            f"Signed data file created in {path}, The file has been copied to your clipboard.",
+            type="success",
+        )
 
         del text_list
 
         self.sign_dialog.dismiss()
 
     def verify_the_data(self, widget):
-
 
         text_list = self.get_verify_dialog_text()
 
@@ -224,15 +223,14 @@ class OperationBox(MDGridLayout):
 
         if result == True:
             SweetAlert().fire(
-                            "Data is verified",
-                            type="success",
-                        )
+                "Data is verified",
+                type="success",
+            )
         else:
             SweetAlert().fire(
-                            "Data is not verified",
-                            type="failure",
-                        )
-
+                "Data is not verified",
+                type="failure",
+            )
 
         self.verify_dialog.dismiss()
 
@@ -261,7 +259,6 @@ class OperationBox(MDGridLayout):
             )
             return False
         self.show_send_coin_dialog()
-
 
     def sign(self):
         self.show_sign_dialog()
