@@ -17,37 +17,36 @@ increase by node number. For example:
 
 # API Referance
 
-| Method | Path                               | Description                                        |
-| ------ | ---------------------------------- | -------------------------------------------------- |
-| GET    | /wallet/print                      | Returns the wallets                                |
-| GET    | /wallet/change/:number             | Changes the currently wallet                       |
-| GET    | /wallet/create/:password           | Creates a new wallet with the given password       |
-| GET    | /wallet/delete                     | Deletes the currenly wallet                        |
-| GET    | /wallet/balance                    | Returns the balance of the currently wallet        |
-| POST   | /send                              | Send coin, data with given addresss and password.  |
-| GET    | /node/start/:ip/:port              | Starts a node server with the given ip and port    |
-| GET    | /node/stop                         | Stops the node server                              |
-| GET    | /node/newunl/?:id                  | Creates a new UNL node with given id               |
-| GET    | /node/connect/:ip/:port            | Connects to a node with the given ip and port      |
-| GET    | /node/connectmixdb                 | Connects to a nodes in the mixdb                   |
-| GET    | /node/id                           | Returns the id of the node server                  |
-| GET    | /settings/test/on                  | Sets the test mode on                              |
-| GET    | /settings/test/off                 | Sets the test mode off                             |
-| GET    | /settings/debug/on                 | Sets the debug mode on                             |
-| GET    | /settings/debug/off                | Sets the debug mode off                            |
-| GET    | /block/get                         | Gets block from other nodes                        |
-| GET    | /transactions/sended/validated     | Returns sended validated transactions as json      |
-| GET    | /transactions/sended/not_validated | Returns sended not validated transactions as json  |
-| GET    | /transactions/received             | Returns received transactions as json              |
-| GET    | /transactions/all                  | Returns all transactions as json                   |
-| GET    | /export/transactions/csv           | Exports transactions to csv                        |
-| GET    | /status                            | Returns the status of network                      |
-| POST   | /proof/get/                        | Returns the given transaction proof from signature |
-| POST   | /proof/check/                      | Returns the check result of given proof path       |
-| POST   | /block/get/                        | Returns the currently block as json                |
-| POST   | /sign/                        | Signs and returns the signed data file from given data and password |
-| POST   | /verify/                      | Return the verify result of given path of signed data       |
-
+| Method | Path                               | Description                                                         |
+| ------ | ---------------------------------- | ------------------------------------------------------------------- |
+| GET    | /wallet/print                      | Returns the wallets                                                 |
+| GET    | /wallet/change/:number             | Changes the currently wallet                                        |
+| GET    | /wallet/create/:password           | Creates a new wallet with the given password                        |
+| GET    | /wallet/delete                     | Deletes the currenly wallet                                         |
+| GET    | /wallet/balance                    | Returns the balance of the currently wallet                         |
+| POST   | /send                              | Send coin, data with given addresss and password.                   |
+| GET    | /node/start/:ip/:port              | Starts a node server with the given ip and port                     |
+| GET    | /node/stop                         | Stops the node server                                               |
+| GET    | /node/newunl/?:id                  | Creates a new UNL node with given id                                |
+| GET    | /node/connect/:ip/:port            | Connects to a node with the given ip and port                       |
+| GET    | /node/connectmixdb                 | Connects to a nodes in the mixdb                                    |
+| GET    | /node/id                           | Returns the id of the node server                                   |
+| GET    | /settings/test/on                  | Sets the test mode on                                               |
+| GET    | /settings/test/off                 | Sets the test mode off                                              |
+| GET    | /settings/debug/on                 | Sets the debug mode on                                              |
+| GET    | /settings/debug/off                | Sets the debug mode off                                             |
+| GET    | /block/get                         | Gets block from other nodes                                         |
+| GET    | /transactions/sended/validated     | Returns sended validated transactions as json                       |
+| GET    | /transactions/sended/not_validated | Returns sended not validated transactions as json                   |
+| GET    | /transactions/received             | Returns received transactions as json                               |
+| GET    | /transactions/all                  | Returns all transactions as json                                    |
+| GET    | /export/transactions/csv           | Exports transactions to csv                                         |
+| GET    | /status                            | Returns the status of network                                       |
+| POST   | /proof/get/                        | Returns the given transaction proof from signature                  |
+| POST   | /proof/check/                      | Returns the check result of given proof path                        |
+| POST   | /block/get/                        | Returns the currently block as json                                 |
+| POST   | /sign/                             | Signs and returns the signed data file from given data and password |
+| POST   | /verify/                           | Return the verify result of given path of signed data               |
 
 # Starting the API
 
