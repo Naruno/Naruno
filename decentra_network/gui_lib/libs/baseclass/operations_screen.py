@@ -225,7 +225,7 @@ class OperationBox(MDGridLayout):
             SweetAlert().fire(
                 "Data is verified",
                 f"The data is : {result[1]}",
-                f"The sender is : {result[2]}"
+                f"The sender is : {result[2]}",
                 type="success",
             )
         else:
