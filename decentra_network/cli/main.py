@@ -30,7 +30,9 @@ from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import (d_mode_settings,
                                                   t_mode_settings,
                                                   the_settings)
+from decentra_network.lib.sign import sign
 from decentra_network.lib.status import Status
+from decentra_network.lib.verify import verify
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.my_transactions.check_proof import \
@@ -62,42 +64,45 @@ def show_menu():
             author="Decentra Network Developers",
         ))
 
-    print(menu_space() +
-          menu_maker(menu_number="pw", menu_text="Print Wallets") +
-          menu_maker(menu_number="w", menu_text="Change Wallet") +
-          menu_maker(menu_number="cw", menu_text="Create Wallet") +
-          menu_maker(menu_number="dw", menu_text="Delete Wallet") +
-          menu_space() + menu_maker(menu_number="sc", menu_text="Send Coin") +
-          menu_maker(menu_number="scd", menu_text="Send Coin Data") +
-          menu_space() +
-          menu_maker(menu_number="gb", menu_text="Get Balance") +
-          menu_space() +
-          menu_maker(menu_number="ndstart", menu_text="Node Start") +
-          menu_maker(menu_number="ndstop", menu_text="Node Stop") +
-          menu_maker(menu_number="ndconnect", menu_text="Node Connect") +
-          menu_maker(menu_number="ndconnectmixdb",
-                     menu_text="Node Connect from mixdb") +
-          menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node") +
-          menu_maker(menu_number="ndid", menu_text="Print my id") +
-          menu_space() +
-          menu_maker(menu_number="testmodeon", menu_text="Test mode ON") +
-          menu_maker(menu_number="testmodeoff", menu_text="Test mode OF") +
-          menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON") +
-          menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF") +
-          menu_space() + menu_maker(menu_number="exptrcsv",
-                                    menu_text="Export Transaction as CSV") +
-          menu_maker(menu_number="returntrs",
-                     menu_text="Export Transaction as CSV") + menu_space() +
-          menu_maker(menu_number="status", menu_text="Prints the status") +
-          menu_space() + menu_maker(menu_number="getblock",
-                                    menu_text="Get block From Other Nodes") +
-          menu_space() +
-          menu_maker(menu_number="getproof", menu_text="Get Proof") +
-          menu_maker(menu_number="checkproof", menu_text="Check Proof") +
-          menu_space() +
-          menu_maker(menu_number="dnexport", menu_text="Export backup") +
-          menu_maker(menu_number="dnimport", menu_text="Import backup") +
-          menu_space())
+    print(
+        menu_space() +
+        menu_maker(menu_number="pw", menu_text="Print Wallets") +
+        menu_maker(menu_number="w", menu_text="Change Wallet") +
+        menu_maker(menu_number="cw", menu_text="Create Wallet") +
+        menu_maker(menu_number="dw", menu_text="Delete Wallet") +
+        menu_space() + menu_maker(menu_number="sc", menu_text="Send Coin") +
+        menu_maker(menu_number="scd", menu_text="Send Coin Data") +
+        menu_space() + menu_maker(menu_number="gb", menu_text="Get Balance") +
+        menu_space() +
+        menu_maker(menu_number="ndstart", menu_text="Node Start") +
+        menu_maker(menu_number="ndstop", menu_text="Node Stop") +
+        menu_maker(menu_number="ndconnect", menu_text="Node Connect") +
+        menu_maker(menu_number="ndconnectmixdb",
+                   menu_text="Node Connect from mixdb") +
+        menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node") +
+        menu_maker(menu_number="ndid", menu_text="Print my id") +
+        menu_space() +
+        menu_maker(menu_number="testmodeon", menu_text="Test mode ON") +
+        menu_maker(menu_number="testmodeoff", menu_text="Test mode OF") +
+        menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON") +
+        menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF") +
+        menu_space() + menu_maker(menu_number="exptrcsv",
+                                  menu_text="Export Transaction as CSV") +
+        menu_maker(menu_number="returntrs",
+                   menu_text="Export Transaction as CSV") + menu_space() +
+        menu_maker(menu_number="status", menu_text="Prints the status") +
+        menu_space() + menu_maker(menu_number="getblock",
+                                  menu_text="Get block From Other Nodes") +
+        menu_space() +
+        menu_maker(menu_number="getproof", menu_text="Get Proof") +
+        menu_maker(menu_number="checkproof", menu_text="Check Proof") +
+        menu_space() +
+        menu_maker(menu_number="dnexport", menu_text="Export backup") +
+        menu_maker(menu_number="dnimport", menu_text="Import backup") +
+        menu_space() +
+        menu_maker(menu_number="sign", menu_text="Sign and export an data") +
+        menu_maker(menu_number="verify", menu_text="Verify the signed data") +
+        menu_space())
 
     print(quit_menu_maker(mode="main"))
 
@@ -228,6 +233,13 @@ def menu():
             print(
                 decentra_import(
                     input("Please write the path of exported backup: ")))
+
+        if choices_input == "sign":
+            print(sign(input("Please write the data: "),
+                       getpass("Password: ")))
+
+        if choices_input == "verify":
+            print(verify(input("Please write the signed data path: ")))
 
         if choices_input == "0":
             exit()
