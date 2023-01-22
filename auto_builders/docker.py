@@ -33,16 +33,14 @@ class Decentra_Network_Docker:
 
         normal_length = len(self.circles[0])
 
-
         for circle in self.circles:
 
             leader = random.choice(circle)
             while leader == 0 and circle.index(leader) + 1 > normal_length:
                 leader = random.choice(circle)
-            
 
             for circle_ in self.circles:
-                if circle_ != circle:                       
+                if circle_ != circle:
                     circle_.append(leader)
 
         self.circles = [list(dict.fromkeys(circle)) for circle in self.circles]
@@ -185,8 +183,7 @@ class Decentra_Network_Docker:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")
