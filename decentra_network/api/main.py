@@ -8,19 +8,13 @@ import argparse
 import os
 import sys
 
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, jsonify, request
 from waitress import serve
 from waitress.server import create_server
-
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from flask_cors import CORS
-
-from decentra_network.lib.sign import sign
-from decentra_network.lib.verify import verify
 
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.create_block import CreateBlock
@@ -31,22 +25,21 @@ from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (
-    d_mode_settings,
-    t_mode_settings,
-    the_settings,
-)
+from decentra_network.lib.settings_system import (d_mode_settings,
+                                                  t_mode_settings,
+                                                  the_settings)
+from decentra_network.lib.sign import sign
 from decentra_network.lib.status import Status
+from decentra_network.lib.verify import verify
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.check_proof import CheckProof
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
+from decentra_network.transactions.my_transactions.check_proof import \
+    CheckProof
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
 from decentra_network.transactions.my_transactions.get_proof import GetProof
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from decentra_network.transactions.send import send
 from decentra_network.wallet.delete_current_wallet import delete_current_wallet
 from decentra_network.wallet.print_wallets import print_wallets
