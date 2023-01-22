@@ -416,7 +416,7 @@ def verify_page():
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     path = str(request.form["path"]) if "path" in request.form else None
 
-    return jsonify(verify(path, ))
+    return jsonify(verify(path))
 
 
 @app.route("/export/block/json", methods=["GET"])

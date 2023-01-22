@@ -9,6 +9,8 @@ import os
 import sys
 import time
 
+
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 from unittest import mock
@@ -49,6 +51,7 @@ from decentra_network.transactions.transaction import Transaction
 from decentra_network.lib.sign import sign
 from decentra_network.lib.verify import verify
 
+from decentra_network.wallet.wallet_import import Address, wallet_import
 
 def perpetual_time_test():
     os.chdir(get_config()["main_folder"])
@@ -703,7 +706,9 @@ class Test_Lib(unittest.TestCase):
         signed = sign("Onur & Ali Eren", "123")
         result = verify(signed)
         os.remove(signed)
-        self.assertTrue(result)
+        self.assertTrue(result[0])
+        self.assertEqual(result[1], "Onur & Ali Eren")
+        self.assertEqual(result[2], wallet_import(-1, 3))
 
     def test_sign_verify_no_found(self):
         signed = sign("Onur & Ali Eren", "123")

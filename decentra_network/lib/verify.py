@@ -16,7 +16,7 @@ from decentra_network.lib.config_system import get_config
 from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
 from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
 from decentra_network.wallet.ellipticcurve.signature import Signature
-from decentra_network.wallet.wallet_import import wallet_import
+from decentra_network.wallet.wallet_import import Address, wallet_import
 
 
 def verify(path: str) -> bool:
@@ -35,11 +35,14 @@ def verify(path: str) -> bool:
     if sign_json is None:
         return False
 
-    return Ecdsa.verify(
+
+    result = (Ecdsa.verify(
         sign_json["data"],
         Signature.fromBase64(sign_json["signature"]),
         PublicKey.fromPem(sign_json["publickey"]),
-    )
+    ), sign_json["data"], Address(sign_json["publickey"]))
+
+    return result
 
 
 if __name__ == "__main__":

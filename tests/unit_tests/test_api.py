@@ -1096,7 +1096,9 @@ class Test_API(unittest.TestCase):
             requests.post("http://localhost:7777/verify/",
                           data=request_body).text)
 
-        self.assertTrue(response)
+        self.assertTrue(response[0])
+        self.assertEqual(response[1], "Onur Atakan")
+        self.assertEqual(response[2], wallet_import(-1, 3))
 
 
 unittest.main(exit=False)
