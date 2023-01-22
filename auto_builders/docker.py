@@ -31,14 +31,21 @@ class Decentra_Network_Docker:
             )
         ]
 
-        random_amount = (int(
-            10 * (self.number_of_security_circle / self.number_of_nodes))
-                         if self.number_of_security_circle != 1 else 0)
+        normal_length = len(self.circles[0])
 
-        for _ in range(random_amount):
-            random_circle = random.randint(0, len(self.circles) - 1)
-            random_node = random.randint(0, self.number_of_nodes - 1)
-            self.circles[random_circle].append(random_node)
+
+        for circle in self.circles:
+
+            leader = random.choice(circle)
+            while leader == 0 and circle.index(leader) + 1 > normal_length:
+                leader = random.choice(circle)
+            
+
+            for circle_ in self.circles:
+                if circle_ != circle:                       
+                    circle_.append(leader)
+
+        self.circles = [list(dict.fromkeys(circle)) for circle in self.circles]
 
     def start(self):
         time.sleep(1 * self.number_of_nodes)
