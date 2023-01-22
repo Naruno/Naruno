@@ -22,22 +22,28 @@ from decentra_network.lib.backup.decentra_export import decentra_export
 from decentra_network.lib.backup.decentra_import import decentra_import
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.log import get_logger
-from decentra_network.lib.mix.mixlib import (banner_maker, menu_maker,
-                                             menu_space, question_maker,
-                                             quit_menu_maker)
+from decentra_network.lib.mix.mixlib import (
+    banner_maker,
+    menu_maker,
+    menu_space,
+    question_maker,
+    quit_menu_maker,
+)
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (d_mode_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+from decentra_network.lib.settings_system import (
+    d_mode_settings,
+    t_mode_settings,
+    the_settings,
+)
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.check_proof import \
-    CheckProof
+from decentra_network.transactions.my_transactions.check_proof import CheckProof
 from decentra_network.transactions.my_transactions.get_proof import GetProof
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
 from decentra_network.transactions.print_transactions import PrintTransactions
 from decentra_network.transactions.send import send
 from decentra_network.wallet.delete_current_wallet import delete_current_wallet
@@ -63,47 +69,50 @@ def show_menu():
             sc_name="Decentra Network",
             description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
             author="Decentra Network Developers",
-        ))
+        )
+    )
 
-    print(menu_space() +
-          menu_maker(menu_number="pw", menu_text="Print Wallets") +
-          menu_maker(menu_number="w", menu_text="Change Wallet") +
-          menu_maker(menu_number="cw", menu_text="Create Wallet") +
-          menu_maker(menu_number="dw", menu_text="Delete Wallet") +
-          menu_space() + menu_maker(menu_number="sc", menu_text="Send Coin") +
-          menu_maker(menu_number="scd", menu_text="Send Coin Data") +
-          menu_space() +
-          menu_maker(menu_number="gb", menu_text="Get Balance") +
-          menu_space() +
-          menu_maker(menu_number="ndstart", menu_text="Node Start") +
-          menu_maker(menu_number="ndstop", menu_text="Node Stop") +
-          menu_maker(menu_number="ndconnect", menu_text="Node Connect") +
-          menu_maker(menu_number="ndconnectmixdb",
-                     menu_text="Node Connect from mixdb") +
-          menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node") +
-          menu_maker(menu_number="ndid", menu_text="Print my id") +
-          menu_space() +
-          menu_maker(menu_number="testmodeon", menu_text="Test mode ON") +
-          menu_maker(menu_number="testmodeoff", menu_text="Test mode OF") +
-          menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON") +
-          menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF") +
-          menu_space() + menu_maker(menu_number="exptrcsv",
-                                    menu_text="Export Transaction as CSV") +
-          menu_maker(menu_number="returntrs",
-                     menu_text="Export Transaction as CSV") + menu_space() +
-          menu_maker(menu_number="status", menu_text="Prints the status") +
-          menu_space() + menu_maker(menu_number="getblock",
-                                    menu_text="Get block From Other Nodes") +
-          menu_space() +
-          menu_maker(menu_number="getproof", menu_text="Get Proof") +
-          menu_maker(menu_number="checkproof", menu_text="Check Proof") +
-          menu_space() +
-          menu_maker(menu_number="dnexport", menu_text="Export backup") +
-          menu_maker(menu_number="dnimport", menu_text="Import backup") +
-          menu_space() +
-          menu_maker(menu_number="sign", menu_text="Sign and export an data") +
-          menu_maker(menu_number="verify", menu_text="Verify the signed data") +
-          menu_space())
+    print(
+        menu_space()
+        + menu_maker(menu_number="pw", menu_text="Print Wallets")
+        + menu_maker(menu_number="w", menu_text="Change Wallet")
+        + menu_maker(menu_number="cw", menu_text="Create Wallet")
+        + menu_maker(menu_number="dw", menu_text="Delete Wallet")
+        + menu_space()
+        + menu_maker(menu_number="sc", menu_text="Send Coin")
+        + menu_maker(menu_number="scd", menu_text="Send Coin Data")
+        + menu_space()
+        + menu_maker(menu_number="gb", menu_text="Get Balance")
+        + menu_space()
+        + menu_maker(menu_number="ndstart", menu_text="Node Start")
+        + menu_maker(menu_number="ndstop", menu_text="Node Stop")
+        + menu_maker(menu_number="ndconnect", menu_text="Node Connect")
+        + menu_maker(menu_number="ndconnectmixdb", menu_text="Node Connect from mixdb")
+        + menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node")
+        + menu_maker(menu_number="ndid", menu_text="Print my id")
+        + menu_space()
+        + menu_maker(menu_number="testmodeon", menu_text="Test mode ON")
+        + menu_maker(menu_number="testmodeoff", menu_text="Test mode OF")
+        + menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON")
+        + menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF")
+        + menu_space()
+        + menu_maker(menu_number="exptrcsv", menu_text="Export Transaction as CSV")
+        + menu_maker(menu_number="returntrs", menu_text="Export Transaction as CSV")
+        + menu_space()
+        + menu_maker(menu_number="status", menu_text="Prints the status")
+        + menu_space()
+        + menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")
+        + menu_space()
+        + menu_maker(menu_number="getproof", menu_text="Get Proof")
+        + menu_maker(menu_number="checkproof", menu_text="Check Proof")
+        + menu_space()
+        + menu_maker(menu_number="dnexport", menu_text="Export backup")
+        + menu_maker(menu_number="dnimport", menu_text="Import backup")
+        + menu_space()
+        + menu_maker(menu_number="sign", menu_text="Sign and export an data")
+        + menu_maker(menu_number="verify", menu_text="Verify the signed data")
+        + menu_space()
+    )
 
     print(quit_menu_maker(mode="main"))
 
@@ -181,8 +190,7 @@ def menu():
         if choices_input == "ndstop":
             server.Server.stop()
         if choices_input == "ndconnect":
-            server.Server.connect(str(input("node ip: ")),
-                                  int(input("node port: ")))
+            server.Server.connect(str(input("node ip: ")), int(input("node port: ")))
 
         if choices_input == "ndconnectmixdb":
             server.connectionfrommixdb()
@@ -201,9 +209,7 @@ def menu():
 
         if choices_input == "exptrcsv":
             if export_the_transactions():
-                print(
-                    f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory"
-                )
+                print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
             else:
                 print("You have not a transaction")
 
@@ -231,9 +237,7 @@ def menu():
         if choices_input == "dnexport":
             print(decentra_export())
         if choices_input == "dnimport":
-            print(
-                decentra_import(
-                    input("Please write the path of exported backup: ")))
+            print(decentra_import(input("Please write the path of exported backup: ")))
 
         if choices_input == "sign":
             print(sign(input("Please write the data: "), getpass("Password: ")))
@@ -254,52 +258,37 @@ def arguments():
         description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
-    parser.add_argument("-pw",
-                        "--printwallet",
-                        action="store_true",
-                        help="Print Wallets")
+    parser.add_argument(
+        "-pw", "--printwallet", action="store_true", help="Print Wallets"
+    )
 
     parser.add_argument("-w", "--wallet", type=int, help="Change Wallet")
 
     parser.add_argument("-cw", "--createwallet", help="Create wallet")
 
-    parser.add_argument("-dw",
-                        "--deletewallet",
-                        action="store_true",
-                        help="Delete wallet")
+    parser.add_argument(
+        "-dw", "--deletewallet", action="store_true", help="Delete wallet"
+    )
 
-    parser.add_argument("-gb",
-                        "--getbalance",
-                        action="store_true",
-                        help="Get Balance")
+    parser.add_argument("-gb", "--getbalance", action="store_true", help="Get Balance")
 
-    parser.add_argument("-ndnunl",
-                        "--ndnewunl",
-                        type=str,
-                        help="Add new UNL node")
+    parser.add_argument("-ndnunl", "--ndnewunl", type=str, help="Add new UNL node")
 
-    parser.add_argument("-ndid",
-                        "--ndid",
-                        action="store_true",
-                        help="Print my id")
+    parser.add_argument("-ndid", "--ndid", action="store_true", help="Print my id")
 
-    parser.add_argument("-tmon",
-                        "--testmodeon",
-                        action="store_true",
-                        help="Test Mode On")
-    parser.add_argument("-tmoff",
-                        "--testmodeoff",
-                        action="store_true",
-                        help="Test Mode Off")
+    parser.add_argument(
+        "-tmon", "--testmodeon", action="store_true", help="Test Mode On"
+    )
+    parser.add_argument(
+        "-tmoff", "--testmodeoff", action="store_true", help="Test Mode Off"
+    )
 
-    parser.add_argument("-dmon",
-                        "--debugmodeon",
-                        action="store_true",
-                        help="Debug Mode On")
-    parser.add_argument("-dmoff",
-                        "--debugmodeoff",
-                        action="store_true",
-                        help="Debug Mode Off")
+    parser.add_argument(
+        "-dmon", "--debugmodeon", action="store_true", help="Debug Mode On"
+    )
+    parser.add_argument(
+        "-dmoff", "--debugmodeoff", action="store_true", help="Debug Mode Off"
+    )
 
     parser.add_argument(
         "-exptrcsv",
@@ -315,30 +304,21 @@ def arguments():
         help="Exports the transaction as csv",
     )
 
-    parser.add_argument("-st",
-                        "--status",
-                        action="store_true",
-                        help="Exports the transaction as csv")
+    parser.add_argument(
+        "-st", "--status", action="store_true", help="Exports the transaction as csv"
+    )
 
-    parser.add_argument("-gp",
-                        "--getproof",
-                        type=str,
-                        help="Get proof of given transaction signature")
+    parser.add_argument(
+        "-gp", "--getproof", type=str, help="Get proof of given transaction signature"
+    )
 
-    parser.add_argument("-cp",
-                        "--checkproof",
-                        type=str,
-                        help="Checks the given proof")
+    parser.add_argument("-cp", "--checkproof", type=str, help="Checks the given proof")
 
-    parser.add_argument("-dnexport",
-                        "--dnexport",
-                        action="store_true",
-                        help="Export backup")
+    parser.add_argument(
+        "-dnexport", "--dnexport", action="store_true", help="Export backup"
+    )
 
-    parser.add_argument("-dnimport",
-                        "--dnimport",
-                        type=str,
-                        help="Import backup")
+    parser.add_argument("-dnimport", "--dnimport", type=str, help="Import backup")
 
     parser.add_argument(
         "-m",
@@ -386,8 +366,7 @@ def arguments():
 
     if args.exporttransactioncsv:
         if export_the_transactions():
-            print(
-                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
         else:
             print("You have not a transaction")
 
