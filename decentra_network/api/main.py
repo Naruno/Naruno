@@ -30,7 +30,9 @@ from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import (d_mode_settings,
                                                   t_mode_settings,
                                                   the_settings)
+from decentra_network.lib.sign import sign
 from decentra_network.lib.status import Status
+from decentra_network.lib.verify import verify
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
 from decentra_network.transactions.my_transactions.check_proof import \
@@ -391,6 +393,30 @@ def proof_check_page():
             path,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         ))
+
+
+@app.route("/sign/", methods=["POST"])
+def sign_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    data = str(request.form["data"]) if "data" in request.form else None
+
+    password = str(
+        request.form["password"]) if "password" in request.form else None
+
+    return jsonify(sign(
+        data,
+        password,
+    ))
+
+
+@app.route("/verify/", methods=["POST"])
+def verify_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    path = str(request.form["path"]) if "path" in request.form else None
+
+    return jsonify(verify(path, ))
 
 
 @app.route("/export/block/json", methods=["GET"])
