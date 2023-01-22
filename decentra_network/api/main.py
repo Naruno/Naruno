@@ -15,7 +15,6 @@ from waitress import serve
 from waitress.server import create_server
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from flask_cors import CORS
@@ -383,7 +382,6 @@ def proof_get_page():
         ))
 
 
-
 @app.route("/proof/check/", methods=["POST"])
 def proof_check_page():
     logger.info(
@@ -397,7 +395,6 @@ def proof_check_page():
             path,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         ))
-
 
 
 @app.route("/sign/", methods=["POST"])
@@ -416,6 +413,7 @@ def sign_page():
             password,
         ))
 
+
 @app.route("/verify/", methods=["POST"])
 def verify_page():
     logger.info(
@@ -426,6 +424,7 @@ def verify_page():
         verify(
             path,
         ))
+
 
 @app.route("/export/block/json", methods=["GET"])
 def export_block_json_page():
@@ -460,8 +459,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications."
     )
 
     parser.add_argument("-p",

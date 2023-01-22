@@ -903,8 +903,8 @@ class Test_API(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1079,8 +1079,6 @@ class Test_API(unittest.TestCase):
             true_block.dump_json(),
         )
 
-
-
     def test_sign_verify(self):
 
         request_body = {
@@ -1088,18 +1086,16 @@ class Test_API(unittest.TestCase):
             "password": "123",
         }
         request = json.loads(requests.post("http://localhost:7777/sign/",
-                                 data=request_body).text)
+                                           data=request_body).text)
 
         request_body = {
             "path": request,
 
         }
         response = json.loads(requests.post("http://localhost:7777/verify/",
-                                 data=request_body).text)        
-
+                                            data=request_body).text)
 
         self.assertTrue(response)
-
 
 
 unittest.main(exit=False)
