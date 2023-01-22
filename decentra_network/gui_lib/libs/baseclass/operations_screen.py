@@ -211,7 +211,9 @@ class OperationBox(MDGridLayout):
         else:
             Clipboard.copy(path)
             SweetAlert().fire(
-                f"Signed data file created in {path}, The file has been copied to your clipboard.",
+                "Signed data file created"
+                "The file has been copied to your clipboard.",
+                path
                 type="success",
             )
 
