@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 import json
 import os
 import sys
@@ -27,8 +28,9 @@ def verify(path: str) -> bool:
     """
     sign_json = None
     os.chdir(get_config()["main_folder"])
-    with open(path, "r") as sign_file:
-        sign_json = json.load(sign_file)
+    with contextlib.suppress(FileNotFoundError):
+        with open(path, "r") as sign_file:
+            sign_json = json.load(sign_file)
 
     if sign_json is None:
         return False

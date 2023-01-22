@@ -705,5 +705,10 @@ class Test_Lib(unittest.TestCase):
         os.remove(signed)
         self.assertTrue(result)
 
+    def test_sign_verify_no_found(self):
+        signed = sign("Onur & Ali Eren", "123")
+        result = verify(signed + "123")
+        os.remove(signed)
+        self.assertFalse(result)
 
 unittest.main(exit=False)
