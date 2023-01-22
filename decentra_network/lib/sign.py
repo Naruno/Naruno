@@ -39,8 +39,8 @@ def sign(data: str, password: str) -> str:
     }
 
     sign_path = os.path.join(
-        SIGNS_PATH, sha256((signature).encode("utf-8")).hexdigest() + ".dnsign"
-    )
+        SIGNS_PATH,
+        sha256((signature).encode("utf-8")).hexdigest() + ".dnsign")
 
     os.chdir(get_config()["main_folder"])
     with open(sign_path, "w") as sign_file:
