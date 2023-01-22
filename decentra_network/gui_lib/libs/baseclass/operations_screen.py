@@ -221,9 +221,11 @@ class OperationBox(MDGridLayout):
         path = text_list[0]
         result = verify(path)
 
-        if result == True:
+        if result[0] == True:
             SweetAlert().fire(
                 "Data is verified",
+                f"The data is : {result[1]}",
+                f"The sender is : {result[2]}"
                 type="success",
             )
         else:
