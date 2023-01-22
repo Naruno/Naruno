@@ -5,14 +5,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+from decentra_network.blockchain.block.block_main import Block
 from decentra_network.lib.log import get_logger
+from decentra_network.transactions.cleaner import Cleaner
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.node.server.server import server
 logger = get_logger("TRANSACTIONS")
 
 
-def PendingtoValidating(block):
+def PendingtoValidating(block: Block):
     """
     Adds transactions to the verification list
     if there are suitable conditions.
@@ -24,6 +26,13 @@ def PendingtoValidating(block):
     logger.debug(f"Validating list capacity: {first_max_tx_number}")
 
     pending_list_txs = GetPending()
+
+
+    cleaned_lists = Cleaner(block, pending_list_txs)
+    block.validating_list = cleaned_lists[0]
+    pending_list_txs = cleaned_lists[1]
+
+
     with contextlib.suppress(Exception):
         [server.send_transaction(i) for i in pending_list_txs + block.validating_list]
 
