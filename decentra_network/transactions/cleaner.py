@@ -34,7 +34,7 @@ def Cleaner(block: Block, pending_list_txs: list):
 
                         elif (transaction.sequence_number ==
                               transaction_.sequence_number):
-                            if (transaction.transaction_time >
+                            if (transaction.transaction_time <
                                     transaction_.transaction_time):
                                 ok = True
                             else:

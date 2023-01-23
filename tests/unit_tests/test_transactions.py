@@ -2515,7 +2515,7 @@ class Test_Transactions(unittest.TestCase):
         find_difference_dict = [tx.__dict__ for tx in find_difference]
         print(find_difference_dict)
         self.assertTrue(
-            transaction_frem_a_0_j_3.__dict__ in find_difference_dict)
+            transaction_frem_a_0_a_4.__dict__ in find_difference_dict)
         self.assertTrue(
             transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
         self.assertEqual(len(find_difference_dict), 2)
@@ -2551,7 +2551,7 @@ class Test_Transactions(unittest.TestCase):
         ]
 
         self.assertTrue(
-            transaction_frem_a_0_j_3.__dict__ in find_difference_dict)
+            transaction_frem_a_0_a_4.__dict__ in find_difference_dict)
         self.assertTrue(
             transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
         self.assertEqual(len(find_difference_dict), 2)
