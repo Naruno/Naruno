@@ -2504,7 +2504,7 @@ class Test_Transactions(unittest.TestCase):
 
         first_validating_list = copy.copy(block.validating_list)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, check=False)
         block.validating_list = cleaned_lists[0]
 
         self.assertNotEqual(len(first_validating_list),
@@ -2535,7 +2535,7 @@ class Test_Transactions(unittest.TestCase):
 
         first_validating_list = copy.copy(block.validating_list)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, check=False)
         block.validating_list = cleaned_lists[0]
 
         self.assertEqual(len(first_validating_list),
@@ -2565,7 +2565,7 @@ class Test_Transactions(unittest.TestCase):
 
         first_pending_list_txs = copy.copy(pending_list_txs)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, check=False)
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertNotEqual(len(first_pending_list_txs), len(pending_list_txs))
@@ -2608,7 +2608,7 @@ class Test_Transactions(unittest.TestCase):
 
         first_pending_list_txs = copy.copy(pending_list_txs)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, check=False)
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertEqual(len(first_pending_list_txs), len(pending_list_txs))

@@ -14,7 +14,16 @@ from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.pending.save_pending import SavePending
 
 
-def Cleaner(block: Block, pending_list_txs: list):
+def Cleaner(block: Block, pending_list_txs: list, check=True):
+    if check is True:
+        for transaction in pending_list_txs:
+            if not CheckTransaction(transaction):
+                DeletePending(transaction)
+
+        for transaction in block.validating_list:
+            if not CheckTransaction(transaction):
+                block.validating_list.remove(transaction)
+
 
     def clean(list_of_transactions: list) -> list:
         list_of_transactions = list(dict.fromkeys(list_of_transactions))
