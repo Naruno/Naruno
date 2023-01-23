@@ -11,6 +11,7 @@ from decentra_network.transactions.cleaner import Cleaner
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.node.server.server import server
+
 logger = get_logger("TRANSACTIONS")
 
 
@@ -32,8 +33,7 @@ def PendingtoValidating(block: Block):
     pending_list_txs = cleaned_lists[1]
 
     with contextlib.suppress(Exception):
-        [server.send_transaction(i)
-         for i in pending_list_txs + block.validating_list]
+        [server.send_transaction(i) for i in pending_list_txs + block.validating_list]
 
     if len(block.validating_list) < block.max_tx_number:
         for tx in OrderbyFee(pending_list_txs):
@@ -44,8 +44,7 @@ def PendingtoValidating(block: Block):
 
                 DeletePending(tx)
             else:
-                logger.info(
-                    f"TX {tx.signature} is can not moved to validating list")
+                logger.info(f"TX {tx.signature} is can not moved to validating list")
     else:
         logger.info("List is full")
 
