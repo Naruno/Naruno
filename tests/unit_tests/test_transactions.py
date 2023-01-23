@@ -2588,4 +2588,45 @@ class Test_Transactions(unittest.TestCase):
                          [tx.__dict__ for tx in GetPending()])
 
 
+
+        DeletePending(transaction_frem_a_0_j_3)
+        DeletePending(transaction_frem_a_0_a_4)
+        DeletePending(transaction_frem_a_1_q_3)
+
+    def test_cleaner_pending_one(self):
+
+        block = Block("")
+        block.max_tx_number = 2
+
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 1, 15, 3)
+
+
+        SavePending(transaction_frem_a_0_j_3)
+
+
+        pending_list_txs = GetPending()
+
+        first_pending_list_txs = copy.copy(pending_list_txs)
+
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs)
+        block.validating_list = cleaned_lists[0]
+        pending_list_txs = cleaned_lists[1]
+        self.assertEqual(len(first_pending_list_txs), len(pending_list_txs))
+        first_pending_list_txs = [tx.__dict__ for tx in first_pending_list_txs]
+        pending_list_txs = [tx.__dict__ for tx in pending_list_txs]
+
+
+        find_difference_dict = [
+            x for x in first_pending_list_txs if x not in pending_list_txs
+        ]
+
+
+        self.assertEqual([tx for tx in pending_list_txs],
+                         [tx.__dict__ for tx in GetPending()])
+
+
+        DeletePending(transaction_frem_a_0_j_3)
+
+
+
 unittest.main(exit=False)
