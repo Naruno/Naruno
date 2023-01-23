@@ -16,16 +16,35 @@ from decentra_network.transactions.pending.get_pending import GetPending
 def Cleaner(block: Block, pending_list_txs: list):
     
     def clean(list_of_transactions: list) -> list:
+        list_of_transactions = list(dict.fromkeys(list_of_transactions))
+
+        list_of_transactions = sorted(list_of_transactions, key=lambda x: x.signature)
+
+
         clean_list = []
         for transaction in list_of_transactions:
+            ok = False
             for transaction_ in list_of_transactions:
-                if not transaction == transaction_:
+                if not transaction.__dict__ == transaction_.__dict__:
                     if transaction.fromUser == transaction_.fromUser:
+
                         if transaction.sequence_number < transaction_.sequence_number:
-                                clean_list.append(transaction)
+                                ok = True
+                                
+
                         elif transaction.sequence_number == transaction_.sequence_number:
-                            if transaction.transaction_time < transaction_.transaction_time:
-                                clean_list.append(transaction_)
+                            if transaction.transaction_time > transaction_.transaction_time:
+                                ok = True
+                            else:
+                                ok = False
+                                break
+                        else:
+                            ok = False
+                            break
+        
+            if ok:
+                clean_list.append(transaction)
+                        
         return clean_list
 
     first_validating_list = copy.copy(block.validating_list)
@@ -45,4 +64,4 @@ def Cleaner(block: Block, pending_list_txs: list):
     pending_list_txs = cleaned_pending_list_txs
 
 
-    return (block.validating_list, pending_list_txs)
+    return (cleaned_validating_list, cleaned_pending_list_txs)

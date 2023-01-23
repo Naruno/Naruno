@@ -2488,17 +2488,49 @@ class Test_Transactions(unittest.TestCase):
         SaveMyTransaction(backup)
 
 
+    def test_cleaner_validating_list(self):
+
+        block = Block("")
+        block.max_tx_number = 2
+
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 1, 15, 3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 1, 15, 4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 1, 15, 3)
+
+        block.validating_list = [
+            transaction_frem_a_0_j_3,
+            transaction_frem_a_0_a_4,
+            transaction_frem_a_1_q_3
+        ]
+        pending_list_txs = GetPending()
+
+        first_validating_list = copy.copy(block.validating_list)
+
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs)
+        block.validating_list = cleaned_lists[0]
+
+        self.assertNotEqual(len(first_validating_list), len(block.validating_list))
+
+        find_difference = list(set(first_validating_list) - set(block.validating_list))
+        find_difference_dict = [tx.__dict__ for tx in find_difference]
+        print(find_difference_dict)
+        self.assertTrue(transaction_frem_a_0_j_3.__dict__ in find_difference_dict)
+        self.assertTrue(transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
+        self.assertEqual(len(find_difference_dict), 2)
+
+
+
     def test_cleaner_pending(self):
 
         block = Block("")
         block.max_tx_number = 2
 
         transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 1, 15, 3)
-        transaction_frem_a_0_j_4 = Transaction(0, "j", "a", "", "", 1, 15, 4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 1, 15, 1)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 1, 15, 4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 1, 15, 3)
 
         SavePending(transaction_frem_a_0_j_3)
-        SavePending(transaction_frem_a_0_j_4)
+        SavePending(transaction_frem_a_0_a_4)
         SavePending(transaction_frem_a_1_q_3)
 
         pending_list_txs = GetPending()
@@ -2509,13 +2541,19 @@ class Test_Transactions(unittest.TestCase):
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertNotEqual(len(first_pending_list_txs), len(pending_list_txs))
+        first_pending_list_txs = [tx.__dict__ for tx in first_pending_list_txs]
+        pending_list_txs = [tx.__dict__ for tx in pending_list_txs]
+        # Get the difference of two dict lists
+        # TypeError: unhashable type: 'dict'
 
-        find_difference = list(set(first_pending_list_txs) - set(pending_list_txs))
-        find_difference_dict = [tx.__dict__ for tx in find_difference]
-        self.assertTrue(transaction_frem_a_0_j_4.__dict__ in find_difference_dict)
+        find_difference_dict = [x for x in first_pending_list_txs if x not in pending_list_txs]
+
+
+        self.assertTrue(transaction_frem_a_0_j_3.__dict__ in find_difference_dict)
         self.assertTrue(transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
+        self.assertEqual(len(find_difference_dict), 2)
 
+        self.assertEqual([tx for tx in pending_list_txs], [tx.__dict__ for tx in GetPending()])
 
-        self.assertEqual([tx.__dict__ for tx in pending_list_txs], [tx.__dict__ for tx in GetPending()])
 
 unittest.main(exit=False)
