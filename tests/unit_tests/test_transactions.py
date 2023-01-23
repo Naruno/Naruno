@@ -8,7 +8,6 @@ import copy
 import os
 import sys
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import time
@@ -17,54 +16,51 @@ import zipfile
 
 from decentra_network.accounts.account import Account
 from decentra_network.accounts.get_accounts import GetAccounts
+from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (
-    GetBlockshash,
-    GetBlockshash_part,
-    SaveBlockshash_part,
-)
-from decentra_network.blockchain.block.change_transaction_fee import (
-    ChangeTransactionFee,
-)
-from decentra_network.blockchain.block.get_block_from_blockchain_db import (
-    GetBlockstoBlockchainDB,
-)
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           GetBlockshash_part,
+                                                           SaveBlockshash_part)
+from decentra_network.blockchain.block.change_transaction_fee import \
+    ChangeTransactionFee
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.lib.settings_system import save_settings, the_settings
-from decentra_network.transactions.check.check_transaction import CheckTransaction
+from decentra_network.transactions.check.check_transaction import \
+    CheckTransaction
 from decentra_network.transactions.check.datas.check_datas import Check_Datas
 from decentra_network.transactions.check.len.check_len import Check_Len
 from decentra_network.transactions.check.type.check_type import Check_Type
+from decentra_network.transactions.cleaner import Cleaner
 from decentra_network.transactions.get_transaction import GetTransaction
-from decentra_network.transactions.my_transactions.check_proof import CheckProof
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
+from decentra_network.transactions.my_transactions.check_proof import \
+    CheckProof
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
 from decentra_network.transactions.my_transactions.get_proof import GetProof
-from decentra_network.transactions.my_transactions.save_my_transaction import (
-    SaveMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from decentra_network.transactions.my_transactions.validate_transaction import (
-    ValidateTransaction,
-)
+from decentra_network.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from decentra_network.transactions.pending.delete_pending import DeletePending
-from decentra_network.transactions.pending.get_pending import GetPending, GetPendingLen
+from decentra_network.transactions.pending.get_pending import (GetPending,
+                                                               GetPendingLen)
 from decentra_network.transactions.pending.save_pending import SavePending
-from decentra_network.transactions.pending_to_validating import PendingtoValidating
-from decentra_network.transactions.process_the_transaction import ProccesstheTransaction
+from decentra_network.transactions.pending_to_validating import \
+    PendingtoValidating
+from decentra_network.transactions.process_the_transaction import \
+    ProccesstheTransaction
 from decentra_network.transactions.send import send
 from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.wallet_import import Address, wallet_import
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.transactions.cleaner import Cleaner
 
 
 class Test_Transactions(unittest.TestCase):

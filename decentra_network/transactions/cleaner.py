@@ -5,12 +5,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import copy
-from decentra_network.transactions.check.check_transaction import CheckTransaction
-from decentra_network.transactions.pending.save_pending import SavePending
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.transactions.pending.delete_pending import DeletePending
 
+from decentra_network.blockchain.block.block_main import Block
+from decentra_network.transactions.check.check_transaction import \
+    CheckTransaction
+from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPending
+from decentra_network.transactions.pending.save_pending import SavePending
 
 
 def Cleaner(block: Block, pending_list_txs: list):
