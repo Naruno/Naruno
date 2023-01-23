@@ -25,10 +25,11 @@ def Cleaner(block: Block, pending_list_txs: list):
         clean_list = []
         for transaction in list_of_transactions:
             ok = False
+            just = True
             for transaction_ in list_of_transactions:
                 if not transaction.__dict__ == transaction_.__dict__:
                     if transaction.fromUser == transaction_.fromUser:
-
+                        just = False
                         if transaction.sequence_number < transaction_.sequence_number:
                             ok = True
 
@@ -44,7 +45,7 @@ def Cleaner(block: Block, pending_list_txs: list):
                             ok = False
                             break
 
-            if ok:
+            if ok or just:
                 clean_list.append(transaction)
 
         return clean_list

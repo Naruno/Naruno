@@ -2520,6 +2520,34 @@ class Test_Transactions(unittest.TestCase):
             transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
         self.assertEqual(len(find_difference_dict), 2)
 
+    def test_cleaner_validating_list_one(self):
+
+        block = Block("")
+        block.max_tx_number = 2
+
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 1, 15, 3)
+
+
+        block.validating_list = [
+            transaction_frem_a_0_j_3,
+        ]
+        pending_list_txs = GetPending()
+
+        first_validating_list = copy.copy(block.validating_list)
+
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs)
+        block.validating_list = cleaned_lists[0]
+
+        self.assertEqual(len(first_validating_list),
+                            len(block.validating_list))
+
+        find_difference = list(
+            set(first_validating_list) - set(block.validating_list))
+        find_difference_dict = [tx.__dict__ for tx in find_difference]
+
+        self.assertEqual(len(find_difference_dict), 0)
+
+
     def test_cleaner_pending(self):
 
         block = Block("")
