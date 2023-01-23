@@ -22,9 +22,9 @@ def Cleaner(block: Block, pending_list_txs: list,
 ):
 
     for transaction in pending_list_txs:
-        the_sequance_number = 0
+        the_sequance_number = None
         if custom_sequence_number == -1:
-            the_sequance_number = transaction.sequence_number -1 
+            the_sequance_number = transaction.sequence_number -1
         if not Check_Datas(
             block, 
             transaction, 
@@ -36,9 +36,9 @@ def Cleaner(block: Block, pending_list_txs: list,
             pending_list_txs.remove(transaction)
 
     for transaction in block.validating_list:
-            the_sequance_number = 0
+            the_sequance_number = None
             if custom_sequence_number == -1:
-                the_sequance_number = transaction.sequence_number -1      
+                the_sequance_number = transaction.sequence_number -1
             if not Check_Datas(
                 block, 
                 transaction,
