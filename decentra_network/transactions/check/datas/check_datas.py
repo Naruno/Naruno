@@ -39,7 +39,7 @@ def Check_Datas(
 
         for tx in pending_transactions + block.validating_list:
             if (tx.fromUser == transaction.fromUser
-                    and tx.signature != transaction.signature):
+                    and tx.signature != transaction.signature and transaction.transaction_time < tx.transaction_time):
                 logger.info("Multiple transaction in one account")
                 return False
 
