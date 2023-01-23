@@ -58,13 +58,7 @@ def Cleaner(block: Block, pending_list_txs: list):
     block.validating_list = cleaned_validating_list
 
     pending_list_txs = GetPending()
-    first_pending_list_txs = copy.copy(pending_list_txs)
     cleaned_pending_list_txs = clean(pending_list_txs)
-    difference = list(
-        set(first_pending_list_txs) - set(cleaned_pending_list_txs))
-    for transaction in difference:
-
-        DeletePending(transaction)
     pending_list_txs = cleaned_pending_list_txs
 
     return (cleaned_validating_list, cleaned_pending_list_txs)
