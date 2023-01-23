@@ -29,7 +29,9 @@ from decentra_network.lib.log import get_logger
 from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
+from decentra_network.transactions.cleaner import Cleaner
 from decentra_network.transactions.get_transaction import GetTransaction
+from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.process_the_transaction import \
     ProccesstheTransaction
 
@@ -48,6 +50,12 @@ def transactions_main(block: Block, candidate_class: candidate_block,
     block.validating_list = temp_validating_list
 
     Remove_Duplicates(block)
+
+    pending_list_txs = GetPending()
+
+    cleaned_lists = Cleaner(block, pending_list_txs)
+    block.validating_list = cleaned_lists[0]
+    pending_list_txs = cleaned_lists[1]
 
     logger.debug(f"Newly validating list {block.validating_list}")
         
