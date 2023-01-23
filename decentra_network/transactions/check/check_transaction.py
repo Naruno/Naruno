@@ -54,7 +54,6 @@ def CheckTransaction(
             custom_sequence_number=custom_sequence_number,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
             custom_account_list=custom_account_list,
-            disable_already_in=disable_already_in
     ):
         pass
     else:
