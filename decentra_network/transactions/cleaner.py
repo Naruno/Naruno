@@ -21,32 +21,7 @@ def Cleaner(block: Block, pending_list_txs: list,
     custom_balance=None,
 ):
 
-    for transaction in pending_list_txs:
-        the_sequance_number = None
-        if custom_sequence_number == -1:
-            the_sequance_number = transaction.sequence_number -1
-        if not Check_Datas(
-            block, 
-            transaction, 
-            custom_current_time=custom_current_time,
-            custom_balance=custom_balance,
-            custom_sequence_number=the_sequance_number,          
-            disable_already_in=True):
-            DeletePending(transaction)
-            pending_list_txs.remove(transaction)
 
-    for transaction in block.validating_list:
-            the_sequance_number = None
-            if custom_sequence_number == -1:
-                the_sequance_number = transaction.sequence_number -1
-            if not Check_Datas(
-                block, 
-                transaction,
-                custom_current_time=custom_current_time,
-                custom_balance=custom_balance,
-                custom_sequence_number=the_sequance_number,            
-                disable_already_in=True):
-                block.validating_list.remove(transaction)
 
     def clean(list_of_transactions: list) -> list:
         list_of_transactions = list(dict.fromkeys(list_of_transactions))
