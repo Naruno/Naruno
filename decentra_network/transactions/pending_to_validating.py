@@ -28,7 +28,6 @@ def PendingtoValidating(block: Block):
     logger.debug(f"Validating list capacity: {first_max_tx_number}")
 
     pending_list_txs = GetPending()
-
     cleaned_lists = Cleaner(block, pending_list_txs)
     block.validating_list = cleaned_lists[0]
     pending_list_txs = cleaned_lists[1]
