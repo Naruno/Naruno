@@ -22,23 +22,26 @@ def Check_Datas(
     custom_sequence_number=None,
     custom_PENDING_TRANSACTIONS_PATH=None,
     custom_account_list=None,
+    disable_already_in=False
 ):
     """
     Check if the transaction datas are valid
     """
 
-    pending_transactions = GetPending(
-        custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
-    for already_tx in pending_transactions + block.validating_list:
-        if already_tx.signature == transaction.signature:
-            logger.error("Transaction is already in the pending list")
-            return False
 
-    for tx in pending_transactions + block.validating_list:
-        if (tx.fromUser == transaction.fromUser
-                and tx.signature != transaction.signature):
-            logger.info("Multiple transaction in one account")
-            return False
+    if not disable_already_in:
+        pending_transactions = GetPending(
+            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)        
+        for already_tx in pending_transactions + block.validating_list:
+            if already_tx.signature == transaction.signature:
+                logger.error("Transaction is already in the pending list")
+                return False
+
+        for tx in pending_transactions + block.validating_list:
+            if (tx.fromUser == transaction.fromUser
+                    and tx.signature != transaction.signature):
+                logger.info("Multiple transaction in one account")
+                return False
 
     balance = (GetBalance(
         transaction.fromUser,

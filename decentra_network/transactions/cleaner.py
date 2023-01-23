@@ -17,11 +17,11 @@ from decentra_network.transactions.pending.save_pending import SavePending
 def Cleaner(block: Block, pending_list_txs: list, check=True):
     if check is True:
         for transaction in pending_list_txs:
-            if not CheckTransaction(transaction):
+            if not CheckTransaction(transaction, disable_already_in=True):
                 DeletePending(transaction)
 
         for transaction in block.validating_list:
-            if not CheckTransaction(transaction):
+            if not CheckTransaction(transaction, disable_already_in=True):
                 block.validating_list.remove(transaction)
 
 
