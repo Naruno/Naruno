@@ -9,7 +9,6 @@ import os
 import sys
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import time
@@ -63,6 +62,7 @@ from decentra_network.transactions.transaction import Transaction
 from decentra_network.wallet.wallet_import import Address, wallet_import
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.transactions.cleaner import Cleaner
+
 
 class Test_Transactions(unittest.TestCase):
 
@@ -1765,8 +1765,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1902,8 +1902,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2051,8 +2051,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -2108,8 +2107,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2262,8 +2261,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -2322,8 +2320,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2476,8 +2474,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result + "onur",
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             None,
         )
@@ -2486,7 +2483,6 @@ class Test_Transactions(unittest.TestCase):
             False)
 
         SaveMyTransaction(backup)
-
 
     def test_cleaner_validating_list(self):
 
@@ -2509,16 +2505,18 @@ class Test_Transactions(unittest.TestCase):
         cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs)
         block.validating_list = cleaned_lists[0]
 
-        self.assertNotEqual(len(first_validating_list), len(block.validating_list))
+        self.assertNotEqual(len(first_validating_list),
+                            len(block.validating_list))
 
-        find_difference = list(set(first_validating_list) - set(block.validating_list))
+        find_difference = list(
+            set(first_validating_list) - set(block.validating_list))
         find_difference_dict = [tx.__dict__ for tx in find_difference]
         print(find_difference_dict)
-        self.assertTrue(transaction_frem_a_0_j_3.__dict__ in find_difference_dict)
-        self.assertTrue(transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
+        self.assertTrue(
+            transaction_frem_a_0_j_3.__dict__ in find_difference_dict)
+        self.assertTrue(
+            transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
         self.assertEqual(len(find_difference_dict), 2)
-
-
 
     def test_cleaner_pending(self):
 
@@ -2546,14 +2544,17 @@ class Test_Transactions(unittest.TestCase):
         # Get the difference of two dict lists
         # TypeError: unhashable type: 'dict'
 
-        find_difference_dict = [x for x in first_pending_list_txs if x not in pending_list_txs]
+        find_difference_dict = [
+            x for x in first_pending_list_txs if x not in pending_list_txs]
 
-
-        self.assertTrue(transaction_frem_a_0_j_3.__dict__ in find_difference_dict)
-        self.assertTrue(transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
+        self.assertTrue(
+            transaction_frem_a_0_j_3.__dict__ in find_difference_dict)
+        self.assertTrue(
+            transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
         self.assertEqual(len(find_difference_dict), 2)
 
-        self.assertEqual([tx for tx in pending_list_txs], [tx.__dict__ for tx in GetPending()])
+        self.assertEqual([tx for tx in pending_list_txs], [
+                         tx.__dict__ for tx in GetPending()])
 
 
 unittest.main(exit=False)

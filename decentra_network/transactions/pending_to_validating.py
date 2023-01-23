@@ -27,14 +27,13 @@ def PendingtoValidating(block: Block):
 
     pending_list_txs = GetPending()
 
-
     cleaned_lists = Cleaner(block, pending_list_txs)
     block.validating_list = cleaned_lists[0]
     pending_list_txs = cleaned_lists[1]
 
-
     with contextlib.suppress(Exception):
-        [server.send_transaction(i) for i in pending_list_txs + block.validating_list]
+        [server.send_transaction(i)
+         for i in pending_list_txs + block.validating_list]
 
     if len(block.validating_list) < block.max_tx_number:
         for tx in OrderbyFee(pending_list_txs):
@@ -42,7 +41,7 @@ def PendingtoValidating(block: Block):
                 logger.info(f"tx {tx.signature} is moved to validating list")
 
                 block.validating_list.append(tx)
-                
+
                 DeletePending(tx)
             else:
                 logger.info(
