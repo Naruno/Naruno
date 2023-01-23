@@ -79,7 +79,7 @@ def Check_Datas(
     get_sequence_number = (GetSequanceNumber(transaction.fromUser)
                            if custom_sequence_number is None else
                            custom_sequence_number)
-    if transaction.sequence_number == (get_sequence_number + 1) or transaction.sequence_number == (get_sequence_number):
+    if transaction.sequence_number == (get_sequence_number + 1):
         pass
     else:
         logger.error("Sequance number is not valid")
