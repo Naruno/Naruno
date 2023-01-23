@@ -2491,9 +2491,9 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 1, 15, 3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 1, 15, 4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 1, 15, 3)
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
 
         block.validating_list = [
             transaction_frem_a_0_j_3,
@@ -2504,7 +2504,7 @@ class Test_Transactions(unittest.TestCase):
 
         first_validating_list = copy.copy(block.validating_list)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, check=False)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
         block.validating_list = cleaned_lists[0]
 
         self.assertNotEqual(len(first_validating_list),
@@ -2525,7 +2525,9 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 1, 15, 3)
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
 
 
         block.validating_list = [
@@ -2535,7 +2537,7 @@ class Test_Transactions(unittest.TestCase):
 
         first_validating_list = copy.copy(block.validating_list)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, check=False)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
         block.validating_list = cleaned_lists[0]
 
         self.assertEqual(len(first_validating_list),
@@ -2553,9 +2555,9 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 1, 15, 3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 1, 15, 4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 1, 15, 3)
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
 
         SavePending(transaction_frem_a_0_j_3)
         SavePending(transaction_frem_a_0_a_4)
@@ -2565,7 +2567,7 @@ class Test_Transactions(unittest.TestCase):
 
         first_pending_list_txs = copy.copy(pending_list_txs)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, check=False)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertNotEqual(len(first_pending_list_txs), len(pending_list_txs))
@@ -2598,7 +2600,9 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 1, 15, 3)
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
 
 
         SavePending(transaction_frem_a_0_j_3)
@@ -2608,7 +2612,7 @@ class Test_Transactions(unittest.TestCase):
 
         first_pending_list_txs = copy.copy(pending_list_txs)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, check=False)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertEqual(len(first_pending_list_txs), len(pending_list_txs))

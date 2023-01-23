@@ -9,19 +9,43 @@ import copy
 from decentra_network.blockchain.block.block_main import Block
 from decentra_network.transactions.check.check_transaction import \
     CheckTransaction
+from decentra_network.transactions.check.datas.check_datas import Check_Datas
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPending
 from decentra_network.transactions.pending.save_pending import SavePending
 
 
-def Cleaner(block: Block, pending_list_txs: list, check=True):
-    if check is True:
-        for transaction in pending_list_txs:
-            if not CheckTransaction(transaction, disable_already_in=True):
-                DeletePending(transaction)
+def Cleaner(block: Block, pending_list_txs: list,
+    custom_current_time=None,
+    custom_sequence_number=None,
+    custom_balance=None,
+):
 
-        for transaction in block.validating_list:
-            if not CheckTransaction(transaction, disable_already_in=True):
+    for transaction in pending_list_txs:
+        the_sequance_number = 0
+        if custom_sequence_number == -1:
+            the_sequance_number = transaction.sequence_number -1 
+        if not Check_Datas(
+            block, 
+            transaction, 
+            custom_current_time=custom_current_time,
+            custom_balance=custom_balance,
+            custom_sequence_number=the_sequance_number,          
+            disable_already_in=True):
+            DeletePending(transaction)
+            pending_list_txs.remove(transaction)
+
+    for transaction in block.validating_list:
+            the_sequance_number = 0
+            if custom_sequence_number == -1:
+                the_sequance_number = transaction.sequence_number -1      
+            if not Check_Datas(
+                block, 
+                transaction,
+                custom_current_time=custom_current_time,
+                custom_balance=custom_balance,
+                custom_sequence_number=the_sequance_number,            
+                disable_already_in=True):
                 block.validating_list.remove(transaction)
 
 

@@ -23,7 +23,6 @@ def CheckTransaction(
     custom_balance=None,
     custom_PENDING_TRANSACTIONS_PATH=None,
     custom_account_list=None,
-    disable_already_in=False
 ):
     """
     This function checks the transaction.
