@@ -2520,6 +2520,10 @@ class Test_Transactions(unittest.TestCase):
             transaction_frem_a_1_q_3.__dict__ in find_difference_dict)
         self.assertEqual(len(find_difference_dict), 2)
 
+        DeletePending(transaction_frem_a_0_j_3)
+        DeletePending(transaction_frem_a_0_a_4)
+        DeletePending(transaction_frem_a_1_q_3)
+
     def test_cleaner_validating_list_one(self):
 
         block = Block("")
@@ -2549,6 +2553,9 @@ class Test_Transactions(unittest.TestCase):
 
         self.assertEqual(len(find_difference_dict), 0)
 
+        DeletePending(transaction_frem_a_0_j_3)
+        DeletePending(transaction_frem_a_0_a_4)
+        DeletePending(transaction_frem_a_1_q_3)
 
     def test_cleaner_pending(self):
 
@@ -2630,6 +2637,8 @@ class Test_Transactions(unittest.TestCase):
 
 
         DeletePending(transaction_frem_a_0_j_3)
+        DeletePending(transaction_frem_a_0_a_4)
+        DeletePending(transaction_frem_a_1_q_3)
 
 
 

@@ -1879,6 +1879,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             custom_fee_address=custom_fee_address,
+            clean=False
         )
         self.assertEqual(len(result.validating_list), 2)
         self.assertEqual(result.validating_list[1].dump_json(),
@@ -2778,6 +2779,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             custom_fee_address=custom_fee_address,
+            clean=False
         )
         self.assertEqual(len(result.validating_list), 2)
         self.assertEqual(result.validating_list[1].dump_json(),

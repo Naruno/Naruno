@@ -39,7 +39,7 @@ logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
 def transactions_main(block: Block, candidate_class: candidate_block,
-                      unl_nodes: dict) -> list:
+                      unl_nodes: dict, clean=True) -> list:
     temp_validating_list = find_validated(block,
                                           candidate_class=candidate_class,
                                           unl_nodes=unl_nodes)
@@ -52,10 +52,10 @@ def transactions_main(block: Block, candidate_class: candidate_block,
     Remove_Duplicates(block)
 
     pending_list_txs = GetPending()
-
-    cleaned_lists = Cleaner(block, pending_list_txs)
-    block.validating_list = cleaned_lists[0]
-    pending_list_txs = cleaned_lists[1]
+    if clean:
+        cleaned_lists = Cleaner(block, pending_list_txs)
+        block.validating_list = cleaned_lists[0]
+        pending_list_txs = cleaned_lists[1]
 
     logger.debug(f"Newly validating list {block.validating_list}")
         

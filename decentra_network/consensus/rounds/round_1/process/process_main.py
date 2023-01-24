@@ -46,12 +46,13 @@ def round_process(
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     custom_shares=None,
     custom_fee_address=None,
+    clean=True
 ) -> Block:
     logger.info("Processing for round 1 is started")
     logger.debug(f"First block: {block.dump_json()}")
     transactions_main(block,
                       candidate_class=candidate_class,
-                      unl_nodes=unl_nodes)
+                      unl_nodes=unl_nodes, clean=clean)
 
     block.round_1 = True
     block.round_2_starting_time = block.start_time + block.round_1_time

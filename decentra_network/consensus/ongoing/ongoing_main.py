@@ -33,7 +33,8 @@ def ongoing_main(
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     custom_shares=None,
     custom_fee_address=None,
-    pass_sync=False
+    pass_sync=False,
+    clean=True
 ) -> Block:
 
     block.sync_empty_blocks() if pass_sync is False else None
@@ -47,8 +48,9 @@ def ongoing_main(
 
     if not block.round_1:    
         logger.debug("First round is starting")
-        cleaned = Cleaner(block, pending_list_txs=GetPending())
-        block.validating_list = cleaned[0]      
+        if clean:
+            cleaned = Cleaner(block, pending_list_txs=GetPending())
+            block.validating_list = cleaned[0]      
         consensus_round_1(
             block,
             custom_candidate_class=custom_candidate_class,
@@ -61,6 +63,7 @@ def ongoing_main(
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             custom_shares=custom_shares,
             custom_fee_address=custom_fee_address,
+            clean=clean
         )
         logger.debug("First round is done")
     elif not block.round_2:
