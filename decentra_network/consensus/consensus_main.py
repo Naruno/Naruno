@@ -18,6 +18,7 @@ from decentra_network.lib.log import get_logger
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.node.client.client import client
 from decentra_network.node.server.server import server
+from decentra_network.transactions.cleaner import Cleaner
 from decentra_network.transactions.pending.get_pending import GetPending
 
 logger = get_logger("CONSENSUS")
@@ -45,7 +46,7 @@ def consensus_trigger(
 
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
-
+    pending_list_txs = GetPending()
     logger.debug(
         f"BLOCK#{block.sequence_number}:{block.empty_block_number} Consensus process started"
     )
@@ -72,12 +73,16 @@ def consensus_trigger(
         the_server = server.Server if custom_server is None else custom_server
         the_server.send_my_block_hash(block)
 
-        pending_list_txs = GetPending()
+        
         with contextlib.suppress(Exception):
             [
                 the_server.send_transaction(i)
                 for i in pending_list_txs + block.validating_list
             ]
+
+    cleaned = Cleaner(block, pending_list_txs=GetPending())
+    block.validating_list = cleaned[0]
+    pending_list_txs = cleaned[1]
 
     if block.validated:
         finished_main(
