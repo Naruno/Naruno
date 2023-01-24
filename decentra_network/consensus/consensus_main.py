@@ -80,9 +80,7 @@ def consensus_trigger(
                 for i in pending_list_txs + block.validating_list
             ]
 
-    cleaned = Cleaner(block, pending_list_txs=GetPending())
-    block.validating_list = cleaned[0]
-    pending_list_txs = cleaned[1]
+
 
     if block.validated:
         finished_main(

@@ -15,7 +15,8 @@ from decentra_network.consensus.rounds.round_2.round_2_main import \
 from decentra_network.lib.log import get_logger
 from decentra_network.node.client.client import client
 from decentra_network.node.server.server import server
-
+from decentra_network.transactions.cleaner import Cleaner
+from decentra_network.transactions.pending.get_pending import GetPending
 logger = get_logger("CONSENSUS")
 
 
@@ -46,6 +47,8 @@ def ongoing_main(
 
     if not block.round_1:    
         logger.debug("First round is starting")
+        cleaned = Cleaner(block, pending_list_txs=GetPending())
+        block.validating_list = cleaned[0]      
         consensus_round_1(
             block,
             custom_candidate_class=custom_candidate_class,
