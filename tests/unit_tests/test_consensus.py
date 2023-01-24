@@ -2792,6 +2792,93 @@ class Test_Consensus(unittest.TestCase):
                             old_block.round_2_starting_time)
         self.assertNotEqual(result.hash, old_block.hash)
 
+
+    def test_ongoing_main_round_1_clean(self):
+        custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_consensus_round_1_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_consensus_round_1_TEMP_BLOCKSHASH_PATH.json")
+        custom_TEMP_BLOCKSHASH_PART_PATH = (
+            "db/test_consensus_round_1_TEMP_BLOCKSHASH_PART_PATH.json")
+        custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
+
+        custom_server = None
+
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        validating_list = [the_transaction_json, the_transaction_json]
+
+        data_block = {
+            "transaction": validating_list,
+            "sequence_number": 58,
+            "signature": "a",
+        }
+
+        data_block_hash = {
+            "action": "myblockhash",
+            "hash": "onur from tests",
+            "previous_hash": "previous_hash",
+            "sequence_number": 58,
+            "signature": "a",
+        }
+
+        CandidateBlock = candidate_block([data_block for i in range(6)],
+                                         [data_block_hash for i in range(6)])
+        validating_list = [the_transaction, the_transaction]
+
+        data_block = {
+            "signature": -1,
+            "transaction": validating_list,
+            "sequence_number": 58,
+            "signature": "a",
+        }
+        new_list = []
+        for i in range(6):
+            new_block = copy.copy(data_block)
+            new_block["signature"] = i
+            new_list.append(new_block)
+        CandidateBlock.candidate_blocks = new_list
+        CandidateBlock.candidate_blocks_hash = [
+            data_block_hash for i in range(6)
+        ]
+        unl_nodes = [i for i in range(10)]
+        block = Block("Onur")
+
+        block.start_time = time.time()
+        block.round_1_time = 2
+        old_block = copy.copy(block)
+        time.sleep(4)
+        custom_fee_address = "onurtheprofessional"
+        result = ongoing_main(
+            block,
+            CandidateBlock,
+            unl_nodes,
+            custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+            custom_server=custom_server,
+            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            custom_fee_address=custom_fee_address,
+        )
+        self.assertEqual(len(result.validating_list), 0)
+
+        self.assertEqual(result.round_1, True)
+        self.assertNotEqual(result.round_2_starting_time,
+                            old_block.round_2_starting_time)
+        self.assertNotEqual(result.hash, old_block.hash)
+
     def test_ongoing_main_round_2(self):
         the_transaction_json = {
             "sequence_number": 1,
