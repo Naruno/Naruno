@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="decentra_network_tests",
-    version="0.42.0",
+    version="0.43.0",
     description="""This is a tool for tests on Decentra Network""",
     url="https://docs.decentranetwork.net/",
     author="Decentra Network Developers",
@@ -18,7 +18,7 @@ setup(
 requests==2.28.0
 pytest==7.1.2
 speed_calculator==0.4.1
-decentra_network_api==0.42.0
+decentra_network_api==0.43.0
 """,
     python_requires=">=3.8",
     zip_safe=False,
