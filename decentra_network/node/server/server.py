@@ -655,23 +655,23 @@ class server(Thread):
         """
         Sends the given transaction to UNL nodes.
         """
-
-        data = {
-            "action": "transactionrequest",
-            "sequence_number": tx.sequence_number,
-            "txsignature": tx.signature,
-            "fromUser": tx.fromUser,
-            "to_user": tx.toUser,
-            "data": tx.data,
-            "amount": tx.amount,
-            "transaction_fee": tx.transaction_fee,
-            "transaction_time": tx.transaction_time,
-            "custom_current_time": custom_current_time,
-            "custom_sequence_number": custom_sequence_number,
-            "custom_balance": custom_balance,
-        }
-        the_server = server.Server if custom_server is None else custom_server
-        the_server.send(data, except_client=except_client)
+        if not tx.signature = "DN":
+            data = {
+                "action": "transactionrequest",
+                "sequence_number": tx.sequence_number,
+                "txsignature": tx.signature,
+                "fromUser": tx.fromUser,
+                "to_user": tx.toUser,
+                "data": tx.data,
+                "amount": tx.amount,
+                "transaction_fee": tx.transaction_fee,
+                "transaction_time": tx.transaction_time,
+                "custom_current_time": custom_current_time,
+                "custom_sequence_number": custom_sequence_number,
+                "custom_balance": custom_balance,
+            }
+            the_server = server.Server if custom_server is None else custom_server
+            the_server.send(data, except_client=except_client)
 
     def get_transaction(self, data, node):
         block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
