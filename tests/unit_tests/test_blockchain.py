@@ -1294,5 +1294,22 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(second_round_2_time,
                          block.start_time + block.round_1_time)
 
+    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_high(self):
+
+        block = Block("onur")
+        block.sequence_number = 1
+        block.empty_block_number = 3
+        block.block_time = 0.5
+        block.validated = False
+
+        first_block = copy.copy(block)
+        time.sleep(0.5)
+        block.sync_empty_blocks()
+        second_block = copy.copy(block)
+
+        self.assertEqual(first_block.empty_block_number,
+                         second_block.empty_block_number)
+        self.assertEqual(first_block.start_time, second_block.start_time)
+
 
 unittest.main(exit=False)
