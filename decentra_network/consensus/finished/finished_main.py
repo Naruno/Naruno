@@ -113,8 +113,7 @@ def finished_main(
             if len(the_blocks_hash) == block.part_amount:
                 
                 block.empty_block_number += block.gap_block_number
-                difference = (block.start_time +  (block.hard_block_number * block.block_time)) - int(time.time())
-                time.sleep(difference)
+
                 block.sync = True
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
@@ -142,6 +141,10 @@ def finished_main(
                          ".blockshash_full.json"),
                     )
                 os.remove(the_TEMP_BLOCKSHASH_PATH)
+
+
+                difference = (block.start_time +  (block.hard_block_number * block.block_time)) - int(time.time())
+                time.sleep(difference)
 
         PendingtoValidating(block)
         SaveBlock(
