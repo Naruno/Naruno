@@ -83,8 +83,7 @@ def finished_main(
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
                     custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 new_tx_from_us = True
                 settings["save_blockshash"] = True
@@ -95,8 +94,7 @@ def finished_main(
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
                     custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                     force=True,
                 )
 
@@ -109,20 +107,18 @@ def finished_main(
 
             the_blocks_hash = GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
-            
+
             if len(the_blocks_hash) == block.part_amount:
-                
+
                 block.empty_block_number += block.gap_block_number
 
                 block.sync = True
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 the_blockshas_part = GetBlockshash_part(
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH)
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH)
                 block.part_amount_cache = MerkleTree(
                     the_blockshas_part).getRootHash()
                 if settings["save_blockshash"] == True:
@@ -142,8 +138,8 @@ def finished_main(
                     )
                 os.remove(the_TEMP_BLOCKSHASH_PATH)
 
-
-                difference = (block.start_time +  (block.hard_block_number * block.block_time)) - int(time.time())
+                difference = (
+                    block.start_time + (block.hard_block_number * block.block_time)) - int(time.time())
                 time.sleep(difference)
 
         PendingtoValidating(block)
@@ -156,7 +152,7 @@ def finished_main(
         )
         return True
     else:
-        
+
         if block.sync == True:
             block.sync = False
             SaveBlock(
