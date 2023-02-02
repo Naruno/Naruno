@@ -1294,7 +1294,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(second_round_2_time,
                          block.start_time + block.round_1_time)
 
-
     def test_blockchain_sync_empty_blocks_first_and_second_empty_is_high(
             self):
 
@@ -1312,5 +1311,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(first_block.empty_block_number,
                          second_block.empty_block_number)
         self.assertEqual(first_block.start_time, second_block.start_time)
+
 
 unittest.main(exit=False)
