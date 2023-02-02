@@ -64,21 +64,27 @@ def consensus_trigger(
         custom_TEMP_BLOCKSHASH_PATH: str = None,
         custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     ):
+    """
+    Data sending consists of 3 stages. 
+    Block sending,blockhash sending and transection.
+    It shares the data of the existing chains with the nodes.
+    """
 
-        custom_server.send_my_block(
-            block
-        ) if custom_server is not None else server.Server.send_my_block(block)
+
+        logger.info("Data sending process is starting")
+        the_server = server.Server if custom_server is None else custom_server
+
+        logger.debug("Our block is sending to the unl nodes")
+        the_server.send_my_block(block)
 
         logger.debug("Our block hash is sending to the unl nodes")
-        the_server = server.Server if custom_server is None else custom_server
         the_server.send_my_block_hash(block)
 
-        
-        with contextlib.suppress(Exception):
-            [
-                the_server.send_transaction(i)
-                for i in pending_list_txs + block.validating_list
-            ]
+        logger.debug("Transections block is sending to the unl nodes")
+        [
+            the_server.send_transaction(i)
+            for i in pending_list_txs + block.validating_list
+        ]
 
 
 
