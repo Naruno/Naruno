@@ -24,7 +24,7 @@ from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
 from decentra_network.config import TEMP_BLOCKSHASH_PATH
 from decentra_network.consensus.finished.transactions.transactions_main import \
     transactions_main
-from decentra_network.consensus.finished.time.true_time.true_time_main import true_time
+from decentra_network.consensus.finished.true_time.true_time_main import true_time
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.lib.settings_system import save_settings
