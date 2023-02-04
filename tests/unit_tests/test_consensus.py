@@ -72,7 +72,7 @@ from decentra_network.consensus.rounds.round_2.process.validate.validate_main im
     validate_main
 from decentra_network.consensus.rounds.round_2.round_2_main import \
     consensus_round_2
-from decentra_network.consensus.time.true_time.true_time_main import true_time
+from decentra_network.consensus.finished.time.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.lib.settings_system import save_settings, the_settings
