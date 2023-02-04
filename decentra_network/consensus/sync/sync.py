@@ -54,7 +54,7 @@ def sync(
         logger.error(f"Block hash sending error: {e}")
 
     logger.debug("Transections block is sending to the unl nodes")
-    for i in pending_list_txs + block.validating_list
+    for i in pending_list_txs + block.validating_list:
         try:
             the_server.send_transaction(i)
         except Exception as e:
