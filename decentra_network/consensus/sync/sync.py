@@ -27,7 +27,7 @@ logger = get_logger("CONSENSUS")
 
 def sync(
     block: Block = None,
-    pending_list_txs: list = None,
+    pending_list_txs: list = [],
     custom_server: server = None,
     send_block_error: bool = False,
     send_block_hash_error: bool = False,
