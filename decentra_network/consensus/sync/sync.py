@@ -29,6 +29,9 @@ def sync(
     block: Block = None,
     pending_list_txs: list = None,
     custom_server: server = None,
+    send_block_error: bool = False,
+    send_block_hash_error: bool = False,
+    send_transaction_error: bool = False,
     ):
     """
     Data sending consists of 3 stages. 
@@ -40,22 +43,29 @@ def sync(
     logger.info("Data sending process is starting")
     the_server = server.Server if custom_server is None else custom_server
 
+    logger.debug("Transections is sending to the unl nodes")
+    for i in pending_list_txs + block.validating_list:
+        try:
+            the_server.send_transaction(i)
+            if send_transaction_error:
+                raise Exception("Transaction sending error")
+        except Exception as e:
+            logger.error(f"Transaction sending error: {e}")
 
     logger.debug("Our block is sending to the unl nodes")
     try:
         the_server.send_my_block(block)
+        if send_block_error:
+            raise Exception("Block sending error")
     except Exception as e:
         logger.error(f"Block sending error: {e}")
 
     logger.debug("Our block hash is sending to the unl nodes")
     try:
         the_server.send_my_block_hash(block)
+        if send_block_hash_error:
+            raise Exception("Block hash sending error")
     except Exception as e:
         logger.error(f"Block hash sending error: {e}")
 
-    logger.debug("Transections block is sending to the unl nodes")
-    for i in pending_list_txs + block.validating_list:
-        try:
-            the_server.send_transaction(i)
-        except Exception as e:
-            logger.error(f"Transaction sending error: {e}")
+

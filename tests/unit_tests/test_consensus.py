@@ -7,6 +7,8 @@
 import os
 import sys
 
+from decentra_network.consensus.sync.sync import sync
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import copy
@@ -2987,6 +2989,7 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         block.round_1 = True
         block.hash = "onur from tests"
+        block.validating_list = validating_list
         old_block = copy.copy(block)
 
         block.round_2_starting_time = time.time()
@@ -3097,5 +3100,14 @@ class Test_Consensus(unittest.TestCase):
         block = Remove_Duplicates(block)
         self.assertEqual(len(block.validating_list), 1)
 
+
+    def test_sync_send_block_exception(self):
+        sync(custom_server=self.node_1, send_block_error=True)
+
+    def test_sync_send_block_hash_exception(self):
+        sync(custom_server=self.node_1, send_block_hash_error=True)
+
+    def test_sync_send_transaction_exception(self):
+        sync(custom_server=self.node_1, send_transaction_error=True)
 
 unittest.main(exit=False)
