@@ -3102,12 +3102,15 @@ class Test_Consensus(unittest.TestCase):
 
 
     def test_sync_send_block_exception(self):
-        sync(custom_server=self.node_1, send_block_error=True)
+        block = Block("onur")
+        sync(block, custom_server=self.node_1, send_block_error=True)
 
     def test_sync_send_block_hash_exception(self):
-        sync(custom_server=self.node_1, send_block_hash_error=True)
+        block = Block("onur")
+        sync(block, custom_server=self.node_1, send_block_hash_error=True)
 
     def test_sync_send_transaction_exception(self):
-        sync(custom_server=self.node_1, send_transaction_error=True)
+        block = Block("onur")
+        sync(block, custom_server=self.node_1, send_transaction_error=True)
 
 unittest.main(exit=False)
