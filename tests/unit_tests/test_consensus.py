@@ -3112,11 +3112,35 @@ class Test_Consensus(unittest.TestCase):
 
     def test_sync_send_transaction_exception(self):
         block = Block("onur")
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature": "test_SavePending_GetPending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)        
         block.validating_list = [the_transaction, copy.copy(the_transaction)]
         sync(block, custom_server=self.node_1, send_transaction_error=True)
 
     def test_sync_send_transaction_exception_pending(self):
         block = Block("onur")
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature": "test_SavePending_GetPending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)        
         pending_validating_list = [the_transaction, copy.copy(the_transaction)]
         sync(block, custom_server=self.node_1, send_transaction_error=True, pending_list_txs=pending_validating_list)
 
