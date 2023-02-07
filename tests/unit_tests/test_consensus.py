@@ -2989,7 +2989,8 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         block.round_1 = True
         block.hash = "onur from tests"
-        block.validating_list = validating_list
+
+        block.validating_list = [Transaction.load_json(i) for i in validating_list]
         old_block = copy.copy(block)
 
         block.round_2_starting_time = time.time()

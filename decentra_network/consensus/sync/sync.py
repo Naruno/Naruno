@@ -27,7 +27,7 @@ logger = get_logger("CONSENSUS")
 
 def sync(
     block: Block,
-    pending_list_txs: list = [],
+    pending_list_txs: list = None,
     custom_server: server = None,
     send_block_error: bool = False,
     send_block_hash_error: bool = False,
@@ -44,7 +44,10 @@ def sync(
     the_server = server.Server if custom_server is None else custom_server
 
     logger.debug("Transections is sending to the unl nodes")
-    for i in pending_list_txs + block.validating_list:
+    the_transactions_list = block.validating_list
+    if pending_list_txs is not None:
+        the_transactions_list += pending_list_txs
+    for i in the_transactions_list:
         try:
             the_server.send_transaction(i)
             if send_transaction_error:
