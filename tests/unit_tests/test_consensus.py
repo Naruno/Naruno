@@ -3112,6 +3112,13 @@ class Test_Consensus(unittest.TestCase):
 
     def test_sync_send_transaction_exception(self):
         block = Block("onur")
+        block.validating_list = [the_transaction, copy.copy(the_transaction)]
         sync(block, custom_server=self.node_1, send_transaction_error=True)
+
+    def test_sync_send_transaction_exception_pending(self):
+        block = Block("onur")
+        pending_validating_list = [the_transaction, copy.copy(the_transaction)]
+        sync(block, custom_server=self.node_1, send_transaction_error=True, pending_list_txs=pending_validating_list)
+
 
 unittest.main(exit=False)
