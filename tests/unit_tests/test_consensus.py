@@ -7,6 +7,8 @@
 import os
 import sys
 
+from decentra_network.consensus.sync.sync import sync
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import copy
@@ -72,7 +74,7 @@ from decentra_network.consensus.rounds.round_2.process.validate.validate_main im
     validate_main
 from decentra_network.consensus.rounds.round_2.round_2_main import \
     consensus_round_2
-from decentra_network.consensus.time.true_time.true_time_main import true_time
+from decentra_network.consensus.finished.true_time.true_time_main import true_time
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.mix.merkle_root import MerkleTree
 from decentra_network.lib.settings_system import save_settings, the_settings
@@ -2987,6 +2989,8 @@ class Test_Consensus(unittest.TestCase):
         block = Block("Onur")
         block.round_1 = True
         block.hash = "onur from tests"
+
+        block.validating_list = [Transaction.load_json(i) for i in validating_list]
         old_block = copy.copy(block)
 
         block.round_2_starting_time = time.time()
@@ -3096,6 +3100,49 @@ class Test_Consensus(unittest.TestCase):
         block.validating_list = [the_transaction, copy.copy(the_transaction)]
         block = Remove_Duplicates(block)
         self.assertEqual(len(block.validating_list), 1)
+
+
+    def test_sync_send_block_exception(self):
+        block = Block("onur")
+        sync(block, custom_server=self.node_1, send_block_error=True)
+
+    def test_sync_send_block_hash_exception(self):
+        block = Block("onur")
+        sync(block, custom_server=self.node_1, send_block_hash_error=True)
+
+    def test_sync_send_transaction_exception(self):
+        block = Block("onur")
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature": "test_SavePending_GetPending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)        
+        block.validating_list = [the_transaction, copy.copy(the_transaction)]
+        sync(block, custom_server=self.node_1, send_transaction_error=True)
+
+    def test_sync_send_transaction_exception_pending(self):
+        block = Block("onur")
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature": "test_SavePending_GetPending",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)        
+        pending_validating_list = [the_transaction, copy.copy(the_transaction)]
+        sync(block, custom_server=self.node_1, send_transaction_error=True, pending_list_txs=pending_validating_list)
 
 
 unittest.main(exit=False)
