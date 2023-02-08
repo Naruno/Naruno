@@ -229,7 +229,8 @@ class OperationBox(MDGridLayout):
         result = verify(path)
 
         if result[0] == True:
-            data_text = f"{result[1][:20]}..." if len(result[1]) > 20 else result[1]
+            data_text = f"{result[1][:20]}..." if len(
+                result[1]) > 20 else result[1]
             SweetAlert().fire(
                 "Data is verified",
                 f"The data is : {data_text}",
@@ -297,7 +298,6 @@ class OperationBox(MDGridLayout):
             f"The signature is : {the_signature_of_tx}",
             type="success",
         )
-
 
     def transaction_history(self):
         transactions = GetMyTransaction()
