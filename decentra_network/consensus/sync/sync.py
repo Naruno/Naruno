@@ -43,17 +43,7 @@ def sync(
     logger.info("Data sending process is starting")
     the_server = server.Server if custom_server is None else custom_server
 
-    logger.debug("Transections is sending to the unl nodes")
-    the_transactions_list = block.validating_list
-    if pending_list_txs is not None:
-        the_transactions_list += pending_list_txs
-    for i in the_transactions_list:
-        try:
-            the_server.send_transaction(i)
-            if send_transaction_error:
-                raise Exception("Transaction sending error")
-        except Exception as e:
-            logger.error(f"Transaction sending error: {e}")
+
 
     logger.debug("Our block is sending to the unl nodes")
     try:
@@ -71,4 +61,14 @@ def sync(
     except Exception as e:
         logger.error(f"Block hash sending error: {e}")
 
-
+    logger.debug("Transactions is sending to the unl nodes")
+    the_transactions_list = block.validating_list
+    if pending_list_txs is not None:
+        the_transactions_list += pending_list_txs
+    for i in the_transactions_list:
+        try:
+            the_server.send_transaction(i)
+            if send_transaction_error:
+                raise Exception("Transaction sending error")
+        except Exception as e:
+            logger.error(f"Transaction sending error: {e}")
