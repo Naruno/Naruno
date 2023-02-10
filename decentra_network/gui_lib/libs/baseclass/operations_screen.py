@@ -229,7 +229,8 @@ class OperationBox(MDGridLayout):
         result = verify(path)
 
         if result[0] == True:
-            data_text = f"{result[1][:20]}..." if len(result[1]) > 20 else result[1]
+            data_text = f"{result[1][:20]}..." if len(
+                result[1]) > 20 else result[1]
             SweetAlert().fire(
                 "Data is verified",
                 f"The data is : {data_text}",
@@ -289,8 +290,14 @@ class OperationBox(MDGridLayout):
                 type="failure",
             )
 
-    def callback_for_transaction_history_items(self, widget):
-        pass
+    def callback_for_transaction_history_items(self, *args):
+        the_signature_of_tx = args[0][:96]
+        Clipboard.copy(the_signature_of_tx)
+        SweetAlert().fire(
+            "The signature of transaction has been copied to your clipboard.",
+            f"The signature is : {the_signature_of_tx}",
+            type="success",
+        )
 
     def transaction_history(self):
         transactions = GetMyTransaction()
