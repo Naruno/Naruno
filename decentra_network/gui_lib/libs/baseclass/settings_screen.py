@@ -15,6 +15,8 @@ from decentra_network.lib.settings_system import mt_settings
 from decentra_network.lib.settings_system import t_mode_settings
 from decentra_network.lib.settings_system import the_settings
 
+import decentra_network.gui.the_decentra_network_gui_app
+
 
 class SettingsScreen(MDScreen):
     pass
@@ -59,7 +61,7 @@ class SettingsBox(MDGridLayout):
         if instance_button.text == "OK":
             self.alert.dismiss()
             SettingsBox.dark_mode_first_status = the_settings()["dark_mode"]
-            App.get_running_app().restart()
+            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.restart()
 
         else:
             self.alert.dismiss()

@@ -20,6 +20,8 @@ from decentra_network.lib.log import get_logger
 from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import the_settings
 
+import decentra_network.gui.the_decentra_network_gui_app
+
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
 Config.set("graphics", "minimum_width", "700")
@@ -51,6 +53,9 @@ ScreenManager:
 """
 
 logger = get_logger("GUI")
+
+
+
 
 
 class GUI(MDApp):
@@ -114,7 +119,8 @@ class GUI(MDApp):
     def restart(self):
         self.root.clear_widgets()
         self.stop()
-        return GUI().run()
+        decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui = GUI()
+        return decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.run()
 
 
 def arguments():
@@ -145,7 +151,10 @@ def arguments():
 
     safety_check(args.interface, args.timeout)
 
-    GUI().run()
+
+    decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui = GUI()
+
+    decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.run()
 
 
 def start():
