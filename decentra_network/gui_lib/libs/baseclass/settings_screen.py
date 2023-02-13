@@ -60,7 +60,8 @@ class SettingsBox(MDGridLayout):
         if instance_button.text == "OK":
             self.alert.dismiss()
             SettingsBox.dark_mode_first_status = the_settings()["dark_mode"]
-            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.restart()
+            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.restart(
+            )
 
         else:
             self.alert.dismiss()
