@@ -55,9 +55,6 @@ ScreenManager:
 logger = get_logger("GUI")
 
 
-
-
-
 class GUI(MDApp):
     """
     An MDApp based  GUI class.
@@ -129,8 +126,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument(
@@ -150,7 +146,6 @@ def arguments():
     args = parser.parse_args()
 
     safety_check(args.interface, args.timeout)
-
 
     decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui = GUI()
 
