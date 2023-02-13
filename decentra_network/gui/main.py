@@ -15,12 +15,11 @@ from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
+import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.safety import safety_check
 from decentra_network.lib.settings_system import the_settings
-
-import decentra_network.gui.the_decentra_network_gui_app
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
