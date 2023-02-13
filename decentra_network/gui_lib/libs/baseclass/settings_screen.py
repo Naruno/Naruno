@@ -9,6 +9,7 @@ from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
+import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.lib.settings_system import d_mode_settings
 from decentra_network.lib.settings_system import dark_mode_settings
 from decentra_network.lib.settings_system import mt_settings
@@ -59,7 +60,8 @@ class SettingsBox(MDGridLayout):
         if instance_button.text == "OK":
             self.alert.dismiss()
             SettingsBox.dark_mode_first_status = the_settings()["dark_mode"]
-            App.get_running_app().restart()
+            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.restart(
+            )
 
         else:
             self.alert.dismiss()

@@ -15,6 +15,7 @@ from kivy import Config
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
+import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.log import get_logger
 from decentra_network.lib.safety import safety_check
@@ -114,7 +115,10 @@ class GUI(MDApp):
     def restart(self):
         self.root.clear_widgets()
         self.stop()
-        return GUI().run()
+        decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui = (
+            GUI())
+        return (decentra_network.gui.the_decentra_network_gui_app.
+                the_decentra_network_gui.run())
 
 
 def arguments():
@@ -145,7 +149,11 @@ def arguments():
 
     safety_check(args.interface, args.timeout)
 
-    GUI().run()
+    decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui = GUI(
+    )
+
+    decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.run(
+    )
 
 
 def start():
