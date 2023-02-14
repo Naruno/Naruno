@@ -12,6 +12,7 @@ from kivymd_extensions.sweetalert import SweetAlert
 from kivymd.uix.textfield import MDTextField
 import decentra_network.gui.the_decentra_network_gui_app
 
+
 class popup:
     def __init__(self, title=None, text=None, image=None, height_image=None, thirdly_title=None, target=None, inputs=None, type="custom"):
         """
@@ -35,22 +36,24 @@ class popup:
         if self.type == "custom":
             self.show()
 
-
     def show(self):
         self.dialog.open()
+
     def dismiss(self, widget=None):
         self.dialog.dismiss()
+
     def clean(self):
 
         for obj in self.dialog.content_cls.children:
-                if isinstance(obj, MDTextField):
-                    obj.text = ""
+            if isinstance(obj, MDTextField):
+                obj.text = ""
+
     def director(self, widget):
         print("director")
 
         for obj in self.dialog.content_cls.children:
-                if isinstance(obj, MDTextField):
-                    self.input_results[obj.hint_text] = obj.text
+            if isinstance(obj, MDTextField):
+                self.input_results[obj.hint_text] = obj.text
         print("Target")
         self.target()
         print("Clean")
@@ -68,74 +71,75 @@ class popup:
         if self.dialog is None:
             if self.type == "custom":
                 self.dialog = SweetAlert(
-                        title=self.title,
-                        type=self.type,
-                        auto_dismiss=False,
-                        buttons=[
-                            MDFlatButton(
-                                text="CANCEL",
-                                font_size="18sp",
-                                on_press=self.dismiss,
-                                font_name=os.path.join(
-                                    decentra_network.gui.the_decentra_network_gui_app.
-                                    the_decentra_network_gui.FONT_PATH,
-                                    "Poppins-Bold",
-                                ),
+                    title=self.title,
+                    type=self.type,
+                    auto_dismiss=False,
+                    buttons=[
+                        MDFlatButton(
+                            text="CANCEL",
+                            font_size="18sp",
+                            on_press=self.dismiss,
+                            font_name=os.path.join(
+                                decentra_network.gui.the_decentra_network_gui_app.
+                                the_decentra_network_gui.FONT_PATH,
+                                "Poppins-Bold",
                             ),
-                            MDFlatButton(
-                                text="OK",
-                                font_size="18sp",
-                                font_name=os.path.join(
-                                    decentra_network.gui.the_decentra_network_gui_app.
-                                    the_decentra_network_gui.FONT_PATH,
-                                    "Poppins-Bold",
-                                ),
-                                on_press=self.director,
+                        ),
+                        MDFlatButton(
+                            text="OK",
+                            font_size="18sp",
+                            font_name=os.path.join(
+                                decentra_network.gui.the_decentra_network_gui_app.
+                                the_decentra_network_gui.FONT_PATH,
+                                "Poppins-Bold",
                             ),
-                        ],
-                    )
+                            on_press=self.director,
+                        ),
+                    ],
+                )
 
                 for i in self.inputs:
-                        content = i[0]
-                        is_pass = i[1]
-                        self.dialog.content_cls.add_widget(MDTextField(hint_text=content, mode="fill", password=is_pass))     
+                    content = i[0]
+                    is_pass = i[1]
+                    self.dialog.content_cls.add_widget(MDTextField(
+                        hint_text=content, mode="fill", password=is_pass))
             elif self.type != "question":
                 the_type = None if self.type == "qr" else self.type
                 self.dialog = SweetAlert()
                 self.dialog.fire(
-                                self.title,
-                                self.text,
-                                self.thirdly_title,
-                                
-                                image=self.image,
-                                height_image=self.height_image,
-                                type=the_type,
-                            )
-            else :
+                    self.title,
+                    self.text,
+                    self.thirdly_title,
+
+                    image=self.image,
+                    height_image=self.height_image,
+                    type=the_type,
+                )
+            else:
                 self.dialog = SweetAlert()
                 self.dialog.fire(
-                        title=self.title,
-                        type=self.type,
-                        buttons=[
-                            MDFlatButton(
-                                text="NO",
-                                font_size="18sp",
-                                on_press=self.dismiss,
-                                font_name=os.path.join(
-                                    decentra_network.gui.the_decentra_network_gui_app.
-                                    the_decentra_network_gui.FONT_PATH,
-                                    "Poppins-Bold",
-                                ),
+                    title=self.title,
+                    type=self.type,
+                    buttons=[
+                        MDFlatButton(
+                            text="NO",
+                            font_size="18sp",
+                            on_press=self.dismiss,
+                            font_name=os.path.join(
+                                decentra_network.gui.the_decentra_network_gui_app.
+                                the_decentra_network_gui.FONT_PATH,
+                                "Poppins-Bold",
                             ),
-                            MDFlatButton(
-                                text="YES",
-                                font_size="18sp",
-                                font_name=os.path.join(
-                                    decentra_network.gui.the_decentra_network_gui_app.
-                                    the_decentra_network_gui.FONT_PATH,
-                                    "Poppins-Bold",
-                                ),
-                                on_press=self.director_without_input,
+                        ),
+                        MDFlatButton(
+                            text="YES",
+                            font_size="18sp",
+                            font_name=os.path.join(
+                                decentra_network.gui.the_decentra_network_gui_app.
+                                the_decentra_network_gui.FONT_PATH,
+                                "Poppins-Bold",
                             ),
-                        ],
-                    )
+                            on_press=self.director_without_input,
+                        ),
+                    ],
+                )

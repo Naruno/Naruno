@@ -26,20 +26,16 @@ from decentra_network.transactions.send import send
 from decentra_network.wallet.wallet_import import wallet_import
 from decentra_network.gui.popup import popup
 
+
 class OperationScreen(MDScreen):
     pass
-
 
 
 class OperationBox(MDGridLayout):
     cols = 2
 
-
-
     def sent_the_coins(self):
         the_block = GetBlock()
-
-        
 
         if float(self.send_coin_dialog.input_results["Amount"]) >= the_block.minumum_transfer_amount:
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
@@ -48,7 +44,8 @@ class OperationBox(MDGridLayout):
                 send_tx = send(
                     self.send_coin_dialog.input_results["Password"],
                     self.send_coin_dialog.input_results["Receiver"],
-                    amount=float(self.send_coin_dialog.input_results["Amount"]),
+                    amount=float(
+                        self.send_coin_dialog.input_results["Amount"]),
                     data=str(self.send_coin_dialog.input_results["Data"]),
                     block=block,
                 )
@@ -65,6 +62,7 @@ class OperationBox(MDGridLayout):
                     SaveBlock(block)
             else:
                 popup(title="Password is not correct", type="failure")
+
     def show_send_coin_dialog(self):
         self.send_coin_dialog = popup(
             title="Send Coin",
@@ -77,18 +75,19 @@ class OperationBox(MDGridLayout):
             ]
         )
 
-
-
     def sign_the_data(self):
-        path = sign(self.sign_dialog.input_results["Data"], self.sign_dialog.input_results["Password"])
+        path = sign(
+            self.sign_dialog.input_results["Data"], self.sign_dialog.input_results["Password"])
         if path == "None":
-            popup(title = "Password is not correct", type="failure")
+            popup(title="Password is not correct", type="failure")
         else:
             Clipboard.copy(path)
-            popup(title="Signed data file created", text="The file has been copied to your clipboard.", thirdly_title=path, type="success")
-    def show_sign_dialog(self):
-        self.sign_dialog = popup(title="Sign Data", target=self.sign_the_data, inputs=[["Data", False],["Password", True]])
+            popup(title="Signed data file created",
+                  text="The file has been copied to your clipboard.", thirdly_title=path, type="success")
 
+    def show_sign_dialog(self):
+        self.sign_dialog = popup(title="Sign Data", target=self.sign_the_data, inputs=[
+                                 ["Data", False], ["Password", True]])
 
     def verify_the_data(self):
         result = verify(self.verify_dialog.input_results["Path"])
@@ -104,14 +103,10 @@ class OperationBox(MDGridLayout):
             )
         else:
             popup(title="Data is not verified", type="failure")
+
     def show_verify_dialog(self):
-        self.verify_dialog = popup(title="Verify Signed Data", target=self.verify_the_data, inputs=[["Path", False]])
-
-
-
-
-
-
+        self.verify_dialog = popup(
+            title="Verify Signed Data", target=self.verify_the_data, inputs=[["Path", False]])
 
     def send_coin(self):
         try:
@@ -138,7 +133,6 @@ class OperationBox(MDGridLayout):
         else:
             popup(title="You have not a transaction", type="warning")
 
-
     def callback_for_transaction_history_items(self, *args):
         the_signature_of_tx = args[0][:96]
         Clipboard.copy(the_signature_of_tx)
@@ -147,7 +141,6 @@ class OperationBox(MDGridLayout):
             text=f"The signature is : {the_signature_of_tx}",
             type="success",
         )
-
 
     def transaction_history(self):
         transactions = GetMyTransaction()
@@ -168,4 +161,3 @@ class OperationBox(MDGridLayout):
             bottom_sheet_menu.open()
         else:
             popup(title="You have not a transaction", type="warning")
-

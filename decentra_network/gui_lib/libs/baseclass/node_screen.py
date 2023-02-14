@@ -20,6 +20,7 @@ from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
 from decentra_network.gui.popup import popup
 
+
 class NodeScreen(MDScreen):
     pass
 
@@ -46,11 +47,10 @@ class add_unl_node_Box(MDGridLayout):
 class NodeBox(MDGridLayout):
     cols = 2
 
-
-
-
     def start_node_server_func(self):
-        server(self.start_node_server_dialog.input_results["IP"], int(self.start_node_server_dialog.input_results["PORT"]))
+        server(self.start_node_server_dialog.input_results["IP"], int(
+            self.start_node_server_dialog.input_results["PORT"]))
+
     def show_start_node_server_dialog(self):
         self.start_node_server_dialog = popup(
             title="Start Node Server",
@@ -60,14 +60,6 @@ class NodeBox(MDGridLayout):
                 ["PORT", False],
             ]
         )
-
-
-
-
-
-
-
-
 
     def check_node_server(self):
         if server.Server is None:
@@ -83,13 +75,13 @@ class NodeBox(MDGridLayout):
     def connect_to_know_node(self):
         server.connectionfrommixdb()
 
-
-
     def connect_a_node_func(self):
 
         if not self.check_node_server():
             return False
-        server.Server.connect(self.connect_a_node_dialog.input_results["IP"], int(self.connect_a_node_dialog.input_results["PORT"]))
+        server.Server.connect(self.connect_a_node_dialog.input_results["IP"], int(
+            self.connect_a_node_dialog.input_results["PORT"]))
+
     def show_connect_a_node_dialog(self):
         self.connect_a_node_dialog = popup(
             title="Connect a Node",
@@ -100,19 +92,13 @@ class NodeBox(MDGridLayout):
             ]
         )
 
-
-
-
-
-
-
-
     def add_unl_node_func(self):
-
 
         from decentra_network.node.unl import Unl
 
-        Unl.save_new_unl_node(self.add_unl_node_dialog.input_results["PublicKey"])
+        Unl.save_new_unl_node(
+            self.add_unl_node_dialog.input_results["PublicKey"])
+
     def show_add_unl_node_dialog(self):
         self.add_unl_node_dialog = popup(
             title="Add UNL Node",
@@ -121,11 +107,6 @@ class NodeBox(MDGridLayout):
                 ["PublicKey", False],
             ]
         )
-
-
-
-
-
 
     def get_block(self):
         if not self.check_node_server():
@@ -142,11 +123,10 @@ class NodeBox(MDGridLayout):
         Clipboard.copy(server.id)
         popup(title="The ID has been copied to your clipboard.", type="success")
 
-
     def nd_id_qr(self):
         location_of_qr = qr(server.id)
-        popup(text=server.id, image=location_of_qr, height_image="450px", type="qr")
-
+        popup(text=server.id, image=location_of_qr,
+              height_image="450px", type="qr")
 
     def status(self):
         toast("Calculating...")
@@ -162,4 +142,3 @@ class NodeBox(MDGridLayout):
             popup(title="Very bad", type="warning")
         elif status == "Not work":
             popup(title="Not work", type="failure")
-
