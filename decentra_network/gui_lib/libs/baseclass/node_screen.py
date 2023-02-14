@@ -25,24 +25,6 @@ class NodeScreen(MDScreen):
     pass
 
 
-# Start Node Server
-
-
-class start_node_server_Box(MDGridLayout):
-    cols = 2
-
-
-# End
-
-# Add UNL Node
-
-
-class add_unl_node_Box(MDGridLayout):
-    cols = 2
-
-
-# End
-
 
 class NodeBox(MDGridLayout):
     cols = 2
