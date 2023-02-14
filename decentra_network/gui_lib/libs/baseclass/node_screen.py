@@ -9,6 +9,7 @@ from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
+import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.consensus.consensus_main import consensus_trigger
@@ -44,7 +45,6 @@ class add_unl_node_Box(MDGridLayout):
 
 class NodeBox(MDGridLayout):
     cols = 2
-    FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
 
     # Start Node Server
     start_node_server_dialog = None
@@ -61,13 +61,21 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_start_node_server_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
+                            "Poppins-Bold",
+                        ),
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.start_node_server_func,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
+                            "Poppins-Bold",
+                        ),
                     ),
                 ],
             )
@@ -138,13 +146,21 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_connect_a_node_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
+                            "Poppins-Bold",
+                        ),
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.connect_a_node_func,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
+                            "Poppins-Bold",
+                        ),
                     ),
                 ],
             )
@@ -197,13 +213,21 @@ class NodeBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_add_unl_node_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
+                            "Poppins-Bold",
+                        ),
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.add_unl_node_func,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
+                            "Poppins-Bold",
+                        ),
                     ),
                 ],
             )
