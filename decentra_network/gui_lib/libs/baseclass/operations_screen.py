@@ -23,7 +23,7 @@ from decentra_network.transactions.my_transactions.save_to_my_transaction import
     SavetoMyTransaction
 from decentra_network.transactions.send import send
 from decentra_network.wallet.wallet_import import wallet_import
-
+import decentra_network.gui.the_decentra_network_gui_app
 
 class OperationScreen(MDScreen):
     pass
@@ -47,7 +47,7 @@ class OperationBox(MDGridLayout):
     sign_dialog = None
     verify_dialog = None
     export_transaction_csv_dialog = None
-    FONT_PATH = f"{os.environ['DECENTRA_ROOT']}/gui_lib/fonts/"
+    
 
     def show_send_coin_dialog(self):
         if not self.send_coin_dialog:
@@ -61,13 +61,13 @@ class OperationBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_send_coin_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.sent_the_coins,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                     ),
                 ],
             )
@@ -86,13 +86,13 @@ class OperationBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_sign_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.sign_the_data,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                     ),
                 ],
             )
@@ -111,13 +111,13 @@ class OperationBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_verify_dialog,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                     ),
                     MDFlatButton(
                         text="OK",
                         on_press=self.verify_the_data,
                         font_size="18sp",
-                        font_name=f"{self.FONT_PATH}Poppins-Bold",
+                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                     ),
                 ],
             )
