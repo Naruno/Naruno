@@ -14,6 +14,7 @@ import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
+from decentra_network.gui.popup import popup
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.sign import sign
@@ -30,171 +31,24 @@ class OperationScreen(MDScreen):
     pass
 
 
-class Send_Coin_Box(MDGridLayout):
-    cols = 2
-
-
-class Sign_Box(MDGridLayout):
-    cols = 2
-
-
-class Verify_Box(MDGridLayout):
-    cols = 2
-
-
 class OperationBox(MDGridLayout):
     cols = 2
-    send_coin_dialog = None
-    sign_dialog = None
-    verify_dialog = None
-    export_transaction_csv_dialog = None
 
-    def show_send_coin_dialog(self):
-        if not self.send_coin_dialog:
-            self.send_coin_dialog = SweetAlert(
-                title="Send Coin",
-                type="custom",
-                auto_dismiss=False,
-                content_cls=Send_Coin_Box(),
-                buttons=[
-                    MDFlatButton(
-                        text="CANCEL",
-                        on_press=self.dismiss_send_coin_dialog,
-                        font_size="18sp",
-                        font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.
-                            the_decentra_network_gui.FONT_PATH,
-                            "Poppins-Bold",
-                        ),
-                    ),
-                    MDFlatButton(
-                        text="OK",
-                        on_press=self.sent_the_coins,
-                        font_size="18sp",
-                        font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.
-                            the_decentra_network_gui.FONT_PATH,
-                            "Poppins-Bold",
-                        ),
-                    ),
-                ],
-            )
-
-        self.send_coin_dialog.open()
-
-    def show_sign_dialog(self):
-        if not self.sign_dialog:
-            self.sign_dialog = SweetAlert(
-                title="Sign Data",
-                type="custom",
-                auto_dismiss=False,
-                content_cls=Sign_Box(),
-                buttons=[
-                    MDFlatButton(
-                        text="CANCEL",
-                        on_press=self.dismiss_sign_dialog,
-                        font_size="18sp",
-                        font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.
-                            the_decentra_network_gui.FONT_PATH,
-                            "Poppins-Bold",
-                        ),
-                    ),
-                    MDFlatButton(
-                        text="OK",
-                        on_press=self.sign_the_data,
-                        font_size="18sp",
-                        font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.
-                            the_decentra_network_gui.FONT_PATH,
-                            "Poppins-Bold",
-                        ),
-                    ),
-                ],
-            )
-
-        self.sign_dialog.open()
-
-    def show_verify_dialog(self):
-        if not self.verify_dialog:
-            self.verify_dialog = SweetAlert(
-                title="Verify Signed Data",
-                type="custom",
-                auto_dismiss=False,
-                content_cls=Verify_Box(),
-                buttons=[
-                    MDFlatButton(
-                        text="CANCEL",
-                        on_press=self.dismiss_verify_dialog,
-                        font_size="18sp",
-                        font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.
-                            the_decentra_network_gui.FONT_PATH,
-                            "Poppins-Bold",
-                        ),
-                    ),
-                    MDFlatButton(
-                        text="OK",
-                        on_press=self.verify_the_data,
-                        font_size="18sp",
-                        font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.
-                            the_decentra_network_gui.FONT_PATH,
-                            "Poppins-Bold",
-                        ),
-                    ),
-                ],
-            )
-
-        self.verify_dialog.open()
-
-    def get_send_coin_dialog_text(self):
-        text_list = []
-        for obj in self.send_coin_dialog.content_cls.children:
-            for sub_obj in obj.children:
-                text_list.append(sub_obj.text)
-
-                sub_obj.text = ""
-
-        return text_list
-
-    def get_sign_dialog_text(self):
-        text_list = []
-        for obj in self.sign_dialog.content_cls.children:
-            for sub_obj in obj.children:
-                text_list.append(sub_obj.text)
-
-                sub_obj.text = ""
-
-        return text_list
-
-    def get_verify_dialog_text(self):
-        text_list = []
-        for obj in self.verify_dialog.content_cls.children:
-            for sub_obj in obj.children:
-                text_list.append(sub_obj.text)
-
-                sub_obj.text = ""
-
-        return text_list
-
-    def sent_the_coins(self, widget):
+    def sent_the_coins(self):
         the_block = GetBlock()
 
-        text_list = self.get_send_coin_dialog_text()
-        receiver_adress = text_list[3]
-        amount = text_list[2]
-        data = text_list[1]
-
-        if float(amount) >= the_block.minumum_transfer_amount:
+        if (float(self.send_coin_dialog.input_results["Amount"]) >=
+                the_block.minumum_transfer_amount):
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
-                    text_list[0].encode("utf-8")).hexdigest()):
+                    self.send_coin_dialog.input_results["Password"].encode(
+                        "utf-8")).hexdigest()):
                 block = the_block
                 send_tx = send(
-                    text_list[0],
-                    receiver_adress,
-                    amount=float(amount),
-                    data=str(data),
+                    self.send_coin_dialog.input_results["Password"],
+                    self.send_coin_dialog.input_results["Receiver"],
+                    amount=float(
+                        self.send_coin_dialog.input_results["Amount"]),
+                    data=str(self.send_coin_dialog.input_results["Data"]),
                     block=block,
                 )
                 if send_tx != False:
@@ -202,96 +56,78 @@ class OperationBox(MDGridLayout):
                     from decentra_network.node.server.server import server
 
                     if server.Server is None:
-                        SweetAlert().fire(
-                            "Please start the node server",
-                            type="failure",
-                        )
+                        popup(title="Please start the node server",
+                              type="failure")
                         return False
 
                     SavetoMyTransaction(send_tx, sended=True)
                     server.send_transaction(send_tx)
                     SaveBlock(block)
             else:
-                SweetAlert().fire(
-                    "Password is not correct",
-                    type="failure",
-                )
-            del text_list
+                popup(title="Password is not correct", type="failure")
 
-        self.send_coin_dialog.dismiss()
+    def show_send_coin_dialog(self):
+        self.send_coin_dialog = popup(
+            title="Send Coin",
+            target=self.sent_the_coins,
+            inputs=[
+                ["Receiver", False],
+                ["Amount", False],
+                ["Data", False],
+                ["Password", True],
+            ],
+        )
 
-    def sign_the_data(self, widget):
-
-        text_list = self.get_sign_dialog_text()
-
-        data = text_list[1]
-        path = sign(data, text_list[0])
-
+    def sign_the_data(self):
+        path = sign(
+            self.sign_dialog.input_results["Data"],
+            self.sign_dialog.input_results["Password"],
+        )
         if path == "None":
-            SweetAlert().fire(
-                "Password is not correct",
-                type="failure",
-            )
+            popup(title="Password is not correct", type="failure")
         else:
             Clipboard.copy(path)
-            SweetAlert().fire(
-                "Signed data file created",
-                "The file has been copied to your clipboard.",
-                path,
+            popup(
+                title="Signed data file created",
+                text="The file has been copied to your clipboard.",
+                thirdly_title=path,
                 type="success",
             )
 
-        del text_list
+    def show_sign_dialog(self):
+        self.sign_dialog = popup(
+            title="Sign Data",
+            target=self.sign_the_data,
+            inputs=[["Data", False], ["Password", True]],
+        )
 
-        self.sign_dialog.dismiss()
-
-    def verify_the_data(self, widget):
-
-        text_list = self.get_verify_dialog_text()
-
-        path = text_list[0]
-        result = verify(path)
+    def verify_the_data(self):
+        result = verify(self.verify_dialog.input_results["Path"])
 
         if result[0] == True:
             data_text = f"{result[1][:20]}..." if len(
                 result[1]) > 20 else result[1]
-            SweetAlert().fire(
-                "Data is verified",
-                f"The data is : {data_text}",
-                f"The sender is : {result[2]}",
+            popup(
+                title="Data is verified",
+                text=f"The data is : {data_text}",
+                thirdly_title=f"The sender is : {result[2]}",
                 type="success",
             )
         else:
-            SweetAlert().fire(
-                "Data is not verified",
-                type="failure",
-            )
+            popup(title="Data is not verified", type="failure")
 
-        self.verify_dialog.dismiss()
-
-    def dismiss_send_coin_dialog(self, widget):
-        self.get_send_coin_dialog_text()
-
-        self.send_coin_dialog.dismiss()
-
-    def dismiss_sign_dialog(self, widget):
-        self.get_sign_dialog_text()
-
-        self.sign_dialog.dismiss()
-
-    def dismiss_verify_dialog(self, widget):
-        self.get_verify_dialog_text()
-
-        self.verify_dialog.dismiss()
+    def show_verify_dialog(self):
+        self.verify_dialog = popup(
+            title="Verify Signed Data",
+            target=self.verify_the_data,
+            inputs=[["Path", False]],
+        )
 
     def send_coin(self):
         try:
             GetBlock()
         except FileNotFoundError:
-            SweetAlert().fire(
-                "Please connect to an network.",
-                type="failure",
-            )
+            popup(title="Please connect to an network.", type="failure")
             return False
         self.show_send_coin_dialog()
 
@@ -304,22 +140,22 @@ class OperationBox(MDGridLayout):
     def export_transaction_csv(self):
         if export_the_transactions():
             Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
-            SweetAlert().fire(
+            popup(
+                title=
                 f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
                 type="success",
             )
+
         else:
-            SweetAlert().fire(
-                "You have not a transaction",
-                type="failure",
-            )
+            popup(title="You have not a transaction", type="warning")
 
     def callback_for_transaction_history_items(self, *args):
         the_signature_of_tx = args[0][:96]
         Clipboard.copy(the_signature_of_tx)
-        SweetAlert().fire(
+        popup(
+            title=
             "The signature of transaction has been copied to your clipboard.",
-            f"The signature is : {the_signature_of_tx}",
+            text=f"The signature is : {the_signature_of_tx}",
             type="success",
         )
 
@@ -341,7 +177,4 @@ class OperationBox(MDGridLayout):
                 )
             bottom_sheet_menu.open()
         else:
-            SweetAlert().fire(
-                "You have not a transaction",
-                type="failure",
-            )
+            popup(title="You have not a transaction", type="warning")
