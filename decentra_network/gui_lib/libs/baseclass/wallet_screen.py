@@ -21,6 +21,7 @@ from decentra_network.wallet.wallet_delete import wallet_delete
 from decentra_network.wallet.wallet_import import wallet_import
 import decentra_network.gui.the_decentra_network_gui_app
 
+
 class WalletScreen(MDScreen):
     pass
 
@@ -40,8 +41,6 @@ class WalletBox(MDGridLayout):
     wallet_alert_dialog = None
     delete_wallet_alert_dialog = None
 
-    
-
     def reflesh_balance(self):
 
         self.text = f"Balance: {str(GetBalance(wallet_import(-1, 0)))}"
@@ -58,12 +57,14 @@ class WalletBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_wallet_alert_dialog,
                         font_size="18sp",
-                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                     ),
                     MDFlatButton(
                         text="OK",
                         font_size="18sp",
-                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                         on_press=self.create_the_wallet,
                     ),
                 ],
@@ -127,12 +128,14 @@ class WalletBox(MDGridLayout):
                         text="CANCEL",
                         on_press=self.dismiss_delete_wallet_alert_dialog,
                         font_size="18sp",
-                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                     ),
                     MDFlatButton(
                         text="OK",
                         font_size="18sp",
-                        font_name=os.path.join(decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
+                        font_name=os.path.join(
+                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH, "Poppins-Bold"),
                         on_press=self.delete_the_wallet,
                     ),
                 ],
