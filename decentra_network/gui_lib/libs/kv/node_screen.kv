@@ -11,48 +11,6 @@
             NodeBox:
 
 
-<start_node_server_Box>
-    adaptive_height: True
-    height:"120dp"
-    padding: dp(24)
-
-
-
-    MDGridLayout:
-        adaptive_height: True
-
-
-        cols: 2
-
-        MDTextField:
-
-            size_hint_x: .5
-            hint_text: "IP: "
-            mode: "fill"
-        MDTextField:
-
-            size_hint_x: .5
-            hint_text: "PORT: "
-            mode: "fill"
-
-<add_unl_node_Box>
-    adaptive_height: True
-    height:"120dp"
-    padding: dp(24)
-
-
-
-    MDGridLayout:
-        adaptive_height: True
-
-
-        cols: 2
-
-        MDTextField:
-
-            size_hint_x: .5
-            hint_text: "Public Key: "
-            mode: "fill"
 
 
 <NodeBox>
@@ -79,7 +37,7 @@
             MDRoundFlatIconButton:
                 id: but1
                 icon: "server-network"
-                on_press: root.start_node_server()
+                on_press: root.show_start_node_server_dialog()
                 width:240
                 text: "Start Node Server"
                 halign: "right"
@@ -118,7 +76,7 @@
             MDRoundFlatIconButton:
                 id: but4
                 icon: "server-plus"
-                on_press: root.connect_a_node()
+                on_press: root.show_connect_a_node_dialog()
                 width:240
                 text: "Connect to a node"
                 halign: "right"
@@ -132,7 +90,7 @@
             MDRoundFlatIconButton:
                 id: but5
                 icon: "security-network"
-                on_press: root.add_unl_node()
+                on_press: root.show_add_unl_node_dialog()
                 width:240
                 text: "Add UNL node"
                 halign: "right"

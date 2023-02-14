@@ -12,42 +12,6 @@
                 text : "Balance"
 
 
-<Delete_Wallet_Box>
-    adaptive_height: True
-    height:"120dp"
-    padding: dp(24)
-
-
-
-    MDGridLayout:
-        adaptive_height: True
-
-
-        cols: 2
-        DecentraLabel:
-            text: "Are you sure ?"
-            halign: "center"
-            font_style: "H4"
-
-<Create_Wallet_Box>
-    adaptive_height: True
-    height:"120dp"
-    padding: dp(24)
-
-
-
-    MDGridLayout:
-        adaptive_height: True
-
-
-        cols: 2
-
-
-        MDTextField:
-            password: True
-            size_hint_x: .5
-            hint_text: "Password: "
-            mode: "fill"
 
 <WalletBox>
     adaptive_height: True
@@ -85,7 +49,7 @@
             MDRoundFlatIconButton:
                 id: but2
                 icon: "wallet-plus-outline"
-                on_press: root.Wallet_Create()
+                on_press: root.show_wallet_alert_dialog()
                 text: "Create Wallet"
                 halign: "right"
                 font_style: "Button"
@@ -107,7 +71,7 @@
             MDRoundFlatIconButton:
                 id: but2
                 icon: "delete"
-                on_press: root.Wallet_Delete()
+                on_press: root.show_delete_wallet_alert_dialog()
                 text_color: 1, 0, 0, 1
                 text: "Delete Wallet"
                 halign: "right"
