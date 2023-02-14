@@ -9,6 +9,7 @@ from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
+import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.consensus.consensus_main import consensus_trigger
@@ -17,7 +18,6 @@ from decentra_network.lib.qr import qr
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
-import decentra_network.gui.the_decentra_network_gui_app
 
 
 class NodeScreen(MDScreen):
