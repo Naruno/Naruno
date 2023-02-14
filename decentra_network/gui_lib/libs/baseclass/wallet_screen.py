@@ -7,17 +7,16 @@ from kivy.properties import StringProperty
 from kivymd.uix.bottomsheet import MDListBottomSheet
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
-from kivymd.uix.textfield import MDTextField
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.textfield import MDTextField
 from kivymd_extensions.sweetalert import SweetAlert
-from decentra_network.gui.popup import popup
 
 import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.blockchain.block.get_block import GetBlock
+from decentra_network.gui.popup import popup
 from decentra_network.lib.qr import qr
-from decentra_network.lib.settings_system import change_wallet
-from decentra_network.lib.settings_system import the_settings
+from decentra_network.lib.settings_system import change_wallet, the_settings
 from decentra_network.wallet.get_saved_wallet import get_saved_wallet
 from decentra_network.wallet.wallet_create import wallet_create
 from decentra_network.wallet.wallet_delete import wallet_delete

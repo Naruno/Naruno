@@ -8,8 +8,9 @@
 import os
 
 from kivymd.uix.button import MDFlatButton
-from kivymd_extensions.sweetalert import SweetAlert
 from kivymd.uix.textfield import MDTextField
+from kivymd_extensions.sweetalert import SweetAlert
+
 import decentra_network.gui.the_decentra_network_gui_app
 
 

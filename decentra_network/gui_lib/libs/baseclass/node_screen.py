@@ -13,12 +13,12 @@ import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.blockchain.block.create_block import CreateBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.consensus.consensus_main import consensus_trigger
+from decentra_network.gui.popup import popup
 from decentra_network.lib.perpetualtimer import perpetualTimer
 from decentra_network.lib.qr import qr
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.status import Status
 from decentra_network.node.server.server import server
-from decentra_network.gui.popup import popup
 
 
 class NodeScreen(MDScreen):

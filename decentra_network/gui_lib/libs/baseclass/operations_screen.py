@@ -14,19 +14,17 @@ import decentra_network.gui.the_decentra_network_gui_app
 from decentra_network.blockchain.block.get_block import GetBlock
 from decentra_network.blockchain.block.save_block import SaveBlock
 from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
+from decentra_network.gui.popup import popup
 from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.sign import sign
 from decentra_network.lib.verify import verify
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from decentra_network.transactions.send import send
 from decentra_network.wallet.wallet_import import wallet_import
-from decentra_network.gui.popup import popup
 
 
 class OperationScreen(MDScreen):
