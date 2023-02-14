@@ -100,7 +100,8 @@ class NodeBox(MDGridLayout):
 
         from decentra_network.node.unl import Unl
 
-        Unl.save_new_unl_node(self.add_unl_node_dialog.input_results["PublicKey"])
+        Unl.save_new_unl_node(
+            self.add_unl_node_dialog.input_results["PublicKey"])
 
     def show_add_unl_node_dialog(self):
         self.add_unl_node_dialog = popup(
@@ -124,11 +125,15 @@ class NodeBox(MDGridLayout):
 
     def nd_id(self):
         Clipboard.copy(server.id)
-        popup(title="The ID has been copied to your clipboard.", type="success")
+        popup(title="The ID has been copied to your clipboard.",
+              type="success")
 
     def nd_id_qr(self):
         location_of_qr = qr(server.id)
-        popup(text=server.id, image=location_of_qr, height_image="450px", type="qr")
+        popup(text=server.id,
+              image=location_of_qr,
+              height_image="450px",
+              type="qr")
 
     def status(self):
         toast("Calculating...")
