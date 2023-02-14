@@ -18,10 +18,12 @@ from decentra_network.lib.export import export_the_transactions
 from decentra_network.lib.settings_system import the_settings
 from decentra_network.lib.sign import sign
 from decentra_network.lib.verify import verify
-from decentra_network.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction,
+)
+from decentra_network.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
 from decentra_network.transactions.send import send
 from decentra_network.wallet.wallet_import import wallet_import
 from decentra_network.gui.popup import popup
@@ -37,15 +39,21 @@ class OperationBox(MDGridLayout):
     def sent_the_coins(self):
         the_block = GetBlock()
 
-        if float(self.send_coin_dialog.input_results["Amount"]) >= the_block.minumum_transfer_amount:
-            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
-                    self.send_coin_dialog.input_results["Password"].encode("utf-8")).hexdigest()):
+        if (
+            float(self.send_coin_dialog.input_results["Amount"])
+            >= the_block.minumum_transfer_amount
+        ):
+            if (
+                wallet_import(int(the_settings()["wallet"]), 2)
+                == sha256(
+                    self.send_coin_dialog.input_results["Password"].encode("utf-8")
+                ).hexdigest()
+            ):
                 block = the_block
                 send_tx = send(
                     self.send_coin_dialog.input_results["Password"],
                     self.send_coin_dialog.input_results["Receiver"],
-                    amount=float(
-                        self.send_coin_dialog.input_results["Amount"]),
+                    amount=float(self.send_coin_dialog.input_results["Amount"]),
                     data=str(self.send_coin_dialog.input_results["Data"]),
                     block=block,
                 )
@@ -72,29 +80,37 @@ class OperationBox(MDGridLayout):
                 ["Amount", False],
                 ["Data", False],
                 ["Password", True],
-            ]
+            ],
         )
 
     def sign_the_data(self):
         path = sign(
-            self.sign_dialog.input_results["Data"], self.sign_dialog.input_results["Password"])
+            self.sign_dialog.input_results["Data"],
+            self.sign_dialog.input_results["Password"],
+        )
         if path == "None":
             popup(title="Password is not correct", type="failure")
         else:
             Clipboard.copy(path)
-            popup(title="Signed data file created",
-                  text="The file has been copied to your clipboard.", thirdly_title=path, type="success")
+            popup(
+                title="Signed data file created",
+                text="The file has been copied to your clipboard.",
+                thirdly_title=path,
+                type="success",
+            )
 
     def show_sign_dialog(self):
-        self.sign_dialog = popup(title="Sign Data", target=self.sign_the_data, inputs=[
-                                 ["Data", False], ["Password", True]])
+        self.sign_dialog = popup(
+            title="Sign Data",
+            target=self.sign_the_data,
+            inputs=[["Data", False], ["Password", True]],
+        )
 
     def verify_the_data(self):
         result = verify(self.verify_dialog.input_results["Path"])
 
         if result[0] == True:
-            data_text = f"{result[1][:20]}..." if len(
-                result[1]) > 20 else result[1]
+            data_text = f"{result[1][:20]}..." if len(result[1]) > 20 else result[1]
             popup(
                 title="Data is verified",
                 text=f"The data is : {data_text}",
@@ -106,7 +122,10 @@ class OperationBox(MDGridLayout):
 
     def show_verify_dialog(self):
         self.verify_dialog = popup(
-            title="Verify Signed Data", target=self.verify_the_data, inputs=[["Path", False]])
+            title="Verify Signed Data",
+            target=self.verify_the_data,
+            inputs=[["Path", False]],
+        )
 
     def send_coin(self):
         try:
@@ -147,16 +166,16 @@ class OperationBox(MDGridLayout):
         if len(transactions) != 0:
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {
-                tx[0]:
-                f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
+                tx[
+                    0
+                ]: f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
                 for tx in transactions
             }
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.
-                    callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:

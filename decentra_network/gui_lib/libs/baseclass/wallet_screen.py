@@ -41,7 +41,10 @@ class WalletBox(MDGridLayout):
 
     def show_wallet_alert_dialog(self):
         self.wallet_alert_dialog = popup(
-            title="Creating a wallet", target=self.create_the_wallet, inputs=[["Password", True]])
+            title="Creating a wallet",
+            target=self.create_the_wallet,
+            inputs=[["Password", True]],
+        )
 
     def callback_for_menu_items(self, *args):
         if args[0] != the_settings()["wallet"]:
@@ -72,11 +75,9 @@ class WalletBox(MDGridLayout):
 
     def delete_the_wallet(self):
         saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]),
-                                               0)
+        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]), 0)
         for each_wallet in saved_wallets:
-            if selected_wallet_pubkey == saved_wallets[each_wallet][
-                    "publickey"]:
+            if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
                 change_wallet(0)
                 wallet_delete(each_wallet)
                 self.reflesh_balance()
@@ -84,15 +85,17 @@ class WalletBox(MDGridLayout):
     def show_delete_wallet_alert_dialog(self):
         if the_settings()["wallet"] != 0:
             self.deletewallet_alert_dialog = popup(
-                title="Deleting a wallet", target=self.delete_the_wallet, type="question")
+                title="Deleting a wallet",
+                target=self.delete_the_wallet,
+                type="question",
+            )
         else:
             popup(title="First wallet cannot be deleted.", type="failure")
 
     def wallet_qr(self):
         address = wallet_import(-1, 3)
         location_of_qr = qr(address)
-        popup(text=address, image=location_of_qr,
-              height_image="400px", type="qr")
+        popup(text=address, image=location_of_qr, height_image="400px", type="qr")
 
     def wallet_copy(self):
         Clipboard.copy(wallet_import(-1, 3))
