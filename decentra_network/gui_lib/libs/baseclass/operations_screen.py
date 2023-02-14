@@ -62,7 +62,8 @@ class OperationBox(MDGridLayout):
                         on_press=self.dismiss_send_coin_dialog,
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                     ),
@@ -71,7 +72,8 @@ class OperationBox(MDGridLayout):
                         on_press=self.sent_the_coins,
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                     ),
@@ -93,7 +95,8 @@ class OperationBox(MDGridLayout):
                         on_press=self.dismiss_sign_dialog,
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                     ),
@@ -102,7 +105,8 @@ class OperationBox(MDGridLayout):
                         on_press=self.sign_the_data,
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                     ),
@@ -124,7 +128,8 @@ class OperationBox(MDGridLayout):
                         on_press=self.dismiss_verify_dialog,
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                     ),
@@ -133,7 +138,8 @@ class OperationBox(MDGridLayout):
                         on_press=self.verify_the_data,
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                     ),
@@ -181,10 +187,8 @@ class OperationBox(MDGridLayout):
         data = text_list[1]
 
         if float(amount) >= the_block.minumum_transfer_amount:
-            if (
-                wallet_import(int(the_settings()["wallet"]), 2)
-                == sha256(text_list[0].encode("utf-8")).hexdigest()
-            ):
+            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
+                    text_list[0].encode("utf-8")).hexdigest()):
                 block = the_block
                 send_tx = send(
                     text_list[0],
@@ -249,7 +253,8 @@ class OperationBox(MDGridLayout):
         result = verify(path)
 
         if result[0] == True:
-            data_text = f"{result[1][:20]}..." if len(result[1]) > 20 else result[1]
+            data_text = f"{result[1][:20]}..." if len(
+                result[1]) > 20 else result[1]
             SweetAlert().fire(
                 "Data is verified",
                 f"The data is : {data_text}",
@@ -323,16 +328,16 @@ class OperationBox(MDGridLayout):
         if len(transactions) != 0:
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {
-                tx[
-                    0
-                ]: f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
+                tx[0]:
+                f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
                 for tx in transactions
             }
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.
+                    callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:

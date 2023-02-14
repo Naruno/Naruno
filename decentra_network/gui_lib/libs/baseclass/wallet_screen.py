@@ -58,7 +58,8 @@ class WalletBox(MDGridLayout):
                         on_press=self.dismiss_wallet_alert_dialog,
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                     ),
@@ -66,7 +67,8 @@ class WalletBox(MDGridLayout):
                         text="OK",
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                         on_press=self.create_the_wallet,
@@ -133,7 +135,8 @@ class WalletBox(MDGridLayout):
                         on_press=self.dismiss_delete_wallet_alert_dialog,
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                     ),
@@ -141,7 +144,8 @@ class WalletBox(MDGridLayout):
                         text="OK",
                         font_size="18sp",
                         font_name=os.path.join(
-                            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                            decentra_network.gui.the_decentra_network_gui_app.
+                            the_decentra_network_gui.FONT_PATH,
                             "Poppins-Bold",
                         ),
                         on_press=self.delete_the_wallet,
@@ -162,9 +166,11 @@ class WalletBox(MDGridLayout):
 
     def delete_the_wallet(self, widget):
         saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]), 0)
+        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]),
+                                               0)
         for each_wallet in saved_wallets:
-            if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
+            if selected_wallet_pubkey == saved_wallets[each_wallet][
+                    "publickey"]:
                 change_wallet(0)
                 wallet_delete(each_wallet)
                 self.reflesh_balance()
@@ -173,7 +179,9 @@ class WalletBox(MDGridLayout):
     def wallet_qr(self):
         address = wallet_import(-1, 3)
         location_of_qr = qr(address)
-        SweetAlert().fire(text=address, image=location_of_qr, height_image="400px")
+        SweetAlert().fire(text=address,
+                          image=location_of_qr,
+                          height_image="400px")
 
     def wallet_copy(self):
         Clipboard.copy(wallet_import(-1, 3))
