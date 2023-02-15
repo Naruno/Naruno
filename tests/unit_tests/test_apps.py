@@ -88,13 +88,6 @@ decentra_network.api.main.custom_account_list = the_accounts
 decentra_network.api.main.custom_wallet = "test_account_2"
 
 
-def perpetual_time_test():
-    os.chdir(get_config()["main_folder"])
-    with open("test_block_get_page_off_test.txt", "w") as f:
-        f.write("Hello World")
-
-
-decentra_network.api.main.custom_consensus_trigger = perpetual_time_test
 
 
 class Test_apps(unittest.TestCase):
