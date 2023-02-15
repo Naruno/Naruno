@@ -26,6 +26,7 @@ def AppsTrigger(block):
         logger.debug(f"Found application {folder_entry.name}")
         if (".md" not in folder_entry.name and "__" not in folder_entry.name
                 and "app_main" not in folder_entry.name
+                and "remote_app" not in folder_entry.name
                 and "apps_trigger" not in folder_entry.name):
             logger.debug(
                 f"Starting thread for application {folder_entry.name}")
