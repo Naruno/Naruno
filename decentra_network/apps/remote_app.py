@@ -92,7 +92,6 @@ class Integration:
             "to_user": to_user,
             "data": data,
         }
-        print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
         response = self.prepare_request("/send/",
                                         type="post",
                                         data=request_body)

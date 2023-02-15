@@ -368,13 +368,13 @@ class Test_apps(unittest.TestCase):
         }
         self.assertEqual(integration.send("hello_text", "hello", "<address>"),
                          True)
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
         second_try = integration.send(
             "hello_text",
             "hello",
             "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>",
         )
-        print(second_try)
+
         self.assertEqual(second_try, False)
 
         first_gettings_data_from_app = integration.get()
@@ -383,7 +383,7 @@ class Test_apps(unittest.TestCase):
         second_gettings_data_from_app = integration.get()
         self.assertEqual(second_gettings_data_from_app, [])
 
-        print(first_gettings_data_from_app)
+
         integration.delete_cache()
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
@@ -427,13 +427,13 @@ class Test_apps(unittest.TestCase):
         }
         self.assertEqual(integration.send("hello_text", "hello", "<address>"),
                          True)
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
         second_try = integration.send(
             "hello_text",
             "hello",
             "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>",
         )
-        print(second_try)
+
         self.assertEqual(second_try, False)
 
         for txs in GetMyTransaction():
@@ -446,7 +446,7 @@ class Test_apps(unittest.TestCase):
         second_gettings_data_from_app = integration.get()
         self.assertEqual(second_gettings_data_from_app, [])
 
-        print(first_gettings_data_from_app)
+
         integration.delete_cache()
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
@@ -491,13 +491,13 @@ class Test_apps(unittest.TestCase):
         }
         self.assertEqual(integration.send("hello_text", "hello", "<address>"),
                          True)
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
         second_try = integration.send(
             "hello_text",
             "hello",
             "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>",
         )
-        print(second_try)
+
         self.assertEqual(second_try, False)
 
         the_txs = GetMyTransaction()
@@ -512,7 +512,7 @@ class Test_apps(unittest.TestCase):
         second_gettings_data_from_app = integration.get()
         self.assertEqual(second_gettings_data_from_app, [])
 
-        print(first_gettings_data_from_app)
+
         integration.delete_cache()
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
