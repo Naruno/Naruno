@@ -15,8 +15,15 @@ from decentra_network.lib.config_system import get_config
 
 
 class Integration:
-
-    def __init__(self, app_name, host="0.0.0.0", port=8000, password="123", sended=True, sended_not_validated=False):
+    def __init__(
+        self,
+        app_name,
+        host="0.0.0.0",
+        port=8000,
+        password="123",
+        sended=True,
+        sended_not_validated=False,
+    ):
         """
         :param host: The host of the node
         :param port: The port of the node
@@ -74,10 +81,7 @@ class Integration:
         :param app_data: The data of the app
         :param to_user: The user to send the data to
         """
-        data = {
-            "action": self.app_name + action,
-            "app_data": app_data
-        }
+        data = {"action": self.app_name + action, "app_data": app_data}
 
         data = json.dumps(data)
 
@@ -87,26 +91,27 @@ class Integration:
             "data": data,
         }
         print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
-        response = self.prepare_request(
-            '/send/', type="post", data=request_body)
+        response = self.prepare_request("/send/", type="post", data=request_body)
 
         return False if "false" in response.text else True
 
     def get(self):
 
-        response = self.prepare_request('/transactions/received', type="get")
+        response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
         transactions_sended = {}
         transactions_sended_not_validated = {}
 
         if self.sended:
             response = self.prepare_request(
-                '/transactions/sended/validated', type="get")
+                "/transactions/sended/validated", type="get"
+            )
             transactions_sended = response.json()
 
         if self.sended_not_validated:
             response = self.prepare_request(
-                '/transactions/sended/not_validated', type="get")
+                "/transactions/sended/not_validated", type="get"
+            )
             transactions_sended_not_validated = response.json()
 
         new_dict = {}
@@ -137,7 +142,8 @@ class Integration:
         for transaction in new_dict:
 
             new_dict[transaction]["transaction"]["data"] = json.loads(
-                new_dict[transaction]["transaction"]["data"])
+                new_dict[transaction]["transaction"]["data"]
+            )
             if self.app_name in new_dict[transaction]["transaction"]["data"]["action"]:
                 result.append(new_dict[transaction]["transaction"])
 
