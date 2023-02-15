@@ -74,7 +74,6 @@ from decentra_network.wallet.wallet_create import wallet_create
 from decentra_network.wallet.wallet_import import Address, wallet_import
 
 
-
 decentra_network.api.main.custom_block = Block("Onur")
 decentra_network.api.main.custom_current_time = int(time.time()) + 25
 decentra_network.api.main.custom_sequence_number = 0
@@ -108,6 +107,7 @@ def perpetual_time_test():
 
 
 decentra_network.api.main.custom_consensus_trigger = perpetual_time_test
+
 
 class Test_apps(unittest.TestCase):
 
@@ -330,27 +330,30 @@ class Test_apps(unittest.TestCase):
                 f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
             ))
 
-
     def test_integration_caching_system(self):
         integration_1 = Integration("test_app")
         integration_1.cache.append("test")
         integration_1.save_cache()
-        self.assertEqual(os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"), True)
+        self.assertEqual(os.path.exists(
+            f"db/remote_app_cache/{integration_1.cache_name}.cache"), True)
 
         integration_2 = Integration("test_app")
         self.assertEqual(integration_2.cache, ["test"])
-        self.assertEqual(os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"), True)
+        self.assertEqual(os.path.exists(
+            f"db/remote_app_cache/{integration_1.cache_name}.cache"), True)
 
         integration_2.delete_cache()
-        self.assertEqual(os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"), False)
+        self.assertEqual(os.path.exists(
+            f"db/remote_app_cache/{integration_1.cache_name}.cache"), False)
 
         integration_3 = Integration("test_app")
         self.assertEqual(integration_3.cache, [])
         integration_3.delete_cache()
-        
+
     def test_integration_send_and_get_tx_sended_not_validated(self):
-        
-        integration = Integration(f"test_app_{int(time.time())}", host="localhost", port=7776, password="123", sended_not_validated=True)
+
+        integration = Integration(
+            f"test_app_{int(time.time())}", host="localhost", port=7776, password="123", sended_not_validated=True)
 
         backup = GetMyTransaction()
         backup_settings = the_settings()
@@ -368,14 +371,14 @@ class Test_apps(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        self.assertEqual(integration.send("hello_text","hello", "<address>"), True)
+        self.assertEqual(integration.send(
+            "hello_text", "hello", "<address>"), True)
         print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        second_try = integration.send("hello_text","hello", "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>")
+        second_try = integration.send(
+            "hello_text", "hello", "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>")
         print(second_try)
         self.assertEqual(second_try, False)
 
-
-        
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
 
@@ -384,7 +387,6 @@ class Test_apps(unittest.TestCase):
 
         print(first_gettings_data_from_app)
         integration.delete_cache()
-
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
         text = f"{integration.app_name}hello_text"
@@ -399,11 +401,10 @@ class Test_apps(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
-
-
     def test_integration_send_and_get_tx_sended_validated(self):
-        
-        integration = Integration(f"test_app_{int(time.time())}", host="localhost", port=7776, password="123", sended_not_validated=False)
+
+        integration = Integration(
+            f"test_app_{int(time.time())}", host="localhost", port=7776, password="123", sended_not_validated=False)
 
         backup = GetMyTransaction()
         backup_settings = the_settings()
@@ -421,17 +422,18 @@ class Test_apps(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        self.assertEqual(integration.send("hello_text","hello", "<address>"), True)
+        self.assertEqual(integration.send(
+            "hello_text", "hello", "<address>"), True)
         print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        second_try = integration.send("hello_text","hello", "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>")
+        second_try = integration.send(
+            "hello_text", "hello", "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>")
         print(second_try)
         self.assertEqual(second_try, False)
-
 
         for txs in GetMyTransaction():
             if txs[0].toUser == "<address>":
                 ValidateTransaction(txs[0])
-        
+
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
 
@@ -440,7 +442,6 @@ class Test_apps(unittest.TestCase):
 
         print(first_gettings_data_from_app)
         integration.delete_cache()
-
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
         text = f"{integration.app_name}hello_text"
@@ -455,11 +456,10 @@ class Test_apps(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
-
-
     def test_integration_send_and_get_tx_received(self):
-        
-        integration = Integration(f"test_app_{int(time.time())}", host="localhost", port=7776, password="123", sended_not_validated=False, sended=False)
+
+        integration = Integration(f"test_app_{int(time.time())}", host="localhost",
+                                  port=7776, password="123", sended_not_validated=False, sended=False)
 
         backup = GetMyTransaction()
         backup_settings = the_settings()
@@ -477,9 +477,11 @@ class Test_apps(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        self.assertEqual(integration.send("hello_text","hello", "<address>"), True)
+        self.assertEqual(integration.send(
+            "hello_text", "hello", "<address>"), True)
         print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        second_try = integration.send("hello_text","hello", "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>")
+        second_try = integration.send(
+            "hello_text", "hello", "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>")
         print(second_try)
         self.assertEqual(second_try, False)
 
@@ -488,7 +490,7 @@ class Test_apps(unittest.TestCase):
             if txs[0].toUser == "<address>":
                 the_txs[the_txs.index(txs)][2] = False
         SaveMyTransaction(the_txs)
-        
+
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
 
@@ -497,7 +499,6 @@ class Test_apps(unittest.TestCase):
 
         print(first_gettings_data_from_app)
         integration.delete_cache()
-
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
         text = f"{integration.app_name}hello_text"

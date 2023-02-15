@@ -13,8 +13,8 @@ import os
 
 from decentra_network.lib.config_system import get_config
 
-class Integration:
 
+class Integration:
 
     def __init__(self, app_name, host="0.0.0.0", port=8000, password="123", sended=True, sended_not_validated=False):
         """
@@ -40,12 +40,12 @@ class Integration:
         if not os.path.exists(f"db/remote_app_cache/{self.cache_name}.cache"):
             self.cache = []
             self.save_cache()
-        with open(f"db/remote_app_cache/{self.cache_name}.cache", "r") as cache: 
+        with open(f"db/remote_app_cache/{self.cache_name}.cache", "r") as cache:
             self.cache = json.load(cache)
 
     def save_cache(self):
         os.chdir(get_config()["main_folder"])
-        with open(f"db/remote_app_cache/{self.cache_name}.cache", "w") as cache: 
+        with open(f"db/remote_app_cache/{self.cache_name}.cache", "w") as cache:
             json.dump(self.cache, cache)
 
     def delete_cache(self):
@@ -68,7 +68,6 @@ class Integration:
 
         return response
 
-
     def send(self, action, app_data, to_user) -> bool:
         """
         :param action: The action of the app
@@ -82,68 +81,64 @@ class Integration:
 
         data = json.dumps(data)
 
-
         request_body = {
             "password": self.password,
             "to_user": to_user,
             "data": data,
         }
         print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
-        response = self.prepare_request('/send/', type="post", data=request_body)
-
+        response = self.prepare_request(
+            '/send/', type="post", data=request_body)
 
         return False if "false" in response.text else True
 
-
-
-
     def get(self):
 
-      response = self.prepare_request('/transactions/received', type="get")
-      transactions = response.json()
-      transactions_sended = {}
-      transactions_sended_not_validated = {}
+        response = self.prepare_request('/transactions/received', type="get")
+        transactions = response.json()
+        transactions_sended = {}
+        transactions_sended_not_validated = {}
 
-      if self.sended:
-        response = self.prepare_request('/transactions/sended/validated', type="get")
-        transactions_sended = response.json()
+        if self.sended:
+            response = self.prepare_request(
+                '/transactions/sended/validated', type="get")
+            transactions_sended = response.json()
 
-      if self.sended_not_validated:
-        response = self.prepare_request('/transactions/sended/not_validated', type="get")
-        transactions_sended_not_validated= response.json()
+        if self.sended_not_validated:
+            response = self.prepare_request(
+                '/transactions/sended/not_validated', type="get")
+            transactions_sended_not_validated = response.json()
 
-      new_dict = {}
+        new_dict = {}
 
-      for transaction in transactions:
-        if transaction in self.cache:
-          continue
-        else:
-          new_dict[transaction] = transactions[transaction]
-          self.cache.append(transaction)
+        for transaction in transactions:
+            if transaction in self.cache:
+                continue
+            else:
+                new_dict[transaction] = transactions[transaction]
+                self.cache.append(transaction)
 
-      for transaction in transactions_sended:
-        if transaction in self.cache:
-          continue
-        else:
-          new_dict[transaction] = transactions_sended[transaction]
-          self.cache.append(transaction)
+        for transaction in transactions_sended:
+            if transaction in self.cache:
+                continue
+            else:
+                new_dict[transaction] = transactions_sended[transaction]
+                self.cache.append(transaction)
 
+        for transaction in transactions_sended_not_validated:
+            if transaction in self.cache:
+                continue
+            else:
+                new_dict[transaction] = transactions_sended_not_validated[transaction]
+                self.cache.append(transaction)
 
-      for transaction in transactions_sended_not_validated:
-        if transaction in self.cache:
-          continue
-        else:
-          new_dict[transaction] = transactions_sended_not_validated[transaction]
-          self.cache.append(transaction)
+        result = []
 
-      result = []
+        for transaction in new_dict:
 
-      for transaction in new_dict:
+            new_dict[transaction]["transaction"]["data"] = json.loads(
+                new_dict[transaction]["transaction"]["data"])
+            if self.app_name in new_dict[transaction]["transaction"]["data"]["action"]:
+                result.append(new_dict[transaction]["transaction"])
 
-        new_dict[transaction]["transaction"]["data"] = json.loads(new_dict[transaction]["transaction"]["data"])
-        if self.app_name in new_dict[transaction]["transaction"]["data"]["action"]:
-          result.append(new_dict[transaction]["transaction"])
-    
-      return result
-
-
+        return result
