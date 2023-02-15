@@ -88,8 +88,6 @@ decentra_network.api.main.custom_account_list = the_accounts
 decentra_network.api.main.custom_wallet = "test_account_2"
 
 
-
-
 class Test_apps(unittest.TestCase):
 
     @classmethod
@@ -383,7 +381,6 @@ class Test_apps(unittest.TestCase):
         second_gettings_data_from_app = integration.get()
         self.assertEqual(second_gettings_data_from_app, [])
 
-
         integration.delete_cache()
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
@@ -445,7 +442,6 @@ class Test_apps(unittest.TestCase):
 
         second_gettings_data_from_app = integration.get()
         self.assertEqual(second_gettings_data_from_app, [])
-
 
         integration.delete_cache()
 
@@ -511,7 +507,6 @@ class Test_apps(unittest.TestCase):
 
         second_gettings_data_from_app = integration.get()
         self.assertEqual(second_gettings_data_from_app, [])
-
 
         integration.delete_cache()
 
