@@ -6,10 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-from hashlib import sha256
-import requests
 import json
 import os
+from hashlib import sha256
+
+import requests
 
 from decentra_network.lib.config_system import get_config
 

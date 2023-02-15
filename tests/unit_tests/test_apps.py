@@ -9,25 +9,8 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from decentra_network.transactions.my_transactions.validate_transaction import (
-    ValidateTransaction,
-)
-
-
-import time
-import unittest
-
-from decentra_network.apps.apps_trigger import AppsTrigger
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.transaction import Transaction
-
-from decentra_network.apps.remote_app import Integration
-from decentra_network.api.main import start
-
-
 import threading
+import time
 import unittest
 import urllib
 
@@ -39,49 +22,41 @@ from decentra_network.accounts.get_accounts import GetAccounts
 from decentra_network.accounts.get_balance import GetBalance
 from decentra_network.accounts.save_accounts import SaveAccounts
 from decentra_network.api.main import start
+from decentra_network.apps.apps_trigger import AppsTrigger
+from decentra_network.apps.remote_app import Integration
 from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (
-    GetBlockshash,
-    GetBlockshash_part,
-)
-from decentra_network.blockchain.block.get_block_from_blockchain_db import (
-    GetBlockstoBlockchainDB,
-)
+from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+                                                           GetBlockshash_part)
+from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
 from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
 from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import (
-    CONNECTED_NODES_PATH,
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH,
-    LOADING_BLOCKSHASH_PATH,
-    MY_TRANSACTION_EXPORT_PATH,
-    PENDING_TRANSACTIONS_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH,
-    TEMP_BLOCKSHASH_PATH,
-)
+from decentra_network.config import (CONNECTED_NODES_PATH,
+                                     LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
+                                     LOADING_BLOCKSHASH_PART_PATH,
+                                     LOADING_BLOCKSHASH_PATH,
+                                     MY_TRANSACTION_EXPORT_PATH,
+                                     PENDING_TRANSACTIONS_PATH,
+                                     TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                                     TEMP_BLOCKSHASH_PART_PATH,
+                                     TEMP_BLOCKSHASH_PATH)
 from decentra_network.consensus.finished.finished_main import finished_main
 from decentra_network.lib.clean_up import CleanUp_tests
 from decentra_network.lib.config_system import get_config
 from decentra_network.lib.mix.merkle_root import MerkleTree
-from decentra_network.lib.settings_system import (
-    save_settings,
-    t_mode_settings,
-    the_settings,
-)
+from decentra_network.lib.settings_system import (save_settings,
+                                                  t_mode_settings,
+                                                  the_settings)
 from decentra_network.node.server.server import server
 from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import (
-    GetMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_my_transaction import (
-    SaveMyTransaction,
-)
-from decentra_network.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
+from decentra_network.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from decentra_network.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
+from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from decentra_network.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from decentra_network.transactions.pending.delete_pending import DeletePending
 from decentra_network.transactions.pending.get_pending import GetPendingLen
 from decentra_network.transactions.transaction import Transaction
@@ -90,7 +65,6 @@ from decentra_network.wallet.print_wallets import print_wallets
 from decentra_network.wallet.save_wallet_list import save_wallet_list
 from decentra_network.wallet.wallet_create import wallet_create
 from decentra_network.wallet.wallet_import import Address, wallet_import
-
 
 decentra_network.api.main.custom_block = Block("Onur")
 decentra_network.api.main.custom_current_time = int(time.time()) + 25
