@@ -53,7 +53,6 @@ class Integration:
             self.cache = []
             return
 
-
         os.chdir(get_config()["main_folder"])
 
         if not os.path.exists(f"db/remote_app_cache/{self.cache_name}.cache"):
@@ -68,7 +67,6 @@ class Integration:
         with open(f"db/remote_app_cache/{self.cache_name}.cache",
                   "w") as cache:
             json.dump(self.cache, cache)
-
 
     def delete_cache(self):
         os.chdir(get_config()["main_folder"])

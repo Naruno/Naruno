@@ -523,8 +523,6 @@ class Test_apps(unittest.TestCase):
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
-
-
     def test_integration_send_and_get_tx_received_disable_cache(self):
 
         integration = Integration(
@@ -591,5 +589,6 @@ class Test_apps(unittest.TestCase):
         SaveMyTransaction(backup)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
+
 
 unittest.main(exit=False)
