@@ -9,6 +9,8 @@ orientation = landscape
 fullscreen = 0
 android.permissions = INTERNET
 icon.filename = decentra_network/gui_lib/images/logo.ico
+presplash.filename = decentra_network/gui_lib/images/logo.png
+android.presplash_color = black
 p4a.local_recipes = recipes/src/python-for-android/recipes/
 android.api = 27
 
