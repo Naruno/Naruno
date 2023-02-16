@@ -4,57 +4,59 @@ title: Remote
 parent: Creating a APP
 nav_order: 1
 ---
+Creating a Remote App for Decentra Network
+==========================================
 
-# Creating a Remote APP
+If you're interested in developing applications on Decentra Network that can interact with external systems, you can use the Decentra Network API. The API provides access to data on the blockchain and enables you to send data to the network via the network's send function. By using the API, you can easily integrate your existing applications with Decentra Network.
 
-If you want to develop applications outside of Decentra network you can use [APIs](https://docs.decentranetwork.net/referances/apis.html). The APIs gives you new data and you can send data with Decentra Network send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
+Prerequisites
+-------------
 
-## Prerequisites
+To use the Decentra Network API, you'll need the following:
 
-- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.net/building_a_test_network/) for this)
-- Running API (You can check the [Starting the API](https://docs.decentranetwork.net/referances/apis.html#starting-the-api) for this)
+*   A running network (see [Building a Test Network](https://docs.decentranetwork.net/building_a_test_network/) for instructions on how to set this up)
+*   A running API (see [Starting the API](https://docs.decentranetwork.net/referances/apis.html#starting-the-api) for instructions on how to set this up)
 
-### Installing requirements
+### Installing the Decentra Network Remote App library
+
+To get started with the Decentra Network Remote App, you'll need to install the `decentra_network` and `decentra-network-remote-app` libraries. You can do this by running the following command:
 
 ```bash
 pip3 install decentra_network decentra-network-remote-app
 ```
 
-## Idea
+Overview
+--------
 
-The remote app integration system idea is creating a super simple way to creating a usability on blockchain for todays applications. And with this way you can easily integrate your applications with blockchain via two basic steps.
+The Decentra Network Remote App library provides a simple way to integrate your applications with the Decentra Network blockchain. You can use this library to send data to and receive data from the network, allowing you to create decentralized applications that leverage the security and immutability of the blockchain.
 
-### Step 1: Send
+The library provides two basic functions for interacting with the network:
 
-We developed a simple way to send data to a user. You can send a data to a user with address. The data will be signed with the your public key and will be sent to the blockchain.
+1.  Send: Use the `Integration.send()` function to send data to a specific user on the network. The data will be signed with your public key and stored on the blockchain.
+    
+2.  Get: Use the `Integration.get()` function to retrieve data from the network. Your node will retrieve the data from the blockchain and return it to your application.
+    
 
-### Step 2: Get
+Integration
+-----------
 
-The second step is getting the data. You can get the data with your active node. Your node will catch the data.
+Using the Decentra Network Remote App library, you can easily send and receive public messages between users on the network. Here's how to get started:
 
-## Integration
+### Sending a Message
 
-With this app, you can send a public message to a user that you dont know his/her ip address and not using a server.
-
-You can use this app for safe and private messaging but if you want more, you should sending the datas far from Decentra Network (We have best methods for transactions but this situation is same for all blockchains) and after a while you should save the datas in Decentra Network. This is a good way for mostly of the applications.
-
-### Send
-
-The first user is sending a message to the second user.
+To send a message to a user on the network, use the `Integration.send()` function. The function takes three parameters: an action, application data, and the address of the user you want to send the message to. Here's an example:
 
 ```python
 from decentra_network.apps.remote_app import Integration
 
 integration = Integration("app_name")
 
-integration.send("action", "app_data", "touser")
-
-integration.get()
+integration.send("action", "app_data", "to_user")
 ```
 
-### Get
+### Receiving a Message
 
-The second user device is ready to getting the message and print the data. Fot this we will use `Integration.get` function in a loop for getting new datas every 3 seconds.
+To receive a message from the network, use the `Integration.get()` function. This function retrieves the data from the network and returns it to your application. Here's an example:
 
 ```python
 from decentra_network.apps.remote_app import Integration
@@ -67,12 +69,8 @@ while True:
   time.sleep(3)
 ```
 
-```bash
-> Hello World
-```
+This code will retrieve data from the network every three seconds and print it to the console.
 
-#### Caching
+### Caching
 
-We have an active and default system in the get step. The system is caching the datas for generating a real network experience. If there is a new data the system will return the new data. But after in another new call of 'integration.get()' the system wouldnt return the old data.
-
-But you can reset the cache or disable it with `integration.delete_cache()` and `integration.disable_cache()` functions.
+The Decentra Network Remote App library has an active caching system to provide a real network experience. The system caches retrieved data to avoid returning the same data multiple times. However, you can reset or disable the cache using the `integration.delete_cache()` and `integration.disable_cache()` functions.
