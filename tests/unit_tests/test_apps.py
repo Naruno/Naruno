@@ -570,7 +570,11 @@ class Test_apps(unittest.TestCase):
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
 
+        integration.get_cache()
+        self.assertNotEqual(integration.cache, [])
         integration.disable_cache()
+        integration.get_cache()
+        self.assertEqual(integration.cache, [])
 
         second_gettings_data_from_app = integration.get()
         self.assertNotEqual(second_gettings_data_from_app, [])

@@ -49,7 +49,7 @@ class Integration:
         self.cache = []
 
     def get_cache(self):
-        if not self.cache_true:
+        if self.cache_true == False:
             self.cache = []
             return
 
@@ -149,6 +149,8 @@ class Integration:
                 new_dict[transaction] = transactions_sended_not_validated[
                     transaction]
                 self.cache.append(transaction)
+
+        self.save_cache()
 
         result = []
 
