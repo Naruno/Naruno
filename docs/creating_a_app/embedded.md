@@ -2,7 +2,7 @@
 layout: default
 title: Embedded
 parent: Creating a APP
-nav_order: 1
+nav_order: 2
 ---
 
 # Creating a Embedded APP
