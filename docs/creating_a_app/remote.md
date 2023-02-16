@@ -21,12 +21,15 @@ pip3 install decentra_network decentra-network-remote-app
 ```
 
 ## Idea
+
 The remote app integration system idea is creating a super simple way to creating a usability on blockchain for todays applications. And with this way you can easily integrate your applications with blockchain via two basic steps.
 
 ### Step 1: Send
+
 We developed a simple way to send data to a user. You can send a data to a user with address. The data will be signed with the your public key and will be sent to the blockchain.
 
 ### Step 2: Get
+
 The second step is getting the data. You can get the data with your active node. Your node will catch the data.
 
 ## Integration
@@ -43,13 +46,14 @@ The first user is sending a message to the second user.
 from decentra_network.apps.remote_app import Integration
 
 integration = Integration("app_name")
-  
+
 integration.send("action", "app_data", "touser")
 
 integration.get()
 ```
 
 ### Get
+
 The second user device is ready to getting the message and print the data. Fot this we will use `Integration.get` function in a loop for getting new datas every 3 seconds.
 
 ```python
@@ -68,10 +72,7 @@ while True:
 ```
 
 #### Caching
+
 We have an active and default system in the get step. The system is caching the datas for generating a real network experience. If there is a new data the system will return the new data. But after in another new call of 'integration.get()' the system wouldnt return the old data.
 
 But you can reset the cache or disable it with `integration.delete_cache()` and `integration.disable_cache()` functions.
-
-
-
-
