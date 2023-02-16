@@ -1,6 +1,9 @@
 #backups
 decentra_network/backups/*
 
+#cache
+*.cache
+
 #manim exports
 media/*
 
