@@ -46,6 +46,7 @@ class Integration:
 
     def disable_cache(self):
         self.cache_true = False
+        self.cache = []
 
     def get_cache(self):
         if not self.cache_true:
