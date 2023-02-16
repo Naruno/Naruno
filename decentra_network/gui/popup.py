@@ -14,6 +14,7 @@ import decentra_network.gui.the_decentra_network_gui_app
 
 
 class popup:
+
     def __init__(
         self,
         title=None,
@@ -90,7 +91,9 @@ class popup:
                             font_size="18sp",
                             on_press=self.dismiss,
                             font_name=os.path.join(
-                                decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                                decentra_network.gui.
+                                the_decentra_network_gui_app.
+                                the_decentra_network_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -98,7 +101,9 @@ class popup:
                             text="OK",
                             font_size="18sp",
                             font_name=os.path.join(
-                                decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                                decentra_network.gui.
+                                the_decentra_network_gui_app.
+                                the_decentra_network_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_press=self.director,
@@ -110,8 +115,9 @@ class popup:
                     content = i[0]
                     is_pass = i[1]
                     self.dialog.content_cls.add_widget(
-                        MDTextField(hint_text=content, mode="fill", password=is_pass)
-                    )
+                        MDTextField(hint_text=content,
+                                    mode="fill",
+                                    password=is_pass))
             elif self.type != "question":
                 the_type = None if self.type == "qr" else self.type
                 self.dialog = SweetAlert()
@@ -135,7 +141,9 @@ class popup:
                             font_size="18sp",
                             on_press=self.dismiss,
                             font_name=os.path.join(
-                                decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                                decentra_network.gui.
+                                the_decentra_network_gui_app.
+                                the_decentra_network_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -143,7 +151,9 @@ class popup:
                             text="YES",
                             font_size="18sp",
                             font_name=os.path.join(
-                                decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.FONT_PATH,
+                                decentra_network.gui.
+                                the_decentra_network_gui_app.
+                                the_decentra_network_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_press=self.director_without_input,

@@ -12,16 +12,20 @@ from decentra_network.gui.popup import popup
 
 
 class DecentraRootScreen(MDScreen):
+
     def close_app(self, widget=None):
         self.close_app_dialog = popup(
-            title=decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.title,
+            title=decentra_network.gui.the_decentra_network_gui_app.
+            the_decentra_network_gui.title,
             text="Are you sure you want to close ?",
-            target=decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.stop,
+            target=decentra_network.gui.the_decentra_network_gui_app.
+            the_decentra_network_gui.stop,
             type="question",
         )
 
 
-class DecentraListItem(ThemableBehavior, RectangularRippleBehavior, MDBoxLayout):
+class DecentraListItem(ThemableBehavior, RectangularRippleBehavior,
+                       MDBoxLayout):
     text = StringProperty()
     secondary_text = StringProperty()
     tertiary_text = StringProperty()
