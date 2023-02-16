@@ -50,6 +50,10 @@
                     scr_manager.transition.direction = "left"
                     scr_manager.current = "SETTINGS"
 
+            NavigationItem:
+                icon: "close-thick"
+                on_release: root.close_app()
+
         ScreenManager:
             id: scr_manager
 

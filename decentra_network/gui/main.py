@@ -12,6 +12,7 @@ import argparse
 
 os.environ["KIVY_NO_ARGS"] = "1"
 from kivy import Config
+from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
@@ -71,6 +72,7 @@ class GUI(MDApp):
         """
         Some configurations.
         """
+        Window.borderless = True
         value = the_settings()["dark_mode"]
         self.theme_cls.theme_style = "Dark" if value else "Light"
         self.theme_cls.primary_palette = "Green"  # "Purple", "Red"

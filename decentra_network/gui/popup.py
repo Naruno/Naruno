@@ -133,6 +133,7 @@ class popup:
                 self.dialog = SweetAlert()
                 self.dialog.fire(
                     title=self.title,
+                    text=self.text,
                     type=self.type,
                     buttons=[
                         MDFlatButton(
