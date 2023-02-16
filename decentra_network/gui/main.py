@@ -145,11 +145,6 @@ class GUI(MDApp):
 
         return Builder.load_string(KV)
 
-
-
-
-
-
     def restart(self):
         self.root.clear_widgets()
         self.stop()
@@ -165,8 +160,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="This is an open source decentralized application network. In this network, you can develop and publish decentralized applications. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument(
