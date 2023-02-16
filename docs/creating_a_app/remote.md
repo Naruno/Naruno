@@ -17,291 +17,61 @@ If you want to develop applications outside of Decentra network you can use [API
 ### Installing requirements
 
 ```bash
-pip3 install decentra-network-remote-app
+pip3 install decentra_network decentra-network-remote-app
 ```
 
-## First Stage: Generating the Sceleton
+## Idea
+The remote app integration system idea is creating a super simple way to creating a usability on blockchain for todays applications. And with this way you can easily integrate your applications with blockchain via two basic steps.
 
-The remote application that we will create in the next sections should be have a integrastion system. For this we will use
+### Step 1: Send
+We developed a simple way to send data to a user. You can send a data to a user with address. The data will be signed with the your public key and will be sent to the blockchain.
 
-- decentra_network_integration.py
+### Step 2: Get
+The second step is getting the data. You can get the data with your active node. Your node will catch the data.
 
-In this file we have a two class function, the first one is send we will use for sending data, and the second one is get we will trigger this in some time and we will get the new data from the network.
-
-```python
-// decentra_network_integration.py
-
-class Integration:
-
-  def send(action, app_data, password, to_user):
-    return
-
-  def get():
-    return
-```
-
-## Second Stage: Sending the Data
-
-Firtly we are importing the requests and json library for using in sending the data to the API.
-
-```python
-import requests
-import json
-```
-
-Before the sending you must determine the data, for this first you must create a dictionary and determine a action for your data. The action is a string, we are use this for processing the data in getting function.
-
-```python
-data = {
-  "action": action,
-  "app_data": app_data
-}
-
-data = json.dumps(data)
-```
-
-After that you can send the data with `/send/` API. The API has 3 post parameters.
-
-- The first parameter is the password of wallet, you can be able to get from installation.
-
-- Second parameter is to_user, with this parameter you can choose the user that you want to send the data. Example in a messaging app you can send the data to message recipient. This parameter should be a string that equal 40 characters.
-
-And the last parameter is the data, you can pass the data that you created before.
-
-```python
-request_body = {
-  "password": "123",
-  "to_user": "Decentra-Network-00000000000000000000002",
-  "data": data,
-}
-```
-
-And now we are send this via `requests.post`
-
-```python
-response = requests.post('http://0.0.0.0:8000/send/', data=request_body)
-```
-
-After the request you can check the response with `response.text`. If the response is not equal to "false" the data is sent successfully.
-
-After this command if the result is not equal to "false" the sent successfully.
-
-_You should check the API port._
-
-And in the end of this section we can combine this operations at `decentra_network_integration.py` with `Integration.send` function.
-
-```python
-// decentra_network_integration.py
-
-import requests
-import json
-
-class Integration:
-
-  def send(action, app_data, password, to_user) -> bool:
-    data = {
-      "action": action,
-      "app_data": app_data
-    }
-
-    data = json.dumps(data)
-
-    request_body = {
-      "password": password,
-      "to_user": to_user,
-      "data": data,
-    }
-
-    response = requests.post('http://0.0.0.0:8000/send/', data=request_body)
-
-    return True if response.text != "false" else False
-
-
-  def get():
-    return
-
-```
-
-Now you can use `Integration.send` functions as you want.
-
-Ex. Sending a message
-
-```python
-from decentra_network_integration import Integration
-
-Integration.send(
-  action="app_name_action_name",
-  app_data="Hello World",
-  password="123",
-  to_user="Decentra-Network-00000000000000000000002"
-)
-```
-
-## Third Stage: Getting the Data
-
-When you send the data, the data will be available in the to_user. You can get the manualy with `/transactions/received` API.
-
-So we will request at first the data with `requests.get` and then we will read as json with `response.json()`
-
-```python
-response = requests.get('http://0.0.0.0:8000/transactions/received')
-transactions = response.json()
-```
-
-When we get the transactions we should find news for apps. For this we will prepare a cache mechanism, every time we get the transactions we will remove the old transactions from the cache and add the new transactions to the cache.
-
-In our mechanism we will look for the transaction is already in the cache or not. If the transaction is not in the cache we will add the transaction to the cache and we will return the transaction data as new.
-
-Firstly we will create a cache list in class.
-
-```python
-class Integration:
-
-  cache = []
-```
-
-And after we can use this.
-
-```python
-
-      new_dict = {}
-      for transaction in transactions:
-        if transaction in Integration.cache:
-          continue
-        else:
-          new_dict[transaction] = transactions[transaction]
-          Integration.cache.append(transaction)
-```
-
-And not we hava a new data list in `transactions` variable. before the process we will transform the data for using in our app.
-
-```python
-      for transaction in new_dict:
-```
-
-At last we get the new datas, firstly we must check the action of data. If the action is equal to the action that we determined before, we can process the data.
-
-In this examples if the action is equal to "app_name_action_name" we will print the data.
-
-```python
-        new_dict[transaction]["transaction"]["data"] = json.loads(new_dict[transaction]["transaction"]["data"])
-        if new_dict[transaction]["transaction"]["data"]["action"] == "app_name_action_name":
-          print(new_dict[transaction]["transaction"]["data"]["app_data"])
-```
-
-Okay, now we can combine this operations at `decentra_network_integration.py` with `Integration.get` function.
-
-```python
-
-class Integration:
-  cache = []
-
-    def get():
-
-      response = requests.get('http://0.0.0.0:8000/transactions/received')
-      transactions = response.json()
-
-      new_dict = {}
-
-      for transaction in transactions:
-        if transaction in Integration.cache:
-          continue
-        else:
-          new_dict[transaction] = transactions[transaction]
-          Integration.cache.append(transaction)
-      for transaction in new_dict:
-
-        new_dict[transaction]["transaction"]["data"] = json.loads(new_dict[transaction]["transaction"]["data"])
-        if new_dict[transaction]["transaction"]["data"]["action"] == "app_name_action_name":
-          print(new_dict[transaction]["transaction"]["data"]["app_data"])
-```
-
-## Final
-
-```python
-// decentra_network_integration.py
-
-import requests
-import json
-
-class Integration:
-    cache = []
-
-    def send(action, app_data, password, to_user) -> bool:
-      data = {
-        "action": action,
-        "app_data": app_data
-      }
-
-      data = json.dumps(data)
-
-
-      request_body = {
-        "password": password,
-        "to_user": to_user,
-        "data": data,
-      }
-
-      response = requests.post('http://0.0.0.0:8000/send/', data=request_body)
-
-      return True if response.text != "false" else False
-
-
-
-
-    def get():
-
-      response = requests.get('http://0.0.0.0:8000/transactions/received')
-      transactions = response.json()
-
-      new_dict = {}
-
-      for transaction in transactions:
-        if transaction in Integration.cache:
-          continue
-        else:
-          new_dict[transaction] = transactions[transaction]
-          Integration.cache.append(transaction)
-      for transaction in new_dict:
-
-        new_dict[transaction]["transaction"]["data"] = json.loads(new_dict[transaction]["transaction"]["data"])
-        if new_dict[transaction]["transaction"]["data"]["action"] == "app_name_action_name":
-          print(new_dict[transaction]["transaction"]["data"]["app_data"])
-```
-
-## Expectations
+## Integration
 
 With this app, you can send a public message to a user that you dont know his/her ip address and not using a server.
 
 You can use this app for safe and private messaging but if you want more, you should sending the datas far from Decentra Network (We have best methods for transactions but this situation is same for all blockchains) and after a while you should save the datas in Decentra Network. This is a good way for mostly of the applications.
 
-Example of a message sending:
+### Send
 
 The first user is sending a message to the second user.
 
 ```python
-from decentra_network_integration import Integration
+from decentra_network.apps.remote_app import Integration
 
-Integration.send(
-  action="app_name_action_name",
-  app_data="Hello World",
-  password="123",
-  to_user="Decentra-Network-00000000000000000000002"
-)
+integration = Integration("app_name")
+  
+integration.send("action", "app_data", "touser")
+
+integration.get()
 ```
 
+### Get
 The second user device is ready to getting the message and print the data. Fot this we will use `Integration.get` function in a loop for getting new datas every 3 seconds.
 
 ```python
+from decentra_network.apps.remote_app import Integration
 import time
 
-from decentra_network_integration import Integration
+integration = Integration("app_name")
 
 while True:
-  Integration.get()
+  print(integration.get())
   time.sleep(3)
 ```
 
 ```bash
 > Hello World
 ```
+
+#### Caching
+We have an active and default system in the get step. The system is caching the datas for generating a real network experience. If there is a new data the system will return the new data. But after in another new call of 'integration.get()' the system wouldnt return the old data.
+
+But you can reset the cache or disable it with `integration.delete_cache()` and `integration.disable_cache()` functions.
+
+
+
+

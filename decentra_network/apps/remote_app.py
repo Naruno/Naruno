@@ -23,6 +23,7 @@ class Integration:
         password="123",
         sended=True,
         sended_not_validated=False,
+        cache_true=True
     ):
         """
         :param host: The host of the node
@@ -39,9 +40,19 @@ class Integration:
 
         self.sended_not_validated = sended_not_validated
 
+        self.cache_true = cache_true
+
         self.get_cache()
 
+    def disable_cache(self):
+        self.cache_true = False
+
     def get_cache(self):
+        if not self.cache_true:
+            self.cache = []
+            return
+
+
         os.chdir(get_config()["main_folder"])
 
         if not os.path.exists(f"db/remote_app_cache/{self.cache_name}.cache"):
@@ -56,6 +67,7 @@ class Integration:
         with open(f"db/remote_app_cache/{self.cache_name}.cache",
                   "w") as cache:
             json.dump(self.cache, cache)
+
 
     def delete_cache(self):
         os.chdir(get_config()["main_folder"])
