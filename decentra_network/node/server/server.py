@@ -729,3 +729,10 @@ class server(Thread):
             self.send_full_chain(node=node)
         else:
             self.sync_clients.append(node)
+
+    def get_ip(self):
+        """
+        Returns the IP address of the socket in this class.
+        """
+        ip = self.sock.getsockname()[0]
+        return ip
