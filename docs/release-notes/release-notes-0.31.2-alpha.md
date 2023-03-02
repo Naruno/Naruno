@@ -10,7 +10,7 @@ With this path we fix the part_amount approach and added infrustracture for the 
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -37,20 +37,20 @@ Added block concept documents and frequently asked questions also we added websi
 
 ## What's Changed
 ### Blockchain
-* blockchain: Changed blockchain db saving condition to transaction from us or to us by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1173
-* blockhain: Fixed all of part_amount system by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1174
-* blockchain: Added saving the whole of blockshash list when a block that have a transaction releated to us by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1175
+* blockchain: Changed blockchain db saving condition to transaction from us or to us by @onuratakan in https://github.com/Naruno/Naruno/pull/1173
+* blockhain: Fixed all of part_amount system by @onuratakan in https://github.com/Naruno/Naruno/pull/1174
+* blockchain: Added saving the whole of blockshash list when a block that have a transaction releated to us by @onuratakan in https://github.com/Naruno/Naruno/pull/1175
 ### Consensus
-* consensus: Fixed and cleaned round time calculators by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1162
+* consensus: Fixed and cleaned round time calculators by @onuratakan in https://github.com/Naruno/Naruno/pull/1162
 ### Packages
-* packages: Added decentra_network_api as an requirement to tests by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1169
+* packages: Added decentra_network_api as an requirement to tests by @onuratakan in https://github.com/Naruno/Naruno/pull/1169
 ### Docs
-* docs: Added blockchain concept document by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1163
-* docs: Added website link by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1164
-* docs: Added Frequently Asked Questions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1165
+* docs: Added blockchain concept document by @onuratakan in https://github.com/Naruno/Naruno/pull/1163
+* docs: Added website link by @onuratakan in https://github.com/Naruno/Naruno/pull/1164
+* docs: Added Frequently Asked Questions by @onuratakan in https://github.com/Naruno/Naruno/pull/1165
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.31.1-alpha...v0.31.2-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.31.1-alpha...v0.31.2-alpha
 
 
 # Credits

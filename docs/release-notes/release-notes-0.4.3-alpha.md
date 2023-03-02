@@ -10,7 +10,7 @@ This patch includes a important optimization and fix.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -23,7 +23,7 @@ There have been no compatibility changes.
 We apply merkle root to list elements with a maximum
 of 100000 using the partitioning system we recommend
 at this address:
-https://github.com/Decentra-Network/Decentra-Network/issues/141
+https://github.com/Naruno/Naruno/issues/141
 
 This gives us super practicability and speed.
 

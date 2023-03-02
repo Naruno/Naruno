@@ -10,7 +10,7 @@ With this path we fix api import and package sqlite3 bug.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,12 +30,12 @@ We added the sqlite3 package to the hidden imports.
 
 ## What's Changed
 ### API
-* api: sys.path.append command moved to above of check and get proof imports by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1193
+* api: sys.path.append command moved to above of check and get proof imports by @onuratakan in https://github.com/Naruno/Naruno/pull/1193
 ### Packages
-* packages: Added `sqlite3` to hidden imports by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1191
+* packages: Added `sqlite3` to hidden imports by @onuratakan in https://github.com/Naruno/Naruno/pull/1191
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.32.0-alpha...v0.32.1-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.32.0-alpha...v0.32.1-alpha
 
 # Credits
 

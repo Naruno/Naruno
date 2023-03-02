@@ -10,7 +10,7 @@ With this path we added a security layer for transactions that came from candida
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,9 +30,9 @@ Added a Remove_Duplicates function to round 1.
 
 ### Consensus
 
-- consensus: Removed duplicated transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1131
+- consensus: Removed duplicated transactions by @onuratakan in https://github.com/Naruno/Naruno/pull/1131
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.30.0-alpha...0.30.1-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.30.0-alpha...0.30.1-alpha
 
 # Credits
 

@@ -10,7 +10,7 @@ With this minor release we added a ordering mechanism for pending to validating 
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -27,10 +27,10 @@ We added a function called `OrderbyFee` and this function is used in `PendingtoV
 
 ## What's Changed
 ### Transactions
-* transactions: Added a ordering by transaction fee mechanism to pending to validating by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1209
+* transactions: Added a ordering by transaction fee mechanism to pending to validating by @onuratakan in https://github.com/Naruno/Naruno/pull/1209
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.33.0-alpha...v0.34.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.33.0-alpha...v0.34.0-alpha
 
 # Credits
 

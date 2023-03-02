@@ -10,7 +10,7 @@ With this minor release we added a caching mechanism to all of the db systems.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -37,9 +37,9 @@ has been changed to use a cache if there is a cache available.
 
 ### Library
 
-- lib: Added caching system by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1062
+- lib: Added caching system by @onuratakan in https://github.com/Naruno/Naruno/pull/1062
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.27.1-alpha...v0.28.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.27.1-alpha...v0.28.0-alpha
 
 # Credits
 

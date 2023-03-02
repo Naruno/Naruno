@@ -10,7 +10,7 @@ With this path we fix the github release based event outputs.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -32,7 +32,7 @@ Fixed the github release based event outputs.
 
 - github: ${{ github.event.release.tag_name }} changed to decentra_network
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.27.0-alpha...v0.27.1-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.27.0-alpha...v0.27.1-alpha
 
 # Credits
 

@@ -14,5 +14,5 @@ Stability tests are check yoru system stability in different conditions with fun
 To run the stability tests, run the following command:
 
 ```bash
-pytest Decentra-Network/tests/stability_tests
+pytest Naruno/tests/stability_tests
 ```

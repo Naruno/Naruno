@@ -10,7 +10,7 @@ With this minor release we added many well feature and fix.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -56,42 +56,42 @@ Added status information to functional and stability tests. We changed some trig
 # 0.23.0-alpha change log
 
 ### Security
-* security: Added pywall library based safety check process by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/526
+* security: Added pywall library based safety check process by @onuratakan in https://github.com/Naruno/Naruno/pull/526
 ### Builds
-* builds: Closed console in GUI-win32.spec by @bcanergul06 in https://github.com/Decentra-Network/Decentra-Network/pull/520
+* builds: Closed console in GUI-win32.spec by @bcanergul06 in https://github.com/Naruno/Naruno/pull/520
 ### Wallet
-* wallet: Maded improvements and synced with ecdsa python by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/564
+* wallet: Maded improvements and synced with ecdsa python by @onuratakan in https://github.com/Naruno/Naruno/pull/564
 ### Block
-* block: Added new version of Green Paper as sha256 by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/492
-* block: Added validating time reset in block reset by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/556
-* block: Added a space from consensus process and block time by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/558
+* block: Added new version of Green Paper as sha256 by @onuratakan in https://github.com/Naruno/Naruno/pull/492
+* block: Added validating time reset in block reset by @onuratakan in https://github.com/Naruno/Naruno/pull/556
+* block: Added a space from consensus process and block time by @onuratakan in https://github.com/Naruno/Naruno/pull/558
 ### Transactions
-* transactions: Removed the print function of send_transaction_to_the_block by @bcanergul06 in https://github.com/Decentra-Network/Decentra-Network/pull/545
+* transactions: Removed the print function of send_transaction_to_the_block by @bcanergul06 in https://github.com/Naruno/Naruno/pull/545
 ### Node
-* node: Added send full accounts and blocks hash to send full chain by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/566
+* node: Added send full accounts and blocks hash to send full chain by @onuratakan in https://github.com/Naruno/Naruno/pull/566
 ### Docker
-* docker: Code quality improvements for api dockerfiles by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/541
-* docker: Fixed code quality issues of cli dockerfiles by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/542
+* docker: Code quality improvements for api dockerfiles by @onuratakan in https://github.com/Naruno/Naruno/pull/541
+* docker: Fixed code quality issues of cli dockerfiles by @onuratakan in https://github.com/Naruno/Naruno/pull/542
 ### Setup
-* setup-setups-github: Changed required python version with at leas 3.8 by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/543
+* setup-setups-github: Changed required python version with at leas 3.8 by @onuratakan in https://github.com/Naruno/Naruno/pull/543
 ### Documentation
-* docs: Added With Copilot badge to README.md by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/496
-* docs: Changed the docs site link in README.md by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/499
-* docs: Added build badge by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/501
-* docs: Added missing parts and nav order to release notes by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/546
+* docs: Added With Copilot badge to README.md by @onuratakan in https://github.com/Naruno/Naruno/pull/496
+* docs: Changed the docs site link in README.md by @onuratakan in https://github.com/Naruno/Naruno/pull/499
+* docs: Added build badge by @onuratakan in https://github.com/Naruno/Naruno/pull/501
+* docs: Added missing parts and nav order to release notes by @onuratakan in https://github.com/Naruno/Naruno/pull/546
 ### Tests
-* tests: Changed the test names by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/549
-* tests: Added docker based functional test by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/551
+* tests: Changed the test names by @onuratakan in https://github.com/Naruno/Naruno/pull/549
+* tests: Added docker based functional test by @onuratakan in https://github.com/Naruno/Naruno/pull/551
 ### GitHub
-* github: Artifact name changed for gource action by @bcanergul06 in https://github.com/Decentra-Network/Decentra-Network/pull/521
-* github: Changed Deploy worfklow run trigger to release publish trigger by @bcanergul06 in https://github.com/Decentra-Network/Decentra-Network/pull/522
-* github: Changed build to builds by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/524
-* github: Changed Deploy workflow run trigger to release publish trigger for stability tests by @bcanergul06 in https://github.com/Decentra-Network/Decentra-Network/pull/539
-* github: Fixed tralling space issues in release.yml by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/540
-* github: Added Deploy environment to Deploy workflow by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/544
-* github: Added status information to functional tests by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/554
-* github: Added Status Information to stability tests by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/559
-* github: Added log as artifacts for docker based functional test job by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/562
+* github: Artifact name changed for gource action by @bcanergul06 in https://github.com/Naruno/Naruno/pull/521
+* github: Changed Deploy worfklow run trigger to release publish trigger by @bcanergul06 in https://github.com/Naruno/Naruno/pull/522
+* github: Changed build to builds by @onuratakan in https://github.com/Naruno/Naruno/pull/524
+* github: Changed Deploy workflow run trigger to release publish trigger for stability tests by @bcanergul06 in https://github.com/Naruno/Naruno/pull/539
+* github: Fixed tralling space issues in release.yml by @onuratakan in https://github.com/Naruno/Naruno/pull/540
+* github: Added Deploy environment to Deploy workflow by @onuratakan in https://github.com/Naruno/Naruno/pull/544
+* github: Added status information to functional tests by @onuratakan in https://github.com/Naruno/Naruno/pull/554
+* github: Added Status Information to stability tests by @onuratakan in https://github.com/Naruno/Naruno/pull/559
+* github: Added log as artifacts for docker based functional test job by @onuratakan in https://github.com/Naruno/Naruno/pull/562
 
 # Credits
 

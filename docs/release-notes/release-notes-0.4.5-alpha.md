@@ -10,7 +10,7 @@ This path includes many new features
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -18,7 +18,7 @@ There have been no compatibility changes.
 
 # Notable changes
 
-## Added API Based Decentra-Network Core as Docker
+## Added API Based Naruno Core as Docker
 
 You will be able to download and run Naruno very easily using docker.
 Our Docker image is also installed with Github Packages
@@ -36,7 +36,7 @@ Now you will be able to control it via web api.
 
 ### Docker/api (NEW)
 
-- Added API Based Decentra-Network Core as Docker
+- Added API Based Naruno Core as Docker
 
 ### CLI
 

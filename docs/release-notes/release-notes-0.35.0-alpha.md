@@ -10,7 +10,7 @@ With this minor release we added syncing mechanism that about gap blocks, and we
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -39,18 +39,18 @@ and we added video for node concept with manim.
 
 ## What's Changed
 ### Blockchain
-* blockchain: Gap block number is fixed with + hard block number by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1214
-* blockchain: Added syncing with the network by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1215
+* blockchain: Gap block number is fixed with + hard block number by @onuratakan in https://github.com/Naruno/Naruno/pull/1214
+* blockchain: Added syncing with the network by @onuratakan in https://github.com/Naruno/Naruno/pull/1215
 ### Transactions
-* transactions: Added controlling the touser balance for just data sended transactions, if balance is enough we shouldn't check and add minumum transfer amount by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1221
+* transactions: Added controlling the touser balance for just data sended transactions, if balance is enough we shouldn't check and add minumum transfer amount by @onuratakan in https://github.com/Naruno/Naruno/pull/1221
 ### Docs
-* docs: Added Node concept video by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1217
-* docs: Added types of blocks by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1218
-* docs: Added syncing docs by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1219
-* docs: Changed block time and added a note for some features by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1220
+* docs: Added Node concept video by @onuratakan in https://github.com/Naruno/Naruno/pull/1217
+* docs: Added types of blocks by @onuratakan in https://github.com/Naruno/Naruno/pull/1218
+* docs: Added syncing docs by @onuratakan in https://github.com/Naruno/Naruno/pull/1219
+* docs: Changed block time and added a note for some features by @onuratakan in https://github.com/Naruno/Naruno/pull/1220
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.34.0-alpha...v0.35.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.34.0-alpha...v0.35.0-alpha
 
 
 # Credits

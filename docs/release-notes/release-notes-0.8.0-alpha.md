@@ -10,7 +10,7 @@ This minor release includes new library type installation and use.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,7 +30,7 @@ You can use this library for install Naruno GUI mode on your system.
 
 You can use this library for install Naruno API mode on your system.
 
-For more information please check [download](https://naruno.github.io/Decentra-Network/getting-started/downloading.html) and [using](https://naruno.github.io/Decentra-Network/getting-started/using.html) page.
+For more information please check [download](https://naruno.github.io/Naruno/getting-started/downloading.html) and [using](https://naruno.github.io/Naruno/getting-started/using.html) page.
 
 # 0.8.0-alpha change log
 

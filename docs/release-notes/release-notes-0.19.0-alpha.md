@@ -10,7 +10,7 @@ With this minor release we have added many new features and improved the correct
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -42,24 +42,24 @@ Synced the required libraries between requirements/api.txt and setups.
 
 ### Wallet
 
-- wallet: Added a transform process to Address function by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/437
+- wallet: Added a transform process to Address function by @onuratakan in https://github.com/Naruno/Naruno/pull/437
 
 ### Auto-Builders
 
-- auto_builders: Local based .out file set differently for each node by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/428
+- auto_builders: Local based .out file set differently for each node by @onuratakan in https://github.com/Naruno/Naruno/pull/428
 
 ### Transactions
 
-- transactions: Changed the order mechanism by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/431
-- transaction: Added a new list to proccess the transaction function for sacalability in big lists by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/439
+- transactions: Changed the order mechanism by @onuratakan in https://github.com/Naruno/Naruno/pull/431
+- transaction: Added a new list to proccess the transaction function for sacalability in big lists by @onuratakan in https://github.com/Naruno/Naruno/pull/439
 
 ### CLI - GUI
 
-- Removed loguru library by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/434
+- Removed loguru library by @onuratakan in https://github.com/Naruno/Naruno/pull/434
 
 ### Setups
 
-- setups: Synced the requirements with api setup.py by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/429
+- setups: Synced the requirements with api setup.py by @onuratakan in https://github.com/Naruno/Naruno/pull/429
 
 # Credits
 

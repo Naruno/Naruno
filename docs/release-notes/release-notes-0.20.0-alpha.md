@@ -10,7 +10,7 @@ With this minor release we fix many problems about block system, time amd transa
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,13 +30,13 @@ Disabled multi transaction from the same account in the same block.
 
 ### Block
 
-- block: Block time change smoothed by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/441
-- block: Block time increased by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/445
+- block: Block time change smoothed by @onuratakan in https://github.com/Naruno/Naruno/pull/441
+- block: Block time increased by @onuratakan in https://github.com/Naruno/Naruno/pull/445
 - block: Block time optimizer removed
 
 ### Transactions
 
-- transactions: Disabled multiple transactions from the same account in one block by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/444
+- transactions: Disabled multiple transactions from the same account in one block by @onuratakan in https://github.com/Naruno/Naruno/pull/444
 
 ### Tests
 

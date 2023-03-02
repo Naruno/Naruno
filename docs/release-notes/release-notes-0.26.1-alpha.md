@@ -10,7 +10,7 @@ With this path we made a small change for docs.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,9 +30,9 @@ Removed "Core" expression.
 
 ### Docs
 
-- docs: Removed "Core" name by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/893
+- docs: Removed "Core" name by @onuratakan in https://github.com/Naruno/Naruno/pull/893
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.26.0-alpha...v0.26.1-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.26.0-alpha...v0.26.1-alpha
 
 # Credits
 

@@ -10,7 +10,7 @@ With this path we fix stability reducing problem with from the cache system. Als
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -31,16 +31,16 @@ We are removed the cache system because the multi-threading system is not stable
 
 ## What's Changed
 ### Auto-Builders
-* auto_builders: Reduced wait times by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1083
+* auto_builders: Reduced wait times by @onuratakan in https://github.com/Naruno/Naruno/pull/1083
 ### Docs
-* docs: Fixed Full Changelog section of release notes by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1081
+* docs: Fixed Full Changelog section of release notes by @onuratakan in https://github.com/Naruno/Naruno/pull/1081
 ### Library
-* lib: Removed caching system by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1085
+* lib: Removed caching system by @onuratakan in https://github.com/Naruno/Naruno/pull/1085
 ### Other Changes
-* docs: Changed tests are of today for Naruno by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1086
+* docs: Changed tests are of today for Naruno by @onuratakan in https://github.com/Naruno/Naruno/pull/1086
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.29.0-alpha...v0.29.1-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.29.0-alpha...v0.29.1-alpha
 
 # Credits
 

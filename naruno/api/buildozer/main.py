@@ -20,7 +20,7 @@ class Decentra_Network_API(App):
     def build(self):
         the_api = Thread(target=start)
         the_api.start()
-        return Label(text="Decentra-Network-API")
+        return Label(text="Naruno-API")
 
 
 if __name__ == "__main__":

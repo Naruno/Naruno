@@ -10,7 +10,7 @@ With this path we added new APIs about transactions. and added some fix and impr
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,17 +30,17 @@ Seperated environments for codecov, unit, functional and stability tests.
 
 ## What's Changed
 ### Transactions
-* api: Added new /transactions/ based APIs that seperated by sended or received and validated or not validated by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1148
-* api: Added `/transactions/all` API for getting all transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1154
-* api: Removed some useless parts of new `/transactions/` APIs by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1156
+* api: Added new /transactions/ based APIs that seperated by sended or received and validated or not validated by @onuratakan in https://github.com/Naruno/Naruno/pull/1148
+* api: Added `/transactions/all` API for getting all transactions by @onuratakan in https://github.com/Naruno/Naruno/pull/1154
+* api: Removed some useless parts of new `/transactions/` APIs by @onuratakan in https://github.com/Naruno/Naruno/pull/1156
 ### Docs
-* docs: Fixed 0.30.1 full changelog link by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1151
-* docs: Added new API docs by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1155
+* docs: Fixed 0.30.1 full changelog link by @onuratakan in https://github.com/Naruno/Naruno/pull/1151
+* docs: Added new API docs by @onuratakan in https://github.com/Naruno/Naruno/pull/1155
 ### GitHub
-* github: Changed environments by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1149
+* github: Changed environments by @onuratakan in https://github.com/Naruno/Naruno/pull/1149
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.30.2-alpha...v0.30.3-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.30.2-alpha...v0.30.3-alpha
 
 # Credits
 

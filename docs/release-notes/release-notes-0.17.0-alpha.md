@@ -10,7 +10,7 @@ This minor release includes many new features and improvements for APP and Loggg
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -31,15 +31,15 @@ based installations.
 
 ### APP - Logger
 
-- app: Added logging and threading by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/408
+- app: Added logging and threading by @onuratakan in https://github.com/Naruno/Naruno/pull/408
 
 ### Logger - Auto-Builders - Settings
 
-- logger: Fixed auto builders installation bug with changing default settings value of debug mode by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/412
+- logger: Fixed auto builders installation bug with changing default settings value of debug mode by @onuratakan in https://github.com/Naruno/Naruno/pull/412
 
 ### Requirements
 
-- build(deps): bump waitress from 2.1.1 to 2.1.2 in /requirements by @dependabot in https://github.com/Decentra-Network/Decentra-Network/pull/404
+- build(deps): bump waitress from 2.1.1 to 2.1.2 in /requirements by @dependabot in https://github.com/Naruno/Naruno/pull/404
 
 # Credits
 

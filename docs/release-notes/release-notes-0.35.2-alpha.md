@@ -10,7 +10,7 @@ With this path we improved the performance of GetBalance function.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -27,10 +27,10 @@ In this path we remove the checking given account Address and account same time 
 
 ## What's Changed
 ### Accounts
-* accounts: Removed looking address and original argument balance together, added a argument for dont generate address for balance control of to account by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1226
+* accounts: Removed looking address and original argument balance together, added a argument for dont generate address for balance control of to account by @onuratakan in https://github.com/Naruno/Naruno/pull/1226
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.35.1-alpha...v0.35.2-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.35.1-alpha...v0.35.2-alpha
 
 # Credits
 

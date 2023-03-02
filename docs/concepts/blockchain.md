@@ -31,7 +31,7 @@ Block is the main part of blockchain. It contains the information of:
 | outside  | blockshash_part    | list    | Merkle roots of every part_amount block         |
 | outside  | Accounts           | list    | Returns the wallets                             |
 
-This information is the basic for explaining the blockchain. If you want to see all information of block, you can see newest the `Block` class in [block_main.py](https://github.com/Decentra-Network/Decentra-Network/blob/master/decentra_network/blockchain/block/block_main.py)
+This information is the basic for explaining the blockchain. If you want to see all information of block, you can see newest the `Block` class in [block_main.py](https://github.com/Naruno/Naruno/blob/master/decentra_network/blockchain/block/block_main.py)
 
 Every blocks are a backup for our blockchain because they are have current `blockhash`, `blockshash_part` and `Accounts`. When you want to see confirmate your transaction, you need to blocks hash based history. And when we want to run entire blockchain, we need to look at the `Accounts` list.
 

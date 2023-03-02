@@ -14,7 +14,7 @@ Before you begin, make sure you have the following:
 ```bash
 mkdir test_enviroment
 cd test_enviroment
-git clone https://github.com/Decentra-Network/Decentra-Network.git
+git clone https://github.com/Naruno/Naruno.git
 ```
 
 ## Installing requirements

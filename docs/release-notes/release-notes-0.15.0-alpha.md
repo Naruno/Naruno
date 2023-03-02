@@ -10,7 +10,7 @@ This path fix the requirements getting on the setups.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -61,52 +61,52 @@ and moved the functional and unit tests under a folder named tests.
 
 ### API
 
-- build(deps): bump waitress from 2.0.0 to 2.1.1 in /requirements by @dependabot in https://github.com/Decentra-Network/Decentra-Network/pull/353
+- build(deps): bump waitress from 2.0.0 to 2.1.1 in /requirements by @dependabot in https://github.com/Naruno/Naruno/pull/353
 
 ### APP
 
-- Removed the apps_starter and app class by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/360
+- Removed the apps_starter and app class by @onuratakan in https://github.com/Naruno/Naruno/pull/360
 
 ### Auto-Builders
 
-- Added some time sleeps by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/391
+- Added some time sleeps by @onuratakan in https://github.com/Naruno/Naruno/pull/391
 
 ### Block
 
-- block: Added green paper hash by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/368
+- block: Added green paper hash by @onuratakan in https://github.com/Naruno/Naruno/pull/368
 
 ### Connection
 
-- 347 improvements for node modules by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/354
+- 347 improvements for node modules by @onuratakan in https://github.com/Naruno/Naruno/pull/354
 
 ### Package
 
-- 363 removing the main package from api and gui packege requirements by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/364
-- readme: Added PyPI dowloads by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/393
+- 363 removing the main package from api and gui packege requirements by @onuratakan in https://github.com/Naruno/Naruno/pull/364
+- readme: Added PyPI dowloads by @onuratakan in https://github.com/Naruno/Naruno/pull/393
 
 ### Documentation
 
-- Create release.yml by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/396
+- Create release.yml by @onuratakan in https://github.com/Naruno/Naruno/pull/396
 
 ### Tests
 
-- 342 merging the test workflows in one workflow by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/362
-- 359 rename and moving for testunit test and functional test by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/365
-- 370 moving to the local based functional tests by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/375
+- 342 merging the test workflows in one workflow by @onuratakan in https://github.com/Naruno/Naruno/pull/362
+- 359 rename and moving for testunit test and functional test by @onuratakan in https://github.com/Naruno/Naruno/pull/365
+- 370 moving to the local based functional tests by @onuratakan in https://github.com/Naruno/Naruno/pull/375
 
 ### GitHub
 
-- Delete issue-branch.yml by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/352
-- 372 adding log files as artifacts to the actions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/376
-- 379 adding security scanner workflows by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/380
+- Delete issue-branch.yml by @onuratakan in https://github.com/Naruno/Naruno/pull/352
+- 372 adding log files as artifacts to the actions by @onuratakan in https://github.com/Naruno/Naruno/pull/376
+- 379 adding security scanner workflows by @onuratakan in https://github.com/Naruno/Naruno/pull/380
 
 ### Logging
 
-- 349 adding log system by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/373
+- 349 adding log system by @onuratakan in https://github.com/Naruno/Naruno/pull/373
 
 ### Debugging
 
-- status: Lots of status information added by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/377
+- status: Lots of status information added by @onuratakan in https://github.com/Naruno/Naruno/pull/377
 
 # Credits
 

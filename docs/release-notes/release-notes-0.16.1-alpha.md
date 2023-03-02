@@ -10,7 +10,7 @@ This path includes a new way to create a new node and api.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -27,7 +27,7 @@ Now we can open 98 node and 98 API ports for tests.
 
 ### Connection
 
-- connection: New type for calculating port number by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/403
+- connection: New type for calculating port number by @onuratakan in https://github.com/Naruno/Naruno/pull/403
 
 ### Tests
 

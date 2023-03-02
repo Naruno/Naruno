@@ -10,7 +10,7 @@ With this minor release we add a backend system for saving first blockshash part
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -28,10 +28,10 @@ We add a condidition for first block and its blockshash part in consensus for bl
 
 ## What's Changed
 ### Blockchain
-* blockchain: Added saving first block and blockshash part always by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1232
+* blockchain: Added saving first block and blockshash part always by @onuratakan in https://github.com/Naruno/Naruno/pull/1232
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.36.0-alpha...v0.37.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.36.0-alpha...v0.37.0-alpha
 
 # Credits
 

@@ -10,7 +10,7 @@ With this path we fix auto builders and block. for stability and correction.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,11 +30,11 @@ Removed gap for stability improvements.
 
 ### Auto-Builders
 
-- auto_builders: Added a check for security circle number equal 1 in randomly contribution to circles by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/466
+- auto_builders: Added a check for security circle number equal 1 in randomly contribution to circles by @onuratakan in https://github.com/Naruno/Naruno/pull/466
 
 ### Block
 
-- block: Removed the gap by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/470
+- block: Removed the gap by @onuratakan in https://github.com/Naruno/Naruno/pull/470
 
 # Credits
 

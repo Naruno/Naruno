@@ -12,7 +12,7 @@ in the GitHub.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -34,17 +34,17 @@ Also we made some changes for on push and pull_requests triggers.
 # 0.25.0-alpha change log
 
 ### Transactions
-* transaction: Amount and fee decimal amount limited to block.transaction_fee by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/579
-* transaction: Set limits for fromUser and toUser and added type checking for transaction elements by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/589
-* transaction: Limit set for len of data by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/591
+* transaction: Amount and fee decimal amount limited to block.transaction_fee by @onuratakan in https://github.com/Naruno/Naruno/pull/579
+* transaction: Set limits for fromUser and toUser and added type checking for transaction elements by @onuratakan in https://github.com/Naruno/Naruno/pull/589
+* transaction: Limit set for len of data by @onuratakan in https://github.com/Naruno/Naruno/pull/591
 ### Documentation
-* docs: Added new dowload links and using docs by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/583
-* docs: Added document for application developer that closing the thread after succeed works by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/585
+* docs: Added new dowload links and using docs by @onuratakan in https://github.com/Naruno/Naruno/pull/583
+* docs: Added document for application developer that closing the thread after succeed works by @onuratakan in https://github.com/Naruno/Naruno/pull/585
 ### GitHub
-* github: Changed Deploy environment name to Deploys by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/574
-* github: Added Builds environment by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/575
-* github: Added Tests environment by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/577
-* github: Removed after workflow run Tests triggers by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/582
+* github: Changed Deploy environment name to Deploys by @onuratakan in https://github.com/Naruno/Naruno/pull/574
+* github: Added Builds environment by @onuratakan in https://github.com/Naruno/Naruno/pull/575
+* github: Added Tests environment by @onuratakan in https://github.com/Naruno/Naruno/pull/577
+* github: Removed after workflow run Tests triggers by @onuratakan in https://github.com/Naruno/Naruno/pull/582
 
 # Credits
 

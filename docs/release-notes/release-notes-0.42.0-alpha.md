@@ -10,7 +10,7 @@ This release includes several updates to the CLI, API, GUI, and Lib components, 
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -37,18 +37,18 @@ Added sign and export as file function and added check exported signed file func
 
 ## What's Changed
 ### CLI
-* cli: Added ability to sign and verify data in menu by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1426
-* cli: Added after a key press clearing screen for menu by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1427
+* cli: Added ability to sign and verify data in menu by @onuratakan in https://github.com/Naruno/Naruno/pull/1426
+* cli: Added after a key press clearing screen for menu by @onuratakan in https://github.com/Naruno/Naruno/pull/1427
 ### API
-* api: Added ability to sign and verify data by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1428
+* api: Added ability to sign and verify data by @onuratakan in https://github.com/Naruno/Naruno/pull/1428
 ### GUI
-* gui: Added ability to sign and verify data by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1429
+* gui: Added ability to sign and verify data by @onuratakan in https://github.com/Naruno/Naruno/pull/1429
 ### Lib
-* lib: Added sign and export as file function by @alieren196 in https://github.com/Decentra-Network/Decentra-Network/pull/1420
-* lib: Added check exported signed file function by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1424
+* lib: Added sign and export as file function by @alieren196 in https://github.com/Naruno/Naruno/pull/1420
+* lib: Added check exported signed file function by @onuratakan in https://github.com/Naruno/Naruno/pull/1424
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.41.1-alpha...v0.42.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.41.1-alpha...v0.42.0-alpha
 
 # Credits
 

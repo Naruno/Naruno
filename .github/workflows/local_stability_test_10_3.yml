@@ -33,7 +33,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -71,7 +71,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -109,7 +109,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -147,7 +147,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -185,7 +185,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -223,7 +223,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -261,7 +261,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -299,7 +299,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -337,7 +337,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -375,7 +375,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -413,7 +413,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -451,7 +451,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -489,7 +489,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -527,7 +527,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -565,7 +565,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -603,7 +603,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -641,7 +641,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -679,7 +679,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -717,7 +717,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -755,7 +755,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -793,7 +793,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -831,7 +831,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -869,7 +869,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -907,7 +907,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -945,7 +945,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -983,7 +983,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1021,7 +1021,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1059,7 +1059,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1097,7 +1097,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1135,7 +1135,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1173,7 +1173,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1211,7 +1211,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1249,7 +1249,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1287,7 +1287,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1325,7 +1325,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1363,7 +1363,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1401,7 +1401,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1439,7 +1439,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1477,7 +1477,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1515,7 +1515,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1553,7 +1553,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1591,7 +1591,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1629,7 +1629,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1667,7 +1667,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1705,7 +1705,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1743,7 +1743,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1781,7 +1781,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1819,7 +1819,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1857,7 +1857,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1895,7 +1895,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1933,7 +1933,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -1971,7 +1971,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2009,7 +2009,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2047,7 +2047,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2085,7 +2085,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2123,7 +2123,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2161,7 +2161,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2199,7 +2199,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2237,7 +2237,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2275,7 +2275,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2313,7 +2313,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2351,7 +2351,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2389,7 +2389,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2427,7 +2427,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2465,7 +2465,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2503,7 +2503,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2541,7 +2541,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2579,7 +2579,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2617,7 +2617,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2655,7 +2655,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2693,7 +2693,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2731,7 +2731,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2769,7 +2769,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2807,7 +2807,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2845,7 +2845,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2883,7 +2883,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2921,7 +2921,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2959,7 +2959,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -2997,7 +2997,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3035,7 +3035,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3073,7 +3073,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3111,7 +3111,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3149,7 +3149,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3187,7 +3187,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3225,7 +3225,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3263,7 +3263,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3301,7 +3301,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3339,7 +3339,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3377,7 +3377,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3415,7 +3415,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3453,7 +3453,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3491,7 +3491,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3529,7 +3529,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3567,7 +3567,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3605,7 +3605,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3643,7 +3643,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3681,7 +3681,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3719,7 +3719,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3757,7 +3757,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |
@@ -3795,7 +3795,7 @@ jobs:
         
         cd ..
         
-        pytest Decentra-Network/tests/stability_tests/local/test_decentra_network_local_10_3.py 
+        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_10_3.py 
   
     - name: Status Information
       run: |

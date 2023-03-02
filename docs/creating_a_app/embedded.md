@@ -17,13 +17,13 @@ If you want to develop applications inside Decentra network you can use our Apps
 
 The embedded applications must have a communication section that written in python. And this files must be in some rules.
 
-- Decentra-Network
+- Naruno
   - decentra_network
     - apps
       - App_Name
         - App_Name_main.py
 
-_If you use a test network you can change the "Decentra-Network" folder with your test network node folders ex. "Decentra-Network-0"._
+_If you use a test network you can change the "Naruno" folder with your test network node folders ex. "Naruno-0"._
 
 In this files you should write a function that catch the new datas of your application. Naruno will send the new data to this function but you must check and organize your data.
 
@@ -71,7 +71,7 @@ And the last parameter is the data, you can pass the data that you created befor
 ```python
 send(
   "123", # Password
-  "Decentra-Network-00000000000000000000002",
+  "Naruno-00000000000000000000002",
   data=data,
 )
 ```
@@ -200,7 +200,7 @@ app_name_send_tx(
   "app_name_action_name", # Action
   "Hello World", # Data
   "123", # Password
-  "Decentra-Network-00000000000000000000002", # To User
+  "Naruno-00000000000000000000002", # To User
 )
 ```
 

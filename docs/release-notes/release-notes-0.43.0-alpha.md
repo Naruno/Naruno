@@ -10,7 +10,7 @@ In this release, we have made improvements to our auto-builders, adding more con
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -34,14 +34,14 @@ A control point is added for dont sending system transactions to other node.
 
 ## What's Changed
 ### Auto-Builders
-* auto_builders: Made networks with more connected circles by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1431
+* auto_builders: Made networks with more connected circles by @onuratakan in https://github.com/Naruno/Naruno/pull/1431
 ### Transactions
-* transactions: Adding a Cleaner for preventing leaks by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1432
+* transactions: Adding a Cleaner for preventing leaks by @onuratakan in https://github.com/Naruno/Naruno/pull/1432
 ### Node
-* node: Added a control point for dont sending system transactions to other node by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1433
+* node: Added a control point for dont sending system transactions to other node by @onuratakan in https://github.com/Naruno/Naruno/pull/1433
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.42.0-alpha...v0.43.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.42.0-alpha...v0.43.0-alpha
 
 # Credits
 

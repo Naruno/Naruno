@@ -1,6 +1,6 @@
 FROM python:3.8-alpine
 
-LABEL org.opencontainers.image.source https://github.com/Decentra-Network/Decentra-Network
+LABEL org.opencontainers.image.source https://github.com/Naruno/Naruno
 
 RUN mkdir /app
 
@@ -8,6 +8,6 @@ RUN apk update
 
 WORKDIR /app/
 
-COPY Decentra-Network Decentra-Network
+COPY Naruno Naruno
 
-CMD [ "python3", "Decentra-Network/decentra_network/cli/main.py"]
+CMD [ "python3", "Naruno/decentra_network/cli/main.py"]

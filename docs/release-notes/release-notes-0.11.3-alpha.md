@@ -10,7 +10,7 @@ With this path added the naruno package to naruno-api and decenetra-network-gui 
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 

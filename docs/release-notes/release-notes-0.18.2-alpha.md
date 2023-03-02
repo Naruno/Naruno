@@ -10,7 +10,7 @@ This path includes a fix for stability tests that caused the testing wrong sourc
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -26,7 +26,7 @@ Changed the docker pull command with local based docker build command in docker 
 
 ### GitHub
 
-- actions: Changed the getting way to local build for docker image by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/424
+- actions: Changed the getting way to local build for docker image by @onuratakan in https://github.com/Naruno/Naruno/pull/424
 
 # Credits
 

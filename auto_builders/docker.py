@@ -80,11 +80,11 @@ class Decentra_Network_Docker:
     def run(self):
         time.sleep(1 * self.number_of_nodes)
         os.system(
-            "docker run --sysctl net.ipv4.tcp_rmem=65536 -v naruno-db:/app/Decentra-Network/decentra_network/db/ -v naruno-logs:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit naruno-api"
+            "docker run --sysctl net.ipv4.tcp_rmem=65536 -v naruno-db:/app/Naruno/decentra_network/db/ -v naruno-logs:/app/Naruno/decentra_network/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit naruno-api"
         )
         for i in range(self.number_of_nodes):
             os.system(
-                f"docker run -v naruno-db-{i}:/app/Decentra-Network/decentra_network/db/ -v naruno-logs-{i}:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
+                f"docker run -v naruno-db-{i}:/app/Naruno/decentra_network/db/ -v naruno-logs-{i}:/app/Naruno/decentra_network/logs/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
             )
 
     def debug_and_test_mode(self):

@@ -10,7 +10,7 @@ With this minor release we are introduce our new docs system. Also we changed so
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -46,11 +46,11 @@ We are fix the status system status reporting system. Now we are added a disable
 
 ### Apps
 
-- apps: Added a test applications dedect and disable methods for real usages by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1078
+- apps: Added a test applications dedect and disable methods for real usages by @onuratakan in https://github.com/Naruno/Naruno/pull/1078
 
 ### Blockchain
 
-- blockchain: Added no_cache option for GetBlock by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1074
+- blockchain: Added no_cache option for GetBlock by @onuratakan in https://github.com/Naruno/Naruno/pull/1074
 
 ### Docs
 
@@ -67,7 +67,7 @@ All of docs are edited and updated.
 - api: Deprecated `/send/coin-data` api
 - api: Added `/send` api for all transaction sendin operations
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.28.0-alpha...v0.29.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.28.0-alpha...v0.29.0-alpha
 
 # Credits
 

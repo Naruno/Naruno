@@ -10,7 +10,7 @@ This path includes a fix for stability tests.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -26,7 +26,7 @@ With this path the stability tests will run after deploys worklfow success.
 
 ### Tests
 
-- actions: Added workflow_run to stability tests by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/422
+- actions: Added workflow_run to stability tests by @onuratakan in https://github.com/Naruno/Naruno/pull/422
 
 # Credits
 

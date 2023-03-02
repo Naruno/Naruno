@@ -10,7 +10,7 @@ This minor version includes new features and important fixes.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -26,7 +26,7 @@ With this release API ports setted to 8{n}00 and node port setted 80{n}0.
 
 ### Connection
 
-- Changed the port range for api and node by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/401
+- Changed the port range for api and node by @onuratakan in https://github.com/Naruno/Naruno/pull/401
 
 # Credits
 

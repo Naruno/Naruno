@@ -10,7 +10,7 @@ This release includes updates to Wallet, Packages, Tests, and GUI. The changes i
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -37,16 +37,16 @@ The default theme has been changed to light
 
 ## What's Changed
 ### Wallet
-* wallet: Deleted some false texts and moved some files for preventing licence problems by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1422
+* wallet: Deleted some false texts and moved some files for preventing licence problems by @onuratakan in https://github.com/Naruno/Naruno/pull/1422
 ### Packages
-* packages: Added maxiumum python version for GUI by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1419
+* packages: Added maxiumum python version for GUI by @onuratakan in https://github.com/Naruno/Naruno/pull/1419
 ### Tests
-* tests: Fix for test_blockchain_sync_empty_blocks_first_and_second_empty_is_not_equal by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1423
+* tests: Fix for test_blockchain_sync_empty_blocks_first_and_second_empty_is_not_equal by @onuratakan in https://github.com/Naruno/Naruno/pull/1423
 ### GUI
-* gui: Changed default theme to light by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1418
+* gui: Changed default theme to light by @onuratakan in https://github.com/Naruno/Naruno/pull/1418
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.41.1-alpha...0.41.1-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.41.1-alpha...0.41.1-alpha
 
 # Credits
 

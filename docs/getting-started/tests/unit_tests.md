@@ -14,5 +14,5 @@ Unit tests are a great way to verify that your installation is working as expect
 To run the unit tests, run the following command:
 
 ```bash
-pytest Decentra-Network/tests/unit_tests
+pytest Naruno/tests/unit_tests
 ```

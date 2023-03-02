@@ -10,7 +10,7 @@ With this minor release we added automatic build function and visualization work
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -40,7 +40,7 @@ Gource based visualization work field set.
 
 ### Documentation
 
-- github: Some settings are set for Gource Action by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/481
+- github: Some settings are set for Gource Action by @onuratakan in https://github.com/Naruno/Naruno/pull/481
 
 # Credits
 

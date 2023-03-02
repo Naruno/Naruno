@@ -10,7 +10,7 @@ With this minor release we optimize many systems and added new functionalities.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -48,28 +48,28 @@ With this release we removed block time based status report.
 
 ### Auto-Builders
 
-- auto_builders: Added randomly connect circle node to another circle node by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/464
+- auto_builders: Added randomly connect circle node to another circle node by @onuratakan in https://github.com/Naruno/Naruno/pull/464
 
 ### Block
 
-- block: Removed unused elements by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/454
+- block: Removed unused elements by @onuratakan in https://github.com/Naruno/Naruno/pull/454
 
 ### Connection
 
-- node: Added a check point for taken candidate block and hash by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/451
+- node: Added a check point for taken candidate block and hash by @onuratakan in https://github.com/Naruno/Naruno/pull/451
 
 ### Documentation
 
-- github: Added Gource actions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/463
+- github: Added Gource actions by @onuratakan in https://github.com/Naruno/Naruno/pull/463
 
 ### Tests
 
-- tests: Increased the functional tests time sleeps for new block time by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/458
-- tests: Optimized and fixed functional tests by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/461
+- tests: Increased the functional tests time sleeps for new block time by @onuratakan in https://github.com/Naruno/Naruno/pull/458
+- tests: Optimized and fixed functional tests by @onuratakan in https://github.com/Naruno/Naruno/pull/461
 
 ### Status
 
-- status: Removed time difference based status value by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/452
+- status: Removed time difference based status value by @onuratakan in https://github.com/Naruno/Naruno/pull/452
 
 # Credits
 

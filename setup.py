@@ -14,7 +14,7 @@ setup(
     packages=["decentra_network"],
     name="decentra_network",
     version="0.44.0",
-    url="https://github.com/Decentra-Network/Decentra-Network",
+    url="https://github.com/Naruno/Naruno",
     description=
     "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
     keywords=[

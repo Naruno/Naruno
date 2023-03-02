@@ -10,7 +10,7 @@ With this path some broken links and stability tests action fixed.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -34,7 +34,7 @@ Changed the old wiki links with docs.naruno.net links.
 
 ### APP
 
-- app: Fixed the help links by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/425
+- app: Fixed the help links by @onuratakan in https://github.com/Naruno/Naruno/pull/425
 
 # Credits
 

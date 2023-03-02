@@ -10,7 +10,7 @@ With this minor release we added share mechanism and changed Naruno Community Gr
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -27,11 +27,11 @@ We added a system that distributes dnc coin for some period and adjusted value o
 
 ## What's Changed
 ### Blockchain
-* blockchain: Added share mechanism of dnc by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1327
-* blockchain: Changed community green paper hash by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1328
+* blockchain: Added share mechanism of dnc by @onuratakan in https://github.com/Naruno/Naruno/pull/1327
+* blockchain: Changed community green paper hash by @onuratakan in https://github.com/Naruno/Naruno/pull/1328
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.38.0-alpha...v0.39.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.38.0-alpha...v0.39.0-alpha
 
 # Credits
 

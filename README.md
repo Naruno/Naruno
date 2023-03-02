@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/Decentra-Network/Decentra-Network">
-    <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
+  <a href="https://github.com/Naruno/Naruno">
+    <img src="https://naruno.org/wp-content/uploads/2023/03/transparant-logo-1.png" alt="Logo" width="150" height="150">
   </a>
 
   <h3 align="center">Naruno</h3>
@@ -29,16 +29,16 @@
 
   </p>
   <p align="center">
-  <img src="https://img.shields.io/github/v/release/Decentra-Network/Decentra-Network" alt="release_version">
+  <img src="https://img.shields.io/github/v/release/Naruno/Naruno" alt="release_version">
   </p>
   <p align="center">
   <a href="https://www.python.org/">
   <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" alt="Made_with_python">
   </a>
   .
-  <img src="https://img.shields.io/github/repo-size/Decentra-Network/Decentra-Network" alt="repo_size">
+  <img src="https://img.shields.io/github/repo-size/Naruno/Naruno" alt="repo_size">
   .
-  <img  src="https://img.shields.io/tokei/lines/github/Decentra-Network/Decentra-Network" alt="total_lines">
+  <img  src="https://img.shields.io/tokei/lines/github/Naruno/Naruno" alt="total_lines">
   .
   <img src="https://static.pepy.tech/personalized-badge/naruno?period=total&units=international_system&left_color=grey&right_color=blue&left_text=PyPI%20Downloads" alt="pypi_downloads">
   </p>
@@ -46,49 +46,49 @@
   <p align="center">
   <a href="https://www.codefactor.io/repository/github/naruno/naruno"><img src="https://www.codefactor.io/repository/github/naruno/naruno/badge" alt="CodeFactor" /></a>
   .
-  <a href="https://codecov.io/gh/Decentra-Network/Decentra-Network" >
-   <img src="https://codecov.io/gh/Decentra-Network/Decentra-Network/branch/master/graph/badge.svg?token=YT9JQFBIPN"/>
+  <a href="https://codecov.io/gh/Naruno/Naruno" >
+   <img src="https://codecov.io/gh/Naruno/Naruno/branch/master/graph/badge.svg?token=YT9JQFBIPN"/>
    </a>
   </p>
 
   <p align="center">
-    <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
+    <a href="https://github.com/Naruno/Naruno/actions/workflows/codeql-analysis.yml">
+  <img src="https://github.com/Naruno/Naruno/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
   </a>
   .
   <a href="https://codebeat.co/projects/github-com-naruno-naruno-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
   .
-  <a href="https://www.codacy.com/gh/Decentra-Network/Decentra-Network/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Decentra-Network/Decentra-Network&amp;utm_campaign=Badge_Grade"><img  alt="codacy badge" src="https://app.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
+  <a href="https://www.codacy.com/gh/Naruno/Naruno/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Naruno/Naruno&amp;utm_campaign=Badge_Grade"><img  alt="codacy badge" src="https://app.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
   </p>
 
   <p align="center">
-  <a href="https://codescene.io/projects/23147/architecture/biomarkers?component=Decentra-network">
-  <img alt="CodeScene Code Health" src="https://codescene.io/projects/23147/status-badges/code-health?component-name=Decentra-network">
+  <a href="https://codescene.io/projects/23147/architecture/biomarkers?component=Naruno">
+  <img alt="CodeScene Code Health" src="https://codescene.io/projects/23147/status-badges/code-health?component-name=Naruno">
 </a>
   .
   <a href="https://codescene.io/projects/23147/">
-  <img alt="CodeScene System Mastery" src="https://codescene.io/projects/23147/status-badges/system-mastery?component-name=Decentra-network">
+  <img alt="CodeScene System Mastery" src="https://codescene.io/projects/23147/status-badges/system-mastery?component-name=Naruno">
 </a>
   .
   <a href="https://codescene.io/projects/23147"><img src="https://codescene.io/projects/23147/status-badges/missed-goals" alt="Missed Goals"></a>
   </p>
 
   <p align="center">
-   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/tests.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/tests.yml/badge.svg" alt="tests">
+   <a href="https://github.com/Naruno/Naruno/actions/workflows/tests.yml">
+  <img src="https://github.com/Naruno/Naruno/actions/workflows/tests.yml/badge.svg" alt="tests">
   <a/>
      .
-   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/builds.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/builds.yml/badge.svg" alt="builds">
+   <a href="https://github.com/Naruno/Naruno/actions/workflows/builds.yml">
+  <img src="https://github.com/Naruno/Naruno/actions/workflows/builds.yml/badge.svg" alt="builds">
   <a/>
   .
-   <a href="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/deploys.yml">
-  <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/deploys.yml/badge.svg" alt="deploys">
+   <a href="https://github.com/Naruno/Naruno/actions/workflows/deploys.yml">
+  <img src="https://github.com/Naruno/Naruno/actions/workflows/deploys.yml/badge.svg" alt="deploys">
   <a/>
   </p>
   <p align="center">
   <a href="https://cloudback.it">
-  <img src="https://cloudback.it/badge/Decentra-Network/Decentra-Network" alt="backups">
+  <img src="https://cloudback.it/badge/Naruno/Naruno" alt="backups">
   </a>
   </p>
 
@@ -121,7 +121,7 @@ The main features of Naruno are:
 
 The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Naruno software, designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
-**The Decentra-Network has 4 control areas:**
+**The Naruno has 4 control areas:**
 
 ## GUI
 
@@ -160,11 +160,11 @@ It has been developed to make web api control easier and to provide control by o
 
 # Documents
 
-Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://docs.naruno.net/) website.
+Our documents are available in the [docs](https://github.com/Naruno/Naruno/tree/master/docs) folder and [this](https://docs.naruno.net/) website.
 
 # Contribute
 
-Naruno is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Decentra-Network/Decentra-Network/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Decentra-Network/Decentra-Network/blob/master/CODE_OF_CONDUCT.md).
+Naruno is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Naruno/Naruno/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Naruno/Naruno/blob/master/CODE_OF_CONDUCT.md).
 
 <br />
 
@@ -174,13 +174,13 @@ Naruno is a completely community driven project, you can contribute in any way i
 
 <details>
 
-## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Recent activity [![Time period](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_badge.svg)](https://repography.com)
+## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Recent activity [![Time period](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_badge.svg)](https://repography.com)
 
-[![Timeline graph](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_timeline.svg)](https://github.com/Decentra-Network/Decentra-Network/commits)
-[![Issue status graph](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_issues.svg)](https://github.com/Decentra-Network/Decentra-Network/issues)
-[![Pull request status graph](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_prs.svg)](https://github.com/Decentra-Network/Decentra-Network/pulls)
-[![Trending topics](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_words.svg)](https://github.com/Decentra-Network/Decentra-Network/commits)
-[![Top contributors](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/recent-activity/c5bdec035b13c76d31dd5333396957cc_users.svg)](https://github.com/Decentra-Network/Decentra-Network/graphs/contributors)
+[![Timeline graph](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_timeline.svg)](https://github.com/Naruno/Naruno/commits)
+[![Issue status graph](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_issues.svg)](https://github.com/Naruno/Naruno/issues)
+[![Pull request status graph](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_prs.svg)](https://github.com/Naruno/Naruno/pulls)
+[![Trending topics](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_words.svg)](https://github.com/Naruno/Naruno/commits)
+[![Top contributors](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_users.svg)](https://github.com/Naruno/Naruno/graphs/contributors)
 
 </details>
 
@@ -190,7 +190,7 @@ Naruno is a completely community driven project, you can contribute in any way i
 
 ## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Top contributors
 
-[![Top contributors](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/top-contributors/c5bdec035b13c76d31dd5333396957cc_table.svg)](https://github.com/Decentra-Network/Decentra-Network/graphs/contributors)
+[![Top contributors](https://images.repography.com/22744517/Naruno/Naruno/top-contributors/c5bdec035b13c76d31dd5333396957cc_table.svg)](https://github.com/Naruno/Naruno/graphs/contributors)
 
 </details>
 
@@ -200,7 +200,7 @@ Naruno is a completely community driven project, you can contribute in any way i
 
 ## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
 
-[![Structure](https://images.repography.com/22744517/Decentra-Network/Decentra-Network/structure/06d5e6e5f3c07b9922b3f3d3e0c91649_table.svg)](https://github.com/Decentra-Network/Decentra-Network)
+[![Structure](https://images.repography.com/22744517/Naruno/Naruno/structure/06d5e6e5f3c07b9922b3f3d3e0c91649_table.svg)](https://github.com/Naruno/Naruno)
 
 </details>
 
@@ -209,17 +209,17 @@ Naruno is a completely community driven project, you can contribute in any way i
 <p align="center">
 
   <p align="center">
-    <img src="https://img.shields.io/github/stars/Decentra-Network/Decentra-Network?style=social" alt="Repo_stars">
+    <img src="https://img.shields.io/github/stars/Naruno/Naruno?style=social" alt="Repo_stars">
   .
-  <img src="https://img.shields.io/github/forks/Decentra-Network/Decentra-Network?style=social" alt="Repo_forks">
+  <img src="https://img.shields.io/github/forks/Naruno/Naruno?style=social" alt="Repo_forks">
     <br />
-  <img src="https://img.shields.io/github/issues-raw/Decentra-Network/Decentra-Network" alt="Open_issues">
+  <img src="https://img.shields.io/github/issues-raw/Naruno/Naruno" alt="Open_issues">
   .
-  <img src="https://img.shields.io/github/issues-closed-raw/Decentra-Network/Decentra-Network" alt="Closed_issues">
+  <img src="https://img.shields.io/github/issues-closed-raw/Naruno/Naruno" alt="Closed_issues">
     <br />
-  <img src="https://img.shields.io/github/issues-pr-raw/Decentra-Network/Decentra-Network" alt="Open_pull_requests">
+  <img src="https://img.shields.io/github/issues-pr-raw/Naruno/Naruno" alt="Open_pull_requests">
   .
-    <img src="https://img.shields.io/github/issues-pr-closed-raw/Decentra-Network/Decentra-Network" alt="Closed_pull_requests">
+    <img src="https://img.shields.io/github/issues-pr-closed-raw/Naruno/Naruno" alt="Closed_pull_requests">
 
 <br />
   </p>

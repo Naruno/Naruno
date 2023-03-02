@@ -14,5 +14,5 @@ Functional tests are check your system circulation. To run the functional tests,
 To run the functional tests, run the following command:
 
 ```bash
-pytest Decentra-Network/tests/functional_tests
+pytest Naruno/tests/functional_tests
 ```

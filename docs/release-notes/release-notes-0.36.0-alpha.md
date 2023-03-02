@@ -10,7 +10,7 @@ With this minor release we add new Green Paper hash to genesis block and we fix 
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,12 +30,12 @@ We change the .org domain names to .net.
 
 ## What's Changed
 ### Blockchain
-* blockchain: Added new Green Paper hash to genesis block by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1229
+* blockchain: Added new Green Paper hash to genesis block by @onuratakan in https://github.com/Naruno/Naruno/pull/1229
 ### Docs
-* docs: Changed .org to .net temporary by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1230
+* docs: Changed .org to .net temporary by @onuratakan in https://github.com/Naruno/Naruno/pull/1230
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.35.2-alpha...v0.36.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.35.2-alpha...v0.36.0-alpha
 
 # Credits
 

@@ -10,7 +10,7 @@ With this path we fix the indention error that caused by the previous release `t
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -36,7 +36,7 @@ We added release note files to automatic generated releases.
 ### GitHub
 * github: Added release note file to release.yml as body_path by @onuratakan
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.31.0-alpha...v0.31.1-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.31.0-alpha...v0.31.1-alpha
 
 # Credits
 

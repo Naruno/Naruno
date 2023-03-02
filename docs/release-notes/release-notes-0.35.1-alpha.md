@@ -10,7 +10,7 @@ With this path we fix the negative amount of transaction issue with a controller
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -27,10 +27,10 @@ We added a control point that control amount is big or equal to zero.
 
 ## What's Changed
 ### Transactions
-* transactions: Added a check for negative amount of transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1224
+* transactions: Added a check for negative amount of transactions by @onuratakan in https://github.com/Naruno/Naruno/pull/1224
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.35.0-alpha...v0.35.1-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.35.0-alpha...v0.35.1-alpha
 
 # Credits
 

@@ -162,7 +162,7 @@ class Block:
 
         the_block_json = json.loads(json.dumps(json_string))
         the_block_json["validating_list"] = temp_validating_list
-        the_block = Block("Decentra-Network")
+        the_block = Block("Naruno")
         the_block.__dict__ = the_block_json
 
         return the_block

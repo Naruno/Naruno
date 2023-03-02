@@ -1,5 +1,5 @@
 [app]
-title = Decentra-Network
+title = Naruno
 package.name = decentra_network
 package.domain = org.decentra_network
 source.dir = decentra_network/
@@ -15,13 +15,13 @@ p4a.local_recipes = recipes/src/python-for-android/recipes/
 android.api = 27
 
 [app@api]
-title = Decentra-Network-API
+title = Naruno-API
 package.name = decentra_network_api
 source.dir = decentra_network/api/buildozer/
 requirements =  decentra_network==0.44.0, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.0.3, flask==2.0.0, flask_cors==3.0.10
 
 [app@gui]
-title = Decentra-Network-GUI
+title = Naruno-GUI
 package.name = decentra_network_gui
 source.dir = decentra_network/gui/
 requirements =  decentra_network==0.44.0, Kivy==2.1.0, kivymd==0.104.2, qrcode==7.3.1, kivymd_extensions.sweetalert==0.1.5, plyer==2.1.0, pillow==9.1.1

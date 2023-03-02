@@ -10,7 +10,7 @@ With this minor version we are added get and check transaction proof ability to 
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -48,17 +48,17 @@ With this release we added some docs about the transaction proof and the part_am
 
 ## What's Changed
 ### Transactions
-* transactions: Added GetProof and CheckProof function by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1179
+* transactions: Added GetProof and CheckProof function by @onuratakan in https://github.com/Naruno/Naruno/pull/1179
 ### CLI
-* cli: Added get and check proof ability to CLI by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1186
+* cli: Added get and check proof ability to CLI by @onuratakan in https://github.com/Naruno/Naruno/pull/1186
 ### API
-* api: Added get and check proof of transaction ability by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1189
+* api: Added get and check proof of transaction ability by @onuratakan in https://github.com/Naruno/Naruno/pull/1189
 ### Docs
-* docs: Added proofs docs by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1183
-* docs: Added docs for part_amount system by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1184
+* docs: Added proofs docs by @onuratakan in https://github.com/Naruno/Naruno/pull/1183
+* docs: Added docs for part_amount system by @onuratakan in https://github.com/Naruno/Naruno/pull/1184
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.31.2-alpha...v0.32.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.31.2-alpha...v0.32.0-alpha
 
 # Credits
 

@@ -189,7 +189,7 @@ jobs:
     - name: Test with pytest
       run: |      
         cd ..
-        pytest Decentra-Network/tests/functional_tests/local/test_decentra_network_local.py
+        pytest Naruno/tests/functional_tests/local/test_decentra_network_local.py
     - name: Status Information
       run: |
         curl http://localhost:8000/status
@@ -220,8 +220,8 @@ jobs:
     - name: Test with pytest
       run: |        
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/functional_tests/docker/test_decentra_network_docker.py
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/functional_tests/docker/test_decentra_network_docker.py
     - name: Status Information
       run: |
         curl http://localhost:8000/status
@@ -229,11 +229,11 @@ jobs:
         curl http://localhost:8102/status
     - name: Copy out file from volume
       run: |
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network
-        mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network
-        sudo cp -r /var/lib/docker/volumes/naruno-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs
-        sudo cp -r /var/lib/docker/volumes/naruno-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs
-        sudo cp -r /var/lib/docker/volumes/naruno-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs
+        mkdir -p /home/runner/work/Naruno/Naruno-0/decentra_network
+        mkdir -p /home/runner/work/Naruno/Naruno-1/decentra_network
+        mkdir -p /home/runner/work/Naruno/Naruno-2/decentra_network
+        sudo cp -r /var/lib/docker/volumes/naruno-logs/_data/  /home/runner/work/Naruno/Naruno-0/decentra_network/logs
+        sudo cp -r /var/lib/docker/volumes/naruno-logs-0/_data/  /home/runner/work/Naruno/Naruno-1/decentra_network/logs
+        sudo cp -r /var/lib/docker/volumes/naruno-logs-1/_data/  /home/runner/work/Naruno/Naruno-2/decentra_network/logs
 
 

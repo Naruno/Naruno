@@ -10,7 +10,7 @@ This minor release includes merging the stabilty_test branch to master.
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -26,7 +26,7 @@ With this release the stabilty tests are added to the tests.
 
 ### Tests
 
-- tests: Merged the sability tests by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/419
+- tests: Merged the sability tests by @onuratakan in https://github.com/Naruno/Naruno/pull/419
 
 # Credits
 

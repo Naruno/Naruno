@@ -10,7 +10,7 @@ With this minor release we added cache system for part amount hash calculation a
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -30,16 +30,16 @@ We added hash calculation, transactions and we seperated the Hard and normal blo
 
 ## What's Changed
 ### Blockchain
-* blockchain: Added cache for calculation not effected blockshash part merkle tree by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1197
-* blockchain: Increased block time for every part amount block for calculation new blockshash part merkle (Gap Blocks) by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1202
-* blockchain: Added a area for calculating long part list merkle root calculations (Hard Blocks) by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1205
+* blockchain: Added cache for calculation not effected blockshash part merkle tree by @onuratakan in https://github.com/Naruno/Naruno/pull/1197
+* blockchain: Increased block time for every part amount block for calculation new blockshash part merkle (Gap Blocks) by @onuratakan in https://github.com/Naruno/Naruno/pull/1202
+* blockchain: Added a area for calculating long part list merkle root calculations (Hard Blocks) by @onuratakan in https://github.com/Naruno/Naruno/pull/1205
 ### Lib
-* lib: Added hash calculation to performance analyzers by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1199
-* lib: Added transactions to performance analyzers by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1201
-* lib: Seperating normal block and hard block performance analyzers by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1207
+* lib: Added hash calculation to performance analyzers by @onuratakan in https://github.com/Naruno/Naruno/pull/1199
+* lib: Added transactions to performance analyzers by @onuratakan in https://github.com/Naruno/Naruno/pull/1201
+* lib: Seperating normal block and hard block performance analyzers by @onuratakan in https://github.com/Naruno/Naruno/pull/1207
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.32.1-alpha...v0.33.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.32.1-alpha...v0.33.0-alpha
 
 # Credits
 

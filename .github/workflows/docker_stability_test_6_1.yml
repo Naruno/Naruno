@@ -32,8 +32,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -66,8 +66,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -100,8 +100,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -134,8 +134,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -168,8 +168,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -202,8 +202,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -236,8 +236,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -270,8 +270,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -304,8 +304,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -338,8 +338,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -372,8 +372,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -406,8 +406,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -440,8 +440,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -474,8 +474,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -508,8 +508,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -542,8 +542,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -576,8 +576,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -610,8 +610,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -644,8 +644,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -678,8 +678,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -712,8 +712,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -746,8 +746,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -780,8 +780,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -814,8 +814,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -848,8 +848,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -882,8 +882,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -916,8 +916,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -950,8 +950,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -984,8 +984,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1018,8 +1018,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1052,8 +1052,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1086,8 +1086,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1120,8 +1120,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1154,8 +1154,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1188,8 +1188,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1222,8 +1222,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1256,8 +1256,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1290,8 +1290,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1324,8 +1324,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1358,8 +1358,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1392,8 +1392,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1426,8 +1426,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1460,8 +1460,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1494,8 +1494,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1528,8 +1528,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1562,8 +1562,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1596,8 +1596,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1630,8 +1630,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1664,8 +1664,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1698,8 +1698,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1732,8 +1732,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1766,8 +1766,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1800,8 +1800,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1834,8 +1834,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1868,8 +1868,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1902,8 +1902,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1936,8 +1936,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -1970,8 +1970,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2004,8 +2004,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2038,8 +2038,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2072,8 +2072,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2106,8 +2106,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2140,8 +2140,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2174,8 +2174,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2208,8 +2208,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2242,8 +2242,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2276,8 +2276,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2310,8 +2310,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2344,8 +2344,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2378,8 +2378,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2412,8 +2412,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2446,8 +2446,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2480,8 +2480,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2514,8 +2514,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2548,8 +2548,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2582,8 +2582,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2616,8 +2616,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2650,8 +2650,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2684,8 +2684,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2718,8 +2718,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2752,8 +2752,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2786,8 +2786,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2820,8 +2820,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2854,8 +2854,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2888,8 +2888,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2922,8 +2922,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2956,8 +2956,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -2990,8 +2990,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3024,8 +3024,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3058,8 +3058,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3092,8 +3092,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3126,8 +3126,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3160,8 +3160,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3194,8 +3194,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3228,8 +3228,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3262,8 +3262,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3296,8 +3296,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3330,8 +3330,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3364,8 +3364,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |
@@ -3398,8 +3398,8 @@ jobs:
         pip install -r requirements/tests.txt
         
         cd ..
-        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
-        pytest Decentra-Network/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_6_1.py 
 
     - name: Status Information
       run: |

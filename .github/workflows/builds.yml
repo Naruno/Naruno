@@ -63,7 +63,7 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r cli_linux_decentra_network Decentra-Network-CLI/
+        zip -r cli_linux_decentra_network Naruno-CLI/
     
     - uses: actions/upload-artifact@v2
       with:
@@ -104,7 +104,7 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r cli_macos_decentra_network Decentra-Network-CLI/
+        zip -r cli_macos_decentra_network Naruno-CLI/
     - uses: actions/upload-artifact@v2
       with:
         name: cli_macos_decentra_network
@@ -146,7 +146,7 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Decentra-Network-CLI/ cli_win32_decentra_network.zip
+        Compress-Archive Naruno-CLI/ cli_win32_decentra_network.zip
     
 
 
@@ -196,7 +196,7 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r api_linux_decentra_network Decentra-Network-API/
+        zip -r api_linux_decentra_network Naruno-API/
     
 
     - uses: actions/upload-artifact@v2
@@ -244,7 +244,7 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r api_macos_decentra_network Decentra-Network-API/
+        zip -r api_macos_decentra_network Naruno-API/
     
 
     - uses: actions/upload-artifact@v2
@@ -291,7 +291,7 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Decentra-Network-API/ api_win32_decentra_network.zip
+        Compress-Archive Naruno-API/ api_win32_decentra_network.zip
     
 
     - uses: actions/upload-artifact@v2
@@ -342,7 +342,7 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Decentra-Network-GUI/ gui_win32_decentra_network.zip
+        Compress-Archive Naruno-GUI/ gui_win32_decentra_network.zip
     
 
     - uses: actions/upload-artifact@v2

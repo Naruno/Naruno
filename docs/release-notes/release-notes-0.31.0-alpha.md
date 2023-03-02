@@ -10,7 +10,7 @@ With this minor version we deprecated the old `/export/transactions/json` API an
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -35,15 +35,15 @@ We added a workflow named `release.yml` for creating release from pushing tags.
 
 ## What's Changed
 ### API
-* api: Deprecated old incompatible `/export/transactions/json` API by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1159
+* api: Deprecated old incompatible `/export/transactions/json` API by @onuratakan in https://github.com/Naruno/Naruno/pull/1159
 ### Docs
-* docs: Some fixes for remote app document by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1160
-* docs: Fixed building a test network link of remote app document by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1161
+* docs: Some fixes for remote app document by @onuratakan in https://github.com/Naruno/Naruno/pull/1160
+* docs: Fixed building a test network link of remote app document by @onuratakan in https://github.com/Naruno/Naruno/pull/1161
 ### GitHub
-* github: Added automatic release generator by pushing tag by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1158
+* github: Added automatic release generator by pushing tag by @onuratakan in https://github.com/Naruno/Naruno/pull/1158
 
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.30.3-alpha...v0.31.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.30.3-alpha...v0.31.0-alpha
 
 # Credits
 

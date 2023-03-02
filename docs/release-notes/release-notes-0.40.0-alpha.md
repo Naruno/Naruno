@@ -10,7 +10,7 @@ With this minor release we fix the all of consensus proccess and also we fix rel
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -54,57 +54,57 @@ Added cleaning test_app outputs and sended variable to export transactions csv a
 
 ## What's Changed
 ### Blockchain
-* blockchain: Removed empty block number from hash calculation by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1368
-* blockchain: Changed share transactions from users for sorting by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1376
-* blockchain: Changed transaction time with block.start_time for share transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1379
-* blockchain: Added double saving for SaveBlock by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1383
-* blockchain: Removed candidate block resetting by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1387
-* Revert "blockchain: Removed candidate block resetting" by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1388
-* blockchain: Added transaction fee based values to calculating hash by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1402
+* blockchain: Removed empty block number from hash calculation by @onuratakan in https://github.com/Naruno/Naruno/pull/1368
+* blockchain: Changed share transactions from users for sorting by @onuratakan in https://github.com/Naruno/Naruno/pull/1376
+* blockchain: Changed transaction time with block.start_time for share transactions by @onuratakan in https://github.com/Naruno/Naruno/pull/1379
+* blockchain: Added double saving for SaveBlock by @onuratakan in https://github.com/Naruno/Naruno/pull/1383
+* blockchain: Removed candidate block resetting by @onuratakan in https://github.com/Naruno/Naruno/pull/1387
+* Revert "blockchain: Removed candidate block resetting" by @onuratakan in https://github.com/Naruno/Naruno/pull/1388
+* blockchain: Added transaction fee based values to calculating hash by @onuratakan in https://github.com/Naruno/Naruno/pull/1402
 ### Transactions
-* transactions: Added cleaning signature == "DN" transactions before share transactions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1374
+* transactions: Added cleaning signature == "DN" transactions before share transactions by @onuratakan in https://github.com/Naruno/Naruno/pull/1374
 ### CLI
-* cli: Added backup system functions by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1332
+* cli: Added backup system functions by @onuratakan in https://github.com/Naruno/Naruno/pull/1332
 ### Node
-* node: Added an exit the message reception loop when a destination node is closed by @cpyberry in https://github.com/Decentra-Network/Decentra-Network/pull/1329
-* node: Added socket.timeout suppress for send_client function by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1360
-* node: Stored last 5 candidate blocks and getting by sequance number by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1399
+* node: Added an exit the message reception loop when a destination node is closed by @cpyberry in https://github.com/Naruno/Naruno/pull/1329
+* node: Added socket.timeout suppress for send_client function by @onuratakan in https://github.com/Naruno/Naruno/pull/1360
+* node: Stored last 5 candidate blocks and getting by sequance number by @onuratakan in https://github.com/Naruno/Naruno/pull/1399
 ### API
-* api: Added api for gathering the block as json by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1346
-* api: CORS settings have been set by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1348
+* api: Added api for gathering the block as json by @onuratakan in https://github.com/Naruno/Naruno/pull/1346
+* api: CORS settings have been set by @onuratakan in https://github.com/Naruno/Naruno/pull/1348
 ### Consensus
-* consensus: Added the self to round 1 find validated transactions voting by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1362
-* consensus: Increased circulation time to 1.50s by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1366
-* consensus: Moved candidate block sending to the start of rounds by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1370
-* consensus: Moved candidate block sending to the start of consensus_main by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1372
-* consensus: Reverted cadidate block sending by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1377
-* consensus: Increased circulation time to 2s by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1382
-* Revert "consensus: Reverted cadidate block sending" by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1385
-* consensus: Added self adding to canddiate block checks by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1389
-* consensus: All systems assigned to majority by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1391
+* consensus: Added the self to round 1 find validated transactions voting by @onuratakan in https://github.com/Naruno/Naruno/pull/1362
+* consensus: Increased circulation time to 1.50s by @onuratakan in https://github.com/Naruno/Naruno/pull/1366
+* consensus: Moved candidate block sending to the start of rounds by @onuratakan in https://github.com/Naruno/Naruno/pull/1370
+* consensus: Moved candidate block sending to the start of consensus_main by @onuratakan in https://github.com/Naruno/Naruno/pull/1372
+* consensus: Reverted cadidate block sending by @onuratakan in https://github.com/Naruno/Naruno/pull/1377
+* consensus: Increased circulation time to 2s by @onuratakan in https://github.com/Naruno/Naruno/pull/1382
+* Revert "consensus: Reverted cadidate block sending" by @onuratakan in https://github.com/Naruno/Naruno/pull/1385
+* consensus: Added self adding to canddiate block checks by @onuratakan in https://github.com/Naruno/Naruno/pull/1389
+* consensus: All systems assigned to majority by @onuratakan in https://github.com/Naruno/Naruno/pull/1391
 ### Packages
-* packages: Fixed console script bug by adding .main before using start function by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1340
+* packages: Fixed console script bug by adding .main before using start function by @onuratakan in https://github.com/Naruno/Naruno/pull/1340
 ### Docs
-* docs: Removed lgtm from readme by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1342
-* docs: Fixed codacy badge on readme by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1344
-* docs: Added user interfaces to concepts by @alieren196 in https://github.com/Decentra-Network/Decentra-Network/pull/1351
-* docs: Added usage docs to getting started by @alieren196 in https://github.com/Decentra-Network/Decentra-Network/pull/1354
-* docs: Added Videos index by @alieren196 in https://github.com/Decentra-Network/Decentra-Network/pull/1355
-* docs: Some typo fixes by @omahs in https://github.com/Decentra-Network/Decentra-Network/pull/1384
-* docs: Removed gui macos from installations by @alieren196 in https://github.com/Decentra-Network/Decentra-Network/pull/1400
+* docs: Removed lgtm from readme by @onuratakan in https://github.com/Naruno/Naruno/pull/1342
+* docs: Fixed codacy badge on readme by @onuratakan in https://github.com/Naruno/Naruno/pull/1344
+* docs: Added user interfaces to concepts by @alieren196 in https://github.com/Naruno/Naruno/pull/1351
+* docs: Added usage docs to getting started by @alieren196 in https://github.com/Naruno/Naruno/pull/1354
+* docs: Added Videos index by @alieren196 in https://github.com/Naruno/Naruno/pull/1355
+* docs: Some typo fixes by @omahs in https://github.com/Naruno/Naruno/pull/1384
+* docs: Removed gui macos from installations by @alieren196 in https://github.com/Naruno/Naruno/pull/1400
 ### GUI
-* gui: Added ability to send data by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1334
-* gui: Fixed FileNotFoundError for GetBlock function usage by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1335
-* gui: Fixed NoneType errors that caused by server.Server by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1337
+* gui: Added ability to send data by @onuratakan in https://github.com/Naruno/Naruno/pull/1334
+* gui: Fixed FileNotFoundError for GetBlock function usage by @onuratakan in https://github.com/Naruno/Naruno/pull/1335
+* gui: Fixed NoneType errors that caused by server.Server by @onuratakan in https://github.com/Naruno/Naruno/pull/1337
 ### Lib
-* lib: Added cleaning test_app outputs by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1331
-* lib: Added sended variable to export transaction csv by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1333
-* lib: Added suppress to perpetualtimer by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1364
+* lib: Added cleaning test_app outputs by @onuratakan in https://github.com/Naruno/Naruno/pull/1331
+* lib: Added sended variable to export transaction csv by @onuratakan in https://github.com/Naruno/Naruno/pull/1333
+* lib: Added suppress to perpetualtimer by @onuratakan in https://github.com/Naruno/Naruno/pull/1364
 
 ## New Contributors
-* @omahs made their first contribution in https://github.com/Decentra-Network/Decentra-Network/pull/1384
+* @omahs made their first contribution in https://github.com/Naruno/Naruno/pull/1384
 
-**Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.39.0-alpha...v0.40.0-alpha
+**Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.39.0-alpha...v0.40.0-alpha
 
 # Credits
 

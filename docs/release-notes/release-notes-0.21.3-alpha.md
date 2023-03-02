@@ -11,7 +11,7 @@ With this path we fix the stability problem after
 
 Please report bugs using the issue tracker at GitHub:
 
-<https://github.com/Decentra-Network/Decentra-Network/issues>
+<https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
 
@@ -37,15 +37,15 @@ testing and research.
 
 ### Block
 
-- block: Removed gap of block time by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/480
+- block: Removed gap of block time by @onuratakan in https://github.com/Naruno/Naruno/pull/480
 
 ### Connection
 
-- node: Removed check point that control taken candidate block and block hash by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/477
+- node: Removed check point that control taken candidate block and block hash by @onuratakan in https://github.com/Naruno/Naruno/pull/477
 
 ### Tests
 
-- github: Added workflow_dispatch to stability tests by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/475
+- github: Added workflow_dispatch to stability tests by @onuratakan in https://github.com/Naruno/Naruno/pull/475
 
 # Credits
 
