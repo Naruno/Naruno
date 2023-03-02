@@ -20,7 +20,7 @@ There have been no compatibility changes.
 
 ## Added API Based Decentra-Network Core as Docker
 
-You will be able to download and run Decentra Network very easily using docker.
+You will be able to download and run Naruno very easily using docker.
 Our Docker image is also installed with Github Packages
 
 ## Added CLI Arguments

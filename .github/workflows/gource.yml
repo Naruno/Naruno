@@ -22,7 +22,7 @@ jobs:
       - name: 'Gource Action'
         uses: nbprojekt/gource-action@v1
         with:
-          gource_title: 'Decentra Network'
+          gource_title: 'Naruno'
           logo_url: 'https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png'
           gource_resolution: '1080p'
           gource_fps: 60

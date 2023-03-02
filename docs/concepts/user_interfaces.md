@@ -6,7 +6,7 @@ nav_order: 1
 
 # User Interfaces
 
-Welcome to the documentation for Decentra Network.
+Welcome to the documentation for Naruno.
 This documentation covers the functionality of the project's Command Line Interface (CLI), Application Programming Interface (API), and Graphical User Interface (GUI).
 
 At first you should download decentra network as package with:
@@ -34,7 +34,7 @@ It can be used to build custom integrations, automate tasks, and access data sto
 
 Firstly you should download our api system
 ```console
-pip install decentra-network-api
+pip install naruno-api
 ```
 After our cli system can be run with just typing 
 ```console
@@ -48,7 +48,7 @@ The GUI is a graphical interface that allows users to interact with the project 
 It provides a visual representation of the project's functionality, making it easier for users to perform tasks and access resources.
 Firstly you should download our gui system
 ```console
-pip install decentra-network-gui
+pip install naruno-gui
 ```
 After our gui system can be run with just typing
 ```console

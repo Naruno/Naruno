@@ -9,8 +9,8 @@ from io import open
 from setuptools import setup
 
 setup(
-    author="Decentra Network Developers",
-    author_email="onur@decentranetwork.net",
+    author="Naruno Developers",
+    author_email="onur@naruno.net",
     packages=["decentra_network"],
     name="decentra_network",
     version="0.44.0",
@@ -32,7 +32,7 @@ setup(
         "p2p-network",
         "kivymd",
         "blokzinciri",
-        "decentra-network",
+        "naruno",
         "githubcopilot",
         "blokzincir",
     ],

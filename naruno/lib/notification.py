@@ -32,7 +32,7 @@ def notification(title, message, raise_plyer=False):
         from plyer.utils import platform
 
         logger.info("Notification system is started")
-        app_name = "Decentra Network"
+        app_name = "Naruno"
         timeout = 10
         logger.debug(f"app_name: {app_name}")
         logger.debug(f"timeout: {timeout}")

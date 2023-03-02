@@ -20,5 +20,5 @@ git clone https://github.com/Decentra-Network/Decentra-Network.git
 ## Installing requirements
 
 ```bash
-pip3 install decentra-network-tests
+pip3 install naruno-tests
 ```

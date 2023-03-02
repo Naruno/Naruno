@@ -6,7 +6,7 @@ nav_order: 28
 
 # 0.11.3-alpha Release Notes
 
-With this path added the decentra-network package to decentra-network-api and decenetra-network-gui packages as a requirement.
+With this path added the naruno package to naruno-api and decenetra-network-gui packages as a requirement.
 
 Please report bugs using the issue tracker at GitHub:
 
@@ -18,17 +18,17 @@ There have been no compatibility changes.
 
 # Notable changes
 
-## Added the decentra-network package
+## Added the naruno package
 
-The decentra-network package to decentra-network-api and decenetra-network-gui packages as a requirement.
+The naruno package to naruno-api and decenetra-network-gui packages as a requirement.
 
 # 0.11.3-alpha change log
 
 ### Setups
 
-- decentra-network==0.11.3 added as a requirement to decentra-network-gui.
-- decentra-network==0.11.3 added as a requirement to decentra-network-api.
-- decentra-network==0.11.3 added as a requirement to api and gui requirements.
+- naruno==0.11.3 added as a requirement to naruno-gui.
+- naruno==0.11.3 added as a requirement to naruno-api.
+- naruno==0.11.3 added as a requirement to api and gui requirements.
 
 # Credits
 

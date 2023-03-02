@@ -37,7 +37,7 @@ Every blocks are a backup for our blockchain because they are have current `bloc
 
 ## Block Time
 
-Block time is stable on Decentra Network, we can calculate all blocks time with this formula:
+Block time is stable on Naruno, we can calculate all blocks time with this formula:
 
 ```python
 the_time = (block.genesis_time + block.block_time + ((block.sequence_number + block.empty_block_number) * block.block_time))
@@ -88,7 +88,7 @@ classDiagram
 
 ## Saving Blocks
 
-In Decentra Network just saving hashs of blocks and this hashed are compressed in `Block.part_amount`. With this any one must be able to save all blocks that not include transaction that be sender or receiver. And this is a best and new way for saving blocks. With our system, we are waiting for compress blocks and when the time is come, we are compressing blocks and saving them.
+In Naruno just saving hashs of blocks and this hashed are compressed in `Block.part_amount`. With this any one must be able to save all blocks that not include transaction that be sender or receiver. And this is a best and new way for saving blocks. With our system, we are waiting for compress blocks and when the time is come, we are compressing blocks and saving them.
 
 But there is a seperation for saving blocks. If a transaction came from us or we are the receiver of transaction, we are saving all elements of block. Also we are save the uncomressed blocks. With this we can be able to recalculate and checks for our transactions.
 

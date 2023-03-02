@@ -3,26 +3,26 @@
     <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
   </a>
 
-  <h3 align="center">Decentra Network</h3>
+  <h3 align="center">Naruno</h3>
 
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br />
-    <a href="https://decentranetwork.net/"><strong>Explore the website »</strong></a>
+    <a href="https://naruno.net/"><strong>Explore the website »</strong></a>
     <br />
     </p>
     <br>
     <p align="center">
-    <a href="https://docs.decentranetwork.net/getting-started/installations/downloads.html#dowloads-for-users">
+    <a href="https://docs.naruno.net/getting-started/installations/downloads.html#dowloads-for-users">
     <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="android">
     </a>
-    <a href="https://docs.decentranetwork.net/getting-started/installations/downloads.html#dowloads-for-users">
+    <a href="https://docs.naruno.net/getting-started/installations/downloads.html#dowloads-for-users">
    <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="linux">
    </a>
-   <a href="https://docs.decentranetwork.net/getting-started/installations/downloads.html#dowloads-for-users">
+   <a href="https://docs.naruno.net/getting-started/installations/downloads.html#dowloads-for-users">
    <img src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macos">
    </a>
-   <a href="https://docs.decentranetwork.net/getting-started/installations/downloads.html#dowloads-for-users">
+   <a href="https://docs.naruno.net/getting-started/installations/downloads.html#dowloads-for-users">
    <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="windows">
    </a>
   <br> <br>
@@ -40,11 +40,11 @@
   .
   <img  src="https://img.shields.io/tokei/lines/github/Decentra-Network/Decentra-Network" alt="total_lines">
   .
-  <img src="https://static.pepy.tech/personalized-badge/decentra-network?period=total&units=international_system&left_color=grey&right_color=blue&left_text=PyPI%20Downloads" alt="pypi_downloads">
+  <img src="https://static.pepy.tech/personalized-badge/naruno?period=total&units=international_system&left_color=grey&right_color=blue&left_text=PyPI%20Downloads" alt="pypi_downloads">
   </p>
 
   <p align="center">
-  <a href="https://www.codefactor.io/repository/github/decentra-network/decentra-network"><img src="https://www.codefactor.io/repository/github/decentra-network/decentra-network/badge" alt="CodeFactor" /></a>
+  <a href="https://www.codefactor.io/repository/github/naruno/naruno"><img src="https://www.codefactor.io/repository/github/naruno/naruno/badge" alt="CodeFactor" /></a>
   .
   <a href="https://codecov.io/gh/Decentra-Network/Decentra-Network" >
    <img src="https://codecov.io/gh/Decentra-Network/Decentra-Network/branch/master/graph/badge.svg?token=YT9JQFBIPN"/>
@@ -56,7 +56,7 @@
   <img src="https://github.com/Decentra-Network/Decentra-Network/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
   </a>
   .
-  <a href="https://codebeat.co/projects/github-com-decentra-network-decentra-network-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
+  <a href="https://codebeat.co/projects/github-com-naruno-naruno-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
   .
   <a href="https://www.codacy.com/gh/Decentra-Network/Decentra-Network/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Decentra-Network/Decentra-Network&amp;utm_campaign=Badge_Grade"><img  alt="codacy badge" src="https://app.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
   </p>
@@ -100,8 +100,8 @@
 
 # Introducing
 
-Decentra Network is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Decentra Network has very high speeds, scalability, asymptotic security and complete decentralization.
-The main features of Decentra Network are:
+Naruno is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Naruno has very high speeds, scalability, asymptotic security and complete decentralization.
+The main features of Naruno are:
 
 - Less than 3-5 Seconds block time
 - Low size (~20mb per 1m user)
@@ -119,7 +119,7 @@ The main features of Decentra Network are:
 
 \*Some features will be adjusted in stable release.
 
-The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network software, designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Naruno software, designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
 **The Decentra-Network has 4 control areas:**
 
@@ -160,11 +160,11 @@ It has been developed to make web api control easier and to provide control by o
 
 # Documents
 
-Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://docs.decentranetwork.net/) website.
+Our documents are available in the [docs](https://github.com/Decentra-Network/Decentra-Network/tree/master/docs) folder and [this](https://docs.naruno.net/) website.
 
 # Contribute
 
-Decentra Network is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Decentra-Network/Decentra-Network/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Decentra-Network/Decentra-Network/blob/master/CODE_OF_CONDUCT.md).
+Naruno is a completely community driven project, you can contribute in any way if you follow the [guidelines](https://github.com/Decentra-Network/Decentra-Network/blob/master/CONTRIBUTING.md) and [terms](https://github.com/Decentra-Network/Decentra-Network/blob/master/CODE_OF_CONDUCT.md).
 
 <br />
 
@@ -229,7 +229,7 @@ Decentra Network is a completely community driven project, you can contribute in
 
 <p align="center">
    <a href="https://narin.net.tr/">
-  <img src="https://decentranetwork.net/pimsudse/2022/06/narinhosting340x120.png" alt="web_infrastructure_sponsor">
+  <img src="https://naruno.net/pimsudse/2022/06/narinhosting340x120.png" alt="web_infrastructure_sponsor">
   <a/>
   </p>
 

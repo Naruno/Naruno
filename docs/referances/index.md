@@ -5,4 +5,4 @@ has_children: true
 ---
 
 # References
-For using Decentra Network, you need to know the API, CLI, and GUI. This section provides the information you need to use Decentra Network.
+For using Naruno, you need to know the API, CLI, and GUI. This section provides the information you need to use Naruno.

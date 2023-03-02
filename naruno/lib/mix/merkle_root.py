@@ -3,7 +3,7 @@
 """
 MIT License
 
-Copyright (c) 2021 Decentra Network Developers
+Copyright (c) 2021 Naruno Developers
 Copyright (c) 2021 Onur Atakan ULUSOY
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

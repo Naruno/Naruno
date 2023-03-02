@@ -41,9 +41,9 @@ class Decentra_Network_Scene(Scene):
 
     def intro_text(self):
         """
-        Decentra Network is building on Node.
+        Naruno is building on Node.
         """
-        text = Text("Decentra Network", font=self.font, color="#5ec295")
+        text = Text("Naruno", font=self.font, color="#5ec295")
         self.play(Write(text))
         self.play(text.animate.shift(LEFT * 1.5))
         text2 = Text(self.the_title, font=self.font).shift(RIGHT * 2.5)

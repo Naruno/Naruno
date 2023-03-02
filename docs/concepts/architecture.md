@@ -8,9 +8,9 @@ has_children: False
 
 # The Architecture
 
-The Decentra Network is a decentralized network of nodes that run the Decentra Network software. The Decentra Network software is a different implementation for blockchain.
+The Naruno is a decentralized network of nodes that run the Naruno software. The Naruno software is a different implementation for blockchain.
 
-We are use three layers of the Decentra Network architecture:
+We are use three layers of the Naruno architecture:
 
 ## Layer 1: Decisions
 
@@ -22,7 +22,7 @@ This layer is responsible for processing the decisions made in the Layer 1. We a
 
 ```mermaid
 flowchart LR
-DN[Decentra Network]
+DN[Naruno]
 
 subgraph FRONTEND
   CLI

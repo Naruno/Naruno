@@ -73,11 +73,11 @@ jobs:
       run: |
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ghcr.io -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         cd .. 
-        docker build -t ghcr.io/decentra-network/api:latest -f Decentra-Network/docker/local/api/Dockerfile .
-        docker build -t ghcr.io/decentra-network/api:$VERSION -f Decentra-Network/docker/local/api/Dockerfile .  
-        docker build -t ghcr.io/decentra-network/cli:latest -f Decentra-Network/docker/local/cli/Dockerfile .
-        docker build -t ghcr.io/decentra-network/cli:$VERSION -f Decentra-Network/docker/local/cli/Dockerfile .
-        docker push ghcr.io/decentra-network/api:latest
-        docker push ghcr.io/decentra-network/api:$VERSION
-        docker push ghcr.io/decentra-network/cli:latest
-        docker push ghcr.io/decentra-network/cli:$VERSION
+        docker build -t ghcr.io/naruno/api:latest -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t ghcr.io/naruno/api:$VERSION -f Decentra-Network/docker/local/api/Dockerfile .  
+        docker build -t ghcr.io/naruno/cli:latest -f Decentra-Network/docker/local/cli/Dockerfile .
+        docker build -t ghcr.io/naruno/cli:$VERSION -f Decentra-Network/docker/local/cli/Dockerfile .
+        docker push ghcr.io/naruno/api:latest
+        docker push ghcr.io/naruno/api:$VERSION
+        docker push ghcr.io/naruno/cli:latest
+        docker push ghcr.io/naruno/cli:$VERSION

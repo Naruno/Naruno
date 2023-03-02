@@ -5,7 +5,7 @@ nav_order: 2
 ---
 
 # Building a Test Network [![Open in Cloud Shell](https://img.shields.io/badge/Open%20in%20Cloud%20Shell-Tutorial-5ec205)](https://ssh.cloud.google.com/cloudshell/open?shellonly=true&cloudshell_git_repo=https://github.com/Decentra-Network/Decentra-Network&cloudshell_tutorial=docs/building_test_network/manuel.md)
-A test network can do all the things a production network can do, but it is not connected to the main Decentra Network. This means that you can test your code without worrying about affecting the main network. You can also use a test network to test your code in a controlled environment. And all is free and yours to use. So let's get started.
+A test network can do all the things a production network can do, but it is not connected to the main Naruno. This means that you can test your code without worrying about affecting the main network. You can also use a test network to test your code in a controlled environment. And all is free and yours to use. So let's get started.
 
 ## Prerequisites
 - Free 6 ports
@@ -14,8 +14,8 @@ A test network can do all the things a production network can do, but it is not 
 - [Python >=3.8](https://www.python.org/downloads/)
 - [git](https://git-scm.com/downloads)
 
-## Step 1: Download the Decentra Network Source Code
-In this steep we will download the Decentra Network source code. You can download the source code from master branch with the following command:
+## Step 1: Download the Naruno Source Code
+In this steep we will download the Naruno source code. You can download the source code from master branch with the following command:
 ```bash
 git clone https://github.com/Decentra-Network/Decentra-Network.git
 ```
@@ -46,7 +46,7 @@ python3 Decentra-Network-2/decentra_network/cli/main.py --debugmodeoff
 ```
 
 ### Step 3.3: Creating the wallets of each node
-In Decentra Network we use password protected wallets. But for the first wallet we dont use password because first wallet is used for the node communication. So you must be in safe place for node 0. You can create the wallets with the following command:
+In Naruno we use password protected wallets. But for the first wallet we dont use password because first wallet is used for the node communication. So you must be in safe place for node 0. You can create the wallets with the following command:
 ```bash
 python3 Decentra-Network-0/decentra_network/cli/main.py --createwallet password
 ```
@@ -65,7 +65,7 @@ command.
 
 
 ### Step 3.4: Configuring the UNL nodes for each node
-Decentra Network nodes dont connect any stranger node. So we need to introduce our nodes to each other. 
+Naruno nodes dont connect any stranger node. So we need to introduce our nodes to each other. 
 
 First you need to get the ids of node 0, node 1 and node 2. You can get the ids with the following command:
 ```bash

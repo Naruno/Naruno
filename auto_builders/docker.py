@@ -57,17 +57,17 @@ class Decentra_Network_Docker:
 
     def install(self):
         self._command_to_system(
-            "docker image tag ghcr.io/decentra-network/api decentra-network-api",
+            "docker image tag ghcr.io/naruno/api naruno-api",
             "docker network create --subnet=172.19.0.0/16 dn-net",
         )
 
         for i in range(self.number_of_nodes):
-            os.system(f"docker tag decentra-network-api {i}")
+            os.system(f"docker tag naruno-api {i}")
 
     def delete(self):
         self._command_to_system(
-            "docker rm -f $(docker ps -a -q -f ancestor=decentra-network-api)",
-            "docker volume rm $(docker volume ls -q -f name=decentra-network)",
+            "docker rm -f $(docker ps -a -q -f ancestor=naruno-api)",
+            "docker volume rm $(docker volume ls -q -f name=naruno)",
         )
 
         os.system("docker network rm dn-net")
@@ -80,11 +80,11 @@ class Decentra_Network_Docker:
     def run(self):
         time.sleep(1 * self.number_of_nodes)
         os.system(
-            "docker run --sysctl net.ipv4.tcp_rmem=65536 -v decentra-network-db:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit decentra-network-api"
+            "docker run --sysctl net.ipv4.tcp_rmem=65536 -v naruno-db:/app/Decentra-Network/decentra_network/db/ -v naruno-logs:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit naruno-api"
         )
         for i in range(self.number_of_nodes):
             os.system(
-                f"docker run -v decentra-network-db-{i}:/app/Decentra-Network/decentra_network/db/ -v decentra-network-logs-{i}:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
+                f"docker run -v naruno-db-{i}:/app/Decentra-Network/decentra_network/db/ -v naruno-logs-{i}:/app/Decentra-Network/decentra_network/logs/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
             )
 
     def debug_and_test_mode(self):

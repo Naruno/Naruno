@@ -6,7 +6,7 @@ nav_order: 76
 
 # 0.39.0-alpha Release Notes
 
-With this minor release we added share mechanism and changed Decentra Network Community Green Paper hash.
+With this minor release we added share mechanism and changed Naruno Community Green Paper hash.
 
 Please report bugs using the issue tracker at GitHub:
 
@@ -19,7 +19,7 @@ There have been no compatibility changes.
 # Notable changes
 
 ## Blockchain
-We added a system that distributes dnc coin for some period and adjusted value of dnc coin. And we canged previus hash of Decentra Network Community Green Paper.
+We added a system that distributes dnc coin for some period and adjusted value of dnc coin. And we canged previus hash of Naruno Community Green Paper.
 
 # 0.39.0-alpha change log
 

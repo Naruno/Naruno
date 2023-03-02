@@ -123,7 +123,7 @@ class Test_Wallet(unittest.TestCase):
         temp_private_key = wallet_create(password)
 
         saved_wallets = get_saved_wallet()
-        results = wallet_selector("Decentra Network") + 1
+        results = wallet_selector("Naruno") + 1
 
         save_wallet_list(original_saved_wallets)
         self.assertEqual(results, True)

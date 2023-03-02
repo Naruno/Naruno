@@ -220,7 +220,7 @@ jobs:
     - name: Test with pytest
       run: |        
         cd ..
-        docker build -t ghcr.io/decentra-network/api -f Decentra-Network/docker/local/api/Dockerfile .
+        docker build -t ghcr.io/naruno/api -f Decentra-Network/docker/local/api/Dockerfile .
         pytest Decentra-Network/tests/functional_tests/docker/test_decentra_network_docker.py
     - name: Status Information
       run: |
@@ -232,8 +232,8 @@ jobs:
         mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network
         mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network
         mkdir -p /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network
-        sudo cp -r /var/lib/docker/volumes/decentra-network-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs
-        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs
-        sudo cp -r /var/lib/docker/volumes/decentra-network-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs
+        sudo cp -r /var/lib/docker/volumes/naruno-logs/_data/  /home/runner/work/Decentra-Network/Decentra-Network-0/decentra_network/logs
+        sudo cp -r /var/lib/docker/volumes/naruno-logs-0/_data/  /home/runner/work/Decentra-Network/Decentra-Network-1/decentra_network/logs
+        sudo cp -r /var/lib/docker/volumes/naruno-logs-1/_data/  /home/runner/work/Decentra-Network/Decentra-Network-2/decentra_network/logs
 
 

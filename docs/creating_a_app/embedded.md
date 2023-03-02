@@ -7,11 +7,11 @@ nav_order: 2
 
 # Creating a Embedded APP
 
-If you want to develop applications inside Decentra network you can use our Apps Engine. The Apps engine gives you new data and you can send data with Decentra Network send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
+If you want to develop applications inside Decentra network you can use our Apps Engine. The Apps engine gives you new data and you can send data with Naruno send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
 
 ## Prerequisites
 
-- A Network (You can check the [Building a Test Network](https://docs.decentranetwork.net/building_a_test_network/) for this)
+- A Network (You can check the [Building a Test Network](https://docs.naruno.net/building_a_test_network/) for this)
 
 ## First Stage: Generating the Sceleton
 
@@ -25,7 +25,7 @@ The embedded applications must have a communication section that written in pyth
 
 _If you use a test network you can change the "Decentra-Network" folder with your test network node folders ex. "Decentra-Network-0"._
 
-In this files you should write a function that catch the new datas of your application. Decentra Network will send the new data to this function but you must check and organize your data.
+In this files you should write a function that catch the new datas of your application. Naruno will send the new data to this function but you must check and organize your data.
 
 When a transaction is confirmed, the function here is triggered.
 
@@ -45,7 +45,7 @@ def app_name_main_tx(tx):
 
 ## Second Stage: Sending the Data
 
-You can send a data for your appplication with send function, you can import this function from Decentra Network.
+You can send a data for your appplication with send function, you can import this function from Naruno.
 
 ```python
 from decentra_network.transactions.send import send
@@ -113,7 +113,7 @@ Firtly we must check the action of data. If the action is equal to the action th
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
 Firstly we will import the `wallet_import_all` from `decentra_network.wallet.wallet_import` for checking transactions came us or not.
-And we will import `get_logger` from `decentra_network.lib.log` of Decentra Network for printing.
+And we will import `get_logger` from `decentra_network.lib.log` of Naruno for printing.
 
 ```python
 from decentra_network.wallet.wallet_import import wallet_import_all
@@ -187,7 +187,7 @@ def app_name_main_tx(tx):
 
 With this app, you can send a public message to a user that you dont know his/her ip address and not using a server.
 
-You can use this app for safe and private messaging but if you want more, you should sending the datas far from Decentra Network (We have best methods for transactions but this situation is same for all blockchains) and after a while you should save the datas in Decentra Network. This is a good way for mostly of the applications.
+You can use this app for safe and private messaging but if you want more, you should sending the datas far from Naruno (We have best methods for transactions but this situation is same for all blockchains) and after a while you should save the datas in Naruno. This is a good way for mostly of the applications.
 
 Example of a message sending:
 
@@ -206,7 +206,7 @@ app_name_send_tx(
 
 The second user device is getting the message and print the data to `app_name.log` that be found at
 
-- Decentra Network
+- Naruno
   - decentra_network
     - logs
       - app_name.log

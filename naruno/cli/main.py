@@ -58,10 +58,10 @@ def show_menu():
 
     print(
         banner_maker(
-            sc_name="Decentra Network",
+            sc_name="Naruno",
             description=
             "This is an open source decentralized application network. In this network, you can develop and publish decentralized applications.",
-            author="Decentra Network Developers",
+            author="Naruno Developers",
         ))
 
     print(

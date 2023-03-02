@@ -5,25 +5,25 @@ nav_order: 9
 
 # Frequently Asked Questions
 
-## What is Decentra Network?
+## What is Naruno?
 
-Decentra Network is a blockchain network that is designed to be used by everyone, everywhere and for everything.
+Naruno is a blockchain network that is designed to be used by everyone, everywhere and for everything.
 
-## What is the purpose of Decentra Network?
+## What is the purpose of Naruno?
 
-The purpose of Decentra Network is to provide a decentralized applications network for all scales.
+The purpose of Naruno is to provide a decentralized applications network for all scales.
 
-## What is the difference between Decentra Network and other blockchain networks?
+## What is the difference between Naruno and other blockchain networks?
 
-Decentra Network is have true decentralized apps integration structure. With this structure you can transfer your today applications to Decentra Network with minimum changes and IT costs.
+Naruno is have true decentralized apps integration structure. With this structure you can transfer your today applications to Naruno with minimum changes and IT costs.
 
 ## How did you do provide Scalability, Security and Decentralization?
 
 We use the latest consensus mindset for entire of our system, and we use the our new techniques for scalability. So the consensus is provice the security and decentralization and the new techniques is provide the scalability.
 
-## There is a master chain in Decentra Network?
+## There is a master chain in Naruno?
 
-No, for now there is no master chain in Decentra Network. But we are working for complating ALPHA version of Decentra Network, and in this version we will provide us a master chain.
+No, for now there is no master chain in Naruno. But we are working for complating ALPHA version of Naruno, and in this version we will provide us a master chain.
 
 ## Wallet Security
 
@@ -35,8 +35,8 @@ Because smart contacts are not developed for developing decentralized applicatio
 
 ## What is circulation?
 
-Decentra Network is have a heart and when the heart is beating the circulation is start. Circulation is the process that runs consensus, and the consensus is process everyting in Decentra Network. Its basic and important process for Decentra Network. We use this method for high performance in slow hardwares.
+Naruno is have a heart and when the heart is beating the circulation is start. Circulation is the process that runs consensus, and the consensus is process everyting in Naruno. Its basic and important process for Naruno. We use this method for high performance in slow hardwares.
 
-## How can i learn Decentra Network?
+## How can i learn Naruno?
 
-Decentra Network have a professional structure, this structure can be light for developers. We recommend firstly you to read our documentation for learning Decentra Network. After you can dive into our code and you can learn our code. Also you can join our community and you can ask your questions.
+Naruno have a professional structure, this structure can be light for developers. We recommend firstly you to read our documentation for learning Naruno. After you can dive into our code and you can learn our code. Also you can join our community and you can ask your questions.

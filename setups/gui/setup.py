@@ -9,10 +9,10 @@ from setuptools import setup
 setup(
     name="decentra_network_gui",
     version="0.44.0",
-    description="""This is GUI mode installer for Decentra Network""",
-    url="https://docs.decentranetwork.net/",
-    author="Decentra Network Developers",
-    author_email="onur@decentranetwork.net",
+    description="""This is GUI mode installer for Naruno""",
+    url="https://docs.naruno.net/",
+    author="Naruno Developers",
+    author_email="onur@naruno.net",
     license="MPL-2.0",
     install_requires="""
 Kivy==2.1.0

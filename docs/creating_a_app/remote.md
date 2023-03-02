@@ -5,28 +5,28 @@ parent: Creating a APP
 nav_order: 1
 ---
 
-# Creating a Remote App for Decentra Network
+# Creating a Remote App for Naruno
 
-If you're interested in developing applications on Decentra Network that can interact with external systems, you can use the Decentra Network API. The API provides access to data on the blockchain and enables you to send data to the network via the network's send function. By using the API, you can easily integrate your existing applications with Decentra Network.
+If you're interested in developing applications on Naruno that can interact with external systems, you can use the Naruno API. The API provides access to data on the blockchain and enables you to send data to the network via the network's send function. By using the API, you can easily integrate your existing applications with Naruno.
 
 ## Prerequisites
 
-To use the Decentra Network API, you'll need the following:
+To use the Naruno API, you'll need the following:
 
-- A running network (see [Building a Test Network](https://docs.decentranetwork.net/building_a_test_network/) for instructions on how to set this up)
-- A running API (see [Starting the API](https://docs.decentranetwork.net/referances/apis.html#starting-the-api) for instructions on how to set this up)
+- A running network (see [Building a Test Network](https://docs.naruno.net/building_a_test_network/) for instructions on how to set this up)
+- A running API (see [Starting the API](https://docs.naruno.net/referances/apis.html#starting-the-api) for instructions on how to set this up)
 
-### Installing the Decentra Network Remote App library
+### Installing the Naruno Remote App library
 
-To get started with the Decentra Network Remote App, you'll need to install the `decentra_network` and `decentra-network-remote-app` libraries. You can do this by running the following command:
+To get started with the Naruno Remote App, you'll need to install the `decentra_network` and `naruno-remote-app` libraries. You can do this by running the following command:
 
 ```bash
-pip3 install decentra_network decentra-network-remote-app
+pip3 install decentra_network naruno-remote-app
 ```
 
 ## Overview
 
-The Decentra Network Remote App library provides a simple way to integrate your applications with the Decentra Network blockchain. You can use this library to send data to and receive data from the network, allowing you to create decentralized applications that leverage the security and immutability of the blockchain.
+The Naruno Remote App library provides a simple way to integrate your applications with the Naruno blockchain. You can use this library to send data to and receive data from the network, allowing you to create decentralized applications that leverage the security and immutability of the blockchain.
 
 The library provides two basic functions for interacting with the network:
 
@@ -35,7 +35,7 @@ The library provides two basic functions for interacting with the network:
 
 ## Integration
 
-Using the Decentra Network Remote App library, you can easily send and receive public messages between users on the network. Here's how to get started:
+Using the Naruno Remote App library, you can easily send and receive public messages between users on the network. Here's how to get started:
 
 ### Sending a Message
 
@@ -68,4 +68,4 @@ This code will retrieve data from the network every three seconds and print it t
 
 ### Caching
 
-The Decentra Network Remote App library has an active caching system to provide a real network experience. The system caches retrieved data to avoid returning the same data multiple times. However, you can reset or disable the cache using the `integration.delete_cache()` and `integration.disable_cache()` functions.
+The Naruno Remote App library has an active caching system to provide a real network experience. The system caches retrieved data to avoid returning the same data multiple times. However, you can reset or disable the cache using the `integration.delete_cache()` and `integration.disable_cache()` functions.

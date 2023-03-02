@@ -21,7 +21,7 @@ There have been no compatibility changes.
 ## Fixes for Accounts Hash Calculations
 
 Added some missing data, and added some fields to track changes
-and now Decentra Network Core provide a more stable accounts hash calculation.
+and now Naruno Core provide a more stable accounts hash calculation.
 
 # 0.4.4-alpha change log
 

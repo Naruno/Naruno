@@ -65,7 +65,7 @@ class GUI(MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.title = "Decentra Network"
+        self.title = "Naruno"
         self.icon = f"{os.environ['DECENTRA_ROOT']}/gui_lib/images/logo.ico"
 
     def build(self):

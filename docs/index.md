@@ -10,15 +10,15 @@ has_children: false
     <img src="https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png" alt="Logo" width="150" height="206">
   </a>
 
-  <h3 align="center">Decentra Network</h3>
+  <h3 align="center">Naruno</h3>
 
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br>
     <br>
-    <a href="https://docs.decentranetwork.net/getting-started/" class="btn btn-blue">Getting Started</a>
-    <a href="https://docs.decentranetwork.net/building_a_test_network/" class="btn btn-purple">Building a Test Network</a>
-    <a href="https://docs.decentranetwork.net/creating_a_app/" class="btn btn-green">Creating a APP</a>
+    <a href="https://docs.naruno.net/getting-started/" class="btn btn-blue">Getting Started</a>
+    <a href="https://docs.naruno.net/building_a_test_network/" class="btn btn-purple">Building a Test Network</a>
+    <a href="https://docs.naruno.net/creating_a_app/" class="btn btn-green">Creating a APP</a>
   </p>
 </p>
 
@@ -33,11 +33,11 @@ From 2008 to today, the world has seen the rise of cryptocurrencies. These crypt
 
 This network should be realistic, stable and functional because futures are based on the present. So this network must be able to be used by everyone, everywhere and for everything.
 
-This network is Decentra Network.
+This network is Naruno.
 
-# Decentra Network
+# Naruno
 
-Decentra Network is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure.
+Naruno is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure.
 
 We are present the real blockchain which based on the real princibles.
 
@@ -45,7 +45,7 @@ We are Fast, Secure, and Decentralized.
 
 <br>
 
-Decentra Network is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Decentra Network that designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
+Naruno is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Naruno that designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
 <br>
 

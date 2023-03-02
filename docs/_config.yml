@@ -1,19 +1,19 @@
 remote_theme: pmarsceill/just-the-docs
 
-title: Decentra Network Documents
+title: Naruno Documents
 color_scheme: dark
 
 ga_tracking: UA-207926211-1
 
 # Aux links for the upper right navigation
 aux_links:
-  "Decentra Network on GitHub":
+  "Naruno on GitHub":
     - "//github.com/Decentra-Network/Decentra-Network"
 
 # External navigation links
 nav_external_links:
   - title: DecentraNetwork.net
-    url: https://decentranetwork.net/
+    url: https://naruno.net/
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: false

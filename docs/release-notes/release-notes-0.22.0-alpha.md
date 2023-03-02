@@ -32,11 +32,11 @@ Gource based visualization work field set.
 
 - github: Added these builds:
 
-* decentra-network-cli-linux
-* decentra-network-cli-win32
-* decentra-network-api-linux
-* decentra-network-api-win32
-* decentra-network-gui-win32
+* naruno-cli-linux
+* naruno-cli-win32
+* naruno-api-linux
+* naruno-api-win32
+* naruno-gui-win32
 
 ### Documentation
 

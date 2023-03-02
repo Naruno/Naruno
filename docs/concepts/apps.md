@@ -7,19 +7,19 @@ parent: Concepts
 
 # Apps
 
-Decentra Network supports the development of apps. Apps are the main way to interact with the Decentra Network blockchain for development decentralized applications.
+Naruno supports the development of apps. Apps are the main way to interact with the Naruno blockchain for development decentralized applications.
 
-For this Decentra Network support two integration methods. The first one is embedded apps. This apps are included in Decentra Network concept system. The second one is remote apps. This apps are unning outside of Decentra Network and uses Decentra Network API for communication.
+For this Naruno support two integration methods. The first one is embedded apps. This apps are included in Naruno concept system. The second one is remote apps. This apps are unning outside of Naruno and uses Naruno API for communication.
 
-For integrating apps with Decentra Network you need to change send and get functions with Decentra Network.
+For integrating apps with Naruno you need to change send and get functions with Naruno.
 
 ## Send Function
 
-Example you have a messaging application and you want to send a message to another user. And already you have a function for sending messages. Example with socket, for integrations with Decentra Network just your need changing the socket with our send function. We can handle the sending message to other users.
+Example you have a messaging application and you want to send a message to another user. And already you have a function for sending messages. Example with socket, for integrations with Naruno just your need changing the socket with our send function. We can handle the sending message to other users.
 
 ## Get Function
 
-In above example the user that receiving the message is have a function with socket for getting the messages. For integration with Decentra Network user should changing the get function with our get function. We give the messages to the user.
+In above example the user that receiving the message is have a function with socket for getting the messages. For integration with Naruno user should changing the get function with our get function. We give the messages to the user.
 
 ```mermaid
 flowchart TB
@@ -31,7 +31,7 @@ flowchart TB
             end
 
 
-            subgraph dn1[Decentra Network 1]
+            subgraph dn1[Naruno 1]
                 send_d1[Send Functions]
                 get_d1[Get Functions]
 
@@ -42,7 +42,7 @@ flowchart TB
 
 
         subgraph user_2[User 2]
-            subgraph dn2[Decentra Network 2]
+            subgraph dn2[Naruno 2]
                 send_d2[Send Functions]
                 get_d2[Get Functions]
             end
@@ -60,7 +60,7 @@ flowchart TB
         get_d2 -- data_1 --> get_2
 
 
-        user_1 --- Decentra_Network[Decentra Network] --- user_2
+        user_1 --- Decentra_Network[Naruno] --- user_2
 
 
     end
@@ -72,7 +72,7 @@ flowchart TB
 
 Embedded apps organized by our Apps engine. Apps engine is give basic and fast integration infrastructure for decentralized apps.
 
-When a transaction is approved by the network, if this transaction's recipient is the user of Decentra Network installation the engine is start.
+When a transaction is approved by the network, if this transaction's recipient is the user of Naruno installation the engine is start.
 
 If the engine finds an app send the transaction to the app. The app can process the transaction for its own purpose. For example, the app can send a notification to the user.
 
@@ -80,7 +80,7 @@ Also apps can uses send transactions functions for sending datas.
 
 ## Remote Apps
 
-Remote apps are running outside of Decentra Network. Remote apps can uses API for sending and getting data.
+Remote apps are running outside of Naruno. Remote apps can uses API for sending and getting data.
 
 ```mermaid
 flowchart LR
@@ -103,7 +103,7 @@ subgraph Applications Environment
             R2_1[App 5]
             R3_1[App 6]
         end
-        subgraph Decentra_Network_1 [Decentra Network]
+        subgraph Decentra_Network_1 [Naruno]
             Embedded_Apps_1
         end
 
@@ -127,7 +127,7 @@ subgraph Applications Environment
             R2_2[App 5]
             R3_2[App 6]
         end
-        subgraph Decentra_Network_2 [Decentra Network]
+        subgraph Decentra_Network_2 [Naruno]
             Embedded_Apps_2
         end
 

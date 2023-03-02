@@ -19,7 +19,7 @@ There have been no compatibility changes.
 # Notable changes
 
 ## Docs
-Changed Apps concept first diagram data names with data_1 and data_2 also we seperate the Decentra Network to Decentra Network 1 as User 1 and Decentra Network 2 as User 2.
+Changed Apps concept first diagram data names with data_1 and data_2 also we seperate the Naruno to Naruno 1 as User 1 and Naruno 2 as User 2.
 
 ## Tests
 Fixed test_finished_main_save_from_no_part and test_block_reset_start_time_none tests.

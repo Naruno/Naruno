@@ -6,7 +6,7 @@ nav_order: 9
 
 # The Node
 
-Node are the hard working concepts of Decentra Network, every data is sending and getting via Node. The nodes are have a checking process before connections. This is ip, port and ID. If the node that try to connect have an similar node and port settings Node is not accept this requests. Also we have a mechanism for checking the IDs named as Unique Node List UNL.
+Node are the hard working concepts of Naruno, every data is sending and getting via Node. The nodes are have a checking process before connections. This is ip, port and ID. If the node that try to connect have an similar node and port settings Node is not accept this requests. Also we have a mechanism for checking the IDs named as Unique Node List UNL.
 
 ## Unique Node List (UNL)
 
@@ -14,7 +14,7 @@ This is a unique trusted node lists for every node. If you want to add a node to
 
 ## Security Circle
 
-Security circle is an important concept for Decentra Network. This is a circle that consisting of nodes. When a group node example Node 1, Node 2 and Node 3 trusted each other they are be security circle. This is a circle that can be used for sending and getting datas to each other and process the consensus.
+Security circle is an important concept for Naruno. This is a circle that consisting of nodes. When a group node example Node 1, Node 2 and Node 3 trusted each other they are be security circle. This is a circle that can be used for sending and getting datas to each other and process the consensus.
 
 ```mermaid
 flowchart LR
@@ -64,7 +64,7 @@ subgraph SC3[Security Circle 3]
 end
 
 
-subgraph Decentra Network
+subgraph Naruno
     direction LR
     SC1
     SC2
@@ -79,4 +79,4 @@ Node_6 <--> Node_7
 
 ## Syncing
 
-When you want to syncing from an node in Decentra Network, the node will include your node to sync wait list. When the Gap blocks are camed the node will send the block to your node. This syncing is very fast because the blocks are verry small and you just need last block.
+When you want to syncing from an node in Naruno, the node will include your node to sync wait list. When the Gap blocks are camed the node will send the block to your node. This syncing is very fast because the blocks are verry small and you just need last block.

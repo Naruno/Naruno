@@ -37,7 +37,7 @@ We are removed the cache system because the multi-threading system is not stable
 ### Library
 * lib: Removed caching system by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1085
 ### Other Changes
-* docs: Changed tests are of today for Decentra Network by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1086
+* docs: Changed tests are of today for Naruno by @onuratakan in https://github.com/Decentra-Network/Decentra-Network/pull/1086
 
 
 **Full Changelog**: https://github.com/Decentra-Network/Decentra-Network/compare/v0.29.0-alpha...v0.29.1-alpha
