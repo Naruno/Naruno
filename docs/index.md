@@ -37,7 +37,7 @@ This network is Naruno.
 
 # Naruno
 
-Naruno is an active blockchain study for advanced and systematic blockchain experience, focused on compatibility and development principles, and aimed at widespread use with its integration infrastructure.
+Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.
 
 We are present the real blockchain which based on the real princibles.
 
@@ -51,9 +51,19 @@ Naruno is written in **PEP8** format and **only** needs dependent libraries for 
 
 ## Features
 
-- Less than 3-5 Seconds block time
-- Low size (~20mb per 1m user)
-- 10k+ transactions per second
+- World Wide First In Node Level Transaction Proof Mechanism (Revulation to archive nodes)
+
+- FBA Consensus Protocol
+- 7 Second Block Time (Reducible to 3s)
+- 10k Potential TPS
+
+- Totaly New Infrustructure (100% Python)
+- Already Automated Workflows
+- 100% Code Coverate with unit, functional and stability tests
+- Already distribute CLI, API and GUI in Android, Windows, MacOS and Linux
+
+- Mobile Master Node Support
+- Two Web3 Integration way as Embedded App (Naruno App Engine) and Remote App (Naruno API)
 - Low Transaction Fee
 - Custom and low cost Token, NTF etc. Creation system (Scheduled Feature)
 - Usability even on mobile devices
