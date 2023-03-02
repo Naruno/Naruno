@@ -16,9 +16,9 @@ has_children: false
     Develop or use applications in your independent, decentralized application network.
     <br>
     <br>
-    <a href="https://docs.naruno.net/getting-started/" class="btn btn-blue">Getting Started</a>
-    <a href="https://docs.naruno.net/building_a_test_network/" class="btn btn-purple">Building a Test Network</a>
-    <a href="https://docs.naruno.net/creating_a_app/" class="btn btn-green">Creating a APP</a>
+    <a href="https://docs.naruno.org/getting-started/" class="btn btn-blue">Getting Started</a>
+    <a href="https://docs.naruno.org/building_a_test_network/" class="btn btn-purple">Building a Test Network</a>
+    <a href="https://docs.naruno.org/creating_a_app/" class="btn btn-green">Creating a APP</a>
   </p>
 </p>
 

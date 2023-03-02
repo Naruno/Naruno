@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     author="Naruno Developers",
-    author_email="onur@naruno.net",
+    author_email="onur@naruno.org",
     packages=["decentra_network"],
     name="decentra_network",
     version="0.44.0",

@@ -8,21 +8,21 @@
   <p align="center">
     Develop or use applications in your independent, decentralized application network.
     <br />
-    <a href="https://naruno.net/"><strong>Explore the website »</strong></a>
+    <a href="https://naruno.org/"><strong>Explore the website »</strong></a>
     <br />
     </p>
     <br>
     <p align="center">
-    <a href="https://docs.naruno.net/getting-started/installations/downloads.html#dowloads-for-users">
+    <a href="https://docs.naruno.org/getting-started/installations/downloads.html#dowloads-for-users">
     <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="android">
     </a>
-    <a href="https://docs.naruno.net/getting-started/installations/downloads.html#dowloads-for-users">
+    <a href="https://docs.naruno.org/getting-started/installations/downloads.html#dowloads-for-users">
    <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="linux">
    </a>
-   <a href="https://docs.naruno.net/getting-started/installations/downloads.html#dowloads-for-users">
+   <a href="https://docs.naruno.org/getting-started/installations/downloads.html#dowloads-for-users">
    <img src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macos">
    </a>
-   <a href="https://docs.naruno.net/getting-started/installations/downloads.html#dowloads-for-users">
+   <a href="https://docs.naruno.org/getting-started/installations/downloads.html#dowloads-for-users">
    <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="windows">
    </a>
   <br> <br>
@@ -160,7 +160,7 @@ It has been developed to make web api control easier and to provide control by o
 
 # Documents
 
-Our documents are available in the [docs](https://github.com/Naruno/Naruno/tree/master/docs) folder and [this](https://docs.naruno.net/) website.
+Our documents are available in the [docs](https://github.com/Naruno/Naruno/tree/master/docs) folder and [this](https://docs.naruno.org/) website.
 
 # Contribute
 
@@ -229,7 +229,7 @@ Naruno is a completely community driven project, you can contribute in any way i
 
 <p align="center">
    <a href="https://narin.net.tr/">
-  <img src="https://naruno.net/pimsudse/2022/06/narinhosting340x120.png" alt="web_infrastructure_sponsor">
+  <img src="https://naruno.org/pimsudse/2022/06/narinhosting340x120.png" alt="web_infrastructure_sponsor">
   <a/>
   </p>
 

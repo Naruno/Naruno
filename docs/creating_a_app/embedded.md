@@ -11,7 +11,7 @@ If you want to develop applications inside Decentra network you can use our Apps
 
 ## Prerequisites
 
-- A Network (You can check the [Building a Test Network](https://docs.naruno.net/building_a_test_network/) for this)
+- A Network (You can check the [Building a Test Network](https://docs.naruno.org/building_a_test_network/) for this)
 
 ## First Stage: Generating the Sceleton
 

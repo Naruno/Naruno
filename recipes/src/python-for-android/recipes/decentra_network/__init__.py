@@ -50,7 +50,7 @@ url_orig_headers = url_opener.addheaders
 urllib.request.install_opener(url_opener)
 
 
-class DecentraNetworkRecipe(PythonRecipe):
+class NarunoRecipe(PythonRecipe):
     version = "0.44.0"
     url = "https://files.pythonhosted.org/packages/b5/2d/6255510a4881ed28b0da6b035f1823fbe14488bc2857a6c4bce8d0bf2dde/decentra_network-0.44.0.tar.gz"
 
@@ -95,4 +95,4 @@ class DecentraNetworkRecipe(PythonRecipe):
         os.chdir(backup)
 
 
-recipe = DecentraNetworkRecipe()
+recipe = NarunoRecipe()

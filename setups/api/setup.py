@@ -10,9 +10,9 @@ setup(
     name="decentra_network_api",
     version="0.44.0",
     description="""This is API mode installer for Naruno""",
-    url="https://docs.naruno.net/",
+    url="https://docs.naruno.org/",
     author="Naruno Developers",
-    author_email="onur@naruno.net",
+    author_email="onur@naruno.org",
     license="MPL-2.0",
     install_requires="""
 flask==2.0.0

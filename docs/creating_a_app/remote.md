@@ -13,8 +13,8 @@ If you're interested in developing applications on Naruno that can interact with
 
 To use the Naruno API, you'll need the following:
 
-- A running network (see [Building a Test Network](https://docs.naruno.net/building_a_test_network/) for instructions on how to set this up)
-- A running API (see [Starting the API](https://docs.naruno.net/referances/apis.html#starting-the-api) for instructions on how to set this up)
+- A running network (see [Building a Test Network](https://docs.naruno.org/building_a_test_network/) for instructions on how to set this up)
+- A running API (see [Starting the API](https://docs.naruno.org/referances/apis.html#starting-the-api) for instructions on how to set this up)
 
 ### Installing the Naruno Remote App library
 

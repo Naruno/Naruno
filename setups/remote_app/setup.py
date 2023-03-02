@@ -10,9 +10,9 @@ setup(
     name="decentra_network_remote_app",
     version="0.44.0",
     description="""This is a tool for apps on Naruno""",
-    url="https://docs.naruno.net/",
+    url="https://docs.naruno.org/",
     author="Naruno Developers",
-    author_email="onur@naruno.net",
+    author_email="onur@naruno.org",
     license="MPL-2.0",
     install_requires="""
 requests==2.28.0

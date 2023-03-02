@@ -50,7 +50,7 @@ increase by node number. For example:
 
 # Starting the API
 
-For starting the API you should run the api/main.py file. If you use the [Automatic Building a Test Network](https://docs.naruno.net/building_a_test_network/automatic.html) you don't need to start API manually. The API will start automatically with the node.
+For starting the API you should run the api/main.py file. If you use the [Automatic Building a Test Network](https://docs.naruno.org/building_a_test_network/automatic.html) you don't need to start API manually. The API will start automatically with the node.
 
 Otherwise you can start the API with the following command:
 
@@ -64,4 +64,4 @@ Also you can give the -p parameter for changing the port of the API. For example
 python3 Naruno/decentra_network/api/main.py -p 8000
 ```
 
-_If you use [Building a Test Network](https://docs.naruno.net/building_a_test_network/) you should change "Naruno" to ex. "Naruno-0"._
+_If you use [Building a Test Network](https://docs.naruno.org/building_a_test_network/) you should change "Naruno" to ex. "Naruno-0"._
