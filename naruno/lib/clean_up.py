@@ -11,7 +11,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from decentra_network.lib.config_system import get_config
+from naruno.lib.config_system import get_config
 
 
 def CleanUp_tests():

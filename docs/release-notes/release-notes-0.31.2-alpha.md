@@ -25,7 +25,7 @@ We are added the part_amount approach to the blockchain. This approach is for th
 We are set the round time checks to bigger or equal from just bigger.
 
 ## Packages
-With this path we added decentra_network_api package to decentra_network_tests as a requirement.
+With this path we added naruno_api package to naruno_tests as a requirement.
 
 ## Docs
 
@@ -43,7 +43,7 @@ Added block concept documents and frequently asked questions also we added websi
 ### Consensus
 * consensus: Fixed and cleaned round time calculators by @onuratakan in https://github.com/Naruno/Naruno/pull/1162
 ### Packages
-* packages: Added decentra_network_api as an requirement to tests by @onuratakan in https://github.com/Naruno/Naruno/pull/1169
+* packages: Added naruno_api as an requirement to tests by @onuratakan in https://github.com/Naruno/Naruno/pull/1169
 ### Docs
 * docs: Added blockchain concept document by @onuratakan in https://github.com/Naruno/Naruno/pull/1163
 * docs: Added website link by @onuratakan in https://github.com/Naruno/Naruno/pull/1164

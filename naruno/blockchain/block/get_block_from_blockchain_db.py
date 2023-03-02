@@ -4,11 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.config import BLOCKS_PATH
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.blockchain.block.blocks_hash import GetBlockshash
+from naruno.blockchain.block.blocks_hash import GetBlockshash_part
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.config import BLOCKS_PATH
 
 
 def GetBlockstoBlockchainDB(

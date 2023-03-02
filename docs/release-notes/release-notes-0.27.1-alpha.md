@@ -30,7 +30,7 @@ Fixed the github release based event outputs.
 
 ### GitHub
 
-- github: ${{ github.event.release.tag_name }} changed to decentra_network
+- github: ${{ github.event.release.tag_name }} changed to naruno
 
 **Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.27.0-alpha...v0.27.1-alpha
 

@@ -12,7 +12,7 @@ import kivy
 from kivy.app import App
 from kivy.uix.label import Label
 
-from decentra_network.api.main import start
+from naruno.api.main import start
 
 
 class Decentra_Network_API(App):

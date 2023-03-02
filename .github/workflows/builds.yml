@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/builds.yml'
-      - 'decentra_network/**'  
+      - 'naruno/**'  
       - 'requirements/**'  
       - 'API.spec'
       - 'CLI.spec'
@@ -15,7 +15,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/builds.yml'
-      - 'decentra_network/**'  
+      - 'naruno/**'  
       - 'requirements/**'
       - 'API.spec'
       - 'CLI.spec'
@@ -63,18 +63,18 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r cli_linux_decentra_network Naruno-CLI/
+        zip -r cli_linux_naruno Naruno-CLI/
     
     - uses: actions/upload-artifact@v2
       with:
-        name: cli_linux_decentra_network
-        path: dist/cli_linux_decentra_network.zip
+        name: cli_linux_naruno
+        path: dist/cli_linux_naruno.zip
     
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/cli_linux_decentra_network.zip'
+        files: 'dist/cli_linux_naruno.zip'
 
   build-cli-macos:
 
@@ -104,16 +104,16 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r cli_macos_decentra_network Naruno-CLI/
+        zip -r cli_macos_naruno Naruno-CLI/
     - uses: actions/upload-artifact@v2
       with:
-        name: cli_macos_decentra_network
-        path: dist/cli_macos_decentra_network.zip
+        name: cli_macos_naruno
+        path: dist/cli_macos_naruno.zip
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/cli_macos_decentra_network.zip'
+        files: 'dist/cli_macos_naruno.zip'
 
 
   build-cli-windows:
@@ -146,20 +146,20 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Naruno-CLI/ cli_win32_decentra_network.zip
+        Compress-Archive Naruno-CLI/ cli_win32_naruno.zip
     
 
 
     - uses: actions/upload-artifact@v2
       with:
-        name: cli_win32_decentra_network
-        path: dist/cli_win32_decentra_network.zip       
+        name: cli_win32_naruno
+        path: dist/cli_win32_naruno.zip       
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/cli_win32_decentra_network.zip'
+        files: 'dist/cli_win32_naruno.zip'
 
 
   build-api-linux:
@@ -196,19 +196,19 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r api_linux_decentra_network Naruno-API/
+        zip -r api_linux_naruno Naruno-API/
     
 
     - uses: actions/upload-artifact@v2
       with:
-        name: api_linux_decentra_network
-        path: dist/api_linux_decentra_network.zip
+        name: api_linux_naruno
+        path: dist/api_linux_naruno.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/api_linux_decentra_network.zip'
+        files: 'dist/api_linux_naruno.zip'
 
 
   build-api-macos:
@@ -244,19 +244,19 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        zip -r api_macos_decentra_network Naruno-API/
+        zip -r api_macos_naruno Naruno-API/
     
 
     - uses: actions/upload-artifact@v2
       with:
-        name: api_macos_decentra_network
-        path: dist/api_macos_decentra_network.zip
+        name: api_macos_naruno
+        path: dist/api_macos_naruno.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/api_macos_decentra_network.zip'
+        files: 'dist/api_macos_naruno.zip'
 
   build-api-windows:
 
@@ -291,20 +291,20 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Naruno-API/ api_win32_decentra_network.zip
+        Compress-Archive Naruno-API/ api_win32_naruno.zip
     
 
     - uses: actions/upload-artifact@v2
       with:
-        name: api_win32_decentra_network
-        path: dist/api_win32_decentra_network.zip 
+        name: api_win32_naruno
+        path: dist/api_win32_naruno.zip 
 
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/api_win32_decentra_network.zip'
+        files: 'dist/api_win32_naruno.zip'
 
   build-gui-windows:
 
@@ -342,19 +342,19 @@ jobs:
     - name: Zip
       run: |
         cd dist
-        Compress-Archive Naruno-GUI/ gui_win32_decentra_network.zip
+        Compress-Archive Naruno-GUI/ gui_win32_naruno.zip
     
 
     - uses: actions/upload-artifact@v2
       with:
-        name: gui_win32_decentra_network
-        path: dist/gui_win32_decentra_network.zip
+        name: gui_win32_naruno
+        path: dist/gui_win32_naruno.zip
 
     - uses: AButler/upload-release-assets@v2.0
       if: github.event_name == 'release'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        files: 'dist/gui_win32_decentra_network.zip'
+        files: 'dist/gui_win32_naruno.zip'
 
   build-api-android:
     runs-on: ubuntu-latest
@@ -380,20 +380,20 @@ jobs:
           command: buildozer --profile api android debug
 
       - name: Zip
-        run: sudo zip -r api_android_decentra_network ${{ steps.buildozer.outputs.filename }} 
+        run: sudo zip -r api_android_naruno ${{ steps.buildozer.outputs.filename }} 
       
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: api_android_decentra_network
-          path: api_android_decentra_network.zip
+          name: api_android_naruno
+          path: api_android_naruno.zip
 
       - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}        
-          files: 'api_android_decentra_network.zip'
+          files: 'api_android_naruno.zip'
 
 
   build-gui-android:
@@ -421,17 +421,17 @@ jobs:
           command: buildozer --profile gui android debug
 
       - name: Zip
-        run: sudo zip -r gui_android_decentra_network ${{ steps.buildozer.outputs.filename }} 
+        run: sudo zip -r gui_android_naruno ${{ steps.buildozer.outputs.filename }} 
       
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: gui_android_decentra_network
-          path: gui_android_decentra_network.zip
+          name: gui_android_naruno
+          path: gui_android_naruno.zip
 
       - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}        
-          files: 'gui_android_decentra_network.zip'
+          files: 'gui_android_naruno.zip'

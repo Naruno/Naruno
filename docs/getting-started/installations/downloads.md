@@ -11,18 +11,18 @@ nav_order: 2
 
 | OS | Type | Address | 
 |---|---|---|
-| Windows | CLI | [cli_win32_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/cli_win32_decentra_network.zip) |
-| Windows | API | [api_win32_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/api_win32_decentra_network.zip) |
-| Windows | GUI | [gui_win32_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/gui_win32_decentra_network.zip) |
+| Windows | CLI | [cli_win32_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/cli_win32_naruno.zip) |
+| Windows | API | [api_win32_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/api_win32_naruno.zip) |
+| Windows | GUI | [gui_win32_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/gui_win32_naruno.zip) |
 |---|
-| Linux | CLI | [cli_linux_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/cli_linux_decentra_network.zip) |
-| Linux | API | [api_linux_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/api_linux_decentra_network.zip) |
+| Linux | CLI | [cli_linux_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/cli_linux_naruno.zip) |
+| Linux | API | [api_linux_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/api_linux_naruno.zip) |
 |---|
-| MacOS | CLI | [cli_macos_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/cli_macos_decentra_network.zip) |
-| MacOS | API | [api_macos_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/api_macos_decentra_network.zip) |
+| MacOS | CLI | [cli_macos_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/cli_macos_naruno.zip) |
+| MacOS | API | [api_macos_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/api_macos_naruno.zip) |
 |---|
-| Android | API | [api_android_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/api_android_decentra_network.zip) |
-| Android | GUI | [gui_android_decentra_network.zip](https://github.com/Naruno/Naruno/releases/latest/download/gui_android_decentra_network.zip) |
+| Android | API | [api_android_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/api_android_naruno.zip) |
+| Android | GUI | [gui_android_naruno.zip](https://github.com/Naruno/Naruno/releases/latest/download/gui_android_naruno.zip) |
 
 
 # Downloads for Developers

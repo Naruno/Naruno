@@ -12,20 +12,20 @@ import time
 
 from speed_calculator import calculate
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
+from naruno.blockchain.block.hash.blocks_hash import BlocksHash
 
 
 
-from decentra_network.accounts.account import Account
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+from naruno.accounts.account import Account
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.accounts.save_accounts import SaveAccounts
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
                                                            GetBlockshash_part,
                                                            SaveBlockshash,
                                                            SaveBlockshash_part)
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.save_block import SaveBlock
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.save_block import SaveBlock
 
 
 class Blockshash_IO_Performance_Analyzer:

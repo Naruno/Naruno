@@ -4,8 +4,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.lib.log import get_logger
-from decentra_network.transactions.pending.get_pending import GetPendingLen
+from naruno.lib.log import get_logger
+from naruno.transactions.pending.get_pending import GetPendingLen
 
 logger = get_logger("BLOCKCHAIN")
 

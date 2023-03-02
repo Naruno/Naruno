@@ -9,9 +9,9 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.settings_system import the_settings
+from naruno.lib.config_system import get_config
+from naruno.lib.log import get_logger
+from naruno.lib.settings_system import the_settings
 
 logger = get_logger("LIB")
 

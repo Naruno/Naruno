@@ -15,35 +15,35 @@ from hashlib import sha256
 from shutil import move
 from threading import Thread
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.change_transaction_fee import \
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import CONNECTED_NODES_PATH
-from decentra_network.config import LOADING_ACCOUNTS_PATH
-from decentra_network.config import LOADING_BLOCK_PATH
-from decentra_network.config import LOADING_BLOCKSHASH_PART_PATH
-from decentra_network.config import LOADING_BLOCKSHASH_PATH
-from decentra_network.config import PENDING_TRANSACTIONS_PATH
-from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.config import TEMP_BLOCK_PATH
-from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
-from decentra_network.config import TEMP_BLOCKSHASH_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.mix.merkle_root import MerkleTree
-from decentra_network.node.client.client import client
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.check.check_transaction import \
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.config import CONNECTED_NODES_PATH
+from naruno.config import LOADING_ACCOUNTS_PATH
+from naruno.config import LOADING_BLOCK_PATH
+from naruno.config import LOADING_BLOCKSHASH_PART_PATH
+from naruno.config import LOADING_BLOCKSHASH_PATH
+from naruno.config import PENDING_TRANSACTIONS_PATH
+from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.config import TEMP_BLOCK_PATH
+from naruno.config import TEMP_BLOCKSHASH_PART_PATH
+from naruno.config import TEMP_BLOCKSHASH_PATH
+from naruno.lib.config_system import get_config
+from naruno.lib.log import get_logger
+from naruno.lib.mix.merkle_root import MerkleTree
+from naruno.node.client.client import client
+from naruno.node.unl import Unl
+from naruno.transactions.check.check_transaction import \
     CheckTransaction
-from decentra_network.transactions.get_transaction import GetTransaction
-from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
-from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
-from decentra_network.wallet.ellipticcurve.signature import Signature
-from decentra_network.wallet.wallet_import import wallet_import
+from naruno.transactions.get_transaction import GetTransaction
+from naruno.transactions.transaction import Transaction
+from naruno.wallet.ellipticcurve.ecdsa import Ecdsa
+from naruno.wallet.ellipticcurve.privateKey import PrivateKey
+from naruno.wallet.ellipticcurve.publicKey import PublicKey
+from naruno.wallet.ellipticcurve.signature import Signature
+from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("NODE")
 
@@ -559,9 +559,9 @@ class server(Thread):
 
                 move(self.LOADING_BLOCK_PATH, self.TEMP_BLOCK_PATH)
 
-                from decentra_network.consensus.consensus_main import \
+                from naruno.consensus.consensus_main import \
                     consensus_trigger
-                from decentra_network.lib.perpetualtimer import perpetualTimer
+                from naruno.lib.perpetualtimer import perpetualTimer
 
                 system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
                                   get_normal_block=True)

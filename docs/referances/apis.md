@@ -55,13 +55,13 @@ For starting the API you should run the api/main.py file. If you use the [Automa
 Otherwise you can start the API with the following command:
 
 ```bash
-python3 Naruno/decentra_network/api/main.py
+python3 Naruno/naruno/api/main.py
 ```
 
 Also you can give the -p parameter for changing the port of the API. For example:
 
 ```bash
-python3 Naruno/decentra_network/api/main.py -p 8000
+python3 Naruno/naruno/api/main.py -p 8000
 ```
 
 _If you use [Building a Test Network](https://docs.naruno.org/building_a_test_network/) you should change "Naruno" to ex. "Naruno-0"._

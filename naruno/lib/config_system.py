@@ -7,7 +7,7 @@
 import json
 import os
 
-from decentra_network.config import *
+from naruno.config import *
 
 
 def save_config(config):

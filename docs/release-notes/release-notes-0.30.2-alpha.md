@@ -42,7 +42,7 @@ Fixed licence for gui_lib modules.
 ### GitHub
 * github: Removed gource action by @onuratakan in https://github.com/Naruno/Naruno/pull/1133
 ### Licence
-* licence: Changed licence for decentra_network-gui_lib-libs-baseclass-tabnavigation.py and decentra_network-gui_lib-libs-kv-tabnavigation.kv by @onuratakan in https://github.com/Naruno/Naruno/pull/1142
+* licence: Changed licence for naruno-gui_lib-libs-baseclass-tabnavigation.py and naruno-gui_lib-libs-kv-tabnavigation.kv by @onuratakan in https://github.com/Naruno/Naruno/pull/1142
 * licence: Fixed licence for gui_lib by @onuratakan in https://github.com/Naruno/Naruno/pull/1145
 
 

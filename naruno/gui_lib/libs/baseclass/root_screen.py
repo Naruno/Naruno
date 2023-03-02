@@ -7,8 +7,8 @@ from kivymd.uix.behaviors import RectangularRippleBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
 
-import decentra_network.gui.the_decentra_network_gui_app
-from decentra_network.gui.popup import popup
+import naruno.gui.the_naruno_gui_app
+from naruno.gui.popup import popup
 
 
 class DecentraRootScreen(MDScreen):
@@ -16,8 +16,8 @@ class DecentraRootScreen(MDScreen):
     def close_app(self, widget=None):
         self.close_app_dialog = popup(
             text="Are you sure you want to close ?",
-            target=decentra_network.gui.the_decentra_network_gui_app.
-            the_decentra_network_gui.stop,
+            target=naruno.gui.the_naruno_gui_app.
+            the_naruno_gui.stop,
             type="question",
         )
 

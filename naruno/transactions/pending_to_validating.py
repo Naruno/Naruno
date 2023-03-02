@@ -6,12 +6,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.log import get_logger
-from decentra_network.node.server.server import server
-from decentra_network.transactions.cleaner import Cleaner
-from decentra_network.transactions.pending.delete_pending import DeletePending
-from decentra_network.transactions.pending.get_pending import GetPending
+from naruno.blockchain.block.block_main import Block
+from naruno.lib.log import get_logger
+from naruno.node.server.server import server
+from naruno.transactions.cleaner import Cleaner
+from naruno.transactions.pending.delete_pending import DeletePending
+from naruno.transactions.pending.get_pending import GetPending
 
 logger = get_logger("TRANSACTIONS")
 

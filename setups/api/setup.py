@@ -7,7 +7,7 @@
 from setuptools import setup
 
 setup(
-    name="decentra_network_api",
+    name="naruno_api",
     version="0.44.0",
     description="""This is API mode installer for Naruno""",
     url="https://docs.naruno.org/",

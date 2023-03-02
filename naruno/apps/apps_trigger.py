@@ -6,8 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 
-from decentra_network.apps.app_main import app
-from decentra_network.lib.log import get_logger
+from naruno.apps.app_main import app
+from naruno.lib.log import get_logger
 
 logger = get_logger("APP")
 
@@ -39,7 +39,7 @@ def AppsTrigger(block):
                         if "test" in entry.name and block.sequence_number != 1:
                             return
                         logger.debug(f"Starting thread for file {entry.name}")
-                        import_command = f"from decentra_network.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
+                        import_command = f"from naruno.apps.{folder_entry.name}.{entry.name.replace('.py','')} import {entry.name.replace('.py','')}_tx"
                         tx_command = f"{entry.name.replace('.py','')}_tx(trans)"
                         logger.debug(f"import command: {import_command}")
                         logger.debug(f"tx_command: {tx_command}")

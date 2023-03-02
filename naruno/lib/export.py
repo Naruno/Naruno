@@ -7,9 +7,9 @@
 import csv
 import os
 
-from decentra_network.config import MY_TRANSACTION_EXPORT_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.my_transactions.get_my_transaction import \
+from naruno.config import MY_TRANSACTION_EXPORT_PATH
+from naruno.lib.config_system import get_config
+from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
 
 

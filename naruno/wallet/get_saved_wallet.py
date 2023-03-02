@@ -7,8 +7,8 @@
 import json
 import os
 
-from decentra_network.config import *
-from decentra_network.lib.config_system import get_config
+from naruno.config import *
+from naruno.lib.config_system import get_config
 
 
 def get_saved_wallet():

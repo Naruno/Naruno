@@ -4,4 +4,4 @@ nav_order: 8
 ---
 
 # Videos
-- [Node Concept](https://github.com/Naruno/Naruno/releases/latest/download/node_docs_videos_decentra_network.zip)
+- [Node Concept](https://github.com/Naruno/Naruno/releases/latest/download/node_docs_videos_naruno.zip)

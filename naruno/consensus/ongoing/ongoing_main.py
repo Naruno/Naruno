@@ -4,19 +4,19 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
-from decentra_network.consensus.rounds.round_1.round_1_main import \
+from naruno.consensus.rounds.round_1.round_1_main import \
     consensus_round_1
-from decentra_network.consensus.rounds.round_2.round_2_main import \
+from naruno.consensus.rounds.round_2.round_2_main import \
     consensus_round_2
-from decentra_network.lib.log import get_logger
-from decentra_network.node.client.client import client
-from decentra_network.node.server.server import server
-from decentra_network.transactions.cleaner import Cleaner
-from decentra_network.transactions.pending.get_pending import GetPending
+from naruno.lib.log import get_logger
+from naruno.node.client.client import client
+from naruno.node.server.server import server
+from naruno.transactions.cleaner import Cleaner
+from naruno.transactions.pending.get_pending import GetPending
 logger = get_logger("CONSENSUS")
 
 

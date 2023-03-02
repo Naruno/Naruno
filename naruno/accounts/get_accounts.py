@@ -8,9 +8,9 @@ import json
 import os
 import sqlite3
 
-from decentra_network.accounts.account import Account
-from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.lib.config_system import get_config
+from naruno.accounts.account import Account
+from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.lib.config_system import get_config
 
 
 def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):

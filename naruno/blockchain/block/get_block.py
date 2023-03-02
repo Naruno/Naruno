@@ -8,10 +8,10 @@ import contextlib
 import json
 import os
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.config import TEMP_BLOCK_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
+from naruno.blockchain.block.block_main import Block
+from naruno.config import TEMP_BLOCK_PATH
+from naruno.lib.config_system import get_config
+from naruno.lib.log import get_logger
 
 logger = get_logger("BLOCKCHAIN")
 

@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from decentra_network.wallet.ellipticcurve.utils.binary import bitsFromHex
-from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromHex
-from decentra_network.wallet.ellipticcurve.utils.binary import hexFromInt
-from decentra_network.wallet.ellipticcurve.utils.binary import intFromHex
-from decentra_network.wallet.ellipticcurve.utils.oid import oidFromHex
-from decentra_network.wallet.ellipticcurve.utils.oid import oidToHex
+from naruno.wallet.ellipticcurve.utils.binary import bitsFromHex
+from naruno.wallet.ellipticcurve.utils.binary import byteStringFromHex
+from naruno.wallet.ellipticcurve.utils.binary import hexFromInt
+from naruno.wallet.ellipticcurve.utils.binary import intFromHex
+from naruno.wallet.ellipticcurve.utils.oid import oidFromHex
+from naruno.wallet.ellipticcurve.utils.oid import oidToHex
 
 
 class DerFieldType:

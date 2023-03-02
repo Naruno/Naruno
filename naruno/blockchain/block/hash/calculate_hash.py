@@ -4,10 +4,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
-from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
-from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
-from decentra_network.lib.mix.merkle_root import MerkleTree
+from naruno.blockchain.block.hash.accounts_hash import AccountsHash
+from naruno.blockchain.block.hash.blocks_hash import BlocksHash
+from naruno.blockchain.block.hash.tx_hash import TransactionsHash
+from naruno.lib.mix.merkle_root import MerkleTree
 
 
 def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):

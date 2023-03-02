@@ -7,21 +7,21 @@
 import contextlib
 import threading
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
-from decentra_network.consensus.finished.finished_main import finished_main
-from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.perpetualtimer import perpetualTimer
-from decentra_network.node.client.client import client
-from decentra_network.node.server.server import server
-from decentra_network.transactions.cleaner import Cleaner
-from decentra_network.transactions.pending.get_pending import GetPending
+from naruno.consensus.finished.finished_main import finished_main
+from naruno.consensus.ongoing.ongoing_main import ongoing_main
+from naruno.lib.log import get_logger
+from naruno.lib.perpetualtimer import perpetualTimer
+from naruno.node.client.client import client
+from naruno.node.server.server import server
+from naruno.transactions.cleaner import Cleaner
+from naruno.transactions.pending.get_pending import GetPending
 
-from decentra_network.consensus.sync.sync import sync
+from naruno.consensus.sync.sync import sync
 
 logger = get_logger("CONSENSUS")
 

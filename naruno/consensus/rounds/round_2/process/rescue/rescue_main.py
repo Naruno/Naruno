@@ -12,11 +12,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import random
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.log import get_logger
-from decentra_network.node.client.client import client
-from decentra_network.node.server.server import server
-from decentra_network.node.unl import Unl
+from naruno.blockchain.block.block_main import Block
+from naruno.lib.log import get_logger
+from naruno.node.client.client import client
+from naruno.node.server.server import server
+from naruno.node.unl import Unl
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 
@@ -31,7 +31,7 @@ def rescue_main(
     logger.debug(f"First block: {block}")
     sender = candidate_block_hash["hash"]["sender"]
     logger.debug(
-        f"Our block is not valid, the system will try to get true block from decentra_network.node {sender}"
+        f"Our block is not valid, the system will try to get true block from naruno.node {sender}"
     )
     block.dowload_true_block = sender
     unl_list = Unl.get_as_node_type([sender])

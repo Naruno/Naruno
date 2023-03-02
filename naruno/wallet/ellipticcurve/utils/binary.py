@@ -3,9 +3,9 @@
 from base64 import b64decode
 from base64 import b64encode
 
-from decentra_network.wallet.ellipticcurve.utils.compatibility import safeBinaryFromHex
-from decentra_network.wallet.ellipticcurve.utils.compatibility import safeHexFromBinary
-from decentra_network.wallet.ellipticcurve.utils.compatibility import toString
+from naruno.wallet.ellipticcurve.utils.compatibility import safeBinaryFromHex
+from naruno.wallet.ellipticcurve.utils.compatibility import safeHexFromBinary
+from naruno.wallet.ellipticcurve.utils.compatibility import toString
 
 
 def hexFromInt(number):

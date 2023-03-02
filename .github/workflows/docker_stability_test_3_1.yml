@@ -26,14 +26,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -57,14 +57,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -88,14 +88,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -119,14 +119,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -150,14 +150,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -181,14 +181,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -212,14 +212,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -243,14 +243,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -274,14 +274,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -305,14 +305,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -336,14 +336,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -367,14 +367,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -398,14 +398,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -429,14 +429,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -460,14 +460,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -491,14 +491,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -522,14 +522,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -553,14 +553,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -584,14 +584,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -615,14 +615,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -646,14 +646,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -677,14 +677,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -708,14 +708,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -739,14 +739,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -770,14 +770,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -801,14 +801,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -832,14 +832,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -863,14 +863,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -894,14 +894,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -925,14 +925,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -956,14 +956,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -987,14 +987,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1018,14 +1018,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1049,14 +1049,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1080,14 +1080,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1111,14 +1111,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1142,14 +1142,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1173,14 +1173,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1204,14 +1204,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1235,14 +1235,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1266,14 +1266,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1297,14 +1297,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1328,14 +1328,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1359,14 +1359,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1390,14 +1390,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1421,14 +1421,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1452,14 +1452,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1483,14 +1483,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1514,14 +1514,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1545,14 +1545,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1576,14 +1576,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1607,14 +1607,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1638,14 +1638,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1669,14 +1669,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1700,14 +1700,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1731,14 +1731,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1762,14 +1762,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1793,14 +1793,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1824,14 +1824,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1855,14 +1855,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1886,14 +1886,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1917,14 +1917,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1948,14 +1948,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -1979,14 +1979,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2010,14 +2010,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2041,14 +2041,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2072,14 +2072,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2103,14 +2103,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2134,14 +2134,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2165,14 +2165,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2196,14 +2196,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2227,14 +2227,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2258,14 +2258,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2289,14 +2289,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2320,14 +2320,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2351,14 +2351,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2382,14 +2382,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2413,14 +2413,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2444,14 +2444,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2475,14 +2475,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2506,14 +2506,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2537,14 +2537,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2568,14 +2568,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2599,14 +2599,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2630,14 +2630,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2661,14 +2661,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2692,14 +2692,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2723,14 +2723,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2754,14 +2754,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2785,14 +2785,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2816,14 +2816,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2847,14 +2847,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2878,14 +2878,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2909,14 +2909,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2940,14 +2940,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -2971,14 +2971,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -3002,14 +3002,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -3033,14 +3033,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -3064,14 +3064,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |
@@ -3095,14 +3095,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_decentra_network_docker_3_1.py') }}        
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_3_1.py') }}        
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
-        pytest Naruno/tests/stability_tests/docker/test_decentra_network_docker_3_1.py 
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_3_1.py 
 
     - name: Status Information
       run: |

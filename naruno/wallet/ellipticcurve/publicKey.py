@@ -1,21 +1,21 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from decentra_network.wallet.ellipticcurve.curve import getCurveByOid
-from decentra_network.wallet.ellipticcurve.curve import secp256k1
-from decentra_network.wallet.ellipticcurve.math import Math
-from decentra_network.wallet.ellipticcurve.point import Point
-from decentra_network.wallet.ellipticcurve.utils.binary import base64FromByteString
-from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromBase64
-from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromHex
-from decentra_network.wallet.ellipticcurve.utils.binary import hexFromByteString
-from decentra_network.wallet.ellipticcurve.utils.binary import intFromHex
-from decentra_network.wallet.ellipticcurve.utils.der import DerFieldType
-from decentra_network.wallet.ellipticcurve.utils.der import encodeConstructed
-from decentra_network.wallet.ellipticcurve.utils.der import encodePrimitive
-from decentra_network.wallet.ellipticcurve.utils.der import hexFromInt
-from decentra_network.wallet.ellipticcurve.utils.der import parse
-from decentra_network.wallet.ellipticcurve.utils.pem import createPem
-from decentra_network.wallet.ellipticcurve.utils.pem import getPemContent
+from naruno.wallet.ellipticcurve.curve import getCurveByOid
+from naruno.wallet.ellipticcurve.curve import secp256k1
+from naruno.wallet.ellipticcurve.math import Math
+from naruno.wallet.ellipticcurve.point import Point
+from naruno.wallet.ellipticcurve.utils.binary import base64FromByteString
+from naruno.wallet.ellipticcurve.utils.binary import byteStringFromBase64
+from naruno.wallet.ellipticcurve.utils.binary import byteStringFromHex
+from naruno.wallet.ellipticcurve.utils.binary import hexFromByteString
+from naruno.wallet.ellipticcurve.utils.binary import intFromHex
+from naruno.wallet.ellipticcurve.utils.der import DerFieldType
+from naruno.wallet.ellipticcurve.utils.der import encodeConstructed
+from naruno.wallet.ellipticcurve.utils.der import encodePrimitive
+from naruno.wallet.ellipticcurve.utils.der import hexFromInt
+from naruno.wallet.ellipticcurve.utils.der import parse
+from naruno.wallet.ellipticcurve.utils.pem import createPem
+from naruno.wallet.ellipticcurve.utils.pem import getPemContent
 
 
 class PublicKey:

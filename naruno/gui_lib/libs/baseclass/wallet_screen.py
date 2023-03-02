@@ -11,17 +11,17 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.textfield import MDTextField
 from kivymd_extensions.sweetalert import SweetAlert
 
-import decentra_network.gui.the_decentra_network_gui_app
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.gui.popup import popup
-from decentra_network.lib.qr import qr
-from decentra_network.lib.settings_system import change_wallet
-from decentra_network.lib.settings_system import the_settings
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_delete import wallet_delete
-from decentra_network.wallet.wallet_import import wallet_import
+import naruno.gui.the_naruno_gui_app
+from naruno.accounts.get_balance import GetBalance
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.gui.popup import popup
+from naruno.lib.qr import qr
+from naruno.lib.settings_system import change_wallet
+from naruno.lib.settings_system import the_settings
+from naruno.wallet.get_saved_wallet import get_saved_wallet
+from naruno.wallet.wallet_create import wallet_create
+from naruno.wallet.wallet_delete import wallet_delete
+from naruno.wallet.wallet_import import wallet_import
 
 
 class WalletScreen(MDScreen):

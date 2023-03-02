@@ -30,14 +30,14 @@ jobs:
 
 
       - name: Zip
-        run: zip gource_decentra_network ./gource/gource.mp4
+        run: zip gource_naruno ./gource/gource.mp4
       - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }} 
-          files: 'gource_decentra_network.zip'
+          files: 'gource_naruno.zip'
       - name: 'Upload gource video'
         uses: actions/upload-artifact@v2
         with:
-          name: gource_decentra_network
-          path: gource_decentra_network.zip
+          name: gource_naruno
+          path: gource_naruno.zip

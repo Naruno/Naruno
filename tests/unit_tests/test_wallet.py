@@ -11,21 +11,21 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 from hashlib import sha256
 
-from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.encryption import decrypt
-from decentra_network.lib.settings_system import (change_wallet, save_settings,
+from naruno.lib.clean_up import CleanUp_tests
+from naruno.lib.encryption import decrypt
+from naruno.lib.settings_system import (change_wallet, save_settings,
                                                   the_settings)
-from decentra_network.wallet.delete_current_wallet import delete_current_wallet
-from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.ellipticcurve.publicKey import PublicKey
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.print_wallets import print_wallets
-from decentra_network.wallet.save_wallet_list import save_wallet_list
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_delete import wallet_delete
-from decentra_network.wallet.wallet_import import (Address, wallet_import,
+from naruno.wallet.delete_current_wallet import delete_current_wallet
+from naruno.wallet.ellipticcurve.privateKey import PrivateKey
+from naruno.wallet.ellipticcurve.publicKey import PublicKey
+from naruno.wallet.get_saved_wallet import get_saved_wallet
+from naruno.wallet.print_wallets import print_wallets
+from naruno.wallet.save_wallet_list import save_wallet_list
+from naruno.wallet.wallet_create import wallet_create
+from naruno.wallet.wallet_delete import wallet_delete
+from naruno.wallet.wallet_import import (Address, wallet_import,
                                                    wallet_import_all)
-from decentra_network.wallet.wallet_selector import wallet_selector
+from naruno.wallet.wallet_selector import wallet_selector
 
 
 class Test_Wallet(unittest.TestCase):

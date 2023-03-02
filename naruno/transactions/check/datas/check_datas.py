@@ -6,10 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.accounts.get_sequence_number import GetSequanceNumber
-from decentra_network.lib.log import get_logger
-from decentra_network.transactions.pending.get_pending import GetPending
+from naruno.accounts.get_balance import GetBalance
+from naruno.accounts.get_sequence_number import GetSequanceNumber
+from naruno.lib.log import get_logger
+from naruno.transactions.pending.get_pending import GetPending
 
 logger = get_logger("TRANSACTIONS")
 

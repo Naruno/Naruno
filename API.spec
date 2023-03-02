@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['decentra_network/api/main.py'],
+    ['naruno/api/main.py'],
     pathex=[],
     binaries=[],
     datas=[],

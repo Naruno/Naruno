@@ -8,15 +8,15 @@ import json
 import os
 from typing import List
 
-from decentra_network.config import MY_TRANSACTION_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.notification import notification
-from decentra_network.transactions.my_transactions.get_my_transaction import \
+from naruno.config import MY_TRANSACTION_PATH
+from naruno.lib.config_system import get_config
+from naruno.lib.notification import notification
+from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
-from decentra_network.transactions.my_transactions.save_my_transaction import \
+from naruno.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
-from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.wallet_import import Address
+from naruno.transactions.transaction import Transaction
+from naruno.wallet.wallet_import import Address
 
 
 def SavetoMyTransaction(

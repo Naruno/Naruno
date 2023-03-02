@@ -25,8 +25,8 @@ and finally some functions have been separated.
 
 ## Main Package Added to GUI and API Package as a Requirement
 
-With this patch, users who install the decentra_network_gui and decentra_network_api
-packages will also install the decentra_network package.
+With this patch, users who install the naruno_gui and naruno_api
+packages will also install the naruno package.
 
 # 0.11.0-alpha change log
 
@@ -36,8 +36,8 @@ Please control the name of moved and deleted functions.
 
 ### Setups
 
-- Added the decentra_network==0.11.0 to decentra_network_gui as a requirement.
-- Added the decentra_network==0.11.0 to decentra_network_api as a requirement.
+- Added the naruno==0.11.0 to naruno_gui as a requirement.
+- Added the naruno==0.11.0 to naruno_api as a requirement.
 
 ### send_coin
 

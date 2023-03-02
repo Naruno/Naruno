@@ -7,8 +7,8 @@
 import os
 import sqlite3
 
-from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.lib.config_system import get_config
+from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.lib.config_system import get_config
 
 
 def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None):

@@ -52,7 +52,7 @@ urllib.request.install_opener(url_opener)
 
 class NarunoRecipe(PythonRecipe):
     version = "0.44.0"
-    url = "https://files.pythonhosted.org/packages/b5/2d/6255510a4881ed28b0da6b035f1823fbe14488bc2857a6c4bce8d0bf2dde/decentra_network-0.44.0.tar.gz"
+    url = "https://files.pythonhosted.org/packages/b5/2d/6255510a4881ed28b0da6b035f1823fbe14488bc2857a6c4bce8d0bf2dde/naruno-0.44.0.tar.gz"
 
     # call_hostpython_via_targetpython = True
     """If True, tries to install the module using the hostpython binary
@@ -90,7 +90,7 @@ class NarunoRecipe(PythonRecipe):
         os.system("python3 setup.py sdist")
         time.sleep(5)
         os.system(
-            f"cp dist/decentra_network-{self.version}.tar.gz {backup}/{target}"
+            f"cp dist/naruno-{self.version}.tar.gz {backup}/{target}"
         )
         os.chdir(backup)
 

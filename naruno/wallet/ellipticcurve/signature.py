@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from decentra_network.wallet.ellipticcurve.utils.binary import base64FromByteString
-from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromBase64
-from decentra_network.wallet.ellipticcurve.utils.binary import byteStringFromHex
-from decentra_network.wallet.ellipticcurve.utils.binary import hexFromByteString
-from decentra_network.wallet.ellipticcurve.utils.compatibility import *
-from decentra_network.wallet.ellipticcurve.utils.der import DerFieldType
-from decentra_network.wallet.ellipticcurve.utils.der import encodeConstructed
-from decentra_network.wallet.ellipticcurve.utils.der import encodePrimitive
-from decentra_network.wallet.ellipticcurve.utils.der import parse
+from naruno.wallet.ellipticcurve.utils.binary import base64FromByteString
+from naruno.wallet.ellipticcurve.utils.binary import byteStringFromBase64
+from naruno.wallet.ellipticcurve.utils.binary import byteStringFromHex
+from naruno.wallet.ellipticcurve.utils.binary import hexFromByteString
+from naruno.wallet.ellipticcurve.utils.compatibility import *
+from naruno.wallet.ellipticcurve.utils.der import DerFieldType
+from naruno.wallet.ellipticcurve.utils.der import encodeConstructed
+from naruno.wallet.ellipticcurve.utils.der import encodePrimitive
+from naruno.wallet.ellipticcurve.utils.der import parse
 
 
 class Signature:

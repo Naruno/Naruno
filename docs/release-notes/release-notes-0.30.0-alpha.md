@@ -60,8 +60,8 @@ Fixed perpetual timer structure and added performance analyzers.
 ### Packages
 * packages: Added test requirements  by @onuratakan in https://github.com/Naruno/Naruno/pull/1105
 * packages: Added remote app requirements by @onuratakan in https://github.com/Naruno/Naruno/pull/1107
-* packages: Added decentra_network_remote_app by @onuratakan in https://github.com/Naruno/Naruno/pull/1126
-* packages: Added decentra_network_tests package by @onuratakan in https://github.com/Naruno/Naruno/pull/1127
+* packages: Added naruno_remote_app by @onuratakan in https://github.com/Naruno/Naruno/pull/1126
+* packages: Added naruno_tests package by @onuratakan in https://github.com/Naruno/Naruno/pull/1127
 * packages: Changed author email by @onuratakan in https://github.com/Naruno/Naruno/pull/1128
 * packages: Changed url by @onuratakan in https://github.com/Naruno/Naruno/pull/1129
 ### Docs

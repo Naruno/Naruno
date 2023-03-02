@@ -8,7 +8,7 @@ import json
 import os
 import sys
 
-from decentra_network.lib.config_system import get_config
+from naruno.lib.config_system import get_config
 
 
 def testing_app_main_tx(tx):

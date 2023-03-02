@@ -16,11 +16,11 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
-import decentra_network.gui.the_decentra_network_gui_app
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import the_settings
+import naruno.gui.the_naruno_gui_app
+from naruno.lib.config_system import get_config
+from naruno.lib.log import get_logger
+from naruno.lib.safety import safety_check
+from naruno.lib.settings_system import the_settings
 
 Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
@@ -38,8 +38,8 @@ for kv_file in os.listdir(KV_DIR):
 
 KV = """
 #:import FadeTransition kivy.uix.screenmanager.FadeTransition
-#:import DecentraWelcomeScreen decentra_network.gui_lib.libs.baseclass.welcome_screen.DecentraWelcomeScreen
-#:import DecentraRootScreen decentra_network.gui_lib.libs.baseclass.root_screen.DecentraRootScreen
+#:import DecentraWelcomeScreen naruno.gui_lib.libs.baseclass.welcome_screen.DecentraWelcomeScreen
+#:import DecentraRootScreen naruno.gui_lib.libs.baseclass.root_screen.DecentraRootScreen
 
 ScreenManager:
     transition: FadeTransition()
@@ -146,10 +146,10 @@ class GUI(MDApp):
     def restart(self):
         self.root.clear_widgets()
         self.stop()
-        decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui = (
+        naruno.gui.the_naruno_gui_app.the_naruno_gui = (
             GUI())
-        return (decentra_network.gui.the_decentra_network_gui_app.
-                the_decentra_network_gui.run())
+        return (naruno.gui.the_naruno_gui_app.
+                the_naruno_gui.run())
 
 
 def arguments():
@@ -180,10 +180,10 @@ def arguments():
 
     safety_check(args.interface, args.timeout)
 
-    decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui = GUI(
+    naruno.gui.the_naruno_gui_app.the_naruno_gui = GUI(
     )
 
-    decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.run(
+    naruno.gui.the_naruno_gui_app.the_naruno_gui.run(
     )
 
 

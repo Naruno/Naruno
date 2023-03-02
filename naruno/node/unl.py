@@ -9,8 +9,8 @@ import json
 import os
 import time
 
-from decentra_network.config import *
-from decentra_network.lib.config_system import get_config
+from naruno.config import *
+from naruno.lib.config_system import get_config
 
 
 class Unl:
@@ -55,7 +55,7 @@ class Unl:
         Converts the UNL node list to Node class.
         """
 
-        from decentra_network.node.server.server import server
+        from naruno.node.server.server import server
 
         nodes = [] if server.Server is None else server.Server.clients
         return nodes

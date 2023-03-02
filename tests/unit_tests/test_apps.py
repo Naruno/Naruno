@@ -16,76 +16,76 @@ import urllib
 
 import requests
 
-import decentra_network
-from decentra_network.accounts.account import Account
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.api.main import start
-from decentra_network.apps.apps_trigger import AppsTrigger
-from decentra_network.apps.remote_app import Integration
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+import naruno
+from naruno.accounts.account import Account
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.accounts.get_balance import GetBalance
+from naruno.accounts.save_accounts import SaveAccounts
+from naruno.api.main import start
+from naruno.apps.apps_trigger import AppsTrigger
+from naruno.apps.remote_app import Integration
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
                                                            GetBlockshash_part)
-from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
-from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import (
+from naruno.blockchain.block.hash.calculate_hash import CalculateHash
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
     MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
     TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
-from decentra_network.consensus.finished.finished_main import finished_main
-from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.mix.merkle_root import MerkleTree
-from decentra_network.lib.settings_system import (save_settings,
+from naruno.consensus.finished.finished_main import finished_main
+from naruno.lib.clean_up import CleanUp_tests
+from naruno.lib.config_system import get_config
+from naruno.lib.mix.merkle_root import MerkleTree
+from naruno.lib.settings_system import (save_settings,
                                                   t_mode_settings,
                                                   the_settings)
-from decentra_network.node.server.server import server
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import \
+from naruno.node.server.server import server
+from naruno.node.unl import Unl
+from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
-from decentra_network.transactions.my_transactions.save_my_transaction import \
+from naruno.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+from naruno.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
-from decentra_network.transactions.my_transactions.validate_transaction import \
+from naruno.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
-from decentra_network.transactions.pending.delete_pending import DeletePending
-from decentra_network.transactions.pending.get_pending import GetPendingLen
-from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.print_wallets import print_wallets
-from decentra_network.wallet.save_wallet_list import save_wallet_list
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_import import Address, wallet_import
+from naruno.transactions.pending.delete_pending import DeletePending
+from naruno.transactions.pending.get_pending import GetPendingLen
+from naruno.transactions.transaction import Transaction
+from naruno.wallet.get_saved_wallet import get_saved_wallet
+from naruno.wallet.print_wallets import print_wallets
+from naruno.wallet.save_wallet_list import save_wallet_list
+from naruno.wallet.wallet_create import wallet_create
+from naruno.wallet.wallet_import import Address, wallet_import
 
-decentra_network.api.main.custom_block = Block("Onur")
-decentra_network.api.main.custom_current_time = int(time.time()) + 25
-decentra_network.api.main.custom_sequence_number = 0
-decentra_network.api.main.custom_balance = 100000
+naruno.api.main.custom_block = Block("Onur")
+naruno.api.main.custom_current_time = int(time.time()) + 25
+naruno.api.main.custom_sequence_number = 0
+naruno.api.main.custom_balance = 100000
 
-decentra_network.api.main.custom_TEMP_BLOCK_PATH = "db/test_API_BLOCK_PATH.json"
-decentra_network.api.main.custom_TEMP_ACCOUNTS_PATH = "db/test_API_ACCOUNTS_PATH.json"
-decentra_network.api.main.custom_TEMP_BLOCKSHASH_PATH = (
+naruno.api.main.custom_TEMP_BLOCK_PATH = "db/test_API_BLOCK_PATH.json"
+naruno.api.main.custom_TEMP_ACCOUNTS_PATH = "db/test_API_ACCOUNTS_PATH.json"
+naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = (
     "db/test_API_BLOCKSHASH_PATH.json")
-decentra_network.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
+naruno.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
     "db/test_API_BLOCKSHASH_PART_PATH.json")
 
 the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15, 1)
 temp_path = "db/test_API.db"
 SaveAccounts(the_account_2, temp_path)
 
-decentra_network.api.main.account_list = GetAccounts(temp_path)
+naruno.api.main.account_list = GetAccounts(temp_path)
 
 a_account = Account("<address>", 1000)
 SaveAccounts([a_account], "db/test_send_coin_data_page_data.db")
 the_accounts = GetAccounts("db/test_send_coin_data_page_data.db")
-decentra_network.api.main.custom_account_list = the_accounts
+naruno.api.main.custom_account_list = the_accounts
 
-decentra_network.api.main.custom_wallet = "test_account_2"
+naruno.api.main.custom_wallet = "test_account_2"
 
 
 class Test_apps(unittest.TestCase):
@@ -93,7 +93,7 @@ class Test_apps(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
-        decentra_network.api.main.account_list = GetAccounts(temp_path)
+        naruno.api.main.account_list = GetAccounts(temp_path)
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
             ".json", "_0.json").replace("temp_", "test_temp_")
@@ -241,7 +241,7 @@ class Test_apps(unittest.TestCase):
         cls.proc.start()
 
         sys.argv = backup
-        decentra_network.api.main.custom_server = cls.node_0
+        naruno.api.main.custom_server = cls.node_0
         time.sleep(2)
 
     @classmethod

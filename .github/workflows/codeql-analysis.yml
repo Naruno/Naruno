@@ -17,7 +17,7 @@ on:
       - '.github/workflows/codeql-analysis.yml'
       - 'docker/**'
       - 'setups/**'
-      - 'decentra_network/**'  
+      - 'naruno/**'  
       - 'requirements/**'
       - 'tests/**'
   pull_request:
@@ -25,7 +25,7 @@ on:
       - '.github/workflows/codeql-analysis.yml'
       - 'docker/**'
       - 'setups/**'
-      - 'decentra_network/**'  
+      - 'naruno/**'  
       - 'requirements/**'
       - 'tests/**'
   schedule:

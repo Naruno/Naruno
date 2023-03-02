@@ -7,9 +7,9 @@
 import json
 import os
 
-from decentra_network.config import PENDING_TRANSACTIONS_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.transaction import Transaction
+from naruno.config import PENDING_TRANSACTIONS_PATH
+from naruno.lib.config_system import get_config
+from naruno.transactions.transaction import Transaction
 
 
 def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):

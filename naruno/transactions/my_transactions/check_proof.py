@@ -10,20 +10,20 @@ import zipfile
 from hashlib import sha256
 from zipfile import ZipFile
 
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.blockchain.block.blocks_hash import GetBlockshash
+from naruno.blockchain.block.blocks_hash import GetBlockshash_part
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
-from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
-from decentra_network.config import BLOCKS_PATH
-from decentra_network.config import EXTRACTED_PROOFS_PATH
-from decentra_network.config import MY_TRANSACTION_PATH
-from decentra_network.config import PROOF_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.mix.merkle_root import MerkleTree
-from decentra_network.transactions.transaction import Transaction
+from naruno.blockchain.block.hash.calculate_hash import CalculateHash
+from naruno.config import BLOCKS_PATH
+from naruno.config import EXTRACTED_PROOFS_PATH
+from naruno.config import MY_TRANSACTION_PATH
+from naruno.config import PROOF_PATH
+from naruno.lib.config_system import get_config
+from naruno.lib.mix.merkle_root import MerkleTree
+from naruno.transactions.transaction import Transaction
 
 
 def CheckProof(

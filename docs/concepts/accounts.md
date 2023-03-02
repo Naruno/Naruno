@@ -8,7 +8,7 @@ nav_order: 4
 
 The most important area of the Naruno Blockchain is Accounts. It makes the **Blockchain light**.
 
-The core elements of an [account](https://github.com/Naruno/Naruno/blob/master/decentra_network/accounts/account.py#L19) are:
+The core elements of an [account](https://github.com/Naruno/Naruno/blob/master/naruno/accounts/account.py#L19) are:
 
 - An identifying **address**, such as 6e427f9c0e6ee1d71ea7516d5ae861da5dc9cc11. (This naruno **specific [addressing](#addressing-system)**.)
 - A **sequence number**, which helps make sure any transactions this account sends are applied in the correct order and only once each. After a transaction, the sender account's sequence number increases by 1.
@@ -54,7 +54,7 @@ This function gives the address of a public key.
 You can import with this command
 
 ```python
-from decentra_network.wallet.wallet import Address
+from naruno.wallet.wallet import Address
 
 public_key = "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEAtLa9K8MLg+frIEFBYmbYDsc0INqXedAF8SlpEGQQmOSjKV+6MxpVP53bl6elalJfCMV33WhqAelf3qkx+QHvw=="
 

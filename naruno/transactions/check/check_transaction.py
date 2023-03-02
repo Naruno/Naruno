@@ -4,13 +4,13 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.blockchain.block.change_transaction_fee import \
+from naruno.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
-from decentra_network.lib.log import get_logger
-from decentra_network.transactions.check.datas.check_datas import Check_Datas
-from decentra_network.transactions.check.len.check_len import Check_Len
-from decentra_network.transactions.check.sign.check_sign import Check_Sign
-from decentra_network.transactions.check.type.check_type import Check_Type
+from naruno.lib.log import get_logger
+from naruno.transactions.check.datas.check_datas import Check_Datas
+from naruno.transactions.check.len.check_len import Check_Len
+from naruno.transactions.check.sign.check_sign import Check_Sign
+from naruno.transactions.check.type.check_type import Check_Type
 
 logger = get_logger("TRANSACTIONS")
 

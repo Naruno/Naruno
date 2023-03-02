@@ -4,8 +4,8 @@ import sys
 from typing import Union
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
+from naruno.lib.config_system import get_config
+from naruno.lib.log import get_logger
 
 logger = get_logger("LIB")
 

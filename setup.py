@@ -11,8 +11,8 @@ from setuptools import setup
 setup(
     author="Naruno Developers",
     author_email="onur@naruno.org",
-    packages=["decentra_network"],
-    name="decentra_network",
+    packages=["naruno"],
+    name="naruno",
     version="0.44.0",
     url="https://github.com/Naruno/Naruno",
     description=
@@ -41,9 +41,9 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "dngui = decentra_network.gui.main:start",
-            "dncli = decentra_network.cli.main:start",
-            "dnapi = decentra_network.api.main:start",
+            "dngui = naruno.gui.main:start",
+            "dncli = naruno.cli.main:start",
+            "dnapi = naruno.api.main:start",
         ],
     },
     license="MPL-2.0",

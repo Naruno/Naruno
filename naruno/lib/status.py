@@ -6,10 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import \
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.node.unl import Unl
+from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
 
 

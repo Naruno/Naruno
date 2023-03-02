@@ -10,4 +10,4 @@ WORKDIR /app/
 
 COPY Naruno Naruno
 
-CMD [ "python3", "Naruno/decentra_network/cli/main.py"]
+CMD [ "python3", "Naruno/naruno/cli/main.py"]

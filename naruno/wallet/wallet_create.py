@@ -4,11 +4,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.config import *
-from decentra_network.lib.encryption import encrypt
-from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.save_wallet_list import save_to_wallet_list
+from naruno.config import *
+from naruno.lib.encryption import encrypt
+from naruno.wallet.ellipticcurve.privateKey import PrivateKey
+from naruno.wallet.get_saved_wallet import get_saved_wallet
+from naruno.wallet.save_wallet_list import save_to_wallet_list
 
 
 def wallet_create(password, save=True):

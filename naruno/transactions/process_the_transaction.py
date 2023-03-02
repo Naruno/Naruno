@@ -6,11 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import sqlite3
 
-from decentra_network.accounts.account import Account
-from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.shares import shares
-from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.wallet.wallet_import import Address
+from naruno.accounts.account import Account
+from naruno.accounts.save_accounts import SaveAccounts
+from naruno.blockchain.block.shares import shares
+from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.wallet.wallet_import import Address
 
 
 def ProccesstheTransaction(

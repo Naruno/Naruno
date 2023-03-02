@@ -4,8 +4,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.wallet.wallet_import import Address
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.wallet.wallet_import import Address
 
 
 def GetSequanceNumber(user, account_list=None):

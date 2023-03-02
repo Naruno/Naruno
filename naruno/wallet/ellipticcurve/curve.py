@@ -5,7 +5,7 @@
 #
 # y^2 = x^3 + A*x + B (mod P)
 #
-from decentra_network.wallet.ellipticcurve.point import Point
+from naruno.wallet.ellipticcurve.point import Point
 
 
 class CurveFp:

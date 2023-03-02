@@ -6,9 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import sqlite3
 
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.wallet.wallet_import import Address
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.wallet.wallet_import import Address
 
 
 def GetBalance(user,

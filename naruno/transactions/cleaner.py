@@ -6,13 +6,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import copy
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.transactions.check.check_transaction import \
+from naruno.blockchain.block.block_main import Block
+from naruno.transactions.check.check_transaction import \
     CheckTransaction
-from decentra_network.transactions.check.datas.check_datas import Check_Datas
-from decentra_network.transactions.pending.delete_pending import DeletePending
-from decentra_network.transactions.pending.get_pending import GetPending
-from decentra_network.transactions.pending.save_pending import SavePending
+from naruno.transactions.check.datas.check_datas import Check_Datas
+from naruno.transactions.pending.delete_pending import DeletePending
+from naruno.transactions.pending.get_pending import GetPending
+from naruno.transactions.pending.save_pending import SavePending
 
 
 def Cleaner(block: Block, pending_list_txs: list,

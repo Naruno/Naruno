@@ -9,15 +9,15 @@ import os
 from hashlib import sha256
 from zipfile import ZipFile
 
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
-from decentra_network.config import BLOCKS_PATH
-from decentra_network.config import MY_TRANSACTION_PATH
-from decentra_network.config import PROOF_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.transactions.transaction import Transaction
+from naruno.config import BLOCKS_PATH
+from naruno.config import MY_TRANSACTION_PATH
+from naruno.config import PROOF_PATH
+from naruno.lib.config_system import get_config
+from naruno.transactions.transaction import Transaction
 
 
 def GetProof(

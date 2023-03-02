@@ -9,15 +9,15 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
-from decentra_network.lib.performance_analyzers.accounts import \
+from naruno.lib.performance_analyzers.accounts import \
     Accounts_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.block import \
+from naruno.lib.performance_analyzers.block import \
     Block_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.blockshash import \
+from naruno.lib.performance_analyzers.blockshash import \
     Blockshash_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.blockshash_part import \
+from naruno.lib.performance_analyzers.blockshash_part import \
     Blockshash_part_IO_Performance_Analyzer
-from decentra_network.lib.performance_analyzers.transactions import \
+from naruno.lib.performance_analyzers.transactions import \
     Transactions_IO_Performance_Analyzer
 
 

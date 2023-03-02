@@ -7,16 +7,16 @@
 import os
 import shutil
 
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash
-from decentra_network.blockchain.block.blocks_hash import GetBlockshash_part
-from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
-from decentra_network.blockchain.block.blocks_hash import SaveBlockshash_part
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import BLOCKS_PATH
-from decentra_network.config import TEMP_ACCOUNTS_PATH
-from decentra_network.wallet.wallet_import import wallet_import
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.accounts.save_accounts import SaveAccounts
+from naruno.blockchain.block.blocks_hash import GetBlockshash
+from naruno.blockchain.block.blocks_hash import GetBlockshash_part
+from naruno.blockchain.block.blocks_hash import SaveBlockshash
+from naruno.blockchain.block.blocks_hash import SaveBlockshash_part
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.config import BLOCKS_PATH
+from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.wallet.wallet_import import wallet_import
 
 
 def SaveBlockstoBlockchainDB(

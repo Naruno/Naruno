@@ -12,7 +12,7 @@ from os.path import dirname, abspath, join, basename
 uix = os.path.join(kivymd.path, f"uix{os.sep}")
 toast = os.path.join(kivymd.path, f"toast{os.sep}")
 
-a = Analysis(['decentra_network\\gui\\main.py'],
+a = Analysis(['naruno\\gui\\main.py'],
              pathex=[],
              binaries=[],
              datas=[

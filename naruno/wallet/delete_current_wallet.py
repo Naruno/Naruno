@@ -4,12 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.settings_system import change_wallet
-from decentra_network.lib.settings_system import the_settings
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.wallet_delete import wallet_delete
-from decentra_network.wallet.wallet_import import wallet_import
+from naruno.lib.log import get_logger
+from naruno.lib.settings_system import change_wallet
+from naruno.lib.settings_system import the_settings
+from naruno.wallet.get_saved_wallet import get_saved_wallet
+from naruno.wallet.wallet_delete import wallet_delete
+from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("WALLET")
 

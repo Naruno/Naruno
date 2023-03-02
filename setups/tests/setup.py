@@ -7,7 +7,7 @@
 from setuptools import setup
 
 setup(
-    name="decentra_network_tests",
+    name="naruno_tests",
     version="0.44.0",
     description="""This is a tool for tests on Naruno""",
     url="https://docs.naruno.org/",
@@ -18,7 +18,7 @@ setup(
 requests==2.28.0
 pytest==7.1.2
 speed_calculator==0.4.1
-decentra_network_api==0.44.0
+naruno_api==0.44.0
 """,
     python_requires=">=3.8",
     zip_safe=False,

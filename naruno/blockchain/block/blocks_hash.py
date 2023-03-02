@@ -8,10 +8,10 @@ import json
 import os
 import sqlite3
 
-from decentra_network.config import TEMP_BLOCKSHASH_PART_PATH
-from decentra_network.config import TEMP_BLOCKSHASH_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
+from naruno.config import TEMP_BLOCKSHASH_PART_PATH
+from naruno.config import TEMP_BLOCKSHASH_PATH
+from naruno.lib.config_system import get_config
+from naruno.lib.log import get_logger
 
 logger = get_logger("BLOCKCHAIN")
 

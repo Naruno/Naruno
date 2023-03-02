@@ -9,12 +9,12 @@ from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
-import decentra_network.gui.the_decentra_network_gui_app
-from decentra_network.lib.settings_system import d_mode_settings
-from decentra_network.lib.settings_system import dark_mode_settings
-from decentra_network.lib.settings_system import mt_settings
-from decentra_network.lib.settings_system import t_mode_settings
-from decentra_network.lib.settings_system import the_settings
+import naruno.gui.the_naruno_gui_app
+from naruno.lib.settings_system import d_mode_settings
+from naruno.lib.settings_system import dark_mode_settings
+from naruno.lib.settings_system import mt_settings
+from naruno.lib.settings_system import t_mode_settings
+from naruno.lib.settings_system import the_settings
 
 
 class SettingsScreen(MDScreen):
@@ -60,7 +60,7 @@ class SettingsBox(MDGridLayout):
         if instance_button.text == "OK":
             self.alert.dismiss()
             SettingsBox.dark_mode_first_status = the_settings()["dark_mode"]
-            decentra_network.gui.the_decentra_network_gui_app.the_decentra_network_gui.restart(
+            naruno.gui.the_naruno_gui_app.the_naruno_gui.restart(
             )
 
         else:

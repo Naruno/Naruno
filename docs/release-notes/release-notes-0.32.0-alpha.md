@@ -21,8 +21,8 @@ There have been no compatibility changes.
 ## Transactions
 With this minor version we added two function for the transactions proofs. One of them is for getting the transaction proof and the other one is for checking the transaction proof.
 
-- `decentra_network.transactions.my_transactions.get_proof.GetProof`
-- `decentra_network.transactions.my_transactions.check_proof.CheckProof`
+- `naruno.transactions.my_transactions.get_proof.GetProof`
+- `naruno.transactions.my_transactions.check_proof.CheckProof`
 
 ## CLI
 Added two new commands for the argument based CLI about the transaction proof:

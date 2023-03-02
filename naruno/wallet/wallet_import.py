@@ -14,15 +14,15 @@ from hashlib import sha256
 from random import SystemRandom
 from sys import version_info as pyVersion
 
-from decentra_network.config import *
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.encryption import decrypt
-from decentra_network.lib.encryption import encrypt
-from decentra_network.lib.settings_system import the_settings
-from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.save_wallet_list import save_to_wallet_list
-from decentra_network.wallet.wallet_create import wallet_create
+from naruno.config import *
+from naruno.lib.config_system import get_config
+from naruno.lib.encryption import decrypt
+from naruno.lib.encryption import encrypt
+from naruno.lib.settings_system import the_settings
+from naruno.wallet.ellipticcurve.privateKey import PrivateKey
+from naruno.wallet.get_saved_wallet import get_saved_wallet
+from naruno.wallet.save_wallet_list import save_to_wallet_list
+from naruno.wallet.wallet_create import wallet_create
 
 
 def wallet_import(wallet, mode, password=None):

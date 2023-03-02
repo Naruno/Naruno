@@ -11,7 +11,7 @@ This documentation covers the functionality of the project's Command Line Interf
 
 At first you should download decentra network as package with:
 ```console
-pip install decentra_network
+pip install naruno
 ```
 or you can install from your source directory and in root folder with:
 ```console

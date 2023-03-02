@@ -7,16 +7,16 @@
 import time
 from hashlib import sha256
 
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.accounts.get_sequence_number import GetSequanceNumber
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.settings_system import the_settings
-from decentra_network.transactions.get_transaction import GetTransaction
-from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.ellipticcurve.ecdsa import Ecdsa
-from decentra_network.wallet.ellipticcurve.privateKey import PrivateKey
-from decentra_network.wallet.wallet_import import wallet_import
+from naruno.accounts.get_balance import GetBalance
+from naruno.accounts.get_sequence_number import GetSequanceNumber
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.lib.log import get_logger
+from naruno.lib.settings_system import the_settings
+from naruno.transactions.get_transaction import GetTransaction
+from naruno.transactions.transaction import Transaction
+from naruno.wallet.ellipticcurve.ecdsa import Ecdsa
+from naruno.wallet.ellipticcurve.privateKey import PrivateKey
+from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("TRANSACTIONS")
 

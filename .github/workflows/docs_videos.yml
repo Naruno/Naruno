@@ -4,12 +4,12 @@ on:
   push:
     paths:
       - '.github/workflows/docs_videos.yml'
-      - 'decentra_network/gui_lib/images/logo.ico'  
+      - 'naruno/gui_lib/images/logo.ico'  
 
   pull_request:
     paths:
       - '.github/workflows/docs_videos.yml'
-      - 'decentra_network/gui_lib/images/logo.ico'    
+      - 'naruno/gui_lib/images/logo.ico'    
   release:
     types: [published]
   workflow_dispatch:
@@ -35,15 +35,15 @@ jobs:
 
       - name: Zip
         run: |
-          zip -r node_docs_videos_decentra_network ${{ steps.renderer.outputs.video_path }}
+          zip -r node_docs_videos_naruno ${{ steps.renderer.outputs.video_path }}
       
       - uses: actions/upload-artifact@v2
         with:
-          name: node_docs_videos_decentra_network
-          path: node_docs_videos_decentra_network.zip
+          name: node_docs_videos_naruno
+          path: node_docs_videos_naruno.zip
       
       - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          files: 'node_docs_videos_decentra_network.zip'
+          files: 'node_docs_videos_naruno.zip'

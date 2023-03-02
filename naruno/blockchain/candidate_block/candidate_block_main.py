@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
-from decentra_network.transactions.transaction import Transaction
+from naruno.transactions.transaction import Transaction
 class candidate_block:
     """
     The candidate_block class.

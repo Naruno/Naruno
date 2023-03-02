@@ -9,15 +9,15 @@ import json
 import os
 import time
 
-from decentra_network.accounts.account import Account
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.blocks_hash import SaveBlockshash
-from decentra_network.config import TEMP_BLOCK_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.log import get_logger
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.transaction import Transaction
+from naruno.accounts.account import Account
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.accounts.save_accounts import SaveAccounts
+from naruno.blockchain.block.blocks_hash import SaveBlockshash
+from naruno.config import TEMP_BLOCK_PATH
+from naruno.lib.config_system import get_config
+from naruno.lib.log import get_logger
+from naruno.node.unl import Unl
+from naruno.transactions.transaction import Transaction
 
 logger = get_logger("BLOCKCHAIN")
 

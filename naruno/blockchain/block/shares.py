@@ -6,9 +6,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.lib.log import get_logger
-from decentra_network.transactions.transaction import Transaction
+from naruno.blockchain.block.block_main import Block
+from naruno.lib.log import get_logger
+from naruno.transactions.transaction import Transaction
 
 logger = get_logger("BLOCKCHAIN")
 

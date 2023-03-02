@@ -12,31 +12,31 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import time
 import unittest
 
-from decentra_network.accounts.account import Account
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+from naruno.accounts.account import Account
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.accounts.save_accounts import SaveAccounts
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
                                                            GetBlockshash_part,
                                                            SaveBlockshash,
                                                            SaveBlockshash_part)
-from decentra_network.blockchain.block.create_block import CreateBlock
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+from naruno.blockchain.block.create_block import CreateBlock
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
-from decentra_network.blockchain.block.hash.accounts_hash import AccountsHash
-from decentra_network.blockchain.block.hash.blocks_hash import BlocksHash
-from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
-from decentra_network.blockchain.block.hash.tx_hash import TransactionsHash
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.block.save_block_to_blockchain_db import \
+from naruno.blockchain.block.hash.accounts_hash import AccountsHash
+from naruno.blockchain.block.hash.blocks_hash import BlocksHash
+from naruno.blockchain.block.hash.calculate_hash import CalculateHash
+from naruno.blockchain.block.hash.tx_hash import TransactionsHash
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.blockchain.block.save_block_to_blockchain_db import \
     SaveBlockstoBlockchainDB
-from decentra_network.blockchain.block.shares import shares
-from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.node.client.client import client
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.wallet_import import wallet_import
+from naruno.blockchain.block.shares import shares
+from naruno.lib.clean_up import CleanUp_tests
+from naruno.node.client.client import client
+from naruno.node.unl import Unl
+from naruno.transactions.transaction import Transaction
+from naruno.wallet.wallet_import import wallet_import
 
 
 class Test_Blockchain(unittest.TestCase):

@@ -13,19 +13,19 @@
 import time
 from xmlrpc.client import Boolean
 
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
-from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
+from naruno.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     process_candidate_blocks_hashes
-from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import \
+from naruno.consensus.rounds.round_2.process.rescue.rescue_main import \
     rescue_main
-from decentra_network.consensus.rounds.round_2.process.validate.validate_main import \
+from naruno.consensus.rounds.round_2.process.validate.validate_main import \
     validate_main
-from decentra_network.lib.log import get_logger
-from decentra_network.node.client.client import client
-from decentra_network.node.server.server import server
+from naruno.lib.log import get_logger
+from naruno.node.client.client import client
+from naruno.node.server.server import server
 
 logger = get_logger("CONSENSUS_SECOND_ROUND")
 

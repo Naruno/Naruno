@@ -9,9 +9,9 @@ import os
 import sys
 import time
 
-from decentra_network.config import LOGS_PATH
-from decentra_network.lib.config_system import get_config
-from decentra_network.lib.settings_system import the_settings
+from naruno.config import LOGS_PATH
+from naruno.lib.config_system import get_config
+from naruno.lib.settings_system import the_settings
 
 global_logger = []
 

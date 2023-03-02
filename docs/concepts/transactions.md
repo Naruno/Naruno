@@ -9,7 +9,7 @@ nav_order: 5
 Transactions are the mainstay of every operation on the network. If the transaction is correct, it will be accepted.
 Pseudo transactions are not accepted and will not propagated through the network.
 
-The core elements of an [transaction](https://github.com/Naruno/Naruno/blob/master/decentra_network/transactions/transaction.py#L13) are:
+The core elements of an [transaction](https://github.com/Naruno/Naruno/blob/master/naruno/transactions/transaction.py#L13) are:
 
 - A number from the account class that ensures that
   each transaction is valid once.

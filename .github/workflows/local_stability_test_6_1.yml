@@ -26,14 +26,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -60,14 +60,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -94,14 +94,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -128,14 +128,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -162,14 +162,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -196,14 +196,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -230,14 +230,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -264,14 +264,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -298,14 +298,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -332,14 +332,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -366,14 +366,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -400,14 +400,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -434,14 +434,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -468,14 +468,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -502,14 +502,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -536,14 +536,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -570,14 +570,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -604,14 +604,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -638,14 +638,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -672,14 +672,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -706,14 +706,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -740,14 +740,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -774,14 +774,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -808,14 +808,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -842,14 +842,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -876,14 +876,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -910,14 +910,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -944,14 +944,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -978,14 +978,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1012,14 +1012,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1046,14 +1046,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1080,14 +1080,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1114,14 +1114,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1148,14 +1148,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1182,14 +1182,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1216,14 +1216,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1250,14 +1250,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1284,14 +1284,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1318,14 +1318,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1352,14 +1352,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1386,14 +1386,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1420,14 +1420,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1454,14 +1454,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1488,14 +1488,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1522,14 +1522,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1556,14 +1556,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1590,14 +1590,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1624,14 +1624,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1658,14 +1658,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1692,14 +1692,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1726,14 +1726,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1760,14 +1760,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1794,14 +1794,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1828,14 +1828,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1862,14 +1862,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1896,14 +1896,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1930,14 +1930,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1964,14 +1964,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -1998,14 +1998,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2032,14 +2032,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2066,14 +2066,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2100,14 +2100,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2134,14 +2134,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2168,14 +2168,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2202,14 +2202,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2236,14 +2236,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2270,14 +2270,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2304,14 +2304,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2338,14 +2338,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2372,14 +2372,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2406,14 +2406,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2440,14 +2440,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2474,14 +2474,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2508,14 +2508,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2542,14 +2542,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2576,14 +2576,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2610,14 +2610,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2644,14 +2644,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2678,14 +2678,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2712,14 +2712,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2746,14 +2746,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2780,14 +2780,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2814,14 +2814,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2848,14 +2848,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2882,14 +2882,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2916,14 +2916,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2950,14 +2950,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -2984,14 +2984,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3018,14 +3018,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3052,14 +3052,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3086,14 +3086,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3120,14 +3120,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3154,14 +3154,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3188,14 +3188,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3222,14 +3222,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3256,14 +3256,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3290,14 +3290,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3324,14 +3324,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3358,14 +3358,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |
@@ -3392,14 +3392,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_decentra_network_local_6_1.py') }}            
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/local/test_naruno_local_6_1.py') }}            
     - name: Install dependencies and run tests
       run: |
         pip install -r requirements/tests.txt
         
         cd ..
         
-        pytest Naruno/tests/stability_tests/local/test_decentra_network_local_6_1.py 
+        pytest Naruno/tests/stability_tests/local/test_naruno_local_6_1.py 
 
     - name: Status Information
       run: |

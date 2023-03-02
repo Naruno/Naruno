@@ -34,7 +34,7 @@ python3 Naruno/auto_builders/local.py -nn 3 -scn 1 -d -i -s -r
 If everything is ok, you can see and check the test network with the following command:
 
 ```bash
-python3 Naruno-0/decentra_network/cli/main.py -s
+python3 Naruno-0/naruno/cli/main.py -s
 ```
 
 If status is equal to "Working" there is no problem.

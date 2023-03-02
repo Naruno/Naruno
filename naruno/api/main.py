@@ -18,36 +18,36 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from flask_cors import CORS
 
-from decentra_network.accounts.get_balance import GetBalance
-from decentra_network.blockchain.block.create_block import CreateBlock
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.consensus.consensus_main import consensus_trigger
-from decentra_network.lib.export import export_the_transactions
-from decentra_network.lib.log import get_logger
-from decentra_network.lib.perpetualtimer import perpetualTimer
-from decentra_network.lib.safety import safety_check
-from decentra_network.lib.settings_system import (d_mode_settings,
+from naruno.accounts.get_balance import GetBalance
+from naruno.blockchain.block.create_block import CreateBlock
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.consensus.consensus_main import consensus_trigger
+from naruno.lib.export import export_the_transactions
+from naruno.lib.log import get_logger
+from naruno.lib.perpetualtimer import perpetualTimer
+from naruno.lib.safety import safety_check
+from naruno.lib.settings_system import (d_mode_settings,
                                                   t_mode_settings,
                                                   the_settings)
-from decentra_network.lib.sign import sign
-from decentra_network.lib.status import Status
-from decentra_network.lib.verify import verify
-from decentra_network.node.server.server import server
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.check_proof import \
+from naruno.lib.sign import sign
+from naruno.lib.status import Status
+from naruno.lib.verify import verify
+from naruno.node.server.server import server
+from naruno.node.unl import Unl
+from naruno.transactions.my_transactions.check_proof import \
     CheckProof
-from decentra_network.transactions.my_transactions.get_my_transaction import \
+from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
-from decentra_network.transactions.my_transactions.get_proof import GetProof
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+from naruno.transactions.my_transactions.get_proof import GetProof
+from naruno.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
-from decentra_network.transactions.send import send
-from decentra_network.wallet.delete_current_wallet import delete_current_wallet
-from decentra_network.wallet.print_wallets import print_wallets
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_import import wallet_import
-from decentra_network.wallet.wallet_selector import wallet_selector
+from naruno.transactions.send import send
+from naruno.wallet.delete_current_wallet import delete_current_wallet
+from naruno.wallet.print_wallets import print_wallets
+from naruno.wallet.wallet_create import wallet_create
+from naruno.wallet.wallet_import import wallet_import
+from naruno.wallet.wallet_selector import wallet_selector
 
 logger = get_logger("API")
 

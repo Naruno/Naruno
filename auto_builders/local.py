@@ -69,7 +69,7 @@ class Decentra_Network_Local:
 
         for line in os.popen("ps ax | grep python3 | grep -v grep"):
             fields = line.split()
-            if "/decentra_network/api/main.py" in fields[5]:
+            if "/naruno/api/main.py" in fields[5]:
                 os.kill(int(fields[0]), signal.SIGKILL)
         os.system("rm -r -f Naruno-0.out")
         for i in range(self.number_of_nodes):
@@ -78,11 +78,11 @@ class Decentra_Network_Local:
     def run(self):
         time.sleep(1 * self.number_of_nodes)
         os.system(
-            "nohup python3 Naruno-0/decentra_network/api/main.py >> Naruno-0.out &"
+            "nohup python3 Naruno-0/naruno/api/main.py >> Naruno-0.out &"
         )
         for i in range(self.number_of_nodes):
             os.system(
-                f"nohup python3 Naruno-{i+1}/decentra_network/api/main.py -p {8100 + i + 1} >> Naruno-{i + 1}.out &"
+                f"nohup python3 Naruno-{i+1}/naruno/api/main.py -p {8100 + i + 1} >> Naruno-{i + 1}.out &"
             )
 
     def debug_and_test_mode(self):

@@ -7,4 +7,4 @@ RUN apk --no-cache add git
 
 RUN git clone https://github.com/Naruno/Naruno
 
-CMD [ "python3", "Naruno/decentra_network/cli/main.py"]
+CMD [ "python3", "Naruno/naruno/cli/main.py"]

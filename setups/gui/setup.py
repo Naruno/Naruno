@@ -7,7 +7,7 @@
 from setuptools import setup
 
 setup(
-    name="decentra_network_gui",
+    name="naruno_gui",
     version="0.44.0",
     description="""This is GUI mode installer for Naruno""",
     url="https://docs.naruno.org/",

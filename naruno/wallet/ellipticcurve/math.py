@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from decentra_network.wallet.ellipticcurve.point import Point
+from naruno.wallet.ellipticcurve.point import Point
 
 
 class Math:

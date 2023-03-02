@@ -12,4 +12,4 @@ COPY Naruno Naruno
 
 RUN pip install --no-cache-dir -r Naruno/requirements/api.txt
 
-CMD [ "python3", "Naruno/decentra_network/api/main.py"]
+CMD [ "python3", "Naruno/naruno/api/main.py"]

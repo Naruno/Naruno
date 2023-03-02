@@ -18,7 +18,7 @@ If you want to develop applications inside Decentra network you can use our Apps
 The embedded applications must have a communication section that written in python. And this files must be in some rules.
 
 - Naruno
-  - decentra_network
+  - naruno
     - apps
       - App_Name
         - App_Name_main.py
@@ -48,7 +48,7 @@ def app_name_main_tx(tx):
 You can send a data for your appplication with send function, you can import this function from Naruno.
 
 ```python
-from decentra_network.transactions.send import send
+from naruno.transactions.send import send
 ```
 
 Before the sending you must determine the data, for this first you must create a dictionary and determine a action for your data. The action is a string, we are use this for processing the data in getting function.
@@ -83,7 +83,7 @@ And in the final we must combine the send system to App_Name_main.py file. You m
 
 import sys
 
-from decentra_network.transactions.send import send
+from naruno.transactions.send import send
 
 def app_name_send_tx(action, app_data, password, to_user) -> bool:
   data = {
@@ -112,12 +112,12 @@ Firtly we must check the action of data. If the action is equal to the action th
 
 In this examples if the action is equal to "app_name_action_name" we will print the data.
 
-Firstly we will import the `wallet_import_all` from `decentra_network.wallet.wallet_import` for checking transactions came us or not.
-And we will import `get_logger` from `decentra_network.lib.log` of Naruno for printing.
+Firstly we will import the `wallet_import_all` from `naruno.wallet.wallet_import` for checking transactions came us or not.
+And we will import `get_logger` from `naruno.lib.log` of Naruno for printing.
 
 ```python
-from decentra_network.wallet.wallet_import import wallet_import_all
-from decentra_network.lib.log import get_logger
+from naruno.wallet.wallet_import import wallet_import_all
+from naruno.lib.log import get_logger
 
 ```
 
@@ -151,9 +151,9 @@ def app_name_main_tx(tx):
 import json
 import sys
 
-from decentra_network.transactions.send import send
-from decentra_network.wallet.wallet_import import wallet_import_all
-from decentra_network.lib.log import get_logger
+from naruno.transactions.send import send
+from naruno.wallet.wallet_import import wallet_import_all
+from naruno.lib.log import get_logger
 
 
 def app_name_send_tx(action, app_data, password, to_user) -> bool:
@@ -194,7 +194,7 @@ Example of a message sending:
 The first user is sending a message to the second user.
 
 ```python
-from decentra_network.apps.app_name.app_name_main import app_name_send_tx
+from naruno.apps.app_name.app_name_main import app_name_send_tx
 
 app_name_send_tx(
   "app_name_action_name", # Action
@@ -207,7 +207,7 @@ app_name_send_tx(
 The second user device is getting the message and print the data to `app_name.log` that be found at
 
 - Naruno
-  - decentra_network
+  - naruno
     - logs
       - app_name.log
 
@@ -255,7 +255,7 @@ def app_name_main_tx(tx):
 Now you can access all datas from the `get_list` function.
 
 ```python
-from decentra_network.apps.app_name.app_name_main import get_list
+from naruno.apps.app_name.app_name_main import get_list
 
 print(get_list())
 ```

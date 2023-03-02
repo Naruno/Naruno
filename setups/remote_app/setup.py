@@ -7,7 +7,7 @@
 from setuptools import setup
 
 setup(
-    name="decentra_network_remote_app",
+    name="naruno_remote_app",
     version="0.44.0",
     description="""This is a tool for apps on Naruno""",
     url="https://docs.naruno.org/",

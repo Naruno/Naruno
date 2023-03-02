@@ -7,7 +7,7 @@
 import os
 import sys
 
-from decentra_network.consensus.sync.sync import sync
+from naruno.consensus.sync.sync import sync
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -17,82 +17,82 @@ import unittest
 
 from speed_calculator import calculate
 
-from decentra_network.accounts.account import Account
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.accounts.save_accounts import SaveAccounts
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+from naruno.accounts.account import Account
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.accounts.save_accounts import SaveAccounts
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
                                                            GetBlockshash_part)
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.get_block_from_blockchain_db import \
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
-from decentra_network.blockchain.block.hash.calculate_hash import CalculateHash
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.blockchain.candidate_block.candidate_block_main import \
+from naruno.blockchain.block.hash.calculate_hash import CalculateHash
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
-from decentra_network.config import (
+from naruno.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
     PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
     TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
-from decentra_network.consensus.consensus_main import consensus_trigger
-from decentra_network.consensus.finished.finished_main import finished_main
-from decentra_network.consensus.finished.transactions.transactions_main import \
+from naruno.consensus.consensus_main import consensus_trigger
+from naruno.consensus.finished.finished_main import finished_main
+from naruno.consensus.finished.transactions.transactions_main import \
     transactions_main as transactions_main_finished
-from decentra_network.consensus.ongoing.ongoing_main import ongoing_main
-from decentra_network.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import \
+from naruno.consensus.ongoing.ongoing_main import ongoing_main
+from naruno.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import \
     candidate_blocks_check
-from decentra_network.consensus.rounds.round_1.checks.checks_main import \
+from naruno.consensus.rounds.round_1.checks.checks_main import \
     round_check as round_check_round_1
-from decentra_network.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import \
+from naruno.consensus.rounds.round_1.checks.time.time_difference.time_difference_main import \
     time_difference_check as time_difference_check_round_1
-from decentra_network.consensus.rounds.round_1.process.process_main import \
+from naruno.consensus.rounds.round_1.process.process_main import \
     round_process as round_process_round_1
-from decentra_network.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
     Remove_Duplicates
-from decentra_network.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
+from naruno.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
     find_newly
-from decentra_network.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import \
+from naruno.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import \
     find_validated
-from decentra_network.consensus.rounds.round_1.process.transactions.transactions_main import \
+from naruno.consensus.rounds.round_1.process.transactions.transactions_main import \
     transactions_main as transactions_main_round_1
-from decentra_network.consensus.rounds.round_1.round_1_main import \
+from naruno.consensus.rounds.round_1.round_1_main import \
     consensus_round_1
-from decentra_network.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
+from naruno.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     candidate_blocks_hashes_check
-from decentra_network.consensus.rounds.round_2.checks.checks_main import \
+from naruno.consensus.rounds.round_2.checks.checks_main import \
     round_check as round_check_round_2
-from decentra_network.consensus.rounds.round_2.checks.time.time_difference.time_difference_main import \
+from naruno.consensus.rounds.round_2.checks.time.time_difference.time_difference_main import \
     time_difference_check as time_difference_check_round_2
-from decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
+from naruno.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     process_candidate_blocks_hashes
-from decentra_network.consensus.rounds.round_2.process.process_main import \
+from naruno.consensus.rounds.round_2.process.process_main import \
     round_process as round_process_round_2
-from decentra_network.consensus.rounds.round_2.process.rescue.rescue_main import \
+from naruno.consensus.rounds.round_2.process.rescue.rescue_main import \
     rescue_main
-from decentra_network.consensus.rounds.round_2.process.validate.validate_main import \
+from naruno.consensus.rounds.round_2.process.validate.validate_main import \
     validate_main
-from decentra_network.consensus.rounds.round_2.round_2_main import \
+from naruno.consensus.rounds.round_2.round_2_main import \
     consensus_round_2
-from decentra_network.consensus.finished.true_time.true_time_main import true_time
-from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.mix.merkle_root import MerkleTree
-from decentra_network.lib.settings_system import save_settings, the_settings
-from decentra_network.node.server.server import server
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.my_transactions.get_my_transaction import \
+from naruno.consensus.finished.true_time.true_time_main import true_time
+from naruno.lib.clean_up import CleanUp_tests
+from naruno.lib.mix.merkle_root import MerkleTree
+from naruno.lib.settings_system import save_settings, the_settings
+from naruno.node.server.server import server
+from naruno.node.unl import Unl
+from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
-from decentra_network.transactions.my_transactions.save_my_transaction import \
+from naruno.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
-from decentra_network.transactions.my_transactions.save_to_my_transaction import \
+from naruno.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
-from decentra_network.transactions.my_transactions.validate_transaction import \
+from naruno.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
-from decentra_network.transactions.transaction import Transaction
-from decentra_network.wallet.get_saved_wallet import get_saved_wallet
-from decentra_network.wallet.save_wallet_list import save_wallet_list
-from decentra_network.wallet.wallet_create import wallet_create
-from decentra_network.wallet.wallet_import import wallet_import
+from naruno.transactions.transaction import Transaction
+from naruno.wallet.get_saved_wallet import get_saved_wallet
+from naruno.wallet.save_wallet_list import save_wallet_list
+from naruno.wallet.wallet_create import wallet_create
+from naruno.wallet.wallet_import import wallet_import
 
 
 class Test_Consensus(unittest.TestCase):

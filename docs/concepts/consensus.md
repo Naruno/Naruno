@@ -45,8 +45,8 @@ Every node send self block to the network and the network send the block to the 
 
 These process runs in the
 
-- 'decentra_network.node.server.server.send_my_block'
-- 'decentra_network.node.server.server.get_candidate_block'
+- 'naruno.node.server.server.send_my_block'
+- 'naruno.node.server.server.get_candidate_block'
 
 functions.
 
@@ -71,7 +71,7 @@ sequenceDiagram
 
 When a node got enough candidate block (Majority of UNL Nodes) it's run a decision mechanism with this:
 
-- 'decentra_network.consensus.rounds.round_1.process.transactions.transactions_main.transactions_main'
+- 'naruno.consensus.rounds.round_1.process.transactions.transactions_main.transactions_main'
 
 function.
 
@@ -102,8 +102,8 @@ The last stage of consensus is the round 2, in this stage the block hash that cr
 
 In this stage every node send self block hash to other UNL nodes with this
 
-- 'decentra_network.node.server.server.send_my_block_hash''
-- 'decentra_network.node.server.server.get_candidate_block_hash'
+- 'naruno.node.server.server.send_my_block_hash''
+- 'naruno.node.server.server.get_candidate_block_hash'
 
 functions.
 
@@ -128,7 +128,7 @@ sequenceDiagram
 
 When a node got enough candidate block hash (Majority of UNL Nodes) it's run a decision mechanism with this:
 
-- 'decentra_network.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main.process_candidate_blocks_hashes'
+- 'naruno.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main.process_candidate_blocks_hashes'
 
 function.
 

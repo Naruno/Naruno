@@ -10,7 +10,7 @@ from hashlib import sha256
 
 import requests
 
-from decentra_network.lib.config_system import get_config
+from naruno.lib.config_system import get_config
 
 
 class Integration:

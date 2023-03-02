@@ -14,25 +14,25 @@ import json
 import time
 import unittest
 
-from decentra_network.accounts.get_accounts import GetAccounts
-from decentra_network.blockchain.block.block_main import Block
-from decentra_network.blockchain.block.blocks_hash import (GetBlockshash,
+from naruno.accounts.get_accounts import GetAccounts
+from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
                                                            GetBlockshash_part)
-from decentra_network.blockchain.block.get_block import GetBlock
-from decentra_network.blockchain.block.save_block import SaveBlock
-from decentra_network.config import (
+from naruno.blockchain.block.get_block import GetBlock
+from naruno.blockchain.block.save_block import SaveBlock
+from naruno.config import (
     CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
     LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
     PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
     TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
-from decentra_network.consensus.finished.finished_main import finished_main
-from decentra_network.lib.clean_up import CleanUp_tests
-from decentra_network.lib.config_system import get_config
-from decentra_network.node.get_candidate_blocks import GetCandidateBlocks
-from decentra_network.node.server.server import server
-from decentra_network.node.unl import Unl
-from decentra_network.transactions.pending.get_pending import GetPending
-from decentra_network.transactions.transaction import Transaction
+from naruno.consensus.finished.finished_main import finished_main
+from naruno.lib.clean_up import CleanUp_tests
+from naruno.lib.config_system import get_config
+from naruno.node.get_candidate_blocks import GetCandidateBlocks
+from naruno.node.server.server import server
+from naruno.node.unl import Unl
+from naruno.transactions.pending.get_pending import GetPending
+from naruno.transactions.transaction import Transaction
 
 
 class Test_Node(unittest.TestCase):

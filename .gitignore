@@ -1,5 +1,5 @@
 #backups
-decentra_network/backups/*
+naruno/backups/*
 
 #cache
 *.cache
@@ -33,14 +33,14 @@ bin/
 *.dnsign
 
 
-decentra_network/db/qrs/*
-decentra_network/db/blocs/*
-decentra_network/db/pending_transactions/*
-decentra_network/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
-decentra_network/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
+naruno/db/qrs/*
+naruno/db/blocs/*
+naruno/db/pending_transactions/*
+naruno/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
+naruno/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
 
 
-decentra_network/apps/testing_app/*.tx
+naruno/apps/testing_app/*.tx
 
 *.log
 
