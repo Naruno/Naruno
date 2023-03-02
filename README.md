@@ -195,13 +195,8 @@ Naruno is a completely community driven project, you can contribute in any way i
 
 <p align="center">
    <a href="https://narin.net.tr/">
-  <img src="https://naruno.org/pimsudse/2022/06/narinhosting340x120.png" alt="web_infrastructure_sponsor">
+  <img src="https://naruno.org/goaxisar/2023/03/narinhosting340x120.png" alt="web_infrastructure_sponsor">
   <a/>
   </p>
 
 <br/>
-<p align="center">
-
-  <h3 align="center">Founder : Onur Atakan ULUSOY</h3>
-
-</p>
