@@ -6,7 +6,7 @@
   <h3 align="center">Naruno</h3>
 
   <p align="center">
-    Develop or use applications in your independent, decentralized application network.
+    Upgrade to new internet !
     <br />
     <a href="https://naruno.org/"><strong>Explore the website »</strong></a>
     <br />
