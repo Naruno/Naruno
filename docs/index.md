@@ -13,7 +13,7 @@ has_children: false
   <h3 align="center">Naruno</h3>
 
   <p align="center">
-    Develop or use applications in your independent, decentralized application network.
+    Upgrade to new internet !
     <br>
     <br>
     <a href="https://docs.naruno.org/getting-started/" class="btn btn-blue">Getting Started</a>
