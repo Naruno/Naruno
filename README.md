@@ -100,63 +100,29 @@
 
 # Introducing
 
-Naruno is an **open source blockchain** that combines **speed**, **security** and **decentralization**. Naruno has very high speeds, scalability, asymptotic security and complete decentralization.
-The main features of Naruno are:
+Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.
 
-- Less than 3-5 Seconds block time
-- Low size (~20mb per 1m user)
-- 10k+ transactions per second
-- Low Transaction Fee
-- Custom and low cost Token, NTF etc. Creation system (Scheduled Feature)
-- Usability even on mobile devices
-- Environmentally Friendly
-- Asymptotic security against Sybil attacks (51 Attack)
-- Completely decentralized structure
-- Official community officers supported in-chain
-- In-chain developer incentives
-- Built-in application structure
-- Custom wallet system
+- World Wide First In Node Level Transaction Proof Mechanism (Revulation to archive nodes)
+
+- FBA Consensus Protocol
+- 7 Second Block Time (Reducible to 3s)
+- 10k Potential TPS
+
+- Totaly New Infrustructure (100% Python)
+- Already Automated Workflows
+- 100% Code Coverate with unit, functional and stability tests
+- Already distribute CLI, API and GUI in Android, Windows, MacOS and Linux
+
+- Mobile Master Node Support
+- Two Web3 Integration way as Embedded App (Naruno App Engine) and Remote App (Naruno API)
+
+- And more... 
 
 \*Some features will be adjusted in stable release.
 
 The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Naruno software, designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
 
-**The Naruno has 4 control areas:**
 
-## GUI
-
-The GUI was made with **kivy** and some auxiliary libraries to be **cross platform**. It was intended to be useful with a **minimalist** design.The GUI, which has a useful structure, is ready for **additions** and **changes**.
-
-**The GUI has a total of 4 pages.**
-<br />
-
-<p float="center">
-  <img src="https://user-images.githubusercontent.com/41792982/124753209-5eb14700-df31-11eb-8f21-8b4d6575402f.PNG" width="48%" />
-  <img src="https://user-images.githubusercontent.com/41792982/124753346-8bfdf500-df31-11eb-92c1-8629663000b2.PNG" width="48%" />
-
-</p>
-<p float="center">
-  <img src="https://user-images.githubusercontent.com/41792982/124753515-bd76c080-df31-11eb-9663-6dba5db9db5d.PNG" width="48%" />
-  <img src="https://user-images.githubusercontent.com/41792982/124753541-c5366500-df31-11eb-9dbf-daf39c7decb9.PNG" width="48%" />
-</p>
-
-## CLI Menu
-
-The CLI Menu panel is designed to be useful.
-
-![cli menu](https://user-images.githubusercontent.com/41792982/124754486-f5cace80-df32-11eb-9042-b3dadbd88904.PNG)
-
-## CLI Arguments
-
-The CLI Arguments panel is designed to make some adjustments quickly and in multiple ways.
-
-![cli arguments](https://user-images.githubusercontent.com/41792982/124754779-44786880-df33-11eb-9dda-b5440128ed6c.PNG)
-
-## WEB API
-
-It has been developed to make web api control easier and to provide control by other languages and other systems.
-
-![api](https://user-images.githubusercontent.com/41792982/124757058-ded9ab80-df35-11eb-8ceb-f3e9672a0283.PNG)
 
 # Documents
 
