@@ -22,8 +22,8 @@ from naruno.config import (
     MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
     TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH,
     UNL_NODES_PATH)
-from naruno.lib.backup.narunoexport import narunoexport
-from naruno.lib.backup.narunoimport import narunoimport
+from naruno.lib.backup.naruno_export import naruno_export
+from naruno.lib.backup.naruno_import import naruno_import
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
 from naruno.lib.export import export_the_transactions
@@ -688,9 +688,9 @@ class Test_Lib(unittest.TestCase):
 
     def test_export_import(self):
         """
-        Test that the `narunoexport` and `narunoimport` functions work correctly.
+        Test that the `naruno_export` and `naruno_import` functions work correctly.
         """
-        backup = narunoexport()
+        backup = naruno_export()
         temp_settings = the_settings()
 
         changed_value = True if temp_settings["debug_mode"] is False else False
@@ -698,7 +698,7 @@ class Test_Lib(unittest.TestCase):
         new_settings = the_settings()
 
         self.assertEqual(new_settings["debug_mode"], changed_value)
-        narunoimport(backup)
+        naruno_import(backup)
         self.assertNotEqual(the_settings()["debug_mode"], changed_value)
 
 

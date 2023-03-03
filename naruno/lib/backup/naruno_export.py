@@ -12,7 +12,7 @@ from naruno.lib.log import get_logger
 logger = get_logger("LIB")
 
 
-def narunoexport() -> Union[str, None]:
+def naruno_export() -> Union[str, None]:
     """
     Create a ZIP archive of the `db` folder in the main directory of the application.
 
@@ -32,4 +32,4 @@ def narunoexport() -> Union[str, None]:
 
 
 if __name__ == "__main__":
-    narunoexport()
+    naruno_export()
