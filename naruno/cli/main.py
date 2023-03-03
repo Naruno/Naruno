@@ -18,8 +18,8 @@ from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import MY_TRANSACTION_EXPORT_PATH
 from naruno.consensus.consensus_main import consensus_trigger
-from naruno.lib.backup.decentra_export import decentra_export
-from naruno.lib.backup.decentra_import import decentra_import
+from naruno.lib.backup.narunoexport import narunoexport
+from naruno.lib.backup.narunoimport import narunoimport
 from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
 from naruno.lib.mix.mixlib import (banner_maker, menu_maker,
@@ -228,10 +228,10 @@ def menu():
             print(CheckProof(input("Please write the path of proof: ")))
 
         if choices_input == "dnexport":
-            print(decentra_export())
+            print(narunoexport())
         if choices_input == "dnimport":
             print(
-                decentra_import(
+                narunoimport(
                     input("Please write the path of exported backup: ")))
 
         if choices_input == "sign":
@@ -422,10 +422,10 @@ def arguments():
         print(CheckProof(args.checkproof))
 
     if args.dnexport:
-        print(decentra_export())
+        print(narunoexport())
 
     if args.dnimport is not None:
-        decentra_import(args.dnimport)
+        narunoimport(args.dnimport)
 
     if args.menu:
         menu()

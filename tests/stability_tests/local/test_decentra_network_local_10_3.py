@@ -15,16 +15,16 @@ import urllib
 
 import requests
 
-from auto_builders.local import Decentra_Network_Local
+from auto_builders.local import Naruno_Local
 
-temp_environment = Decentra_Network_Local(10, 3)
+temp_environment = Naruno_Local(10, 3)
 temp_environment.delete()
 temp_environment.install()
 temp_environment.run()
 temp_environment.start()
 
 
-class Test_Decentra_Network_Local(unittest.TestCase):
+class Test_Naruno_Local(unittest.TestCase):
 
     def test_multiple_transaction_with_time_difference(self):
         """

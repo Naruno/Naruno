@@ -28,9 +28,9 @@ Config.set("graphics", "minimum_width", "700")
 Config.set("graphics", "minimum_height", "450")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
-os.environ["DECENTRA_ROOT"] = get_config()["main_folder"]
+os.environ["NARUNO_ROOT"] = get_config()["main_folder"]
 
-KV_DIR = f"{os.environ['DECENTRA_ROOT']}/gui_lib/libs/kv/"
+KV_DIR = f"{os.environ['NARUNO_ROOT']}/gui_lib/libs/kv/"
 
 for kv_file in os.listdir(KV_DIR):
     with open(os.path.join(KV_DIR, kv_file), encoding="utf-8") as kv:
@@ -38,17 +38,17 @@ for kv_file in os.listdir(KV_DIR):
 
 KV = """
 #:import FadeTransition kivy.uix.screenmanager.FadeTransition
-#:import DecentraWelcomeScreen naruno.gui_lib.libs.baseclass.welcome_screen.DecentraWelcomeScreen
-#:import DecentraRootScreen naruno.gui_lib.libs.baseclass.root_screen.DecentraRootScreen
+#:import NarunoWelcomeScreen naruno.gui_lib.libs.baseclass.welcome_screen.NarunoWelcomeScreen
+#:import NarunoRootScreen naruno.gui_lib.libs.baseclass.root_screen.NarunoRootScreen
 
 ScreenManager:
     transition: FadeTransition()
 
-    DecentraWelcomeScreen:
-        name: "decentra register screen"
+    NarunoWelcomeScreen:
+        name: "naruno register screen"
 
-    DecentraRootScreen:
-        name: "decentra root screen"
+    NarunoRootScreen:
+        name: "naruno root screen"
 
 """
 
@@ -66,7 +66,7 @@ class GUI(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.title = "Naruno"
-        self.icon = f"{os.environ['DECENTRA_ROOT']}/gui_lib/images/logo.ico"
+        self.icon = f"{os.environ['NARUNO_ROOT']}/gui_lib/images/logo.ico"
 
     def build(self):
         """
@@ -77,7 +77,7 @@ class GUI(MDApp):
         self.theme_cls.theme_style = "Dark" if value else "Light"
         self.theme_cls.primary_palette = "Green"  # "Purple", "Red"
 
-        self.FONT_PATH = os.path.join(os.environ["DECENTRA_ROOT"], "gui_lib",
+        self.FONT_PATH = os.path.join(os.environ["NARUNO_ROOT"], "gui_lib",
                                       "fonts")
 
         self.theme_cls.font_styles.update({

@@ -15,16 +15,16 @@ import urllib
 
 import requests
 
-from auto_builders.docker import Decentra_Network_Docker
+from auto_builders.docker import Naruno_Docker
 
-temp_environment = Decentra_Network_Docker(6, 1)
+temp_environment = Naruno_Docker(6, 1)
 temp_environment.delete()
 temp_environment.install()
 temp_environment.run()
 temp_environment.start()
 
 
-class Test_Decentra_Network_Docker(unittest.TestCase):
+class Test_Naruno_Docker(unittest.TestCase):
 
     def test_multiple_transaction_with_time_difference(self):
         """

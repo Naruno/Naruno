@@ -63,8 +63,8 @@ Added spec files for EXE file creation for windows.
 
 - Changed the first in parameter usage to deletion
 - Increased the sleep after the installation.
-- Added parameter as number_of_security_circle to Decentra_Network_Docker class
-- Added parameter as number_of_security_circle to Decentra_Network_Local class
+- Added parameter as number_of_security_circle to Naruno_Docker class
+- Added parameter as number_of_security_circle to Naruno_Local class
 - Added parameter to command line parameter of docker base auto builers
 - Added parameter to command line parameter of local base auto builers
 - Added network creation that seperated to security circle

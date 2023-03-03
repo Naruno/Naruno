@@ -11,7 +11,7 @@ import naruno.gui.the_naruno_gui_app
 from naruno.gui.popup import popup
 
 
-class DecentraRootScreen(MDScreen):
+class NarunoRootScreen(MDScreen):
 
     def close_app(self, widget=None):
         self.close_app_dialog = popup(
@@ -22,7 +22,7 @@ class DecentraRootScreen(MDScreen):
         )
 
 
-class DecentraListItem(ThemableBehavior, RectangularRippleBehavior,
+class NarunoListItem(ThemableBehavior, RectangularRippleBehavior,
                        MDBoxLayout):
     text = StringProperty()
     secondary_text = StringProperty()
@@ -30,5 +30,5 @@ class DecentraListItem(ThemableBehavior, RectangularRippleBehavior,
     bar_color = ColorProperty((1, 0, 0, 1))
 
 
-class DecentraSeeAllButton(RectangularRippleBehavior, MDBoxLayout):
+class NarunoSeeAllButton(RectangularRippleBehavior, MDBoxLayout):
     pass

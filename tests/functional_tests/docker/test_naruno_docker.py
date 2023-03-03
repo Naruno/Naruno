@@ -15,17 +15,17 @@ import urllib
 
 import requests
 
-from auto_builders.docker import Decentra_Network_Docker
+from auto_builders.docker import Naruno_Docker
 
 
-class Test_Decentra_Network_Docker(unittest.TestCase):
+class Test_Naruno_Docker(unittest.TestCase):
 
     def test_multiple_transaction_with_time_difference(self):
         """
         Send coin to 2.wallet from 1.wallet
         """
 
-        temp_environment = Decentra_Network_Docker()
+        temp_environment = Naruno_Docker()
         temp_environment.delete()
         temp_environment.install()
         temp_environment.run()

@@ -60,7 +60,7 @@ flowchart TB
         get_d2 -- data_1 --> get_2
 
 
-        user_1 --- Decentra_Network[Naruno] --- user_2
+        user_1 --- Naruno[Naruno] --- user_2
 
 
     end
@@ -103,12 +103,12 @@ subgraph Applications Environment
             R2_1[App 5]
             R3_1[App 6]
         end
-        subgraph Decentra_Network_1 [Naruno]
+        subgraph Naruno_1 [Naruno]
             Embedded_Apps_1
         end
 
         Remote_Apps_1 --> API_1
-        API_1 <--> Decentra_Network_1
+        API_1 <--> Naruno_1
 
     end
 
@@ -127,12 +127,12 @@ subgraph Applications Environment
             R2_2[App 5]
             R3_2[App 6]
         end
-        subgraph Decentra_Network_2 [Naruno]
+        subgraph Naruno_2 [Naruno]
             Embedded_Apps_2
         end
 
         Remote_Apps_2 --> API_2
-        API_2 <--> Decentra_Network_2
+        API_2 <--> Naruno_2
 
     end
 

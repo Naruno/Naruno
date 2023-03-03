@@ -35,7 +35,7 @@ Changed the font with Poppins and added light/dark mode switch.
 ## What's Changed
 ### Docs
 * docs: Changed apps concept data name to data_1 and data_2 by @deyzir in https://github.com/Naruno/Naruno/pull/1415
-* docs: Seperating Apps concept to Decentra Networks by @onuratakan in https://github.com/Naruno/Naruno/pull/1416
+* docs: Seperating Apps concept to Narunos by @onuratakan in https://github.com/Naruno/Naruno/pull/1416
 ### Tests
 * tests: Fixed test_finished_main_save_from_no_part test by @onuratakan in https://github.com/Naruno/Naruno/pull/1413
 * tests: Fixed test_block_reset_start_time_none by @onuratakan in https://github.com/Naruno/Naruno/pull/1414

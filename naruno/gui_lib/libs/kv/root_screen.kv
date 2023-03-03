@@ -9,7 +9,7 @@
 #: import SettingsScreen naruno.gui_lib.libs.baseclass.settings_screen.SettingsScreen
 
 
-<DecentraRootScreen>
+<NarunoRootScreen>
 
     MDBoxLayout:
         orientation: 'vertical'
@@ -75,11 +75,11 @@
     bar_width: 0
 
 
-<DecentraLabel@MDLabel>
+<NarunoLabel@MDLabel>
     adaptive_height: True
 
 
-<DecentraListItem>
+<NarunoListItem>
     size_hint_y: None
     height: dp(60)
 
@@ -121,11 +121,11 @@
         pos_hint: {"center_x": .5, "center_y": .5}
         spacing: dp(2)
 
-        DecentraLabel:
+        NarunoLabel:
             text: root.text
             font_style: "Subtitle1"
 
-        DecentraLabel:
+        NarunoLabel:
             text: root.secondary_text
             theme_text_color: "Hint"
             font_style: "Button"
@@ -135,7 +135,7 @@
         padding: (0, 0, 0, dp(10))
         adaptive_height: True
 
-        DecentraLabel:
+        NarunoLabel:
             text: root.tertiary_text
             theme_text_color: "Secondary"
             pos_hint: {"center_x": .5, "center_y": .5}

@@ -16,7 +16,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from naruno.lib.config_system import get_config
 
 
-class Decentra_Network_Scene(Scene):
+class Naruno_Scene(Scene):
     """
     This scene is explain the Node concept.
     """

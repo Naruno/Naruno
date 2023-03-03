@@ -5,11 +5,11 @@ from kivy.uix.progressbar import ProgressBar
 from kivymd.uix.screen import MDScreen
 
 
-class DecentraWelcomeScreen(MDScreen):
+class NarunoWelcomeScreen(MDScreen):
     pb = ProgressBar()
 
     def __init__(self, *args, **kwargs):
-        super(DecentraWelcomeScreen, self).__init__(*args, **kwargs)
+        super(NarunoWelcomeScreen, self).__init__(*args, **kwargs)
         self.update_bar_trigger = Clock.schedule_interval(
             self.update_bar, 0.01)
 
@@ -18,4 +18,4 @@ class DecentraWelcomeScreen(MDScreen):
             self.ids.pb.value += 1
         else:
             self.update_bar_trigger.cancel()
-            self.manager.current = "decentra root screen"
+            self.manager.current = "naruno root screen"

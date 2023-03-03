@@ -15,7 +15,7 @@ from kivy.uix.label import Label
 from naruno.api.main import start
 
 
-class Decentra_Network_API(App):
+class Naruno_API(App):
 
     def build(self):
         the_api = Thread(target=start)
@@ -24,4 +24,4 @@ class Decentra_Network_API(App):
 
 
 if __name__ == "__main__":
-    Decentra_Network_API().run()
+    Naruno_API().run()

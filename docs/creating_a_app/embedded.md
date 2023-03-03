@@ -7,7 +7,7 @@ nav_order: 2
 
 # Creating a Embedded APP
 
-If you want to develop applications inside Decentra network you can use our Apps Engine. The Apps engine gives you new data and you can send data with Naruno send functions. With this you can easily integrate your today Applications with Blockchain on Decentra network.
+If you want to develop applications inside Naruno you can use our Apps Engine. The Apps engine gives you new data and you can send data with Naruno send functions. With this you can easily integrate your today Applications with Blockchain on Naruno.
 
 ## Prerequisites
 

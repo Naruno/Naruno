@@ -6,7 +6,7 @@ nav_order: 3
 
 # Usages
 ## Building a Test Network
-Test network creation A way to build a fully-fledged and functional decentra network blockchain network with automatic and manual options.You can develop applications on this network or do all other blockchain activities.
+Test network creation A way to build a fully-fledged and functional naruno blockchain network with automatic and manual options.You can develop applications on this network or do all other blockchain activities.
 So you should start with this 
 - [Building a Test Network](https://docs.naruno.org/building_a_test_network/)
 

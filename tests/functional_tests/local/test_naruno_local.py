@@ -15,17 +15,17 @@ import urllib
 
 import requests
 
-from auto_builders.local import Decentra_Network_Local
+from auto_builders.local import Naruno_Local
 
 
-class Test_Decentra_Network_Local(unittest.TestCase):
+class Test_Naruno_Local(unittest.TestCase):
 
     def test_multiple_transaction_with_time_difference(self):
         """
         Send coin to 2.wallet from 1.wallet
         """
 
-        temp_environment = Decentra_Network_Local()
+        temp_environment = Naruno_Local()
         temp_environment.delete()
         temp_environment.install()
         temp_environment.run()

@@ -29,7 +29,7 @@ classDiagram
 # Address Function
 
 Addresses allow accounts to take up less space.
-The diagram below shows how the decentra network address is created from the public key.
+The diagram below shows how the naruno address is created from the public key.
 
 ```mermaid
 flowchart RL
@@ -63,7 +63,7 @@ print(Address(public_key)
 
 # Reserve
 
-Each account takes up some space in the Naruno network, so an account needs to be valuable to take up space. Reserve amount is therefore required.
+Each account takes up some space in the Naruno, so an account needs to be valuable to take up space. Reserve amount is therefore required.
 
 - The reserve amount is currently 1000 DNC. ([Pull Request #65](https://github.com/Naruno/Naruno/commit/dead29d08e96fea738911b1cd90fe7d2d0a62c44#diff-17332442b68875a6b66bd4989c8ed80c22ce1c836445aa7042145b0c0627cf30R64))
 

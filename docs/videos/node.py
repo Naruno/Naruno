@@ -13,10 +13,10 @@ from manim import *
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from naruno.lib.config_system import get_config
-from docs.videos.main import Decentra_Network_Scene
+from docs.videos.main import Naruno_Scene
 
 
-class Node_Scene(Decentra_Network_Scene):
+class Node_Scene(Naruno_Scene):
 
     def construct(self):
         self.set_title("Node")

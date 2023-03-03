@@ -16,7 +16,7 @@ import urllib
 import requests
 
 
-class Decentra_Network_Local:
+class Naruno_Local:
 
     def __init__(self, number_of_nodes=3, number_of_security_circle=1):
         self.number_of_nodes = number_of_nodes - 1
@@ -203,10 +203,10 @@ if __name__ == "__main__":
         parser.print_help()
 
     if args.securitycirclenumber is not None:
-        temp_environment = Decentra_Network_Local(args.nodenumber,
+        temp_environment = Naruno_Local(args.nodenumber,
                                                   args.securitycirclenumber)
     else:
-        temp_environment = Decentra_Network_Local(args.nodenumber)
+        temp_environment = Naruno_Local(args.nodenumber)
 
     if args.delete:
         temp_environment.delete()

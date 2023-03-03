@@ -9,7 +9,7 @@ nav_order: 1
 Welcome to the documentation for Naruno.
 This documentation covers the functionality of the project's Command Line Interface (CLI), Application Programming Interface (API), and Graphical User Interface (GUI).
 
-At first you should download decentra network as package with:
+At first you should download naruno as package with:
 ```console
 pip install naruno
 ```
