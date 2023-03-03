@@ -30,7 +30,7 @@ bin/
 *.txt
 
 #signs
-*.dnsign
+*.narunosign
 
 
 naruno/db/qrs/*

@@ -58,7 +58,7 @@ class Naruno_Docker:
     def install(self):
         self._command_to_system(
             "docker image tag ghcr.io/naruno/api naruno-api",
-            "docker network create --subnet=172.19.0.0/16 dn-net",
+            "docker network create --subnet=172.19.0.0/16 naruno-net",
         )
 
         for i in range(self.number_of_nodes):
@@ -70,7 +70,7 @@ class Naruno_Docker:
             "docker volume rm $(docker volume ls -q -f name=naruno)",
         )
 
-        os.system("docker network rm dn-net")
+        os.system("docker network rm naruno-net")
 
     def _command_to_system(self, first_command: str, second_command: str):
         time.sleep(1 * self.number_of_nodes)
@@ -80,11 +80,11 @@ class Naruno_Docker:
     def run(self):
         time.sleep(1 * self.number_of_nodes)
         os.system(
-            "docker run --sysctl net.ipv4.tcp_rmem=65536 -v naruno-db:/app/Naruno/naruno/db/ -v naruno-logs:/app/Naruno/naruno/logs/ --network dn-net -p 8000:8000 -p 7999:7999 -dit naruno-api"
+            "docker run --sysctl net.ipv4.tcp_rmem=65536 -v naruno-db:/app/Naruno/naruno/db/ -v naruno-logs:/app/Naruno/naruno/logs/ --network naruno-net -p 8000:8000 -p 7999:7999 -dit naruno-api"
         )
         for i in range(self.number_of_nodes):
             os.system(
-                f"docker run -v naruno-db-{i}:/app/Naruno/naruno/db/ -v naruno-logs-{i}:/app/Naruno/naruno/logs/ --network dn-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
+                f"docker run -v naruno-db-{i}:/app/Naruno/naruno/db/ -v naruno-logs-{i}:/app/Naruno/naruno/logs/ --network naruno-net -p {8100 + i + 1}:8000 -p {8010 + i + 1}:{8010 + i + 1} -dit {i}"
             )
 
     def debug_and_test_mode(self):

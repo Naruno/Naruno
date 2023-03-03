@@ -13,7 +13,7 @@ setup(
     author_email="onur@naruno.org",
     packages=["naruno"],
     name="naruno",
-    version="0.44.2",
+    version="0.44.3",
     url="https://github.com/Naruno/Naruno",
     description=
     "Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.",
@@ -41,9 +41,9 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "dngui = naruno.gui.main:start",
-            "dncli = naruno.cli.main:start",
-            "dnapi = naruno.api.main:start",
+            "narunogui = naruno.gui.main:start",
+            "narunocli = naruno.cli.main:start",
+            "narunoapi = naruno.api.main:start",
         ],
     },
     license="MPL-2.0",

@@ -16,7 +16,7 @@ class Account:
       * PublicKey: Public key created with ECDSA.
       * sequence_number: Makes each transaction single use,
         incrementing 1 after each transaction.
-      * balance: The amount of dnc coins of account.
+      * balance: The amount of coins of account.
     """
 
     def __init__(self, PublicKey, balance, sequence_number=0):

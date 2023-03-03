@@ -97,8 +97,8 @@ def show_menu():
         menu_maker(menu_number="getproof", menu_text="Get Proof") +
         menu_maker(menu_number="checkproof", menu_text="Check Proof") +
         menu_space() +
-        menu_maker(menu_number="dnexport", menu_text="Export backup") +
-        menu_maker(menu_number="dnimport", menu_text="Import backup") +
+        menu_maker(menu_number="narunoexport", menu_text="Export backup") +
+        menu_maker(menu_number="narunoimport", menu_text="Import backup") +
         menu_space() +
         menu_maker(menu_number="sign", menu_text="Sign and export an data") +
         menu_maker(menu_number="verify", menu_text="Verify the signed data") +
@@ -227,9 +227,9 @@ def menu():
         if choices_input == "checkproof":
             print(CheckProof(input("Please write the path of proof: ")))
 
-        if choices_input == "dnexport":
+        if choices_input == "narunoexport":
             print(naruno_export())
-        if choices_input == "dnimport":
+        if choices_input == "narunoimport":
             print(
                 naruno_import(
                     input("Please write the path of exported backup: ")))
@@ -334,13 +334,13 @@ def arguments():
                         type=str,
                         help="Checks the given proof")
 
-    parser.add_argument("-dnexport",
-                        "--dnexport",
+    parser.add_argument("-narunoexport",
+                        "--narunoexport",
                         action="store_true",
                         help="Export backup")
 
-    parser.add_argument("-dnimport",
-                        "--dnimport",
+    parser.add_argument("-narunoimport",
+                        "--narunoimport",
                         type=str,
                         help="Import backup")
 
@@ -421,11 +421,11 @@ def arguments():
     if args.checkproof is not None:
         print(CheckProof(args.checkproof))
 
-    if args.dnexport:
+    if args.narunoexport:
         print(naruno_export())
 
-    if args.dnimport is not None:
-        naruno_import(args.dnimport)
+    if args.narunoimport is not None:
+        naruno_import(args.narunoimport)
 
     if args.menu:
         menu()
