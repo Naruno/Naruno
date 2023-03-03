@@ -78,7 +78,7 @@ class GUI(MDApp):
 
 
         for i in self.theme_cls.colors["Yellow"]:
-            self.theme_cls.colors["Yellow"][i] = "#DBFF00"
+            self.theme_cls.colors["Yellow"][i] = "#5C6BC0"
         for i in self.theme_cls.colors["Dark"]:
             self.theme_cls.colors["Dark"][i] = "#303030"
 

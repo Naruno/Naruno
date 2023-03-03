@@ -43,7 +43,7 @@ class Naruno_Scene(Scene):
         """
         Naruno is building on Node.
         """
-        text = Text("Naruno", font=self.font, color="#5ec295")
+        text = Text("Naruno", font=self.font, color="#DBFF00")
         self.play(Write(text))
         self.play(text.animate.shift(LEFT * 1.5))
         text2 = Text(self.the_title, font=self.font).shift(RIGHT * 2.5)

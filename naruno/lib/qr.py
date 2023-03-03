@@ -35,12 +35,12 @@ def qr(data):
         qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H)
         qr.add_data(data)
         qr.make(fit=True)
-        icon = f"{main_folder}/gui_lib/images/logo_w_bc.png"
+        icon = f"{main_folder}/gui_lib/images/logo_sm_orb_fw.png"
         logger.debug(f"icon: {icon}")
         qr_img = qr.make_image(
             image_factory=StyledPilImage,
             embeded_image_path=icon,
-            color_mask=SolidFillColorMask(front_color=(94, 194, 149)),
+            color_mask=SolidFillColorMask(front_color=(92, 107, 192)),
         )
         qr_img.save(location)
     else:
