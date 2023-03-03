@@ -62,15 +62,11 @@
   </p>
 
   <p align="center">
-  <a href="https://codescene.io/projects/23147/architecture/biomarkers?component=Naruno">
-  <img alt="CodeScene Code Health" src="https://codescene.io/projects/23147/status-badges/code-health?component-name=Naruno">
-</a>
+  <a href="https://codescene.io/projects/36313"><img src="https://codescene.io/projects/36313/status-badges/code-health" alt="Code Health"></a>
   .
-  <a href="https://codescene.io/projects/23147/">
-  <img alt="CodeScene System Mastery" src="https://codescene.io/projects/23147/status-badges/system-mastery?component-name=Naruno">
-</a>
+  <a href="https://codescene.io/projects/36313"><img src="https://codescene.io/projects/36313/status-badges/system-mastery" alt="System Mastery"></a>
   .
-  <a href="https://codescene.io/projects/23147"><img src="https://codescene.io/projects/23147/status-badges/missed-goals" alt="Missed Goals"></a>
+  <a href="https://codescene.io/projects/36313"><img src="https://codescene.io/projects/36313/status-badges/missed-goals" alt="Missed Goals"></a>
   </p>
 
   <p align="center">
@@ -135,40 +131,6 @@ Naruno is a completely community driven project, you can contribute in any way i
 <br />
 
 # Analysis && Statistics
-
-## Recent Activity
-
-<details>
-
-## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Recent activity [![Time period](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_badge.svg)](https://repography.com)
-
-[![Timeline graph](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_timeline.svg)](https://github.com/Naruno/Naruno/commits)
-[![Issue status graph](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_issues.svg)](https://github.com/Naruno/Naruno/issues)
-[![Pull request status graph](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_prs.svg)](https://github.com/Naruno/Naruno/pulls)
-[![Trending topics](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_words.svg)](https://github.com/Naruno/Naruno/commits)
-[![Top contributors](https://images.repography.com/22744517/Naruno/Naruno/recent-activity/c5bdec035b13c76d31dd5333396957cc_users.svg)](https://github.com/Naruno/Naruno/graphs/contributors)
-
-</details>
-
-## Top Contributors
-
-<details>
-
-## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Top contributors
-
-[![Top contributors](https://images.repography.com/22744517/Naruno/Naruno/top-contributors/c5bdec035b13c76d31dd5333396957cc_table.svg)](https://github.com/Naruno/Naruno/graphs/contributors)
-
-</details>
-
-## Structure
-
-<details>
-
-## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
-
-[![Structure](https://images.repography.com/22744517/Naruno/Naruno/structure/06d5e6e5f3c07b9922b3f3d3e0c91649_table.svg)](https://github.com/Naruno/Naruno)
-
-</details>
 
 ## Github Statistics
 
