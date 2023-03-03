@@ -55,6 +55,7 @@ ScreenManager:
 logger = get_logger("GUI")
 
 
+
 class GUI(MDApp):
     """
     An MDApp based  GUI class.
@@ -74,8 +75,15 @@ class GUI(MDApp):
         """
         Window.borderless = True
         value = the_settings()["dark_mode"]
+
+
+        for i in self.theme_cls.colors["Yellow"]:
+            self.theme_cls.colors["Yellow"][i] = "#DBFF00"
+        for i in self.theme_cls.colors["Dark"]:
+            self.theme_cls.colors["Dark"][i] = "#303030"
+
         self.theme_cls.theme_style = "Dark" if value else "Light"
-        self.theme_cls.primary_palette = "Green"  # "Purple", "Red"
+        self.theme_cls.primary_palette = "Yellow"  # "Purple", "Red"
 
         self.FONT_PATH = os.path.join(os.environ["NARUNO_ROOT"], "gui_lib",
                                       "fonts")
