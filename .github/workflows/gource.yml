@@ -23,7 +23,7 @@ jobs:
         uses: nbprojekt/gource-action@v1
         with:
           gource_title: 'Naruno'
-          logo_url: 'https://user-images.githubusercontent.com/41792982/114188349-b7cd0700-9951-11eb-84ea-3b31495b5635.png'
+          logo_url: 'https://user-images.githubusercontent.com/41792982/222755632-12b6542e-0fbc-437b-b453-4e5cff9cc83d.png'
           gource_resolution: '1080p'
           gource_fps: 60
           gource_font_size: 40
