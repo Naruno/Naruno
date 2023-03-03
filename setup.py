@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     author="Naruno Developers",
-    author_email="onur@naruno.org",
+    author_email="onur.atakan.ulusoy@naruno.org",
     packages=["naruno"],
     name="naruno",
     version="0.44.4",
