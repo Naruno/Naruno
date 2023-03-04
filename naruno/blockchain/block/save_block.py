@@ -36,6 +36,8 @@ def SaveBlock(
     """
 
     block = Remove_Duplicates(block)
+    block.validating_list = sorted(block.validating_list,
+                                   key=lambda x: x.fromUser)
 
     logger.info("Saving block to disk")
     if block.first_time:
