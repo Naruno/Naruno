@@ -10,6 +10,7 @@ from naruno.accounts.account import Account
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.shares import shares
 from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
 from naruno.wallet.wallet_import import Address
 
 
@@ -26,6 +27,8 @@ def ProccesstheTransaction(
 
     Queuing is required so that all nodes have the same transaction hash.
     """
+
+    block = Remove_Duplicates(block)
 
     the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
                               if custom_TEMP_ACCOUNTS_PATH is None else
