@@ -105,6 +105,7 @@ def publisher_mode_settings(new_value):
     settings["publisher_mode"] = new_value
     save_settings(settings)
 
+
 def change_wallet(new_value):
     """
     Changes the debug_mode setting.

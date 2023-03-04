@@ -10,7 +10,6 @@ import sys
 import time
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 from unittest import mock
@@ -28,22 +27,22 @@ from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
 from naruno.lib.export import export_the_transactions
 from naruno.lib.mix.mixlib import (banner_maker, ended_text_centered,
-                                             menu_maker, menu_seperator,
-                                             menu_space, menu_title,
-                                             printcentertext, question_maker,
-                                             quit_menu_maker,
-                                             starting_text_centered)
+                                   menu_maker, menu_seperator,
+                                   menu_space, menu_title,
+                                   printcentertext, question_maker,
+                                   quit_menu_maker,
+                                   starting_text_centered)
 from naruno.lib.notification import notification
 from naruno.lib.performance_analyzers.heartbeat_db import \
     heartbeat_generic_db_analyzer
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
 from naruno.lib.settings_system import (d_mode_settings,
-                                                  dark_mode_settings,
-                                                  publisher_mode_settings,
-                                                  mt_settings, save_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+                                        dark_mode_settings,
+                                        publisher_mode_settings,
+                                        mt_settings, save_settings,
+                                        t_mode_settings,
+                                        the_settings)
 from naruno.lib.status import Status
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
@@ -53,6 +52,7 @@ from naruno.lib.sign import sign
 from naruno.lib.verify import verify
 
 from naruno.wallet.wallet_import import Address, wallet_import
+
 
 def perpetual_time_test():
     os.chdir(get_config()["main_folder"])
@@ -712,7 +712,6 @@ class Test_Lib(unittest.TestCase):
         naruno_import(backup)
         self.assertNotEqual(the_settings()["debug_mode"], changed_value)
 
-
     def test_sign_verify(self):
         signed = sign("Onur & Ali Eren", "123")
         result = verify(signed)
@@ -730,5 +729,6 @@ class Test_Lib(unittest.TestCase):
     def test_sign_verify_false_pass(self):
         signed = sign("Onur & Ali Eren", str(time.time()))
         self.assertEqual(signed, "None")
+
 
 unittest.main(exit=False)
