@@ -14,6 +14,7 @@ from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.blocks_hash import SaveBlockshash
 from naruno.blockchain.block.blocks_hash import SaveBlockshash_part
 from naruno.config import TEMP_BLOCK_PATH
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 from naruno.blockchain.block.block_main import Block
@@ -33,6 +34,9 @@ def SaveBlock(
     """
     Saves the current block to the TEMP_BLOCK_PATH.
     """
+
+    block = Remove_Duplicates(block)
+
     logger.info("Saving block to disk")
     if block.first_time:
         SaveAccounts(
