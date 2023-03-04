@@ -64,12 +64,20 @@ def Cleaner(block: Block, pending_list_txs: list,
                         just = False
                         if transaction.sequence_number < transaction_.sequence_number:
                             ok = True
-
+                        
                         elif (transaction.sequence_number ==
                               transaction_.sequence_number):
                             if (transaction.transaction_time <
                                     transaction_.transaction_time):
                                 ok = True
+                            elif (transaction.transaction_time ==
+                                    transaction_.transaction_time):
+                                if (transaction.signature <
+                                        transaction_.signature):
+                                    ok = True
+                                else:
+                                    ok = False
+                                    break
                             else:
                                 ok = False
                                 break
