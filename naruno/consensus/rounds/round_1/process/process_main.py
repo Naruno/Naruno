@@ -21,6 +21,7 @@ from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 from naruno.consensus.rounds.round_1.checks.checks_main import \
     round_check
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
 from naruno.consensus.rounds.round_1.process.transactions.transactions_main import \
     transactions_main
 from naruno.lib.config_system import get_config
@@ -81,7 +82,7 @@ def round_process(
 
 
 
-
+    Remove_Duplicates(block)
 
 
     SaveBlock(
