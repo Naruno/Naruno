@@ -40,6 +40,7 @@ from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
 from naruno.lib.settings_system import (d_mode_settings,
                                                   dark_mode_settings,
+                                                  publisher_mode_settings,
                                                   mt_settings, save_settings,
                                                   t_mode_settings,
                                                   the_settings)
@@ -626,6 +627,16 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(new_settings["dark_mode"], changed_value)
 
         dark_mode_settings(temp_settings["dark_mode"])
+
+    def test_publisher_mode_settings(self):
+        temp_settings = the_settings()
+        changed_value = True if temp_settings["publisher_mode"] is False else False
+        publisher_mode_settings(changed_value)
+        new_settings = the_settings()
+
+        self.assertEqual(new_settings["publisher_mode"], changed_value)
+
+        publisher_mode_settings(temp_settings["publisher_mode"])
 
     def test_perpetualTimer_0(self):
 
