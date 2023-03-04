@@ -655,7 +655,7 @@ class server(Thread):
         """
         Sends the given transaction to UNL nodes.
         """
-        if not tx.signature == "DN":
+        if not tx.signature == "NARUNO":
             data = {
                 "action": "transactionrequest",
                 "sequence_number": tx.sequence_number,

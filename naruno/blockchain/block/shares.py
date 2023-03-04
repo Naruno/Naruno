@@ -37,8 +37,8 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
                 tx_list.append(
                     Transaction(
                         0,
-                        "DN",
-                        "DNB",
+                        "NARUNO",
+                        "NARUNOB",
                         share[0],
                         "NP",
                         share[1],
@@ -53,8 +53,8 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
         tx_list.append(
             Transaction(
                 0,
-                "DN",
-                "DNA",
+                "NARUNO",
+                "NARUNOA",
                 the_fee_address,
                 "NP",
                 fee,

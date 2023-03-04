@@ -16,7 +16,7 @@ def ChangeTransactionFee(
     custom_PENDING_TRANSACTIONS_PATH=None,
 ):
     """
-    Increase transaction fee by 0.01 DNC for each block.default_optimum_transaction_number argument
+    Increase transaction fee by 0.01 naruno coin for each block.default_optimum_transaction_number argument
     """
     logger.info("Calculating the transaction fee")
     logger.info(f"Start fee is: {block.transaction_fee}")
@@ -26,7 +26,7 @@ def ChangeTransactionFee(
                             custom_pending_transaction_len)
     validating_list_len = 0
     for tx in block.validating_list:
-        if tx.signature != "DN":
+        if tx.signature != "NARUNO":
             validating_list_len += 1
     total_len = validating_list_len + pending_transactions
     logger.debug(f"total_len: {total_len}")
