@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Naruno/Naruno">
-    <img src="https://naruno.org/goaxisar/2023/03/transparant-logo-with-white-text.png" alt="Logo" width="150" height="150">
+    <img src="https://naruno.org/goaxisar/2023/03/transparant-logo-1.png" alt="Logo" width="150" height="150">
   </a>
 
   <h3 align="center">Naruno</h3>
