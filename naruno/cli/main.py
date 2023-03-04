@@ -27,7 +27,7 @@ from naruno.lib.mix.mixlib import (banner_maker, menu_maker,
                                              quit_menu_maker)
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (d_mode_settings,
+from naruno.lib.settings_system import (d_mode_settings,publisher_mode_settings,
                                                   t_mode_settings,
                                                   the_settings)
 from naruno.lib.sign import sign
@@ -102,6 +102,9 @@ def show_menu():
         menu_space() +
         menu_maker(menu_number="sign", menu_text="Sign and export an data") +
         menu_maker(menu_number="verify", menu_text="Verify the signed data") +
+        menu_space() +
+        menu_maker(menu_number="publishermodeon", menu_text="Publisher Mode On") +
+        menu_maker(menu_number="publishermodeoff", menu_text="Publisher Mode Off") +        
         menu_space())
 
     print(quit_menu_maker(mode="main"))
@@ -197,6 +200,11 @@ def menu():
             d_mode_settings(True)
         if choices_input == "debugmodeoff":
             d_mode_settings(False)
+
+        if choices_input == "publishermodeon":
+            publisher_mode_settings(True)
+        if choices_input == "publishermodeoff":
+            publisher_mode_settings(False)
 
         if choices_input == "exptrcsv":
             if export_the_transactions():
@@ -305,6 +313,16 @@ def arguments():
                         action="store_true",
                         help="Debug Mode Off")
 
+
+    parser.add_argument("-pmon",
+                        "--publishermodeon",
+                        action="store_true",
+                        help="Publisher Mode On")
+    parser.add_argument("-pmoff",
+                        "--publishermodeoff",
+                        action="store_true",
+                        help="Publisher Mode Off")
+
     parser.add_argument(
         "-exptrcsv",
         "--exporttransactioncsv",
@@ -387,6 +405,12 @@ def arguments():
         d_mode_settings(True)
     if args.debugmodeoff:
         d_mode_settings(False)
+
+
+    if args.publishermodeon:
+        publisher_mode_settings(True)
+    if args.publishermodeoff:
+        publisher_mode_settings(False)
 
     if args.exporttransactioncsv:
         if export_the_transactions():
