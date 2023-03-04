@@ -52,6 +52,10 @@ def ProccesstheTransaction(
     new_added_accounts_list = []
     account_list = []
 
+
+    block.validating_list = sorted(block.validating_list,
+                                   key=lambda x: x.fromUser)
+
     for trans in block.validating_list:
 
         touser_inlist = True

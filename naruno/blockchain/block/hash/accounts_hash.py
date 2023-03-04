@@ -15,4 +15,4 @@ def AccountsHash(block, the_accounts):
     account_list = MerkleTree([account.get_hash()
                                for account in the_accounts]).getRootHash()
 
-    return MerkleTree(account_list).getRootHash()
+    return account_list
