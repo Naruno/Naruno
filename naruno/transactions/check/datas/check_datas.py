@@ -38,10 +38,19 @@ def Check_Datas(
                 return False
 
         for tx in pending_transactions + block.validating_list:
-            if (tx.fromUser == transaction.fromUser
-                    and tx.signature != transaction.signature and transaction.transaction_time >= tx.transaction_time):
-                logger.info("Multiple transaction in one account")
-                return False
+            if (tx.fromUser == transaction.fromUser):
+                    if tx.signature != transaction.signature:
+                        if transaction.transaction_time < tx.transaction_time:
+                            pass
+                        elif transaction.transaction_time == tx.transaction_time:
+                            if transaction.sequence_number < tx.sequence_number:
+                                pass
+                            else:
+                                logger.info("Multiple transaction in one account")
+                                return False
+                        else:
+                            logger.info("Multiple transaction in one account")
+                            return False
 
     balance = (GetBalance(
         transaction.fromUser,
