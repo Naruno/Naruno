@@ -23,13 +23,13 @@ from naruno.lib.backup.naruno_import import naruno_import
 from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
 from naruno.lib.mix.mixlib import (banner_maker, menu_maker,
-                                             menu_space, question_maker,
-                                             quit_menu_maker)
+                                   menu_space, question_maker,
+                                   quit_menu_maker)
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (d_mode_settings,publisher_mode_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+from naruno.lib.settings_system import (d_mode_settings, publisher_mode_settings,
+                                        t_mode_settings,
+                                        the_settings)
 from naruno.lib.sign import sign
 from naruno.lib.status import Status
 from naruno.lib.verify import verify
@@ -59,8 +59,7 @@ def show_menu():
     print(
         banner_maker(
             sc_name="Naruno",
-            description=
-            "Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.",
+            description="Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.",
             author="Naruno Developers",
         ))
 
@@ -104,7 +103,7 @@ def show_menu():
         menu_maker(menu_number="verify", menu_text="Verify the signed data") +
         menu_space() +
         menu_maker(menu_number="publishermodeon", menu_text="Publisher Mode On") +
-        menu_maker(menu_number="publishermodeoff", menu_text="Publisher Mode Off") +        
+        menu_maker(menu_number="publishermodeoff", menu_text="Publisher Mode Off") +
         menu_space())
 
     print(quit_menu_maker(mode="main"))
@@ -262,8 +261,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument("-pw",
@@ -312,7 +310,6 @@ def arguments():
                         "--debugmodeoff",
                         action="store_true",
                         help="Debug Mode Off")
-
 
     parser.add_argument("-pmon",
                         "--publishermodeon",
@@ -405,7 +402,6 @@ def arguments():
         d_mode_settings(True)
     if args.debugmodeoff:
         d_mode_settings(False)
-
 
     if args.publishermodeon:
         publisher_mode_settings(True)
