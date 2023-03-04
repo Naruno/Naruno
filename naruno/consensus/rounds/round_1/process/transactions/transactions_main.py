@@ -49,7 +49,7 @@ def transactions_main(block: Block, candidate_class: candidate_block,
 
     block.validating_list = temp_validating_list
 
-    Remove_Duplicates(block)
+    block = Remove_Duplicates(block)
 
     pending_list_txs = GetPending()
     if clean:

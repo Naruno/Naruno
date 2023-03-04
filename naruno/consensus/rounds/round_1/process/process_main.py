@@ -82,7 +82,7 @@ def round_process(
 
 
 
-    Remove_Duplicates(block)
+    
 
 
     SaveBlock(
