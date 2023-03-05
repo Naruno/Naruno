@@ -50,6 +50,8 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
 
     fee = 0
     block = Remove_Duplicates(block)
+    block.validating_list = sorted(block.validating_list,
+                                   key=lambda x: x.fromUser)    
     for tx in block.validating_list:
         if not "NARUNO" in tx.signature:
             fee += tx.transaction_fee
@@ -65,5 +67,8 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
                 0,
                 the_time,
             ))
+
+    
+
 
     return tx_list
