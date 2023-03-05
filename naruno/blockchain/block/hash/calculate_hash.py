@@ -19,6 +19,8 @@ def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
     logger.info(f"Calculating the hash of the block#{block.sequence_number}")
 
     # Transaction Hash
+    validating_list = [tx.dump_json() for tx in block.validating_list]
+    logger.debug(f"block.validating_list: {validating_list}")
     tx_hash = TransactionsHash(block)
     logger.debug(f"tx_hash: {tx_hash}")
 

@@ -11,5 +11,5 @@ def TransactionsHash(block):
     """
     Calculates and returns the hash of the validating list.
     """
-    tx_list = [element.signature for element in block.validating_list[:]]
+    tx_list = [element.signature for element in block.validating_list]
     return MerkleTree(tx_list).getRootHash() if tx_list else "0"

@@ -60,7 +60,7 @@ def round_process(
 
     account_list = GetAccounts(
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
-    ProccesstheTransaction(
+    block = ProccesstheTransaction(
         block,
         account_list,
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,

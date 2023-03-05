@@ -47,7 +47,7 @@ def ProccesstheTransaction(
                         custom_shares=custom_shares,
                         custom_fee_address=custom_fee_address)
     block.validating_list = block.validating_list + the_shares
-    temp_validating_list = block.validating_list
+    
 
     new_added_accounts_list = []
     account_list = []
@@ -55,6 +55,8 @@ def ProccesstheTransaction(
 
     block.validating_list = sorted(block.validating_list,
                                    key=lambda x: x.fromUser)
+
+    temp_validating_list = block.validating_list
 
     for trans in block.validating_list:
 
@@ -115,3 +117,6 @@ def ProccesstheTransaction(
     conn.close()
 
     SaveAccounts(new_added_accounts_list, the_TEMP_ACCOUNTS_PATH)
+
+
+    return block
