@@ -7,6 +7,7 @@
 import time
 
 from naruno.blockchain.block.block_main import Block
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
 from naruno.lib.log import get_logger
 from naruno.transactions.transaction import Transaction
 
@@ -18,6 +19,7 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
     It returns the transactions that needed for locked shares distribution.
     """
     logger.info("Share distribution started.")
+    logger.debug(f"block.validating_list: {block.validating_list}")
     the_shares = block.shares if custom_shares is None else custom_shares
     the_fee_address = (block.fee_address
                        if custom_fee_address is None else custom_fee_address)
@@ -47,8 +49,10 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
                     ))
 
     fee = 0
+    block = Remove_Duplicates(block)
     for tx in block.validating_list:
-        fee += tx.transaction_fee
+        if not "NARUNO" in tx.signature:
+            fee += tx.transaction_fee
     if fee > 0:
         tx_list.append(
             Transaction(

@@ -39,7 +39,7 @@ def ProccesstheTransaction(
 
     clean_list = []
     for unclear in block.validating_list:
-        if not unclear.signature == "NARUNO":
+        if not "NARUNO" in unclear.signature:
             clean_list.append(unclear)
     block.validating_list = clean_list
 
