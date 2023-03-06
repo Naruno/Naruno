@@ -21,6 +21,9 @@ from naruno.node.server.server import server
 from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.get_pending import GetPending
 
+from naruno.consensus.sync.send_block import send_block
+from naruno.consensus.sync.send_block_hash import send_block_hash
+
 logger = get_logger("CONSENSUS")
 
 
@@ -44,22 +47,20 @@ def sync(
     the_server = server.Server if custom_server is None else custom_server
 
 
+    threading.Thread(
+        target=send_block,
+        args=(
+            block, the_server, send_block_error
+        ),
+    ).start()
 
-    logger.debug("Our block is sending to the unl nodes")
-    try:
-        the_server.send_my_block(block)
-        if send_block_error:
-            raise Exception("Block sending error")
-    except Exception as e:
-        logger.error(f"Block sending error: {e}")
 
-    logger.debug("Our block hash is sending to the unl nodes")
-    try:
-        the_server.send_my_block_hash(block)
-        if send_block_hash_error:
-            raise Exception("Block hash sending error")
-    except Exception as e:
-        logger.error(f"Block hash sending error: {e}")
+    threading.Thread(
+        target=send_block_hash,
+        args=(
+            block, the_server, send_block_hash_error
+        ),
+    ).start()
 
     logger.debug("Transactions is sending to the unl nodes")
     the_transactions_list = block.validating_list
