@@ -7,7 +7,6 @@
 import contextlib
 import json
 import os
-import random
 import time
 
 from naruno.accounts.account import Account
@@ -63,7 +62,7 @@ def SaveBlock(
         secondly_situation += 1
     if block.round_2:
         secondly_situation += 1
-    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(secondly_situation) + "-" + str(random.randint(0, 1000000))
+    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(secondly_situation) + "-" + str(time.time())
     logger.info(f"Saving block to {highest_the_TEMP_BLOCK_PATH}")
 
     if delete_old_validating_list:
