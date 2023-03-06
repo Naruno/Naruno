@@ -40,7 +40,7 @@ def SaveBlock(
                                    key=lambda x: x.fromUser)
 
     logger.info("Saving block to disk")
-    logger.debug(f"Block#{block.sequence_number}: {block.dump_json()}")
+    logger.debug(f"Block#{block.sequence_number}:{block.empty_block_number}: {block.dump_json()}")
     if block.first_time:
         SaveAccounts(
             Account(block.creator, block.coin_amount),
@@ -62,7 +62,7 @@ def SaveBlock(
         secondly_situation += 1
     if block.round_2:
         secondly_situation += 1
-    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(secondly_situation) + "-" + str(time.time())
+    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number + block.empty_block_number) + "-" + str(len(block.validating_list)) + "-" + str(secondly_situation) + "-" + str(time.time())
     logger.info(f"Saving block to {highest_the_TEMP_BLOCK_PATH}")
 
     if delete_old_validating_list:
@@ -72,7 +72,7 @@ def SaveBlock(
                 number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
                 high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])
                 secondly_situation_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3])
-                if number == block.sequence_number and high_number != len(block.validating_list) and secondly_situation_number == 1:
+                if number == block.sequence_number + block.empty_block_number and high_number != len(block.validating_list) and secondly_situation_number == 1:
                     with contextlib.suppress(FileNotFoundError):
                         logger.info(f"Deleting old validating list: {file}")
                         os.remove("db/" + file)
@@ -83,7 +83,7 @@ def SaveBlock(
                 number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
                 high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])
                 secondly_situation_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3])
-                if number == block.sequence_number and high_number == len(block.validating_list) and secondly_situation_number != secondly_situation:
+                if number == block.sequence_number + block.empty_block_number and high_number == len(block.validating_list) and secondly_situation_number != secondly_situation:
                     with contextlib.suppress(FileNotFoundError):
                         logger.info(f"Deleting old block file: {file}")
                         os.remove("db/" + file)

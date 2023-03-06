@@ -48,15 +48,6 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
                         highest_the_TEMP_BLOCK_PATH = ("db/" + file)
                 
 
-    for file in os.listdir("db/"):
-        if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
-            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])#val
-            if number < highest_number:
-                
-                with contextlib.suppress(FileNotFoundError):
-                    logger.info("Removing " + "db/" + file)
-                    os.remove("db/" + file)
 
 
 
@@ -85,9 +76,9 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
     if get_normal_block:
         return result_normal
 
-    if result_normal.sequence_number > result_highest.sequence_number:
+    if result_normal.sequence_number + result_normal.empty_block_number > result_highest.sequence_number + result_highest.empty_block_number:
         return result_normal
-    elif result_normal.sequence_number == result_highest.sequence_number:
+    elif result_normal.sequence_number + result_normal.empty_block_number == result_highest.sequence_number + result_highest.empty_block_number:
 
         result_normal_situation = 0
         result_highest_situation = 0

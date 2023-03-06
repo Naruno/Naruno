@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 import os
 import shutil
 import time
@@ -71,6 +72,18 @@ def finished_main(
             "Consensus proccess is complated, the block will be reset")
 
         reset_block = block.reset_the_block()
+
+
+        for file in os.listdir("db/"):
+            if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
+                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
+                high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])#val
+                if number < block.sequence_number + block.empty_block_number:
+                    
+                    with contextlib.suppress(FileNotFoundError):
+                        logger.info("Removing " + "db/" + file)
+                        os.remove("db/" + file)
+
         settings = the_settings()
         if reset_block != False:
             block2 = reset_block[0]
