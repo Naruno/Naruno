@@ -52,7 +52,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
             number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
             high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])#val
-            if high_number < highest_second_number or number < highest_number:
+            if number < highest_number:
                 
                 with contextlib.suppress(FileNotFoundError):
                     logger.info("Removing " + "db/" + file)
