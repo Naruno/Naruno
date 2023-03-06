@@ -40,6 +40,7 @@ def SaveBlock(
                                    key=lambda x: x.fromUser)
 
     logger.info("Saving block to disk")
+    logger.debug(f"Block#{block.sequence_number}: {block.dump_json()}")
     if block.first_time:
         SaveAccounts(
             Account(block.creator, block.coin_amount),
