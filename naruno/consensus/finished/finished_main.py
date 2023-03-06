@@ -78,7 +78,7 @@ def finished_main(
             if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
                 number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
                 high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])#val
-                if number < block.sequence_number + block.empty_block_number:
+                if number < block.sequence_number:
                     
                     with contextlib.suppress(FileNotFoundError):
                         logger.info("Removing " + "db/" + file)
