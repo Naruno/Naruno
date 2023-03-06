@@ -7,6 +7,7 @@
 import contextlib
 import json
 import os
+import random
 import time
 
 from naruno.accounts.account import Account
@@ -62,7 +63,8 @@ def SaveBlock(
         secondly_situation += 1
     if block.round_2:
         secondly_situation += 1
-    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(secondly_situation)
+    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(secondly_situation) + "-" + str(random.randint(0, 1000000))
+    logger.info(f"Saving block to {highest_the_TEMP_BLOCK_PATH}")
 
     if delete_old_validating_list:
         os.chdir(get_config()["main_folder"])
@@ -73,24 +75,31 @@ def SaveBlock(
                 secondly_situation_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3])
                 if number == block.sequence_number and high_number != len(block.validating_list) and secondly_situation_number == 1:
                     with contextlib.suppress(FileNotFoundError):
+                        logger.info(f"Deleting old validating list: {file}")
                         os.remove("db/" + file)
 
     if secondly_situation == 2:
             with contextlib.suppress(FileNotFoundError):
+                logger.info(f"Deleting old situation 2 1: {the_TEMP_BLOCK_PATH + '-' + str(block.sequence_number) + '-' + str(len(block.validating_list)) + '-' + str(1)}")
                 os.remove(the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(1))
             with contextlib.suppress(FileNotFoundError):
+                logger.info(f"Deleting old situation 2 0: {the_TEMP_BLOCK_PATH + '-' + str(block.sequence_number) + '-' + str(len(block.validating_list)) + '-' + str(0)}")
                 os.remove(the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(0))
 
     if secondly_situation == 1:
             with contextlib.suppress(FileNotFoundError):
+                logger.info(f"Deleting old situation 1 2: {the_TEMP_BLOCK_PATH + '-' + str(block.sequence_number) + '-' + str(len(block.validating_list)) + '-' + str(0)}")
                 os.remove(the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(0))
             with contextlib.suppress(FileNotFoundError):
+                logger.info(f"Deleting old situation 1 0: {the_TEMP_BLOCK_PATH + '-' + str(block.sequence_number) + '-' + str(len(block.validating_list)) + '-' + str(2)}")
                 os.remove(the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(2))
     
     if secondly_situation == 0:
             with contextlib.suppress(FileNotFoundError):
+                logger.info(f"Deleting old situation 0 1: {the_TEMP_BLOCK_PATH + '-' + str(block.sequence_number) + '-' + str(len(block.validating_list)) + '-' + str(1)}")
                 os.remove(the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(1))
             with contextlib.suppress(FileNotFoundError):
+                logger.info(f"Deleting old situation 0 2: {the_TEMP_BLOCK_PATH + '-' + str(block.sequence_number) + '-' + str(len(block.validating_list)) + '-' + str(2)}")
                 os.remove(the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(2))
 
 
