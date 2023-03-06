@@ -44,7 +44,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
                     if high_number >= highest_second_number:
 
                         highest_second_number = high_number
-                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("-")[0]  + "-" + file.split("-")[1] + "-" + str(highest_second_number) + "-" + file.split("-")[3]
+                highest_the_TEMP_BLOCK_PATH = "db/" + file.split("-")[0]  + "-" + file.split("-")[1] + "-" + str(highest_second_number) + "-" + file.split("-")[3] + "-" + file.split("-")[4]
 
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
