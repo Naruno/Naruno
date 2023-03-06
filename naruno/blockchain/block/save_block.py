@@ -70,7 +70,8 @@ def SaveBlock(
             if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
                 number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
                 high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])
-                if number == block.sequence_number and high_number != len(block.validating_list):
+                secondly_situation_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3])
+                if number == block.sequence_number and high_number != len(block.validating_list) and secondly_situation_number == 1:
                     with contextlib.suppress(FileNotFoundError):
                         os.remove("db/" + file)
 
