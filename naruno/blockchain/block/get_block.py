@@ -10,6 +10,7 @@ import os
 
 from naruno.blockchain.block.block_main import Block
 from naruno.config import TEMP_BLOCK_PATH
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 
@@ -74,6 +75,15 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
     with open(highest_the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
         result_highest = Block.load_json(the_block_json)
+
+    result_normal = Remove_Duplicates(result_normal)
+    result_highest = Remove_Duplicates(result_highest)
+
+    result_normal.validating_list = sorted(result_normal.validating_list,
+                                   key=lambda x: x.fromUser)    
+
+    result_highest.validating_list = sorted(result_highest.validating_list,
+                                   key=lambda x: x.fromUser)    
 
     if get_normal_block:
         return result_normal
