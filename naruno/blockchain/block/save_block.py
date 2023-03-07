@@ -82,16 +82,6 @@ def SaveBlock(
                         logger.info(f"Deleting old validating list: {file}")
                         os.remove("db/" + file)
 
-    os.chdir(get_config()["main_folder"])
-    for file in os.listdir("db/"):
-            if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
-                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
-                high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])
-                secondly_situation_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3])
-                if number == block.sequence_number and high_number == len(block.validating_list) and secondly_situation_number < secondly_situation:
-                    with contextlib.suppress(FileNotFoundError):
-                        logger.info(f"Deleting old block file: {file}")
-                        os.remove("db/" + file)
 
 
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
