@@ -18,6 +18,8 @@ from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated impo
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 from naruno.blockchain.block.block_main import Block
+from naruno.transactions.cleaner import Cleaner
+from naruno.transactions.pending.get_pending import GetPending
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -34,6 +36,9 @@ def SaveBlock(
     """
     Saves the current block to the TEMP_BLOCK_PATH.
     """
+
+    cleaned = Cleaner(block, pending_list_txs=GetPending())
+    block.validating_list = cleaned[0]       
 
     block = Remove_Duplicates(block)
     block.validating_list = sorted(block.validating_list,
@@ -83,7 +88,7 @@ def SaveBlock(
                 number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
                 high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])
                 secondly_situation_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3])
-                if number == block.sequence_number and high_number == len(block.validating_list) and secondly_situation_number != secondly_situation:
+                if number == block.sequence_number and high_number == len(block.validating_list) and secondly_situation_number < secondly_situation:
                     with contextlib.suppress(FileNotFoundError):
                         logger.info(f"Deleting old block file: {file}")
                         os.remove("db/" + file)
