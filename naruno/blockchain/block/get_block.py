@@ -30,22 +30,32 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
     highest_number = 0
 
     highest_second_number = 0
+    highest_other_high_number = 0
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
             number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
-            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3]) #val
+            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2]) #val
+            other_high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3]) #val
 
-            if number >= highest_number: #sequence number big or equal
-                if number != highest_number: #sequence number is bigger
-                    highest_number = number # setted highest number
-                    highest_second_number = high_number 
-                    highest_the_TEMP_BLOCK_PATH = ("db/" + file)
-                else: #sequence number is lower
-
-                    if high_number >= highest_second_number: #val number big or equal
-
-                        highest_second_number = high_number # setted highest number
-                        highest_the_TEMP_BLOCK_PATH = ("db/" + file)
+            # Write a code for getting the blocks with high number
+            if number > highest_number:
+                highest_number = number
+                highest_the_TEMP_BLOCK_PATH = "db/" + file
+                highest_second_number = high_number
+                highest_other_high_number = other_high_number
+            elif number == highest_number:
+                if high_number > highest_second_number:
+                    highest_number = number
+                    highest_the_TEMP_BLOCK_PATH = "db/" + file
+                    highest_second_number = high_number
+                    highest_other_high_number = other_high_number
+                elif high_number == highest_second_number:
+                    if other_high_number > highest_other_high_number:
+                        highest_number = number
+                        highest_the_TEMP_BLOCK_PATH = "db/" + file
+                        highest_second_number = high_number
+                        highest_other_high_number = other_high_number
+            
                 
 
 
