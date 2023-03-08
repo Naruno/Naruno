@@ -15,7 +15,6 @@ from waitress import serve
 from waitress.server import create_server
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from flask_cors import CORS
@@ -30,8 +29,8 @@ from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
 from naruno.lib.settings_system import (d_mode_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+                                        t_mode_settings,
+                                        the_settings)
 from naruno.lib.sign import sign
 from naruno.lib.status import Status
 from naruno.lib.verify import verify
@@ -430,13 +429,11 @@ def export_block_json_page():
     return jsonify(the_block.dump_json())
 
 
-
-
 @app.route("/sequence/get/", methods=["GET"])
 def sequence_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
-    #Check publisher mode
+    # Check publisher mode
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
     address = str(request.args.get("address"))
@@ -467,8 +464,7 @@ def start(port=None, test=False):
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
+        description="Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
     )
 
     parser.add_argument("-p",
