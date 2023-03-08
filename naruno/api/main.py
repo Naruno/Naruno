@@ -523,7 +523,7 @@ def transaction_send_page():
         fromUser=fromUser,
         toUser=toUser,
         amount=amount,
-        transaction_fee=transaction_fee
+        transaction_fee=transaction_fee,
         time_of_transaction=time_of_transaction,
     )
 
