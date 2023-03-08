@@ -427,6 +427,18 @@ def export_block_json_page():
     return jsonify(the_block.dump_json())
 
 
+
+@app.route("/balance/get/", methods=["GET"])
+def sequence_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    #Check publisher mode
+    if not the_settings()["publisher_mode"]:
+        return jsonify("403"), 403
+    address = str(request.args.get("address"))
+    return jsonify(GetBalance(address))
+
+
 @app.route("/sequence/get/", methods=["GET"])
 def sequence_get_page():
     logger.info(
