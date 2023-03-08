@@ -19,6 +19,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from flask_cors import CORS
 
 from naruno.accounts.get_balance import GetBalance
+from naruno.accounts.get_sequence_number import GetSequanceNumber
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
@@ -27,16 +28,14 @@ from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (d_mode_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+from naruno.lib.settings_system import (d_mode_settings, t_mode_settings,
+                                        the_settings)
 from naruno.lib.sign import sign
 from naruno.lib.status import Status
 from naruno.lib.verify import verify
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
-from naruno.transactions.my_transactions.check_proof import \
-    CheckProof
+from naruno.transactions.my_transactions.check_proof import CheckProof
 from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
 from naruno.transactions.my_transactions.get_proof import GetProof
@@ -426,6 +425,17 @@ def export_block_json_page():
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
     return jsonify(the_block.dump_json())
+
+
+@app.route("/sequence/get/", methods=["GET"])
+def sequence_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    # Check publisher mode
+    if not the_settings()["publisher_mode"]:
+        return jsonify("403"), 403
+    address = str(request.args.get("address"))
+    return jsonify(GetSequanceNumber(address))
 
 
 @app.errorhandler(500)
