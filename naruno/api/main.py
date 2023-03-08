@@ -428,7 +428,7 @@ def export_block_json_page():
 
 
 @app.route("/balance/get/", methods=["GET"])
-def sequence_get_page():
+def balance_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     # Check publisher mode
