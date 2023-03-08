@@ -17,7 +17,8 @@ from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import BLOCKS_PATH
 from naruno.config import TEMP_ACCOUNTS_PATH
 from naruno.wallet.wallet_import import wallet_import
-
+from naruno.lib.log import get_logger
+logger = get_logger("BLOCKCHAIN")
 
 def SaveBlockstoBlockchainDB(
     block,
@@ -26,11 +27,15 @@ def SaveBlockstoBlockchainDB(
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
     force=False,
+    dont_clean=False,
 ):
     """
     Adds the block to the blockchain database
     at BLOCKS_PATH.
     """
+
+    logger.info("Saving block to blockchain database...")
+    logger.info(f"Block: {block.__dict__}")
 
     my_public_key = "".join([
         l.strip() for l in wallet_import(-1, 0).splitlines()
@@ -45,7 +50,7 @@ def SaveBlockstoBlockchainDB(
                            custom_BLOCKS_PATH)
         SaveBlock(
             block,
-            (the_BLOCKS_PATH + str(block.sequence_number) + ".block.json"))
+            (the_BLOCKS_PATH + str(block.sequence_number) + ".block.json"),dont_clean=dont_clean)
 
         the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
                                   if custom_TEMP_ACCOUNTS_PATH is None else

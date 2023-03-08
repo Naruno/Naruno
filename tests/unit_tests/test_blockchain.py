@@ -206,7 +206,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
         self.assertEqual(
             result,
-            "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96")
+            "f0b92089926a6630e168c51e846906e2c15a01b36c7947023037aff3548a4102")
 
     def test_block_AccountsHash_enough_for_parting(self):
         block = Block("onur")
@@ -219,7 +219,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
         self.assertEqual(
             result,
-            "fc70a682d1518ec2174127912b63edc59dd0353e5932e1008eefe3b85ffb4a96")
+            "f0b92089926a6630e168c51e846906e2c15a01b36c7947023037aff3548a4102")
 
     def test_block_CalculateHash(self):
         block = Block("onur", previous_hash="ulusoy")
@@ -242,7 +242,7 @@ class Test_Blockchain(unittest.TestCase):
         )
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        true_hash = "7ec37a4e492b32975d69c20fd6b7fedff61f16b123dc35a53be0284805491b96"
+        true_hash = "2a004f538cc221ab33568c1c3db804ef3b205a6b1e569c04fccf1b7e5f690de6"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
 
@@ -795,6 +795,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True
         )
         result = GetBlockstoBlockchainDB(
             block.sequence_number,
@@ -933,8 +934,8 @@ class Test_Blockchain(unittest.TestCase):
     def test_shares_more_times_one(self):
         block = Block("onur")
         block.validating_list = [
-            Transaction(1, "", "", "", 1, 1, 1000, 1),
-            Transaction(1, "", "", "", 1, 1, 250, 1),
+            Transaction(1, "ii", "", "", 1, 1, 1000, 1),
+            Transaction(1, "i", "", "", 1, 1, 250, 1),
         ]
         block.sequence_number = 20
 

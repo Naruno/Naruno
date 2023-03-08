@@ -14,7 +14,7 @@ from naruno.transactions.transaction import Transaction
 logger = get_logger("BLOCKCHAIN")
 
 
-def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
+def shares(block: Block, custom_shares=None, custom_fee_address=None, dont_clean=False) -> list:
     """
     It returns the transactions that needed for locked shares distribution.
     """
@@ -49,7 +49,8 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None) -> list:
                     ))
 
     fee = 0
-    block = Remove_Duplicates(block)
+    if not dont_clean:
+        block = Remove_Duplicates(block)
     block.validating_list = sorted(block.validating_list,
                                    key=lambda x: x.fromUser)    
     for tx in block.validating_list:

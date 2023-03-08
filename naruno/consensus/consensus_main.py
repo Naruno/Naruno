@@ -39,6 +39,7 @@ def consensus_trigger(
     custom_TEMP_BLOCKSHASH_PATH: str = None,
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     pass_sync: bool = False,
+    dont_clean=False,
 ) -> Block:
     """
     Consensus process consists of 2 stages. This function makes
@@ -74,6 +75,7 @@ def consensus_trigger(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=pass_sync,
+            dont_clean=dont_clean
         )
     else:
         logger.info("BLOCK is an unvalidated block, consensus process is ongoing")

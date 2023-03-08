@@ -1416,12 +1416,12 @@ class Test_Transactions(unittest.TestCase):
         account_list = GetAccounts(temp_path)
         result = ProccesstheTransaction(block,
                                         account_list,
-                                        custom_TEMP_ACCOUNTS_PATH=temp_path)
+                                        custom_TEMP_ACCOUNTS_PATH=temp_path, dont_clean=True)
         self.assertEqual(len(block.validating_list), 3)
         self.assertEqual(block.validating_list[0], the_transaction_2)
-        self.assertEqual(block.validating_list[1].toUser, block.fee_address)
-        self.assertEqual(block.validating_list[1].amount, 0.04)
-        self.assertEqual(block.validating_list[2], the_transaction)
+        self.assertEqual(block.validating_list[2].toUser, block.fee_address)
+        self.assertEqual(block.validating_list[2].amount, 0.04)
+        self.assertEqual(block.validating_list[1], the_transaction)
 
     def test_ProccesstheTransaction_account_list(self):
 
@@ -1492,6 +1492,7 @@ class Test_Transactions(unittest.TestCase):
             account_list,
             custom_TEMP_ACCOUNTS_PATH=temp_path,
             custom_fee_address=custom_fee_address,
+            dont_clean=True
         )
         account_list = GetAccounts(temp_path)
         account_list.execute(f"SELECT * FROM account_list")
@@ -1508,10 +1509,10 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(block.validating_list[1], the_transaction_5)
         self.assertEqual(block.validating_list[2], the_transaction_2)
         self.assertEqual(block.validating_list[3], the_transaction_3)
-        self.assertEqual(block.validating_list[4].toUser,
+        self.assertEqual(block.validating_list[5].toUser,
                          "onurtheprofessional")
-        self.assertEqual(block.validating_list[4].amount, 0.1)
-        self.assertEqual(block.validating_list[5], the_transaction)
+        self.assertEqual(block.validating_list[5].amount, 0.1)
+        self.assertEqual(block.validating_list[4], the_transaction)
         self.assertEqual(account_list[0][2], 100000 - 5000 - 0.02)
         self.assertEqual(account_list[0][0],
                          "2ffd1f6bed8614f4cd01fc7159ac950604272773")
@@ -1532,7 +1533,7 @@ class Test_Transactions(unittest.TestCase):
                          "6a4236cba1002b2919651677c7c520b67627aa2a")
         self.assertEqual(account_list[3][1], 1)
 
-        self.assertEqual(account_list[4][2], 99999.98)
+        self.assertEqual(account_list[4][2], 104999.98)
         self.assertEqual(account_list[4][0],
                          "d10d419bae75549222c5ffead625a9e0246ad3e6")
         self.assertEqual(account_list[4][1], 1)
@@ -1601,10 +1602,10 @@ class Test_Transactions(unittest.TestCase):
             Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000),
             temp_path)
         SaveAccounts(
-            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000),
+            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000), #B
             temp_path)
         SaveAccounts(
-            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000),
+            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000), #C
             temp_path)
         SaveAccounts(
             Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000),
@@ -1621,6 +1622,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=temp_path,
             custom_shares=custom_shares,
             custom_fee_address=custom_fee_address,
+            dont_clean=True
         )
         account_list = GetAccounts(temp_path)
         account_list.execute(f"SELECT * FROM account_list")
@@ -1638,13 +1640,13 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(block.validating_list[1], the_transaction_5)
         self.assertEqual(block.validating_list[2], the_transaction_2)
         self.assertEqual(block.validating_list[3], the_transaction_3)
-        self.assertEqual(block.validating_list[4].toUser, "onuratakanulusoy")
-        self.assertEqual(block.validating_list[4].amount, 0.1)
-        self.assertEqual(block.validating_list[5].toUser, "abc")
-        self.assertEqual(block.validating_list[5].amount, 10)
-        self.assertEqual(block.validating_list[6].toUser, "bca")
-        self.assertEqual(block.validating_list[6].amount, 15)
-        self.assertEqual(block.validating_list[7], the_transaction)
+        self.assertEqual(block.validating_list[5].toUser, "onuratakanulusoy")
+        self.assertEqual(block.validating_list[5].amount, 0.1)
+        self.assertEqual(block.validating_list[6].toUser, "abc")
+        self.assertEqual(block.validating_list[6].amount, 10)
+        self.assertEqual(block.validating_list[7].toUser, "bca")
+        self.assertEqual(block.validating_list[7].amount, 15)
+        self.assertEqual(block.validating_list[4], the_transaction)
         self.assertEqual(account_list[0][2], 100000 - 5000 - 0.02)
         self.assertEqual(account_list[0][0],
                          "2ffd1f6bed8614f4cd01fc7159ac950604272773")
@@ -1655,17 +1657,20 @@ class Test_Transactions(unittest.TestCase):
                          "73cd109827c0de9fa211c0d062eab13584ea6bb8")
         self.assertEqual(account_list[1][1], 1)
 
+
+
         self.assertEqual(account_list[2][2], 94999.98)
         self.assertEqual(account_list[2][0],
-                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6")
+                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6") #B
         self.assertEqual(account_list[2][1], 1)
+
 
         self.assertEqual(account_list[3][2], 94999.98)
         self.assertEqual(account_list[3][0],
                          "6a4236cba1002b2919651677c7c520b67627aa2a")
         self.assertEqual(account_list[3][1], 1)
 
-        self.assertEqual(account_list[4][2], 99999.98)
+        self.assertEqual(account_list[4][2], 104999.98)
         self.assertEqual(account_list[4][0],
                          "d10d419bae75549222c5ffead625a9e0246ad3e6")
         self.assertEqual(account_list[4][1], 1)
@@ -1753,13 +1758,16 @@ class Test_Transactions(unittest.TestCase):
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
-        block.validating_list = [the_transaction, the_transaction]
+        the_transaction_a = copy.copy(the_transaction)
+        the_transaction_a.signature = "aa"
+        block.validating_list = [the_transaction, the_transaction_a]
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
 
         hash_1 = CalculateHash(
@@ -1778,6 +1786,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
 
         time.sleep(1)
@@ -1790,6 +1799,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=True,
+            dont_clean=True,
         )
         self.assertTrue(result)
 
@@ -1799,6 +1809,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True
         )
         self.assertIsNot(result_2, False)
 
@@ -1890,13 +1901,16 @@ class Test_Transactions(unittest.TestCase):
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
-        block.validating_list = [the_transaction, the_transaction]
+        the_transaction_a = copy.copy(the_transaction)
+        the_transaction_a.signature = "aa"        
+        block.validating_list = [the_transaction, the_transaction_a]
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
 
         hash_1 = CalculateHash(
@@ -1915,6 +1929,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
 
         time.sleep(1)
@@ -1927,6 +1942,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=True,
+            dont_clean=True
         )
         self.assertTrue(result)
 
@@ -1936,6 +1952,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True
         )
         self.assertIsNot(result_2, False)
 
@@ -2013,6 +2030,7 @@ class Test_Transactions(unittest.TestCase):
         result_2 = GetBlockstoBlockchainDB(
             sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -2032,7 +2050,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result_2[0].validating_list[0].dump_json(),
                          the_transaction.dump_json())
         self.assertEqual(result_2[0].validating_list[1].dump_json(),
-                         the_transaction.dump_json())
+                         the_transaction_a.dump_json())
 
         self.assertEqual(Saved_blocks_hash,
                          [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
@@ -2096,13 +2114,16 @@ class Test_Transactions(unittest.TestCase):
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
-        block.validating_list = [the_transaction, the_transaction]
+        the_transaction_a = copy.copy(the_transaction)
+        the_transaction_a.signature = "aa"
+        block.validating_list = [the_transaction, the_transaction_a]
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
 
         hash_1 = CalculateHash(
@@ -2121,6 +2142,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
 
         time.sleep(1)
@@ -2133,6 +2155,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=True,
+            dont_clean=True,
         )
         self.assertTrue(result)
 
@@ -2142,6 +2165,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -2219,6 +2243,7 @@ class Test_Transactions(unittest.TestCase):
         result_2 = GetBlockstoBlockchainDB(
             sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -2238,7 +2263,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result_2[0].validating_list[0].dump_json(),
                          the_transaction.dump_json())
         self.assertEqual(result_2[0].validating_list[1].dump_json(),
-                         the_transaction.dump_json())
+                         the_transaction_a.dump_json())
 
         self.assertEqual(Saved_blocks_hash,
                          [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
@@ -2310,13 +2335,16 @@ class Test_Transactions(unittest.TestCase):
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
-        block.validating_list = [the_transaction, the_transaction]
+        the_transaction_a = copy.copy(the_transaction)
+        the_transaction_a.signature = "aa"     
+        block.validating_list = [the_transaction, the_transaction_a]
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
 
         hash_1 = CalculateHash(
@@ -2335,6 +2363,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True,
         )
 
         time.sleep(1)
@@ -2347,6 +2376,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=True,
+            dont_clean=True,
         )
         self.assertTrue(result)
 
@@ -2356,6 +2386,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True
         )
         self.assertIsNot(result_2, False)
 
@@ -2433,6 +2464,7 @@ class Test_Transactions(unittest.TestCase):
         result_2 = GetBlockstoBlockchainDB(
             sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
+            dont_clean=True
         )
         self.assertIsNot(result_2, False)
 
@@ -2452,7 +2484,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result_2[0].validating_list[0].dump_json(),
                          the_transaction.dump_json())
         self.assertEqual(result_2[0].validating_list[1].dump_json(),
-                         the_transaction.dump_json())
+                         the_transaction_a.dump_json())
 
         self.assertEqual(Saved_blocks_hash,
                          [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])

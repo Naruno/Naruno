@@ -899,6 +899,7 @@ class Test_API(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True
         )
 
         hash_1 = CalculateHash(
@@ -917,6 +918,7 @@ class Test_API(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True
         )
 
         time.sleep(1)
@@ -929,6 +931,7 @@ class Test_API(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=True,
+            dont_clean=True
         )
         self.assertTrue(result)
 
@@ -938,6 +941,7 @@ class Test_API(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            dont_clean=True
         )
         self.assertIsNot(result_2, False)
 
@@ -1017,6 +1021,7 @@ class Test_API(unittest.TestCase):
         result_2 = GetBlockstoBlockchainDB(
             sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
+            dont_clean=True
         )
         self.assertIsNot(result_2, False)
 

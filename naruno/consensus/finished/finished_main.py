@@ -46,6 +46,7 @@ def finished_main(
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     custom_server: server = None,
     pass_sync: bool = False,
+    dont_clean=False,
 ) -> None:
     the_server = None
     if custom_server is None:
@@ -74,15 +75,7 @@ def finished_main(
         reset_block = block.reset_the_block()
 
 
-        for file in os.listdir("db/"):
-            if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
-                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
-                high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])#val
-                if number < block.sequence_number:
-                    
-                    with contextlib.suppress(FileNotFoundError):
-                        logger.info("Removing " + "db/" + file)
-                        os.remove("db/" + file)
+
 
         settings = the_settings()
         if reset_block != False:
@@ -98,6 +91,7 @@ def finished_main(
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
                     custom_TEMP_BLOCKSHASH_PART_PATH=
                     the_TEMP_BLOCKSHASH_PART_PATH,
+                    dont_clean=dont_clean,
                 )
                 new_tx_from_us = True
                 settings["save_blockshash"] = True
@@ -111,6 +105,7 @@ def finished_main(
                     custom_TEMP_BLOCKSHASH_PART_PATH=
                     the_TEMP_BLOCKSHASH_PART_PATH,
                     force=True,
+                    dont_clean=dont_clean,
                 )
 
             AppsTrigger(block2)
@@ -159,6 +154,8 @@ def finished_main(
                               (block.hard_block_number *
                                block.block_time)) - int(time.time())
                 time.sleep(difference)
+
+            
 
         PendingtoValidating(block)
         SaveBlock(

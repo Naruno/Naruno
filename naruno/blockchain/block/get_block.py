@@ -17,7 +17,7 @@ from naruno.lib.log import get_logger
 logger = get_logger("BLOCKCHAIN")
 
 
-def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
+def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=False):
     """
     Returns the block.
     """

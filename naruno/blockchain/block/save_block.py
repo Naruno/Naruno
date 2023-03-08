@@ -31,17 +31,18 @@ def SaveBlock(
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
     delete_old_validating_list=False,
-    just_save_normal=False
+    just_save_normal=False,
+    dont_clean=False
 ):
     """
     Saves the current block to the TEMP_BLOCK_PATH.
     """
+    if not dont_clean:
+        cleaned = Cleaner(block, pending_list_txs=GetPending())
+        block.validating_list = cleaned[0]       
 
-    cleaned = Cleaner(block, pending_list_txs=GetPending())
-    block.validating_list = cleaned[0]       
-
-    block = Remove_Duplicates(block)
-    block.validating_list = sorted(block.validating_list,
+        block = Remove_Duplicates(block)
+        block.validating_list = sorted(block.validating_list,
                                    key=lambda x: x.fromUser)
 
     logger.info("Saving block to disk")
@@ -81,6 +82,18 @@ def SaveBlock(
                     with contextlib.suppress(FileNotFoundError):
                         logger.info(f"Deleting old validating list: {file}")
                         os.remove("db/" + file)
+
+
+
+    for file in os.listdir("db/"):
+                    if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
+                        number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
+                        high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])#val
+                        if number < block.sequence_number:
+                            
+                            with contextlib.suppress(FileNotFoundError):
+                                logger.info("Removing " + "db/" + file)
+                                os.remove("db/" + file)                
 
 
 

@@ -20,6 +20,13 @@ def Cleaner(block: Block, pending_list_txs: list,
     custom_sequence_number=None,
     custom_balance=None,
 ):
+    system_txs = []
+
+    for transaction in block.validating_list:
+        if transaction.signature == "NARUNO":
+            block.validating_list.remove(transaction)
+            system_txs.append(transaction)
+            
 
     for transaction in pending_list_txs:
         the_sequance_number = None
@@ -107,5 +114,10 @@ def Cleaner(block: Block, pending_list_txs: list,
 
         DeletePending(transaction)
     pending_list_txs = cleaned_pending_list_txs
+
+
+    for transaction in system_txs:
+        block.validating_list.append(transaction)
+
 
     return (cleaned_validating_list, cleaned_pending_list_txs)

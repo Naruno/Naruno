@@ -17,6 +17,7 @@ def GetBlockstoBlockchainDB(
     custom_TEMP_ACCOUNTS_PATH=None,
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
+    dont_clean=False,
 ):
     """
     Gets the block from the blockchain database
@@ -27,7 +28,7 @@ def GetBlockstoBlockchainDB(
                            custom_BLOCKS_PATH)
 
         the_block = GetBlock(
-            (the_BLOCKS_PATH + str(sequence_number) + ".block.json"))
+            (the_BLOCKS_PATH + str(sequence_number) + ".block.json"), dont_clean=dont_clean)
         the_accounts = GetAccounts(
             (the_BLOCKS_PATH + str(sequence_number) + ".accounts.db"))
         the_blockshash = GetBlockshash(the_BLOCKS_PATH + str(sequence_number) +
