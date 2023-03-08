@@ -21,6 +21,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
     """
     Returns the block.
     """
+    logger.info("Getting block from disk")
+
     the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
                            else custom_TEMP_BLOCK_PATH)
 
@@ -34,8 +36,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
             number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
-            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2]) #val
-            other_high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3]) #val
+            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3]) #val
+            other_high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2]) #val
 
             # Write a code for getting the blocks with high number
             if number > highest_number:
@@ -59,7 +61,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False):
                 
 
 
-
+    logger.debug("Highest block: " + highest_the_TEMP_BLOCK_PATH)
 
 
     result_normal = Block("non")
