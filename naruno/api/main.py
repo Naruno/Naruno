@@ -14,10 +14,12 @@ from flask import request
 from waitress import serve
 from waitress.server import create_server
 
+
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from flask_cors import CORS
-
+from naruno.accounts.get_sequence_number import GetSequanceNumber
 from naruno.accounts.get_balance import GetBalance
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
@@ -426,6 +428,19 @@ def export_block_json_page():
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
     return jsonify(the_block.dump_json())
+
+
+
+
+@app.route("/sequence/get/", methods=["GET"])
+def sequence_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    #Check publisher mode
+    if not the_settings()["publisher_mode"]:
+        return jsonify("403"), 403
+    address = str(request.args.get("address"))
+    return jsonify(GetSequanceNumber(address))
 
 
 @app.errorhandler(500)
