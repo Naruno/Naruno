@@ -546,6 +546,33 @@ def transaction_send_page():
     else:
         return jsonify("400"), 400
 
+
+@app.route("/blocktransactionfee/get/", methods=["GET"])
+def blocktransactionfee_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    # Check publisher mode
+    if not the_settings()["publisher_mode"]:
+        return jsonify("403"), 403
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+    
+    return jsonify(the_block.transaction_fee)
+
+
+@app.route("/blocktransactionfee/get/", methods=["GET"])
+def blocktransactionfee_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    # Check publisher mode
+    if not the_settings()["publisher_mode"]:
+        return jsonify("403"), 403
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+    
+    return jsonify(the_block.transaction_fee)
+
+
 @app.errorhandler(500)
 def handle_exception(e):
     logger.exception(f"500: {e}")
