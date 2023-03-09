@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
+from naruno.lib.settings_system import the_settings
 from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
 from naruno.transactions.my_transactions.save_to_my_transaction import \
@@ -42,4 +43,10 @@ def transactions_main(block: Block) -> list:
                 tx, custom_currently_list=custom_currently_list)
             new_my_transactions_list = SendedTransaction(
                 tx, custom_currently_list=custom_currently_list)
+        else:
+            if the_settings()["publisher_mode"]:
+                new_my_transactions_list = SavetoMyTransaction(
+                    tx,
+                    validated=True,
+                    custom_currently_list=custom_currently_list)                
     return new_my_transactions_list
