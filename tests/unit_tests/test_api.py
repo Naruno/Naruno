@@ -13,6 +13,8 @@ import time
 import zipfile
 from urllib import response
 
+
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import threading
 import unittest
@@ -21,6 +23,7 @@ import urllib
 import requests
 
 import naruno
+from naruno.accounts.get_sequence_number import GetSequanceNumber
 from naruno.accounts.account import Account
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.get_balance import GetBalance
@@ -80,7 +83,7 @@ SaveAccounts(the_account_2, temp_path)
 
 naruno.api.main.account_list = GetAccounts(temp_path)
 
-a_account = Account("<address>", 1000)
+a_account = Account("<address>", 1000, sequence_number=1)
 SaveAccounts([a_account], "db/test_send_coin_data_page_data.db")
 the_accounts = GetAccounts("db/test_send_coin_data_page_data.db")
 naruno.api.main.custom_account_list = the_accounts
@@ -1104,6 +1107,50 @@ class Test_API(unittest.TestCase):
         self.assertTrue(response[0])
         self.assertEqual(response[1], "Onur Atakan")
         self.assertEqual(response[2], wallet_import(-1, 3))
+
+
+    def test_balance_page(self):
+        backup_the_settings = the_settings()
+        settings = copy.copy(backup_the_settings)
+        settings["publisher_mode"] = True
+        save_settings(settings)
+  
+
+        response = urllib.request.urlopen(
+            "http://localhost:7777/balance/get/?address=15562b06dc6b1acd6e8c86031e564e0c451c7a73")
+        response_result = response.read()
+        print(response_result)
+        the_balance_int = float(
+            (response_result.decode("utf-8")).replace("\n", ""))
+
+        save_settings(backup_the_settings)      
+
+        self.assertEqual(
+            the_balance_int,
+            -985.0,
+        )
+
+
+    def test_sequance_number_page(self):
+        backup_the_settings = the_settings()
+        settings = copy.copy(backup_the_settings)
+        settings["publisher_mode"] = True
+        save_settings(settings)
+  
+
+        response = urllib.request.urlopen(
+            "http://localhost:7777/sequence/get/?address=15562b06dc6b1acd6e8c86031e564e0c451c7a73")
+        response_result = response.read()
+        print(response_result)
+        the_balance_int = float(
+            (response_result.decode("utf-8")).replace("\n", ""))
+
+        save_settings(backup_the_settings)      
+
+        self.assertEqual(
+            the_balance_int,
+            1
+        )
 
 
 unittest.main(exit=False)

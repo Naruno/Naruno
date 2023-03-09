@@ -484,7 +484,10 @@ def balance_get_page():
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
     address = str(request.args.get("address"))
-    return jsonify(GetBalance(address))
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+    
+    return jsonify(GetBalance(address,block=the_block, account_list=account_list,dont_convert=True))
 
 
 @app.route("/sequence/get/", methods=["GET"])
@@ -495,7 +498,8 @@ def sequence_get_page():
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
     address = str(request.args.get("address"))
-    return jsonify(GetSequanceNumber(address))
+    
+    return jsonify(GetSequanceNumber(address, account_list=account_list, dont_convert=True))
 
 
 # Write a api for directing a transaction with GetTransaction

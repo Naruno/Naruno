@@ -8,8 +8,8 @@ from naruno.accounts.get_accounts import GetAccounts
 from naruno.wallet.wallet_import import Address
 
 
-def GetSequanceNumber(user, account_list=None):
-    user = Address(user)
+def GetSequanceNumber(user, account_list=None, dont_convert=False):
+    user = Address(user) if not dont_convert else user
     sequence_number = 0
     the_account_list = GetAccounts() if account_list is None else account_list
     the_account_list.execute(
