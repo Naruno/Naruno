@@ -106,6 +106,7 @@ def publisher_mode_settings(new_value):
     settings["publisher_mode"] = new_value
     save_settings(settings)
 
+
 def baklava_settings(new_value):
     """
     Changes the baklava setting.
@@ -131,7 +132,6 @@ def change_wallet(new_value):
     settings["wallet"] = new_value
     save_settings(settings)
     return settings["wallet"]
-
 
 
 def the_settings():
