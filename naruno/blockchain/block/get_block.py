@@ -88,9 +88,9 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
     if get_normal_block:
         return result_normal
 
-    if result_normal.sequence_number > result_highest.sequence_number:
+    if result_normal.sequence_number + result_normal.empty_block_number > result_highest.sequence_number + result_highest.empty_block_number:
         return result_normal
-    elif result_normal.sequence_number == result_highest.sequence_number:
+    elif result_normal.sequence_number + result_normal.empty_block_number == result_highest.sequence_number + result_highest.empty_block_number:
 
         result_normal_situation = 0
         result_highest_situation = 0

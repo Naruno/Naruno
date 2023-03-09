@@ -49,7 +49,7 @@ def SaveBlock(
 
     logger.info("Saving block to disk")
     logger.debug(
-        f"Block#{block.sequence_number}:{block.empty_block_number}: {block.dump_json()}"
+        f"Block#{block.sequence_number + block.empty_block_number}:{block.empty_block_number}: {block.dump_json()}"
     )
     if block.first_time:
         accounts_list = [Account(block.creator, block.coin_amount)]
@@ -105,7 +105,7 @@ def SaveBlock(
     if block.round_2:
         secondly_situation += 1
     highest_the_TEMP_BLOCK_PATH = (the_TEMP_BLOCK_PATH + "-" +
-                                   str(block.sequence_number) + "-" +
+                                   str(block.sequence_number + block.empty_block_number) + "-" +
                                    str(len(block.validating_list)) + "-" +
                                    str(secondly_situation) + "-" +
                                    str(time.time()))
@@ -124,7 +124,7 @@ def SaveBlock(
                 secondly_situation_number = int(
                     (("db/" + file).replace(the_TEMP_BLOCK_PATH,
                                             "")).split("-")[3])
-                if (number == block.sequence_number
+                if (number == block.sequence_number + block.empty_block_number
                         and high_number != len(block.validating_list)
                         and secondly_situation_number == 1):
                     with contextlib.suppress(FileNotFoundError):
@@ -139,7 +139,7 @@ def SaveBlock(
             high_number = int(
                 (("db/" + file).replace(the_TEMP_BLOCK_PATH,
                                         "")).split("-")[2])  # val
-            if number < block.sequence_number:
+            if number < block.sequence_number + block.empty_block_number:
                 with contextlib.suppress(FileNotFoundError):
                     logger.info("Removing " + "db/" + file)
                     os.remove("db/" + file)
