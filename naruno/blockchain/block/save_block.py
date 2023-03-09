@@ -18,6 +18,7 @@ from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated impo
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 from naruno.blockchain.block.block_main import Block
+from naruno.lib.settings_system import the_settings
 from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.get_pending import GetPending
 
@@ -48,8 +49,14 @@ def SaveBlock(
     logger.info("Saving block to disk")
     logger.debug(f"Block#{block.sequence_number}:{block.empty_block_number}: {block.dump_json()}")
     if block.first_time:
+        accounts_list = [Account(block.creator, block.coin_amount)]
+        baklava_test_net_users = [
+            Account("55de207a538855b4da2d60325e8afadc3b3caa04", block.transaction_fee*100),
+        ]
+        if the_settings()["baklava"]:
+            accounts_list.extend(baklava_test_net_users)
         SaveAccounts(
-            Account(block.creator, block.coin_amount),
+            accounts_list,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         )
         SaveBlockshash(
