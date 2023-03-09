@@ -35,6 +35,7 @@ def create_and_save_the_settings(test_mode_settings=False,
         "mute_notifications": False,
         "dark_mode": True,
         "publisher_mode": False,
+        "baklava": False,
     }
 
     save_settings(temp_json)
@@ -82,10 +83,10 @@ def mt_settings(new_value):
 
 def dark_mode_settings(new_value):
     """
-    Changes the mute_notifications setting.
+    Changes the dark_mode setting.
 
     Inputs:
-      * new_value: New value for the mute_notifications
+      * new_value: New value for the dark_mode
     """
 
     settings = the_settings()
@@ -95,14 +96,27 @@ def dark_mode_settings(new_value):
 
 def publisher_mode_settings(new_value):
     """
-    Changes the mute_notifications setting.
+    Changes the publisher_mode setting.
 
     Inputs:
-      * new_value: New value for the mute_notifications
+      * new_value: New value for the publisher_mode
     """
 
     settings = the_settings()
     settings["publisher_mode"] = new_value
+    save_settings(settings)
+
+
+def baklava_settings(new_value):
+    """
+    Changes the baklava setting.
+
+    Inputs:
+      * new_value: New value for the baklava
+    """
+
+    settings = the_settings()
+    settings["baklava"] = new_value
     save_settings(settings)
 
 

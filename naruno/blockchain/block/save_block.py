@@ -11,13 +11,15 @@ import time
 
 from naruno.accounts.account import Account
 from naruno.accounts.save_accounts import SaveAccounts
+from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import SaveBlockshash
 from naruno.blockchain.block.blocks_hash import SaveBlockshash_part
 from naruno.config import TEMP_BLOCK_PATH
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
-from naruno.blockchain.block.block_main import Block
+from naruno.lib.settings_system import the_settings
 from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.get_pending import GetPending
 
@@ -32,24 +34,33 @@ def SaveBlock(
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
     delete_old_validating_list=False,
     just_save_normal=False,
-    dont_clean=False
+    dont_clean=False,
 ):
     """
     Saves the current block to the TEMP_BLOCK_PATH.
     """
     if not dont_clean:
         cleaned = Cleaner(block, pending_list_txs=GetPending())
-        block.validating_list = cleaned[0]       
+        block.validating_list = cleaned[0]
 
         block = Remove_Duplicates(block)
         block.validating_list = sorted(block.validating_list,
-                                   key=lambda x: x.fromUser)
+                                       key=lambda x: x.fromUser)
 
     logger.info("Saving block to disk")
-    logger.debug(f"Block#{block.sequence_number}:{block.empty_block_number}: {block.dump_json()}")
+    logger.debug(
+        f"Block#{block.sequence_number}:{block.empty_block_number}: {block.dump_json()}"
+    )
     if block.first_time:
+        accounts_list = [Account(block.creator, block.coin_amount)]
+        baklava_test_net_users = [
+            Account("55de207a538855b4da2d60325e8afadc3b3caa04",
+                    block.transaction_fee * 100),
+        ]
+        if the_settings()["baklava"]:
+            accounts_list.extend(baklava_test_net_users)
         SaveAccounts(
-            Account(block.creator, block.coin_amount),
+            accounts_list,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         )
         SaveBlockshash(
@@ -68,34 +79,45 @@ def SaveBlock(
         secondly_situation += 1
     if block.round_2:
         secondly_situation += 1
-    highest_the_TEMP_BLOCK_PATH = the_TEMP_BLOCK_PATH + "-" + str(block.sequence_number) + "-" + str(len(block.validating_list)) + "-" + str(secondly_situation) + "-" + str(time.time())
+    highest_the_TEMP_BLOCK_PATH = (the_TEMP_BLOCK_PATH + "-" +
+                                   str(block.sequence_number) + "-" +
+                                   str(len(block.validating_list)) + "-" +
+                                   str(secondly_situation) + "-" +
+                                   str(time.time()))
     logger.info(f"Saving block to {highest_the_TEMP_BLOCK_PATH}")
 
     if delete_old_validating_list:
         os.chdir(get_config()["main_folder"])
         for file in os.listdir("db/"):
-            if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
-                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])
-                high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])
-                secondly_situation_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3])
-                if number == block.sequence_number and high_number != len(block.validating_list) and secondly_situation_number == 1:
+            if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
+                    "db/" + file) == the_TEMP_BLOCK_PATH:
+                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                     "")).split("-")[1])
+                high_number = int(
+                    (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                            "")).split("-")[2])
+                secondly_situation_number = int(
+                    (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                            "")).split("-")[3])
+                if (number == block.sequence_number
+                        and high_number != len(block.validating_list)
+                        and secondly_situation_number == 1):
                     with contextlib.suppress(FileNotFoundError):
                         logger.info(f"Deleting old validating list: {file}")
                         os.remove("db/" + file)
 
-
-
     for file in os.listdir("db/"):
-                    if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
-                        number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
-                        high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])#val
-                        if number < block.sequence_number:
-                            
-                            with contextlib.suppress(FileNotFoundError):
-                                logger.info("Removing " + "db/" + file)
-                                os.remove("db/" + file)                
-
-
+        if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
+                "db/" + file) == the_TEMP_BLOCK_PATH:
+            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                 "")).split("-")[1])  # seq
+            high_number = int(
+                (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                        "")).split("-")[2])  # val
+            if number < block.sequence_number:
+                with contextlib.suppress(FileNotFoundError):
+                    logger.info("Removing " + "db/" + file)
+                    os.remove("db/" + file)
 
     with open(the_TEMP_BLOCK_PATH, "w") as block_file:
         json.dump(block.dump_json(), block_file)
