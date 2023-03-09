@@ -517,6 +517,7 @@ def transaction_send_page():
 
     toUser = str(request.form["toUser"])
     amount = str(request.form["amount"])
+    data = str(request.form["data"])
     transaction_fee = str(request.form["transaction_fee"])
 
     time_of_transaction = str(request.form["time_of_transaction"])
@@ -527,6 +528,7 @@ def transaction_send_page():
         fromUser=fromUser,
         toUser=toUser,
         amount=amount,
+        data=data,
         transaction_fee=transaction_fee,
         time_of_transaction=time_of_transaction,
     )
