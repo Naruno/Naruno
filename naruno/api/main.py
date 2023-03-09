@@ -560,8 +560,8 @@ def blocktransactionfee_get_page():
     return jsonify(the_block.transaction_fee)
 
 
-@app.route("/blocktransactionfee/get/", methods=["GET"])
-def blocktransactionfee_get_page():
+@app.route("/blockmaxtxnumber/get/", methods=["GET"])
+def blockmaxtxnumber_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     # Check publisher mode
@@ -570,8 +570,33 @@ def blocktransactionfee_get_page():
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
     
-    return jsonify(the_block.transaction_fee)
+    return jsonify(the_block.max_tx_number)
 
+
+
+@app.route("/blockmaxdatasize/get/", methods=["GET"])
+def blockmaxdatasize_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    # Check publisher mode
+    if not the_settings()["publisher_mode"]:
+        return jsonify("403"), 403
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+    
+    return jsonify(the_block.max_data_size)
+
+@app.route("/blockminumumtransferamount/get/", methods=["GET"])
+def blockminumumtransferamount_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    # Check publisher mode
+    if not the_settings()["publisher_mode"]:
+        return jsonify("403"), 403
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+    
+    return jsonify(the_block.minumum_transfer_amount)
 
 @app.errorhandler(500)
 def handle_exception(e):
