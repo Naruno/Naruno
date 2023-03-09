@@ -55,7 +55,32 @@ def SaveBlock(
         accounts_list = [Account(block.creator, block.coin_amount)]
         baklava_test_net_users = [
             Account("55de207a538855b4da2d60325e8afadc3b3caa04",
-                    block.transaction_fee * 100),
+                    block.minumum_transfer_amount + block.transaction_fee * 100),
+
+            Account("2f58be5d152490affa05a7b0fd3cef8c195dae6d",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),
+            Account("a26536e07f3c2a850fb2b63cbe99d84589674634",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),
+            Account("0be5c9cd8bf68cafeec3a2d5d51678923780d3ff",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),
+            Account("82d87a6bfd279d30ad4894912eae2efacd4d46d6",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),
+            Account("f6e4955a8077ae5ed7d95014b41f22dcee6c0d76",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),
+            Account("73672aafc1890fc18d9b88105380b396eca799a5",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),
+            Account("83a15e056f98305418ee9ea26caf664c3d020040",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),       
+            Account("b1df8deda30d4f88cb905ecd57ed0fc7f2021d00",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+            Account("ec29c2e01987796a3677da2e3a9b4a098b93b89a",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+            Account("887af3d44bfe39005b4cc480c2b03a11c2fb8b63",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+            Account("17d3d3e20bd84ddf6e3ed85fa693c12654f174eb",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+            Account("00db4cebdeb9c8588dc9e1ffbe918d80dcf2ce97",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),                                                                                                                                                                                                                                                             
         ]
         if the_settings()["baklava"]:
             accounts_list.extend(baklava_test_net_users)
