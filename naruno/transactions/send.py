@@ -62,7 +62,7 @@ def send(
                     block=block)
         sequence_number = GetSequanceNumber(my_public_key) + 1
     else:
-        the_balance = float(urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={wallet_import(-1,3)}").read().decode("utf-8").replace("\n", ""))
+        the_balance = float(urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={to_user}").read().decode("utf-8").replace("\n", ""))
         sequence_number = float(urlopen(f"http://test_net.1.naruno.org:8000/sequence/get/?address={wallet_import(-1,3)}").read().decode("utf-8").replace("\n", "")) + 1
 
 
@@ -114,12 +114,7 @@ def send(
         tx_time = int(time.time())
         the_transaction = Transaction(
             sequence_number,
-            Ecdsa.sign(
-                (str(sequence_number) + my_public_key + str(to_user) +
-                 str(data)) + str(amount) + str(transaction_fee) +
-                str(tx_time),
-                PrivateKey.fromPem(my_private_key),
-            ).toBase64(),
+            "signature",
             my_public_key,
             to_user,
             data,
@@ -127,6 +122,12 @@ def send(
             transaction_fee,
             tx_time,
         )
+        the_transaction.signature = Ecdsa.sign(
+                        (str(the_transaction.sequence_number) + the_transaction.fromUser + str(the_transaction.toUser) +
+                        str(the_transaction.data)) + str(the_transaction.amount) + str(the_transaction.transaction_fee) +
+                        str(the_transaction.transaction_time),
+                        PrivateKey.fromPem(my_private_key),
+                    ).toBase64()        
         logger.info(f"Transaction: {the_transaction.dump_json()}")
 
         sending_result = False
@@ -141,7 +142,8 @@ def send(
                     custom_account_list=custom_account_list,
             )
         else:
-
+            logger.info("Sending the transaction to the baklava network.")
+            logger.info(f"Transaction: {the_transaction.dump_json()}")
             the_data = {
                 "sequence_number": the_transaction.sequence_number,
                 "signature": the_transaction.signature,
