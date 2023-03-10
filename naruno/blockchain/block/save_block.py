@@ -40,8 +40,9 @@ def SaveBlock(
     Saves the current block to the TEMP_BLOCK_PATH.
     """
     if not dont_clean:
-        cleaned = Cleaner(block, pending_list_txs=GetPending())
-        block.validating_list = cleaned[0]
+        if not block.round_1:
+            cleaned = Cleaner(block, pending_list_txs=GetPending())
+            block.validating_list = cleaned[0]
 
         block = Remove_Duplicates(block)
         block.validating_list = sorted(block.validating_list,
