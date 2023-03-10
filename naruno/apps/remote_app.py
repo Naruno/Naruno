@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 import json
 import os
 from hashlib import sha256
@@ -111,7 +112,8 @@ class Integration:
         return False if "false" in response.text else True
 
     def get(self):
-
+        backup_host = copy.copy(self.host)
+        backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
@@ -160,11 +162,16 @@ class Integration:
         result = []
 
         for transaction in new_dict:
+            if not new_dict[transaction]["transaction"]["data"] == "NP":
+                with contextlib.suppress(json.decoder.JSONDecodeError):
+                    new_dict[transaction]["transaction"]["data"] = json.loads(
+                        new_dict[transaction]["transaction"]["data"])
+                    
+                    if self.app_name in new_dict[transaction]["transaction"]["data"][
+                            "action"]:
+                        result.append(new_dict[transaction]["transaction"])
 
-            new_dict[transaction]["transaction"]["data"] = json.loads(
-                new_dict[transaction]["transaction"]["data"])
-            if self.app_name in new_dict[transaction]["transaction"]["data"][
-                    "action"]:
-                result.append(new_dict[transaction]["transaction"])
+        self.host = backup_host
+        self.port = backup_port
 
         return result
