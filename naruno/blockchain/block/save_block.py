@@ -56,47 +56,71 @@ def SaveBlock(
         accounts_list = [Account(block.creator, block.coin_amount)]
         baklava_test_net_users = [
             Account("55de207a538855b4da2d60325e8afadc3b3caa04",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
             Account("2f58be5d152490affa05a7b0fd3cef8c195dae6d",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("a26536e07f3c2a850fb2b63cbe99d84589674634",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("0be5c9cd8bf68cafeec3a2d5d51678923780d3ff",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("82d87a6bfd279d30ad4894912eae2efacd4d46d6",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("f6e4955a8077ae5ed7d95014b41f22dcee6c0d76",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("73672aafc1890fc18d9b88105380b396eca799a5",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("83a15e056f98305418ee9ea26caf664c3d020040",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),       
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),       
             Account("b1df8deda30d4f88cb905ecd57ed0fc7f2021d00",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
             Account("ec29c2e01987796a3677da2e3a9b4a098b93b89a",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
             Account("887af3d44bfe39005b4cc480c2b03a11c2fb8b63",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
             Account("17d3d3e20bd84ddf6e3ed85fa693c12654f174eb",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),  
-            Account("00db4cebdeb9c8588dc9e1ffbe918d80dcf2ce97",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
             Account("1da75d769ab3604abc04763d20dc3f70bf1c69b8",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),    
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),    
 
             Account("d7eee170a14b99e37a3e3fc6d375d1d28bddf62b",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
             Account("d7f20b7990cc593e248f1d0dd31dd7a235a40d9a",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
             Account("75f7e0e090834c959f6538b1a4c80f03be410bdd",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),                                                              
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),                                                              
 
 
             Account("d37cb2c0df30965f2bc12cea040386e70e32402b",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),   
-                                      
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+
+            Account("0af54b3f47fc1577688e7c2c227672f610cad292",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),       
+
+
+
+
+
+
+            Account("96bb7bac1af450ea0c17300ea4f61b1cd0b88b6d",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+            Account("709bf017a48d2f02bb5d5d8d205ccf39d8205b4a",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+            Account("5b943d77a8b7e66aa60b98a2197f2197db4f464b",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+            Account("bba1e2f5871c02b130416229c02dd54fc404cd21",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+            Account("dcf715a42784bfedf009b515ada46c1946a3339b",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+            Account("0af54b3f47fc1577688e7c2c227672f610cad292",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+            Account("0af54b3f47fc1577688e7c2c227672f610cad292",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+            Account("0af54b3f47fc1577688e7c2c227672f610cad292",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),                                                                                                                                               
+
+
 
         ]
         if the_settings()["baklava"]:
