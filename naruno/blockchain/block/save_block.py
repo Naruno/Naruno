@@ -83,7 +83,20 @@ def SaveBlock(
                     block.minumum_transfer_amount + block.transaction_fee * 100),  
 
             Account("1da75d769ab3604abc04763d20dc3f70bf1c69b8",
-                    block.minumum_transfer_amount + block.transaction_fee * 100),                                                                                                                                                                                                                                                                                 
+                    block.minumum_transfer_amount + block.transaction_fee * 100),    
+
+            Account("d7eee170a14b99e37a3e3fc6d375d1d28bddf62b",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+            Account("d7f20b7990cc593e248f1d0dd31dd7a235a40d9a",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),  
+            Account("75f7e0e090834c959f6538b1a4c80f03be410bdd",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),                                                              
+
+
+            Account("d37cb2c0df30965f2bc12cea040386e70e32402b",
+                    block.minumum_transfer_amount + block.transaction_fee * 100),   
+                                      
+
         ]
         if the_settings()["baklava"]:
             accounts_list.extend(baklava_test_net_users)
