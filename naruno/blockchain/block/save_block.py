@@ -120,7 +120,8 @@ def SaveBlock(
             Account("0af54b3f47fc1577688e7c2c227672f610cad292",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),                                                                                                                                               
 
-
+            Account("cbdeeab5577f6f8693e571494e61dc0f356d9d09",
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
         ]
         if the_settings()["baklava"]:
