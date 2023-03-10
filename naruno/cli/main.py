@@ -26,7 +26,7 @@ from naruno.lib.mix.mixlib import (banner_maker, menu_maker, menu_space,
                                    question_maker, quit_menu_maker)
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (d_mode_settings,
+from naruno.lib.settings_system import (baklava_settings, d_mode_settings,
                                         publisher_mode_settings,
                                         t_mode_settings, the_settings)
 from naruno.lib.sign import sign
@@ -320,6 +320,15 @@ def arguments():
                         action="store_true",
                         help="Publisher Mode Off")
 
+    parser.add_argument("-bon",
+                        "--baklavaon",
+                        action="store_true",
+                        help="Baklava On")
+    parser.add_argument("-boff",
+                        "--baklavaoff",
+                        action="store_true",
+                        help="Baklava Off")
+
     parser.add_argument(
         "-exptrcsv",
         "--exporttransactioncsv",
@@ -407,6 +416,11 @@ def arguments():
         publisher_mode_settings(True)
     if args.publishermodeoff:
         publisher_mode_settings(False)
+
+    if args.baklavaon:
+        baklava_settings(True)
+    if args.baklavaoff:
+        baklava_settings(False)
 
     if args.exporttransactioncsv:
         if export_the_transactions():
