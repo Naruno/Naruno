@@ -48,7 +48,7 @@ def send(
         data: The data of the transaction.
 
     """
-    if not the_settings["baklava"]:
+    if not the_settings()["baklava"]:
         block = block if block is not None else GetBlock()
 
         minumum_transfer_amount = block.minumum_transfer_amount
@@ -62,6 +62,9 @@ def send(
                     block=block)
         sequence_number = GetSequanceNumber(my_public_key) + 1
     else:
+        the_balance = float(urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={wallet_import(-1,3)}").read().decode("utf-8").replace("\n", ""))
+        sequence_number = float(urlopen(f"http://test_net.1.naruno.org:8000/sequence/get/?address={wallet_import(-1,3)}").read().decode("utf-8").replace("\n", "")) + 1
+
 
         transaction_fee = float(urlopen("http://test_net.1.naruno.org:8000/blocktransactionfee/get/").read().decode("utf-8"))
         max_tx_number = int(urlopen("http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/").read().decode("utf-8"))
@@ -124,10 +127,11 @@ def send(
             transaction_fee,
             tx_time,
         )
+        logger.info(f"Transaction: {the_transaction.dump_json()}")
 
         sending_result = False
 
-        if not the_settings["baklava"]:
+        if not the_settings()["baklava"]:
             sending_result = GetTransaction(
                     block,
                     the_transaction,
@@ -146,7 +150,7 @@ def send(
                 "amount": the_transaction.amount,
                 "data": the_transaction.data,
                 "transaction_fee": the_transaction.transaction_fee,
-                "time_of_transaction": the_transaction.time_of_transaction,
+                "time_of_transaction": the_transaction.transaction_time,
             }
 
             data = parse.urlencode(the_data).encode()
