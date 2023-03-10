@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import argparse
+import contextlib
 import os
 import sys
 
@@ -151,7 +152,9 @@ def send_coin_data_page():
     data = str(request.form["data"]) if "data" in request.form else ""
     password = str(
         request.form["password"]) if "password" in request.form else None
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+    block = None
+    with contextlib.suppress(Exception):
+        block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
              if custom_block is None else custom_block)
     send_tx = send(
         password,
@@ -511,16 +514,16 @@ def transaction_send_page():
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
 
-    sequence_number = str(request.form["sequence_number"])
+    sequence_number = int(request.form["sequence_number"])
     signature = str(request.form["signature"])
     fromUser = str(request.form["fromUser"])
 
     toUser = str(request.form["toUser"])
-    amount = str(request.form["amount"])
+    amount = float(request.form["amount"])
     data = str(request.form["data"])
-    transaction_fee = str(request.form["transaction_fee"])
+    transaction_fee = float(request.form["transaction_fee"])
 
-    time_of_transaction = str(request.form["time_of_transaction"])
+    time_of_transaction = int(request.form["time_of_transaction"])
 
     the_transaction = Transaction(
         sequence_number=sequence_number,
