@@ -11,6 +11,7 @@ from hashlib import sha256
 import requests
 
 from naruno.lib.config_system import get_config
+from naruno.lib.settings_system import the_settings
 
 
 class Integration:
@@ -110,6 +111,10 @@ class Integration:
         return False if "false" in response.text else True
 
     def get(self):
+
+        if the_settings()["baklava"]:
+            self.host = "test_net.1.naruno.org"
+            self.port = 8000
 
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
