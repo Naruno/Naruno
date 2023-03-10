@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+import copy
 import json
 import os
 from hashlib import sha256
@@ -13,6 +14,7 @@ import requests
 
 from naruno.lib.config_system import get_config
 from naruno.lib.settings_system import the_settings
+from naruno.wallet.wallet_import import wallet_import
 
 
 class Integration:
@@ -159,7 +161,7 @@ class Integration:
 
         self.save_cache()
 
-        result = []
+        last_list = []
 
         for transaction in new_dict:
             if not new_dict[transaction]["transaction"]["data"] == "NP":
@@ -169,7 +171,18 @@ class Integration:
                     
                     if self.app_name in new_dict[transaction]["transaction"]["data"][
                             "action"]:
-                        result.append(new_dict[transaction]["transaction"])
+                        last_list.append(new_dict[transaction]["transaction"])
+
+
+        result = []
+
+        for transaction in last_list:
+
+            if transaction["fromUser"] == wallet_import(-1,0):
+                result.append(transaction)
+            elif transaction["toUser"] == wallet_import(-1,3):
+                result.append(transaction)
+
 
         self.host = backup_host
         self.port = backup_port
