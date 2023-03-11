@@ -46,7 +46,7 @@ class Naruno_Scene(Scene):
         text = Text("Naruno", font=self.font, color="#DBFF00")
         self.play(Write(text))
         self.play(text.animate.shift(LEFT * 1))
-        text2 = Text(self.the_title, font=self.font).shift(RIGHT * 2)
+        text2 = Text(self.the_title, font=self.font).shift(RIGHT * 1)
         self.play(Write(text2))
         self.wait(2)
         self.play(FadeOut(text), FadeOut(text2))
