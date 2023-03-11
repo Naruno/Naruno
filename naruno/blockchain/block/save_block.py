@@ -44,8 +44,8 @@ def SaveBlock(
             cleaned = Cleaner(block, pending_list_txs=GetPending())
             block.validating_list = cleaned[0]
 
-        block = Remove_Duplicates(block)
-        block.validating_list = sorted(block.validating_list,
+            block = Remove_Duplicates(block)
+            block.validating_list = sorted(block.validating_list,
                                        key=lambda x: x.fromUser)
 
     logger.info("Saving block to disk")
