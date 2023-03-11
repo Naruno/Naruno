@@ -169,20 +169,21 @@ def send_coin_data_page():
     )
     if send_tx != False:
         SavetoMyTransaction(send_tx, sended=True)
-        server.send_transaction(
-            send_tx,
-            custom_current_time=custom_current_time,
-            custom_sequence_number=custom_sequence_number,
-            custom_balance=custom_balance,
-            custom_server=custom_server,
-        )
-        SaveBlock(
-            block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )
+        if not the_settings()["baklava"]:
+            server.send_transaction(
+                send_tx,
+                custom_current_time=custom_current_time,
+                custom_sequence_number=custom_sequence_number,
+                custom_balance=custom_balance,
+                custom_server=custom_server,
+            )
+            SaveBlock(
+                block,
+                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            )
     result = send_tx.dump_json() if send_tx != False else False
     return jsonify(result)
 
