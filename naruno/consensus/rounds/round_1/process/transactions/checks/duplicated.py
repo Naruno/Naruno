@@ -15,19 +15,16 @@ def Remove_Duplicates(block: Block):
     Remove duplicate transactions
     """
     logger.info("Removing dublicated transaction is started")
-    if not block.round_1 and not block.round_2:
+    logger.debug(f"First block.validatin_list: {block.validating_list}")
 
-        logger.debug(f"First block.validatin_list: {block.validating_list}")
-
-        new_validating_list = []
-        for tx in block.validating_list:
-            if tx.signature == "NARUNO" or not any(tx.signature == tx2.signature
-                    for tx2 in new_validating_list):
-                new_validating_list.append(tx)
-            else:
-                logger.info(
-                    f"tx: {tx} will be removed because its added more than one")
-        block.validating_list = new_validating_list
-        logger.debug(f"End block.validatin_list: {block.validating_list}")
-    
+    new_validating_list = []
+    for tx in block.validating_list:
+        if tx.signature == "NARUNO" or not any(tx.signature == tx2.signature
+                   for tx2 in new_validating_list):
+            new_validating_list.append(tx)
+        else:
+            logger.info(
+                f"tx: {tx} will be removed because its added more than one")
+    block.validating_list = new_validating_list
+    logger.debug(f"End block.validatin_list: {block.validating_list}")
     return block
