@@ -25,7 +25,7 @@ class Naruno_Scene(Scene):
         self.the_title = the_title
 
     def settings(self):
-        self.camera.background_color = "#27262b"
+        self.camera.background_color = "#303030"
 
         self.font = "Poppins"
 
@@ -45,8 +45,8 @@ class Naruno_Scene(Scene):
         """
         text = Text("Naruno", font=self.font, color="#DBFF00")
         self.play(Write(text))
-        self.play(text.animate.shift(LEFT * 1.5))
-        text2 = Text(self.the_title, font=self.font).shift(RIGHT * 2.5)
+        self.play(text.animate.shift(LEFT * 1))
+        text2 = Text(self.the_title, font=self.font).shift(RIGHT * 2)
         self.play(Write(text2))
         self.wait(2)
         self.play(FadeOut(text), FadeOut(text2))
