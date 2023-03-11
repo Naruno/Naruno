@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+import copy
 import threading
 
 from naruno.blockchain.block.block_main import Block
@@ -64,7 +65,7 @@ def sync(
             ).start()
 
     logger.debug("Transactions is sending to the unl nodes")
-    the_transactions_list = block.validating_list
+    the_transactions_list = copy.copy(block.validating_list)
     if pending_list_txs is not None:
         the_transactions_list += pending_list_txs
     for i in the_transactions_list:
