@@ -116,7 +116,7 @@ class Naruno_Scene(Scene):
                                         self.secuirty_circle_1_text)
         self.play(
             Create(self.secuirty_circle_1_text),
-            self.security_circle_1.animate.set_color("#DBFF00").scale(0.5),
+            self.security_circle_1.animate.set_color("#5C6BC0").scale(0.5),
         )
 
         self.play(self.security_circle_1.animate.shift(2 * UP))
@@ -126,7 +126,7 @@ class Naruno_Scene(Scene):
         self.secuirty_circle_2_text = (Text(
             "Security Circle 2",
             font=self.font).next_to(self.security_circle_2_components,
-                                    UP).set_color("#DBFF00").scale(0.5))
+                                    UP).set_color("#5C6BC0").scale(0.5))
         self.security_circle_2 = VGroup(self.security_circle_2_components,
                                         self.secuirty_circle_2_text)
         self.security_circle_3_components = self.security_circle_1_components.copy(
@@ -134,7 +134,7 @@ class Naruno_Scene(Scene):
         self.secuirty_circle_3_text = (Text(
             "Security Circle 3",
             font=self.font).next_to(self.security_circle_3_components,
-                                    UP).set_color("#DBFF00").scale(0.5))
+                                    UP).set_color("#5C6BC0").scale(0.5))
         self.security_circle_3 = VGroup(self.security_circle_3_components,
                                         self.secuirty_circle_3_text)
         self.security_circle_4_components = self.security_circle_1_components.copy(
@@ -142,7 +142,7 @@ class Naruno_Scene(Scene):
         self.secuirty_circle_4_text = (Text(
             "Security Circle 4",
             font=self.font).next_to(self.security_circle_4_components,
-                                    UP).set_color("#DBFF00").scale(0.5))
+                                    UP).set_color("#5C6BC0").scale(0.5))
         self.security_circle_4 = VGroup(self.security_circle_4_components,
                                         self.secuirty_circle_4_text)
 
@@ -158,13 +158,13 @@ class Naruno_Scene(Scene):
 
         self.wait(2)
 
-        self.circle_1 = Circle(color="#DBFF00").scale(1.5).shift(2 * UP).shift(
+        self.circle_1 = Circle(color="#5C6BC0").scale(1.5).shift(2 * UP).shift(
             3 * LEFT)
-        self.circle_2 = (Circle(color="#DBFF00").scale(1.5).shift(
+        self.circle_2 = (Circle(color="#5C6BC0").scale(1.5).shift(
             2 * UP).shift(3 * RIGHT))
-        self.circle_3 = (Circle(color="#DBFF00").scale(1.5).shift(
+        self.circle_3 = (Circle(color="#5C6BC0").scale(1.5).shift(
             2 * UP).shift(3 * LEFT + 3.5 * DOWN))
-        self.circle_4 = (Circle(color="#DBFF00").scale(1.5).shift(
+        self.circle_4 = (Circle(color="#5C6BC0").scale(1.5).shift(
             2 * UP).shift(3 * RIGHT + 3.5 * DOWN))
         self.play(
             ReplacementTransform(self.security_circle_1, self.circle_1),
@@ -198,51 +198,51 @@ class Naruno_Scene(Scene):
         self.i_34 = Intersection(self.circle_3, self.circle_4)
         # fill the intersections
         self.play(
-            self.i_all.animate.set_fill(color="#DBFF00", opacity=0.5),
-            self.i_12.animate.set_fill(color="#DBFF00", opacity=0.5),
-            self.i_13.animate.set_fill(color="#DBFF00", opacity=0.5),
-            self.i_14.animate.set_fill(color="#DBFF00", opacity=0.5),
-            self.i_23.animate.set_fill(color="#DBFF00", opacity=0.5),
-            self.i_24.animate.set_fill(color="#DBFF00", opacity=0.5),
-            self.i_34.animate.set_fill(color="#DBFF00", opacity=0.5),
+            self.i_all.animate.set_fill(color="#5C6BC0", opacity=0.5),
+            self.i_12.animate.set_fill(color="#5C6BC0", opacity=0.5),
+            self.i_13.animate.set_fill(color="#5C6BC0", opacity=0.5),
+            self.i_14.animate.set_fill(color="#5C6BC0", opacity=0.5),
+            self.i_23.animate.set_fill(color="#5C6BC0", opacity=0.5),
+            self.i_24.animate.set_fill(color="#5C6BC0", opacity=0.5),
+            self.i_34.animate.set_fill(color="#5C6BC0", opacity=0.5),
         )
         self.wait(1)
         self.play(
-            self.i_all.animate.set_fill(color="#DBFF00", opacity=0),
-            self.i_12.animate.set_fill(color="#DBFF00", opacity=0),
-            self.i_13.animate.set_fill(color="#DBFF00", opacity=0),
-            self.i_14.animate.set_fill(color="#DBFF00", opacity=0),
-            self.i_23.animate.set_fill(color="#DBFF00", opacity=0),
-            self.i_24.animate.set_fill(color="#DBFF00", opacity=0),
-            self.i_34.animate.set_fill(color="#DBFF00", opacity=0),
+            self.i_all.animate.set_fill(color="#5C6BC0", opacity=0),
+            self.i_12.animate.set_fill(color="#5C6BC0", opacity=0),
+            self.i_13.animate.set_fill(color="#5C6BC0", opacity=0),
+            self.i_14.animate.set_fill(color="#5C6BC0", opacity=0),
+            self.i_23.animate.set_fill(color="#5C6BC0", opacity=0),
+            self.i_24.animate.set_fill(color="#5C6BC0", opacity=0),
+            self.i_34.animate.set_fill(color="#5C6BC0", opacity=0),
         )
 
     def data_running_through_the_intersections_and_circles(self):
         """
         And all of signed and safe datas running arround of intersections and inside of circles.
         """
-        self.dot_i_all = Dot(color="#DBFF00").move_to(
+        self.dot_i_all = Dot(color="#5C6BC0").move_to(
             self.i_all.get_right()).scale(1.5)
-        self.dot_i_12 = Dot(color="#DBFF00").move_to(
+        self.dot_i_12 = Dot(color="#5C6BC0").move_to(
             self.i_12.get_right()).scale(1.5)
-        self.dot_i_13 = Dot(color="#DBFF00").move_to(
+        self.dot_i_13 = Dot(color="#5C6BC0").move_to(
             self.i_13.get_right()).scale(1.5)
-        self.dot_i_14 = Dot(color="#DBFF00").move_to(
+        self.dot_i_14 = Dot(color="#5C6BC0").move_to(
             self.i_14.get_right()).scale(1.5)
-        self.dot_i_23 = Dot(color="#DBFF00").move_to(
+        self.dot_i_23 = Dot(color="#5C6BC0").move_to(
             self.i_23.get_right()).scale(1.5)
-        self.dot_i_24 = Dot(color="#DBFF00").move_to(
+        self.dot_i_24 = Dot(color="#5C6BC0").move_to(
             self.i_24.get_right()).scale(1.5)
-        self.dot_i_34 = Dot(color="#DBFF00").move_to(
+        self.dot_i_34 = Dot(color="#5C6BC0").move_to(
             self.i_34.get_right()).scale(1.5)
 
-        self.dot_circle_1 = (Dot(color="#DBFF00").move_to(
+        self.dot_circle_1 = (Dot(color="#5C6BC0").move_to(
             self.circle_1.get_right()).scale(1.5))
-        self.dot_circle_2 = (Dot(color="#DBFF00").move_to(
+        self.dot_circle_2 = (Dot(color="#5C6BC0").move_to(
             self.circle_2.get_right()).scale(1.5))
-        self.dot_circle_3 = (Dot(color="#DBFF00").move_to(
+        self.dot_circle_3 = (Dot(color="#5C6BC0").move_to(
             self.circle_3.get_right()).scale(1.5))
-        self.dot_circle_4 = (Dot(color="#DBFF00").move_to(
+        self.dot_circle_4 = (Dot(color="#5C6BC0").move_to(
             self.circle_4.get_right()).scale(1.5))
 
         self.play(
