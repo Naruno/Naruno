@@ -123,7 +123,6 @@ class Integration:
 
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
-        print
         transactions_sended = {}
         transactions_sended_not_validated = {}
 
