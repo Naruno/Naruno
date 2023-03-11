@@ -46,21 +46,22 @@ def sync(
     logger.info("Data sending process is starting")
     the_server = server.Server if custom_server is None else custom_server
 
+    if not block.round_1:
+        threading.Thread(
+            target=send_block,
+            args=(
+                block, the_server, send_block_error
+            ),
+        ).start()
 
-    threading.Thread(
-        target=send_block,
-        args=(
-            block, the_server, send_block_error
-        ),
-    ).start()
-
-
-    threading.Thread(
-        target=send_block_hash,
-        args=(
-            block, the_server, send_block_hash_error
-        ),
-    ).start()
+    else:
+        if not block.round_2:
+            threading.Thread(
+                target=send_block_hash,
+                args=(
+                    block, the_server, send_block_hash_error
+                ),
+            ).start()
 
     logger.debug("Transactions is sending to the unl nodes")
     the_transactions_list = block.validating_list
