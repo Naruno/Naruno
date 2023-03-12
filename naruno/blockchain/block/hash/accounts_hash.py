@@ -15,7 +15,7 @@ def AccountsHash(block, the_accounts):
     the_accounts.execute("SELECT * FROM account_list")
     the_list = the_accounts.fetchall()
 
-    account_list = MerkleTree([account.get_hash()
+    account_list = MerkleTree([str(account[0])+str(account[1])+str(account[2])
                                for account in the_list]).getRootHash()
 
     return account_list
