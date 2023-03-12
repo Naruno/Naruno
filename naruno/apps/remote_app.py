@@ -13,10 +13,14 @@ from hashlib import sha256
 import requests
 
 from naruno.lib.config_system import get_config
-from naruno.lib.settings_system import baklava_settings, the_settings
-from naruno.transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
-from naruno.transactions.my_transactions.sended_transaction import SendedTransaction
-from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
+from naruno.lib.settings_system import baklava_settings
+from naruno.lib.settings_system import the_settings
+from naruno.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from naruno.transactions.my_transactions.sended_transaction import \
+    SendedTransaction
+from naruno.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import wallet_import
 
@@ -39,7 +43,8 @@ class Integration:
         :param password: The password of the wallet
         """
         self.app_name = app_name
-        self.cache_name = sha256(self.app_name.encode()).hexdigest()
+        self.cache_name = sha256(
+            self.app_name.encode()).hexdigest() + wallet_import(-1, 3)
         self.host = host
         self.port = port
         self.password = password
@@ -117,10 +122,7 @@ class Integration:
 
         return False if "false" in response.text else True
 
-
     def get_(self):
-
-
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
         transactions_sended = {}
@@ -143,7 +145,8 @@ class Integration:
                 continue
             else:
                 new_dict[transaction] = transactions[transaction]
-                the_tx = Transaction.load_json(transactions[transaction]["transaction"])
+                the_tx = Transaction.load_json(
+                    transactions[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
                 self.cache.append(transaction)
@@ -153,7 +156,8 @@ class Integration:
                 continue
             else:
                 new_dict[transaction] = transactions_sended[transaction]
-                the_tx = Transaction.load_json(transactions_sended[transaction]["transaction"])
+                the_tx = Transaction.load_json(
+                    transactions_sended[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
                 self.cache.append(transaction)
@@ -175,44 +179,36 @@ class Integration:
                 with contextlib.suppress(json.decoder.JSONDecodeError):
                     new_dict[transaction]["transaction"]["data"] = json.loads(
                         new_dict[transaction]["transaction"]["data"])
-                    
-                    if self.app_name in new_dict[transaction]["transaction"]["data"][
-                            "action"]:
 
-                            last_list.append(new_dict[transaction]["transaction"])
-
+                    if (self.app_name in new_dict[transaction]["transaction"]
+                        ["data"]["action"]):
+                        last_list.append(new_dict[transaction]["transaction"])
 
         result = []
 
         for transaction in last_list:
-
-            if transaction["fromUser"] == wallet_import(-1,0):
+            if transaction["fromUser"] == wallet_import(-1, 0):
                 the_tx = Transaction.load_json(transaction)
                 SendedTransaction(the_tx)
                 result.append(transaction)
 
-            elif transaction["toUser"] == wallet_import(-1,3):
+            elif transaction["toUser"] == wallet_import(-1, 3):
                 result.append(transaction)
 
-
-
-
         return result
-
-
 
     def get(self):
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
-            self.port = 8000        
+            self.port = 8000
 
         first = []
         with contextlib.suppress(Exception):
             first = self.get_()
         self.host = backup_host
-        self.port = backup_port        
+        self.port = backup_port
 
         second = self.get_()
         return first + second
