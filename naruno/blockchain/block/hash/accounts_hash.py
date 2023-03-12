@@ -12,7 +12,6 @@ def AccountsHash(block, the_accounts):
     Calculates and returns the hash of the accounts.
     """
 
-
     the_accounts.execute("SELECT * FROM account_list")
     the_list = the_accounts.fetchall()
 
