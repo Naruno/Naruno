@@ -10,7 +10,6 @@ import os
 from naruno.config import *
 from naruno.lib.config_system import get_config
 
-
 temp_json = {
     "test_mode": False,
     "debug_mode": False,
