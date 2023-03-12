@@ -14,7 +14,9 @@ import requests
 
 from naruno.lib.config_system import get_config
 from naruno.lib.settings_system import baklava_settings, the_settings
-from naruno.transactions.my_transactions.save_to_my_transaction import SavetoMyTransaction
+from naruno.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
 from naruno.transactions.my_transactions.sended_transaction import SendedTransaction
 from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
 from naruno.transactions.transaction import Transaction
@@ -22,7 +24,6 @@ from naruno.wallet.wallet_import import wallet_import
 
 
 class Integration:
-
     def __init__(
         self,
         app_name,
@@ -39,8 +40,9 @@ class Integration:
         :param password: The password of the wallet
         """
         self.app_name = app_name
-        self.cache_name = sha256(
-            self.app_name.encode()).hexdigest() + wallet_import(-1, 3)
+        self.cache_name = sha256(self.app_name.encode()).hexdigest() + wallet_import(
+            -1, 3
+        )
         self.host = host
         self.port = port
         self.password = password
@@ -67,14 +69,12 @@ class Integration:
         if not os.path.exists(f"db/remote_app_cache/{self.cache_name}.cache"):
             self.cache = []
             self.save_cache()
-        with open(f"db/remote_app_cache/{self.cache_name}.cache",
-                  "r") as cache:
+        with open(f"db/remote_app_cache/{self.cache_name}.cache", "r") as cache:
             self.cache = json.load(cache)
 
     def save_cache(self):
         os.chdir(get_config()["main_folder"])
-        with open(f"db/remote_app_cache/{self.cache_name}.cache",
-                  "w") as cache:
+        with open(f"db/remote_app_cache/{self.cache_name}.cache", "w") as cache:
             json.dump(self.cache, cache)
 
     def delete_cache(self):
@@ -112,27 +112,26 @@ class Integration:
             "to_user": to_user,
             "data": data,
         }
-        response = self.prepare_request("/send/",
-                                        type="post",
-                                        data=request_body)
+        response = self.prepare_request("/send/", type="post", data=request_body)
 
         return False if "false" in response.text else True
 
     def get_(self):
-
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
         transactions_sended = {}
         transactions_sended_not_validated = {}
 
         if self.sended:
-            response = self.prepare_request("/transactions/sended/validated",
-                                            type="get")
+            response = self.prepare_request(
+                "/transactions/sended/validated", type="get"
+            )
             transactions_sended = response.json()
 
         if self.sended_not_validated:
             response = self.prepare_request(
-                "/transactions/sended/not_validated", type="get")
+                "/transactions/sended/not_validated", type="get"
+            )
             transactions_sended_not_validated = response.json()
 
         new_dict = {}
@@ -142,8 +141,7 @@ class Integration:
                 continue
             else:
                 new_dict[transaction] = transactions[transaction]
-                the_tx = Transaction.load_json(
-                    transactions[transaction]["transaction"])
+                the_tx = Transaction.load_json(transactions[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
                 self.cache.append(transaction)
@@ -154,7 +152,8 @@ class Integration:
             else:
                 new_dict[transaction] = transactions_sended[transaction]
                 the_tx = Transaction.load_json(
-                    transactions_sended[transaction]["transaction"])
+                    transactions_sended[transaction]["transaction"]
+                )
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
                 self.cache.append(transaction)
@@ -163,8 +162,7 @@ class Integration:
             if transaction in self.cache:
                 continue
             else:
-                new_dict[transaction] = transactions_sended_not_validated[
-                    transaction]
+                new_dict[transaction] = transactions_sended_not_validated[transaction]
                 self.cache.append(transaction)
 
         self.save_cache()
@@ -175,17 +173,18 @@ class Integration:
             if not new_dict[transaction]["transaction"]["data"] == "NP":
                 with contextlib.suppress(json.decoder.JSONDecodeError):
                     new_dict[transaction]["transaction"]["data"] = json.loads(
-                        new_dict[transaction]["transaction"]["data"])
+                        new_dict[transaction]["transaction"]["data"]
+                    )
 
-                    if self.app_name in new_dict[transaction]["transaction"]["data"][
-                            "action"]:
-
+                    if (
+                        self.app_name
+                        in new_dict[transaction]["transaction"]["data"]["action"]
+                    ):
                         last_list.append(new_dict[transaction]["transaction"])
 
         result = []
 
         for transaction in last_list:
-
             if transaction["fromUser"] == wallet_import(-1, 0):
                 the_tx = Transaction.load_json(transaction)
                 SendedTransaction(the_tx)
