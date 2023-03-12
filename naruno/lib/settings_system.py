@@ -11,6 +11,18 @@ from naruno.config import *
 from naruno.lib.config_system import get_config
 
 
+temp_json = {
+        "test_mode": False,
+        "debug_mode": False,
+        "wallet": 0,
+        "save_blockshash": True,
+        "mute_notifications": False,
+        "dark_mode": True,
+        "publisher_mode": False,
+        "baklava": False,
+    }
+
+
 def save_settings(new_settings):
     """
     Saves the settings.
@@ -26,19 +38,13 @@ def create_and_save_the_settings(test_mode_settings=False,
     """
     Creates and saves settings.
     """
-
-    temp_json = {
-        "test_mode": test_mode_settings,
-        "debug_mode": debug_mode_settings,
-        "wallet": 0,
-        "save_blockshash": True,
-        "mute_notifications": False,
-        "dark_mode": True,
-        "publisher_mode": False,
-        "baklava": False,
-    }
+    global temp_json
 
     save_settings(temp_json)
+
+    t_mode_settings(test_mode_settings)
+    d_mode_settings(debug_mode_settings)
+
     return temp_json
 
 

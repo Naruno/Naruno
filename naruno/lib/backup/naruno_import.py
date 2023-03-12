@@ -7,6 +7,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 
+from naruno.lib.settings_system import temp_json, the_settings
+
 logger = get_logger("LIB")
 
 
@@ -23,4 +25,11 @@ def naruno_import(export_location: str) -> None:
     logger.debug(f"export_location: {export_location}")
     logger.debug(f"target_location: {target_location}")
     shutil.unpack_archive(export_location, target_location)
+
+    after_backup_settings = the_settings()
+    for element in temp_json:
+        if element not in after_backup_settings:
+            after_backup_settings[element] = temp_json[element]
+
+
     logger.info("Import completed")
