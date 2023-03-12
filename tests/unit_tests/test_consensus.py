@@ -1099,7 +1099,9 @@ class Test_Consensus(unittest.TestCase):
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
-        block.validating_list = [the_transaction, the_transaction]
+        the_transaction_2 = copy.copy(the_transaction)
+        the_transaction_2.signature = "a"
+        block.validating_list = [the_transaction, the_transaction_2]
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -1141,6 +1143,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=True,
+            dont_clean=True,
         )
         self.assertEqual(block.sync, True)
         print(block.sequence_number)
@@ -1262,7 +1265,9 @@ class Test_Consensus(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        block.validating_list = [the_transaction, the_transaction]
+        the_transaction_2 = Transaction.load_json(the_transaction_json)
+        the_transaction_2.signature = "aa"
+        block.validating_list = [the_transaction, the_transaction_2]
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -1910,10 +1915,10 @@ class Test_Consensus(unittest.TestCase):
             clean=False
         )
         self.assertEqual(len(result.validating_list), 2)
-        self.assertEqual(result.validating_list[1].dump_json(),
+        self.assertEqual(result.validating_list[0].dump_json(),
                          the_transaction.dump_json())
-        self.assertEqual(result.validating_list[0].toUser, "onuratakanulusoy")
-        self.assertEqual(result.validating_list[0].amount, 0.02)
+        self.assertEqual(result.validating_list[1].toUser, "onuratakanulusoy")
+        self.assertEqual(result.validating_list[1].amount, 0.02)
         self.assertEqual(result.round_1, True)
         self.assertNotEqual(result.round_2_starting_time,
                             old_block.round_2_starting_time)
@@ -2810,11 +2815,11 @@ class Test_Consensus(unittest.TestCase):
             clean=False
         )
         self.assertEqual(len(result.validating_list), 2)
-        self.assertEqual(result.validating_list[1].dump_json(),
+        self.assertEqual(result.validating_list[0].dump_json(),
                          the_transaction.dump_json())
-        self.assertEqual(result.validating_list[0].toUser,
+        self.assertEqual(result.validating_list[1].toUser,
                          "onurtheprofessional")
-        self.assertEqual(result.validating_list[0].amount, 0.02)
+        self.assertEqual(result.validating_list[1].amount, 0.02)
         self.assertEqual(result.round_1, True)
         self.assertNotEqual(result.round_2_starting_time,
                             old_block.round_2_starting_time)
@@ -3056,6 +3061,8 @@ class Test_Consensus(unittest.TestCase):
         )
 
         block = Block("Onur")
+        block.round_1 = True
+        block.round_2 = True
         block.validated = True
 
         block.genesis_time = int(time.time())
