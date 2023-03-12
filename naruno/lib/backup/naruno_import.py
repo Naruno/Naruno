@@ -31,5 +31,4 @@ def naruno_import(export_location: str) -> None:
         if element not in after_backup_settings:
             after_backup_settings[element] = temp_json[element]
 
-
     logger.info("Import completed")

@@ -12,15 +12,15 @@ from naruno.lib.config_system import get_config
 
 
 temp_json = {
-        "test_mode": False,
-        "debug_mode": False,
-        "wallet": 0,
-        "save_blockshash": True,
-        "mute_notifications": False,
-        "dark_mode": True,
-        "publisher_mode": False,
-        "baklava": False,
-    }
+    "test_mode": False,
+    "debug_mode": False,
+    "wallet": 0,
+    "save_blockshash": True,
+    "mute_notifications": False,
+    "dark_mode": True,
+    "publisher_mode": False,
+    "baklava": False,
+}
 
 
 def save_settings(new_settings):
