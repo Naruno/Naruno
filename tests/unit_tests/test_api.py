@@ -84,7 +84,8 @@ SaveAccounts(the_account_2, temp_path)
 naruno.api.main.account_list = GetAccounts(temp_path)
 
 a_account = Account("<address>", 1000, sequence_number=1)
-SaveAccounts([a_account], "db/test_send_coin_data_page_data.db")
+ab_account = Account("<addressb>", 1000, sequence_number=1)
+SaveAccounts([a_account, ab_account], "db/test_send_coin_data_page_data.db")
 the_accounts = GetAccounts("db/test_send_coin_data_page_data.db")
 naruno.api.main.custom_account_list = the_accounts
 
@@ -1119,7 +1120,7 @@ class Test_API(unittest.TestCase):
   
 
         response = urllib.request.urlopen(
-            "http://localhost:7777/balance/get/?address=<address>")
+            "http://localhost:7777/balance/get/?address=<addressb>")
         response_result = response.read()
         print(response_result)
         the_balance_int = float(
