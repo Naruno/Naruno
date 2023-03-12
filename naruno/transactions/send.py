@@ -48,56 +48,6 @@ def send(
         data: The data of the transaction.
 
     """
-    if not the_settings()["baklava"]:
-        block = block if block is not None else GetBlock()
-
-        minumum_transfer_amount = block.minumum_transfer_amount
-        max_data_size = block.max_data_size
-        max_tx_number = block.max_tx_number
-        transaction_fee = block.transaction_fee
-
-        the_balance = GetBalance(to_user,
-                    account_list=custom_account_list,
-                    dont_convert=True,
-                    block=block)
-        sequence_number = GetSequanceNumber(my_public_key) + 1
-    else:
-        the_balance = float(urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={to_user}").read().decode("utf-8").replace("\n", ""))
-        sequence_number = float(urlopen(f"http://test_net.1.naruno.org:8000/sequence/get/?address={wallet_import(-1,3)}").read().decode("utf-8").replace("\n", "")) + 1
-
-
-        transaction_fee = float(urlopen("http://test_net.1.naruno.org:8000/blocktransactionfee/get/").read().decode("utf-8"))
-        max_tx_number = int(urlopen("http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/").read().decode("utf-8"))
-        max_data_size = int(urlopen("http://test_net.1.naruno.org:8000/blockmaxdatasize/get/").read().decode("utf-8"))
-        minumum_transfer_amount = int(urlopen("http://test_net.1.naruno.org:8000/blockminumumtransferamount/get/").read().decode("utf-8"))
-
-    the_minumum_amount = 0
-    if (the_balance >= 0):
-        pass
-    else:
-        the_minumum_amount = minumum_transfer_amount
-    amount = amount if amount is not None else the_minumum_amount
-
-    try:
-        amount = float(amount)
-    except ValueError:
-        logger.exception("This is not float coin amount.")
-        return False
-
-    if amount < 0:
-        logger.error("This is negative coin amount.")
-        return False
-
-    if (max_data_size / max_tx_number) < len(data):
-        logger.error("The data is too long.")
-        return False
-
-    decimal_amount = len(str(transaction_fee).split(".")[1])
-    if len(str(amount).split(".")[1]) > decimal_amount:
-        logger.error(
-            f"The amount of decimal places is more than {decimal_amount}.")
-        return False
-
     if (wallet_import(int(the_settings()["wallet"]),
                       2) == sha256(password.encode("utf-8")).hexdigest()):
 
@@ -105,7 +55,58 @@ def send(
         my_public_key = "".join([
             l.strip() for l in wallet_import(-1, 0).splitlines()
             if l and not l.startswith("-----")
-        ])
+        ])    
+        if not the_settings()["baklava"]:
+            block = block if block is not None else GetBlock()
+
+            minumum_transfer_amount = block.minumum_transfer_amount
+            max_data_size = block.max_data_size
+            max_tx_number = block.max_tx_number
+            transaction_fee = block.transaction_fee
+
+            the_balance = GetBalance(to_user,
+                        account_list=custom_account_list,
+                        dont_convert=True,
+                        block=block)
+            sequence_number = GetSequanceNumber(my_public_key) + 1
+        else:
+            the_balance = float(urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={to_user}").read().decode("utf-8").replace("\n", ""))
+            sequence_number = float(urlopen(f"http://test_net.1.naruno.org:8000/sequence/get/?address={wallet_import(-1,3)}").read().decode("utf-8").replace("\n", "")) + 1
+
+
+            transaction_fee = float(urlopen("http://test_net.1.naruno.org:8000/blocktransactionfee/get/").read().decode("utf-8"))
+            max_tx_number = int(urlopen("http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/").read().decode("utf-8"))
+            max_data_size = int(urlopen("http://test_net.1.naruno.org:8000/blockmaxdatasize/get/").read().decode("utf-8"))
+            minumum_transfer_amount = int(urlopen("http://test_net.1.naruno.org:8000/blockminumumtransferamount/get/").read().decode("utf-8"))
+
+        the_minumum_amount = 0
+        if (the_balance >= 0):
+            pass
+        else:
+            the_minumum_amount = minumum_transfer_amount
+        amount = amount if amount is not None else the_minumum_amount
+
+        try:
+            amount = float(amount)
+        except ValueError:
+            logger.exception("This is not float coin amount.")
+            return False
+
+        if amount < 0:
+            logger.error("This is negative coin amount.")
+            return False
+
+        if (max_data_size / max_tx_number) < len(data):
+            logger.error("The data is too long.")
+            return False
+
+        decimal_amount = len(str(transaction_fee).split(".")[1])
+        if len(str(amount).split(".")[1]) > decimal_amount:
+            logger.error(
+                f"The amount of decimal places is more than {decimal_amount}.")
+            return False
+
+
 
 
         # Get the current fee
