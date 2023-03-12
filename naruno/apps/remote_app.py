@@ -76,6 +76,10 @@ class Integration:
             self.cache = json.load(cache)
 
     def save_cache(self):
+
+        if self.cache_true == False:
+            self.get_cache()
+            return
         os.chdir(get_config()["main_folder"])
         with open(f"db/remote_app_cache/{self.cache_name}.cache",
                   "w") as cache:
@@ -123,8 +127,10 @@ class Integration:
         return False if "false" in response.text else True
 
     def get_(self):
+        self.get_cache()
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
+
         transactions_sended = {}
         transactions_sended_not_validated = {}
 
@@ -189,7 +195,8 @@ class Integration:
         for transaction in last_list:
             if transaction["fromUser"] == wallet_import(-1, 0):
                 the_tx = Transaction.load_json(transaction)
-                SendedTransaction(the_tx)
+                if the_settings()["baklava"]:
+                    SendedTransaction(the_tx)
                 result.append(transaction)
 
             elif transaction["toUser"] == wallet_import(-1, 3):

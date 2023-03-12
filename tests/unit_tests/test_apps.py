@@ -576,6 +576,8 @@ class Test_apps(unittest.TestCase):
         integration.get_cache()
         self.assertEqual(integration.cache, [])
 
+        print("aaaaaaAAAAAAAAAAAAaaaaaaaaaaAAAAAAAAAAAAAAAAAAaaaaaaaaaaa")
+
         second_gettings_data_from_app = integration.get()
         self.assertNotEqual(second_gettings_data_from_app, [])
 

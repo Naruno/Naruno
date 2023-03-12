@@ -895,7 +895,9 @@ class Test_API(unittest.TestCase):
         }
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
-        block.validating_list = [the_transaction, the_transaction]
+        the_transaction_2 = copy.copy(the_transaction)
+        the_transaction_2.signature = "aaa"
+        block.validating_list = [the_transaction, the_transaction_2]
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -1044,7 +1046,7 @@ class Test_API(unittest.TestCase):
         self.assertEqual(result_2[0].validating_list[0].dump_json(),
                          the_transaction.dump_json())
         self.assertEqual(result_2[0].validating_list[1].dump_json(),
-                         the_transaction.dump_json())
+                         the_transaction_2.dump_json())
 
         self.assertEqual(Saved_blocks_hash,
                          [Block("Onurdsadasdsaddsaas").previous_hash, hash_2])
@@ -1117,7 +1119,7 @@ class Test_API(unittest.TestCase):
   
 
         response = urllib.request.urlopen(
-            "http://localhost:7777/balance/get/?address=15562b06dc6b1acd6e8c86031e564e0c451c7a73")
+            "http://localhost:7777/balance/get/?address=<address>")
         response_result = response.read()
         print(response_result)
         the_balance_int = float(
@@ -1127,7 +1129,7 @@ class Test_API(unittest.TestCase):
 
         self.assertEqual(
             the_balance_int,
-            -985.0,
+            0.0,
         )
 
 
@@ -1139,10 +1141,10 @@ class Test_API(unittest.TestCase):
   
 
         response = urllib.request.urlopen(
-            "http://localhost:7777/sequence/get/?address=15562b06dc6b1acd6e8c86031e564e0c451c7a73")
+            "http://localhost:7777/sequence/get/?address=<address>")
         response_result = response.read()
         print(response_result)
-        the_balance_int = float(
+        the_balance_int = int(
             (response_result.decode("utf-8")).replace("\n", ""))
 
         save_settings(backup_the_settings)      
