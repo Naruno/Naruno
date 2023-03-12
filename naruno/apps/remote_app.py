@@ -39,7 +39,7 @@ class Integration:
         :param password: The password of the wallet
         """
         self.app_name = app_name
-        self.cache_name = sha256(self.app_name.encode()).hexdigest()
+        self.cache_name = sha256(self.app_name.encode()).hexdigest() + wallet_import(-1, 3)
         self.host = host
         self.port = port
         self.password = password
