@@ -14,11 +14,12 @@ import requests
 
 from naruno.lib.config_system import get_config
 from naruno.lib.settings_system import baklava_settings, the_settings
-from naruno.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from naruno.transactions.my_transactions.sended_transaction import SendedTransaction
-from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
+from naruno.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from naruno.transactions.my_transactions.sended_transaction import \
+    SendedTransaction
+from naruno.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import wallet_import
 
