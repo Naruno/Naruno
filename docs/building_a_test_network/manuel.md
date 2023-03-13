@@ -104,7 +104,7 @@ Nodes are communicate over a tcp socket. So we need to start the node protocol f
 
 You can switch to menu for node 0, node 1 and node 2 with the following command:
 ```bash
-python3 Naruno-10/naruno/cli/main.py --menu
+python3 Naruno-0/naruno/cli/main.py --menu
 ```
 switch another terminal and run:
 ```bash
