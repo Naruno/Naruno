@@ -16,7 +16,6 @@ from naruno.lib.config_system import get_config
 
 
 class BaklavaTestNet_Scene(Naruno_Scene):
-
     def construct(self):
         self.set_title("Baklava TestNet")
         self.settings()
