@@ -32,8 +32,9 @@ class Naruno_Scene(Scene):
     def intro_logo(self):
         # Get the logo from grand parent directory
         root_directory = get_config()["main_folder"]
-        
-        self.icon = os.path.join(root_directory, "gui_lib", "images", "logo.ico")
+
+        self.icon = os.path.join(
+            root_directory, "gui_lib", "images", "logo.ico")
 
         self.image = ImageMobject(self.icon).scale(2)
         self.play(FadeIn(self.image))
@@ -93,7 +94,6 @@ class Naruno_Scene(Scene):
             Create(self.connection_2),
         )
 
-
     def turn_to_security_circle(self, circle_1="Security Circle 1"):
         self.play(
             FadeOut(self.node_1_text),
@@ -116,12 +116,12 @@ class Naruno_Scene(Scene):
         self.play(
             Create(self.secuirty_circle_1_text),
             self.security_circle_1.animate.set_color("#5EC295").scale(0.5),
-        )        
+        )
 
     def turn_to_network(self):
         self.play(
             self.circle_1.animate.shift(1.8 * DOWN).shift(2 * RIGHT),
-        )        
+        )
 
     def create_security_circles(self):
         """
