@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Creating Web3 App
+title: Using
 parent: Baklava TestNet
 nav_order: 1
 ---
