@@ -25,7 +25,7 @@ class BaklavaTestNet_Scene(Naruno_Scene):
 
         self.creating_nodes()
         self.create_node_connections()
-        self.turn_to_security_circle(circe_1="Baklava TestNet")
+        self.turn_to_security_circle(circle_1="Baklava TestNet")
         self.turn_to_network()
 
         self.clear_scren()
