@@ -40,14 +40,14 @@ class Naruno_Scene(Scene):
         self.wait(1)
         self.play(FadeOut(self.image))
 
-    def intro_text(self):
+    def intro_text(self, position=1):
         """
         Naruno is building on Node.
         """
         text = Text("Naruno", font=self.font, color="#DBFF00")
         self.play(Write(text))
-        self.play(text.animate.shift(LEFT * 1))
-        text2 = Text(self.the_title, font=self.font).shift(RIGHT * 1)
+        self.play(text.animate.shift(LEFT * position))
+        text2 = Text(self.the_title, font=self.font).shift(RIGHT * position)
         self.play(Write(text2))
         self.wait(2)
         self.play(FadeOut(text), FadeOut(text2))
@@ -96,7 +96,11 @@ class Naruno_Scene(Scene):
             Create(self.connection_2),
         )
 
-    def turn_to_security_circle(self, circle_1="Security Circle 1"):
+
+    def create_security_circles(self):
+        """
+        When a connections are have more than two node, we call security circle.
+        """
         self.play(
             FadeOut(self.node_1_text),
             FadeOut(self.node_2_text),
@@ -118,20 +122,6 @@ class Naruno_Scene(Scene):
             Create(self.secuirty_circle_1_text),
             self.security_circle_1.animate.set_color("#5EC295").scale(0.5),
         )
-
-    def turn_to_network(self):
-        self.circle_1 = Circle(color="#5EC295").scale(1.5).shift(2 * UP).shift(
-            3 * LEFT)
-        self.play(self.circle_1.animate.shift(1.8 * DOWN).shift(2 * RIGHT), )
-
-        self.play(ReplacementTransform(self.security_circle_1,
-                                       self.circle_1), )
-
-    def create_security_circles(self):
-        """
-        When a connections are have more than two node, we call security circle.
-        """
-        self.turn_to_security_circle()
 
         self.play(self.security_circle_1.animate.shift(2 * UP))
 
