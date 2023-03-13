@@ -12,8 +12,8 @@ from unicodedata import name
 from manim import *
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from naruno.lib.config_system import get_config
 from docs.videos.main import Naruno_Scene
+from naruno.lib.config_system import get_config
 
 
 class BaklavaTestNet_Scene(Naruno_Scene):
