@@ -8,10 +8,13 @@ nav_order: 1
 # Starting API
 
 ## Installing API Requirements
+
 ```console
 pip3 install naruno-api
 ```
+
 ## Starting in a command line interface
+
 ```console
 narunoapi
 ```

@@ -21,6 +21,4 @@ Dont forget to moving your backups to an safe location. You can use `narunocli -
 {: .warning }
 Please use this command for opening baklava testnet mod `narunocli --baklavaon`.
 
-
-
 And after plase use our [Using](https://docs.naruno.org/baklava-testnet/using.html) document for creating an Web3 application in 4 lines.
