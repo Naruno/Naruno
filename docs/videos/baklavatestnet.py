@@ -16,6 +16,7 @@ from naruno.lib.config_system import get_config
 
 
 class BaklavaTestNet_Scene(Naruno_Scene):
+
     def construct(self):
         self.set_title("Baklava TestNet")
         self.settings()
@@ -31,9 +32,7 @@ class BaklavaTestNet_Scene(Naruno_Scene):
         self.intro_logo()
 
     def clear_baklava_scren(self):
-        self.play(
-            FadeOut(self.circle_1),
-        )
+        self.play(FadeOut(self.circle_1), )
 
 
 if __name__ == "__main__":
