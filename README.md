@@ -96,7 +96,7 @@
 
 # Introducing
 
-Naruno is an lightning-fast, secure, and scalable blockchain that able to creating transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.
+Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.
 
 - World Wide First In Node Level Transaction Proof Mechanism (Revulation to archive nodes)
 
@@ -104,9 +104,9 @@ Naruno is an lightning-fast, secure, and scalable blockchain that able to creati
 - 7 Second Block Time (Reducible to 3s)
 - 10k Potential TPS
 
-- Totaly New Infrustructure (100% Python)
+- Totaly New Infrastructure (100% Python)
 - Already Automated Workflows
-- 100% Code Coverate with unit, functional and stability tests
+- 100% Code Coverage with unit, functional and stability tests
 - Already distribute CLI, API and GUI in Android, Windows, MacOS and Linux
 
 - Mobile Master Node Support
