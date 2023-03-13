@@ -120,7 +120,14 @@ class Naruno_Scene(Scene):
         )
 
     def turn_to_network(self):
+        self.circle_1 = Circle(color="#5EC295").scale(1.5).shift(2 * UP).shift(
+            3 * LEFT)        
         self.play(self.circle_1.animate.shift(1.8 * DOWN).shift(2 * RIGHT), )
+
+
+        self.play(
+            ReplacementTransform(self.security_circle_1, self.circle_1),
+        )
 
     def create_security_circles(self):
         """
