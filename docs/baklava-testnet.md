@@ -18,6 +18,11 @@ http://test_net.1.naruno.org:8000/balance/get/?address=your_wallet_address
 {: .highlight }
 Dont forget to moving your backups to an safe location. You can use `narunocli --narunoexport` command for creating and finding your backups
 
+### Wallet Import
+If you have an zip file for your backup you can use:
+```console
+narunocli --narunoimport zip_file_localtion
+```
 
 ## Switching to Baklava TestNet
 The Naruno designed for working in connected and participianted network. But we add a setting for using baklava testnet. You can use this setting via `narunocli --baklavaon` command. After this command you can use baklava testnet.
