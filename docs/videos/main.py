@@ -4,7 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import os
 import sys
 from unicodedata import name
@@ -32,7 +31,9 @@ class Naruno_Scene(Scene):
     def intro_logo(self):
         # Get the logo from grand parent directory
         root_directory = get_config()["main_folder"]
-        self.icon = f"{root_directory}/gui_lib/images/logo.ico"
+
+        self.icon = os.path.join(root_directory, "gui_lib", "images",
+                                 "logo.ico")
 
         self.image = ImageMobject(self.icon).scale(2)
         self.play(FadeIn(self.image))
@@ -51,7 +52,10 @@ class Naruno_Scene(Scene):
         self.wait(2)
         self.play(FadeOut(text), FadeOut(text2))
 
-    def creating_nodes(self):
+    def creating_nodes(self,
+                       node_1="Node 1",
+                       node_2="Node 2",
+                       node_3="Node 3"):
         """
         In this example, we have four node.
         """
@@ -62,11 +66,11 @@ class Naruno_Scene(Scene):
         self.node_3.next_to(self.node_2, RIGHT + DOWN, buff=0.5)
         self.node_1.next_to(self.node_2, LEFT + DOWN, buff=0.5)
 
-        self.node_1_text = Text("Node 1",
+        self.node_1_text = Text(node_1,
                                 font=self.font).next_to(self.node_1, UP)
-        self.node_2_text = Text("Node 2",
+        self.node_2_text = Text(node_2,
                                 font=self.font).next_to(self.node_2, UP)
-        self.node_3_text = Text("Node 3",
+        self.node_3_text = Text(node_3,
                                 font=self.font).next_to(self.node_3, UP)
 
         self.play(Create(self.node_1), Create(self.node_2),
@@ -92,10 +96,7 @@ class Naruno_Scene(Scene):
             Create(self.connection_2),
         )
 
-    def create_security_circles(self):
-        """
-        When a connections are have more than two node, we call security circle.
-        """
+    def turn_to_security_circle(self, circle_1="Security Circle 1"):
         self.play(
             FadeOut(self.node_1_text),
             FadeOut(self.node_2_text),
@@ -109,15 +110,28 @@ class Naruno_Scene(Scene):
             self.connection_2,
             self.connection_3,
         )
-        self.secuirty_circle_1_text = Text(
-            "Security Circle 1",
-            font=self.font).next_to(self.security_circle_1_components, UP)
+        self.secuirty_circle_1_text = Text(circle_1, font=self.font).next_to(
+            self.security_circle_1_components, UP)
         self.security_circle_1 = VGroup(self.security_circle_1_components,
                                         self.secuirty_circle_1_text)
         self.play(
             Create(self.secuirty_circle_1_text),
             self.security_circle_1.animate.set_color("#5EC295").scale(0.5),
         )
+
+    def turn_to_network(self):
+        self.circle_1 = Circle(color="#5EC295").scale(1.5).shift(2 * UP).shift(
+            3 * LEFT)
+        self.play(self.circle_1.animate.shift(1.8 * DOWN).shift(2 * RIGHT), )
+
+        self.play(ReplacementTransform(self.security_circle_1,
+                                       self.circle_1), )
+
+    def create_security_circles(self):
+        """
+        When a connections are have more than two node, we call security circle.
+        """
+        self.turn_to_security_circle()
 
         self.play(self.security_circle_1.animate.shift(2 * UP))
 

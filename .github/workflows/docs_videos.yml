@@ -47,3 +47,33 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           files: 'node_docs_videos_naruno.zip'
+
+
+  baklavatestnet:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rendering Scenes
+        uses: pavelzw/manim_community_renderer@master
+        id: renderer
+        with:
+          source_file: docs/videos/baklavatestnet.py
+          scene_names: BaklavaTestNet
+          args: "-qh"
+        
+
+      - name: Zip
+        run: |
+          zip -r baklavatestnet_docs_videos_naruno ${{ steps.renderer.outputs.video_path }}
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: baklavatestnet_docs_videos_naruno
+          path: baklavatestnet_docs_videos_naruno.zip
+      
+      - uses: AButler/upload-release-assets@v2.0
+        if: github.event_name == 'release'
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          files: 'baklavatestnet_docs_videos_naruno.zip'
