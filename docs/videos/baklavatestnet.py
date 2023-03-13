@@ -31,11 +31,11 @@ class BaklavaTestNet_Scene(Naruno_Scene):
         self.clear_baklava_scren()
         self.intro_logo()
 
-
-
     def clear_baklava_scren(self):
         self.play(
             FadeOut(self.circle_1),
         )
+
+
 if __name__ == "__main__":
     Baklava_TestNet_Scene().render()
