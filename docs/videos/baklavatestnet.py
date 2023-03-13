@@ -17,7 +17,6 @@ from docs.videos.main import Naruno_Scene
 
 
 class BaklavaTestNet_Scene(Naruno_Scene):
-
     def construct(self):
         self.set_title("Baklava TestNet")
         self.settings()
