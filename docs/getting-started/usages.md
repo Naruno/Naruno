@@ -27,6 +27,7 @@ Please dont use first wallet its not encrypted because its used for node communi
 Please save you backups via results of `narunocli --narunoexport` command.
 
 After the creating you should switch your new wallet with:
+
 ```console
 narunocli --wallet your_wallet_id_from_printwallet
 ```
