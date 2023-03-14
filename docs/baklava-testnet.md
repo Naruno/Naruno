@@ -6,7 +6,7 @@ nav_order: 5
 
 # Baklava TestNet
 
-Baklava TestNet is a test network for developers. You can use this network to testng and distrbuting your applications. After the [registiration](https://naruno.org/baklava-testnet/) you will get 1002 coins. You can use this coins for creating a one more user (1000) and sending 100 transaction (2). Also you can use you coins without creating an one more user (Multiple devices that used one account).
+Baklava TestNet is a test network for developers. You can use this network to testng and distributing your applications. After the [registiration](https://naruno.org/baklava-testnet/) you will get 1002 coins. You can use this coins for creating a one more user (1000) and sending 100 transaction (2). Also you can use you coins without creating an one more user (Multiple devices that used one account).
 
 ## Wallet Creation
 In the mails that we will send you must to give an wallet and for this you should use our [Wallet Creating](https://docs.naruno.org/getting-started/usages.html#wallet-creating) document. And please your wallet that used for baklava testnet via `narunocli --wallet wallet_id` command.
@@ -25,7 +25,7 @@ narunocli --narunoimport zip_file_localtion
 ```
 
 ## Switching to Baklava TestNet
-The Naruno designed for working in connected and participianted network. But we add a setting for using baklava testnet. You can use this setting via `narunocli --baklavaon` command. After this command you can use baklava testnet.
+The Naruno designed for working in connected and participated network. But we add a setting for using baklava testnet. You can use this setting via `narunocli --baklavaon` command. After this command you can use baklava testnet.
 
 
 ## Using
