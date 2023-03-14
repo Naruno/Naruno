@@ -11,9 +11,11 @@ Baklava TestNet is a test network for developers. You can use this network to te
 ## Wallet Creation
 In the mails that we will send you must to give an wallet and for this you should use our [Wallet Creating](https://docs.naruno.org/getting-started/usages.html#wallet-creating) document. And please your wallet that used for baklava testnet via `narunocli --wallet wallet_id` command.
 
-You can check your coins via this api:
+You can check your coins via this command:
 
-http://test_net.1.naruno.org:8000/balance/get/?address=your_wallet_address
+```console
+narunocli --getbalance
+```
 
 {: .highlight }
 Dont forget to moving your backups to an safe location. You can use `narunocli --narunoexport` command for creating and finding your backups
