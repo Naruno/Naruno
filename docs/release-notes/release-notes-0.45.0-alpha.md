@@ -76,3 +76,6 @@ The Naruno library now includes publisher mode setting and backward support for 
 Thanks to everyone who directly contributed to this release:
 
 - Onur Atakan ULUSOY
+- @omahs
+- @sergiomateiko
+- @whodaff
