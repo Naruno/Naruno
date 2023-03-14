@@ -173,7 +173,7 @@ def menu():
                 server.send_transaction(send_tx)
                 SaveBlock(block)
         if choices_input == "gb":
-            GetBalance(wallet_import(-1, 0))
+            print(GetBalance(wallet_import(-1, 0)))
         if choices_input == "help":
             show_menu()
         if choices_input == "ndstart":
@@ -398,7 +398,7 @@ def arguments():
         print_wallets()
 
     if args.getbalance:
-        GetBalance(wallet_import(-1, 0))
+        print(GetBalance(wallet_import(-1, 0)))
 
     if args.ndid:
         print(server.id)
