@@ -6,12 +6,6 @@ nav_order: 5
 
 # Baklava TestNet
 
-https://user-images.githubusercontent.com/41792982/224991015-a96e570e-0213-4e09-b563-77cafb5797b1.mp4
-
-
-<br>
-<br>
-
 Baklava TestNet is a test network for developers. You can use this network to testng and distributing your applications. After the [registiration](https://naruno.org/baklava-testnet/) you will get 1002 coins. You can use this coins for creating a one more user (1000) and sending 100 transaction (2). Also you can use you coins without creating an one more user (Multiple devices that used one account).
 
 ## Wallet Creation
