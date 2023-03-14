@@ -40,7 +40,7 @@ class Naruno_Scene(Scene):
         self.wait(1)
         self.play(FadeOut(self.image))
 
-    def intro_text(self, position=1):
+    def intro_text(self, position=1.2):
         """
         Naruno is building on Node.
         """
@@ -52,10 +52,7 @@ class Naruno_Scene(Scene):
         self.wait(2)
         self.play(FadeOut(text), FadeOut(text2))
 
-    def creating_nodes(self,
-                       node_1="Node 1",
-                       node_2="Node 2",
-                       node_3="Node 3"):
+    def creating_nodes(self):
         """
         In this example, we have four node.
         """
@@ -66,11 +63,11 @@ class Naruno_Scene(Scene):
         self.node_3.next_to(self.node_2, RIGHT + DOWN, buff=0.5)
         self.node_1.next_to(self.node_2, LEFT + DOWN, buff=0.5)
 
-        self.node_1_text = Text(node_1,
+        self.node_1_text = Text("Node 1",
                                 font=self.font).next_to(self.node_1, UP)
-        self.node_2_text = Text(node_2,
+        self.node_2_text = Text("Node 2",
                                 font=self.font).next_to(self.node_2, UP)
-        self.node_3_text = Text(node_3,
+        self.node_3_text = Text("Node 3",
                                 font=self.font).next_to(self.node_3, UP)
 
         self.play(Create(self.node_1), Create(self.node_2),
@@ -96,7 +93,6 @@ class Naruno_Scene(Scene):
             Create(self.connection_2),
         )
 
-
     def create_security_circles(self):
         """
         When a connections are have more than two node, we call security circle.
@@ -114,8 +110,9 @@ class Naruno_Scene(Scene):
             self.connection_2,
             self.connection_3,
         )
-        self.secuirty_circle_1_text = Text(self.circle_1, font=self.font).next_to(
-            self.security_circle_1_components, UP)
+        self.secuirty_circle_1_text = Text(
+            "Security Circle 1",
+            font=self.font).next_to(self.security_circle_1_components, UP)
         self.security_circle_1 = VGroup(self.security_circle_1_components,
                                         self.secuirty_circle_1_text)
         self.play(
@@ -290,7 +287,3 @@ class Naruno_Scene(Scene):
             FadeOut(self.i_24),
             FadeOut(self.i_34),
         )
-
-
-if __name__ == "__main__":
-    Node().render()
