@@ -155,7 +155,8 @@ class Integration:
                     transactions[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
-                self.cache.append(transactions[transaction]["transaction"]["signature"])
+                self.cache.append(
+                    transactions[transaction]["transaction"]["signature"])
 
         for transaction in transactions_sended:
             if transactions_sended[transaction]["transaction"]["signature"] in self.cache:
@@ -166,7 +167,8 @@ class Integration:
                     transactions_sended[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
-                self.cache.append(transactions_sended[transaction]["transaction"]["signature"])
+                self.cache.append(
+                    transactions_sended[transaction]["transaction"]["signature"])
 
         for transaction in transactions_sended_not_validated:
             if transactions_sended_not_validated[transaction]["transaction"]["signature"] in self.cache:
@@ -174,7 +176,8 @@ class Integration:
             else:
                 new_dict[transaction] = transactions_sended_not_validated[
                     transaction]
-                self.cache.append(transactions_sended_not_validated[transaction]["transaction"]["signature"])
+                self.cache.append(
+                    transactions_sended_not_validated[transaction]["transaction"]["signature"])
 
         self.save_cache()
 
@@ -187,7 +190,7 @@ class Integration:
                         new_dict[transaction]["transaction"]["data"])
 
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         result = []
