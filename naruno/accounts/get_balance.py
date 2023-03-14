@@ -15,22 +15,25 @@ from naruno.blockchain.block.get_minumum_transfer_amount import GetMinimumTransf
 from urllib.request import urlopen
 
 
-def GetBalance(user,
-               account_list=None,
-               dont_convert=False,
-               block=None,
-               custom_TEMP_BLOCK_PATH=None):
+def GetBalance(
+    user, account_list=None, dont_convert=False, block=None, custom_TEMP_BLOCK_PATH=None
+):
     """
     Returns the users balance.
     """
     address = Address(user) if not dont_convert else user
 
     balance = GetMinimumTransferAmount(
-        block=block, custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block=block, custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH
+    )
 
     if the_settings()["baklava"]:
-        balance = float(urlopen(
-            f"http://test_net.1.naruno.org:8000/balance/get/?address={address}").read().decode("utf-8").replace("\n", ""))
+        balance = float(
+            urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={address}")
+            .read()
+            .decode("utf-8")
+            .replace("\n", "")
+        )
     else:
         if block is None:
             try:
@@ -42,7 +45,8 @@ def GetBalance(user,
 
         the_account_list = GetAccounts() if account_list is None else account_list
         the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{address}'")
+            f"SELECT * FROM account_list WHERE address = '{address}'"
+        )
         for row in the_account_list.fetchall():
             balance += row[2]
     return balance
