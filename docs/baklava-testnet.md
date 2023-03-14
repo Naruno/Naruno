@@ -43,8 +43,9 @@ You can check your coins via this command:
 ```console
 narunocli --getbalance
 ```
+
 {: .highlight }
-If your balance is smaller from 0 you should check your other wallets. For viewing other wallets you should use `narunocli --printwallet` and after you should switch to other wallet via `narunocli --wallet your_wallet_id_from_printwallet`
+> If your balance is smaller from 0 you should check your other wallets. For viewing other wallets you should use `narunocli --printwallet` and after you should switch to other wallet via `narunocli --wallet your_wallet_id_from_printwallet`
 
 After switching you can use our 4 lines web3 integration system.
 
