@@ -20,7 +20,6 @@ and lastly you can see your wallet via:
 narunocli --printwallet
 ```
 
-
 {: .highlight }
 Please dont use first wallet its not encrypted because its used for node communication signatures. When you create a new wallet like above its start from second wallet
 
