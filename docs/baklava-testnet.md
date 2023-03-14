@@ -31,37 +31,17 @@ And now we will use our backup
 narunocli --narunoimport your_zip_file
 ```
 
-## Wallet Creation
+## Using
 
-{: .warning }
-> Skip if you have already registered and received your coins
-
-- Firstly if you have a backup you should pass this section with using importing command (`narunocli --narunoimport zip_file_localtion`).
-
-In the mails that we will send you must to give an wallet and for this you should use our [Wallet Creating](https://docs.naruno.org/getting-started/usages.html#wallet-creating) document. And please switch your wallet that you created for baklava testnet via this command:
+The Naruno designed for working in connected and participated network. But we add a setting for using baklava testnet. You can use this setting via this command:
 ```console
-narunocli --wallet wallet_id
+narunocli --baklavaon
 ```
 
 You can check your coins via this command:
 
 ```console
 narunocli --getbalance
-```
-
-
-Dont forget to moving your backups to an safe location. You can use `narunocli --narunoexport` command for creating and finding your backups
-
-
-
-
-
-
-## Using
-
-The Naruno designed for working in connected and participated network. But we add a setting for using baklava testnet. You can use this setting via this command:
-```console
-narunocli --baklavaon
 ```
 
 After switching you can use our 4 lines web3 integration system.
