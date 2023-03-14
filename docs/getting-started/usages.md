@@ -26,6 +26,12 @@ Please dont use first wallet its not encrypted because its used for node communi
 {: .warning }
 Please save you backups via results of `narunocli --narunoexport` command.
 
+After the creating you should switch your new wallet with:
+
+```console
+narunocli --wallet your_wallet_id_from_printwallet
+```
+
 ## Building a Test Network
 
 Test network creation A way to build a fully-fledged and functional naruno blockchain network with automatic and manual options.You can develop applications on this network or do all other blockchain activities.
