@@ -114,7 +114,7 @@ class Naruno_Scene(Scene):
             self.connection_2,
             self.connection_3,
         )
-        self.secuirty_circle_1_text = Text(circle_1, font=self.font).next_to(
+        self.secuirty_circle_1_text = Text(self.circle_1, font=self.font).next_to(
             self.security_circle_1_components, UP)
         self.security_circle_1 = VGroup(self.security_circle_1_components,
                                         self.secuirty_circle_1_text)
