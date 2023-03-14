@@ -13,18 +13,20 @@ from naruno.wallet.wallet_import import Address
 
 from urllib.request import urlopen
 
+
 def GetMinimumTransferAmount(block=None, custom_TEMP_BLOCK_PATH=None):
     """
     Returns the minimum transfer amount.
     """
     if the_settings()["baklava"]:
-        minimum_transfer_amount = int(urlopen("http://test_net.1.naruno.org:8000/blockminumumtransferamount/get/").read().decode("utf-8"))
+        minimum_transfer_amount = int(urlopen(
+            "http://test_net.1.naruno.org:8000/blockminumumtransferamount/get/").read().decode("utf-8"))
     else:
         if block is None:
             try:
                 block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
             except FileNotFoundError:
-                return None        
+                return None
         minimum_transfer_amount = block.minumum_transfer_amount
-    
+
     return minimum_transfer_amount
