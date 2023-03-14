@@ -76,7 +76,6 @@ class Integration:
             self.cache = json.load(cache)
 
     def save_cache(self):
-
         if self.cache_true == False:
             self.get_cache()
             return
@@ -147,7 +146,8 @@ class Integration:
         new_dict = {}
 
         for transaction in transactions:
-            if transaction in self.cache:
+            if transactions[transaction]["transaction"][
+                    "signature"] in self.cache:
                 continue
             else:
                 new_dict[transaction] = transactions[transaction]
@@ -155,10 +155,12 @@ class Integration:
                     transactions[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
-                self.cache.append(transaction)
+                self.cache.append(
+                    transactions[transaction]["transaction"]["signature"])
 
         for transaction in transactions_sended:
-            if transaction in self.cache:
+            if (transactions_sended[transaction]["transaction"]["signature"]
+                    in self.cache):
                 continue
             else:
                 new_dict[transaction] = transactions_sended[transaction]
@@ -166,15 +168,19 @@ class Integration:
                     transactions_sended[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
-                self.cache.append(transaction)
+                self.cache.append(transactions_sended[transaction]
+                                  ["transaction"]["signature"])
 
         for transaction in transactions_sended_not_validated:
-            if transaction in self.cache:
+            if (transactions_sended_not_validated[transaction]["transaction"]
+                ["signature"] in self.cache):
                 continue
             else:
                 new_dict[transaction] = transactions_sended_not_validated[
                     transaction]
-                self.cache.append(transaction)
+                self.cache.append(
+                    transactions_sended_not_validated[transaction]
+                    ["transaction"]["signature"])
 
         self.save_cache()
 
