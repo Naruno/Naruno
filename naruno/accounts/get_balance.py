@@ -8,8 +8,11 @@ import sqlite3
 
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.blockchain.block.get_block import GetBlock
+from naruno.lib.settings_system import the_settings
 from naruno.wallet.wallet_import import Address
+from naruno.blockchain.block.get_minumum_transfer_amount import GetMinimumTransferAmount
 
+from urllib.request import urlopen
 
 def GetBalance(user,
                account_list=None,
@@ -19,19 +22,26 @@ def GetBalance(user,
     """
     Returns the users balance.
     """
-
-    if block is None:
-        try:
-            block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        except FileNotFoundError:
-            return None
-
-    balance = -block.minumum_transfer_amount
     address = Address(user) if not dont_convert else user
 
-    the_account_list = GetAccounts() if account_list is None else account_list
-    the_account_list.execute(
-        f"SELECT * FROM account_list WHERE address = '{address}'")
-    for row in the_account_list.fetchall():
-        balance += row[2]
+    balance = GetMinimumTransferAmount(block=block, custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+
+    if the_settings()["baklava"]:
+        balance = float(urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={address}").read().decode("utf-8").replace("\n", ""))        
+    else:
+        if block is None:
+            try:
+                block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+            except FileNotFoundError:
+                return None
+
+        balance = -block.minumum_transfer_amount
+        
+
+        the_account_list = GetAccounts() if account_list is None else account_list
+        the_account_list.execute(
+            f"SELECT * FROM account_list WHERE address = '{address}'")
+        for row in the_account_list.fetchall():
+            balance += row[2]
     return balance
+
