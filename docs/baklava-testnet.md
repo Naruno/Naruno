@@ -63,6 +63,12 @@ narunoapi
 
 ### Creating Web3_App.py
 
+Before the start you should install the naruno-remote-app library for python.
+
+```console
+pip3 install naruno-remote-app
+```
+
 Please use this code for creating a Web3 application in 4 lines.
 
 ```python
