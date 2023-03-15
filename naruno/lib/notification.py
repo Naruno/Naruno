@@ -58,5 +58,6 @@ def notification(title, message, raise_plyer=False):
             "Passing notification system (no usable implementation found for notification)"
         )
 
+
 if __name__ == "__main__":
     notification("Bahri Can", "Ergül")
