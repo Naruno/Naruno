@@ -15,7 +15,7 @@ setup(
     author_email="onur.atakan.ulusoy@naruno.org",
     license="MPL-2.0",
     install_requires="""
-requests==2.28.0
+requests==2.28.2
 pytest==7.1.2
 speed_calculator==0.4.1
 naruno_api==0.46.3
