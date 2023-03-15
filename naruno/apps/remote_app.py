@@ -13,6 +13,7 @@ from hashlib import sha256
 import requests
 
 from naruno.lib.config_system import get_config
+from naruno.lib.log import get_logger
 from naruno.lib.settings_system import baklava_settings
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.my_transactions.save_to_my_transaction import \
@@ -24,6 +25,7 @@ from naruno.transactions.my_transactions.validate_transaction import \
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import wallet_import
 
+logger = get_logger("REMOTE_APP")
 
 class Integration:
 
@@ -56,6 +58,8 @@ class Integration:
         self.cache_true = cache_true
 
         self.get_cache()
+
+        logger.info(f"Integration of {self.app_name} is started")
 
     def disable_cache(self):
         self.cache_true = False
@@ -133,7 +137,12 @@ class Integration:
                                         type="post",
                                         data=request_body)
 
-        return False if "false" in response.text else True
+        if "false" in response.text:
+            logger.error("Error sending message")
+            return False
+        else:
+            logger.info(f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}")
+            return True
 
     def get_(self):
         self.get_cache()
@@ -217,6 +226,9 @@ class Integration:
 
             elif transaction["toUser"] == wallet_import(-1, 3):
                 result.append(transaction)
+
+        if not len(result) == 0:
+            logger.info("New datas received")
 
         return result
 
