@@ -310,8 +310,9 @@ class Test_apps(unittest.TestCase):
             ))
 
     def test_integration_caching_system(self):
-        integration_1 = Integration("test_app")
-        integration_1.cache.append("test")
+        app_name = f"test_app_{int(time.time())}"
+        integration_1 = Integration(app_name)
+        integration_1.cache.append("MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg=")
         integration_1.save_cache()
         self.assertEqual(
             os.path.exists(
@@ -319,8 +320,8 @@ class Test_apps(unittest.TestCase):
             True,
         )
 
-        integration_2 = Integration("test_app")
-        self.assertEqual(integration_2.cache, ["test"])
+        integration_2 = Integration(app_name)
+        self.assertEqual(integration_2.cache, ["MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="])
         self.assertEqual(
             os.path.exists(
                 f"db/remote_app_cache/{integration_1.cache_name}.cache"),
@@ -334,7 +335,7 @@ class Test_apps(unittest.TestCase):
             False,
         )
 
-        integration_3 = Integration("test_app")
+        integration_3 = Integration(app_name)
         self.assertEqual(integration_3.cache, [])
         integration_3.delete_cache()
 
@@ -595,6 +596,39 @@ class Test_apps(unittest.TestCase):
         SaveMyTransaction(backup)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
+
+
+
+
+    def test_integration_caching_system_backward_support(self):
+        app_name = f"test_app_{int(time.time())}"
+        integration_1 = Integration(app_name)
+        integration_1.cache.append("test")
+        integration_1.save_cache()
+        self.assertEqual(
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            True,
+        )
+
+        integration_2 = Integration(app_name)
+        self.assertEqual(integration_2.cache, [])
+        self.assertEqual(
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            True,
+        )
+
+        integration_2.delete_cache()
+        self.assertEqual(
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            False,
+        )
+
+        integration_3 = Integration(app_name)
+        self.assertEqual(integration_3.cache, [])
+        integration_3.delete_cache()
 
 
 unittest.main(exit=False)

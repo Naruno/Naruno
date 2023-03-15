@@ -73,12 +73,25 @@ class Integration:
             self.save_cache()
         with open(f"db/remote_app_cache/{self.cache_name}.cache",
                   "r") as cache:
+            
             self.cache = json.load(cache)
+        
+        self.backward_support_cache()
+        self.save_cache()
+        
+    def backward_support_cache(self):
+        for each_cache in self.cache:
+            if len(self.cache[self.cache.index(each_cache)]) != 96:
+                #remoe the cache
+                self.cache.remove(each_cache)
+        
+        
 
     def save_cache(self):
         if self.cache_true == False:
             self.get_cache()
             return
+        self.backward_support_cache()
         os.chdir(get_config()["main_folder"])
         with open(f"db/remote_app_cache/{self.cache_name}.cache",
                   "w") as cache:
