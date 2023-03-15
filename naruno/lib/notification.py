@@ -17,7 +17,6 @@ logger = get_logger("LIB")
 
 
 def notification(title, message, raise_plyer=False):
-
     if the_settings()["mute_notifications"] == True:
         logger.info("Notifications are muted")
         return False
@@ -31,7 +30,7 @@ def notification(title, message, raise_plyer=False):
         from plyer import notification as plyer_notification
         from plyer.utils import platform
 
-        logger.info("Notification system is started")
+        logger.debug("Notification system is started")
         app_name = "Naruno"
         timeout = 10
         logger.debug(f"app_name: {app_name}")
@@ -52,11 +51,12 @@ def notification(title, message, raise_plyer=False):
             timeout=timeout,
         )
     except ImportError:
-        logger.info("Passing notification system (no plyer)")
+        logger.debug("Passing notification system (no plyer)")
     except NotImplementedError:
-        logger.info(
+        logger.debug(
             "Passing notification system (no usable implementation found for notification)"
         )
+
 
 if __name__ == "__main__":
     notification("Bahri Can", "Ergül")
