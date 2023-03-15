@@ -35,25 +35,26 @@ def SavetoMyTransaction(
         The list of the my transactions.
     """
 
-
     currently_list = (GetMyTransaction() if custom_currently_list is None else
                       custom_currently_list)
     if not tx.signature == "NARUNO":
-        new=True
+        new = True
 
         for tx_list in currently_list:
             if tx_list[0].signature == tx.signature:
-                new=False
+                new = False
 
         if new:
 
             if not sended and validated:
                 notification("Incoming TX",
-                            f"{tx.data}:{tx.amount} from {Address(tx.fromUser)}")
+                             f"{tx.data}:{tx.amount} from {Address(tx.fromUser)}")
             elif sended and not validated:
-                notification("Sended TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
+                notification(
+                    "Sended TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
             elif sended and validated:
-                notification("Validated TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
+                notification("Validated TX",
+                             f"{tx.data}:{tx.amount} to {tx.toUser}")
 
             tx_list = [tx, validated, sended]
             currently_list.append(tx_list)
