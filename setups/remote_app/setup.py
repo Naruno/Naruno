@@ -15,7 +15,7 @@ setup(
     author_email="onur.atakan.ulusoy@naruno.org",
     license="MPL-2.0",
     install_requires="""
-requests==2.28.0
+requests==2.28.2
 """,
     python_requires=">=3.8",
     zip_safe=False,
