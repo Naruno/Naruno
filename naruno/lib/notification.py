@@ -31,7 +31,7 @@ def notification(title, message, raise_plyer=False):
         from plyer import notification as plyer_notification
         from plyer.utils import platform
 
-        logger.info("Notification system is started")
+        logger.debug("Notification system is started")
         app_name = "Naruno"
         timeout = 10
         logger.debug(f"app_name: {app_name}")
@@ -52,9 +52,9 @@ def notification(title, message, raise_plyer=False):
             timeout=timeout,
         )
     except ImportError:
-        logger.info("Passing notification system (no plyer)")
+        logger.debug("Passing notification system (no plyer)")
     except NotImplementedError:
-        logger.info(
+        logger.debug(
             "Passing notification system (no usable implementation found for notification)"
         )
 
