@@ -26,23 +26,23 @@ from naruno.apps.apps_trigger import AppsTrigger
 from naruno.apps.remote_app import Integration
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part)
+                                                 GetBlockshash_part)
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.config import (
-    CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
-    MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
+                           LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
+                           LOADING_BLOCKSHASH_PATH, MY_TRANSACTION_EXPORT_PATH,
+                           PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
+                           TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH,
+                           TEMP_BLOCKSHASH_PATH)
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
 from naruno.lib.mix.merkle_root import MerkleTree
-from naruno.lib.settings_system import (save_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+from naruno.lib.settings_system import (save_settings, t_mode_settings,
+                                        the_settings)
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.my_transactions.get_my_transaction import \
@@ -69,8 +69,7 @@ naruno.api.main.custom_balance = 100000
 
 naruno.api.main.custom_TEMP_BLOCK_PATH = "db/test_API_BLOCK_PATH.json"
 naruno.api.main.custom_TEMP_ACCOUNTS_PATH = "db/test_API_ACCOUNTS_PATH.json"
-naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = (
-    "db/test_API_BLOCKSHASH_PATH.json")
+naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = "db/test_API_BLOCKSHASH_PATH.json"
 naruno.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
     "db/test_API_BLOCKSHASH_PART_PATH.json")
 
@@ -310,8 +309,11 @@ class Test_apps(unittest.TestCase):
             ))
 
     def test_integration_caching_system(self):
-        integration_1 = Integration("test_app")
-        integration_1.cache.append("test")
+        app_name = f"test_app_{int(time.time())}"
+        integration_1 = Integration(app_name)
+        integration_1.cache.append(
+            "MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="
+        )
         integration_1.save_cache()
         self.assertEqual(
             os.path.exists(
@@ -319,8 +321,13 @@ class Test_apps(unittest.TestCase):
             True,
         )
 
-        integration_2 = Integration("test_app")
-        self.assertEqual(integration_2.cache, ["test"])
+        integration_2 = Integration(app_name)
+        self.assertEqual(
+            integration_2.cache,
+            [
+                "MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="
+            ],
+        )
         self.assertEqual(
             os.path.exists(
                 f"db/remote_app_cache/{integration_1.cache_name}.cache"),
@@ -334,12 +341,11 @@ class Test_apps(unittest.TestCase):
             False,
         )
 
-        integration_3 = Integration("test_app")
+        integration_3 = Integration(app_name)
         self.assertEqual(integration_3.cache, [])
         integration_3.delete_cache()
 
     def test_integration_send_and_get_tx_sended_not_validated(self):
-
         integration = Integration(
             f"test_app_{int(time.time())}",
             host="localhost",
@@ -397,7 +403,6 @@ class Test_apps(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_integration_send_and_get_tx_sended_validated(self):
-
         integration = Integration(
             f"test_app_{int(time.time())}",
             host="localhost",
@@ -459,7 +464,6 @@ class Test_apps(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_integration_send_and_get_tx_received(self):
-
         integration = Integration(
             f"test_app_{int(time.time())}",
             host="localhost",
@@ -524,7 +528,6 @@ class Test_apps(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_integration_send_and_get_tx_received_disable_cache(self):
-
         integration = Integration(
             f"test_app_{int(time.time())}",
             host="localhost",
@@ -595,6 +598,36 @@ class Test_apps(unittest.TestCase):
         SaveMyTransaction(backup)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
+
+    def test_integration_caching_system_backward_support(self):
+        app_name = f"test_app_{int(time.time())}"
+        integration_1 = Integration(app_name)
+        integration_1.cache.append("test")
+        integration_1.save_cache()
+        self.assertEqual(
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            True,
+        )
+
+        integration_2 = Integration(app_name)
+        self.assertEqual(integration_2.cache, [])
+        self.assertEqual(
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            True,
+        )
+
+        integration_2.delete_cache()
+        self.assertEqual(
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            False,
+        )
+
+        integration_3 = Integration(app_name)
+        self.assertEqual(integration_3.cache, [])
+        integration_3.delete_cache()
 
 
 unittest.main(exit=False)
