@@ -14,7 +14,8 @@ import requests
 
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
-from naruno.lib.settings_system import baklava_settings, the_settings
+from naruno.lib.settings_system import baklava_settings
+from naruno.lib.settings_system import the_settings
 from naruno.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 from naruno.transactions.my_transactions.sended_transaction import \
