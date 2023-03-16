@@ -196,7 +196,7 @@ class Integration:
 
         for transaction in transactions_sended_not_validated:
             if (transactions_sended_not_validated[transaction]["transaction"]
-                ["signature"] in self.cache):
+                    ["signature"] in self.cache):
                 continue
             else:
                 new_dict[transaction] = transactions_sended_not_validated[
@@ -216,7 +216,7 @@ class Integration:
                         new_dict[transaction]["transaction"]["data"])
 
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         result = []
@@ -253,7 +253,7 @@ class Integration:
 
         the_list = first + second
 
-        if "print" in inspect.stack()[1].code_context[0] :
+        if "print" in inspect.stack()[1].code_context[0]:
             total = ""
             for data in the_list:
                 fromUser = data["fromUser"]
