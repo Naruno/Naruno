@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
 import copy
+import inspect
 import json
 import os
 from hashlib import sha256
@@ -249,4 +250,16 @@ class Integration:
         self.port = backup_port
 
         second = self.get_()
-        return first + second
+
+        the_list = first + second
+
+        if "print" in inspect.stack()[1].code_context[0] :
+            total = ""
+            for data in the_list:
+                fromUser = data["fromUser"]
+                toUser = data["toUser"]
+                action = data["data"]["action"].replace(self.app_name, "")
+                data = data["data"]["app_data"]
+                total += f"\n-----\nFrom: {fromUser}, To: {toUser} \nApp Name: {self.app_name}, Action: {action} \nData: {data}\n-----"
+            return total
+        return the_list
