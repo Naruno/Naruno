@@ -20,5 +20,5 @@ git clone https://github.com/Naruno/Naruno.git
 ## Installing requirements
 
 ```bash
-pip3 install naruno-tests
+pip3 install naruno-tests 
 ```

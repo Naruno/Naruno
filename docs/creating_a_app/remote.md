@@ -21,7 +21,7 @@ To use the Naruno API, you'll need the following:
 To get started with the Naruno Remote App, you'll need to install the `naruno` and `naruno-remote-app` libraries. You can do this by running the following command:
 
 ```bash
-pip3 install naruno naruno-remote-app
+pip3 install naruno naruno-remote-app --upgrade
 ```
 
 ## Overview
