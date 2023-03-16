@@ -10,28 +10,8 @@ Baklava TestNet is a test network for developers. You can use this network to te
 
 ## Upgrading
 
-For new versions and backward support you should get a backup first.
-
 ```console
-narunocli --narunoexport
-```
-
-Its gives a zip file location and please move or copy this file to an safe place.
-
-Now we will upgrade the our software:
-
-```console
-pip3 uninstall naruno -y
-```
-
-```console
-pip3 install naruno --no-cache
-```
-
-And now we will use our backup
-
-```console
-narunocli --narunoimport your_zip_file
+pip3 install naruno --upgrade
 ```
 
 ## Using
@@ -57,7 +37,7 @@ After switching you can use our 4 lines web3 integration system.
 ### Installing API Requirements
 
 ```console
-pip3 install naruno-api
+pip3 install naruno-api --upgrade
 ```
 
 ### Starting in a command line interface
@@ -71,7 +51,7 @@ narunoapi
 Before the start you should install the naruno-remote-app library for python.
 
 ```console
-pip3 install naruno-remote-app
+pip3 install naruno-remote-app --upgrade
 ```
 
 Please use this code for creating a Web3 application in 4 lines.
