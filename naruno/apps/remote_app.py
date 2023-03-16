@@ -23,7 +23,7 @@ from naruno.transactions.my_transactions.sended_transaction import \
 from naruno.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
 from naruno.transactions.transaction import Transaction
-from naruno.wallet.wallet_import import wallet_import
+from naruno.wallet.wallet_import import Address, wallet_import
 
 logger = get_logger("REMOTE_APP")
 
@@ -221,7 +221,8 @@ class Integration:
         result = []
 
         for transaction in last_list:
-            if transaction["fromUser"] == wallet_import(-1, 0):
+            transaction["fromUser"] = Address(transaction["fromUser"])
+            if transaction["fromUser"] == wallet_import(-1, 3):
                 the_tx = Transaction.load_json(transaction)
                 if the_settings()["baklava"]:
                     SendedTransaction(the_tx)
