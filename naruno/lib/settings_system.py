@@ -19,6 +19,7 @@ temp_json = {
     "dark_mode": True,
     "publisher_mode": False,
     "baklava": False,
+    "baklava_users": False
 }
 
 

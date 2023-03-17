@@ -190,7 +190,7 @@ def SaveBlock(
                                                                                                    
             
         ]
-        if the_settings()["baklava"]:
+        if the_settings()["baklava_users"]:
             accounts_list.extend(baklava_test_net_users)
         SaveAccounts(
             accounts_list,
