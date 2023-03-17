@@ -74,7 +74,7 @@ class Integration:
         try:
             self.prepare_request("/", "get")
             return True
-        except:
+        except Exception as e:
             return False
 
     def start_api(self):

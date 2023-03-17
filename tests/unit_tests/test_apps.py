@@ -310,7 +310,7 @@ class Test_apps(unittest.TestCase):
 
     def test_integration_caching_system(self):
         app_name = f"test_app_{int(time.time())}"
-        integration_1 = Integration(app_name)
+        integration_1 = Integration(app_name, port=7776)
         integration_1.cache.append(
             "MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="
         )
@@ -321,7 +321,7 @@ class Test_apps(unittest.TestCase):
             True,
         )
 
-        integration_2 = Integration(app_name)
+        integration_2 = Integration(app_name, port=7776)
         self.assertEqual(
             integration_2.cache,
             [
@@ -341,7 +341,7 @@ class Test_apps(unittest.TestCase):
             False,
         )
 
-        integration_3 = Integration(app_name)
+        integration_3 = Integration(app_name, port=7776)
         self.assertEqual(integration_3.cache, [])
         integration_3.delete_cache()
 
@@ -601,7 +601,7 @@ class Test_apps(unittest.TestCase):
 
     def test_integration_caching_system_backward_support(self):
         app_name = f"test_app_{int(time.time())}"
-        integration_1 = Integration(app_name)
+        integration_1 = Integration(app_name, port=7776)
         integration_1.cache.append("test")
         integration_1.save_cache()
         self.assertEqual(
@@ -610,7 +610,7 @@ class Test_apps(unittest.TestCase):
             True,
         )
 
-        integration_2 = Integration(app_name)
+        integration_2 = Integration(app_name, port=7776)
         self.assertEqual(integration_2.cache, [])
         self.assertEqual(
             os.path.exists(
@@ -625,7 +625,7 @@ class Test_apps(unittest.TestCase):
             False,
         )
 
-        integration_3 = Integration(app_name)
+        integration_3 = Integration(app_name, port=7776)
         self.assertEqual(integration_3.cache, [])
         integration_3.delete_cache()
 
