@@ -47,6 +47,8 @@ from naruno.apps.remote_app import Integration
 integration = Integration("app_name")
 
 integration.send("action", "app_data", "to_user")
+
+integration.close()
 ```
 
 ### Receiving a Message
@@ -62,6 +64,8 @@ integration = Integration("app_name")
 while True:
   print(integration.get())
   time.sleep(3)
+
+integration.close()
 ```
 
 This code will retrieve data from the network every three seconds and print it to the console.

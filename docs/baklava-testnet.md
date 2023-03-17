@@ -54,4 +54,6 @@ integration = Integration("Your_App_Name", password="Your_Wallet_Password")
 integration.send("Your_Action_Name", "Your_Data", "Recipient_Address")
 
 print(integration.get())
+
+integration.close()
 ```

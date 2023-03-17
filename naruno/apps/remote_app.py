@@ -57,6 +57,8 @@ class Integration:
         self.host = host
         self.port = port
 
+        self.api = None
+
         if not self.check_api():
             self.start_api()
 
@@ -89,8 +91,9 @@ class Integration:
         self.api_thread.start()
         sys.argv = backup
 
-    def stop_api(self):
-        self.api.close()
+    def close(self):
+        if self.api is not None:
+            self.api.close()
 
     def disable_cache(self):
         self.cache_true = False
