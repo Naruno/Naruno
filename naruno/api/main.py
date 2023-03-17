@@ -97,7 +97,7 @@ custom_account_list = None
 
 @app.route("/wallet/print", methods=["GET"])
 def print_wallets_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -107,7 +107,7 @@ def print_wallets_page():
 
 @app.route("/wallet/change/<number>", methods=["GET"])
 def wallet_change_page(number):
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -118,7 +118,7 @@ def wallet_change_page(number):
 
 @app.route("/wallet/create/<password>", methods=["GET"])
 def create_wallet_page(password):
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -129,7 +129,7 @@ def create_wallet_page(password):
 
 @app.route("/wallet/delete", methods=["GET"])
 def delete_wallets_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -191,7 +191,7 @@ def send_coin_data_page():
 
 @app.route("/wallet/balance", methods=["GET"])
 def balance_wallets_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -206,7 +206,7 @@ def balance_wallets_page():
 
 @app.route("/node/start/<ip>/<port>", methods=["GET"])
 def node_start_page(ip, port):
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -217,7 +217,7 @@ def node_start_page(ip, port):
 
 @app.route("/node/stop", methods=["GET"])
 def node_stop_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify({"error": "You can't stop the node in publisher mode."})
@@ -227,7 +227,7 @@ def node_stop_page():
 
 @app.route("/node/connect/<ip>/<port>", methods=["GET"])
 def node_connect_page(ip, port):
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -238,7 +238,7 @@ def node_connect_page(ip, port):
 
 @app.route("/node/connectmixdb", methods=["GET"])
 def node_connectmixdb_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -253,7 +253,7 @@ def node_connectmixdb_page():
 # /node/newunl/?MFYw......
 @app.route("/node/newunl/", methods=["GET"])
 def node_newunl_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -264,7 +264,7 @@ def node_newunl_page():
 
 @app.route("/node/id", methods=["GET"])
 def node_id_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -274,7 +274,7 @@ def node_id_page():
 
 @app.route("/settings/test/on", methods=["GET"])
 def settings_test_on_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -285,7 +285,7 @@ def settings_test_on_page():
 
 @app.route("/settings/test/off", methods=["GET"])
 def settings_test_off_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -296,7 +296,7 @@ def settings_test_off_page():
 
 @app.route("/settings/debug/on", methods=["GET"])
 def settings_debug_on_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -308,7 +308,7 @@ def settings_debug_on_page():
 
 @app.route("/settings/debug/off", methods=["GET"])
 def settings_debug_off_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
@@ -320,7 +320,7 @@ def settings_debug_off_page():
 
 @app.route("/block/get", methods=["GET"])
 def block_get_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify({"error": "You can't get the block in publisher mode."})
@@ -350,7 +350,7 @@ def block_get_page():
 
 @app.route("/export/transactions/csv", methods=["GET"])
 def export_transaction_csv_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
 
     return jsonify(
@@ -362,7 +362,7 @@ def export_transaction_csv_page():
 
 @app.route("/transactions/sended/validated", methods=["GET"])
 def transaction_sended_validated_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(
         GetMyTransaction(sended=True, validated=True, turn_json=True))
@@ -370,7 +370,7 @@ def transaction_sended_validated_page():
 
 @app.route("/transactions/sended/not_validated", methods=["GET"])
 def transaction_sended_not_validated_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(
         GetMyTransaction(sended=True, validated=False, turn_json=True))
@@ -378,21 +378,21 @@ def transaction_sended_not_validated_page():
 
 @app.route("/transactions/received", methods=["GET"])
 def transaction_received_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(GetMyTransaction(sended=False, turn_json=True))
 
 
 @app.route("/transactions/all", methods=["GET"])
 def transaction_all_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(GetMyTransaction(turn_json=True))
 
 
 @app.route("/status", methods=["GET"])
 def status_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     return jsonify(
         Status(
@@ -486,7 +486,7 @@ def verify_page():
 
 @app.route("/export/block/json", methods=["GET"])
 def export_block_json_page():
-    logger.info(
+    logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
