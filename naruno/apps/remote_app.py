@@ -14,6 +14,8 @@ from hashlib import sha256
 
 import requests
 
+import threading
+
 from naruno.api.main import start
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
@@ -81,9 +83,13 @@ class Integration:
         backup = sys.argv
         sys.argv = [sys.argv[0]]
 
-        start(host=self.host, port=self.port, test=True)
-
+        self.api = start(host=self.host, port=self.port, test=True)
+        
+        self.api_thread = threading.Thread(target=self.api.run)
         sys.argv = backup
+
+    def stop_api(self):
+        self.api.close()
 
     def disable_cache(self):
         self.cache_true = False
