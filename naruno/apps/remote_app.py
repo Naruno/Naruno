@@ -80,10 +80,10 @@ class Integration:
     def start_api(self):
         backup = sys.argv
         sys.argv = [sys.argv[0]]
-     
+
         start(host=self.host, port=self.port, test=True)
 
-        sys.argv = backup   
+        sys.argv = backup
 
     def disable_cache(self):
         self.cache_true = False
@@ -218,7 +218,7 @@ class Integration:
 
         for transaction in transactions_sended_not_validated:
             if (transactions_sended_not_validated[transaction]["transaction"]
-                ["signature"] in self.cache):
+                    ["signature"] in self.cache):
                 continue
             else:
                 new_dict[transaction] = transactions_sended_not_validated[
@@ -238,7 +238,7 @@ class Integration:
                         new_dict[transaction]["transaction"]["data"])
 
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         result = []
