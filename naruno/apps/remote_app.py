@@ -12,6 +12,7 @@ import os
 from hashlib import sha256
 
 import requests
+import sys
 
 from naruno.api.main import start
 from naruno.lib.config_system import get_config
@@ -77,7 +78,12 @@ class Integration:
             return False
 
     def start_api(self):
+        backup = sys.argv
+        sys.argv = [sys.argv[0]]
+     
         start(host=self.host, port=self.port, test=True)
+
+        sys.argv = backup   
 
     def disable_cache(self):
         self.cache_true = False
