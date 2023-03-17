@@ -155,7 +155,7 @@ def send_coin_data_page():
     block = None
     with contextlib.suppress(Exception):
         block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-             if custom_block is None else custom_block)
+                 if custom_block is None else custom_block)
     send_tx = send(
         password,
         address,
@@ -263,6 +263,7 @@ def node_id_page():
     if the_settings()["publisher_mode"]:
         return jsonify({"error": "You can't get the node id in publisher mode."})
     return jsonify(server.id)
+
 
 @app.route("/settings/test/on", methods=["GET"])
 def settings_test_on_page():
@@ -490,8 +491,8 @@ def balance_get_page():
     address = str(request.args.get("address"))
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
-    return jsonify(GetBalance(address,block=the_block, account_list=custom_account_list,dont_convert=True))
+
+    return jsonify(GetBalance(address, block=the_block, account_list=custom_account_list, dont_convert=True))
 
 
 @app.route("/sequence/get/", methods=["GET"])
@@ -502,7 +503,7 @@ def sequence_get_page():
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
     address = str(request.args.get("address"))
-    
+
     return jsonify(GetSequanceNumber(address, account_list=custom_account_list, dont_convert=True))
 
 
@@ -538,7 +539,7 @@ def transaction_send_page():
     )
 
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                 if custom_block is None else custom_block)
+             if custom_block is None else custom_block)
 
     if GetTransaction(
         block,
@@ -547,7 +548,7 @@ def transaction_send_page():
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,
         custom_account_list=custom_account_list,
-    ):   
+    ):
         return jsonify("200"), 200
     else:
         return jsonify("400"), 400
@@ -562,7 +563,7 @@ def blocktransactionfee_get_page():
         return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
+
     return jsonify(the_block.transaction_fee)
 
 
@@ -575,9 +576,8 @@ def blockmaxtxnumber_get_page():
         return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
-    return jsonify(the_block.max_tx_number)
 
+    return jsonify(the_block.max_tx_number)
 
 
 @app.route("/blockmaxdatasize/get/", methods=["GET"])
@@ -589,8 +589,9 @@ def blockmaxdatasize_get_page():
         return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
+
     return jsonify(the_block.max_data_size)
+
 
 @app.route("/blockminumumtransferamount/get/", methods=["GET"])
 def blockminumumtransferamount_get_page():
@@ -601,8 +602,9 @@ def blockminumumtransferamount_get_page():
         return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
+
     return jsonify(the_block.minumum_transfer_amount)
+
 
 @app.errorhandler(500)
 def handle_exception(e):
@@ -630,8 +632,7 @@ def start(host=None, port=None, test=False):
         host = "0.0.0.0"
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
+        description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
     )
 
     parser.add_argument("-p",
