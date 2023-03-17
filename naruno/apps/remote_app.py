@@ -86,6 +86,7 @@ class Integration:
         self.api = start(host=self.host, port=self.port, test=True)
         
         self.api_thread = threading.Thread(target=self.api.run)
+        self.api_thread.start()
         sys.argv = backup
 
     def stop_api(self):
