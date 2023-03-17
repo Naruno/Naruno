@@ -622,10 +622,12 @@ def method_not_allowed(e):
     return jsonify("405"), 405
 
 
-def start(port=None, test=False):
+def start(host=None, port=None, test=False):
     """
     Start the API server.
     """
+    if host is None:
+        host = "0.0.0.0"
 
     parser = argparse.ArgumentParser(
         description=
@@ -659,8 +661,8 @@ def start(port=None, test=False):
     safety_check(args.interface, args.timeout)
 
     logger.info(f"Starting API on port {args.port}")
-    result = (serve(app, host="0.0.0.0", port=args.port) if test is False else
-              create_server(app, host="0.0.0.0", port=args.port))
+    result = (serve(app, host=host, port=args.port) if test is False else
+              create_server(app, host=host, port=args.port))
     return result
 
 

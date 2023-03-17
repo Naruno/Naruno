@@ -35,32 +35,20 @@ narunocli --getbalance
 
 After switching you can use our 4 lines web3 integration system.
 
-### Installing API Requirements
+### Installing Requirements
 
 ```console
-pip3 install naruno-api --upgrade
-```
-
-### Starting in a command line interface
-
-```console
-narunoapi
+pip3 install naruno-api naruno-remote-app --upgrade
 ```
 
 ### Creating Web3_App.py
-
-Before the start you should install the naruno-remote-app library for python.
-
-```console
-pip3 install naruno-remote-app --upgrade
-```
 
 Please use this code for creating a Web3 application in 4 lines.
 
 ```python
 from naruno.apps.remote_app import Integration
 
-integration = Integration("Your_App_Name", password="Your_Wallet_Password", host="localhost")
+integration = Integration("Your_App_Name", password="Your_Wallet_Password")
 
 integration.send("Your_Action_Name", "Your_Data", "Recipient_Address")
 
