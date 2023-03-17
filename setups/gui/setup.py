@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="naruno_gui",
-    version="0.46.5",
+    version="0.47.0",
     description="""This is GUI mode installer for Naruno""",
     url="https://docs.naruno.org/",
     author="Naruno Developers",
