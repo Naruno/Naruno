@@ -9,10 +9,12 @@ import copy
 import inspect
 import json
 import os
+import sys
 from hashlib import sha256
 
 import requests
 
+from naruno.api.main import start
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import baklava_settings
@@ -35,7 +37,7 @@ class Integration:
     def __init__(
         self,
         app_name,
-        host="0.0.0.0",
+        host="localhost",
         port=8000,
         password="123",
         sended=True,
@@ -52,6 +54,10 @@ class Integration:
             self.app_name.encode()).hexdigest() + wallet_import(-1, 3)
         self.host = host
         self.port = port
+
+        if not self.check_api():
+            self.start_api()
+
         self.password = password
 
         self.sended = sended
@@ -63,6 +69,21 @@ class Integration:
         self.get_cache()
 
         logger.info(f"Integration of {self.app_name} is started")
+
+    def check_api(self):
+        try:
+            self.prepare_request("/", "get")
+            return True
+        except Exception as e:
+            return False
+
+    def start_api(self):
+        backup = sys.argv
+        sys.argv = [sys.argv[0]]
+
+        start(host=self.host, port=self.port, test=True)
+
+        sys.argv = backup
 
     def disable_cache(self):
         self.cache_true = False

@@ -9,7 +9,8 @@ nav_order: 5
 Baklava TestNet is a test network for developers. You can use this network to testng and distributing your applications. After the [registiration](https://naruno.org/baklava-testnet/) you will get 1002 coins. You can use this coins for creating a one more user (1000) and sending 100 transaction (2). Also you can use you coins without creating an one more user (Multiple devices that used one account).
 
 ## Upgrading
-* Please save your backup via `narunocli --narunoexport`. You should move a safe place The file that given after the command. If any problem you can use this file for restoring your naruno via `narunocli --narunoimport your_zip_file`.
+
+- Please save your backup via `narunocli --narunoexport`. You should move a safe place The file that given after the command. If any problem you can use this file for restoring your naruno via `narunocli --narunoimport your_zip_file`.
 
 ```console
 pip3 install naruno --upgrade
@@ -35,32 +36,20 @@ narunocli --getbalance
 
 After switching you can use our 4 lines web3 integration system.
 
-### Installing API Requirements
+### Installing Requirements
 
 ```console
-pip3 install naruno-api --upgrade
-```
-
-### Starting in a command line interface
-
-```console
-narunoapi
+pip3 install naruno-api naruno-remote-app --upgrade
 ```
 
 ### Creating Web3_App.py
-
-Before the start you should install the naruno-remote-app library for python.
-
-```console
-pip3 install naruno-remote-app --upgrade
-```
 
 Please use this code for creating a Web3 application in 4 lines.
 
 ```python
 from naruno.apps.remote_app import Integration
 
-integration = Integration("Your_App_Name", password="Your_Wallet_Password", host="localhost")
+integration = Integration("Your_App_Name", password="Your_Wallet_Password")
 
 integration.send("Your_Action_Name", "Your_Data", "Recipient_Address")
 

@@ -15,7 +15,6 @@ from flask import request
 from waitress import serve
 from waitress.server import create_server
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from flask_cors import CORS
@@ -37,6 +36,7 @@ from naruno.lib.status import Status
 from naruno.lib.verify import verify
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
+from naruno.transactions.get_transaction import GetTransaction
 from naruno.transactions.my_transactions.check_proof import CheckProof
 from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
@@ -44,17 +44,12 @@ from naruno.transactions.my_transactions.get_proof import GetProof
 from naruno.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 from naruno.transactions.send import send
+from naruno.transactions.transaction import Transaction
 from naruno.wallet.delete_current_wallet import delete_current_wallet
 from naruno.wallet.print_wallets import print_wallets
 from naruno.wallet.wallet_create import wallet_create
 from naruno.wallet.wallet_import import wallet_import
 from naruno.wallet.wallet_selector import wallet_selector
-
-from naruno.transactions.transaction import Transaction
-
-
-from naruno.transactions.get_transaction import GetTransaction
-
 
 logger = get_logger("API")
 
@@ -105,7 +100,8 @@ def print_wallets_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't print the wallets in publisher mode."})
+        return jsonify(
+            {"error": "You can't print the wallets in publisher mode."})
     return jsonify(print_wallets())
 
 
@@ -114,7 +110,8 @@ def wallet_change_page(number):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't change the wallet in publisher mode."})
+        return jsonify(
+            {"error": "You can't change the wallet in publisher mode."})
     wallet_selector(number)
     return jsonify(print_wallets())
 
@@ -124,7 +121,8 @@ def create_wallet_page(password):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't create a wallet in publisher mode."})
+        return jsonify(
+            {"error": "You can't create a wallet in publisher mode."})
     wallet_create(password)
     return jsonify(print_wallets())
 
@@ -134,7 +132,8 @@ def delete_wallets_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't delete the wallet in publisher mode."})
+        return jsonify(
+            {"error": "You can't delete the wallet in publisher mode."})
     delete_current_wallet()
     return jsonify(print_wallets())
 
@@ -144,7 +143,8 @@ def send_coin_data_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't send a transaction in publisher mode."})
+        return jsonify(
+            {"error": "You can't send a transaction in publisher mode."})
     address = str(
         request.form["to_user"]) if "to_user" in request.form else None
     amount = float(
@@ -155,7 +155,7 @@ def send_coin_data_page():
     block = None
     with contextlib.suppress(Exception):
         block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-             if custom_block is None else custom_block)
+                 if custom_block is None else custom_block)
     send_tx = send(
         password,
         address,
@@ -182,7 +182,8 @@ def send_coin_data_page():
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=
+                custom_TEMP_BLOCKSHASH_PART_PATH,
             )
     result = send_tx.dump_json() if send_tx != False else False
     return jsonify(result)
@@ -193,7 +194,8 @@ def balance_wallets_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't get the balance in publisher mode."})
+        return jsonify(
+            {"error": "You can't get the balance in publisher mode."})
     the_wallet = wallet_import(-1,
                                0) if custom_wallet is None else custom_wallet
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
@@ -207,7 +209,8 @@ def node_start_page(ip, port):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't start the node in publisher mode."})
+        return jsonify(
+            {"error": "You can't start the node in publisher mode."})
     server(str(ip), int(port))
     return jsonify("OK")
 
@@ -227,7 +230,8 @@ def node_connect_page(ip, port):
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't connect to the node in publisher mode."})
+        return jsonify(
+            {"error": "You can't connect to the node in publisher mode."})
     server.Server.connect(str(ip), int(port))
     return jsonify("OK")
 
@@ -237,7 +241,8 @@ def node_connectmixdb_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't connect to the node in publisher mode."})
+        return jsonify(
+            {"error": "You can't connect to the node in publisher mode."})
     server.connectionfrommixdb(
         custom_server=custom_server,
         custom_CONNECTED_NODES_PATH=custom_CONNECTED_NODES_PATH,
@@ -251,7 +256,8 @@ def node_newunl_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't connect to the node in publisher mode."})
+        return jsonify(
+            {"error": "You can't connect to the node in publisher mode."})
     Unl.save_new_unl_node(request.query_string.decode("utf-8"))
     return jsonify("OK")
 
@@ -261,15 +267,18 @@ def node_id_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't get the node id in publisher mode."})
+        return jsonify(
+            {"error": "You can't get the node id in publisher mode."})
     return jsonify(server.id)
+
 
 @app.route("/settings/test/on", methods=["GET"])
 def settings_test_on_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't turn on the test mode in publisher mode."})
+        return jsonify(
+            {"error": "You can't turn on the test mode in publisher mode."})
     t_mode_settings(True)
     return jsonify("OK")
 
@@ -279,7 +288,8 @@ def settings_test_off_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't turn off the test mode in publisher mode."})
+        return jsonify(
+            {"error": "You can't turn off the test mode in publisher mode."})
     t_mode_settings(False)
     return jsonify("OK")
 
@@ -289,7 +299,8 @@ def settings_debug_on_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't turn on the debug mode in publisher mode."})
+        return jsonify(
+            {"error": "You can't turn on the debug mode in publisher mode."})
     app.config["DEBUG"] = True
     d_mode_settings(True)
     return jsonify("OK")
@@ -300,7 +311,8 @@ def settings_debug_off_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't turn off the debug mode in publisher mode."})
+        return jsonify(
+            {"error": "You can't turn off the debug mode in publisher mode."})
     app.config["DEBUG"] = False
     d_mode_settings(False)
     return jsonify("OK")
@@ -431,7 +443,8 @@ def proof_check_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't check the proof in publisher mode."})
+        return jsonify(
+            {"error": "You can't check the proof in publisher mode."})
     path = str(request.form["path"]) if "path" in request.form else None
     custom_TEMP_BLOCKSHASH_PART_PATH = (
         str(request.form["custom_TEMP_BLOCKSHASH_PART_PATH"])
@@ -490,8 +503,14 @@ def balance_get_page():
     address = str(request.args.get("address"))
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
-    return jsonify(GetBalance(address,block=the_block, account_list=custom_account_list,dont_convert=True))
+
+    return jsonify(
+        GetBalance(
+            address,
+            block=the_block,
+            account_list=custom_account_list,
+            dont_convert=True,
+        ))
 
 
 @app.route("/sequence/get/", methods=["GET"])
@@ -502,8 +521,11 @@ def sequence_get_page():
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
     address = str(request.args.get("address"))
-    
-    return jsonify(GetSequanceNumber(address, account_list=custom_account_list, dont_convert=True))
+
+    return jsonify(
+        GetSequanceNumber(address,
+                          account_list=custom_account_list,
+                          dont_convert=True))
 
 
 # Write a api for directing a transaction with GetTransaction
@@ -538,16 +560,16 @@ def transaction_send_page():
     )
 
     block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                 if custom_block is None else custom_block)
+             if custom_block is None else custom_block)
 
     if GetTransaction(
-        block,
-        the_transaction,
-        custom_current_time=custom_current_time,
-        custom_sequence_number=custom_sequence_number,
-        custom_balance=custom_balance,
-        custom_account_list=custom_account_list,
-    ):   
+            block,
+            the_transaction,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_account_list=custom_account_list,
+    ):
         return jsonify("200"), 200
     else:
         return jsonify("400"), 400
@@ -562,7 +584,7 @@ def blocktransactionfee_get_page():
         return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
+
     return jsonify(the_block.transaction_fee)
 
 
@@ -575,9 +597,8 @@ def blockmaxtxnumber_get_page():
         return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
-    return jsonify(the_block.max_tx_number)
 
+    return jsonify(the_block.max_tx_number)
 
 
 @app.route("/blockmaxdatasize/get/", methods=["GET"])
@@ -589,8 +610,9 @@ def blockmaxdatasize_get_page():
         return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
+
     return jsonify(the_block.max_data_size)
+
 
 @app.route("/blockminumumtransferamount/get/", methods=["GET"])
 def blockminumumtransferamount_get_page():
@@ -601,8 +623,9 @@ def blockminumumtransferamount_get_page():
         return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
-    
+
     return jsonify(the_block.minumum_transfer_amount)
+
 
 @app.errorhandler(500)
 def handle_exception(e):
@@ -622,10 +645,12 @@ def method_not_allowed(e):
     return jsonify("405"), 405
 
 
-def start(port=None, test=False):
+def start(host=None, port=None, test=False):
     """
     Start the API server.
     """
+    if host is None:
+        host = "0.0.0.0"
 
     parser = argparse.ArgumentParser(
         description=
@@ -659,8 +684,8 @@ def start(port=None, test=False):
     safety_check(args.interface, args.timeout)
 
     logger.info(f"Starting API on port {args.port}")
-    result = (serve(app, host="0.0.0.0", port=args.port) if test is False else
-              create_server(app, host="0.0.0.0", port=args.port))
+    result = (serve(app, host=host, port=args.port) if test is False else
+              create_server(app, host=host, port=args.port))
     return result
 
 
