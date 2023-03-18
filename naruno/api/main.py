@@ -24,8 +24,8 @@ from naruno.accounts.get_sequence_number import GetSequanceNumber
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.blockchain.max_data_size import GetMaxDataSize
-from naruno.blockchain.max_tx_number import GetMaxTXNumber
+from naruno.blockchain.block.max_data_size import GetMaxDataSize
+from naruno.blockchain.block.max_tx_number import GetMaxTXNumber
 from naruno.consensus.consensus_main import consensus_trigger
 from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
