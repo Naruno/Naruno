@@ -10,15 +10,15 @@ import inspect
 import json
 import os
 import sys
+import threading
 from hashlib import sha256
 
 import requests
 
-import threading
-
 from naruno.api.main import start
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
+from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.settings_system import baklava_settings
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.my_transactions.save_to_my_transaction import \
@@ -86,7 +86,7 @@ class Integration:
         sys.argv = [sys.argv[0]]
 
         self.api = start(host=self.host, port=self.port, test=True)
-        
+
         self.api_thread = threading.Thread(target=self.api.run)
         self.api_thread.start()
         sys.argv = backup
@@ -152,7 +152,17 @@ class Integration:
 
         return response
 
-    def send(self, action, app_data, to_user) -> bool:
+    def send_forcer(self, action, app_data, to_user, retrysecond):
+        return perpetualTimer(retrysecond,
+                              self.send,
+                              args=(action, app_data, to_user, False))
+
+    def send(self,
+             action,
+             app_data,
+             to_user,
+             force=True,
+             retrysecond=10) -> bool:
         """
         :param action: The action of the app
         :param app_data: The data of the app
@@ -173,6 +183,9 @@ class Integration:
 
         if "false" in response.text:
             logger.error("Error sending message")
+            if force:
+                logger.info("Trying to send again")
+                return self.send_forcer(action, app_data, to_user, retrysecond)
             return False
         else:
             logger.info(
