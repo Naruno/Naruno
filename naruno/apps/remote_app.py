@@ -87,7 +87,7 @@ class Integration:
         sys.argv = [sys.argv[0]]
 
         self.api = start(host=self.host, port=self.port, test=True)
-        
+
         self.api_thread = threading.Thread(target=self.api.run)
         self.api_thread.start()
         sys.argv = backup
@@ -155,7 +155,6 @@ class Integration:
 
     def send_forcer(self, action, app_data, to_user, retrysecond):
         return perpetualTimer(retrysecond, self.send, args=(action, app_data, to_user, False))
-
 
     def send(self, action, app_data, to_user, force=True, retrysecond=10) -> bool:
         """
@@ -236,7 +235,7 @@ class Integration:
 
         for transaction in transactions_sended_not_validated:
             if (transactions_sended_not_validated[transaction]["transaction"]
-                ["signature"] in self.cache):
+                    ["signature"] in self.cache):
                 continue
             else:
                 new_dict[transaction] = transactions_sended_not_validated[
@@ -256,7 +255,7 @@ class Integration:
                         new_dict[transaction]["transaction"]["data"])
 
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         result = []
