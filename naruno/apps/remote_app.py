@@ -206,10 +206,14 @@ class Integration:
                 "action": self.app_name + action,
                 "app_data": ""
             }))
+ 
 
         true_length = max_data_size / max_tx_number - system_length
 
+
+
         if len(app_data) > true_length:
+
             # generate random charactere
             rando = ""
             for i in range(5):
@@ -224,21 +228,23 @@ class Integration:
                 force=force,
                 retrysecond=retrysecond,
             )
-            split_char = f"split-{split_random}"
-            original_total_length = len(app_data)
+            len_split_char = len(f"split--{split_random}-")
 
-            calculate_how_many_parts = original_total_length / true_length
-            realized_total_length = (original_total_length + len(split_char) +
-                                     calculate_how_many_parts)
 
-            how_many_parts = int(realized_total_length / true_length) + 1
+            total_size_of_an_data = len(app_data) + len_split_char + system_length
+
+
+            how_many_parts = int((len(app_data) + len_split_char) / true_length)+1
+            how_many_parts = int((len(app_data) + len_split_char + len(str(how_many_parts))) / true_length)+1
+
 
             splitted_data = []
+            split_length = (len(app_data) // how_many_parts)
+
             for i in range(how_many_parts):
                 # split to part of app_data and app_data is an string
-                part = app_data[i * int(true_length - system_length):i *
-                                int(true_length - system_length) +
-                                int(true_length - system_length)]
+                part = app_data[i * int(split_length ):i * int(split_length )+
+                                int(split_length )]
 
                 splitted_data.append(part)
 
