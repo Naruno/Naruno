@@ -36,6 +36,13 @@ from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("REMOTE_APP")
 
+class splitted_data:
+    def __init__(self, split):
+        self.split = split
+        self.main_data = None
+        self.validated = False
+        self.data = []
+        self.data_original = []
 
 class Integration:
 
