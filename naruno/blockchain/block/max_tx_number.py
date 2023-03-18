@@ -20,7 +20,10 @@ def GetMaxTXNumber(
         block = block if block is not None else GetBlock()
         max_tx_number = block.max_tx_number
     else:
-        max_tx_number = int(urlopen(
-            "http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/").read().decode("utf-8"))
+        max_tx_number = int(
+            urlopen("http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/")
+            .read()
+            .decode("utf-8")
+        )
 
     return max_tx_number
