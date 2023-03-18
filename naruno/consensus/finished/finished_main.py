@@ -15,23 +15,20 @@ from naruno.blockchain.block.blocks_hash import GetBlockshash_part
 from naruno.blockchain.block.blocks_hash import SaveBlockshash
 from naruno.blockchain.block.blocks_hash import SaveBlockshash_part
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.blockchain.block.save_block_to_blockchain_db import \
-    SaveBlockstoBlockchainDB
+from naruno.blockchain.block.save_block_to_blockchain_db import SaveBlockstoBlockchainDB
 from naruno.config import BLOCKS_PATH
 from naruno.config import TEMP_ACCOUNTS_PATH
 from naruno.config import TEMP_BLOCK_PATH
 from naruno.config import TEMP_BLOCKSHASH_PART_PATH
 from naruno.config import TEMP_BLOCKSHASH_PATH
-from naruno.consensus.finished.transactions.transactions_main import \
-    transactions_main
+from naruno.consensus.finished.transactions.transactions_main import transactions_main
 from naruno.consensus.finished.true_time.true_time_main import true_time
 from naruno.lib.log import get_logger
 from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.lib.settings_system import save_settings
 from naruno.lib.settings_system import the_settings
 from naruno.node.server.server import server
-from naruno.transactions.pending_to_validating import \
-    PendingtoValidating
+from naruno.transactions.pending_to_validating import PendingtoValidating
 
 logger = get_logger("CONSENSUS")
 
@@ -54,22 +51,28 @@ def finished_main(
         the_server = custom_server
 
     the_BLOCKS_PATH = BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
-    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                              if custom_TEMP_ACCOUNTS_PATH is None else
-                              custom_TEMP_ACCOUNTS_PATH)
-    the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
-                                if custom_TEMP_BLOCKSHASH_PATH is None else
-                                custom_TEMP_BLOCKSHASH_PATH)
-    the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
-                                     custom_TEMP_BLOCKSHASH_PART_PATH is None
-                                     else custom_TEMP_BLOCKSHASH_PART_PATH)
+    the_TEMP_ACCOUNTS_PATH = (
+        TEMP_ACCOUNTS_PATH
+        if custom_TEMP_ACCOUNTS_PATH is None
+        else custom_TEMP_ACCOUNTS_PATH
+    )
+    the_TEMP_BLOCKSHASH_PATH = (
+        TEMP_BLOCKSHASH_PATH
+        if custom_TEMP_BLOCKSHASH_PATH is None
+        else custom_TEMP_BLOCKSHASH_PATH
+    )
+    the_TEMP_BLOCKSHASH_PART_PATH = (
+        TEMP_BLOCKSHASH_PART_PATH
+        if custom_TEMP_BLOCKSHASH_PART_PATH is None
+        else custom_TEMP_BLOCKSHASH_PART_PATH
+    )
 
-    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
-                           else custom_TEMP_BLOCK_PATH)
+    the_TEMP_BLOCK_PATH = (
+        TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
+    )
     block.sync_empty_blocks() if pass_sync is False else None
     if true_time(block):
-        logger.debug(
-            "Consensus proccess is complated, the block will be reset")
+        logger.debug("Consensus proccess is complated, the block will be reset")
 
         reset_block = block.reset_the_block()
 
@@ -108,10 +111,10 @@ def finished_main(
             )
 
             the_blocks_hash = GetBlockshash(
-                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
+                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH
+            )
 
             if len(the_blocks_hash) == block.part_amount:
-
                 block.empty_block_number += block.gap_block_number
 
                 block.sync = True
@@ -120,14 +123,17 @@ def finished_main(
                     custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 the_blockshas_part = GetBlockshash_part(
-                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH)
-                block.part_amount_cache = MerkleTree(
-                    the_blockshas_part).getRootHash()
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH
+                )
+                block.part_amount_cache = MerkleTree(the_blockshas_part).getRootHash()
                 if settings["save_blockshash"] == True:
                     shutil.copyfile(
                         the_TEMP_BLOCKSHASH_PATH,
-                        (the_BLOCKS_PATH + str(block.sequence_number) +
-                         ".blockshash_full.json"),
+                        (
+                            the_BLOCKS_PATH
+                            + str(block.sequence_number)
+                            + ".blockshash_full.json"
+                        ),
                     )
                     if not new_tx_from_us:
                         settings["save_blockshash"] = False
@@ -135,14 +141,17 @@ def finished_main(
                 elif block.sequence_number - 1 == block.part_amount:
                     shutil.copyfile(
                         the_TEMP_BLOCKSHASH_PATH,
-                        (the_BLOCKS_PATH + str(block.sequence_number) +
-                         ".blockshash_full.json"),
+                        (
+                            the_BLOCKS_PATH
+                            + str(block.sequence_number)
+                            + ".blockshash_full.json"
+                        ),
                     )
                 os.remove(the_TEMP_BLOCKSHASH_PATH)
 
-                difference = (block.start_time +
-                              (block.hard_block_number *
-                               block.block_time)) - int(time.time())
+                difference = (
+                    block.start_time + (block.hard_block_number * block.block_time)
+                ) - int(time.time())
                 time.sleep(difference)
 
         PendingtoValidating(block)
@@ -155,7 +164,6 @@ def finished_main(
         )
         return True
     else:
-
         if block.sync == True:
             block.sync = False
             SaveBlock(
@@ -171,6 +179,5 @@ def finished_main(
             ]
             the_server.sync_clients = []
 
-        logger.debug(
-            "Consensus proccess is complated, waiting for the true time")
+        logger.debug("Consensus proccess is complated, waiting for the true time")
         return False
