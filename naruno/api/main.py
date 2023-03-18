@@ -51,6 +51,11 @@ from naruno.wallet.wallet_create import wallet_create
 from naruno.wallet.wallet_import import wallet_import
 from naruno.wallet.wallet_selector import wallet_selector
 
+
+from naruno.blockchain.max_tx_number import GetMaxTXNumber
+
+from naruno.blockchain.max_data_size import GetMaxDataSize
+
 logger = get_logger("API")
 
 app = Flask(__name__)
@@ -593,12 +598,10 @@ def blockmaxtxnumber_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     # Check publisher mode
-    if not the_settings()["publisher_mode"]:
-        return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
 
-    return jsonify(the_block.max_tx_number)
+    return jsonify(GetMaxTXNumber(block=the_block))
 
 
 @app.route("/blockmaxdatasize/get/", methods=["GET"])
@@ -606,12 +609,12 @@ def blockmaxdatasize_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     # Check publisher mode
-    if not the_settings()["publisher_mode"]:
-        return jsonify("403"), 403
+
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
 
-    return jsonify(the_block.max_data_size)
+
+    return jsonify(GetMaxDataSize(block=the_block))
 
 
 @app.route("/blockminumumtransferamount/get/", methods=["GET"])
