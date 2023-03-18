@@ -12,6 +12,7 @@ import os
 import sys
 import threading
 from hashlib import sha256
+import time
 
 import requests
 
@@ -153,9 +154,11 @@ class Integration:
         return response
 
     def send_forcer(self, action, app_data, to_user, retrysecond):
-        return perpetualTimer(retrysecond,
-                              self.send,
-                              args=(action, app_data, to_user, False))
+        stop = False
+        while stop == False:
+            stop = self.send(action, app_data, to_user, force=False)
+            time.sleep(retrysecond)
+
 
     def send(self,
              action,
