@@ -9,10 +9,12 @@ import copy
 import inspect
 import json
 import os
+import random
+import string
 import sys
 import threading
-from hashlib import sha256
 import time
+from hashlib import sha256
 
 import requests
 
@@ -159,7 +161,6 @@ class Integration:
             stop = self.send(action, app_data, to_user, force=False)
             time.sleep(retrysecond)
 
-
     def send(self,
              action,
              app_data,
@@ -171,7 +172,79 @@ class Integration:
         :param app_data: The data of the app
         :param to_user: The user to send the data to
         """
+
+        max_tx_number = int(
+            self.prepare_request(
+                "/blockmaxtxnumber/get/",
+                type="get",
+            ).text.decode("utf-8"))
+        max_data_size = int(
+            self.prepare_request(
+                "/blockmaxdatasize/get/",
+                type="get",
+            ).text.decode("utf-8"))
+
         data = {"action": self.app_name + action, "app_data": app_data}
+
+        system_length = len(
+            json.dumps({
+                "action": self.app_name + action,
+                "app_data": ""
+            }))
+
+        true_length = max_data_size / max_tx_number - system_length
+
+        if len(app_data) > true_length:
+            # generate random charactere
+            rando = ""
+            for i in range(5):
+                rando += random.choice(string.ascii_letters)
+
+            split_random = rando + "-"
+
+            self.send(
+                action=action,
+                app_data=f"split-0-{split_random}",
+                to_user=to_user,
+                force=force,
+                retrysecond=retrysecond,
+            )
+            split_char = f"split-{split_random}"
+            original_total_length = len(app_data)
+
+            calculate_how_many_parts = original_total_length / true_length
+            realized_total_length = (original_total_length + len(split_char) +
+                                     calculate_how_many_parts)
+
+            how_many_parts = int(realized_total_length / true_length) + 1
+
+            splitted_data = []
+            for i in range(how_many_parts):
+                # split to part of app_data and app_data is an string
+                part = app_data[i * int(true_length - system_length):i *
+                                int(true_length - system_length) +
+                                int(true_length - system_length)]
+
+                splitted_data.append(part)
+
+            for each_data in splitted_data:
+                self.send(
+                    action=action,
+                    app_data=
+                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                    to_user=to_user,
+                    force=force,
+                    retrysecond=retrysecond,
+                )
+
+            self.send(
+                action=action,
+                app_data=f"split-1-{split_random}",
+                to_user=to_user,
+                force=force,
+                retrysecond=retrysecond,
+            )
+            return True
 
         data = json.dumps(data)
 
@@ -226,8 +299,19 @@ class Integration:
                     transactions[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
-                self.cache.append(
-                    transactions[transaction]["transaction"]["signature"])
+
+                if not transactions[transaction]["transaction"]["data"] == "NP":
+                    with contextlib.suppress(json.decoder.JSONDecodeError):
+                        transactions[transaction]["transaction"][
+                            "data"] = json.loads(transactions[transaction]
+                                                 ["transaction"]["data"])
+                    if not transactions[transaction]["transaction"]["data"][
+                            "app_data"].startswith("split-"):
+                        self.cache.append(transactions[transaction]
+                                          ["transaction"]["signature"])
+                else:
+                    self.cache.append(
+                        transactions[transaction]["transaction"]["signature"])
 
         for transaction in transactions_sended:
             if (transactions_sended[transaction]["transaction"]["signature"]
@@ -239,8 +323,21 @@ class Integration:
                     transactions_sended[transaction]["transaction"])
                 SavetoMyTransaction(the_tx)
                 ValidateTransaction(the_tx)
-                self.cache.append(transactions_sended[transaction]
-                                  ["transaction"]["signature"])
+
+                if not transactions_sended[transaction]["transaction"][
+                        "data"] == "NP":
+                    with contextlib.suppress(json.decoder.JSONDecodeError):
+                        transactions_sended[transaction]["transaction"][
+                            "data"] = json.loads(
+                                transactions_sended[transaction]["transaction"]
+                                ["data"])
+                    if not transactions_sended[transaction]["transaction"][
+                            "data"]["app_data"].startswith("split-"):
+                        self.cache.append(transactions_sended[transaction]
+                                          ["transaction"]["signature"])
+                else:
+                    self.cache.append(transactions_sended[transaction]
+                                      ["transaction"]["signature"])
 
         for transaction in transactions_sended_not_validated:
             if (transactions_sended_not_validated[transaction]["transaction"]
@@ -249,9 +346,24 @@ class Integration:
             else:
                 new_dict[transaction] = transactions_sended_not_validated[
                     transaction]
-                self.cache.append(
-                    transactions_sended_not_validated[transaction]
-                    ["transaction"]["signature"])
+
+                if (not transactions_sended_not_validated[transaction]
+                    ["transaction"]["data"] == "NP"):
+                    with contextlib.suppress(json.decoder.JSONDecodeError):
+                        transactions_sended_not_validated[transaction][
+                            "transaction"]["data"] = json.loads(
+                                transactions_sended_not_validated[transaction]
+                                ["transaction"]["data"])
+                    if not transactions_sended_not_validated[transaction][
+                            "transaction"]["data"]["app_data"].startswith(
+                                "split-"):
+                        self.cache.append(
+                            transactions_sended_not_validated[transaction]
+                            ["transaction"]["signature"])
+                else:
+                    self.cache.append(
+                        transactions_sended_not_validated[transaction]
+                        ["transaction"]["signature"])
 
         self.save_cache()
 
@@ -259,13 +371,91 @@ class Integration:
 
         for transaction in new_dict:
             if not new_dict[transaction]["transaction"]["data"] == "NP":
-                with contextlib.suppress(json.decoder.JSONDecodeError):
-                    new_dict[transaction]["transaction"]["data"] = json.loads(
-                        new_dict[transaction]["transaction"]["data"])
+                if (self.app_name in new_dict[transaction]["transaction"]
+                    ["data"]["action"]):
+                    last_list.append(new_dict[transaction]["transaction"])
 
-                    if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
-                        last_list.append(new_dict[transaction]["transaction"])
+        splits = []
+        # finding transactions that data start with split
+        new_a_last_list = copy.copy(last_list)
+        for transaction in last_list:
+            # check new_dict[transaction]["transaction"]["data"] is start with split
+
+            if transaction["data"]["app_data"].startswith("split-0"):
+                the_split = splitted_data(
+                    transaction["data"]["app_data"].split("-")[2])
+                the_split.data_original.append(transaction)
+                splits.append(the_split)
+                new_a_last_list.remove(transaction)
+
+        last_list = new_a_last_list
+        new_last_list = copy.copy(last_list)
+
+        for split in splits:
+            for transaction in last_list:
+                if transaction["data"]["app_data"].startswith("split-"):
+                    if not transaction["data"]["app_data"].startswith(
+                            "split-0") and not transaction["data"][
+                                "app_data"].startswith("split-1"):
+                        if transaction["data"]["app_data"].split(
+                                "-")[2] == split.split:
+                            split.data.append(transaction["data"]["app_data"])
+                            split.data_original.append(transaction)
+                            new_last_list.remove(transaction)
+
+        last_list = new_last_list
+
+        new_last_list_2 = copy.copy(last_list)
+        for transaction in last_list:
+            finded = False
+
+            for split in splits:
+                if transaction["data"]["app_data"].startswith("split-1"):
+                    if transaction["data"]["app_data"].split(
+                            "-")[2] == split.split:
+                        finded = True
+                        split.validated = True
+
+                        split.main_data = copy.copy(transaction)
+                        split.data_original.append(copy.copy(transaction))
+                        new_last_list_2.remove(transaction)
+
+                        break
+        last_list = new_last_list_2
+
+        new_splits = copy.copy(splits)
+        new_last_list_3 = copy.copy(last_list)
+        for split in splits:
+            if not split.validated:
+                for each_data in split.data:
+                    for transaction in last_list:
+                        if each_data == transaction["data"]["app_data"]:
+                            new_last_list_3.remove(transaction)
+
+                            break
+
+                new_splits.remove(split)
+
+        last_list = new_last_list_3
+
+        splits = new_splits
+
+        for split in splits:
+            if split.validated:
+                for each_original in split.data_original:
+                    self.cache.append(each_original["signature"])
+                for each_data in split.data:
+                    split.main_data["data"]["app_data"] += each_data
+                    split.main_data["data"]["app_data"] = split.main_data[
+                        "data"]["app_data"].replace(f"split-1-{split.split}-",
+                                                    "")
+                    for i in range(len(split.data)):
+                        split.main_data["data"]["app_data"] = split.main_data[
+                            "data"]["app_data"].replace(
+                                f"split-{i+2}-{split.split}-", "")
+                last_list.append(split.main_data)
+
+        self.save_cache()
 
         result = []
 

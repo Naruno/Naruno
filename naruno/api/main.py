@@ -24,6 +24,8 @@ from naruno.accounts.get_sequence_number import GetSequanceNumber
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
+from naruno.blockchain.max_data_size import GetMaxDataSize
+from naruno.blockchain.max_tx_number import GetMaxTXNumber
 from naruno.consensus.consensus_main import consensus_trigger
 from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
@@ -593,12 +595,10 @@ def blockmaxtxnumber_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     # Check publisher mode
-    if not the_settings()["publisher_mode"]:
-        return jsonify("403"), 403
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
 
-    return jsonify(the_block.max_tx_number)
+    return jsonify(GetMaxTXNumber(block=the_block))
 
 
 @app.route("/blockmaxdatasize/get/", methods=["GET"])
@@ -606,12 +606,11 @@ def blockmaxdatasize_get_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
     # Check publisher mode
-    if not the_settings()["publisher_mode"]:
-        return jsonify("403"), 403
+
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
 
-    return jsonify(the_block.max_data_size)
+    return jsonify(GetMaxDataSize(block=the_block))
 
 
 @app.route("/blockminumumtransferamount/get/", methods=["GET"])
