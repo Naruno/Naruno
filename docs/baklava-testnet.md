@@ -57,3 +57,11 @@ print(integration.get())
 
 integration.close()
 ```
+
+### Running
+
+With this command you will send an data to an recipient and after a while (tx validation proccess) you will get your sent datas and the datas that came to you.
+
+```console
+python Web3_App.py
+```
