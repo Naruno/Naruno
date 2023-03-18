@@ -184,12 +184,12 @@ class Integration:
             self.prepare_request(
                 "/blockmaxtxnumber/get/",
                 type="get",
-            ).text.decode("utf-8"))
+            ).text)
         max_data_size = int(
             self.prepare_request(
                 "/blockmaxdatasize/get/",
                 type="get",
-            ).text.decode("utf-8"))
+            ).text)
 
         data = {"action": self.app_name + action, "app_data": app_data}
 
