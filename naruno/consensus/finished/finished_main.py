@@ -73,9 +73,6 @@ def finished_main(
 
         reset_block = block.reset_the_block()
 
-
-
-
         settings = the_settings()
         if reset_block != False:
             block2 = reset_block[0]
@@ -88,8 +85,7 @@ def finished_main(
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
                     custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                     dont_clean=dont_clean,
                 )
                 new_tx_from_us = True
@@ -101,8 +97,7 @@ def finished_main(
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
                     custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                     force=True,
                     dont_clean=dont_clean,
                 )
@@ -122,12 +117,10 @@ def finished_main(
                 block.sync = True
                 SaveBlockshash_part(
                     MerkleTree(the_blocks_hash).getRootHash(),
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
                 )
                 the_blockshas_part = GetBlockshash_part(
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    the_TEMP_BLOCKSHASH_PART_PATH)
+                    custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH)
                 block.part_amount_cache = MerkleTree(
                     the_blockshas_part).getRootHash()
                 if settings["save_blockshash"] == True:
@@ -151,8 +144,6 @@ def finished_main(
                               (block.hard_block_number *
                                block.block_time)) - int(time.time())
                 time.sleep(difference)
-
-            
 
         PendingtoValidating(block)
         SaveBlock(
