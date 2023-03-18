@@ -9,7 +9,9 @@ import contextlib
 import os
 import sys
 
-from flask import Flask, jsonify, request
+from flask import Flask
+from flask import jsonify
+from flask import request
 from waitress import serve
 from waitress.server import create_server
 
