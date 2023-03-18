@@ -23,11 +23,7 @@ def CleanUp_tests():
                 with contextlib.suppress(PermissionError):
                     os.remove(f"db/{the_file}")
 
-    for the_file in os.listdir("apps/testing_app/"):
-        if the_file.endswith(".tx"):
-            if os.path.isfile(f"apps/testing_app/{the_file}"):
-                with contextlib.suppress(PermissionError):
-                    os.remove(f"apps/testing_app/{the_file}")
+
 
     for the_file in os.listdir(
             "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/"):

@@ -68,16 +68,6 @@ flowchart TB
 
 ```
 
-## Embedded Apps
-
-Embedded apps organized by our Apps engine. Apps engine is give basic and fast integration infrastructure for decentralized apps.
-
-When a transaction is approved by the network, if this transaction's recipient is the user of Naruno installation the engine is start.
-
-If the engine finds an app send the transaction to the app. The app can process the transaction for its own purpose. For example, the app can send a notification to the user.
-
-Also apps can uses send transactions functions for sending datas.
-
 ## Remote Apps
 
 Remote apps are running outside of Naruno. Remote apps can uses API for sending and getting data.
@@ -89,50 +79,36 @@ subgraph Applications Environment
     direction LR
 
     subgraph Node_1 [Node 1]
-        API_1[API]
+        API_1[NARUNO API]
 
-        subgraph Embedded_Apps_1 [Embedded Apps]
-            direction TB
-            E1_1[App 1]
-            E2_1[App 2]
-            E3_1[App 3]
-        end
+
         subgraph Remote_Apps_1 [Remote Apps]
             direction TB
             R1_1[App 4]
             R2_1[App 5]
             R3_1[App 6]
         end
-        subgraph Naruno_1 [Naruno]
-            Embedded_Apps_1
-        end
 
-        Remote_Apps_1 --> API_1
-        API_1 <--> Naruno_1
+
+        Remote_Apps_1 <--> API_1
+
 
     end
 
     subgraph Node_2 [Node 2]
-        API_2[API]
+        API_2[NARUNO API]
 
-        subgraph Embedded_Apps_2 [Embedded Apps]
-            direction TB
-            E1_2[App 1]
-            E2_2[App 2]
-            E3_2[App 3]
-        end
+
         subgraph Remote_Apps_2 [Remote Apps]
             direction TB
             R1_2[App 4]
             R2_2[App 5]
             R3_2[App 6]
         end
-        subgraph Naruno_2 [Naruno]
-            Embedded_Apps_2
-        end
 
-        Remote_Apps_2 --> API_2
-        API_2 <--> Naruno_2
+
+        Remote_Apps_2 <--> API_2
+
 
     end
 

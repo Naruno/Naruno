@@ -9,7 +9,6 @@ import os
 import shutil
 import time
 
-from naruno.apps.apps_trigger import AppsTrigger
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import GetBlockshash
 from naruno.blockchain.block.blocks_hash import GetBlockshash_part
@@ -107,8 +106,6 @@ def finished_main(
                     force=True,
                     dont_clean=dont_clean,
                 )
-
-            AppsTrigger(block2)
 
             SaveBlockshash(
                 reset_block[1].previous_hash,
