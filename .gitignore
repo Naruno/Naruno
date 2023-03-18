@@ -40,7 +40,7 @@ naruno/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
 naruno/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
 
 
-naruno/apps/testing_app/*.tx
+
 
 *.log
 

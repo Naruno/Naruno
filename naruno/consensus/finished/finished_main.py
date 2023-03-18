@@ -9,7 +9,6 @@ import os
 import shutil
 import time
 
-from naruno.apps.apps_trigger import AppsTrigger
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import GetBlockshash
 from naruno.blockchain.block.blocks_hash import GetBlockshash_part
@@ -31,8 +30,7 @@ from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.lib.settings_system import save_settings
 from naruno.lib.settings_system import the_settings
 from naruno.node.server.server import server
-from naruno.transactions.pending_to_validating import \
-    PendingtoValidating
+from naruno.transactions.pending_to_validating import PendingtoValidating
 
 logger = get_logger("CONSENSUS")
 
@@ -74,9 +72,6 @@ def finished_main(
 
         reset_block = block.reset_the_block()
 
-
-
-
         settings = the_settings()
         if reset_block != False:
             block2 = reset_block[0]
@@ -108,8 +103,6 @@ def finished_main(
                     dont_clean=dont_clean,
                 )
 
-            AppsTrigger(block2)
-
             SaveBlockshash(
                 reset_block[1].previous_hash,
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
@@ -119,7 +112,6 @@ def finished_main(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
 
             if len(the_blocks_hash) == block.part_amount:
-
                 block.empty_block_number += block.gap_block_number
 
                 block.sync = True
@@ -155,8 +147,6 @@ def finished_main(
                                block.block_time)) - int(time.time())
                 time.sleep(difference)
 
-            
-
         PendingtoValidating(block)
         SaveBlock(
             block,
@@ -167,7 +157,6 @@ def finished_main(
         )
         return True
     else:
-
         if block.sync == True:
             block.sync = False
             SaveBlock(

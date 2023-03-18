@@ -22,7 +22,6 @@ from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.get_balance import GetBalance
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.api.main import start
-from naruno.apps.apps_trigger import AppsTrigger
 from naruno.apps.remote_app import Integration
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
@@ -279,34 +278,6 @@ class Test_apps(unittest.TestCase):
         cls.result.close()
 
         CleanUp_tests()
-
-    def test_AppsTrigger_App_not_test_app(self):
-        block = Block("onur")
-        block.sequence_number = 2
-        the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
-        the_transaction.transaction_time = time.time()
-        block.validating_list.append(the_transaction)
-        AppsTrigger(block)
-        time.sleep(2)
-        os.chdir(get_config()["main_folder"])
-        self.assertFalse(
-            os.path.isfile(
-                f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
-            ))
-
-    def test_AppsTrigger_App(self):
-        block = Block("onur")
-        block.sequence_number = 1
-        the_transaction = Transaction(1, 1, 1, 1, 1, 1, 1, 1)
-        the_transaction.transaction_time = time.time()
-        block.validating_list.append(the_transaction)
-        AppsTrigger(block)
-        time.sleep(2)
-        os.chdir(get_config()["main_folder"])
-        self.assertTrue(
-            os.path.isfile(
-                f"apps/testing_app/{block.validating_list[0].transaction_time}.tx"
-            ))
 
     def test_integration_caching_system(self):
         app_name = f"test_app_{int(time.time())}"
