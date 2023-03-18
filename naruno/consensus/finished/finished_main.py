@@ -10,21 +10,25 @@ import shutil
 import time
 
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                 GetBlockshash_part,
-                                                 SaveBlockshash,
-                                                 SaveBlockshash_part)
+from naruno.blockchain.block.blocks_hash import GetBlockshash
+from naruno.blockchain.block.blocks_hash import GetBlockshash_part
+from naruno.blockchain.block.blocks_hash import SaveBlockshash
+from naruno.blockchain.block.blocks_hash import SaveBlockshash_part
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.blockchain.block.save_block_to_blockchain_db import \
     SaveBlockstoBlockchainDB
-from naruno.config import (BLOCKS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-                           TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+from naruno.config import BLOCKS_PATH
+from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.config import TEMP_BLOCK_PATH
+from naruno.config import TEMP_BLOCKSHASH_PART_PATH
+from naruno.config import TEMP_BLOCKSHASH_PATH
 from naruno.consensus.finished.transactions.transactions_main import \
     transactions_main
 from naruno.consensus.finished.true_time.true_time_main import true_time
 from naruno.lib.log import get_logger
 from naruno.lib.mix.merkle_root import MerkleTree
-from naruno.lib.settings_system import save_settings, the_settings
+from naruno.lib.settings_system import save_settings
+from naruno.lib.settings_system import the_settings
 from naruno.node.server.server import server
 from naruno.transactions.pending_to_validating import PendingtoValidating
 
