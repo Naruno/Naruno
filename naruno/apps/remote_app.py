@@ -15,7 +15,7 @@ import sys
 import threading
 import time
 from hashlib import sha256
-
+import math
 import requests
 
 from naruno.api.main import start
@@ -233,13 +233,13 @@ class Integration:
 
             total_size_of_an_data = len(app_data) + len_split_char + system_length
 
+            how_many_parts = int(math.ceil((len(app_data) + len_split_char) / true_length))+1
 
-            how_many_parts = int((len(app_data) + len_split_char) / true_length)+1
-            how_many_parts = int((len(app_data) + len_split_char + len(str(how_many_parts))) / true_length)+1
+            how_many_parts = int(math.ceil((len(app_data) + len_split_char + len(str(how_many_parts))) / true_length))
 
 
             splitted_data = []
-            split_length = (len(app_data) // how_many_parts)
+            split_length = (true_length - len_split_char)
 
             for i in range(how_many_parts):
                 # split to part of app_data and app_data is an string
