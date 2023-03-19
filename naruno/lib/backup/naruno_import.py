@@ -1,12 +1,13 @@
+import copy
 import os
 import shutil
 import sys
 from typing import Union
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-from naruno.lib.config_system import get_config
+from naruno.lib.config_system import get_config, save_config
 from naruno.lib.log import get_logger
-from naruno.lib.settings_system import temp_json, the_settings, save_settings
+from naruno.lib.settings_system import save_settings, temp_json, the_settings
 
 logger = get_logger("LIB")
 
@@ -19,7 +20,8 @@ def naruno_import(export_location: str) -> None:
         export_location: The location of the ZIP archive to be extracted.
     """
     logger.info("Import system is started")
-    main_folder = get_config()["main_folder"]
+    backup_config = copy.copy(get_config())
+    main_folder = backup_config["main_folder"]
     target_location = f"{main_folder}/db/"
     logger.debug(f"export_location: {export_location}")
     logger.debug(f"target_location: {target_location}")
@@ -31,5 +33,7 @@ def naruno_import(export_location: str) -> None:
             after_backup_settings[element] = temp_json[element]
 
     save_settings(after_backup_settings)
-            
+
+    save_config(backup_config)
+
     logger.info("Import completed")
