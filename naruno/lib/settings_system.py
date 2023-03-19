@@ -151,4 +151,14 @@ def the_settings():
     if not os.path.exists(SETTING_PATH):
         return create_and_save_the_settings()
     with open(SETTING_PATH, "r") as settings_file:
-        return json.load(settings_file)
+        the_setting = json.load(settings_file)
+
+    missing = False
+    for element in temp_json:
+        if element not in the_setting:
+            missing = True
+            the_setting[element] = temp_json[element]
+    if missing:
+      save_settings(the_setting)
+
+    return the_setting
