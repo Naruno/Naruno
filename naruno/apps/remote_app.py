@@ -8,6 +8,7 @@ import contextlib
 import copy
 import inspect
 import json
+import math
 import os
 import random
 import string
@@ -15,7 +16,7 @@ import sys
 import threading
 import time
 from hashlib import sha256
-import math
+
 import requests
 
 from naruno.api.main import start
@@ -36,13 +37,16 @@ from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("REMOTE_APP")
 
+
 class splitted_data:
+
     def __init__(self, split):
         self.split = split
         self.main_data = None
         self.validated = False
         self.data = []
         self.data_original = []
+
 
 class Integration:
 
@@ -206,14 +210,10 @@ class Integration:
                 "action": self.app_name + action,
                 "app_data": ""
             }))
- 
 
         true_length = max_data_size / max_tx_number - system_length
 
-
-
         if len(app_data) > true_length:
-
             # generate random charactere
             rando = ""
             for i in range(5):
@@ -230,21 +230,25 @@ class Integration:
             )
             len_split_char = len(f"split--{split_random}-")
 
+            total_size_of_an_data = len(
+                app_data) + len_split_char + system_length
 
-            total_size_of_an_data = len(app_data) + len_split_char + system_length
+            how_many_parts = (
+                int(math.ceil(
+                    (len(app_data) + len_split_char) / true_length)) + 1)
 
-            how_many_parts = int(math.ceil((len(app_data) + len_split_char) / true_length))+1
-
-            how_many_parts = int(math.ceil((len(app_data) + len_split_char + len(str(how_many_parts))) / true_length))
-
+            how_many_parts = int(
+                math.ceil(
+                    (len(app_data) + len_split_char + len(str(how_many_parts)))
+                    / true_length))
 
             splitted_data = []
-            split_length = (true_length - len_split_char)
+            split_length = true_length - len_split_char
 
             for i in range(how_many_parts):
                 # split to part of app_data and app_data is an string
-                part = app_data[i * int(split_length ):i * int(split_length )+
-                                int(split_length )]
+                part = app_data[i * int(split_length):i * int(split_length) +
+                                int(split_length)]
 
                 splitted_data.append(part)
 
@@ -513,13 +517,14 @@ class Integration:
 
         the_list = first + second
 
-        if "print" in inspect.stack()[1].code_context[0]:
-            total = ""
-            for data in the_list:
-                fromUser = data["fromUser"]
-                toUser = data["toUser"]
-                action = data["data"]["action"].replace(self.app_name, "")
-                data = data["data"]["app_data"]
-                total += f"\n-----\nFrom: {fromUser}, To: {toUser} \nApp Name: {self.app_name}, Action: {action} \nData: {data}\n-----"
-            return total
+        with contextlib.suppress(TypeError):
+            if "print" in inspect.stack()[1].code_context[0]:
+                total = ""
+                for data in the_list:
+                    fromUser = data["fromUser"]
+                    toUser = data["toUser"]
+                    action = data["data"]["action"].replace(self.app_name, "")
+                    data = data["data"]["app_data"]
+                    total += f"\n-----\nFrom: {fromUser}, To: {toUser} \nApp Name: {self.app_name}, Action: {action} \nData: {data}\n-----"
+                return total
         return the_list
