@@ -35,5 +35,5 @@ def naruno_import(export_location: str) -> None:
     save_settings(after_backup_settings)
 
     save_config(backup_config)
-            
+
     logger.info("Import completed")
