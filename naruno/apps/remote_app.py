@@ -513,13 +513,14 @@ class Integration:
 
         the_list = first + second
 
-        if "print" in inspect.stack()[1].code_context[0]:
-            total = ""
-            for data in the_list:
-                fromUser = data["fromUser"]
-                toUser = data["toUser"]
-                action = data["data"]["action"].replace(self.app_name, "")
-                data = data["data"]["app_data"]
-                total += f"\n-----\nFrom: {fromUser}, To: {toUser} \nApp Name: {self.app_name}, Action: {action} \nData: {data}\n-----"
-            return total
+        with contextlib.suppress(TypeError):
+            if "print" in inspect.stack()[1].code_context[0]:
+                total = ""
+                for data in the_list:
+                    fromUser = data["fromUser"]
+                    toUser = data["toUser"]
+                    action = data["data"]["action"].replace(self.app_name, "")
+                    data = data["data"]["app_data"]
+                    total += f"\n-----\nFrom: {fromUser}, To: {toUser} \nApp Name: {self.app_name}, Action: {action} \nData: {data}\n-----"
+                return total
         return the_list
