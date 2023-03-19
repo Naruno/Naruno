@@ -159,6 +159,6 @@ def the_settings():
             missing = True
             the_setting[element] = temp_json[element]
     if missing:
-      save_settings(the_setting)
+        save_settings(the_setting)
 
     return the_setting
