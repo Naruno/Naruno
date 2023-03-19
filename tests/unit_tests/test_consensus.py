@@ -291,6 +291,7 @@ class Test_Consensus(unittest.TestCase):
         self.assertTrue(true_time(block=block))
 
     def test_transactions_main_finished(self):
+        self.maxDiff = None
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -341,6 +342,7 @@ class Test_Consensus(unittest.TestCase):
                 each_result)][0].dump_json()
         SaveMyTransaction(backup)
         save_wallet_list(original_saved_wallets)
+        print("result ", result)
         self.assertEqual(
             result,
             [
