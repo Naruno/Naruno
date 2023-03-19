@@ -341,13 +341,15 @@ class Test_apps(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        self.assertEqual(integration.send("hello_text", "hello", "<address>"),
-                         True)
+        self.assertEqual(
+            integration.send("hello_text", "hello", "<address>", force=False),
+            True)
 
         second_try = integration.send(
             "hello_text",
             "hello",
             "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>",
+            force=False,
         )
 
         self.assertEqual(second_try, False)
@@ -398,13 +400,15 @@ class Test_apps(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        self.assertEqual(integration.send("hello_text", "hello", "<address>"),
-                         True)
+        self.assertEqual(
+            integration.send("hello_text", "hello", "<address>", force=False),
+            True)
 
         second_try = integration.send(
             "hello_text",
             "hello",
             "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>",
+            force=False,
         )
 
         self.assertEqual(second_try, False)
@@ -460,13 +464,15 @@ class Test_apps(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        self.assertEqual(integration.send("hello_text", "hello", "<address>"),
-                         True)
+        self.assertEqual(
+            integration.send("hello_text", "hello", "<address>", force=False),
+            True)
 
         second_try = integration.send(
             "hello_text",
             "hello",
             "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>",
+            force=False,
         )
 
         self.assertEqual(second_try, False)
@@ -524,13 +530,15 @@ class Test_apps(unittest.TestCase):
             "amount": 5000,
             "password": password,
         }
-        self.assertEqual(integration.send("hello_text", "hello", "<address>"),
-                         True)
+        self.assertEqual(
+            integration.send("hello_text", "hello", "<address>", force=False),
+            True)
 
         second_try = integration.send(
             "hello_text",
             "hello",
             "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>",
+            force=False,
         )
 
         self.assertEqual(second_try, False)

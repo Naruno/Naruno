@@ -22,7 +22,7 @@ from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part)
+                                                 GetBlockshash_part)
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
@@ -30,15 +30,17 @@ from naruno.blockchain.block.hash.calculate_hash import CalculateHash
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
-from naruno.config import (
-    CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
-    PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
+from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
+                           LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
+                           LOADING_BLOCKSHASH_PATH, PENDING_TRANSACTIONS_PATH,
+                           TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                           TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH,
+                           UNL_NODES_PATH)
 from naruno.consensus.consensus_main import consensus_trigger
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.consensus.finished.transactions.transactions_main import \
     transactions_main as transactions_main_finished
+from naruno.consensus.finished.true_time.true_time_main import true_time
 from naruno.consensus.ongoing.ongoing_main import ongoing_main
 from naruno.consensus.rounds.round_1.checks.candidate_blocks.candidate_blocks_main import \
     candidate_blocks_check
@@ -56,8 +58,7 @@ from naruno.consensus.rounds.round_1.process.transactions.find_validated.find_va
     find_validated
 from naruno.consensus.rounds.round_1.process.transactions.transactions_main import \
     transactions_main as transactions_main_round_1
-from naruno.consensus.rounds.round_1.round_1_main import \
-    consensus_round_1
+from naruno.consensus.rounds.round_1.round_1_main import consensus_round_1
 from naruno.consensus.rounds.round_2.checks.candidate_blocks_hashes.candidate_blocks_hashes_main import \
     candidate_blocks_hashes_check
 from naruno.consensus.rounds.round_2.checks.checks_main import \
@@ -72,9 +73,7 @@ from naruno.consensus.rounds.round_2.process.rescue.rescue_main import \
     rescue_main
 from naruno.consensus.rounds.round_2.process.validate.validate_main import \
     validate_main
-from naruno.consensus.rounds.round_2.round_2_main import \
-    consensus_round_2
-from naruno.consensus.finished.true_time.true_time_main import true_time
+from naruno.consensus.rounds.round_2.round_2_main import consensus_round_2
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.lib.settings_system import save_settings, the_settings
@@ -291,6 +290,7 @@ class Test_Consensus(unittest.TestCase):
         self.assertTrue(true_time(block=block))
 
     def test_transactions_main_finished(self):
+        self.maxDiff = None
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
 
@@ -341,6 +341,7 @@ class Test_Consensus(unittest.TestCase):
                 each_result)][0].dump_json()
         SaveMyTransaction(backup)
         save_wallet_list(original_saved_wallets)
+        print("result ", result)
         self.assertEqual(
             result,
             [
@@ -398,7 +399,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(1)
 
@@ -419,7 +420,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertFalse(result_2)
 
@@ -462,7 +463,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(3)
 
@@ -483,7 +484,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertEqual(result_2, False)
         SaveMyTransaction(backup)
@@ -529,7 +530,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(1)
 
@@ -550,7 +551,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertNotEqual(result_2, False)
         SaveMyTransaction(backup)
@@ -597,7 +598,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(1)
 
@@ -618,7 +619,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
         SaveMyTransaction(backup)
@@ -670,7 +671,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(1)
 
@@ -691,7 +692,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
         SaveMyTransaction(backup)
@@ -743,7 +744,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(3)
         gap_block = copy.copy(block.empty_block_number)
@@ -778,7 +779,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
         SaveMyTransaction(backup)
@@ -836,7 +837,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(1)
         result = finished_main(
@@ -856,7 +857,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
         SaveMyTransaction(backup)
@@ -929,7 +930,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(1)
 
@@ -950,7 +951,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
         SaveMyTransaction(backup)
@@ -1010,7 +1011,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(6)
         result = finished_main(
@@ -1030,7 +1031,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
 
         SaveMyTransaction(backup)
@@ -1108,7 +1109,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
 
         hash_1 = CalculateHash(
@@ -1127,7 +1128,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
 
         time.sleep(3)
@@ -1183,7 +1184,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
         SaveMyTransaction(backup)
@@ -1274,7 +1275,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
 
         hash_1 = CalculateHash(
@@ -1293,7 +1294,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
 
         time.sleep(3)
@@ -1315,7 +1316,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertEqual(result_2, False)
         SaveMyTransaction(backup)
@@ -1347,7 +1348,6 @@ class Test_Consensus(unittest.TestCase):
                          [Block("Onurdsadasdsaddsaas").previous_hash, hash_1])
 
     def test_candidate_blocks_check_false(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1380,7 +1380,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertIsNot(result, True)
 
     def test_candidate_blocks_check(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1420,7 +1419,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertIsNot(result, False)
 
     def test_candidate_blocks_hashes_check_false(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1453,7 +1451,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertIsNot(result, True)
 
     def test_candidate_blocks_hashes_check(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1912,7 +1909,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             custom_fee_address=custom_fee_address,
-            clean=False
+            clean=False,
         )
         self.assertEqual(len(result.validating_list), 2)
         self.assertEqual(result.validating_list[0].dump_json(),
@@ -2420,7 +2417,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertNotEqual(old_block.validated_time, result.validated_time)
 
     def test_rescue_main(self):
-
         block = Block("Onur")
         data_block_hash = {
             "action": "myblockhash",
@@ -2812,7 +2808,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             custom_fee_address=custom_fee_address,
-            clean=False
+            clean=False,
         )
         self.assertEqual(len(result.validating_list), 2)
         self.assertEqual(result.validating_list[0].dump_json(),
@@ -2824,7 +2820,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertNotEqual(result.round_2_starting_time,
                             old_block.round_2_starting_time)
         self.assertNotEqual(result.hash, old_block.hash)
-
 
     def test_ongoing_main_round_1_clean(self):
         custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
@@ -2978,7 +2973,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertNotEqual(old_block.validated_time, block.validated_time)
 
     def test_consensus_trigger_ongoing(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -3021,7 +3015,9 @@ class Test_Consensus(unittest.TestCase):
         block.round_1 = True
         block.hash = "onur from tests"
 
-        block.validating_list = [Transaction.load_json(i) for i in validating_list]
+        block.validating_list = [
+            Transaction.load_json(i) for i in validating_list
+        ]
         old_block = copy.copy(block)
 
         block.round_2_starting_time = time.time()
@@ -3040,7 +3036,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH1,
             pass_sync=True,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertTrue(result[1])
         self.assertLess(result[0], 1)
@@ -3049,7 +3045,6 @@ class Test_Consensus(unittest.TestCase):
         self.assertNotEqual(old_block.validated_time, block.validated_time)
 
     def test_consensus_trigger_finished(self):
-
         custom_TEMP_BLOCK_PATH = "db/test_consensus_trigger_finished.json"
         custom_BLOCKS_PATH = "db/test_consensus_trigger_finished/"
         custom_TEMP_ACCOUNTS_PATH = (
@@ -3093,7 +3088,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         time.sleep(1)
 
@@ -3105,7 +3100,7 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertTrue(result[1])
         self.assertLess(result[0], 2)
@@ -3116,12 +3111,11 @@ class Test_Consensus(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
     def test_Remove_Duplicates(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature": "test_SavePending_GetPending",
@@ -3139,7 +3133,6 @@ class Test_Consensus(unittest.TestCase):
         block.validating_list = [the_transaction, copy.copy(the_transaction)]
         block = Remove_Duplicates(block)
         self.assertEqual(len(block.validating_list), 1)
-
 
     def test_sync_send_block_exception(self):
         block = Block("onur")
@@ -3162,7 +3155,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction_fee": 0,
             "transaction_time": 1656764224,
         }
-        the_transaction = Transaction.load_json(the_transaction_json)        
+        the_transaction = Transaction.load_json(the_transaction_json)
         block.validating_list = [the_transaction, copy.copy(the_transaction)]
         sync(block, custom_server=self.node_1, send_transaction_error=True)
 
@@ -3179,9 +3172,14 @@ class Test_Consensus(unittest.TestCase):
             "transaction_fee": 0,
             "transaction_time": 1656764224,
         }
-        the_transaction = Transaction.load_json(the_transaction_json)        
+        the_transaction = Transaction.load_json(the_transaction_json)
         pending_validating_list = [the_transaction, copy.copy(the_transaction)]
-        sync(block, custom_server=self.node_1, send_transaction_error=True, pending_list_txs=pending_validating_list)
+        sync(
+            block,
+            custom_server=self.node_1,
+            send_transaction_error=True,
+            pending_list_txs=pending_validating_list,
+        )
 
 
 unittest.main(exit=False)
