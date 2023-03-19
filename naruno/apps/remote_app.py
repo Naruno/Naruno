@@ -36,6 +36,7 @@ from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("REMOTE_APP")
 
+
 class splitted_data:
     def __init__(self, split):
         self.split = split
@@ -43,6 +44,7 @@ class splitted_data:
         self.validated = False
         self.data = []
         self.data_original = []
+
 
 class Integration:
 
@@ -206,11 +208,8 @@ class Integration:
                 "action": self.app_name + action,
                 "app_data": ""
             }))
- 
 
         true_length = max_data_size / max_tx_number - system_length
-
-
 
         if len(app_data) > true_length:
 
@@ -230,29 +229,29 @@ class Integration:
             )
             len_split_char = len(f"split--{split_random}-")
 
+            total_size_of_an_data = len(
+                app_data) + len_split_char + system_length
 
-            total_size_of_an_data = len(app_data) + len_split_char + system_length
+            how_many_parts = int(
+                math.ceil((len(app_data) + len_split_char) / true_length)) + 1
 
-            how_many_parts = int(math.ceil((len(app_data) + len_split_char) / true_length))+1
-
-            how_many_parts = int(math.ceil((len(app_data) + len_split_char + len(str(how_many_parts))) / true_length))
-
+            how_many_parts = int(math.ceil(
+                (len(app_data) + len_split_char + len(str(how_many_parts))) / true_length))
 
             splitted_data = []
             split_length = (true_length - len_split_char)
 
             for i in range(how_many_parts):
                 # split to part of app_data and app_data is an string
-                part = app_data[i * int(split_length ):i * int(split_length )+
-                                int(split_length )]
+                part = app_data[i * int(split_length):i * int(split_length) +
+                                int(split_length)]
 
                 splitted_data.append(part)
 
             for each_data in splitted_data:
                 self.send(
                     action=action,
-                    app_data=
-                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                    app_data=f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                     to_user=to_user,
                     force=force,
                     retrysecond=retrysecond,
@@ -362,14 +361,14 @@ class Integration:
 
         for transaction in transactions_sended_not_validated:
             if (transactions_sended_not_validated[transaction]["transaction"]
-                ["signature"] in self.cache):
+                    ["signature"] in self.cache):
                 continue
             else:
                 new_dict[transaction] = transactions_sended_not_validated[
                     transaction]
 
                 if (not transactions_sended_not_validated[transaction]
-                    ["transaction"]["data"] == "NP"):
+                        ["transaction"]["data"] == "NP"):
                     with contextlib.suppress(json.decoder.JSONDecodeError):
                         transactions_sended_not_validated[transaction][
                             "transaction"]["data"] = json.loads(
@@ -393,7 +392,7 @@ class Integration:
         for transaction in new_dict:
             if not new_dict[transaction]["transaction"]["data"] == "NP":
                 if (self.app_name in new_dict[transaction]["transaction"]
-                    ["data"]["action"]):
+                        ["data"]["action"]):
                     last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
