@@ -22,7 +22,7 @@ from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part)
+                                                 GetBlockshash_part)
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
@@ -1115,8 +1115,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1281,8 +1281,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2008,8 +2008,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -2086,8 +2085,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):
@@ -2827,7 +2825,6 @@ class Test_Consensus(unittest.TestCase):
                             old_block.round_2_starting_time)
         self.assertNotEqual(result.hash, old_block.hash)
 
-
     def test_ongoing_main_round_1_clean(self):
         custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_consensus_round_1_TEMP_ACCOUNTS_PATH.json"
@@ -3023,7 +3020,8 @@ class Test_Consensus(unittest.TestCase):
         block.round_1 = True
         block.hash = "onur from tests"
 
-        block.validating_list = [Transaction.load_json(i) for i in validating_list]
+        block.validating_list = [
+            Transaction.load_json(i) for i in validating_list]
         old_block = copy.copy(block)
 
         block.round_2_starting_time = time.time()
@@ -3142,7 +3140,6 @@ class Test_Consensus(unittest.TestCase):
         block = Remove_Duplicates(block)
         self.assertEqual(len(block.validating_list), 1)
 
-
     def test_sync_send_block_exception(self):
         block = Block("onur")
         sync(block, custom_server=self.node_1, send_block_error=True)
@@ -3164,7 +3161,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction_fee": 0,
             "transaction_time": 1656764224,
         }
-        the_transaction = Transaction.load_json(the_transaction_json)        
+        the_transaction = Transaction.load_json(the_transaction_json)
         block.validating_list = [the_transaction, copy.copy(the_transaction)]
         sync(block, custom_server=self.node_1, send_transaction_error=True)
 
@@ -3181,9 +3178,10 @@ class Test_Consensus(unittest.TestCase):
             "transaction_fee": 0,
             "transaction_time": 1656764224,
         }
-        the_transaction = Transaction.load_json(the_transaction_json)        
+        the_transaction = Transaction.load_json(the_transaction_json)
         pending_validating_list = [the_transaction, copy.copy(the_transaction)]
-        sync(block, custom_server=self.node_1, send_transaction_error=True, pending_list_txs=pending_validating_list)
+        sync(block, custom_server=self.node_1, send_transaction_error=True,
+             pending_list_txs=pending_validating_list)
 
 
 unittest.main(exit=False)
