@@ -465,7 +465,8 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", wallet_import(-1, 3), force=False),
+            integration.send("hello_text", "hello",
+                             wallet_import(-1, 3), force=False),
             True)
 
         second_try = integration.send(
@@ -531,7 +532,8 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", wallet_import(-1, 3), force=False),
+            integration.send("hello_text", "hello",
+                             wallet_import(-1, 3), force=False),
             True)
 
         second_try = integration.send(
