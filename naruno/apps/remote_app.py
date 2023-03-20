@@ -255,8 +255,7 @@ class Integration:
             for each_data in splitted_data:
                 self.send(
                     action=action,
-                    app_data=
-                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                    app_data=f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                     to_user=to_user,
                     force=force,
                     retrysecond=retrysecond,
@@ -330,11 +329,11 @@ class Integration:
                         with contextlib.suppress(json.decoder.JSONDecodeError):
                             transactions[transaction]["transaction"][
                                 "data"] = json.loads(transactions[transaction]
-                                                    ["transaction"]["data"])
+                                                     ["transaction"]["data"])
                         if not transactions[transaction]["transaction"]["data"][
                                 "app_data"].startswith("split-"):
                             self.cache.append(transactions[transaction]
-                                            ["transaction"]["signature"])
+                                              ["transaction"]["signature"])
                 else:
                     self.cache.append(
                         transactions[transaction]["transaction"]["signature"])
@@ -361,21 +360,21 @@ class Integration:
                         if not transactions_sended[transaction]["transaction"][
                                 "data"]["app_data"].startswith("split-"):
                             self.cache.append(transactions_sended[transaction]
-                                            ["transaction"]["signature"])
+                                              ["transaction"]["signature"])
                     else:
                         self.cache.append(transactions_sended[transaction]
-                                        ["transaction"]["signature"])
+                                          ["transaction"]["signature"])
 
         for transaction in transactions_sended_not_validated:
             if (transactions_sended_not_validated[transaction]["transaction"]
-                ["signature"] in self.cache):
+                    ["signature"] in self.cache):
                 continue
             else:
                 new_dict[transaction] = transactions_sended_not_validated[
                     transaction]
                 if transactions_sended_not_validated[transaction]["transaction"]["fromUser"] == wallet_import(-1, 0):
                     if (not transactions_sended_not_validated[transaction]
-                        ["transaction"]["data"] == "NP"):
+                            ["transaction"]["data"] == "NP"):
                         with contextlib.suppress(json.decoder.JSONDecodeError):
                             transactions_sended_not_validated[transaction][
                                 "transaction"]["data"] = json.loads(
@@ -399,7 +398,7 @@ class Integration:
         for transaction in new_dict:
             if not new_dict[transaction]["transaction"]["data"] == "NP":
                 if (self.app_name in new_dict[transaction]["transaction"]
-                    ["data"]["action"]):
+                        ["data"]["action"]):
                     last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
