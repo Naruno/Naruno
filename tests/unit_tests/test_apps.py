@@ -465,7 +465,7 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", force=False),
+            integration.send("hello_text", "hello", wallet_import(-1, 3), force=False),
             True)
 
         second_try = integration.send(
@@ -479,7 +479,7 @@ class Test_apps(unittest.TestCase):
 
         the_txs = GetMyTransaction()
         for txs in the_txs:
-            if txs[0].toUser == "<address>":
+            if txs[0].toUser == wallet_import(-1, 3):
                 the_txs[the_txs.index(txs)][2] = False
         SaveMyTransaction(the_txs)
 
@@ -494,7 +494,7 @@ class Test_apps(unittest.TestCase):
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
         text = f"{integration.app_name}hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
-        self.assertEqual(the_tx.toUser, "<address>")
+        self.assertEqual(the_tx.toUser, wallet_import(-1, 3))
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)
@@ -531,7 +531,7 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", force=False),
+            integration.send("hello_text", "hello", wallet_import(-1, 3), force=False),
             True)
 
         second_try = integration.send(
@@ -545,7 +545,7 @@ class Test_apps(unittest.TestCase):
 
         the_txs = GetMyTransaction()
         for txs in the_txs:
-            if txs[0].toUser == "<address>":
+            if txs[0].toUser == wallet_import(-1, 3):
                 the_txs[the_txs.index(txs)][2] = False
         SaveMyTransaction(the_txs)
 
@@ -568,7 +568,7 @@ class Test_apps(unittest.TestCase):
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
         text = f"{integration.app_name}hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
-        self.assertEqual(the_tx.toUser, "<address>")
+        self.assertEqual(the_tx.toUser, wallet_import(-1, 3))
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)

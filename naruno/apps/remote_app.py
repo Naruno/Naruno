@@ -323,7 +323,7 @@ class Integration:
                 the_tx = Transaction.load_json(
                     transactions[transaction]["transaction"])
                 if transactions[transaction]["transaction"][
-                        "toUser"] == wallet_import(-1, 0):
+                        "toUser"] == wallet_import(-1, 3):
                     SavetoMyTransaction(the_tx)
                     ValidateTransaction(the_tx)
 
