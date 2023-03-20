@@ -56,7 +56,7 @@ class Integration:
         host="localhost",
         port=8000,
         password="123",
-        sended=True,
+        sended=False,
         sended_not_validated=False,
         cache_true=True,
     ):
@@ -307,6 +307,7 @@ class Integration:
                                             type="get")
             transactions_sended = response.json()
 
+
         if self.sended_not_validated:
             response = self.prepare_request(
                 "/transactions/sended/not_validated", type="get")
@@ -319,11 +320,12 @@ class Integration:
                     "signature"] in self.cache:
                 continue
             else:
-                new_dict[transaction] = transactions[transaction]
-                the_tx = Transaction.load_json(
-                    transactions[transaction]["transaction"])
+
                 if transactions[transaction]["transaction"][
                         "toUser"] == wallet_import(-1, 3):
+                    new_dict[transaction] = transactions[transaction]
+                    the_tx = Transaction.load_json(
+                        transactions[transaction]["transaction"])                    
                     SavetoMyTransaction(the_tx)
                     ValidateTransaction(the_tx)
 
@@ -346,11 +348,12 @@ class Integration:
                     in self.cache):
                 continue
             else:
-                new_dict[transaction] = transactions_sended[transaction]
-                the_tx = Transaction.load_json(
-                    transactions_sended[transaction]["transaction"])
+
                 if transactions_sended[transaction]["transaction"][
                         "fromUser"] == wallet_import(-1, 0):
+                    new_dict[transaction] = transactions_sended[transaction]
+                    the_tx = Transaction.load_json(
+                        transactions_sended[transaction]["transaction"])                    
                     SavetoMyTransaction(the_tx)
                     ValidateTransaction(the_tx)
 
@@ -374,10 +377,11 @@ class Integration:
                 ["signature"] in self.cache):
                 continue
             else:
-                new_dict[transaction] = transactions_sended_not_validated[
-                    transaction]
+
                 if transactions_sended_not_validated[transaction][
                         "transaction"]["fromUser"] == wallet_import(-1, 0):
+                    new_dict[transaction] = transactions_sended_not_validated[
+                        transaction]                    
                     if (not transactions_sended_not_validated[transaction]
                         ["transaction"]["data"] == "NP"):
                         with contextlib.suppress(json.decoder.JSONDecodeError):
@@ -401,10 +405,11 @@ class Integration:
         last_list = []
 
         for transaction in new_dict:
-            if not new_dict[transaction]["transaction"]["data"] == "NP":
-                if (self.app_name in new_dict[transaction]["transaction"]
-                    ["data"]["action"]):
-                    last_list.append(new_dict[transaction]["transaction"])
+            with contextlib.suppress(TypeError):
+                if not new_dict[transaction]["transaction"]["data"] == "NP":
+                    if (self.app_name in new_dict[transaction]["transaction"]
+                        ["data"]["action"]):
+                        last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
         # finding transactions that data start with split

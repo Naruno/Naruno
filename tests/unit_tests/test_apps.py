@@ -381,6 +381,7 @@ class Test_apps(unittest.TestCase):
             host="localhost",
             port=7776,
             password="123",
+            sended=True,
             sended_not_validated=False,
         )
 
@@ -392,14 +393,7 @@ class Test_apps(unittest.TestCase):
         SaveMyTransaction([])
 
         password = "123"
-        response = urllib.request.urlopen(
-            f"http://localhost:7776/wallet/create/{password}")
-        request_body = {
-            "data": "<data>",
-            "to_user": "<address>",
-            "amount": 5000,
-            "password": password,
-        }
+
         self.assertEqual(
             integration.send("hello_text", "hello", "<address>", force=False),
             True)
@@ -415,6 +409,7 @@ class Test_apps(unittest.TestCase):
 
         for txs in GetMyTransaction():
             if txs[0].toUser == "<address>":
+
                 ValidateTransaction(txs[0])
 
         first_gettings_data_from_app = integration.get()
