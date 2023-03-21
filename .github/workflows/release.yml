@@ -22,6 +22,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Naruno ${{ github.ref }}
-          body_path: docs/release-notes/release-notes-0.48.1-alpha.md
+          body_path: docs/release-notes/release-notes-0.49.0-alpha.md
           draft: false
           prerelease: true
