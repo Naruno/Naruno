@@ -339,9 +339,13 @@ class Integration:
                                 "data"]["app_data"].startswith("split-"):
                             self.cache.append(transactions[transaction]
                                               ["transaction"]["signature"])
-                else:
-                    self.cache.append(
-                        transactions[transaction]["transaction"]["signature"])
+                    else:
+                        self.cache.append(
+                            transactions[transaction]["transaction"]["signature"])
+                elif transactions[transaction]["transaction"][
+                        "fromUser"] == wallet_import(-1, 0):
+                    transactions_sended[transaction] = transactions[transaction]
+                    
 
         for transaction in transactions_sended:
             if (transactions_sended[transaction]["transaction"]["signature"]
