@@ -344,65 +344,68 @@ class Integration:
                             transactions[transaction]["transaction"]["signature"])
                 elif transactions[transaction]["transaction"][
                         "fromUser"] == wallet_import(-1, 0):
+
                     transactions_sended[transaction] = transactions[transaction]
                     
 
         for transaction in transactions_sended:
-            if (transactions_sended[transaction]["transaction"]["signature"]
-                    in self.cache):
-                continue
-            else:
+            if self.sended:
+                if (transactions_sended[transaction]["transaction"]["signature"]
+                        in self.cache):
+                    continue
+                else:
 
-                if transactions_sended[transaction]["transaction"][
-                        "fromUser"] == wallet_import(-1, 0):
-                    new_dict[transaction] = transactions_sended[transaction]
-                    the_tx = Transaction.load_json(
-                        transactions_sended[transaction]["transaction"])                    
-                    SavetoMyTransaction(the_tx)
-                    ValidateTransaction(the_tx)
+                    if transactions_sended[transaction]["transaction"][
+                            "fromUser"] == wallet_import(-1, 0):
+                        new_dict[transaction] = transactions_sended[transaction]
+                        the_tx = Transaction.load_json(
+                            transactions_sended[transaction]["transaction"])                    
+                        SavetoMyTransaction(the_tx)
+                        ValidateTransaction(the_tx)
 
-                    if (not transactions_sended[transaction]["transaction"]
-                        ["data"] == "NP"):
-                        with contextlib.suppress(json.decoder.JSONDecodeError):
-                            transactions_sended[transaction]["transaction"][
-                                "data"] = json.loads(
-                                    transactions_sended[transaction]
-                                    ["transaction"]["data"])
-                        if not transactions_sended[transaction]["transaction"][
-                                "data"]["app_data"].startswith("split-"):
+                        if (not transactions_sended[transaction]["transaction"]
+                            ["data"] == "NP"):
+                            with contextlib.suppress(json.decoder.JSONDecodeError):
+                                transactions_sended[transaction]["transaction"][
+                                    "data"] = json.loads(
+                                        transactions_sended[transaction]
+                                        ["transaction"]["data"])
+                            if not transactions_sended[transaction]["transaction"][
+                                    "data"]["app_data"].startswith("split-"):
+                                self.cache.append(transactions_sended[transaction]
+                                                ["transaction"]["signature"])
+                        else:
                             self.cache.append(transactions_sended[transaction]
-                                              ["transaction"]["signature"])
-                    else:
-                        self.cache.append(transactions_sended[transaction]
-                                          ["transaction"]["signature"])
+                                            ["transaction"]["signature"])
 
         for transaction in transactions_sended_not_validated:
-            if (transactions_sended_not_validated[transaction]["transaction"]
-                ["signature"] in self.cache):
-                continue
-            else:
+            if self.sended_not_validated:
+                if (transactions_sended_not_validated[transaction]["transaction"]
+                    ["signature"] in self.cache):
+                    continue
+                else:
 
-                if transactions_sended_not_validated[transaction][
-                        "transaction"]["fromUser"] == wallet_import(-1, 0):
-                    new_dict[transaction] = transactions_sended_not_validated[
-                        transaction]                    
-                    if (not transactions_sended_not_validated[transaction]
-                        ["transaction"]["data"] == "NP"):
-                        with contextlib.suppress(json.decoder.JSONDecodeError):
-                            transactions_sended_not_validated[transaction][
-                                "transaction"]["data"] = json.loads(
-                                    transactions_sended_not_validated[
-                                        transaction]["transaction"]["data"])
-                        if not transactions_sended_not_validated[transaction][
-                                "transaction"]["data"]["app_data"].startswith(
-                                    "split-"):
+                    if transactions_sended_not_validated[transaction][
+                            "transaction"]["fromUser"] == wallet_import(-1, 0):
+                        new_dict[transaction] = transactions_sended_not_validated[
+                            transaction]                    
+                        if (not transactions_sended_not_validated[transaction]
+                            ["transaction"]["data"] == "NP"):
+                            with contextlib.suppress(json.decoder.JSONDecodeError):
+                                transactions_sended_not_validated[transaction][
+                                    "transaction"]["data"] = json.loads(
+                                        transactions_sended_not_validated[
+                                            transaction]["transaction"]["data"])
+                            if not transactions_sended_not_validated[transaction][
+                                    "transaction"]["data"]["app_data"].startswith(
+                                        "split-"):
+                                self.cache.append(
+                                    transactions_sended_not_validated[transaction]
+                                    ["transaction"]["signature"])
+                        else:
                             self.cache.append(
                                 transactions_sended_not_validated[transaction]
                                 ["transaction"]["signature"])
-                    else:
-                        self.cache.append(
-                            transactions_sended_not_validated[transaction]
-                            ["transaction"]["signature"])
 
         self.save_cache()
 
