@@ -176,6 +176,7 @@ class Integration:
              action,
              app_data,
              to_user,
+             amount=None,
              force=True,
              retrysecond=10) -> bool:
         """
@@ -278,6 +279,10 @@ class Integration:
             "to_user": to_user,
             "data": data,
         }
+
+        if amount is not None:
+            request_body["amount"] = amount
+
         response = self.prepare_request("/send/",
                                         type="post",
                                         data=request_body)
