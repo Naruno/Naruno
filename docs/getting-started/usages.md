@@ -10,7 +10,7 @@ nav_order: 3
 
 Wallet creation is the first step to start using the Naruno blockchain. For this you can use your all type installations but for now we will give introduction for cli with pip installation. After installation you can create wallet with this command
 
-*Please use `pip install naruno` for installation.
+\*Please use `pip install naruno` for installation.
 
 ```python
 narunocli --createwallet password
