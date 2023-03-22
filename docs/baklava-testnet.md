@@ -58,6 +58,10 @@ print(integration.get())
 integration.close()
 ```
 
+## Adding Amount
+
+If you want to add amount to your transaction you can use `integration.send("Your_Action_Name", "Your_Data", "Recipient_Address", amount=100)` function. The amount is in Naruno coins. You can check your balance via `narunocli --getbalance` command.
+
 ### Running
 
 With this command you will send an data to an recipient and after a while (tx validation proccess) you will get your sent datas and the datas that came to you.
