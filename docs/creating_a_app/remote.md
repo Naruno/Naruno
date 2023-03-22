@@ -74,7 +74,6 @@ This code will retrieve data from the network every three seconds and print it t
 
 The Naruno Remote App library has an active caching system to provide a real network experience. The system caches retrieved data to avoid returning the same data multiple times. However, you can reset or disable the cache using the `integration.delete_cache()` and `integration.disable_cache()` functions.
 
-
 ## Adding Amount
 
 If you want to add amount to your transaction you can use `integration.send("action", "app_data", "to_user", amount=100)` function. The amount is in Naruno coins. You can check your balance via `narunocli --getbalance` command.
