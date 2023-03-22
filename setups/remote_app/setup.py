@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="naruno_remote_app",
-    version="0.49.0",
+    version="0.50.0",
     description="""This is a tool for apps on Naruno""",
     url="https://docs.naruno.org/",
     author="Naruno Developers",
