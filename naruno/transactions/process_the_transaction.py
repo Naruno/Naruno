@@ -10,7 +10,9 @@ from naruno.accounts.account import Account
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.shares import shares
 from naruno.config import TEMP_ACCOUNTS_PATH
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import (
+    Remove_Duplicates,
+)
 from naruno.wallet.wallet_import import Address
 from naruno.lib.log import get_logger
 
@@ -37,9 +39,11 @@ def ProccesstheTransaction(
     if not dont_clean:
         block = Remove_Duplicates(block)
 
-    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                              if custom_TEMP_ACCOUNTS_PATH is None else
-                              custom_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = (
+        TEMP_ACCOUNTS_PATH
+        if custom_TEMP_ACCOUNTS_PATH is None
+        else custom_TEMP_ACCOUNTS_PATH
+    )
 
     edited_accounts = []
 
@@ -49,16 +53,18 @@ def ProccesstheTransaction(
             clean_list.append(unclear)
     block.validating_list = clean_list
 
-    the_shares = shares(block,
-                        custom_shares=custom_shares,
-                        custom_fee_address=custom_fee_address, dont_clean=dont_clean)
+    the_shares = shares(
+        block,
+        custom_shares=custom_shares,
+        custom_fee_address=custom_fee_address,
+        dont_clean=dont_clean,
+    )
     block.validating_list = block.validating_list + the_shares
 
     new_added_accounts_list = []
     account_list = []
 
-    block.validating_list = sorted(block.validating_list,
-                                   key=lambda x: x.fromUser)
+    block.validating_list = sorted(block.validating_list, key=lambda x: x.fromUser)
 
     temp_validating_list = block.validating_list
 
@@ -77,29 +83,34 @@ def ProccesstheTransaction(
         )
         first_list = the_account_list.fetchall()
         the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
+            f"SELECT * FROM account_list WHERE address = '{trans.toUser}'"
+        )
         second_list = the_account_list.fetchall()
 
         for the_pulled_account in first_list + second_list:
             account_list.append(
-                Account(the_pulled_account[0], the_pulled_account[2],
-                        the_pulled_account[1]))
+                Account(
+                    the_pulled_account[0], the_pulled_account[2], the_pulled_account[1]
+                )
+            )
 
         for Accounts in account_list:
             touser_inlist = False
 
             if Accounts.Address == address_of_fromUser:
-
                 logger.debug(f"FromUser found: {Accounts.Address}")
-                actions.append([Accounts.Address, "balance", -
-                               (float(trans.amount) + trans.transaction_fee)])
+                actions.append(
+                    [
+                        Accounts.Address,
+                        "balance",
+                        -(float(trans.amount) + trans.transaction_fee),
+                    ]
+                )
                 actions.append([Accounts.Address, "sequence_number", 1])
 
             if Accounts.Address == trans.toUser:
-
                 logger.debug(f"ToUser found: {Accounts.Address}")
-                actions.append(
-                    [Accounts.Address, "balance", float(trans.amount)])
+                actions.append([Accounts.Address, "balance", float(trans.amount)])
                 touser_inlist = True
 
         for i in new_added_accounts_list:
@@ -109,8 +120,7 @@ def ProccesstheTransaction(
 
         # If not included in the account_list, add.
         if not touser_inlist and not to_user_in_new_list:
-            new_added_accounts_list.append(
-                Account(trans.toUser, float(trans.amount)))
+            new_added_accounts_list.append(Account(trans.toUser, float(trans.amount)))
 
     for action in actions:
         for account in account_list:
@@ -123,11 +133,9 @@ def ProccesstheTransaction(
 
     # Syncs new sorted list to block.validating_list
 
-    block.validating_list = sorted(temp_validating_list,
-                                   key=lambda x: x.fromUser)
+    block.validating_list = sorted(temp_validating_list, key=lambda x: x.fromUser)
 
-    new_added_accounts_list = sorted(new_added_accounts_list,
-                                     key=lambda x: x.Address)
+    new_added_accounts_list = sorted(new_added_accounts_list, key=lambda x: x.Address)
 
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
     c = conn.cursor()
