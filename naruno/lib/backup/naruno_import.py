@@ -28,14 +28,12 @@ def naruno_import(export_location: str) -> None:
     shutil.unpack_archive(export_location, target_location)
 
     save_config(backup_config)
-    
+
     after_backup_settings = the_settings()
     for element in temp_json:
         if element not in after_backup_settings:
             after_backup_settings[element] = temp_json[element]
 
     save_settings(after_backup_settings)
-
-    
 
     logger.info("Import completed")
