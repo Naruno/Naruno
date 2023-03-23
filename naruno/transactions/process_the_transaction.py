@@ -10,11 +10,13 @@ from naruno.accounts.account import Account
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.shares import shares
 from naruno.config import TEMP_ACCOUNTS_PATH
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
-from naruno.wallet.wallet_import import Address
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
 from naruno.lib.log import get_logger
+from naruno.wallet.wallet_import import Address
 
 logger = get_logger("TRANSACTIONS")
+
 
 def ProccesstheTransaction(
     block,
@@ -48,15 +50,16 @@ def ProccesstheTransaction(
             clean_list.append(unclear)
     block.validating_list = clean_list
 
-    the_shares = shares(block,
-                        custom_shares=custom_shares,
-                        custom_fee_address=custom_fee_address, dont_clean=dont_clean)
+    the_shares = shares(
+        block,
+        custom_shares=custom_shares,
+        custom_fee_address=custom_fee_address,
+        dont_clean=dont_clean,
+    )
     block.validating_list = block.validating_list + the_shares
-    
 
     new_added_accounts_list = []
     account_list = []
-
 
     block.validating_list = sorted(block.validating_list,
                                    key=lambda x: x.fromUser)
@@ -90,21 +93,20 @@ def ProccesstheTransaction(
             touser_inlist = False
 
             if Accounts.Address == address_of_fromUser:
-
                 logger.debug(f"FromUser found: {Accounts.Address}")
-                actions.append([Accounts.Address, "balance", -(float(trans.amount) + trans.transaction_fee)])
+                actions.append([
+                    Accounts.Address,
+                    "balance",
+                    -(float(trans.amount) + trans.transaction_fee),
+                ])
                 actions.append([Accounts.Address, "sequence_number", 1])
-                
 
-            elif Accounts.Address == trans.toUser:
-   
+            if Accounts.Address == trans.toUser:
                 logger.debug(f"ToUser found: {Accounts.Address}")
-                actions.append([Accounts.Address, "balance", float(trans.amount)])
+                actions.append(
+                    [Accounts.Address, "balance",
+                     float(trans.amount)])
                 touser_inlist = True
-            
-            
-            
-                
 
         for i in new_added_accounts_list:
             if i.Address == trans.toUser:
@@ -143,6 +145,5 @@ def ProccesstheTransaction(
     conn.close()
 
     SaveAccounts(new_added_accounts_list, the_TEMP_ACCOUNTS_PATH)
-
 
     return block
