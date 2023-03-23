@@ -96,7 +96,7 @@ def ProccesstheTransaction(
                 actions.append([Accounts.Address, "sequence_number", 1])
                 
 
-            elif Accounts.Address == trans.toUser:
+            if Accounts.Address == trans.toUser:
    
                 logger.debug(f"ToUser found: {Accounts.Address}")
                 actions.append([Accounts.Address, "balance", float(trans.amount)])
