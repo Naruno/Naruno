@@ -178,8 +178,7 @@ class Naruno_Local:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
+        description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
     )
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")
@@ -204,7 +203,7 @@ if __name__ == "__main__":
 
     if args.securitycirclenumber is not None:
         temp_environment = Naruno_Local(args.nodenumber,
-                                                  args.securitycirclenumber)
+                                        args.securitycirclenumber)
     else:
         temp_environment = Naruno_Local(args.nodenumber)
 
