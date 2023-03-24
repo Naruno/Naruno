@@ -18,7 +18,7 @@ android.api = 27
 title = Naruno-API
 package.name = naruno_api
 source.dir = naruno/api/buildozer/
-requirements =  naruno==0.50.1, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.0.3, flask==2.0.0, flask_cors==3.0.10
+requirements =  naruno==0.50.1, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.2.3, flask==2.0.0, flask_cors==3.0.10
 
 [app@gui]
 title = Naruno-GUI
