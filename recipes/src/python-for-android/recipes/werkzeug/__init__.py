@@ -8,8 +8,8 @@ from pythonforandroid.recipe import PythonRecipe
 
 
 class WerkzeugRecipe(PythonRecipe):
-    version = "2.0.3"
-    url = "https://files.pythonhosted.org/packages/6c/a8/60514fade2318e277453c9588545d0c335ea3ea6440ce5cdabfca7f73117/Werkzeug-2.0.3.tar.gz"
+    version = "2.2.3"
+    url = "https://files.pythonhosted.org/packages/02/3c/baaebf3235c87d61d6593467056d5a8fba7c75ac838b8d100a5e64eba7a0/Werkzeug-2.2.3.tar.gz"
 
     # call_hostpython_via_targetpython = True
     """If True, tries to install the module using the hostpython binary
