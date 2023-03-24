@@ -634,8 +634,6 @@ def handle_exception(e):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    logger.error(
-        f"404: {request.remote_addr} {request.method} {request.url} {request.form}")  
     logger.error(f"404: {e}")
     return jsonify("404"), 404
 
