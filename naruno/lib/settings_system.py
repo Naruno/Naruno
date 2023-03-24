@@ -34,7 +34,8 @@ def save_settings(new_settings):
         json.dump(new_settings, settings_file, indent=4)
 
 
-def create_and_save_the_settings(test_mode_settings=False, debug_mode_settings=True):
+def create_and_save_the_settings(test_mode_settings=False,
+                                 debug_mode_settings=True):
     """
     Creates and saves settings.
     """
