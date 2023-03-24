@@ -16,6 +16,7 @@ from naruno.blockchain.block.blocks_hash import SaveBlockshash_part
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import BLOCKS_PATH
 from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.lib.settings_system import the_settings
 from naruno.wallet.wallet_import import wallet_import
 from naruno.lib.log import get_logger
 logger = get_logger("BLOCKCHAIN")
@@ -36,6 +37,10 @@ def SaveBlockstoBlockchainDB(
 
     logger.info("Saving block to blockchain database...")
     logger.info(f"Block: {block.__dict__}")
+
+    if the_settings()["dont_save_blocks"]:
+        logger.debug("Not saving blocks because of settings.")
+        return True
 
     my_public_key = "".join([
         l.strip() for l in wallet_import(-1, 0).splitlines()

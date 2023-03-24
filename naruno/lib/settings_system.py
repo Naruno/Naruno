@@ -20,6 +20,7 @@ temp_json = {
     "publisher_mode": False,
     "baklava": False,
     "baklava_users": False,
+    "dont_save_blocks": False,
 }
 
 
