@@ -94,6 +94,13 @@ class Integration:
 
         self.get_cache()
 
+        backup_host = copy.copy(self.host)
+        backup_port = copy.copy(self.port)
+        if the_settings()["baklava"]:
+            self.host = "test_net.1.naruno.org"
+            self.port = 8000
+
+
 
         self.max_tx_number = int(
             self.prepare_request(
@@ -105,6 +112,10 @@ class Integration:
                 "/blockmaxdatasize/get/",
                 type="get",
             ).text)
+
+
+        self.host = backup_host
+        self.port = backup_port
 
         time.sleep(self.wait_amount)
 
