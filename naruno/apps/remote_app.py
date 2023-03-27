@@ -94,6 +94,18 @@ class Integration:
 
         self.get_cache()
 
+
+        self.max_tx_number = int(
+            self.prepare_request(
+                "/blockmaxtxnumber/get/",
+                type="get",
+            ).text)
+        self.max_data_size = int(
+            self.prepare_request(
+                "/blockmaxdatasize/get/",
+                type="get",
+            ).text)
+
         time.sleep(self.wait_amount)
 
         logger.info(f"Integration of {self.app_name} is started")
@@ -203,16 +215,7 @@ class Integration:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
 
-        max_tx_number = int(
-            self.prepare_request(
-                "/blockmaxtxnumber/get/",
-                type="get",
-            ).text)
-        max_data_size = int(
-            self.prepare_request(
-                "/blockmaxdatasize/get/",
-                type="get",
-            ).text)
+
 
         self.host = backup_host
         self.port = backup_port
@@ -225,7 +228,7 @@ class Integration:
                 "app_data": ""
             }))
 
-        true_length = (max_data_size / max_tx_number - system_length) - 10
+        true_length = (self.max_data_size / self.max_tx_number - system_length) - 10
 
         if len(app_data) > true_length:
             # generate random charactere
