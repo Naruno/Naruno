@@ -48,7 +48,7 @@ class client(Thread):
                 data = data.decode("utf-8")
                 with contextlib.suppress(json.decoder.JSONDecodeError):
                     data = json.loads(data)
-                with contextlib.suppress(KeyError):
+                with contextlib.suppress(Exception):
                     del data["buffer"]
                 with contextlib.suppress(Exception):
                     self.server.get_message(self, data)
