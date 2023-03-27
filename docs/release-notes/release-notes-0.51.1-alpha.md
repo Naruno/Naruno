@@ -21,7 +21,6 @@ There have been no compatibility changes.
 ## Apps
 In this path, a wait system has been added between sends to improve the functionality of the Naruno app. This feature was added by @onuratakan and can be found in the pull request #1529 on GitHub. This change aims to enhance the user experience by reducing the likelihood of errors and improving the reliability of the app.
 
-Wallet
 
 # 0.51.1-alpha change log
 
