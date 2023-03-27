@@ -35,6 +35,8 @@ from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address
 from naruno.wallet.wallet_import import wallet_import
 
+from naruno.blockchain.block.block_main import Block
+
 logger = get_logger("REMOTE_APP")
 
 
@@ -59,6 +61,7 @@ class Integration:
         sended=False,
         sended_not_validated=False,
         cache_true=True,
+        wait_amount=None,
     ):
         """
         :param host: The host of the node
@@ -84,7 +87,14 @@ class Integration:
 
         self.cache_true = cache_true
 
+        self.last_sended = 0
+
+        if wait_amount is None:
+            self.wait_amount = Block("Onur").block_time
+
         self.get_cache()
+
+        time.sleep(self.wait_amount)
 
         logger.info(f"Integration of {self.app_name} is started")
 
@@ -184,6 +194,9 @@ class Integration:
         :param app_data: The data of the app
         :param to_user: The user to send the data to
         """
+        if time.time() - self.last_sended < self.wait_amount:
+            time.sleep(self.wait_amount - (time.time() - self.last_sended))
+
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
@@ -297,6 +310,7 @@ class Integration:
             logger.info(
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
+            self.last_sended = time.time()
             return True
 
     def get_(self):
