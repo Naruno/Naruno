@@ -46,7 +46,6 @@ mermaid:
   # Put any additional configuration, such as setting the theme, in _includes/mermaid_config.js
   # See also docs/ui-components/code
 
-
 callouts_level: quiet # or loud
 callouts:
   highlight:
