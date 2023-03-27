@@ -90,7 +90,7 @@ class Integration:
         self.last_sended = 0
 
         if wait_amount is None:
-            self.wait_amount = Block("Onur").block_time
+            self.wait_amount = Block("Onur").block_time * 2
 
         self.get_cache()
 
