@@ -212,7 +212,7 @@ class Integration:
                 "app_data": ""
             }))
 
-        true_length = max_data_size / max_tx_number - system_length
+        true_length = (max_data_size / max_tx_number - system_length) - 10
 
         if len(app_data) > true_length:
             # generate random charactere
