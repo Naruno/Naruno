@@ -90,7 +90,7 @@ class Integration:
         self.last_sended = 0
 
         if wait_amount is None:
-            self.wait_amount = Block("Onur").block_time * 2
+            self.wait_amount = Block("Onur").block_time * 2.5
         else:
             self.wait_amount = wait_amount
 
@@ -119,8 +119,6 @@ class Integration:
         self.sended_txs = []
 
         self.checking = checking
-        
-        time.sleep(self.wait_amount)
 
         logger.info(f"Integration of {self.app_name} is started")
 
@@ -244,6 +242,8 @@ class Integration:
                        system_length) - 10
 
         if len(app_data) > true_length:
+            backup_checking = copy.copy(self.checking)
+            self.checking = False
             # generate random charactere
             rando = ""
             for i in range(5):
@@ -299,6 +299,8 @@ class Integration:
                 force=force,
                 retrysecond=retrysecond,
             )
+            self.checking = backup_checking
+            self.checker()
             return True
 
         data = json.dumps(data)
@@ -331,11 +333,11 @@ class Integration:
             )
             self.last_sended = time.time()
             if self.checking:
-                time.sleep(self.wait_amount)
                 self.checker()
             return True
 
     def checker(self):
+        time.sleep(self.wait_amount)
         backup_caches = copy.copy(self.cache)
         backup_sended_not_validated = copy.copy(self.sended_not_validated)
         self.sended_not_validated = False
@@ -346,6 +348,7 @@ class Integration:
             in_get = False
             self.sended_txs.remove(sended_tx)
             for vaidated_tx in new_txs:
+                
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(
                             sended_tx[6])["action"]
@@ -363,6 +366,7 @@ class Integration:
                 )
 
         self.cache = backup_caches
+        self.save_cache()
         self.sended_not_validated = backup_sended_not_validated
 
     def get_(self, get_all):
@@ -592,7 +596,7 @@ class Integration:
  
         for transaction in result[:]:
             if transaction["data"]["app_data"].startswith("split-"):
-                result.remove(transaction)
+                result.remove(transaction) if not get_all else None
 
         if not len(result) == 0:
             logger.info("New datas received")
