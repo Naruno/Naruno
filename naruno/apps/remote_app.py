@@ -90,6 +90,8 @@ class Integration:
 
         if wait_amount is None:
             self.wait_amount = Block("Onur").block_time * 2
+        else:
+            self.wait_amount = wait_amount
 
         self.get_cache()
 
