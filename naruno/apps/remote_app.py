@@ -61,6 +61,7 @@ class Integration:
         sended_not_validated=False,
         cache_true=True,
         wait_amount=None,
+        checker=True
     ):
         """
         :param host: The host of the node
@@ -117,6 +118,8 @@ class Integration:
 
         self.sended_txs = []
 
+        self.checker = checker
+        
         time.sleep(self.wait_amount)
 
         logger.info(f"Integration of {self.app_name} is started")
@@ -327,8 +330,9 @@ class Integration:
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
             self.last_sended = time.time()
-            time.sleep(self.wait_amount)
-            self.checker()
+            if self.checker:
+                time.sleep(self.wait_amount)
+                self.checker()
             return True
 
     def checker(self):
@@ -336,25 +340,12 @@ class Integration:
         backup_sended_not_validated = copy.copy(self.sended_not_validated)
         self.sended_not_validated = False
         new_txs = self.get(get_all=True)
-        print("new_txs", new_txs)
+
 
         for sended_tx in self.sended_txs[:]:
             in_get = False
             self.sended_txs.remove(sended_tx)
             for vaidated_tx in new_txs:
-                print(
-                    vaidated_tx["toUser"],
-                    sended_tx[2],
-                    vaidated_tx["data"]["action"],
-                    json.loads(sended_tx[6])["action"],
-                    vaidated_tx["data"]["app_data"],
-                    json.loads(sended_tx[6])["app_data"],
-                )
-                print(vaidated_tx["toUser"] == sended_tx[2]
-                      and vaidated_tx["data"]["action"] == json.loads(
-                          sended_tx[6])["action"]
-                      and vaidated_tx["data"]["app_data"] == json.loads(
-                          sended_tx[6])["app_data"])
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(
                             sended_tx[6])["action"]
