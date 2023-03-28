@@ -20,6 +20,7 @@ from hashlib import sha256
 import requests
 
 from naruno.api.main import start
+from naruno.blockchain.block.block_main import Block
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
@@ -34,8 +35,6 @@ from naruno.transactions.my_transactions.validate_transaction import \
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address
 from naruno.wallet.wallet_import import wallet_import
-
-from naruno.blockchain.block.block_main import Block
 
 logger = get_logger("REMOTE_APP")
 
@@ -100,8 +99,6 @@ class Integration:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
 
-
-
         self.max_tx_number = int(
             self.prepare_request(
                 "/blockmaxtxnumber/get/",
@@ -112,7 +109,6 @@ class Integration:
                 "/blockmaxdatasize/get/",
                 type="get",
             ).text)
-
 
         self.host = backup_host
         self.port = backup_port
@@ -226,8 +222,6 @@ class Integration:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
 
-
-
         self.host = backup_host
         self.port = backup_port
 
@@ -239,7 +233,8 @@ class Integration:
                 "app_data": ""
             }))
 
-        true_length = (self.max_data_size / self.max_tx_number - system_length) - 10
+        true_length = (self.max_data_size / self.max_tx_number -
+                       system_length) - 10
 
         if len(app_data) > true_length:
             # generate random charactere
@@ -548,6 +543,10 @@ class Integration:
 
             elif transaction["toUser"] == wallet_import(-1, 3):
                 result.append(transaction)
+
+        for transaction in result[:]:
+            if transaction["data"]["app_data"].startswith("split-"):
+                result.remove(transaction)
 
         if not len(result) == 0:
             logger.info("New datas received")
