@@ -568,6 +568,7 @@ class Integration:
             if split.validated:
                 for each_original in split.data_original:
                     self.cache.append(each_original["signature"])
+                    SendedTransaction(Transaction.load_json(each_original))
                 for each_data in split.data:
                     split.main_data["data"]["app_data"] += each_data
                     split.main_data["data"]["app_data"] = split.main_data[
@@ -587,7 +588,7 @@ class Integration:
             transaction["fromUser"] = Address(transaction["fromUser"])
             if transaction["fromUser"] == wallet_import(-1, 3):
                 the_tx = Transaction.load_json(transaction)
-                if the_settings()["baklava"]:
+                if the_settings()["baklava"] and not transaction["data"]["app_data"].startswith("split-"):
                     SendedTransaction(the_tx)
                 result.append(transaction)
 
