@@ -61,7 +61,7 @@ class Integration:
         sended_not_validated=False,
         cache_true=True,
         wait_amount=None,
-        checker=True
+        checking=True
     ):
         """
         :param host: The host of the node
@@ -118,7 +118,7 @@ class Integration:
 
         self.sended_txs = []
 
-        self.checker = checker
+        self.checking = checking
         
         time.sleep(self.wait_amount)
 
@@ -330,7 +330,7 @@ class Integration:
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
             self.last_sended = time.time()
-            if self.checker:
+            if self.checking:
                 time.sleep(self.wait_amount)
                 self.checker()
             return True
