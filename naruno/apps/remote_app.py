@@ -589,6 +589,10 @@ class Integration:
 
             elif transaction["toUser"] == wallet_import(-1, 3):
                 result.append(transaction)
+ 
+        for transaction in result[:]:
+            if transaction["data"]["app_data"].startswith("split-"):
+                result.remove(transaction)
 
         if not len(result) == 0:
             logger.info("New datas received")
