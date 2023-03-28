@@ -115,6 +115,8 @@ class Integration:
         self.host = backup_host
         self.port = backup_port
 
+        self.sended_txs = []
+
         time.sleep(self.wait_amount)
 
         logger.info(f"Integration of {self.app_name} is started")
@@ -304,6 +306,9 @@ class Integration:
             "data": data,
         }
 
+        self.sended_txs.append(
+            [action, app_data, to_user, amount, force, retrysecond, data])
+
         if amount is not None:
             request_body["amount"] = amount
 
@@ -322,9 +327,54 @@ class Integration:
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
             self.last_sended = time.time()
+            time.sleep(self.wait_amount)
+            self.checker()
             return True
 
-    def get_(self):
+    def checker(self):
+        backup_caches = copy.copy(self.cache)
+        backup_sended_not_validated = copy.copy(self.sended_not_validated)
+        self.sended_not_validated = False
+        new_txs = self.get(get_all=True)
+        print("new_txs", new_txs)
+
+        for sended_tx in self.sended_txs[:]:
+            in_get = False
+            self.sended_txs.remove(sended_tx)
+            for vaidated_tx in new_txs:
+                print(
+                    vaidated_tx["toUser"],
+                    sended_tx[2],
+                    vaidated_tx["data"]["action"],
+                    json.loads(sended_tx[6])["action"],
+                    vaidated_tx["data"]["app_data"],
+                    json.loads(sended_tx[6])["app_data"],
+                )
+                print(vaidated_tx["toUser"] == sended_tx[2]
+                      and vaidated_tx["data"]["action"] == json.loads(
+                          sended_tx[6])["action"]
+                      and vaidated_tx["data"]["app_data"] == json.loads(
+                          sended_tx[6])["app_data"])
+                if (vaidated_tx["toUser"] == sended_tx[2]
+                        and vaidated_tx["data"]["action"] == json.loads(
+                            sended_tx[6])["action"]
+                        and vaidated_tx["data"]["app_data"] == json.loads(
+                            sended_tx[6])["app_data"]):
+                    in_get = True
+            if not in_get:
+                self.send(
+                    sended_tx[0],
+                    sended_tx[1],
+                    sended_tx[2],
+                    sended_tx[3],
+                    sended_tx[4],
+                    sended_tx[5],
+                )
+
+        self.cache = backup_caches
+        self.sended_not_validated = backup_sended_not_validated
+
+    def get_(self, get_all):
         self.get_cache()
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
@@ -462,7 +512,7 @@ class Integration:
                     transaction["data"]["app_data"].split("-")[2])
                 the_split.data_original.append(transaction)
                 splits.append(the_split)
-                new_a_last_list.remove(transaction)
+                new_a_last_list.remove(transaction) if not get_all else None
 
         last_list = new_a_last_list
         new_last_list = copy.copy(last_list)
@@ -477,7 +527,8 @@ class Integration:
                                 "-")[2] == split.split:
                             split.data.append(transaction["data"]["app_data"])
                             split.data_original.append(transaction)
-                            new_last_list.remove(transaction)
+                            new_last_list.remove(
+                                transaction) if not get_all else None
 
         last_list = new_last_list
 
@@ -494,7 +545,8 @@ class Integration:
 
                         split.main_data = copy.copy(transaction)
                         split.data_original.append(copy.copy(transaction))
-                        new_last_list_2.remove(transaction)
+                        new_last_list_2.remove(
+                            transaction) if not get_all else None
 
                         break
         last_list = new_last_list_2
@@ -506,7 +558,8 @@ class Integration:
                 for each_data in split.data:
                     for transaction in last_list:
                         if each_data == transaction["data"]["app_data"]:
-                            new_last_list_3.remove(transaction)
+                            new_last_list_3.remove(
+                                transaction) if not get_all else None
 
                             break
 
@@ -546,16 +599,12 @@ class Integration:
             elif transaction["toUser"] == wallet_import(-1, 3):
                 result.append(transaction)
 
-        for transaction in result[:]:
-            if transaction["data"]["app_data"].startswith("split-"):
-                result.remove(transaction)
-
         if not len(result) == 0:
             logger.info("New datas received")
 
         return result
 
-    def get(self):
+    def get(self, get_all=False):
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
@@ -564,11 +613,11 @@ class Integration:
 
         first = []
         with contextlib.suppress(Exception):
-            first = self.get_()
+            first = self.get_(get_all=get_all)
         self.host = backup_host
         self.port = backup_port
 
-        second = self.get_()
+        second = self.get_(get_all=get_all)
 
         the_list = first + second
 
