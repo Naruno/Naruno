@@ -102,8 +102,6 @@ class Integration:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
 
-
-
         self.max_tx_number = int(
             self.prepare_request(
                 "/blockmaxtxnumber/get/",
@@ -114,7 +112,6 @@ class Integration:
                 "/blockmaxdatasize/get/",
                 type="get",
             ).text)
-
 
         self.host = backup_host
         self.port = backup_port
@@ -230,8 +227,6 @@ class Integration:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
 
-
-
         self.host = backup_host
         self.port = backup_port
 
@@ -243,7 +238,8 @@ class Integration:
                 "app_data": ""
             }))
 
-        true_length = (self.max_data_size / self.max_tx_number - system_length) - 10
+        true_length = (self.max_data_size /
+                       self.max_tx_number - system_length) - 10
 
         if len(app_data) > true_length:
             # generate random charactere
@@ -287,8 +283,7 @@ class Integration:
             for each_data in splitted_data:
                 self.send(
                     action=action,
-                    app_data=
-                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                    app_data=f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                     to_user=to_user,
                     force=force,
                     retrysecond=retrysecond,
@@ -311,7 +306,8 @@ class Integration:
             "data": data,
         }
 
-        self.sended_txs.append([action, app_data, to_user, amount, force, retrysecond, data])
+        self.sended_txs.append(
+            [action, app_data, to_user, amount, force, retrysecond, data])
 
         if amount is not None:
             request_body["amount"] = amount
@@ -335,7 +331,6 @@ class Integration:
             self.checker()
             return True
 
-
     def checker(self):
         backup_caches = copy.copy(self.cache)
         backup_sended_not_validated = copy.copy(self.sended_not_validated)
@@ -347,14 +342,17 @@ class Integration:
             in_get = False
             self.sended_txs.remove(sended_tx)
             for vaidated_tx in new_txs:
-                print(vaidated_tx["toUser"], sended_tx[2], vaidated_tx["data"]["action"], json.loads(sended_tx[6])["action"] , vaidated_tx["data"]["app_data"], json.loads(sended_tx[6])["app_data"])
-                print(vaidated_tx["toUser"] == sended_tx[2] and vaidated_tx["data"]["action"] == json.loads(sended_tx[6])["action"] and vaidated_tx["data"]["app_data"] == json.loads(sended_tx[6])["app_data"])
+                print(vaidated_tx["toUser"], sended_tx[2], vaidated_tx["data"]["action"], json.loads(
+                    sended_tx[6])["action"], vaidated_tx["data"]["app_data"], json.loads(sended_tx[6])["app_data"])
+                print(vaidated_tx["toUser"] == sended_tx[2] and vaidated_tx["data"]["action"] == json.loads(
+                    sended_tx[6])["action"] and vaidated_tx["data"]["app_data"] == json.loads(sended_tx[6])["app_data"])
                 if vaidated_tx["toUser"] == sended_tx[2] and vaidated_tx["data"]["action"] == json.loads(sended_tx[6])["action"] and vaidated_tx["data"]["app_data"] == json.loads(sended_tx[6])["app_data"]:
                     in_get = True
             if not in_get:
 
-                self.send(sended_tx[0], sended_tx[1], sended_tx[2], sended_tx[3], sended_tx[4], sended_tx[5])
-            
+                self.send(sended_tx[0], sended_tx[1], sended_tx[2],
+                          sended_tx[3], sended_tx[4], sended_tx[5])
+
         self.cache = backup_caches
         self.sended_not_validated = backup_sended_not_validated
 
@@ -412,7 +410,7 @@ class Integration:
         for transaction in transactions_sended:
             if self.sended:
                 if (transactions_sended[transaction]["transaction"]
-                    ["signature"] in self.cache):
+                        ["signature"] in self.cache):
                     continue
                 else:
                     if transactions_sended[transaction]["transaction"][
@@ -425,7 +423,7 @@ class Integration:
                         ValidateTransaction(the_tx)
 
                         if (not transactions_sended[transaction]["transaction"]
-                            ["data"] == "NP"):
+                                ["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended[transaction][
@@ -445,7 +443,7 @@ class Integration:
         for transaction in transactions_sended_not_validated:
             if self.sended_not_validated:
                 if (transactions_sended_not_validated[transaction]
-                    ["transaction"]["signature"] in self.cache):
+                        ["transaction"]["signature"] in self.cache):
                     continue
                 else:
                     if transactions_sended_not_validated[transaction][
@@ -454,7 +452,7 @@ class Integration:
                             transaction] = transactions_sended_not_validated[
                                 transaction]
                         if (not transactions_sended_not_validated[transaction]
-                            ["transaction"]["data"] == "NP"):
+                                ["transaction"]["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended_not_validated[transaction][
@@ -482,7 +480,7 @@ class Integration:
             with contextlib.suppress(TypeError):
                 if not new_dict[transaction]["transaction"]["data"] == "NP":
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
@@ -511,7 +509,8 @@ class Integration:
                                 "-")[2] == split.split:
                             split.data.append(transaction["data"]["app_data"])
                             split.data_original.append(transaction)
-                            new_last_list.remove(transaction)  if not get_all else None
+                            new_last_list.remove(
+                                transaction) if not get_all else None
 
         last_list = new_last_list
 
@@ -528,7 +527,8 @@ class Integration:
 
                         split.main_data = copy.copy(transaction)
                         split.data_original.append(copy.copy(transaction))
-                        new_last_list_2.remove(transaction)  if not get_all else None
+                        new_last_list_2.remove(
+                            transaction) if not get_all else None
 
                         break
         last_list = new_last_list_2
@@ -540,7 +540,8 @@ class Integration:
                 for each_data in split.data:
                     for transaction in last_list:
                         if each_data == transaction["data"]["app_data"]:
-                            new_last_list_3.remove(transaction)  if not get_all else None
+                            new_last_list_3.remove(
+                                transaction) if not get_all else None
 
                             break
 
@@ -585,7 +586,7 @@ class Integration:
 
         return result
 
-    def get(self, get_all = False):
+    def get(self, get_all=False):
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
@@ -594,11 +595,11 @@ class Integration:
 
         first = []
         with contextlib.suppress(Exception):
-            first = self.get_(get_all = get_all)
+            first = self.get_(get_all=get_all)
         self.host = backup_host
         self.port = backup_port
 
-        second = self.get_(get_all = get_all)
+        second = self.get_(get_all=get_all)
 
         the_list = first + second
 
