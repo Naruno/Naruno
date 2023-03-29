@@ -551,8 +551,9 @@ class Integration:
                                 "-")[2] == split.split:
                             split.data.append(transaction["data"]["app_data"])
                             split.data_original.append(transaction)
-                            new_last_list.remove(
-                                transaction) if not get_all else None
+                            with contextlib.suppress(ValueError):
+                                new_last_list.remove(
+                                    transaction) if not get_all else None
 
         last_list = new_last_list
 
