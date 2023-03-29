@@ -292,6 +292,9 @@ class Integration:
                     retrysecond=retrysecond,
                 )
 
+            self.checking = backup_checking
+            self.checker()
+
             self.send(
                 action=action,
                 app_data=f"split-1-{split_random}",
@@ -299,8 +302,6 @@ class Integration:
                 force=force,
                 retrysecond=retrysecond,
             )
-            self.checking = backup_checking
-            self.checker()
             return True
 
         data = json.dumps(data)
