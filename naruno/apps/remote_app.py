@@ -340,7 +340,11 @@ class Integration:
         time.sleep(self.wait_amount)
         backup_caches = copy.copy(self.cache)
         backup_sended_not_validated = copy.copy(self.sended_not_validated)
+        backup_sended = copy.copy(self.sended)
         self.sended_not_validated = False
+        self.sended = True
+        self.cache = []
+        self.save_cache()
         new_txs = self.get(get_all=True)
 
         for sended_tx in self.sended_txs[:]:
@@ -353,6 +357,7 @@ class Integration:
                         and vaidated_tx["data"]["app_data"] == json.loads(
                             sended_tx[6])["app_data"]):
                     in_get = True
+
             if not in_get:
                 self.send(
                     sended_tx[0],
@@ -366,6 +371,7 @@ class Integration:
         self.cache = backup_caches
         self.save_cache()
         self.sended_not_validated = backup_sended_not_validated
+        self.sended = backup_sended
 
     def get_(self, get_all):
         self.get_cache()
