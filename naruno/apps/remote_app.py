@@ -90,7 +90,7 @@ class Integration:
         self.last_sended = 0
 
         if wait_amount is None:
-            self.wait_amount = Block("Onur").block_time * 2.5
+            self.wait_amount = Block("Onur").block_time * 2
         else:
             self.wait_amount = wait_amount
 
@@ -348,7 +348,8 @@ class Integration:
 
         for sended_tx in self.sended_txs[:]:
             in_get = False
-            self.sended_txs.remove(sended_tx)
+            with contextlib.suppress(ValueError):
+                self.sended_txs.remove(sended_tx)
             for vaidated_tx in new_txs:
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(
