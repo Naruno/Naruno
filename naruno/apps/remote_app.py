@@ -416,11 +416,11 @@ class Integration:
                             self.cache.append(transactions[transaction]
                                               ["transaction"]["signature"])
 
-                            SavetoMyTransaction(the_tx)
-                            ValidateTransaction(the_tx)
+                            SavetoMyTransaction(the_tx) if not get_all else None
+                            ValidateTransaction(the_tx) if not get_all else None
                     else:
-                        SavetoMyTransaction(the_tx)
-                        ValidateTransaction(the_tx)
+                        SavetoMyTransaction(the_tx) if not get_all else None
+                        ValidateTransaction(the_tx) if not get_all else None
                         self.cache.append(transactions[transaction]
                                           ["transaction"]["signature"])
                 elif transactions[transaction]["transaction"][
@@ -456,11 +456,11 @@ class Integration:
                                     transactions_sended[transaction]
                                     ["transaction"]["signature"])
 
-                                SavetoMyTransaction(the_tx)
-                                ValidateTransaction(the_tx)
+                                SavetoMyTransaction(the_tx) if not get_all else None
+                                ValidateTransaction(the_tx) if not get_all else None
                         else:
-                            SavetoMyTransaction(the_tx)
-                            ValidateTransaction(the_tx)
+                            SavetoMyTransaction(the_tx) if not get_all else None
+                            ValidateTransaction(the_tx) if not get_all else None
                             self.cache.append(transactions_sended[transaction]
                                               ["transaction"]["signature"])
         split_not_validated = []
@@ -499,9 +499,9 @@ class Integration:
                                     transactions_sended_not_validated[
                                         transaction]["transaction"]
                                     ["signature"])
-                                SavetoMyTransaction(the_tx)
+                                SavetoMyTransaction(the_tx) if not get_all else None
                         else:
-                            SavetoMyTransaction(the_tx)
+                            SavetoMyTransaction(the_tx) if not get_all else None
                             self.cache.append(
                                 transactions_sended_not_validated[transaction]
                                 ["transaction"]["signature"])
@@ -591,10 +591,10 @@ class Integration:
                     self.cache.append(each_original["signature"])
                     SavetoMyTransaction(the_tx)
                     if not each_original["signature"] in split_not_validated:
-                        ValidateTransaction(the_tx)
+                        ValidateTransaction(the_tx) if not get_all else None
                     if Address(each_original["fromUser"]) == wallet_import(
                             -1, 3):
-                        SendedTransaction(Transaction.load_json(each_original))
+                        SendedTransaction(Transaction.load_json(each_original))  if not get_all else None
                 for each_data in split.data:
                     split.main_data["data"]["app_data"] += each_data
                     split.main_data["data"]["app_data"] = split.main_data[
@@ -616,7 +616,7 @@ class Integration:
                 the_tx = Transaction.load_json(transaction)
                 if the_settings()["baklava"] and not transaction["data"][
                         "app_data"].startswith("split-"):
-                    SendedTransaction(the_tx)
+                    SendedTransaction(the_tx)  if not get_all else None
                 result.append(transaction)
 
             elif transaction["toUser"] == wallet_import(-1, 3):
