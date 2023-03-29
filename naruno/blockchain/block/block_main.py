@@ -54,7 +54,7 @@ class Block:
         self.default_transaction_fee = 0.02
         self.default_optimum_transaction_number = 200
         self.default_increase_of_fee = 0.01
-        self.transaction_delay_time = 60
+        self.transaction_delay_time = 3600
         self.max_data_size = 1000000
 
         self.part_amount = 1000
