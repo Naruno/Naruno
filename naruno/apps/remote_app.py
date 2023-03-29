@@ -339,14 +339,12 @@ class Integration:
 
     def checker(self):
         time.sleep(self.wait_amount)
-        backup_caches = copy.copy(self.cache)
         backup_sended_not_validated = copy.copy(self.sended_not_validated)
         backup_sended = copy.copy(self.sended)
         self.sended_not_validated = False
         self.sended = True
-        self.cache = []
-        self.save_cache()
-        new_txs = self.get(get_all=True)
+
+        new_txs = self.get(get_all=True, disable_caches=True)
 
         for sended_tx in self.sended_txs[:]:
             in_get = False
@@ -369,13 +367,12 @@ class Integration:
                     sended_tx[5],
                 )
 
-        self.cache = backup_caches
-        self.save_cache()
+
         self.sended_not_validated = backup_sended_not_validated
         self.sended = backup_sended
 
-    def get_(self, get_all):
-        self.get_cache()
+    def get_(self, get_all, disable_caches):
+        self.get_cache() if not disable_caches else None
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
 
@@ -414,7 +411,7 @@ class Integration:
                         if not transactions[transaction]["transaction"][
                                 "data"]["app_data"].startswith("split-"):
                             self.cache.append(transactions[transaction]
-                                              ["transaction"]["signature"])
+                                              ["transaction"]["signature"]) if not disable_caches else None
 
                             SavetoMyTransaction(
                                 the_tx) if not get_all else None
@@ -424,7 +421,7 @@ class Integration:
                         SavetoMyTransaction(the_tx) if not get_all else None
                         ValidateTransaction(the_tx) if not get_all else None
                         self.cache.append(transactions[transaction]
-                                          ["transaction"]["signature"])
+                                          ["transaction"]["signature"]) if not disable_caches else None
                 elif transactions[transaction]["transaction"][
                         "fromUser"] == wallet_import(-1, 0):
                     transactions_sended[transaction] = transactions[
@@ -456,7 +453,7 @@ class Integration:
                                         "app_data"].startswith("split-"):
                                 self.cache.append(
                                     transactions_sended[transaction]
-                                    ["transaction"]["signature"])
+                                    ["transaction"]["signature"]) if not disable_caches else None
 
                                 SavetoMyTransaction(
                                     the_tx) if not get_all else None
@@ -468,7 +465,7 @@ class Integration:
                             ValidateTransaction(
                                 the_tx) if not get_all else None
                             self.cache.append(transactions_sended[transaction]
-                                              ["transaction"]["signature"])
+                                              ["transaction"]["signature"]) if not disable_caches else None
         split_not_validated = []
         for transaction in transactions_sended_not_validated:
             if self.sended_not_validated:
@@ -499,7 +496,7 @@ class Integration:
                                 self.cache.append(
                                     transactions_sended_not_validated[
                                         transaction]["transaction"]
-                                    ["signature"])
+                                    ["signature"]) if not disable_caches else None
 
                                 split_not_validated.append(
                                     transactions_sended_not_validated[
@@ -512,9 +509,9 @@ class Integration:
                                 the_tx) if not get_all else None
                             self.cache.append(
                                 transactions_sended_not_validated[transaction]
-                                ["transaction"]["signature"])
+                                ["transaction"]["signature"]) if not disable_caches else None
 
-        self.save_cache()
+        self.save_cache() if not disable_caches else None
 
         last_list = []
 
@@ -597,7 +594,7 @@ class Integration:
         for split in splits:
             if split.validated:
                 for each_original in split.data_original:
-                    self.cache.append(each_original["signature"])
+                    self.cache.append(each_original["signature"]) if not disable_caches else None
                     SavetoMyTransaction(the_tx)
                     if not each_original["signature"] in split_not_validated:
                         ValidateTransaction(the_tx) if not get_all else None
@@ -616,7 +613,7 @@ class Integration:
                                 f"split-{i+2}-{split.split}-", "")
                 last_list.append(split.main_data)
 
-        self.save_cache()
+        self.save_cache() if not disable_caches else None
 
         result = []
 
@@ -641,7 +638,7 @@ class Integration:
 
         return result
 
-    def get(self, get_all=False):
+    def get(self, get_all=False, disable_caches=False):
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
@@ -650,11 +647,11 @@ class Integration:
 
         first = []
         with contextlib.suppress(Exception):
-            first = self.get_(get_all=get_all)
+            first = self.get_(get_all=get_all, disable_caches=disable_caches)
         self.host = backup_host
         self.port = backup_port
 
-        second = self.get_(get_all=get_all)
+        second = self.get_(get_all=get_all, disable_caches=disable_caches)
 
         the_list = first + second
 
