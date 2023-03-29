@@ -285,8 +285,7 @@ class Integration:
             for each_data in splitted_data:
                 self.send(
                     action=action,
-                    app_data=
-                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                    app_data=f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                     to_user=to_user,
                     force=force,
                     retrysecond=retrysecond,
@@ -416,8 +415,10 @@ class Integration:
                             self.cache.append(transactions[transaction]
                                               ["transaction"]["signature"])
 
-                            SavetoMyTransaction(the_tx) if not get_all else None
-                            ValidateTransaction(the_tx) if not get_all else None
+                            SavetoMyTransaction(
+                                the_tx) if not get_all else None
+                            ValidateTransaction(
+                                the_tx) if not get_all else None
                     else:
                         SavetoMyTransaction(the_tx) if not get_all else None
                         ValidateTransaction(the_tx) if not get_all else None
@@ -431,7 +432,7 @@ class Integration:
         for transaction in transactions_sended:
             if self.sended:
                 if (transactions_sended[transaction]["transaction"]
-                    ["signature"] in self.cache):
+                        ["signature"] in self.cache):
                     continue
                 else:
                     if transactions_sended[transaction]["transaction"][
@@ -442,7 +443,7 @@ class Integration:
                             transactions_sended[transaction]["transaction"])
 
                         if (not transactions_sended[transaction]["transaction"]
-                            ["data"] == "NP"):
+                                ["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended[transaction][
@@ -456,18 +457,22 @@ class Integration:
                                     transactions_sended[transaction]
                                     ["transaction"]["signature"])
 
-                                SavetoMyTransaction(the_tx) if not get_all else None
-                                ValidateTransaction(the_tx) if not get_all else None
+                                SavetoMyTransaction(
+                                    the_tx) if not get_all else None
+                                ValidateTransaction(
+                                    the_tx) if not get_all else None
                         else:
-                            SavetoMyTransaction(the_tx) if not get_all else None
-                            ValidateTransaction(the_tx) if not get_all else None
+                            SavetoMyTransaction(
+                                the_tx) if not get_all else None
+                            ValidateTransaction(
+                                the_tx) if not get_all else None
                             self.cache.append(transactions_sended[transaction]
                                               ["transaction"]["signature"])
         split_not_validated = []
         for transaction in transactions_sended_not_validated:
             if self.sended_not_validated:
                 if (transactions_sended_not_validated[transaction]
-                    ["transaction"]["signature"] in self.cache):
+                        ["transaction"]["signature"] in self.cache):
                     continue
                 else:
                     if transactions_sended_not_validated[transaction][
@@ -479,7 +484,7 @@ class Integration:
                             transaction] = transactions_sended_not_validated[
                                 transaction]
                         if (not transactions_sended_not_validated[transaction]
-                            ["transaction"]["data"] == "NP"):
+                                ["transaction"]["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended_not_validated[transaction][
@@ -499,9 +504,11 @@ class Integration:
                                     transactions_sended_not_validated[
                                         transaction]["transaction"]
                                     ["signature"])
-                                SavetoMyTransaction(the_tx) if not get_all else None
+                                SavetoMyTransaction(
+                                    the_tx) if not get_all else None
                         else:
-                            SavetoMyTransaction(the_tx) if not get_all else None
+                            SavetoMyTransaction(
+                                the_tx) if not get_all else None
                             self.cache.append(
                                 transactions_sended_not_validated[transaction]
                                 ["transaction"]["signature"])
@@ -514,7 +521,7 @@ class Integration:
             with contextlib.suppress(TypeError):
                 if not new_dict[transaction]["transaction"]["data"] == "NP":
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
@@ -594,7 +601,8 @@ class Integration:
                         ValidateTransaction(the_tx) if not get_all else None
                     if Address(each_original["fromUser"]) == wallet_import(
                             -1, 3):
-                        SendedTransaction(Transaction.load_json(each_original))  if not get_all else None
+                        SendedTransaction(Transaction.load_json(
+                            each_original)) if not get_all else None
                 for each_data in split.data:
                     split.main_data["data"]["app_data"] += each_data
                     split.main_data["data"]["app_data"] = split.main_data[
@@ -616,7 +624,7 @@ class Integration:
                 the_tx = Transaction.load_json(transaction)
                 if the_settings()["baklava"] and not transaction["data"][
                         "app_data"].startswith("split-"):
-                    SendedTransaction(the_tx)  if not get_all else None
+                    SendedTransaction(the_tx) if not get_all else None
                 result.append(transaction)
 
             elif transaction["toUser"] == wallet_import(-1, 3):
