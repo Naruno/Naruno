@@ -397,8 +397,8 @@ class Integration:
         new_dict = {}
 
         for transaction in transactions:
-            if transactions[transaction]["transaction"][
-                    "signature"] in self.cache:
+            if (transactions[transaction]["transaction"][
+                    "signature"] in self.cache) and not get_all:
                 continue
             else:
                 if transactions[transaction]["transaction"][
@@ -437,7 +437,7 @@ class Integration:
         for transaction in transactions_sended:
             if self.sended:
                 if (transactions_sended[transaction]["transaction"]
-                    ["signature"] in self.cache):
+                    ["signature"] in self.cache) and not get_all:
                     continue
                 else:
                     if transactions_sended[transaction]["transaction"][
@@ -479,7 +479,7 @@ class Integration:
         for transaction in transactions_sended_not_validated:
             if self.sended_not_validated:
                 if (transactions_sended_not_validated[transaction]
-                    ["transaction"]["signature"] in self.cache):
+                    ["transaction"]["signature"] in self.cache) and not get_all:
                     continue
                 else:
                     if transactions_sended_not_validated[transaction][
