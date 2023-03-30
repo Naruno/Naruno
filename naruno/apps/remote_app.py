@@ -74,6 +74,9 @@ class Integration:
         self.host = host
         self.port = port
 
+        self.first_host = copy.copy(host)
+        self.first_port = copy.copy(port)
+
         self.api = None
 
         if not self.check_api():
@@ -221,6 +224,8 @@ class Integration:
         if time.time() - self.last_sended < self.wait_amount:
             time.sleep(self.wait_amount - (time.time() - self.last_sended))
 
+        self.host = copy.copy(self.first_host)
+        self.port = copy.copy(self.first_port)
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
@@ -646,6 +651,8 @@ class Integration:
         return result
 
     def get(self, get_all=False, disable_caches=False):
+        self.host = copy.copy(self.first_host)
+        self.port = copy.copy(self.first_port)
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
