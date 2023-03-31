@@ -330,7 +330,7 @@ class Test_apps(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -371,7 +371,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -390,7 +390,7 @@ class Test_apps(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
 
@@ -409,7 +409,6 @@ class Test_apps(unittest.TestCase):
 
         for txs in GetMyTransaction():
             if txs[0].toUser == "<address>":
-
                 ValidateTransaction(txs[0])
 
         first_gettings_data_from_app = integration.get()
@@ -429,7 +428,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -448,7 +447,7 @@ class Test_apps(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -499,7 +498,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -518,7 +517,7 @@ class Test_apps(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -577,7 +576,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 

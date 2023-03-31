@@ -58,6 +58,7 @@ def SavetoMyTransaction(
 
             tx_list = [tx, validated, sended]
             currently_list.append(tx_list)
+
         else:
             for tx_list in currently_list:
                 if tx_list[0].signature == tx.signature:

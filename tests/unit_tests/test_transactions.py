@@ -20,10 +20,9 @@ from naruno.accounts.get_balance import GetBalance
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash_part)
-from naruno.blockchain.block.change_transaction_fee import \
-    ChangeTransactionFee
+                                                 GetBlockshash_part,
+                                                 SaveBlockshash_part)
+from naruno.blockchain.block.change_transaction_fee import ChangeTransactionFee
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
@@ -32,15 +31,13 @@ from naruno.consensus.finished.finished_main import finished_main
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.lib.settings_system import save_settings, the_settings
-from naruno.transactions.check.check_transaction import \
-    CheckTransaction
+from naruno.transactions.check.check_transaction import CheckTransaction
 from naruno.transactions.check.datas.check_datas import Check_Datas
 from naruno.transactions.check.len.check_len import Check_Len
 from naruno.transactions.check.type.check_type import Check_Type
 from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.get_transaction import GetTransaction
-from naruno.transactions.my_transactions.check_proof import \
-    CheckProof
+from naruno.transactions.my_transactions.check_proof import CheckProof
 from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction
 from naruno.transactions.my_transactions.get_proof import GetProof
@@ -51,13 +48,10 @@ from naruno.transactions.my_transactions.save_to_my_transaction import \
 from naruno.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
 from naruno.transactions.pending.delete_pending import DeletePending
-from naruno.transactions.pending.get_pending import (GetPending,
-                                                               GetPendingLen)
+from naruno.transactions.pending.get_pending import GetPending, GetPendingLen
 from naruno.transactions.pending.save_pending import SavePending
-from naruno.transactions.pending_to_validating import \
-    PendingtoValidating
-from naruno.transactions.process_the_transaction import \
-    ProccesstheTransaction
+from naruno.transactions.pending_to_validating import PendingtoValidating
+from naruno.transactions.process_the_transaction import ProccesstheTransaction
 from naruno.transactions.send import send
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address, wallet_import
@@ -71,11 +65,11 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_non(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result, [])
 
     def test_get_my_transaction_not_validated(self):
@@ -85,7 +79,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
 
@@ -96,7 +90,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], True)
 
@@ -107,7 +101,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], False)
 
@@ -118,13 +112,13 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], True)
 
     def test_get_my_transaction_just_sended(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "af", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False)
@@ -134,14 +128,14 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=True)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], True)
 
     def test_get_my_transaction_just_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "bf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, validated=False)
@@ -151,14 +145,14 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(validated=True)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], True)
 
     def test_get_my_transaction_just_sended_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "cf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False, validated=True)
@@ -171,7 +165,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=True, validated=True)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], True)
@@ -179,7 +173,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_sended_no_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "df", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False, validated=False)
@@ -192,7 +186,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=True, validated=False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
@@ -200,7 +194,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_received(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "ef", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True)
@@ -210,14 +204,14 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], False)
 
     def test_get_my_transaction_just_received_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "ff", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True, validated=True)
@@ -230,7 +224,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=False, validated=True)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
@@ -239,7 +233,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_received_no_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "gf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True, validated=False)
@@ -252,7 +246,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=False, validated=False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
@@ -269,7 +263,7 @@ class Test_Transactions(unittest.TestCase):
 
         result_2 = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
 
@@ -277,7 +271,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result_2[0][1], True)
 
     def test_dumb_transaction(self):
-
         new_transaction = Transaction(1, "", "", "", "", 1, 1, 1)
 
         dumped_transaction = new_transaction.dump_json()
@@ -296,7 +289,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(dumped_transaction, the_json)
 
     def test_load_transaction(self):
-
         the_json = {
             "sequence_number": 1,
             "signature": "",
@@ -315,7 +307,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(loaded_transaction_json, the_json)
 
     def test_pending_to_validating_many_transaction(self):
-
         block = Block("")
         block.max_tx_number = 2
 
@@ -351,7 +342,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(transaction_3_true, True)
 
     def test_pending_to_validating(self):
-
         block = Block("")
         block.max_tx_number = 2
 
@@ -380,7 +370,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(transaction_2_true, False)
 
     def test_pending_to_validating_full_list(self):
-
         block = Block("")
         block.validating_list = [
             Transaction(1, "717", "", "", "", 1, 1, 1),
@@ -413,7 +402,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(transaction_2_true, True)
 
     def test_change_transaction_fee_increasing(self):
-
         block = Block("")
         first_transaction_fee = block.transaction_fee
         block.max_tx_number = 3
@@ -436,7 +424,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(new_transaction_fee, 0.05)
 
     def test_change_transaction_fee(self):
-
         block = Block("")
         first_transaction_fee = block.transaction_fee
         block.max_tx_number = 3
@@ -458,7 +445,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(new_transaction_fee, 0.02)
 
     def test_check_transaction_true(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -487,7 +473,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, True)
 
     def test_check_transaction_false_seuance_number(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -518,7 +503,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_signature(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -549,7 +533,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_fromUser(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -580,7 +563,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_toUser(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -611,7 +593,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_already_got(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -642,7 +623,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_bad_type_fromUser(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -673,7 +653,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_true_len_data(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -701,7 +680,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, True)
 
     def test_check_transaction_false_len_data(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -729,7 +707,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_balance(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -759,7 +736,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_amount(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -790,7 +766,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_amount_high_account(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -827,7 +802,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, True)
 
     def test_check_transaction_false_transaction_fee(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -858,7 +832,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_multiple_transaction_from_one_user(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -890,7 +863,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_wrong_time(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -917,7 +889,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_amount_decimal(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -942,7 +913,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_amount_bigger_than_coin_amount(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -967,7 +937,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_transaction_fee_decimal(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -993,7 +962,6 @@ class Test_Transactions(unittest.TestCase):
 
     def test_check_transaction_false_transaction_fee_bigger_than_coin_amount(
             self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1018,7 +986,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_sequence_number_type(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1043,7 +1010,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_signature_type(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1068,7 +1034,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_fromUser_type(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1093,7 +1058,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_toUser_type(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1118,7 +1082,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_data_type(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1143,7 +1106,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_amount_type_str(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1168,7 +1130,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_amount_type_negative(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1193,7 +1154,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_transaction_fee_type(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1218,7 +1178,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_check_transaction_false_transaction_time_type(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1328,7 +1287,6 @@ class Test_Transactions(unittest.TestCase):
         DeletePending(result)
 
     def test_get_transaction_false(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1357,7 +1315,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_get_transaction_true(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1387,7 +1344,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(result, True)
 
     def test_ProccesstheTransaction_validating_list(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1416,7 +1372,8 @@ class Test_Transactions(unittest.TestCase):
         account_list = GetAccounts(temp_path)
         result = ProccesstheTransaction(block,
                                         account_list,
-                                        custom_TEMP_ACCOUNTS_PATH=temp_path, dont_clean=True)
+                                        custom_TEMP_ACCOUNTS_PATH=temp_path,
+                                        dont_clean=True)
         self.assertEqual(len(block.validating_list), 3)
         self.assertEqual(block.validating_list[0], the_transaction_2)
         self.assertEqual(block.validating_list[2].toUser, block.fee_address)
@@ -1424,7 +1381,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(block.validating_list[1], the_transaction)
 
     def test_ProccesstheTransaction_account_list(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1492,7 +1448,7 @@ class Test_Transactions(unittest.TestCase):
             account_list,
             custom_TEMP_ACCOUNTS_PATH=temp_path,
             custom_fee_address=custom_fee_address,
-            dont_clean=True
+            dont_clean=True,
         )
         account_list = GetAccounts(temp_path)
         account_list.execute(f"SELECT * FROM account_list")
@@ -1551,7 +1507,6 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(account_list[7][1], 0)
 
     def test_ProccesstheTransaction_account_list_with_shares(self):
-
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -1602,11 +1557,13 @@ class Test_Transactions(unittest.TestCase):
             Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000),
             temp_path)
         SaveAccounts(
-            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000), #B
-            temp_path)
+            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000),
+            temp_path  # B
+        )
         SaveAccounts(
-            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000), #C
-            temp_path)
+            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000),
+            temp_path  # C
+        )
         SaveAccounts(
             Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000),
             temp_path)
@@ -1622,7 +1579,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=temp_path,
             custom_shares=custom_shares,
             custom_fee_address=custom_fee_address,
-            dont_clean=True
+            dont_clean=True,
         )
         account_list = GetAccounts(temp_path)
         account_list.execute(f"SELECT * FROM account_list")
@@ -1657,13 +1614,10 @@ class Test_Transactions(unittest.TestCase):
                          "73cd109827c0de9fa211c0d062eab13584ea6bb8")
         self.assertEqual(account_list[1][1], 1)
 
-
-
         self.assertEqual(account_list[2][2], 94999.98)
         self.assertEqual(account_list[2][0],
-                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6") #B
+                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6")  # B
         self.assertEqual(account_list[2][1], 1)
-
 
         self.assertEqual(account_list[3][2], 94999.98)
         self.assertEqual(account_list[3][0],
@@ -1809,7 +1763,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -1863,7 +1817,7 @@ class Test_Transactions(unittest.TestCase):
         )
 
         self.assertIsNone(result)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_GetProof_CheckProof(self):
         backup_the_settings = the_settings()
@@ -1902,7 +1856,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
         the_transaction_a = copy.copy(the_transaction)
-        the_transaction_a.signature = "aa"        
+        the_transaction_a.signature = "aa"
         block.validating_list = [the_transaction, the_transaction_a]
         SaveBlock(
             block,
@@ -1942,7 +1896,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=True,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertTrue(result)
 
@@ -1952,7 +1906,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -2018,7 +1972,6 @@ class Test_Transactions(unittest.TestCase):
                 custom_BLOCKS_PATH_from_proof = (
                     "db/test_proof_extracted/db/" + file + "/")
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
-
                     list_of_files.append(file_2)
 
         self.assertIn("0.block.json", list_of_files)
@@ -2074,7 +2027,7 @@ class Test_Transactions(unittest.TestCase):
             True,
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_GetProof_CheckProof_false(self):
         backup_the_settings = the_settings()
@@ -2231,7 +2184,6 @@ class Test_Transactions(unittest.TestCase):
                 custom_BLOCKS_PATH_from_proof = (
                     "db/test_proof_extracted/db/" + file + "/")
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
-
                     list_of_files.append(file_2)
 
         self.assertIn("0.block.json", list_of_files)
@@ -2295,7 +2247,7 @@ class Test_Transactions(unittest.TestCase):
             CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part),
             False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_GetProof_CheckProof_none(self):
         backup_the_settings = the_settings()
@@ -2336,7 +2288,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
         the_transaction_a = copy.copy(the_transaction)
-        the_transaction_a.signature = "aa"     
+        the_transaction_a.signature = "aa"
         block.validating_list = [the_transaction, the_transaction_a]
         SaveBlock(
             block,
@@ -2386,7 +2338,7 @@ class Test_Transactions(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -2452,7 +2404,6 @@ class Test_Transactions(unittest.TestCase):
                 custom_BLOCKS_PATH_from_proof = (
                     "db/test_proof_extracted/db/" + file + "/")
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
-
                     list_of_files.append(file_2)
 
         self.assertIn("0.block.json", list_of_files)
@@ -2464,7 +2415,7 @@ class Test_Transactions(unittest.TestCase):
         result_2 = GetBlockstoBlockchainDB(
             sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -2516,16 +2467,21 @@ class Test_Transactions(unittest.TestCase):
             CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part),
             False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_cleaner_validating_list(self):
-
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
 
         block.validating_list = [
             transaction_frem_a_0_j_3,
@@ -2536,7 +2492,12 @@ class Test_Transactions(unittest.TestCase):
 
         first_validating_list = copy.copy(block.validating_list)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
+        cleaned_lists = Cleaner(
+            block=block,
+            pending_list_txs=pending_list_txs,
+            custom_balance=10000000000000,
+            custom_sequence_number=-1,
+        )
         block.validating_list = cleaned_lists[0]
 
         self.assertNotEqual(len(first_validating_list),
@@ -2557,14 +2518,18 @@ class Test_Transactions(unittest.TestCase):
         DeletePending(transaction_frem_a_1_q_3)
 
     def test_cleaner_validating_list_one(self):
-
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
-
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
 
         block.validating_list = [
             transaction_frem_a_0_j_3,
@@ -2573,11 +2538,16 @@ class Test_Transactions(unittest.TestCase):
 
         first_validating_list = copy.copy(block.validating_list)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
+        cleaned_lists = Cleaner(
+            block=block,
+            pending_list_txs=pending_list_txs,
+            custom_balance=10000000000000,
+            custom_sequence_number=-1,
+        )
         block.validating_list = cleaned_lists[0]
 
         self.assertEqual(len(first_validating_list),
-                            len(block.validating_list))
+                         len(block.validating_list))
 
         find_difference = list(
             set(first_validating_list) - set(block.validating_list))
@@ -2590,13 +2560,18 @@ class Test_Transactions(unittest.TestCase):
         DeletePending(transaction_frem_a_1_q_3)
 
     def test_cleaner_pending(self):
-
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
 
         SavePending(transaction_frem_a_0_j_3)
         SavePending(transaction_frem_a_0_a_4)
@@ -2606,7 +2581,12 @@ class Test_Transactions(unittest.TestCase):
 
         first_pending_list_txs = copy.copy(pending_list_txs)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
+        cleaned_lists = Cleaner(
+            block=block,
+            pending_list_txs=pending_list_txs,
+            custom_balance=10000000000000,
+            custom_sequence_number=-1,
+        )
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertNotEqual(len(first_pending_list_txs), len(pending_list_txs))
@@ -2628,63 +2608,68 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual([tx for tx in pending_list_txs],
                          [tx.__dict__ for tx in GetPending()])
 
-
-
         DeletePending(transaction_frem_a_0_j_3)
         DeletePending(transaction_frem_a_0_a_4)
         DeletePending(transaction_frem_a_1_q_3)
 
-
     def test_cleaner_pending_one(self):
-
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
-
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
 
         SavePending(transaction_frem_a_0_j_3)
-
 
         pending_list_txs = GetPending()
 
         first_pending_list_txs = copy.copy(pending_list_txs)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
+        cleaned_lists = Cleaner(
+            block=block,
+            pending_list_txs=pending_list_txs,
+            custom_balance=10000000000000,
+            custom_sequence_number=-1,
+        )
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertEqual(len(first_pending_list_txs), len(pending_list_txs))
         first_pending_list_txs = [tx.__dict__ for tx in first_pending_list_txs]
         pending_list_txs = [tx.__dict__ for tx in pending_list_txs]
 
-
         find_difference_dict = [
             x for x in first_pending_list_txs if x not in pending_list_txs
         ]
 
-
         self.assertEqual([tx for tx in pending_list_txs],
                          [tx.__dict__ for tx in GetPending()])
-
 
         DeletePending(transaction_frem_a_0_j_3)
         DeletePending(transaction_frem_a_0_a_4)
         DeletePending(transaction_frem_a_1_q_3)
 
     def test_cleaner_pending_one_delete(self):
-
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
-
+        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000,
+                                               150,
+                                               int(time.time()) + 3)
 
         SavePending(transaction_frem_a_0_j_3)
-
 
         pending_list_txs = GetPending()
 
@@ -2697,15 +2682,12 @@ class Test_Transactions(unittest.TestCase):
         first_pending_list_txs = [tx.__dict__ for tx in first_pending_list_txs]
         pending_list_txs = [tx.__dict__ for tx in pending_list_txs]
 
-
         find_difference_dict = [
             x for x in first_pending_list_txs if x not in pending_list_txs
         ]
 
-
         self.assertEqual([tx for tx in pending_list_txs],
                          [tx.__dict__ for tx in GetPending()])
-
 
         DeletePending(transaction_frem_a_0_j_3)
         DeletePending(transaction_frem_a_0_a_4)

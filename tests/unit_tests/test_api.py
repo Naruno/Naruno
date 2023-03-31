@@ -13,8 +13,6 @@ import time
 import zipfile
 from urllib import response
 
-
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import threading
 import unittest
@@ -23,31 +21,31 @@ import urllib
 import requests
 
 import naruno
-from naruno.accounts.get_sequence_number import GetSequanceNumber
 from naruno.accounts.account import Account
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.get_balance import GetBalance
+from naruno.accounts.get_sequence_number import GetSequanceNumber
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.api.main import start
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part)
+                                                 GetBlockshash_part)
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.config import (
-    CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH, LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH, LOADING_BLOCKSHASH_PATH,
-    MY_TRANSACTION_EXPORT_PATH, PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
+                           LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
+                           LOADING_BLOCKSHASH_PATH, MY_TRANSACTION_EXPORT_PATH,
+                           PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
+                           TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH,
+                           TEMP_BLOCKSHASH_PATH)
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
 from naruno.lib.mix.merkle_root import MerkleTree
-from naruno.lib.settings_system import (save_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+from naruno.lib.settings_system import (save_settings, t_mode_settings,
+                                        the_settings)
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.my_transactions.get_my_transaction import \
@@ -72,8 +70,7 @@ naruno.api.main.custom_balance = 100000
 
 naruno.api.main.custom_TEMP_BLOCK_PATH = "db/test_API_BLOCK_PATH.json"
 naruno.api.main.custom_TEMP_ACCOUNTS_PATH = "db/test_API_ACCOUNTS_PATH.json"
-naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = (
-    "db/test_API_BLOCKSHASH_PATH.json")
+naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = "db/test_API_BLOCKSHASH_PATH.json"
 naruno.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
     "db/test_API_BLOCKSHASH_PART_PATH.json")
 
@@ -379,13 +376,12 @@ class Test_API(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_send_coin_data_page(self):
-
         backup = GetMyTransaction()
         backup_settings = the_settings()
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -411,18 +407,17 @@ class Test_API(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
     def test_send_coin_data_page_data_no_arg(self):
-
         backup = GetMyTransaction()
         backup_settings = the_settings()
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -447,7 +442,7 @@ class Test_API(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -509,11 +504,9 @@ class Test_API(unittest.TestCase):
 
         temp_node = server("127.0.0.1", 10058)
         backup_1 = copy.copy(naruno.api.main.custom_server)
-        backup_2 = copy.copy(
-            naruno.api.main.custom_CONNECTED_NODES_PATH)
+        backup_2 = copy.copy(naruno.api.main.custom_CONNECTED_NODES_PATH)
         naruno.api.main.custom_server = temp_node
-        naruno.api.main.custom_CONNECTED_NODES_PATH = (
-            self.node_0.CONNECTED_NODES_PATH)
+        naruno.api.main.custom_CONNECTED_NODES_PATH = self.node_0.CONNECTED_NODES_PATH
         response = urllib.request.urlopen(
             "http://localhost:7777/node/connectmixdb")
         time.sleep(2)
@@ -596,20 +589,14 @@ class Test_API(unittest.TestCase):
         t_mode_settings(temp_settings["test_mode"])
 
     def test_block_get_page(self):
-
         backup_1 = copy.copy(naruno.api.main.custom_TEMP_BLOCK_PATH)
-        backup_2 = copy.copy(
-            naruno.api.main.custom_TEMP_ACCOUNTS_PATH)
-        backup_3 = copy.copy(
-            naruno.api.main.custom_TEMP_BLOCKSHASH_PATH)
-        backup_4 = copy.copy(
-            naruno.api.main.custom_TEMP_BLOCKSHASH_PART_PATH)
+        backup_2 = copy.copy(naruno.api.main.custom_TEMP_ACCOUNTS_PATH)
+        backup_3 = copy.copy(naruno.api.main.custom_TEMP_BLOCKSHASH_PATH)
+        backup_4 = copy.copy(naruno.api.main.custom_TEMP_BLOCKSHASH_PART_PATH)
 
         naruno.api.main.custom_TEMP_BLOCK_PATH = self.node_0.TEMP_BLOCK_PATH
-        naruno.api.main.custom_TEMP_ACCOUNTS_PATH = (
-            self.node_0.TEMP_ACCOUNTS_PATH)
-        naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = (
-            self.node_0.TEMP_BLOCKSHASH_PATH)
+        naruno.api.main.custom_TEMP_ACCOUNTS_PATH = self.node_0.TEMP_ACCOUNTS_PATH
+        naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = self.node_0.TEMP_BLOCKSHASH_PATH
         naruno.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
             self.node_0.TEMP_BLOCKSHASH_PART_PATH)
 
@@ -719,7 +706,7 @@ class Test_API(unittest.TestCase):
 
     def test_transaction_sended_validated_page(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "cf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False, validated=True)
@@ -748,11 +735,11 @@ class Test_API(unittest.TestCase):
             """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_transaction_sended_not_validated_page(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "df", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False, validated=False)
@@ -770,7 +757,7 @@ class Test_API(unittest.TestCase):
         result = response.read()
 
         result = json.loads(result)
-
+        print(result)
         self.assertEqual(
             result["0"]["transaction"]["data"],
             "{'data': 'dadata'}",
@@ -781,11 +768,11 @@ class Test_API(unittest.TestCase):
             """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_transaction_received_page(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "ff", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True, validated=True)
@@ -803,22 +790,22 @@ class Test_API(unittest.TestCase):
         result = response.read()
 
         result = json.loads(result)
-
+        print(result)
         self.assertEqual(
-            result["1"]["transaction"]["data"],
+            result["0"]["transaction"]["data"],
             "{'data': 'dadata'}",
         )
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
+            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_transaction_all_page(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "gf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True, validated=False)
@@ -836,9 +823,10 @@ class Test_API(unittest.TestCase):
         result = response.read()
 
         result = json.loads(result)
+        print(result)
 
         self.assertEqual(
-            result["0"]["transaction"]["data"],
+            result["2"]["transaction"]["data"],
             "",
         )
 
@@ -848,19 +836,18 @@ class Test_API(unittest.TestCase):
         )
 
         self.assertEqual(
-            result["2"]["transaction"]["data"],
+            result["0"]["transaction"]["data"],
             "{'data': 'dadata'}",
         )
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_GetProof_CheckProof_page(self):
-
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
         settings["save_blockshash"] = True
@@ -905,7 +892,7 @@ class Test_API(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
 
         hash_1 = CalculateHash(
@@ -924,7 +911,7 @@ class Test_API(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
 
         time.sleep(1)
@@ -937,7 +924,7 @@ class Test_API(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=True,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertTrue(result)
 
@@ -947,7 +934,7 @@ class Test_API(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -1015,7 +1002,6 @@ class Test_API(unittest.TestCase):
                 custom_BLOCKS_PATH_from_proof = (
                     "db/test_proof_extracted/db/" + file + "/")
                 for file_2 in os.listdir("db/test_proof_extracted/db/" + file):
-
                     list_of_files.append(file_2)
 
         self.assertIn("0.block.json", list_of_files)
@@ -1027,7 +1013,7 @@ class Test_API(unittest.TestCase):
         result_2 = GetBlockstoBlockchainDB(
             sequence_number=0,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH_from_proof,
-            dont_clean=True
+            dont_clean=True,
         )
         self.assertIsNot(result_2, False)
 
@@ -1076,7 +1062,7 @@ class Test_API(unittest.TestCase):
             True,
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_export_block_json_page(self):
         response = urllib.request.urlopen(
@@ -1091,7 +1077,6 @@ class Test_API(unittest.TestCase):
         )
 
     def test_sign_verify(self):
-
         request_body = {
             "data": "Onur Atakan",
             "password": "123",
@@ -1111,13 +1096,11 @@ class Test_API(unittest.TestCase):
         self.assertEqual(response[1], "Onur Atakan")
         self.assertEqual(response[2], wallet_import(-1, 3))
 
-
     def test_balance_page(self):
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
         settings["publisher_mode"] = True
         save_settings(settings)
-  
 
         response = urllib.request.urlopen(
             "http://localhost:7777/balance/get/?address=<addressb>")
@@ -1126,20 +1109,18 @@ class Test_API(unittest.TestCase):
         the_balance_int = float(
             (response_result.decode("utf-8")).replace("\n", ""))
 
-        save_settings(backup_the_settings)      
+        save_settings(backup_the_settings)
 
         self.assertEqual(
             the_balance_int,
             0.0,
         )
 
-
     def test_sequance_number_page(self):
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
         settings["publisher_mode"] = True
         save_settings(settings)
-  
 
         response = urllib.request.urlopen(
             "http://localhost:7777/sequence/get/?address=<address>")
@@ -1148,12 +1129,9 @@ class Test_API(unittest.TestCase):
         the_balance_int = int(
             (response_result.decode("utf-8")).replace("\n", ""))
 
-        save_settings(backup_the_settings)      
+        save_settings(backup_the_settings)
 
-        self.assertEqual(
-            the_balance_int,
-            1
-        )
+        self.assertEqual(the_balance_int, 1)
 
 
 unittest.main(exit=False)
