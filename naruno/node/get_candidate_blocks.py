@@ -27,22 +27,22 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
     for node in nodes:
         if node.candidate_block is not None:
 
-                if int(node.candidate_block["sequence_number"]) == block.sequence_number+block.empty_block_number:
-                    the_candidate_blocks.append(node.candidate_block)
-                else:
-                    for i in node.candidate_block_history:
-                        if i["sequence_number"] == block.sequence_number+block.empty_block_number:
-                            the_candidate_blocks.append(i)
+            if int(node.candidate_block["sequence_number"]) == block.sequence_number + block.empty_block_number:
+                the_candidate_blocks.append(node.candidate_block)
+            else:
+                for i in node.candidate_block_history:
+                    if i["sequence_number"] == block.sequence_number + block.empty_block_number:
+                        the_candidate_blocks.append(i)
         else:
             pass
         if node.candidate_block_hash is not None:
 
-                if int(node.candidate_block_hash["sequence_number"]) == block.sequence_number+block.empty_block_number:
-                    the_candidate_block_hashes.append(node.candidate_block_hash)
-                else:
-                    for i in node.candidate_block_hash_history:
-                        if i["sequence_number"] == block.sequence_number+block.empty_block_number:
-                            the_candidate_block_hashes.append(i)
+            if int(node.candidate_block_hash["sequence_number"]) == block.sequence_number + block.empty_block_number:
+                the_candidate_block_hashes.append(node.candidate_block_hash)
+            else:
+                for i in node.candidate_block_hash_history:
+                    if i["sequence_number"] == block.sequence_number + block.empty_block_number:
+                        the_candidate_block_hashes.append(i)
         else:
             pass
 
@@ -60,7 +60,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             "action": "myblock",
             "transaction": new_list,
             "signature": a_time,
-            "sequence_number": block.sequence_number+block.empty_block_number,
+            "sequence_number": block.sequence_number + block.empty_block_number,
         })
 
         the_candidate_block_hashes.append({
@@ -68,7 +68,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             "hash": block.hash,
             "previous_hash": block.previous_hash,
             "signature": a_time,
-            "sequence_number": block.sequence_number+block.empty_block_number,
+            "sequence_number": block.sequence_number + block.empty_block_number,
         })
 
     not_none_the_candidate_blocks = []
