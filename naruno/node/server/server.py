@@ -16,8 +16,7 @@ from shutil import move
 from threading import Thread
 
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.change_transaction_fee import \
-    ChangeTransactionFee
+from naruno.blockchain.block.change_transaction_fee import ChangeTransactionFee
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import CONNECTED_NODES_PATH
@@ -35,8 +34,7 @@ from naruno.lib.log import get_logger
 from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.node.client.client import client
 from naruno.node.unl import Unl
-from naruno.transactions.check.check_transaction import \
-    CheckTransaction
+from naruno.transactions.check.check_transaction import CheckTransaction
 from naruno.transactions.get_transaction import GetTransaction
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.ellipticcurve.ecdsa import Ecdsa
@@ -160,7 +158,6 @@ class server(Thread):
                 conn.send(the_id.encode("utf-8"))
                 client_id = data.decode("utf-8")
                 if Unl.node_is_unl(client_id):
-
                     logger.info(f"Added node: {client_id}")
                     self.clients.append(client(conn, addr, client_id, self))
                     self.save_connected_node(addr[0], addr[1], client_id)
@@ -378,7 +375,6 @@ class server(Thread):
             self.get_candidate_block_hash(data, node)
 
     def send_me_full_block(self, node=None):
-
         the_node = node if node is not None else random.choice(self.clients)
         self.send_client(the_node, {"action": "sendmefullblock"})
 
@@ -396,7 +392,8 @@ class server(Thread):
         data = {
             "action": "myblock",
             "transaction": new_list,
-            "sequence_number": system.sequence_number,
+            "sequence_number":
+            system.sequence_number + system.empty_block_number,
         }
         self.send(data)
 
@@ -407,7 +404,8 @@ class server(Thread):
             "action": "myblockhash",
             "hash": system.hash,
             "previous_hash": system.previous_hash,
-            "sequence_number": system.sequence_number,
+            "sequence_number":
+            system.sequence_number + system.empty_block_number,
         }
 
         self.send(data)
@@ -447,7 +445,6 @@ class server(Thread):
         file = open(self.TEMP_BLOCK_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
-
             data = {
                 "action": "fullblock",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
@@ -470,12 +467,10 @@ class server(Thread):
                     self.send_client(node, data)
 
     def send_full_accounts(self, node=None):
-
         the_TEMP_ACCOUNTS_PATH = self.TEMP_ACCOUNTS_PATH
         file = open(the_TEMP_ACCOUNTS_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
-
             data = {
                 "action": "fullaccounts",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
@@ -499,7 +494,6 @@ class server(Thread):
         file = open(the_TEMP_BLOCKSHASH_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
-
             data = {
                 "action": "fullblockshash",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
@@ -523,7 +517,6 @@ class server(Thread):
         file = open(the_TEMP_BLOCKSHASH_PART_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
-
             data = {
                 "action": "fullblockshash_part",
                 "byte": (SendData.decode(encoding="iso-8859-1")),
@@ -554,13 +547,10 @@ class server(Thread):
                 get_ok = True
 
         if get_ok:
-
             if str(data["byte"]) == "end":
-
                 move(self.LOADING_BLOCK_PATH, self.TEMP_BLOCK_PATH)
 
-                from naruno.consensus.consensus_main import \
-                    consensus_trigger
+                from naruno.consensus.consensus_main import consensus_trigger
                 from naruno.lib.perpetualtimer import perpetualTimer
 
                 system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
