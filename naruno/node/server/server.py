@@ -418,16 +418,19 @@ class server(Thread):
 
             node.candidate_block_history.append(copy.copy(
                 node.candidate_block))
-        print("dsadasdasdadaasda")
-        print(data["transaction"])
-        if len(node.candidate_block["transaction"]) <= len(
-                data["transaction"]):
             node.candidate_block = data
+        else:
+            if len(node.candidate_block["transaction"]) <= len(
+                    data["transaction"]):
+                node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node: client):
         if node.candidate_block_hash is None:
             node.candidate_block_hash = data
             return
+        
+        data["sender"] = node.id
+
         if data["sequence_number"] > node.candidate_block_hash[
                 "sequence_number"]:
             if len(node.candidate_block_hash_history) >= 5:
@@ -435,12 +438,10 @@ class server(Thread):
 
             node.candidate_block_hash_history.append(
                 copy.copy(node.candidate_block_hash))
-
-        data["sender"] = node.id
-        print("dsadaaasdasdadaasda")
-        print(data["hash"])        
-        if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
             node.candidate_block_hash = data
+        else:
+            if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
+                node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
