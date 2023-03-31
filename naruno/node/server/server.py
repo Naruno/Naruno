@@ -392,7 +392,7 @@ class server(Thread):
         data = {
             "action": "myblock",
             "transaction": new_list,
-            "sequence_number": system.sequence_number,
+            "sequence_number": system.sequence_number+system.empty_block_number,
         }
         self.send(data)
 
@@ -403,7 +403,7 @@ class server(Thread):
             "action": "myblockhash",
             "hash": system.hash,
             "previous_hash": system.previous_hash,
-            "sequence_number": system.sequence_number,
+            "sequence_number": system.sequence_number+system.empty_block_number,
         }
 
         self.send(data)
