@@ -45,6 +45,7 @@ from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("NODE")
 
+
 class server(Thread):
     Server = None
     id = wallet_import(0, 0)
@@ -404,12 +405,12 @@ class server(Thread):
 
         for element in new_list[1:]:
             data = {
-            "action": "myblock",
-            "transaction": new_list[0],
-            "total_length": len(new_list),
-            "sequence_number":
-            system.sequence_number + system.empty_block_number,
-            "adding": True,
+                "action": "myblock",
+                "transaction": new_list[0],
+                "total_length": len(new_list),
+                "sequence_number":
+                system.sequence_number + system.empty_block_number,
+                "adding": True,
             }
 
             self.send(data)
@@ -443,7 +444,7 @@ class server(Thread):
                     data["total_length"]):
                 logger.debug("New candidate block")
                 if len(node.candidate_block["total_length"]) == len(
-                    data["total_length"]):
+                        data["total_length"]):
                     if data["adding"]:
                         for element in data["transaction"]:
                             node.candidate_block["transaction"][element] = data["transaction"][element]
