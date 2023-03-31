@@ -46,6 +46,10 @@ from naruno.wallet.wallet_import import wallet_import
 logger = get_logger("NODE")
 
 
+a_block = Block("onur")
+buffer_size = (a_block.max_data_size // a_block.max_tx_number) * 1.5
+
+
 class server(Thread):
     Server = None
     id = wallet_import(0, 0)
@@ -153,7 +157,7 @@ class server(Thread):
                 conn, addr = self.sock.accept()
                 logger.info(
                     f"NODE:{self.host}:{self.port} New connection: {addr}")
-                data = conn.recv(1024)
+                data = conn.recv(buffer_size)
                 the_id = server.id if self.custom_id is None else self.custom_id
                 conn.send(the_id.encode("utf-8"))
                 client_id = data.decode("utf-8")
@@ -270,7 +274,7 @@ class server(Thread):
             conn.connect(addr)
             conn.send(server.id.encode("utf-8"))
             try:
-                client_id = conn.recv(1024).decode("utf-8")
+                client_id = conn.recv(buffer_size).decode("utf-8")
                 if Unl.node_is_unl(client_id):
                     self.clients.append(client(conn, addr, client_id, self))
                     self.save_connected_node(addr[0], addr[1], client_id)
@@ -477,7 +481,7 @@ class server(Thread):
                     f"Sending full chain to {node.id}:{node.host}:{node.port}")
         logger.debug(log_text)
         file = open(self.TEMP_BLOCK_PATH, "rb")
-        SendData = file.read(1024)
+        SendData = file.read(buffer_size)
         while SendData:
             data = {
                 "action": "fullblock",
@@ -488,7 +492,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(1024)
+            SendData = file.read(buffer_size)
 
             if not SendData:
                 data = {
@@ -503,7 +507,7 @@ class server(Thread):
     def send_full_accounts(self, node=None):
         the_TEMP_ACCOUNTS_PATH = self.TEMP_ACCOUNTS_PATH
         file = open(the_TEMP_ACCOUNTS_PATH, "rb")
-        SendData = file.read(1024)
+        SendData = file.read(buffer_size)
         while SendData:
             data = {
                 "action": "fullaccounts",
@@ -515,7 +519,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(1024)
+            SendData = file.read(buffer_size)
             if not SendData:
                 data = {"action": "fullaccounts", "byte": "end"}
                 if node is None:
@@ -526,7 +530,7 @@ class server(Thread):
     def send_full_blockshash(self, node=None):
         the_TEMP_BLOCKSHASH_PATH = self.TEMP_BLOCKSHASH_PATH
         file = open(the_TEMP_BLOCKSHASH_PATH, "rb")
-        SendData = file.read(1024)
+        SendData = file.read(buffer_size)
         while SendData:
             data = {
                 "action": "fullblockshash",
@@ -537,7 +541,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(1024)
+            SendData = file.read(buffer_size)
 
             if not SendData:
                 data = {"action": "fullblockshash", "byte": "end"}
@@ -549,7 +553,7 @@ class server(Thread):
     def send_full_blockshash_part(self, node=None):
         the_TEMP_BLOCKSHASH_PART_PATH = self.TEMP_BLOCKSHASH_PART_PATH
         file = open(the_TEMP_BLOCKSHASH_PART_PATH, "rb")
-        SendData = file.read(1024)
+        SendData = file.read(buffer_size)
         while SendData:
             data = {
                 "action": "fullblockshash_part",
@@ -560,7 +564,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(1024)
+            SendData = file.read(buffer_size)
 
             if not SendData:
                 data = {"action": "fullblockshash_part", "byte": "end"}
