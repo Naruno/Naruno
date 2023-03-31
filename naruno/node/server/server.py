@@ -392,8 +392,7 @@ class server(Thread):
         data = {
             "action": "myblock",
             "transaction": new_list,
-            "sequence_number":
-            system.sequence_number + system.empty_block_number,
+            "sequence_number": system.sequence_number,
         }
         self.send(data)
 
@@ -404,8 +403,7 @@ class server(Thread):
             "action": "myblockhash",
             "hash": system.hash,
             "previous_hash": system.previous_hash,
-            "sequence_number":
-            system.sequence_number + system.empty_block_number,
+            "sequence_number": system.sequence_number,
         }
 
         self.send(data)
@@ -420,7 +418,8 @@ class server(Thread):
 
             node.candidate_block_history.append(copy.copy(
                 node.candidate_block))
-        if len(node.candidate_block["transaction"]) <= len(data["transaction"]):
+        if len(node.candidate_block["transaction"]) <= len(
+                data["transaction"]):
             node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node: client):
@@ -438,7 +437,6 @@ class server(Thread):
         data["sender"] = node.id
         if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
             node.candidate_block_hash = data
-
 
     def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
