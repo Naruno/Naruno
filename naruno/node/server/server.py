@@ -231,6 +231,7 @@ class server(Thread):
     def check_message(self, data):
         if "id" not in data:
             logger.debug("No id")
+            logger.debug(data)
             return False
         if "signature" not in data:
             logger.debug("No signature")
@@ -422,6 +423,7 @@ class server(Thread):
         else:
             if len(node.candidate_block["transaction"]) <= len(
                     data["transaction"]):
+                logger.debug("New candidate block")
                 node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node: client):
@@ -441,6 +443,7 @@ class server(Thread):
             node.candidate_block_hash = data
         else:
             if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
+                logger.debug("New candidate block hash")
                 node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
