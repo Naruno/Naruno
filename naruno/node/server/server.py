@@ -47,7 +47,7 @@ logger = get_logger("NODE")
 
 
 a_block = Block("onur")
-buffer_size = (a_block.max_data_size // a_block.max_tx_number) * 1.5
+buffer_size = int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
 
 
 class server(Thread):
