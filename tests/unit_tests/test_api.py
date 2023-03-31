@@ -14,7 +14,6 @@ import zipfile
 from urllib import response
 
 
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import threading
 import unittest
@@ -31,7 +30,7 @@ from naruno.accounts.save_accounts import SaveAccounts
 from naruno.api.main import start
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part)
+                                                 GetBlockshash_part)
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
@@ -46,8 +45,8 @@ from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
 from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.lib.settings_system import (save_settings,
-                                                  t_mode_settings,
-                                                  the_settings)
+                                        t_mode_settings,
+                                        the_settings)
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.my_transactions.get_my_transaction import \
@@ -911,8 +910,8 @@ class Test_API(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1112,13 +1111,11 @@ class Test_API(unittest.TestCase):
         self.assertEqual(response[1], "Onur Atakan")
         self.assertEqual(response[2], wallet_import(-1, 3))
 
-
     def test_balance_page(self):
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
         settings["publisher_mode"] = True
         save_settings(settings)
-  
 
         response = urllib.request.urlopen(
             "http://localhost:7777/balance/get/?address=<addressb>")
@@ -1127,20 +1124,18 @@ class Test_API(unittest.TestCase):
         the_balance_int = float(
             (response_result.decode("utf-8")).replace("\n", ""))
 
-        save_settings(backup_the_settings)      
+        save_settings(backup_the_settings)
 
         self.assertEqual(
             the_balance_int,
             0.0,
         )
 
-
     def test_sequance_number_page(self):
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
         settings["publisher_mode"] = True
         save_settings(settings)
-  
 
         response = urllib.request.urlopen(
             "http://localhost:7777/sequence/get/?address=<address>")
@@ -1149,7 +1144,7 @@ class Test_API(unittest.TestCase):
         the_balance_int = int(
             (response_result.decode("utf-8")).replace("\n", ""))
 
-        save_settings(backup_the_settings)      
+        save_settings(backup_the_settings)
 
         self.assertEqual(
             the_balance_int,

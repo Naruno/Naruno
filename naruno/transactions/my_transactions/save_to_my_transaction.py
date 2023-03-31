@@ -66,8 +66,6 @@ def SavetoMyTransaction(
                     tx_list[1] = validated
                     tx_list[2] = sended
 
-
-
     SaveMyTransaction(currently_list)
 
     return currently_list

@@ -20,8 +20,8 @@ from naruno.accounts.get_balance import GetBalance
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash_part)
+                                                 GetBlockshash_part,
+                                                 SaveBlockshash_part)
 from naruno.blockchain.block.change_transaction_fee import \
     ChangeTransactionFee
 from naruno.blockchain.block.get_block_from_blockchain_db import \
@@ -52,7 +52,7 @@ from naruno.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
 from naruno.transactions.pending.delete_pending import DeletePending
 from naruno.transactions.pending.get_pending import (GetPending,
-                                                               GetPendingLen)
+                                                     GetPendingLen)
 from naruno.transactions.pending.save_pending import SavePending
 from naruno.transactions.pending_to_validating import \
     PendingtoValidating
@@ -1602,10 +1602,10 @@ class Test_Transactions(unittest.TestCase):
             Account("73cd109827c0de9fa211c0d062eab13584ea6bb8", 100000),
             temp_path)
         SaveAccounts(
-            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000), #B
+            Account("08fe9bfc6521565c601a3785c5f5fb0a406279e6", 100000),  # B
             temp_path)
         SaveAccounts(
-            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000), #C
+            Account("6a4236cba1002b2919651677c7c520b67627aa2a", 100000),  # C
             temp_path)
         SaveAccounts(
             Account("d10d419bae75549222c5ffead625a9e0246ad3e6", 100000),
@@ -1657,13 +1657,10 @@ class Test_Transactions(unittest.TestCase):
                          "73cd109827c0de9fa211c0d062eab13584ea6bb8")
         self.assertEqual(account_list[1][1], 1)
 
-
-
         self.assertEqual(account_list[2][2], 94999.98)
         self.assertEqual(account_list[2][0],
-                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6") #B
+                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6")  # B
         self.assertEqual(account_list[2][1], 1)
-
 
         self.assertEqual(account_list[3][2], 94999.98)
         self.assertEqual(account_list[3][0],
@@ -1772,8 +1769,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1902,7 +1899,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
         the_transaction_a = copy.copy(the_transaction)
-        the_transaction_a.signature = "aa"        
+        the_transaction_a.signature = "aa"
         block.validating_list = [the_transaction, the_transaction_a]
         SaveBlock(
             block,
@@ -1915,8 +1912,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2068,8 +2065,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -2128,8 +2124,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2286,8 +2282,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -2336,7 +2331,7 @@ class Test_Transactions(unittest.TestCase):
         the_transaction = Transaction.load_json(the_transaction_json)
         the_transaction.fromUser = wallet_import(-1, 0)
         the_transaction_a = copy.copy(the_transaction)
-        the_transaction_a.signature = "aa"     
+        the_transaction_a.signature = "aa"
         block.validating_list = [the_transaction, the_transaction_a]
         SaveBlock(
             block,
@@ -2349,8 +2344,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2507,8 +2502,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result + "onur",
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             None,
         )
@@ -2523,9 +2517,12 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
+        transaction_frem_a_0_j_3 = Transaction(
+            0, "j", "a", "", "", 100000, 150, int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(
+            0, "a", "a", "", "", 100000, 150, int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(
+            1, "q", "a", "", "", 100000, 150, int(time.time()) + 3)
 
         block.validating_list = [
             transaction_frem_a_0_j_3,
@@ -2536,7 +2533,8 @@ class Test_Transactions(unittest.TestCase):
 
         first_validating_list = copy.copy(block.validating_list)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs,
+                                custom_balance=10000000000000, custom_sequence_number=-1)
         block.validating_list = cleaned_lists[0]
 
         self.assertNotEqual(len(first_validating_list),
@@ -2561,10 +2559,12 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
-
+        transaction_frem_a_0_j_3 = Transaction(
+            0, "j", "a", "", "", 100000, 150, int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(
+            0, "a", "a", "", "", 100000, 150, int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(
+            1, "q", "a", "", "", 100000, 150, int(time.time()) + 3)
 
         block.validating_list = [
             transaction_frem_a_0_j_3,
@@ -2573,11 +2573,12 @@ class Test_Transactions(unittest.TestCase):
 
         first_validating_list = copy.copy(block.validating_list)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs,
+                                custom_balance=10000000000000, custom_sequence_number=-1)
         block.validating_list = cleaned_lists[0]
 
         self.assertEqual(len(first_validating_list),
-                            len(block.validating_list))
+                         len(block.validating_list))
 
         find_difference = list(
             set(first_validating_list) - set(block.validating_list))
@@ -2594,9 +2595,12 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
+        transaction_frem_a_0_j_3 = Transaction(
+            0, "j", "a", "", "", 100000, 150, int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(
+            0, "a", "a", "", "", 100000, 150, int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(
+            1, "q", "a", "", "", 100000, 150, int(time.time()) + 3)
 
         SavePending(transaction_frem_a_0_j_3)
         SavePending(transaction_frem_a_0_a_4)
@@ -2606,7 +2610,8 @@ class Test_Transactions(unittest.TestCase):
 
         first_pending_list_txs = copy.copy(pending_list_txs)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs,
+                                custom_balance=10000000000000, custom_sequence_number=-1)
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertNotEqual(len(first_pending_list_txs), len(pending_list_txs))
@@ -2628,46 +2633,42 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual([tx for tx in pending_list_txs],
                          [tx.__dict__ for tx in GetPending()])
 
-
-
         DeletePending(transaction_frem_a_0_j_3)
         DeletePending(transaction_frem_a_0_a_4)
         DeletePending(transaction_frem_a_1_q_3)
-
 
     def test_cleaner_pending_one(self):
 
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
-
+        transaction_frem_a_0_j_3 = Transaction(
+            0, "j", "a", "", "", 100000, 150, int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(
+            0, "a", "a", "", "", 100000, 150, int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(
+            1, "q", "a", "", "", 100000, 150, int(time.time()) + 3)
 
         SavePending(transaction_frem_a_0_j_3)
-
 
         pending_list_txs = GetPending()
 
         first_pending_list_txs = copy.copy(pending_list_txs)
 
-        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs, custom_balance=10000000000000, custom_sequence_number=-1)
+        cleaned_lists = Cleaner(block=block, pending_list_txs=pending_list_txs,
+                                custom_balance=10000000000000, custom_sequence_number=-1)
         block.validating_list = cleaned_lists[0]
         pending_list_txs = cleaned_lists[1]
         self.assertEqual(len(first_pending_list_txs), len(pending_list_txs))
         first_pending_list_txs = [tx.__dict__ for tx in first_pending_list_txs]
         pending_list_txs = [tx.__dict__ for tx in pending_list_txs]
 
-
         find_difference_dict = [
             x for x in first_pending_list_txs if x not in pending_list_txs
         ]
 
-
         self.assertEqual([tx for tx in pending_list_txs],
                          [tx.__dict__ for tx in GetPending()])
-
 
         DeletePending(transaction_frem_a_0_j_3)
         DeletePending(transaction_frem_a_0_a_4)
@@ -2678,13 +2679,14 @@ class Test_Transactions(unittest.TestCase):
         block = Block("")
         block.max_tx_number = 2
 
-        transaction_frem_a_0_j_3 = Transaction(0, "j", "a", "", "", 100000, 150, int(time.time())+3)
-        transaction_frem_a_0_a_4 = Transaction(0, "a", "a", "", "", 100000, 150, int(time.time())+4)
-        transaction_frem_a_1_q_3 = Transaction(1, "q", "a", "", "", 100000, 150, int(time.time())+3)
-
+        transaction_frem_a_0_j_3 = Transaction(
+            0, "j", "a", "", "", 100000, 150, int(time.time()) + 3)
+        transaction_frem_a_0_a_4 = Transaction(
+            0, "a", "a", "", "", 100000, 150, int(time.time()) + 4)
+        transaction_frem_a_1_q_3 = Transaction(
+            1, "q", "a", "", "", 100000, 150, int(time.time()) + 3)
 
         SavePending(transaction_frem_a_0_j_3)
-
 
         pending_list_txs = GetPending()
 
@@ -2697,15 +2699,12 @@ class Test_Transactions(unittest.TestCase):
         first_pending_list_txs = [tx.__dict__ for tx in first_pending_list_txs]
         pending_list_txs = [tx.__dict__ for tx in pending_list_txs]
 
-
         find_difference_dict = [
             x for x in first_pending_list_txs if x not in pending_list_txs
         ]
 
-
         self.assertEqual([tx for tx in pending_list_txs],
                          [tx.__dict__ for tx in GetPending()])
-
 
         DeletePending(transaction_frem_a_0_j_3)
         DeletePending(transaction_frem_a_0_a_4)
