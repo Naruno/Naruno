@@ -44,6 +44,6 @@ class candidate_block:
         for block in self.candidate_blocks:
             temp_tx = [
                 Transaction.load_json(element)
-                for element in block["transaction"]
+                for element in block["transaction"] if type(element) is dict
             ]
             block["transaction"] = temp_tx
