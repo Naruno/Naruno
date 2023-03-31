@@ -24,7 +24,7 @@ class candidate_block:
         self.candidate_block_hashes = []
         self.candidate_blocks.extend(candidate_blocks)
         self.candidate_block_hashes.extend(candidate_block_hashes)
-
+    
         #turn list items json dumps
         for i in range(len(self.candidate_blocks)):
             self.candidate_blocks[i] = json.dumps(self.candidate_blocks[i])

@@ -440,6 +440,9 @@ class server(Thread):
                 copy.copy(node.candidate_block_hash))
             node.candidate_block_hash = data
         else:
+            print("asdadasda21ad")
+            print(len(node.candidate_block_hash["hash"]) )
+            print(len(data["hash"]))
             if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
                 node.candidate_block_hash = data
 
