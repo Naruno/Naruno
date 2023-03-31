@@ -71,7 +71,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_non(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         result = GetMyTransaction()
 
@@ -124,7 +124,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_sended(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "af", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False)
@@ -141,7 +141,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "bf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, validated=False)
@@ -158,7 +158,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_sended_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "cf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False, validated=True)
@@ -179,7 +179,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_sended_no_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "df", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False, validated=False)
@@ -200,7 +200,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_received(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "ef", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True)
@@ -217,7 +217,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_received_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "ff", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True, validated=True)
@@ -239,7 +239,7 @@ class Test_Transactions(unittest.TestCase):
 
     def test_get_my_transaction_just_received_no_validated(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "gf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True, validated=False)

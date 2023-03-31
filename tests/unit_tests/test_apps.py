@@ -330,7 +330,7 @@ class Test_apps(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -390,7 +390,7 @@ class Test_apps(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
 
@@ -448,7 +448,7 @@ class Test_apps(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -518,7 +518,7 @@ class Test_apps(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(

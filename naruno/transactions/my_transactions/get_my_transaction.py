@@ -27,7 +27,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     # find the my transaction folder with os scandir
     for entry in os.scandir(MY_TRANSACTION_PATH):
         if entry.name != "README.md" and not entry.name.startswith("validated") and not entry.name.startswith("sended"):
-            print(entry.path)
+
             the_transactions_json = json.load(open(entry.path, "r"))
             # Find "validatedentry.name" and "sendedentry.name" files
             each_validated = False
@@ -42,10 +42,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
                 each_sended,
             ])
     
-    
-    print("\nresult list :", the_transactions)
-    print("sended :", sended)
-    print("validated :", validated)
+
     if sended is not None:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
 

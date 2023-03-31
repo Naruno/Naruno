@@ -385,7 +385,7 @@ class Test_API(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -422,7 +422,7 @@ class Test_API(unittest.TestCase):
 
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
-        SaveMyTransaction([])
+        SaveMyTransaction([], clear=True)
 
         password = "123"
         response = urllib.request.urlopen(
@@ -719,7 +719,7 @@ class Test_API(unittest.TestCase):
 
     def test_transaction_sended_validated_page(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "cf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False, validated=True)
@@ -752,7 +752,7 @@ class Test_API(unittest.TestCase):
 
     def test_transaction_sended_not_validated_page(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "df", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=False, validated=False)
@@ -770,7 +770,7 @@ class Test_API(unittest.TestCase):
         result = response.read()
 
         result = json.loads(result)
-
+        print(result)
         self.assertEqual(
             result["0"]["transaction"]["data"],
             "{'data': 'dadata'}",
@@ -785,7 +785,7 @@ class Test_API(unittest.TestCase):
 
     def test_transaction_received_page(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "ff", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True, validated=True)
@@ -803,22 +803,22 @@ class Test_API(unittest.TestCase):
         result = response.read()
 
         result = json.loads(result)
-
+        print(result)
         self.assertEqual(
-            result["1"]["transaction"]["data"],
+            result["0"]["transaction"]["data"],
             "{'data': 'dadata'}",
         )
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
+            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
         SaveMyTransaction(backup, clear=True)
 
     def test_transaction_all_page(self):
         backup = GetMyTransaction()
-        SaveMyTransaction({})
+        SaveMyTransaction([], clear=True)
 
         new_transaction = Transaction(1, "gf", "", "", "", 1, 1, 1)
         SavetoMyTransaction(new_transaction, sended=True, validated=False)
@@ -836,9 +836,10 @@ class Test_API(unittest.TestCase):
         result = response.read()
 
         result = json.loads(result)
+        print(result)
 
         self.assertEqual(
-            result["0"]["transaction"]["data"],
+            result["2"]["transaction"]["data"],
             "",
         )
 
@@ -848,13 +849,13 @@ class Test_API(unittest.TestCase):
         )
 
         self.assertEqual(
-            result["2"]["transaction"]["data"],
+            result["0"]["transaction"]["data"],
             "{'data': 'dadata'}",
         )
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
         SaveMyTransaction(backup, clear=True)
