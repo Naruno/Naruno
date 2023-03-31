@@ -418,6 +418,8 @@ class server(Thread):
 
             node.candidate_block_history.append(copy.copy(
                 node.candidate_block))
+        print("dsadasdasdadaasda")
+        print(data["transaction"])
         if len(node.candidate_block["transaction"]) <= len(
                 data["transaction"]):
             node.candidate_block = data
@@ -435,6 +437,8 @@ class server(Thread):
                 copy.copy(node.candidate_block_hash))
 
         data["sender"] = node.id
+        print("dsadaaasdasdadaasda")
+        print(data["transaction"])        
         if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
             node.candidate_block_hash = data
 
