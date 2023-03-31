@@ -11,8 +11,10 @@ from typing import List
 from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.notification import notification
-from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
-from naruno.transactions.my_transactions.save_my_transaction import SaveMyTransaction
+from naruno.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from naruno.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address
 

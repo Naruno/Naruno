@@ -4,15 +4,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from hashlib import sha256
+import copy
 import json
 import os
-import copy
 import time
+from hashlib import sha256
 
 from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
-from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
+from naruno.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
 
 
 def SaveMyTransaction(transaction_list, clear=False):
