@@ -387,13 +387,17 @@ class server(Thread):
         signature_list = []
 
         for element in system.validating_list:
-            new_list.append(element.dump_json())
+            a
+            tx_json = element.dump_json()
+            tx_json["data"] = ""
+            new_list.append(tx_json)
             signature_list.append(element.signature)
 
         data = {
             "action": "myblock",
             "transaction": new_list,
-            "sequence_number": system.sequence_number+system.empty_block_number,
+            "sequence_number":
+            system.sequence_number + system.empty_block_number,
         }
         self.send(data)
 
@@ -404,7 +408,8 @@ class server(Thread):
             "action": "myblockhash",
             "hash": system.hash,
             "previous_hash": system.previous_hash,
-            "sequence_number": system.sequence_number+system.empty_block_number,
+            "sequence_number":
+            system.sequence_number + system.empty_block_number,
         }
 
         self.send(data)
@@ -430,7 +435,7 @@ class server(Thread):
         if node.candidate_block_hash is None:
             node.candidate_block_hash = data
             return
-        
+
         data["sender"] = node.id
 
         if data["sequence_number"] > node.candidate_block_hash[
