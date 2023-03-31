@@ -392,7 +392,6 @@ class server(Thread):
 
         for element in system.validating_list:
             tx_json = element.dump_json()
-            tx_json["data"] = ""
             new_list.append(tx_json)
             signature_list.append(element.signature)
 
