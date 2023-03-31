@@ -45,7 +45,6 @@ from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("NODE")
 
-
 class server(Thread):
     Server = None
     id = wallet_import(0, 0)
@@ -394,11 +393,26 @@ class server(Thread):
 
         data = {
             "action": "myblock",
-            "transaction": new_list,
+            "transaction": new_list[0],
+            "total_length": len(new_list),
             "sequence_number":
             system.sequence_number + system.empty_block_number,
+            "adding": False,
         }
+
         self.send(data)
+
+        for element in new_list[1:]:
+            data = {
+            "action": "myblock",
+            "transaction": new_list[0],
+            "total_length": len(new_list),
+            "sequence_number":
+            system.sequence_number + system.empty_block_number,
+            "adding": True,
+            }
+
+            self.send(data)
 
     def send_my_block_hash(self, block):
         system = block
@@ -425,10 +439,16 @@ class server(Thread):
                 node.candidate_block))
             node.candidate_block = data
         else:
-            if len(node.candidate_block["transaction"]) <= len(
-                    data["transaction"]):
+            if len(node.candidate_block["total_length"]) <= len(
+                    data["total_length"]):
                 logger.debug("New candidate block")
-                node.candidate_block = data
+                if len(node.candidate_block["total_length"]) == len(
+                    data["total_length"]):
+                    if data["adding"]:
+                        for element in data["transaction"]:
+                            node.candidate_block["transaction"][element] = data["transaction"][element]
+                else:
+                    node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node: client):
         if node.candidate_block_hash is None:
