@@ -438,7 +438,7 @@ class server(Thread):
 
         data["sender"] = node.id
         print("dsadaaasdasdadaasda")
-        print(data["transaction"])        
+        print(data["hash"])        
         if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
             node.candidate_block_hash = data
 
