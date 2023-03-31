@@ -339,7 +339,7 @@ class Test_Consensus(unittest.TestCase):
         for each_result in result:
             result[result.index(each_result)][0] = result[result.index(
                 each_result)][0].dump_json()
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_wallet_list(original_saved_wallets)
         print("result ", result)
         self.assertEqual(
@@ -487,7 +487,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertEqual(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_finished_main_no_save_0(self):
         backup = GetMyTransaction()
@@ -554,7 +554,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertNotEqual(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_finished_main_save_from(self):
         backup_the_settings = the_settings()
@@ -622,7 +622,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertIsNot(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         settings = the_settings()
         self.assertEqual(settings["save_blockshash"], True)
@@ -695,7 +695,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertIsNot(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         settings = the_settings()
         self.assertEqual(settings["save_blockshash"], True)
@@ -782,7 +782,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertIsNot(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
@@ -860,7 +860,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertIsNot(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
@@ -954,7 +954,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertIsNot(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
@@ -1034,7 +1034,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
@@ -1187,7 +1187,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertIsNot(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
@@ -1319,7 +1319,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertEqual(result_2, False)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         the_blockshash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)

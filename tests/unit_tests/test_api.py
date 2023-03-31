@@ -411,7 +411,7 @@ class Test_API(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -447,7 +447,7 @@ class Test_API(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -748,7 +748,7 @@ class Test_API(unittest.TestCase):
             """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_transaction_sended_not_validated_page(self):
         backup = GetMyTransaction()
@@ -781,7 +781,7 @@ class Test_API(unittest.TestCase):
             """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_transaction_received_page(self):
         backup = GetMyTransaction()
@@ -814,7 +814,7 @@ class Test_API(unittest.TestCase):
             """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_transaction_all_page(self):
         backup = GetMyTransaction()
@@ -857,7 +857,7 @@ class Test_API(unittest.TestCase):
             """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_GetProof_CheckProof_page(self):
 
@@ -1076,7 +1076,7 @@ class Test_API(unittest.TestCase):
             True,
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_export_block_json_page(self):
         response = urllib.request.urlopen(

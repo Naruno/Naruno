@@ -30,7 +30,7 @@ PENDING_TRANSACTIONS_PATH = "db/pending_transactions/"
 
 WALLETS_PATH = "db/wallet_list.json"
 
-MY_TRANSACTION_PATH = "db/my_transaction.naruno.json"
+MY_TRANSACTION_PATH = "db/my_transactions/"
 
 # Export
 MY_TRANSACTION_EXPORT_PATH = "db/my_transaction.csv"

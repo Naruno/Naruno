@@ -75,7 +75,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result, [])
 
     def test_get_my_transaction_not_validated(self):
@@ -85,7 +85,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
 
@@ -96,7 +96,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], True)
 
@@ -107,7 +107,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], False)
 
@@ -118,7 +118,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], True)
 
@@ -134,7 +134,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=True)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], True)
@@ -151,7 +151,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(validated=True)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], True)
@@ -171,7 +171,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=True, validated=True)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], True)
@@ -192,7 +192,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=True, validated=False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
@@ -210,7 +210,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][2], False)
@@ -230,7 +230,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=False, validated=True)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
@@ -252,7 +252,7 @@ class Test_Transactions(unittest.TestCase):
 
         result = GetMyTransaction(sended=False, validated=False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
@@ -269,7 +269,7 @@ class Test_Transactions(unittest.TestCase):
 
         result_2 = GetMyTransaction()
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         self.assertEqual(result[0][0].signature, new_transaction.signature)
         self.assertEqual(result[0][1], False)
 
@@ -1863,7 +1863,7 @@ class Test_Transactions(unittest.TestCase):
         )
 
         self.assertIsNone(result)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_GetProof_CheckProof(self):
         backup_the_settings = the_settings()
@@ -2074,7 +2074,7 @@ class Test_Transactions(unittest.TestCase):
             True,
         )
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_GetProof_CheckProof_false(self):
         backup_the_settings = the_settings()
@@ -2295,7 +2295,7 @@ class Test_Transactions(unittest.TestCase):
             CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part),
             False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_GetProof_CheckProof_none(self):
         backup_the_settings = the_settings()
@@ -2516,7 +2516,7 @@ class Test_Transactions(unittest.TestCase):
             CheckProof(result, custom_TEMP_BLOCKSHASH_PART_PATH=false_part),
             False)
 
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
 
     def test_cleaner_validating_list(self):
 

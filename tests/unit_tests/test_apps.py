@@ -371,7 +371,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -429,7 +429,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -499,7 +499,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 
@@ -577,7 +577,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(len(new_my_transactions), 1)
 
         DeletePending(the_tx)
-        SaveMyTransaction(backup)
+        SaveMyTransaction(backup, clear=True)
         save_settings(backup_settings)
         save_wallet_list(original_saved_wallets)
 

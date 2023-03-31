@@ -45,6 +45,7 @@ def SavetoMyTransaction(
                 new = False
 
         if new:
+
             if not sended and validated:
                 notification(
                     "Incoming TX",
@@ -58,11 +59,14 @@ def SavetoMyTransaction(
 
             tx_list = [tx, validated, sended]
             currently_list.append(tx_list)
+
         else:
             for tx_list in currently_list:
                 if tx_list[0].signature == tx.signature:
                     tx_list[1] = validated
                     tx_list[2] = sended
+
+
 
     SaveMyTransaction(currently_list)
 
