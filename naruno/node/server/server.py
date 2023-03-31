@@ -91,41 +91,58 @@ class server(Thread):
         self.our_messages = []
         self.save_messages = save_messages
 
-        self.TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH
-                                if custom_TEMP_BLOCK_PATH is None else
-                                custom_TEMP_BLOCK_PATH)
-        self.TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                                   if custom_TEMP_ACCOUNTS_PATH is None else
-                                   custom_TEMP_ACCOUNTS_PATH)
-        self.TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
-                                     if custom_TEMP_BLOCKSHASH_PATH is None
-                                     else custom_TEMP_BLOCKSHASH_PATH)
+        self.TEMP_BLOCK_PATH = (
+            TEMP_BLOCK_PATH
+            if custom_TEMP_BLOCK_PATH is None
+            else custom_TEMP_BLOCK_PATH
+        )
+        self.TEMP_ACCOUNTS_PATH = (
+            TEMP_ACCOUNTS_PATH
+            if custom_TEMP_ACCOUNTS_PATH is None
+            else custom_TEMP_ACCOUNTS_PATH
+        )
+        self.TEMP_BLOCKSHASH_PATH = (
+            TEMP_BLOCKSHASH_PATH
+            if custom_TEMP_BLOCKSHASH_PATH is None
+            else custom_TEMP_BLOCKSHASH_PATH
+        )
         self.TEMP_BLOCKSHASH_PART_PATH = (
             TEMP_BLOCKSHASH_PART_PATH
-            if custom_TEMP_BLOCKSHASH_PART_PATH is None else
-            custom_TEMP_BLOCKSHASH_PART_PATH)
-        self.LOADING_BLOCK_PATH = (LOADING_BLOCK_PATH
-                                   if custom_LOADING_BLOCK_PATH is None else
-                                   custom_LOADING_BLOCK_PATH)
-        self.LOADING_ACCOUNTS_PATH = (LOADING_ACCOUNTS_PATH
-                                      if custom_LOADING_ACCOUNTS_PATH is None
-                                      else custom_LOADING_ACCOUNTS_PATH)
-        self.LOADING_BLOCKSHASH_PATH = (LOADING_BLOCKSHASH_PATH if
-                                        custom_LOADING_BLOCKSHASH_PATH is None
-                                        else custom_LOADING_BLOCKSHASH_PATH)
+            if custom_TEMP_BLOCKSHASH_PART_PATH is None
+            else custom_TEMP_BLOCKSHASH_PART_PATH
+        )
+        self.LOADING_BLOCK_PATH = (
+            LOADING_BLOCK_PATH
+            if custom_LOADING_BLOCK_PATH is None
+            else custom_LOADING_BLOCK_PATH
+        )
+        self.LOADING_ACCOUNTS_PATH = (
+            LOADING_ACCOUNTS_PATH
+            if custom_LOADING_ACCOUNTS_PATH is None
+            else custom_LOADING_ACCOUNTS_PATH
+        )
+        self.LOADING_BLOCKSHASH_PATH = (
+            LOADING_BLOCKSHASH_PATH
+            if custom_LOADING_BLOCKSHASH_PATH is None
+            else custom_LOADING_BLOCKSHASH_PATH
+        )
         self.LOADING_BLOCKSHASH_PART_PATH = (
             LOADING_BLOCKSHASH_PART_PATH
-            if custom_LOADING_BLOCKSHASH_PART_PATH is None else
-            custom_LOADING_BLOCKSHASH_PART_PATH)
+            if custom_LOADING_BLOCKSHASH_PART_PATH is None
+            else custom_LOADING_BLOCKSHASH_PART_PATH
+        )
 
-        self.CONNECTED_NODES_PATH = (CONNECTED_NODES_PATH
-                                     if custom_CONNECTED_NODES_PATH is None
-                                     else custom_CONNECTED_NODES_PATH)
+        self.CONNECTED_NODES_PATH = (
+            CONNECTED_NODES_PATH
+            if custom_CONNECTED_NODES_PATH is None
+            else custom_CONNECTED_NODES_PATH
+        )
 
         self.PENDING_TRANSACTIONS_PATH = (
             PENDING_TRANSACTIONS_PATH
-            if custom_PENDING_TRANSACTIONS_PATH is None else
-            custom_PENDING_TRANSACTIONS_PATH)
+            if custom_PENDING_TRANSACTIONS_PATH is None
+            else custom_PENDING_TRANSACTIONS_PATH
+        )
 
         self.custom_variables = custom_variables
 
@@ -155,8 +172,7 @@ class server(Thread):
         while self.running:
             with contextlib.suppress(socket.timeout):
                 conn, addr = self.sock.accept()
-                logger.info(
-                    f"NODE:{self.host}:{self.port} New connection: {addr}")
+                logger.info(f"NODE:{self.host}:{self.port} New connection: {addr}")
                 data = conn.recv(buffer_size)
                 the_id = server.id if self.custom_id is None else self.custom_id
                 conn.send(the_id.encode("utf-8"))
@@ -174,7 +190,8 @@ class server(Thread):
     def stop(self):
         self.running = False
         socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(
-            (self.host, self.port))
+            (self.host, self.port)
+        )
         for c in self.clients:
             c.stop()
         time.sleep(1)
@@ -211,8 +228,7 @@ class server(Thread):
         if not ready_to_send:
             data = self.prepare_message(data)
         if len(json.dumps(data).encode("utf-8")) < 6525:
-            data["buffer"] = "0" * (
-                (6525 - len(json.dumps(data).encode("utf-8"))) - 14)
+            data["buffer"] = "0" * ((6525 - len(json.dumps(data).encode("utf-8"))) - 14)
         with contextlib.suppress(socket.timeout):
             node.socket.sendall(json.dumps(data).encode("utf-8"))
         with contextlib.suppress(KeyError):
@@ -229,8 +245,7 @@ class server(Thread):
                 self.messages.append(data)
             self.direct_message(client, data)
         else:
-            logger.debug(
-                f"NODE:{self.host}:{self.port} Message not valid: data")
+            logger.debug(f"NODE:{self.host}:{self.port} Message not valid: data")
 
     def check_message(self, data):
         if "id" not in data:
@@ -280,8 +295,7 @@ class server(Thread):
                     self.save_connected_node(addr[0], addr[1], client_id)
                     return True
             except socket.timeout:
-                logger.info(
-                    f"NODE:{self.host}:{self.port} Connection timeout: {addr}")
+                logger.info(f"NODE:{self.host}:{self.port} Connection timeout: {addr}")
                 conn.close()
 
     @staticmethod
@@ -290,9 +304,11 @@ class server(Thread):
         Returns the connected nodes.
         """
 
-        the_CONNECTED_NODES_PATH = (CONNECTED_NODES_PATH
-                                    if custom_CONNECTED_NODES_PATH is None else
-                                    custom_CONNECTED_NODES_PATH)
+        the_CONNECTED_NODES_PATH = (
+            CONNECTED_NODES_PATH
+            if custom_CONNECTED_NODES_PATH is None
+            else custom_CONNECTED_NODES_PATH
+        )
 
         the_pending_list = {}
         os.chdir(get_config()["main_folder"])
@@ -300,9 +316,11 @@ class server(Thread):
             if entry.name != "README.md":
                 with open(entry.path, "r") as my_transaction_file:
                     loaded_json = json.load(my_transaction_file)
-                    the_pending_list[loaded_json["host"] +
-                                     str(loaded_json["port"]) +
-                                     loaded_json["id"]] = loaded_json
+                    the_pending_list[
+                        loaded_json["host"]
+                        + str(loaded_json["port"])
+                        + loaded_json["id"]
+                    ] = loaded_json
 
         return the_pending_list
 
@@ -316,25 +334,26 @@ class server(Thread):
         node_list["host"] = host
         node_list["port"] = port
 
-        node_id = sha256(
-            (node_id + host + str(port)).encode("utf-8")).hexdigest()
+        node_id = sha256((node_id + host + str(port)).encode("utf-8")).hexdigest()
         file_name = self.CONNECTED_NODES_PATH + f"{node_id}.json"
         os.chdir(get_config()["main_folder"])
         with open(file_name, "w") as connected_node_file:
             json.dump(node_list, connected_node_file, indent=4)
 
     @staticmethod
-    def connectionfrommixdb(custom_server=None,
-                            custom_CONNECTED_NODES_PATH=None):
+    def connectionfrommixdb(custom_server=None, custom_CONNECTED_NODES_PATH=None):
         """
         Connects to the mixdb.
         """
         the_server = server.Server if custom_server is None else custom_server
-        the_CONNECTED_NODES_PATH = (the_server.CONNECTED_NODES_PATH
-                                    if custom_CONNECTED_NODES_PATH is None else
-                                    custom_CONNECTED_NODES_PATH)
+        the_CONNECTED_NODES_PATH = (
+            the_server.CONNECTED_NODES_PATH
+            if custom_CONNECTED_NODES_PATH is None
+            else custom_CONNECTED_NODES_PATH
+        )
         node_list = the_server.get_connected_nodes(
-            custom_CONNECTED_NODES_PATH=the_CONNECTED_NODES_PATH)
+            custom_CONNECTED_NODES_PATH=the_CONNECTED_NODES_PATH
+        )
         for element in node_list:
             with contextlib.suppress(Exception):
                 the_server.connect(
@@ -347,8 +366,9 @@ class server(Thread):
         Deletes a connected node.
         """
         os.chdir(get_config()["main_folder"])
-        node_id = sha256((node["id"] + node["host"] +
-                          str(node["port"])).encode("utf-8")).hexdigest()
+        node_id = sha256(
+            (node["id"] + node["host"] + str(node["port"])).encode("utf-8")
+        ).hexdigest()
         for entry in os.scandir(self.CONNECTED_NODES_PATH):
             if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
@@ -400,8 +420,7 @@ class server(Thread):
             "action": "myblock",
             "transaction": new_list[0],
             "total_length": len(new_list),
-            "sequence_number":
-            system.sequence_number + system.empty_block_number,
+            "sequence_number": system.sequence_number + system.empty_block_number,
             "adding": False,
         }
 
@@ -412,8 +431,7 @@ class server(Thread):
                 "action": "myblock",
                 "transaction": new_list[0],
                 "total_length": len(new_list),
-                "sequence_number":
-                system.sequence_number + system.empty_block_number,
+                "sequence_number": system.sequence_number + system.empty_block_number,
                 "adding": True,
             }
 
@@ -426,8 +444,7 @@ class server(Thread):
             "action": "myblockhash",
             "hash": system.hash,
             "previous_hash": system.previous_hash,
-            "sequence_number":
-            system.sequence_number + system.empty_block_number,
+            "sequence_number": system.sequence_number + system.empty_block_number,
         }
 
         self.send(data)
@@ -440,19 +457,19 @@ class server(Thread):
             if len(node.candidate_block_history) >= 5:
                 node.candidate_block_history.pop(0)
 
-            node.candidate_block_history.append(copy.copy(
-                node.candidate_block))
+            node.candidate_block_history.append(copy.copy(node.candidate_block))
             node.candidate_block = data
         else:
-            if len(node.candidate_block["total_length"]) <= len(
-                    data["total_length"]):
+            if len(node.candidate_block["total_length"]) <= len(data["total_length"]):
                 logger.debug("New candidate block")
                 if len(node.candidate_block["total_length"]) == len(
-                        data["total_length"]):
+                    data["total_length"]
+                ):
                     if data["adding"]:
                         for element in data["transaction"]:
-                            node.candidate_block["transaction"][
-                                element] = data["transaction"][element]
+                            node.candidate_block["transaction"][element] = data[
+                                "transaction"
+                            ][element]
                 else:
                     node.candidate_block = data
 
@@ -463,13 +480,13 @@ class server(Thread):
 
         data["sender"] = node.id
 
-        if data["sequence_number"] > node.candidate_block_hash[
-                "sequence_number"]:
+        if data["sequence_number"] > node.candidate_block_hash["sequence_number"]:
             if len(node.candidate_block_hash_history) >= 5:
                 node.candidate_block_hash_history.pop(0)
 
             node.candidate_block_hash_history.append(
-                copy.copy(node.candidate_block_hash))
+                copy.copy(node.candidate_block_hash)
+            )
             node.candidate_block_hash = data
         else:
             if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
@@ -477,8 +494,11 @@ class server(Thread):
                 node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
-        log_text = ("Sending full chain" if node is None else
-                    f"Sending full chain to {node.id}:{node.host}:{node.port}")
+        log_text = (
+            "Sending full chain"
+            if node is None
+            else f"Sending full chain to {node.id}:{node.host}:{node.port}"
+        )
         logger.debug(log_text)
         file = open(self.TEMP_BLOCK_PATH, "rb")
         SendData = file.read(buffer_size)
@@ -591,8 +611,9 @@ class server(Thread):
                 from naruno.consensus.consensus_main import consensus_trigger
                 from naruno.lib.perpetualtimer import perpetualTimer
 
-                system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
-                                  get_normal_block=True)
+                system = GetBlock(
+                    custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, get_normal_block=True
+                )
 
                 ChangeTransactionFee(system)
 
@@ -602,8 +623,7 @@ class server(Thread):
                     custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
                     custom_TEMP_ACCOUNTS_PATH=self.TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=self.TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=self.
-                    TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=self.TEMP_BLOCKSHASH_PART_PATH,
                 )
 
             else:
@@ -644,8 +664,7 @@ class server(Thread):
 
         if get_ok:
             if str(data["byte"]) == "end":
-                move(self.LOADING_BLOCKSHASH_PART_PATH,
-                     the_TEMP_BLOCKSHASH_PART_PATH)
+                move(self.LOADING_BLOCKSHASH_PART_PATH, the_TEMP_BLOCKSHASH_PART_PATH)
             else:
                 file = open(self.LOADING_BLOCKSHASH_PART_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
@@ -724,26 +743,24 @@ class server(Thread):
             f"NODE:{self.host}:{self.port} -{custom_current_time}-{custom_sequence_number}-{custom_balance}"
         )
         if GetTransaction(
-                block,
-                the_transaction,
-                custom_current_time=custom_current_time,
-                custom_sequence_number=custom_sequence_number,
-                custom_balance=custom_balance,
-                custom_PENDING_TRANSACTIONS_PATH=self.
-                PENDING_TRANSACTIONS_PATH,
+            block,
+            the_transaction,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_PENDING_TRANSACTIONS_PATH=self.PENDING_TRANSACTIONS_PATH,
         ):
             logger.debug(f"NODE:{self.host}:{self.port} Transaction accepted")
 
-            server.send_transaction(the_transaction,
-                                    except_client=node,
-                                    custom_server=self)
+            server.send_transaction(
+                the_transaction, except_client=node, custom_server=self
+            )
             SaveBlock(
                 block,
                 custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=self.TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=self.TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=self.
-                TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=self.TEMP_BLOCKSHASH_PART_PATH,
             )
 
     def send_block_to_other_nodes(self, node=None, sync=False):
