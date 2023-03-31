@@ -443,11 +443,9 @@ class server(Thread):
                 node.candidate_block))
             node.candidate_block = data
         else:
-            if len(node.candidate_block["total_length"]) <= len(
-                    data["total_length"]):
+            if node.candidate_block["total_length"] <= data["total_length"]:
                 logger.debug("New candidate block")
-                if len(node.candidate_block["total_length"]) == len(
-                        data["total_length"]):
+                if node.candidate_block["total_length"] == data["total_length"]:
                     if data["adding"]:
                         for element in data["transaction"]:
                             node.candidate_block["transaction"][
