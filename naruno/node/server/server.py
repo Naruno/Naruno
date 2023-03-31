@@ -441,7 +441,6 @@ class server(Thread):
         if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
             node.candidate_block_hash = data
 
-
     def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
                     f"Sending full chain to {node.id}:{node.host}:{node.port}")
