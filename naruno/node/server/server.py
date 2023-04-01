@@ -439,7 +439,7 @@ class server(Thread):
             node.candidate_block = data
             return
         if data["sequence_number"] > node.candidate_block["sequence_number"]:
-
+            print('if')
             if len(node.candidate_block_history) >= 5:
                 node.candidate_block_history.pop(0)
 
@@ -447,18 +447,19 @@ class server(Thread):
                 node.candidate_block))
             node.candidate_block = data
         else:
+            print('else')
             if node.candidate_block["total_length"] <= data["total_length"]:
-
+                print('else if')
                 if node.candidate_block["total_length"] == data["total_length"]:
-
-
+                    print('else if if')
                     if data["adding"]:
-                        for element in data["transaction"]:
-                            node.candidate_block["transaction"][
-                                element] = data["transaction"][element]
+                        print('else if if if')
+                        node.candidate_block["transaction"].append(data["transaction"][0])
                     else:
+                        print('else if if else')
                         node.candidate_block = data
                 else:
+                    print('else if else')
                     node.candidate_block = data
 
     def get_candidate_block_hash(self, data, node: client):
