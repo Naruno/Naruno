@@ -157,7 +157,7 @@ class server(Thread):
                 conn, addr = self.sock.accept()
                 logger.info(
                     f"NODE:{self.host}:{self.port} New connection: {addr}")
-                data = conn.recv(buffer_size)
+                data = conn.recv(1024)
                 the_id = server.id if self.custom_id is None else self.custom_id
                 conn.send(the_id.encode("utf-8"))
                 client_id = data.decode("utf-8")
@@ -210,9 +210,9 @@ class server(Thread):
     def send_client(self, node, data, ready_to_send=False):
         if not ready_to_send:
             data = self.prepare_message(data)
-        if len(json.dumps(data).encode("utf-8")) < 6525:
+        if len(json.dumps(data).encode("utf-8")) < buffer_size:
             data["buffer"] = "0" * (
-                (6525 - len(json.dumps(data).encode("utf-8"))) - 14)
+                (buffer_size - len(json.dumps(data).encode("utf-8"))) - 14)
         with contextlib.suppress(socket.timeout):
             node.socket.sendall(json.dumps(data).encode("utf-8"))
         with contextlib.suppress(KeyError):
@@ -274,7 +274,7 @@ class server(Thread):
             conn.connect(addr)
             conn.send(server.id.encode("utf-8"))
             try:
-                client_id = conn.recv(buffer_size).decode("utf-8")
+                client_id = conn.recv(1024).decode("utf-8")
                 if Unl.node_is_unl(client_id):
                     self.clients.append(client(conn, addr, client_id, self))
                     self.save_connected_node(addr[0], addr[1], client_id)
@@ -486,7 +486,7 @@ class server(Thread):
                     f"Sending full chain to {node.id}:{node.host}:{node.port}")
         logger.debug(log_text)
         file = open(self.TEMP_BLOCK_PATH, "rb")
-        SendData = file.read(buffer_size)
+        SendData = file.read(1024)
         while SendData:
             data = {
                 "action": "fullblock",
@@ -497,7 +497,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(buffer_size)
+            SendData = file.read(1024)
 
             if not SendData:
                 data = {
@@ -512,7 +512,7 @@ class server(Thread):
     def send_full_accounts(self, node=None):
         the_TEMP_ACCOUNTS_PATH = self.TEMP_ACCOUNTS_PATH
         file = open(the_TEMP_ACCOUNTS_PATH, "rb")
-        SendData = file.read(buffer_size)
+        SendData = file.read(1024)
         while SendData:
             data = {
                 "action": "fullaccounts",
@@ -524,7 +524,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(buffer_size)
+            SendData = file.read(1024)
             if not SendData:
                 data = {"action": "fullaccounts", "byte": "end"}
                 if node is None:
@@ -535,7 +535,7 @@ class server(Thread):
     def send_full_blockshash(self, node=None):
         the_TEMP_BLOCKSHASH_PATH = self.TEMP_BLOCKSHASH_PATH
         file = open(the_TEMP_BLOCKSHASH_PATH, "rb")
-        SendData = file.read(buffer_size)
+        SendData = file.read(1024)
         while SendData:
             data = {
                 "action": "fullblockshash",
@@ -546,7 +546,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(buffer_size)
+            SendData = file.read(1024)
 
             if not SendData:
                 data = {"action": "fullblockshash", "byte": "end"}
@@ -558,7 +558,7 @@ class server(Thread):
     def send_full_blockshash_part(self, node=None):
         the_TEMP_BLOCKSHASH_PART_PATH = self.TEMP_BLOCKSHASH_PART_PATH
         file = open(the_TEMP_BLOCKSHASH_PART_PATH, "rb")
-        SendData = file.read(buffer_size)
+        SendData = file.read(1024)
         while SendData:
             data = {
                 "action": "fullblockshash_part",
@@ -569,7 +569,7 @@ class server(Thread):
             else:
                 self.send_client(node, data)
 
-            SendData = file.read(buffer_size)
+            SendData = file.read(1024)
 
             if not SendData:
                 data = {"action": "fullblockshash_part", "byte": "end"}

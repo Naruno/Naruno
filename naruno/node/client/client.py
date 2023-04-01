@@ -9,11 +9,14 @@ import json
 import socket
 import time
 from threading import Thread
+from naruno.blockchain.block.block_main import Block
 
 from naruno.lib.log import get_logger
 
 logger = get_logger("NODE")
 
+a_block = Block("onur")
+buffer_size = int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
 
 class client(Thread):
 
@@ -37,7 +40,7 @@ class client(Thread):
         self.socket.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
-                data = self.socket.recv(6525)
+                data = self.socket.recv(buffer_size)
                 logger.debug(
                     f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port} Received data"
                 )
