@@ -1236,6 +1236,8 @@ class Test_Node(unittest.TestCase):
         time.sleep(2)
         self.assertEqual(self.node_1.clients[0].candidate_block["action"],
                          "myblock")
+        print(self.node_1.clients[0].candidate_block["transaction"])
+
         self.assertEqual(
             self.node_1.clients[0].candidate_block["transaction"],
             [{

@@ -397,7 +397,7 @@ class server(Thread):
 
         data = {
             "action": "myblock",
-            "transaction": new_list[0],
+            "transaction": [new_list[0]],
             "total_length": len(new_list),
             "sequence_number":
             system.sequence_number + system.empty_block_number,
@@ -409,7 +409,7 @@ class server(Thread):
         for element in new_list[1:]:
             data = {
                 "action": "myblock",
-                "transaction": new_list[0],
+                "transaction": [element],
                 "total_length": len(new_list),
                 "sequence_number":
                 system.sequence_number + system.empty_block_number,
@@ -436,6 +436,7 @@ class server(Thread):
             node.candidate_block = data
             return
         if data["sequence_number"] > node.candidate_block["sequence_number"]:
+
             if len(node.candidate_block_history) >= 5:
                 node.candidate_block_history.pop(0)
 
@@ -444,12 +445,16 @@ class server(Thread):
             node.candidate_block = data
         else:
             if node.candidate_block["total_length"] <= data["total_length"]:
-                logger.debug("New candidate block")
+
                 if node.candidate_block["total_length"] == data["total_length"]:
+
+
                     if data["adding"]:
                         for element in data["transaction"]:
                             node.candidate_block["transaction"][
                                 element] = data["transaction"][element]
+                    else:
+                        node.candidate_block = data
                 else:
                     node.candidate_block = data
 
@@ -470,7 +475,6 @@ class server(Thread):
             node.candidate_block_hash = data
         else:
             if len(node.candidate_block_hash["hash"]) <= len(data["hash"]):
-                logger.debug("New candidate block hash")
                 node.candidate_block_hash = data
 
     def send_full_chain(self, node=None):
