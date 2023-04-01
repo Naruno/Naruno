@@ -395,9 +395,11 @@ class server(Thread):
             new_list.append(tx_json)
             signature_list.append(element.signature)
 
+        first_element = [new_list[0]] if len(new_list) > 0 else []
+
         data = {
             "action": "myblock",
-            "transaction": [new_list[0]],
+            "transaction": first_element,
             "total_length": len(new_list),
             "sequence_number":
             system.sequence_number + system.empty_block_number,
@@ -406,17 +408,18 @@ class server(Thread):
 
         self.send(data)
 
-        for element in new_list[1:]:
-            data = {
-                "action": "myblock",
-                "transaction": [element],
-                "total_length": len(new_list),
-                "sequence_number":
-                system.sequence_number + system.empty_block_number,
-                "adding": True,
-            }
+        if len(new_list) > 1:
+            for element in new_list[1:]:
+                data = {
+                    "action": "myblock",
+                    "transaction": [element],
+                    "total_length": len(new_list),
+                    "sequence_number":
+                    system.sequence_number + system.empty_block_number,
+                    "adding": True,
+                }
 
-            self.send(data)
+                self.send(data)
 
     def send_my_block_hash(self, block):
         system = block
