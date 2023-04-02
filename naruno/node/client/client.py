@@ -9,8 +9,8 @@ import json
 import socket
 import time
 from threading import Thread
-from naruno.blockchain.block.block_main import Block
 
+from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
 
 logger = get_logger("NODE")
