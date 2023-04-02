@@ -47,7 +47,8 @@ logger = get_logger("NODE")
 
 
 a_block = Block("onur")
-buffer_size = 6525 + int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
+buffer_size = 6525 + \
+    int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
 
 
 class server(Thread):
@@ -454,7 +455,8 @@ class server(Thread):
                     print('else if if')
                     if data["adding"]:
                         print('else if if if')
-                        node.candidate_block["transaction"].append(data["transaction"][0])
+                        node.candidate_block["transaction"].append(
+                            data["transaction"][0])
                     else:
                         print('else if if else')
                         node.candidate_block = data
