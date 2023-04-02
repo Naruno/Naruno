@@ -16,7 +16,7 @@ from naruno.lib.log import get_logger
 logger = get_logger("NODE")
 
 a_block = Block("onur")
-buffer_size = int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
+buffer_size = 6525 + int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
 
 class client(Thread):
 
