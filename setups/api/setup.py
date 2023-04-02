@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="naruno_api",
-    version="0.52.11",
+    version="0.52.12",
     description="""This is API mode installer for Naruno""",
     url="https://docs.naruno.org/",
     author="Naruno Developers",
