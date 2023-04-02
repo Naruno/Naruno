@@ -16,10 +16,12 @@ from naruno.lib.log import get_logger
 logger = get_logger("NODE")
 
 a_block = Block("onur")
-buffer_size = 6525 + int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
+buffer_size = 6525 + int(
+    (a_block.max_data_size // a_block.max_tx_number) * 1.5)
 
 
 class client(Thread):
+
     def __init__(self, socket, address, node_id, server, test=False):
         Thread.__init__(self)
         self.server = server
