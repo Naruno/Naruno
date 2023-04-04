@@ -411,7 +411,7 @@ class Integration:
             else:
                 if (transactions[transaction]["transaction"]["toUser"]
                         == wallet_import(-1, 3)
-                        or transactions[transaction]["transaction"]["fromUser"]
+                        or Address(transactions[transaction]["transaction"]["fromUser"])
                         in commanders):
                     new_dict[transaction] = transactions[transaction]
                     the_tx = Transaction.load_json(
