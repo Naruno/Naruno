@@ -19,6 +19,9 @@ from hashlib import sha256
 
 import requests
 
+from naruno.accounts.commanders.delete_commander import DeleteCommander
+from naruno.accounts.commanders.get_comnder import GetCommander
+from naruno.accounts.commanders.save_commander import SaveCommander
 from naruno.api.main import start
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.config_system import get_config
@@ -62,6 +65,7 @@ class Integration:
         cache_true=True,
         wait_amount=None,
         checking=True,
+        commander=None,
     ):
         """
         :param host: The host of the node
@@ -123,6 +127,9 @@ class Integration:
 
         self.checking = checking
 
+        self.commander = commander
+        SaveCommander(self.commander)
+
         logger.info(f"Integration of {self.app_name} is started")
 
     def check_api(self):
@@ -143,6 +150,7 @@ class Integration:
         sys.argv = backup
 
     def close(self):
+        DeleteCommander(self.commander)
         if self.api is not None:
             self.api.close()
 
@@ -395,14 +403,16 @@ class Integration:
             transactions_sended_not_validated = response.json()
 
         new_dict = {}
-
+        commanders = GetCommander()
         for transaction in transactions:
             if (transactions[transaction]["transaction"]["signature"]
                     in self.cache) and not get_all:
                 continue
             else:
-                if transactions[transaction]["transaction"][
-                        "toUser"] == wallet_import(-1, 3):
+                if (transactions[transaction]["transaction"]["toUser"]
+                        == wallet_import(-1, 3)
+                        or transactions[transaction]["transaction"]["fromUser"]
+                        in commanders):
                     new_dict[transaction] = transactions[transaction]
                     the_tx = Transaction.load_json(
                         transactions[transaction]["transaction"])
