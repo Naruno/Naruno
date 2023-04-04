@@ -33,6 +33,7 @@ def transactions_main(block: Block) -> list:
     my_address = wallet_import_all(3)
     my_public_key = wallet_import_all(0)
     custom_currently_list = GetMyTransaction()
+    commanders = GetCommander()
     for tx in block.validating_list:
         if tx.toUser in my_address:
             new_my_transactions_list = SavetoMyTransaction(
@@ -44,7 +45,7 @@ def transactions_main(block: Block) -> list:
                 tx, custom_currently_list=custom_currently_list)
             new_my_transactions_list = SendedTransaction(
                 tx, custom_currently_list=custom_currently_list)
-        elif tx.fromUser in GetCommander():
+        elif tx.fromUser in commanders:
             new_my_transactions_list = SavetoMyTransaction(
                 tx,
                 validated=True,

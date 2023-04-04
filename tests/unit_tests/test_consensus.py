@@ -92,7 +92,9 @@ from naruno.wallet.get_saved_wallet import get_saved_wallet
 from naruno.wallet.save_wallet_list import save_wallet_list
 from naruno.wallet.wallet_create import wallet_create
 from naruno.wallet.wallet_import import wallet_import
-
+from naruno.accounts.commanders.get_comnder import GetCommander
+from naruno.accounts.commanders.save_commander import SaveCommander
+from naruno.accounts.commanders.delete_commander import DeleteCommander
 
 class Test_Consensus(unittest.TestCase):
 
@@ -330,9 +332,28 @@ class Test_Consensus(unittest.TestCase):
 
         block.validating_list.append(the_transaction_3)
 
+
+        the_transaction_4 = copy.copy(the_transaction)
+        the_transaction_4.signature = "aauluadsadassoy"
+        the_transaction_4.fromUser = "onuradsadadsadsaatakan"
+        the_transaction_4.toUser = "onudsadadsaasdradsadadsadsaatakan"
+
+        block.validating_list.append(the_transaction_4)
+        SaveCommander(the_transaction_4.fromUser)
+
+        the_transaction_5 = copy.copy(the_transaction)
+        the_transaction_5.signature = "aauluadsadaadsadasssoy"
+        the_transaction_5.fromUser = "onuradsadsadasdsaddadsadsaatakan"
+        the_transaction_5.toUser = "onudsadadsaasdradsadadsadsaatakan"
+
+        block.validating_list.append(the_transaction_5)
+
+
         SavetoMyTransaction(the_transaction)
 
         transactions_main_finished(block=block)
+
+        DeleteCommander(the_transaction_4.fromUser)
 
         result = GetMyTransaction()
 
@@ -342,14 +363,24 @@ class Test_Consensus(unittest.TestCase):
         SaveMyTransaction(backup, clear=True)
         save_wallet_list(original_saved_wallets)
         print("result ", result)
+        print("len" , len(result))
         self.assertEqual(
-            result,
-            [
-                [the_transaction.dump_json(), True, True],
-                [the_transaction_2.dump_json(), True, False],
-                [the_transaction_3.dump_json(), True, False],
-            ],
+            result[1],
+            [the_transaction.dump_json(), True, True],
         )
+        self.assertEqual(
+            result[2],
+            [the_transaction_3.dump_json(), True, False],
+        )
+        self.assertEqual(
+            result[3],
+            [the_transaction_2.dump_json(), True, False],
+        )
+        self.assertEqual(
+            result[0],
+            [the_transaction_4.dump_json(), True, False],
+        )
+        self.assertEqual(len(result), 4)
 
     def test_finished_main_false_time(self):
         custom_BLOCKS_PATH = "db/test_finished_main_false_time/"
