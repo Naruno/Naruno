@@ -13,7 +13,6 @@ from naruno.lib.config_system import get_config
 
 
 def SaveCommander(commander):
-
     the_path = COMMANDERS_PATH + commander
     os.chdir(get_config()["main_folder"])
     with open(the_path, "w") as my_transaction_file:

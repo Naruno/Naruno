@@ -8,14 +8,12 @@ from naruno.accounts.commanders.get_comnder import GetCommander
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
-from naruno.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from naruno.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from naruno.transactions.my_transactions.sended_transaction import \
-    SendedTransaction
-from naruno.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
+from naruno.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
+from naruno.transactions.my_transactions.sended_transaction import SendedTransaction
+from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
 from naruno.wallet.wallet_import import wallet_import_all
 
 logger = get_logger("CONSENSUS")
@@ -37,23 +35,22 @@ def transactions_main(block: Block) -> list:
     for tx in block.validating_list:
         if tx.toUser in my_address:
             new_my_transactions_list = SavetoMyTransaction(
-                tx,
-                validated=True,
-                custom_currently_list=custom_currently_list)
+                tx, validated=True, custom_currently_list=custom_currently_list
+            )
         elif tx.fromUser in my_public_key:
             new_my_transactions_list = ValidateTransaction(
-                tx, custom_currently_list=custom_currently_list)
+                tx, custom_currently_list=custom_currently_list
+            )
             new_my_transactions_list = SendedTransaction(
-                tx, custom_currently_list=custom_currently_list)
+                tx, custom_currently_list=custom_currently_list
+            )
         elif tx.fromUser in commanders:
             new_my_transactions_list = SavetoMyTransaction(
-                tx,
-                validated=True,
-                custom_currently_list=custom_currently_list)
+                tx, validated=True, custom_currently_list=custom_currently_list
+            )
         else:
             if the_settings()["publisher_mode"]:
                 new_my_transactions_list = SavetoMyTransaction(
-                    tx,
-                    validated=True,
-                    custom_currently_list=custom_currently_list)
+                    tx, validated=True, custom_currently_list=custom_currently_list
+                )
     return new_my_transactions_list

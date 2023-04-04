@@ -12,7 +12,6 @@ from naruno.lib.config_system import get_config
 
 
 def DeleteCommander(tx):
-
     os.chdir(get_config()["main_folder"])
     for entry in os.scandir(COMMANDERS_PATH):
         if tx in entry.name:
