@@ -405,8 +405,10 @@ class Integration:
         new_dict = {}
         commanders = GetCommander()
         for transaction in transactions:
+            
             if (transactions[transaction]["transaction"]["signature"]
                     in self.cache) and not get_all:
+
                 continue
             else:
                 if (transactions[transaction]["transaction"]["toUser"]
@@ -416,7 +418,6 @@ class Integration:
                     new_dict[transaction] = transactions[transaction]
                     the_tx = Transaction.load_json(
                         transactions[transaction]["transaction"])
-
                     if not transactions[transaction]["transaction"][
                             "data"] == "NP":
                         with contextlib.suppress(json.decoder.JSONDecodeError):
@@ -649,7 +650,7 @@ class Integration:
                     SendedTransaction(the_tx) if not get_all else None
                 result.append(transaction)
 
-            elif transaction["toUser"] == wallet_import(-1, 3):
+            elif transaction["toUser"] == wallet_import(-1, 3) or transaction["fromUser"] in commanders:
                 result.append(transaction)
 
         for transaction in result[:]:
