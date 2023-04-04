@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from naruno.accounts.commanders.get_comnder import GetCommander
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
@@ -43,6 +44,11 @@ def transactions_main(block: Block) -> list:
                 tx, custom_currently_list=custom_currently_list)
             new_my_transactions_list = SendedTransaction(
                 tx, custom_currently_list=custom_currently_list)
+        elif tx.fromUser in GetCommander():
+            new_my_transactions_list = SavetoMyTransaction(
+                tx,
+                validated=True,
+                custom_currently_list=custom_currently_list)               
         else:
             if the_settings()["publisher_mode"]:
                 new_my_transactions_list = SavetoMyTransaction(
