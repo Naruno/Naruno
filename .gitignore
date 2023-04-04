@@ -37,6 +37,7 @@ naruno/db/qrs/*
 naruno/db/blocs/*
 naruno/db/pending_transactions/*
 naruno/db/my_transactions/*
+naruno/db/commanders/*
 naruno/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB/*
 naruno/db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_not_our_transaction/*
 

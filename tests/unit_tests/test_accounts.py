@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import copy
 import os
 import sys
 
@@ -11,6 +12,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
 from naruno.accounts.account import Account
+from naruno.accounts.commanders.delete_commander import DeleteCommander
+from naruno.accounts.commanders.get_comnder import GetCommander
+from naruno.accounts.commanders.save_commander import SaveCommander
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.get_balance import GetBalance
 from naruno.accounts.get_sequence_number import GetSequanceNumber
@@ -27,7 +31,6 @@ class Test_Accounts(unittest.TestCase):
         CleanUp_tests()
 
     def test_dumb_account(self):
-
         new_account = Account("test_account", 1, 1)
 
         dumped_account = new_account.dump_json()
@@ -41,7 +44,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(dumped_account, the_json)
 
     def test_load_accounts(self):
-
         the_json = {
             "address": "test_account",
             "balance": 1,
@@ -55,7 +57,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(loaded_account_json, the_json)
 
     def test_get_hash(self):
-
         the_account = Account("test_account", 1, 1)
 
         the_hash = "7fe8746bb0feae44e73aa4e6182e3ca577c4a5d5e219cd468adafd2ec4086550"
@@ -65,7 +66,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(the_hash, the_account_hash)
 
     def test_string_account(self):
-
         the_account = Account("test_account", 1, 1)
 
         account_string = "test_account"
@@ -75,7 +75,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(account_string, the_account_string)
 
     def test_GetBalance_not_list_account(self):
-
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
                               1)
         the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
@@ -101,7 +100,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(result, -5)
 
     def test_GetBalance(self):
-
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
                               1)
         the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
@@ -134,7 +132,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(result_3, 15)
 
     def test_GetBalance_non_block(self):
-
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
                               1)
         the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
@@ -175,7 +172,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(result_3, 15)
 
     def test_GetBalance_non_block_non_record(self):
-
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
                               1)
         the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
@@ -215,7 +211,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(result_3, None)
 
     def test_GetSequanceNumber_not_list_account(self):
-
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
                               1)
         the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
@@ -234,7 +229,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(result, 0)
 
     def test_GetSequanceNumber(self):
-
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
                               1)
         the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
@@ -260,7 +254,6 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(result_3, 3)
 
     def test_SaveAccounts_GetAccounts(self):
-
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
                               1)
         the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15,
@@ -287,6 +280,25 @@ class Test_Accounts(unittest.TestCase):
             self.assertEqual(result_list[i][0], account_list[i][0])
             self.assertEqual(result_list[i][1], account_list[i][1])
             self.assertEqual(result_list[i][2], account_list[i][2])
+
+    def test_commanders(self):
+        backup_commanders = copy.copy(GetCommander())
+
+        SaveCommander("merhaba")
+
+        self.assertEqual(GetCommander(), ["merhaba"])
+
+        SaveCommander("merhabaa")
+
+        self.assertEqual(GetCommander(), ["merhaba", "merhabaa"])
+
+        # Find difference with backup and new commanders list
+        new_commanders = GetCommander()
+        difference = list(set(new_commanders) - set(backup_commanders))
+        for commander in difference:
+            DeleteCommander(commander)
+
+        self.assertEqual(GetCommander(), backup_commanders)
 
 
 unittest.main(exit=False)
