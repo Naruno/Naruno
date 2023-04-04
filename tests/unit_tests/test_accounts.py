@@ -9,9 +9,6 @@ import sys
 import copy
 
 
-
-
-
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
@@ -26,6 +23,7 @@ from naruno.lib.clean_up import CleanUp_tests
 from naruno.accounts.commanders.get_comnder import GetCommander
 from naruno.accounts.commanders.save_commander import SaveCommander
 from naruno.accounts.commanders.delete_commander import DeleteCommander
+
 
 class Test_Accounts(unittest.TestCase):
 
@@ -295,8 +293,6 @@ class Test_Accounts(unittest.TestCase):
             self.assertEqual(result_list[i][1], account_list[i][1])
             self.assertEqual(result_list[i][2], account_list[i][2])
 
-
-
     def test_commanders(self):
         backup_commanders = copy.copy(GetCommander())
 
@@ -308,12 +304,13 @@ class Test_Accounts(unittest.TestCase):
 
         self.assertEqual(GetCommander(), ["merhaba", "merhabaa"])
 
-        #Find difference with backup and new commanders list
+        # Find difference with backup and new commanders list
         new_commanders = GetCommander()
         difference = list(set(new_commanders) - set(backup_commanders))
         for commander in difference:
             DeleteCommander(commander)
 
         self.assertEqual(GetCommander(), backup_commanders)
+
 
 unittest.main(exit=False)

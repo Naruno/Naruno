@@ -20,7 +20,6 @@ def GetCommander():
             with open(entry.path, "r") as my_transaction_file:
                 the_pending_list.append(entry.name)
 
-    #order the list by alphabetical order
+    # order the list by alphabetical order
     the_pending_list.sort()
     return the_pending_list
-

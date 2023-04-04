@@ -96,6 +96,7 @@ from naruno.accounts.commanders.get_comnder import GetCommander
 from naruno.accounts.commanders.save_commander import SaveCommander
 from naruno.accounts.commanders.delete_commander import DeleteCommander
 
+
 class Test_Consensus(unittest.TestCase):
 
     @classmethod
@@ -332,7 +333,6 @@ class Test_Consensus(unittest.TestCase):
 
         block.validating_list.append(the_transaction_3)
 
-
         the_transaction_4 = copy.copy(the_transaction)
         the_transaction_4.signature = "aauluadsadassoy"
         the_transaction_4.fromUser = "onuradsadadsadsaatakan"
@@ -348,7 +348,6 @@ class Test_Consensus(unittest.TestCase):
 
         block.validating_list.append(the_transaction_5)
 
-
         SavetoMyTransaction(the_transaction)
 
         transactions_main_finished(block=block)
@@ -363,7 +362,7 @@ class Test_Consensus(unittest.TestCase):
         SaveMyTransaction(backup, clear=True)
         save_wallet_list(original_saved_wallets)
         print("result ", result)
-        print("len" , len(result))
+        print("len", len(result))
         self.assertEqual(
             result[1],
             [the_transaction.dump_json(), True, True],
@@ -1145,8 +1144,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1311,8 +1310,8 @@ class Test_Consensus(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2034,8 +2033,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_consensus_round_1(self):
@@ -2112,8 +2110,7 @@ class Test_Consensus(unittest.TestCase):
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ))
 
     def test_time_difference_check_round_2_false_time(self):

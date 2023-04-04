@@ -49,11 +49,11 @@ def transactions_main(block: Block) -> list:
             new_my_transactions_list = SavetoMyTransaction(
                 tx,
                 validated=True,
-                custom_currently_list=custom_currently_list)               
+                custom_currently_list=custom_currently_list)
         else:
             if the_settings()["publisher_mode"]:
                 new_my_transactions_list = SavetoMyTransaction(
                     tx,
                     validated=True,
-                    custom_currently_list=custom_currently_list)                
+                    custom_currently_list=custom_currently_list)
     return new_my_transactions_list
