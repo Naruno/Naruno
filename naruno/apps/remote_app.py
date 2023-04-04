@@ -128,7 +128,7 @@ class Integration:
         self.checking = checking
 
         self.commander = commander
-        SaveCommander(self.commander)
+        SaveCommander(self.commander) if not self.commander is None else None
 
         logger.info(f"Integration of {self.app_name} is started")
 
@@ -150,7 +150,7 @@ class Integration:
         sys.argv = backup
 
     def close(self):
-        DeleteCommander(self.commander)
+        DeleteCommander(self.commander) if not self.commander is None else None
         if self.api is not None:
             self.api.close()
 
