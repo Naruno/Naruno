@@ -44,5 +44,4 @@ EXTRACTED_PROOFS_PATH = "db/extracted_proofs/"
 QR_CODE_PATH = "db/qrs/"
 BACKUPS_PATH = "backups/"
 
-
 COMMANDERS_PATH = "db/commanders/"
