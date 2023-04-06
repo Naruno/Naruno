@@ -56,7 +56,7 @@
   <img src="https://github.com/Naruno/Naruno/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
   </a>
   .
-  <a href="https://codebeat.co/projects/github-com-naruno-naruno-master"><img alt="codebeat badge" src="https://codebeat.co/badges/de3a4741-5829-4fbd-9eaf-6ca26689586e" /></a>
+  <a href="https://codebeat.co/projects/github-com-naruno-naruno-master"><img alt="codebeat badge" src="https://codebeat.co/badges/1365faa1-70b1-41d9-80df-4ee49f798e1a" /></a>
   .
   <a href="https://www.codacy.com/gh/Naruno/Naruno/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Naruno/Naruno&amp;utm_campaign=Badge_Grade"><img  alt="codacy badge" src="https://app.codacy.com/project/badge/Grade/b6a1e33964ac4759bc36a02763ca9bcb"/></a>
   </p>
