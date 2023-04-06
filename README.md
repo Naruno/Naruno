@@ -112,13 +112,11 @@ Naruno is a lightning-fast, secure, and scalable blockchain that is able to crea
 - Mobile Master Node Support
 - Two Web3 Integration way as Embedded App (Naruno App Engine) and Remote App (Naruno API)
 
-- And more... 
+- And more...
 
 \*Some features will be adjusted in stable release.
 
 The software is written in **PEP8** format and **only** needs dependent libraries for GUI panel. Naruno software, designed with a focus on the **community on the Github platform**, In addition, **Stability**, **Functional** and **Unit** tests of all systems are ready and automated. It also has various structures for **automatic setup of test environments**. It is fully compatible with **Git code management system** and **Agile mindset**.
-
-
 
 # Documents
 
