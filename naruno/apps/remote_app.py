@@ -125,8 +125,7 @@ class Integration:
                 type="get",
             ).text)
 
-        self.host = backup_host
-        self.port = backup_port
+
 
 
 
@@ -149,6 +148,11 @@ class Integration:
         if self.total_check:
             self.check_thread = threading.Thread(target=self.checker)
             self.check_thread.start()
+
+
+
+        self.host = backup_host
+        self.port = backup_port
 
         self.sended_txs = []
 
