@@ -155,6 +155,8 @@ def send_coin_data_page():
     data = str(request.form["data"]) if "data" in request.form else ""
     password = str(
         request.form["password"]) if "password" in request.form else None
+    sequence_number = str(
+        request.form["sequence_number"]) if "sequence_number" in request.form else None        
     block = None
     with contextlib.suppress(Exception):
         block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
@@ -169,6 +171,7 @@ def send_coin_data_page():
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,
         custom_account_list=custom_account_list,
+        custom_set_sequence_number=sequence_number,
     )
     if send_tx != False:
         SavetoMyTransaction(send_tx, sended=True)

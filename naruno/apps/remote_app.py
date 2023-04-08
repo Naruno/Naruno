@@ -151,7 +151,7 @@ class Integration:
         self.check_thread = None
         if self.total_check:
             self.check_thread = perpetualTimer(self.original_wait_amoount*(self.max_tx_number//2), self.checker)
-
+            self.sequence_number = int(self.prepare_request(f"/sequence/get/?address={wallet_import(-1,3)}", type="get").text.replace("\n", "")) + 1
             self.wait_amount = 0
 
 
@@ -364,6 +364,10 @@ class Integration:
             "to_user": to_user,
             "data": data,
         }
+        
+        if self.wait_amount == 0:
+            self.sequence_number += len(self.sended_txs)
+            request_body["sequence_number"] = self.sequence_number
 
         self.sended_txs.append(
             [action, app_data, to_user, amount, force, retrysecond, data])
@@ -403,6 +407,8 @@ class Integration:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
+                if self.wait_amount == 0:
+                    self.sequence_number += 1
             for vaidated_tx in new_txs:
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(

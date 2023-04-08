@@ -37,6 +37,7 @@ def send(
     custom_sequence_number=None,
     custom_balance=None,
     custom_account_list=None,
+    custom_set_sequence_number=None,
 ):
     """
     The main function for sending the transaction.
@@ -78,6 +79,9 @@ def send(
             max_tx_number = int(urlopen("http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/").read().decode("utf-8"))
             max_data_size = int(urlopen("http://test_net.1.naruno.org:8000/blockmaxdatasize/get/").read().decode("utf-8"))
             minumum_transfer_amount = int(urlopen("http://test_net.1.naruno.org:8000/blockminumumtransferamount/get/").read().decode("utf-8"))
+
+        if custom_set_sequence_number is not None:
+            sequence_number = custom_set_sequence_number
 
         the_minumum_amount = 0
         if (the_balance >= 0):
