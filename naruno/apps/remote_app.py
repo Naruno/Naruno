@@ -376,7 +376,7 @@ class Integration:
 
         new_txs = self.get(get_all=True, disable_caches=True)
 
-        for sended_tx in self.sended_txs[:]:
+        for sended_tx in self.sended_txs[:self.max_tx_number/2]:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
