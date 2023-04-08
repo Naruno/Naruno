@@ -190,7 +190,7 @@ class Integration:
         DeleteCommander(self.commander) if not self.commander is None else None
         if self.check_thread is not None:
             while len(self.sended_txs) > 0:
-                time.sleep(self.original_wait_amoount)
+                time.sleep(10)
             self.check_thread.cancel()
         if self.api is not None:
             self.api.close()
@@ -399,6 +399,7 @@ class Integration:
             return True
 
     def checker(self):
+        print("Checker is RUn")
         time.sleep(self.wait_amount)
         backup_sended_not_validated = copy.copy(self.sended_not_validated)
         backup_sended = copy.copy(self.sended)
@@ -726,6 +727,7 @@ class Integration:
 
         if self.sended and self.check_thread is not None and not from_thread:
             while len(self.sended_txs) > 0:
+                print(self.sended_txs)
                 time.sleep(10)
 
         if the_settings()["baklava"]:
