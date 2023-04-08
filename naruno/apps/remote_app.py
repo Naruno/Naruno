@@ -366,7 +366,7 @@ class Integration:
         }
         
         if self.wait_amount == 0:
-            self.sequence_number += len(self.sended_txs)
+            self.sequence_number += 1
             request_body["sequence_number"] = self.sequence_number
 
         self.sended_txs.append(
@@ -407,8 +407,15 @@ class Integration:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
-                if self.wait_amount == 0:
-                    self.sequence_number += 1
+                backup_host = copy.copy(self.host)
+                backup_port = copy.copy(self.port)
+                if the_settings()["baklava"]:
+                    self.host = "test_net.1.naruno.org"
+                    self.port = 8000
+             
+                self.sequence_number = int(self.prepare_request(f"/sequence/get/?address={wallet_import(-1,3)}", type="get").text.replace("\n", "")) + 1
+                self.host = backup_host
+                self.port = backup_port                   
             for vaidated_tx in new_txs:
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(
