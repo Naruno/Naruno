@@ -66,6 +66,7 @@ class Integration:
         wait_amount=None,
         checking=True,
         commander=None,
+        total_check=None,
     ):
         """
         :param host: The host of the node
@@ -96,10 +97,24 @@ class Integration:
 
         self.last_sended = 0
 
+        a_block = Block("Onur")
+
         if wait_amount is None:
-            self.wait_amount = Block("Onur").block_time * 2
+            self.wait_amount = a_block.block_time * 2
         else:
             self.wait_amount = wait_amount
+
+        self.total_check = False
+        if not a_block.just_one_tx and total_check is None:
+            self.total_check = True
+
+        if total_check is not None:
+            self.total_check = total_check
+
+        self.check_thread = None
+        if self.total_check:
+            self.check_thread = threading.Thread(target=self.checker)
+            self.check_thread.start()
 
         self.get_cache()
 
@@ -151,6 +166,8 @@ class Integration:
 
     def close(self):
         DeleteCommander(self.commander) if not self.commander is None else None
+        if self.check_thread is not None:
+            self.check_thread.join()
         if self.api is not None:
             self.api.close()
 
@@ -306,7 +323,7 @@ class Integration:
                 )
 
             self.checking = backup_checking
-            self.checker()
+            self.checker() if self.check_thread is None else None
 
             self.send(
                 action=action,
@@ -346,7 +363,7 @@ class Integration:
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
             self.last_sended = time.time()
-            if self.checking:
+            if self.checking and self.check_thread is None:
                 self.checker()
             return True
 
@@ -405,16 +422,14 @@ class Integration:
         new_dict = {}
         commanders = GetCommander()
         for transaction in transactions:
-            
             if (transactions[transaction]["transaction"]["signature"]
                     in self.cache) and not get_all:
-
                 continue
             else:
                 if (transactions[transaction]["transaction"]["toUser"]
                         == wallet_import(-1, 3)
-                        or Address(transactions[transaction]["transaction"]["fromUser"])
-                        in commanders):
+                        or Address(transactions[transaction]["transaction"]
+                                   ["fromUser"]) in commanders):
                     new_dict[transaction] = transactions[transaction]
                     the_tx = Transaction.load_json(
                         transactions[transaction]["transaction"])
@@ -650,7 +665,8 @@ class Integration:
                     SendedTransaction(the_tx) if not get_all else None
                 result.append(transaction)
 
-            elif transaction["toUser"] == wallet_import(-1, 3) or transaction["fromUser"] in commanders:
+            elif (transaction["toUser"] == wallet_import(-1, 3)
+                  or transaction["fromUser"] in commanders):
                 result.append(transaction)
 
         for transaction in result[:]:
