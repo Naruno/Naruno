@@ -365,7 +365,7 @@ class Integration:
             "data": data,
         }
         
-        if self.wait_amount == 0:
+        if self.wait_amount == 0 and self.total_check:
             
             request_body["sequence_number"] = copy.copy(self.sequence_number)
             
@@ -394,7 +394,7 @@ class Integration:
             logger.info(
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
-            if self.wait_amount == 0:
+            if self.wait_amount == 0 and self.total_check:
                 self.sequence_number += 1
             self.last_sended = time.time()
             if self.checking and self.check_thread is None:
