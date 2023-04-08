@@ -186,7 +186,6 @@ class Integration:
         sys.argv = backup
 
     def close(self):
-        print("Closing")
         DeleteCommander(self.commander) if not self.commander is None else None
         if self.check_thread is not None:
             while len(self.sended_txs) > 0:
@@ -403,7 +402,6 @@ class Integration:
             return True
 
     def checker(self):
-        print("Checker is RUn")
         time.sleep(self.wait_amount)
 
 
@@ -726,7 +724,6 @@ class Integration:
 
         if (self.sended or force_sended) and self.check_thread is not None and not from_thread:
             while len(self.sended_txs) > 0:
-                print(self.sended_txs)
                 time.sleep(10)
 
         if the_settings()["baklava"]:
