@@ -407,7 +407,7 @@ class Integration:
         time.sleep(self.wait_amount)
 
 
-        new_txs = self.get(get_all=True, disable_caches=True, from_thread=True, force_sended_not_validated=True, force_sended)
+        new_txs = self.get(get_all=True, disable_caches=True, from_thread=True, force_sended_not_validated=True, force_sended=True)
 
         for sended_tx in self.sended_txs[:self.max_tx_number//2]:
             in_get = False
@@ -735,11 +735,11 @@ class Integration:
 
         first = []
         with contextlib.suppress(Exception):
-            first = self.get_(get_all=get_all, disable_caches=disable_caches, force_sended_not_validated, force_sended)
+            first = self.get_(get_all=get_all, disable_caches=disable_caches, force_sended_not_validated=force_sended_not_validated, force_sended=force_sended)
         self.host = backup_host
         self.port = backup_port
 
-        second = self.get_(get_all=get_all, disable_caches=disable_caches, force_sended_not_validated, force_sended)
+        second = self.get_(get_all=get_all, disable_caches=disable_caches, force_sended_not_validated=force_sended_not_validated, force_sended=force_sended)
 
         the_list = first + second
 
