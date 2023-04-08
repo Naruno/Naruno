@@ -704,7 +704,7 @@ class Integration:
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
 
-        if self.sedded or self.sended_not_validated:
+        if self.sended:
             while len(self.sended_txs) > 0:
                 time.sleep(self.wait_amount)
 
