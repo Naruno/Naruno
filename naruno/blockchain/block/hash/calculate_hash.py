@@ -7,7 +7,9 @@
 from naruno.blockchain.block.hash.accounts_hash import AccountsHash
 from naruno.blockchain.block.hash.blocks_hash import BlocksHash
 from naruno.blockchain.block.hash.tx_hash import TransactionsHash
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import (
+    Remove_Duplicates,
+)
 from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.lib.log import get_logger
 
@@ -21,8 +23,7 @@ def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
     logger.info(f"Calculating the hash of the block#{block.sequence_number}")
 
     block = Remove_Duplicates(block)
-    block.validating_list = sorted(block.validating_list,
-                                   key=lambda x: x.fromUser)
+    block.validating_list = sorted(block.validating_list, key=lambda x: x.fromUser)
 
     # Transaction Hash
     validating_list = [tx.dump_json() for tx in block.validating_list]
