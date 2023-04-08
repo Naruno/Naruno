@@ -22,7 +22,7 @@ def GetJustOneTX(block=None, ):
         just_one_tx = (
             urlopen("http://test_net.1.naruno.org:8000/blockjustonetx/get/").
             read().decode("utf-8")).lower()
-        
+
         if "true" in just_one_tx:
             just_one_tx = True
         else:
