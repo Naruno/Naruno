@@ -148,7 +148,7 @@ class Integration:
 
         self.check_thread = None
         if self.total_check:
-            self.check_thread = perpetualTimer(10, self.checker)
+            self.check_thread = perpetualTimer(self.wait_amount/2, self.checker)
             self.wait_amount = 0
 
 
