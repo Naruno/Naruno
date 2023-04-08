@@ -104,17 +104,7 @@ class Integration:
         else:
             self.wait_amount = wait_amount
 
-        self.total_check = False
-        if not a_block.just_one_tx and total_check is None:
-            self.total_check = True
 
-        if total_check is not None:
-            self.total_check = total_check
-
-        self.check_thread = None
-        if self.total_check:
-            self.check_thread = threading.Thread(target=self.checker)
-            self.check_thread.start()
 
         self.get_cache()
 
@@ -137,6 +127,28 @@ class Integration:
 
         self.host = backup_host
         self.port = backup_port
+
+
+
+        
+
+        if total_check is not None:
+            self.total_check = total_check
+        else:
+            self.total_check = self.prepare_request(
+                "/blockjustonetx/get/",
+                type="get",
+            ).text
+
+            if "true" in self.total_check:
+                self.total_check = False
+            else:
+                self.total_check = True            
+
+        self.check_thread = None
+        if self.total_check:
+            self.check_thread = threading.Thread(target=self.checker)
+            self.check_thread.start()
 
         self.sended_txs = []
 
