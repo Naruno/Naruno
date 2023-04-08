@@ -148,7 +148,7 @@ class Integration:
 
         self.check_thread = None
         if self.total_check:
-            self.check_thread = perpetualTimer(copy.copy(self.wait_amount), self.checker)
+            self.check_thread = perpetualTimer(copy.copy(self.wait_amount)//2, self.checker)
             self.wait_amount = 0
 
 
@@ -703,6 +703,10 @@ class Integration:
         self.port = copy.copy(self.first_port)
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
+
+        while len(self.sended_txs) > 0:
+            time.sleep(self.wait_amount)
+
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
