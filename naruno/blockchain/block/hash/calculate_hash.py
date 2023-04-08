@@ -7,11 +7,10 @@
 from naruno.blockchain.block.hash.accounts_hash import AccountsHash
 from naruno.blockchain.block.hash.blocks_hash import BlocksHash
 from naruno.blockchain.block.hash.tx_hash import TransactionsHash
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import (
-    Remove_Duplicates,
-)
-from naruno.lib.mix.merkle_root import MerkleTree
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
 from naruno.lib.log import get_logger
+from naruno.lib.mix.merkle_root import MerkleTree
 
 logger = get_logger("BLOCKCHAIN")
 

@@ -16,21 +16,21 @@ from naruno.accounts.account import Account
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import (
-    GetBlockshash,
-    GetBlockshash_part,
-    SaveBlockshash,
-    SaveBlockshash_part,
-)
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
+                                                 GetBlockshash_part,
+                                                 SaveBlockshash,
+                                                 SaveBlockshash_part)
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
-from naruno.blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
+from naruno.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.accounts_hash import AccountsHash
 from naruno.blockchain.block.hash.blocks_hash import BlocksHash
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
 from naruno.blockchain.block.hash.tx_hash import TransactionsHash
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.blockchain.block.save_block_to_blockchain_db import SaveBlockstoBlockchainDB
+from naruno.blockchain.block.save_block_to_blockchain_db import \
+    SaveBlockstoBlockchainDB
 from naruno.blockchain.block.shares import shares
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.node.client.client import client
