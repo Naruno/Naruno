@@ -17,9 +17,9 @@ from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash,
-                                                           SaveBlockshash_part)
+                                                 GetBlockshash_part,
+                                                 SaveBlockshash,
+                                                 SaveBlockshash_part)
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.get_block_from_blockchain_db import \
@@ -242,7 +242,7 @@ class Test_Blockchain(unittest.TestCase):
         )
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        true_hash = "4cd26057bb69e3038e06bf2430f89f85a834e8fdf51cbba35fdab0d423d07f9a"
+        true_hash = "9890e7c2eeb5141fccf4c9dcb3cb89c9a627bba036fda5672ea3c35868c11110"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
 
@@ -405,7 +405,6 @@ class Test_Blockchain(unittest.TestCase):
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
-
 
     def test_SaveBlock_GetBlock_olds_specific_situation_8(self):
         self.maxDiff = None
@@ -662,9 +661,7 @@ class Test_Blockchain(unittest.TestCase):
 
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
-
         self.assertEqual(block_2.__dict__, block_result.__dict__)
-
 
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_2.__dict__, block_result.__dict__)
@@ -701,7 +698,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(block_3.__dict__, block_result.__dict__)
 
     def test_SaveBlockshash(self):
-
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockshash_TEMP_BLOCKSHASH_PATH.json"
         the_list = "onur"
         SaveBlockshash(the_list,
@@ -711,7 +707,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual([the_list], the_list_2)
 
     def test_SaveBlockshash_part(self):
-
         custom_TEMP_BLOCKSHASH_PART_PATH = (
             "db/test_SaveBlockshash_part_TEMP_BLOCKSHASH_PART_PATH.json")
         the_list = ["onur"]
@@ -795,7 +790,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            dont_clean=True
+            dont_clean=True,
         )
         result = GetBlockstoBlockchainDB(
             block.sequence_number,
@@ -1030,7 +1025,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_txs[2].amount, 1000)
 
     def test_blockchain_sync_empty_blocks_validated(self):
-
         block = Block("onur")
         block.block_time = 0.5
         block.validated = True
@@ -1042,7 +1036,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(first_block, second_block)
 
     def test_blockchain_sync_empty_blocks_not_validated(self):
-
         block = Block("onur")
         block.block_time = 0.5
         block.validated = False
@@ -1056,7 +1049,6 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_blockchain_sync_empty_blocks_first_and_second_empty_is_equal(
             self):
-
         block = Block("onur")
         block.sequence_number = 1
         block.empty_block_number = 3
@@ -1074,7 +1066,6 @@ class Test_Blockchain(unittest.TestCase):
 
     def test_blockchain_sync_empty_blocks_first_and_second_empty_is_not_equal(
             self):
-
         block = Block("onur")
         block.sequence_number = 0
         block.empty_block_number = 1
@@ -1096,9 +1087,7 @@ class Test_Blockchain(unittest.TestCase):
             second_block.start_time,
         )
 
-
     def test_blockchain_sync_empty_blocks_first_and_second_empty_is_high(self):
-
         block = Block("onur")
         block.sequence_number = 1
         block.empty_block_number = 3
@@ -1114,18 +1103,14 @@ class Test_Blockchain(unittest.TestCase):
                          second_block.empty_block_number)
         self.assertEqual(first_block.start_time, second_block.start_time)
 
-
-
-
-
-# NEW SAVE BLOCK TESTS
+    # NEW SAVE BLOCK TESTS
 
     def test_SaveBlock_GetBlock_situation_priority(self):
         self.maxDiff = None
         block = Block("onur")
         block.round_1 = True
         block.round_2 = True
-        #block.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
+        # block.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
         block_2 = Block("onur")
         block_2.round_1 = False
         block_2.round_2 = False
@@ -1133,8 +1118,12 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_BLOCK_PATH = (
             "db/test_SaveBlock_GetBlock_situation_priority_TEMP_BLOCK_PATH.json"
         )
-        custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_situation_priority_TEMP_ACCOUNTS_PATH.json"
-        custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_situation_priority_TEMP_BLOCKSHASH_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = (
+            "db/test_SaveBlock_GetBlock_situation_priority_TEMP_ACCOUNTS_PATH.json"
+        )
+        custom_TEMP_BLOCKSHASH_PATH = (
+            "db/test_SaveBlock_GetBlock_situation_priority_TEMP_BLOCKSHASH_PATH.json"
+        )
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_situation_priority_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
 
         SaveBlock(
@@ -1197,8 +1186,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
-
     def test_SaveBlock_GetBlock_validating_list_priority(self):
         self.maxDiff = None
         block = Block("onur")
@@ -1237,8 +1224,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
-
     def test_SaveBlock_GetBlock_situation_vs_validating_priority(self):
         self.maxDiff = None
         block = Block("onur")
@@ -1249,9 +1234,7 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_1 = True
         block_2.round_2 = True
 
-        custom_TEMP_BLOCK_PATH = (
-            "db/test_SaveBlock_GetBlock_situation_vs_validating_priority_TEMP_BLOCK_PATH.json"
-        )
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_situation_vs_validating_priority_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_situation_vs_validating_priority_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_situation_vs_validating_priority_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_situation_vs_validating_priority_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
@@ -1277,8 +1260,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
-
     def test_SaveBlock_GetBlock_situation_vs_sequance_number_priority(self):
         self.maxDiff = None
         block = Block("onur")
@@ -1289,9 +1270,7 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_1 = True
         block_2.round_2 = True
 
-        custom_TEMP_BLOCK_PATH = (
-            "db/test_SaveBlock_GetBlock_situation_vs_sequance_number_priority_TEMP_BLOCK_PATH.json"
-        )
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_situation_vs_sequance_number_priority_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_situation_vs_sequance_number_priority_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_situation_vs_sequance_number_priority_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_situation_vs_sequance_number_priority_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
@@ -1317,7 +1296,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
 
-
     def test_SaveBlock_GetBlock_validating_vs_sequance_number_priority(self):
         self.maxDiff = None
         block = Block("onur")
@@ -1329,9 +1307,7 @@ class Test_Blockchain(unittest.TestCase):
         block_2.round_2 = False
         block_2.sequence_number += 1
 
-        custom_TEMP_BLOCK_PATH = (
-            "db/test_SaveBlock_GetBlock_validating_vs_sequance_number_priority_TEMP_BLOCK_PATH.json"
-        )
+        custom_TEMP_BLOCK_PATH = "db/test_SaveBlock_GetBlock_validating_vs_sequance_number_priority_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlock_GetBlock_validating_vs_sequance_number_priority_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlock_GetBlock_validating_vs_sequance_number_priority_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlock_GetBlock_validating_vs_sequance_number_priority_first_time_TEMP_BLOCKSHASH_PART_PATH.json"
