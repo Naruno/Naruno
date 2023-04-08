@@ -704,8 +704,9 @@ class Integration:
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
 
-        while len(self.sended_txs) > 0:
-            time.sleep(self.wait_amount)
+        if self.sedded or self.sended_not_validated:
+            while len(self.sended_txs) > 0:
+                time.sleep(self.wait_amount)
 
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
