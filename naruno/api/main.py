@@ -26,6 +26,7 @@ from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.blockchain.block.max_data_size import GetMaxDataSize
 from naruno.blockchain.block.max_tx_number import GetMaxTXNumber
+from naruno.blockchain.block.just_one_tx import GetJustOneTX
 from naruno.consensus.consensus_main import consensus_trigger
 from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
@@ -600,6 +601,17 @@ def blockmaxtxnumber_get_page():
 
     return jsonify(GetMaxTXNumber(block=the_block))
 
+
+
+@app.route("/blockjustonetx/get/", methods=["GET"])
+def blockjustonetx_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    # Check publisher mode
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+
+    return jsonify(GetMaxTXNumber(block=the_block))
 
 @app.route("/blockmaxdatasize/get/", methods=["GET"])
 def blockmaxdatasize_get_page():
