@@ -148,7 +148,7 @@ class Integration:
 
         self.check_thread = None
         if self.total_check:
-            self.check_thread = perpetualTimer(copy.copy(self.wait_amount)//2, self.checker)
+            self.check_thread = perpetualTimer(10, self.checker)
             self.wait_amount = 0
 
 
@@ -394,7 +394,7 @@ class Integration:
         self.sended_not_validated = False
         self.sended = True
 
-        new_txs = self.get(get_all=True, disable_caches=True)
+        new_txs = self.get(get_all=True, disable_caches=True, from_thread=True)
 
         for sended_tx in self.sended_txs[:self.max_tx_number//2]:
             in_get = False
@@ -698,13 +698,13 @@ class Integration:
 
         return result
 
-    def get(self, get_all=False, disable_caches=False):
+    def get(self, get_all=False, disable_caches=False, from_thread=False):
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
 
-        if self.sended:
+        if self.sended and self.check_thread is not None and not from_thread:
             while len(self.sended_txs) > 0:
                 time.sleep(self.wait_amount)
 
