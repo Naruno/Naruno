@@ -28,10 +28,9 @@ def Check_Datas(
     Check if the transaction datas are valid
     """
 
-
     if not disable_already_in:
         pending_transactions = GetPending(
-            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)        
+            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
         for already_tx in pending_transactions + block.validating_list:
             if already_tx.signature == transaction.signature:
                 logger.error("Transaction is already in the pending list")
@@ -39,18 +38,18 @@ def Check_Datas(
 
         for tx in pending_transactions + block.validating_list:
             if (tx.fromUser == transaction.fromUser) and block.just_one_tx:
-                    if tx.signature != transaction.signature:
-                        if transaction.transaction_time < tx.transaction_time:
+                if tx.signature != transaction.signature:
+                    if transaction.transaction_time < tx.transaction_time:
+                        pass
+                    elif transaction.transaction_time == tx.transaction_time:
+                        if transaction.sequence_number < tx.sequence_number:
                             pass
-                        elif transaction.transaction_time == tx.transaction_time:
-                            if transaction.sequence_number < tx.sequence_number:
-                                pass
-                            else:
-                                logger.info("Multiple transaction in one account")
-                                return False
                         else:
                             logger.info("Multiple transaction in one account")
                             return False
+                    else:
+                        logger.info("Multiple transaction in one account")
+                        return False
 
     balance = (GetBalance(
         transaction.fromUser,

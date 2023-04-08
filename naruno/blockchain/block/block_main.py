@@ -80,7 +80,6 @@ class Block:
         self.dowload_true_block = ""
         self.sync = False
 
-
         self.just_one_tx = True
 
         self.shares = []

@@ -17,9 +17,9 @@ from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part,
-                                                           SaveBlockshash,
-                                                           SaveBlockshash_part)
+                                                 GetBlockshash_part,
+                                                 SaveBlockshash,
+                                                 SaveBlockshash_part)
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.get_block_from_blockchain_db import \
@@ -406,7 +406,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
     def test_SaveBlock_GetBlock_olds_specific_situation_8(self):
         self.maxDiff = None
         block = Block("onur")
@@ -662,9 +661,7 @@ class Test_Blockchain(unittest.TestCase):
 
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
-
         self.assertEqual(block_2.__dict__, block_result.__dict__)
-
 
         block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         self.assertEqual(block_2.__dict__, block_result.__dict__)
@@ -1096,7 +1093,6 @@ class Test_Blockchain(unittest.TestCase):
             second_block.start_time,
         )
 
-
     def test_blockchain_sync_empty_blocks_first_and_second_empty_is_high(self):
 
         block = Block("onur")
@@ -1115,9 +1111,6 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(first_block.start_time, second_block.start_time)
 
 
-
-
-
 # NEW SAVE BLOCK TESTS
 
     def test_SaveBlock_GetBlock_situation_priority(self):
@@ -1125,7 +1118,7 @@ class Test_Blockchain(unittest.TestCase):
         block = Block("onur")
         block.round_1 = True
         block.round_2 = True
-        #block.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
+        # block.validating_list = [Transaction(1, 1, 1, 1, 1, 1, 1, 1)]
         block_2 = Block("onur")
         block_2.round_1 = False
         block_2.round_2 = False
@@ -1197,8 +1190,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
-
     def test_SaveBlock_GetBlock_validating_list_priority(self):
         self.maxDiff = None
         block = Block("onur")
@@ -1236,8 +1227,6 @@ class Test_Blockchain(unittest.TestCase):
                            get_normal_block=False)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
-
-
 
     def test_SaveBlock_GetBlock_situation_vs_validating_priority(self):
         self.maxDiff = None
@@ -1277,8 +1266,6 @@ class Test_Blockchain(unittest.TestCase):
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
-
-
     def test_SaveBlock_GetBlock_situation_vs_sequance_number_priority(self):
         self.maxDiff = None
         block = Block("onur")
@@ -1316,7 +1303,6 @@ class Test_Blockchain(unittest.TestCase):
                            get_normal_block=False)
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
-
 
     def test_SaveBlock_GetBlock_validating_vs_sequance_number_priority(self):
         self.maxDiff = None

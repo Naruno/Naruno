@@ -13,16 +13,16 @@ from naruno.lib.log import get_logger
 
 logger = get_logger("BLOCKCHAIN")
 
+
 def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
     """
     Calculates and returns the hash of the block.
     """
     logger.info(f"Calculating the hash of the block#{block.sequence_number}")
 
-
     block = Remove_Duplicates(block)
     block.validating_list = sorted(block.validating_list,
-                                    key=lambda x: x.fromUser)
+                                   key=lambda x: x.fromUser)
 
     # Transaction Hash
     validating_list = [tx.dump_json() for tx in block.validating_list]
@@ -62,7 +62,7 @@ def CalculateHash(block, part_of_blocks_hash, the_blocks_hash, the_accounts):
         str(block.minumum_transfer_amount),
         str(block.round_1_time),
         str(block.round_2_time),
-        #str(block.validated_time),
+        # str(block.validated_time),
         str(block.just_one_tx),
         str(block.shares),
         str(block.fee_address),
