@@ -610,7 +610,6 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(integration_3.cache, [])
         integration_3.delete_cache()
 
-
     def test_integration_automatic_start(self):
         app_name = f"test_app_{int(time.time())}"
         integration_1 = Integration(app_name, port=7780)
@@ -624,7 +623,6 @@ class Test_apps(unittest.TestCase):
         integration_1.delete_cache()
         integration_1.close()
 
-
     def test_integration_just_close_without_api(self):
         app_name = f"test_app_{int(time.time())}"
         integration_1 = Integration(app_name, port=7776)
@@ -637,5 +635,6 @@ class Test_apps(unittest.TestCase):
         )
         integration_1.delete_cache()
         integration_1.close()
+
 
 unittest.main(exit=False)
