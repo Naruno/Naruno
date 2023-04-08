@@ -610,7 +610,7 @@ def blockjustonetx_get_page():
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
 
-    return jsonify(GetMaxTXNumber(block=the_block))
+    return jsonify(GetJustOneTX(block=the_block))
 
 
 @app.route("/blockmaxdatasize/get/", methods=["GET"])
