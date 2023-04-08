@@ -14,14 +14,18 @@ from naruno.transactions.pending.get_pending import GetPendingLen
 logger = get_logger("BLOCKCHAIN")
 
 
-def GetJustOneTX(block=None, ):
+def GetJustOneTX(
+    block=None,
+):
     if not the_settings()["baklava"]:
         block = block if block is not None else GetBlock()
         just_one_tx = block.just_one_tx
     else:
         just_one_tx = (
-            urlopen("http://test_net.1.naruno.org:8000/blockjustonetx/get/").
-            read().decode("utf-8")).lower()
+            urlopen("http://test_net.1.naruno.org:8000/blockjustonetx/get/")
+            .read()
+            .decode("utf-8")
+        ).lower()
 
         if "true" in just_one_tx:
             just_one_tx = True
