@@ -84,7 +84,7 @@ def Check_Datas(
         )
         return False
 
-    get_sequence_number = (GetSequanceNumber(transaction.fromUser)
+    get_sequence_number = (GetSequanceNumber(transaction.fromUser, block=block)
                            if custom_sequence_number is None else
                            custom_sequence_number)
     if transaction.sequence_number == (get_sequence_number + 1):
