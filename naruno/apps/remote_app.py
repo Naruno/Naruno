@@ -39,6 +39,8 @@ from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address
 from naruno.wallet.wallet_import import wallet_import
 
+from naruno.lib.perpetualtimer import perpetualTimer
+
 logger = get_logger("REMOTE_APP")
 
 
@@ -146,8 +148,8 @@ class Integration:
 
         self.check_thread = None
         if self.total_check:
+            self.check_thread = perpetualTimer(copy.copy(self.wait_amount), selfchecker)
             self.wait_amount = 0
-            self.check_thread = threading.Thread(target=self.checker)
             self.check_thread.start()
 
 
@@ -186,7 +188,7 @@ class Integration:
         if self.check_thread is not None:
             while len(self.sended_txs) > 0:
                 time.sleep(self.wait_amount)
-            self.check_thread.join()
+            self.check_thread.cancel()
         if self.api is not None:
             self.api.close()
 
@@ -395,7 +397,7 @@ class Integration:
 
         new_txs = self.get(get_all=True, disable_caches=True)
 
-        for sended_tx in self.sended_txs[:(self.max_tx_number/2)]:
+        for sended_tx in self.sended_txs[:self.max_tx_number//2]:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
