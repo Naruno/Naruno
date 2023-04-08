@@ -38,7 +38,7 @@ def Check_Datas(
                 return False
 
         for tx in pending_transactions + block.validating_list:
-            if (tx.fromUser == transaction.fromUser):
+            if (tx.fromUser == transaction.fromUser) and block.just_one_tx:
                     if tx.signature != transaction.signature:
                         if transaction.transaction_time < tx.transaction_time:
                             pass
