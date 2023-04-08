@@ -366,8 +366,9 @@ class Integration:
         }
         
         if self.wait_amount == 0:
-            self.sequence_number += 1
-            request_body["sequence_number"] = self.sequence_number
+            
+            request_body["sequence_number"] = copy.copy(self.sequence_number)
+            
 
         self.sended_txs.append(
             [action, app_data, to_user, amount, force, retrysecond, data])
@@ -389,6 +390,8 @@ class Integration:
             logger.info(
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
+            if self.wait_amount == 0:
+                self.sequence_number += 1
             self.last_sended = time.time()
             if self.checking and self.check_thread is None:
                 self.checker()
