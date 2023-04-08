@@ -552,7 +552,7 @@ class Integration:
                     if transactions_sended_not_validated[transaction][
                             "transaction"]["fromUser"] == wallet_import(-1, 0):
                         the_tx = Transaction.load_json(
-                            transactions_sended[transaction]["transaction"])
+                            transactions_sended_not_validated[transaction]["transaction"])
 
                         new_dict[
                             transaction] = transactions_sended_not_validated[
