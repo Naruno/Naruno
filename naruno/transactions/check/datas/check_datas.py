@@ -50,31 +50,31 @@ def Check_Datas(
                     else:
                         logger.info("Multiple transaction in one account")
                         return False
-
-    balance = (GetBalance(
-        transaction.fromUser,
-        block=block,
-    ) if custom_balance is None else custom_balance)
-    if balance >= (float(transaction.amount) +
-                   float(transaction.transaction_fee)):
-        pass
-    else:
-        logger.error("Balance is not valid")
-        return False
-
-    if transaction.amount >= block.minumum_transfer_amount:
-        pass
-    else:
-        if (GetBalance(
-                transaction.toUser,
-                account_list=custom_account_list,
-                dont_convert=True,
-                block=block,
-        ) >= 0):
+    if not disable_already_in:
+        balance = (GetBalance(
+            transaction.fromUser,
+            block=block,
+        ) if custom_balance is None else custom_balance)
+        if balance >= (float(transaction.amount) +
+                    float(transaction.transaction_fee)):
             pass
         else:
-            logger.error("Minimum transfer amount is not reached")
+            logger.error("Balance is not valid")
             return False
+
+        if transaction.amount >= block.minumum_transfer_amount:
+            pass
+        else:
+            if (GetBalance(
+                    transaction.toUser,
+                    account_list=custom_account_list,
+                    dont_convert=True,
+                    block=block,
+            ) >= 0):
+                pass
+            else:
+                logger.error("Minimum transfer amount is not reached")
+                return False
 
     if transaction.transaction_fee >= block.transaction_fee:
         pass
@@ -84,14 +84,15 @@ def Check_Datas(
         )
         return False
 
-    get_sequence_number = (GetSequanceNumber(transaction.fromUser, block=block)
-                           if custom_sequence_number is None else
-                           custom_sequence_number)
-    if transaction.sequence_number == (get_sequence_number + 1):
-        pass
-    else:
-        logger.error("Sequance number is not valid")
-        return False
+    if not disable_already_in:
+        get_sequence_number = (GetSequanceNumber(transaction.fromUser, block=block)
+                            if custom_sequence_number is None else
+                            custom_sequence_number)
+        if transaction.sequence_number == (get_sequence_number + 1):
+            pass
+        else:
+            logger.error("Sequance number is not valid")
+            return False
 
     current_time = (int(time.time())
                     if custom_current_time is None else custom_current_time)
