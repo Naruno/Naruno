@@ -146,9 +146,12 @@ class Integration:
             else:
                 self.total_check = True            
 
+        self.original_wait_amoount = copy.copy(self.wait_amount)
+
         self.check_thread = None
         if self.total_check:
-            self.check_thread = perpetualTimer(self.wait_amount/2, self.checker)
+            self.check_thread = perpetualTimer(self.wait_amount*(self.max_tx_number//2), self.checker)
+
             self.wait_amount = 0
 
 
@@ -186,7 +189,7 @@ class Integration:
         DeleteCommander(self.commander) if not self.commander is None else None
         if self.check_thread is not None:
             while len(self.sended_txs) > 0:
-                time.sleep(self.wait_amount)
+                time.sleep(self.original_wait_amoount)
             self.check_thread.cancel()
         if self.api is not None:
             self.api.close()
@@ -706,7 +709,7 @@ class Integration:
 
         if self.sended and self.check_thread is not None and not from_thread:
             while len(self.sended_txs) > 0:
-                time.sleep(self.wait_amount)
+                time.sleep(self.original_wait_amoount)
 
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
