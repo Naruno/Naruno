@@ -50,9 +50,10 @@ def GetBalance(user,
         for row in the_account_list.fetchall():
             balance += row[2]
             break
-        for tx in block.validating_list + GetPending():
-            if Address(tx.fromUser) == user:
-                balance -= float(tx.amount) + float(tx.transaction_fee)
-            elif tx.toUser == user:
-                balance += float(tx.amount)
+        if not block.just_one_tx:
+            for tx in block.validating_list + GetPending():
+                if Address(tx.fromUser) == user:
+                    balance -= float(tx.amount) + float(tx.transaction_fee)
+                elif tx.toUser == user:
+                    balance += float(tx.amount)
     return balance

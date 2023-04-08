@@ -19,7 +19,8 @@ def GetSequanceNumber(user, account_list=None, dont_convert=False, block=None):
         sequence_number = Accounts[1]
         break
     if block is not None:
-        for tx in block.validating_list + GetPending():
-            if Address(tx.fromUser) == user:
-                sequence_number += 1
+        if not block.just_one_tx:
+            for tx in block.validating_list + GetPending():
+                if Address(tx.fromUser) == user:
+                    sequence_number += 1
     return sequence_number
