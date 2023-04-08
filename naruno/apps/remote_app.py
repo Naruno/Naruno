@@ -146,6 +146,7 @@ class Integration:
 
         self.check_thread = None
         if self.total_check:
+            self.wait_amount = 0
             self.check_thread = threading.Thread(target=self.checker)
             self.check_thread.start()
 
@@ -394,7 +395,7 @@ class Integration:
 
         new_txs = self.get(get_all=True, disable_caches=True)
 
-        for sended_tx in self.sended_txs[:self.max_tx_number/2]:
+        for sended_tx in self.sended_txs[:(self.max_tx_number/2)]:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
