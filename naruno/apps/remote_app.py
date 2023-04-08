@@ -150,7 +150,6 @@ class Integration:
         if self.total_check:
             self.check_thread = perpetualTimer(copy.copy(self.wait_amount), self.checker)
             self.wait_amount = 0
-            self.check_thread.start()
 
 
 
