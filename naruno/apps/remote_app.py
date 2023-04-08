@@ -186,6 +186,7 @@ class Integration:
         sys.argv = backup
 
     def close(self):
+        print("Closing")
         DeleteCommander(self.commander) if not self.commander is None else None
         if self.check_thread is not None:
             while len(self.sended_txs) > 0:
@@ -725,7 +726,7 @@ class Integration:
 
         if self.sended and self.check_thread is not None and not from_thread:
             while len(self.sended_txs) > 0:
-                time.sleep(self.original_wait_amoount)
+                time.sleep(10)
 
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
