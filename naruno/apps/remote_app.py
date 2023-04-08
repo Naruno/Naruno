@@ -183,6 +183,8 @@ class Integration:
     def close(self):
         DeleteCommander(self.commander) if not self.commander is None else None
         if self.check_thread is not None:
+            while len(self.sended_txs) > 0:
+                time.sleep(self.wait_amount)
             self.check_thread.join()
         if self.api is not None:
             self.api.close()
