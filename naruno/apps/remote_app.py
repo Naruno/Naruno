@@ -370,9 +370,13 @@ class Integration:
             
             request_body["sequence_number"] = copy.copy(self.sequence_number)
             
-
-        self.sended_txs.append(
-            [action, app_data, to_user, amount, force, retrysecond, data])
+        alread_in_sended = False
+        for tx in self.sended_txs:
+            if tx[0] == action and tx[1] == app_data and tx[2] == to_user and tx[3] == amount and tx[4] == force and tx[5] == retrysecond and tx[6] == data:
+                alread_in_sended = True
+        if not alread_in_sended:
+            self.sended_txs.append(
+                [action, app_data, to_user, amount, force, retrysecond, data])
 
         if amount is not None:
             request_body["amount"] = amount
