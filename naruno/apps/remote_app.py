@@ -407,7 +407,7 @@ class Integration:
         time.sleep(self.wait_amount)
 
 
-        new_txs = self.get(get_all=True, disable_caches=True, from_thread=True, force_sended_not_validated=True, force_sended=True)
+        new_txs = self.get(get_all=True, disable_caches=True, from_thread=True, disable_sended_not_validated=True, force_sended=True)
 
         for sended_tx in self.sended_txs[:self.max_tx_number//2]:
             in_get = False
@@ -441,7 +441,7 @@ class Integration:
                 )
 
 
-    def get_(self, get_all, disable_caches, force_sended_not_validated, force_sended):
+    def get_(self, get_all, disable_caches, disable_sended_not_validated, force_sended):
         self.get_cache() if not disable_caches else None
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
@@ -454,7 +454,7 @@ class Integration:
                                             type="get")
             transactions_sended = response.json()
 
-        if self.sended_not_validated or force_sended_not_validated:
+        if self.sended_not_validated and not disable_sended_not_validated:
             response = self.prepare_request(
                 "/transactions/sended/not_validated", type="get")
             transactions_sended_not_validated = response.json()
@@ -543,7 +543,7 @@ class Integration:
                                 ["signature"]) if not disable_caches else None
         split_not_validated = []
         for transaction in transactions_sended_not_validated:
-            if self.sended_not_validated or force_sended_not_validated:
+            if self.sended_not_validated and disable_sended_not_validated:
                 if (transactions_sended_not_validated[transaction]
                     ["transaction"]["signature"]
                         in self.cache) and not get_all:
@@ -718,7 +718,7 @@ class Integration:
 
         return result
 
-    def get(self, get_all=False, disable_caches=False, from_thread=False, force_sended_not_validated=False, force_sended=False):
+    def get(self, get_all=False, disable_caches=False, from_thread=False, disable_sended_not_validated=False, force_sended=False):
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
         backup_host = copy.copy(self.host)
@@ -735,11 +735,11 @@ class Integration:
 
         first = []
         with contextlib.suppress(Exception):
-            first = self.get_(get_all=get_all, disable_caches=disable_caches, force_sended_not_validated=force_sended_not_validated, force_sended=force_sended)
+            first = self.get_(get_all=get_all, disable_caches=disable_caches, disable_sended_not_validated=disable_sended_not_validated, force_sended=force_sended)
         self.host = backup_host
         self.port = backup_port
 
-        second = self.get_(get_all=get_all, disable_caches=disable_caches, force_sended_not_validated=force_sended_not_validated, force_sended=force_sended)
+        second = self.get_(get_all=get_all, disable_caches=disable_caches, disable_sended_not_validated=disable_sended_not_validated, force_sended=force_sended)
 
         the_list = first + second
 
