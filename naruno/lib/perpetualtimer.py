@@ -33,7 +33,3 @@ class perpetualTimer(Timer):
         while not self.finished.wait(self.interval):
             with contextlib.suppress(json.decoder.JSONDecodeError):
                 self.function(*self.args, **self.kwargs)
-
-    def cancel(self):
-        self.finished.set()
-        self.join()
