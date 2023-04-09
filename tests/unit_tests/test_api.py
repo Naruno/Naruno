@@ -792,13 +792,13 @@ class Test_API(unittest.TestCase):
         result = json.loads(result)
         print(result)
         self.assertEqual(
-            result["0"]["transaction"]["data"],
+            result["1"]["transaction"]["data"],
             "{'data': 'dadata'}",
         )
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'fff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}}""",
         )
 
         SaveMyTransaction(backup, clear=True)
@@ -826,7 +826,7 @@ class Test_API(unittest.TestCase):
         print(result)
 
         self.assertEqual(
-            result["2"]["transaction"]["data"],
+            result["0"]["transaction"]["data"],
             "",
         )
 
@@ -836,13 +836,13 @@ class Test_API(unittest.TestCase):
         )
 
         self.assertEqual(
-            result["0"]["transaction"]["data"],
+            result["2"]["transaction"]["data"],
             "{'data': 'dadata'}",
         )
 
         self.assertEqual(
             str(result),
-            """{'0': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
+            """{'0': {'sended': True, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gf', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}, '1': {'sended': False, 'transaction': {'amount': 1.0, 'data': '', 'fromUser': '', 'sequence_number': 1, 'signature': 'gff', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': True}, '2': {'sended': False, 'transaction': {'amount': 1.0, 'data': "{'data': 'dadata'}", 'fromUser': '', 'sequence_number': 1, 'signature': 'c', 'toUser': '', 'transaction_fee': 1.0, 'transaction_time': 1}, 'validated': False}}""",
         )
 
         SaveMyTransaction(backup, clear=True)
