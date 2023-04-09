@@ -364,19 +364,19 @@ class Test_Consensus(unittest.TestCase):
         print("result ", result)
         print("len", len(result))
         self.assertEqual(
-            result[2],
+            result[0],
             [the_transaction.dump_json(), True, True],
         )
         self.assertEqual(
-            result[1],
+            result[2],
             [the_transaction_3.dump_json(), True, False],
         )
         self.assertEqual(
-            result[0],
+            result[3],
             [the_transaction_2.dump_json(), True, False],
         )
         self.assertEqual(
-            result[3],
+            result[1],
             [the_transaction_4.dump_json(), True, False],
         )
         self.assertEqual(len(result), 4)
