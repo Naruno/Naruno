@@ -23,9 +23,10 @@ from naruno.accounts.get_balance import GetBalance
 from naruno.accounts.get_sequence_number import GetSequanceNumber
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
-from naruno.blockchain.block.save_block import SaveBlock
+from naruno.blockchain.block.just_one_tx import GetJustOneTX
 from naruno.blockchain.block.max_data_size import GetMaxDataSize
 from naruno.blockchain.block.max_tx_number import GetMaxTXNumber
+from naruno.blockchain.block.save_block import SaveBlock
 from naruno.consensus.consensus_main import consensus_trigger
 from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
@@ -154,6 +155,8 @@ def send_coin_data_page():
     data = str(request.form["data"]) if "data" in request.form else ""
     password = str(
         request.form["password"]) if "password" in request.form else None
+    sequence_number = str(
+        request.form["sequence_number"]) if "sequence_number" in request.form else None        
     block = None
     with contextlib.suppress(Exception):
         block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
@@ -168,6 +171,7 @@ def send_coin_data_page():
         custom_sequence_number=custom_sequence_number,
         custom_balance=custom_balance,
         custom_account_list=custom_account_list,
+        custom_set_sequence_number=sequence_number,
     )
     if send_tx != False:
         SavetoMyTransaction(send_tx, sended=True)
@@ -524,10 +528,13 @@ def sequence_get_page():
         return jsonify("403"), 403
     address = str(request.args.get("address"))
 
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+
     return jsonify(
         GetSequanceNumber(address,
                           account_list=custom_account_list,
-                          dont_convert=True))
+                          dont_convert=True, block=the_block))
 
 
 # Write a api for directing a transaction with GetTransaction
@@ -599,6 +606,17 @@ def blockmaxtxnumber_get_page():
                  if custom_block is None else custom_block)
 
     return jsonify(GetMaxTXNumber(block=the_block))
+
+
+@app.route("/blockjustonetx/get/", methods=["GET"])
+def blockjustonetx_get_page():
+    logger.info(
+        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    # Check publisher mode
+    the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
+
+    return jsonify(GetJustOneTX(block=the_block))
 
 
 @app.route("/blockmaxdatasize/get/", methods=["GET"])

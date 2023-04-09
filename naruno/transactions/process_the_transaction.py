@@ -130,7 +130,7 @@ def ProccesstheTransaction(
     # Syncs new sorted list to block.validating_list
 
     block.validating_list = sorted(temp_validating_list,
-                                   key=lambda x: x.fromUser)
+                                   key=lambda x: x.signature)
 
     new_added_accounts_list = sorted(new_added_accounts_list,
                                      key=lambda x: x.Address)

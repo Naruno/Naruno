@@ -67,7 +67,7 @@ def Cleaner(block: Block, pending_list_txs: list,
             just = True
             for transaction_ in list_of_transactions:
                 if not transaction.__dict__ == transaction_.__dict__:
-                    if transaction.fromUser == transaction_.fromUser:
+                    if transaction.fromUser == transaction_.fromUser and block.just_one_tx:
                         just = False
                         if transaction.sequence_number < transaction_.sequence_number:
                             ok = True

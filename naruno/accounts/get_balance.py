@@ -12,6 +12,7 @@ from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.get_minumum_transfer_amount import \
     GetMinimumTransferAmount
 from naruno.lib.settings_system import the_settings
+from naruno.transactions.pending.get_pending import GetPending
 from naruno.wallet.wallet_import import Address
 
 
@@ -48,4 +49,11 @@ def GetBalance(user,
             f"SELECT * FROM account_list WHERE address = '{address}'")
         for row in the_account_list.fetchall():
             balance += row[2]
+            break
+        if not block.just_one_tx:
+            for tx in block.validating_list + GetPending():
+                if Address(tx.fromUser) == user:
+                    balance -= float(tx.amount) + float(tx.transaction_fee)
+                elif tx.toUser == user:
+                    balance += float(tx.amount)
     return balance

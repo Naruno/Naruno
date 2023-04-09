@@ -66,6 +66,7 @@ class Integration:
         wait_amount=None,
         checking=True,
         commander=None,
+        total_check=None,
     ):
         """
         :param host: The host of the node
@@ -96,8 +97,11 @@ class Integration:
 
         self.last_sended = 0
 
-        self.wait_amount = ((Block("Onur").block_time *
+        a_block = Block("Onur")
+
+        self.wait_amount = ((a_block.block_time *
                              2) if wait_amount is None else wait_amount)
+
 
         self.get_cache()
 
@@ -117,6 +121,27 @@ class Integration:
                 "/blockmaxdatasize/get/",
                 type="get",
             ).text)
+
+        if total_check is not None:
+            self.total_check = total_check
+        else:
+            self.total_check = self.prepare_request(
+                "/blockjustonetx/get/",
+                type="get",
+            ).text
+
+            if "true" in self.total_check:
+                self.total_check = False
+            else:
+                self.total_check = True
+
+        self.original_wait_amoount = copy.copy(self.wait_amount)
+
+        self.check_thread = None
+        if self.total_check:
+            self.check_thread = perpetualTimer(self.original_wait_amoount,
+                                               self.checker)
+            self.wait_amount = 0
 
         self.host = backup_host
         self.port = backup_port
@@ -149,6 +174,10 @@ class Integration:
 
     def close(self):
         DeleteCommander(self.commander) if not self.commander is None else None
+        if self.check_thread is not None:
+            while len(self.sended_txs) > 0:
+                time.sleep(10)
+            self.check_thread.cancel()
         if self.api is not None:
             self.api.close()
 
@@ -304,7 +333,7 @@ class Integration:
                 )
 
             self.checking = backup_checking
-            self.checker()
+            self.checker() if self.check_thread is None else None
 
             self.send(
                 action=action,
@@ -323,8 +352,15 @@ class Integration:
             "data": data,
         }
 
-        self.sended_txs.append(
-            [action, app_data, to_user, amount, force, retrysecond, data])
+        alread_in_sended = False
+        for tx in self.sended_txs:
+            if (tx[0] == action and tx[1] == app_data and tx[2] == to_user
+                    and tx[3] == amount and tx[4] == force
+                    and tx[5] == retrysecond and tx[6] == data):
+                alread_in_sended = True
+        if not alread_in_sended:
+            self.sended_txs.append(
+                [action, app_data, to_user, amount, force, retrysecond, data])
 
         if amount is not None:
             request_body["amount"] = amount
@@ -343,24 +379,35 @@ class Integration:
             logger.info(
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
+            time.sleep(1)
             self.last_sended = time.time()
-            if self.checking:
+            if self.checking and self.check_thread is None:
                 self.checker()
             return True
 
     def checker(self):
         time.sleep(self.wait_amount)
-        backup_sended_not_validated = copy.copy(self.sended_not_validated)
-        backup_sended = copy.copy(self.sended)
-        self.sended_not_validated = False
-        self.sended = True
 
-        new_txs = self.get(get_all=True, disable_caches=True)
+        new_txs = self.get(
+            get_all=True,
+            disable_caches=True,
+            from_thread=True,
+            disable_sended_not_validated=True,
+            force_sended=True,
+        )
 
-        for sended_tx in self.sended_txs[:]:
+        for sended_tx in self.sended_txs[:self.max_tx_number // 2]:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
+                backup_host = copy.copy(self.host)
+                backup_port = copy.copy(self.port)
+                if the_settings()["baklava"]:
+                    self.host = "test_net.1.naruno.org"
+                    self.port = 8000
+
+                self.host = backup_host
+                self.port = backup_port
             for vaidated_tx in new_txs:
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(
@@ -379,10 +426,8 @@ class Integration:
                     sended_tx[5],
                 )
 
-        self.sended_not_validated = backup_sended_not_validated
-        self.sended = backup_sended
-
-    def get_(self, get_all, disable_caches):
+    def get_(self, get_all, disable_caches, disable_sended_not_validated,
+             force_sended):
         self.get_cache() if not disable_caches else None
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
@@ -390,12 +435,12 @@ class Integration:
         transactions_sended = {}
         transactions_sended_not_validated = {}
 
-        if self.sended:
+        if self.sended or force_sended:
             response = self.prepare_request("/transactions/sended/validated",
                                             type="get")
             transactions_sended = response.json()
 
-        if self.sended_not_validated:
+        if self.sended_not_validated and not disable_sended_not_validated:
             response = self.prepare_request(
                 "/transactions/sended/not_validated", type="get")
             transactions_sended_not_validated = response.json()
@@ -442,7 +487,7 @@ class Integration:
                         transaction]
 
         for transaction in transactions_sended:
-            if self.sended:
+            if self.sended or force_sended:
                 if (transactions_sended[transaction]["transaction"]
                     ["signature"] in self.cache) and not get_all:
                     continue
@@ -484,7 +529,7 @@ class Integration:
                                 ["signature"]) if not disable_caches else None
         split_not_validated = []
         for transaction in transactions_sended_not_validated:
-            if self.sended_not_validated:
+            if self.sended_not_validated and not disable_sended_not_validated:
                 if (transactions_sended_not_validated[transaction]
                     ["transaction"]["signature"]
                         in self.cache) and not get_all:
@@ -493,7 +538,8 @@ class Integration:
                     if transactions_sended_not_validated[transaction][
                             "transaction"]["fromUser"] == wallet_import(-1, 0):
                         the_tx = Transaction.load_json(
-                            transactions_sended[transaction]["transaction"])
+                            transactions_sended_not_validated[transaction]
+                            ["transaction"])
 
                         new_dict[
                             transaction] = transactions_sended_not_validated[
@@ -659,22 +705,45 @@ class Integration:
 
         return result
 
-    def get(self, get_all=False, disable_caches=False):
+    def get(
+        self,
+        get_all=False,
+        disable_caches=False,
+        from_thread=False,
+        disable_sended_not_validated=False,
+        force_sended=False,
+    ):
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
+
+        if ((self.sended or force_sended) and self.check_thread is not None
+                and not from_thread):
+            while len(self.sended_txs) > 0:
+                time.sleep(10)
+
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
 
         first = []
         with contextlib.suppress(Exception):
-            first = self.get_(get_all=get_all, disable_caches=disable_caches)
+            first = self.get_(
+                get_all=get_all,
+                disable_caches=disable_caches,
+                disable_sended_not_validated=disable_sended_not_validated,
+                force_sended=force_sended,
+            )
         self.host = backup_host
         self.port = backup_port
 
-        second = self.get_(get_all=get_all, disable_caches=disable_caches)
+        second = self.get_(
+            get_all=get_all,
+            disable_caches=disable_caches,
+            disable_sended_not_validated=disable_sended_not_validated,
+            force_sended=force_sended,
+        )
 
         the_list = first + second
 

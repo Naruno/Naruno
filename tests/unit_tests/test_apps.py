@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+from hashlib import sha256
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -33,9 +34,9 @@ from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
                            LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
                            LOADING_BLOCKSHASH_PATH, MY_TRANSACTION_EXPORT_PATH,
-                           PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
-                           TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH,
-                           TEMP_BLOCKSHASH_PATH)
+                           MY_TRANSACTION_PATH, PENDING_TRANSACTIONS_PATH,
+                           TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                           TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
@@ -323,6 +324,7 @@ class Test_apps(unittest.TestCase):
             port=7776,
             password="123",
             sended_not_validated=True,
+            wait_amount=1,
         )
 
         backup = GetMyTransaction()
@@ -383,6 +385,7 @@ class Test_apps(unittest.TestCase):
             password="123",
             sended=True,
             sended_not_validated=False,
+            wait_amount=1,
         )
 
         backup = GetMyTransaction()
@@ -440,6 +443,7 @@ class Test_apps(unittest.TestCase):
             password="123",
             sended_not_validated=False,
             sended=False,
+            wait_amount=1,
         )
 
         backup = GetMyTransaction()
@@ -478,8 +482,12 @@ class Test_apps(unittest.TestCase):
         the_txs = GetMyTransaction()
         for txs in the_txs:
             if txs[0].toUser == wallet_import(-1, 3):
-                the_txs[the_txs.index(txs)][2] = False
-        SaveMyTransaction(the_txs)
+                os.remove(
+                    os.path.join(
+                        MY_TRANSACTION_PATH,
+                        "sended" +
+                        sha256(txs[0].signature.encode("utf-8")).hexdigest(),
+                    ))
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -510,6 +518,7 @@ class Test_apps(unittest.TestCase):
             password="123",
             sended_not_validated=False,
             sended=False,
+            wait_amount=1,
         )
 
         backup = GetMyTransaction()
@@ -548,8 +557,12 @@ class Test_apps(unittest.TestCase):
         the_txs = GetMyTransaction()
         for txs in the_txs:
             if txs[0].toUser == wallet_import(-1, 3):
-                the_txs[the_txs.index(txs)][2] = False
-        SaveMyTransaction(the_txs)
+                os.remove(
+                    os.path.join(
+                        MY_TRANSACTION_PATH,
+                        "sended" +
+                        sha256(txs[0].signature.encode("utf-8")).hexdigest(),
+                    ))
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
