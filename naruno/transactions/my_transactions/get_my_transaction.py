@@ -54,6 +54,9 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             tx for tx in the_transactions if tx[1] == validated
         ]
 
+    #sort
+    the_transactions.sort(key=lambda x: x[0].signature)
+
     if turn_json:
         the_transactions = {
             the_transactions.index(tx): {
@@ -63,5 +66,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             }
             for tx in the_transactions
         }
+
+
 
     return the_transactions

@@ -2670,6 +2670,8 @@ class Test_Transactions(unittest.TestCase):
                                                int(time.time()) + 3)
 
         SavePending(transaction_frem_a_0_j_3)
+        SavePending(transaction_frem_a_0_a_4)
+        SavePending(transaction_frem_a_1_q_3)
 
         pending_list_txs = GetPending()
 
