@@ -64,4 +64,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             for tx in the_transactions
         }
 
+    #sort
+    the_transactions.sort(key=lambda x: x[0].signature)
+
     return the_transactions

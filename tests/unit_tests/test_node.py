@@ -1217,6 +1217,8 @@ class Test_Node(unittest.TestCase):
 
     def test_send_my_block_get_candidate_block(self):
         CleanUp_tests()
+        self.node_1.clients[0].candidate_block = None
+        self.node_2.clients[0].candidate_block = None
         the_block = Block("onuratakanulusoy")
         the_transaction_json = {
             "sequence_number": 1,
@@ -1276,6 +1278,9 @@ class Test_Node(unittest.TestCase):
 
     def test_send_my_block_hash_get_candidate_block_hash(self):
         CleanUp_tests()
+
+        self.node_1.clients[0].candidate_block_hash = None
+        self.node_2.clients[0].candidate_block_hash = None
 
         the_block = Block("onuratakanulusoy")
         the_block.hash = 58585858
