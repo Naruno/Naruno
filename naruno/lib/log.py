@@ -24,7 +24,7 @@ def get_logger(name):
         level = logging.DEBUG if the_settings()["debug_mode"] else logging.INFO
         logger.setLevel(level)
         # create console handler and set level to debug
-        ch = logging.StreamHandler()
+        ch = logging.StreamHandler(stream=sys.__stderr__)
         ch.setLevel(level)
         # create formatter
         formatter = logging.Formatter(
