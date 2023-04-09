@@ -106,8 +106,6 @@ class Integration:
         else:
             self.wait_amount = wait_amount
 
-
-
         self.get_cache()
 
         backup_host = copy.copy(self.host)
@@ -127,12 +125,6 @@ class Integration:
                 type="get",
             ).text)
 
-
-
-
-
-        
-
         if total_check is not None:
             self.total_check = total_check
         else:
@@ -144,16 +136,15 @@ class Integration:
             if "true" in self.total_check:
                 self.total_check = False
             else:
-                self.total_check = True            
+                self.total_check = True
 
         self.original_wait_amoount = copy.copy(self.wait_amount)
 
         self.check_thread = None
         if self.total_check:
-            self.check_thread = perpetualTimer(self.original_wait_amoount, self.checker)
+            self.check_thread = perpetualTimer(
+                self.original_wait_amoount, self.checker)
             self.wait_amount = 0
-
-
 
         self.host = backup_host
         self.port = backup_port
@@ -337,8 +328,7 @@ class Integration:
             for each_data in splitted_data:
                 self.send(
                     action=action,
-                    app_data=
-                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                    app_data=f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                     to_user=to_user,
                     force=force,
                     retrysecond=retrysecond,
@@ -363,8 +353,7 @@ class Integration:
             "to_user": to_user,
             "data": data,
         }
-        
-            
+
         alread_in_sended = False
         for tx in self.sended_txs:
             if tx[0] == action and tx[1] == app_data and tx[2] == to_user and tx[3] == amount and tx[4] == force and tx[5] == retrysecond and tx[6] == data:
@@ -399,10 +388,10 @@ class Integration:
     def checker(self):
         time.sleep(self.wait_amount)
 
+        new_txs = self.get(get_all=True, disable_caches=True, from_thread=True,
+                           disable_sended_not_validated=True, force_sended=True)
 
-        new_txs = self.get(get_all=True, disable_caches=True, from_thread=True, disable_sended_not_validated=True, force_sended=True)
-
-        for sended_tx in self.sended_txs[:self.max_tx_number//2]:
+        for sended_tx in self.sended_txs[:self.max_tx_number // 2]:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
@@ -411,10 +400,9 @@ class Integration:
                 if the_settings()["baklava"]:
                     self.host = "test_net.1.naruno.org"
                     self.port = 8000
-             
 
                 self.host = backup_host
-                self.port = backup_port                   
+                self.port = backup_port
             for vaidated_tx in new_txs:
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(
@@ -432,7 +420,6 @@ class Integration:
                     sended_tx[4],
                     sended_tx[5],
                 )
-
 
     def get_(self, get_all, disable_caches, disable_sended_not_validated, force_sended):
         self.get_cache() if not disable_caches else None
@@ -496,7 +483,7 @@ class Integration:
         for transaction in transactions_sended:
             if self.sended or force_sended:
                 if (transactions_sended[transaction]["transaction"]
-                    ["signature"] in self.cache) and not get_all:
+                        ["signature"] in self.cache) and not get_all:
                     continue
                 else:
                     if transactions_sended[transaction]["transaction"][
@@ -507,7 +494,7 @@ class Integration:
                             transactions_sended[transaction]["transaction"])
 
                         if (not transactions_sended[transaction]["transaction"]
-                            ["data"] == "NP"):
+                                ["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended[transaction][
@@ -551,7 +538,7 @@ class Integration:
                             transaction] = transactions_sended_not_validated[
                                 transaction]
                         if (not transactions_sended_not_validated[transaction]
-                            ["transaction"]["data"] == "NP"):
+                                ["transaction"]["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended_not_validated[transaction][
@@ -590,7 +577,7 @@ class Integration:
             with contextlib.suppress(TypeError):
                 if not new_dict[transaction]["transaction"]["data"] == "NP":
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
@@ -727,11 +714,13 @@ class Integration:
 
         first = []
         with contextlib.suppress(Exception):
-            first = self.get_(get_all=get_all, disable_caches=disable_caches, disable_sended_not_validated=disable_sended_not_validated, force_sended=force_sended)
+            first = self.get_(get_all=get_all, disable_caches=disable_caches,
+                              disable_sended_not_validated=disable_sended_not_validated, force_sended=force_sended)
         self.host = backup_host
         self.port = backup_port
 
-        second = self.get_(get_all=get_all, disable_caches=disable_caches, disable_sended_not_validated=disable_sended_not_validated, force_sended=force_sended)
+        second = self.get_(get_all=get_all, disable_caches=disable_caches,
+                           disable_sended_not_validated=disable_sended_not_validated, force_sended=force_sended)
 
         the_list = first + second
 
