@@ -749,6 +749,8 @@ class Test_Consensus(unittest.TestCase):
 
         block.genesis_time = int(time.time())
         block.block_time = 2
+        block.round_1_time = 10
+        block.round_2_time = 10
         block.sequence_number = 0
         block.empty_block_number = 0
         block.max_tx_number = 3
