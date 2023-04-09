@@ -485,11 +485,10 @@ class Test_apps(unittest.TestCase):
         for txs in the_txs:
             if txs[0].toUser == wallet_import(-1, 3):
                 os.remove(os.path.join(
-                        MY_TRANSACTION_PATH,
-                        "sended" +
-                        sha256(txs[0].signature.encode("utf-8")).hexdigest(),
-                    ))
-
+                    MY_TRANSACTION_PATH,
+                    "sended" +
+                    sha256(txs[0].signature.encode("utf-8")).hexdigest(),
+                ))
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -560,11 +559,10 @@ class Test_apps(unittest.TestCase):
         for txs in the_txs:
             if txs[0].toUser == wallet_import(-1, 3):
                 os.remove(os.path.join(
-                        MY_TRANSACTION_PATH,
-                        "sended" +
-                        sha256(txs[0].signature.encode("utf-8")).hexdigest(),
-                    ))
-
+                    MY_TRANSACTION_PATH,
+                    "sended" +
+                    sha256(txs[0].signature.encode("utf-8")).hexdigest(),
+                ))
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
