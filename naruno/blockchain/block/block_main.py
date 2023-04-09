@@ -62,7 +62,7 @@ class Block:
         self.hash = None
         self.part_amount_cache = previous_hash
 
-        self.max_tx_number = 100
+        self.max_tx_number = 1000
         self.minumum_transfer_amount = 1000
 
         self.round_1_time = 10
