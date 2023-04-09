@@ -151,7 +151,6 @@ class Integration:
         self.check_thread = None
         if self.total_check:
             self.check_thread = perpetualTimer(self.original_wait_amoount, self.checker)
-            self.sequence_number = int(self.prepare_request(f"/sequence/get/?address={wallet_import(-1,3)}", type="get").text.replace("\n", "")) + 1
             self.wait_amount = 0
 
 
@@ -365,9 +364,6 @@ class Integration:
             "data": data,
         }
         
-        if self.wait_amount == 0 and self.total_check:
-            
-            request_body["sequence_number"] = copy.copy(self.sequence_number)
             
         alread_in_sended = False
         for tx in self.sended_txs:
@@ -394,8 +390,7 @@ class Integration:
             logger.info(
                 f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
             )
-            if self.wait_amount == 0 and self.total_check:
-                self.sequence_number += 1
+            time.sleep(1)
             self.last_sended = time.time()
             if self.checking and self.check_thread is None:
                 self.checker()
@@ -417,7 +412,7 @@ class Integration:
                     self.host = "test_net.1.naruno.org"
                     self.port = 8000
              
-                self.sequence_number = int(self.prepare_request(f"/sequence/get/?address={wallet_import(-1,3)}", type="get").text.replace("\n", "")) + 1
+
                 self.host = backup_host
                 self.port = backup_port                   
             for vaidated_tx in new_txs:
