@@ -536,7 +536,7 @@ class Integration:
                                 ["signature"]) if not disable_caches else None
         split_not_validated = []
         for transaction in transactions_sended_not_validated:
-            if self.sended_not_validated and disable_sended_not_validated:
+            if self.sended_not_validated and not disable_sended_not_validated:
                 if (transactions_sended_not_validated[transaction]
                     ["transaction"]["signature"]
                         in self.cache) and not get_all:
