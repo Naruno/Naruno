@@ -65,11 +65,11 @@ class Block:
         self.max_tx_number = 1000
         self.minumum_transfer_amount = 1000
 
-        self.round_1_time = 10
+        self.round_1_time = 15
         self.round_1 = False
 
         self.round_2_starting_time = None
-        self.round_2_time = 10
+        self.round_2_time = 5
         self.round_2 = False
 
         self.consensus_timer = 0.50
