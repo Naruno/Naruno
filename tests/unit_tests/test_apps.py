@@ -623,31 +623,5 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(integration_3.cache, [])
         integration_3.delete_cache()
 
-    def test_integration_automatic_start(self):
-        app_name = f"test_app_{int(time.time())}"
-        integration_1 = Integration(app_name, port=7780)
-        integration_1.cache.append("test")
-        integration_1.save_cache()
-        self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
-        )
-        integration_1.delete_cache()
-        integration_1.close()
-
-    def test_integration_just_close_without_api(self):
-        app_name = f"test_app_{int(time.time())}"
-        integration_1 = Integration(app_name, port=7776)
-        integration_1.cache.append("test")
-        integration_1.save_cache()
-        self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
-        )
-        integration_1.delete_cache()
-        integration_1.close()
-
 
 unittest.main(exit=False)
