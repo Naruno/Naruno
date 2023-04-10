@@ -145,7 +145,7 @@ class Integration:
                 self.wait_amount = 0
         except:
             logger.error("Network is not active")
-            exit()
+            sys.exit()
 
         self.host = backup_host
         self.port = backup_port
