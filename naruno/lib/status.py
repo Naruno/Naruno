@@ -45,7 +45,7 @@ def Status(
 
         connections = (Unl.get_as_node_type(
             Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH))
-                       if custom_connections is None else custom_connections)
+            if custom_connections is None else custom_connections)
         connected_nodes = [
             str(f"{the_connections.host}:{the_connections.port}")
             for the_connections in connections

@@ -574,7 +574,6 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Not working")
         save_settings(backup_settings)
 
-
     def test_status_cache_expired_multiple_want(self):
         backup_settings = the_settings()
         clean_settings = copy.copy(backup_settings)
@@ -622,7 +621,7 @@ class Test_Lib(unittest.TestCase):
         time.sleep(10)
         ab_settins = the_settings()
         ab_settins["status_working"] = True
-        save_settings(ab_settins)        
+        save_settings(ab_settins)
         result = Status(
             custom_first_block=custom_first_block,
             custom_new_block=custom_first_block,
@@ -692,7 +691,7 @@ class Test_Lib(unittest.TestCase):
         time.sleep(9)
         ab_settins = the_settings()
         ab_settins["status_working"] = True
-        save_settings(ab_settins)        
+        save_settings(ab_settins)
         result = Status(
             custom_first_block=custom_first_block,
             custom_new_block=custom_first_block,
@@ -703,7 +702,6 @@ class Test_Lib(unittest.TestCase):
         )
         self.assertEqual(result["status"], "Not working")
         save_settings(backup_settings)
-
 
     def test_export_the_transactions_false(self):
         custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
