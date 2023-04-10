@@ -30,9 +30,12 @@ def Status(
     Returns the status of the network.
     """
     a_settings = the_settings()
+    currently_time = time.time()
 
     if (no_cache or a_settings["status_cache_time"] + cache_time <=
-            time.time()) and not a_settings["status_working"]:
+            currently_time) and (not a_settings["status_working"]
+                                 or a_settings["status_cache_time"] +
+                                 cache_time + wait_time + 2 <= currently_time):
         a_settings["status_working"] = True
         save_settings(a_settings)
         first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
