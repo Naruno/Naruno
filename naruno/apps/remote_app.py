@@ -106,6 +106,13 @@ class Integration:
 
         self.get_cache()
 
+        self.sended_txs = []
+
+        self.checking = checking
+
+        self.commander = commander
+        SaveCommander(self.commander) if not self.commander is None else None
+
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
@@ -151,12 +158,7 @@ class Integration:
         self.host = backup_host
         self.port = backup_port
 
-        self.sended_txs = []
 
-        self.checking = checking
-
-        self.commander = commander
-        SaveCommander(self.commander) if not self.commander is None else None
 
         logger.info(f"Integration of {self.app_name} is started")
 
