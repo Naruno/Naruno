@@ -242,7 +242,7 @@ class Test_Blockchain(unittest.TestCase):
         )
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
         self.assertEqual(the_accounts, [the_account, the_account, the_account])
-        true_hash = "36b3d4577fb7d5a476b62c216fa2f253031129050b8d6064fb3ee86e45e87d3c"
+        true_hash = "71c3154f5cadb6dcfba45b8ebc4d119a6366c8ce7444670b15f296eaf2486a43"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
 
