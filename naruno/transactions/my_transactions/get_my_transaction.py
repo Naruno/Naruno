@@ -59,7 +59,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
 
     if turn_json:
         the_transactions = {
-            the_transactions.index(tx): {
+            tx[0].signature: {
                 "transaction": tx[0].dump_json(),
                 "validated": tx[1],
                 "sended": tx[2],
