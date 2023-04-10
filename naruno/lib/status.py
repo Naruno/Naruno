@@ -43,7 +43,7 @@ def Status(
 
         connections = (Unl.get_as_node_type(
             Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH))
-                       if custom_connections is None else custom_connections)
+            if custom_connections is None else custom_connections)
         connected_nodes = [
             str(f"{the_connections.host}:{the_connections.port}")
             for the_connections in connections
@@ -78,7 +78,7 @@ def Status(
             a_settings["status_cache"] = status_json
             a_settings["status_cache_time"] = time.time()
 
-        a_settings["status_working"] = False    
+        a_settings["status_working"] = False
         save_settings(a_settings)
         return status_json
 
