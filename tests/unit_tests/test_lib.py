@@ -353,7 +353,7 @@ class Test_Lib(unittest.TestCase):
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
             no_cache=True,
-            wait_time = 0.1
+            wait_time=0.1
         )
         self.assertEqual(result["status"], "Not working")
         self.assertEqual(result["last_transaction_of_block"],
@@ -394,7 +394,7 @@ class Test_Lib(unittest.TestCase):
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
             no_cache=True,
-            wait_time = 0.1
+            wait_time=0.1
         )
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
@@ -435,7 +435,7 @@ class Test_Lib(unittest.TestCase):
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
             no_cache=True,
-            wait_time = 0.1
+            wait_time=0.1
         )
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
@@ -455,7 +455,7 @@ class Test_Lib(unittest.TestCase):
         clean_settings = copy.copy(backup_settings)
         clean_settings["status_cache_time"] = 0
         save_settings(clean_settings)
-        
+
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
         custom_new_block.sequence_number += 1
@@ -480,7 +480,7 @@ class Test_Lib(unittest.TestCase):
             custom_new_block=custom_new_block,
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
-            wait_time = 0.1
+            wait_time=0.1
         )
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
@@ -501,8 +501,8 @@ class Test_Lib(unittest.TestCase):
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
             cache_time=10,
-            wait_time = 0.1
-        )                
+            wait_time=0.1
+        )
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
@@ -514,7 +514,7 @@ class Test_Lib(unittest.TestCase):
             ]),
         )
         self.assertEqual(result["connected_nodes"],
-                         ["127.0.0.1:10001", "127.0.0.1:10002"])            
+                         ["127.0.0.1:10001", "127.0.0.1:10002"])
 
         save_settings(backup_settings)
 
@@ -548,7 +548,7 @@ class Test_Lib(unittest.TestCase):
             custom_new_block=custom_new_block,
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
-            wait_time = 0.1
+            wait_time=0.1
         )
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
@@ -569,8 +569,8 @@ class Test_Lib(unittest.TestCase):
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
             cache_time=5,
-            wait_time = 0.1
-        )                
+            wait_time=0.1
+        )
         self.assertEqual(result["status"], "Not working")
         save_settings(backup_settings)
 
