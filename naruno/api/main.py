@@ -324,7 +324,7 @@ def settings_debug_off_page():
     return jsonify("OK")
 
 @app.route("/settings/functionaltest/on", methods=["GET"])
-def settings_debug_on_page():
+def fsettings_debug_on_page():
     logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
@@ -336,7 +336,7 @@ def settings_debug_on_page():
 
 
 @app.route("/settings/functionaltest/off", methods=["GET"])
-def settings_debug_off_page():
+def fsettings_debug_off_page():
     logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
