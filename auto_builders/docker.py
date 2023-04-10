@@ -17,7 +17,7 @@ import requests
 
 class Naruno_Docker:
 
-    def __init__(self, number_of_nodes=3, number_of_security_circle=1 test_mode=False):
+    def __init__(self, number_of_nodes=3, number_of_security_circle=1, test_mode=False):
         self.number_of_nodes = number_of_nodes - 1
         self.number_of_security_circle = number_of_security_circle
         nodes_list = list(range(self.number_of_nodes))
