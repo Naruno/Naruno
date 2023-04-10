@@ -111,38 +111,41 @@ class Integration:
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
+        try:
+            self.max_tx_number = int(
+                self.prepare_request(
+                    "/blockmaxtxnumber/get/",
+                    type="get",
+                ).text)
+            self.max_data_size = int(
+                self.prepare_request(
+                    "/blockmaxdatasize/get/",
+                    type="get",
+                ).text)
 
-        self.max_tx_number = int(
-            self.prepare_request(
-                "/blockmaxtxnumber/get/",
-                type="get",
-            ).text)
-        self.max_data_size = int(
-            self.prepare_request(
-                "/blockmaxdatasize/get/",
-                type="get",
-            ).text)
-
-        if total_check is not None:
-            self.total_check = total_check
-        else:
-            self.total_check = self.prepare_request(
-                "/blockjustonetx/get/",
-                type="get",
-            ).text
-
-            if "true" in self.total_check:
-                self.total_check = False
+            if total_check is not None:
+                self.total_check = total_check
             else:
-                self.total_check = True
+                self.total_check = self.prepare_request(
+                    "/blockjustonetx/get/",
+                    type="get",
+                ).text
 
-        self.original_wait_amoount = copy.copy(self.wait_amount)
+                if "true" in self.total_check:
+                    self.total_check = False
+                else:
+                    self.total_check = True
 
-        self.check_thread = None
-        if self.total_check:
-            self.check_thread = perpetualTimer(self.original_wait_amoount,
-                                               self.checker)
-            self.wait_amount = 0
+            self.original_wait_amoount = copy.copy(self.wait_amount)
+
+            self.check_thread = None
+            if self.total_check:
+                self.check_thread = perpetualTimer(self.original_wait_amoount,
+                                                self.checker)
+                self.wait_amount = 0
+        except:
+            logger.error("Network is not active")
+            exit()
 
         self.host = backup_host
         self.port = backup_port
@@ -263,14 +266,7 @@ class Integration:
 
             self.host = copy.copy(self.first_host)
             self.port = copy.copy(self.first_port)
-            backup_host = copy.copy(self.host)
-            backup_port = copy.copy(self.port)
-            if the_settings()["baklava"]:
-                self.host = "test_net.1.naruno.org"
-                self.port = 8000
 
-            self.host = backup_host
-            self.port = backup_port
 
             data = {"action": self.app_name + action, "app_data": app_data}
 
@@ -405,14 +401,7 @@ class Integration:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
-                backup_host = copy.copy(self.host)
-                backup_port = copy.copy(self.port)
-                if the_settings()["baklava"]:
-                    self.host = "test_net.1.naruno.org"
-                    self.port = 8000
 
-                self.host = backup_host
-                self.port = backup_port
             for vaidated_tx in new_txs:
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(
