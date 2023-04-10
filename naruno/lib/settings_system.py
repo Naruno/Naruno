@@ -12,6 +12,7 @@ from naruno.lib.config_system import get_config
 
 temp_json = {
     "test_mode": False,
+    "funtionaltest_mode": False,
     "debug_mode": False,
     "wallet": 0,
     "save_blockshash": True,
@@ -74,6 +75,17 @@ def d_mode_settings(new_value):
     settings["debug_mode"] = new_value
     save_settings(settings)
 
+def ft_mode_settings(new_value):
+    """
+    Changes the funtionaltest_mode setting.
+
+    Inputs:
+      * new_value: New value for the funtionaltest_mode
+    """
+
+    settings = the_settings()
+    settings["funtionaltest_mode"] = new_value
+    save_settings(settings)
 
 def mt_settings(new_value):
     """

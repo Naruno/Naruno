@@ -32,7 +32,7 @@ from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (d_mode_settings, t_mode_settings,
+from naruno.lib.settings_system import (d_mode_settings, t_mode_settings, ft_mode_settings,
                                         the_settings)
 from naruno.lib.sign import sign
 from naruno.lib.status import Status
@@ -323,6 +323,28 @@ def settings_debug_off_page():
     d_mode_settings(False)
     return jsonify("OK")
 
+@app.route("/settings/functionaltest/on", methods=["GET"])
+def settings_debug_on_page():
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    if the_settings()["publisher_mode"]:
+        return jsonify(
+            {"error": "You can't turn on the debug mode in publisher mode."})
+    app.config["DEBUG"] = True
+    ft_mode_settings(True)
+    return jsonify("OK")
+
+
+@app.route("/settings/functionaltest/off", methods=["GET"])
+def settings_debug_off_page():
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    if the_settings()["publisher_mode"]:
+        return jsonify(
+            {"error": "You can't turn off the debug mode in publisher mode."})
+    app.config["DEBUG"] = False
+    ft_mode_settings(False)
+    return jsonify("OK")
 
 @app.route("/block/get", methods=["GET"])
 def block_get_page():

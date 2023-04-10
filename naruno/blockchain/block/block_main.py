@@ -16,6 +16,7 @@ from naruno.blockchain.block.blocks_hash import SaveBlockshash
 from naruno.config import TEMP_BLOCK_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
+from naruno.lib.settings_system import the_settings
 from naruno.node.unl import Unl
 from naruno.transactions.transaction import Transaction
 
@@ -84,6 +85,12 @@ class Block:
 
         self.shares = []
         self.fee_address = creator
+
+
+        if the_settings()["funtionaltest_mode"]:
+            self.max_tx_number = 2
+            self.max_data_size = 1000
+            
 
     def reset_the_block(self, custom_nodes=None):
         """
