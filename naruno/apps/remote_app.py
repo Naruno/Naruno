@@ -252,12 +252,12 @@ class Integration:
              amount=None,
              force=True,
              retrysecond=10) -> bool:
-        """
-        :param action: The action of the app
-        :param app_data: The data of the app
-        :param to_user: The user to send the data to
-        """
-        try:
+            """
+            :param action: The action of the app
+            :param app_data: The data of the app
+            :param to_user: The user to send the data to
+            """
+
             if time.time() - self.last_sended < self.wait_amount:
                 time.sleep(self.wait_amount - (time.time() - self.last_sended))
 
@@ -373,7 +373,7 @@ class Integration:
                                             data=request_body)
 
             if "false" in response.text:
-                logger.error("Rejected sending message")
+                logger.error("Error on sending message")
                 if force:
                     logger.info("Trying to send again")
                     return self.send_forcer(action, app_data, to_user,
@@ -388,12 +388,7 @@ class Integration:
                 if self.checking and self.check_thread is None:
                     self.checker()
                 return True
-        except:
-            logger.error("Error sending message")
-            if force:
-                logger.info("Trying to send again")
-                return self.send_forcer(action, app_data, to_user, retrysecond)
-            return False
+
 
     def checker(self):
         time.sleep(self.wait_amount)
