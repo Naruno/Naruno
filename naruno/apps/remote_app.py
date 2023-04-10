@@ -422,7 +422,7 @@ class Integration:
                 )
 
     def get_(self, get_all, disable_caches, disable_sended_not_validated,
-             force_sended):
+             force_sended, raw_data_return=False, raw_datas=None):
         self.get_cache() if not disable_caches else None
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
@@ -439,6 +439,20 @@ class Integration:
             response = self.prepare_request(
                 "/transactions/sended/not_validated", type="get")
             transactions_sended_not_validated = response.json()
+
+        if raw_data_return:
+            return transactions, transactions_sended, transactions_sended_not_validated
+
+
+        if raw_datas is not None:
+            for data in raw_datas[0]:
+                transactions[data] = raw_datas[0][data]
+            for data in raw_datas[1]:
+                transactions_sended[data] = raw_datas[1][data]
+            for data in raw_datas[2]:
+                transactions_sended_not_validated[data] = raw_datas[2][data]
+        
+
 
         new_dict = {}
         commanders = GetCommander()
@@ -722,25 +736,29 @@ class Integration:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
 
-        first = []
+        baklava_datas = None
+
         with contextlib.suppress(Exception):
-            first = self.get_(
+            baklava_datas = self.get_(
                 get_all=get_all,
                 disable_caches=disable_caches,
                 disable_sended_not_validated=disable_sended_not_validated,
                 force_sended=force_sended,
+                raw_data_return=True,
             )
         self.host = backup_host
         self.port = backup_port
+
 
         second = self.get_(
             get_all=get_all,
             disable_caches=disable_caches,
             disable_sended_not_validated=disable_sended_not_validated,
             force_sended=force_sended,
+            raw_datas=baklava_datas
         )
 
-        the_list = first + second
+        the_list =  second
 
         with contextlib.suppress(TypeError):
             if "print" in inspect.stack()[1].code_context[0]:
