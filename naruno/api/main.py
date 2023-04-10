@@ -156,7 +156,7 @@ def send_coin_data_page():
     password = str(
         request.form["password"]) if "password" in request.form else None
     sequence_number = str(
-        request.form["sequence_number"]) if "sequence_number" in request.form else None        
+        request.form["sequence_number"]) if "sequence_number" in request.form else None
     block = None
     with contextlib.suppress(Exception):
         block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
@@ -188,8 +188,7 @@ def send_coin_data_page():
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                 custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             )
     result = send_tx.dump_json() if send_tx != False else False
     return jsonify(result)
@@ -323,6 +322,7 @@ def settings_debug_off_page():
     d_mode_settings(False)
     return jsonify("OK")
 
+
 @app.route("/settings/functionaltest/on", methods=["GET"])
 def fsettings_debug_on_page():
     logger.debug(
@@ -345,6 +345,7 @@ def fsettings_debug_off_page():
     app.config["DEBUG"] = False
     ft_mode_settings(False)
     return jsonify("OK")
+
 
 @app.route("/block/get", methods=["GET"])
 def block_get_page():
@@ -692,8 +693,7 @@ def start(host=None, port=None, test=False):
         host = "0.0.0.0"
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
+        description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
     )
 
     parser.add_argument("-p",

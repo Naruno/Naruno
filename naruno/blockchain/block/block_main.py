@@ -86,11 +86,9 @@ class Block:
         self.shares = []
         self.fee_address = creator
 
-
         if the_settings()["funtionaltest_mode"]:
             self.max_tx_number = 2
             self.max_data_size = 1000
-            
 
     def reset_the_block(self, custom_nodes=None):
         """
