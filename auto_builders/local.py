@@ -17,14 +17,14 @@ import requests
 
 
 class Naruno_Local:
-
     def __init__(self, number_of_nodes=3, number_of_security_circle=1):
         self.number_of_nodes = number_of_nodes - 1
         self.number_of_security_circle = number_of_security_circle
         nodes_list = list(range(self.number_of_nodes))
         self.circles = [
-            nodes_list[x:x + (
-                (self.number_of_nodes + 1) // self.number_of_security_circle)]
+            nodes_list[
+                x : x + ((self.number_of_nodes + 1) // self.number_of_security_circle)
+            ]
             for x in range(
                 0,
                 len(nodes_list),
@@ -35,7 +35,6 @@ class Naruno_Local:
         normal_length = len(self.circles[0])
 
         for circle in self.circles:
-
             leader = random.choice(circle)
             while leader == 0 and circle.index(leader) + 1 > normal_length:
                 leader = random.choice(circle)
@@ -77,9 +76,7 @@ class Naruno_Local:
 
     def run(self):
         time.sleep(1 * self.number_of_nodes)
-        os.system(
-            "nohup python3 Naruno-0/naruno/api/main.py >> Naruno-0.out &"
-        )
+        os.system("nohup python3 Naruno-0/naruno/api/main.py >> Naruno-0.out &")
         for i in range(self.number_of_nodes):
             os.system(
                 f"nohup python3 Naruno-{i+1}/naruno/api/main.py -p {8100 + i + 1} >> Naruno-{i + 1}.out &"
@@ -91,15 +88,13 @@ class Naruno_Local:
         urllib.request.urlopen("/settings/functionaltest/on")
         urllib.request.urlopen("http://localhost:8000/settings/debug/on")
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(
-                f"http://localhost:{8100 + i + 1}/settings/debug/on")
+            urllib.request.urlopen(f"http://localhost:{8100 + i + 1}/settings/debug/on")
 
     def creating_the_wallets(self):
         time.sleep(1 * self.number_of_nodes)
         urllib.request.urlopen("http://localhost:8000/wallet/create/123")
         for i in range(self.number_of_nodes):
-            urllib.request.urlopen(
-                f"http://localhost:{8100 + i + 1}/wallet/create/123")
+            urllib.request.urlopen(f"http://localhost:{8100 + i + 1}/wallet/create/123")
 
     def starting_the_nodest(self):
         time.sleep(1 * self.number_of_nodes)
@@ -112,20 +107,23 @@ class Naruno_Local:
     def unl_nodes_settting(self):
         time.sleep(1 * self.number_of_nodes)
         node_id_1 = json.loads(
-            urllib.request.urlopen(
-                "http://localhost:8000/node/id").read().decode())
+            urllib.request.urlopen("http://localhost:8000/node/id").read().decode()
+        )
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:{8100 + i + 1}/node/newunl/?{node_id_1}")
+                f"http://localhost:{8100 + i + 1}/node/newunl/?{node_id_1}"
+            )
 
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
                 node_id_2 = json.loads(
-                    urllib.request.urlopen(
-                        f"http://localhost:{8100 + i + 1}/node/id").read().
-                    decode())
+                    urllib.request.urlopen(f"http://localhost:{8100 + i + 1}/node/id")
+                    .read()
+                    .decode()
+                )
                 urllib.request.urlopen(
-                    f"http://localhost:8000/node/newunl/?{node_id_2}")
+                    f"http://localhost:8000/node/newunl/?{node_id_2}"
+                )
                 for i_n in range(self.number_of_nodes):
                     if i != i_n:
                         urllib.request.urlopen(
@@ -136,10 +134,14 @@ class Naruno_Local:
                 for i in circle:
                     node_id_2 = json.loads(
                         urllib.request.urlopen(
-                            f"http://localhost:{8100 + i + 1}/node/id").read().
-                        decode())
+                            f"http://localhost:{8100 + i + 1}/node/id"
+                        )
+                        .read()
+                        .decode()
+                    )
                     urllib.request.urlopen(
-                        f"http://localhost:8000/node/newunl/?{node_id_2}")
+                        f"http://localhost:8000/node/newunl/?{node_id_2}"
+                    )
                     for i_n in circle:
                         if i != i_n:
                             urllib.request.urlopen(
@@ -150,7 +152,8 @@ class Naruno_Local:
         time.sleep(1 * self.number_of_nodes)
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
-                f"http://localhost:8000/node/connect/0.0.0.0/{8010 + i + 1}")
+                f"http://localhost:8000/node/connect/0.0.0.0/{8010 + i + 1}"
+            )
         time.sleep(1 * self.number_of_nodes)
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
@@ -177,17 +180,15 @@ class Naruno_Local:
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(
         description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
     )
 
     parser.add_argument("-nn", "--nodenumber", type=int, help="Node Number")
 
-    parser.add_argument("-scn",
-                        "--securitycirclenumber",
-                        type=int,
-                        help="Security Circle Number")
+    parser.add_argument(
+        "-scn", "--securitycirclenumber", type=int, help="Security Circle Number"
+    )
 
     parser.add_argument("-i", "--install", action="store_true", help="Install")
 
@@ -203,8 +204,7 @@ if __name__ == "__main__":
         parser.print_help()
 
     if args.securitycirclenumber is not None:
-        temp_environment = Naruno_Local(args.nodenumber,
-                                        args.securitycirclenumber)
+        temp_environment = Naruno_Local(args.nodenumber, args.securitycirclenumber)
     else:
         temp_environment = Naruno_Local(args.nodenumber)
 
