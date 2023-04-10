@@ -32,8 +32,8 @@ from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (d_mode_settings, t_mode_settings,
-                                        the_settings)
+from naruno.lib.settings_system import (d_mode_settings, ft_mode_settings,
+                                        t_mode_settings, the_settings)
 from naruno.lib.sign import sign
 from naruno.lib.status import Status
 from naruno.lib.verify import verify
@@ -155,8 +155,8 @@ def send_coin_data_page():
     data = str(request.form["data"]) if "data" in request.form else ""
     password = str(
         request.form["password"]) if "password" in request.form else None
-    sequence_number = str(
-        request.form["sequence_number"]) if "sequence_number" in request.form else None        
+    sequence_number = (str(request.form["sequence_number"])
+                       if "sequence_number" in request.form else None)
     block = None
     with contextlib.suppress(Exception):
         block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
@@ -321,6 +321,30 @@ def settings_debug_off_page():
             {"error": "You can't turn off the debug mode in publisher mode."})
     app.config["DEBUG"] = False
     d_mode_settings(False)
+    return jsonify("OK")
+
+
+@app.route("/settings/functionaltest/on", methods=["GET"])
+def fsettings_debug_on_page():
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    if the_settings()["publisher_mode"]:
+        return jsonify(
+            {"error": "You can't turn on the debug mode in publisher mode."})
+    app.config["DEBUG"] = True
+    ft_mode_settings(True)
+    return jsonify("OK")
+
+
+@app.route("/settings/functionaltest/off", methods=["GET"])
+def fsettings_debug_off_page():
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    if the_settings()["publisher_mode"]:
+        return jsonify(
+            {"error": "You can't turn off the debug mode in publisher mode."})
+    app.config["DEBUG"] = False
+    ft_mode_settings(False)
     return jsonify("OK")
 
 
@@ -532,9 +556,12 @@ def sequence_get_page():
                  if custom_block is None else custom_block)
 
     return jsonify(
-        GetSequanceNumber(address,
-                          account_list=custom_account_list,
-                          dont_convert=True, block=the_block))
+        GetSequanceNumber(
+            address,
+            account_list=custom_account_list,
+            dont_convert=True,
+            block=the_block,
+        ))
 
 
 # Write a api for directing a transaction with GetTransaction
