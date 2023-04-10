@@ -145,53 +145,56 @@ def delete_wallets_page():
 def send_coin_data_page():
     logger.info(
         f"{request.remote_addr} {request.method} {request.url} {request.form}")
-    if the_settings()["publisher_mode"]:
-        return jsonify(
-            {"error": "You can't send a transaction in publisher mode."})
-    address = str(
-        request.form["to_user"]) if "to_user" in request.form else None
-    amount = float(
-        request.form["amount"]) if "amount" in request.form else None
-    data = str(request.form["data"]) if "data" in request.form else ""
-    password = str(
-        request.form["password"]) if "password" in request.form else None
-    sequence_number = (str(request.form["sequence_number"])
-                       if "sequence_number" in request.form else None)
-    block = None
-    with contextlib.suppress(Exception):
-        block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                 if custom_block is None else custom_block)
-    send_tx = send(
-        password,
-        address,
-        amount=amount,
-        data=data,
-        block=block,
-        custom_current_time=custom_current_time,
-        custom_sequence_number=custom_sequence_number,
-        custom_balance=custom_balance,
-        custom_account_list=custom_account_list,
-        custom_set_sequence_number=sequence_number,
-    )
-    if send_tx != False:
-        SavetoMyTransaction(send_tx, sended=True)
-        if not the_settings()["baklava"]:
-            server.send_transaction(
-                send_tx,
-                custom_current_time=custom_current_time,
-                custom_sequence_number=custom_sequence_number,
-                custom_balance=custom_balance,
-                custom_server=custom_server,
-            )
-            SaveBlock(
-                block,
-                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
-            )
-    result = send_tx.dump_json() if send_tx != False else False
+    try:
+        if the_settings()["publisher_mode"]:
+            return jsonify(
+                {"error": "You can't send a transaction in publisher mode."})
+        address = str(
+            request.form["to_user"]) if "to_user" in request.form else None
+        amount = float(
+            request.form["amount"]) if "amount" in request.form else None
+        data = str(request.form["data"]) if "data" in request.form else ""
+        password = str(
+            request.form["password"]) if "password" in request.form else None
+        sequence_number = (str(request.form["sequence_number"])
+                        if "sequence_number" in request.form else None)
+        block = None
+        with contextlib.suppress(Exception):
+            block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                    if custom_block is None else custom_block)
+        send_tx = send(
+            password,
+            address,
+            amount=amount,
+            data=data,
+            block=block,
+            custom_current_time=custom_current_time,
+            custom_sequence_number=custom_sequence_number,
+            custom_balance=custom_balance,
+            custom_account_list=custom_account_list,
+            custom_set_sequence_number=sequence_number,
+        )
+        if send_tx != False:
+            SavetoMyTransaction(send_tx, sended=True)
+            if not the_settings()["baklava"]:
+                server.send_transaction(
+                    send_tx,
+                    custom_current_time=custom_current_time,
+                    custom_sequence_number=custom_sequence_number,
+                    custom_balance=custom_balance,
+                    custom_server=custom_server,
+                )
+                SaveBlock(
+                    block,
+                    custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                    custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                    custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=
+                    custom_TEMP_BLOCKSHASH_PART_PATH,
+                )
+        result = send_tx.dump_json() if send_tx != False else False
+    except:
+        result = "false"
     return jsonify(result)
 
 
