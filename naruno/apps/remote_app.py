@@ -113,6 +113,8 @@ class Integration:
         self.commander = commander
         SaveCommander(self.commander) if not self.commander is None else None
 
+        self.check_thread = None
+
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
         if the_settings()["baklava"]:
@@ -145,7 +147,7 @@ class Integration:
 
             self.original_wait_amoount = copy.copy(self.wait_amount)
 
-            self.check_thread = None
+            
             if self.total_check:
                 self.check_thread = perpetualTimer(self.original_wait_amoount,
                                                    self.checker)
