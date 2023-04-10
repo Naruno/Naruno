@@ -705,7 +705,7 @@ class Test_API(unittest.TestCase):
         self.assertEqual(response.text, '"405"\n')
 
     def test_500_page(self):
-        response = requests.post("http://localhost:7777/send/",
+        response = requests.post("http://localhost:7777/proof/check/",
                                  data={"data": "test"})
         self.assertEqual(response.status_code, 500)
         self.assertEqual(response.text, '"500"\n')
