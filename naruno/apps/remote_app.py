@@ -111,38 +111,41 @@ class Integration:
         if the_settings()["baklava"]:
             self.host = "test_net.1.naruno.org"
             self.port = 8000
+        try:
+            self.max_tx_number = int(
+                self.prepare_request(
+                    "/blockmaxtxnumber/get/",
+                    type="get",
+                ).text)
+            self.max_data_size = int(
+                self.prepare_request(
+                    "/blockmaxdatasize/get/",
+                    type="get",
+                ).text)
 
-        self.max_tx_number = int(
-            self.prepare_request(
-                "/blockmaxtxnumber/get/",
-                type="get",
-            ).text)
-        self.max_data_size = int(
-            self.prepare_request(
-                "/blockmaxdatasize/get/",
-                type="get",
-            ).text)
-
-        if total_check is not None:
-            self.total_check = total_check
-        else:
-            self.total_check = self.prepare_request(
-                "/blockjustonetx/get/",
-                type="get",
-            ).text
-
-            if "true" in self.total_check:
-                self.total_check = False
+            if total_check is not None:
+                self.total_check = total_check
             else:
-                self.total_check = True
+                self.total_check = self.prepare_request(
+                    "/blockjustonetx/get/",
+                    type="get",
+                ).text
 
-        self.original_wait_amoount = copy.copy(self.wait_amount)
+                if "true" in self.total_check:
+                    self.total_check = False
+                else:
+                    self.total_check = True
 
-        self.check_thread = None
-        if self.total_check:
-            self.check_thread = perpetualTimer(self.original_wait_amoount,
-                                               self.checker)
-            self.wait_amount = 0
+            self.original_wait_amoount = copy.copy(self.wait_amount)
+
+            self.check_thread = None
+            if self.total_check:
+                self.check_thread = perpetualTimer(self.original_wait_amoount,
+                                                   self.checker)
+                self.wait_amount = 0
+        except:
+            logger.error("Network is not active")
+            exit()
 
         self.host = backup_host
         self.port = backup_port
@@ -252,143 +255,132 @@ class Integration:
              amount=None,
              force=True,
              retrysecond=10) -> bool:
-            """
-            :param action: The action of the app
-            :param app_data: The data of the app
-            :param to_user: The user to send the data to
-            """
+        """
+        :param action: The action of the app
+        :param app_data: The data of the app
+        :param to_user: The user to send the data to
+        """
 
-            if time.time() - self.last_sended < self.wait_amount:
-                time.sleep(self.wait_amount - (time.time() - self.last_sended))
+        if time.time() - self.last_sended < self.wait_amount:
+            time.sleep(self.wait_amount - (time.time() - self.last_sended))
 
-            self.host = copy.copy(self.first_host)
-            self.port = copy.copy(self.first_port)
-            backup_host = copy.copy(self.host)
-            backup_port = copy.copy(self.port)
-            if the_settings()["baklava"]:
-                self.host = "test_net.1.naruno.org"
-                self.port = 8000
+        self.host = copy.copy(self.first_host)
+        self.port = copy.copy(self.first_port)
 
-            self.host = backup_host
-            self.port = backup_port
+        data = {"action": self.app_name + action, "app_data": app_data}
 
-            data = {"action": self.app_name + action, "app_data": app_data}
+        system_length = len(
+            json.dumps({
+                "action": self.app_name + action,
+                "app_data": ""
+            }))
 
-            system_length = len(
-                json.dumps({
-                    "action": self.app_name + action,
-                    "app_data": ""
-                }))
+        true_length = (self.max_data_size / self.max_tx_number -
+                       system_length) - 10
 
-            true_length = (self.max_data_size / self.max_tx_number -
-                           system_length) - 10
+        if len(app_data) > true_length:
+            backup_checking = copy.copy(self.checking)
+            self.checking = False
+            # generate random charactere
+            rando = ""
+            for i in range(5):
+                rando += random.choice(string.ascii_letters)
 
-            if len(app_data) > true_length:
-                backup_checking = copy.copy(self.checking)
-                self.checking = False
-                # generate random charactere
-                rando = ""
-                for i in range(5):
-                    rando += random.choice(string.ascii_letters)
+            split_random = rando + "-"
 
-                split_random = rando + "-"
+            self.send(
+                action=action,
+                app_data=f"split-0-{split_random}",
+                to_user=to_user,
+                force=force,
+                retrysecond=retrysecond,
+            )
+            len_split_char = len(f"split--{split_random}-")
 
+            total_size_of_an_data = len(
+                app_data) + len_split_char + system_length
+
+            how_many_parts = (
+                int(math.ceil(
+                    (len(app_data) + len_split_char) / true_length)) + 1)
+
+            how_many_parts = int(
+                math.ceil(
+                    (len(app_data) + len_split_char + len(str(how_many_parts)))
+                    / true_length))
+
+            splitted_data = []
+            split_length = true_length - len_split_char
+
+            for i in range(how_many_parts):
+                # split to part of app_data and app_data is an string
+                part = app_data[i * int(split_length):i * int(split_length) +
+                                int(split_length)]
+
+                splitted_data.append(part)
+
+            for each_data in splitted_data:
                 self.send(
                     action=action,
-                    app_data=f"split-0-{split_random}",
+                    app_data=
+                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                     to_user=to_user,
                     force=force,
                     retrysecond=retrysecond,
                 )
-                len_split_char = len(f"split--{split_random}-")
 
-                total_size_of_an_data = len(
-                    app_data) + len_split_char + system_length
+            self.checking = backup_checking
+            self.checker() if self.check_thread is None else None
 
-                how_many_parts = (int(
-                    math.ceil(
-                        (len(app_data) + len_split_char) / true_length)) + 1)
+            self.send(
+                action=action,
+                app_data=f"split-1-{split_random}",
+                to_user=to_user,
+                force=force,
+                retrysecond=retrysecond,
+            )
+            return True
 
-                how_many_parts = int(
-                    math.ceil((len(app_data) + len_split_char +
-                               len(str(how_many_parts))) / true_length))
+        data = json.dumps(data)
 
-                splitted_data = []
-                split_length = true_length - len_split_char
+        request_body = {
+            "password": self.password,
+            "to_user": to_user,
+            "data": data,
+        }
 
-                for i in range(how_many_parts):
-                    # split to part of app_data and app_data is an string
-                    part = app_data[i *
-                                    int(split_length):i * int(split_length) +
-                                    int(split_length)]
+        alread_in_sended = False
+        for tx in self.sended_txs:
+            if (tx[0] == action and tx[1] == app_data and tx[2] == to_user
+                    and tx[3] == amount and tx[4] == force
+                    and tx[5] == retrysecond and tx[6] == data):
+                alread_in_sended = True
+        if not alread_in_sended:
+            self.sended_txs.append(
+                [action, app_data, to_user, amount, force, retrysecond, data])
 
-                    splitted_data.append(part)
+        if amount is not None:
+            request_body["amount"] = amount
 
-                for each_data in splitted_data:
-                    self.send(
-                        action=action,
-                        app_data=
-                        f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
-                        to_user=to_user,
-                        force=force,
-                        retrysecond=retrysecond,
-                    )
+        response = self.prepare_request("/send/",
+                                        type="post",
+                                        data=request_body)
 
-                self.checking = backup_checking
-                self.checker() if self.check_thread is None else None
-
-                self.send(
-                    action=action,
-                    app_data=f"split-1-{split_random}",
-                    to_user=to_user,
-                    force=force,
-                    retrysecond=retrysecond,
-                )
-                return True
-
-            data = json.dumps(data)
-
-            request_body = {
-                "password": self.password,
-                "to_user": to_user,
-                "data": data,
-            }
-
-            alread_in_sended = False
-            for tx in self.sended_txs:
-                if (tx[0] == action and tx[1] == app_data and tx[2] == to_user
-                        and tx[3] == amount and tx[4] == force
-                        and tx[5] == retrysecond and tx[6] == data):
-                    alread_in_sended = True
-            if not alread_in_sended:
-                self.sended_txs.append([
-                    action, app_data, to_user, amount, force, retrysecond, data
-                ])
-
-            if amount is not None:
-                request_body["amount"] = amount
-
-            response = self.prepare_request("/send/",
-                                            type="post",
-                                            data=request_body)
-
-            if "false" in response.text:
-                logger.error("Error on sending message")
-                if force:
-                    logger.info("Trying to send again")
-                    return self.send_forcer(action, app_data, to_user,
-                                            retrysecond)
-                return False
-            else:
-                logger.info(
-                    f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
-                )
-                time.sleep(1)
-                self.last_sended = time.time()
-                if self.checking and self.check_thread is None:
-                    self.checker()
-                return True
-
+        if "false" in response.text:
+            logger.error("Error on sending message")
+            if force:
+                logger.info("Trying to send again")
+                return self.send_forcer(action, app_data, to_user, retrysecond)
+            return False
+        else:
+            logger.info(
+                f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
+            )
+            time.sleep(1)
+            self.last_sended = time.time()
+            if self.checking and self.check_thread is None:
+                self.checker()
+            return True
 
     def checker(self):
         time.sleep(self.wait_amount)
@@ -405,14 +397,7 @@ class Integration:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
-                backup_host = copy.copy(self.host)
-                backup_port = copy.copy(self.port)
-                if the_settings()["baklava"]:
-                    self.host = "test_net.1.naruno.org"
-                    self.port = 8000
 
-                self.host = backup_host
-                self.port = backup_port
             for vaidated_tx in new_txs:
                 if (vaidated_tx["toUser"] == sended_tx[2]
                         and vaidated_tx["data"]["action"] == json.loads(
