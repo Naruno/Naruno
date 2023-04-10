@@ -42,7 +42,7 @@ class Block:
         self.creator = creator
         self.genesis_time = int(time.time())
         self.start_time = int(time.time())
-        self.block_time = 22
+        self.block_time = 27
 
         self.previous_hash = previous_hash
         self.sequence_number = 0
@@ -66,7 +66,7 @@ class Block:
         self.max_tx_number = 1000
         self.minumum_transfer_amount = 1000
 
-        self.round_1_time = 15
+        self.round_1_time = 20
         self.round_1 = False
 
         self.round_2_starting_time = None
