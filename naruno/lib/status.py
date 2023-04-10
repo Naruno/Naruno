@@ -11,8 +11,7 @@ from naruno.blockchain.block.get_block import GetBlock
 from naruno.lib.settings_system import save_settings
 from naruno.lib.settings_system import the_settings
 from naruno.node.unl import Unl
-from naruno.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
+from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
 
 
 def Status(
@@ -31,32 +30,48 @@ def Status(
     """
     a_settings = the_settings()
 
-    if (no_cache or a_settings["status_cache_time"] + cache_time <= time.time()) and not a_settings["status_working"]:
+    if (
+        no_cache or a_settings["status_cache_time"] + cache_time <= time.time()
+    ) and not a_settings["status_working"]:
         a_settings["status_working"] = True
         save_settings(a_settings)
-        first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                       if custom_first_block is None else custom_first_block)
+        first_block = (
+            GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+            if custom_first_block is None
+            else custom_first_block
+        )
 
         time.sleep(wait_time)
-        new_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                     if custom_new_block is None else custom_new_block)
+        new_block = (
+            GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+            if custom_new_block is None
+            else custom_new_block
+        )
 
-        connections = (Unl.get_as_node_type(
-            Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH))
-            if custom_connections is None else custom_connections)
+        connections = (
+            Unl.get_as_node_type(
+                Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH)
+            )
+            if custom_connections is None
+            else custom_connections
+        )
         connected_nodes = [
             str(f"{the_connections.host}:{the_connections.port}")
             for the_connections in connections
         ]
 
-        transactions = (GetMyTransaction() if custom_transactions is None else
-                        custom_transactions)
+        transactions = (
+            GetMyTransaction() if custom_transactions is None else custom_transactions
+        )
         transactions_of_us = str(
-            [f"{str(i[0].__dict__)} | {str(i[1])}" for i in transactions])
+            [f"{str(i[0].__dict__)} | {str(i[1])}" for i in transactions]
+        )
 
         last_transaction_of_block = (
             str(new_block.validating_list[-1].dump_json())
-            if len(new_block.validating_list) > 0 else "")
+            if len(new_block.validating_list) > 0
+            else ""
+        )
 
         status_json = {
             "status": "",
@@ -67,12 +82,12 @@ def Status(
             "connected_nodes": connected_nodes,
         }
 
-        status_json["status"] = ("Not working" if
-                                 (first_block.sequence_number +
-                                  first_block.empty_block_number)
-                                 == (new_block.sequence_number +
-                                     new_block.empty_block_number) else
-                                 "Working")
+        status_json["status"] = (
+            "Not working"
+            if (first_block.sequence_number + first_block.empty_block_number)
+            == (new_block.sequence_number + new_block.empty_block_number)
+            else "Working"
+        )
 
         if not no_cache:
             a_settings["status_cache"] = status_json
