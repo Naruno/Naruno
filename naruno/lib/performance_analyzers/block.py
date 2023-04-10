@@ -52,6 +52,8 @@ class Block_IO_Performance_Analyzer:
             "transaction_fee": 0.02,
             "transaction_time": 1656764224,
         }
+        number_of_data = self.block.max_data_size // self.block.max_tx_number
+        the_transaction_json["data"] = "a" * number_of_data
         the_transaction = Transaction.load_json(the_transaction_json)
         self.block.validating_list = [
             the_transaction for i in range(self.block.max_tx_number)
