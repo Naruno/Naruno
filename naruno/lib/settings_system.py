@@ -18,6 +18,8 @@ temp_json = {
     "save_blockshash": True,
     "mute_notifications": False,
     "dark_mode": True,
+    "status_cache_time": 0,
+    "status_cache": {},
     "publisher_mode": False,
     "baklava": False,
     "baklava_users": False,

@@ -352,6 +352,8 @@ class Test_Lib(unittest.TestCase):
             custom_new_block=custom_new_block,
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
+            no_cache=True,
+            wait_time = 0.1
         )
         self.assertEqual(result["status"], "Not working")
         self.assertEqual(result["last_transaction_of_block"],
@@ -391,6 +393,8 @@ class Test_Lib(unittest.TestCase):
             custom_new_block=custom_new_block,
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
+            no_cache=True,
+            wait_time = 0.1
         )
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
@@ -430,6 +434,8 @@ class Test_Lib(unittest.TestCase):
             custom_new_block=custom_new_block,
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
+            no_cache=True,
+            wait_time = 0.1
         )
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
@@ -443,6 +449,130 @@ class Test_Lib(unittest.TestCase):
         )
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
+
+    def test_status_cache(self):
+        backup_settings = the_settings()
+        clean_settings = copy.copy(backup_settings)
+        clean_settings["status_cache_time"] = 0
+        save_settings(clean_settings)
+        
+        custom_first_block = Block("Onur")
+        custom_new_block = Block("Onur")
+        custom_new_block.sequence_number += 1
+        custom_connections = self.node_0.clients
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = [[the_transaction, "validated"]]
+        custom_new_block.validating_list = [the_transaction]
+        result = Status(
+            custom_first_block=custom_first_block,
+            custom_new_block=custom_new_block,
+            custom_connections=custom_connections,
+            custom_transactions=custom_transactions,
+            wait_time = 0.1
+        )
+        self.assertEqual(result["status"], "Working")
+        self.assertEqual(result["last_transaction_of_block"],
+                         str(the_transaction.dump_json()))
+        self.assertEqual(
+            result["transactions_of_us"],
+            str([
+                f"{str(i[0].__dict__)} | {str(i[1])}"
+                for i in custom_transactions
+            ]),
+        )
+        self.assertEqual(result["connected_nodes"],
+                         ["127.0.0.1:10001", "127.0.0.1:10002"])
+
+        result = Status(
+            custom_first_block=custom_first_block,
+            custom_new_block=custom_first_block,
+            custom_connections=custom_connections,
+            custom_transactions=custom_transactions,
+            cache_time=10,
+            wait_time = 0.1
+        )                
+        self.assertEqual(result["status"], "Working")
+        self.assertEqual(result["last_transaction_of_block"],
+                         str(the_transaction.dump_json()))
+        self.assertEqual(
+            result["transactions_of_us"],
+            str([
+                f"{str(i[0].__dict__)} | {str(i[1])}"
+                for i in custom_transactions
+            ]),
+        )
+        self.assertEqual(result["connected_nodes"],
+                         ["127.0.0.1:10001", "127.0.0.1:10002"])            
+
+        save_settings(backup_settings)
+
+    def test_status_cache_expired(self):
+        backup_settings = the_settings()
+        clean_settings = copy.copy(backup_settings)
+        clean_settings["status_cache_time"] = 0
+        save_settings(clean_settings)
+
+        custom_first_block = Block("Onur")
+        custom_new_block = Block("Onur")
+        custom_new_block.sequence_number += 1
+        custom_connections = self.node_0.clients
+        the_transaction_json = {
+            "sequence_number": 1,
+            "signature":
+            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser":
+            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "toUser": "onur",
+            "data": "blockchain-lab",
+            "amount": 5000.0,
+            "transaction_fee": 0.02,
+            "transaction_time": 1656764224,
+        }
+        the_transaction = Transaction.load_json(the_transaction_json)
+        custom_transactions = [[the_transaction, "validated"]]
+        custom_new_block.validating_list = [the_transaction]
+        result = Status(
+            custom_first_block=custom_first_block,
+            custom_new_block=custom_new_block,
+            custom_connections=custom_connections,
+            custom_transactions=custom_transactions,
+            wait_time = 0.1
+        )
+        self.assertEqual(result["status"], "Working")
+        self.assertEqual(result["last_transaction_of_block"],
+                         str(the_transaction.dump_json()))
+        self.assertEqual(
+            result["transactions_of_us"],
+            str([
+                f"{str(i[0].__dict__)} | {str(i[1])}"
+                for i in custom_transactions
+            ]),
+        )
+        self.assertEqual(result["connected_nodes"],
+                         ["127.0.0.1:10001", "127.0.0.1:10002"])
+        time.sleep(6)
+        result = Status(
+            custom_first_block=custom_first_block,
+            custom_new_block=custom_first_block,
+            custom_connections=custom_connections,
+            custom_transactions=custom_transactions,
+            cache_time=5,
+            wait_time = 0.1
+        )                
+        self.assertEqual(result["status"], "Not working")
+        save_settings(backup_settings)
 
     def test_export_the_transactions_false(self):
         custom_MY_TRANSACTION_EXPORT_PATH = MY_TRANSACTION_EXPORT_PATH.replace(
