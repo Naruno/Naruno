@@ -31,7 +31,10 @@ def Status(
     """
     a_settings = the_settings()
 
-    if no_cache or a_settings["status_cache_time"] + cache_time <= time.time():
+    if (no_cache or a_settings["status_cache_time"] + cache_time <=
+            time.time()) and not a_settings["status_working"]:
+        a_settings["status_working"] = True
+        save_settings(a_settings)
         first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                        if custom_first_block is None else custom_first_block)
 
@@ -75,8 +78,9 @@ def Status(
         if not no_cache:
             a_settings["status_cache"] = status_json
             a_settings["status_cache_time"] = time.time()
-            save_settings(a_settings)
 
+        a_settings["status_working"] = False
+        save_settings(a_settings)
         return status_json
 
     else:

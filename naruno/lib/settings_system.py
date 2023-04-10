@@ -20,6 +20,7 @@ temp_json = {
     "dark_mode": True,
     "status_cache_time": 0,
     "status_cache": {},
+    "status_working": False,
     "publisher_mode": False,
     "baklava": False,
     "baklava_users": False,
