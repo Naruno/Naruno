@@ -651,6 +651,11 @@ class Test_API(unittest.TestCase):
             self.assertEqual(content, expected_content)
 
     def test_status_page(self):
+        backup_settings = the_settings()
+        clean_settings = copy.copy(backup_settings)
+        clean_settings["status_cache_time"] = 0
+        save_settings(clean_settings)
+
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
         custom_new_block.sequence_number += 1
@@ -686,6 +691,7 @@ class Test_API(unittest.TestCase):
                 for i in custom_transactions
             ]),
         )
+        save_settings(backup_settings)
 
     def test_404_page(self):
         response = requests.get("http://localhost:7777/404")
