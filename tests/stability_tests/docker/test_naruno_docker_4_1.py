@@ -17,7 +17,7 @@ import requests
 
 from auto_builders.docker import Naruno_Docker
 
-temp_environment = Naruno_Docker(4, 1)
+temp_environment = Naruno_Docker(4, 1, test_mode=True)
 temp_environment.delete()
 temp_environment.install()
 temp_environment.run()

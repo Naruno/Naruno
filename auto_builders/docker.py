@@ -17,7 +17,10 @@ import requests
 
 class Naruno_Docker:
 
-    def __init__(self, number_of_nodes=3, number_of_security_circle=1):
+    def __init__(self,
+                 number_of_nodes=3,
+                 number_of_security_circle=1,
+                 test_mode=False):
         self.number_of_nodes = number_of_nodes - 1
         self.number_of_security_circle = number_of_security_circle
         nodes_list = list(range(self.number_of_nodes))
@@ -43,6 +46,8 @@ class Naruno_Docker:
                     circle_.append(leader)
 
         self.circles = [list(dict.fromkeys(circle)) for circle in self.circles]
+
+        self.test_mode = test_mode
 
     def start(self):
         time.sleep(1 * self.number_of_nodes)
@@ -89,8 +94,9 @@ class Naruno_Docker:
     def debug_and_test_mode(self):
         time.sleep(1 * self.number_of_nodes)
         urllib.request.urlopen("http://localhost:8000/settings/test/on")
-        urllib.request.urlopen(
-            "http://localhost:8000/settings/functionaltest/on")
+        if self.test_mode:
+            urllib.request.urlopen(
+                "http://localhost:8000/settings/functionaltest/on")
         urllib.request.urlopen("http://localhost:8000/settings/debug/on")
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
