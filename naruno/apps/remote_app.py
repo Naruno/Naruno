@@ -29,12 +29,11 @@ from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.settings_system import baklava_settings
 from naruno.lib.settings_system import the_settings
-from naruno.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from naruno.transactions.my_transactions.sended_transaction import \
-    SendedTransaction
-from naruno.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from naruno.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
+from naruno.transactions.my_transactions.sended_transaction import SendedTransaction
+from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address
 from naruno.wallet.wallet_import import wallet_import
@@ -43,7 +42,6 @@ logger = get_logger("REMOTE_APP")
 
 
 class splitted_data:
-
     def __init__(self, split):
         self.split = split
         self.main_data = None
@@ -53,7 +51,6 @@ class splitted_data:
 
 
 class Integration:
-
     def __init__(
         self,
         app_name,
@@ -74,8 +71,9 @@ class Integration:
         :param password: The password of the wallet
         """
         self.app_name = app_name
-        self.cache_name = sha256(
-            self.app_name.encode()).hexdigest() + wallet_import(-1, 3)
+        self.cache_name = sha256(self.app_name.encode()).hexdigest() + wallet_import(
+            -1, 3
+        )
         self.host = host
         self.port = port
 
@@ -116,12 +114,14 @@ class Integration:
             self.prepare_request(
                 "/blockmaxtxnumber/get/",
                 type="get",
-            ).text)
+            ).text
+        )
         self.max_data_size = int(
             self.prepare_request(
                 "/blockmaxdatasize/get/",
                 type="get",
-            ).text)
+            ).text
+        )
 
         if total_check is not None:
             self.total_check = total_check
@@ -140,8 +140,7 @@ class Integration:
 
         self.check_thread = None
         if self.total_check:
-            self.check_thread = perpetualTimer(self.original_wait_amoount,
-                                               self.checker)
+            self.check_thread = perpetualTimer(self.original_wait_amoount, self.checker)
             self.wait_amount = 0
 
         self.host = backup_host
@@ -196,8 +195,7 @@ class Integration:
         if not os.path.exists(f"db/remote_app_cache/{self.cache_name}.cache"):
             self.cache = []
             self.save_cache()
-        with open(f"db/remote_app_cache/{self.cache_name}.cache",
-                  "r") as cache:
+        with open(f"db/remote_app_cache/{self.cache_name}.cache", "r") as cache:
             self.cache = json.load(cache)
 
         self.backward_support_cache()
@@ -215,8 +213,7 @@ class Integration:
             return
         self.backward_support_cache()
         os.chdir(get_config()["main_folder"])
-        with open(f"db/remote_app_cache/{self.cache_name}.cache",
-                  "w") as cache:
+        with open(f"db/remote_app_cache/{self.cache_name}.cache", "w") as cache:
             json.dump(self.cache, cache)
 
     def delete_cache(self):
@@ -245,13 +242,9 @@ class Integration:
             stop = self.send(action, app_data, to_user, force=False)
             time.sleep(retrysecond)
 
-    def send(self,
-             action,
-             app_data,
-             to_user,
-             amount=None,
-             force=True,
-             retrysecond=10) -> bool:
+    def send(
+        self, action, app_data, to_user, amount=None, force=True, retrysecond=10
+    ) -> bool:
         """
         :param action: The action of the app
         :param app_data: The data of the app
@@ -275,13 +268,10 @@ class Integration:
             data = {"action": self.app_name + action, "app_data": app_data}
 
             system_length = len(
-                json.dumps({
-                    "action": self.app_name + action,
-                    "app_data": ""
-                }))
+                json.dumps({"action": self.app_name + action, "app_data": ""})
+            )
 
-            true_length = (self.max_data_size / self.max_tx_number -
-                           system_length) - 10
+            true_length = (self.max_data_size / self.max_tx_number - system_length) - 10
 
             if len(app_data) > true_length:
                 backup_checking = copy.copy(self.checking)
@@ -302,25 +292,28 @@ class Integration:
                 )
                 len_split_char = len(f"split--{split_random}-")
 
-                total_size_of_an_data = len(
-                    app_data) + len_split_char + system_length
+                total_size_of_an_data = len(app_data) + len_split_char + system_length
 
                 how_many_parts = (
-                    int(math.ceil(
-                        (len(app_data) + len_split_char) / true_length)) + 1)
+                    int(math.ceil((len(app_data) + len_split_char) / true_length)) + 1
+                )
 
                 how_many_parts = int(
                     math.ceil(
                         (len(app_data) + len_split_char + len(str(how_many_parts)))
-                        / true_length))
+                        / true_length
+                    )
+                )
 
                 splitted_data = []
                 split_length = true_length - len_split_char
 
                 for i in range(how_many_parts):
                     # split to part of app_data and app_data is an string
-                    part = app_data[i * int(split_length):i * int(split_length) +
-                                    int(split_length)]
+                    part = app_data[
+                        i * int(split_length) : i * int(split_length)
+                        + int(split_length)
+                    ]
 
                     splitted_data.append(part)
 
@@ -355,20 +348,25 @@ class Integration:
 
             alread_in_sended = False
             for tx in self.sended_txs:
-                if (tx[0] == action and tx[1] == app_data and tx[2] == to_user
-                        and tx[3] == amount and tx[4] == force
-                        and tx[5] == retrysecond and tx[6] == data):
+                if (
+                    tx[0] == action
+                    and tx[1] == app_data
+                    and tx[2] == to_user
+                    and tx[3] == amount
+                    and tx[4] == force
+                    and tx[5] == retrysecond
+                    and tx[6] == data
+                ):
                     alread_in_sended = True
             if not alread_in_sended:
                 self.sended_txs.append(
-                    [action, app_data, to_user, amount, force, retrysecond, data])
+                    [action, app_data, to_user, amount, force, retrysecond, data]
+                )
 
             if amount is not None:
                 request_body["amount"] = amount
 
-            response = self.prepare_request("/send/",
-                                            type="post",
-                                            data=request_body)
+            response = self.prepare_request("/send/", type="post", data=request_body)
 
             if "false" in response.text:
                 logger.error("Rejected sending message")
@@ -403,7 +401,7 @@ class Integration:
             force_sended=True,
         )
 
-        for sended_tx in self.sended_txs[:self.max_tx_number // 2]:
+        for sended_tx in self.sended_txs[: self.max_tx_number // 2]:
             in_get = False
             with contextlib.suppress(ValueError):
                 self.sended_txs.remove(sended_tx)
@@ -416,11 +414,13 @@ class Integration:
                 self.host = backup_host
                 self.port = backup_port
             for vaidated_tx in new_txs:
-                if (vaidated_tx["toUser"] == sended_tx[2]
-                        and vaidated_tx["data"]["action"] == json.loads(
-                            sended_tx[6])["action"]
-                        and vaidated_tx["data"]["app_data"] == json.loads(
-                            sended_tx[6])["app_data"]):
+                if (
+                    vaidated_tx["toUser"] == sended_tx[2]
+                    and vaidated_tx["data"]["action"]
+                    == json.loads(sended_tx[6])["action"]
+                    and vaidated_tx["data"]["app_data"]
+                    == json.loads(sended_tx[6])["app_data"]
+                ):
                     in_get = True
 
             if not in_get:
@@ -433,8 +433,7 @@ class Integration:
                     sended_tx[5],
                 )
 
-    def get_(self, get_all, disable_caches, disable_sended_not_validated,
-             force_sended):
+    def get_(self, get_all, disable_caches, disable_sended_not_validated, force_sended):
         self.get_cache() if not disable_caches else None
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
@@ -443,145 +442,168 @@ class Integration:
         transactions_sended_not_validated = {}
 
         if self.sended or force_sended:
-            response = self.prepare_request("/transactions/sended/validated",
-                                            type="get")
+            response = self.prepare_request(
+                "/transactions/sended/validated", type="get"
+            )
             transactions_sended = response.json()
 
         if self.sended_not_validated and not disable_sended_not_validated:
             response = self.prepare_request(
-                "/transactions/sended/not_validated", type="get")
+                "/transactions/sended/not_validated", type="get"
+            )
             transactions_sended_not_validated = response.json()
 
         new_dict = {}
         commanders = GetCommander()
         for transaction in transactions:
-            if (transactions[transaction]["transaction"]["signature"]
-                    in self.cache) and not get_all:
+            if (
+                transactions[transaction]["transaction"]["signature"] in self.cache
+            ) and not get_all:
                 continue
             else:
-                if (transactions[transaction]["transaction"]["toUser"]
-                        == wallet_import(-1, 3)
-                        or Address(transactions[transaction]["transaction"]
-                                   ["fromUser"]) in commanders):
+                if (
+                    transactions[transaction]["transaction"]["toUser"]
+                    == wallet_import(-1, 3)
+                    or Address(transactions[transaction]["transaction"]["fromUser"])
+                    in commanders
+                ):
                     new_dict[transaction] = transactions[transaction]
                     the_tx = Transaction.load_json(
-                        transactions[transaction]["transaction"])
-                    if not transactions[transaction]["transaction"][
-                            "data"] == "NP":
+                        transactions[transaction]["transaction"]
+                    )
+                    if not transactions[transaction]["transaction"]["data"] == "NP":
                         with contextlib.suppress(json.decoder.JSONDecodeError):
                             transactions[transaction]["transaction"][
-                                "data"] = json.loads(transactions[transaction]
-                                                     ["transaction"]["data"])
-                        if not transactions[transaction]["transaction"][
-                                "data"]["app_data"].startswith("split-"):
+                                "data"
+                            ] = json.loads(
+                                transactions[transaction]["transaction"]["data"]
+                            )
+                        if not transactions[transaction]["transaction"]["data"][
+                            "app_data"
+                        ].startswith("split-"):
                             self.cache.append(
-                                transactions[transaction]["transaction"]
-                                ["signature"]) if not disable_caches else None
+                                transactions[transaction]["transaction"]["signature"]
+                            ) if not disable_caches else None
 
-                            SavetoMyTransaction(
-                                the_tx) if not get_all else None
-                            ValidateTransaction(
-                                the_tx) if not get_all else None
+                            SavetoMyTransaction(the_tx) if not get_all else None
+                            ValidateTransaction(the_tx) if not get_all else None
                     else:
                         SavetoMyTransaction(the_tx) if not get_all else None
                         ValidateTransaction(the_tx) if not get_all else None
                         self.cache.append(
-                            transactions[transaction]["transaction"]
-                            ["signature"]) if not disable_caches else None
+                            transactions[transaction]["transaction"]["signature"]
+                        ) if not disable_caches else None
                 elif transactions[transaction]["transaction"][
-                        "fromUser"] == wallet_import(-1, 0):
-                    transactions_sended[transaction] = transactions[
-                        transaction]
+                    "fromUser"
+                ] == wallet_import(-1, 0):
+                    transactions_sended[transaction] = transactions[transaction]
 
         for transaction in transactions_sended:
             if self.sended or force_sended:
-                if (transactions_sended[transaction]["transaction"]
-                        ["signature"] in self.cache) and not get_all:
+                if (
+                    transactions_sended[transaction]["transaction"]["signature"]
+                    in self.cache
+                ) and not get_all:
                     continue
                 else:
                     if transactions_sended[transaction]["transaction"][
-                            "fromUser"] == wallet_import(-1, 0):
-                        new_dict[transaction] = transactions_sended[
-                            transaction]
+                        "fromUser"
+                    ] == wallet_import(-1, 0):
+                        new_dict[transaction] = transactions_sended[transaction]
                         the_tx = Transaction.load_json(
-                            transactions_sended[transaction]["transaction"])
+                            transactions_sended[transaction]["transaction"]
+                        )
 
-                        if (not transactions_sended[transaction]["transaction"]
-                                ["data"] == "NP"):
-                            with contextlib.suppress(
-                                    json.decoder.JSONDecodeError):
-                                transactions_sended[transaction][
-                                    "transaction"]["data"] = json.loads(
-                                        transactions_sended[transaction]
-                                        ["transaction"]["data"])
-                            if not transactions_sended[transaction][
-                                    "transaction"]["data"][
-                                        "app_data"].startswith("split-"):
+                        if (
+                            not transactions_sended[transaction]["transaction"]["data"]
+                            == "NP"
+                        ):
+                            with contextlib.suppress(json.decoder.JSONDecodeError):
+                                transactions_sended[transaction]["transaction"][
+                                    "data"
+                                ] = json.loads(
+                                    transactions_sended[transaction]["transaction"][
+                                        "data"
+                                    ]
+                                )
+                            if not transactions_sended[transaction]["transaction"][
+                                "data"
+                            ]["app_data"].startswith("split-"):
                                 self.cache.append(
-                                    transactions_sended[transaction]
-                                    ["transaction"]["signature"]
+                                    transactions_sended[transaction]["transaction"][
+                                        "signature"
+                                    ]
                                 ) if not disable_caches else None
 
-                                SavetoMyTransaction(
-                                    the_tx) if not get_all else None
-                                ValidateTransaction(
-                                    the_tx) if not get_all else None
+                                SavetoMyTransaction(the_tx) if not get_all else None
+                                ValidateTransaction(the_tx) if not get_all else None
                         else:
-                            SavetoMyTransaction(
-                                the_tx) if not get_all else None
-                            ValidateTransaction(
-                                the_tx) if not get_all else None
+                            SavetoMyTransaction(the_tx) if not get_all else None
+                            ValidateTransaction(the_tx) if not get_all else None
                             self.cache.append(
-                                transactions_sended[transaction]["transaction"]
-                                ["signature"]) if not disable_caches else None
+                                transactions_sended[transaction]["transaction"][
+                                    "signature"
+                                ]
+                            ) if not disable_caches else None
         split_not_validated = []
         for transaction in transactions_sended_not_validated:
             if self.sended_not_validated and not disable_sended_not_validated:
-                if (transactions_sended_not_validated[transaction]
-                    ["transaction"]["signature"]
-                        in self.cache) and not get_all:
+                if (
+                    transactions_sended_not_validated[transaction]["transaction"][
+                        "signature"
+                    ]
+                    in self.cache
+                ) and not get_all:
                     continue
                 else:
-                    if transactions_sended_not_validated[transaction][
-                            "transaction"]["fromUser"] == wallet_import(-1, 0):
+                    if transactions_sended_not_validated[transaction]["transaction"][
+                        "fromUser"
+                    ] == wallet_import(-1, 0):
                         the_tx = Transaction.load_json(
-                            transactions_sended_not_validated[transaction]
-                            ["transaction"])
+                            transactions_sended_not_validated[transaction][
+                                "transaction"
+                            ]
+                        )
 
-                        new_dict[
-                            transaction] = transactions_sended_not_validated[
-                                transaction]
-                        if (not transactions_sended_not_validated[transaction]
-                                ["transaction"]["data"] == "NP"):
-                            with contextlib.suppress(
-                                    json.decoder.JSONDecodeError):
+                        new_dict[transaction] = transactions_sended_not_validated[
+                            transaction
+                        ]
+                        if (
+                            not transactions_sended_not_validated[transaction][
+                                "transaction"
+                            ]["data"]
+                            == "NP"
+                        ):
+                            with contextlib.suppress(json.decoder.JSONDecodeError):
                                 transactions_sended_not_validated[transaction][
-                                    "transaction"]["data"] = json.loads(
-                                        transactions_sended_not_validated[
-                                            transaction]["transaction"]
-                                        ["data"])
-                            if not transactions_sended_not_validated[
-                                    transaction]["transaction"]["data"][
-                                        "app_data"].startswith("split-"):
+                                    "transaction"
+                                ]["data"] = json.loads(
+                                    transactions_sended_not_validated[transaction][
+                                        "transaction"
+                                    ]["data"]
+                                )
+                            if not transactions_sended_not_validated[transaction][
+                                "transaction"
+                            ]["data"]["app_data"].startswith("split-"):
                                 self.cache.append(
-                                    transactions_sended_not_validated[
-                                        transaction]["transaction"]
-                                    ["signature"]
+                                    transactions_sended_not_validated[transaction][
+                                        "transaction"
+                                    ]["signature"]
                                 ) if not disable_caches else None
 
                                 split_not_validated.append(
-                                    transactions_sended_not_validated[
-                                        transaction]["transaction"]
-                                    ["signature"])
-                                SavetoMyTransaction(
-                                    the_tx) if not get_all else None
+                                    transactions_sended_not_validated[transaction][
+                                        "transaction"
+                                    ]["signature"]
+                                )
+                                SavetoMyTransaction(the_tx) if not get_all else None
                         else:
-                            SavetoMyTransaction(
-                                the_tx) if not get_all else None
+                            SavetoMyTransaction(the_tx) if not get_all else None
                             self.cache.append(
-                                transactions_sended_not_validated[transaction]
-                                ["transaction"]
-                                ["signature"]) if not disable_caches else None
+                                transactions_sended_not_validated[transaction][
+                                    "transaction"
+                                ]["signature"]
+                            ) if not disable_caches else None
 
         self.save_cache() if not disable_caches else None
 
@@ -590,8 +612,10 @@ class Integration:
         for transaction in new_dict:
             with contextlib.suppress(TypeError):
                 if not new_dict[transaction]["transaction"]["data"] == "NP":
-                    if (self.app_name in new_dict[transaction]["transaction"]
-                            ["data"]["action"]):
+                    if (
+                        self.app_name
+                        in new_dict[transaction]["transaction"]["data"]["action"]
+                    ):
                         last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
@@ -601,8 +625,7 @@ class Integration:
             # check new_dict[transaction]["transaction"]["data"] is start with split
 
             if transaction["data"]["app_data"].startswith("split-0"):
-                the_split = splitted_data(
-                    transaction["data"]["app_data"].split("-")[2])
+                the_split = splitted_data(transaction["data"]["app_data"].split("-")[2])
                 the_split.data_original.append(transaction)
                 splits.append(the_split)
                 new_a_last_list.remove(transaction) if not get_all else None
@@ -614,15 +637,15 @@ class Integration:
             for transaction in last_list:
                 if transaction["data"]["app_data"].startswith("split-"):
                     if not transaction["data"]["app_data"].startswith(
-                            "split-0") and not transaction["data"][
-                                "app_data"].startswith("split-1"):
-                        if transaction["data"]["app_data"].split(
-                                "-")[2] == split.split:
+                        "split-0"
+                    ) and not transaction["data"]["app_data"].startswith("split-1"):
+                        if transaction["data"]["app_data"].split("-")[2] == split.split:
                             split.data.append(transaction["data"]["app_data"])
                             split.data_original.append(transaction)
                             with contextlib.suppress(ValueError):
                                 new_last_list.remove(
-                                    transaction) if not get_all else None
+                                    transaction
+                                ) if not get_all else None
 
         last_list = new_last_list
 
@@ -632,15 +655,13 @@ class Integration:
 
             for split in splits:
                 if transaction["data"]["app_data"].startswith("split-1"):
-                    if transaction["data"]["app_data"].split(
-                            "-")[2] == split.split:
+                    if transaction["data"]["app_data"].split("-")[2] == split.split:
                         finded = True
                         split.validated = True
 
                         split.main_data = copy.copy(transaction)
                         split.data_original.append(copy.copy(transaction))
-                        new_last_list_2.remove(
-                            transaction) if not get_all else None
+                        new_last_list_2.remove(transaction) if not get_all else None
 
                         break
         last_list = new_last_list_2
@@ -652,8 +673,7 @@ class Integration:
                 for each_data in split.data:
                     for transaction in last_list:
                         if each_data == transaction["data"]["app_data"]:
-                            new_last_list_3.remove(
-                                transaction) if not get_all else None
+                            new_last_list_3.remove(transaction) if not get_all else None
 
                             break
 
@@ -666,24 +686,25 @@ class Integration:
         for split in splits:
             if split.validated:
                 for each_original in split.data_original:
-                    self.cache.append(each_original["signature"]
-                                      ) if not disable_caches else None
+                    self.cache.append(
+                        each_original["signature"]
+                    ) if not disable_caches else None
                     SavetoMyTransaction(the_tx)
                     if not each_original["signature"] in split_not_validated:
                         ValidateTransaction(the_tx) if not get_all else None
-                    if Address(each_original["fromUser"]) == wallet_import(
-                            -1, 3):
-                        SendedTransaction(Transaction.load_json(
-                            each_original)) if not get_all else None
+                    if Address(each_original["fromUser"]) == wallet_import(-1, 3):
+                        SendedTransaction(
+                            Transaction.load_json(each_original)
+                        ) if not get_all else None
                 for each_data in split.data:
                     split.main_data["data"]["app_data"] += each_data
-                    split.main_data["data"]["app_data"] = split.main_data[
-                        "data"]["app_data"].replace(f"split-1-{split.split}-",
-                                                    "")
+                    split.main_data["data"]["app_data"] = split.main_data["data"][
+                        "app_data"
+                    ].replace(f"split-1-{split.split}-", "")
                     for i in range(len(split.data)):
-                        split.main_data["data"]["app_data"] = split.main_data[
-                            "data"]["app_data"].replace(
-                                f"split-{i+2}-{split.split}-", "")
+                        split.main_data["data"]["app_data"] = split.main_data["data"][
+                            "app_data"
+                        ].replace(f"split-{i+2}-{split.split}-", "")
                 last_list.append(split.main_data)
 
         self.save_cache() if not disable_caches else None
@@ -695,12 +716,15 @@ class Integration:
             if transaction["fromUser"] == wallet_import(-1, 3):
                 the_tx = Transaction.load_json(transaction)
                 if the_settings()["baklava"] and not transaction["data"][
-                        "app_data"].startswith("split-"):
+                    "app_data"
+                ].startswith("split-"):
                     SendedTransaction(the_tx) if not get_all else None
                 result.append(transaction)
 
-            elif (transaction["toUser"] == wallet_import(-1, 3)
-                  or transaction["fromUser"] in commanders):
+            elif (
+                transaction["toUser"] == wallet_import(-1, 3)
+                or transaction["fromUser"] in commanders
+            ):
                 result.append(transaction)
 
         for transaction in result[:]:
@@ -725,8 +749,11 @@ class Integration:
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
 
-        if ((self.sended or force_sended) and self.check_thread is not None
-                and not from_thread):
+        if (
+            (self.sended or force_sended)
+            and self.check_thread is not None
+            and not from_thread
+        ):
             while len(self.sended_txs) > 0:
                 time.sleep(10)
 
