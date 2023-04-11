@@ -8,10 +8,10 @@ import time
 
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
-from naruno.lib.settings_system import save_settings
-from naruno.lib.settings_system import the_settings
+from naruno.lib.settings_system import save_settings, the_settings
 from naruno.node.unl import Unl
-from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
+from naruno.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
 
 
 def Status(
