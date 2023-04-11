@@ -37,7 +37,7 @@ def Status(
                                  or a_settings["status_cache_time"] + wait_time + 2 <= currently_time):
         a_settings["status_working"] = True
         if not no_cache:
-            a_settings["status_cache_time"] = time.time()        
+            a_settings["status_cache_time"] = time.time()
         save_settings(a_settings)
         first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                        if custom_first_block is None else custom_first_block)
@@ -48,7 +48,7 @@ def Status(
 
         connections = (Unl.get_as_node_type(
             Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH))
-                       if custom_connections is None else custom_connections)
+            if custom_connections is None else custom_connections)
         connected_nodes = [
             str(f"{the_connections.host}:{the_connections.port}")
             for the_connections in connections
