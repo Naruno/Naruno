@@ -64,8 +64,8 @@ def Status(
 
         status_json = {
             "status": "",
-            "first_block": str(first_block.__dict__),
-            "new_block": str(new_block.__dict__),
+            "first_block": str(first_block.dump_json()),
+            "new_block": str(new_block.dump_json()),
             "last_transaction_of_block": last_transaction_of_block,
             "transactions_of_us": transactions_of_us,
             "connected_nodes": connected_nodes,
