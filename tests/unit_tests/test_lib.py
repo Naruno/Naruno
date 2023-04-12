@@ -622,9 +622,10 @@ class Test_Lib(unittest.TestCase):
         ab_settins = the_settings()
         ab_settins["status_working"] = True
         save_settings(ab_settins)
+        print("EFSANE")
         result = Status(
             custom_first_block=custom_first_block,
-            custom_new_block=custom_first_block,
+            custom_new_block=custom_new_block,
             custom_connections=custom_connections,
             custom_transactions=custom_transactions,
             cache_time=5,
