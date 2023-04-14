@@ -174,7 +174,9 @@ def send_coin_data_page():
             custom_account_list=custom_account_list,
             custom_set_sequence_number=sequence_number,
         )
-        if send_tx != False:
+    except:
+        result = "false"        
+    if send_tx != False:
             SavetoMyTransaction(send_tx, sended=True)
             if not the_settings()["baklava"]:
                 server.send_transaction(
@@ -192,9 +194,8 @@ def send_coin_data_page():
                     custom_TEMP_BLOCKSHASH_PART_PATH=
                     custom_TEMP_BLOCKSHASH_PART_PATH,
                 )
-        result = send_tx.dump_json() if send_tx != False else False
-    except:
-        result = "false"
+    result = send_tx.dump_json() if send_tx != False else False
+
     return jsonify(result)
 
 
