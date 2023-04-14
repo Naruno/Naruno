@@ -157,11 +157,11 @@ def send_coin_data_page():
         password = str(
             request.form["password"]) if "password" in request.form else None
         sequence_number = (str(request.form["sequence_number"])
-                        if "sequence_number" in request.form else None)
+                           if "sequence_number" in request.form else None)
         block = None
         with contextlib.suppress(Exception):
             block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                    if custom_block is None else custom_block)
+                     if custom_block is None else custom_block)
         send_tx = send(
             password,
             address,
@@ -175,25 +175,24 @@ def send_coin_data_page():
             custom_set_sequence_number=sequence_number,
         )
     except:
-        result = "false"        
+        result = "false"
     if send_tx != False:
-            SavetoMyTransaction(send_tx, sended=True)
-            if not the_settings()["baklava"]:
-                server.send_transaction(
-                    send_tx,
-                    custom_current_time=custom_current_time,
-                    custom_sequence_number=custom_sequence_number,
-                    custom_balance=custom_balance,
-                    custom_server=custom_server,
-                )
-                SaveBlock(
-                    block,
-                    custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                    custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-                    custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    custom_TEMP_BLOCKSHASH_PART_PATH,
-                )
+        SavetoMyTransaction(send_tx, sended=True)
+        if not the_settings()["baklava"]:
+            server.send_transaction(
+                send_tx,
+                custom_current_time=custom_current_time,
+                custom_sequence_number=custom_sequence_number,
+                custom_balance=custom_balance,
+                custom_server=custom_server,
+            )
+            SaveBlock(
+                block,
+                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+            )
     result = send_tx.dump_json() if send_tx != False else False
 
     return jsonify(result)
@@ -701,8 +700,7 @@ def start(host=None, port=None, test=False):
         host = "0.0.0.0"
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
+        description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
     )
 
     parser.add_argument("-p",
