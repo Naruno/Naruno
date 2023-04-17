@@ -34,10 +34,11 @@ def Status(
 
     if (no_cache or a_settings["status_cache_time"] + cache_time <=
             currently_time) and (not a_settings["status_working"]
-                                 or a_settings["status_cache_time"] + wait_time + 2 <= currently_time):
+                                 or a_settings["status_cache_time"] +
+                                 wait_time + 2 <= currently_time):
         a_settings["status_working"] = True
         if not no_cache:
-            a_settings["status_cache_time"] = time.time()        
+            a_settings["status_cache_time"] = time.time()
         save_settings(a_settings)
         first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                        if custom_first_block is None else custom_first_block)
@@ -57,7 +58,7 @@ def Status(
         transactions = (GetMyTransaction() if custom_transactions is None else
                         custom_transactions)
         transactions_of_us = str(
-            [f"{str(i[0].__dict__)} | {str(i[1])}" for i in transactions])
+            [f"{str(i[0].dump_json())} | {str(i[1])}" for i in transactions])
 
         last_transaction_of_block = (
             str(new_block.validating_list[-1].dump_json())
