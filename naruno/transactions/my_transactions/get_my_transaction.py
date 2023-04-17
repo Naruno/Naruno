@@ -47,7 +47,8 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
                     each_sended,
                 ])
             except json.decoder.JSONDecodeError:
-                os.remove(entry.path)
+                with contextlib.suppress(Exception):
+                    os.remove(entry.path)
 
     if sended is not None:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
