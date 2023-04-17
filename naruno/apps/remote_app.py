@@ -84,8 +84,8 @@ class Integration:
 
         self.api = None
 
-        if not self.check_api():
-            self.start_api()
+        self.init_api()
+            
 
         self.password = password
 
@@ -164,12 +164,14 @@ class Integration:
 
         logger.info(f"Integration of {self.app_name} is started")
 
-    def check_api(self):
+
+
+    def init_api(self):
         try:
             self.prepare_request("/", "get")
-            return True
         except Exception as e:
-            return False
+            self.start_api()
+
 
     def start_api(self):
         backup = sys.argv
@@ -265,12 +267,16 @@ class Integration:
         :param app_data: The data of the app
         :param to_user: The user to send the data to
         """
+        
+
 
         if time.time() - self.last_sended < self.wait_amount:
             time.sleep(self.wait_amount - (time.time() - self.last_sended))
 
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
+
+        self.init_api()
 
         data = {"action": self.app_name + action, "app_data": app_data}
 
@@ -722,8 +728,13 @@ class Integration:
         disable_sended_not_validated=False,
         force_sended=False,
     ):
+        
+
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
+
+        self.init_api()
+
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
 
