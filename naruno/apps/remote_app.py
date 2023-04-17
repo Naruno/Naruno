@@ -84,8 +84,7 @@ class Integration:
 
         self.api = None
 
-        if not self.check_api():
-            self.start_api()
+        self.init_api()
 
         self.password = password
 
@@ -147,7 +146,6 @@ class Integration:
 
             self.original_wait_amoount = copy.copy(self.wait_amount)
 
-            
             if self.total_check:
                 self.check_thread = perpetualTimer(self.original_wait_amoount,
                                                    self.checker)
@@ -160,16 +158,13 @@ class Integration:
         self.host = backup_host
         self.port = backup_port
 
-
-
         logger.info(f"Integration of {self.app_name} is started")
 
-    def check_api(self):
+    def init_api(self):
         try:
             self.prepare_request("/", "get")
-            return True
         except Exception as e:
-            return False
+            self.start_api()
 
     def start_api(self):
         backup = sys.argv
@@ -271,6 +266,8 @@ class Integration:
 
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
+
+        self.init_api()
 
         data = {"action": self.app_name + action, "app_data": app_data}
 
@@ -421,8 +418,15 @@ class Integration:
                     sended_tx[5],
                 )
 
-    def get_(self, get_all, disable_caches, disable_sended_not_validated,
-             force_sended, raw_data_return=False, raw_datas=None):
+    def get_(
+        self,
+        get_all,
+        disable_caches,
+        disable_sended_not_validated,
+        force_sended,
+        raw_data_return=False,
+        raw_datas=None,
+    ):
         self.get_cache() if not disable_caches else None
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
@@ -443,7 +447,6 @@ class Integration:
         if raw_data_return:
             return transactions, transactions_sended, transactions_sended_not_validated
 
-
         if raw_datas is not None:
             for data in raw_datas[0]:
                 transactions[data] = raw_datas[0][data]
@@ -451,8 +454,6 @@ class Integration:
                 transactions_sended[data] = raw_datas[1][data]
             for data in raw_datas[2]:
                 transactions_sended_not_validated[data] = raw_datas[2][data]
-        
-
 
         new_dict = {}
         commanders = GetCommander()
@@ -724,6 +725,9 @@ class Integration:
     ):
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
+
+        self.init_api()
+
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
 
@@ -749,16 +753,15 @@ class Integration:
         self.host = backup_host
         self.port = backup_port
 
-
         second = self.get_(
             get_all=get_all,
             disable_caches=disable_caches,
             disable_sended_not_validated=disable_sended_not_validated,
             force_sended=force_sended,
-            raw_datas=baklava_datas
+            raw_datas=baklava_datas,
         )
 
-        the_list =  second
+        the_list = second
 
         with contextlib.suppress(TypeError):
             if "print" in inspect.stack()[1].code_context[0]:
