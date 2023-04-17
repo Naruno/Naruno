@@ -29,23 +29,25 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
         if (entry.name != "README.md"
                 and not entry.name.startswith("validated")
                 and not entry.name.startswith("sended")):
-            the_transactions_json = json.load(open(entry.path, "r"))
-            # Find "validatedentry.name" and "sendedentry.name" files
-            each_validated = False
-            each_sended = False
-            if os.path.exists(
-                    os.path.join(MY_TRANSACTION_PATH,
-                                 "validated" + entry.name)):
-                each_validated = True
-            if os.path.exists(
-                    os.path.join(MY_TRANSACTION_PATH, "sended" + entry.name)):
-                each_sended = True
-            the_transactions.append([
-                Transaction.load_json(the_transactions_json),
-                each_validated,
-                each_sended,
-            ])
-
+            try:
+                the_transactions_json = json.load(open(entry.path, "r"))
+                # Find "validatedentry.name" and "sendedentry.name" files
+                each_validated = False
+                each_sended = False
+                if os.path.exists(
+                        os.path.join(MY_TRANSACTION_PATH,
+                                    "validated" + entry.name)):
+                    each_validated = True
+                if os.path.exists(
+                        os.path.join(MY_TRANSACTION_PATH, "sended" + entry.name)):
+                    each_sended = True
+                the_transactions.append([
+                    Transaction.load_json(the_transactions_json),
+                    each_validated,
+                    each_sended,
+                ])
+            except json.decoder.JSONDecodeError:
+                os.remove(entry.path)
     if sended is not None:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
 
