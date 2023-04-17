@@ -85,7 +85,6 @@ class Integration:
         self.api = None
 
         self.init_api()
-            
 
         self.password = password
 
@@ -147,7 +146,6 @@ class Integration:
 
             self.original_wait_amoount = copy.copy(self.wait_amount)
 
-            
             if self.total_check:
                 self.check_thread = perpetualTimer(self.original_wait_amoount,
                                                    self.checker)
@@ -160,18 +158,13 @@ class Integration:
         self.host = backup_host
         self.port = backup_port
 
-
-
         logger.info(f"Integration of {self.app_name} is started")
-
-
 
     def init_api(self):
         try:
             self.prepare_request("/", "get")
         except Exception as e:
             self.start_api()
-
 
     def start_api(self):
         backup = sys.argv
@@ -267,8 +260,6 @@ class Integration:
         :param app_data: The data of the app
         :param to_user: The user to send the data to
         """
-        
-
 
         if time.time() - self.last_sended < self.wait_amount:
             time.sleep(self.wait_amount - (time.time() - self.last_sended))
@@ -333,8 +324,7 @@ class Integration:
             for each_data in splitted_data:
                 self.send(
                     action=action,
-                    app_data=
-                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                    app_data=f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                     to_user=to_user,
                     force=force,
                     retrysecond=retrysecond,
@@ -449,7 +439,6 @@ class Integration:
         if raw_data_return:
             return transactions, transactions_sended, transactions_sended_not_validated
 
-
         if raw_datas is not None:
             for data in raw_datas[0]:
                 transactions[data] = raw_datas[0][data]
@@ -457,8 +446,6 @@ class Integration:
                 transactions_sended[data] = raw_datas[1][data]
             for data in raw_datas[2]:
                 transactions_sended_not_validated[data] = raw_datas[2][data]
-        
-
 
         new_dict = {}
         commanders = GetCommander()
@@ -504,7 +491,7 @@ class Integration:
         for transaction in transactions_sended:
             if self.sended or force_sended:
                 if (transactions_sended[transaction]["transaction"]
-                    ["signature"] in self.cache) and not get_all:
+                        ["signature"] in self.cache) and not get_all:
                     continue
                 else:
                     if transactions_sended[transaction]["transaction"][
@@ -515,7 +502,7 @@ class Integration:
                             transactions_sended[transaction]["transaction"])
 
                         if (not transactions_sended[transaction]["transaction"]
-                            ["data"] == "NP"):
+                                ["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended[transaction][
@@ -560,7 +547,7 @@ class Integration:
                             transaction] = transactions_sended_not_validated[
                                 transaction]
                         if (not transactions_sended_not_validated[transaction]
-                            ["transaction"]["data"] == "NP"):
+                                ["transaction"]["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended_not_validated[transaction][
@@ -599,7 +586,7 @@ class Integration:
             with contextlib.suppress(TypeError):
                 if not new_dict[transaction]["transaction"]["data"] == "NP":
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
@@ -728,7 +715,6 @@ class Integration:
         disable_sended_not_validated=False,
         force_sended=False,
     ):
-        
 
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
@@ -760,7 +746,6 @@ class Integration:
         self.host = backup_host
         self.port = backup_port
 
-
         second = self.get_(
             get_all=get_all,
             disable_caches=disable_caches,
@@ -769,7 +754,7 @@ class Integration:
             raw_datas=baklava_datas
         )
 
-        the_list =  second
+        the_list = second
 
         with contextlib.suppress(TypeError):
             if "print" in inspect.stack()[1].code_context[0]:
