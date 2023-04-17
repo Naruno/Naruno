@@ -449,11 +449,14 @@ class Integration:
 
         if raw_datas is not None:
             for data in raw_datas[0]:
-                transactions[data] = raw_datas[0][data]
+                with contextlib.suppress(TypeError):
+                    transactions[data] = raw_datas[0][data]
             for data in raw_datas[1]:
-                transactions_sended[data] = raw_datas[1][data]
+                with contextlib.suppress(TypeError):
+                    transactions_sended[data] = raw_datas[1][data]
             for data in raw_datas[2]:
-                transactions_sended_not_validated[data] = raw_datas[2][data]
+                with contextlib.suppress(TypeError):
+                    transactions_sended_not_validated[data] = raw_datas[2][data]
 
         new_dict = {}
         commanders = GetCommander()
