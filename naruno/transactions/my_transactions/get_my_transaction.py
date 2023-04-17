@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import os
-import shutil
 
 from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
@@ -48,7 +47,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
                     each_sended,
                 ])
             except json.decoder.JSONDecodeError:
-                shutil.rmtree(entry.path)
+                os.remove(entry.path)
 
     if sended is not None:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
