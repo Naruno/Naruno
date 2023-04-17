@@ -57,7 +57,7 @@ def Status(
         transactions = (GetMyTransaction() if custom_transactions is None else
                         custom_transactions)
         transactions_of_us = str(
-            [f"{str(i[0].__dict__)} | {str(i[1])}" for i in transactions])
+            [f"{str(i[0].dump_json())} | {str(i[1])}" for i in transactions])
 
         last_transaction_of_block = (
             str(new_block.validating_list[-1].dump_json())
