@@ -726,7 +726,7 @@ class Integration:
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
 
-        self.init_api()
+        
 
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
@@ -752,6 +752,8 @@ class Integration:
             )
         self.host = backup_host
         self.port = backup_port
+
+        self.init_api()
 
         second = self.get_(
             get_all=get_all,
