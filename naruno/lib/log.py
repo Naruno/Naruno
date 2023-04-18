@@ -30,6 +30,7 @@ class ColoredFormatter(logging.Formatter):
     """
     A formatter that adds color to log output
     """
+
     if sys.platform.lower() == "win32":
         os.system("")
 
@@ -44,7 +45,6 @@ def get_logger(name):
     logger = logging.getLogger(name)
 
     if not any(element == logger for element in global_logger):
-
         level = logging.DEBUG if the_settings()["debug_mode"] else logging.INFO
         logger.setLevel(level)
         # create console handler and set level to debug
@@ -52,17 +52,18 @@ def get_logger(name):
         ch.setLevel(level)
         # create formatter
         formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
         colored_formatter = ColoredFormatter(
-            "%(asctime)s - %(levelname)s - %(message)s")
+            "%(asctime)s - %(levelname)s - %(message)s"
+        )
         # add formatter to ch
         ch.setFormatter(colored_formatter)
         # add ch to logger
         logger.addHandler(ch)
         # file
         main_folder = get_config()["main_folder"]
-        fh = logging.FileHandler(
-            os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
+        fh = logging.FileHandler(os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
         fh.setLevel(level)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
