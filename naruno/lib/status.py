@@ -57,8 +57,7 @@ def Status(
 
         transactions = (GetMyTransaction() if custom_transactions is None else
                         custom_transactions)
-        transactions_of_us = str(
-            [f"{str(i[0].dump_json())} | {str(i[1])}" for i in transactions])
+
 
         last_transaction_of_block = (
             str(new_block.validating_list[-1].dump_json())
@@ -69,7 +68,6 @@ def Status(
             "first_block": str(first_block.dump_json()),
             "new_block": str(new_block.dump_json()),
             "last_transaction_of_block": last_transaction_of_block,
-            "transactions_of_us": transactions_of_us,
             "connected_nodes": connected_nodes,
         }
 

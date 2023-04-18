@@ -684,13 +684,7 @@ class Test_API(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         save_settings(backup_settings)
 
     def test_404_page(self):
