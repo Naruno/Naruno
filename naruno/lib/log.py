@@ -52,18 +52,17 @@ def get_logger(name):
         ch.setLevel(level)
         # create formatter
         formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
         colored_formatter = ColoredFormatter(
-            "%(asctime)s - %(levelname)s - %(message)s"
-        )
+            "%(asctime)s - %(levelname)s - %(message)s")
         # add formatter to ch
         ch.setFormatter(colored_formatter)
         # add ch to logger
         logger.addHandler(ch)
         # file
         main_folder = get_config()["main_folder"]
-        fh = logging.FileHandler(os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
+        fh = logging.FileHandler(
+            os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
         fh.setLevel(level)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
