@@ -31,6 +31,7 @@ The transactions_of_us element from the status has been removed in the latest ve
 
 
 **Full Changelog**: https://github.com/Naruno/Naruno/compare/v0.56.4-alpha...v0.56.5-alpha
+
 # Credits
 
 Thanks to everyone who directly contributed to this release:
