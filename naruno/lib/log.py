@@ -15,11 +15,12 @@ from naruno.lib.settings_system import the_settings
 
 global_logger = []
 
-format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
+format = (
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
+)
 
 
 class ColoredFormatter(logging.Formatter):
-
     grey = "\x1b[38;20m"
     yellow = "\x1b[33;20m"
     red = "\x1b[31;20m"
@@ -31,7 +32,7 @@ class ColoredFormatter(logging.Formatter):
         logging.INFO: grey + format + reset,
         logging.WARNING: yellow + format + reset,
         logging.ERROR: red + format + reset,
-        logging.CRITICAL: bold_red + format + reset
+        logging.CRITICAL: bold_red + format + reset,
     }
 
     def format(self, record):
@@ -58,8 +59,7 @@ def get_logger(name):
         logger.addHandler(ch)
         # file
         main_folder = get_config()["main_folder"]
-        fh = logging.FileHandler(
-            os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
+        fh = logging.FileHandler(os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
         fh.setLevel(level)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
