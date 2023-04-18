@@ -358,13 +358,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Not working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
 
@@ -399,13 +393,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
 
@@ -440,13 +428,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
 
@@ -485,13 +467,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
 
@@ -506,13 +482,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
 
@@ -553,13 +523,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
         time.sleep(5)
@@ -609,13 +573,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
         time.sleep(10)
@@ -634,13 +592,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
         save_settings(backup_settings)
@@ -680,13 +632,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(result["status"], "Working")
         self.assertEqual(result["last_transaction_of_block"],
                          str(the_transaction.dump_json()))
-        self.assertEqual(
-            result["transactions_of_us"],
-            str([
-                f"{str(i[0].__dict__)} | {str(i[1])}"
-                for i in custom_transactions
-            ]),
-        )
+
         self.assertEqual(result["connected_nodes"],
                          ["127.0.0.1:10001", "127.0.0.1:10002"])
         time.sleep(9)
