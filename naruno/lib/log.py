@@ -15,30 +15,29 @@ from naruno.lib.settings_system import the_settings
 
 global_logger = []
 
-re  # Define colors for log output
-RESET_SEQ = "\033[0m"
-COLORS = {
-    "WARNING": "\033[33m",
-    "INFO": "\033[32m",
-    "DEBUG": "\033[34m",
-    "CRITICAL": "\033[31m",
-    "ERROR": "\033[35m",
-}
-
+format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 
 class ColoredFormatter(logging.Formatter):
-    """
-    A formatter that adds color to log output
-    """
 
-    if sys.platform.lower() == "win32":
-        os.system("")
+    grey = "\x1b[38;20m"
+    yellow = "\x1b[33;20m"
+    red = "\x1b[31;20m"
+    bold_red = "\x1b[31;1m"
+    reset = "\x1b[0m"
+    
+
+    FORMATS = {
+        logging.DEBUG: grey + format + reset,
+        logging.INFO: grey + format + reset,
+        logging.WARNING: yellow + format + reset,
+        logging.ERROR: red + format + reset,
+        logging.CRITICAL: bold_red + format + reset
+    }
 
     def format(self, record):
-        levelname = record.levelname
-        if levelname in COLORS:
-            record.levelname = f"{COLORS[levelname]}{levelname}{RESET_SEQ}"
-        return super().format(record)
+        log_fmt = self.FORMATS.get(record.levelno)
+        formatter = logging.Formatter(log_fmt)
+        return formatter.format(record)
 
 
 def get_logger(name):
@@ -51,10 +50,8 @@ def get_logger(name):
         ch = logging.StreamHandler()
         ch.setLevel(level)
         # create formatter
-        formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-        colored_formatter = ColoredFormatter(
-            "%(asctime)s - %(levelname)s - %(message)s")
+        formatter = logging.Formatter(format)
+        colored_formatter = ColoredFormatter(format)
         # add formatter to ch
         ch.setFormatter(colored_formatter)
         # add ch to logger
