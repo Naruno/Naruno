@@ -15,7 +15,7 @@ from naruno.lib.settings_system import the_settings
 
 global_logger = []
 
-re# Define colors for log output
+re  # Define colors for log output
 RESET_SEQ = "\033[0m"
 COLORS = {
     "WARNING": "\033[33m",
@@ -24,6 +24,7 @@ COLORS = {
     "CRITICAL": "\033[31m",
     "ERROR": "\033[35m",
 }
+
 
 class ColoredFormatter(logging.Formatter):
     """
@@ -38,6 +39,7 @@ class ColoredFormatter(logging.Formatter):
             record.levelname = f"{COLORS[levelname]}{levelname}{RESET_SEQ}"
         return super().format(record)
 
+
 def get_logger(name):
     logger = logging.getLogger(name)
 
@@ -51,7 +53,8 @@ def get_logger(name):
         # create formatter
         formatter = logging.Formatter(
             "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-        colored_formatter = ColoredFormatter("%(asctime)s - %(levelname)s - %(message)s")
+        colored_formatter = ColoredFormatter(
+            "%(asctime)s - %(levelname)s - %(message)s")
         # add formatter to ch
         ch.setFormatter(colored_formatter)
         # add ch to logger
