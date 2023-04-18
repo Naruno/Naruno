@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name="naruno_tests",
-    version="0.56.4",
+    version="0.56.5",
     description="""This is a tool for tests on Naruno""",
     url="https://docs.naruno.org/",
     author="Naruno Developers",
@@ -18,7 +18,7 @@ setup(
 requests==2.28.2
 pytest==7.1.2
 speed_calculator==0.4.1
-naruno_api==0.56.4
+naruno_api==0.56.5
 """,
     python_requires=">=3.8",
     zip_safe=False,
