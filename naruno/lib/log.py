@@ -15,7 +15,7 @@ from naruno.lib.settings_system import the_settings
 
 global_logger = []
 
-format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
 
 class ColoredFormatter(logging.Formatter):
 
