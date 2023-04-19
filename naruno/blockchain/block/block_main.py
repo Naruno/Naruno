@@ -111,7 +111,7 @@ class Block:
         self.validated = False
         self.validated_time = None
 
-        if not self.use_full_block or len(
+        if (not self.use_full_block and len(self.validating_list) != 0) or len(
                 self.validating_list) >= (self.max_tx_number / 2):
             block2 = copy.copy(self)
             # Resetting and setting the new elements.
