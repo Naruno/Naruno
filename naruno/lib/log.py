@@ -35,6 +35,9 @@ class ColoredFormatter(logging.Formatter):
         logging.CRITICAL: bold_red + format + reset,
     }
 
+    if sys.platform.lower() == "win32":
+        os.system("")
+
     def format(self, record):
         log_fmt = self.FORMATS.get(record.levelno)
         formatter = logging.Formatter(log_fmt)
