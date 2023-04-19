@@ -79,3 +79,16 @@ def clear_logs():
     for file in os.listdir(os.path.join(main_folder, LOGS_PATH)):
         if file.endswith(".log"):
             os.remove(os.path.join(main_folder, LOGS_PATH, file))
+    
+    for logger in global_logger:
+        for handler in logger.handlers:
+            if isinstance(handler, logging.FileHandler):
+                handler.close()
+                logger.removeHandler(handler)
+                fh = logging.FileHandler(
+                    os.path.join(main_folder, LOGS_PATH, f"{logger.name}.log"))
+                fh.setLevel(logger.level)
+                fh.setFormatter(logging.Formatter(format))
+                logger.addHandler(fh)
+
+

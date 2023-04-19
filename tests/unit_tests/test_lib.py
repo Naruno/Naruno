@@ -930,11 +930,29 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(signed, "None")
 
 
-    def test_clear_logs(self):
-        get_logger("a").info("test")
-        self.assertNotEqual(len(os.listdir(os.path.join(get_config()["main_folder"], LOGS_PATH))), 1)
+    def test_logs(self):
+        log_name = "a" + str(time.time())
+        a= get_logger(log_name)
+        a.info("test")
+        with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
+            content = f.read()
+        self.assertEqual(len(content), 78)
+
+        a.info("test")
+        with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
+            content = f.read()
+        self.assertEqual(len(content), 156)        
         clear_logs()
-        self.assertEqual(len(os.listdir(os.path.join(get_config()["main_folder"], LOGS_PATH))), 1)
+        #read the file 
+        with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
+            content = f.read()
+        self.assertEqual(len(content), 0)
+        a.info("test")
+        with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
+            content = f.read()
+        self.assertEqual(len(content), 78)
+
+        os.remove(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"))
 
 unittest.main(exit=False)
 
