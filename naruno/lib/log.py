@@ -73,6 +73,8 @@ def get_logger(name):
 
 
 def clear_logs():
+    if the_settings()["disable_log_clearing"]:
+        return
     main_folder = get_config()["main_folder"]
     for file in os.listdir(os.path.join(main_folder, LOGS_PATH)):
         if file.endswith(".log"):
