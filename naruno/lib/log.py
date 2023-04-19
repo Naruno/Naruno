@@ -79,6 +79,3 @@ def clear_logs():
     for file in os.listdir(os.path.join(main_folder, LOGS_PATH)):
         if file.endswith(".log"):
             open(os.path.join(main_folder, LOGS_PATH, file), "w").close()
-
-
-
