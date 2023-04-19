@@ -14,6 +14,7 @@ import threading
 import time
 import unittest
 import urllib
+from unittest.mock import MagicMock
 
 import requests
 
@@ -23,6 +24,7 @@ from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.get_balance import GetBalance
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.api.main import start
+from naruno.apps.checker import checker
 from naruno.apps.remote_app import Integration
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
@@ -86,11 +88,24 @@ naruno.api.main.custom_account_list = the_accounts
 
 naruno.api.main.custom_wallet = "test_account_2"
 
+send_called = False
+send_called_txs = []
+
+
+def custom_send_function(self, a, b, c, d, e):
+    global send_called
+    global send_called_txs
+    send_called = True
+    send_called_txs.append([a, b, c, d, e])
+    return True
+
 
 class Test_apps(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        cls.integration = Integration("test1", wait_amount=1)
+        cls.mock_logger = MagicMock()
         CleanUp_tests()
         naruno.api.main.account_list = GetAccounts(temp_path)
 
@@ -245,6 +260,7 @@ class Test_apps(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        cls.integration.close()
         cls.node_0.stop()
         cls.node_1.stop()
         cls.node_2.stop()
@@ -622,6 +638,189 @@ class Test_apps(unittest.TestCase):
         integration_3 = Integration(app_name, port=7776)
         self.assertEqual(integration_3.cache, [])
         integration_3.delete_cache()
+
+    def test_checker_with_valid_transactions(self):
+        # Create some sample transactions
+        sent_tx1 = [
+            1,
+            2,
+            "userA",
+            4,
+            5,
+            6,
+            '{"action": "foo", "app_data": {"a": 1, "b": 2}}',
+        ]
+        sent_tx2 = [
+            7,
+            8,
+            "userB",
+            10,
+            11,
+            12,
+            '{"action": "bar", "app_data": {"c": 3, "d": 4}}',
+        ]
+        validated_tx1 = {
+            "toUser": "userA",
+            "data": {
+                "action": "foo",
+                "app_data": {
+                    "a": 1,
+                    "b": 2
+                }
+            },
+        }
+        validated_tx2 = {
+            "toUser": "userB",
+            "data": {
+                "action": "bar",
+                "app_data": {
+                    "c": 3,
+                    "d": 4
+                }
+            },
+        }
+
+        # Set up the Integration object with some previously sent and validated transactions
+        self.integration.sended_txs = [sent_tx1, sent_tx2]
+        new_txs = [validated_tx1, validated_tx2]
+        self.integration.get = MagicMock(return_value=new_txs)
+
+        global send_called
+        send_called = False
+        self.integration.send = custom_send_function
+
+        # Call the checker function
+        checker(self.integration)
+
+        # Assert that the send method was not called (since all transactions were validated)
+        self.assertFalse(send_called)
+
+    def test_checker_with_invalid_transaction(self):
+        # Create a sample transaction and set up the Integration object with it
+        sent_tx1 = [
+            1,
+            2,
+            "userA",
+            4,
+            5,
+            6,
+            '{"action": "foo", "app_data": {"a": 1, "b": 2}}',
+        ]
+        sent_tx2 = [
+            7,
+            8,
+            "userB",
+            10,
+            11,
+            12,
+            '{"action": "bar", "app_data": {"c": 3, "d": 4}}',
+        ]
+        sent_tx3 = [
+            7,
+            8,
+            "userC",
+            10,
+            11,
+            12,
+            '{"action": "bar", "app_data": {"c": 3, "d": 4}}',
+        ]
+        validated_tx = {
+            "toUser": "userd",
+            "data": {
+                "action": "foo",
+                "app_data": {
+                    "a": 1,
+                    "b": 2
+                }
+            },
+        }
+        self.integration.sended_txs = [sent_tx1, sent_tx2, sent_tx3]
+        new_txs = [validated_tx]
+        self.integration.get = MagicMock(return_value=new_txs)
+
+        global send_called
+        global send_called_txs
+        send_called_txs = []
+        send_called = False
+        self.integration.send = custom_send_function
+
+        # Call the checker function
+        checker(self.integration)
+
+        # Assert that the send method was called with the correct arguments
+        self.assertTrue(send_called)
+        self.assertEqual(
+            send_called_txs,
+            [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12],
+             [8, "userC", 10, 11, 12]],
+        )
+
+    def test_checker_with_invalid_transaction_limited(self):
+        # Create a sample transaction and set up the Integration object with it
+        sent_tx1 = [
+            1,
+            2,
+            "userA",
+            4,
+            5,
+            6,
+            '{"action": "foo", "app_data": {"a": 1, "b": 2}}',
+        ]
+        sent_tx2 = [
+            7,
+            8,
+            "userB",
+            10,
+            11,
+            12,
+            '{"action": "bar", "app_data": {"c": 3, "d": 4}}',
+        ]
+        sent_tx3 = [
+            7,
+            8,
+            "userC",
+            10,
+            11,
+            12,
+            '{"action": "bar", "app_data": {"c": 3, "d": 4}}',
+        ]
+        validated_tx = {
+            "toUser": "userd",
+            "data": {
+                "action": "foo",
+                "app_data": {
+                    "a": 1,
+                    "b": 2
+                }
+            },
+        }
+        self.integration.sended_txs = [sent_tx1, sent_tx2, sent_tx3]
+        new_txs = [validated_tx]
+        self.integration.get = MagicMock(return_value=new_txs)
+
+        global send_called
+        global send_called_txs
+        send_called_txs = []
+        send_called = False
+        self.integration.send = custom_send_function
+
+        # Call the checker function
+        self.integration.max_tx_number = 4
+        checker(self.integration)
+
+        # Assert that the send method was called with the correct arguments
+        self.assertTrue(send_called)
+        self.assertEqual(send_called_txs,
+                         [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12]])
+
+    def test_checker_error_handling(self):
+        # Set the get method to raise an exception
+        self.integration.get = MagicMock(
+            side_effect=Exception("Something went wrong"))
+
+        # Call the checker function and assert that an error was logged
+        checker(self.integration, logger=self.mock_logger)
+        self.mock_logger.error.assert_called_once()
 
 
 unittest.main(exit=False)
