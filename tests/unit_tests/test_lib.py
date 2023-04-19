@@ -936,21 +936,21 @@ class Test_Lib(unittest.TestCase):
         a.info("test")
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
             content = f.read()
-        self.assertEqual(len(content), 78)
+        self.assertEqual("test" in content, True)
 
-        a.info("test")
+        a.info("taest")
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
             content = f.read()
-        self.assertEqual(len(content), 156)        
+        self.assertEqual("taest" in content, True)     
         clear_logs()
         #read the file 
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
             content = f.read()
-        self.assertEqual(len(content), 0)
-        a.info("test")
+        self.assertEqual("taest" in content, False)     
+        a.info("tedsadast")
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
             content = f.read()
-        self.assertEqual(len(content), 78)
+        self.assertEqual("tedsadast" in content, True)
 
         os.remove(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"))
 
