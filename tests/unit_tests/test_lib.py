@@ -16,7 +16,7 @@ from unittest import mock
 from naruno.blockchain.block.block_main import Block
 from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
                            LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
-                           LOADING_BLOCKSHASH_PATH, MY_TRANSACTION_EXPORT_PATH,
+                           LOADING_BLOCKSHASH_PATH, LOGS_PATH, MY_TRANSACTION_EXPORT_PATH,
                            PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
                            TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH,
                            TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
@@ -45,6 +45,9 @@ from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address, wallet_import
+
+
+from naruno.lib.log import get_logger, clear_logs
 
 
 def perpetual_time_test():
@@ -927,4 +930,11 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual(signed, "None")
 
 
+    def test_clear_logs(self):
+        get_logger("a").info("test")
+        self.assertNotEqual(len(os.listdir(os.path.join(get_config()["main_folder"], LOGS_PATH))), 1)
+        clear_logs()
+        self.assertEqual(len(os.listdir(os.path.join(get_config()["main_folder"], LOGS_PATH))), 1)
+
 unittest.main(exit=False)
+

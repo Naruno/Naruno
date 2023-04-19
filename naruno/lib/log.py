@@ -70,3 +70,10 @@ def get_logger(name):
 
         global_logger.append(logger)
     return logger
+
+
+def clear_logs():
+    main_folder = get_config()["main_folder"]
+    for file in os.listdir(os.path.join(main_folder, LOGS_PATH)):
+        if file.endswith(".log"):
+            os.remove(os.path.join(main_folder, LOGS_PATH, file))
