@@ -929,12 +929,13 @@ class Test_Lib(unittest.TestCase):
         signed = sign("Onur & Ali Eren", str(time.time()))
         self.assertEqual(signed, "None")
 
-
     def test_clear_logs(self):
         get_logger("a").info("test")
-        self.assertNotEqual(len(os.listdir(os.path.join(get_config()["main_folder"], LOGS_PATH))), 1)
+        self.assertNotEqual(
+            len(os.listdir(os.path.join(get_config()["main_folder"], LOGS_PATH))), 1)
         clear_logs()
-        self.assertEqual(len(os.listdir(os.path.join(get_config()["main_folder"], LOGS_PATH))), 1)
+        self.assertEqual(
+            len(os.listdir(os.path.join(get_config()["main_folder"], LOGS_PATH))), 1)
+
 
 unittest.main(exit=False)
-
