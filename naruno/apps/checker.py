@@ -8,10 +8,8 @@ import contextlib
 import json
 import time
 
-
 from naruno.accounts.commanders.delete_commander import DeleteCommander
 from naruno.lib.log import get_logger
-
 
 logger = get_logger("REMOTE_APP")
 
