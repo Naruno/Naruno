@@ -15,7 +15,7 @@ from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.blocks_hash import SaveBlockshash
 from naruno.config import TEMP_BLOCK_PATH
 from naruno.lib.config_system import get_config
-from naruno.lib.log import get_logger
+from naruno.lib.log import clear_logs, get_logger
 from naruno.lib.settings_system import the_settings
 from naruno.node.unl import Unl
 from naruno.transactions.transaction import Transaction
@@ -114,6 +114,7 @@ class Block:
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
             self.sequence_number = self.sequence_number + 1
+            clear_logs()
             self.validating_list = []
             self.hash = None
             logger.info("New block created")
@@ -136,6 +137,8 @@ class Block:
             adding = extra // self.block_time
             secondly_empty_block = adding
             if not first_empty_block > secondly_empty_block:
+                if not first_empty_block == secondly_empty_block:
+                    clear_logs()
                 self.empty_block_number = adding
                 self.start_time = self.genesis_time + (
                     (self.sequence_number + self.empty_block_number) *
