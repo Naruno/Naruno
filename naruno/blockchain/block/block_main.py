@@ -83,6 +83,7 @@ class Block:
         self.sync = False
 
         self.just_one_tx = True
+        self.use_full_block = True
 
         self.shares = []
         self.fee_address = creator
@@ -110,7 +111,8 @@ class Block:
         self.validated = False
         self.validated_time = None
 
-        if len(self.validating_list) >= (self.max_tx_number / 2):
+        if not self.use_full_block or len(
+                self.validating_list) >= (self.max_tx_number / 2):
             block2 = copy.copy(self)
             # Resetting and setting the new elements.
             self.previous_hash = self.hash
