@@ -39,6 +39,8 @@ from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address
 from naruno.wallet.wallet_import import wallet_import
 
+from naruno.apps.checker import checker
+
 logger = get_logger("REMOTE_APP")
 
 
@@ -148,7 +150,7 @@ class Integration:
 
             if self.total_check:
                 self.check_thread = perpetualTimer(self.original_wait_amoount,
-                                                   self.checker)
+                                                   checker, self)
                 self.wait_amount = 0
         except:
             logger.error("Network is not active")
@@ -332,7 +334,7 @@ class Integration:
                 )
 
             self.checking = backup_checking
-            self.checker() if self.check_thread is None else None
+            checker(self) if self.check_thread is None else None
 
             self.send(
                 action=action,
@@ -381,42 +383,12 @@ class Integration:
             time.sleep(1)
             self.last_sended = time.time()
             if self.checking and self.check_thread is None:
-                self.checker()
+                checker(self)
             return True
 
-    def checker(self):
-        time.sleep(self.wait_amount)
 
-        new_txs = self.get(
-            get_all=True,
-            disable_caches=True,
-            from_thread=True,
-            disable_sended_not_validated=True,
-            force_sended=True,
-        )
 
-        for sended_tx in self.sended_txs[:self.max_tx_number // 2]:
-            in_get = False
-            with contextlib.suppress(ValueError):
-                self.sended_txs.remove(sended_tx)
 
-            for vaidated_tx in new_txs:
-                if (vaidated_tx["toUser"] == sended_tx[2]
-                        and vaidated_tx["data"]["action"] == json.loads(
-                            sended_tx[6])["action"]
-                        and vaidated_tx["data"]["app_data"] == json.loads(
-                            sended_tx[6])["app_data"]):
-                    in_get = True
-
-            if not in_get:
-                self.send(
-                    sended_tx[0],
-                    sended_tx[1],
-                    sended_tx[2],
-                    sended_tx[3],
-                    sended_tx[4],
-                    sended_tx[5],
-                )
 
     def get_(
         self,
