@@ -931,7 +931,8 @@ class Test_Lib(unittest.TestCase):
 
 
     def test_logs(self):
-        log_name = "a" + str(time.time())
+        clear_logs()
+        log_name = "test_logs"
         a= get_logger(log_name)
         a.info("test")
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
@@ -952,7 +953,7 @@ class Test_Lib(unittest.TestCase):
             content = f.read()
         self.assertEqual("tedsadast" in content, True)
 
-        os.remove(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"))
+
 
 unittest.main(exit=False)
 
