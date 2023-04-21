@@ -929,11 +929,10 @@ class Test_Lib(unittest.TestCase):
         signed = sign("Onur & Ali Eren", str(time.time()))
         self.assertEqual(signed, "None")
 
-
     def test_logs(self):
         clear_logs()
         log_name = "test_logs"
-        a= get_logger(log_name)
+        a = get_logger(log_name)
         a.info("test")
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
             content = f.read()
@@ -942,18 +941,16 @@ class Test_Lib(unittest.TestCase):
         a.info("taest")
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
             content = f.read()
-        self.assertEqual("taest" in content, True)     
+        self.assertEqual("taest" in content, True)
         clear_logs()
-        #read the file 
+        # read the file
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
             content = f.read()
-        self.assertEqual("taest" in content, False)     
+        self.assertEqual("taest" in content, False)
         a.info("tedsadast")
         with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
             content = f.read()
         self.assertEqual("tedsadast" in content, True)
 
 
-
 unittest.main(exit=False)
-
