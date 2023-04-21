@@ -16,7 +16,8 @@ from unittest import mock
 from naruno.blockchain.block.block_main import Block
 from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
                            LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
-                           LOADING_BLOCKSHASH_PATH, LOGS_PATH, MY_TRANSACTION_EXPORT_PATH,
+                           LOADING_BLOCKSHASH_PATH, LOGS_PATH,
+                           MY_TRANSACTION_EXPORT_PATH,
                            PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
                            TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH,
                            TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
@@ -25,6 +26,7 @@ from naruno.lib.backup.naruno_import import naruno_import
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
 from naruno.lib.export import export_the_transactions
+from naruno.lib.log import clear_logs, get_logger
 from naruno.lib.mix.mixlib import (banner_maker, ended_text_centered,
                                    menu_maker, menu_seperator, menu_space,
                                    menu_title, printcentertext, question_maker,
@@ -45,9 +47,6 @@ from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address, wallet_import
-
-
-from naruno.lib.log import get_logger, clear_logs
 
 
 def perpetual_time_test():
@@ -929,30 +928,36 @@ class Test_Lib(unittest.TestCase):
         signed = sign("Onur & Ali Eren", str(time.time()))
         self.assertEqual(signed, "None")
 
-
     def test_logs(self):
-        log_name = "a" + str(time.time())
-        a= get_logger(log_name)
+        clear_logs()
+        log_name = "test_logs"
+        a = get_logger(log_name)
         a.info("test")
-        with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
+        with open(
+                os.path.join(get_config()["main_folder"], LOGS_PATH,
+                             f"{log_name}.log"), "r") as f:
             content = f.read()
         self.assertEqual("test" in content, True)
 
         a.info("taest")
-        with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
+        with open(
+                os.path.join(get_config()["main_folder"], LOGS_PATH,
+                             f"{log_name}.log"), "r") as f:
             content = f.read()
-        self.assertEqual("taest" in content, True)     
+        self.assertEqual("taest" in content, True)
         clear_logs()
-        #read the file 
-        with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
+        # read the file
+        with open(
+                os.path.join(get_config()["main_folder"], LOGS_PATH,
+                             f"{log_name}.log"), "r") as f:
             content = f.read()
-        self.assertEqual("taest" in content, False)     
+        self.assertEqual("taest" in content, False)
         a.info("tedsadast")
-        with open(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"), "r") as f:
+        with open(
+                os.path.join(get_config()["main_folder"], LOGS_PATH,
+                             f"{log_name}.log"), "r") as f:
             content = f.read()
         self.assertEqual("tedsadast" in content, True)
 
-        os.remove(os.path.join(get_config()["main_folder"], LOGS_PATH, f"{log_name}.log"))
 
 unittest.main(exit=False)
-
