@@ -247,7 +247,9 @@ class Integration:
         stop = False
         while stop == False:
             stop = self.send(action, app_data, to_user, force=False)
-            time.sleep(retrysecond)
+            if stop == False:
+                time.sleep(retrysecond)
+        return stop
 
     def send(self,
              action,

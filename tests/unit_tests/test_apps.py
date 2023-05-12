@@ -99,6 +99,16 @@ def custom_send_function(self, a, b, c, d, e):
     send_called_txs.append([a, b, c, d, e])
     return True
 
+custom_send_function_2_call_number = 0
+
+def custom_send_function_2(self, a, b, force=False):
+    global custom_send_function_2_call_number
+    if custom_send_function_2_call_number >= 1:
+        return True    
+    custom_send_function_2_call_number += 1
+
+    return False
+
 
 class Test_apps(unittest.TestCase):
 
@@ -822,5 +832,36 @@ class Test_apps(unittest.TestCase):
         checker(self.integration, logger=self.mock_logger)
         self.mock_logger.error.assert_called_once()
 
+
+
+    def test_send_forcer_unsuccess_success(self):
+        global custom_send_function_2_call_number
+        custom_send_function_2_call_number = 0
+        # test when send() returns True on first try
+        self.integration.send = custom_send_function_2
+        first_time = time.time()
+        result = self.integration.send_forcer('test', 'app_data', 'user1', 5)
+        result_time = time.time()
+        # assert that send_forcer() returned True
+        self.assertTrue(result)
+
+        # assert that time.sleep() was not called
+        self.assertEqual(custom_send_function_2_call_number, 1)
+        self.assertGreaterEqual(result_time - first_time, 4)
+
+    def test_send_forcer_success(self):
+        global custom_send_function_2_call_number
+        custom_send_function_2_call_number = 1
+        # test when send() returns True on first try
+        self.integration.send = custom_send_function_2
+        first_time = time.time()
+        result = self.integration.send_forcer('test', 'app_data', 'user1', 5)
+        result_time = time.time()
+        # assert that send_forcer() returned True
+        self.assertTrue(result)
+
+        # assert that time.sleep() was not called
+        self.assertEqual(custom_send_function_2_call_number, 1)
+        self.assertLessEqual(result_time - first_time, 4)
 
 unittest.main(exit=False)
