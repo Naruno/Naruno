@@ -149,7 +149,7 @@ class Integration:
 
             if self.total_check:
                 self.check_thread = perpetualTimer(self.original_wait_amoount,
-                                                   checker, (self,))
+                                                   checker, (self, ))
                 self.wait_amount = 0
         except:
             logger.error("Network is not active")
@@ -247,7 +247,9 @@ class Integration:
         stop = False
         while stop == False:
             stop = self.send(action, app_data, to_user, force=False)
-            time.sleep(retrysecond)
+            if stop == False:
+                time.sleep(retrysecond)
+        return stop
 
     def send(self,
              action,
