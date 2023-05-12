@@ -73,8 +73,7 @@ naruno.api.main.custom_TEMP_BLOCK_PATH = "db/test_API_BLOCK_PATH.json"
 naruno.api.main.custom_TEMP_ACCOUNTS_PATH = "db/test_API_ACCOUNTS_PATH.json"
 naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = "db/test_API_BLOCKSHASH_PATH.json"
 naruno.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
-    "db/test_API_BLOCKSHASH_PART_PATH.json"
-)
+    "db/test_API_BLOCKSHASH_PART_PATH.json")
 
 the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15, 1)
 temp_path = "db/test_API.db"
@@ -114,6 +113,7 @@ def custom_send_function_2(self, a, b, force=False):
 
 
 class Test_apps(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         cls.integration = Integration("test1", wait_amount=1)
@@ -122,100 +122,70 @@ class Test_apps(unittest.TestCase):
         naruno.api.main.account_list = GetAccounts(temp_path)
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
-            ".json", "_0.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCK_PATH1 = TEMP_BLOCK_PATH.replace(
-            ".json", "_1.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
-            ".json", "_2.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
-            ".json", "_0.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
-            ".json", "_1.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
-            ".json", "_2.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_0.db"
-        ).replace("temp_", "test_temp_")
+            ".db", "_0.db").replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_1.db"
-        ).replace("temp_", "test_temp_")
+            ".db", "_1.db").replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_2.db"
-        ).replace("temp_", "test_temp_")
+            ".db", "_2.db").replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_0.db"
-        ).replace("loading_", "test_loading_temp_")
+            ".db", "_0.db").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_1.db"
-        ).replace("loading_", "test_loading_temp_")
+            ".db", "_1.db").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_2.db"
-        ).replace("loading_", "test_loading_temp_")
+            ".db", "_2.db").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PATH1 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_0.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PART_PATH1 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_1.json").replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json"
-        ).replace("temp_", "test_temp_")
+            ".json", "_2.json").replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH0 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_0.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH1 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_1.json").replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json"
-        ).replace("loading_", "test_loading_temp_")
+            ".json", "_2.json").replace("loading_", "test_loading_temp_")
 
         cls.custom_CONNECTED_NODES_PATH0 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_0"
-        )
+            "connected_nodes", "connected_nodes_test_0")
         cls.custom_CONNECTED_NODES_PATH1 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_1"
-        )
+            "connected_nodes", "connected_nodes_test_1")
         cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_2"
-        )
+            "connected_nodes", "connected_nodes_test_2")
 
         cls.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_0"
-        )
+            "pending_transactions", "pending_transactions_test_0")
         cls.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_1"
-        )
+            "pending_transactions", "pending_transactions_test_1")
         cls.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_2"
-        )
+            "pending_transactions", "pending_transactions_test_2")
 
         cls.node_0 = server(
             "127.0.0.1",
@@ -227,10 +197,13 @@ class Test_apps(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH0,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH0,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH0,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH0,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
+            custom_TEMP_BLOCKSHASH_PART_PATH0,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
+            custom_LOADING_BLOCKSHASH_PART_PATH0,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH0,
-            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH0,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH0,
             custom_variables=True,
         )
 
@@ -244,10 +217,13 @@ class Test_apps(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH1,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH1,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH1,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH1,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
+            custom_TEMP_BLOCKSHASH_PART_PATH1,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
+            custom_LOADING_BLOCKSHASH_PART_PATH1,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH1,
-            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH1,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH1,
             custom_variables=True,
         )
         cls.node_2 = server(
@@ -260,10 +236,13 @@ class Test_apps(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH2,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH2,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH2,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH2,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH2,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
+            custom_TEMP_BLOCKSHASH_PART_PATH2,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
+            custom_LOADING_BLOCKSHASH_PART_PATH2,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH2,
-            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH2,
+            custom_PENDING_TRANSACTIONS_PATH=cls.
+            custom_PENDING_TRANSACTIONS_PATH2,
             custom_variables=True,
         )
         Unl.save_new_unl_node(cls.node_0.id)
@@ -337,7 +316,8 @@ class Test_apps(unittest.TestCase):
         )
         integration_1.save_cache()
         self.assertEqual(
-            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             True,
         )
 
@@ -349,13 +329,15 @@ class Test_apps(unittest.TestCase):
             ],
         )
         self.assertEqual(
-            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             True,
         )
 
         integration_2.delete_cache()
         self.assertEqual(
-            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             False,
         )
 
@@ -382,8 +364,7 @@ class Test_apps(unittest.TestCase):
 
         password = "123"
         response = urllib.request.urlopen(
-            f"http://localhost:7776/wallet/create/{password}"
-        )
+            f"http://localhost:7776/wallet/create/{password}")
         request_body = {
             "data": "<data>",
             "to_user": "<address>",
@@ -391,8 +372,8 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", force=False), True
-        )
+            integration.send("hello_text", "hello", "<address>", force=False),
+            True)
 
         second_try = integration.send(
             "hello_text",
@@ -445,8 +426,8 @@ class Test_apps(unittest.TestCase):
         password = "123"
 
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", force=False), True
-        )
+            integration.send("hello_text", "hello", "<address>", force=False),
+            True)
 
         second_try = integration.send(
             "hello_text",
@@ -502,8 +483,7 @@ class Test_apps(unittest.TestCase):
 
         password = "123"
         response = urllib.request.urlopen(
-            f"http://localhost:7776/wallet/create/{password}"
-        )
+            f"http://localhost:7776/wallet/create/{password}")
         request_body = {
             "data": "<data>",
             "to_user": "<address>",
@@ -511,7 +491,10 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", wallet_import(-1, 3), force=False),
+            integration.send("hello_text",
+                             "hello",
+                             wallet_import(-1, 3),
+                             force=False),
             True,
         )
 
@@ -530,9 +513,9 @@ class Test_apps(unittest.TestCase):
                 os.remove(
                     os.path.join(
                         MY_TRANSACTION_PATH,
-                        "sended" + sha256(txs[0].signature.encode("utf-8")).hexdigest(),
-                    )
-                )
+                        "sended" +
+                        sha256(txs[0].signature.encode("utf-8")).hexdigest(),
+                    ))
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -575,8 +558,7 @@ class Test_apps(unittest.TestCase):
 
         password = "123"
         response = urllib.request.urlopen(
-            f"http://localhost:7776/wallet/create/{password}"
-        )
+            f"http://localhost:7776/wallet/create/{password}")
         request_body = {
             "data": "<data>",
             "to_user": "<address>",
@@ -584,7 +566,10 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", wallet_import(-1, 3), force=False),
+            integration.send("hello_text",
+                             "hello",
+                             wallet_import(-1, 3),
+                             force=False),
             True,
         )
 
@@ -603,9 +588,9 @@ class Test_apps(unittest.TestCase):
                 os.remove(
                     os.path.join(
                         MY_TRANSACTION_PATH,
-                        "sended" + sha256(txs[0].signature.encode("utf-8")).hexdigest(),
-                    )
-                )
+                        "sended" +
+                        sha256(txs[0].signature.encode("utf-8")).hexdigest(),
+                    ))
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -642,20 +627,23 @@ class Test_apps(unittest.TestCase):
         integration_1.cache.append("test")
         integration_1.save_cache()
         self.assertEqual(
-            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             True,
         )
 
         integration_2 = Integration(app_name, port=7776)
         self.assertEqual(integration_2.cache, [])
         self.assertEqual(
-            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             True,
         )
 
         integration_2.delete_cache()
         self.assertEqual(
-            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(
+                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             False,
         )
 
@@ -685,11 +673,23 @@ class Test_apps(unittest.TestCase):
         ]
         validated_tx1 = {
             "toUser": "userA",
-            "data": {"action": "foo", "app_data": {"a": 1, "b": 2}},
+            "data": {
+                "action": "foo",
+                "app_data": {
+                    "a": 1,
+                    "b": 2
+                }
+            },
         }
         validated_tx2 = {
             "toUser": "userB",
-            "data": {"action": "bar", "app_data": {"c": 3, "d": 4}},
+            "data": {
+                "action": "bar",
+                "app_data": {
+                    "c": 3,
+                    "d": 4
+                }
+            },
         }
 
         # Set up the Integration object with some previously sent and validated transactions
@@ -738,7 +738,13 @@ class Test_apps(unittest.TestCase):
         ]
         validated_tx = {
             "toUser": "userd",
-            "data": {"action": "foo", "app_data": {"a": 1, "b": 2}},
+            "data": {
+                "action": "foo",
+                "app_data": {
+                    "a": 1,
+                    "b": 2
+                }
+            },
         }
         self.integration.sended_txs = [sent_tx1, sent_tx2, sent_tx3]
         new_txs = [validated_tx]
@@ -757,7 +763,8 @@ class Test_apps(unittest.TestCase):
         self.assertTrue(send_called)
         self.assertEqual(
             send_called_txs,
-            [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12], [8, "userC", 10, 11, 12]],
+            [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12],
+             [8, "userC", 10, 11, 12]],
         )
 
     def test_checker_with_invalid_transaction_limited(self):
@@ -791,7 +798,13 @@ class Test_apps(unittest.TestCase):
         ]
         validated_tx = {
             "toUser": "userd",
-            "data": {"action": "foo", "app_data": {"a": 1, "b": 2}},
+            "data": {
+                "action": "foo",
+                "app_data": {
+                    "a": 1,
+                    "b": 2
+                }
+            },
         }
         self.integration.sended_txs = [sent_tx1, sent_tx2, sent_tx3]
         new_txs = [validated_tx]
@@ -809,13 +822,13 @@ class Test_apps(unittest.TestCase):
 
         # Assert that the send method was called with the correct arguments
         self.assertTrue(send_called)
-        self.assertEqual(
-            send_called_txs, [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12]]
-        )
+        self.assertEqual(send_called_txs,
+                         [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12]])
 
     def test_checker_error_handling(self):
         # Set the get method to raise an exception
-        self.integration.get = MagicMock(side_effect=Exception("Something went wrong"))
+        self.integration.get = MagicMock(
+            side_effect=Exception("Something went wrong"))
 
         # Call the checker function and assert that an error was logged
         checker(self.integration, logger=self.mock_logger)
