@@ -28,34 +28,37 @@ from naruno.api.main import start
 from naruno.apps.checker import checker
 from naruno.apps.remote_app import Integration
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                 GetBlockshash_part)
-from naruno.blockchain.block.get_block_from_blockchain_db import \
-    GetBlockstoBlockchainDB
+from naruno.blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
+from naruno.blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
-                           LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
-                           LOADING_BLOCKSHASH_PATH, MY_TRANSACTION_EXPORT_PATH,
-                           MY_TRANSACTION_PATH, PENDING_TRANSACTIONS_PATH,
-                           TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-                           TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+from naruno.config import (
+    CONNECTED_NODES_PATH,
+    LOADING_ACCOUNTS_PATH,
+    LOADING_BLOCK_PATH,
+    LOADING_BLOCKSHASH_PART_PATH,
+    LOADING_BLOCKSHASH_PATH,
+    MY_TRANSACTION_EXPORT_PATH,
+    MY_TRANSACTION_PATH,
+    PENDING_TRANSACTIONS_PATH,
+    TEMP_ACCOUNTS_PATH,
+    TEMP_BLOCK_PATH,
+    TEMP_BLOCKSHASH_PART_PATH,
+    TEMP_BLOCKSHASH_PATH,
+)
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
 from naruno.lib.mix.merkle_root import MerkleTree
-from naruno.lib.settings_system import (save_settings, t_mode_settings,
-                                        the_settings)
+from naruno.lib.settings_system import save_settings, t_mode_settings, the_settings
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
-from naruno.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from naruno.transactions.my_transactions.save_my_transaction import \
-    SaveMyTransaction
-from naruno.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
-from naruno.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
+from naruno.transactions.my_transactions.save_my_transaction import SaveMyTransaction
+from naruno.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
+from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
 from naruno.transactions.pending.delete_pending import DeletePending
 from naruno.transactions.pending.get_pending import GetPendingLen
 from naruno.transactions.transaction import Transaction
@@ -74,7 +77,8 @@ naruno.api.main.custom_TEMP_BLOCK_PATH = "db/test_API_BLOCK_PATH.json"
 naruno.api.main.custom_TEMP_ACCOUNTS_PATH = "db/test_API_ACCOUNTS_PATH.json"
 naruno.api.main.custom_TEMP_BLOCKSHASH_PATH = "db/test_API_BLOCKSHASH_PATH.json"
 naruno.api.main.custom_TEMP_BLOCKSHASH_PART_PATH = (
-    "db/test_API_BLOCKSHASH_PART_PATH.json")
+    "db/test_API_BLOCKSHASH_PART_PATH.json"
+)
 
 the_account_2 = Account("15562b06dc6b1acd6e8c86031e564e0c451c7a73", 15, 1)
 temp_path = "db/test_API.db"
@@ -119,7 +123,8 @@ custom_send_function_3_call_list = []
 def custom_send_function_3(action, app_data, to_user, force, retrysecond):
     global custom_send_function_3_call_list
     custom_send_function_3_call_list.append(
-        [action, app_data, to_user, force, retrysecond])
+        [action, app_data, to_user, force, retrysecond]
+    )
     return True
 
 
@@ -128,7 +133,6 @@ def custom_checker_3(a):
 
 
 class Test_apps(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         cls.integration = Integration("test1", wait_amount=1)
@@ -137,70 +141,100 @@ class Test_apps(unittest.TestCase):
         naruno.api.main.account_list = GetAccounts(temp_path)
 
         cls.custom_TEMP_BLOCK_PATH0 = TEMP_BLOCK_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCK_PATH1 = TEMP_BLOCK_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCK_PATH2 = TEMP_BLOCK_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCK_PATH0 = LOADING_BLOCK_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+            ".json", "_0.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH1 = LOADING_BLOCK_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+            ".json", "_1.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCK_PATH2 = LOADING_BLOCK_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+            ".json", "_2.json"
+        ).replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_ACCOUNTS_PATH0 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_0.db").replace("temp_", "test_temp_")
+            ".db", "_0.db"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH1 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_1.db").replace("temp_", "test_temp_")
+            ".db", "_1.db"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_ACCOUNTS_PATH2 = TEMP_ACCOUNTS_PATH.replace(
-            ".db", "_2.db").replace("temp_", "test_temp_")
+            ".db", "_2.db"
+        ).replace("temp_", "test_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH0 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_0.db").replace("loading_", "test_loading_temp_")
+            ".db", "_0.db"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH1 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_1.db").replace("loading_", "test_loading_temp_")
+            ".db", "_1.db"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_ACCOUNTS_PATH2 = LOADING_ACCOUNTS_PATH.replace(
-            ".db", "_2.db").replace("loading_", "test_loading_temp_")
+            ".db", "_2.db"
+        ).replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PATH0 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PATH1 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PATH2 = TEMP_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH0 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+            ".json", "_0.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH1 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+            ".json", "_1.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PATH2 = LOADING_BLOCKSHASH_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+            ".json", "_2.json"
+        ).replace("loading_", "test_loading_temp_")
 
         cls.custom_TEMP_BLOCKSHASH_PART_PATH0 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json").replace("temp_", "test_temp_")
+            ".json", "_0.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PART_PATH1 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json").replace("temp_", "test_temp_")
+            ".json", "_1.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_TEMP_BLOCKSHASH_PART_PATH2 = TEMP_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json").replace("temp_", "test_temp_")
+            ".json", "_2.json"
+        ).replace("temp_", "test_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH0 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_0.json").replace("loading_", "test_loading_temp_")
+            ".json", "_0.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH1 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_1.json").replace("loading_", "test_loading_temp_")
+            ".json", "_1.json"
+        ).replace("loading_", "test_loading_temp_")
         cls.custom_LOADING_BLOCKSHASH_PART_PATH2 = LOADING_BLOCKSHASH_PART_PATH.replace(
-            ".json", "_2.json").replace("loading_", "test_loading_temp_")
+            ".json", "_2.json"
+        ).replace("loading_", "test_loading_temp_")
 
         cls.custom_CONNECTED_NODES_PATH0 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_0")
+            "connected_nodes", "connected_nodes_test_0"
+        )
         cls.custom_CONNECTED_NODES_PATH1 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_1")
+            "connected_nodes", "connected_nodes_test_1"
+        )
         cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
-            "connected_nodes", "connected_nodes_test_2")
+            "connected_nodes", "connected_nodes_test_2"
+        )
 
         cls.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_0")
+            "pending_transactions", "pending_transactions_test_0"
+        )
         cls.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_1")
+            "pending_transactions", "pending_transactions_test_1"
+        )
         cls.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_2")
+            "pending_transactions", "pending_transactions_test_2"
+        )
 
         cls.node_0 = server(
             "127.0.0.1",
@@ -212,13 +246,10 @@ class Test_apps(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH0,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH0,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH0,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
-            custom_TEMP_BLOCKSHASH_PART_PATH0,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
-            custom_LOADING_BLOCKSHASH_PART_PATH0,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH0,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH0,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH0,
-            custom_PENDING_TRANSACTIONS_PATH=cls.
-            custom_PENDING_TRANSACTIONS_PATH0,
+            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH0,
             custom_variables=True,
         )
 
@@ -232,13 +263,10 @@ class Test_apps(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH1,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH1,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH1,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
-            custom_TEMP_BLOCKSHASH_PART_PATH1,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
-            custom_LOADING_BLOCKSHASH_PART_PATH1,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH1,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH1,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH1,
-            custom_PENDING_TRANSACTIONS_PATH=cls.
-            custom_PENDING_TRANSACTIONS_PATH1,
+            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH1,
             custom_variables=True,
         )
         cls.node_2 = server(
@@ -251,13 +279,10 @@ class Test_apps(unittest.TestCase):
             custom_LOADING_ACCOUNTS_PATH=cls.custom_LOADING_ACCOUNTS_PATH2,
             custom_TEMP_BLOCKSHASH_PATH=cls.custom_TEMP_BLOCKSHASH_PATH2,
             custom_LOADING_BLOCKSHASH_PATH=cls.custom_LOADING_BLOCKSHASH_PATH2,
-            custom_TEMP_BLOCKSHASH_PART_PATH=cls.
-            custom_TEMP_BLOCKSHASH_PART_PATH2,
-            custom_LOADING_BLOCKSHASH_PART_PATH=cls.
-            custom_LOADING_BLOCKSHASH_PART_PATH2,
+            custom_TEMP_BLOCKSHASH_PART_PATH=cls.custom_TEMP_BLOCKSHASH_PART_PATH2,
+            custom_LOADING_BLOCKSHASH_PART_PATH=cls.custom_LOADING_BLOCKSHASH_PART_PATH2,
             custom_CONNECTED_NODES_PATH=cls.custom_CONNECTED_NODES_PATH2,
-            custom_PENDING_TRANSACTIONS_PATH=cls.
-            custom_PENDING_TRANSACTIONS_PATH2,
+            custom_PENDING_TRANSACTIONS_PATH=cls.custom_PENDING_TRANSACTIONS_PATH2,
             custom_variables=True,
         )
         Unl.save_new_unl_node(cls.node_0.id)
@@ -331,8 +356,7 @@ class Test_apps(unittest.TestCase):
         )
         integration_1.save_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             True,
         )
 
@@ -344,15 +368,13 @@ class Test_apps(unittest.TestCase):
             ],
         )
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             True,
         )
 
         integration_2.delete_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             False,
         )
 
@@ -379,7 +401,8 @@ class Test_apps(unittest.TestCase):
 
         password = "123"
         response = urllib.request.urlopen(
-            f"http://localhost:7776/wallet/create/{password}")
+            f"http://localhost:7776/wallet/create/{password}"
+        )
         request_body = {
             "data": "<data>",
             "to_user": "<address>",
@@ -387,8 +410,8 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", force=False),
-            True)
+            integration.send("hello_text", "hello", "<address>", force=False), True
+        )
 
         second_try = integration.send(
             "hello_text",
@@ -441,8 +464,8 @@ class Test_apps(unittest.TestCase):
         password = "123"
 
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", force=False),
-            True)
+            integration.send("hello_text", "hello", "<address>", force=False), True
+        )
 
         second_try = integration.send(
             "hello_text",
@@ -498,7 +521,8 @@ class Test_apps(unittest.TestCase):
 
         password = "123"
         response = urllib.request.urlopen(
-            f"http://localhost:7776/wallet/create/{password}")
+            f"http://localhost:7776/wallet/create/{password}"
+        )
         request_body = {
             "data": "<data>",
             "to_user": "<address>",
@@ -506,10 +530,7 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text",
-                             "hello",
-                             wallet_import(-1, 3),
-                             force=False),
+            integration.send("hello_text", "hello", wallet_import(-1, 3), force=False),
             True,
         )
 
@@ -528,9 +549,9 @@ class Test_apps(unittest.TestCase):
                 os.remove(
                     os.path.join(
                         MY_TRANSACTION_PATH,
-                        "sended" +
-                        sha256(txs[0].signature.encode("utf-8")).hexdigest(),
-                    ))
+                        "sended" + sha256(txs[0].signature.encode("utf-8")).hexdigest(),
+                    )
+                )
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -573,7 +594,8 @@ class Test_apps(unittest.TestCase):
 
         password = "123"
         response = urllib.request.urlopen(
-            f"http://localhost:7776/wallet/create/{password}")
+            f"http://localhost:7776/wallet/create/{password}"
+        )
         request_body = {
             "data": "<data>",
             "to_user": "<address>",
@@ -581,10 +603,7 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text",
-                             "hello",
-                             wallet_import(-1, 3),
-                             force=False),
+            integration.send("hello_text", "hello", wallet_import(-1, 3), force=False),
             True,
         )
 
@@ -603,9 +622,9 @@ class Test_apps(unittest.TestCase):
                 os.remove(
                     os.path.join(
                         MY_TRANSACTION_PATH,
-                        "sended" +
-                        sha256(txs[0].signature.encode("utf-8")).hexdigest(),
-                    ))
+                        "sended" + sha256(txs[0].signature.encode("utf-8")).hexdigest(),
+                    )
+                )
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -642,23 +661,20 @@ class Test_apps(unittest.TestCase):
         integration_1.cache.append("test")
         integration_1.save_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             True,
         )
 
         integration_2 = Integration(app_name, port=7776)
         self.assertEqual(integration_2.cache, [])
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             True,
         )
 
         integration_2.delete_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            os.path.exists(f"db/remote_app_cache/{integration_1.cache_name}.cache"),
             False,
         )
 
@@ -688,23 +704,11 @@ class Test_apps(unittest.TestCase):
         ]
         validated_tx1 = {
             "toUser": "userA",
-            "data": {
-                "action": "foo",
-                "app_data": {
-                    "a": 1,
-                    "b": 2
-                }
-            },
+            "data": {"action": "foo", "app_data": {"a": 1, "b": 2}},
         }
         validated_tx2 = {
             "toUser": "userB",
-            "data": {
-                "action": "bar",
-                "app_data": {
-                    "c": 3,
-                    "d": 4
-                }
-            },
+            "data": {"action": "bar", "app_data": {"c": 3, "d": 4}},
         }
 
         # Set up the Integration object with some previously sent and validated transactions
@@ -753,13 +757,7 @@ class Test_apps(unittest.TestCase):
         ]
         validated_tx = {
             "toUser": "userd",
-            "data": {
-                "action": "foo",
-                "app_data": {
-                    "a": 1,
-                    "b": 2
-                }
-            },
+            "data": {"action": "foo", "app_data": {"a": 1, "b": 2}},
         }
         self.integration.sended_txs = [sent_tx1, sent_tx2, sent_tx3]
         new_txs = [validated_tx]
@@ -778,8 +776,7 @@ class Test_apps(unittest.TestCase):
         self.assertTrue(send_called)
         self.assertEqual(
             send_called_txs,
-            [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12],
-             [8, "userC", 10, 11, 12]],
+            [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12], [8, "userC", 10, 11, 12]],
         )
 
     def test_checker_with_invalid_transaction_limited(self):
@@ -813,13 +810,7 @@ class Test_apps(unittest.TestCase):
         ]
         validated_tx = {
             "toUser": "userd",
-            "data": {
-                "action": "foo",
-                "app_data": {
-                    "a": 1,
-                    "b": 2
-                }
-            },
+            "data": {"action": "foo", "app_data": {"a": 1, "b": 2}},
         }
         self.integration.sended_txs = [sent_tx1, sent_tx2, sent_tx3]
         new_txs = [validated_tx]
@@ -837,13 +828,13 @@ class Test_apps(unittest.TestCase):
 
         # Assert that the send method was called with the correct arguments
         self.assertTrue(send_called)
-        self.assertEqual(send_called_txs,
-                         [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12]])
+        self.assertEqual(
+            send_called_txs, [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12]]
+        )
 
     def test_checker_error_handling(self):
         # Set the get method to raise an exception
-        self.integration.get = MagicMock(
-            side_effect=Exception("Something went wrong"))
+        self.integration.get = MagicMock(side_effect=Exception("Something went wrong"))
 
         # Call the checker function and assert that an error was logged
         checker(self.integration, logger=self.mock_logger)
@@ -883,25 +874,111 @@ class Test_apps(unittest.TestCase):
         global custom_send_function_3_call_list
         self.integration.send = custom_send_function_3
 
-        data = {"action": self.integration.app_name +
-                "sddaad", "app_data": "sddaad"}
+        data = {"action": self.integration.app_name + "sddaad", "app_data": "sddaad"}
 
         system_length = len(
-            json.dumps({
-                "action": self.integration.app_name + "sddaad",
-                "app_data": ""
-            }))
+            json.dumps({"action": self.integration.app_name + "sddaad", "app_data": ""})
+        )
 
-        true_length = (100 -
-                       system_length) - 10
+        true_length = (100 - system_length) - 10
         the_data = ""
         for i in range(150):
             the_data += str(i) + "-"
         result = self.integration.send_splitter(
-            "test", the_data, "user1", 5, true_length, system_length, custom_checker=custom_checker_3, custom_random="11123")
+            "test",
+            the_data,
+            "user1",
+            5,
+            true_length,
+            system_length,
+            custom_checker=custom_checker_3,
+            custom_random="11123",
+        )
 
-        self.assertEqual(custom_send_function_3_call_list, [['test', 'split-0-11123-', 'user1', 41, 10], ['test', 'split-2-11123-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-', 'user1', 41, 10], ['test', 'split-3-11123-15-16-17-18-19-20-21-22-23-24-25-26', 'user1', 41, 10], ['test', 'split-4-11123--27-28-29-30-31-32-33-34-35-36-37-3', 'user1', 41, 10], ['test', 'split-5-11123-8-39-40-41-42-43-44-45-46-47-48-49-', 'user1', 41, 10], ['test', 'split-6-11123-50-51-52-53-54-55-56-57-58-59-60-61', 'user1', 41, 10], [
-                         'test', 'split-7-11123--62-63-64-65-66-67-68-69-70-71-72-7', 'user1', 41, 10], ['test', 'split-8-11123-3-74-75-76-77-78-79-80-81-82-83-84-', 'user1', 41, 10], ['test', 'split-9-11123-85-86-87-88-89-90-91-92-93-94-95-96', 'user1', 41, 10], ['test', 'split-10-11123--97-98-99-100-101-102-103-104-105-1', 'user1', 41, 10], ['test', 'split-11-11123-06-107-108-109-110-111-112-113-114-', 'user1', 41, 10], ['test', 'split-12-11123-115-116-117-118-119-120-121-122-123', 'user1', 41, 10], ['test', 'split-1-11123-', 'user1', 41, 10]])
+        self.assertEqual(
+            custom_send_function_3_call_list,
+            [
+                ["test", "split-0-11123-", "user1", 41, 10],
+                [
+                    "test",
+                    "split-2-11123-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-3-11123-15-16-17-18-19-20-21-22-23-24-25-26",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-4-11123--27-28-29-30-31-32-33-34-35-36-37-3",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-5-11123-8-39-40-41-42-43-44-45-46-47-48-49-",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-6-11123-50-51-52-53-54-55-56-57-58-59-60-61",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-7-11123--62-63-64-65-66-67-68-69-70-71-72-7",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-8-11123-3-74-75-76-77-78-79-80-81-82-83-84-",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-9-11123-85-86-87-88-89-90-91-92-93-94-95-96",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-10-11123--97-98-99-100-101-102-103-104-105-1",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-11-11123-06-107-108-109-110-111-112-113-114-",
+                    "user1",
+                    41,
+                    10,
+                ],
+                [
+                    "test",
+                    "split-12-11123-115-116-117-118-119-120-121-122-123",
+                    "user1",
+                    41,
+                    10,
+                ],
+                ["test", "split-1-11123-", "user1", 41, 10],
+            ],
+        )
 
 
 unittest.main(exit=False)
