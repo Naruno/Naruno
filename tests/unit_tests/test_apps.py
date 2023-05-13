@@ -114,13 +114,18 @@ def custom_send_function_2(self, a, b, force=False):
 
 
 custom_send_function_3_call_list = []
+
+
 def custom_send_function_3(action, app_data, to_user, force, retrysecond):
     global custom_send_function_3_call_list
-    custom_send_function_3_call_list.append([action, app_data, to_user, force, retrysecond])
+    custom_send_function_3_call_list.append(
+        [action, app_data, to_user, force, retrysecond])
     return True
+
 
 def custom_checker_3(a):
     return None
+
 
 class Test_apps(unittest.TestCase):
 
@@ -874,14 +879,12 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(custom_send_function_2_call_number, 1)
         self.assertLessEqual(result_time - first_time, 4)
 
-
-
     def test_send_splitter(self):
         global custom_send_function_3_call_list
         self.integration.send = custom_send_function_3
 
-
-        data = {"action": self.integration.app_name + "sddaad", "app_data": "sddaad"}
+        data = {"action": self.integration.app_name +
+                "sddaad", "app_data": "sddaad"}
 
         system_length = len(
             json.dumps({
@@ -889,14 +892,16 @@ class Test_apps(unittest.TestCase):
                 "app_data": ""
             }))
 
-
         true_length = (100 -
                        system_length) - 10
         the_data = ""
         for i in range(150):
-            the_data += str(i)+"-"
-        result = self.integration.send_splitter("test", the_data, "user1", 5, true_length, system_length, custom_checker=custom_checker_3, custom_random="11123")
+            the_data += str(i) + "-"
+        result = self.integration.send_splitter(
+            "test", the_data, "user1", 5, true_length, system_length, custom_checker=custom_checker_3, custom_random="11123")
 
-        self.assertEqual(custom_send_function_3_call_list, [['test', 'split-0-11123-', 'user1', 41, 10], ['test', 'split-2-11123-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-', 'user1', 41, 10], ['test', 'split-3-11123-15-16-17-18-19-20-21-22-23-24-25-26', 'user1', 41, 10], ['test', 'split-4-11123--27-28-29-30-31-32-33-34-35-36-37-3', 'user1', 41, 10], ['test', 'split-5-11123-8-39-40-41-42-43-44-45-46-47-48-49-', 'user1', 41, 10], ['test', 'split-6-11123-50-51-52-53-54-55-56-57-58-59-60-61', 'user1', 41, 10], ['test', 'split-7-11123--62-63-64-65-66-67-68-69-70-71-72-7', 'user1', 41, 10], ['test', 'split-8-11123-3-74-75-76-77-78-79-80-81-82-83-84-', 'user1', 41, 10], ['test', 'split-9-11123-85-86-87-88-89-90-91-92-93-94-95-96', 'user1', 41, 10], ['test', 'split-10-11123--97-98-99-100-101-102-103-104-105-1', 'user1', 41, 10], ['test', 'split-11-11123-06-107-108-109-110-111-112-113-114-', 'user1', 41, 10], ['test', 'split-12-11123-115-116-117-118-119-120-121-122-123', 'user1', 41, 10], ['test', 'split-1-11123-', 'user1', 41, 10]])
+        self.assertEqual(custom_send_function_3_call_list, [['test', 'split-0-11123-', 'user1', 41, 10], ['test', 'split-2-11123-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-', 'user1', 41, 10], ['test', 'split-3-11123-15-16-17-18-19-20-21-22-23-24-25-26', 'user1', 41, 10], ['test', 'split-4-11123--27-28-29-30-31-32-33-34-35-36-37-3', 'user1', 41, 10], ['test', 'split-5-11123-8-39-40-41-42-43-44-45-46-47-48-49-', 'user1', 41, 10], ['test', 'split-6-11123-50-51-52-53-54-55-56-57-58-59-60-61', 'user1', 41, 10], [
+                         'test', 'split-7-11123--62-63-64-65-66-67-68-69-70-71-72-7', 'user1', 41, 10], ['test', 'split-8-11123-3-74-75-76-77-78-79-80-81-82-83-84-', 'user1', 41, 10], ['test', 'split-9-11123-85-86-87-88-89-90-91-92-93-94-95-96', 'user1', 41, 10], ['test', 'split-10-11123--97-98-99-100-101-102-103-104-105-1', 'user1', 41, 10], ['test', 'split-11-11123-06-107-108-109-110-111-112-113-114-', 'user1', 41, 10], ['test', 'split-12-11123-115-116-117-118-119-120-121-122-123', 'user1', 41, 10], ['test', 'split-1-11123-', 'user1', 41, 10]])
+
 
 unittest.main(exit=False)
