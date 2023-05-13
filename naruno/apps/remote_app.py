@@ -251,45 +251,26 @@ class Integration:
                 time.sleep(retrysecond)
         return stop
 
-    def send(self,
+    def send_splitter(self,
              action,
              app_data,
              to_user,
-             amount=None,
+             system_length,
+             true_length,      
              force=True,
-             retrysecond=10) -> bool:
-        """
-        :param action: The action of the app
-        :param app_data: The data of the app
-        :param to_user: The user to send the data to
-        """
-
-        if time.time() - self.last_sended < self.wait_amount:
-            time.sleep(self.wait_amount - (time.time() - self.last_sended))
-
-        self.host = copy.copy(self.first_host)
-        self.port = copy.copy(self.first_port)
-
-        self.init_api()
-
-        data = {"action": self.app_name + action, "app_data": app_data}
-
-        system_length = len(
-            json.dumps({
-                "action": self.app_name + action,
-                "app_data": ""
-            }))
-
-        true_length = (self.max_data_size / self.max_tx_number -
-                       system_length) - 10
-
-        if len(app_data) > true_length:
+             retrysecond=10,
+             custom_checker = None,
+             custom_random = None,
+             ) -> bool:
             backup_checking = copy.copy(self.checking)
             self.checking = False
             # generate random charactere
             rando = ""
-            for i in range(5):
-                rando += random.choice(string.ascii_letters)
+            if custom_random is None:
+                for i in range(5):
+                    rando += random.choice(string.ascii_letters)
+            else:
+                rando = custom_random
 
             split_random = rando + "-"
 
@@ -335,7 +316,8 @@ class Integration:
                 )
 
             self.checking = backup_checking
-            checker(self) if self.check_thread is None else None
+            the_checker = checker if custom_checker is None else custom_checker
+            the_checker(self) if self.check_thread is None else None
 
             self.send(
                 action=action,
@@ -344,7 +326,50 @@ class Integration:
                 force=force,
                 retrysecond=retrysecond,
             )
-            return True
+            return True        
+
+    def send(self,
+             action,
+             app_data,
+             to_user,
+             amount=None,
+             force=True,
+             retrysecond=10) -> bool:
+        """
+        :param action: The action of the app
+        :param app_data: The data of the app
+        :param to_user: The user to send the data to
+        """
+
+        if time.time() - self.last_sended < self.wait_amount:
+            time.sleep(self.wait_amount - (time.time() - self.last_sended))
+
+        self.host = copy.copy(self.first_host)
+        self.port = copy.copy(self.first_port)
+
+        self.init_api()
+
+        data = {"action": self.app_name + action, "app_data": app_data}
+
+        system_length = len(
+            json.dumps({
+                "action": self.app_name + action,
+                "app_data": ""
+            }))
+
+        true_length = (self.max_data_size / self.max_tx_number -
+                       system_length) - 10
+
+        if len(app_data) > true_length:
+            self.send_splitter(action,
+             app_data,
+             to_user,
+             system_length,
+             true_length,      
+             force=force,
+             retrysecond=retrysecond,)
+
+
 
         data = json.dumps(data)
 
