@@ -11,7 +11,8 @@ from zipfile import ZipFile
 
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
-from naruno.config import BLOCKS_PATH, PROOF_PATH
+from naruno.config import BLOCKS_PATH
+from naruno.config import PROOF_PATH
 from naruno.lib.config_system import get_config
 
 

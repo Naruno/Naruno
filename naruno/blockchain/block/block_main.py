@@ -8,7 +8,8 @@ import copy
 import json
 import time
 
-from naruno.lib.log import clear_logs, get_logger
+from naruno.lib.log import clear_logs
+from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.transaction import Transaction
 

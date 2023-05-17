@@ -7,8 +7,8 @@
 import os
 import zipfile
 
-from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                 GetBlockshash_part)
+from naruno.blockchain.block.blocks_hash import GetBlockshash
+from naruno.blockchain.block.blocks_hash import GetBlockshash_part
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
