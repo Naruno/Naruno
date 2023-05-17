@@ -13,8 +13,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.transactions.check.check_transaction import \
-    CheckTransaction
+from naruno.transactions.check.check_transaction import CheckTransaction
 from naruno.transactions.transaction import Transaction
 
 
@@ -28,10 +27,8 @@ class Transactions_IO_Performance_Analyzer:
 
         the_transaction_json = {
             "sequence_number": 1,
-            "signature":
-            "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
-            "fromUser":
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
+            "signature": "MEUCIHABt7ypkpvFlpqL4SuogwVuzMu2gGynVkrSw6ohZ/GyAiEAg2O3iOei1Ft/vQRpboX7Sm1OOey8a3a67wPJaH/FmVE=",
+            "fromUser": "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE0AYA7B+neqfUA17wKh3OxC67K8UlIskMm9T2qAR+pl+kKX1SleqqvLPM5bGykZ8tqq4RGtAcGtrtvEBrB9DTPg==",
             "toUser": "onur",
             "data": "blockchain-lab",
             "amount": 5000.0,
@@ -55,8 +52,7 @@ class Transactions_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation)[0],
             calculate(self.get_operation)[0],
-            os.path.getsize("db/Block_Performance_Analyzer_block.pf") /
-            1000000,
+            os.path.getsize("db/Block_Performance_Analyzer_block.pf") / 1000000,
         )
 
         os.remove("db/Block_Performance_Analyzer_block.pf")

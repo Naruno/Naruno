@@ -11,13 +11,13 @@ import sys
 
 
 from speed_calculator import calculate
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from naruno.lib.mix.merkle_root import MerkleTree
 
 
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import (GetBlockshash_part,
-                                                 SaveBlockshash_part)
+from naruno.blockchain.block.blocks_hash import GetBlockshash_part, SaveBlockshash_part
 
 
 class Blockshash_part_IO_Performance_Analyzer:
@@ -37,9 +37,7 @@ class Blockshash_part_IO_Performance_Analyzer:
 
         # how many blocks in a year
         blocks_in_a_year = (blocks_in_a_day * 365) // self.block.part_amount
-        self.blocks_hash = [
-            self.the_hash for i in range(int(blocks_in_a_year))
-        ]
+        self.blocks_hash = [self.the_hash for i in range(int(blocks_in_a_year))]
 
         SaveBlockshash_part(
             self.blocks_hash,
@@ -54,9 +52,8 @@ class Blockshash_part_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation)[0],
             calculate(self.get_operation)[0],
-            os.path.getsize(
-                "db/Blockshash_part_Performance_Analyzer_blockshash.pf") /
-            1000000,
+            os.path.getsize("db/Blockshash_part_Performance_Analyzer_blockshash.pf")
+            / 1000000,
         )
 
         os.remove("db/Blockshash_part_Performance_Analyzer_blockshash.pf")
@@ -81,7 +78,8 @@ class Blockshash_part_IO_Performance_Analyzer:
         """
 
         GetBlockshash_part(
-            custom_TEMP_BLOCKSHASH_PART_PATH="db/Blockshash_part_Performance_Analyzer_blockshash.pf")
+            custom_TEMP_BLOCKSHASH_PART_PATH="db/Blockshash_part_Performance_Analyzer_blockshash.pf"
+        )
 
 
 if __name__ == "__main__":

@@ -15,7 +15,6 @@ from naruno.api.main import start
 
 
 class Naruno_API(App):
-
     def build(self):
         the_api = Thread(target=start)
         the_api.start()

@@ -14,14 +14,12 @@
 
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
-from naruno.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import \
-    process_candidate_blocks_hashes
-from naruno.consensus.rounds.round_2.process.rescue.rescue_main import \
-    rescue_main
-from naruno.consensus.rounds.round_2.process.validate.validate_main import \
-    validate_main
+from naruno.blockchain.candidate_block.candidate_block_main import candidate_block
+from naruno.consensus.rounds.round_2.process.candidate_blocks_hashes.candidate_blocks_hashes_main import (
+    process_candidate_blocks_hashes,
+)
+from naruno.consensus.rounds.round_2.process.rescue.rescue_main import rescue_main
+from naruno.consensus.rounds.round_2.process.validate.validate_main import validate_main
 from naruno.lib.log import get_logger
 from naruno.node.client.client import client
 from naruno.node.server.server import server
@@ -43,10 +41,14 @@ def round_process(
     logger.info("Processing of round 2 is started")
     logger.debug(f"First block: {block.dump_json()}")
     candidate_block_hash = process_candidate_blocks_hashes(
-        block, candidate_class, unl_nodes)
+        block, candidate_class, unl_nodes
+    )
     logger.debug(f"candidate_block_hash: {candidate_block_hash}")
     result = None
-    if block.hash == candidate_block_hash["hash"]["hash"] or block.hash == candidate_block_hash["previous_hash"]["previous_hash"]:
+    if (
+        block.hash == candidate_block_hash["hash"]["hash"]
+        or block.hash == candidate_block_hash["previous_hash"]["previous_hash"]
+    ):
         validate_main(block)
         result = True
     else:

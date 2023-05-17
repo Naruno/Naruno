@@ -6,15 +6,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from naruno.lib.notification import notification
-from naruno.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
-from naruno.transactions.my_transactions.save_my_transaction import \
-    SaveMyTransaction
+from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
+from naruno.transactions.my_transactions.save_my_transaction import SaveMyTransaction
 from naruno.transactions.transaction import Transaction
 
 
-def ValidateTransaction(tx: Transaction,
-                        custom_currently_list: list = None) -> list:
+def ValidateTransaction(tx: Transaction, custom_currently_list: list = None) -> list:
     """
     Validates the transaction.
     Parameters:
@@ -23,14 +20,13 @@ def ValidateTransaction(tx: Transaction,
         The list of the my transactions.
     """
 
-    custom_currently_list = (GetMyTransaction()
-                             if custom_currently_list is None else
-                             custom_currently_list)
+    custom_currently_list = (
+        GetMyTransaction() if custom_currently_list is None else custom_currently_list
+    )
     for i in custom_currently_list:
         if i[0].signature == tx.signature:
             if not i[1]:
-                notification("Validated TX",
-                             f"{tx.data}:{tx.amount} to {tx.toUser}")
+                notification("Validated TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
             i[1] = True
     SaveMyTransaction(custom_currently_list)
     return custom_currently_list

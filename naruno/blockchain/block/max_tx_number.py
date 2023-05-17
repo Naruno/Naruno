@@ -14,13 +14,17 @@ from naruno.lib.settings_system import the_settings
 logger = get_logger("BLOCKCHAIN")
 
 
-def GetMaxTXNumber(block=None, ):
+def GetMaxTXNumber(
+    block=None,
+):
     if not the_settings()["baklava"]:
         block = block if block is not None else GetBlock()
         max_tx_number = block.max_tx_number
     else:
         max_tx_number = int(
-            urlopen("http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/").
-            read().decode("utf-8"))
+            urlopen("http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/")
+            .read()
+            .decode("utf-8")
+        )
 
     return max_tx_number

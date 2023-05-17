@@ -35,11 +35,15 @@ def verify(path: str) -> bool:
     if sign_json is None:
         return False
 
-    result = (Ecdsa.verify(
+    result = (
+        Ecdsa.verify(
+            sign_json["data"],
+            Signature.fromBase64(sign_json["signature"]),
+            PublicKey.fromPem(sign_json["publickey"]),
+        ),
         sign_json["data"],
-        Signature.fromBase64(sign_json["signature"]),
-        PublicKey.fromPem(sign_json["publickey"]),
-    ), sign_json["data"], Address(sign_json["publickey"]))
+        Address(sign_json["publickey"]),
+    )
 
     return result
 

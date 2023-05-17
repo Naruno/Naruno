@@ -18,9 +18,10 @@ def GetMinimumTransferAmount(block=None, custom_TEMP_BLOCK_PATH=None):
     """
     if the_settings()["baklava"]:
         minimum_transfer_amount = int(
-            urlopen(
-                "http://test_net.1.naruno.org:8000/blockminumumtransferamount/get/"
-            ).read().decode("utf-8"))
+            urlopen("http://test_net.1.naruno.org:8000/blockminumumtransferamount/get/")
+            .read()
+            .decode("utf-8")
+        )
     else:
         if block is None:
             try:

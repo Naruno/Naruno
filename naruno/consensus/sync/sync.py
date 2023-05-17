@@ -26,7 +26,7 @@ def sync(
     send_transaction_error: bool = False,
 ):
     """
-    Data sending consists of 3 stages. 
+    Data sending consists of 3 stages.
     Block sending,blockhash sending and transection.
     It shares the data of the existing chains with the nodes.
     """
@@ -37,18 +37,14 @@ def sync(
     if not block.round_1:
         threading.Thread(
             target=send_block,
-            args=(
-                block, the_server, send_block_error
-            ),
+            args=(block, the_server, send_block_error),
         ).start()
 
     else:
         if not block.round_2:
             threading.Thread(
                 target=send_block_hash,
-                args=(
-                    block, the_server, send_block_hash_error
-                ),
+                args=(block, the_server, send_block_hash_error),
             ).start()
 
     logger.debug("Transactions is sending to the unl nodes")

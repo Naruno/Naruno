@@ -8,8 +8,7 @@ import threading
 
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
-from naruno.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
+from naruno.blockchain.candidate_block.candidate_block_main import candidate_block
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.consensus.ongoing.ongoing_main import ongoing_main
 from naruno.lib.log import get_logger
@@ -43,8 +42,11 @@ def consensus_trigger(
     to shorten the block time.
     """
 
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-             if custom_block is None else custom_block)
+    block = (
+        GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        if custom_block is None
+        else custom_block
+    )
     pending_list_txs = GetPending()
 
     logger.info(
@@ -62,8 +64,7 @@ def consensus_trigger(
     ).start()
 
     if block.validated:
-        logger.info(
-            "BLOCK is an validated block, consensus process is finished")
+        logger.info("BLOCK is an validated block, consensus process is finished")
         finished_main(
             block,
             custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
@@ -72,11 +73,10 @@ def consensus_trigger(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             pass_sync=pass_sync,
-            dont_clean=dont_clean
+            dont_clean=dont_clean,
         )
     else:
-        logger.info(
-            "BLOCK is an unvalidated block, consensus process is ongoing")
+        logger.info("BLOCK is an unvalidated block, consensus process is ongoing")
         ongoing_main(
             block,
             custom_candidate_class=custom_candidate_class,

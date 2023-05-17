@@ -16,9 +16,7 @@ def send_block_hash(
     block: Block,
     the_server: server = None,
     send_block_hash_error: bool = False,
-
 ):
-
     logger.debug("Our block hash is sending to the unl nodes")
     try:
         the_server.send_my_block_hash(block)

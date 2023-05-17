@@ -11,13 +11,12 @@ from naruno.blockchain.block.blocks_hash import GetBlockshash
 from naruno.blockchain.block.blocks_hash import GetBlockshash_part
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
-from naruno.consensus.rounds.round_1.process.transactions.transactions_main import \
-    transactions_main
+from naruno.blockchain.candidate_block.candidate_block_main import candidate_block
+from naruno.consensus.rounds.round_1.process.transactions.transactions_main import (
+    transactions_main,
+)
 from naruno.lib.log import get_logger
-from naruno.transactions.process_the_transaction import \
-    ProccesstheTransaction
+from naruno.transactions.process_the_transaction import ProccesstheTransaction
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
@@ -32,19 +31,18 @@ def round_process(
     custom_TEMP_BLOCKSHASH_PART_PATH: str = None,
     custom_shares=None,
     custom_fee_address=None,
-    clean=True
+    clean=True,
 ) -> Block:
     logger.info("Processing for round 1 is started")
     logger.debug(f"First block: {block.dump_json()}")
-    transactions_main(block,
-                      candidate_class=candidate_class,
-                      unl_nodes=unl_nodes, clean=clean)
+    transactions_main(
+        block, candidate_class=candidate_class, unl_nodes=unl_nodes, clean=clean
+    )
 
     block.round_1 = True
     block.round_2_starting_time = block.start_time + block.round_1_time
 
-    account_list = GetAccounts(
-        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+    account_list = GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
     block = ProccesstheTransaction(
         block,
         account_list,
@@ -54,14 +52,17 @@ def round_process(
     )
 
     part_of_blocks_hash = GetBlockshash_part(
-        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+    )
     the_blocks_hash = GetBlockshash(
-        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH
+    )
     logger.debug(f"part_of_blocks_hash: {part_of_blocks_hash}")
     logger.debug(f"the_blocks_hash: {the_blocks_hash}")
     logger.debug(f"account_list: {account_list}")
-    block.hash = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
-                               account_list)
+    block.hash = CalculateHash(
+        block, part_of_blocks_hash, the_blocks_hash, account_list
+    )
 
     logger.debug(f"Block hash {block.hash}")
 

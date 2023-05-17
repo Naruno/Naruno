@@ -9,8 +9,7 @@ import zipfile
 
 from naruno.blockchain.block.blocks_hash import GetBlockshash
 from naruno.blockchain.block.blocks_hash import GetBlockshash_part
-from naruno.blockchain.block.get_block_from_blockchain_db import \
-    GetBlockstoBlockchainDB
+from naruno.blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
 from naruno.config import EXTRACTED_PROOFS_PATH
 from naruno.lib.config_system import get_config
@@ -60,8 +59,7 @@ def CheckProof(
         custom_BLOCKS_PATH=the_proof_path,
     )
 
-    Saved_blocks_hash = GetBlockshash(
-        custom_TEMP_BLOCKSHASH_PATH=full_blockshash_path)
+    Saved_blocks_hash = GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=full_blockshash_path)
 
     hash_2 = CalculateHash(
         result_2[0],
@@ -73,7 +71,8 @@ def CheckProof(
     the_hash_part = MerkleTree([Saved_blocks_hash[0], hash_2]).getRootHash()
 
     the_blockshash_part = GetBlockshash_part(
-        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+    )
 
     is_in = False
     for i in the_blockshash_part:
