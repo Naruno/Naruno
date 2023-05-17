@@ -8,15 +8,15 @@ import threading
 
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
-from naruno.blockchain.candidate_block.candidate_block_main import candidate_block
+from naruno.blockchain.candidate_block.candidate_block_main import \
+    candidate_block
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.consensus.ongoing.ongoing_main import ongoing_main
+from naruno.consensus.sync.sync import sync
 from naruno.lib.log import get_logger
 from naruno.node.client.client import client
 from naruno.node.server.server import server
 from naruno.transactions.pending.get_pending import GetPending
-
-from naruno.consensus.sync.sync import sync
 
 logger = get_logger("CONSENSUS")
 

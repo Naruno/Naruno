@@ -7,7 +7,6 @@
 
 from threading import Thread
 
-
 from kivy.app import App
 from kivy.uix.label import Label
 

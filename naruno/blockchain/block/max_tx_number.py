@@ -10,7 +10,6 @@ from naruno.blockchain.block.get_block import GetBlock
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
 
-
 logger = get_logger("BLOCKCHAIN")
 
 

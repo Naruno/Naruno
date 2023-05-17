@@ -7,7 +7,6 @@
 import copy
 
 from naruno.blockchain.block.block_main import Block
-
 from naruno.transactions.check.datas.check_datas import Check_Datas
 from naruno.transactions.pending.delete_pending import DeletePending
 from naruno.transactions.pending.get_pending import GetPending

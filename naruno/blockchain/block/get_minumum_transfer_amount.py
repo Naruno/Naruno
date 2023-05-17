@@ -7,7 +7,6 @@
 
 from urllib.request import urlopen
 
-
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.lib.settings_system import the_settings
 

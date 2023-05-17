@@ -7,11 +7,9 @@
 
 
 from naruno.blockchain.block.block_main import Block
-
-from naruno.blockchain.candidate_block.candidate_block_main import candidate_block
-
+from naruno.blockchain.candidate_block.candidate_block_main import \
+    candidate_block
 from naruno.lib.log import get_logger
-
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 

@@ -8,11 +8,10 @@ import copy
 import threading
 
 from naruno.blockchain.block.block_main import Block
-from naruno.lib.log import get_logger
-from naruno.node.server.server import server
-
 from naruno.consensus.sync.send_block import send_block
 from naruno.consensus.sync.send_block_hash import send_block_hash
+from naruno.lib.log import get_logger
+from naruno.node.server.server import server
 
 logger = get_logger("CONSENSUS")
 

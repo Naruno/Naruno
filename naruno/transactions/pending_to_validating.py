@@ -9,7 +9,6 @@ import contextlib
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
 from naruno.node.server.server import server
-
 from naruno.transactions.pending.delete_pending import DeletePending
 from naruno.transactions.pending.get_pending import GetPending
 

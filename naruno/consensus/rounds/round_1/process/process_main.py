@@ -7,14 +7,14 @@
 
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import GetBlockshash
-from naruno.blockchain.block.blocks_hash import GetBlockshash_part
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
+                                                 GetBlockshash_part)
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.blockchain.candidate_block.candidate_block_main import candidate_block
-from naruno.consensus.rounds.round_1.process.transactions.transactions_main import (
-    transactions_main,
-)
+from naruno.blockchain.candidate_block.candidate_block_main import \
+    candidate_block
+from naruno.consensus.rounds.round_1.process.transactions.transactions_main import \
+    transactions_main
 from naruno.lib.log import get_logger
 from naruno.transactions.process_the_transaction import ProccesstheTransaction
 

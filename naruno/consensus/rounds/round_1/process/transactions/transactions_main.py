@@ -6,17 +6,14 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from naruno.blockchain.block.block_main import Block
-
-from naruno.blockchain.candidate_block.candidate_block_main import candidate_block
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import (
-    Remove_Duplicates,
-)
-from naruno.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import (
-    find_newly,
-)
-from naruno.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import (
-    find_validated,
-)
+from naruno.blockchain.candidate_block.candidate_block_main import \
+    candidate_block
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
+from naruno.consensus.rounds.round_1.process.transactions.find_newly.find_newly_main import \
+    find_newly
+from naruno.consensus.rounds.round_1.process.transactions.find_validated.find_validated_main import \
+    find_validated
 from naruno.lib.log import get_logger
 from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.get_pending import GetPending

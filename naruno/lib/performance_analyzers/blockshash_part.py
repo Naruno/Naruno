@@ -9,15 +9,13 @@ import hashlib
 import os
 import sys
 
-
 from speed_calculator import calculate
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-from naruno.lib.mix.merkle_root import MerkleTree
-
-
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import GetBlockshash_part, SaveBlockshash_part
+from naruno.blockchain.block.blocks_hash import (GetBlockshash_part,
+                                                 SaveBlockshash_part)
+from naruno.lib.mix.merkle_root import MerkleTree
 
 
 class Blockshash_part_IO_Performance_Analyzer:

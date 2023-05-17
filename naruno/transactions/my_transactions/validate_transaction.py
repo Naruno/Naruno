@@ -6,8 +6,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from naruno.lib.notification import notification
-from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
-from naruno.transactions.my_transactions.save_my_transaction import SaveMyTransaction
+from naruno.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from naruno.transactions.my_transactions.save_my_transaction import \
+    SaveMyTransaction
 from naruno.transactions.transaction import Transaction
 
 
