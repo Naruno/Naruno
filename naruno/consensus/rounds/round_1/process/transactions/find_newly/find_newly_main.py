@@ -4,28 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import time
 
-from naruno.accounts.get_accounts import GetAccounts
-from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import GetBlockshash
-from naruno.blockchain.block.blocks_hash import GetBlockshash_part
-from naruno.blockchain.block.blocks_hash import SaveBlockshash
-from naruno.blockchain.block.blocks_hash import SaveBlockshash_part
-from naruno.blockchain.block.hash.calculate_hash import CalculateHash
-from naruno.blockchain.block.save_block import SaveBlock
-from naruno.blockchain.candidate_block.candidate_block_main import \
-    candidate_block
-from naruno.consensus.rounds.round_1.checks.checks_main import \
-    round_check
+
 from naruno.lib.log import get_logger
-from naruno.node.get_candidate_blocks import GetCandidateBlocks
-from naruno.node.server.server import server
-from naruno.node.unl import Unl
-from naruno.transactions.get_transaction import GetTransaction
-from naruno.transactions.process_the_transaction import \
-    ProccesstheTransaction
+
+
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 

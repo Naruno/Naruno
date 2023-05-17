@@ -28,7 +28,7 @@ from naruno.blockchain.block.block_main import Block
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
-from naruno.lib.settings_system import baklava_settings
+
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
@@ -251,81 +251,82 @@ class Integration:
                 time.sleep(retrysecond)
         return stop
 
-    def send_splitter(
-        self,
-        action,
-        app_data,
-        to_user,
-        system_length,
-        true_length,
-        force=True,
-        retrysecond=10,
-        custom_checker=None,
-        custom_random=None,
-    ) -> bool:
-        backup_checking = copy.copy(self.checking)
-        self.checking = False
-        # generate random charactere
-        rando = ""
-        if custom_random is None:
-            for i in range(5):
-                rando += random.choice(string.ascii_letters)
-        else:
-            rando = custom_random
+    def send_splitter(self,
+             action,
+             app_data,
+             to_user,
+             system_length,
+             true_length,      
+             force=True,
+             retrysecond=10,
+             custom_checker = None,
+             custom_random = None,
+             ) -> bool:
+            backup_checking = copy.copy(self.checking)
+            self.checking = False
+            # generate random charactere
+            rando = ""
+            if custom_random is None:
+                for i in range(5):
+                    rando += random.choice(string.ascii_letters)
+            else:
+                rando = custom_random
 
-        split_random = rando + "-"
+            split_random = rando + "-"
 
-        self.send(
-            action=action,
-            app_data=f"split-0-{split_random}",
-            to_user=to_user,
-            force=force,
-            retrysecond=retrysecond,
-        )
-        len_split_char = len(f"split--{split_random}-")
-
-        total_size_of_an_data = len(app_data) + len_split_char + system_length
-
-        how_many_parts = (
-            int(math.ceil((len(app_data) + len_split_char) / true_length)) + 1)
-
-        how_many_parts = int(
-            math.ceil(
-                (len(app_data) + len_split_char + len(str(how_many_parts))) /
-                true_length))
-
-        splitted_data = []
-        split_length = true_length - len_split_char
-
-        for i in range(how_many_parts):
-            # split to part of app_data and app_data is an string
-            part = app_data[i * int(split_length):i * int(split_length) +
-                            int(split_length)]
-
-            splitted_data.append(part)
-
-        for each_data in splitted_data:
             self.send(
                 action=action,
-                app_data=
-                f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                app_data=f"split-0-{split_random}",
                 to_user=to_user,
                 force=force,
                 retrysecond=retrysecond,
             )
+            len_split_char = len(f"split--{split_random}-")
 
-        self.checking = backup_checking
-        the_checker = checker if custom_checker is None else custom_checker
-        the_checker(self) if self.check_thread is None else None
+            total_size_of_an_data = len(
+                app_data) + len_split_char + system_length
 
-        self.send(
-            action=action,
-            app_data=f"split-1-{split_random}",
-            to_user=to_user,
-            force=force,
-            retrysecond=retrysecond,
-        )
-        return True
+            how_many_parts = (
+                int(math.ceil(
+                    (len(app_data) + len_split_char) / true_length)) + 1)
+
+            how_many_parts = int(
+                math.ceil(
+                    (len(app_data) + len_split_char + len(str(how_many_parts)))
+                    / true_length))
+
+            splitted_data = []
+            split_length = true_length - len_split_char
+
+            for i in range(how_many_parts):
+                # split to part of app_data and app_data is an string
+                part = app_data[i * int(split_length):i * int(split_length) +
+                                int(split_length)]
+
+                splitted_data.append(part)
+
+            for each_data in splitted_data:
+                self.send(
+                    action=action,
+                    app_data=
+                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                    to_user=to_user,
+                    force=force,
+                    retrysecond=retrysecond,
+                )
+
+            self.checking = backup_checking
+            the_checker = checker if custom_checker is None else custom_checker
+            the_checker(self) if self.check_thread is None else None
+
+            self.send(
+                action=action,
+                app_data=f"split-1-{split_random}",
+                to_user=to_user,
+                force=force,
+                retrysecond=retrysecond,
+            )
+            return True        
 
     def send(self,
              action,
@@ -360,15 +361,15 @@ class Integration:
                        system_length) - 10
 
         if len(app_data) > true_length:
-            self.send_splitter(
-                action,
-                app_data,
-                to_user,
-                system_length,
-                true_length,
-                force=force,
-                retrysecond=retrysecond,
-            )
+            self.send_splitter(action,
+             app_data,
+             to_user,
+             system_length,
+             true_length,      
+             force=force,
+             retrysecond=retrysecond,)
+
+
 
         data = json.dumps(data)
 

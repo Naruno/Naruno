@@ -8,15 +8,15 @@ import contextlib
 import json
 import os
 import sys
-from hashlib import sha256
+
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from naruno.config import SIGNS_PATH
+
 from naruno.lib.config_system import get_config
 from naruno.wallet.ellipticcurve.ecdsa import Ecdsa
 from naruno.wallet.ellipticcurve.publicKey import PublicKey
 from naruno.wallet.ellipticcurve.signature import Signature
-from naruno.wallet.wallet_import import Address, wallet_import
+from naruno.wallet.wallet_import import Address
 
 
 def verify(path: str) -> bool:

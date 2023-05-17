@@ -31,10 +31,8 @@ from naruno.config import TEMP_BLOCKSHASH_PART_PATH
 from naruno.config import TEMP_BLOCKSHASH_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
-from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.node.client.client import client
 from naruno.node.unl import Unl
-from naruno.transactions.check.check_transaction import CheckTransaction
 from naruno.transactions.get_transaction import GetTransaction
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.ellipticcurve.ecdsa import Ecdsa

@@ -4,12 +4,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import json
-import os
-from typing import List
 
-from naruno.config import MY_TRANSACTION_PATH
-from naruno.lib.config_system import get_config
+
+
 from naruno.lib.notification import notification
 from naruno.transactions.my_transactions.get_my_transaction import \
     GetMyTransaction

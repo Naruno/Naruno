@@ -9,15 +9,11 @@ import os
 from hashlib import sha256
 from zipfile import ZipFile
 
-from naruno.accounts.get_accounts import GetAccounts
-from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from naruno.config import BLOCKS_PATH
-from naruno.config import MY_TRANSACTION_PATH
 from naruno.config import PROOF_PATH
 from naruno.lib.config_system import get_config
-from naruno.transactions.transaction import Transaction
 
 
 def GetProof(

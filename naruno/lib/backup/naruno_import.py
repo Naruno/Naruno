@@ -2,7 +2,6 @@ import copy
 import os
 import shutil
 import sys
-from typing import Union
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from naruno.lib.config_system import get_config, save_config

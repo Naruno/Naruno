@@ -4,21 +4,17 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import contextlib
 import threading
 
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
-from naruno.blockchain.block.save_block import SaveBlock
 from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.consensus.ongoing.ongoing_main import ongoing_main
 from naruno.lib.log import get_logger
-from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.node.client.client import client
 from naruno.node.server.server import server
-from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.get_pending import GetPending
 
 from naruno.consensus.sync.sync import sync
@@ -28,7 +24,7 @@ logger = get_logger("CONSENSUS")
 
 def consensus_trigger(
     custom_block: Block = None,
-    custom_candidate_class: candidate_block = None,
+    custom_candate_class: candidate_block = None,
     custom_unl_nodes: dict = None,
     custom_UNL_NODES_PATH: str = None,
     custom_server: server = None,

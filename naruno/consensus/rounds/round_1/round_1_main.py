@@ -5,7 +5,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.save_block import SaveBlock
 from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 from naruno.consensus.rounds.round_1.checks.checks_main import \
@@ -16,7 +15,6 @@ from naruno.lib.log import get_logger
 from naruno.node.get_candidate_blocks import GetCandidateBlocks
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
-from naruno.transactions.pending_to_validating import PendingtoValidating
 
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 

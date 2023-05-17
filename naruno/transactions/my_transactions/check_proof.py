@@ -4,26 +4,17 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import json
 import os
 import zipfile
-from hashlib import sha256
-from zipfile import ZipFile
 
-from naruno.accounts.get_accounts import GetAccounts
 from naruno.blockchain.block.blocks_hash import GetBlockshash
 from naruno.blockchain.block.blocks_hash import GetBlockshash_part
-from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from naruno.blockchain.block.hash.calculate_hash import CalculateHash
-from naruno.config import BLOCKS_PATH
 from naruno.config import EXTRACTED_PROOFS_PATH
-from naruno.config import MY_TRANSACTION_PATH
-from naruno.config import PROOF_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.mix.merkle_root import MerkleTree
-from naruno.transactions.transaction import Transaction
 
 
 def CheckProof(
