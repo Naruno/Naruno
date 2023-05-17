@@ -61,7 +61,8 @@ def get_logger(name):
         logger.addHandler(ch)
         # file
         main_folder = get_config()["main_folder"]
-        fh = logging.FileHandler(os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
+        fh = logging.FileHandler(
+            os.path.join(main_folder, LOGS_PATH, f"{name}.log"))
         fh.setLevel(level)
         fh.setFormatter(formatter)
         logger.addHandler(fh)

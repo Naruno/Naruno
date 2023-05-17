@@ -32,12 +32,12 @@ def Cleaner(
         if custom_sequence_number == -1:
             the_sequance_number = transaction.sequence_number - 1
         if not Check_Datas(
-            block,
-            transaction,
-            custom_current_time=custom_current_time,
-            custom_balance=custom_balance,
-            custom_sequence_number=the_sequance_number,
-            disable_already_in=True,
+                block,
+                transaction,
+                custom_current_time=custom_current_time,
+                custom_balance=custom_balance,
+                custom_sequence_number=the_sequance_number,
+                disable_already_in=True,
         ):
             DeletePending(transaction)
             pending_list_txs.remove(transaction)
@@ -47,19 +47,20 @@ def Cleaner(
         if custom_sequence_number == -1:
             the_sequance_number = transaction.sequence_number - 1
         if not Check_Datas(
-            block,
-            transaction,
-            custom_current_time=custom_current_time,
-            custom_balance=custom_balance,
-            custom_sequence_number=the_sequance_number,
-            disable_already_in=True,
+                block,
+                transaction,
+                custom_current_time=custom_current_time,
+                custom_balance=custom_balance,
+                custom_sequence_number=the_sequance_number,
+                disable_already_in=True,
         ):
             block.validating_list.remove(transaction)
 
     def clean(list_of_transactions: list) -> list:
         list_of_transactions = list(dict.fromkeys(list_of_transactions))
 
-        list_of_transactions = sorted(list_of_transactions, key=lambda x: x.signature)
+        list_of_transactions = sorted(list_of_transactions,
+                                      key=lambda x: x.signature)
 
         clean_list = []
         for transaction in list_of_transactions:
@@ -67,26 +68,19 @@ def Cleaner(
             just = True
             for transaction_ in list_of_transactions:
                 if not transaction.__dict__ == transaction_.__dict__:
-                    if (
-                        transaction.fromUser == transaction_.fromUser
-                        and block.just_one_tx
-                    ):
+                    if (transaction.fromUser == transaction_.fromUser
+                            and block.just_one_tx):
                         just = False
                         if transaction.sequence_number < transaction_.sequence_number:
                             ok = True
 
-                        elif (
-                            transaction.sequence_number == transaction_.sequence_number
-                        ):
-                            if (
-                                transaction.transaction_time
-                                < transaction_.transaction_time
-                            ):
+                        elif (transaction.sequence_number ==
+                              transaction_.sequence_number):
+                            if (transaction.transaction_time
+                                    < transaction_.transaction_time):
                                 ok = True
-                            elif (
-                                transaction.transaction_time
-                                == transaction_.transaction_time
-                            ):
+                            elif (transaction.transaction_time ==
+                                  transaction_.transaction_time):
                                 if transaction.signature < transaction_.signature:
                                     ok = True
                                 else:
@@ -106,7 +100,8 @@ def Cleaner(
 
     first_validating_list = copy.copy(block.validating_list)
     cleaned_validating_list = clean(block.validating_list)
-    difference = list(set(first_validating_list) - set(cleaned_validating_list))
+    difference = list(
+        set(first_validating_list) - set(cleaned_validating_list))
     for transaction in difference:
         SavePending(transaction)
     block.validating_list = cleaned_validating_list
@@ -114,7 +109,8 @@ def Cleaner(
     pending_list_txs = GetPending()
     first_pending_list_txs = copy.copy(pending_list_txs)
     cleaned_pending_list_txs = clean(pending_list_txs)
-    difference = list(set(first_pending_list_txs) - set(cleaned_pending_list_txs))
+    difference = list(
+        set(first_pending_list_txs) - set(cleaned_pending_list_txs))
     for transaction in difference:
         DeletePending(transaction)
     pending_list_txs = cleaned_pending_list_txs

@@ -20,14 +20,16 @@ from naruno.transactions.pending.get_pending import GetPending
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
-def transactions_main(
-    block: Block, candidate_class: candidate_block, unl_nodes: dict, clean=True
-) -> list:
-    temp_validating_list = find_validated(
-        block, candidate_class=candidate_class, unl_nodes=unl_nodes
-    )
+def transactions_main(block: Block,
+                      candidate_class: candidate_block,
+                      unl_nodes: dict,
+                      clean=True) -> list:
+    temp_validating_list = find_validated(block,
+                                          candidate_class=candidate_class,
+                                          unl_nodes=unl_nodes)
 
-    newly_added_list = find_newly(block, temp_validating_list=temp_validating_list)
+    newly_added_list = find_newly(block,
+                                  temp_validating_list=temp_validating_list)
 
     block.validating_list = temp_validating_list
 

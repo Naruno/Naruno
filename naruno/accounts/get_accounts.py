@@ -16,11 +16,8 @@ def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None):
     Returns the accounts from TEMP_ACCOUNTS_PATH.
     """
 
-    the_TEMP_ACCOUNTS_PATH = (
-        TEMP_ACCOUNTS_PATH
-        if custom_TEMP_ACCOUNTS_PATH is None
-        else custom_TEMP_ACCOUNTS_PATH
-    )
+    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH
+                              is None else custom_TEMP_ACCOUNTS_PATH)
 
     os.chdir(get_config()["main_folder"])
     conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH, check_same_thread=False)

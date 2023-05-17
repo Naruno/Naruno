@@ -41,14 +41,11 @@ def round_process(
     logger.info("Processing of round 2 is started")
     logger.debug(f"First block: {block.dump_json()}")
     candidate_block_hash = process_candidate_blocks_hashes(
-        block, candidate_class, unl_nodes
-    )
+        block, candidate_class, unl_nodes)
     logger.debug(f"candidate_block_hash: {candidate_block_hash}")
     result = None
-    if (
-        block.hash == candidate_block_hash["hash"]["hash"]
-        or block.hash == candidate_block_hash["previous_hash"]["previous_hash"]
-    ):
+    if (block.hash == candidate_block_hash["hash"]["hash"] or block.hash
+            == candidate_block_hash["previous_hash"]["previous_hash"]):
         validate_main(block)
         result = True
     else:

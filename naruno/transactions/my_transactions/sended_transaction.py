@@ -12,7 +12,8 @@ from naruno.transactions.my_transactions.save_my_transaction import \
 from naruno.transactions.transaction import Transaction
 
 
-def SendedTransaction(tx: Transaction, custom_currently_list: list = None) -> list:
+def SendedTransaction(tx: Transaction,
+                      custom_currently_list: list = None) -> list:
     """
     Set sendedn the transaction.
     Parameters:
@@ -21,13 +22,13 @@ def SendedTransaction(tx: Transaction, custom_currently_list: list = None) -> li
         The list of the my transactions.
     """
 
-    custom_currently_list = (
-        GetMyTransaction() if custom_currently_list is None else custom_currently_list
-    )
+    custom_currently_list = (GetMyTransaction() if custom_currently_list
+                             is None else custom_currently_list)
     for i in custom_currently_list:
         if i[0].signature == tx.signature:
             if not i[2]:
-                notification("Sended TX", f"{tx.data}:{tx.amount} to {tx.toUser}")
+                notification("Sended TX",
+                             f"{tx.data}:{tx.amount} to {tx.toUser}")
             i[2] = True
     SaveMyTransaction(custom_currently_list)
     return custom_currently_list
