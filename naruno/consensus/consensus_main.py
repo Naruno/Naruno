@@ -23,7 +23,7 @@ logger = get_logger("CONSENSUS")
 
 def consensus_trigger(
     custom_block: Block = None,
-    custom_candate_class: candidate_block = None,
+    custom_candidate_class: candidate_block = None,
     custom_unl_nodes: dict = None,
     custom_UNL_NODES_PATH: str = None,
     custom_server: server = None,
