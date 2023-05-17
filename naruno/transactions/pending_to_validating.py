@@ -29,7 +29,6 @@ def PendingtoValidating(block: Block):
 
     pending_list_txs = GetPending()
 
-
     with contextlib.suppress(Exception):
         [
             server.send_transaction(i)

@@ -15,11 +15,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from naruno.blockchain.block.hash.blocks_hash import BlocksHash
 
 
-
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           SaveBlockshash,)
-
+                                                 SaveBlockshash,)
 
 
 class Blockshash_IO_Performance_Analyzer:
@@ -36,8 +34,7 @@ class Blockshash_IO_Performance_Analyzer:
         self.blocks_hash.append(self.block.previous_hash)
         SaveBlockshash(
             self.blocks_hash,
-            custom_TEMP_BLOCKSHASH_PATH=
-            "db/Blockshash_Performance_Analyzer_blockshash.pf",
+            custom_TEMP_BLOCKSHASH_PATH="db/Blockshash_Performance_Analyzer_blockshash.pf",
         )
 
     def analyze(self) -> float:
@@ -63,8 +60,7 @@ class Blockshash_IO_Performance_Analyzer:
 
         SaveBlockshash(
             self.the_hash,
-            custom_TEMP_BLOCKSHASH_PATH=
-            "db/Blockshash_Performance_Analyzer_blockshash.pf",
+            custom_TEMP_BLOCKSHASH_PATH="db/Blockshash_Performance_Analyzer_blockshash.pf",
         )
 
         BlocksHash(self.block, [], self.blocks_hash)
@@ -74,8 +70,8 @@ class Blockshash_IO_Performance_Analyzer:
         This function is used to analyze the performance of GetBlock
         """
 
-        GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=
-                      "db/Blockshash_Performance_Analyzer_blockshash.pf")
+        GetBlockshash(
+            custom_TEMP_BLOCKSHASH_PATH="db/Blockshash_Performance_Analyzer_blockshash.pf")
 
 
 if __name__ == "__main__":

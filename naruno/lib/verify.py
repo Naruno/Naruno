@@ -35,7 +35,6 @@ def verify(path: str) -> bool:
     if sign_json is None:
         return False
 
-
     result = (Ecdsa.verify(
         sign_json["data"],
         Signature.fromBase64(sign_json["signature"]),

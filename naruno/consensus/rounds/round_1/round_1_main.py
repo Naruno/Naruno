@@ -51,19 +51,20 @@ def consensus_round_1(
                  if custom_unl_nodes is None else custom_unl_nodes)
     logger.debug(f"unl_nodes: {unl_nodes}")
     candidate_class = (
-        GetCandidateBlocks(custom_nodes_list=Unl.get_as_node_type(unl_nodes), block=block)
+        GetCandidateBlocks(
+            custom_nodes_list=Unl.get_as_node_type(unl_nodes), block=block)
         if custom_candidate_class is None else custom_candidate_class)
     logger.debug(f"candidate_class: {candidate_class.__dict__}")
 
     if round_check(
-        block, 
-        candidate_class, 
+        block,
+        candidate_class,
         unl_nodes,
         custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,        
-        ):
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+    ):
         round_process(
             block,
             candidate_class,
@@ -79,6 +80,6 @@ def consensus_round_1(
         logger.info("Round 1 check is True")
         return True
     else:
-       
+
         logger.warning("Round 1 check is False")
         return False

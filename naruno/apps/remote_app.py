@@ -252,81 +252,80 @@ class Integration:
         return stop
 
     def send_splitter(self,
-             action,
-             app_data,
-             to_user,
-             system_length,
-             true_length,      
-             force=True,
-             retrysecond=10,
-             custom_checker = None,
-             custom_random = None,
-             ) -> bool:
-            backup_checking = copy.copy(self.checking)
-            self.checking = False
-            # generate random charactere
-            rando = ""
-            if custom_random is None:
-                for i in range(5):
-                    rando += random.choice(string.ascii_letters)
-            else:
-                rando = custom_random
+                      action,
+                      app_data,
+                      to_user,
+                      system_length,
+                      true_length,
+                      force=True,
+                      retrysecond=10,
+                      custom_checker=None,
+                      custom_random=None,
+                      ) -> bool:
+        backup_checking = copy.copy(self.checking)
+        self.checking = False
+        # generate random charactere
+        rando = ""
+        if custom_random is None:
+            for i in range(5):
+                rando += random.choice(string.ascii_letters)
+        else:
+            rando = custom_random
 
-            split_random = rando + "-"
+        split_random = rando + "-"
 
+        self.send(
+            action=action,
+            app_data=f"split-0-{split_random}",
+            to_user=to_user,
+            force=force,
+            retrysecond=retrysecond,
+        )
+        len_split_char = len(f"split--{split_random}-")
+
+        total_size_of_an_data = len(
+            app_data) + len_split_char + system_length
+
+        how_many_parts = (
+            int(math.ceil(
+                (len(app_data) + len_split_char) / true_length)) + 1)
+
+        how_many_parts = int(
+            math.ceil(
+                (len(app_data) + len_split_char + len(str(how_many_parts)))
+                / true_length))
+
+        splitted_data = []
+        split_length = true_length - len_split_char
+
+        for i in range(how_many_parts):
+            # split to part of app_data and app_data is an string
+            part = app_data[i * int(split_length):i * int(split_length) +
+                            int(split_length)]
+
+            splitted_data.append(part)
+
+        for each_data in splitted_data:
             self.send(
                 action=action,
-                app_data=f"split-0-{split_random}",
+                app_data=f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                 to_user=to_user,
                 force=force,
                 retrysecond=retrysecond,
             )
-            len_split_char = len(f"split--{split_random}-")
 
-            total_size_of_an_data = len(
-                app_data) + len_split_char + system_length
+        self.checking = backup_checking
+        the_checker = checker if custom_checker is None else custom_checker
+        the_checker(self) if self.check_thread is None else None
 
-            how_many_parts = (
-                int(math.ceil(
-                    (len(app_data) + len_split_char) / true_length)) + 1)
-
-            how_many_parts = int(
-                math.ceil(
-                    (len(app_data) + len_split_char + len(str(how_many_parts)))
-                    / true_length))
-
-            splitted_data = []
-            split_length = true_length - len_split_char
-
-            for i in range(how_many_parts):
-                # split to part of app_data and app_data is an string
-                part = app_data[i * int(split_length):i * int(split_length) +
-                                int(split_length)]
-
-                splitted_data.append(part)
-
-            for each_data in splitted_data:
-                self.send(
-                    action=action,
-                    app_data=
-                    f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
-                    to_user=to_user,
-                    force=force,
-                    retrysecond=retrysecond,
-                )
-
-            self.checking = backup_checking
-            the_checker = checker if custom_checker is None else custom_checker
-            the_checker(self) if self.check_thread is None else None
-
-            self.send(
-                action=action,
-                app_data=f"split-1-{split_random}",
-                to_user=to_user,
-                force=force,
-                retrysecond=retrysecond,
-            )
-            return True        
+        self.send(
+            action=action,
+            app_data=f"split-1-{split_random}",
+            to_user=to_user,
+            force=force,
+            retrysecond=retrysecond,
+        )
+        return True
 
     def send(self,
              action,
@@ -362,14 +361,12 @@ class Integration:
 
         if len(app_data) > true_length:
             self.send_splitter(action,
-             app_data,
-             to_user,
-             system_length,
-             true_length,      
-             force=force,
-             retrysecond=retrysecond,)
-
-
+                               app_data,
+                               to_user,
+                               system_length,
+                               true_length,
+                               force=force,
+                               retrysecond=retrysecond,)
 
         data = json.dumps(data)
 
@@ -497,7 +494,7 @@ class Integration:
         for transaction in transactions_sended:
             if self.sended or force_sended:
                 if (transactions_sended[transaction]["transaction"]
-                    ["signature"] in self.cache) and not get_all:
+                        ["signature"] in self.cache) and not get_all:
                     continue
                 else:
                     if transactions_sended[transaction]["transaction"][
@@ -508,7 +505,7 @@ class Integration:
                             transactions_sended[transaction]["transaction"])
 
                         if (not transactions_sended[transaction]["transaction"]
-                            ["data"] == "NP"):
+                                ["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended[transaction][
@@ -553,7 +550,7 @@ class Integration:
                             transaction] = transactions_sended_not_validated[
                                 transaction]
                         if (not transactions_sended_not_validated[transaction]
-                            ["transaction"]["data"] == "NP"):
+                                ["transaction"]["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended_not_validated[transaction][
@@ -592,7 +589,7 @@ class Integration:
             with contextlib.suppress(TypeError):
                 if not new_dict[transaction]["transaction"]["data"] == "NP":
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         splits = []

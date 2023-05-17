@@ -12,7 +12,6 @@ from naruno.blockchain.block.get_block import GetBlock
 from naruno.lib.settings_system import the_settings
 
 
-
 def GetMinimumTransferAmount(block=None, custom_TEMP_BLOCK_PATH=None):
     """
     Returns the minimum transfer amount.

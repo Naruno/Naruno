@@ -42,6 +42,5 @@ def transactions_main(block: Block, candidate_class: candidate_block,
         pending_list_txs = cleaned_lists[1]
 
     logger.debug(f"Newly validating list {block.validating_list}")
-        
-    
+
     return temp_validating_list

@@ -12,14 +12,12 @@ from naruno.node.server.server import server
 logger = get_logger("CONSENSUS")
 
 
-
 def send_block(
     block: Block,
     the_server: server = None,
     send_block_error: bool = False,
 
-    ):
-
+):
 
     logger.debug("Our block is sending to the unl nodes")
     try:

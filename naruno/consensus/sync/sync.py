@@ -17,7 +17,6 @@ from naruno.consensus.sync.send_block_hash import send_block_hash
 logger = get_logger("CONSENSUS")
 
 
-
 def sync(
     block: Block,
     pending_list_txs: list = None,
@@ -25,13 +24,12 @@ def sync(
     send_block_error: bool = False,
     send_block_hash_error: bool = False,
     send_transaction_error: bool = False,
-    ):
+):
     """
     Data sending consists of 3 stages. 
     Block sending,blockhash sending and transection.
     It shares the data of the existing chains with the nodes.
     """
-
 
     logger.info("Data sending process is starting")
     the_server = server.Server if custom_server is None else custom_server

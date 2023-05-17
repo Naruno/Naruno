@@ -12,13 +12,12 @@ from naruno.node.server.server import server
 logger = get_logger("CONSENSUS")
 
 
-
 def send_block_hash(
     block: Block,
     the_server: server = None,
     send_block_hash_error: bool = False,
 
-    ):
+):
 
     logger.debug("Our block hash is sending to the unl nodes")
     try:

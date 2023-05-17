@@ -11,7 +11,6 @@ from naruno.config import COMMANDERS_PATH
 from naruno.lib.config_system import get_config
 
 
-
 def GetCommander():
     the_pending_list = []
     os.chdir(get_config()["main_folder"])

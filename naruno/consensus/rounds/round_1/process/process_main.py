@@ -65,11 +65,6 @@ def round_process(
 
     logger.debug(f"Block hash {block.hash}")
 
-
-
-    
-
-
     SaveBlock(
         block,
         custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,

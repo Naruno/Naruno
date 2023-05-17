@@ -10,7 +10,6 @@ from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
 
 
-
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
