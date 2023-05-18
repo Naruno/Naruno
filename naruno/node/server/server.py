@@ -125,7 +125,7 @@ class server(Thread):
 
         self.custom_id = custom_id
 
-        self.logger = get_logger(f"NODE {self.host}:{self.port}")
+        self.logger = get_logger(f"NODE_{self.host}_{self.port}")
 
         self.logger.info(f"Server started as {server.id}")
 
