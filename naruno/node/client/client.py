@@ -34,7 +34,7 @@ class client(Thread):
         self.candidate_block_hash_history = []
 
         self.logger = get_logger(
-            f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port}"
+            f"NODE_{self.server.host}_{self.server.port}_SOCK_{self.host}_{self.port}"
         )
 
         self.logger.info(f"Connection established with {self.id}")
