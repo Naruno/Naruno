@@ -5,15 +5,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
-from hashlib import md5
 import json
 import socket
 import time
+from hashlib import md5
 from threading import Thread
 
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
-
 
 a_block = Block("onur")
 buffer_size = 6525 + int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
