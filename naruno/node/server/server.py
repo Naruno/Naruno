@@ -199,7 +199,7 @@ class server(Thread):
 
     def send_client(self, node, data, ready_to_send=False):
         self.logger.debug(
-            f"Sending message: {data['action']} to {node.host}:{node.port}={node.id}"
+            f"Sending message: {data} to {node.host}:{node.port}={node.id}"
         )
         if not ready_to_send:
             data = self.prepare_message(data)
