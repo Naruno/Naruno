@@ -41,7 +41,7 @@ from naruno.wallet.ellipticcurve.publicKey import PublicKey
 from naruno.wallet.ellipticcurve.signature import Signature
 from naruno.wallet.wallet_import import wallet_import
 
-logger = get_logger("NODE")
+
 
 a_block = Block("onur")
 buffer_size = 6525 + int(
@@ -127,41 +127,48 @@ class server(Thread):
 
         self.custom_id = custom_id
 
+        self.logger = get_logger(f"NODE {self.host}:{self.port}")
+
+        self.logger.info(f"Server started as {server.id}")
+
+        
+        self.logger.debug("Save messages: " + str(save_messages))
+        self.logger.debug("Test mode: " + str(test))
+
         if not test:
             self.__class__.Server = self
             self.start()
 
     def check_connected(self, host, port):
-        logger.info("New node")
-        logger.debug(f"self.clients: {self.clients}")
-        logger.debug(f"Port: {port}")
-        logger.debug(f"Host: {host}")
+        
+
         for a_client in self.clients:
             if a_client.host == host and a_client.port == port:
-                logger.warning("Already connected")
+                
                 return True
-        logger.info("New connection")
+        
         return False
 
     def run(self):
-        logger.info("Server started and listen new connections")
+        self.logger.info("Server ear started")
         self.sock.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
                 conn, addr = self.sock.accept()
-                logger.info(
-                    f"NODE:{self.host}:{self.port} New connection: {addr}")
+                self.logger.debug(
+                    f"New connection request: {addr}")
                 data = conn.recv(1024)
                 the_id = server.id if self.custom_id is None else self.custom_id
                 conn.send(the_id.encode("utf-8"))
                 client_id = data.decode("utf-8")
+                self.logger.debug(f"New connection id: {client_id}")
                 if Unl.node_is_unl(client_id):
-                    logger.info(f"Added node: {client_id}")
+                    self.logger.info(f"Confirmed")
                     self.clients.append(client(conn, addr, client_id, self))
                     self.save_connected_node(addr[0], addr[1], client_id)
                 else:
-                    logger.info(
-                        f"This connection want dont accepted because its not unl: {client_id}"
+                    self.logger.warning(
+                        f"Rejected"
                     )
             time.sleep(0.01)
 
@@ -189,9 +196,7 @@ class server(Thread):
 
     def send(self, data, except_client=None):
         data = self.prepare_message(data)
-        logger.debug(
-            f"NODE:{self.host}:{self.port} Send to: {[[a_client.host, a_client.port] for a_client in self.clients]}"
-        )
+
         for a_client in self.clients:
             if a_client != except_client:
                 self.send_client(a_client, data, ready_to_send=True)
@@ -202,6 +207,7 @@ class server(Thread):
         return data
 
     def send_client(self, node, data, ready_to_send=False):
+        self.logger.debug(f"Sending message: {data['action']} to {node.host}:{node.port}={node.id}")
         if not ready_to_send:
             data = self.prepare_message(data)
         if len(json.dumps(data).encode("utf-8")) < buffer_size:
@@ -216,26 +222,26 @@ class server(Thread):
             self.our_messages.append(data)
         return data
 
-    def get_message(self, client, data):
+    def get_message(self, client, data, hash_of_data=""):
+        self.logger.info(f"Starting to proccess the message ({hash_of_data}) of {client.id}:{client.host}:{client.port}")
         if self.check_message(data):
-            logger.debug(f"NODE:{self.host}:{self.port} New message: data")
+            self.logger.debug(f"Message is valid")
             if self.save_messages:
                 self.messages.append(data)
-            self.direct_message(client, data)
+            self.direct_message(client, data, hash_of_data)
         else:
-            logger.debug(
-                f"NODE:{self.host}:{self.port} Message not valid: data")
+            self.logger.error(
+                f"Message is not in a valid format")
 
     def check_message(self, data):
         if "id" not in data:
-            logger.debug("No id")
-            logger.debug(data)
+            self.logger.error("No id")
             return False
         if "signature" not in data:
-            logger.debug("No signature")
+            self.logger.error("No signature")
             return False
         if "timestamp" not in data:
-            logger.debug("No timestamp")
+            self.logger.error("No timestamp")
             return False
         # the_control = time.time() - float(data["timestamp"])
         # if the_control > self.time_control:
@@ -254,14 +260,16 @@ class server(Thread):
         )
 
         if not signature_verify:
-            logger.debug("Signature not valid")
+            self.logger.error("Signature not valid")
             return False
 
         return True
 
     def connect(self, host, port):
+        self.logger.info(f"Asking for new node on {host}:{port}")
         connected = self.check_connected(host=host, port=port)
         if not connected:
+            self.logger.info("New connection request confirmed trying to connect")
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             conn.settimeout(10.0)
             addr = (host, port)
@@ -270,13 +278,16 @@ class server(Thread):
             try:
                 client_id = conn.recv(1024).decode("utf-8")
                 if Unl.node_is_unl(client_id):
+                    self.logger.info(f"Succesfully connected to {client_id} on {host}:{port}")
                     self.clients.append(client(conn, addr, client_id, self))
                     self.save_connected_node(addr[0], addr[1], client_id)
                     return True
             except socket.timeout:
-                logger.info(
-                    f"NODE:{self.host}:{self.port} Connection timeout: {addr}")
+                self.logger.warning(
+                    f"Connection timeout")
                 conn.close()
+        else:
+            self.logger.warning("Already connected")
 
     @staticmethod
     def get_connected_nodes(custom_CONNECTED_NODES_PATH=None):
@@ -347,37 +358,39 @@ class server(Thread):
             if entry.name == f"{node_id}.json":
                 os.remove(entry.path)
 
-    def direct_message(self, node, data):
-        logger.debug("Directing message: {}".format(data["action"]))
+    def direct_message(self, node, data, hash_of_data):
+
         if "sendmefullblock" == data["action"]:
-            self.send_block_to_other_nodes(node)
+            self.send_block_to_other_nodes(node, hash_of_data=hash_of_data)
 
         if "fullblock" == data["action"]:
-            self.get_full_chain(data, node)
+            self.get_full_chain(data, node, hash_of_data=hash_of_data)
 
         if "fullaccounts" == data["action"]:
-            self.get_full_accounts(data, node)
+            self.get_full_accounts(data, node, hash_of_data=hash_of_data)
 
         if "fullblockshash" == data["action"]:
-            self.get_full_blockshash(data, node)
+            self.get_full_blockshash(data, node, hash_of_data=hash_of_data)
 
         if "fullblockshash_part" == data["action"]:
-            self.get_full_blockshash_part(data, node)
+            self.get_full_blockshash_part(data, node, hash_of_data=hash_of_data)
 
         if "transactionrequest" == data["action"]:
-            self.get_transaction(data, node)
+            self.get_transaction(data, node, hash_of_data=hash_of_data)
 
         if "myblock" == data["action"]:
-            self.get_candidate_block(data, node)
+            self.get_candidate_block(data, node, hash_of_data=hash_of_data)
 
         if "myblockhash" == data["action"]:
-            self.get_candidate_block_hash(data, node)
+            self.get_candidate_block_hash(data, node, hash_of_data=hash_of_data)
 
     def send_me_full_block(self, node=None):
         the_node = node if node is not None else random.choice(self.clients)
+        self.logger.info(f"Sending sendmefullblock to {the_node.id}:{the_node.host}:{the_node.port}")
         self.send_client(the_node, {"action": "sendmefullblock"})
 
     def send_my_block(self, block: Block):
+        self.info(f"Sending my block to all nodes")
         system = block
 
         new_list = []
@@ -416,6 +429,7 @@ class server(Thread):
                 self.send(data)
 
     def send_my_block_hash(self, block):
+        self.logger.info(f"Sending my block hash to all nodes")
         system = block
 
         data = {
@@ -428,12 +442,14 @@ class server(Thread):
 
         self.send(data)
 
-    def get_candidate_block(self, data, node: client):
+    def get_candidate_block(self, data, node: client, hash_of_data=""):
+        self.logger.info(f"Getting candidate block with {hash_of_data}")
+        self.logger(f"Getting candidate block from {node.id}:{node.host}:{node.port}")
         if node.candidate_block is None:
             node.candidate_block = data
             return
         if data["sequence_number"] > node.candidate_block["sequence_number"]:
-            print("if")
+
             if len(node.candidate_block_history) >= 5:
                 node.candidate_block_history.pop(0)
 
@@ -441,24 +457,25 @@ class server(Thread):
                 node.candidate_block))
             node.candidate_block = data
         else:
-            print("else")
+
             if node.candidate_block["total_length"] <= data["total_length"]:
-                print("else if")
+
                 if node.candidate_block["total_length"] == data[
                         "total_length"]:
-                    print("else if if")
+
                     if data["adding"]:
-                        print("else if if if")
+
                         node.candidate_block["transaction"].append(
                             data["transaction"][0])
                     else:
-                        print("else if if else")
+
                         node.candidate_block = data
                 else:
-                    print("else if else")
+
                     node.candidate_block = data
 
-    def get_candidate_block_hash(self, data, node: client):
+    def get_candidate_block_hash(self, data, node: client, hash_of_data=""):
+        self.logger.info(f"Getting candidate block hash with {hash_of_data}")
         if node.candidate_block_hash is None:
             node.candidate_block_hash = data
             return
@@ -480,7 +497,7 @@ class server(Thread):
     def send_full_chain(self, node=None):
         log_text = ("Sending full chain" if node is None else
                     f"Sending full chain to {node.id}:{node.host}:{node.port}")
-        logger.debug(log_text)
+        self.logger.info(log_text)
         file = open(self.TEMP_BLOCK_PATH, "rb")
         SendData = file.read(1024)
         while SendData:
@@ -574,8 +591,8 @@ class server(Thread):
                 else:
                     self.send_client(node, data)
 
-    def get_full_chain(self, data, node):
-        logger.debug("Getting full chain")
+    def get_full_chain(self, data, node, hash_of_data=""):
+        self.logger.info(f"Getting full chain with {hash_of_data}")
         get_ok = False
 
         if not os.path.exists(self.TEMP_BLOCK_PATH):
@@ -613,7 +630,8 @@ class server(Thread):
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
 
-    def get_full_blockshash(self, data, node):
+    def get_full_blockshash(self, data, node, hash_of_data=""):
+        self.logger.info(f"Getting full blockshash with {hash_of_data}")
         the_TEMP_BLOCKSHASH_PATH = self.TEMP_BLOCKSHASH_PATH
         get_ok = False
 
@@ -632,7 +650,8 @@ class server(Thread):
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
 
-    def get_full_blockshash_part(self, data, node):
+    def get_full_blockshash_part(self, data, node, hash_of_data=""):
+        self.logger.info(f"Getting full blockshash part with {hash_of_data}")
         the_TEMP_BLOCKSHASH_PART_PATH = self.TEMP_BLOCKSHASH_PART_PATH
         get_ok = False
 
@@ -652,7 +671,8 @@ class server(Thread):
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
 
-    def get_full_accounts(self, data, node):
+    def get_full_accounts(self, data, node, hash_of_data=""):
+        self.logger.info(f"Getting full accounts with {hash_of_data}")
         the_TEMP_ACCOUNTS_PATH = self.TEMP_ACCOUNTS_PATH
         the_LOADING_ACCOUNTS_PATH = self.LOADING_ACCOUNTS_PATH
         get_ok = False
@@ -702,7 +722,8 @@ class server(Thread):
             the_server = server.Server if custom_server is None else custom_server
             the_server.send(data, except_client=except_client)
 
-    def get_transaction(self, data, node):
+    def get_transaction(self, data, node, hash_of_data=""):
+        self.logger.info(f"Getting transaction with {hash_of_data}")
         block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
         the_transaction = Transaction(
             data["sequence_number"],
@@ -721,9 +742,7 @@ class server(Thread):
             custom_current_time = data["custom_current_time"]
             custom_sequence_number = data["custom_sequence_number"]
             custom_balance = data["custom_balance"]
-        logger.debug(
-            f"NODE:{self.host}:{self.port} -{custom_current_time}-{custom_sequence_number}-{custom_balance}"
-        )
+
         if GetTransaction(
                 block,
                 the_transaction,
@@ -733,7 +752,6 @@ class server(Thread):
                 custom_PENDING_TRANSACTIONS_PATH=self.
                 PENDING_TRANSACTIONS_PATH,
         ):
-            logger.debug(f"NODE:{self.host}:{self.port} Transaction accepted")
 
             server.send_transaction(the_transaction,
                                     except_client=node,
@@ -747,10 +765,11 @@ class server(Thread):
                 TEMP_BLOCKSHASH_PART_PATH,
             )
 
-    def send_block_to_other_nodes(self, node=None, sync=False):
+    def send_block_to_other_nodes(self, node=None, sync=False, hash_of_data=""):
         """
         Sends the block to the other nodes.
         """
+        self.logger.info(f"Sending block to other nodes with {hash_of_data}")
         if node is None or sync:
             self.send_full_accounts(node=node)
             self.send_full_blockshash(node=node)
