@@ -444,7 +444,7 @@ class server(Thread):
 
     def get_candidate_block(self, data, node: client, hash_of_data=""):
         self.logger.info(f"Getting candidate block with {hash_of_data}")
-        self.logger(
+        self.logger.debug(
             f"Getting candidate block from {node.id}:{node.host}:{node.port}")
         if node.candidate_block is None:
             node.candidate_block = data
