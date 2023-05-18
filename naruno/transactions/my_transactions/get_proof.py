@@ -9,15 +9,11 @@ import os
 from hashlib import sha256
 from zipfile import ZipFile
 
-from naruno.accounts.get_accounts import GetAccounts
-from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.get_block_from_blockchain_db import \
     GetBlockstoBlockchainDB
 from naruno.config import BLOCKS_PATH
-from naruno.config import MY_TRANSACTION_PATH
 from naruno.config import PROOF_PATH
 from naruno.lib.config_system import get_config
-from naruno.transactions.transaction import Transaction
 
 
 def GetProof(
@@ -28,7 +24,6 @@ def GetProof(
     custom_TEMP_BLOCKSHASH_PATH=None,
     custom_TEMP_BLOCKSHASH_PART_PATH=None,
 ) -> str:
-
     the_PROOF_PATH = PROOF_PATH if custom_PROOF_PATH is None else custom_PROOF_PATH
 
     the_BLOCKS_PATH = BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH

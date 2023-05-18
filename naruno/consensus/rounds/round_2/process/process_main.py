@@ -10,9 +10,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import time
-from xmlrpc.client import Boolean
-
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.blockchain.candidate_block.candidate_block_main import \
@@ -47,7 +44,8 @@ def round_process(
         block, candidate_class, unl_nodes)
     logger.debug(f"candidate_block_hash: {candidate_block_hash}")
     result = None
-    if block.hash == candidate_block_hash["hash"]["hash"] or block.hash == candidate_block_hash["previous_hash"]["previous_hash"]:
+    if (block.hash == candidate_block_hash["hash"]["hash"] or block.hash
+            == candidate_block_hash["previous_hash"]["previous_hash"]):
         validate_main(block)
         result = True
     else:

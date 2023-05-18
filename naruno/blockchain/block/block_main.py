@@ -6,19 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import copy
 import json
-import os
 import time
 
-from naruno.accounts.account import Account
-from naruno.accounts.get_accounts import GetAccounts
-from naruno.accounts.save_accounts import SaveAccounts
-from naruno.blockchain.block.blocks_hash import SaveBlockshash
-from naruno.config import TEMP_BLOCK_PATH
-from naruno.lib.config_system import get_config
 from naruno.lib.log import clear_logs
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
-from naruno.node.unl import Unl
 from naruno.transactions.transaction import Transaction
 
 logger = get_logger("BLOCKCHAIN")

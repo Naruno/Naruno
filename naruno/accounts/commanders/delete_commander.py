@@ -5,7 +5,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
-from hashlib import sha256
 
 from naruno.config import COMMANDERS_PATH
 from naruno.lib.config_system import get_config

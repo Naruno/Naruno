@@ -4,7 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import contextlib
 import os
 import shutil
 import time
@@ -53,9 +52,8 @@ def finished_main(
         the_server = custom_server
 
     the_BLOCKS_PATH = BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
-    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                              if custom_TEMP_ACCOUNTS_PATH is None else
-                              custom_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH
+                              is None else custom_TEMP_ACCOUNTS_PATH)
     the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
                                 if custom_TEMP_BLOCKSHASH_PATH is None else
                                 custom_TEMP_BLOCKSHASH_PATH)

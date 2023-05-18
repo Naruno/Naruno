@@ -7,7 +7,6 @@
 import logging
 import os
 import sys
-import time
 
 from naruno.config import LOGS_PATH
 from naruno.lib.config_system import get_config

@@ -4,24 +4,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import json
-import os
-from base64 import b64decode
-from base64 import b64encode
-from binascii import hexlify
-from binascii import unhexlify
 from hashlib import sha256
-from random import SystemRandom
-from sys import version_info as pyVersion
 
 from naruno.config import *
-from naruno.lib.config_system import get_config
 from naruno.lib.encryption import decrypt
-from naruno.lib.encryption import encrypt
 from naruno.lib.settings_system import the_settings
-from naruno.wallet.ellipticcurve.privateKey import PrivateKey
 from naruno.wallet.get_saved_wallet import get_saved_wallet
-from naruno.wallet.save_wallet_list import save_to_wallet_list
 from naruno.wallet.wallet_create import wallet_create
 
 
@@ -62,7 +50,6 @@ def wallet_import(wallet, mode, password=None):
             return my_private_key
 
         elif list(temp_saved_wallet).index(account) != 0:
-
             return decrypt(temp_saved_wallet[account]["privatekey"], password)
         else:
             if wallet != -1:

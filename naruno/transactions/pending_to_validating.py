@@ -9,7 +9,6 @@ import contextlib
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
 from naruno.node.server.server import server
-from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.delete_pending import DeletePending
 from naruno.transactions.pending.get_pending import GetPending
 
@@ -28,7 +27,6 @@ def PendingtoValidating(block: Block):
     logger.debug(f"Validating list capacity: {first_max_tx_number}")
 
     pending_list_txs = GetPending()
-
 
     with contextlib.suppress(Exception):
         [

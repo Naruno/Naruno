@@ -7,13 +7,10 @@
 import copy
 import json
 import os
-import time
 from hashlib import sha256
 
 from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
-from naruno.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
 
 
 def SaveMyTransaction(transaction_list, clear=False):

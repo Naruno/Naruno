@@ -31,10 +31,8 @@ from naruno.config import TEMP_BLOCKSHASH_PART_PATH
 from naruno.config import TEMP_BLOCKSHASH_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
-from naruno.lib.mix.merkle_root import MerkleTree
 from naruno.node.client.client import client
 from naruno.node.unl import Unl
-from naruno.transactions.check.check_transaction import CheckTransaction
 from naruno.transactions.get_transaction import GetTransaction
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.ellipticcurve.ecdsa import Ecdsa
@@ -91,9 +89,8 @@ class server(Thread):
         self.our_messages = []
         self.save_messages = save_messages
 
-        self.TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH
-                                if custom_TEMP_BLOCK_PATH is None else
-                                custom_TEMP_BLOCK_PATH)
+        self.TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH
+                                is None else custom_TEMP_BLOCK_PATH)
         self.TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
                                    if custom_TEMP_ACCOUNTS_PATH is None else
                                    custom_TEMP_ACCOUNTS_PATH)
@@ -101,9 +98,8 @@ class server(Thread):
                                      if custom_TEMP_BLOCKSHASH_PATH is None
                                      else custom_TEMP_BLOCKSHASH_PATH)
         self.TEMP_BLOCKSHASH_PART_PATH = (
-            TEMP_BLOCKSHASH_PART_PATH
-            if custom_TEMP_BLOCKSHASH_PART_PATH is None else
-            custom_TEMP_BLOCKSHASH_PART_PATH)
+            TEMP_BLOCKSHASH_PART_PATH if custom_TEMP_BLOCKSHASH_PART_PATH
+            is None else custom_TEMP_BLOCKSHASH_PART_PATH)
         self.LOADING_BLOCK_PATH = (LOADING_BLOCK_PATH
                                    if custom_LOADING_BLOCK_PATH is None else
                                    custom_LOADING_BLOCK_PATH)
@@ -114,18 +110,16 @@ class server(Thread):
                                         custom_LOADING_BLOCKSHASH_PATH is None
                                         else custom_LOADING_BLOCKSHASH_PATH)
         self.LOADING_BLOCKSHASH_PART_PATH = (
-            LOADING_BLOCKSHASH_PART_PATH
-            if custom_LOADING_BLOCKSHASH_PART_PATH is None else
-            custom_LOADING_BLOCKSHASH_PART_PATH)
+            LOADING_BLOCKSHASH_PART_PATH if custom_LOADING_BLOCKSHASH_PART_PATH
+            is None else custom_LOADING_BLOCKSHASH_PART_PATH)
 
         self.CONNECTED_NODES_PATH = (CONNECTED_NODES_PATH
                                      if custom_CONNECTED_NODES_PATH is None
                                      else custom_CONNECTED_NODES_PATH)
 
         self.PENDING_TRANSACTIONS_PATH = (
-            PENDING_TRANSACTIONS_PATH
-            if custom_PENDING_TRANSACTIONS_PATH is None else
-            custom_PENDING_TRANSACTIONS_PATH)
+            PENDING_TRANSACTIONS_PATH if custom_PENDING_TRANSACTIONS_PATH
+            is None else custom_PENDING_TRANSACTIONS_PATH)
 
         self.custom_variables = custom_variables
 
