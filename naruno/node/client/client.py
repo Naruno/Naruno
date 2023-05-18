@@ -15,7 +15,6 @@ from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
 
 
-
 a_block = Block("onur")
 buffer_size = 6525 + int(
     (a_block.max_data_size // a_block.max_tx_number) * 1.5)
@@ -35,7 +34,8 @@ class client(Thread):
         self.candidate_block_history = []
         self.candidate_block_hash_history = []
 
-        self.logger = get_logger(f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port}")
+        self.logger = get_logger(
+            f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port}")
 
         self.logger.info(
             f"Connection established with {self.id}"
@@ -43,7 +43,6 @@ class client(Thread):
 
         self.logger.debug("Test mode: " + str(test))
         self.logger.debug("Buffer size: " + str(buffer_size))
-
 
         self.running = True
         if not test:
@@ -54,7 +53,6 @@ class client(Thread):
         while self.running:
             with contextlib.suppress(socket.timeout):
                 data = self.socket.recv(buffer_size)
-                
 
                 if not data:
                     break

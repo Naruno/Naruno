@@ -42,7 +42,6 @@ from naruno.wallet.ellipticcurve.signature import Signature
 from naruno.wallet.wallet_import import wallet_import
 
 
-
 a_block = Block("onur")
 buffer_size = 6525 + int(
     (a_block.max_data_size // a_block.max_tx_number) * 1.5)
@@ -131,7 +130,6 @@ class server(Thread):
 
         self.logger.info(f"Server started as {server.id}")
 
-        
         self.logger.debug("Save messages: " + str(save_messages))
         self.logger.debug("Test mode: " + str(test))
 
@@ -140,13 +138,12 @@ class server(Thread):
             self.start()
 
     def check_connected(self, host, port):
-        
 
         for a_client in self.clients:
             if a_client.host == host and a_client.port == port:
-                
+
                 return True
-        
+
         return False
 
     def run(self):
@@ -207,7 +204,8 @@ class server(Thread):
         return data
 
     def send_client(self, node, data, ready_to_send=False):
-        self.logger.debug(f"Sending message: {data['action']} to {node.host}:{node.port}={node.id}")
+        self.logger.debug(
+            f"Sending message: {data['action']} to {node.host}:{node.port}={node.id}")
         if not ready_to_send:
             data = self.prepare_message(data)
         if len(json.dumps(data).encode("utf-8")) < buffer_size:
@@ -223,7 +221,8 @@ class server(Thread):
         return data
 
     def get_message(self, client, data, hash_of_data=""):
-        self.logger.info(f"Starting to proccess the message ({hash_of_data}) of {client.id}:{client.host}:{client.port}")
+        self.logger.info(
+            f"Starting to proccess the message ({hash_of_data}) of {client.id}:{client.host}:{client.port}")
         if self.check_message(data):
             self.logger.debug(f"Message is valid")
             if self.save_messages:
@@ -269,7 +268,8 @@ class server(Thread):
         self.logger.info(f"Asking for new node on {host}:{port}")
         connected = self.check_connected(host=host, port=port)
         if not connected:
-            self.logger.info("New connection request confirmed trying to connect")
+            self.logger.info(
+                "New connection request confirmed trying to connect")
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             conn.settimeout(10.0)
             addr = (host, port)
@@ -278,7 +278,8 @@ class server(Thread):
             try:
                 client_id = conn.recv(1024).decode("utf-8")
                 if Unl.node_is_unl(client_id):
-                    self.logger.info(f"Succesfully connected to {client_id} on {host}:{port}")
+                    self.logger.info(
+                        f"Succesfully connected to {client_id} on {host}:{port}")
                     self.clients.append(client(conn, addr, client_id, self))
                     self.save_connected_node(addr[0], addr[1], client_id)
                     return True
@@ -373,7 +374,8 @@ class server(Thread):
             self.get_full_blockshash(data, node, hash_of_data=hash_of_data)
 
         if "fullblockshash_part" == data["action"]:
-            self.get_full_blockshash_part(data, node, hash_of_data=hash_of_data)
+            self.get_full_blockshash_part(
+                data, node, hash_of_data=hash_of_data)
 
         if "transactionrequest" == data["action"]:
             self.get_transaction(data, node, hash_of_data=hash_of_data)
@@ -382,11 +384,13 @@ class server(Thread):
             self.get_candidate_block(data, node, hash_of_data=hash_of_data)
 
         if "myblockhash" == data["action"]:
-            self.get_candidate_block_hash(data, node, hash_of_data=hash_of_data)
+            self.get_candidate_block_hash(
+                data, node, hash_of_data=hash_of_data)
 
     def send_me_full_block(self, node=None):
         the_node = node if node is not None else random.choice(self.clients)
-        self.logger.info(f"Sending sendmefullblock to {the_node.id}:{the_node.host}:{the_node.port}")
+        self.logger.info(
+            f"Sending sendmefullblock to {the_node.id}:{the_node.host}:{the_node.port}")
         self.send_client(the_node, {"action": "sendmefullblock"})
 
     def send_my_block(self, block: Block):
@@ -444,7 +448,8 @@ class server(Thread):
 
     def get_candidate_block(self, data, node: client, hash_of_data=""):
         self.logger.info(f"Getting candidate block with {hash_of_data}")
-        self.logger(f"Getting candidate block from {node.id}:{node.host}:{node.port}")
+        self.logger(
+            f"Getting candidate block from {node.id}:{node.host}:{node.port}")
         if node.candidate_block is None:
             node.candidate_block = data
             return
