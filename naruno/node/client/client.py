@@ -65,7 +65,7 @@ class client(Thread):
                 with contextlib.suppress(Exception):
                     del data["buffer"]
                 try:
-                    hash_of_data = md5(str(data)).hexdigest()[:6]
+                    hash_of_data = md5(str(data).encode()).hexdigest()[:6]
                     self.logger.debug(
                         f"Received data ({hash_of_data}): {data}"
                     )

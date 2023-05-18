@@ -390,7 +390,7 @@ class server(Thread):
         self.send_client(the_node, {"action": "sendmefullblock"})
 
     def send_my_block(self, block: Block):
-        self.info(f"Sending my block to all nodes")
+        self.logger.info(f"Sending my block to all nodes")
         system = block
 
         new_list = []
