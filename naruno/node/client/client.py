@@ -16,12 +16,10 @@ from naruno.lib.log import get_logger
 
 
 a_block = Block("onur")
-buffer_size = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+buffer_size = 6525 + int((a_block.max_data_size // a_block.max_tx_number) * 1.5)
 
 
 class client(Thread):
-
     def __init__(self, socket, address, node_id, server, test=False):
         Thread.__init__(self)
         self.server = server
@@ -35,11 +33,10 @@ class client(Thread):
         self.candidate_block_hash_history = []
 
         self.logger = get_logger(
-            f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port}")
-
-        self.logger.info(
-            f"Connection established with {self.id}"
+            f"NODE:{self.server.host}:{self.server.port} SOCK:{self.host}:{self.port}"
         )
+
+        self.logger.info(f"Connection established with {self.id}")
 
         self.logger.debug("Test mode: " + str(test))
         self.logger.debug("Buffer size: " + str(buffer_size))
@@ -64,17 +61,11 @@ class client(Thread):
                     del data["buffer"]
                 try:
                     hash_of_data = md5(str(data).encode()).hexdigest()[:6]
-                    self.logger.debug(
-                        f"Received data ({hash_of_data}): {data}"
-                    )
+                    self.logger.debug(f"Received data ({hash_of_data}): {data}")
                     self.server.get_message(self, data, hash_of_data)
                 except Exception as e:
-                    self.logger.error(
-                        f"Error while processing data: {e}"
-                    )
-                    self.logger.error(
-                        f"Data: {data}"
-                    )
+                    self.logger.error(f"Error while processing data: {e}")
+                    self.logger.error(f"Data: {data}")
 
             time.sleep(0.01)
 
