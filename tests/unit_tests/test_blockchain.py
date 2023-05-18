@@ -1052,17 +1052,17 @@ class Test_Blockchain(unittest.TestCase):
         block = Block("onur")
         block.sequence_number = 1
         block.empty_block_number = 3
-        block.block_time = 2
+        block.block_time = 8
         block.validated = False
 
         first_block = copy.copy(block)
-        time.sleep(9)
+        time.sleep(36)
         block.sync_empty_blocks()
         second_block = copy.copy(block)
 
         self.assertEqual(first_block.empty_block_number,
                          second_block.empty_block_number)
-        self.assertEqual(first_block.start_time + 8, second_block.start_time)
+        self.assertEqual(first_block.start_time + 32, second_block.start_time)
 
     def test_blockchain_sync_empty_blocks_first_and_second_empty_is_not_equal(
             self):
