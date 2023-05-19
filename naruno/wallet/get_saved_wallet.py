@@ -12,7 +12,6 @@ from naruno.lib.config_system import get_config
 
 
 def get_saved_wallet():
-
     os.chdir(get_config()["main_folder"])
 
     if not os.path.exists(WALLETS_PATH):

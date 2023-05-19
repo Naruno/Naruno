@@ -22,13 +22,13 @@ def save_to_wallet_list(publicKey, privateKey, password):
     wallet_list[publicKey]["privatekey"] = privateKey
 
     wallet_list[publicKey]["password_sha256"] = sha256(
-        password.encode("utf-8")).hexdigest()
+        password.encode("utf-8")
+    ).hexdigest()
 
     save_wallet_list(wallet_list)
 
 
 def save_wallet_list(wallet_list):
-
     os.chdir(get_config()["main_folder"])
     with open(WALLETS_PATH, "w") as wallet_list_file:
         json.dump(wallet_list, wallet_list_file, indent=4)

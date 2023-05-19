@@ -14,7 +14,6 @@ from naruno.lib.config_system import get_config
 
 
 class Unl:
-
     @staticmethod
     def save_new_unl_node(node_id):
         """
@@ -25,7 +24,6 @@ class Unl:
 
         already_in_list = any(element == node_id for element in nodes_list)
         if not already_in_list:
-
             nodes_list[node_id] = {}
             nodes_list[node_id]["date"] = time.time()
 
@@ -39,8 +37,9 @@ class Unl:
         Returns the UNL nodes list from UNL_NODES_PATH.
         """
 
-        the_UNL_NODES_PATH = (UNL_NODES_PATH if custom_UNL_NODES_PATH is None
-                              else custom_UNL_NODES_PATH)
+        the_UNL_NODES_PATH = (
+            UNL_NODES_PATH if custom_UNL_NODES_PATH is None else custom_UNL_NODES_PATH
+        )
 
         if not os.path.exists(the_UNL_NODES_PATH):
             return {}
