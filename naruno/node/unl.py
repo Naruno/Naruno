@@ -9,7 +9,7 @@ import json
 import os
 import time
 
-from naruno.config import *
+from naruno.config import UNL_NODES_PATH
 from naruno.lib.config_system import get_config
 
 

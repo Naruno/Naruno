@@ -7,7 +7,7 @@
 import json
 import os
 
-from naruno.config import *
+from naruno.config import WALLETS_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 from naruno.wallet.get_saved_wallet import get_saved_wallet

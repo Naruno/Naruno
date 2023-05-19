@@ -8,7 +8,7 @@ import json
 import os
 from hashlib import sha256
 
-from naruno.config import *
+from naruno.config import WALLETS_PATH
 from naruno.lib.config_system import get_config
 from naruno.wallet.get_saved_wallet import get_saved_wallet
 

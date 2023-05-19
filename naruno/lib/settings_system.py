@@ -7,7 +7,7 @@
 import json
 import os
 
-from naruno.config import *
+from naruno.config import SETTING_PATH
 from naruno.lib.config_system import get_config
 
 temp_json = {
