@@ -124,7 +124,9 @@ class server(Thread):
         self.time_control = 10 if time_control is None else time_control
 
         if custom_id is not None:
-            server.id = custom_id
+            self.id = custom_id
+        else:
+            self.id = server.id
 
         self.logger = get_logger(f"NODE_{self.host}_{self.port}")
 
