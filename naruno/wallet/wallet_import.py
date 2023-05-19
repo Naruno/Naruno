@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from hashlib import sha256
 
-
 from naruno.lib.encryption import decrypt
 from naruno.lib.settings_system import the_settings
 from naruno.wallet.get_saved_wallet import get_saved_wallet
