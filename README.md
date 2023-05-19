@@ -62,11 +62,11 @@
   </p>
 
   <p align="center">
-  <a href="https://codescene.io/projects/36313"><img src="https://codescene.io/projects/36313/status-badges/code-health" alt="Code Health"></a>
+  <a href="https://codescene.io/projects/39498"><img src="https://codescene.io/projects/39498/status-badges/code-health" alt="Code Health"></a>
   .
-  <a href="https://codescene.io/projects/36313"><img src="https://codescene.io/projects/36313/status-badges/system-mastery" alt="System Mastery"></a>
+  <a href="https://codescene.io/projects/39498"><img src="https://codescene.io/projects/39498/status-badges/system-mastery" alt="System Mastery"></a>
   .
-  <a href="https://codescene.io/projects/36313"><img src="https://codescene.io/projects/36313/status-badges/missed-goals" alt="Missed Goals"></a>
+  <a href="https://codescene.io/projects/39498"><img src="https://codescene.io/projects/39498/status-badges/missed-goals" alt="Missed Goals"></a>
   </p>
 
   <p align="center">
