@@ -9,7 +9,7 @@ import json
 import os
 import time
 
-from naruno.config import *
+from naruno.config import UNL_NODES_PATH
 from naruno.lib.config_system import get_config
 
 
@@ -25,7 +25,6 @@ class Unl:
 
         already_in_list = any(element == node_id for element in nodes_list)
         if not already_in_list:
-
             nodes_list[node_id] = {}
             nodes_list[node_id]["date"] = time.time()
 

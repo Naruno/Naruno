@@ -7,7 +7,7 @@
 import json
 import os
 
-from naruno.config import *
+from naruno.config import CONFIG_PATH
 
 
 def save_config(config):

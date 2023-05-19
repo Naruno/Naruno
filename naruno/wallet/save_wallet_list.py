@@ -8,7 +8,7 @@ import json
 import os
 from hashlib import sha256
 
-from naruno.config import *
+from naruno.config import WALLETS_PATH
 from naruno.lib.config_system import get_config
 from naruno.wallet.get_saved_wallet import get_saved_wallet
 
@@ -28,7 +28,6 @@ def save_to_wallet_list(publicKey, privateKey, password):
 
 
 def save_wallet_list(wallet_list):
-
     os.chdir(get_config()["main_folder"])
     with open(WALLETS_PATH, "w") as wallet_list_file:
         json.dump(wallet_list, wallet_list_file, indent=4)
