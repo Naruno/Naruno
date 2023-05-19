@@ -4,7 +4,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 from naruno.lib.encryption import encrypt
 from naruno.wallet.ellipticcurve.privateKey import PrivateKey
 from naruno.wallet.get_saved_wallet import get_saved_wallet
