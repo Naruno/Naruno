@@ -60,13 +60,10 @@ def wallet_import(wallet, mode, password=None):
 
     elif mode == 3:
         my_address = temp_saved_wallet[account]["publickey"]
-        my_address = "".join(
-            [
-                l.strip()
-                for l in my_address.splitlines()
-                if l and not l.startswith("-----")
-            ]
-        )
+        my_address = "".join([
+            l.strip() for l in my_address.splitlines()
+            if l and not l.startswith("-----")
+        ])
         my_address = Address(my_address)
         return my_address
     else:
@@ -83,9 +80,10 @@ def wallet_import_all(mode, password=None):
 
 
 def Address(publickey):
-    the_public_key = "".join(
-        [l.strip() for l in publickey.splitlines() if l and not l.startswith("-----")]
-    )
+    the_public_key = "".join([
+        l.strip() for l in publickey.splitlines()
+        if l and not l.startswith("-----")
+    ])
     return sha256(
-        sha256(the_public_key.encode("utf-8")).hexdigest().encode("utf-8")
-    ).hexdigest()[-40:]
+        sha256(the_public_key.encode("utf-8")).hexdigest().encode(
+            "utf-8")).hexdigest()[-40:]
