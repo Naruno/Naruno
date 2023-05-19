@@ -123,7 +123,8 @@ class server(Thread):
 
         self.time_control = 10 if time_control is None else time_control
 
-        self.custom_id = custom_id
+        if custom_id is not None:
+            server.id = custom_id
 
         self.logger = get_logger(f"NODE_{self.host}_{self.port}")
 
@@ -151,8 +152,7 @@ class server(Thread):
                 conn, addr = self.sock.accept()
                 self.logger.debug(f"New connection request: {addr}")
                 data = conn.recv(1024)
-                the_id = server.id if self.custom_id is None else self.custom_id
-                conn.send(the_id.encode("utf-8"))
+                conn.send(self.id.encode("utf-8"))
                 client_id = data.decode("utf-8")
                 self.logger.debug(f"New connection id: {client_id}")
                 if Unl.node_is_unl(client_id):
