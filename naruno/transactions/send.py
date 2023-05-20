@@ -153,13 +153,12 @@ def send(
             str(the_transaction.transaction_time),
             PrivateKey.fromPem(my_private_key),
         ).toBase64()
-        logger.debug(f"Transaction: {the_transaction.dump_json()}")    
+        logger.debug(f"Transaction: {the_transaction.dump_json()}")
 
         sending_result = False
 
         if not the_settings()["baklava"]:
 
-                    
             sending_result = GetTransaction(
                 block,
                 the_transaction,
