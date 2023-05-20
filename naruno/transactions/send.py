@@ -46,8 +46,14 @@ def send(
         data: The data of the transaction.
 
     """
+    if not the_settings()["baklava"]:
+        logger.info("Sending transaction to the network")
+    else:
+        logger.info("Sending transaction to the baklava network")
+
     if (wallet_import(int(the_settings()["wallet"]),
                       2) == sha256(password.encode("utf-8")).hexdigest()):
+        logger.debug("Password is correct")
         my_private_key = wallet_import(-1, 1, password)
         my_public_key = "".join([
             l.strip() for l in wallet_import(-1, 0).splitlines()
@@ -147,11 +153,13 @@ def send(
             str(the_transaction.transaction_time),
             PrivateKey.fromPem(my_private_key),
         ).toBase64()
-        logger.info(f"Transaction: {the_transaction.dump_json()}")
+        logger.debug(f"Transaction: {the_transaction.dump_json()}")    
 
         sending_result = False
 
         if not the_settings()["baklava"]:
+
+                    
             sending_result = GetTransaction(
                 block,
                 the_transaction,
@@ -161,8 +169,7 @@ def send(
                 custom_account_list=custom_account_list,
             )
         else:
-            logger.info("Sending the transaction to the baklava network.")
-            logger.info(f"Transaction: {the_transaction.dump_json()}")
+
             the_data = {
                 "sequence_number": the_transaction.sequence_number,
                 "signature": the_transaction.signature,
@@ -182,7 +189,8 @@ def send(
             try:
                 resp = request.urlopen(req)
                 sending_result = True
-            except:
+            except Exception as e:
+                logger.exception(e)
                 sending_result = False
 
         if sending_result:
