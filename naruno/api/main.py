@@ -143,8 +143,8 @@ def delete_wallets_page():
 
 @app.route("/send/", methods=["POST"])
 def send_coin_data_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     try:
         if the_settings()["publisher_mode"]:
             return jsonify(
@@ -369,7 +369,6 @@ def block_get_page():
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         the_server.send_block_to_other_nodes()
-        logger.info("Consensus timer is started")
         the_consensus_trigger = (consensus_trigger if custom_consensus_trigger
                                  is None else custom_consensus_trigger)
         trigger = perpetualTimer(the_block.consensus_timer,
@@ -440,8 +439,8 @@ def status_page():
 
 @app.route("/proof/get/", methods=["POST"])
 def proof_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify({"error": "You can't get the proof in publisher mode."})
     signature = str(
@@ -473,8 +472,8 @@ def proof_get_page():
 
 @app.route("/proof/check/", methods=["POST"])
 def proof_check_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify(
             {"error": "You can't check the proof in publisher mode."})
@@ -491,8 +490,8 @@ def proof_check_page():
 
 @app.route("/sign/", methods=["POST"])
 def sign_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify({"error": "You can't sign in publisher mode."})
     data = str(request.form["data"]) if "data" in request.form else None
@@ -508,8 +507,8 @@ def sign_page():
 
 @app.route("/verify/", methods=["POST"])
 def verify_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     if the_settings()["publisher_mode"]:
         return jsonify({"error": "You can't verify in publisher mode."})
     path = str(request.form["path"]) if "path" in request.form else None
@@ -528,8 +527,8 @@ def export_block_json_page():
 
 @app.route("/balance/get/", methods=["GET"])
 def balance_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     # Check publisher mode
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
@@ -548,8 +547,8 @@ def balance_get_page():
 
 @app.route("/sequence/get/", methods=["GET"])
 def sequence_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     # Check publisher mode
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
@@ -570,8 +569,8 @@ def sequence_get_page():
 # Write a api for directing a transaction with GetTransaction
 @app.route("/transaction/send/", methods=["POST"])
 def transaction_send_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
 
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
@@ -616,8 +615,8 @@ def transaction_send_page():
 
 @app.route("/blocktransactionfee/get/", methods=["GET"])
 def blocktransactionfee_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     # Check publisher mode
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
@@ -629,8 +628,8 @@ def blocktransactionfee_get_page():
 
 @app.route("/blockmaxtxnumber/get/", methods=["GET"])
 def blockmaxtxnumber_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     # Check publisher mode
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
@@ -640,8 +639,8 @@ def blockmaxtxnumber_get_page():
 
 @app.route("/blockjustonetx/get/", methods=["GET"])
 def blockjustonetx_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     # Check publisher mode
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                  if custom_block is None else custom_block)
@@ -651,8 +650,8 @@ def blockjustonetx_get_page():
 
 @app.route("/blockmaxdatasize/get/", methods=["GET"])
 def blockmaxdatasize_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     # Check publisher mode
 
     the_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
@@ -663,8 +662,8 @@ def blockmaxdatasize_get_page():
 
 @app.route("/blockminumumtransferamount/get/", methods=["GET"])
 def blockminumumtransferamount_get_page():
-    logger.info(
-        f"{request.remote_addr} {request.method} {request.url} {request.form}")
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
     # Check publisher mode
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
