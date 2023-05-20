@@ -21,7 +21,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
     """
     Returns the block.
     """
-    logger.info("Getting block from disk")
+    logger.debug("Getting block from disk")
 
     the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
                            else custom_TEMP_BLOCK_PATH)
