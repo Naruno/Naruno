@@ -51,14 +51,19 @@ def send(
     else:
         logger.info("Sending transaction to the baklava network")
 
-    if (wallet_import(int(the_settings()["wallet"]),
-                      2) == sha256(password.encode("utf-8")).hexdigest()):
+    if (
+        wallet_import(int(the_settings()["wallet"]), 2)
+        == sha256(password.encode("utf-8")).hexdigest()
+    ):
         logger.debug("Password is correct")
         my_private_key = wallet_import(-1, 1, password)
-        my_public_key = "".join([
-            l.strip() for l in wallet_import(-1, 0).splitlines()
-            if l and not l.startswith("-----")
-        ])
+        my_public_key = "".join(
+            [
+                l.strip()
+                for l in wallet_import(-1, 0).splitlines()
+                if l and not l.startswith("-----")
+            ]
+        )
         if not the_settings()["baklava"]:
             block = block if block is not None else GetBlock()
 
@@ -78,28 +83,45 @@ def send(
             the_balance = float(
                 urlopen(
                     f"http://test_net.1.naruno.org:8000/balance/get/?address={to_user}"
-                ).read().decode("utf-8").replace("\n", ""))
-            sequence_number = (float(
-                urlopen(
-                    f"http://test_net.1.naruno.org:8000/sequence/get/?address={wallet_import(-1,3)}"
-                ).read().decode("utf-8").replace("\n", "")) + 1)
+                )
+                .read()
+                .decode("utf-8")
+                .replace("\n", "")
+            )
+            sequence_number = (
+                float(
+                    urlopen(
+                        f"http://test_net.1.naruno.org:8000/sequence/get/?address={wallet_import(-1,3)}"
+                    )
+                    .read()
+                    .decode("utf-8")
+                    .replace("\n", "")
+                )
+                + 1
+            )
 
             transaction_fee = float(
-                urlopen(
-                    "http://test_net.1.naruno.org:8000/blocktransactionfee/get/"
-                ).read().decode("utf-8"))
+                urlopen("http://test_net.1.naruno.org:8000/blocktransactionfee/get/")
+                .read()
+                .decode("utf-8")
+            )
             max_tx_number = int(
-                urlopen(
-                    "http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/").
-                read().decode("utf-8"))
+                urlopen("http://test_net.1.naruno.org:8000/blockmaxtxnumber/get/")
+                .read()
+                .decode("utf-8")
+            )
             max_data_size = int(
-                urlopen(
-                    "http://test_net.1.naruno.org:8000/blockmaxdatasize/get/").
-                read().decode("utf-8"))
+                urlopen("http://test_net.1.naruno.org:8000/blockmaxdatasize/get/")
+                .read()
+                .decode("utf-8")
+            )
             minumum_transfer_amount = int(
                 urlopen(
                     "http://test_net.1.naruno.org:8000/blockminumumtransferamount/get/"
-                ).read().decode("utf-8"))
+                )
+                .read()
+                .decode("utf-8")
+            )
 
         if custom_set_sequence_number is not None:
             sequence_number = custom_set_sequence_number
@@ -127,8 +149,7 @@ def send(
 
         decimal_amount = len(str(transaction_fee).split(".")[1])
         if len(str(amount).split(".")[1]) > decimal_amount:
-            logger.error(
-                f"The amount of decimal places is more than {decimal_amount}.")
+            logger.error(f"The amount of decimal places is more than {decimal_amount}.")
             return False
 
         # Get the current fee
@@ -146,11 +167,15 @@ def send(
             tx_time,
         )
         the_transaction.signature = Ecdsa.sign(
-            (str(the_transaction.sequence_number) + the_transaction.fromUser +
-             str(the_transaction.toUser) + str(the_transaction.data)) +
-            str(the_transaction.amount) +
-            str(the_transaction.transaction_fee) +
-            str(the_transaction.transaction_time),
+            (
+                str(the_transaction.sequence_number)
+                + the_transaction.fromUser
+                + str(the_transaction.toUser)
+                + str(the_transaction.data)
+            )
+            + str(the_transaction.amount)
+            + str(the_transaction.transaction_fee)
+            + str(the_transaction.transaction_time),
             PrivateKey.fromPem(my_private_key),
         ).toBase64()
         logger.debug(f"Transaction: {the_transaction.dump_json()}")
@@ -158,7 +183,6 @@ def send(
         sending_result = False
 
         if not the_settings()["baklava"]:
-
             sending_result = GetTransaction(
                 block,
                 the_transaction,
@@ -168,7 +192,6 @@ def send(
                 custom_account_list=custom_account_list,
             )
         else:
-
             the_data = {
                 "sequence_number": the_transaction.sequence_number,
                 "signature": the_transaction.signature,
@@ -183,8 +206,8 @@ def send(
             data = parse.urlencode(the_data).encode()
             # this will make the method "POST"
             req = request.Request(
-                "http://test_net.1.naruno.org:8000/transaction/send/",
-                data=data)
+                "http://test_net.1.naruno.org:8000/transaction/send/", data=data
+            )
             try:
                 resp = request.urlopen(req)
                 sending_result = True
