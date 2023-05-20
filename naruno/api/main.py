@@ -369,7 +369,6 @@ def block_get_page():
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
         the_server.send_block_to_other_nodes()
-
         the_consensus_trigger = (consensus_trigger if custom_consensus_trigger
                                  is None else custom_consensus_trigger)
         trigger = perpetualTimer(the_block.consensus_timer,
@@ -682,7 +681,7 @@ def handle_exception(e):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    logger.error(f"404: {e}")
+    logger.debug(f"404: {e}")
     return jsonify("404"), 404
 
 
