@@ -10,9 +10,8 @@ import os
 
 from naruno.blockchain.block.block_main import Block
 from naruno.config import TEMP_BLOCK_PATH
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import (
-    Remove_Duplicates,
-)
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 
