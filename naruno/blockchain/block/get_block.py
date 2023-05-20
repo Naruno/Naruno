@@ -35,9 +35,12 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
     highest_other_high_number = 0
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not ("db/" + file) == the_TEMP_BLOCK_PATH:
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]) #seq
-            high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3]) #val
-            other_high_number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2]) #val
+            number = int(
+                (("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1])  # seq
+            high_number = int(
+                (("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3])  # val
+            other_high_number = int(
+                (("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2])  # val
 
             # Write a code for getting the blocks with high number
             if number > highest_number:
@@ -57,12 +60,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
                         highest_the_TEMP_BLOCK_PATH = "db/" + file
                         highest_second_number = high_number
                         highest_other_high_number = other_high_number
-            
-                
-
 
     logger.debug("Highest block: " + highest_the_TEMP_BLOCK_PATH)
-
 
     result_normal = Block("non")
 
@@ -70,7 +69,6 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
         with open(the_TEMP_BLOCK_PATH, "r") as block_file:
             the_block_json = json.load(block_file)
             result_normal = Block.load_json(the_block_json)
-
 
     with open(highest_the_TEMP_BLOCK_PATH, "r") as block_file:
         the_block_json = json.load(block_file)
@@ -80,10 +78,10 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
     result_highest = Remove_Duplicates(result_highest)
 
     result_normal.validating_list = sorted(result_normal.validating_list,
-                                   key=lambda x: x.fromUser)    
+                                           key=lambda x: x.fromUser)
 
     result_highest.validating_list = sorted(result_highest.validating_list,
-                                   key=lambda x: x.fromUser)    
+                                            key=lambda x: x.fromUser)
 
     if get_normal_block:
         return result_normal
@@ -104,16 +102,12 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
         if result_highest.round_2:
             result_highest_situation += 1
 
-
         if len(result_normal.validating_list) > len(result_highest.validating_list):
 
-                return result_normal
+            return result_normal
         else:
 
-                return result_highest
+            return result_highest
 
-        
     else:
         return result_highest
-
-
