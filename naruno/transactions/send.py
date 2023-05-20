@@ -6,8 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
 from hashlib import sha256
-from urllib import parse
-from urllib import request
+from urllib import parse, request
 from urllib.request import urlopen
 
 from naruno.accounts.get_balance import GetBalance
