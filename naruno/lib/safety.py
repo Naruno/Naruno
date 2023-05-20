@@ -33,20 +33,20 @@ def safety_check(
 
         if control is not None:
             if control:
-                logger.info("NOT Safe")
+                logger.error("NOT Safe")
                 exit() if exit_on_error else None
                 return False
             else:
                 logger.info("Safe")
                 return True
         elif debug_mode:
-            logger.info(
+            logger.debug(
                 "Control check is none but passing because of debug mode")
             return None
         else:
-            logger.info("NOT Safe (Control check is None)")
+            logger.debug("NOT Safe (Control check is None)")
             exit() if exit_on_error else None
             return False
     except ImportError:
-        logger.info("Passing safety check (no pywall)")
+        logger.debug("Passing safety check (no pywall)")
         return None
