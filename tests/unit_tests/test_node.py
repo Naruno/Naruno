@@ -17,7 +17,7 @@ import unittest
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
-                                                           GetBlockshash_part)
+                                                 GetBlockshash_part)
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import (
@@ -314,7 +314,7 @@ class Test_Node(unittest.TestCase):
             "transaction_time": 1656764224,
         }
         the_transaction = Transaction.load_json(the_transaction_json)
-        the_block.validating_list = [the_transaction] 
+        the_block.validating_list = [the_transaction]
         client_1 = self.node_2.clients[1]
         client_2 = self.node_2.clients[0]
         client_2.candidate_block = None
@@ -324,7 +324,7 @@ class Test_Node(unittest.TestCase):
         client_1.candidate_block = None
         client_1.candidate_block_history = None
         client_1.candidate_block_hash = None
-        client_1.candidate_block_hash_history = None         
+        client_1.candidate_block_hash_history = None
         value_1 = {
             "action":
             "myblock",
@@ -359,16 +359,17 @@ class Test_Node(unittest.TestCase):
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
             "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
-        }             
+        }
         client_2.candidate_block = value_1
         client_2.candidate_block_hash = value_3
         client_1.candidate_block = value_1
         client_1.candidate_block_hash = value_2
         result = GetCandidateBlocks(block=the_block)
-        result.candidate_blocks[1]["transaction"][0] = result.candidate_blocks[1]["transaction"][0].dump_json()
-        self.assertEqual(result.candidate_blocks, [value_1, {'action': 'myblock', 'transaction': [the_transaction.dump_json()], 'signature': 'self', 'sequence_number': 0}])
+        result.candidate_blocks[1]["transaction"][0] = result.candidate_blocks[1]["transaction"][0].dump_json(
+        )
+        self.assertEqual(result.candidate_blocks, [value_1, {'action': 'myblock', 'transaction': [
+                         the_transaction.dump_json()], 'signature': 'self', 'sequence_number': 0}])
         self.assertEqual(result.candidate_block_hashes, [value_3])
-
 
     def test_GetCandidateBlocks_different_squance_number(self):
         self.maxDiff = None
@@ -383,7 +384,7 @@ class Test_Node(unittest.TestCase):
         client_1.candidate_block = None
         client_1.candidate_block_history = None
         client_1.candidate_block_hash = None
-        client_1.candidate_block_hash_history = None        
+        client_1.candidate_block_hash_history = None
         value_1 = {
             "action":
             "myblock",
@@ -416,7 +417,7 @@ class Test_Node(unittest.TestCase):
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
             "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
-        }                 
+        }
         value_2 = {
             "action":
             "myblock",
@@ -452,7 +453,7 @@ class Test_Node(unittest.TestCase):
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
             "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
-        }                 
+        }
         value_3 = {
             "action":
             "myblock",
@@ -464,7 +465,7 @@ class Test_Node(unittest.TestCase):
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
             "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
-        }  
+        }
         value_3_old = {
             "action":
             "myblock",
@@ -476,7 +477,7 @@ class Test_Node(unittest.TestCase):
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
             "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
-        }    
+        }
         value_3_old_1 = {
             "action":
             "myblock",
@@ -488,7 +489,7 @@ class Test_Node(unittest.TestCase):
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
             "MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk=",
-        }                         
+        }
         client_2.candidate_block = value_1
         client_2.candidate_block_history = [value_1_old, value_1_old_1]
         client_2.candidate_block_hash = value_3
@@ -499,12 +500,14 @@ class Test_Node(unittest.TestCase):
         client_1.candidate_block_hash_history = [value_2_old, value_2_old_1]
         result = GetCandidateBlocks(block=the_block)
         print(result.candidate_blocks)
-        self.assertEqual(result.candidate_blocks, [value_1_old, {'action': 'myblock', 'transaction': [], 'signature': 'self', 'sequence_number': 0}])
+        self.assertEqual(result.candidate_blocks, [value_1_old, {
+                         'action': 'myblock', 'transaction': [], 'signature': 'self', 'sequence_number': 0}])
         self.assertEqual(result.candidate_block_hashes, [value_3_old])
 
         the_block.sequence_number = 1
         result = GetCandidateBlocks(block=the_block)
-        self.assertEqual(result.candidate_blocks, [value_1_old_1, {'action': 'myblock', 'transaction': [], 'signature': 'self', 'sequence_number': 1}])
+        self.assertEqual(result.candidate_blocks, [value_1_old_1, {
+                         'action': 'myblock', 'transaction': [], 'signature': 'self', 'sequence_number': 1}])
         self.assertEqual(result.candidate_block_hashes, [value_3_old_1])
 
     def test_send_data_all(self):
@@ -983,8 +986,7 @@ class Test_Node(unittest.TestCase):
             "127.0.0.1",
             10079,
             test=True,
-            custom_id=
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
+            custom_id="MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
         )
         temp_server.start()
         self.node_0.connect("127.0.0.1", 10079)
@@ -1303,12 +1305,11 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(
             Unl.get_unl_nodes(custom_UNL_NODES_PATH=custom_UNL_NODES_PATH), {})
 
-
     def test_send_my_block_get_candidate_block_multiple(self):
         self.node_1.clients[0].candidate_block = None
         self.node_1.clients[0].candidate_block_history = []
         self.node_2.clients[0].candidate_block = None
-        self.node_2.clients[0].candidate_block_history = []        
+        self.node_2.clients[0].candidate_block_history = []
         self.maxDiff = None
         CleanUp_tests()
 
@@ -1333,22 +1334,19 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block["sequence_number"],
                          1)
         self.assertEqual(self.node_2.clients[0].candidate_block["sequence_number"],
-                         1)                      
+                         1)
         self.assertNotEqual(self.node_1.clients[0].candidate_block_history,
-                         [])
+                            [])
         self.assertEqual(len(self.node_1.clients[0].candidate_block_history),
                          1)
         self.assertEqual(self.node_1.clients[0].candidate_block_history[0]["sequence_number"],
-                         0)                                              
+                         0)
         self.assertNotEqual(self.node_2.clients[0].candidate_block_history,
-                         [])
+                            [])
         self.assertEqual(len(self.node_2.clients[0].candidate_block_history),
-                         1)  
+                         1)
         self.assertEqual(self.node_2.clients[0].candidate_block_history[0]["sequence_number"],
-                         0)    
-
-
-
+                         0)
 
         the_block.sequence_number = 2
         self.node_0.send_my_block(the_block)
@@ -1357,24 +1355,23 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block["sequence_number"],
                          2)
         self.assertEqual(self.node_2.clients[0].candidate_block["sequence_number"],
-                         2)                      
+                         2)
         self.assertNotEqual(self.node_1.clients[0].candidate_block_history,
-                         [])
+                            [])
         self.assertEqual(len(self.node_1.clients[0].candidate_block_history),
                          2)
         self.assertEqual(self.node_1.clients[0].candidate_block_history[1]["sequence_number"],
-                         1)        
+                         1)
         self.assertEqual(self.node_1.clients[0].candidate_block_history[0]["sequence_number"],
-                            0)                                                                  
+                         0)
         self.assertNotEqual(self.node_2.clients[0].candidate_block_history,
-                         [])
+                            [])
         self.assertEqual(len(self.node_2.clients[0].candidate_block_history),
-                         2)  
+                         2)
         self.assertEqual(self.node_2.clients[0].candidate_block_history[1]["sequence_number"],
-                         1)  
+                         1)
         self.assertEqual(self.node_2.clients[0].candidate_block_history[0]["sequence_number"],
-                            0)                                    
-
+                         0)
 
         the_block.sequence_number = 3
         self.node_0.send_my_block(the_block)
@@ -1386,7 +1383,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_1.clients[0].candidate_block_history),
                          4)
         self.assertEqual(len(self.node_2.clients[0].candidate_block_history),
-                         4) 
+                         4)
         the_block.sequence_number = 5
         self.node_0.send_my_block(the_block)
         time.sleep(2)
@@ -1394,12 +1391,12 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_1.clients[0].candidate_block_history),
                          5)
         self.assertEqual(len(self.node_2.clients[0].candidate_block_history),
-                         5)  
+                         5)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_history[0]["sequence_number"],
-                            0)         
+                         0)
         self.assertEqual(self.node_2.clients[0].candidate_block_history[0]["sequence_number"],
-                            0)                                     
+                         0)
 
         the_block.sequence_number = 6
         self.node_0.send_my_block(the_block)
@@ -1407,25 +1404,21 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block["sequence_number"],
                          6)
         self.assertEqual(self.node_2.clients[0].candidate_block["sequence_number"],
-                         6)           
+                         6)
         self.assertEqual(len(self.node_1.clients[0].candidate_block_history),
                          5)
         self.assertEqual(len(self.node_2.clients[0].candidate_block_history),
-                         5)  
+                         5)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_history[0]["sequence_number"],
-                            1)         
+                         1)
         self.assertEqual(self.node_2.clients[0].candidate_block_history[0]["sequence_number"],
-                            1)  
-
+                         1)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_history[4]["sequence_number"],
-                            5)  
+                         5)
         self.assertEqual(self.node_2.clients[0].candidate_block_history[4]["sequence_number"],
-                            5)  
-
-
-
+                         5)
 
         the_block.sequence_number = 7
         self.node_0.send_my_block(the_block)
@@ -1433,22 +1426,21 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block["sequence_number"],
                          7)
         self.assertEqual(self.node_2.clients[0].candidate_block["sequence_number"],
-                         7)           
+                         7)
         self.assertEqual(len(self.node_1.clients[0].candidate_block_history),
                          5)
         self.assertEqual(len(self.node_2.clients[0].candidate_block_history),
-                         5)  
+                         5)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_history[0]["sequence_number"],
-                            2)         
+                         2)
         self.assertEqual(self.node_2.clients[0].candidate_block_history[0]["sequence_number"],
-                            2)  
-
+                         2)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_history[4]["sequence_number"],
-                            6)  
+                         6)
         self.assertEqual(self.node_2.clients[0].candidate_block_history[4]["sequence_number"],
-                            6)
+                         6)
 
         CleanUp_tests()
 
@@ -1456,7 +1448,7 @@ class Test_Node(unittest.TestCase):
         self.node_1.clients[0].candidate_block_hash = None
         self.node_1.clients[0].candidate_block_hash_history = []
         self.node_2.clients[0].candidate_block_hash = None
-        self.node_2.clients[0].candidate_block_hash_history = []        
+        self.node_2.clients[0].candidate_block_hash_history = []
         self.maxDiff = None
         CleanUp_tests()
 
@@ -1482,22 +1474,19 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block_hash["sequence_number"],
                          1)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash["sequence_number"],
-                         1)                      
+                         1)
         self.assertNotEqual(self.node_1.clients[0].candidate_block_hash_history,
-                         [])
+                            [])
         self.assertEqual(len(self.node_1.clients[0].candidate_block_hash_history),
                          1)
         self.assertEqual(self.node_1.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                         0)                                              
+                         0)
         self.assertNotEqual(self.node_2.clients[0].candidate_block_hash_history,
-                         [])
+                            [])
         self.assertEqual(len(self.node_2.clients[0].candidate_block_hash_history),
-                         1)  
+                         1)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                         0)    
-
-
-
+                         0)
 
         the_block.sequence_number = 2
         self.node_0.send_my_block_hash(the_block)
@@ -1506,24 +1495,23 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block_hash["sequence_number"],
                          2)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash["sequence_number"],
-                         2)                      
+                         2)
         self.assertNotEqual(self.node_1.clients[0].candidate_block_hash_history,
-                         [])
+                            [])
         self.assertEqual(len(self.node_1.clients[0].candidate_block_hash_history),
                          2)
         self.assertEqual(self.node_1.clients[0].candidate_block_hash_history[1]["sequence_number"],
-                         1)        
+                         1)
         self.assertEqual(self.node_1.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                            0)                                                                  
+                         0)
         self.assertNotEqual(self.node_2.clients[0].candidate_block_hash_history,
-                         [])
+                            [])
         self.assertEqual(len(self.node_2.clients[0].candidate_block_hash_history),
-                         2)  
+                         2)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash_history[1]["sequence_number"],
-                         1)  
+                         1)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                            0)                                    
-
+                         0)
 
         the_block.sequence_number = 3
         self.node_0.send_my_block_hash(the_block)
@@ -1535,7 +1523,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_1.clients[0].candidate_block_hash_history),
                          4)
         self.assertEqual(len(self.node_2.clients[0].candidate_block_hash_history),
-                         4) 
+                         4)
         the_block.sequence_number = 5
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
@@ -1543,12 +1531,12 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_1.clients[0].candidate_block_hash_history),
                          5)
         self.assertEqual(len(self.node_2.clients[0].candidate_block_hash_history),
-                         5)  
+                         5)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                            0)         
+                         0)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                            0)                                     
+                         0)
 
         the_block.sequence_number = 6
         self.node_0.send_my_block_hash(the_block)
@@ -1556,25 +1544,21 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block_hash["sequence_number"],
                          6)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash["sequence_number"],
-                         6)           
+                         6)
         self.assertEqual(len(self.node_1.clients[0].candidate_block_hash_history),
                          5)
         self.assertEqual(len(self.node_2.clients[0].candidate_block_hash_history),
-                         5)  
+                         5)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                            1)         
+                         1)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                            1)  
-
+                         1)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_hash_history[4]["sequence_number"],
-                            5)  
+                         5)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash_history[4]["sequence_number"],
-                            5)  
-
-
-
+                         5)
 
         the_block.sequence_number = 7
         self.node_0.send_my_block_hash(the_block)
@@ -1582,39 +1566,37 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(self.node_1.clients[0].candidate_block_hash["sequence_number"],
                          7)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash["sequence_number"],
-                         7)           
+                         7)
         self.assertEqual(len(self.node_1.clients[0].candidate_block_hash_history),
                          5)
         self.assertEqual(len(self.node_2.clients[0].candidate_block_hash_history),
-                         5)  
+                         5)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                            2)         
+                         2)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash_history[0]["sequence_number"],
-                            2)  
-
+                         2)
 
         self.assertEqual(self.node_1.clients[0].candidate_block_hash_history[4]["sequence_number"],
-                            6)  
+                         6)
         self.assertEqual(self.node_2.clients[0].candidate_block_hash_history[4]["sequence_number"],
-                            6)
+                         6)
 
         CleanUp_tests()
-
 
     def test_send_my_block_get_candidate_block_multiple_with_function_try(self):
         self.node_1.clients[0].candidate_block = None
         self.node_1.clients[0].candidate_block_history = []
         self.node_1.clients[1].candidate_block = None
-        self.node_1.clients[1].candidate_block_history = []  
+        self.node_1.clients[1].candidate_block_history = []
         self.node_2.clients[0].candidate_block = None
         self.node_2.clients[0].candidate_block_history = []
         self.node_2.clients[1].candidate_block = None
-        self.node_2.clients[1].candidate_block_history = []  
+        self.node_2.clients[1].candidate_block_history = []
         self.node_0.clients[0].candidate_block = None
         self.node_0.clients[0].candidate_block_history = []
         self.node_0.clients[1].candidate_block = None
-        self.node_0.clients[1].candidate_block_history = []  
+        self.node_0.clients[1].candidate_block_history = []
 
         self.maxDiff = None
         CleanUp_tests()
@@ -1624,24 +1606,15 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block(the_block)
         time.sleep(2)
 
-
-
         the_block.sequence_number = 1
         self.node_1.send_my_block(the_block)
         self.node_0.send_my_block(the_block)
         time.sleep(2)
 
-    
-
-
-
         the_block.sequence_number = 2
         self.node_1.send_my_block(the_block)
         self.node_0.send_my_block(the_block)
         time.sleep(2)
-
-                               
-
 
         the_block.sequence_number = 3
         self.node_1.send_my_block(the_block)
@@ -1653,43 +1626,40 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block(the_block)
         time.sleep(2)
 
-
         the_block.sequence_number = 5
         self.node_1.send_my_block(the_block)
         self.node_0.send_my_block(the_block)
         time.sleep(2)
-                                
 
         the_block.sequence_number = 6
         self.node_1.send_my_block(the_block)
         self.node_0.send_my_block(the_block)
         time.sleep(2)
-
-
 
         the_block.sequence_number = 7
         self.node_1.send_my_block(the_block)
         self.node_0.send_my_block(the_block)
         time.sleep(2)
 
-
         nodes = [self.node_2.clients[0], self.node_2.clients[1]]
 
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
 
         the_block.sequence_number = 2
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
 
-
         the_block.sequence_number = 1
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 1)
 
-
         the_block.sequence_number = 6
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
 
         CleanUp_tests()
@@ -1698,15 +1668,15 @@ class Test_Node(unittest.TestCase):
         self.node_1.clients[0].candidate_block_hash = None
         self.node_1.clients[0].candidate_block_hash_history = []
         self.node_1.clients[1].candidate_block_hash = None
-        self.node_1.clients[1].candidate_block_hash_history = []  
+        self.node_1.clients[1].candidate_block_hash_history = []
         self.node_2.clients[0].candidate_block_hash = None
         self.node_2.clients[0].candidate_block_hash_history = []
         self.node_2.clients[1].candidate_block_hash = None
-        self.node_2.clients[1].candidate_block_hash_history = []  
+        self.node_2.clients[1].candidate_block_hash_history = []
         self.node_0.clients[0].candidate_block_hash = None
         self.node_0.clients[0].candidate_block_hash_history = []
         self.node_0.clients[1].candidate_block_hash = None
-        self.node_0.clients[1].candidate_block_hash_history = []  
+        self.node_0.clients[1].candidate_block_hash_history = []
 
         self.maxDiff = None
         CleanUp_tests()
@@ -1717,24 +1687,15 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
-
-
         the_block.sequence_number = 1
         self.node_1.send_my_block_hash(the_block)
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
-    
-
-
-
         the_block.sequence_number = 2
         self.node_1.send_my_block_hash(the_block)
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
-
-                               
-
 
         the_block.sequence_number = 3
         self.node_1.send_my_block_hash(the_block)
@@ -1746,43 +1707,40 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
-
         the_block.sequence_number = 5
         self.node_1.send_my_block_hash(the_block)
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
-                                
 
         the_block.sequence_number = 6
         self.node_1.send_my_block_hash(the_block)
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
-
-
 
         the_block.sequence_number = 7
         self.node_1.send_my_block_hash(the_block)
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
-
         nodes = [self.node_2.clients[0], self.node_2.clients[1]]
 
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_block_hashes), 3)
 
         the_block.sequence_number = 2
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_block_hashes), 3)
 
-
         the_block.sequence_number = 1
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_block_hashes), 1)
 
-
         the_block.sequence_number = 6
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_block_hashes), 3)
 
         CleanUp_tests()
@@ -1791,27 +1749,28 @@ class Test_Node(unittest.TestCase):
         self.node_1.clients[0].candidate_block = None
         self.node_1.clients[0].candidate_block_history = []
         self.node_1.clients[1].candidate_block = None
-        self.node_1.clients[1].candidate_block_history = []  
+        self.node_1.clients[1].candidate_block_history = []
         self.node_2.clients[0].candidate_block = None
         self.node_2.clients[0].candidate_block_history = []
         self.node_2.clients[1].candidate_block = None
-        self.node_2.clients[1].candidate_block_history = []  
+        self.node_2.clients[1].candidate_block_history = []
         self.node_0.clients[0].candidate_block = None
         self.node_0.clients[0].candidate_block_history = []
         self.node_0.clients[1].candidate_block = None
-        self.node_0.clients[1].candidate_block_history = []  
+        self.node_0.clients[1].candidate_block_history = []
 
         self.maxDiff = None
         CleanUp_tests()
 
         the_block = Block("onuratakanulusoy")
         nodes = [self.node_2.clients[0], self.node_2.clients[1]]
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 1)
 
-
         the_block.sequence_number = 6
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 1)
 
         CleanUp_tests()
@@ -1821,8 +1780,7 @@ class Test_Node(unittest.TestCase):
         self.node_2.clients[0].candidate_block_hash = None
         self.node_2.clients[0].candidate_block_hash_history = []
         self.node_2.clients[1].candidate_block_hash = None
-        self.node_2.clients[1].candidate_block_hash_history = []  
-
+        self.node_2.clients[1].candidate_block_hash_history = []
 
         self.maxDiff = None
         CleanUp_tests()
@@ -1830,15 +1788,17 @@ class Test_Node(unittest.TestCase):
         the_block = Block("onuratakanulusoy")
         the_block.hash = "onurata"
         nodes = [self.node_2.clients[0], self.node_2.clients[1]]
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_block_hashes), 1)
 
-
         the_block.sequence_number = 6
-        candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes, block=the_block)
+        candidate_blocks = GetCandidateBlocks(
+            custom_nodes_list=nodes, block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_block_hashes), 1)
 
         CleanUp_tests()
+
 
 backup = sys.argv
 sys.argv = [sys.argv[0]]

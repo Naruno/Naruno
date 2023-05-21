@@ -14,7 +14,7 @@ from hashlib import sha256
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.encryption import decrypt
 from naruno.lib.settings_system import (change_wallet, save_settings,
-                                                  the_settings)
+                                        the_settings)
 from naruno.wallet.delete_current_wallet import delete_current_wallet
 from naruno.wallet.ellipticcurve.privateKey import PrivateKey
 from naruno.wallet.ellipticcurve.publicKey import PublicKey
@@ -24,7 +24,7 @@ from naruno.wallet.save_wallet_list import save_wallet_list
 from naruno.wallet.wallet_create import wallet_create
 from naruno.wallet.wallet_delete import wallet_delete
 from naruno.wallet.wallet_import import (Address, wallet_import,
-                                                   wallet_import_all)
+                                         wallet_import_all)
 from naruno.wallet.wallet_selector import wallet_selector
 
 
