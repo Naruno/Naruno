@@ -1,4 +1,6 @@
 #prof files
+naruno/prof/*
+prof/*
 *.prof
 
 #backups

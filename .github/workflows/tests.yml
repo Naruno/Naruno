@@ -87,7 +87,7 @@ jobs:
         pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
-        pytest tests/unit_tests -v --profile
+        pytest tests/unit_tests -v --profile-svg
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
@@ -99,6 +99,11 @@ jobs:
       with:
         name: profile-report-unit-test-ubuntu-latest
         path: prof/*.prof
+    - name: Archive Profile SVG
+      uses: actions/upload-artifact@v3
+      with:
+        name: profile-svg-report-unit-test-ubuntu-latest
+        path: prof/*.svg
 
       
   unit-test-macos-latest:
@@ -130,7 +135,7 @@ jobs:
         pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
-        pytest tests/unit_tests -v --profile
+        pytest tests/unit_tests -v --profile-svg
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
@@ -140,7 +145,12 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: profile-report-unit-test-macos-latest
-        path: prof/*.prof                  
+        path: prof/*.prof    
+    - name: Archive Profile SVG
+      uses: actions/upload-artifact@v3
+      with:
+        name: profile-svg-report-unit-test-macos-latest
+        path: prof/*.svg                      
   unit-test-windows-latest:
     needs: lint_with_flake8
 
@@ -170,7 +180,7 @@ jobs:
         pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
-        pytest tests/unit_tests -v --profile
+        pytest tests/unit_tests -v --profile-svg
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
@@ -182,6 +192,12 @@ jobs:
       with:
         name: profile-report-unit-test-windows-latest
         path: prof/*.prof      
+
+    - name: Archive Profile SVG
+      uses: actions/upload-artifact@v3
+      with:
+        name: profile-svg-report-unit-test-windows-latest
+        path: prof/*.svg   
 
   functional-test-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
