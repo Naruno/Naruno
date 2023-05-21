@@ -87,20 +87,171 @@ jobs:
         pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
-        pytest tests/unit_tests/test_accounts.py -v --profile-svg
+        pytest tests/unit_tests -v --profile
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
         name: log-report-unit-test-ubuntu-latest
         path: naruno/logs/*.log      
 
-    - name: ITEST
-      run: |
-        ls prof/
-
     - name: Archive Profile
       uses: actions/upload-artifact@v3
       with:
         name: profile-report-unit-test-ubuntu-latest
-        path: prof/combined.svg
+        path: prof/*
       
+  unit-test-macos-latest:
+    needs: lint_with_flake8
+
+    runs-on: macos-latest
+    environment: UNIT Tests
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('requirements/api.txt') }}-${{ hashFiles('requirements/gui.txt') }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+        pip install -r requirements/api.txt
+        pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt
+    - name: Test with pytest
+      run: |
+        pytest tests/unit_tests -v --profile
+    - name: Archive logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-unit-test-macos-latest
+        path: naruno/logs/*.log 
+    - name: Archive Profile
+      uses: actions/upload-artifact@v3
+      with:
+        name: profile-report-unit-test-macos-latest
+        path: prof/*                   
+  unit-test-windows-latest:
+    needs: lint_with_flake8
+
+    runs-on: windows-latest
+    environment: UNIT Tests
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('requirements/api.txt') }}-${{ hashFiles('requirements/gui.txt') }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+        pip install -r requirements/api.txt
+        pip install -r requirements/gui.txt
+        pip install -r requirements/tests.txt
+    - name: Test with pytest
+      run: |
+        pytest tests/unit_tests -v --profile
+    - name: Archive logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: log-report-unit-test-windows-latest
+        path: naruno/logs/*.log           
+
+    - name: Archive Profile
+      uses: actions/upload-artifact@v3
+      with:
+        name: profile-report-unit-test-windows-latest
+        path: prof/*    
+ 
+
+  functional-test-local-ubuntu-latest:
+    needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
+    runs-on: ubuntu-latest
+    environment: FUNCTIONAL Tests
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/functional_tests/local/test_naruno_local.py') }}
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements/tests.txt
+    - name: Test with pytest
+      run: |      
+        cd ..
+        pytest Naruno/tests/functional_tests/local/test_naruno_local.py
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+
+  functional-test-docker-ubuntu-latest:
+    needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
+    runs-on: ubuntu-latest
+    environment: FUNCTIONAL Tests
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/functional_tests/docker/test_naruno_docker.py') }}
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements/tests.txt
+    - name: Test with pytest
+      run: |        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/functional_tests/docker/test_naruno_docker.py
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        curl http://localhost:8102/status
+    - name: Copy out file from volume
+      run: |
+        mkdir -p /home/runner/work/Naruno/Naruno-0/naruno
+        mkdir -p /home/runner/work/Naruno/Naruno-1/naruno
+        mkdir -p /home/runner/work/Naruno/Naruno-2/naruno
+        sudo cp -r /var/lib/docker/volumes/naruno-logs/_data/  /home/runner/work/Naruno/Naruno-0/naruno/logs
+        sudo cp -r /var/lib/docker/volumes/naruno-logs-0/_data/  /home/runner/work/Naruno/Naruno-1/naruno/logs
+        sudo cp -r /var/lib/docker/volumes/naruno-logs-1/_data/  /home/runner/work/Naruno/Naruno-2/naruno/logs
+
+
