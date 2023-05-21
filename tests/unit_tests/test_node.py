@@ -1024,8 +1024,7 @@ class Test_Node(unittest.TestCase):
             "127.0.0.1",
             10079,
             test=True,
-            custom_id=
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
+            custom_id="MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
         )
         temp_server.start()
         self.node_0.connect("127.0.0.1", 10079)
@@ -1844,7 +1843,7 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
     def test_send_my_block_get_candidate_block_hash_multiple_with_function_try_non(
-        self, ):
+            self, ):
         self.node_2.clients[0].candidate_block_hash = None
         self.node_2.clients[0].candidate_block_hash_history = []
         self.node_2.clients[1].candidate_block_hash = None
