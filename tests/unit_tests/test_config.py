@@ -10,8 +10,8 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
-from naruno.lib.config_system import get_config
 from naruno.lib.clean_up import CleanUp_tests
+from naruno.lib.config_system import get_config
 
 
 class Test_Config(unittest.TestCase):

@@ -16,22 +16,16 @@ import unittest
 
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import GetBlockshash, GetBlockshash_part
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
+                                                 GetBlockshash_part)
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.config import (
-    CONNECTED_NODES_PATH,
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH,
-    LOADING_BLOCKSHASH_PATH,
-    PENDING_TRANSACTIONS_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH,
-    TEMP_BLOCKSHASH_PATH,
-    UNL_NODES_PATH,
-)
+from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
+                           LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
+                           LOADING_BLOCKSHASH_PATH, PENDING_TRANSACTIONS_PATH,
+                           TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
+                           TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH,
+                           UNL_NODES_PATH)
 from naruno.consensus.finished.finished_main import finished_main
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
