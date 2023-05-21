@@ -2696,4 +2696,7 @@ class Test_Transactions(unittest.TestCase):
         DeletePending(transaction_frem_a_1_q_3)
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

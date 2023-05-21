@@ -960,4 +960,7 @@ class Test_Lib(unittest.TestCase):
         self.assertEqual("tedsadast" in content, True)
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

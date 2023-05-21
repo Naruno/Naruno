@@ -1840,4 +1840,7 @@ class Test_Node(unittest.TestCase):
 
         CleanUp_tests()
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

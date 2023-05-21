@@ -34,4 +34,7 @@ class Test_Config(unittest.TestCase):
         self.assertEqual(finded_true_folder, True, "A problem on the config.")
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

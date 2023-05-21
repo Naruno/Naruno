@@ -87,13 +87,20 @@ jobs:
         pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
-        pytest tests/unit_tests -v
+        pytest tests/unit_tests -v --profile
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
         name: log-report-unit-test-ubuntu-latest
         path: naruno/logs/*.log      
-  
+
+    - name: Archive Profile
+      uses: actions/upload-artifact@v3
+      with:
+        name: profile-report-unit-test-ubuntu-latest
+        path: prof/*.prof
+
+      
   unit-test-macos-latest:
     needs: lint_with_flake8
 
@@ -123,12 +130,17 @@ jobs:
         pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
-        pytest tests/unit_tests -v
+        pytest tests/unit_tests -v --profile
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
         name: log-report-unit-test-macos-latest
-        path: naruno/logs/*.log           
+        path: naruno/logs/*.log 
+    - name: Archive Profile
+      uses: actions/upload-artifact@v3
+      with:
+        name: profile-report-unit-test-macos-latest
+        path: prof/*.prof                  
   unit-test-windows-latest:
     needs: lint_with_flake8
 
@@ -158,12 +170,18 @@ jobs:
         pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
-        pytest tests/unit_tests -v
+        pytest tests/unit_tests -v --profile
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
         name: log-report-unit-test-windows-latest
         path: naruno/logs/*.log           
+
+    - name: Archive Profile
+      uses: actions/upload-artifact@v3
+      with:
+        name: profile-report-unit-test-windows-latest
+        path: prof/*.prof      
 
   functional-test-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]

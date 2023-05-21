@@ -1,3 +1,6 @@
+#prof files
+*.prof
+
 #backups
 naruno/backups/*
 

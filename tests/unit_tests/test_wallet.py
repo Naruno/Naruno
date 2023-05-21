@@ -328,4 +328,7 @@ class Test_Wallet(unittest.TestCase):
         self.assertEqual(result, [w_1, w_2])
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup
