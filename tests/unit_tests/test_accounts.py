@@ -301,4 +301,7 @@ class Test_Accounts(unittest.TestCase):
         self.assertEqual(GetCommander(), backup_commanders)
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

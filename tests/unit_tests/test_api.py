@@ -1136,4 +1136,7 @@ class Test_API(unittest.TestCase):
         self.assertEqual(the_balance_int, 1)
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

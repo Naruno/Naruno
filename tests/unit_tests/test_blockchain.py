@@ -1334,4 +1334,7 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

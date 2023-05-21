@@ -6,11 +6,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import unittest
 
-from naruno.lib.config_system import get_config
 from naruno.lib.clean_up import CleanUp_tests
+from naruno.lib.config_system import get_config
 
 
 class Test_Config(unittest.TestCase):
@@ -34,4 +35,7 @@ class Test_Config(unittest.TestCase):
         self.assertEqual(finded_true_folder, True, "A problem on the config.")
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

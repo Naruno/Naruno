@@ -3214,4 +3214,7 @@ class Test_Consensus(unittest.TestCase):
         )
 
 
+backup = sys.argv
+sys.argv = [sys.argv[0]]
 unittest.main(exit=False)
+sys.argv = backup

@@ -17,6 +17,7 @@ setup(
     install_requires="""
 requests==2.28.2
 pytest==7.1.2
+pytest_profiling==1.7.0
 speed_calculator==0.4.1
 naruno_api==0.57.3
 """,
