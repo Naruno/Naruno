@@ -94,9 +94,13 @@ jobs:
         name: log-report-unit-test-ubuntu-latest
         path: naruno/logs/*.log      
 
+    - name: ITEST
+      run: |
+        ls prof/
+
     - name: Archive Profile
       uses: actions/upload-artifact@v3
       with:
         name: profile-report-unit-test-ubuntu-latest
-        path: prof/*
+        path: prof/combined.svg
       
