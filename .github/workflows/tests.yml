@@ -98,13 +98,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: profile-report-unit-test-ubuntu-latest
-        path: prof/*.prof
-    - name: Archive Profile SVG
-      uses: actions/upload-artifact@v3
-      with:
-        name: profile-svg-report-unit-test-ubuntu-latest
-        path: prof/*.svg
-
+        path: prof/*
       
   unit-test-macos-latest:
     needs: lint_with_flake8
@@ -145,12 +139,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: profile-report-unit-test-macos-latest
-        path: prof/*.prof    
-    - name: Archive Profile SVG
-      uses: actions/upload-artifact@v3
-      with:
-        name: profile-svg-report-unit-test-macos-latest
-        path: prof/*.svg                      
+        path: prof/*                   
   unit-test-windows-latest:
     needs: lint_with_flake8
 
@@ -191,13 +180,8 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: profile-report-unit-test-windows-latest
-        path: prof/*.prof      
-
-    - name: Archive Profile SVG
-      uses: actions/upload-artifact@v3
-      with:
-        name: profile-svg-report-unit-test-windows-latest
-        path: prof/*.svg   
+        path: prof/*    
+ 
 
   functional-test-local-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
