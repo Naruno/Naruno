@@ -15,7 +15,6 @@ from naruno.lib.config_system import get_config
 
 
 class Test_Config(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         CleanUp_tests()
