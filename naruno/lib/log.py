@@ -15,7 +15,7 @@ from naruno.lib.settings_system import the_settings
 global_logger = []
 
 format = (
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
+    "%(asctime)s - %(levelname)s - %(name)s - %(message)s (%(filename)s:%(lineno)d)"
 )
 
 
