@@ -383,7 +383,7 @@ jobs:
           buildozer --profile api android debug
 
       - name: Zip
-        run: sudo zip -r api_android_naruno ${{ steps.buildozer.outputs.filename }} 
+        run: sudo zip -r api_android_naruno bin 
       
 
       - name: Upload artifacts
