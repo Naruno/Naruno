@@ -12,7 +12,6 @@ from kivymd_extensions.sweetalert import SweetAlert
 
 import naruno.gui.the_naruno_gui_app
 
-
 popups = []
 
 
