@@ -367,6 +367,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - uses: actions/cache@v2
+        with:
+          path: .buildozer
+          key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"api_android"          
       - uses: actions/checkout@v2
       - name: Setup environment
         run: |
@@ -413,6 +417,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - uses: actions/cache@v2
+        with:
+          path: .buildozer
+          key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"gui_android"              
       - uses: actions/checkout@v2
       - name: Setup environment
         run: |
