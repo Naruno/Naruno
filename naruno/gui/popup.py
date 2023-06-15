@@ -13,6 +13,8 @@ from kivymd_extensions.sweetalert import SweetAlert
 import naruno.gui.the_naruno_gui_app
 
 
+popups = []
+
 class popup:
 
     def __init__(
@@ -31,6 +33,13 @@ class popup:
         :param target: Function to be called when the OK button is pressed
         :param content: Content of the popup
         """
+
+        #check the popups list and if there is a popup with the same just show and return it
+        for i in popups:
+            if i.title == title and i.text == text and i.image == image and i.height_image == height_image and i.thirdly_title == thirdly_title and i.target == target and i.inputs == inputs and i.type == type:
+                i.show()
+                return i
+
         self.title = title
         self.text = text
         self.image = image
@@ -47,6 +56,10 @@ class popup:
         self.create()
         if self.type == "custom":
             self.show()
+
+        # Create a sha256
+
+        popups.append(self)
 
     def show(self):
         self.dialog.open()
