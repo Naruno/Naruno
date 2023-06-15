@@ -42,7 +42,7 @@ class popup:
                     and popup.thirdly_title == thirdly_title
                     and popup.target == target and popup.inputs == inputs
                     and popup.type == type):
-                self = popup
+                return popup
                 already = True
                 print("already")
         if not already:
