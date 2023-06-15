@@ -16,6 +16,7 @@ the_popups = []
 
 
 class popup:
+
     def __init__(
         self,
         title=None,
@@ -35,16 +36,12 @@ class popup:
         already = False
         # check the the_popups list and if there is an same popup, just show it
         for popup in the_popups:
-            if (
-                popup.title == title
-                and popup.text == text
-                and popup.image == image
-                and popup.height_image == height_image
-                and popup.thirdly_title == thirdly_title
-                and popup.target == target
-                and popup.inputs == inputs
-                and popup.type == type
-            ):
+            if (popup.title == title and popup.text == text
+                    and popup.image == image
+                    and popup.height_image == height_image
+                    and popup.thirdly_title == thirdly_title
+                    and popup.target == target and popup.inputs == inputs
+                    and popup.type == type):
                 self = popup
                 already = True
                 print("already")
@@ -111,7 +108,8 @@ class popup:
                             font_size="18sp",
                             on_press=self.dismiss,
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
+                                FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -119,7 +117,8 @@ class popup:
                             text="OK",
                             font_size="18sp",
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
+                                FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_press=self.director,
@@ -131,13 +130,12 @@ class popup:
                     content = i[0]
                     is_pass = i[1]
                     self.dialog.content_cls.add_widget(
-                        MDTextField(hint_text=content, mode="fill", password=is_pass)
-                    )
+                        MDTextField(hint_text=content,
+                                    mode="fill",
+                                    password=is_pass))
             elif self.type != "question":
                 the_type = None if self.type == "qr" else self.type
-                self.dialog = SweetAlert(
-                    auto_dismiss=False,
-                )
+                self.dialog = SweetAlert(auto_dismiss=False, )
                 self.dialog.fire(
                     self.title,
                     self.text,
@@ -147,9 +145,7 @@ class popup:
                     type=the_type,
                 )
             else:
-                self.dialog = SweetAlert(
-                    auto_dismiss=False,
-                )
+                self.dialog = SweetAlert(auto_dismiss=False, )
                 self.dialog.fire(
                     title=self.title,
                     text=self.text,
@@ -160,7 +156,8 @@ class popup:
                             font_size="18sp",
                             on_press=self.dismiss,
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
+                                FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -168,7 +165,8 @@ class popup:
                             text="YES",
                             font_size="18sp",
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
+                                FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_press=self.director_without_input,
