@@ -64,6 +64,8 @@ class popup:
 
         for obj in self.dialog.content_cls.children:
             if isinstance(obj, MDTextField):
+                print(obj.hint_text, obj.text)
+                print(type(obj.text))
                 self.input_results[obj.hint_text] = obj.text
         print("Target")
         self.target()
@@ -115,7 +117,8 @@ class popup:
                     content = i[0]
                     is_pass = i[1]
                     self.dialog.content_cls.add_widget(
-                        MDTextField(hint_text=content,
+                        MDTextField(id=content,
+                                    hint_text=content,
                                     mode="fill",
                                     password=is_pass))
             elif self.type != "question":
