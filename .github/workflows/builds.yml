@@ -363,6 +363,8 @@ jobs:
       matrix:
         python-version: [3.8]     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2      
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -371,7 +373,6 @@ jobs:
         with:
           path: .buildozer
           key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"api_android"          
-      - uses: actions/checkout@v2
       - name: Setup environment
         run: |
           pip install buildozer
@@ -413,6 +414,8 @@ jobs:
       matrix:
         python-version: [3.8]     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2      
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -421,7 +424,6 @@ jobs:
         with:
           path: .buildozer
           key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"gui_android"              
-      - uses: actions/checkout@v2
       - name: Setup environment
         run: |
           pip install buildozer
