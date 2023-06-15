@@ -17,7 +17,6 @@ popups = []
 
 
 class popup:
-
     def __init__(
         self,
         title=None,
@@ -37,7 +36,16 @@ class popup:
 
         # check the popups list and if there is a popup with the same just show and return it
         for i in popups:
-            if i.title == title and i.text == text and i.image == image and i.height_image == height_image and i.thirdly_title == thirdly_title and i.target == target and i.inputs == inputs and i.type == type:
+            if (
+                i.title == title
+                and i.text == text
+                and i.image == image
+                and i.height_image == height_image
+                and i.thirdly_title == thirdly_title
+                and i.target == target
+                and i.inputs == inputs
+                and i.type == type
+            ):
                 i.show()
                 return i
 
@@ -106,8 +114,7 @@ class popup:
                             font_size="18sp",
                             on_press=self.dismiss,
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
-                                FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -115,8 +122,7 @@ class popup:
                             text="OK",
                             font_size="18sp",
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
-                                FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_press=self.director,
@@ -127,9 +133,9 @@ class popup:
                 for i in self.inputs:
                     content = i[0]
                     is_pass = False  # i[1] Because its a bug in the library
-                    a_input = MDTextField(hint_text=content,
-                                          mode="fill",
-                                          password=is_pass)
+                    a_input = MDTextField(
+                        hint_text=content, mode="fill", password=is_pass
+                    )
                     self.input_list.append(a_input)
                     self.dialog.content_cls.add_widget(a_input)
             elif self.type != "question":
@@ -155,8 +161,7 @@ class popup:
                             font_size="18sp",
                             on_press=self.dismiss,
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
-                                FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -164,8 +169,7 @@ class popup:
                             text="YES",
                             font_size="18sp",
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
-                                FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_press=self.director_without_input,
