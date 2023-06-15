@@ -112,7 +112,7 @@ class popup:
 
                 for i in self.inputs:
                     content = i[0]
-                    is_pass = False #i[1] Because its a bug in the library
+                    is_pass = False  # i[1] Because its a bug in the library
                     a_input = MDTextField(hint_text=content,
                                           mode="fill",
                                           password=is_pass)
