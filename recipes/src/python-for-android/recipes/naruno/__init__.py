@@ -11,20 +11,9 @@ import os
 import shutil
 import time
 import urllib.request
-from os import curdir
-from os import environ
-from os import listdir
-from os import mkdir
-from os import unlink
-from os import walk
-from os.path import basename
-from os.path import dirname
-from os.path import exists
-from os.path import isdir
-from os.path import isfile
-from os.path import join
-from os.path import realpath
-from os.path import split
+from os import curdir, environ, listdir, mkdir, unlink, walk
+from os.path import (basename, dirname, exists, isdir, isfile, join, realpath,
+                     split)
 from re import match
 from shutil import rmtree
 from sys import stdout
@@ -33,18 +22,15 @@ from urllib.request import urlretrieve
 import sh
 from pythonforandroid.recipe import PythonRecipe
 
-
 try:
     from urlparse import urlparse
 except ImportError:
     from urllib.parse import urlparse
 
-from pythonforandroid.logger import debug, info, info_main, logger, shprint, warning
-from pythonforandroid.util import (
-    BuildInterruptingException,
-    current_directory,
-    ensure_dir,
-)
+from pythonforandroid.logger import (debug, info, info_main, logger, shprint,
+                                     warning)
+from pythonforandroid.util import (BuildInterruptingException,
+                                   current_directory, ensure_dir)
 from pythonforandroid.util import load_source as import_recipe
 
 url_opener = urllib.request.build_opener()
