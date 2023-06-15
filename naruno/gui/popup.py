@@ -117,8 +117,8 @@ class popup:
                     content = i[0]
                     is_pass = i[1]
                     a_input = MDTextField(hint_text=content,
-                                    mode="fill",
-                                    password=is_pass)
+                                          mode="fill",
+                                          password=is_pass)
                     self.input_list.append(a_input)
                     self.dialog.content_cls.add_widget(a_input)
             elif self.type != "question":
