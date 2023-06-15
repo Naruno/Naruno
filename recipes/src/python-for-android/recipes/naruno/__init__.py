@@ -32,7 +32,6 @@ from urllib.request import urlretrieve
 
 import sh
 from pythonforandroid.recipe import PythonRecipe
-from six import with_metaclass
 
 try:
     from urlparse import urlparse
@@ -89,9 +88,7 @@ class NarunoRecipe(PythonRecipe):
         debug((f"\n\n{os.getcwd()}\n{self.version}\n{target}\n\n"))
         os.system("python3 setup.py sdist")
         time.sleep(5)
-        os.system(
-            f"cp dist/naruno-{self.version}.tar.gz {backup}/{target}"
-        )
+        os.system(f"cp dist/naruno-{self.version}.tar.gz {backup}/{target}")
         os.chdir(backup)
 
 

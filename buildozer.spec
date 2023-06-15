@@ -13,6 +13,7 @@ presplash.filename = naruno/gui_lib/images/logo.png
 android.presplash_color = black
 p4a.local_recipes = recipes/src/python-for-android/recipes/
 android.api = 27
+android.accept_sdk_license = True
 
 [app@api]
 title = Naruno-API
