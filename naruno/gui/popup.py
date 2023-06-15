@@ -42,6 +42,7 @@ class popup:
         self.input_results = {}
         self.type = type
         self.dialog = None
+        self.input_list = []
 
         self.create()
         if self.type == "custom":
@@ -62,11 +63,10 @@ class popup:
     def director(self, widget):
         print("director")
 
-        for obj in self.dialog.content_cls.children:
-            if isinstance(obj, MDTextField):
-                print(obj.hint_text, obj.text)
-                print(type(obj.text))
-                self.input_results[obj.hint_text] = obj.text
+        for obj in self.input_list:
+            print(obj.hint_text, obj.text)
+            print(type(obj.text))
+            self.input_results[obj.hint_text] = obj.text
         print("Target")
         self.target()
         print("Clean")
@@ -116,10 +116,11 @@ class popup:
                 for i in self.inputs:
                     content = i[0]
                     is_pass = i[1]
-                    self.dialog.content_cls.add_widget(
-                        MDTextField(hint_text=content,
+                    a_input = MDTextField(hint_text=content,
                                     mode="fill",
-                                    password=is_pass))
+                                    password=is_pass)
+                    self.input_list.append(a_input)
+                    self.dialog.content_cls.add_widget(a_input)
             elif self.type != "question":
                 the_type = None if self.type == "qr" else self.type
                 self.dialog = SweetAlert()
