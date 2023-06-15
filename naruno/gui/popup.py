@@ -14,6 +14,7 @@ import naruno.gui.the_naruno_gui_app
 
 the_popups = []
 
+
 class popup:
 
     def __init__(
@@ -33,7 +34,7 @@ class popup:
         :param content: Content of the popup
         """
         already = False
-        #check the the_popups list and if there is an same popup, just show it
+        # check the the_popups list and if there is an same popup, just show it
         for popup in the_popups:
             if popup.title == title and popup.text == text and popup.image == image and popup.height_image == height_image and popup.thirdly_title == thirdly_title and popup.target == target and popup.inputs == inputs and popup.type == type:
                 self = popup
@@ -55,7 +56,7 @@ class popup:
             self.create()
             if self.type == "custom":
                 self.show()
-            
+
             the_popups.append(self)
 
     def show(self):
