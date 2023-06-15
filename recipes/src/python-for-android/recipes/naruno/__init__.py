@@ -82,9 +82,8 @@ class NarunoRecipe(PythonRecipe):
         (internal) Download an ``url`` to a ``target``.
         """
         backup = os.getcwd()
-        the_directory = os.path.join(
-            os.path.dirname(__file__), "..", "..", "..", "..", ".."
-        )
+        the_directory = os.path.join(os.path.dirname(__file__), "..", "..",
+                                     "..", "..", "..")
         os.chdir(the_directory)
         debug((f"\n\n{os.getcwd()}\n{self.version}\n{target}\n\n"))
         os.system("python3 setup.py sdist")
