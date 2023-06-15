@@ -361,7 +361,7 @@ jobs:
     environment: Builds   
     strategy:
       matrix:
-        python-version: [3.8]     
+        python-version: [3.8]
     steps:
       - name: Checkout
         uses: actions/checkout@v2      
@@ -371,7 +371,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - uses: actions/cache@v2
         with:
-          path: .buildozer
+          path: ${{ env.pythonLocation }}
           key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"api_android"          
       - name: Setup environment
         run: |
@@ -422,7 +422,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - uses: actions/cache@v2
         with:
-          path: .buildozer
+          path: ${{ env.pythonLocation }}
           key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"gui_android"              
       - name: Setup environment
         run: |
