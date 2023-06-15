@@ -359,25 +359,29 @@ jobs:
   build-api-android:
     runs-on: ubuntu-latest
     environment: Builds    
-    strategy:
-      matrix:
-        python-version: [3.8]    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      # used to cache dependencies with a timeout
-      - name: Get Date
-        id: get-date
-        run: |
-          echo "::set-output name=date::$(/bin/date -u "+%Y%m%d")"
-        shell: bash
-
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
+      - name: Setup python
+        uses: actions/setup-python@v2
         with:
-          command: buildozer --profile api android debug
+          python-version: 3.8
+      - uses: actions/checkout@v2
+      - name: Setup environment
+        run: |
+          pip install -e .
+          pip install Cython
+      - run: buildozer --help
+      - run: buildozer init
+      - name: SDK, NDK and p4a download
+        run: |
+          sed -i.bak "s/# android.accept_sdk_license = False/android.accept_sdk_license = True/" buildozer.spec
+          sed -i.bak "s/#p4a.branch = master/p4a.branch = develop/" buildozer.spec
+          buildozer android p4a -- --help
+      - name: Install Linux dependencies
+        run: sudo apt -y install automake
+ 
+      - name: buildozer android debug
+        run: |
+          buildozer --profile api android debug
 
       - name: Zip
         run: sudo zip -r api_android_naruno ${{ steps.buildozer.outputs.filename }} 
