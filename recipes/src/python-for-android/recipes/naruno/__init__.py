@@ -32,7 +32,7 @@ from urllib.request import urlretrieve
 
 import sh
 from pythonforandroid.recipe import PythonRecipe
-from six import with_metaclass
+
 
 try:
     from urlparse import urlparse
