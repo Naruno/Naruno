@@ -39,10 +39,12 @@ try:
 except ImportError:
     from urllib.parse import urlparse
 
-from pythonforandroid.logger import (debug, info, info_main, logger, shprint,
-                                     warning)
-from pythonforandroid.util import (BuildInterruptingException,
-                                   current_directory, ensure_dir)
+from pythonforandroid.logger import debug, info, info_main, logger, shprint, warning
+from pythonforandroid.util import (
+    BuildInterruptingException,
+    current_directory,
+    ensure_dir,
+)
 from pythonforandroid.util import load_source as import_recipe
 
 url_opener = urllib.request.build_opener()
@@ -83,15 +85,14 @@ class NarunoRecipe(PythonRecipe):
         (internal) Download an ``url`` to a ``target``.
         """
         backup = os.getcwd()
-        the_directory = os.path.join(os.path.dirname(__file__), "..", "..",
-                                     "..", "..", "..")
+        the_directory = os.path.join(
+            os.path.dirname(__file__), "..", "..", "..", "..", ".."
+        )
         os.chdir(the_directory)
         debug((f"\n\n{os.getcwd()}\n{self.version}\n{target}\n\n"))
         os.system("python3 setup.py sdist")
         time.sleep(5)
-        os.system(
-            f"cp dist/naruno-{self.version}.tar.gz {backup}/{target}"
-        )
+        os.system(f"cp dist/naruno-{self.version}.tar.gz {backup}/{target}")
         os.chdir(backup)
 
 
