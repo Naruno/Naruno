@@ -16,31 +16,31 @@ the_popups = []
 
 
 def popup(title=None,
-        text=None,
-        image=None,
-        height_image=None,
-        thirdly_title=None,
-        target=None,
-        inputs=None,
-        type="custom"):
-        for apopup in the_popups:
-            if (apopup.title == title and apopup.text == text
-                    and apopup.image == image
-                    and apopup.height_image == height_image
-                    and apopup.thirdly_title == thirdly_title
-                    and apopup.target == target and apopup.inputs == inputs
-                    and apopup.type == type):
-                return popup
-        return popup_class(
-            title=title,
-            text=text,
-            image=image,
-            height_image=height_image,
-            thirdly_title=thirdly_title,
-            target=target,
-            inputs=inputs,
-            type=type,
-        )
+          text=None,
+          image=None,
+          height_image=None,
+          thirdly_title=None,
+          target=None,
+          inputs=None,
+          type="custom"):
+    for apopup in the_popups:
+        if (apopup.title == title and apopup.text == text
+                and apopup.image == image
+                and apopup.height_image == height_image
+                and apopup.thirdly_title == thirdly_title
+                and apopup.target == target and apopup.inputs == inputs
+                and apopup.type == type):
+            return popup
+    return popup_class(
+        title=title,
+        text=text,
+        image=image,
+        height_image=height_image,
+        thirdly_title=thirdly_title,
+        target=target,
+        inputs=inputs,
+        type=type,
+    )
 
 
 class popup_class:
