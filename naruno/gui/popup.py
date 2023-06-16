@@ -104,12 +104,15 @@ class popup_class:
 
     def director(self, widget):
         print("director")
-
+        dont_do = False
         for obj in self.dialog.content_cls.children:
             if isinstance(obj, MDTextField):
                 self.input_results[obj.hint_text] = obj.text
-        print("Target")
-        self.target()
+                if obj.text = "":
+                    dont_do = True
+        if not dont_do:
+            print("Target")
+            self.target()
         print("Clean")
         self.clean()
         print("Dismiss")
