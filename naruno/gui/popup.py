@@ -26,12 +26,16 @@ def popup(
     type="custom",
 ):
     for apopup in the_popups:
-        if (apopup.title == title and apopup.text == text
-                and apopup.image == image
-                and apopup.height_image == height_image
-                and apopup.thirdly_title == thirdly_title
-                and apopup.target == target and apopup.inputs == inputs
-                and apopup.type == type):
+        if (
+            apopup.title == title
+            and apopup.text == text
+            and apopup.image == image
+            and apopup.height_image == height_image
+            and apopup.thirdly_title == thirdly_title
+            and apopup.target == target
+            and apopup.inputs == inputs
+            and apopup.type == type
+        ):
             apopup.show()
             return apopup
     return popup_class(
@@ -47,7 +51,6 @@ def popup(
 
 
 class popup_class:
-
     def __init__(
         self,
         title=None,
@@ -88,12 +91,16 @@ class popup_class:
 
     def dismiss(self, widget=None):
         for apopup in the_popups:
-            if (apopup.title == self.title and apopup.text == self.text
-                    and apopup.image == self.image
-                    and apopup.height_image == self.height_image
-                    and apopup.thirdly_title == self.thirdly_title
-                    and apopup.target == self.target
-                    and apopup.inputs == self.inputs and apopup.type == type):
+            if (
+                apopup.title == self.title
+                and apopup.text == self.text
+                and apopup.image == self.image
+                and apopup.height_image == self.height_image
+                and apopup.thirdly_title == self.thirdly_title
+                and apopup.target == self.target
+                and apopup.inputs == self.inputs
+                and apopup.type == type
+            ):
                 apopup.dialog.dismiss()
                 the_popups.remove(apopup)
         self.dialog.dismiss()
@@ -138,8 +145,7 @@ class popup_class:
                             font_size="18sp",
                             on_release=self.dismiss,
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
-                                FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -147,8 +153,7 @@ class popup_class:
                             text="OK",
                             font_size="18sp",
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
-                                FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_release=self.director,
@@ -160,12 +165,13 @@ class popup_class:
                     content = i[0]
                     is_pass = i[1]
                     self.dialog.content_cls.add_widget(
-                        MDTextField(hint_text=content,
-                                    mode="fill",
-                                    password=is_pass))
+                        MDTextField(hint_text=content, mode="fill", password=is_pass)
+                    )
             elif self.type != "question":
                 the_type = None if self.type == "qr" else self.type
-                self.dialog = SweetAlert(auto_dismiss=False, )
+                self.dialog = SweetAlert(
+                    auto_dismiss=False,
+                )
                 self.dialog.fire(
                     self.title,
                     self.text,
@@ -175,7 +181,9 @@ class popup_class:
                     type=the_type,
                 )
             else:
-                self.dialog = SweetAlert(auto_dismiss=False, )
+                self.dialog = SweetAlert(
+                    auto_dismiss=False,
+                )
                 self.dialog.fire(
                     title=self.title,
                     text=self.text,
@@ -186,8 +194,7 @@ class popup_class:
                             font_size="18sp",
                             on_release=self.dismiss,
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
-                                FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -195,8 +202,7 @@ class popup_class:
                             text="YES",
                             font_size="18sp",
                             font_name=os.path.join(
-                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
-                                FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_release=self.director_without_input,
