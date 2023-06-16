@@ -23,13 +23,13 @@ def popup(title=None,
         target=None,
         inputs=None,
         type="custom"):
-        for popup in the_popups:
-            if (popup.title == title and popup.text == text
-                    and popup.image == image
-                    and popup.height_image == height_image
-                    and popup.thirdly_title == thirdly_title
-                    and popup.target == target and popup.inputs == inputs
-                    and popup.type == type):
+        for apopup in the_popups:
+            if (apopup.title == title and apopup.text == text
+                    and apopup.image == image
+                    and apopup.height_image == height_image
+                    and apopup.thirdly_title == thirdly_title
+                    and apopup.target == target and apopup.inputs == inputs
+                    and apopup.type == type):
                 return popup
         return popup_class(
             title=title,
@@ -84,7 +84,15 @@ class popup_class:
         self.dialog.open()
 
     def dismiss(self, widget=None):
-        the_popups.remove(self)
+        for apopup in the_popups:
+            if (apopup.title == title and apopup.text == text
+                    and apopup.image == image
+                    and apopup.height_image == height_image
+                    and apopup.thirdly_title == thirdly_title
+                    and apopup.target == target and apopup.inputs == inputs
+                    and apopup.type == type):
+                apopup.dialog.dismiss()
+                the_popups.remove(apopup)
         self.dialog.dismiss()
 
     def clean(self):
