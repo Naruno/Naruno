@@ -35,7 +35,7 @@ def qr(data):
         qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H)
         qr.add_data(data)
         qr.make(fit=True)
-        icon = f"{main_folder}/gui_lib/images/logo_sm_orb_fw.png"
+        icon = f"{main_folder}/gui/lib/images/logo_sm_orb_fw.png"
         logger.debug(f"icon: {icon}")
         qr_img = qr.make_image(
             image_factory=StyledPilImage,

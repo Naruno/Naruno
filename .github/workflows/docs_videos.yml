@@ -4,12 +4,12 @@ on:
   push:
     paths:
       - '.github/workflows/docs_videos.yml'
-      - 'naruno/gui_lib/images/logo.ico'  
+      - 'naruno/gui/lib/images/logo.ico'  
 
   pull_request:
     paths:
       - '.github/workflows/docs_videos.yml'
-      - 'naruno/gui_lib/images/logo.ico'    
+      - 'naruno/gui/lib/images/logo.ico'    
   release:
     types: [published]
   workflow_dispatch:
