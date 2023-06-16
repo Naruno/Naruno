@@ -82,65 +82,69 @@ class GUI(MDApp):
         self.theme_cls.theme_style = "Dark" if value else "Light"
         self.theme_cls.primary_palette = "Yellow"  # "Purple", "Red"
 
-        self.FONT_PATH = os.path.join(os.environ["NARUNO_ROOT"], "gui", "lib", "fonts")
+        self.FONT_PATH = os.path.join(os.environ["NARUNO_ROOT"], "gui", "lib",
+                                      "fonts")
 
-        self.theme_cls.font_styles.update(
-            {
-                "H1": [os.path.join(self.FONT_PATH, "Poppins-Light"), 96, False, -1.5],
-                "H2": [os.path.join(self.FONT_PATH, "Poppins-Light"), 60, False, -0.5],
-                "H3": [os.path.join(self.FONT_PATH, "Poppins-Regular"), 48, False, 0],
-                "H4": [
-                    os.path.join(self.FONT_PATH, "Poppins-Regular"),
-                    34,
-                    False,
-                    0.25,
-                ],
-                "H5": [os.path.join(self.FONT_PATH, "Poppins-Regular"), 24, False, 0],
-                "H6": [os.path.join(self.FONT_PATH, "Poppins-Bold"), 20, False, 0.15],
-                "Subtitle1": [
-                    os.path.join(self.FONT_PATH, "Poppins-Regular"),
-                    16,
-                    False,
-                    0.15,
-                ],
-                "Subtitle2": [
-                    os.path.join(self.FONT_PATH, "Poppins-Medium"),
-                    14,
-                    False,
-                    0.1,
-                ],
-                "Body1": [
-                    os.path.join(self.FONT_PATH, "Poppins-Regular"),
-                    16,
-                    False,
-                    0.5,
-                ],
-                "Body2": [
-                    os.path.join(self.FONT_PATH, "Poppins-Light"),
-                    14,
-                    False,
-                    0.25,
-                ],
-                "Button": [
-                    os.path.join(self.FONT_PATH, "Poppins-Bold"),
-                    14,
-                    True,
-                    1.25,
-                ],
-                "Caption": [
-                    os.path.join(self.FONT_PATH, "Poppins-Regular"),
-                    12,
-                    False,
-                    0.4,
-                ],
-                "Overline": [
-                    os.path.join(self.FONT_PATH, "Poppins-Regular"),
-                    10,
-                    True,
-                    1.5,
-                ],
-            }
-        )
+        self.theme_cls.font_styles.update({
+            "H1":
+            [os.path.join(self.FONT_PATH, "Poppins-Light"), 96, False, -1.5],
+            "H2":
+            [os.path.join(self.FONT_PATH, "Poppins-Light"), 60, False, -0.5],
+            "H3":
+            [os.path.join(self.FONT_PATH, "Poppins-Regular"), 48, False, 0],
+            "H4": [
+                os.path.join(self.FONT_PATH, "Poppins-Regular"),
+                34,
+                False,
+                0.25,
+            ],
+            "H5":
+            [os.path.join(self.FONT_PATH, "Poppins-Regular"), 24, False, 0],
+            "H6":
+            [os.path.join(self.FONT_PATH, "Poppins-Bold"), 20, False, 0.15],
+            "Subtitle1": [
+                os.path.join(self.FONT_PATH, "Poppins-Regular"),
+                16,
+                False,
+                0.15,
+            ],
+            "Subtitle2": [
+                os.path.join(self.FONT_PATH, "Poppins-Medium"),
+                14,
+                False,
+                0.1,
+            ],
+            "Body1": [
+                os.path.join(self.FONT_PATH, "Poppins-Regular"),
+                16,
+                False,
+                0.5,
+            ],
+            "Body2": [
+                os.path.join(self.FONT_PATH, "Poppins-Light"),
+                14,
+                False,
+                0.25,
+            ],
+            "Button": [
+                os.path.join(self.FONT_PATH, "Poppins-Bold"),
+                14,
+                True,
+                1.25,
+            ],
+            "Caption": [
+                os.path.join(self.FONT_PATH, "Poppins-Regular"),
+                12,
+                False,
+                0.4,
+            ],
+            "Overline": [
+                os.path.join(self.FONT_PATH, "Poppins-Regular"),
+                10,
+                True,
+                1.5,
+            ],
+        })
 
         return Builder.load_string(KV)
 
@@ -157,7 +161,8 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description=
+        "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument(

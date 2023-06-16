@@ -12,6 +12,7 @@ from naruno.gui.popup import popup
 
 
 class NarunoRootScreen(MDScreen):
+
     def close_app(self, widget=None):
         self.close_app_dialog = popup(
             text="Are you sure you want to close ?",
