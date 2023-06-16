@@ -4,9 +4,7 @@ from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.metrics import dp
-from kivy.properties import ColorProperty
-from kivy.properties import NumericProperty
-from kivy.properties import StringProperty
+from kivy.properties import ColorProperty, NumericProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.theming import ThemableBehavior

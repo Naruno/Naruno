@@ -13,11 +13,11 @@ from qrcode.image.styles.colormasks import SolidFillColorMask
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
+from hashlib import sha256
+
 from naruno.config import QR_CODE_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
-from hashlib import sha256
-
 
 logger = get_logger("LIB")
 

@@ -19,10 +19,10 @@ from naruno.lib.export import export_the_transactions
 from naruno.lib.settings_system import the_settings
 from naruno.lib.sign import sign
 from naruno.lib.verify import verify
-from naruno.transactions.my_transactions.get_my_transaction import GetMyTransaction
-from naruno.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
+from naruno.transactions.my_transactions.get_my_transaction import \
+    GetMyTransaction
+from naruno.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from naruno.transactions.send import send
 from naruno.wallet.wallet_import import wallet_import
 
