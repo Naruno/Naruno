@@ -26,7 +26,6 @@ Config.set("graphics", "width", "700")
 Config.set("graphics", "height", "450")
 Config.set("graphics", "minimum_width", "700")
 Config.set("graphics", "minimum_height", "450")
-Config.set("input", "mouse", "mouse,disable_multitouch")
 
 os.environ["NARUNO_ROOT"] = get_config()["main_folder"]
 
@@ -55,7 +54,6 @@ ScreenManager:
 logger = get_logger("GUI")
 
 
-
 class GUI(MDApp):
     """
     An MDApp based  GUI class.
@@ -75,7 +73,6 @@ class GUI(MDApp):
         """
         Window.borderless = True
         value = the_settings()["dark_mode"]
-
 
         for i in self.theme_cls.colors["Yellow"]:
             self.theme_cls.colors["Yellow"][i] = "#5C6BC0"
@@ -154,10 +151,8 @@ class GUI(MDApp):
     def restart(self):
         self.root.clear_widgets()
         self.stop()
-        naruno.gui.the_naruno_gui_app.the_naruno_gui = (
-            GUI())
-        return (naruno.gui.the_naruno_gui_app.
-                the_naruno_gui.run())
+        naruno.gui.the_naruno_gui_app.the_naruno_gui = GUI()
+        return naruno.gui.the_naruno_gui_app.the_naruno_gui.run()
 
 
 def arguments():
@@ -188,11 +183,9 @@ def arguments():
 
     safety_check(args.interface, args.timeout)
 
-    naruno.gui.the_naruno_gui_app.the_naruno_gui = GUI(
-    )
+    naruno.gui.the_naruno_gui_app.the_naruno_gui = GUI()
 
-    naruno.gui.the_naruno_gui_app.the_naruno_gui.run(
-    )
+    naruno.gui.the_naruno_gui_app.the_naruno_gui.run()
 
 
 def start():
