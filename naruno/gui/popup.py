@@ -85,11 +85,11 @@ class popup_class:
 
     def dismiss(self, widget=None):
         for apopup in the_popups:
-            if (apopup.title == title and apopup.text == text
-                    and apopup.image == image
-                    and apopup.height_image == height_image
-                    and apopup.thirdly_title == thirdly_title
-                    and apopup.target == target and apopup.inputs == inputs
+            if (apopup.title == self.title and apopup.text == self.text
+                    and apopup.image == self.self.image
+                    and apopup.height_image == self.self.height_image
+                    and apopup.thirdly_title == self.self.thirdly_title
+                    and apopup.target == self.target and apopup.inputs == self.inputs
                     and apopup.type == type):
                 apopup.dialog.dismiss()
                 the_popups.remove(apopup)
