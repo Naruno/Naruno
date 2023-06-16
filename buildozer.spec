@@ -16,13 +16,13 @@ android.api = 27
 android.accept_sdk_license = True
 
 [app@api]
-title = Naruno-API
+title = Naruno API
 package.name = naruno_api
 source.dir = naruno/api/buildozer/
 requirements =  naruno==0.58.0, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.2.3, flask==2.0.0, flask_cors==3.0.10
 
 [app@gui]
-title = Naruno-GUI
+title = Naruno GUI
 package.name = naruno_gui
 source.dir = naruno/gui/
 fullscreen = 1
