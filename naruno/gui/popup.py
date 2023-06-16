@@ -108,7 +108,7 @@ class popup_class:
         for obj in self.dialog.content_cls.children:
             if isinstance(obj, MDTextField):
                 self.input_results[obj.hint_text] = obj.text
-                if obj.text = "":
+                if obj.text == "":
                     dont_do = True
         if not dont_do:
             print("Target")
