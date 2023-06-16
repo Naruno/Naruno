@@ -16,8 +16,7 @@ from naruno.accounts.get_balance import GetBalance
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.gui.popup import popup
 from naruno.lib.qr import qr
-from naruno.lib.settings_system import change_wallet
-from naruno.lib.settings_system import the_settings
+from naruno.lib.settings_system import change_wallet, the_settings
 from naruno.wallet.get_saved_wallet import get_saved_wallet
 from naruno.wallet.wallet_create import wallet_create
 from naruno.wallet.wallet_delete import wallet_delete
