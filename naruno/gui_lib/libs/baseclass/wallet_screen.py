@@ -39,11 +39,12 @@ class WalletBox(MDGridLayout):
     def create_the_wallet(self):
         wallet_create(self.wallet_alert_dialog.input_results["Password"])
 
-    def show_wallet_alert_dialog(self):
+    def show_wallet_alert_dialog(self, button):
         self.wallet_alert_dialog = popup(
             title="Creating a wallet",
             target=self.create_the_wallet,
             inputs=[["Password", True]],
+            button=button,
         )
 
     def callback_for_menu_items(self, *args):

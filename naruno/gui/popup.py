@@ -25,12 +25,16 @@ class popup:
         target=None,
         inputs=None,
         type="custom",
+        button = None
     ):
         """
         :param title: Title of the popup
         :param target: Function to be called when the OK button is pressed
         :param content: Content of the popup
         """
+        self.button = button
+        if self.button is not None:
+            button.disabled = True
         self.title = title
         self.text = text
         self.image = image
@@ -51,6 +55,8 @@ class popup:
         self.dialog.open()
 
     def dismiss(self, widget=None):
+        if self.button is not None:
+            button.disabled = False        
         self.dialog.dismiss()
 
     def clean(self):
