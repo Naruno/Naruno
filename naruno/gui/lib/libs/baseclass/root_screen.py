@@ -23,7 +23,7 @@ class NarunoRootScreen(MDScreen):
 
 
 class NarunoListItem(ThemableBehavior, RectangularRippleBehavior,
-                       MDBoxLayout):
+                     MDBoxLayout):
     text = StringProperty()
     secondary_text = StringProperty()
     tertiary_text = StringProperty()

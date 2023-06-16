@@ -25,7 +25,6 @@ class NodeScreen(MDScreen):
     pass
 
 
-
 class NodeBox(MDGridLayout):
     cols = 2
 

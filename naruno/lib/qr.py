@@ -28,7 +28,6 @@ def qr(data):
     main_folder = get_config()["main_folder"]
     data_sha256 = sha256(data.encode("utf-8")).hexdigest()
     location = f"{main_folder}/{QR_CODE_PATH}{data_sha256}.png"
-    
 
     if not os.path.exists(location):
         logger.info("Qr code is not exist, it will be created")
@@ -49,6 +48,7 @@ def qr(data):
     logger.info(f"location: {location}")
     logger.info("Qr code generator is finished.")
     return location
+
 
 if __name__ == "__main__":
     qr("Ali_Eren_TABAK")
