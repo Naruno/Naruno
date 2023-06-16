@@ -33,7 +33,6 @@ class WalletBox(MDGridLayout):
     text = StringProperty()
 
     def reflesh_balance(self):
-
         self.text = f"Balance: {str(GetBalance(wallet_import(-1, 0)))}"
 
     def create_the_wallet(self):
@@ -75,11 +74,9 @@ class WalletBox(MDGridLayout):
 
     def delete_the_wallet(self):
         saved_wallets = get_saved_wallet()
-        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]),
-                                               0)
+        selected_wallet_pubkey = wallet_import(int(the_settings()["wallet"]), 0)
         for each_wallet in saved_wallets:
-            if selected_wallet_pubkey == saved_wallets[each_wallet][
-                    "publickey"]:
+            if selected_wallet_pubkey == saved_wallets[each_wallet]["publickey"]:
                 change_wallet(0)
                 wallet_delete(each_wallet)
                 self.reflesh_balance()
@@ -97,12 +94,8 @@ class WalletBox(MDGridLayout):
     def wallet_qr(self):
         address = wallet_import(-1, 3)
         location_of_qr = qr(address)
-        popup(text=address,
-              image=location_of_qr,
-              height_image="400px",
-              type="qr")
+        popup(text=address, image=location_of_qr, height_image="400px", type="qr")
 
     def wallet_copy(self):
         Clipboard.copy(wallet_import(-1, 3))
-        popup(title="The address has been copied to your clipboard.",
-              type="success")
+        popup(title="The address has been copied to your clipboard.", type="success")

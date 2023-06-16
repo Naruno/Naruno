@@ -33,9 +33,7 @@ class NavigationItem(ThemableBehavior, ButtonBehavior, BoxLayout):
         return super().on_release()
 
     def _button_expand(self):
-        label_anim = Animation(opacity=1,
-                               transition="in_sine",
-                               duration=self.duration)
+        label_anim = Animation(opacity=1, transition="in_sine", duration=self.duration)
         label_anim.start(self.ids._label)
 
         anim = Animation(
@@ -47,10 +45,7 @@ class NavigationItem(ThemableBehavior, ButtonBehavior, BoxLayout):
         anim.start(self)
 
     def _button_shrink(self):
-
-        label_anim = Animation(opacity=0,
-                               transition="out_sine",
-                               duration=self.duration)
+        label_anim = Animation(opacity=0, transition="out_sine", duration=self.duration)
         label_anim.start(self.ids._label)
 
         but_anim = Animation(
@@ -63,7 +58,6 @@ class NavigationItem(ThemableBehavior, ButtonBehavior, BoxLayout):
 
 
 class NavigationBar(ThemableBehavior, BoxLayout):
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Window.bind(on_resize=self._update)
@@ -73,8 +67,9 @@ class NavigationBar(ThemableBehavior, BoxLayout):
     def _update(self, *args):
         self.width = Window.width
         buttons = self.ids._button_box.children
-        button_sizes = ((len(buttons) - 1) *
-                        buttons[0].button_height) + buttons[0].button_width
+        button_sizes = ((len(buttons) - 1) * buttons[0].button_height) + buttons[
+            0
+        ].button_width
         space = self.width - button_sizes
         spacing = space / (len(buttons) + 1)
         self.ids._button_box.spacing = spacing

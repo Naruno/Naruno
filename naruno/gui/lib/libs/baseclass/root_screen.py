@@ -12,18 +12,15 @@ from naruno.gui.popup import popup
 
 
 class NarunoRootScreen(MDScreen):
-
     def close_app(self, widget=None):
         self.close_app_dialog = popup(
             text="Are you sure you want to close ?",
-            target=naruno.gui.the_naruno_gui_app.
-            the_naruno_gui.stop,
+            target=naruno.gui.the_naruno_gui_app.the_naruno_gui.stop,
             type="question",
         )
 
 
-class NarunoListItem(ThemableBehavior, RectangularRippleBehavior,
-                     MDBoxLayout):
+class NarunoListItem(ThemableBehavior, RectangularRippleBehavior, MDBoxLayout):
     text = StringProperty()
     secondary_text = StringProperty()
     tertiary_text = StringProperty()
