@@ -38,7 +38,7 @@
             MDRoundFlatIconButton:
                 id: but1
                 icon: "send-circle-outline"
-                on_press: root.send_coin()
+                on_release: root.send_coin()
                 text: "Send Coin"
                 halign: "right"
                 font_style: "Button"
@@ -52,7 +52,7 @@
                 icon: "file-export-outline"
                 width:240
 
-                on_press: root.export_transaction_csv()
+                on_release: root.export_transaction_csv()
                 text: "Export Transactions CSV"
                 halign: "right"
                 font_style: "Button"
@@ -69,7 +69,7 @@
                 id: but3
                 icon: "history"
                 width:240
-                on_press: root.transaction_history()
+                on_release: root.transaction_history()
                 text: "View Transactions History"
                 halign: "right"
                 font_style: "Button"
@@ -84,7 +84,7 @@
                 id: but5
                 icon: "signature-text"
                 width:240
-                on_press: root.sign()
+                on_release: root.sign()
                 text: "Sign Data"
                 halign: "right"
                 font_style: "Button"
@@ -97,7 +97,7 @@
                 id: but6
                 icon: "file-check-outline"
                 width:240
-                on_press: root.verify()
+                on_release: root.verify()
                 text: "Verify Signed Data"
                 halign: "right"
                 font_style: "Button"

@@ -38,7 +38,7 @@
             MDRoundFlatIconButton:
                 id: but1
                 icon: "wallet-outline"
-                on_press: root.show_example_list_bottom_sheet()
+                on_release: root.show_example_list_bottom_sheet()
                 text:  "Wallets"
                 halign: "right"
                 font_style: "Button"
@@ -49,7 +49,7 @@
             MDRoundFlatIconButton:
                 id: but2
                 icon: "wallet-plus-outline"
-                on_press: root.show_wallet_alert_dialog()
+                on_release: root.show_wallet_alert_dialog()
                 text: "Create Wallet"
                 halign: "right"
                 font_style: "Button"
@@ -60,7 +60,7 @@
             MDRoundFlatIconButton:
                 id: but3
                 icon: "safe"
-                on_press: root.reflesh_balance()
+                on_release: root.reflesh_balance()
                 text: root.text
                 halign: "right"
                 font_style: "Button"
@@ -71,7 +71,7 @@
             MDRoundFlatIconButton:
                 id: but2
                 icon: "delete"
-                on_press: root.show_delete_wallet_alert_dialog()
+                on_release: root.show_delete_wallet_alert_dialog()
                 text_color: 1, 0, 0, 1
                 text: "Delete Wallet"
                 halign: "right"
@@ -82,7 +82,7 @@
             MDRoundFlatIconButton:
                 id: but4
                 icon: "content-copy"
-                on_press: root.wallet_copy()
+                on_release: root.wallet_copy()
                 text: "Copy the your Address"
                 halign: "right"
                 font_style: "Button"
@@ -92,7 +92,7 @@
             MDRoundFlatIconButton:
                 id: but5
                 icon: "qrcode"
-                on_press: root.wallet_qr()
+                on_release: root.wallet_qr()
                 text: "QR Code of your Address"
                 halign: "right"
                 font_style: "Button"

@@ -37,7 +37,7 @@
             MDRoundFlatIconButton:
                 id: but1
                 icon: "server-network"
-                on_press: root.show_start_node_server_dialog()
+                on_release: root.show_start_node_server_dialog()
                 width:240
                 text: "Start Node Server"
                 halign: "right"
@@ -50,7 +50,7 @@
             MDRoundFlatIconButton:
                 id: but2
                 icon: "server-network-off"
-                on_press: root.stop_node_server()
+                on_release: root.stop_node_server()
                 width:240
                 text: "Stop Node Server"
                 halign: "right"
@@ -63,7 +63,7 @@
             MDRoundFlatIconButton:
                 id: but3
                 icon: "lan-connect"
-                on_press: root.connect_to_know_node()
+                on_release: root.connect_to_know_node()
                 width:240
                 text: "Connect to known nodes"
                 halign: "right"
@@ -76,7 +76,7 @@
             MDRoundFlatIconButton:
                 id: but4
                 icon: "server-plus"
-                on_press: root.show_connect_a_node_dialog()
+                on_release: root.show_connect_a_node_dialog()
                 width:240
                 text: "Connect to a node"
                 halign: "right"
@@ -90,7 +90,7 @@
             MDRoundFlatIconButton:
                 id: but5
                 icon: "security-network"
-                on_press: root.show_add_unl_node_dialog()
+                on_release: root.show_add_unl_node_dialog()
                 width:240
                 text: "Add UNL node"
                 halign: "right"
@@ -104,7 +104,7 @@
             MDRoundFlatIconButton:
                 id: but6
                 icon: "semantic-web"
-                on_press: root.get_block()
+                on_release: root.get_block()
                 width:240
                 text: "Get the block from other unl nodes"
                 halign: "right"
@@ -117,7 +117,7 @@
             MDRoundFlatIconButton:
                 id: but7
                 icon: "content-copy"
-                on_press: root.nd_id()
+                on_release: root.nd_id()
                 width:240
                 text: "Copy the your ID"
                 halign: "right"
@@ -129,7 +129,7 @@
             MDRoundFlatIconButton:
                 id: but8
                 icon: "qrcode"
-                on_press: root.nd_id_qr()
+                on_release: root.nd_id_qr()
                 text: "QR Code of your ID"
                 halign: "right"
                 font_style: "Button"
@@ -140,7 +140,7 @@
             MDRoundFlatIconButton:
                 id: but9
                 icon: "lifebuoy"
-                on_press: root.status()
+                on_release: root.status()
                 width:240
                 text: "Status"
                 halign: "right"

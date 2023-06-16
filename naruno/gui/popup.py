@@ -136,7 +136,7 @@ class popup_class:
                         MDFlatButton(
                             text="CANCEL",
                             font_size="18sp",
-                            on_press=self.dismiss,
+                            on_release=self.dismiss,
                             font_name=os.path.join(
                                 naruno.gui.the_naruno_gui_app.the_naruno_gui.
                                 FONT_PATH,
@@ -151,7 +151,7 @@ class popup_class:
                                 FONT_PATH,
                                 "Poppins-Bold",
                             ),
-                            on_press=self.director,
+                            on_release=self.director,
                         ),
                     ],
                 )
@@ -184,7 +184,7 @@ class popup_class:
                         MDFlatButton(
                             text="NO",
                             font_size="18sp",
-                            on_press=self.dismiss,
+                            on_release=self.dismiss,
                             font_name=os.path.join(
                                 naruno.gui.the_naruno_gui_app.the_naruno_gui.
                                 FONT_PATH,
@@ -199,7 +199,7 @@ class popup_class:
                                 FONT_PATH,
                                 "Poppins-Bold",
                             ),
-                            on_press=self.director_without_input,
+                            on_release=self.director_without_input,
                         ),
                     ],
                 )
