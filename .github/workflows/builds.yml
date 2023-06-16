@@ -458,14 +458,12 @@ jobs:
           files: 'gui_android_naruno.zip'
 
 
-  build-gui-ios:
-      runs-on: ${{ matrix.runs_on || 'macos-latest' }}
+  build-api-ios:
+      runs-on: macos-latest
+      environment: Builds   
       strategy:
         matrix:
-          include:
-            - runs_on: macos-latest
-              python: '3.8'
-      environment: Builds   
+          python-version: [3.8]       
       steps:
       - uses: actions/checkout@v2        
       - name: Setup python
@@ -498,20 +496,20 @@ jobs:
         run: |
           source .ci/osx_ci.sh
           arm64_set_path_and_python_version ${{ matrix.python }}
-          buildozer --profile gui ios debug
+          buildozer --profile api ios debug
 
       - name: Zip
-        run: sudo zip -r gui_ios_naruno bin
+        run: sudo zip -r api_ios_naruno bin
       
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: gui_ios_naruno
-          path: gui_ios_naruno.zip
+          name: api_ios_naruno
+          path: api_ios_naruno.zip
 
       - uses: AButler/upload-release-assets@v2.0
         if: github.event_name == 'release'
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}        
-          files: 'gui_ios_naruno.zip'
+          files: 'api_ios_naruno.zip'
