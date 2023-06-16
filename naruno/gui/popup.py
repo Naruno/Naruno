@@ -32,6 +32,7 @@ def popup(
                 and apopup.thirdly_title == thirdly_title
                 and apopup.target == target and apopup.inputs == inputs
                 and apopup.type == type):
+            apopup.show()
             return apopup
     return popup_class(
         title=title,
