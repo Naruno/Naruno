@@ -25,6 +25,7 @@ requirements =  naruno==0.58.0, Kivy==2.1.0, waitress==2.1.2, werkzeug==2.2.3, f
 title = Naruno-GUI
 package.name = naruno_gui
 source.dir = naruno/gui/
+fullscreen = 1
 requirements =  naruno==0.58.0, Kivy==2.1.0, kivymd==0.104.2, qrcode==7.3.1, kivymd_extensions.sweetalert==0.1.5, plyer==2.1.0, pillow==9.1.1
 
 
