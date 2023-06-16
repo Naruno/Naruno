@@ -481,6 +481,10 @@ jobs:
           arm64_set_path_and_python_version ${{ matrix.python }}
           pip install buildozer
           pip install Cython cookiecutter pbxproj
+      - name: SSL
+        run: |
+          brew install openssl
+          sudo ln -sfn /usr/local/opt/openssl /usr/local/ssl
       - name: Check buildozer installation
         run: |
           source .ci/osx_ci.sh
