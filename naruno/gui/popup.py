@@ -15,7 +15,35 @@ import naruno.gui.the_naruno_gui_app
 the_popups = []
 
 
-class popup:
+def popup(title=None,
+        text=None,
+        image=None,
+        height_image=None,
+        thirdly_title=None,
+        target=None,
+        inputs=None,
+        type="custom"):
+        for popup in the_popups:
+            if (popup.title == title and popup.text == text
+                    and popup.image == image
+                    and popup.height_image == height_image
+                    and popup.thirdly_title == thirdly_title
+                    and popup.target == target and popup.inputs == inputs
+                    and popup.type == type):
+                return popup
+        return popup_class(
+            title=title,
+            text=text,
+            image=image,
+            height_image=height_image,
+            thirdly_title=thirdly_title,
+            target=target,
+            inputs=inputs,
+            type=type,
+        )
+
+
+class popup_class:
 
     def __init__(
         self,
@@ -33,36 +61,24 @@ class popup:
         :param target: Function to be called when the OK button is pressed
         :param content: Content of the popup
         """
-        already = False
-        # check the the_popups list and if there is an same popup, just show it
-        for popup in the_popups:
-            if (popup.title == title and popup.text == text
-                    and popup.image == image
-                    and popup.height_image == height_image
-                    and popup.thirdly_title == thirdly_title
-                    and popup.target == target and popup.inputs == inputs
-                    and popup.type == type):
-                return popup
-                already = True
-                print("already")
-        if not already:
-            self.title = title
-            self.text = text
-            self.image = image
-            self.height_image = height_image
 
-            self.thirdly_title = thirdly_title
-            self.target = target
-            self.inputs = inputs
-            self.input_results = {}
-            self.type = type
-            self.dialog = None
+        self.title = title
+        self.text = text
+        self.image = image
+        self.height_image = height_image
 
-            self.create()
-            if self.type == "custom":
-                self.show()
+        self.thirdly_title = thirdly_title
+        self.target = target
+        self.inputs = inputs
+        self.input_results = {}
+        self.type = type
+        self.dialog = None
 
-            the_popups.append(self)
+        self.create()
+        if self.type == "custom":
+            self.show()
+
+        the_popups.append(self)
 
     def show(self):
         self.dialog.open()
