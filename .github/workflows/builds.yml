@@ -471,11 +471,7 @@ jobs:
         if: ${{ matrix.runs_on  != 'apple-silicon-m1' }}
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python }}
-      - uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"api-ios"         
+          python-version: ${{ matrix.python }}       
       - name: Setup environment
         run: |
           source .ci/osx_ci.sh
