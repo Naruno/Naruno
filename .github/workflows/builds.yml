@@ -489,11 +489,6 @@ jobs:
           source .ci/osx_ci.sh
           arm64_set_path_and_python_version ${{ matrix.python }}
           buildozer --help
-      - name: Initialize buildozer in project folder
-        run: |
-          source .ci/osx_ci.sh
-          arm64_set_path_and_python_version ${{ matrix.python }}
-          buildozer init
       - name: Install dependencies
         run: |
           source .ci/osx_ci.sh
