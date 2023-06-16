@@ -25,7 +25,7 @@ class popup:
         target=None,
         inputs=None,
         type="custom",
-        button = None
+        button=None
     ):
         """
         :param title: Title of the popup
@@ -56,7 +56,7 @@ class popup:
 
     def dismiss(self, widget=None):
         if self.button is not None:
-            button.disabled = False        
+            button.disabled = False
         self.dialog.dismiss()
 
     def clean(self):
