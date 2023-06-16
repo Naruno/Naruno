@@ -465,12 +465,12 @@ jobs:
         matrix:
           python-version: [3.8]       
       steps:
-      - uses: actions/checkout@v2        
-      - name: Setup python
-        # Needs to be skipped on our self-hosted runners tagged as 'apple-silicon-m1'
+      - name: Checkout
+        uses: actions/checkout@v2      
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python }}
+          python-version: ${{ matrix.python-version }}
       - uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
