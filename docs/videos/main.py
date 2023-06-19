@@ -32,7 +32,7 @@ class Naruno_Scene(Scene):
         # Get the logo from grand parent directory
         root_directory = get_config()["main_folder"]
 
-        self.icon = os.path.join(root_directory, "gui_lib", "images",
+        self.icon = os.path.join(root_directory, "gui", "lib", "images",
                                  "logo.ico")
 
         self.image = ImageMobject(self.icon).scale(2)

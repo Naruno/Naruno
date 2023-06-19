@@ -37,8 +37,8 @@ class OperationBox(MDGridLayout):
     def sent_the_coins(self):
         the_block = GetBlock()
 
-        if (float(self.send_coin_dialog.input_results["Amount"]) >=
-                the_block.minumum_transfer_amount):
+        if (float(self.send_coin_dialog.input_results["Amount"])
+                >= the_block.minumum_transfer_amount):
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
                     self.send_coin_dialog.input_results["Password"].encode(
                         "utf-8")).hexdigest()):
@@ -52,7 +52,6 @@ class OperationBox(MDGridLayout):
                     block=block,
                 )
                 if send_tx != False:
-
                     from naruno.node.server.server import server
 
                     if server.Server is None:

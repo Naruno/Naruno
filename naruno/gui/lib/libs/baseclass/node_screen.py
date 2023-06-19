@@ -25,7 +25,6 @@ class NodeScreen(MDScreen):
     pass
 
 
-
 class NodeBox(MDGridLayout):
     cols = 2
 
@@ -60,7 +59,6 @@ class NodeBox(MDGridLayout):
         server.connectionfrommixdb()
 
     def connect_a_node_func(self):
-
         if not self.check_node_server():
             return False
         server.Server.connect(
@@ -79,7 +77,6 @@ class NodeBox(MDGridLayout):
         )
 
     def add_unl_node_func(self):
-
         from naruno.node.unl import Unl
 
         Unl.save_new_unl_node(

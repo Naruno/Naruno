@@ -13,11 +13,11 @@ from qrcode.image.styles.colormasks import SolidFillColorMask
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
+from hashlib import sha256
+
 from naruno.config import QR_CODE_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
-from hashlib import sha256
-
 
 logger = get_logger("LIB")
 
@@ -28,14 +28,13 @@ def qr(data):
     main_folder = get_config()["main_folder"]
     data_sha256 = sha256(data.encode("utf-8")).hexdigest()
     location = f"{main_folder}/{QR_CODE_PATH}{data_sha256}.png"
-    
 
     if not os.path.exists(location):
         logger.info("Qr code is not exist, it will be created")
         qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H)
         qr.add_data(data)
         qr.make(fit=True)
-        icon = f"{main_folder}/gui_lib/images/logo_sm_orb_fw.png"
+        icon = f"{main_folder}/gui/lib/images/logo_sm_orb_fw.png"
         logger.debug(f"icon: {icon}")
         qr_img = qr.make_image(
             image_factory=StyledPilImage,
@@ -49,6 +48,7 @@ def qr(data):
     logger.info(f"location: {location}")
     logger.info("Qr code generator is finished.")
     return location
+
 
 if __name__ == "__main__":
     qr("Ali_Eren_TABAK")

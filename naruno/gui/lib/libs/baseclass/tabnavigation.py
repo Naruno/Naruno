@@ -47,7 +47,6 @@ class NavigationItem(ThemableBehavior, ButtonBehavior, BoxLayout):
         anim.start(self)
 
     def _button_shrink(self):
-
         label_anim = Animation(opacity=0,
                                transition="out_sine",
                                duration=self.duration)

@@ -60,13 +60,11 @@ class SettingsBox(MDGridLayout):
         if instance_button.text == "OK":
             self.alert.dismiss()
             SettingsBox.dark_mode_first_status = the_settings()["dark_mode"]
-            naruno.gui.the_naruno_gui_app.the_naruno_gui.restart(
-            )
+            naruno.gui.the_naruno_gui_app.the_naruno_gui.restart()
 
         else:
             self.alert.dismiss()
 
     def DARK_MODE_Status_Changing(self, instance, value):
-
         dark_mode_settings(value)
         self.show_dialog()

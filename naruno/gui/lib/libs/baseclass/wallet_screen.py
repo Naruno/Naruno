@@ -33,7 +33,6 @@ class WalletBox(MDGridLayout):
     text = StringProperty()
 
     def reflesh_balance(self):
-
         self.text = f"Balance: {str(GetBalance(wallet_import(-1, 0)))}"
 
     def create_the_wallet(self):

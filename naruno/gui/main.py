@@ -29,7 +29,7 @@ Config.set("graphics", "minimum_height", "450")
 
 os.environ["NARUNO_ROOT"] = get_config()["main_folder"]
 
-KV_DIR = f"{os.environ['NARUNO_ROOT']}/gui_lib/libs/kv/"
+KV_DIR = f"{os.environ['NARUNO_ROOT']}/gui/lib/libs/kv/"
 
 for kv_file in os.listdir(KV_DIR):
     with open(os.path.join(KV_DIR, kv_file), encoding="utf-8") as kv:
@@ -37,8 +37,8 @@ for kv_file in os.listdir(KV_DIR):
 
 KV = """
 #:import FadeTransition kivy.uix.screenmanager.FadeTransition
-#:import NarunoWelcomeScreen naruno.gui_lib.libs.baseclass.welcome_screen.NarunoWelcomeScreen
-#:import NarunoRootScreen naruno.gui_lib.libs.baseclass.root_screen.NarunoRootScreen
+#:import NarunoWelcomeScreen naruno.gui.lib.libs.baseclass.welcome_screen.NarunoWelcomeScreen
+#:import NarunoRootScreen naruno.gui.lib.libs.baseclass.root_screen.NarunoRootScreen
 
 ScreenManager:
     transition: FadeTransition()
@@ -65,7 +65,7 @@ class GUI(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.title = "Naruno"
-        self.icon = f"{os.environ['NARUNO_ROOT']}/gui_lib/images/logo.ico"
+        self.icon = f"{os.environ['NARUNO_ROOT']}/gui/lib/images/logo.ico"
 
     def build(self):
         """
@@ -82,7 +82,7 @@ class GUI(MDApp):
         self.theme_cls.theme_style = "Dark" if value else "Light"
         self.theme_cls.primary_palette = "Yellow"  # "Purple", "Red"
 
-        self.FONT_PATH = os.path.join(os.environ["NARUNO_ROOT"], "gui_lib",
+        self.FONT_PATH = os.path.join(os.environ["NARUNO_ROOT"], "gui", "lib",
                                       "fonts")
 
         self.theme_cls.font_styles.update({
