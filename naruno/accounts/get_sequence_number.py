@@ -14,7 +14,7 @@ def GetSequanceNumber(user, account_list=None, dont_convert=False, block=None):
     sequence_number = 0
     the_account_list = GetAccounts() if account_list is None else account_list
     the_account_list.execute(
-        f"SELECT * FROM account_list WHERE address = '{user}'")
+        f"SELECT * FROM account_list WHERE address = ?", (user,))
     for Accounts in the_account_list.fetchall():
         sequence_number = Accounts[1]
         break

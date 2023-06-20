@@ -77,11 +77,11 @@ def ProccesstheTransaction(
         address_of_fromUser = Address(trans.fromUser)
         logger.debug(f"FromUser address: {address_of_fromUser}")
         the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{address_of_fromUser}'"
+            "SELECT * FROM account_list WHERE address = ?", (address_of_fromUser,)
         )
         first_list = the_account_list.fetchall()
         the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{trans.toUser}'")
+            "SELECT * FROM account_list WHERE address = ?", (trans.toUser,))
         second_list = the_account_list.fetchall()
 
         for the_pulled_account in first_list + second_list:
@@ -139,8 +139,8 @@ def ProccesstheTransaction(
     c = conn.cursor()
     for changed_account in edited_accounts:
         c.execute(
-            f"UPDATE account_list SET balance = {changed_account.balance}, sequence_number = {changed_account.sequence_number} WHERE address = '{changed_account.Address}'"
-        )
+            "UPDATE account_list SET balance = ?, sequence_number = ? WHERE address = ?"
+        ,(changed_account.balance,changed_account.sequence_number,changed_account.Address))
         conn.commit()
     conn.close()
 
