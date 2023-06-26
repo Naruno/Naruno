@@ -7,14 +7,18 @@
 import time
 
 from naruno.blockchain.block.block_main import Block
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
 from naruno.lib.log import get_logger
 from naruno.transactions.transaction import Transaction
 
 logger = get_logger("BLOCKCHAIN")
 
 
-def shares(block: Block, custom_shares=None, custom_fee_address=None, dont_clean=False) -> list:
+def shares(block: Block,
+           custom_shares=None,
+           custom_fee_address=None,
+           dont_clean=False) -> list:
     """
     It returns the transactions that needed for locked shares distribution.
     """
@@ -33,26 +37,28 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None, dont_clean
     logger.debug(f"the_time: {the_time}")
 
     for share in the_shares:
-        rate = block.sequence_number / share[2]
-        if rate.is_integer() and rate != 0.0:
+        rate = (block.sequence_number - share[4]) / share[2]
+        print(rate)
+        if rate.is_integer() and rate != 0.0 and rate > 0:
             if not block.sequence_number > share[3]:
-                tx_list.append(
-                    Transaction(
-                        0,
-                        "NARUNO",
-                        "NARUNOB",
-                        share[0],
-                        "NP",
-                        share[1],
-                        0,
-                        the_time,
-                    ))
+                if block.sequence_number >= share[4]:
+                    tx_list.append(
+                        Transaction(
+                            0,
+                            "NARUNO",
+                            "NARUNOB",
+                            share[0],
+                            "NP",
+                            share[1],
+                            0,
+                            the_time,
+                        ))
 
     fee = 0
     if not dont_clean:
         block = Remove_Duplicates(block)
     block.validating_list = sorted(block.validating_list,
-                                   key=lambda x: x.fromUser)    
+                                   key=lambda x: x.fromUser)
     for tx in block.validating_list:
         if not "NARUNO" in tx.signature:
             fee += tx.transaction_fee
@@ -68,8 +74,5 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None, dont_clean
                 0,
                 the_time,
             ))
-
-    
-
 
     return tx_list
