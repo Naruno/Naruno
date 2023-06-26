@@ -7,22 +7,27 @@
 import time
 
 from naruno.blockchain.block.block_main import Block
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import Remove_Duplicates
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import (
+    Remove_Duplicates,
+)
 from naruno.lib.log import get_logger
 from naruno.transactions.transaction import Transaction
 
 logger = get_logger("BLOCKCHAIN")
 
 
-def shares(block: Block, custom_shares=None, custom_fee_address=None, dont_clean=False) -> list:
+def shares(
+    block: Block, custom_shares=None, custom_fee_address=None, dont_clean=False
+) -> list:
     """
     It returns the transactions that needed for locked shares distribution.
     """
     logger.info("Share distribution started.")
     logger.debug(f"block.validating_list: {block.validating_list}")
     the_shares = block.shares if custom_shares is None else custom_shares
-    the_fee_address = (block.fee_address
-                       if custom_fee_address is None else custom_fee_address)
+    the_fee_address = (
+        block.fee_address if custom_fee_address is None else custom_fee_address
+    )
     logger.debug(f"block.sequence_number: {block.sequence_number}")
     logger.debug(f"the_shares: {the_shares}")
     logger.debug(f"the_fee_address: {the_fee_address}")
@@ -48,13 +53,13 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None, dont_clean
                             share[1],
                             0,
                             the_time,
-                        ))
+                        )
+                    )
 
     fee = 0
     if not dont_clean:
         block = Remove_Duplicates(block)
-    block.validating_list = sorted(block.validating_list,
-                                   key=lambda x: x.fromUser)
+    block.validating_list = sorted(block.validating_list, key=lambda x: x.fromUser)
     for tx in block.validating_list:
         if not "NARUNO" in tx.signature:
             fee += tx.transaction_fee
@@ -69,6 +74,7 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None, dont_clean
                 fee,
                 0,
                 the_time,
-            ))
+            )
+        )
 
     return tx_list
