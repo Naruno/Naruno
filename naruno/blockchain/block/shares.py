@@ -7,9 +7,8 @@
 import time
 
 from naruno.blockchain.block.block_main import Block
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import (
-    Remove_Duplicates,
-)
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
 from naruno.lib.log import get_logger
 from naruno.transactions.transaction import Transaction
 
