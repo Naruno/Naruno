@@ -33,20 +33,22 @@ def shares(block: Block, custom_shares=None, custom_fee_address=None, dont_clean
     logger.debug(f"the_time: {the_time}")
 
     for share in the_shares:
-        rate = block.sequence_number / share[2]
-        if rate.is_integer() and rate != 0.0:
+        rate = (block.sequence_number - share[4]) / share[2]
+        print(rate)
+        if rate.is_integer() and rate != 0.0 and rate > 0:
             if not block.sequence_number > share[3]:
-                tx_list.append(
-                    Transaction(
-                        0,
-                        "NARUNO",
-                        "NARUNOB",
-                        share[0],
-                        "NP",
-                        share[1],
-                        0,
-                        the_time,
-                    ))
+                if block.sequence_number >= share[4]:
+                    tx_list.append(
+                        Transaction(
+                            0,
+                            "NARUNO",
+                            "NARUNOB",
+                            share[0],
+                            "NP",
+                            share[1],
+                            0,
+                            the_time,
+                        ))
 
     fee = 0
     if not dont_clean:
