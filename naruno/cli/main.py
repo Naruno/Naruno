@@ -277,6 +277,10 @@ def arguments():
                         "--sign",
                         action="store_true",
                         help="Sign a data")
+    parser.add_argument("-v",
+                        "--verify",
+                        action="store_true",
+                        help="Verify a signed data")                        
     parser.add_argument("-d", "--data", type=str, help="Data")
     parser.add_argument("-p", "--password", type=str, help="Pass")
 
@@ -479,6 +483,18 @@ def arguments():
 
         if control:
             print(sign(args.data, args.password))
+        else:
+            return
+
+
+    if args.verify:
+        control = True
+        if args.data is None:
+            print("Please enter signed data")
+            control = False
+
+        if control:
+            print(verify(args.data))
         else:
             return
 
