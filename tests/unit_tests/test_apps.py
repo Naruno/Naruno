@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import copy
 import json
 import os
 import sys
@@ -387,8 +388,13 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", force=False),
-            True)
+            integration.send("hello_text",
+                             "hello",
+                             "<address>",
+                             amount=5,
+                             force=False),
+            True,
+        )
 
         second_try = integration.send(
             "hello_text",
@@ -411,6 +417,7 @@ class Test_apps(unittest.TestCase):
         text = f"{integration.app_name}hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
         self.assertEqual(the_tx.toUser, "<address>")
+        self.assertEqual(the_tx.amount, 5)
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)
@@ -469,6 +476,7 @@ class Test_apps(unittest.TestCase):
         text = f"{integration.app_name}hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
         self.assertEqual(the_tx.toUser, "<address>")
+        self.assertEqual(the_tx.amount, 0.0)
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)
@@ -852,7 +860,7 @@ class Test_apps(unittest.TestCase):
     def test_send_forcer_unsuccess_success(self):
         global custom_send_function_2_call_number
         custom_send_function_2_call_number = 0
-        # test when send() returns True on first try
+
         self.integration.send = custom_send_function_2
         first_time = time.time()
         result = self.integration.send_forcer("test", "app_data", "user1", 5)
@@ -867,7 +875,7 @@ class Test_apps(unittest.TestCase):
     def test_send_forcer_success(self):
         global custom_send_function_2_call_number
         custom_send_function_2_call_number = 1
-        # test when send() returns True on first try
+
         self.integration.send = custom_send_function_2
         first_time = time.time()
         result = self.integration.send_forcer("test", "app_data", "user1", 5)
@@ -993,6 +1001,50 @@ class Test_apps(unittest.TestCase):
                 ["test", "split-1-11123-", "user1", 41, 10],
             ],
         )
+
+    def test_generate_random_split_key(self):
+        split_key = self.integration.generate_random_split_key()
+        self.assertEqual(len(split_key), 5)
+        self.assertTrue(split_key.isalpha())
+
+    def test_wait_until_true_time(self):
+        backup_wait_amount = copy.copy(self.integration.wait_amount)
+        backup_last_sended = copy.copy(self.integration.last_sended)
+
+        self.integration.wait_amount = 5
+        self.integration.last_sended = time.time() - 3
+        start_time = time.time()
+        self.integration.wait_until_true_time()
+        end_time = time.time()
+
+        self.integration.wait_amount = backup_wait_amount
+        self.integration.last_sended = backup_last_sended
+
+        self.assertAlmostEqual(end_time - start_time, 2, delta=0.3)
+
+    def test_wait_until_complated(self):
+        backup_sending_wait_time = copy.copy(
+            self.integration.sending_wait_time)
+        backup_sended_txs = copy.copy(self.integration.sended_txs)
+        backup_check_thread = self.integration.check_thread
+        self.integration.sending_wait_time = 2
+        self.integration.sended_txs = [1, 2, 3]
+
+        custom_list = []
+        self.integration.check_thread = threading.Timer(0.5, print)
+        self.integration.check_thread.start()
+        start_time = time.time()
+        self.integration.wait_until_complated(custom_list)
+        end_time = time.time()
+
+        self.assertFalse(self.integration.check_thread.is_alive())
+
+        self.integration.sending_wait_time = backup_sending_wait_time
+        self.integration.sended_txs = backup_sended_txs
+        self.integration.check_thread = backup_check_thread
+
+        self.assertEqual(self.integration.sended_txs, custom_list)
+        self.assertAlmostEqual(end_time - start_time, 2, delta=0.3)
 
 
 backup = sys.argv
