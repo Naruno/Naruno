@@ -57,8 +57,7 @@ def show_menu():
     print(
         banner_maker(
             sc_name="Naruno",
-            description=
-            "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.",
+            description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.",
             author="Naruno Developers",
         ))
 
@@ -260,8 +259,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument("-pw",
@@ -273,14 +271,12 @@ def arguments():
 
     parser.add_argument("-cw", "--createwallet", help="Create wallet")
 
-
     parser.add_argument("-s",
                         "--sign",
                         action="store_true",
                         help="Sign a data")
     parser.add_argument("-d", "--data", type=str, help="Data")
     parser.add_argument("-p", "--password", type=str, help="Pass")
-
 
     parser.add_argument("-dw",
                         "--deletewallet",
@@ -470,7 +466,6 @@ def arguments():
     if args.narunoimport is not None:
         naruno_import(args.narunoimport)
 
-
     if args.sign:
         control = True
         if args.data is None:
@@ -479,12 +474,11 @@ def arguments():
         if args.password is None:
             print("Please enter password")
             control = False
-        
+
         if control:
             print(sign(args.data, args.password))
         else:
             return
-
 
     if args.menu:
         menu()
