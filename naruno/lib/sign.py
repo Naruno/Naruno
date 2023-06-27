@@ -30,7 +30,7 @@ def sign(data: str, password: str) -> str:
     our_pass = sha256(password.encode("utf-8")).hexdigest()
     
     if true_pass != our_pass:
-        return "None"
+        return "Password is not True"
 
     my_private_key = wallet_import(-1, 1, password)
     signature = Ecdsa.sign(

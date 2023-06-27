@@ -82,7 +82,7 @@ class OperationBox(MDGridLayout):
             self.sign_dialog.input_results["Data"],
             self.sign_dialog.input_results["Password"],
         )
-        if path == "None":
+        if path == "Password is not True":
             popup(title="Password is not correct", type="failure")
         else:
             Clipboard.copy(path)
