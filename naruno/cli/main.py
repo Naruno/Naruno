@@ -22,13 +22,22 @@ from naruno.lib.backup.naruno_export import naruno_export
 from naruno.lib.backup.naruno_import import naruno_import
 from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
-from naruno.lib.mix.mixlib import (banner_maker, menu_maker, menu_space,
-                                   question_maker, quit_menu_maker)
+from naruno.lib.mix.mixlib import (
+    banner_maker,
+    menu_maker,
+    menu_space,
+    question_maker,
+    quit_menu_maker,
+)
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (baklava_settings, d_mode_settings,
-                                        publisher_mode_settings,
-                                        t_mode_settings, the_settings)
+from naruno.lib.settings_system import (
+    baklava_settings,
+    d_mode_settings,
+    publisher_mode_settings,
+    t_mode_settings,
+    the_settings,
+)
 from naruno.lib.sign import sign
 from naruno.lib.status import Status
 from naruno.lib.verify import verify
@@ -36,8 +45,9 @@ from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.my_transactions.check_proof import CheckProof
 from naruno.transactions.my_transactions.get_proof import GetProof
-from naruno.transactions.my_transactions.save_to_my_transaction import \
-    SavetoMyTransaction
+from naruno.transactions.my_transactions.save_to_my_transaction import (
+    SavetoMyTransaction,
+)
 from naruno.transactions.print_transactions import PrintTransactions
 from naruno.transactions.send import send
 from naruno.wallet.delete_current_wallet import delete_current_wallet
@@ -59,50 +69,53 @@ def show_menu():
             sc_name="Naruno",
             description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.",
             author="Naruno Developers",
-        ))
+        )
+    )
 
     print(
-        menu_space() +
-        menu_maker(menu_number="pw", menu_text="Print Wallets") +
-        menu_maker(menu_number="w", menu_text="Change Wallet") +
-        menu_maker(menu_number="cw", menu_text="Create Wallet") +
-        menu_maker(menu_number="dw", menu_text="Delete Wallet") +
-        menu_space() + menu_maker(menu_number="sc", menu_text="Send Coin") +
-        menu_maker(menu_number="scd", menu_text="Send Coin Data") +
-        menu_space() + menu_maker(menu_number="gb", menu_text="Get Balance") +
-        menu_space() +
-        menu_maker(menu_number="ndstart", menu_text="Node Start") +
-        menu_maker(menu_number="ndstop", menu_text="Node Stop") +
-        menu_maker(menu_number="ndconnect", menu_text="Node Connect") +
-        menu_maker(menu_number="ndconnectmixdb",
-                   menu_text="Node Connect from mixdb") +
-        menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node") +
-        menu_maker(menu_number="ndid", menu_text="Print my id") +
-        menu_space() +
-        menu_maker(menu_number="testmodeon", menu_text="Test mode ON") +
-        menu_maker(menu_number="testmodeoff", menu_text="Test mode OF") +
-        menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON") +
-        menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF") +
-        menu_space() + menu_maker(menu_number="exptrcsv",
-                                  menu_text="Export Transaction as CSV") +
-        menu_maker(menu_number="returntrs",
-                   menu_text="Export Transaction as CSV") + menu_space() +
-        menu_maker(menu_number="status", menu_text="Prints the status") +
-        menu_space() + menu_maker(menu_number="getblock",
-                                  menu_text="Get block From Other Nodes") +
-        menu_space() +
-        menu_maker(menu_number="getproof", menu_text="Get Proof") +
-        menu_maker(menu_number="checkproof", menu_text="Check Proof") +
-        menu_space() +
-        menu_maker(menu_number="narunoexport", menu_text="Export backup") +
-        menu_maker(menu_number="narunoimport", menu_text="Import backup") +
-        menu_space() +
-        menu_maker(menu_number="sign", menu_text="Sign and export an data") +
-        menu_maker(menu_number="verify", menu_text="Verify the signed data") +
-        menu_space() + menu_maker(menu_number="publishermodeon",
-                                  menu_text="Publisher Mode On") +
-        menu_maker(menu_number="publishermodeoff",
-                   menu_text="Publisher Mode Off") + menu_space())
+        menu_space()
+        + menu_maker(menu_number="pw", menu_text="Print Wallets")
+        + menu_maker(menu_number="w", menu_text="Change Wallet")
+        + menu_maker(menu_number="cw", menu_text="Create Wallet")
+        + menu_maker(menu_number="dw", menu_text="Delete Wallet")
+        + menu_space()
+        + menu_maker(menu_number="sc", menu_text="Send Coin")
+        + menu_maker(menu_number="scd", menu_text="Send Coin Data")
+        + menu_space()
+        + menu_maker(menu_number="gb", menu_text="Get Balance")
+        + menu_space()
+        + menu_maker(menu_number="ndstart", menu_text="Node Start")
+        + menu_maker(menu_number="ndstop", menu_text="Node Stop")
+        + menu_maker(menu_number="ndconnect", menu_text="Node Connect")
+        + menu_maker(menu_number="ndconnectmixdb", menu_text="Node Connect from mixdb")
+        + menu_maker(menu_number="ndnewunl", menu_text="Add new UNL node")
+        + menu_maker(menu_number="ndid", menu_text="Print my id")
+        + menu_space()
+        + menu_maker(menu_number="testmodeon", menu_text="Test mode ON")
+        + menu_maker(menu_number="testmodeoff", menu_text="Test mode OF")
+        + menu_maker(menu_number="debugmodeon", menu_text="Debug mode ON")
+        + menu_maker(menu_number="debugmodeoff", menu_text="Debug mode OF")
+        + menu_space()
+        + menu_maker(menu_number="exptrcsv", menu_text="Export Transaction as CSV")
+        + menu_maker(menu_number="returntrs", menu_text="Export Transaction as CSV")
+        + menu_space()
+        + menu_maker(menu_number="status", menu_text="Prints the status")
+        + menu_space()
+        + menu_maker(menu_number="getblock", menu_text="Get block From Other Nodes")
+        + menu_space()
+        + menu_maker(menu_number="getproof", menu_text="Get Proof")
+        + menu_maker(menu_number="checkproof", menu_text="Check Proof")
+        + menu_space()
+        + menu_maker(menu_number="narunoexport", menu_text="Export backup")
+        + menu_maker(menu_number="narunoimport", menu_text="Import backup")
+        + menu_space()
+        + menu_maker(menu_number="sign", menu_text="Sign and export an data")
+        + menu_maker(menu_number="verify", menu_text="Verify the signed data")
+        + menu_space()
+        + menu_maker(menu_number="publishermodeon", menu_text="Publisher Mode On")
+        + menu_maker(menu_number="publishermodeoff", menu_text="Publisher Mode Off")
+        + menu_space()
+    )
 
     print(quit_menu_maker(mode="main"))
 
@@ -180,8 +193,7 @@ def menu():
         if choices_input == "ndstop":
             server.Server.stop()
         if choices_input == "ndconnect":
-            server.Server.connect(str(input("node ip: ")),
-                                  int(input("node port: ")))
+            server.Server.connect(str(input("node ip: ")), int(input("node port: ")))
 
         if choices_input == "ndconnectmixdb":
             server.connectionfrommixdb()
@@ -205,9 +217,7 @@ def menu():
 
         if choices_input == "exptrcsv":
             if export_the_transactions():
-                print(
-                    f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory"
-                )
+                print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
             else:
                 print("You have not a transaction")
 
@@ -235,13 +245,10 @@ def menu():
         if choices_input == "narunoexport":
             print(naruno_export())
         if choices_input == "narunoimport":
-            print(
-                naruno_import(
-                    input("Please write the path of exported backup: ")))
+            print(naruno_import(input("Please write the path of exported backup: ")))
 
         if choices_input == "sign":
-            print(sign(input("Please write the data: "),
-                       getpass("Password: ")))
+            print(sign(input("Please write the data: "), getpass("Password: ")))
 
         if choices_input == "verify":
             print(verify(input("Please write the signed data path: ")))
@@ -262,77 +269,53 @@ def arguments():
         description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
-    parser.add_argument("-pw",
-                        "--printwallet",
-                        action="store_true",
-                        help="Print Wallets")
+    parser.add_argument(
+        "-pw", "--printwallet", action="store_true", help="Print Wallets"
+    )
 
     parser.add_argument("-w", "--wallet", type=int, help="Change Wallet")
 
     parser.add_argument("-cw", "--createwallet", help="Create wallet")
 
-    parser.add_argument("-s",
-                        "--sign",
-                        action="store_true",
-                        help="Sign a data")
+    parser.add_argument("-s", "--sign", action="store_true", help="Sign a data")
     parser.add_argument("-d", "--data", type=str, help="Data")
     parser.add_argument("-p", "--password", type=str, help="Pass")
 
-    parser.add_argument("-dw",
-                        "--deletewallet",
-                        action="store_true",
-                        help="Delete wallet")
+    parser.add_argument(
+        "-dw", "--deletewallet", action="store_true", help="Delete wallet"
+    )
 
-    parser.add_argument("-gb",
-                        "--getbalance",
-                        action="store_true",
-                        help="Get Balance")
+    parser.add_argument("-gb", "--getbalance", action="store_true", help="Get Balance")
 
-    parser.add_argument("-ndnunl",
-                        "--ndnewunl",
-                        type=str,
-                        help="Add new UNL node")
+    parser.add_argument("-ndnunl", "--ndnewunl", type=str, help="Add new UNL node")
 
-    parser.add_argument("-ndid",
-                        "--ndid",
-                        action="store_true",
-                        help="Print my id")
+    parser.add_argument("-ndid", "--ndid", action="store_true", help="Print my id")
 
-    parser.add_argument("-tmon",
-                        "--testmodeon",
-                        action="store_true",
-                        help="Test Mode On")
-    parser.add_argument("-tmoff",
-                        "--testmodeoff",
-                        action="store_true",
-                        help="Test Mode Off")
+    parser.add_argument(
+        "-tmon", "--testmodeon", action="store_true", help="Test Mode On"
+    )
+    parser.add_argument(
+        "-tmoff", "--testmodeoff", action="store_true", help="Test Mode Off"
+    )
 
-    parser.add_argument("-dmon",
-                        "--debugmodeon",
-                        action="store_true",
-                        help="Debug Mode On")
-    parser.add_argument("-dmoff",
-                        "--debugmodeoff",
-                        action="store_true",
-                        help="Debug Mode Off")
+    parser.add_argument(
+        "-dmon", "--debugmodeon", action="store_true", help="Debug Mode On"
+    )
+    parser.add_argument(
+        "-dmoff", "--debugmodeoff", action="store_true", help="Debug Mode Off"
+    )
 
-    parser.add_argument("-pmon",
-                        "--publishermodeon",
-                        action="store_true",
-                        help="Publisher Mode On")
-    parser.add_argument("-pmoff",
-                        "--publishermodeoff",
-                        action="store_true",
-                        help="Publisher Mode Off")
+    parser.add_argument(
+        "-pmon", "--publishermodeon", action="store_true", help="Publisher Mode On"
+    )
+    parser.add_argument(
+        "-pmoff", "--publishermodeoff", action="store_true", help="Publisher Mode Off"
+    )
 
-    parser.add_argument("-bon",
-                        "--baklavaon",
-                        action="store_true",
-                        help="Baklava On")
-    parser.add_argument("-boff",
-                        "--baklavaoff",
-                        action="store_true",
-                        help="Baklava Off")
+    parser.add_argument("-bon", "--baklavaon", action="store_true", help="Baklava On")
+    parser.add_argument(
+        "-boff", "--baklavaoff", action="store_true", help="Baklava Off"
+    )
 
     parser.add_argument(
         "-exptrcsv",
@@ -348,30 +331,23 @@ def arguments():
         help="Exports the transaction as csv",
     )
 
-    parser.add_argument("-st",
-                        "--status",
-                        action="store_true",
-                        help="Exports the transaction as csv")
+    parser.add_argument(
+        "-st", "--status", action="store_true", help="Exports the transaction as csv"
+    )
 
-    parser.add_argument("-gp",
-                        "--getproof",
-                        type=str,
-                        help="Get proof of given transaction signature")
+    parser.add_argument(
+        "-gp", "--getproof", type=str, help="Get proof of given transaction signature"
+    )
 
-    parser.add_argument("-cp",
-                        "--checkproof",
-                        type=str,
-                        help="Checks the given proof")
+    parser.add_argument("-cp", "--checkproof", type=str, help="Checks the given proof")
 
-    parser.add_argument("-narunoexport",
-                        "--narunoexport",
-                        action="store_true",
-                        help="Export backup")
+    parser.add_argument(
+        "-narunoexport", "--narunoexport", action="store_true", help="Export backup"
+    )
 
-    parser.add_argument("-narunoimport",
-                        "--narunoimport",
-                        type=str,
-                        help="Import backup")
+    parser.add_argument(
+        "-narunoimport", "--narunoimport", type=str, help="Import backup"
+    )
 
     parser.add_argument(
         "-m",
@@ -429,8 +405,7 @@ def arguments():
 
     if args.exporttransactioncsv:
         if export_the_transactions():
-            print(
-                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
+            print(f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory")
         else:
             print("You have not a transaction")
 
