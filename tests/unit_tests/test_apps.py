@@ -476,7 +476,7 @@ class Test_apps(unittest.TestCase):
         text = f"{integration.app_name}hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
         self.assertEqual(the_tx.toUser, "<address>")
-        self.assertEqual(the_tx.amount, None)
+        self.assertEqual(the_tx.amount, 0.0)
 
         new_my_transactions = GetMyTransaction()
         self.assertEqual(len(new_my_transactions), 1)
