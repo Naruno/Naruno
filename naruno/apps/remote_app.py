@@ -36,7 +36,8 @@ from naruno.transactions.my_transactions.sended_transaction import \
 from naruno.transactions.my_transactions.validate_transaction import \
     ValidateTransaction
 from naruno.transactions.transaction import Transaction
-from naruno.wallet.wallet_import import Address, wallet_import
+from naruno.wallet.wallet_import import Address
+from naruno.wallet.wallet_import import wallet_import
 
 logger = get_logger("REMOTE_APP")
 
