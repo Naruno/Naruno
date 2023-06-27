@@ -118,10 +118,9 @@ class Integration:
 
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
-        if the_settings()["baklava"]:
-            self.host = "test_net.1.naruno.org"
-            self.port = 8000
-        try:
+        self.change_by_network()
+        success = False
+        with contextlib.suppress(Exception):
             self.max_tx_number = int(
                 self.prepare_request(
                     "/blockmaxtxnumber/get/",
@@ -133,34 +132,38 @@ class Integration:
                     type="get",
                 ).text)
 
-            if total_check is not None:
-                self.total_check = total_check
-            else:
+            self.total_check = total_check
+
+            if total_check is None:
                 self.total_check = self.prepare_request(
                     "/blockjustonetx/get/",
                     type="get",
                 ).text
 
-                if "true" in self.total_check:
-                    self.total_check = False
-                else:
-                    self.total_check = True
+
+                self.total_check = False if "true" in self.total_check else True
+
 
             self.original_wait_amoount = copy.copy(self.wait_amount)
 
-            if self.total_check:
-                self.check_thread = perpetualTimer(self.original_wait_amoount,
-                                                   checker, (self, ))
-                self.wait_amount = 0
-        except:
-            logger.error("Network is not active")
-            self.close()
-            sys.exit()
+            
+            self.check_thread = perpetualTimer(self.original_wait_amoount, checker, (self, )) if self.total_check else self.check_thread
+            self.wait_amount = 0 if self.total_check else self.wait_amount
+            success = True
+       
+        logger.error("Network is not active") if not success else None
+        self.close() if not success else None
+        sys.exit() if not success else None
 
         self.host = backup_host
         self.port = backup_port
 
         logger.info(f"Integration of {self.app_name} is started")
+
+    def change_by_network(self):
+        self.host = "test_net.1.naruno.org" if the_settings()["baklava"] else self.host
+        self.port = 8000 if the_settings()["baklava"] else self.port
+
 
     def init_api(self):
         try:
@@ -183,12 +186,12 @@ class Integration:
             time.sleep(self.sending_wait_time)
             self.sended_txs = (custom_list
                                if custom_list is not None else self.sended_txs)
-        self.check_thread.cancel()
+        
 
     def close(self):
         DeleteCommander(self.commander) if not self.commander is None else None
         self.wait_until_complated() if self.check_thread is not None else None
-
+        self.check_thread.cancel() if self.check_thread is not None else None
         if self.api is not None:
             self.api.close()
 
@@ -737,14 +740,9 @@ class Integration:
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
 
-        if ((self.sended or force_sended) and self.check_thread is not None
-                and not from_thread):
-            while len(self.sended_txs) > 0:
-                time.sleep(10)
+        self.wait_until_complated() if ((self.sended or force_sended) and self.check_thread is not None and not from_thread) else None
 
-        if the_settings()["baklava"]:
-            self.host = "test_net.1.naruno.org"
-            self.port = 8000
+        self.change_by_network()
 
         baklava_datas = None
 
