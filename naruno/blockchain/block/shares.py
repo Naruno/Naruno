@@ -21,6 +21,11 @@ def shares(block: Block,
            dont_clean=False) -> list:
     """
     It returns the transactions that needed for locked shares distribution.
+    You should use the shares element like this
+    [
+        [address, amount, every_x_block, dead_line_block, start_block],
+    ]
+
     """
     logger.info("Share distribution started.")
     logger.debug(f"block.validating_list: {block.validating_list}")
