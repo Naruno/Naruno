@@ -28,7 +28,7 @@ def sign(data: str, password: str) -> str:
 
     true_pass = wallet_import(-1, 2)
     our_pass = sha256(password.encode("utf-8")).hexdigest()
-    
+
     if true_pass != our_pass:
         return "Password is not True"
 

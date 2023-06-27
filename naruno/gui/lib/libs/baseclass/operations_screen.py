@@ -140,8 +140,7 @@ class OperationBox(MDGridLayout):
         if export_the_transactions():
             Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
             popup(
-                title=
-                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
+                title=f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
                 type="success",
             )
 
@@ -152,8 +151,7 @@ class OperationBox(MDGridLayout):
         the_signature_of_tx = args[0][:96]
         Clipboard.copy(the_signature_of_tx)
         popup(
-            title=
-            "The signature of transaction has been copied to your clipboard.",
+            title="The signature of transaction has been copied to your clipboard.",
             text=f"The signature is : {the_signature_of_tx}",
             type="success",
         )
