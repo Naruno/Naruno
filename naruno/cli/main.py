@@ -273,6 +273,15 @@ def arguments():
 
     parser.add_argument("-cw", "--createwallet", help="Create wallet")
 
+
+    parser.add_argument("-s",
+                        "--sign",
+                        action="store_true",
+                        help="Sign a data")
+    parser.add_argument("-d", "--data", type=str, help="Data")
+    parser.add_argument("-p", "--password", type=str, help="Pass")
+
+
     parser.add_argument("-dw",
                         "--deletewallet",
                         action="store_true",
@@ -460,6 +469,22 @@ def arguments():
 
     if args.narunoimport is not None:
         naruno_import(args.narunoimport)
+
+
+    if args.sign:
+        control = True
+        if args.data is None:
+            print("Please enter data")
+            control = False
+        if args.password is None:
+            print("Please enter password")
+            control = False
+        
+        if control:
+            print(sign(args.data, args.password))
+        else:
+            return
+
 
     if args.menu:
         menu()
