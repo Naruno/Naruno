@@ -78,6 +78,7 @@ Naruno is written in **PEP8** format and **only** needs dependent libraries for 
 \*Some features will be adjusted in stable release.
 
 # Contributors
+
 <a href="https://github.com/Naruno/Naruno/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Naruno/Naruno" />
 </a>

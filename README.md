@@ -161,8 +161,8 @@ Naruno is a completely community driven project, you can contribute in any way i
 
 <br/>
 
-
 # Contributors
+
 <a href="https://github.com/Naruno/Naruno/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Naruno/Naruno" />
 </a>
