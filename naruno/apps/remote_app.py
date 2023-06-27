@@ -96,6 +96,8 @@ class Integration:
 
         self.last_sended = 0
 
+        self.sending_wait_time = 10
+
         a_block = Block("Onur")
 
         if wait_amount is None:
@@ -176,12 +178,16 @@ class Integration:
         self.api_thread.start()
         sys.argv = backup
 
+    def wait_until_complated(self, custom_list=None):
+        while len(self.sended_txs) > 0:
+            time.sleep(self.sending_wait_time)
+            self.sended_txs = custom_list if custom_list is not None else self.sended_txs
+        self.check_thread.cancel()
+
     def close(self):
         DeleteCommander(self.commander) if not self.commander is None else None
-        if self.check_thread is not None:
-            while len(self.sended_txs) > 0:
-                time.sleep(10)
-            self.check_thread.cancel()
+        self.wait_until_complated() if self.check_thread is not None else None
+
         if self.api is not None:
             self.api.close()
 
@@ -250,6 +256,14 @@ class Integration:
                 time.sleep(retrysecond)
         return stop
 
+
+    def generate_random_split_key(self):
+        rando = ""
+        for i in range(5):
+            rando += random.choice(string.ascii_letters)
+        return rando
+
+
     def send_splitter(
         self,
         action,
@@ -265,12 +279,8 @@ class Integration:
         backup_checking = copy.copy(self.checking)
         self.checking = False
         # generate random charactere
-        rando = ""
-        if custom_random is None:
-            for i in range(5):
-                rando += random.choice(string.ascii_letters)
-        else:
-            rando = custom_random
+        rando = custom_random if custom_random is not None else self.generate_random_split_key()
+
 
         split_random = rando + "-"
 
@@ -326,6 +336,10 @@ class Integration:
         )
         return True
 
+    def wait_until_true_time(self):
+        time.sleep(self.wait_amount - (time.time() - self.last_sended))        
+
+
     def send(self,
              action,
              app_data,
@@ -339,8 +353,8 @@ class Integration:
         :param to_user: The user to send the data to
         """
 
-        if time.time() - self.last_sended < self.wait_amount:
-            time.sleep(self.wait_amount - (time.time() - self.last_sended))
+        self.wait_until_true_time() if time.time() - self.last_sended < self.wait_amount else None
+            
 
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
