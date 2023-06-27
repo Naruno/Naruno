@@ -926,7 +926,7 @@ class Test_Lib(unittest.TestCase):
 
     def test_sign_verify_false_pass(self):
         signed = sign("Onur & Ali Eren", str(time.time()))
-        self.assertEqual(signed, "None")
+        self.assertEqual(signed, "Password is not True")
 
     def test_logs(self):
         clear_logs()
