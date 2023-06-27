@@ -388,7 +388,8 @@ class Test_apps(unittest.TestCase):
             "password": password,
         }
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", amount=5, force=False),
+            integration.send("hello_text", "hello",
+                             "<address>", amount=5, force=False),
             True)
 
         second_try = integration.send(
@@ -997,11 +998,10 @@ class Test_apps(unittest.TestCase):
             ],
         )
 
-
     def test_generate_random_split_key(self):
         split_key = self.integration.generate_random_split_key()
         self.assertEqual(len(split_key), 5)
-        self.assertTrue(split_key.isalpha())    
+        self.assertTrue(split_key.isalpha())
 
     def test_wait_until_true_time(self):
         backup_wait_amount = copy.copy(self.integration.wait_amount)
@@ -1019,7 +1019,8 @@ class Test_apps(unittest.TestCase):
         self.assertAlmostEqual(end_time - start_time, 2, delta=0.3)
 
     def test_wait_until_complated(self):
-        backup_sending_wait_time = copy.copy(self.integration.sending_wait_time)
+        backup_sending_wait_time = copy.copy(
+            self.integration.sending_wait_time)
         backup_sended_txs = copy.copy(self.integration.sended_txs)
         backup_check_thread = self.integration.check_thread
         self.integration.sending_wait_time = 2
