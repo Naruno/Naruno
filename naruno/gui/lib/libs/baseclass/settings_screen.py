@@ -1,29 +1,24 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-import time
 import os
 import shutil
+import time
+
 from kivy.app import App
-from kivymd.uix.button import MDFlatButton
-from kivymd.uix.button import MDRaisedButton
+from kivy.core.clipboard import Clipboard
+from kivy.utils import platform
+from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
 import naruno.gui.the_naruno_gui_app
-from naruno.lib.backup.naruno_import import naruno_import
-from naruno.lib.settings_system import d_mode_settings
-from naruno.lib.settings_system import dark_mode_settings
-from naruno.lib.settings_system import mt_settings
-from naruno.lib.settings_system import t_mode_settings
-from naruno.lib.settings_system import the_settings
-
-from kivy.core.clipboard import Clipboard
 from naruno.gui.popup import popup
 from naruno.lib.backup.naruno_export import naruno_export
 from naruno.lib.backup.naruno_import import naruno_import
-
-from kivy.utils import platform
+from naruno.lib.settings_system import (d_mode_settings, dark_mode_settings,
+                                        mt_settings, t_mode_settings,
+                                        the_settings)
 
 
 class SettingsScreen(MDScreen):
@@ -82,7 +77,7 @@ class SettingsBox(MDGridLayout):
         export_location = naruno_export()
         Clipboard.copy(export_location)
         if platform == "android":
-            from android.permissions import request_permissions, Permission
+            from android.permissions import Permission, request_permissions
 
             request_permissions(
                 [Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE]
