@@ -80,12 +80,6 @@ class SettingsBox(MDGridLayout):
         export_location = naruno_export()
         Clipboard.copy(export_location)
         if platform == "android":
-            from android.permissions import Permission, request_permissions
-
-            request_permissions([
-                Permission.READ_EXTERNAL_STORAGE,
-                Permission.WRITE_EXTERNAL_STORAGE
-            ])
             from android.storage import primary_external_storage_path
 
             dir = primary_external_storage_path()

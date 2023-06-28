@@ -15,6 +15,7 @@ from kivy import Config
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
+from kivy.utils import platform
 
 import naruno.gui.the_naruno_gui_app
 from naruno.lib.config_system import get_config
@@ -145,6 +146,14 @@ class GUI(MDApp):
                 1.5,
             ],
         })
+
+        if platform == "android":
+            from android.permissions import Permission, request_permissions
+
+            request_permissions([
+                Permission.READ_EXTERNAL_STORAGE,
+                Permission.WRITE_EXTERNAL_STORAGE
+            ])
 
         return Builder.load_string(KV)
 
