@@ -78,3 +78,25 @@
             MDSwitch:
                 active: root.dark_mode_first_status
                 on_active: root.DARK_MODE_Status_Changing(self, self.active)
+
+        AnchorLayout:
+            size_hint_y: None
+            height: but1.height
+            MDRoundFlatIconButton:
+                id: but1
+                icon: "export"
+                on_press: root.export_bt()
+                text: "Export"
+                halign: "right"
+                font_style: "Button"
+
+        AnchorLayout:
+            size_hint_y: None
+            height: but2.height
+            MDRoundFlatIconButton:
+                id: but2
+                icon: "import"
+                on_press: root.import_bt()
+                text: "Import"
+                halign: "right"
+                font_style: "Button"
