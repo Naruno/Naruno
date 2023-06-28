@@ -87,7 +87,7 @@ class SettingsBox(MDGridLayout):
             new_path = os.path.join(download_dir_path,
                                     export_location.split("/")[-1])
             Clipboard.copy(new_path)
-            shutil.copyfile(
+            shutil.move(
                 export_location,
                 new_path,
             )
