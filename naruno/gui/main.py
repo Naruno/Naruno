@@ -14,8 +14,8 @@ os.environ["KIVY_NO_ARGS"] = "1"
 from kivy import Config
 from kivy.core.window import Window
 from kivy.lang import Builder
-from kivymd.app import MDApp
 from kivy.utils import platform
+from kivymd.app import MDApp
 
 import naruno.gui.the_naruno_gui_app
 from naruno.lib.config_system import get_config
