@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import time
-
+import os
+import shutil
 from kivy.app import App
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.button import MDRaisedButton
@@ -10,12 +11,19 @@ from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
 import naruno.gui.the_naruno_gui_app
+from naruno.lib.backup.naruno_import import naruno_import
 from naruno.lib.settings_system import d_mode_settings
 from naruno.lib.settings_system import dark_mode_settings
 from naruno.lib.settings_system import mt_settings
 from naruno.lib.settings_system import t_mode_settings
 from naruno.lib.settings_system import the_settings
 
+from kivy.core.clipboard import Clipboard
+from naruno.gui.popup import popup
+from naruno.lib.backup.naruno_export import naruno_export
+from naruno.lib.backup.naruno_import import naruno_import
+
+from kivy.utils import platform
 
 class SettingsScreen(MDScreen):
     pass
@@ -68,3 +76,36 @@ class SettingsBox(MDGridLayout):
     def DARK_MODE_Status_Changing(self, instance, value):
         dark_mode_settings(value)
         self.show_dialog()
+
+
+    def export_bt(self):
+        export_location = naruno_export()
+        Clipboard.copy(export_location)
+        if platform == 'android':
+            from android.permissions import request_permissions, Permission
+            request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+            from android.storage import primary_external_storage_path
+            dir = primary_external_storage_path()
+            download_dir_path = os.path.join(dir, 'Download')
+            shutil.copyfile(
+                export_location,
+                os.path.join(download_dir_path, export_location.split('/')[-1]),
+            )            
+        popup(title="The export file location has been copied to your clipboard.",
+              type="success")
+    
+    def import_the_db(self):
+        naruno_import(self.import_backup_dialog.input_results["Path"])
+        SettingsBox.dark_mode_first_status = the_settings()["dark_mode"]
+        SettingsBox.d_first_status = the_settings()["debug_mode"]
+        SettingsBox.t_first_status = the_settings()["test_mode"]
+        SettingsBox.mt_first_status = the_settings()["mute_notifications"]
+        naruno.gui.the_naruno_gui_app.the_naruno_gui.restart()
+
+
+    def import_bt(self):
+        self.import_backup_dialog = popup(
+            title="Import your export (App Will Restart)",
+            target=self.import_the_db,
+            inputs=[["Path", False]],
+        ) 
