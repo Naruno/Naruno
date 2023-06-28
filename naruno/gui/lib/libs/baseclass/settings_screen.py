@@ -84,8 +84,7 @@ class SettingsBox(MDGridLayout):
 
             dir = primary_external_storage_path()
             download_dir_path = os.path.join(dir, "Download")
-            new_path = os.path.join(
-                download_dir_path, export_location.split("/")[-1])
+            new_path = os.path.join(download_dir_path, export_location.split("/")[-1])
             Clipboard.copy(new_path)
             shutil.copyfile(
                 export_location,
