@@ -25,7 +25,11 @@
             pos: self.pos
 
     MDGridLayout:
-
+        size_hint_x: 1
+        size_hint_y: None
+        height: self.minimum_height
+        padding: dp(10)
+        spacing: 10
         cols: 2
 
         NarunoLabel:
