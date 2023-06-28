@@ -81,20 +81,24 @@ class SettingsBox(MDGridLayout):
     def export_bt(self):
         export_location = naruno_export()
         Clipboard.copy(export_location)
-        if platform == 'android':
+        if platform == "android":
             from android.permissions import request_permissions, Permission
+
             request_permissions(
-                [Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+                [Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE]
+            )
             from android.storage import primary_external_storage_path
+
             dir = primary_external_storage_path()
-            download_dir_path = os.path.join(dir, 'Download')
+            download_dir_path = os.path.join(dir, "Download")
             shutil.copyfile(
                 export_location,
-                os.path.join(download_dir_path,
-                             export_location.split('/')[-1]),
+                os.path.join(download_dir_path, export_location.split("/")[-1]),
             )
-        popup(title="The export file location has been copied to your clipboard.",
-              type="success")
+        popup(
+            title="The export file location has been copied to your clipboard.",
+            type="success",
+        )
 
     def import_the_db(self):
         naruno_import(self.import_backup_dialog.input_results["Path"])
