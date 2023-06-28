@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from hashlib import sha256
+import shutil
 
 from kivy.core.clipboard import Clipboard
 from kivymd.uix.bottomsheet import MDListBottomSheet
@@ -9,6 +10,7 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
+from kivy.utils import platform
 
 import naruno.gui.the_naruno_gui_app
 from naruno.blockchain.block.get_block import GetBlock
@@ -86,10 +88,20 @@ class OperationBox(MDGridLayout):
             popup(title="Password is not correct", type="failure")
         else:
             Clipboard.copy(path)
+            if platform == "android":
+                from android.storage import primary_external_storage_path
+
+                dir = primary_external_storage_path()
+                download_dir_path = os.path.join(dir, "Download")
+                new_path = os.path.join(download_dir_path,
+                                        path.split("/")[-1])
+                Clipboard.copy(new_path)
+                shutil.move(
+                    path,
+                    new_path,
+                )            
             popup(
-                title="Signed data file created",
-                text="The file has been copied to your clipboard.",
-                thirdly_title=path,
+                title="Signed data file copied to your clipboard.",
                 type="success",
             )
 
