@@ -86,8 +86,7 @@ class SettingsBox(MDGridLayout):
             download_dir_path = os.path.join(dir, "Download")
             shutil.copyfile(
                 export_location,
-                os.path.join(download_dir_path,
-                             export_location.split("/")[-1]),
+                os.path.join(download_dir_path, export_location.split("/")[-1]),
             )
         popup(
             title="The export file location has been copied to your clipboard.",
