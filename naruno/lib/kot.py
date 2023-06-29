@@ -17,10 +17,11 @@ from shutil import unpack_archive
 
 
 class KOT:
+
     @staticmethod
-    def benchmark_set(
-        number: int = 10000, compress: bool = False, encryption_key: str = ""
-    ) -> float:
+    def benchmark_set(number: int = 10000,
+                      compress: bool = False,
+                      encryption_key: str = "") -> float:
         my_db = KOT("KOT-benchmark", self_datas=True)
         start = time.time()
         for i in range(number):
@@ -81,27 +82,33 @@ class KOT:
         return end - start
 
     @staticmethod
-    def benchmark(
-        number: int = 10000, compress: bool = False, encryption_key: str = ""
-    ) -> float:
+    def benchmark(number: int = 10000,
+                  compress: bool = False,
+                  encryption_key: str = "") -> float:
         total_time = 0
         total_time += KOT.benchmark_set(number, compress, encryption_key)
-        total_time += KOT.benchmark_get(
-            number, compress, encryption_key, dont_generate=True
-        )
-        total_time += KOT.benchmark_delete(
-            number, compress, encryption_key, dont_generate=True
-        )
+        total_time += KOT.benchmark_get(number,
+                                        compress,
+                                        encryption_key,
+                                        dont_generate=True)
+        total_time += KOT.benchmark_delete(number,
+                                           compress,
+                                           encryption_key,
+                                           dont_generate=True)
         return total_time
 
     @staticmethod
     def database_list(folder: str = "") -> dict:
-        database_index = KOT("KOT-database-index", self_datas=True, folder=folder)
+        database_index = KOT("KOT-database-index",
+                             self_datas=True,
+                             folder=folder)
         return database_index.dict()
 
     @staticmethod
     def database_delete(name: str, folder: str = "") -> bool:
-        database_index = KOT("KOT-database-index", self_datas=True, folder=folder)
+        database_index = KOT("KOT-database-index",
+                             self_datas=True,
+                             folder=folder)
         try:
             rmtree(database_index.get(name))
         except:
@@ -112,14 +119,17 @@ class KOT:
 
     @staticmethod
     def database_delete_all(folder: str = ""):
-        database_index = KOT("KOT-database-index", self_datas=True, folder=folder)
+        database_index = KOT("KOT-database-index",
+                             self_datas=True,
+                             folder=folder)
         for each_database in database_index.dict():
             KOT.database_delete(each_database)
 
     @staticmethod
-    def database_rename(
-        name: str, new_name: str, force: bool = False, folder: str = ""
-    ) -> bool:
+    def database_rename(name: str,
+                        new_name: str,
+                        force: bool = False,
+                        folder: str = "") -> bool:
         if new_name in KOT.database_list() and not force:
             return False
         try:
@@ -138,13 +148,16 @@ class KOT:
         self.name = name
         self.hashed_name = sha256(name.encode()).hexdigest()
         the_main_folder = os.getcwd() if not folder != "" else folder
-        self.location = os.path.join(the_main_folder, "KOT-" + self.hashed_name)
+        self.location = os.path.join(the_main_folder,
+                                     "KOT-" + self.hashed_name)
 
         if not self_datas:
-            self.open_files_db = KOT(
-                "KOT-open_files_db", self_datas=True, folder=folder
-            )
-            database_index = KOT("KOT-database-index", self_datas=True, folder=folder)
+            self.open_files_db = KOT("KOT-open_files_db",
+                                     self_datas=True,
+                                     folder=folder)
+            database_index = KOT("KOT-database-index",
+                                 self_datas=True,
+                                 folder=folder)
             database_index.set(self.name, self.location)
 
         self.counter = 0
@@ -182,19 +195,22 @@ class KOT:
         from Crypto import Random
 
         iv = Random.new().read(AES.block_size)
-        cipher = AES.new(hashlib.sha256(key.encode()).digest(), AES.MODE_CBC, iv)
-        return base64.b64encode(iv + cipher.encrypt(padded_message.encode())).decode()
+        cipher = AES.new(
+            hashlib.sha256(key.encode()).digest(), AES.MODE_CBC, iv)
+        return base64.b64encode(
+            iv + cipher.encrypt(padded_message.encode())).decode()
 
     def decrypt(self, key, message):
         from Crypto.Cipher import AES
 
         def unpad(s):
-            return s[: -ord(s[len(s) - 1 :])]
+            return s[:-ord(s[len(s) - 1:])]
 
         message = base64.b64decode(message.encode())
-        iv = message[: AES.block_size]
-        cipher = AES.new(hashlib.sha256(key.encode()).digest(), AES.MODE_CBC, iv)
-        unpadded = unpad(cipher.decrypt(message[AES.block_size :])).decode()
+        iv = message[:AES.block_size]
+        cipher = AES.new(
+            hashlib.sha256(key.encode()).digest(), AES.MODE_CBC, iv)
+        unpadded = unpad(cipher.decrypt(message[AES.block_size:])).decode()
 
         unpadded = base64.b64decode(unpadded)
 
@@ -221,24 +237,22 @@ class KOT:
             raise TypeError("File must be a string")
 
         try:
-            key_location = os.path.join(self.location, sha256(key.encode()).hexdigest())
-            key_location_loading = os.path.join(self.location, key_location + ".l")
+            key_location = os.path.join(self.location,
+                                        sha256(key.encode()).hexdigest())
+            key_location_loading = os.path.join(self.location,
+                                                key_location + ".l")
             key_location_loading_indicator = os.path.join(
-                self.location, key_location + ".li"
-            )
+                self.location, key_location + ".li")
 
             key_location_reading_indicator = os.path.join(
-                self.location, key_location + ".re"
-            )
+                self.location, key_location + ".re")
             key_location_compress_indicator = os.path.join(
-                self.location, key_location + ".co"
-            )
+                self.location, key_location + ".co")
 
             if file != "":
                 meta["type"] = "file"
                 meta["file"] = os.path.join(
-                    self.location, key_location + "." + file.split(".")[-1]
-                )
+                    self.location, key_location + "." + file.split(".")[-1])
                 try:
                     if not compress and encryption_key == "":
                         value = ""
@@ -337,21 +351,16 @@ class KOT:
             if cache_control:
                 return self.transformer(self.cache[key])
 
-        key_location = (
-            os.path.join(self.location, sha256(key.encode()).hexdigest())
-            if custom_key_location == ""
-            else custom_key_location
-        )
+        key_location = (os.path.join(self.location,
+                                     sha256(key.encode()).hexdigest())
+                        if custom_key_location == "" else custom_key_location)
 
-        key_location_loading_indicator = os.path.join(
-            self.location, key_location + ".li"
-        )
-        key_location_reading_indicator = os.path.join(
-            self.location, key_location + ".re"
-        )
-        key_location_compress_indicator = os.path.join(
-            self.location, key_location + ".co"
-        )
+        key_location_loading_indicator = os.path.join(self.location,
+                                                      key_location + ".li")
+        key_location_reading_indicator = os.path.join(self.location,
+                                                      key_location + ".re")
+        key_location_compress_indicator = os.path.join(self.location,
+                                                       key_location + ".co")
 
         while os.path.exists(key_location_loading_indicator):
             time.sleep(0.1)
@@ -369,23 +378,23 @@ class KOT:
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
 
-                with mgzip.open(os.path.join(self.location, key_location), "rb") as f:
+                with mgzip.open(os.path.join(self.location, key_location),
+                                "rb") as f:
                     result = pickle.load(f)
                     total_result_standart = result
                     try:
                         total_result = self.transformer(
-                            result, encryption_key=encryption_key
-                        )
+                            result, encryption_key=encryption_key)
                     except TypeError:
                         total_result = result
             else:
-                with open(os.path.join(self.location, key_location), "rb") as f:
+                with open(os.path.join(self.location, key_location),
+                          "rb") as f:
                     result = pickle.load(f)
                     total_result_standart = result
                     try:
                         total_result = self.transformer(
-                            result, encryption_key=encryption_key
-                        )
+                            result, encryption_key=encryption_key)
                     except TypeError:
                         total_result = result
 
@@ -412,9 +421,8 @@ class KOT:
         return total_result
 
     def get_key(self, key_location: str):
-        key_location_compress_indicator = os.path.join(
-            self.location, key_location + ".co"
-        )
+        key_location_compress_indicator = os.path.join(self.location,
+                                                       key_location + ".co")
         if not os.path.isfile(os.path.join(self.location, key_location)):
             return None
         total_result = None
@@ -423,7 +431,8 @@ class KOT:
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
 
-                with mgzip.open(os.path.join(self.location, key_location), "rb") as f:
+                with mgzip.open(os.path.join(self.location, key_location),
+                                "rb") as f:
                     result = pickle.load(f)
                     if not "cache_time" in result:
                         result["cache_time"] = 0
@@ -436,7 +445,8 @@ class KOT:
                     except TypeError:
                         total_result = False
             else:
-                with open(os.path.join(self.location, key_location), "rb") as f:
+                with open(os.path.join(self.location, key_location),
+                          "rb") as f:
                     result = pickle.load(f)
                     if not "cache_time" in result:
                         result["cache_time"] = 0
@@ -462,10 +472,10 @@ class KOT:
         try:
             if key in self.cache:
                 del self.cache[key]
-            key_location = os.path.join(self.location, sha256(key.encode()).hexdigest())
+            key_location = os.path.join(self.location,
+                                        sha256(key.encode()).hexdigest())
             key_location_compress_indicator = os.path.join(
-                self.location, key_location + ".co"
-            )
+                self.location, key_location + ".co")
 
             with contextlib.suppress(TypeError):
                 maybe_file = self.get(key)
@@ -473,7 +483,9 @@ class KOT:
                     os.remove(maybe_file)
 
             if os.path.exists(key_location_compress_indicator):
-                os.remove(os.path.join(self.location, key_location_compress_indicator))
+                os.remove(
+                    os.path.join(self.location,
+                                 key_location_compress_indicator))
             if os.path.exists(os.path.join(self.location, key_location)):
                 os.remove(os.path.join(self.location, key_location))
         except:
@@ -498,11 +510,9 @@ class KOT:
                 the_key = self.get_key(key)
                 if not the_key is None:
                     if the_key != False:
-                        result_of_key = (
-                            self.get(the_key, encryption_key=encryption_key)
-                            if not no_data
-                            else True
-                        )
+                        result_of_key = (self.get(
+                            the_key, encryption_key=encryption_key)
+                                         if not no_data else True)
                         if not result_of_key is None:
                             result[the_key] = result_of_key
         return result
@@ -521,23 +531,23 @@ class KOT:
     def size(self, key: str) -> int:
         total_size = 0
         try:
-            key_location = os.path.join(self.location, sha256(key.encode()).hexdigest())
+            key_location = os.path.join(self.location,
+                                        sha256(key.encode()).hexdigest())
 
             key_location_compress_indicator = os.path.join(
-                self.location, key_location + ".co"
-            )
+                self.location, key_location + ".co")
 
             if os.path.exists(key_location_compress_indicator):
                 total_size += os.path.getsize(
-                    os.path.join(self.location, key_location + ".co")
-                )
+                    os.path.join(self.location, key_location + ".co"))
 
             with contextlib.suppress(TypeError):
                 maybe_file = self.get(key)
                 if os.path.exists(maybe_file):
                     total_size += os.path.getsize(maybe_file)
 
-            total_size += os.path.getsize(os.path.join(self.location, key_location))
+            total_size += os.path.getsize(
+                os.path.join(self.location, key_location))
         except:
             traceback.print_exc()
 

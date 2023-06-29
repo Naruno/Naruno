@@ -12,17 +12,14 @@ from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.transactions.transaction import Transaction
 
-pendingtransactions_db = KOT(
-    "pendingtransactions", folder=get_config()["main_folder"] + "/db"
-)
+pendingtransactions_db = KOT("pendingtransactions",
+                             folder=get_config()["main_folder"] + "/db")
 
 
 def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (
-        PENDING_TRANSACTIONS_PATH
-        if custom_PENDING_TRANSACTIONS_PATH is None
-        else custom_PENDING_TRANSACTIONS_PATH
-    )
+    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
+                                     custom_PENDING_TRANSACTIONS_PATH is None
+                                     else custom_PENDING_TRANSACTIONS_PATH)
     the_pending_list = []
     all_records = pendingtransactions_db.get_all()
     for entry in all_records:
@@ -31,10 +28,8 @@ def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
 
 
 def GetPendingLen(custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (
-        PENDING_TRANSACTIONS_PATH
-        if custom_PENDING_TRANSACTIONS_PATH is None
-        else custom_PENDING_TRANSACTIONS_PATH
-    )
+    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
+                                     custom_PENDING_TRANSACTIONS_PATH is None
+                                     else custom_PENDING_TRANSACTIONS_PATH)
 
     return pendingtransactions_db.get_count()

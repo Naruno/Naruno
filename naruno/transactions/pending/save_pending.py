@@ -12,9 +12,8 @@ from naruno.config import PENDING_TRANSACTIONS_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 
-pendingtransactions_db = KOT(
-    "pendingtransactions", folder=get_config()["main_folder"] + "/db"
-)
+pendingtransactions_db = KOT("pendingtransactions",
+                             folder=get_config()["main_folder"] + "/db")
 
 
 def SavePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
