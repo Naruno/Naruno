@@ -11,7 +11,7 @@ from naruno.config import SETTING_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 
-settings_db = KOT("settings", folder=get_config()["main_folder"]+"/db")
+settings_db = KOT("settings", folder=get_config()["main_folder"] + "/db")
 
 temp_json = {
     "test_mode": False,
@@ -165,11 +165,10 @@ def the_settings():
     saves and returns.
     """
 
-  
     the_setting = settings_db.get("settings")
     if the_setting is None:
-      create_and_save_the_settings()
-      the_setting = settings_db.get("settings")
+        create_and_save_the_settings()
+        the_setting = settings_db.get("settings")
 
     missing = False
     for element in temp_json:
