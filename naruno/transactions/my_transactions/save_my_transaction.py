@@ -11,6 +11,10 @@ from hashlib import sha256
 
 from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
+
+mytransactions_db = KOT("mytransactions",
+                        folder=get_config()["main_folder"] + "/db")
 
 
 def SaveMyTransaction(transaction_list, clear=False):
@@ -41,24 +45,13 @@ def SaveMyTransaction(transaction_list, clear=False):
         }
 
         if clear:
-            for entry in os.scandir(MY_TRANSACTION_PATH):
-                if (entry.name != "README.md"
-                        and not entry.name.startswith("validated")
-                        and not entry.name.startswith("sended")):
-                    if entry.name not in str(entry_name_list):
-                        os.remove(entry.path)
-                        if os.path.exists(
-                                os.path.join(MY_TRANSACTION_PATH,
-                                             "validated" + entry.name)):
-                            os.remove(
-                                os.path.join(MY_TRANSACTION_PATH,
-                                             "validated" + entry.name))
-                        if os.path.exists(
-                                os.path.join(MY_TRANSACTION_PATH,
-                                             "sended" + entry.name)):
-                            os.remove(
-                                os.path.join(MY_TRANSACTION_PATH,
-                                             "sended" + entry.name))
+            for entry in mytransactions_db.get_all():
+                if not entry.endswith("validated") and not entry.endswith(
+                        "sended"):
+                    if entry not in str(entry_name_list):
+                        mytransactions_db.delete(entry)
+                        mytransactions_db.delete(entry + "validated")
+                        mytransactions_db.delete(entry + "sended")
 
         transaction_list = new_dict
 
@@ -66,53 +59,27 @@ def SaveMyTransaction(transaction_list, clear=False):
             name = copy.copy(tx.encode("utf-8"))
             if tx == b"":
                 name = "empty".encode("utf-8")
+            mytransactions_db.set(
+                sha256(name).hexdigest(), transaction_list[tx]["tx"])
 
-            with open(
-                    os.path.join(MY_TRANSACTION_PATH,
-                                 sha256(name).hexdigest()),
-                    "w") as my_transaction_file:
-                json.dump(transaction_list[tx]["tx"], my_transaction_file)
             if transaction_list[tx]["validated"]:
-                with open(
-                        os.path.join(MY_TRANSACTION_PATH,
-                                     "validated" + sha256(name).hexdigest()),
-                        "w",
-                ) as my_transaction_file:
-                    my_transaction_file.write("1")
-
+                mytransactions_db.set(
+                    sha256(name).hexdigest() + "validated", True)
             if transaction_list[tx]["sended"]:
-                with open(
-                        os.path.join(MY_TRANSACTION_PATH,
-                                     "sended" + sha256(name).hexdigest()),
-                        "w",
-                ) as my_transaction_file:
-                    my_transaction_file.write("1")
+                mytransactions_db.set(
+                    sha256(name).hexdigest() + "sended", True)
+
     elif type(transaction_list) is dict and transaction_list != {}:
-        with open(
-                os.path.join(MY_TRANSACTION_PATH,
-                             sha256(
-                                 transaction_list[0].signature).hexdigest()),
-                "w",
-        ) as my_transaction_file:
-            json.dump(transaction_list[0].dump_json(), my_transaction_file)
+        mytransactions_db.set(
+            sha256(transaction_list[0].signature).hexdigest(),
+            transaction_list[0].dump_json(),
+        )
 
         if transaction_list[1]:
-            with open(
-                    os.path.join(
-                        MY_TRANSACTION_PATH,
-                        "validated" +
-                        sha256(transaction_list[0].signature).hexdigest(),
-                    ),
-                    "w",
-            ) as my_transaction_file:
-                my_transaction_file.write("1")
+            mytransactions_db.set(
+                sha256(transaction_list[0].signature +
+                       "validated").hexdigest(), True)
         if transaction_list[2]:
-            with open(
-                    os.path.join(
-                        MY_TRANSACTION_PATH,
-                        "sended" +
-                        sha256(transaction_list[0].signature).hexdigest(),
-                    ),
-                    "w",
-            ) as my_transaction_file:
-                my_transaction_file.write("1")
+            mytransactions_db.set(
+                sha256(transaction_list[0].signature + "sended").hexdigest(),
+                True)

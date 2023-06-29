@@ -10,7 +10,11 @@ import os
 
 from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
 from naruno.transactions.transaction import Transaction
+
+mytransactions_db = KOT("mytransactions",
+                        folder=get_config()["main_folder"] + "/db")
 
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
@@ -18,30 +22,18 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     Returns the transaction db.
     """
 
-    os.chdir(get_config()["main_folder"])
-
-    if not os.path.exists(MY_TRANSACTION_PATH):
-        return []
-
     the_transactions = []
 
-    # find the my transaction folder with os scandir
-    for entry in os.scandir(MY_TRANSACTION_PATH):
-        if (entry.name != "README.md"
-                and not entry.name.startswith("validated")
-                and not entry.name.startswith("sended")):
+    all_records = mytransactions_db.get_all()
+    for entry in all_records:
+        if not entry.endswith("validated") and not entry.endswith("sended"):
             try:
-                the_transactions_json = json.load(open(entry.path, "r"))
-                # Find "validatedentry.name" and "sendedentry.name" files
-                each_validated = False
-                each_sended = False
-                if os.path.exists(
-                        os.path.join(MY_TRANSACTION_PATH,
-                                    "validated" + entry.name)):
-                    each_validated = True
-                if os.path.exists(
-                        os.path.join(MY_TRANSACTION_PATH, "sended" + entry.name)):
-                    each_sended = True
+                the_transactions_json = all_records[entry]
+                each_validated = (False if mytransactions_db.get(entry +
+                                                                 "validated")
+                                  == None else True)
+                each_sended = (False if mytransactions_db.get(entry + "sended")
+                               == None else True)
                 the_transactions.append([
                     Transaction.load_json(the_transactions_json),
                     each_validated,
@@ -59,7 +51,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             tx for tx in the_transactions if tx[1] == validated
         ]
 
-    #sort
+    # sort
     the_transactions.sort(key=lambda x: x[0].signature)
 
     if turn_json:
@@ -71,7 +63,5 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             }
             for tx in the_transactions
         }
-
-
 
     return the_transactions
