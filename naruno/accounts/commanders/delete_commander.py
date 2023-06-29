@@ -8,10 +8,11 @@ import os
 
 from naruno.config import COMMANDERS_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
+
+commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
 
 
 def DeleteCommander(tx):
-    os.chdir(get_config()["main_folder"])
-    for entry in os.scandir(COMMANDERS_PATH):
-        if tx in entry.name:
-            os.remove(entry.path)
+    if commanders_db.get(tx) == True:
+        commanders_db.delete(tx)
