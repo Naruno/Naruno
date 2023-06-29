@@ -9,9 +9,9 @@ import os
 from naruno.config import COMMANDERS_PATH
 from naruno.lib.config_system import get_config
 
+from naruno.lib.kot import KOT
+
+commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
 
 def SaveCommander(commander):
-    the_path = COMMANDERS_PATH + commander
-    os.chdir(get_config()["main_folder"])
-    with open(the_path, "w") as my_transaction_file:
-        my_transaction_file.write("1")
+    commanders_db.set(commander, True)

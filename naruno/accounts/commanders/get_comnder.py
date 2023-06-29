@@ -8,16 +8,15 @@ import os
 
 from naruno.config import COMMANDERS_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
 
+commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
 
 def GetCommander():
     the_pending_list = []
-    os.chdir(get_config()["main_folder"])
-    for entry in os.scandir(COMMANDERS_PATH):
-        if entry.name != "README.md":
-            with open(entry.path, "r") as my_transaction_file:
-                the_pending_list.append(entry.name)
 
-    # order the list by alphabetical order
+    for commander in commanders_db.get_all():
+        the_pending_list.append(commander)
+
     the_pending_list.sort()
     return the_pending_list
