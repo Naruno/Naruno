@@ -13,15 +13,14 @@ from naruno.lib.config_system import get_config
 from naruno.transactions.transaction import Transaction
 from naruno.lib.kot import KOT
 
-mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
+mytransactions_db = KOT("mytransactions", folder=get_config()[
+                        "main_folder"] + "/db")
+
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     """
     Returns the transaction db.
     """
-
-
-
 
     the_transactions = []
 
@@ -30,8 +29,10 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
         if (not entry.endswith("validated") and not entry.endswith("sended")):
             try:
                 the_transactions_json = all_records[entry]
-                each_validated = False if mytransactions_db.get(entry+"validated") == None else True
-                each_sended = False if mytransactions_db.get(entry+"sended") == None else True
+                each_validated = False if mytransactions_db.get(
+                    entry + "validated") == None else True
+                each_sended = False if mytransactions_db.get(
+                    entry + "sended") == None else True
                 the_transactions.append([
                     Transaction.load_json(the_transactions_json),
                     each_validated,
@@ -49,7 +50,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             tx for tx in the_transactions if tx[1] == validated
         ]
 
-    #sort
+    # sort
     the_transactions.sort(key=lambda x: x[0].signature)
 
     if turn_json:
@@ -61,7 +62,5 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             }
             for tx in the_transactions
         }
-
-
 
     return the_transactions

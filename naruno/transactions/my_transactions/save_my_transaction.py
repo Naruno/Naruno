@@ -14,7 +14,8 @@ from naruno.lib.config_system import get_config
 
 from naruno.lib.kot import KOT
 
-mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
+mytransactions_db = KOT("mytransactions", folder=get_config()[
+                        "main_folder"] + "/db")
 
 
 def SaveMyTransaction(transaction_list, clear=False):
@@ -49,8 +50,8 @@ def SaveMyTransaction(transaction_list, clear=False):
                 if (not entry.endswith("validated") and not entry.endswith("sended")):
                     if entry not in str(entry_name_list):
                         mytransactions_db.delete(entry)
-                        mytransactions_db.delete(entry+"validated")
-                        mytransactions_db.delete(entry+"sended")
+                        mytransactions_db.delete(entry + "validated")
+                        mytransactions_db.delete(entry + "sended")
 
         transaction_list = new_dict
 
@@ -58,17 +59,23 @@ def SaveMyTransaction(transaction_list, clear=False):
             name = copy.copy(tx.encode("utf-8"))
             if tx == b"":
                 name = "empty".encode("utf-8")
-            mytransactions_db.set(sha256(name).hexdigest(), transaction_list[tx]["tx"])
+            mytransactions_db.set(sha256(name).hexdigest(),
+                                  transaction_list[tx]["tx"])
 
             if transaction_list[tx]["validated"]:
-                mytransactions_db.set(sha256(name).hexdigest()+"validated", True)
+                mytransactions_db.set(
+                    sha256(name).hexdigest() + "validated", True)
             if transaction_list[tx]["sended"]:
-                mytransactions_db.set(sha256(name).hexdigest()+"sended", True)
+                mytransactions_db.set(
+                    sha256(name).hexdigest() + "sended", True)
 
     elif type(transaction_list) is dict and transaction_list != {}:
-        mytransactions_db.set(sha256(transaction_list[0].signature).hexdigest(), transaction_list[0].dump_json())
+        mytransactions_db.set(sha256(
+            transaction_list[0].signature).hexdigest(), transaction_list[0].dump_json())
 
         if transaction_list[1]:
-            mytransactions_db.set(sha256(transaction_list[0].signature+"validated").hexdigest(), True)
+            mytransactions_db.set(
+                sha256(transaction_list[0].signature + "validated").hexdigest(), True)
         if transaction_list[2]:
-            mytransactions_db.set(sha256(transaction_list[0].signature+"sended").hexdigest(), True)
+            mytransactions_db.set(
+                sha256(transaction_list[0].signature + "sended").hexdigest(), True)
