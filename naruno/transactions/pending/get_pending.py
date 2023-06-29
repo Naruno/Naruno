@@ -10,19 +10,19 @@ import os
 from naruno.config import PENDING_TRANSACTIONS_PATH
 from naruno.lib.config_system import get_config
 from naruno.transactions.transaction import Transaction
+from naruno.lib.kot import KOT
 
+pendingtransactions_db = KOT("pendingtransactions",
+                        folder=get_config()["main_folder"] + "/db")
 
 def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
     the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
                                      custom_PENDING_TRANSACTIONS_PATH is None
                                      else custom_PENDING_TRANSACTIONS_PATH)
     the_pending_list = []
-    os.chdir(get_config()["main_folder"])
-    for entry in os.scandir(the_PENDING_TRANSACTIONS_PATH):
-        if entry.name != "README.md":
-            with open(entry.path, "r") as my_transaction_file:
-                the_pending_list.append(
-                    Transaction.load_json(json.load(my_transaction_file)))
+    all_records = pendingtransactions_db.get_all()
+    for entry in all_records:
+        the_pending_list.append(Transaction.load_json(all_records[entry]))
     return sorted(the_pending_list, key=lambda x: x.signature)
 
 
@@ -30,10 +30,5 @@ def GetPendingLen(custom_PENDING_TRANSACTIONS_PATH=None):
     the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
                                      custom_PENDING_TRANSACTIONS_PATH is None
                                      else custom_PENDING_TRANSACTIONS_PATH)
-    the_pending_list = []
-    os.chdir(get_config()["main_folder"])
-    for entry in os.scandir(the_PENDING_TRANSACTIONS_PATH):
-        if entry.name != "README.md":
-            the_pending_list.append(1)
 
-    return len(the_pending_list)
+    return pendingtransactions_db.get_count()

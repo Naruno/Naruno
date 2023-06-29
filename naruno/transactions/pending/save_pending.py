@@ -10,14 +10,13 @@ from hashlib import sha256
 
 from naruno.config import PENDING_TRANSACTIONS_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
 
+pendingtransactions_db = KOT("pendingtransactions",
+                        folder=get_config()["main_folder"] + "/db")
 
 def SavePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
-                                     custom_PENDING_TRANSACTIONS_PATH is None
-                                     else custom_PENDING_TRANSACTIONS_PATH)
     file_name = sha256((tx.signature).encode("utf-8")).hexdigest()
-    the_path = the_PENDING_TRANSACTIONS_PATH + f"{file_name}.json"
-    os.chdir(get_config()["main_folder"])
-    with open(the_path, "w") as my_transaction_file:
-        json.dump(tx.dump_json(), my_transaction_file)
+
+    pendingtransactions_db.set(file_name, tx.dump_json())
+
