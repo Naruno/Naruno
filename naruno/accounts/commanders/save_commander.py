@@ -8,7 +8,6 @@ import os
 
 from naruno.config import COMMANDERS_PATH
 from naruno.lib.config_system import get_config
-
 from naruno.lib.kot import KOT
 
 commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
