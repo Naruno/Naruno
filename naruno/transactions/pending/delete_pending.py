@@ -12,7 +12,8 @@ from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 
 pendingtransactions_db = KOT("pendingtransactions",
-                        folder=get_config()["main_folder"] + "/db")
+                             folder=get_config()["main_folder"] + "/db")
+
 
 def DeletePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
     the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
