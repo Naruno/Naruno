@@ -43,7 +43,8 @@ from naruno.wallet.wallet_import import wallet_import
 
 from naruno.lib.kot import KOT
 
-connectednodes_db = KOT("connectednodes", folder=get_config()["main_folder"] + "/db")
+connectednodes_db = KOT("connectednodes", folder=get_config()[
+                        "main_folder"] + "/db")
 
 a_block = Block("onur")
 buffer_size = 6525 + int(
@@ -302,10 +303,10 @@ class server(Thread):
             folder=get_config()["main_folder"] + "/db",
         ).get_all()
         for entry in all_records:
-                loaded_json = all_records[entry]
-                the_pending_list[loaded_json["host"] +
-                                     str(loaded_json["port"]) +
-                                     loaded_json["id"]] = loaded_json
+            loaded_json = all_records[entry]
+            the_pending_list[loaded_json["host"] +
+                             str(loaded_json["port"]) +
+                             loaded_json["id"]] = loaded_json
 
         return the_pending_list
 
@@ -326,7 +327,6 @@ class server(Thread):
             "connectednodes" + self.CONNECTED_NODES_PATH,
             folder=get_config()["main_folder"] + "/db",
         ).set(node_id, node_list)
-
 
     @staticmethod
     def connectionfrommixdb(custom_server=None,
