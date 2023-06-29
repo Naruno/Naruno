@@ -17,19 +17,14 @@ pendingtransactions_db = KOT("pendingtransactions",
 
 
 def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
-                                     custom_PENDING_TRANSACTIONS_PATH is None
-                                     else custom_PENDING_TRANSACTIONS_PATH)
     the_pending_list = []
-    all_records = pendingtransactions_db.get_all()
+    all_records = pendingtransactions_db.get_all() if custom_PENDING_TRANSACTIONS_PATH is None else KOT("pendingtransactions"+custom_PENDING_TRANSACTIONS_PATH, folder=get_config()["main_folder"] + "/db").get_all()
     for entry in all_records:
         the_pending_list.append(Transaction.load_json(all_records[entry]))
     return sorted(the_pending_list, key=lambda x: x.signature)
 
 
 def GetPendingLen(custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
-                                     custom_PENDING_TRANSACTIONS_PATH is None
-                                     else custom_PENDING_TRANSACTIONS_PATH)
 
-    return pendingtransactions_db.get_count()
+
+    return pendingtransactions_db.get_count() if custom_PENDING_TRANSACTIONS_PATH is None else KOT("pendingtransactions"+custom_PENDING_TRANSACTIONS_PATH, folder=get_config()["main_folder"] + "/db").get_count()

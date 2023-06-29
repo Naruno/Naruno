@@ -16,9 +16,5 @@ pendingtransactions_db = KOT("pendingtransactions",
 
 
 def DeletePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
-    the_PENDING_TRANSACTIONS_PATH = (PENDING_TRANSACTIONS_PATH if
-                                     custom_PENDING_TRANSACTIONS_PATH is None
-                                     else custom_PENDING_TRANSACTIONS_PATH)
-
     file_name = sha256((tx.signature).encode("utf-8")).hexdigest()
-    pendingtransactions_db.delete(file_name)
+    pendingtransactions_db.delete(file_name)  if custom_PENDING_TRANSACTIONS_PATH is None else KOT("pendingtransactions"+custom_PENDING_TRANSACTIONS_PATH, folder=get_config()["main_folder"] + "/db").delete(file_name)
