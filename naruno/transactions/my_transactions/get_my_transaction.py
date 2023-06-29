@@ -10,8 +10,8 @@ import os
 
 from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
-from naruno.transactions.transaction import Transaction
 from naruno.lib.kot import KOT
+from naruno.transactions.transaction import Transaction
 
 mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
 

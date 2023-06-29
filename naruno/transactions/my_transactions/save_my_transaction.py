@@ -11,7 +11,6 @@ from hashlib import sha256
 
 from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
-
 from naruno.lib.kot import KOT
 
 mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
