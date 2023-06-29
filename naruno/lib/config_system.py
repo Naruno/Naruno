@@ -10,7 +10,9 @@ import os
 from naruno.config import CONFIG_PATH
 from naruno.lib.kot import KOT
 
-config_db = KOT("config", folder=os.path.join(os.path.dirname(__file__), "..") + "/db")
+config_db = KOT("config", folder=os.path.join(
+    os.path.dirname(__file__), "..") + "/db")
+
 
 def save_config(config):
     """
@@ -18,7 +20,6 @@ def save_config(config):
     """
 
     config_db.set("config", config)
-
 
 
 def create_and_save_the_configs():
