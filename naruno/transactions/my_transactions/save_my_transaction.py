@@ -20,9 +20,6 @@ def SaveMyTransaction(transaction_list, clear=False):
     """
     Saves the transaction_list to the transaction db.
     """
-
-    os.chdir(get_config()["main_folder"])
-
     if type(transaction_list) is list:
         entry_name_list = []
         for tx in transaction_list:
