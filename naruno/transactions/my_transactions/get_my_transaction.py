@@ -13,7 +13,8 @@ from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.transactions.transaction import Transaction
 
-mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
+mytransactions_db = KOT("mytransactions",
+                        folder=get_config()["main_folder"] + "/db")
 
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
@@ -28,21 +29,16 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
         if not entry.endswith("validated") and not entry.endswith("sended"):
             try:
                 the_transactions_json = all_records[entry]
-                each_validated = (
-                    False
-                    if mytransactions_db.get(entry + "validated") == None
-                    else True
-                )
-                each_sended = (
-                    False if mytransactions_db.get(entry + "sended") == None else True
-                )
-                the_transactions.append(
-                    [
-                        Transaction.load_json(the_transactions_json),
-                        each_validated,
-                        each_sended,
-                    ]
-                )
+                each_validated = (False if mytransactions_db.get(entry +
+                                                                 "validated")
+                                  == None else True)
+                each_sended = (False if mytransactions_db.get(entry + "sended")
+                               == None else True)
+                the_transactions.append([
+                    Transaction.load_json(the_transactions_json),
+                    each_validated,
+                    each_sended,
+                ])
             except json.decoder.JSONDecodeError:
                 with contextlib.suppress(Exception):
                     os.remove(entry.path)
@@ -51,7 +47,9 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
 
     if validated is not None:
-        the_transactions = [tx for tx in the_transactions if tx[1] == validated]
+        the_transactions = [
+            tx for tx in the_transactions if tx[1] == validated
+        ]
 
     # sort
     the_transactions.sort(key=lambda x: x[0].signature)
