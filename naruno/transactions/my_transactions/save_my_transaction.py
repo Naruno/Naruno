@@ -9,7 +9,6 @@ import json
 import os
 from hashlib import sha256
 
-from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 
@@ -31,9 +30,7 @@ def SaveMyTransaction(transaction_list, clear=False):
             if tx[0].signature == b"":
                 name = "empty".encode("utf-8")
 
-            entry_name_list.append(
-                os.path.join(MY_TRANSACTION_PATH,
-                             sha256(name).hexdigest()))
+            entry_name_list.append(sha256(name).hexdigest())
 
         new_dict = {
             tx[0].signature: {

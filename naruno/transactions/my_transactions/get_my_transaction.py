@@ -8,7 +8,6 @@ import contextlib
 import json
 import os
 
-from naruno.config import MY_TRANSACTION_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.transactions.transaction import Transaction
