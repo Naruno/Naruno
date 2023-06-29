@@ -21,6 +21,7 @@ bin/
 *.json
 *.json*
 *.db
+KOT-*
 
 #export
 *.csv
