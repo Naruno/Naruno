@@ -13,5 +13,6 @@ from naruno.lib.kot import KOT
 
 commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
 
+
 def SaveCommander(commander):
     commanders_db.set(commander, True)

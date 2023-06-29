@@ -12,6 +12,7 @@ from naruno.lib.kot import KOT
 
 commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
 
+
 def GetCommander():
     the_pending_list = []
 
