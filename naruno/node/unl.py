@@ -11,6 +11,9 @@ import time
 
 from naruno.config import UNL_NODES_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
+
+unl_db = KOT("unl", folder=get_config()["main_folder"] + "/db")
 
 
 class Unl:
@@ -28,9 +31,7 @@ class Unl:
             nodes_list[node_id] = {}
             nodes_list[node_id]["date"] = time.time()
 
-            os.chdir(get_config()["main_folder"])
-            with open(UNL_NODES_PATH, "w") as unl_nodes_file:
-                json.dump(nodes_list, unl_nodes_file, indent=4)
+            unl_db.set("unl", nodes_list)
 
     @staticmethod
     def get_unl_nodes(custom_UNL_NODES_PATH=None):
@@ -38,15 +39,11 @@ class Unl:
         Returns the UNL nodes list from UNL_NODES_PATH.
         """
 
-        the_UNL_NODES_PATH = (UNL_NODES_PATH if custom_UNL_NODES_PATH is None
-                              else custom_UNL_NODES_PATH)
-
-        if not os.path.exists(the_UNL_NODES_PATH):
-            return {}
-
-        os.chdir(get_config()["main_folder"])
-        with open(the_UNL_NODES_PATH, "r") as unl_nodes_file:
-            return json.load(unl_nodes_file)
+        record = (unl_db.get("unl") if custom_UNL_NODES_PATH is None else KOT(
+            "unl" + custom_UNL_NODES_PATH,
+            folder=get_config()["main_folder"] + "/db",
+        ).get("unl"))
+        return record if record is not None else {}
 
     @staticmethod
     def get_as_node_type(id_list):
@@ -81,6 +78,4 @@ class Unl:
         if node_id in saved_nodes:
             del saved_nodes[node_id]
 
-            os.chdir(get_config()["main_folder"])
-            with open(UNL_NODES_PATH, "w") as connected_node_file:
-                json.dump(saved_nodes, connected_node_file, indent=4)
+            unl_db.set("unl", saved_nodes)
