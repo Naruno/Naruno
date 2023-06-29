@@ -1,22 +1,16 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import contextlib
-from datetime import datetime
-import os
-from hashlib import sha256
-import pickle
-
-
-import time
-from shutil import move, copy, make_archive, unpack_archive, rmtree
-
-
 import base64
+import contextlib
 import hashlib
-
-
+import os
+import pickle
+import time
 import traceback
+from datetime import datetime
+from hashlib import sha256
+from shutil import copy, make_archive, move, rmtree, unpack_archive
 
 
 class KOT:
