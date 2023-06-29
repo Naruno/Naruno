@@ -9,6 +9,9 @@ import os
 
 from naruno.config import SETTING_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
+
+settings_db = KOT("settings", folder=get_config()["main_folder"] + "/db")
 
 temp_json = {
     "test_mode": False,
@@ -33,10 +36,7 @@ def save_settings(new_settings):
     """
     Saves the settings.
     """
-
-    os.chdir(get_config()["main_folder"])
-    with open(SETTING_PATH, "w") as settings_file:
-        json.dump(new_settings, settings_file, indent=4)
+    settings_db.set("settings", new_settings)
 
 
 def create_and_save_the_settings(test_mode_settings=False,
@@ -165,12 +165,10 @@ def the_settings():
     saves and returns.
     """
 
-    os.chdir(get_config()["main_folder"])
-
-    if not os.path.exists(SETTING_PATH):
-        return create_and_save_the_settings()
-    with open(SETTING_PATH, "r") as settings_file:
-        the_setting = json.load(settings_file)
+    the_setting = settings_db.get("settings")
+    if the_setting is None:
+        create_and_save_the_settings()
+        the_setting = settings_db.get("settings")
 
     missing = False
     for element in temp_json:
