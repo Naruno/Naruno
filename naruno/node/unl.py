@@ -17,6 +17,7 @@ unl_db = KOT("unl", folder=get_config()["main_folder"] + "/db")
 
 
 class Unl:
+
     @staticmethod
     def save_new_unl_node(node_id):
         """
@@ -38,14 +39,10 @@ class Unl:
         Returns the UNL nodes list from UNL_NODES_PATH.
         """
 
-        record = (
-            unl_db.get("unl")
-            if custom_UNL_NODES_PATH is None
-            else KOT(
-                "unl" + custom_UNL_NODES_PATH,
-                folder=get_config()["main_folder"] + "/db",
-            ).get("unl")
-        )
+        record = (unl_db.get("unl") if custom_UNL_NODES_PATH is None else KOT(
+            "unl" + custom_UNL_NODES_PATH,
+            folder=get_config()["main_folder"] + "/db",
+        ).get("unl"))
         return record if record is not None else {}
 
     @staticmethod
