@@ -15,6 +15,7 @@ from naruno.lib.kot import KOT
 
 unl_db = KOT("unl", folder=get_config()["main_folder"] + "/db")
 
+
 class Unl:
 
     @staticmethod
@@ -32,15 +33,14 @@ class Unl:
 
             unl_db.set("unl", nodes_list)
 
-
     @staticmethod
     def get_unl_nodes(custom_UNL_NODES_PATH=None):
         """
         Returns the UNL nodes list from UNL_NODES_PATH.
         """
 
-
-        record = unl_db.get("unl") if custom_UNL_NODES_PATH is None else KOT("unl"+custom_UNL_NODES_PATH, folder=get_config()["main_folder"] + "/db").get("unl")
+        record = unl_db.get("unl") if custom_UNL_NODES_PATH is None else KOT(
+            "unl" + custom_UNL_NODES_PATH, folder=get_config()["main_folder"] + "/db").get("unl")
         return record if record is not None else {}
 
     @staticmethod
