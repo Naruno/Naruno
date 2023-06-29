@@ -8,18 +8,17 @@ import json
 import os
 
 from naruno.config import CONFIG_PATH
+from naruno.lib.kot import KOT
 
+config_db = KOT("config", folder=os.path.join(os.path.dirname(__file__), "..") + "/db")
 
 def save_config(config):
     """
     Saves the settings.
     """
 
-    temp_folder = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(temp_folder)
-    os.chdir("..")
-    with open(CONFIG_PATH, "w") as config_file:
-        json.dump(config, config_file, indent=4)
+    config_db.set("config", config)
+
 
 
 def create_and_save_the_configs():
@@ -37,8 +36,7 @@ def get_config():
     Returns the configs. If it doesn't exist, it creates,
     saves and returns.
     """
-
-    if not os.path.exists(CONFIG_PATH):
+    record = config_db.get("config")
+    if record is None:
         return create_and_save_the_configs()
-    with open(CONFIG_PATH, "r") as config_file:
-        return json.load(config_file)
+    return record
