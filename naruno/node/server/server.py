@@ -30,6 +30,7 @@ from naruno.config import TEMP_BLOCK_PATH
 from naruno.config import TEMP_BLOCKSHASH_PART_PATH
 from naruno.config import TEMP_BLOCKSHASH_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
 from naruno.lib.log import get_logger
 from naruno.node.client.client import client
 from naruno.node.unl import Unl
@@ -40,6 +41,9 @@ from naruno.wallet.ellipticcurve.privateKey import PrivateKey
 from naruno.wallet.ellipticcurve.publicKey import PublicKey
 from naruno.wallet.ellipticcurve.signature import Signature
 from naruno.wallet.wallet_import import wallet_import
+
+connectednodes_db = KOT("connectednodes",
+                        folder=get_config()["main_folder"] + "/db")
 
 a_block = Block("onur")
 buffer_size = 6525 + int(
@@ -111,9 +115,8 @@ class server(Thread):
             LOADING_BLOCKSHASH_PART_PATH if custom_LOADING_BLOCKSHASH_PART_PATH
             is None else custom_LOADING_BLOCKSHASH_PART_PATH)
 
-        self.CONNECTED_NODES_PATH = (CONNECTED_NODES_PATH
-                                     if custom_CONNECTED_NODES_PATH is None
-                                     else custom_CONNECTED_NODES_PATH)
+        self.CONNECTED_NODES_PATH = (None if custom_CONNECTED_NODES_PATH
+                                     is None else custom_CONNECTED_NODES_PATH)
 
         self.PENDING_TRANSACTIONS_PATH = (
             PENDING_TRANSACTIONS_PATH if custom_PENDING_TRANSACTIONS_PATH
@@ -292,19 +295,16 @@ class server(Thread):
         Returns the connected nodes.
         """
 
-        the_CONNECTED_NODES_PATH = (CONNECTED_NODES_PATH
-                                    if custom_CONNECTED_NODES_PATH is None else
-                                    custom_CONNECTED_NODES_PATH)
-
         the_pending_list = {}
-        os.chdir(get_config()["main_folder"])
-        for entry in os.scandir(the_CONNECTED_NODES_PATH):
-            if entry.name != "README.md":
-                with open(entry.path, "r") as my_transaction_file:
-                    loaded_json = json.load(my_transaction_file)
-                    the_pending_list[loaded_json["host"] +
-                                     str(loaded_json["port"]) +
-                                     loaded_json["id"]] = loaded_json
+        all_records = (connectednodes_db.get_all()
+                       if custom_CONNECTED_NODES_PATH is None else KOT(
+                           "connectednodes" + custom_CONNECTED_NODES_PATH,
+                           folder=get_config()["main_folder"] + "/db",
+                       ).get_all())
+        for entry in all_records:
+            loaded_json = all_records[entry]
+            the_pending_list[loaded_json["host"] + str(loaded_json["port"]) +
+                             loaded_json["id"]] = loaded_json
 
         return the_pending_list
 
@@ -320,10 +320,12 @@ class server(Thread):
 
         node_id = sha256(
             (node_id + host + str(port)).encode("utf-8")).hexdigest()
-        file_name = self.CONNECTED_NODES_PATH + f"{node_id}.json"
-        os.chdir(get_config()["main_folder"])
-        with open(file_name, "w") as connected_node_file:
-            json.dump(node_list, connected_node_file, indent=4)
+
+        connectednodes_db.set(
+            node_id, node_list) if self.CONNECTED_NODES_PATH is None else KOT(
+                "connectednodes" + self.CONNECTED_NODES_PATH,
+                folder=get_config()["main_folder"] + "/db",
+            ).set(node_id, node_list)
 
     @staticmethod
     def connectionfrommixdb(custom_server=None,
@@ -348,12 +350,14 @@ class server(Thread):
         """
         Deletes a connected node.
         """
-        os.chdir(get_config()["main_folder"])
+
         node_id = sha256((node["id"] + node["host"] +
                           str(node["port"])).encode("utf-8")).hexdigest()
-        for entry in os.scandir(self.CONNECTED_NODES_PATH):
-            if entry.name == f"{node_id}.json":
-                os.remove(entry.path)
+        connectednodes_db.delete(
+            node_id) if self.CONNECTED_NODES_PATH is None else KOT(
+                "connectednodes" + self.CONNECTED_NODES_PATH,
+                folder=get_config()["main_folder"] + "/db",
+            ).delete(node_id)
 
     def direct_message(self, node, data, hash_of_data):
         if "sendmefullblock" == data["action"]:
