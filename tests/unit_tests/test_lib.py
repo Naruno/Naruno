@@ -14,52 +14,33 @@ import unittest
 from unittest import mock
 
 from naruno.blockchain.block.block_main import Block
-from naruno.config import (
-    CONNECTED_NODES_PATH,
-    LOADING_ACCOUNTS_PATH,
-    LOADING_BLOCK_PATH,
-    LOADING_BLOCKSHASH_PART_PATH,
-    LOADING_BLOCKSHASH_PATH,
-    LOGS_PATH,
-    MY_TRANSACTION_EXPORT_PATH,
-    PENDING_TRANSACTIONS_PATH,
-    TEMP_ACCOUNTS_PATH,
-    TEMP_BLOCK_PATH,
-    TEMP_BLOCKSHASH_PART_PATH,
-    TEMP_BLOCKSHASH_PATH,
-    UNL_NODES_PATH,
-)
+from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
+                           LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
+                           LOADING_BLOCKSHASH_PATH, LOGS_PATH,
+                           MY_TRANSACTION_EXPORT_PATH,
+                           PENDING_TRANSACTIONS_PATH, TEMP_ACCOUNTS_PATH,
+                           TEMP_BLOCK_PATH, TEMP_BLOCKSHASH_PART_PATH,
+                           TEMP_BLOCKSHASH_PATH, UNL_NODES_PATH)
 from naruno.lib.backup.naruno_export import naruno_export
 from naruno.lib.backup.naruno_import import naruno_import
 from naruno.lib.clean_up import CleanUp_tests
 from naruno.lib.config_system import get_config
 from naruno.lib.export import export_the_transactions
+from naruno.lib.kot import KOT
 from naruno.lib.log import clear_logs, get_logger
-from naruno.lib.mix.mixlib import (
-    banner_maker,
-    ended_text_centered,
-    menu_maker,
-    menu_seperator,
-    menu_space,
-    menu_title,
-    printcentertext,
-    question_maker,
-    quit_menu_maker,
-    starting_text_centered,
-)
+from naruno.lib.mix.mixlib import (banner_maker, ended_text_centered,
+                                   menu_maker, menu_seperator, menu_space,
+                                   menu_title, printcentertext, question_maker,
+                                   quit_menu_maker, starting_text_centered)
 from naruno.lib.notification import notification
-from naruno.lib.performance_analyzers.heartbeat_db import heartbeat_generic_db_analyzer
+from naruno.lib.performance_analyzers.heartbeat_db import \
+    heartbeat_generic_db_analyzer
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (
-    d_mode_settings,
-    dark_mode_settings,
-    mt_settings,
-    publisher_mode_settings,
-    save_settings,
-    t_mode_settings,
-    the_settings,
-)
+from naruno.lib.settings_system import (d_mode_settings, dark_mode_settings,
+                                        mt_settings, publisher_mode_settings,
+                                        save_settings, t_mode_settings,
+                                        the_settings)
 from naruno.lib.sign import sign
 from naruno.lib.status import Status
 from naruno.lib.verify import verify
@@ -67,8 +48,6 @@ from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address, wallet_import
-
-from naruno.lib.kot import KOT
 
 perpetualtimertest_db = KOT(
     "perpetualtimertest", folder=get_config()["main_folder"] + "/db"
