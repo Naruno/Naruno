@@ -49,11 +49,12 @@ from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address, wallet_import
 
 from naruno.lib.kot import KOT
-perpetualtimertest_db = KOT("perpetualtimertest", folder=get_config()["main_folder"] + "/db")
+perpetualtimertest_db = KOT("perpetualtimertest", folder=get_config()[
+                            "main_folder"] + "/db")
+
 
 def perpetual_time_test():
     perpetualtimertest_db.set("perpetualtimertest", True)
-
 
 
 class pywall_none:
