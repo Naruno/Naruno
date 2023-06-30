@@ -48,11 +48,12 @@ from naruno.node.unl import Unl
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address, wallet_import
 
+from naruno.lib.kot import KOT
+perpetualtimertest_db = KOT("perpetualtimertest", folder=get_config()["main_folder"] + "/db")
 
 def perpetual_time_test():
-    os.chdir(get_config()["main_folder"])
-    with open("test_perpetual_time_test.txt", "a") as f:
-        f.write("Hello World")
+    perpetualtimertest_db.set("perpetualtimertest", True)
+
 
 
 class pywall_none:
@@ -846,7 +847,7 @@ class Test_Lib(unittest.TestCase):
             perpetual_time_test,
         )
         time.sleep(2.5)
-        self.assertFalse(os.path.exists("test_perpetual_time_test.txt"))
+        self.assertEqual(perpetualtimertest_db.get("perpetualtimertest"), None)
         the_timer.cancel()
 
     def test_perpetualTimer(self):
@@ -855,13 +856,10 @@ class Test_Lib(unittest.TestCase):
             perpetual_time_test,
         )
         time.sleep(3.5)
-        self.assertTrue(os.path.exists("test_perpetual_time_test.txt"))
-        # open and read the file after the 2.5 seconds
-        with open("test_perpetual_time_test.txt", "r") as f:
-            content = f.read()
-        self.assertEqual(len(content), 33)
+        self.assertTrue(perpetualtimertest_db.get("perpetualtimertest"))
+
         the_timer.cancel()
-        os.remove("test_perpetual_time_test.txt")
+        perpetualtimertest_db.delete("perpetualtimertest")
 
     def test_heartbeat_db_analyzer(self):
         block = Block("Onur")
