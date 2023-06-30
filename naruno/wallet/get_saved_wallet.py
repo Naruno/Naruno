@@ -9,13 +9,12 @@ import os
 
 from naruno.config import WALLETS_PATH
 from naruno.lib.config_system import get_config
-
+from naruno.lib.kot import KOT
+wallet_db = KOT("wallet",
+                        folder=get_config()["main_folder"] + "/db")
 
 def get_saved_wallet():
-    os.chdir(get_config()["main_folder"])
+    record = wallet_db.get("wallet")
 
-    if not os.path.exists(WALLETS_PATH):
-        return {}
 
-    with open(WALLETS_PATH, "r") as wallet_list_file:
-        return json.load(wallet_list_file)
+    return record if record is not None else {}
