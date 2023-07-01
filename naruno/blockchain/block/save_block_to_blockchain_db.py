@@ -6,18 +6,15 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import shutil
 
+from naruno.blockchain.block.blocks_hash import (GetBlockshash,
+                                                 GetBlockshash_part,
+                                                 SaveBlockshash,
+                                                 SaveBlockshash_part)
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.config import BLOCKS_PATH
-from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.config import BLOCKS_PATH, TEMP_ACCOUNTS_PATH
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
 from naruno.wallet.wallet_import import wallet_import
-from naruno.blockchain.block.blocks_hash import (
-    SaveBlockshash,
-    SaveBlockshash_part,
-    GetBlockshash,
-    GetBlockshash_part,
-)
 
 logger = get_logger("BLOCKCHAIN")
 
