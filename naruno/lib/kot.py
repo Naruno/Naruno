@@ -175,7 +175,7 @@ class KOT:
 
         return pickle.loads(unpadded)
 
-    def set(self, key: str, value=None, file:str="", compress: bool=False, encryption_key:str="", cache_policy: int = 0, dont_delete_cache: bool=False , dont_remove_file: bool = False) -> bool:
+    def set(self, key: str, value=None, file:str="", compress: bool=False, encryption_key:str="", cache_policy: int = 0, dont_delete_cache: bool=False , dont_remove_file: bool = False, custom_key_location: str = "") -> bool:
 
         self.counter += 1
 
@@ -192,7 +192,7 @@ class KOT:
         try:
 
 
-            key_location = os.path.join(self.location, sha256(key.encode()).hexdigest())
+            key_location = os.path.join(self.location, sha256(key.encode()).hexdigest()) if custom_key_location == "" else custom_key_location
             key_location_loading = os.path.join(self.location, key_location+".l")
             key_location_loading_indicator = os.path.join(self.location, key_location+".li")
 
