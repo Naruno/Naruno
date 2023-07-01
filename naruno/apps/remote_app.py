@@ -26,6 +26,7 @@ from naruno.api.main import start
 from naruno.apps.checker import checker
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
 from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.settings_system import the_settings
@@ -76,6 +77,11 @@ class Integration:
         self.app_name = app_name
         self.cache_name = sha256(
             self.app_name.encode()).hexdigest() + wallet_import(-1, 3)
+
+        self.integrationcache_db = KOT(
+            "integrationcache" + self.cache_name,
+            folder=get_config()["main_folder"] + "/db",
+        )
         self.host = host
         self.port = port
 
@@ -140,17 +146,16 @@ class Integration:
                     type="get",
                 ).text
 
-
                 self.total_check = False if "true" in self.total_check else True
-
 
             self.original_wait_amoount = copy.copy(self.wait_amount)
 
-            
-            self.check_thread = perpetualTimer(self.original_wait_amoount, checker, (self, )) if self.total_check else self.check_thread
+            self.check_thread = (perpetualTimer(
+                self.original_wait_amoount, checker,
+                (self, )) if self.total_check else self.check_thread)
             self.wait_amount = 0 if self.total_check else self.wait_amount
             success = True
-       
+
         logger.error("Network is not active") if not success else None
         self.close() if not success else None
         sys.exit() if not success else None
@@ -161,9 +166,9 @@ class Integration:
         logger.info(f"Integration of {self.app_name} is started")
 
     def change_by_network(self):
-        self.host = "test_net.1.naruno.org" if the_settings()["baklava"] else self.host
+        self.host = "test_net.1.naruno.org" if the_settings(
+        )["baklava"] else self.host
         self.port = 8000 if the_settings()["baklava"] else self.port
-
 
     def init_api(self):
         try:
@@ -186,7 +191,6 @@ class Integration:
             time.sleep(self.sending_wait_time)
             self.sended_txs = (custom_list
                                if custom_list is not None else self.sended_txs)
-        
 
     def close(self):
         DeleteCommander(self.commander) if not self.commander is None else None
@@ -204,17 +208,14 @@ class Integration:
             self.cache = []
             return
 
-        os.chdir(get_config()["main_folder"])
-
-        if not os.path.exists(f"db/remote_app_cache/{self.cache_name}.cache"):
+        record = self.integrationcache_db.get("cache")
+        if record is None:
             self.cache = []
             self.save_cache()
-        with open(f"db/remote_app_cache/{self.cache_name}.cache",
-                  "r") as cache:
-            self.cache = json.load(cache)
-
-        self.backward_support_cache()
-        self.save_cache()
+        else:
+            self.cache = record
+            self.backward_support_cache()
+            self.save_cache()
 
     def backward_support_cache(self):
         for each_cache in self.cache:
@@ -226,15 +227,13 @@ class Integration:
         if self.cache_true == False:
             self.get_cache()
             return
+
         self.backward_support_cache()
-        os.chdir(get_config()["main_folder"])
-        with open(f"db/remote_app_cache/{self.cache_name}.cache",
-                  "w") as cache:
-            json.dump(self.cache, cache)
+
+        self.integrationcache_db.set("cache", self.cache)
 
     def delete_cache(self):
-        os.chdir(get_config()["main_folder"])
-        os.remove(f"db/remote_app_cache/{self.cache_name}.cache")
+        self.integrationcache_db.delete("cache")
 
     def prepare_request(self, end_point, type, data=None) -> requests.Response:
         """
@@ -740,7 +739,9 @@ class Integration:
         backup_host = copy.copy(self.host)
         backup_port = copy.copy(self.port)
 
-        self.wait_until_complated() if ((self.sended or force_sended) and self.check_thread is not None and not from_thread) else None
+        self.wait_until_complated() if ((self.sended or force_sended)
+                                        and self.check_thread is not None
+                                        and not from_thread) else None
 
         self.change_by_network()
 

@@ -49,8 +49,8 @@ from naruno.lib.settings_system import (save_settings, t_mode_settings,
                                         the_settings)
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
-from naruno.transactions.my_transactions.get_my_transaction import \
-    GetMyTransaction
+from naruno.transactions.my_transactions.get_my_transaction import (
+    GetMyTransaction, mytransactions_db)
 from naruno.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
 from naruno.transactions.my_transactions.save_to_my_transaction import \
@@ -65,7 +65,6 @@ from naruno.wallet.print_wallets import print_wallets
 from naruno.wallet.save_wallet_list import save_wallet_list
 from naruno.wallet.wallet_create import wallet_create
 from naruno.wallet.wallet_import import Address, wallet_import
-from naruno.transactions.my_transactions.get_my_transaction import mytransactions_db
 
 naruno.api.main.custom_block = Block("Onur")
 naruno.api.main.custom_current_time = int(time.time()) + 25
@@ -333,9 +332,10 @@ class Test_apps(unittest.TestCase):
         )
         integration_1.save_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
+            integration_1.integrationcache_db.get("cache"),
+            [
+                "MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="
+            ],
         )
 
         integration_2 = Integration(app_name, port=7776)
@@ -345,17 +345,17 @@ class Test_apps(unittest.TestCase):
                 "MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="
             ],
         )
-        self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
-        )
 
         integration_2.delete_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            False,
+            integration_1.integrationcache_db.get("cache"),
+            None,
+        )
+        self.assertEqual(
+            integration_2.cache,
+            [
+                "MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="
+            ],
         )
 
         integration_3 = Integration(app_name, port=7776)
@@ -530,11 +530,13 @@ class Test_apps(unittest.TestCase):
         )
 
         self.assertEqual(second_try, False)
-        
+
         the_txs = GetMyTransaction()
         for txs in the_txs:
             if txs[0].toUser == wallet_import(-1, 3):
-                mytransactions_db.delete(sha256(txs[0].signature.encode("utf-8")).hexdigest()+"sended")
+                mytransactions_db.delete(
+                    sha256(txs[0].signature.encode("utf-8")).hexdigest() +
+                    "sended")
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -604,8 +606,9 @@ class Test_apps(unittest.TestCase):
         the_txs = GetMyTransaction()
         for txs in the_txs:
             if txs[0].toUser == wallet_import(-1, 3):
-                mytransactions_db.delete(sha256(txs[0].signature.encode("utf-8")).hexdigest()+"sended")
-
+                mytransactions_db.delete(
+                    sha256(txs[0].signature.encode("utf-8")).hexdigest() +
+                    "sended")
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -639,27 +642,25 @@ class Test_apps(unittest.TestCase):
     def test_integration_caching_system_backward_support(self):
         app_name = f"test_app_{int(time.time())}"
         integration_1 = Integration(app_name, port=7776)
-        integration_1.cache.append("test")
+        integration_1.cache = ["test"]
+
         integration_1.save_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
+            integration_1.integrationcache_db.get("cache"),
+            [],
         )
 
         integration_2 = Integration(app_name, port=7776)
         self.assertEqual(integration_2.cache, [])
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
+            integration_2.integrationcache_db.get("cache"),
+            [],
         )
 
         integration_2.delete_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            False,
+            integration_2.integrationcache_db.get("cache"),
+            None,
         )
 
         integration_3 = Integration(app_name, port=7776)
