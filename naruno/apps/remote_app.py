@@ -227,9 +227,9 @@ class Integration:
         if self.cache_true == False:
             self.get_cache()
             return
-        print(self.cache)
+
         self.backward_support_cache()
-        print(self.cache)
+
         self.integrationcache_db.set("cache", self.cache)
 
     def delete_cache(self):

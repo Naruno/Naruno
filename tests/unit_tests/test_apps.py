@@ -333,9 +333,8 @@ class Test_apps(unittest.TestCase):
         )
         integration_1.save_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
+            integration_1.integrationcache_db.get("cache"),
+            ["MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="]
         )
 
         integration_2 = Integration(app_name, port=7776)
@@ -345,17 +344,15 @@ class Test_apps(unittest.TestCase):
                 "MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="
             ],
         )
-        self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
-        )
 
         integration_2.delete_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            False,
+            integration_1.integrationcache_db.get("cache"),
+            None,
+        )
+        self.assertEqual(
+            integration_2.cache,
+            ["MEUCIQDXR4toTO/LlWaXU9PeWFruW9/RMbBGtvKCKE70ZSnvMgIgO3A0bHB+nwbE5L/PJ9i65FRgAp/Ac/6NWdN0dj7TSdg="],
         )
 
         integration_3 = Integration(app_name, port=7776)
@@ -639,27 +636,25 @@ class Test_apps(unittest.TestCase):
     def test_integration_caching_system_backward_support(self):
         app_name = f"test_app_{int(time.time())}"
         integration_1 = Integration(app_name, port=7776)
-        integration_1.cache.append("test")
-        print("a")
+        integration_1.cache = ["test"]
+
         integration_1.save_cache()
         self.assertEqual(
             integration_1.integrationcache_db.get("cache"),
-            True,
+            [],
         )
 
         integration_2 = Integration(app_name, port=7776)
         self.assertEqual(integration_2.cache, [])
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            True,
+            integration_2.integrationcache_db.get("cache"),
+            [],
         )
 
         integration_2.delete_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
-            False,
+            integration_2.integrationcache_db.get("cache"),
+            None,
         )
 
         integration_3 = Integration(app_name, port=7776)
