@@ -527,11 +527,12 @@ class Test_apps(unittest.TestCase):
         )
 
         self.assertEqual(second_try, False)
-        
+
         the_txs = GetMyTransaction()
         for txs in the_txs:
             if txs[0].toUser == wallet_import(-1, 3):
-                mytransactions_db.delete(sha256(txs[0].signature.encode("utf-8")).hexdigest()+"sended")
+                mytransactions_db.delete(
+                    sha256(txs[0].signature.encode("utf-8")).hexdigest() + "sended")
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
@@ -601,8 +602,8 @@ class Test_apps(unittest.TestCase):
         the_txs = GetMyTransaction()
         for txs in the_txs:
             if txs[0].toUser == wallet_import(-1, 3):
-                mytransactions_db.delete(sha256(txs[0].signature.encode("utf-8")).hexdigest()+"sended")
-
+                mytransactions_db.delete(
+                    sha256(txs[0].signature.encode("utf-8")).hexdigest() + "sended")
 
         first_gettings_data_from_app = integration.get()
         self.assertNotEqual(first_gettings_data_from_app, [])
