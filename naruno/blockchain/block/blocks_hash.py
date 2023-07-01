@@ -27,8 +27,14 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
     if not type(the_blockshash) == list:
         the_blockshash = [the_blockshash]
 
-    blockshash_db.set("blockshash", the_blockshash) if custom_TEMP_BLOCKSHASH_PATH is None else KOT(
-        "blockshash" + custom_TEMP_BLOCKSHASH_PATH, folder=get_config()["main_folder"] + "/db").set("blockshash", the_blockshash)
+    blockshash_db.set(
+        "blockshash", the_blockshash
+    ) if custom_TEMP_BLOCKSHASH_PATH is None else KOT(
+        "blockshash" + custom_TEMP_BLOCKSHASH_PATH,
+        folder=get_config()["main_folder"] + "/db",
+    ).set(
+        "blockshash", the_blockshash
+    )
 
 
 def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
@@ -38,16 +44,28 @@ def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
 
     if not type(the_blockshash) == list:
         the_blockshash = [the_blockshash]
-    blockshash_db.set("blockshash_part", the_blockshash) if custom_TEMP_BLOCKSHASH_PART_PATH is None else KOT(
-        "blockshash" + custom_TEMP_BLOCKSHASH_PART_PATH, folder=get_config()["main_folder"] + "/db").set("blockshash_part", the_blockshash)
+    blockshash_db.set(
+        "blockshash_part", the_blockshash
+    ) if custom_TEMP_BLOCKSHASH_PART_PATH is None else KOT(
+        "blockshash" + custom_TEMP_BLOCKSHASH_PART_PATH,
+        folder=get_config()["main_folder"] + "/db",
+    ).set(
+        "blockshash_part", the_blockshash
+    )
 
 
 def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
     """
     Returns the blockshash.
     """
-    record = blockshash_db.get("blockshash") if custom_TEMP_BLOCKSHASH_PATH is None else KOT(
-        "blockshash" + custom_TEMP_BLOCKSHASH_PATH, folder=get_config()["main_folder"] + "/db").get("blockshash")
+    record = (
+        blockshash_db.get("blockshash")
+        if custom_TEMP_BLOCKSHASH_PATH is None
+        else KOT(
+            "blockshash" + custom_TEMP_BLOCKSHASH_PATH,
+            folder=get_config()["main_folder"] + "/db",
+        ).get("blockshash")
+    )
     return record if record is not None else []
 
 
@@ -55,7 +73,13 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     """
     Returns the blockshash part.
     """
-    record = blockshash_db.get("blockshash_part") if custom_TEMP_BLOCKSHASH_PART_PATH is None else KOT(
-        "blockshash" + custom_TEMP_BLOCKSHASH_PART_PATH, folder=get_config()["main_folder"] + "/db").get("blockshash_part")
+    record = (
+        blockshash_db.get("blockshash_part")
+        if custom_TEMP_BLOCKSHASH_PART_PATH is None
+        else KOT(
+            "blockshash" + custom_TEMP_BLOCKSHASH_PART_PATH,
+            folder=get_config()["main_folder"] + "/db",
+        ).get("blockshash_part")
+    )
 
     return record if record is not None else []
