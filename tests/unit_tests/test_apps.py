@@ -640,10 +640,10 @@ class Test_apps(unittest.TestCase):
         app_name = f"test_app_{int(time.time())}"
         integration_1 = Integration(app_name, port=7776)
         integration_1.cache.append("test")
+        print("a")
         integration_1.save_cache()
         self.assertEqual(
-            os.path.exists(
-                f"db/remote_app_cache/{integration_1.cache_name}.cache"),
+            integration_1.integrationcache_db.get("cache"),
             True,
         )
 

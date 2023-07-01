@@ -208,7 +208,6 @@ class Integration:
             self.cache = []
             return
 
-        os.chdir(get_config()["main_folder"])
         record = self.integrationcache_db.get("cache")
         if record is None:
             self.cache = []
@@ -228,7 +227,9 @@ class Integration:
         if self.cache_true == False:
             self.get_cache()
             return
+        print(self.cache)
         self.backward_support_cache()
+        print(self.cache)
         self.integrationcache_db.set("cache", self.cache)
 
     def delete_cache(self):
