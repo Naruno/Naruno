@@ -12,6 +12,9 @@ from naruno.config import TEMP_BLOCKSHASH_PART_PATH
 from naruno.config import TEMP_BLOCKSHASH_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
+from naruno.lib.kot import KOT
+
+blockshash_db = KOT("blockshash", folder=get_config()["main_folder"] + "/db")
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -21,24 +24,11 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
     Saves the blockshash to the TEMP_BLOCKSHASH_PATH.
     """
 
-    os.chdir(get_config()["main_folder"])
-    the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
-                                if custom_TEMP_BLOCKSHASH_PATH is None else
-                                custom_TEMP_BLOCKSHASH_PATH)
+    if not type(the_blockshash) == list:
+        the_blockshash = [the_blockshash]
 
-    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PATH)
-    c = conn.cursor()
-    c.execute("""CREATE TABLE IF NOT EXISTS blockshash_list (hash text)""")
-    if type(the_blockshash) == list:
-        for i in the_blockshash:
-            c.execute("""INSERT INTO blockshash_list VALUES (?)""", (i, ))
-    else:
-        c.execute(
-            """INSERT INTO blockshash_list VALUES (?)""",
-            (the_blockshash, ),
-        )
-    conn.commit()
-    conn.close()
+    blockshash_db.set("blockshash", the_blockshash) if custom_TEMP_BLOCKSHASH_PATH is None else KOT("blockshash"+custom_TEMP_BLOCKSHASH_PATH, folder=get_config()["main_folder"] + "/db").set("blockshash", the_blockshash)
+
 
 
 def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
@@ -46,67 +36,25 @@ def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
     Saves the blockshash part to the TEMP_BLOCKSHASH_PART_PATH.
     """
 
-    os.chdir(get_config()["main_folder"])
-    the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
-                                     custom_TEMP_BLOCKSHASH_PART_PATH is None
-                                     else custom_TEMP_BLOCKSHASH_PART_PATH)
-    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PART_PATH)
-    c = conn.cursor()
-    c.execute(
-        """CREATE TABLE IF NOT EXISTS blockshash_part_list (hash text)""")
-    if type(the_blockshash) == list:
-        for i in the_blockshash:
-            c.execute("""INSERT INTO blockshash_part_list VALUES (?)""", (i, ))
-    else:
-        c.execute(
-            """INSERT INTO blockshash_part_list VALUES (?)""",
-            (the_blockshash, ),
-        )
-    conn.commit()
-    conn.close()
+    if not type(the_blockshash) == list:
+        the_blockshash = [the_blockshash]
+    blockshash_db.set("blockshash_part", the_blockshash) if custom_TEMP_BLOCKSHASH_PART_PATH is None else KOT("blockshash"+custom_TEMP_BLOCKSHASH_PART_PATH, folder=get_config()["main_folder"] + "/db").set("blockshash_part", the_blockshash)
+
+
+
 
 
 def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
     """
     Returns the blockshash.
     """
-    the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
-                                if custom_TEMP_BLOCKSHASH_PATH is None else
-                                custom_TEMP_BLOCKSHASH_PATH)
-
-    os.chdir(get_config()["main_folder"])
-
-    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PATH, check_same_thread=False)
-    c = conn.cursor()
-    c.execute("""CREATE TABLE IF NOT EXISTS blockshash_list (hash text)""")
-    c.execute("""SELECT * FROM blockshash_list""")
-    result = c.fetchall()
-
-    result = [i[0] for i in result]
-    conn.close()
-
-    return result
-
+    record = blockshash_db.get("blockshash") if custom_TEMP_BLOCKSHASH_PATH is None else KOT("blockshash"+custom_TEMP_BLOCKSHASH_PATH, folder=get_config()["main_folder"] + "/db").get("blockshash")
+    return record if record is not None else []
 
 def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     """
     Returns the blockshash part.
     """
-    the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
-                                     custom_TEMP_BLOCKSHASH_PART_PATH is None
-                                     else custom_TEMP_BLOCKSHASH_PART_PATH)
+    record = blockshash_db.get("blockshash_part") if custom_TEMP_BLOCKSHASH_PART_PATH is None else KOT("blockshash"+custom_TEMP_BLOCKSHASH_PART_PATH, folder=get_config()["main_folder"] + "/db").get("blockshash_part")
 
-    os.chdir(get_config()["main_folder"])
-
-    conn = sqlite3.connect(the_TEMP_BLOCKSHASH_PART_PATH,
-                           check_same_thread=False)
-    c = conn.cursor()
-    c.execute(
-        """CREATE TABLE IF NOT EXISTS blockshash_part_list (hash text)""")
-    c.execute("""SELECT * FROM blockshash_part_list""")
-    result = c.fetchall()
-
-    result = [i[0] for i in result]
-    conn.close()
-
-    return result
+    return record if record is not None else []

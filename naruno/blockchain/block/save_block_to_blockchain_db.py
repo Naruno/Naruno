@@ -12,6 +12,7 @@ from naruno.config import TEMP_ACCOUNTS_PATH
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
 from naruno.wallet.wallet_import import wallet_import
+from naruno.blockchain.block.blocks_hash import SaveBlockshash, SaveBlockshash_part, GetBlockshash, GetBlockshash_part
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -62,18 +63,11 @@ def SaveBlockstoBlockchainDB(
             the_TEMP_ACCOUNTS_PATH,
             (the_BLOCKS_PATH + str(block.sequence_number) + ".accounts.db"),
         )
+        SaveBlockshash(GetBlockshash(custom_TEMP_BLOCKSHASH_PATH), (the_BLOCKS_PATH + str(block.sequence_number)+
+                                       ".blockshash.json"))
 
-        shutil.copyfile(
-            custom_TEMP_BLOCKSHASH_PATH,
-            (the_BLOCKS_PATH + str(block.sequence_number) +
-             ".blockshash.json"),
-        )
-
-        shutil.copyfile(
-            custom_TEMP_BLOCKSHASH_PART_PATH,
-            (the_BLOCKS_PATH + str(block.sequence_number) +
-             ".blockshashpart.json"),
-        )
+        SaveBlockshash_part(GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH), (the_BLOCKS_PATH + str(block.sequence_number)+
+                                                ".blockshashpart.json"))
 
         return True
     else:
