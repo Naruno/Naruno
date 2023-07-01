@@ -38,6 +38,7 @@ from naruno.transactions.my_transactions.validate_transaction import \
 from naruno.transactions.transaction import Transaction
 from naruno.wallet.wallet_import import Address
 from naruno.wallet.wallet_import import wallet_import
+from naruno.lib.kot import KOT
 
 logger = get_logger("REMOTE_APP")
 
@@ -76,6 +77,8 @@ class Integration:
         self.app_name = app_name
         self.cache_name = sha256(
             self.app_name.encode()).hexdigest() + wallet_import(-1, 3)
+        
+        self.integrationcache_db = KOT("integrationcache"+self.cache_name, folder=get_config()["main_folder"] + "/db")
         self.host = host
         self.port = port
 
@@ -205,16 +208,14 @@ class Integration:
             return
 
         os.chdir(get_config()["main_folder"])
-
-        if not os.path.exists(f"db/remote_app_cache/{self.cache_name}.cache"):
+        record = self.integrationcache_db.get("cache")
+        if record is None:
             self.cache = []
             self.save_cache()
-        with open(f"db/remote_app_cache/{self.cache_name}.cache",
-                  "r") as cache:
-            self.cache = json.load(cache)
-
-        self.backward_support_cache()
-        self.save_cache()
+        else:
+            self.cache = record
+            self.backward_support_cache()
+            self.save_cache()
 
     def backward_support_cache(self):
         for each_cache in self.cache:
@@ -227,14 +228,12 @@ class Integration:
             self.get_cache()
             return
         self.backward_support_cache()
-        os.chdir(get_config()["main_folder"])
-        with open(f"db/remote_app_cache/{self.cache_name}.cache",
-                  "w") as cache:
-            json.dump(self.cache, cache)
+        self.integrationcache_db.set("cache", self.cache)
+
 
     def delete_cache(self):
-        os.chdir(get_config()["main_folder"])
-        os.remove(f"db/remote_app_cache/{self.cache_name}.cache")
+        self.integrationcache_db.delete("cache")
+
 
     def prepare_request(self, end_point, type, data=None) -> requests.Response:
         """
