@@ -83,7 +83,7 @@ SaveAccounts(the_account_2, temp_path)
 
 naruno.api.main.account_list = GetAccounts(temp_path)
 
-a_account = Account("<address>", 1000)
+a_account = Account("<address>remoteapp", 1000)
 SaveAccounts([a_account], "db/test_send_coin_data_page_data.db")
 the_accounts = GetAccounts("db/test_send_coin_data_page_data.db")
 naruno.api.main.custom_account_list = the_accounts
@@ -384,14 +384,14 @@ class Test_apps(unittest.TestCase):
             f"http://localhost:7776/wallet/create/{password}")
         request_body = {
             "data": "<data>",
-            "to_user": "<address>",
+            "to_user": "<address>remoteapp",
             "amount": 5000,
             "password": password,
         }
         self.assertEqual(
             integration.send("hello_text",
                              "hello",
-                             "<address>",
+                             "<address>remoteapp",
                              amount=5,
                              force=False),
             True,
@@ -417,7 +417,7 @@ class Test_apps(unittest.TestCase):
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
         text = f"{integration.app_name}hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
-        self.assertEqual(the_tx.toUser, "<address>")
+        self.assertEqual(the_tx.toUser, "<address>remoteapp")
         self.assertEqual(the_tx.amount, 5)
 
         new_my_transactions = GetMyTransaction()
@@ -449,7 +449,7 @@ class Test_apps(unittest.TestCase):
         password = "123"
 
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>", force=False),
+            integration.send("hello_text", "hello", "<address>remoteapp", force=False),
             True)
 
         second_try = integration.send(
@@ -462,7 +462,7 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(second_try, False)
 
         for txs in GetMyTransaction():
-            if txs[0].toUser == "<address>":
+            if txs[0].toUser == "<address>remoteapp":
                 ValidateTransaction(txs[0])
 
         first_gettings_data_from_app = integration.get()
@@ -476,7 +476,7 @@ class Test_apps(unittest.TestCase):
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
         text = f"{integration.app_name}hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
-        self.assertEqual(the_tx.toUser, "<address>")
+        self.assertEqual(the_tx.toUser, "<address>remoteapp")
         self.assertEqual(the_tx.amount, 0.0)
 
         new_my_transactions = GetMyTransaction()
@@ -510,7 +510,7 @@ class Test_apps(unittest.TestCase):
             f"http://localhost:7776/wallet/create/{password}")
         request_body = {
             "data": "<data>",
-            "to_user": "<address>",
+            "to_user": "<address>remoteapp",
             "amount": 5000,
             "password": password,
         }
@@ -582,7 +582,7 @@ class Test_apps(unittest.TestCase):
             f"http://localhost:7776/wallet/create/{password}")
         request_body = {
             "data": "<data>",
-            "to_user": "<address>",
+            "to_user": "<address>remoteapp",
             "amount": 5000,
             "password": password,
         }

@@ -76,15 +76,12 @@ def ProccesstheTransaction(
 
         address_of_fromUser = Address(trans.fromUser)
         logger.debug(f"FromUser address: {address_of_fromUser}")
-        the_account_list.execute(
-            "SELECT * FROM account_list WHERE address = ?", (address_of_fromUser,)
-        )
-        first_list = the_account_list.fetchall()
-        the_account_list.execute(
-            "SELECT * FROM account_list WHERE address = ?", (trans.toUser,))
-        second_list = the_account_list.fetchall()
+        the_record_account_list = []
 
-        for the_pulled_account in first_list + second_list:
+        the_record_account_list.append([address_of_fromUser,the_account_list[address_of_fromUser][0], the_account_list[address_of_fromUser][1]]) if address_of_fromUser in the_account_list else None
+        the_record_account_list.append([trans.toUser,the_account_list[trans.toUser][0], the_account_list[trans.toUser][1]]) if trans.toUser in the_account_list else None
+
+        for the_pulled_account in the_record_account_list:
             account_list.append(
                 Account(the_pulled_account[0], the_pulled_account[2],
                         the_pulled_account[1]))
@@ -135,15 +132,8 @@ def ProccesstheTransaction(
     new_added_accounts_list = sorted(new_added_accounts_list,
                                      key=lambda x: x.Address)
 
-    conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
-    c = conn.cursor()
-    for changed_account in edited_accounts:
-        c.execute(
-            "UPDATE account_list SET balance = ?, sequence_number = ? WHERE address = ?"
-        ,(changed_account.balance,changed_account.sequence_number,changed_account.Address))
-        conn.commit()
-    conn.close()
 
-    SaveAccounts(new_added_accounts_list, the_TEMP_ACCOUNTS_PATH)
+
+    SaveAccounts(new_added_accounts_list+edited_accounts, the_TEMP_ACCOUNTS_PATH)
 
     return block

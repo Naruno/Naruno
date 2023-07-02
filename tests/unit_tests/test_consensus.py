@@ -1955,12 +1955,10 @@ class Test_Consensus(unittest.TestCase):
 
         the_account_list = GetAccounts(
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
-        the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{the_transaction.toUser}'"
-        )
-        second_list = the_account_list.fetchall()
 
-        self.assertEqual(second_list, [("onur", 0, 5000)])
+        second_list = the_account_list
+
+        self.assertEqual(second_list["onur"], [0, 5000])
 
         block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
@@ -1970,7 +1968,7 @@ class Test_Consensus(unittest.TestCase):
         custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_consensus_round_1_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_consensus_round_1_TEMP_BLOCKSHASH_PATH.json")
+            "db/test_consensus_round_1_TEMP_BLOCKSASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
             "db/test_consensus_round_1_TEMP_BLOCKSHASH_PART_PATH.json")
         custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")

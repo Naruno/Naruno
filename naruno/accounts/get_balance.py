@@ -44,11 +44,8 @@ def GetBalance(user,
 
         the_account_list = GetAccounts(
         ) if account_list is None else account_list
-        the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = ?", (address,))
-        for row in the_account_list.fetchall():
-            balance += row[2]
-            break
+        balance += the_account_list[address][1] if address in the_account_list else 0
+
         if not block.just_one_tx:
             for tx in block.validating_list + GetPending():
                 if Address(tx.fromUser) == user:

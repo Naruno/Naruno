@@ -613,13 +613,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
-        got_block.execute("SELECT * FROM account_list")
-        got_block = got_block.fetchall()
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,reset=True)
+        print(got_block)
+        got_block = got_block
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0],
-            ("atakan123321", 0, 10000000),
+            got_block["atakan123321"],
+        [0, 10000000],
         )
 
     def test_send_full_blockshash_get_full_blockshash(self):
@@ -775,14 +775,14 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,reset=True)
 
-        got_block.execute("SELECT * FROM account_list")
-        got_block = got_block.fetchall()
+
+        got_block = got_block
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0],
-            ("atakan123321", 0, 10000000),
+            got_block["atakan123321"],
+            [0, 10000000],
         )
 
     def test_send_full_blockshash_get_full_blockshash_already_block(self):
@@ -933,14 +933,14 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,reset=True)
 
-        got_block.execute("SELECT * FROM account_list")
-        got_block = got_block.fetchall()
+
+        got_block = got_block
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0],
-            ("atakan123321", 0, 10000000),
+            got_block["atakan123321"],
+           [0, 10000000],
         )
 
     def test_send_full_blockshash_get_full_blockshash_all_nodes(self):

@@ -202,6 +202,7 @@ def SaveBlock(
         SaveAccounts(
             accounts_list,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+            reset=True,
         )
         SaveBlockshash(
             block.previous_hash,

@@ -1451,8 +1451,6 @@ class Test_Transactions(unittest.TestCase):
             dont_clean=True,
         )
         account_list = GetAccounts(temp_path)
-        account_list.execute(f"SELECT * FROM account_list")
-        account_list = account_list.fetchall()
         self.assertEqual(len(account_list), 8)
         true_list = [
             the_transaction_4,
@@ -1469,42 +1467,30 @@ class Test_Transactions(unittest.TestCase):
                          "onurtheprofessional")
         self.assertEqual(block.validating_list[5].amount, 0.1)
         self.assertEqual(block.validating_list[4], the_transaction)
-        self.assertEqual(account_list[0][2], 100000 - 5000 - 0.02)
-        self.assertEqual(account_list[0][0],
-                         "2ffd1f6bed8614f4cd01fc7159ac950604272773")
-        self.assertEqual(account_list[0][1], 1)
+        self.assertEqual(account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][1], 100000 - 5000 - 0.02)
+        self.assertEqual(account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][0], 1)
 
-        self.assertEqual(account_list[1][2], 94999.98)
-        self.assertEqual(account_list[1][0],
-                         "73cd109827c0de9fa211c0d062eab13584ea6bb8")
-        self.assertEqual(account_list[1][1], 1)
+        self.assertEqual(account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][1], 94999.98)
+        self.assertEqual(account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][0], 1)
 
-        self.assertEqual(account_list[2][2], 94999.98)
-        self.assertEqual(account_list[2][0],
-                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6")
-        self.assertEqual(account_list[2][1], 1)
+        self.assertEqual(account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][1], 94999.98)
 
-        self.assertEqual(account_list[3][2], 94999.98)
-        self.assertEqual(account_list[3][0],
-                         "6a4236cba1002b2919651677c7c520b67627aa2a")
-        self.assertEqual(account_list[3][1], 1)
+        self.assertEqual(account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][0], 1)
 
-        self.assertEqual(account_list[4][2], 104999.98)
-        self.assertEqual(account_list[4][0],
-                         "d10d419bae75549222c5ffead625a9e0246ad3e6")
-        self.assertEqual(account_list[4][1], 1)
+        self.assertEqual(account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][1], 94999.98)
+        self.assertEqual(account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][0], 1)
 
-        self.assertEqual(account_list[5][2], 15000)
-        self.assertEqual(account_list[5][0], "onur")
-        self.assertEqual(account_list[5][1], 0)
+        self.assertEqual(account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][1], 104999.98)
+        self.assertEqual(account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][0], 1)
 
-        self.assertEqual(account_list[6][2], 0.1)
-        self.assertEqual(account_list[6][0], "onurtheprofessional")
-        self.assertEqual(account_list[6][1], 0)
+        self.assertEqual(account_list["onur"][1], 15000)
+        self.assertEqual(account_list["onur"][0], 0)
 
-        self.assertEqual(account_list[7][2], 5000)
-        self.assertEqual(account_list[7][0], "teaaast")
-        self.assertEqual(account_list[7][1], 0)
+        self.assertEqual(account_list["onurtheprofessional"][1], 0.1)
+        self.assertEqual(account_list["onurtheprofessional"][0], 0)
+
+        self.assertEqual(account_list["teaaast"][1], 5000)
+        self.assertEqual(account_list["teaaast"][0], 0)
 
     def test_ProccesstheTransaction_account_list_with_shares(self):
         the_transaction_json = {
@@ -1582,8 +1568,6 @@ class Test_Transactions(unittest.TestCase):
             dont_clean=True,
         )
         account_list = GetAccounts(temp_path)
-        account_list.execute(f"SELECT * FROM account_list")
-        account_list = account_list.fetchall()
         self.assertEqual(len(account_list), 10)
         true_list = [
             the_transaction_4,
@@ -1604,50 +1588,42 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(block.validating_list[7].toUser, "bca")
         self.assertEqual(block.validating_list[7].amount, 15)
         self.assertEqual(block.validating_list[4], the_transaction)
-        self.assertEqual(account_list[0][2], 100000 - 5000 - 0.02)
-        self.assertEqual(account_list[0][0],
-                         "2ffd1f6bed8614f4cd01fc7159ac950604272773")
-        self.assertEqual(account_list[0][1], 1)
+        self.assertEqual(account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][1], 100000 - 5000 - 0.02)
+        self.assertEqual(account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][0], 1)
 
-        self.assertEqual(account_list[1][2], 94999.98)
-        self.assertEqual(account_list[1][0],
-                         "73cd109827c0de9fa211c0d062eab13584ea6bb8")
-        self.assertEqual(account_list[1][1], 1)
+        self.assertEqual(account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][1], 94999.98)
 
-        self.assertEqual(account_list[2][2], 94999.98)
-        self.assertEqual(account_list[2][0],
-                         "08fe9bfc6521565c601a3785c5f5fb0a406279e6")  # B
-        self.assertEqual(account_list[2][1], 1)
+        self.assertEqual(account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][0], 1)
 
-        self.assertEqual(account_list[3][2], 94999.98)
-        self.assertEqual(account_list[3][0],
-                         "6a4236cba1002b2919651677c7c520b67627aa2a")
-        self.assertEqual(account_list[3][1], 1)
+        self.assertEqual(account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][1], 94999.98)
 
-        self.assertEqual(account_list[4][2], 104999.98)
-        self.assertEqual(account_list[4][0],
-                         "d10d419bae75549222c5ffead625a9e0246ad3e6")
-        self.assertEqual(account_list[4][1], 1)
+        self.assertEqual(account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][0], 1)
 
-        self.assertEqual(account_list[5][2], 10)
-        self.assertEqual(account_list[5][0], "abc")
-        self.assertEqual(account_list[5][1], 0)
+        self.assertEqual(account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][1], 94999.98)
 
-        self.assertEqual(account_list[6][2], 15)
-        self.assertEqual(account_list[6][0], "bca")
-        self.assertEqual(account_list[6][1], 0)
+        self.assertEqual(account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][0], 1)
 
-        self.assertEqual(account_list[9][2], 5000)
-        self.assertEqual(account_list[9][0], "teaaast")
-        self.assertEqual(account_list[9][1], 0)
+        self.assertEqual(account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][1], 104999.98)
 
-        self.assertEqual(account_list[8][2], 0.1)
-        self.assertEqual(account_list[8][0], "onuratakanulusoy")
-        self.assertEqual(account_list[8][1], 0)
+        self.assertEqual(account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][0], 1)
 
-        self.assertEqual(account_list[7][2], 15000)
-        self.assertEqual(account_list[7][0], "onur")
-        self.assertEqual(account_list[7][1], 0)
+        self.assertEqual(account_list["abc"][1], 10)
+        self.assertEqual(account_list["abc"][0], 0)
+
+        self.assertEqual(account_list["bca"][1], 15)
+
+        self.assertEqual(account_list["bca"][0], 0)
+
+        self.assertEqual(account_list["teaaast"][1], 5000)
+
+        self.assertEqual(account_list["teaaast"][0], 0)
+
+        self.assertEqual(account_list["onuratakanulusoy"][1], 0.1)
+
+        self.assertEqual(account_list["onuratakanulusoy"][0], 0)
+
+        self.assertEqual(account_list["onur"][1], 15000)
+        self.assertEqual(account_list["onur"][0], 0)
 
     def test_SavePending_GetPending_DeletePending(self):
         the_transaction_json = {

@@ -82,8 +82,8 @@ naruno.api.main.account_list = GetAccounts(temp_path)
 
 a_account = Account("<address>", 1000, sequence_number=1)
 ab_account = Account("<addressb>", 1000, sequence_number=1)
-SaveAccounts([a_account, ab_account], "db/test_send_coin_data_page_data.db")
-the_accounts = GetAccounts("db/test_send_coin_data_page_data.db")
+SaveAccounts([a_account, ab_account], "db/test_send_coin_data_page_data.db", True)
+the_accounts = GetAccounts("db/test_send_coin_data_page_data.db", True)
 naruno.api.main.custom_account_list = the_accounts
 
 naruno.api.main.custom_wallet = "test_account_2"
@@ -1123,6 +1123,8 @@ class Test_API(unittest.TestCase):
         settings = copy.copy(backup_the_settings)
         settings["publisher_mode"] = True
         save_settings(settings)
+
+        print("aaa", the_accounts)
 
         response = urllib.request.urlopen(
             "http://localhost:7777/sequence/get/?address=<address>")
