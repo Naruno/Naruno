@@ -37,9 +37,7 @@ def SaveAccounts(new_account,
 
     if type(new_account) != list:
         new_account = [new_account]
-    for i in new_account:
-        print("save", i.__dict__)
-    print(custom_TEMP_ACCOUNTS_PATH)
+
 
     the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH
                               is None else custom_TEMP_ACCOUNTS_PATH)
@@ -55,7 +53,7 @@ def SaveAccounts(new_account,
             account.sequence_number,
             account.balance,
         ]
-    print(accounts_ram_db[ram_db_record])
+
     accounts_db.set(
         "accounts",
         accounts_ram_db[ram_db_record],
