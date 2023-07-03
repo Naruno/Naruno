@@ -8,8 +8,7 @@ import json
 import os
 import sqlite3
 
-from naruno.config import TEMP_BLOCKSHASH_PART_PATH
-from naruno.config import TEMP_BLOCKSHASH_PATH
+from naruno.config import TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.lib.log import get_logger
