@@ -25,23 +25,27 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
     """
     os.chdir(get_config()["main_folder"])
 
-    the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
-                                if custom_TEMP_BLOCKSHASH_PATH is None else
-                                custom_TEMP_BLOCKSHASH_PATH)
+    the_TEMP_BLOCKSHASH_PATH = (
+        TEMP_BLOCKSHASH_PATH
+        if custom_TEMP_BLOCKSHASH_PATH is None
+        else custom_TEMP_BLOCKSHASH_PATH
+    )
 
-    the_TEMP_BLOCKSHASH_PATH = os.path.join(get_config()["main_folder"],
-                                            the_TEMP_BLOCKSHASH_PATH)
+    the_TEMP_BLOCKSHASH_PATH = os.path.join(
+        get_config()["main_folder"], the_TEMP_BLOCKSHASH_PATH
+    )
 
     if type(the_blockshash) != list:
         the_blockshash = [the_blockshash]
 
-    the_blockshash = (GetBlockshash(
-        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH) +
-        the_blockshash)
+    the_blockshash = (
+        GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
+        + the_blockshash
+    )
 
-    blockshash_db.set("blockshash",
-                      the_blockshash,
-                      custom_key_location=the_TEMP_BLOCKSHASH_PATH)
+    blockshash_db.set(
+        "blockshash", the_blockshash, custom_key_location=the_TEMP_BLOCKSHASH_PATH
+    )
 
 
 def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
@@ -50,19 +54,25 @@ def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
     """
     os.chdir(get_config()["main_folder"])
 
-    the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
-                                     custom_TEMP_BLOCKSHASH_PART_PATH is None
-                                     else custom_TEMP_BLOCKSHASH_PART_PATH)
+    the_TEMP_BLOCKSHASH_PART_PATH = (
+        TEMP_BLOCKSHASH_PART_PATH
+        if custom_TEMP_BLOCKSHASH_PART_PATH is None
+        else custom_TEMP_BLOCKSHASH_PART_PATH
+    )
 
     the_TEMP_BLOCKSHASH_PART_PATH = os.path.join(
-        get_config()["main_folder"], the_TEMP_BLOCKSHASH_PART_PATH)
+        get_config()["main_folder"], the_TEMP_BLOCKSHASH_PART_PATH
+    )
 
     if type(the_blockshash) != list:
         the_blockshash = [the_blockshash]
 
-    the_blockshash = (GetBlockshash_part(
-        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH) +
-        the_blockshash)
+    the_blockshash = (
+        GetBlockshash_part(
+            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH
+        )
+        + the_blockshash
+    )
 
     blockshash_db.set(
         "blockshash_part",
@@ -77,15 +87,19 @@ def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
     """
     os.chdir(get_config()["main_folder"])
 
-    the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
-                                if custom_TEMP_BLOCKSHASH_PATH is None else
-                                custom_TEMP_BLOCKSHASH_PATH)
+    the_TEMP_BLOCKSHASH_PATH = (
+        TEMP_BLOCKSHASH_PATH
+        if custom_TEMP_BLOCKSHASH_PATH is None
+        else custom_TEMP_BLOCKSHASH_PATH
+    )
 
-    the_TEMP_BLOCKSHASH_PATH = os.path.join(get_config()["main_folder"],
-                                            the_TEMP_BLOCKSHASH_PATH)
+    the_TEMP_BLOCKSHASH_PATH = os.path.join(
+        get_config()["main_folder"], the_TEMP_BLOCKSHASH_PATH
+    )
 
-    record = blockshash_db.get("blockshash",
-                               custom_key_location=the_TEMP_BLOCKSHASH_PATH)
+    record = blockshash_db.get(
+        "blockshash", custom_key_location=the_TEMP_BLOCKSHASH_PATH
+    )
 
     return record if record is not None else []
 
@@ -96,14 +110,18 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     """
     os.chdir(get_config()["main_folder"])
 
-    the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
-                                     custom_TEMP_BLOCKSHASH_PART_PATH is None
-                                     else custom_TEMP_BLOCKSHASH_PART_PATH)
+    the_TEMP_BLOCKSHASH_PART_PATH = (
+        TEMP_BLOCKSHASH_PART_PATH
+        if custom_TEMP_BLOCKSHASH_PART_PATH is None
+        else custom_TEMP_BLOCKSHASH_PART_PATH
+    )
 
     the_TEMP_BLOCKSHASH_PART_PATH = os.path.join(
-        get_config()["main_folder"], the_TEMP_BLOCKSHASH_PART_PATH)
+        get_config()["main_folder"], the_TEMP_BLOCKSHASH_PART_PATH
+    )
 
     record = blockshash_db.get(
-        "blockshash_part", custom_key_location=the_TEMP_BLOCKSHASH_PART_PATH)
+        "blockshash_part", custom_key_location=the_TEMP_BLOCKSHASH_PART_PATH
+    )
 
     return record if record is not None else []

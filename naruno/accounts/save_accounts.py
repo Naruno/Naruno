@@ -27,9 +27,7 @@ def get_ram_accounts(name: str, reset: bool = False):
     return name
 
 
-def SaveAccounts(new_account,
-                 custom_TEMP_ACCOUNTS_PATH=None,
-                 reset: bool = False):
+def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None, reset: bool = False):
     """
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
@@ -38,11 +36,15 @@ def SaveAccounts(new_account,
     if type(new_account) != list:
         new_account = [new_account]
 
-    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH
-                              is None else custom_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = (
+        TEMP_ACCOUNTS_PATH
+        if custom_TEMP_ACCOUNTS_PATH is None
+        else custom_TEMP_ACCOUNTS_PATH
+    )
 
-    the_TEMP_ACCOUNTS_PATH = os.path.join(get_config()["main_folder"],
-                                          the_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = os.path.join(
+        get_config()["main_folder"], the_TEMP_ACCOUNTS_PATH
+    )
 
     ram_db_record = get_ram_accounts(the_TEMP_ACCOUNTS_PATH)
     if reset:
