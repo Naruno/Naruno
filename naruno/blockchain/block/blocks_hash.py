@@ -37,7 +37,7 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
 
     the_blockshash = (GetBlockshash(
         custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH) +
-                      the_blockshash)
+        the_blockshash)
 
     blockshash_db.set("blockshash",
                       the_blockshash,
@@ -62,7 +62,7 @@ def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
 
     the_blockshash = (GetBlockshash_part(
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH) +
-                      the_blockshash)
+        the_blockshash)
 
     blockshash_db.set(
         "blockshash_part",
