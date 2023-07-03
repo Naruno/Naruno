@@ -21,11 +21,16 @@ from naruno.blockchain.block.blocks_hash import blockshash_db
 from naruno.blockchain.block.change_transaction_fee import ChangeTransactionFee
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
-from naruno.config import (CONNECTED_NODES_PATH, LOADING_ACCOUNTS_PATH,
-                           LOADING_BLOCK_PATH, LOADING_BLOCKSHASH_PART_PATH,
-                           LOADING_BLOCKSHASH_PATH, PENDING_TRANSACTIONS_PATH,
-                           TEMP_ACCOUNTS_PATH, TEMP_BLOCK_PATH,
-                           TEMP_BLOCKSHASH_PART_PATH, TEMP_BLOCKSHASH_PATH)
+from naruno.config import CONNECTED_NODES_PATH
+from naruno.config import LOADING_ACCOUNTS_PATH
+from naruno.config import LOADING_BLOCK_PATH
+from naruno.config import LOADING_BLOCKSHASH_PART_PATH
+from naruno.config import LOADING_BLOCKSHASH_PATH
+from naruno.config import PENDING_TRANSACTIONS_PATH
+from naruno.config import TEMP_ACCOUNTS_PATH
+from naruno.config import TEMP_BLOCK_PATH
+from naruno.config import TEMP_BLOCKSHASH_PART_PATH
+from naruno.config import TEMP_BLOCKSHASH_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.lib.log import get_logger
