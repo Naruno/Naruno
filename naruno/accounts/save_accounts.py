@@ -39,7 +39,6 @@ def SaveAccounts(new_account,
     if type(new_account) != list:
         new_account = [new_account]
 
-
     the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH
                               is None else custom_TEMP_ACCOUNTS_PATH)
 
