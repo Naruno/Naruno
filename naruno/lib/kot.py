@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 import base64
 import contextlib
 import hashlib
@@ -10,7 +9,11 @@ import time
 import traceback
 from datetime import datetime
 from hashlib import sha256
-from shutil import copy, make_archive, move, rmtree, unpack_archive
+from shutil import copy
+from shutil import make_archive
+from shutil import move
+from shutil import rmtree
+from shutil import unpack_archive
 
 
 class KOT:
