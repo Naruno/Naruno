@@ -293,6 +293,7 @@ class Test_Consensus(unittest.TestCase):
         self.assertTrue(true_time(block=block))
 
     def test_transactions_main_finished(self):
+        CleanUp_tests()
         self.maxDiff = None
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
@@ -1095,6 +1096,7 @@ class Test_Consensus(unittest.TestCase):
             [Block("Onurdsadasdsaddsaas").previous_hash, "new_hash"])
 
     def test_finished_main_save_from_part_no_save_blockshash(self):
+        CleanUp_tests()
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
         settings["save_blockshash"] = True
