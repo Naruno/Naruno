@@ -299,7 +299,9 @@ class KOT:
             with open(key_location_loading_indicator, "wb") as f:
                 f.write(b"1")
 
-            while os.path.exists(key_location_reading_indicator):
+            try_number = 0
+            while os.path.exists(key_location_reading_indicator) and try_number < 6:
+                try_number += 1
                 time.sleep(0.25)
 
             move(key_location_loading, key_location)
