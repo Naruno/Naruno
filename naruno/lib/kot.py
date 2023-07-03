@@ -14,6 +14,7 @@ from shutil import make_archive
 from shutil import move
 from shutil import rmtree
 from shutil import unpack_archive
+from shutil import rmtree
 
 
 class KOT:
@@ -138,7 +139,7 @@ class KOT:
             KOT.database_delete(name)
             second_db = KOT(new_name, folder=folder)
             second_db.restore(location)
-            os.remove(location)
+            rmtree(location)
         except:
             traceback.print_exc()
             return False
@@ -177,7 +178,7 @@ class KOT:
         self.cache = {}
         for each_file in self.open_files_db.dict():
             if os.path.exists(each_file):
-                os.remove(each_file)
+                rmtree(each_file)
         self.open_files_db.delete_all()
 
     def encrypt(self, key, message):
@@ -305,7 +306,7 @@ class KOT:
             move(key_location_loading, key_location)
 
             # Remove the loading indicator
-            os.remove(key_location_loading_indicator)
+            rmtree(key_location_loading_indicator)
 
         except:
             traceback.print_exc()
@@ -408,7 +409,7 @@ class KOT:
 
         if os.path.isfile(key_location_reading_indicator):
             with contextlib.suppress(FileNotFoundError):
-                os.remove(key_location_reading_indicator)
+                rmtree(key_location_reading_indicator)
 
         if total_result_standart["meta"]["type"] == "file":
             if not total_result_standart["meta"]["direct_file"]:
@@ -483,14 +484,14 @@ class KOT:
             with contextlib.suppress(TypeError):
                 maybe_file = self.get(key)
                 if os.path.exists(maybe_file):
-                    os.remove(maybe_file)
+                    rmtree(maybe_file)
 
             if os.path.exists(key_location_compress_indicator):
-                os.remove(
+                rmtree(
                     os.path.join(self.location,
                                  key_location_compress_indicator))
             if os.path.exists(os.path.join(self.location, key_location)):
-                os.remove(os.path.join(self.location, key_location))
+                rmtree(os.path.join(self.location, key_location))
         except:
             traceback.print_exc()
             return False
