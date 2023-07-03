@@ -39,19 +39,27 @@ def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None, reset: bool = Fals
         print("save", i.__dict__)
     print(custom_TEMP_ACCOUNTS_PATH)
 
-    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                              if custom_TEMP_ACCOUNTS_PATH is None else
-                              custom_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = (
+        TEMP_ACCOUNTS_PATH
+        if custom_TEMP_ACCOUNTS_PATH is None
+        else custom_TEMP_ACCOUNTS_PATH
+    )
 
     the_TEMP_ACCOUNTS_PATH = os.path.join(
-        get_config()["main_folder"], the_TEMP_ACCOUNTS_PATH)
+        get_config()["main_folder"], the_TEMP_ACCOUNTS_PATH
+    )
 
     ram_db_record = get_ram_accounts(the_TEMP_ACCOUNTS_PATH)
     if reset:
         accounts_ram_db[ram_db_record] = {}
     for account in new_account:
         accounts_ram_db[ram_db_record][account.Address] = [
-            account.sequence_number, account.balance]
+            account.sequence_number,
+            account.balance,
+        ]
     print(accounts_ram_db[ram_db_record])
     accounts_db.set(
-        "accounts", accounts_ram_db[ram_db_record], custom_key_location=the_TEMP_ACCOUNTS_PATH)
+        "accounts",
+        accounts_ram_db[ram_db_record],
+        custom_key_location=the_TEMP_ACCOUNTS_PATH,
+    )

@@ -15,8 +15,10 @@ def AccountsHash(block, the_accounts):
 
     the_list = the_accounts
     print(the_list)
-    the_list = [account + str(the_list[account][0]) +
-                str(the_list[account][1]) for account in the_list]
+    the_list = [
+        account + str(the_list[account][0]) + str(the_list[account][1])
+        for account in the_list
+    ]
 
     account_list = MerkleTree(the_list).getRootHash()
 
