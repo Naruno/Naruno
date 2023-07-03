@@ -517,7 +517,7 @@ class KOT:
                     if the_key != False:
                         result_of_key = (self.get(
                             the_key, encryption_key=encryption_key)
-                                         if not no_data else True)
+                            if not no_data else True)
                         if not result_of_key is None:
                             result[the_key] = result_of_key
         return result

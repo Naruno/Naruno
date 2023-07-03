@@ -37,8 +37,7 @@ class Accounts_IO_Performance_Analyzer:
 
         SaveAccounts(
             self.the_account_list,
-            custom_TEMP_ACCOUNTS_PATH=
-            "db/Accounts_Performance_Analyzer_accounts_2.pf",
+            custom_TEMP_ACCOUNTS_PATH="db/Accounts_Performance_Analyzer_accounts_2.pf",
         )
 
         self.getted_accounts = GetAccounts(
@@ -74,8 +73,7 @@ class Accounts_IO_Performance_Analyzer:
 
         SaveAccounts(
             self.the_account_list,
-            custom_TEMP_ACCOUNTS_PATH=
-            "db/Accounts_Performance_Analyzer_accounts.pf",
+            custom_TEMP_ACCOUNTS_PATH="db/Accounts_Performance_Analyzer_accounts.pf",
         )
 
         AccountsHash(self.block, self.getted_accounts)
