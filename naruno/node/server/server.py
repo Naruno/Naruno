@@ -648,6 +648,8 @@ class server(Thread):
         if get_ok:
             if str(data["byte"]) == "end":
                 blockshash_db.set("blockshash", None)
+                with contextlib.suppress(FileNotFoundError):
+                    os.remove(the_TEMP_BLOCKSHASH_PATH)
                 move(self.LOADING_BLOCKSHASH_PATH, the_TEMP_BLOCKSHASH_PATH)
             else:
                 file = open(self.LOADING_BLOCKSHASH_PATH, "ab")
@@ -669,6 +671,8 @@ class server(Thread):
         if get_ok:
             if str(data["byte"]) == "end":
                 blockshash_db.set("blockshash_part", None)
+                with contextlib.suppress(FileNotFoundError):
+                    os.remove(the_TEMP_BLOCKSHASH_PART_PATH)                
                 move(self.LOADING_BLOCKSHASH_PART_PATH,
                      the_TEMP_BLOCKSHASH_PART_PATH)
             else:
@@ -692,6 +696,8 @@ class server(Thread):
         if get_ok:
             if str(data["byte"]) == "end":
                 accounts_db.set("accounts", None)
+                with contextlib.suppress(FileNotFoundError):
+                    os.remove(the_TEMP_ACCOUNTS_PATH)                         
                 move(the_LOADING_ACCOUNTS_PATH, the_TEMP_ACCOUNTS_PATH)
             else:
                 file = open(the_LOADING_ACCOUNTS_PATH, "ab")
