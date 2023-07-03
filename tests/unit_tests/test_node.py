@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 import os
 import sys
 
@@ -590,6 +591,9 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0.
+            replace(".json", "2.json"))        
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
@@ -656,6 +660,9 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_part_get_full_blockshash_part(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0.
+            replace(".json", "4.json"))            
         CleanUp_tests()
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
@@ -693,6 +700,9 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_chain_get_full_chain_already_block(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0.replace(
+                ".db", "4.db"))        
         CleanUp_tests()
         the_block = Block("onur1321313213123")
         the_block.consensus_timer = 0
@@ -743,6 +753,8 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts_already_block(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
@@ -913,6 +925,8 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts_all_nodes(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)                
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
