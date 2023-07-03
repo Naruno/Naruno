@@ -7,10 +7,10 @@
 import os
 import sqlite3
 
+import naruno
+from naruno.accounts.save_accounts import get_ram_accounts
 from naruno.config import TEMP_ACCOUNTS_PATH
 from naruno.lib.config_system import get_config
-from naruno.accounts.save_accounts import get_ram_accounts
-import naruno
 
 
 def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None, reset: bool = False):
