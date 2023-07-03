@@ -35,7 +35,7 @@ from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.pending.get_pending import GetPending
 from naruno.transactions.transaction import Transaction
-
+from naruno.accounts.save_accounts import accounts_db
 
 class Test_Node(unittest.TestCase):
 
@@ -592,16 +592,14 @@ class Test_Node(unittest.TestCase):
 
     def test_send_full_accounts_get_full_accounts(self):
         with contextlib.suppress(FileNotFoundError):
-            os.remove(self.custom_TEMP_ACCOUNTS_PATH0.
-            replace(".json", "2.json"))        
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)        
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.
-            replace(".json", "2.json"),
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0.
             replace(".json", "2.json"),
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
@@ -634,8 +632,7 @@ class Test_Node(unittest.TestCase):
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.
-            replace(".json", "3.json"),
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "3.json"),
@@ -661,8 +658,8 @@ class Test_Node(unittest.TestCase):
 
     def test_send_full_blockshash_part_get_full_blockshash_part(self):
         with contextlib.suppress(FileNotFoundError):
-            os.remove(self.custom_TEMP_ACCOUNTS_PATH0.
-            replace(".json", "4.json"))            
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
+            
         CleanUp_tests()
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
@@ -670,8 +667,7 @@ class Test_Node(unittest.TestCase):
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0.
-            replace(".json", "4.json"),
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH0,
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH0,
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0,
@@ -939,9 +935,11 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "2.json"),
         )
+        print("aaaa")
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts()
         time.sleep(2)
+        print("bbbb")
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))

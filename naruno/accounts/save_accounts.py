@@ -18,7 +18,9 @@ accounts_ram_db = {}
 
 def get_ram_accounts(name:str, reset:bool=False):
     if not name in accounts_ram_db or reset:
+        print("Not")
         record = accounts_db.get("accounts",custom_key_location=name) 
+        print(record)
         if record is None:
             accounts_ram_db[name] ={}
         else:
@@ -32,10 +34,13 @@ def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None, reset:bool=False):
     """
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
-    print("save", new_account)
+    
 
     if type(new_account) != list:
         new_account = [new_account]
+    for i in new_account:
+        print("save", i.__dict__)
+    print(custom_TEMP_ACCOUNTS_PATH)
 
     the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
                               if custom_TEMP_ACCOUNTS_PATH is None else
@@ -48,7 +53,7 @@ def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None, reset:bool=False):
         accounts_ram_db[ram_db_record] = {}
     for account in new_account:
         accounts_ram_db[ram_db_record][account.Address ] = [account.sequence_number, account.balance]
-
+    print(accounts_ram_db[ram_db_record])
     accounts_db.set("accounts", accounts_ram_db[ram_db_record], custom_key_location=the_TEMP_ACCOUNTS_PATH)
 
 
