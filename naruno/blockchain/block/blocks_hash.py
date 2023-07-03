@@ -23,6 +23,7 @@ def SaveBlockshash(the_blockshash, custom_TEMP_BLOCKSHASH_PATH=None):
     """
     Saves the blockshash to the TEMP_BLOCKSHASH_PATH.
     """
+    os.chdir(get_config()["main_folder"])
 
     the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
                                 if custom_TEMP_BLOCKSHASH_PATH is None else
@@ -47,6 +48,7 @@ def SaveBlockshash_part(the_blockshash, custom_TEMP_BLOCKSHASH_PART_PATH=None):
     """
     Saves the blockshash part to the TEMP_BLOCKSHASH_PART_PATH.
     """
+    os.chdir(get_config()["main_folder"])
 
     the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
                                      custom_TEMP_BLOCKSHASH_PART_PATH is None
@@ -73,6 +75,8 @@ def GetBlockshash(custom_TEMP_BLOCKSHASH_PATH=None):
     """
     Returns the blockshash.
     """
+    os.chdir(get_config()["main_folder"])
+
     the_TEMP_BLOCKSHASH_PATH = (TEMP_BLOCKSHASH_PATH
                                 if custom_TEMP_BLOCKSHASH_PATH is None else
                                 custom_TEMP_BLOCKSHASH_PATH)
@@ -90,6 +94,8 @@ def GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=None):
     """
     Returns the blockshash part.
     """
+    os.chdir(get_config()["main_folder"])
+
     the_TEMP_BLOCKSHASH_PART_PATH = (TEMP_BLOCKSHASH_PART_PATH if
                                      custom_TEMP_BLOCKSHASH_PART_PATH is None
                                      else custom_TEMP_BLOCKSHASH_PART_PATH)

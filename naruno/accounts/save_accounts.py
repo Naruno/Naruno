@@ -34,6 +34,7 @@ def SaveAccounts(new_account,
     """
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
+    os.chdir(get_config()["main_folder"])
 
     if type(new_account) != list:
         new_account = [new_account]
