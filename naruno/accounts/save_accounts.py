@@ -18,9 +18,9 @@ accounts_ram_db = {}
 
 def get_ram_accounts(name: str, reset: bool = False):
     if not name in accounts_ram_db or reset:
-        print("Not")
+
         record = accounts_db.get("accounts", custom_key_location=name)
-        print(record)
+
         if record is None:
             accounts_ram_db[name] = {}
         else:
