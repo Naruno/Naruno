@@ -449,7 +449,8 @@ class Test_apps(unittest.TestCase):
         password = "123"
 
         self.assertEqual(
-            integration.send("hello_text", "hello", "<address>remoteapp", force=False),
+            integration.send("hello_text", "hello",
+                             "<address>remoteapp", force=False),
             True)
 
         second_try = integration.send(

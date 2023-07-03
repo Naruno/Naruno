@@ -16,25 +16,22 @@ accounts_db = KOT("accounts_db", folder=get_config()["main_folder"] + "/db")
 accounts_ram_db = {}
 
 
-def get_ram_accounts(name:str, reset:bool=False):
+def get_ram_accounts(name: str, reset: bool = False):
     if not name in accounts_ram_db or reset:
         print("Not")
-        record = accounts_db.get("accounts",custom_key_location=name) 
+        record = accounts_db.get("accounts", custom_key_location=name)
         print(record)
         if record is None:
-            accounts_ram_db[name] ={}
+            accounts_ram_db[name] = {}
         else:
             accounts_ram_db[name] = record
     return name
 
 
-
-
-def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None, reset:bool=False):
+def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None, reset: bool = False):
     """
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
-    
 
     if type(new_account) != list:
         new_account = [new_account]
@@ -46,14 +43,15 @@ def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None, reset:bool=False):
                               if custom_TEMP_ACCOUNTS_PATH is None else
                               custom_TEMP_ACCOUNTS_PATH)
 
-    the_TEMP_ACCOUNTS_PATH = os.path.join(get_config()["main_folder"],the_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = os.path.join(
+        get_config()["main_folder"], the_TEMP_ACCOUNTS_PATH)
 
     ram_db_record = get_ram_accounts(the_TEMP_ACCOUNTS_PATH)
     if reset:
         accounts_ram_db[ram_db_record] = {}
     for account in new_account:
-        accounts_ram_db[ram_db_record][account.Address ] = [account.sequence_number, account.balance]
+        accounts_ram_db[ram_db_record][account.Address] = [
+            account.sequence_number, account.balance]
     print(accounts_ram_db[ram_db_record])
-    accounts_db.set("accounts", accounts_ram_db[ram_db_record], custom_key_location=the_TEMP_ACCOUNTS_PATH)
-
-
+    accounts_db.set(
+        "accounts", accounts_ram_db[ram_db_record], custom_key_location=the_TEMP_ACCOUNTS_PATH)

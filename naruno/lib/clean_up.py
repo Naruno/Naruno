@@ -14,6 +14,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from naruno.lib.config_system import get_config
 import naruno
 
+
 def CleanUp_tests():
     naruno.accounts.save_accounts.accounts_ram_db = {}
     os.chdir(get_config()["main_folder"])

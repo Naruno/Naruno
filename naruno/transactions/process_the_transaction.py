@@ -78,8 +78,10 @@ def ProccesstheTransaction(
         logger.debug(f"FromUser address: {address_of_fromUser}")
         the_record_account_list = []
 
-        the_record_account_list.append([address_of_fromUser,the_account_list[address_of_fromUser][0], the_account_list[address_of_fromUser][1]]) if address_of_fromUser in the_account_list else None
-        the_record_account_list.append([trans.toUser,the_account_list[trans.toUser][0], the_account_list[trans.toUser][1]]) if trans.toUser in the_account_list else None
+        the_record_account_list.append([address_of_fromUser, the_account_list[address_of_fromUser][0],
+                                       the_account_list[address_of_fromUser][1]]) if address_of_fromUser in the_account_list else None
+        the_record_account_list.append([trans.toUser, the_account_list[trans.toUser][0],
+                                       the_account_list[trans.toUser][1]]) if trans.toUser in the_account_list else None
 
         for the_pulled_account in the_record_account_list:
             account_list.append(
@@ -132,8 +134,7 @@ def ProccesstheTransaction(
     new_added_accounts_list = sorted(new_added_accounts_list,
                                      key=lambda x: x.Address)
 
-
-
-    SaveAccounts(new_added_accounts_list+edited_accounts, the_TEMP_ACCOUNTS_PATH)
+    SaveAccounts(new_added_accounts_list +
+                 edited_accounts, the_TEMP_ACCOUNTS_PATH)
 
     return block

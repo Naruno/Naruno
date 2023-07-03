@@ -13,12 +13,13 @@ from naruno.accounts.save_accounts import get_ram_accounts
 import naruno
 
 
-def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None, reset:bool=False):
+def GetAccounts(custom_TEMP_ACCOUNTS_PATH=None, reset: bool = False):
     """
     Returns the accounts from TEMP_ACCOUNTS_PATH.
     """
 
     the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH
                               is None else custom_TEMP_ACCOUNTS_PATH)
-    the_TEMP_ACCOUNTS_PATH = os.path.join(get_config()["main_folder"],the_TEMP_ACCOUNTS_PATH)
+    the_TEMP_ACCOUNTS_PATH = os.path.join(
+        get_config()["main_folder"], the_TEMP_ACCOUNTS_PATH)
     return naruno.accounts.save_accounts.accounts_ram_db[get_ram_accounts(the_TEMP_ACCOUNTS_PATH, reset=reset)]

@@ -211,8 +211,6 @@ class Test_Accounts(unittest.TestCase):
         )
         self.assertEqual(result_3, None)
 
-
-
     def test_SaveAccounts_GetAccounts(self):
         the_account = Account("dbd811a12104827240153c8fd2f25a294a851ec8", 10,
                               1)
@@ -235,9 +233,11 @@ class Test_Accounts(unittest.TestCase):
             "7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1": [3, 20],
         }
         self.assertEqual(len(result_list), len(account_list))
-        
-        self.assertEqual(result_list["15562b06dc6b1acd6e8c86031e564e0c451c7a73"][0], account_list["15562b06dc6b1acd6e8c86031e564e0c451c7a73"][0])
-        self.assertEqual(result_list["7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1"][1], account_list["7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1"][1])
+
+        self.assertEqual(result_list["15562b06dc6b1acd6e8c86031e564e0c451c7a73"]
+                         [0], account_list["15562b06dc6b1acd6e8c86031e564e0c451c7a73"][0])
+        self.assertEqual(result_list["7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1"]
+                         [1], account_list["7340ac0cdf3f7b59cba4ec6348ee8e41d0c24ef1"][1])
 
     def test_commanders(self):
         backup_commanders = copy.copy(GetCommander())

@@ -37,6 +37,7 @@ from naruno.transactions.pending.get_pending import GetPending
 from naruno.transactions.transaction import Transaction
 from naruno.accounts.save_accounts import accounts_db
 
+
 class Test_Node(unittest.TestCase):
 
     @classmethod
@@ -592,7 +593,7 @@ class Test_Node(unittest.TestCase):
 
     def test_send_full_accounts_get_full_accounts(self):
         with contextlib.suppress(FileNotFoundError):
-            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)        
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
@@ -616,13 +617,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,reset=True)
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1, reset=True)
         print(got_block)
         got_block = got_block
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block["atakan123321"],
-        [0, 10000000],
+            [0, 10000000],
         )
 
     def test_send_full_blockshash_get_full_blockshash(self):
@@ -659,7 +660,7 @@ class Test_Node(unittest.TestCase):
     def test_send_full_blockshash_part_get_full_blockshash_part(self):
         with contextlib.suppress(FileNotFoundError):
             os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
-            
+
         CleanUp_tests()
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
@@ -698,7 +699,7 @@ class Test_Node(unittest.TestCase):
     def test_send_full_chain_get_full_chain_already_block(self):
         with contextlib.suppress(FileNotFoundError):
             os.remove(self.custom_TEMP_ACCOUNTS_PATH0.replace(
-                ".db", "4.db"))        
+                ".db", "4.db"))
         CleanUp_tests()
         the_block = Block("onur1321313213123")
         the_block.consensus_timer = 0
@@ -786,8 +787,7 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,reset=True)
-
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1, reset=True)
 
         got_block = got_block
         self.assertEqual(len(got_block), 1)
@@ -922,7 +922,7 @@ class Test_Node(unittest.TestCase):
 
     def test_send_full_accounts_get_full_accounts_all_nodes(self):
         with contextlib.suppress(FileNotFoundError):
-            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)                
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
@@ -948,14 +948,13 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,reset=True)
-
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1, reset=True)
 
         got_block = got_block
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block["atakan123321"],
-           [0, 10000000],
+            [0, 10000000],
         )
 
     def test_send_full_blockshash_get_full_blockshash_all_nodes(self):
@@ -1039,8 +1038,7 @@ class Test_Node(unittest.TestCase):
             "127.0.0.1",
             10079,
             test=True,
-            custom_id=
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
+            custom_id="MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
         )
         temp_server.start()
         self.node_0.connect("127.0.0.1", 10079)
@@ -1859,7 +1857,7 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
     def test_send_my_block_get_candidate_block_hash_multiple_with_function_try_non(
-        self, ):
+            self, ):
         self.node_2.clients[0].candidate_block_hash = None
         self.node_2.clients[0].candidate_block_hash_history = []
         self.node_2.clients[1].candidate_block_hash = None

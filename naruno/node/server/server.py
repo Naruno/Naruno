@@ -303,7 +303,7 @@ class server(Thread):
                        if custom_CONNECTED_NODES_PATH is None else KOT(
                            "connectednodes" + custom_CONNECTED_NODES_PATH,
                            folder=get_config()["main_folder"] + "/db",
-                       ).get_all())
+        ).get_all())
         for entry in all_records:
             loaded_json = all_records[entry]
             the_pending_list[loaded_json["host"] + str(loaded_json["port"]) +
@@ -328,7 +328,7 @@ class server(Thread):
             node_id, node_list) if self.CONNECTED_NODES_PATH is None else KOT(
                 "connectednodes" + self.CONNECTED_NODES_PATH,
                 folder=get_config()["main_folder"] + "/db",
-            ).set(node_id, node_list)
+        ).set(node_id, node_list)
 
     @staticmethod
     def connectionfrommixdb(custom_server=None,
@@ -360,7 +360,7 @@ class server(Thread):
             node_id) if self.CONNECTED_NODES_PATH is None else KOT(
                 "connectednodes" + self.CONNECTED_NODES_PATH,
                 folder=get_config()["main_folder"] + "/db",
-            ).delete(node_id)
+        ).delete(node_id)
 
     def direct_message(self, node, data, hash_of_data):
         if "sendmefullblock" == data["action"]:
@@ -672,7 +672,7 @@ class server(Thread):
             if str(data["byte"]) == "end":
                 blockshash_db.set("blockshash_part", None)
                 with contextlib.suppress(FileNotFoundError):
-                    os.remove(the_TEMP_BLOCKSHASH_PART_PATH)                
+                    os.remove(the_TEMP_BLOCKSHASH_PART_PATH)
                 move(self.LOADING_BLOCKSHASH_PART_PATH,
                      the_TEMP_BLOCKSHASH_PART_PATH)
             else:
@@ -697,7 +697,7 @@ class server(Thread):
             if str(data["byte"]) == "end":
                 accounts_db.set("accounts", None)
                 with contextlib.suppress(FileNotFoundError):
-                    os.remove(the_TEMP_ACCOUNTS_PATH)                         
+                    os.remove(the_TEMP_ACCOUNTS_PATH)
                 move(the_LOADING_ACCOUNTS_PATH, the_TEMP_ACCOUNTS_PATH)
             else:
                 file = open(the_LOADING_ACCOUNTS_PATH, "ab")

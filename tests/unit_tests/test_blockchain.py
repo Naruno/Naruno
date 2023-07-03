@@ -202,9 +202,11 @@ class Test_Blockchain(unittest.TestCase):
         the_account_a = Account("onur", "atakan", "ulusoy")
         the_accounts = {}
         for i in range(3):
-            the_accounts[the_account_a.Address+str(i)] = [the_account_a.sequence_number, the_account_a.balance]  
+            the_accounts[the_account_a.Address +
+                         str(i)] = [the_account_a.sequence_number, the_account_a.balance]
         result = AccountsHash(block, the_accounts)
-        self.assertEqual(the_accounts, {'onur0': ['ulusoy', 'atakan'], 'onur1': ['ulusoy', 'atakan'], 'onur2': ['ulusoy', 'atakan']})
+        self.assertEqual(the_accounts, {'onur0': ['ulusoy', 'atakan'], 'onur1': [
+                         'ulusoy', 'atakan'], 'onur2': ['ulusoy', 'atakan']})
         self.assertEqual(
             result,
             "35eb26af2de7a5f14d409d2d73d6555e65583c165548632d2ef7c40f6541db34")
@@ -217,9 +219,11 @@ class Test_Blockchain(unittest.TestCase):
         the_account_a = Account("onur", "atakan", "ulusoy")
         the_accounts = {}
         for i in range(3):
-            the_accounts[the_account_a.Address+str(i)] = [the_account_a.sequence_number, the_account_a.balance]        
+            the_accounts[the_account_a.Address +
+                         str(i)] = [the_account_a.sequence_number, the_account_a.balance]
         result = AccountsHash(block, the_accounts)
-        self.assertEqual(the_accounts, {'onur0': ['ulusoy', 'atakan'], 'onur1': ['ulusoy', 'atakan'], 'onur2': ['ulusoy', 'atakan']})
+        self.assertEqual(the_accounts, {'onur0': ['ulusoy', 'atakan'], 'onur1': [
+                         'ulusoy', 'atakan'], 'onur2': ['ulusoy', 'atakan']})
         self.assertEqual(
             result,
             "35eb26af2de7a5f14d409d2d73d6555e65583c165548632d2ef7c40f6541db34")
@@ -233,7 +237,8 @@ class Test_Blockchain(unittest.TestCase):
         the_account_a = Account("onur", "atakan", "ulusoy")
         the_accounts = {}
         for i in range(3):
-            the_accounts[the_account_a.Address+str(i)] = [the_account_a.sequence_number, the_account_a.balance]
+            the_accounts[the_account_a.Address +
+                         str(i)] = [the_account_a.sequence_number, the_account_a.balance]
         part_of_blocks_hash = ["onur"]
         the_blocks_hash = ["atakan", "ulusoy", "sivas"]
         result = CalculateHash(block, part_of_blocks_hash, the_blocks_hash,
@@ -247,7 +252,8 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         self.assertEqual(the_blocks_hash, ["atakan", "ulusoy", "sivas"])
-        self.assertEqual(the_accounts, {'onur0': ['ulusoy', 'atakan'], 'onur1': ['ulusoy', 'atakan'], 'onur2': ['ulusoy', 'atakan']})
+        self.assertEqual(the_accounts, {'onur0': ['ulusoy', 'atakan'], 'onur1': [
+                         'ulusoy', 'atakan'], 'onur2': ['ulusoy', 'atakan']})
         true_hash = "2297e968759b9ba2df1fbb5f9000806ede4716b4987f975fab5c1356111688a0"
         self.assertEqual(block.hash, true_hash)
         self.assertEqual(result, true_hash)
@@ -814,8 +820,10 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(result[0].validating_list[0].__dict__,
                          block.validating_list[0].__dict__)
         the_account_list = result[1]
-        self.assertEqual(the_account_list[the_account.Address][1], the_account.balance)
-        self.assertEqual(the_account_list[the_account.Address][0], the_account.sequence_number)
+        self.assertEqual(
+            the_account_list[the_account.Address][1], the_account.balance)
+        self.assertEqual(
+            the_account_list[the_account.Address][0], the_account.sequence_number)
         self.assertEqual(result[2], [block.previous_hash])
         self.assertEqual(result[3], [block.previous_hash])
 

@@ -1467,21 +1467,31 @@ class Test_Transactions(unittest.TestCase):
                          "onurtheprofessional")
         self.assertEqual(block.validating_list[5].amount, 0.1)
         self.assertEqual(block.validating_list[4], the_transaction)
-        self.assertEqual(account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][1], 100000 - 5000 - 0.02)
-        self.assertEqual(account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][0], 1)
+        self.assertEqual(
+            account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][1], 100000 - 5000 - 0.02)
+        self.assertEqual(
+            account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][0], 1)
 
-        self.assertEqual(account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][1], 94999.98)
-        self.assertEqual(account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][0], 1)
+        self.assertEqual(
+            account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][1], 94999.98)
+        self.assertEqual(
+            account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][0], 1)
 
-        self.assertEqual(account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][1], 94999.98)
+        self.assertEqual(
+            account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][1], 94999.98)
 
-        self.assertEqual(account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][0], 1)
+        self.assertEqual(
+            account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][0], 1)
 
-        self.assertEqual(account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][1], 94999.98)
-        self.assertEqual(account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][0], 1)
+        self.assertEqual(
+            account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][1], 94999.98)
+        self.assertEqual(
+            account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][0], 1)
 
-        self.assertEqual(account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][1], 104999.98)
-        self.assertEqual(account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][0], 1)
+        self.assertEqual(
+            account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][1], 104999.98)
+        self.assertEqual(
+            account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][0], 1)
 
         self.assertEqual(account_list["onur"][1], 15000)
         self.assertEqual(account_list["onur"][0], 0)
@@ -1588,24 +1598,34 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(block.validating_list[7].toUser, "bca")
         self.assertEqual(block.validating_list[7].amount, 15)
         self.assertEqual(block.validating_list[4], the_transaction)
-        self.assertEqual(account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][1], 100000 - 5000 - 0.02)
-        self.assertEqual(account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][0], 1)
+        self.assertEqual(
+            account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][1], 100000 - 5000 - 0.02)
+        self.assertEqual(
+            account_list["2ffd1f6bed8614f4cd01fc7159ac950604272773"][0], 1)
 
-        self.assertEqual(account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][1], 94999.98)
+        self.assertEqual(
+            account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][1], 94999.98)
 
-        self.assertEqual(account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][0], 1)
+        self.assertEqual(
+            account_list["73cd109827c0de9fa211c0d062eab13584ea6bb8"][0], 1)
 
-        self.assertEqual(account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][1], 94999.98)
+        self.assertEqual(
+            account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][1], 94999.98)
 
-        self.assertEqual(account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][0], 1)
+        self.assertEqual(
+            account_list["08fe9bfc6521565c601a3785c5f5fb0a406279e6"][0], 1)
 
-        self.assertEqual(account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][1], 94999.98)
+        self.assertEqual(
+            account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][1], 94999.98)
 
-        self.assertEqual(account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][0], 1)
+        self.assertEqual(
+            account_list["6a4236cba1002b2919651677c7c520b67627aa2a"][0], 1)
 
-        self.assertEqual(account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][1], 104999.98)
+        self.assertEqual(
+            account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][1], 104999.98)
 
-        self.assertEqual(account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][0], 1)
+        self.assertEqual(
+            account_list["d10d419bae75549222c5ffead625a9e0246ad3e6"][0], 1)
 
         self.assertEqual(account_list["abc"][1], 10)
         self.assertEqual(account_list["abc"][0], 0)
@@ -1702,8 +1722,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1845,8 +1865,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -1997,8 +2017,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -2057,8 +2076,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2214,8 +2233,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result,
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             True,
         )
@@ -2277,8 +2295,8 @@ class Test_Transactions(unittest.TestCase):
 
         hash_1 = CalculateHash(
             block,
-            GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=
-                               custom_TEMP_BLOCKSHASH_PART_PATH),
+            GetBlockshash_part(
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH),
             GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH),
             GetAccounts(custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH),
@@ -2434,8 +2452,7 @@ class Test_Transactions(unittest.TestCase):
         self.assertEqual(
             CheckProof(
                 result + "onur",
-                custom_TEMP_BLOCKSHASH_PART_PATH=
-                custom_TEMP_BLOCKSHASH_PART_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             ),
             None,
         )
