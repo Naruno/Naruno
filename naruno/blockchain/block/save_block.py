@@ -46,7 +46,7 @@ def SaveBlock(
 
             block = Remove_Duplicates(block)
             block.validating_list = sorted(block.validating_list,
-                                       key=lambda x: x.fromUser)
+                                           key=lambda x: x.fromUser)
 
     logger.info("Saving block to disk")
     logger.debug(
@@ -75,32 +75,32 @@ def SaveBlock(
             Account("73672aafc1890fc18d9b88105380b396eca799a5",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("83a15e056f98305418ee9ea26caf664c3d020040",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),       
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("b1df8deda30d4f88cb905ecd57ed0fc7f2021d00",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("ec29c2e01987796a3677da2e3a9b4a098b93b89a",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("887af3d44bfe39005b4cc480c2b03a11c2fb8b63",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("17d3d3e20bd84ddf6e3ed85fa693c12654f174eb",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
             Account("1da75d769ab3604abc04763d20dc3f70bf1c69b8",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),    
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
             Account("d7eee170a14b99e37a3e3fc6d375d1d28bddf62b",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("d7f20b7990cc593e248f1d0dd31dd7a235a40d9a",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),  
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("75f7e0e090834c959f6538b1a4c80f03be410bdd",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),                                                              
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
 
             Account("d37cb2c0df30965f2bc12cea040386e70e32402b",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
             Account("0af54b3f47fc1577688e7c2c227672f610cad292",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),       
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
 
 
@@ -108,21 +108,21 @@ def SaveBlock(
 
 
             Account("96bb7bac1af450ea0c17300ea4f61b1cd0b88b6d",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("709bf017a48d2f02bb5d5d8d205ccf39d8205b4a",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("5b943d77a8b7e66aa60b98a2197f2197db4f464b",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("bba1e2f5871c02b130416229c02dd54fc404cd21",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("dcf715a42784bfedf009b515ada46c1946a3339b",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("0af54b3f47fc1577688e7c2c227672f610cad292",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("0af54b3f47fc1577688e7c2c227672f610cad292",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),   
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("0af54b3f47fc1577688e7c2c227672f610cad292",
-                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),                                                                                                                                               
+                    (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
             Account("cbdeeab5577f6f8693e571494e61dc0f356d9d09",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
@@ -173,7 +173,7 @@ def SaveBlock(
             Account("508c9565bac49d318eb5c67f6e6e0354acbc4edf",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
 
-            
+
             Account("c7b71bd5100d2081de69497776064589e98c4fe1",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("c58b9d12474108867f4a0924f4c521119a57d62f",
@@ -182,19 +182,19 @@ def SaveBlock(
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("2E6A70110890b7A46F7857E2866023043CeF4680",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
-                                                                  
+
             Account("078e6dd15b33411462d284baf4c901cfd828558c",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("88b73c67bf3aab4764d627cc9aa1150c6ae97794",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
-                                                                  
-                                                                                                   
-            
+
+
+
             Account("450305d3bb1a0fd7343824f136177220d436c046",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
             Account("e7b72ca5af68bc5b8ddd98e4187c68efcfbec5cd",
                     (2 * block.minumum_transfer_amount) + block.transaction_fee * 100),
-                                                           
+
 
 
         ]
@@ -228,7 +228,7 @@ def SaveBlock(
     logger.info(f"Saving block to {highest_the_TEMP_BLOCK_PATH}")
 
     if delete_old_validating_list:
-        
+
         for file in os.listdir("db/"):
             if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
                     "db/" + file) == the_TEMP_BLOCK_PATH:
