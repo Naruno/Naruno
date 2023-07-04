@@ -305,10 +305,11 @@ class KOT:
                 try_number += 1
                 time.sleep(0.25)
 
-            copy(key_location_loading, key_location)
+            with contextlib.suppress(FileNotFoundError):
+                move(key_location_loading, key_location)
 
-            # Remove the loading indicator
-            os.remove(key_location_loading_indicator)
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(key_location_loading_indicator)
 
         except:
             traceback.print_exc()
