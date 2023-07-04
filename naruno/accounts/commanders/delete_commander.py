@@ -14,5 +14,6 @@ commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
 
 
 def DeleteCommander(tx):
+    os.chdir(get_config()["main_folder"])
     if commanders_db.get(tx) == True:
         commanders_db.delete(tx)

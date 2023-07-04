@@ -37,6 +37,7 @@ def get_config():
     Returns the configs. If it doesn't exist, it creates,
     saves and returns.
     """
+    
     record = config_db.get("config")
     if record is None:
         return create_and_save_the_configs()

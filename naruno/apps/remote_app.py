@@ -224,6 +224,7 @@ class Integration:
                 self.cache.remove(each_cache)
 
     def save_cache(self):
+        os.chdir(get_config()["main_folder"])
         if self.cache_true == False:
             self.get_cache()
             return
