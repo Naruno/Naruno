@@ -699,6 +699,9 @@ class server(Thread):
                     os.remove(the_TEMP_ACCOUNTS_PATH)
                 move(the_LOADING_ACCOUNTS_PATH, the_TEMP_ACCOUNTS_PATH)
             else:
+                if not os.path.exists(the_LOADING_ACCOUNTS_PATH):
+                    open(the_LOADING_ACCOUNTS_PATH, "w").close()
+
                 file = open(the_LOADING_ACCOUNTS_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
