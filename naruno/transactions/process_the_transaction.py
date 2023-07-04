@@ -10,9 +10,8 @@ from naruno.accounts.account import Account
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.shares import shares
 from naruno.config import TEMP_ACCOUNTS_PATH
-from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import (
-    Remove_Duplicates,
-)
+from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
+    Remove_Duplicates
 from naruno.lib.log import get_logger
 from naruno.wallet.wallet_import import Address
 
