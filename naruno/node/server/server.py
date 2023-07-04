@@ -627,8 +627,7 @@ class server(Thread):
                 )
 
             else:
-                if not os.path.exists(self.LOADING_BLOCK_PATH):
-                    open(self.LOADING_BLOCK_PATH, "w").close()                     
+                os.chdir(get_config()["main_folder"])
                 file = open(self.LOADING_BLOCK_PATH, "ab")
 
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
@@ -653,8 +652,7 @@ class server(Thread):
                     os.remove(the_TEMP_BLOCKSHASH_PATH)
                 move(self.LOADING_BLOCKSHASH_PATH, the_TEMP_BLOCKSHASH_PATH)
             else:
-                if not os.path.exists(self.LOADING_BLOCKSHASH_PATH):
-                    open(self.LOADING_BLOCKSHASH_PATH, "w").close()                     
+                os.chdir(get_config()["main_folder"])
                 file = open(self.LOADING_BLOCKSHASH_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
@@ -679,8 +677,7 @@ class server(Thread):
                 move(self.LOADING_BLOCKSHASH_PART_PATH,
                      the_TEMP_BLOCKSHASH_PART_PATH)
             else:
-                if not os.path.exists(self.LOADING_BLOCKSHASH_PART_PATH):
-                    open(self.LOADING_BLOCKSHASH_PART_PATH, "w").close()                
+                os.chdir(get_config()["main_folder"])
                 file = open(self.LOADING_BLOCKSHASH_PART_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
@@ -705,9 +702,7 @@ class server(Thread):
                     os.remove(the_TEMP_ACCOUNTS_PATH)
                 move(the_LOADING_ACCOUNTS_PATH, the_TEMP_ACCOUNTS_PATH)
             else:
-                if not os.path.exists(the_LOADING_ACCOUNTS_PATH):
-                    open(the_LOADING_ACCOUNTS_PATH, "w").close()
-
+                os.chdir(get_config()["main_folder"])
                 file = open(the_LOADING_ACCOUNTS_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
