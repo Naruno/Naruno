@@ -627,6 +627,8 @@ class server(Thread):
                 )
 
             else:
+                if not os.path.exists(self.LOADING_BLOCK_PATH):
+                    open(self.LOADING_BLOCK_PATH, "w").close()                     
                 file = open(self.LOADING_BLOCK_PATH, "ab")
 
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
@@ -651,6 +653,8 @@ class server(Thread):
                     os.remove(the_TEMP_BLOCKSHASH_PATH)
                 move(self.LOADING_BLOCKSHASH_PATH, the_TEMP_BLOCKSHASH_PATH)
             else:
+                if not os.path.exists(self.LOADING_BLOCKSHASH_PATH):
+                    open(self.LOADING_BLOCKSHASH_PATH, "w").close()                     
                 file = open(self.LOADING_BLOCKSHASH_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
@@ -675,6 +679,8 @@ class server(Thread):
                 move(self.LOADING_BLOCKSHASH_PART_PATH,
                      the_TEMP_BLOCKSHASH_PART_PATH)
             else:
+                if not os.path.exists(self.LOADING_BLOCKSHASH_PART_PATH):
+                    open(self.LOADING_BLOCKSHASH_PART_PATH, "w").close()                
                 file = open(self.LOADING_BLOCKSHASH_PART_PATH, "ab")
                 file.write((data["byte"].encode(encoding="iso-8859-1")))
                 file.close()
