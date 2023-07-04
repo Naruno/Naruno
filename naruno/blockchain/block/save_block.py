@@ -52,7 +52,7 @@ def SaveBlock(
     logger.debug(
         f"Block#{block.sequence_number + block.empty_block_number}:{block.empty_block_number}: {block.dump_json()}"
     )
-    os.chdir(get_config()["main_folder"])
+    
     if block.first_time:
         accounts_list = [Account(block.creator, block.coin_amount)]
         baklava_test_net_users = [
@@ -347,6 +347,7 @@ def SaveBlock(
     logger.info(f"Saving block to {highest_the_TEMP_BLOCK_PATH}")
 
     if delete_old_validating_list:
+        os.chdir(get_config()["main_folder"])
         for file in os.listdir("db/"):
             if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
                     "db/" + file) == the_TEMP_BLOCK_PATH:
