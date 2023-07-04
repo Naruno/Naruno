@@ -12,8 +12,8 @@ import time
 from naruno.accounts.account import Account
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
-from naruno.blockchain.block.blocks_hash import (SaveBlockshash,
-                                                 SaveBlockshash_part)
+from naruno.blockchain.block.blocks_hash import SaveBlockshash
+from naruno.blockchain.block.blocks_hash import SaveBlockshash_part
 from naruno.config import TEMP_BLOCK_PATH
 from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
     Remove_Duplicates
