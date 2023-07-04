@@ -52,7 +52,7 @@ def SaveBlock(
     logger.debug(
         f"Block#{block.sequence_number + block.empty_block_number}:{block.empty_block_number}: {block.dump_json()}"
     )
-    
+
     if block.first_time:
         accounts_list = [Account(block.creator, block.coin_amount)]
         baklava_test_net_users = [
