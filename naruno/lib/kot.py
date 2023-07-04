@@ -378,8 +378,9 @@ class KOT:
         total_result_standart = None
 
         try:
-            with open(key_location_reading_indicator, "wb") as f:
-                f.write(b"1")
+            with contextlib.suppress(Exception):
+                with open(key_location_reading_indicator, "wb") as f:
+                    f.write(b"1")
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
 
