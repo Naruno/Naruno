@@ -16,6 +16,7 @@ from naruno.accounts.get_accounts import GetAccounts
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.hash.accounts_hash import AccountsHash
+from naruno.lib.config_system import get_config
 
 
 class Accounts_IO_Performance_Analyzer:
@@ -51,11 +52,18 @@ class Accounts_IO_Performance_Analyzer:
         result = (
             calculate(self.save_operation)[0],
             calculate(self.get_operation)[0],
-            os.path.getsize("db/Accounts_Performance_Analyzer_accounts.pf") /
-            1000000,
+            os.path.getsize(
+                os.path.join(
+                    get_config()["main_folder"],
+                    "db/Accounts_Performance_Analyzer_accounts.pf",
+                )) / 1000000,
         )
 
-        os.remove("db/Accounts_Performance_Analyzer_accounts.pf")
+        os.remove(
+            os.path.join(
+                get_config()["main_folder"],
+                "db/Accounts_Performance_Analyzer_accounts.pf",
+            ))
 
         return result
 

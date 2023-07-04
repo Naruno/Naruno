@@ -11,10 +11,12 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
+import naruno
 from naruno.lib.config_system import get_config
 
 
 def CleanUp_tests():
+    naruno.accounts.save_accounts.accounts_ram_db = {}
     os.chdir(get_config()["main_folder"])
     for the_file in os.listdir("db/"):
         if the_file.startswith("test_"):

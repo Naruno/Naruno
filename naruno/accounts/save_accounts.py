@@ -9,33 +9,52 @@ import sqlite3
 
 from naruno.config import TEMP_ACCOUNTS_PATH
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
+
+accounts_db = KOT("accounts_db", folder=get_config()["main_folder"] + "/db")
+
+accounts_ram_db = {}
 
 
-def SaveAccounts(new_account, custom_TEMP_ACCOUNTS_PATH=None):
+def get_ram_accounts(name: str, reset: bool = False):
+    if not name in accounts_ram_db or reset:
+        record = accounts_db.get("accounts", custom_key_location=name)
+
+        if record is None:
+            accounts_ram_db[name] = {}
+        else:
+            accounts_ram_db[name] = record
+    return name
+
+
+def SaveAccounts(new_account,
+                 custom_TEMP_ACCOUNTS_PATH=None,
+                 reset: bool = False):
     """
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
-
-    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH
-                              if custom_TEMP_ACCOUNTS_PATH is None else
-                              custom_TEMP_ACCOUNTS_PATH)
     os.chdir(get_config()["main_folder"])
-    conn = sqlite3.connect(the_TEMP_ACCOUNTS_PATH)
-    c = conn.cursor()
-    c.execute(
-        """CREATE TABLE IF NOT EXISTS account_list (address text, sequence_number integer, balance integer)"""
+
+    if type(new_account) != list:
+        new_account = [new_account]
+
+    the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH
+                              is None else custom_TEMP_ACCOUNTS_PATH)
+
+    the_TEMP_ACCOUNTS_PATH = os.path.join(get_config()["main_folder"],
+                                          the_TEMP_ACCOUNTS_PATH)
+
+    ram_db_record = get_ram_accounts(the_TEMP_ACCOUNTS_PATH)
+    if reset:
+        accounts_ram_db[ram_db_record] = {}
+    for account in new_account:
+        accounts_ram_db[ram_db_record][account.Address] = [
+            account.sequence_number,
+            account.balance,
+        ]
+
+    accounts_db.set(
+        "accounts",
+        accounts_ram_db[ram_db_record],
+        custom_key_location=the_TEMP_ACCOUNTS_PATH,
     )
-    if type(new_account) == list:
-        for account in new_account:
-            c.execute(
-                """INSERT INTO account_list VALUES (?, ?, ?)""",
-                (account.Address, account.sequence_number, account.balance),
-            )
-    else:
-        c.execute(
-            """INSERT INTO account_list VALUES (?, ?, ?)""",
-            (new_account.Address, new_account.sequence_number,
-             new_account.balance),
-        )
-    conn.commit()
-    conn.close()

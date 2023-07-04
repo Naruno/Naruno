@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 import os
 import sys
 
@@ -15,6 +16,7 @@ import time
 import unittest
 
 from naruno.accounts.get_accounts import GetAccounts
+from naruno.accounts.save_accounts import accounts_db
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.blocks_hash import (GetBlockshash,
                                                  GetBlockshash_part)
@@ -590,6 +592,8 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
@@ -613,13 +617,14 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
-        got_block.execute("SELECT * FROM account_list")
-        got_block = got_block.fetchall()
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            reset=True)
+        print(got_block)
+        got_block = got_block
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0],
-            ("atakan123321", 0, 10000000),
+            got_block["atakan123321"],
+            [0, 10000000],
         )
 
     def test_send_full_blockshash_get_full_blockshash(self):
@@ -654,6 +659,9 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_blockshash_part_get_full_blockshash_part(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
+
         CleanUp_tests()
         the_block = Block("atakan12332122212321")
         the_block.consensus_timer = 0
@@ -690,6 +698,8 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_chain_get_full_chain_already_block(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0.replace(".db", "4.db"))
         CleanUp_tests()
         the_block = Block("onur1321313213123")
         the_block.consensus_timer = 0
@@ -740,6 +750,8 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts_already_block(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
@@ -775,14 +787,14 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            reset=True)
 
-        got_block.execute("SELECT * FROM account_list")
-        got_block = got_block.fetchall()
+        got_block = got_block
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0],
-            ("atakan123321", 0, 10000000),
+            got_block["atakan123321"],
+            [0, 10000000],
         )
 
     def test_send_full_blockshash_get_full_blockshash_already_block(self):
@@ -910,6 +922,8 @@ class Test_Node(unittest.TestCase):
         )
 
     def test_send_full_accounts_get_full_accounts_all_nodes(self):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(self.custom_TEMP_ACCOUNTS_PATH0)
         CleanUp_tests()
         the_block = Block("atakan123321")
         the_block.consensus_timer = 0
@@ -922,9 +936,11 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "2.json"),
         )
+        print("aaaa")
         client = self.node_0.clients[0]
         self.node_0.send_full_accounts()
         time.sleep(2)
+        print("bbbb")
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
 
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH2))
@@ -933,14 +949,14 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_ACCOUNTS_PATH2))
 
         got_block = GetAccounts(
-            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1)
+            custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
+            reset=True)
 
-        got_block.execute("SELECT * FROM account_list")
-        got_block = got_block.fetchall()
+        got_block = got_block
         self.assertEqual(len(got_block), 1)
         self.assertEqual(
-            got_block[0],
-            ("atakan123321", 0, 10000000),
+            got_block["atakan123321"],
+            [0, 10000000],
         )
 
     def test_send_full_blockshash_get_full_blockshash_all_nodes(self):

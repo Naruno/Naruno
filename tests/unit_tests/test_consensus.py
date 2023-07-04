@@ -293,6 +293,7 @@ class Test_Consensus(unittest.TestCase):
         self.assertTrue(true_time(block=block))
 
     def test_transactions_main_finished(self):
+        CleanUp_tests()
         self.maxDiff = None
         original_saved_wallets = get_saved_wallet()
         save_wallet_list({})
@@ -1095,6 +1096,7 @@ class Test_Consensus(unittest.TestCase):
             [Block("Onurdsadasdsaddsaas").previous_hash, "new_hash"])
 
     def test_finished_main_save_from_part_no_save_blockshash(self):
+        CleanUp_tests()
         backup_the_settings = the_settings()
         settings = copy.copy(backup_the_settings)
         settings["save_blockshash"] = True
@@ -1103,7 +1105,7 @@ class Test_Consensus(unittest.TestCase):
         backup = GetMyTransaction()
         custom_TEMP_BLOCK_PATH = "db/test_finished_main.json"
         custom_BLOCKS_PATH = "db/test_finished_main/"
-        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_TEMP_ACCOUNTS_PATH.json"
+        custom_TEMP_ACCOUNTS_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_finished_main_save_from_part_no_save_blockshash_TEMP_BLOCKSHASH_PART_PATH.json"
 
@@ -1955,12 +1957,10 @@ class Test_Consensus(unittest.TestCase):
 
         the_account_list = GetAccounts(
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
-        the_account_list.execute(
-            f"SELECT * FROM account_list WHERE address = '{the_transaction.toUser}'"
-        )
-        second_list = the_account_list.fetchall()
 
-        self.assertEqual(second_list, [("onur", 0, 5000)])
+        second_list = the_account_list
+
+        self.assertEqual(second_list["onur"], [0, 5000])
 
         block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
@@ -1970,7 +1970,7 @@ class Test_Consensus(unittest.TestCase):
         custom_TEMP_BLOCK_PATH = "db/test_consensus_round_1_TEMP_BLOCK_PATH.json"
         custom_TEMP_ACCOUNTS_PATH = "db/test_consensus_round_1_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = (
-            "db/test_consensus_round_1_TEMP_BLOCKSHASH_PATH.json")
+            "db/test_consensus_round_1_TEMP_BLOCKSASH_PATH.json")
         custom_TEMP_BLOCKSHASH_PART_PATH = (
             "db/test_consensus_round_1_TEMP_BLOCKSHASH_PART_PATH.json")
         custom_UNL_NODES_PATH = UNL_NODES_PATH.replace(".json", "_test.json")
