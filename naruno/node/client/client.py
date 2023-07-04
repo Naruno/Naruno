@@ -10,6 +10,7 @@ import socket
 import time
 from hashlib import md5
 from threading import Thread
+import traceback
 
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
@@ -66,6 +67,7 @@ class client(Thread):
                         f"Received data ({hash_of_data}): {data}")
                     self.server.get_message(self, data, hash_of_data)
                 except Exception as e:
+                    traceback.print_exc()
                     self.logger.error(f"Error while processing data: {e}")
                     self.logger.error(f"Data: {data}")
 
