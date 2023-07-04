@@ -8,7 +8,8 @@ from urllib.request import urlopen
 
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.blockchain.block.get_block import GetBlock
-from naruno.blockchain.block.get_minumum_transfer_amount import GetMinimumTransferAmount
+from naruno.blockchain.block.get_minumum_transfer_amount import \
+    GetMinimumTransferAmount
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.pending.get_pending import GetPending
 from naruno.wallet.wallet_import import Address
