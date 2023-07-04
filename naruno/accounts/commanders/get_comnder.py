@@ -14,7 +14,6 @@ commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
 
 
 def GetCommander():
-    os.chdir(get_config()["main_folder"])
     the_pending_list = []
 
     for commander in commanders_db.get_all():

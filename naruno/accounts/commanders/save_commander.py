@@ -14,5 +14,4 @@ commanders_db = KOT("commanders", folder=get_config()["main_folder"] + "/db")
 
 
 def SaveCommander(commander):
-    os.chdir(get_config()["main_folder"])
     commanders_db.set(commander, True)
