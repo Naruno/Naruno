@@ -15,7 +15,8 @@ def GetSequanceNumber(user, account_list=None, dont_convert=False, block=None):
 
     the_account_list = GetAccounts() if account_list is None else account_list
 
-    sequence_number = the_account_list[user][0] if user in the_account_list else 0
+    sequence_number = the_account_list[user][
+        0] if user in the_account_list else 0
 
     if block is not None:
         if not block.just_one_tx:
