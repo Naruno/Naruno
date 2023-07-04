@@ -31,8 +31,7 @@ class Accounts_IO_Performance_Analyzer:
 
         self.the_account_list = []
 
-        for i in range(self.block.coin_amount //
-                       self.block.minumum_transfer_amount):
+        for i in range(self.block.coin_amount // self.block.minumum_transfer_amount):
             self.the_account_list.append(self.account)
 
         SaveAccounts(
@@ -41,7 +40,8 @@ class Accounts_IO_Performance_Analyzer:
         )
 
         self.getted_accounts = GetAccounts(
-            "db/Accounts_Performance_Analyzer_accounts_2.pf")
+            "db/Accounts_Performance_Analyzer_accounts_2.pf"
+        )
 
     def analyze(self) -> float:
         """
@@ -55,14 +55,17 @@ class Accounts_IO_Performance_Analyzer:
                 os.path.join(
                     get_config()["main_folder"],
                     "db/Accounts_Performance_Analyzer_accounts.pf",
-                )) / 1000000,
+                )
+            )
+            / 1000000,
         )
 
         os.remove(
             os.path.join(
                 get_config()["main_folder"],
                 "db/Accounts_Performance_Analyzer_accounts.pf",
-            ))
+            )
+        )
 
         return result
 
