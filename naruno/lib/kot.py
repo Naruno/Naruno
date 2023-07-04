@@ -305,7 +305,7 @@ class KOT:
                 try_number += 1
                 time.sleep(0.25)
 
-            move(key_location_loading, key_location)
+            copy(key_location_loading, key_location)
 
             # Remove the loading indicator
             os.remove(key_location_loading_indicator)
