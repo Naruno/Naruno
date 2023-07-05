@@ -23,23 +23,20 @@ def GetBlockstoBlockchainDB(
     Gets the block from the blockchain database
     """
     try:
-        the_BLOCKS_PATH = (
-            BLOCKS_PATH if custom_BLOCKS_PATH is None else custom_BLOCKS_PATH
-        )
+        the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
+                           custom_BLOCKS_PATH)
 
         the_block = GetBlock(
             (the_BLOCKS_PATH + str(sequence_number) + ".block.json"),
             dont_clean=dont_clean,
         )
         the_accounts = GetAccounts(
-            (the_BLOCKS_PATH + str(sequence_number) + ".accounts.db")
-        )
-        the_blockshash = GetBlockshash(
-            the_BLOCKS_PATH + str(sequence_number) + ".blockshash.json"
-        )
-        the_blockshashpart = GetBlockshash_part(
-            the_BLOCKS_PATH + str(sequence_number) + ".blockshashpart.json"
-        )
+            (the_BLOCKS_PATH + str(sequence_number) + ".accounts.db"))
+        the_blockshash = GetBlockshash(the_BLOCKS_PATH + str(sequence_number) +
+                                       ".blockshash.json")
+        the_blockshashpart = GetBlockshash_part(the_BLOCKS_PATH +
+                                                str(sequence_number) +
+                                                ".blockshashpart.json")
         result = [the_block, the_accounts, the_blockshash, the_blockshashpart]
 
         return result
