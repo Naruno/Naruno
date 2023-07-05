@@ -10,7 +10,7 @@ from hashlib import sha256
 from naruno.config import PENDING_TRANSACTIONS_PATH
 from naruno.lib.config_system import get_config
 from naruno.transactions.pending.save_pending import pendingtransactions_db
-
+from naruno.lib.kot import KOT
 
 def DeletePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
     if custom_PENDING_TRANSACTIONS_PATH == PENDING_TRANSACTIONS_PATH:

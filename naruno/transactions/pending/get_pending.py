@@ -13,7 +13,7 @@ from naruno.lib.config_system import get_config
 from naruno.transactions.transaction import Transaction
 
 from naruno.transactions.pending.save_pending import pendingtransactions_db
-
+from naruno.lib.kot import KOT
 
 def GetPending(custom_PENDING_TRANSACTIONS_PATH=None):
     if custom_PENDING_TRANSACTIONS_PATH == PENDING_TRANSACTIONS_PATH:
