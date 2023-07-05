@@ -56,7 +56,7 @@ def SaveBlock(
     logger.debug(
         f"Block#{block.sequence_number + block.empty_block_number}:{block.empty_block_number}: {block.dump_json()}"
     )
-    
+
     if block.first_time:
         accounts_list = [Account(block.creator, block.coin_amount)]
         baklava_test_net_users = [
@@ -383,9 +383,13 @@ def SaveBlock(
                     logger.info("Removing " + "db/" + file)
                     os.remove("db/" + file)
 
-    block_db_path_first = os.path.join(get_config()["main_folder"],the_TEMP_BLOCK_PATH)
-    block_db.set(the_TEMP_BLOCK_PATH, block, custom_key_location=block_db_path_first)
+    block_db_path_first = os.path.join(
+        get_config()["main_folder"], the_TEMP_BLOCK_PATH)
+    block_db.set(the_TEMP_BLOCK_PATH, block,
+                 custom_key_location=block_db_path_first)
 
     if not just_save_normal:
-        block_db_path_second = os.path.join(get_config()["main_folder"],highest_the_TEMP_BLOCK_PATH)
-        block_db.set(highest_the_TEMP_BLOCK_PATH, block, custom_key_location=block_db_path_second)
+        block_db_path_second = os.path.join(
+            get_config()["main_folder"], highest_the_TEMP_BLOCK_PATH)
+        block_db.set(highest_the_TEMP_BLOCK_PATH, block,
+                     custom_key_location=block_db_path_second)

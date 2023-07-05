@@ -34,8 +34,10 @@ def GetProof(
 
     for file in os.listdir(the_BLOCKS_PATH):
         if file.endswith(".block.json"):
-            path_of_first = os.path.join(get_config()["main_folder"],the_BLOCKS_PATH + file)
-            the_block_json = block_db.get(the_BLOCKS_PATH + file, custom_key_location=path_of_first)
+            path_of_first = os.path.join(
+                get_config()["main_folder"], the_BLOCKS_PATH + file)
+            the_block_json = block_db.get(
+                the_BLOCKS_PATH + file, custom_key_location=path_of_first)
             with open(the_BLOCKS_PATH + file, "r") as block_file:
                 the_block_json = json.load(block_file)
             for transaction in the_block_json["validating_list"]:
