@@ -18,7 +18,9 @@ from naruno.lib.log import get_logger
 logger = get_logger("BLOCKCHAIN")
 
 
-def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=False):
+def GetBlock(custom_TEMP_BLOCK_PATH=None,
+             get_normal_block=False,
+             dont_clean=False):
     """
     Returns the block.
     """
@@ -27,9 +29,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
 
     logger.debug("Getting block from disk")
 
-    the_TEMP_BLOCK_PATH = (
-        TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None else custom_TEMP_BLOCK_PATH
-    )
+    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
+                           else custom_TEMP_BLOCK_PATH)
 
     os.chdir(get_config()["main_folder"])
 
@@ -40,17 +41,15 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
     highest_other_high_number = 0
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
-            "db/" + file
-        ) == the_TEMP_BLOCK_PATH:
-            number = int(
-                (("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[1]
-            )  # seq
+                "db/" + file) == the_TEMP_BLOCK_PATH:
+            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                 "")).split("-")[1])  # seq
             high_number = int(
-                (("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[3]
-            )  # val
+                (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                        "")).split("-")[3])  # val
             other_high_number = int(
-                (("db/" + file).replace(the_TEMP_BLOCK_PATH, "")).split("-")[2]
-            )  # val
+                (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                        "")).split("-")[2])  # val
 
             # Write a code for getting the blocks with high number
             if number > highest_number:
@@ -74,43 +73,37 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
     logger.debug("Highest block: " + highest_the_TEMP_BLOCK_PATH)
 
     result_normal = Block("non")
-    block_db_path_first = os.path.join(get_config()["main_folder"], the_TEMP_BLOCK_PATH)
-    record_of_normal = block_db.get(
-        the_TEMP_BLOCK_PATH, custom_key_location=block_db_path_first
-    )
+    block_db_path_first = os.path.join(get_config()["main_folder"],
+                                       the_TEMP_BLOCK_PATH)
+    record_of_normal = block_db.get(the_TEMP_BLOCK_PATH,
+                                    custom_key_location=block_db_path_first)
     if record_of_normal is not None:
         result_normal = record_of_normal
 
-    block_db_path_second = os.path.join(
-        get_config()["main_folder"], highest_the_TEMP_BLOCK_PATH
-    )
-    result_highest = block_db.get(
-        highest_the_TEMP_BLOCK_PATH, custom_key_location=block_db_path_second
-    )
+    block_db_path_second = os.path.join(get_config()["main_folder"],
+                                        highest_the_TEMP_BLOCK_PATH)
+    result_highest = block_db.get(highest_the_TEMP_BLOCK_PATH,
+                                  custom_key_location=block_db_path_second)
 
     result_normal = Remove_Duplicates(result_normal)
     result_highest = Remove_Duplicates(result_highest)
 
-    result_normal.validating_list = sorted(
-        result_normal.validating_list, key=lambda x: x.fromUser
-    )
+    result_normal.validating_list = sorted(result_normal.validating_list,
+                                           key=lambda x: x.fromUser)
 
-    result_highest.validating_list = sorted(
-        result_highest.validating_list, key=lambda x: x.fromUser
-    )
+    result_highest.validating_list = sorted(result_highest.validating_list,
+                                            key=lambda x: x.fromUser)
 
     if get_normal_block:
         return result_normal
 
-    if (
-        result_normal.sequence_number + result_normal.empty_block_number
-        > result_highest.sequence_number + result_highest.empty_block_number
-    ):
+    if (result_normal.sequence_number + result_normal.empty_block_number
+            > result_highest.sequence_number +
+            result_highest.empty_block_number):
         return result_normal
-    elif (
-        result_normal.sequence_number + result_normal.empty_block_number
-        == result_highest.sequence_number + result_highest.empty_block_number
-    ):
+    elif (result_normal.sequence_number +
+          result_normal.empty_block_number == result_highest.sequence_number +
+          result_highest.empty_block_number):
         result_normal_situation = 0
         result_highest_situation = 0
         if result_normal.round_1:
@@ -123,7 +116,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None, get_normal_block=False, dont_clean=Fal
         if result_highest.round_2:
             result_highest_situation += 1
 
-        if len(result_normal.validating_list) > len(result_highest.validating_list):
+        if len(result_normal.validating_list) > len(
+                result_highest.validating_list):
             return result_normal
         else:
             return result_highest
