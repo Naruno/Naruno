@@ -9,8 +9,7 @@ import os
 from hashlib import sha256
 from zipfile import ZipFile
 
-from naruno.blockchain.block.get_block_from_blockchain_db import \
-    GetBlockstoBlockchainDB
+from naruno.blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
 from naruno.config import BLOCKS_PATH
 from naruno.config import PROOF_PATH
 from naruno.lib.config_system import get_config
@@ -35,9 +34,11 @@ def GetProof(
     for file in os.listdir(the_BLOCKS_PATH):
         if file.endswith(".block.json"):
             path_of_first = os.path.join(
-                get_config()["main_folder"], the_BLOCKS_PATH + file)
+                get_config()["main_folder"], the_BLOCKS_PATH + file
+            )
             the_block_json = block_db.get(
-                the_BLOCKS_PATH + file, custom_key_location=path_of_first)
+                the_BLOCKS_PATH + file, custom_key_location=path_of_first
+            )
             with open(the_BLOCKS_PATH + file, "r") as block_file:
                 the_block_json = json.load(block_file)
             for transaction in the_block_json["validating_list"]:
@@ -55,21 +56,25 @@ def GetProof(
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
     )
     full_blockshash_sequence_number = result[0].sequence_number + (
-        result[0].part_amount - result[0].sequence_number)
+        result[0].part_amount - result[0].sequence_number
+    )
 
-    full_blockshash_path = (the_BLOCKS_PATH +
-                            str(full_blockshash_sequence_number - 1) +
-                            ".blockshash_full.json")
+    full_blockshash_path = (
+        the_BLOCKS_PATH
+        + str(full_blockshash_sequence_number - 1)
+        + ".blockshash_full.json"
+    )
 
     block_path = the_BLOCKS_PATH + str(sequence_number) + ".block.json"
     account_path = the_BLOCKS_PATH + str(sequence_number) + ".accounts.db"
-    blockshash_path = the_BLOCKS_PATH + str(
-        sequence_number) + ".blockshash.json"
-    blockshashpart_path = (the_BLOCKS_PATH + str(sequence_number) +
-                           ".blockshashpart.json")
+    blockshash_path = the_BLOCKS_PATH + str(sequence_number) + ".blockshash.json"
+    blockshashpart_path = (
+        the_BLOCKS_PATH + str(sequence_number) + ".blockshashpart.json"
+    )
 
-    proof_path = (the_PROOF_PATH + sha256(
-        (signature).encode("utf-8")).hexdigest() + ".proof.zip")
+    proof_path = (
+        the_PROOF_PATH + sha256((signature).encode("utf-8")).hexdigest() + ".proof.zip"
+    )
 
     with ZipFile(proof_path, "w") as zip:
         zip.write(full_blockshash_path)
