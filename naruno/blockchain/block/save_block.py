@@ -18,10 +18,13 @@ from naruno.config import TEMP_BLOCK_PATH
 from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated import \
     Remove_Duplicates
 from naruno.lib.config_system import get_config
+from naruno.lib.kot import KOT
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.get_pending import GetPending
+
+block_db = KOT("block_db", folder=get_config()["main_folder"] + "/db")
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -52,7 +55,7 @@ def SaveBlock(
     logger.debug(
         f"Block#{block.sequence_number + block.empty_block_number}:{block.empty_block_number}: {block.dump_json()}"
     )
-    
+
     if block.first_time:
         accounts_list = [Account(block.creator, block.coin_amount)]
         baklava_test_net_users = [
@@ -369,18 +372,26 @@ def SaveBlock(
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
                 "db/" + file) == the_TEMP_BLOCK_PATH:
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                                 "")).split("-")[1])  # seq
-            high_number = int(
-                (("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                        "")).split("-")[2])  # val
-            if number < block.sequence_number + block.empty_block_number:
-                with contextlib.suppress(FileNotFoundError):
-                    logger.info("Removing " + "db/" + file)
-                    os.remove("db/" + file)
+            with contextlib.suppress(IndexError):
+                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                     "")).split("-")[1])  # seq
+                high_number = int(
+                    (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                            "")).split("-")[2])  # val
+                if number < block.sequence_number + block.empty_block_number:
+                    with contextlib.suppress(FileNotFoundError):
+                        logger.info("Removing " + "db/" + file)
+                        os.remove("db/" + file)
 
-    with open(the_TEMP_BLOCK_PATH, "w") as block_file:
-        json.dump(block.dump_json(), block_file)
+    block_db_path_first = os.path.join(get_config()["main_folder"],
+                                       the_TEMP_BLOCK_PATH)
+    block_db.set(the_TEMP_BLOCK_PATH,
+                 block,
+                 custom_key_location=block_db_path_first)
+
     if not just_save_normal:
-        with open(highest_the_TEMP_BLOCK_PATH, "w") as block_file:
-            json.dump(block.dump_json(), block_file)
+        block_db_path_second = os.path.join(get_config()["main_folder"],
+                                            highest_the_TEMP_BLOCK_PATH)
+        block_db.set(highest_the_TEMP_BLOCK_PATH,
+                     block,
+                     custom_key_location=block_db_path_second)
