@@ -27,15 +27,19 @@ def PendingtoValidating(block: Block):
     logger.debug(f"Validating list capacity: {first_max_tx_number}")
 
     pending_list_txs = GetPending()
+    logger.debug(f"Pending list is got: {pending_list_txs}")
 
     with contextlib.suppress(Exception):
         [
             server.send_transaction(i)
             for i in pending_list_txs + block.validating_list
         ]
-
+    
+    logger.debug(f"Pending list is sent to server")
     if len(block.validating_list) < block.max_tx_number:
+        logger.debug("List is not full")
         for tx in OrderbyFee(pending_list_txs):
+            logger.debug(f"TX {tx.signature} is checking")
             if len(block.validating_list) < block.max_tx_number:
                 logger.info(f"tx {tx.signature} is moved to validating list")
 
