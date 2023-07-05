@@ -372,15 +372,16 @@ def SaveBlock(
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
                 "db/" + file) == the_TEMP_BLOCK_PATH:
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                                 "")).split("-")[1])  # seq
-            high_number = int(
-                (("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                        "")).split("-")[2])  # val
-            if number < block.sequence_number + block.empty_block_number:
-                with contextlib.suppress(FileNotFoundError):
-                    logger.info("Removing " + "db/" + file)
-                    os.remove("db/" + file)
+            with contextlib.suppress(IndexError):
+                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                    "")).split("-")[1])  # seq
+                high_number = int(
+                    (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                            "")).split("-")[2])  # val
+                if number < block.sequence_number + block.empty_block_number:
+                    with contextlib.suppress(FileNotFoundError):
+                        logger.info("Removing " + "db/" + file)
+                        os.remove("db/" + file)
 
     block_db_path_first = os.path.join(get_config()["main_folder"],
                                        the_TEMP_BLOCK_PATH)
