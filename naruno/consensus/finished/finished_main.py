@@ -143,7 +143,9 @@ def finished_main(
                 difference = (block.start_time +
                               (block.hard_block_number *
                                block.block_time)) - int(time.time())
-                time.sleep(difference)
+                if difference > 0:
+                    time.sleep(difference)
+
 
         PendingtoValidating(block)
         SaveBlock(
