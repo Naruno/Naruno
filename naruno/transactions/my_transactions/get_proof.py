@@ -14,6 +14,7 @@ from naruno.blockchain.block.get_block_from_blockchain_db import \
 from naruno.config import BLOCKS_PATH
 from naruno.config import PROOF_PATH
 from naruno.lib.config_system import get_config
+from naruno.blockchain.block.save_block import block_db
 
 
 def GetProof(
@@ -33,6 +34,8 @@ def GetProof(
 
     for file in os.listdir(the_BLOCKS_PATH):
         if file.endswith(".block.json"):
+            path_of_first = os.path.join(get_config()["main_folder"],the_BLOCKS_PATH + file)
+            the_block_json = block_db.get(the_BLOCKS_PATH + file, custom_key_location=path_of_first)
             with open(the_BLOCKS_PATH + file, "r") as block_file:
                 the_block_json = json.load(block_file)
             for transaction in the_block_json["validating_list"]:
