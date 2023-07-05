@@ -9,10 +9,10 @@ import os
 from hashlib import sha256
 from zipfile import ZipFile
 
-from naruno.blockchain.block.get_block_from_blockchain_db import GetBlockstoBlockchainDB
+from naruno.blockchain.block.get_block_from_blockchain_db import \
+    GetBlockstoBlockchainDB
 from naruno.blockchain.block.save_block import block_db
-from naruno.config import BLOCKS_PATH
-from naruno.config import PROOF_PATH
+from naruno.config import BLOCKS_PATH, PROOF_PATH
 from naruno.lib.config_system import get_config
 
 
