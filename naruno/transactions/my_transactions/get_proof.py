@@ -37,9 +37,7 @@ def GetProof(
             path_of_first = os.path.join(get_config()["main_folder"],
                                          the_BLOCKS_PATH + file)
             the_block_json = block_db.get(the_BLOCKS_PATH + file,
-                                          custom_key_location=path_of_first)
-            with open(the_BLOCKS_PATH + file, "r") as block_file:
-                the_block_json = json.load(block_file)
+                                          custom_key_location=path_of_first).dump_json()
             for transaction in the_block_json["validating_list"]:
                 if transaction["signature"] == signature:
                     sequence_number = file.split(".")[0]
