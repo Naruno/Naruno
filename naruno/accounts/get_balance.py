@@ -37,7 +37,7 @@ def GetBalance(user,
         if block is None:
             try:
                 block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-            except FileNotFoundError:
+            except AttributeError:
                 return None
 
         balance = -block.minumum_transfer_amount

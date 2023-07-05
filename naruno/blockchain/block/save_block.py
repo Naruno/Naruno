@@ -23,6 +23,10 @@ from naruno.lib.settings_system import the_settings
 from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.get_pending import GetPending
 
+from naruno.lib.kot import KOT
+
+block_db = KOT("block_db", folder=get_config()["main_folder"] + "/db")
+
 logger = get_logger("BLOCKCHAIN")
 
 
@@ -379,8 +383,9 @@ def SaveBlock(
                     logger.info("Removing " + "db/" + file)
                     os.remove("db/" + file)
 
-    with open(the_TEMP_BLOCK_PATH, "w") as block_file:
-        json.dump(block.dump_json(), block_file)
+    block_db_path_first = os.path.join(get_config()["main_folder"],the_TEMP_BLOCK_PATH)
+    block_db.set(the_TEMP_BLOCK_PATH, block, custom_key_location=block_db_path_first)
+
     if not just_save_normal:
-        with open(highest_the_TEMP_BLOCK_PATH, "w") as block_file:
-            json.dump(block.dump_json(), block_file)
+        block_db_path_second = os.path.join(get_config()["main_folder"],highest_the_TEMP_BLOCK_PATH)
+        block_db.set(highest_the_TEMP_BLOCK_PATH, block, custom_key_location=block_db_path_second)

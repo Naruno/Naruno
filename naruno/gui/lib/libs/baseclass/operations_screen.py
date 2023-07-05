@@ -136,7 +136,7 @@ class OperationBox(MDGridLayout):
     def send_coin(self):
         try:
             GetBlock()
-        except FileNotFoundError:
+        except AttributeError:
             popup(title="Please connect to an network.", type="failure")
             return False
         self.show_send_coin_dialog()

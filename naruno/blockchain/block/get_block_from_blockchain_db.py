@@ -40,5 +40,5 @@ def GetBlockstoBlockchainDB(
 
         return result
 
-    except FileNotFoundError:
+    except AttributeError:
         return False

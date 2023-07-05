@@ -15,6 +15,8 @@ from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated impo
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
 
+
+
 logger = get_logger("BLOCKCHAIN")
 
 
@@ -24,6 +26,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
     """
     Returns the block.
     """
+    
+    from naruno.blockchain.block.save_block import block_db
     logger.debug("Getting block from disk")
 
     the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
@@ -70,15 +74,14 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
     logger.debug("Highest block: " + highest_the_TEMP_BLOCK_PATH)
 
     result_normal = Block("non")
+    block_db_path_first = os.path.join(get_config()["main_folder"],the_TEMP_BLOCK_PATH)
+    record_of_normal = block_db.get(the_TEMP_BLOCK_PATH, custom_key_location=block_db_path_first)
+    if record_of_normal is not None:
+        result_normal = record_of_normal
 
-    with contextlib.suppress(json.decoder.JSONDecodeError):
-        with open(the_TEMP_BLOCK_PATH, "r") as block_file:
-            the_block_json = json.load(block_file)
-            result_normal = Block.load_json(the_block_json)
+    block_db_path_second = os.path.join(get_config()["main_folder"],highest_the_TEMP_BLOCK_PATH)
+    result_highest = block_db.get(highest_the_TEMP_BLOCK_PATH, custom_key_location=block_db_path_second)
 
-    with open(highest_the_TEMP_BLOCK_PATH, "r") as block_file:
-        the_block_json = json.load(block_file)
-        result_highest = Block.load_json(the_block_json)
 
     result_normal = Remove_Duplicates(result_normal)
     result_highest = Remove_Duplicates(result_highest)
