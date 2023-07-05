@@ -374,7 +374,7 @@ def SaveBlock(
                 "db/" + file) == the_TEMP_BLOCK_PATH:
             with contextlib.suppress(IndexError):
                 number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                                    "")).split("-")[1])  # seq
+                                                     "")).split("-")[1])  # seq
                 high_number = int(
                     (("db/" + file).replace(the_TEMP_BLOCK_PATH,
                                             "")).split("-")[2])  # val
