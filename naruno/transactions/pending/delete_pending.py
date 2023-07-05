@@ -13,5 +13,7 @@ from naruno.transactions.pending.save_pending import pendingtransactions_db
 
 
 def DeletePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
+    if custom_PENDING_TRANSACTIONS_PATH == PENDING_TRANSACTIONS_PATH:
+        custom_PENDING_TRANSACTIONS_PATH = None    
     file_name = sha256((tx.signature).encode("utf-8")).hexdigest()
     pendingtransactions_db.delete(file_name)  if custom_PENDING_TRANSACTIONS_PATH is None else KOT("pendingtransactions"+custom_PENDING_TRANSACTIONS_PATH, folder=get_config()["main_folder"] + "/db").delete(file_name)

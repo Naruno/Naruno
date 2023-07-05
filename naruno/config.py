@@ -26,7 +26,7 @@ LOADING_BLOCKSHASH_PATH = "db/loading_block_blockshash.naruno.json"
 LOADING_BLOCKSHASH_PART_PATH = "db/loading_block_blockshash_part.naruno.json"
 
 BLOCKS_PATH = "db/blocks/"
-PENDING_TRANSACTIONS_PATH = None
+PENDING_TRANSACTIONS_PATH = "db/pending_transactions/"
 
 WALLETS_PATH = "db/wallet_list.json"
 

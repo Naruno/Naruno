@@ -17,6 +17,8 @@ pendingtransactions_db = KOT("pendingtransactions",
 
 
 def SavePending(tx, custom_PENDING_TRANSACTIONS_PATH=None):
+    if custom_PENDING_TRANSACTIONS_PATH == PENDING_TRANSACTIONS_PATH:
+        custom_PENDING_TRANSACTIONS_PATH = None    
     file_name = sha256((tx.signature).encode("utf-8")).hexdigest()
 
     pendingtransactions_db.set(file_name, tx.dump_json()) if custom_PENDING_TRANSACTIONS_PATH is None else KOT("pendingtransactions"+custom_PENDING_TRANSACTIONS_PATH, folder=get_config()["main_folder"] + "/db").set(file_name, tx.dump_json())
