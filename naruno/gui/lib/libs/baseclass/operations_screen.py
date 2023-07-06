@@ -164,8 +164,7 @@ class OperationBox(MDGridLayout):
             popup(title="You have not a transaction", type="warning")
 
     def callback_for_transaction_history_items(self, *args):
-        print(args)
-        the_signature_of_tx = args[0].signature
+        the_signature_of_tx = args[0][:96]
         Clipboard.copy(the_signature_of_tx)
         popup(
             title=
