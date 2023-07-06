@@ -354,20 +354,21 @@ def SaveBlock(
         for file in os.listdir("db/"):
             if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
                     "db/" + file) == the_TEMP_BLOCK_PATH:
-                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                                     "")).split("-")[1])
-                high_number = int(
-                    (("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                            "")).split("-")[2])
-                secondly_situation_number = int(
-                    (("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                            "")).split("-")[3])
-                if (number == block.sequence_number + block.empty_block_number
-                        and high_number != len(block.validating_list)
-                        and secondly_situation_number == 1):
-                    with contextlib.suppress(FileNotFoundError):
-                        logger.info(f"Deleting old validating list: {file}")
-                        os.remove("db/" + file)
+                with contextlib.suppress(IndexError):
+                    number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                        "")).split("-")[1])
+                    high_number = int(
+                        (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                "")).split("-")[2])
+                    secondly_situation_number = int(
+                        (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                "")).split("-")[3])
+                    if (number == block.sequence_number + block.empty_block_number
+                            and high_number != len(block.validating_list)
+                            and secondly_situation_number == 1):
+                        with contextlib.suppress(FileNotFoundError):
+                            logger.info(f"Deleting old validating list: {file}")
+                            os.remove("db/" + file)
 
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (

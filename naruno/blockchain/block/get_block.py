@@ -42,33 +42,34 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
                 "db/" + file) == the_TEMP_BLOCK_PATH:
-            number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                                 "")).split("-")[1])  # seq
-            high_number = int(
-                (("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                        "")).split("-")[3])  # val
-            other_high_number = int(
-                (("db/" + file).replace(the_TEMP_BLOCK_PATH,
-                                        "")).split("-")[2])  # val
+            with contextlib.suppress(IndexError):
+                number = int((("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                                    "")).split("-")[1])  # seq
+                high_number = int(
+                    (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                            "")).split("-")[3])  # val
+                other_high_number = int(
+                    (("db/" + file).replace(the_TEMP_BLOCK_PATH,
+                                            "")).split("-")[2])  # val
 
-            # Write a code for getting the blocks with high number
-            if number > highest_number:
-                highest_number = number
-                highest_the_TEMP_BLOCK_PATH = "db/" + file
-                highest_second_number = high_number
-                highest_other_high_number = other_high_number
-            elif number == highest_number:
-                if high_number > highest_second_number:
+                # Write a code for getting the blocks with high number
+                if number > highest_number:
                     highest_number = number
                     highest_the_TEMP_BLOCK_PATH = "db/" + file
                     highest_second_number = high_number
                     highest_other_high_number = other_high_number
-                elif high_number == highest_second_number:
-                    if other_high_number > highest_other_high_number:
+                elif number == highest_number:
+                    if high_number > highest_second_number:
                         highest_number = number
                         highest_the_TEMP_BLOCK_PATH = "db/" + file
                         highest_second_number = high_number
                         highest_other_high_number = other_high_number
+                    elif high_number == highest_second_number:
+                        if other_high_number > highest_other_high_number:
+                            highest_number = number
+                            highest_the_TEMP_BLOCK_PATH = "db/" + file
+                            highest_second_number = high_number
+                            highest_other_high_number = other_high_number
 
     logger.debug("Highest block: " + highest_the_TEMP_BLOCK_PATH)
 
