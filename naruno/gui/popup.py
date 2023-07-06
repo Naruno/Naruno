@@ -7,9 +7,9 @@
 import os
 
 from kivymd.uix.button import MDFlatButton
+from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.textfield import MDTextField
 from kivymd_extensions.sweetalert import SweetAlert
-from kivymd.uix.gridlayout import MDGridLayout
 
 import naruno.gui.the_naruno_gui_app
 
