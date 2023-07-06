@@ -65,6 +65,11 @@ def SaveBlock(
                 block.transaction_fee * 100,
             ),
             Account(
+                "e087a455c3b35d5022491b380e3e34d68df4ca6c",
+                (10 * block.minumum_transfer_amount) +
+                block.transaction_fee * 100,
+            ),            
+            Account(
                 "86e9a2454e2d2bd12f56ef37e39d026608013e72",
                 (2 * block.minumum_transfer_amount) +
                 block.transaction_fee * 100,
