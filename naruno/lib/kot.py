@@ -371,7 +371,7 @@ class KOT:
         while os.path.exists(key_location_loading_indicator):
             time.sleep(0.1)
 
-        if not os.path.isfile(os.path.join(self.location, key_location)):
+        if not os.path.isfile(key_location):
             return None
 
         total_result = None
@@ -385,7 +385,7 @@ class KOT:
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
 
-                with mgzip.open(os.path.join(self.location, key_location),
+                with mgzip.open(key_location,
                                 "rb") as f:
                     result = pickle.load(f)
                     total_result_standart = result
@@ -395,7 +395,7 @@ class KOT:
                     except TypeError:
                         total_result = result
             else:
-                with open(os.path.join(self.location, key_location),
+                with open(key_location,
                           "rb") as f:
                     result = pickle.load(f)
                     total_result_standart = result
@@ -431,7 +431,7 @@ class KOT:
     def get_key(self, key_location: str):
         key_location_compress_indicator = os.path.join(self.location,
                                                        key_location + ".co")
-        if not os.path.isfile(os.path.join(self.location, key_location)):
+        if not os.path.isfile(key_location):
             return None
         total_result = None
 
@@ -439,7 +439,7 @@ class KOT:
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
 
-                with mgzip.open(os.path.join(self.location, key_location),
+                with mgzip.open(key_location,
                                 "rb") as f:
                     result = pickle.load(f)
                     if not "cache_time" in result:
@@ -453,7 +453,7 @@ class KOT:
                     except TypeError:
                         total_result = False
             else:
-                with open(os.path.join(self.location, key_location),
+                with open(key_location,
                           "rb") as f:
                     result = pickle.load(f)
                     if not "cache_time" in result:
@@ -494,8 +494,8 @@ class KOT:
                 os.remove(
                     os.path.join(self.location,
                                  key_location_compress_indicator))
-            if os.path.exists(os.path.join(self.location, key_location)):
-                os.remove(os.path.join(self.location, key_location))
+            if os.path.exists(key_location):
+                os.remove(key_location)
         except:
             traceback.print_exc()
             return False
@@ -555,7 +555,7 @@ class KOT:
                     total_size += os.path.getsize(maybe_file)
 
             total_size += os.path.getsize(
-                os.path.join(self.location, key_location))
+                key_location)
         except:
             traceback.print_exc()
 
