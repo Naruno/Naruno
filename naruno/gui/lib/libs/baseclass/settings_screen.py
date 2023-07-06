@@ -22,7 +22,7 @@ from naruno.lib.settings_system import dark_mode_settings
 from naruno.lib.settings_system import mt_settings
 from naruno.lib.settings_system import t_mode_settings
 from naruno.lib.settings_system import the_settings
-form naurno.lib.settings_system import baklava_settings
+from naurno.lib.settings_system import baklava_settings
 
 
 class SettingsScreen(MDScreen):
