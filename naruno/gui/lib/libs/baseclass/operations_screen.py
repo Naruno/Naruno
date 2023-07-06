@@ -43,21 +43,17 @@ class OperationBox(MDGridLayout):
         else:
             the_block = Block("baklava")
 
-        if (
-            float(self.send_coin_dialog.input_results["Amount"])
-            >= the_block.minumum_transfer_amount
-        ):
-            if (
-                wallet_import(int(the_settings()["wallet"]), 2)
-                == sha256(
-                    self.send_coin_dialog.input_results["Password"].encode("utf-8")
-                ).hexdigest()
-            ):
+        if (float(self.send_coin_dialog.input_results["Amount"])
+                >= the_block.minumum_transfer_amount):
+            if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
+                    self.send_coin_dialog.input_results["Password"].encode(
+                        "utf-8")).hexdigest()):
                 block = the_block
                 send_tx = send(
                     self.send_coin_dialog.input_results["Password"],
                     self.send_coin_dialog.input_results["Receiver"],
-                    amount=float(self.send_coin_dialog.input_results["Amount"]),
+                    amount=float(
+                        self.send_coin_dialog.input_results["Amount"]),
                     data=str(self.send_coin_dialog.input_results["Data"]),
                     block=block,
                 )
@@ -67,7 +63,8 @@ class OperationBox(MDGridLayout):
                         from naruno.node.server.server import server
 
                         if server.Server is None:
-                            popup(title="Please start the node server", type="failure")
+                            popup(title="Please start the node server",
+                                  type="failure")
                             return False
                         server.send_transaction(send_tx)
                         SaveBlock(block)
@@ -123,7 +120,8 @@ class OperationBox(MDGridLayout):
         result = verify(self.verify_dialog.input_results["Path"])
 
         if result[0] == True:
-            data_text = f"{result[1][:20]}..." if len(result[1]) > 20 else result[1]
+            data_text = f"{result[1][:20]}..." if len(
+                result[1]) > 20 else result[1]
             popup(
                 title="Data is verified",
                 text=f"The data is : {data_text}",
@@ -159,7 +157,8 @@ class OperationBox(MDGridLayout):
         if export_the_transactions():
             Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
             popup(
-                title=f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
+                title=
+                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
                 type="success",
             )
 
@@ -170,7 +169,8 @@ class OperationBox(MDGridLayout):
         the_signature_of_tx = args[0].signature
         Clipboard.copy(the_signature_of_tx)
         popup(
-            title="The signature of transaction has been copied to your clipboard.",
+            title=
+            "The signature of transaction has been copied to your clipboard.",
             text=f"The signature is : {the_signature_of_tx}",
             type="success",
         )
@@ -180,16 +180,16 @@ class OperationBox(MDGridLayout):
         if len(transactions) != 0:
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
             data = {
-                tx[
-                    0
-                ]: f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
+                tx[0]:
+                f"{tx[0].toUser} | {str(tx[0].amount)} | {str(tx[0].transaction_fee)} | {str(tx[1])}"
                 for tx in transactions
             }
 
             for item in data.items():
                 bottom_sheet_menu.add_item(
                     item[1],
-                    lambda x, y=item[0]: self.callback_for_transaction_history_items(y),
+                    lambda x, y=item[0]: self.
+                    callback_for_transaction_history_items(y),
                 )
             bottom_sheet_menu.open()
         else:
