@@ -79,6 +79,19 @@
                 active: root.dark_mode_first_status
                 on_active: root.DARK_MODE_Status_Changing(self, self.active)
 
+
+
+        NarunoLabel:
+            text: "BAKLAVA"
+            halign: "center"
+            font_style: "Button"
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            MDSwitch:
+                active: root.baklava_first_status
+                on_active: root.BAKLAVA_Status_Changing(self, self.active)
+
         AnchorLayout:
             size_hint_y: None
             height: but1.height
