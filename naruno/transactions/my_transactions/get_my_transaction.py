@@ -45,6 +45,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     Returns the transaction db.
     """
     network_validated = check_from_network()
+    print("network_validated: ",network_validated)
 
     network_validated = []
 
@@ -59,6 +60,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
                 each_validated = (False if mytransactions_db.get(entry +
                                                                  "validated")
                                   == None else True)
+                print("tx: ",the_transactions_json["signature"])
                 if (the_transactions_json["signature"] in network_validated
                         and not each_validated):
                     each_validated = True
@@ -98,6 +100,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
         }
 
     from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
-    ValidateTransaction(the_tx, custom_currently_list=the_transactions)
+    for i in network_validated:
+        ValidateTransaction(i, custom_currently_list=the_transactions)
 
     return the_transactions
