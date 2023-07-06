@@ -7,6 +7,7 @@
 import os
 
 from kivymd.uix.button import MDFlatButton
+from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.textfield import MDTextField
 from kivymd_extensions.sweetalert import SweetAlert
 
@@ -54,7 +55,6 @@ class popup:
         self.dialog.dismiss()
 
     def clean(self):
-
         for obj in self.dialog.content_cls.children:
             if isinstance(obj, MDTextField):
                 obj.text = ""
@@ -81,6 +81,12 @@ class popup:
     def create(self):
         if self.dialog is None:
             if self.type == "custom":
+                custom_content_cls = MDGridLayout(
+                    adaptive_height=True,
+                    padding=("24dp", "68dp", "24dp", "24dp"),
+                    spacing="24dp",
+                    cols=2,
+                )
                 self.dialog = SweetAlert(
                     title=self.title,
                     type=self.type,
@@ -91,9 +97,8 @@ class popup:
                             font_size="18sp",
                             on_press=self.dismiss,
                             font_name=os.path.join(
-                                naruno.gui.
-                                the_naruno_gui_app.
-                                the_naruno_gui.FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
+                                FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -101,14 +106,14 @@ class popup:
                             text="OK",
                             font_size="18sp",
                             font_name=os.path.join(
-                                naruno.gui.
-                                the_naruno_gui_app.
-                                the_naruno_gui.FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
+                                FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_press=self.director,
                         ),
                     ],
+                    content_cls=custom_content_cls,
                 )
 
                 for i in self.inputs:
@@ -141,9 +146,8 @@ class popup:
                             font_size="18sp",
                             on_press=self.dismiss,
                             font_name=os.path.join(
-                                naruno.gui.
-                                the_naruno_gui_app.
-                                the_naruno_gui.FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
+                                FONT_PATH,
                                 "Poppins-Bold",
                             ),
                         ),
@@ -151,9 +155,8 @@ class popup:
                             text="YES",
                             font_size="18sp",
                             font_name=os.path.join(
-                                naruno.gui.
-                                the_naruno_gui_app.
-                                the_naruno_gui.FONT_PATH,
+                                naruno.gui.the_naruno_gui_app.the_naruno_gui.
+                                FONT_PATH,
                                 "Poppins-Bold",
                             ),
                             on_press=self.director_without_input,
