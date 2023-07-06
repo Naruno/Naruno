@@ -13,7 +13,7 @@ from naruno.transactions.transaction import Transaction
 
 
 def ValidateTransaction(tx: Transaction,
-                        custom_currently_list: list = None) -> list:
+                        custom_currently_list: list = None, force_notify:bool=False) -> list:
     """
     Validates the transaction.
     Parameters:
@@ -27,8 +27,7 @@ def ValidateTransaction(tx: Transaction,
     for i in custom_currently_list:
         if i[0].signature == tx.signature:
            
-            if not i[1]:
-                print("triggered")
+            if not i[1] or force_notify:
                 notification("Validated TX",
                              f"{tx.data}:{tx.amount} to {tx.toUser}")
             i[1] = True
