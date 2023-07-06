@@ -26,7 +26,9 @@ def ValidateTransaction(tx: Transaction,
                              is None else custom_currently_list)
     for i in custom_currently_list:
         if i[0].signature == tx.signature:
+           
             if not i[1]:
+                print("triggered")
                 notification("Validated TX",
                              f"{tx.data}:{tx.amount} to {tx.toUser}")
             i[1] = True
