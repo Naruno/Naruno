@@ -26,7 +26,7 @@ def check_from_network():
     """
     validated_transactions = []
     if the_settings()["baklava"]:
-        try:
+ 
             # export validated transactions
             response = (urlopen(
                 "http://test_net.1.naruno.org:8000/transactions/received").
@@ -35,8 +35,7 @@ def check_from_network():
             for transaction in response:
                 if response[transaction]["validated"]:
                     validated_transactions.append(transaction)
-        except:
-            traceback.print_exc()
+
 
     return validated_transactions
 
