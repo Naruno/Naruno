@@ -83,11 +83,11 @@ class popup:
         if self.dialog is None:
             if self.type == "custom":
                 custom_content_cls = MDGridLayout(
-                        adaptive_height=True,
-                        padding=("24dp", "68dp", "24dp", "24dp"),
-                        spacing="24dp",
-                        cols=2
-                    )                
+                    adaptive_height=True,
+                    padding=("24dp", "68dp", "24dp", "24dp"),
+                    spacing="24dp",
+                    cols=2
+                )
                 self.dialog = SweetAlert(
                     title=self.title,
                     type=self.type,
