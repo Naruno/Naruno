@@ -28,8 +28,9 @@ def check_from_network():
     validated_transactions = []
     if the_settings()["baklava"]:
         try:
-            #export validated transactions
-            response = urlopen("http://test_net.1.naruno.org:8000/transactions/received").read().decode('utf-8')
+            # export validated transactions
+            response = urlopen(
+                "http://test_net.1.naruno.org:8000/transactions/received").read().decode('utf-8')
             response = json.loads(response)
             for transaction in response:
                 if response[transaction]["validated"]:
@@ -38,6 +39,7 @@ def check_from_network():
             traceback.print_exc()
 
     return validated_transactions
+
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     """
@@ -70,7 +72,6 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
                 mytransactions_db.delete(entry)
                 mytransactions_db.delete(entry + "validated")
                 mytransactions_db.delete(entry + "sended")
-                
 
     if sended is not None:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
