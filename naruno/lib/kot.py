@@ -238,18 +238,18 @@ class KOT:
             raise TypeError("File must be a string")
 
         try:
-            key_location = (os.path.join(self.location,
-                                         sha256(key.encode()).hexdigest()) if
-                            custom_key_location == "" else custom_key_location)
+            standart_key_location = os.path.join(self.location,sha256(key.encode()).hexdigest())
+            key_location =  standart_key_location if custom_key_location == "" else custom_key_location
+            
             key_location_loading = os.path.join(self.location,
-                                                key_location + ".l")
+                                                standart_key_location + ".l")
             key_location_loading_indicator = os.path.join(
-                self.location, key_location + ".li")
+                self.location, standart_key_location + ".li")
 
             key_location_reading_indicator = os.path.join(
-                self.location, key_location + ".re")
+                self.location, standart_key_location + ".re")
             key_location_compress_indicator = os.path.join(
-                self.location, key_location + ".co")
+                self.location, standart_key_location + ".co")
 
             if file != "":
                 meta["type"] = "file"
@@ -357,16 +357,18 @@ class KOT:
             if cache_control:
                 return self.transformer(self.cache[key])
 
-        key_location = (os.path.join(self.location,
-                                     sha256(key.encode()).hexdigest())
-                        if custom_key_location == "" else custom_key_location)
 
-        key_location_loading_indicator = os.path.join(self.location,
-                                                      key_location + ".li")
-        key_location_reading_indicator = os.path.join(self.location,
-                                                      key_location + ".re")
-        key_location_compress_indicator = os.path.join(self.location,
-                                                       key_location + ".co")
+        standart_key_location = os.path.join(self.location,sha256(key.encode()).hexdigest())
+        key_location =  standart_key_location if custom_key_location == "" else custom_key_location
+            
+
+        key_location_loading_indicator = os.path.join(
+                self.location, standart_key_location + ".li")
+
+        key_location_reading_indicator = os.path.join(
+                self.location, standart_key_location + ".re")
+        key_location_compress_indicator = os.path.join(
+                self.location, standart_key_location + ".co")
 
         while os.path.exists(key_location_loading_indicator):
             time.sleep(0.1)
