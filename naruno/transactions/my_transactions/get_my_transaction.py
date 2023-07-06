@@ -13,12 +13,10 @@ from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.transactions.transaction import Transaction
 from naruno.lib.settings_system import the_settings
-from naruno.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
 from urllib.request import urlopen
 
-mytransactions_db = KOT("mytransactions",
-                        folder=get_config()["main_folder"] + "/db")
+mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
 
 
 def check_from_network():
@@ -29,8 +27,11 @@ def check_from_network():
     if the_settings()["baklava"]:
         try:
             # export validated transactions
-            response = urlopen(
-                "http://test_net.1.naruno.org:8000/transactions/received").read().decode('utf-8')
+            response = (
+                urlopen("http://test_net.1.naruno.org:8000/transactions/received")
+                .read()
+                .decode("utf-8")
+            )
             response = json.loads(response)
             for transaction in response:
                 if response[transaction]["validated"]:
@@ -55,19 +56,27 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             try:
                 the_transactions_json = all_records[entry]
                 the_tx = Transaction.load_json(the_transactions_json)
-                each_validated = (False if mytransactions_db.get(entry +
-                                                                 "validated")
-                                  == None else True)
-                if the_transactions_json["signature"] in network_validated and not each_validated:
+                each_validated = (
+                    False
+                    if mytransactions_db.get(entry + "validated") == None
+                    else True
+                )
+                if (
+                    the_transactions_json["signature"] in network_validated
+                    and not each_validated
+                ):
                     each_validated = True
                     ValidateTransaction(the_tx)
-                each_sended = (False if mytransactions_db.get(entry + "sended")
-                               == None else True)
-                the_transactions.append([
-                    the_tx,
-                    each_validated,
-                    each_sended,
-                ])
+                each_sended = (
+                    False if mytransactions_db.get(entry + "sended") == None else True
+                )
+                the_transactions.append(
+                    [
+                        the_tx,
+                        each_validated,
+                        each_sended,
+                    ]
+                )
             except json.decoder.JSONDecodeError:
                 mytransactions_db.delete(entry)
                 mytransactions_db.delete(entry + "validated")
@@ -77,9 +86,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
 
     if validated is not None:
-        the_transactions = [
-            tx for tx in the_transactions if tx[1] == validated
-        ]
+        the_transactions = [tx for tx in the_transactions if tx[1] == validated]
 
     # sort
     the_transactions.sort(key=lambda x: x[0].signature)
