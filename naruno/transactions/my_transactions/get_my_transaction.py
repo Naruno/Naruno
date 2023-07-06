@@ -13,8 +13,7 @@ from urllib.request import urlopen
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.lib.settings_system import the_settings
-from naruno.transactions.my_transactions.validate_transaction import \
-    ValidateTransaction
+
 from naruno.transactions.transaction import Transaction
 
 mytransactions_db = KOT("mytransactions",
@@ -62,6 +61,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
                 if (the_transactions_json["signature"] in network_validated
                         and not each_validated):
                     each_validated = True
+                    from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
                     ValidateTransaction(the_tx)
                 each_sended = (False if mytransactions_db.get(entry + "sended")
                                == None else True)
