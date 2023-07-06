@@ -8,13 +8,14 @@ import contextlib
 import json
 import os
 import traceback
+from urllib.request import urlopen
 
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
-from naruno.transactions.transaction import Transaction
 from naruno.lib.settings_system import the_settings
-from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
-from urllib.request import urlopen
+from naruno.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
+from naruno.transactions.transaction import Transaction
 
 mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
 
