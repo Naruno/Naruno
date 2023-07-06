@@ -137,8 +137,9 @@ class OperationBox(MDGridLayout):
         try:
             GetBlock()
         except AttributeError:
-            popup(title="Please connect to an network.", type="failure")
-            return False
+            if not the_settings()["baklava"]:
+                popup(title="Please connect to an network.", type="failure")
+                return False
         self.show_send_coin_dialog()
 
     def sign(self):
