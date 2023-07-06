@@ -22,6 +22,7 @@ from naruno.lib.settings_system import dark_mode_settings
 from naruno.lib.settings_system import mt_settings
 from naruno.lib.settings_system import t_mode_settings
 from naruno.lib.settings_system import the_settings
+form naurno.lib.settings_system import baklava_settings
 
 
 class SettingsScreen(MDScreen):
@@ -35,6 +36,7 @@ class SettingsBox(MDGridLayout):
     t_first_status = the_settings()["test_mode"]
     mt_first_status = the_settings()["mute_notifications"]
     dark_mode_first_status = the_settings()["dark_mode"]
+    baklava_first_status = the_settings()["baklava"]
 
     def D_Status_Changing(self, instance, value):
         d_mode_settings(value)
@@ -76,6 +78,10 @@ class SettingsBox(MDGridLayout):
         dark_mode_settings(value)
         self.show_dialog()
 
+    def BAKLAVA_Status_Changing(self, instance, value):
+        baklava_settings(value)
+
+
     def export_bt(self):
         export_location = naruno_export()
         Clipboard.copy(export_location)
@@ -102,6 +108,7 @@ class SettingsBox(MDGridLayout):
         SettingsBox.d_first_status = the_settings()["debug_mode"]
         SettingsBox.t_first_status = the_settings()["test_mode"]
         SettingsBox.mt_first_status = the_settings()["mute_notifications"]
+        SettingsBox.baklava_first_status = the_settings()["baklava"]
         naruno.gui.the_naruno_gui_app.the_naruno_gui.restart()
 
     def import_bt(self):
