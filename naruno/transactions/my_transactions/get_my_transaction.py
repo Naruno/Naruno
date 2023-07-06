@@ -7,19 +7,46 @@
 import contextlib
 import json
 import os
+import traceback
+from urllib.request import urlopen
 
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
+from naruno.lib.settings_system import the_settings
+from naruno.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from naruno.transactions.transaction import Transaction
 
 mytransactions_db = KOT("mytransactions",
                         folder=get_config()["main_folder"] + "/db")
 
 
+def check_from_network():
+    """
+    Checks if the transaction is in the network.
+    """
+    validated_transactions = []
+    if the_settings()["baklava"]:
+        try:
+            # export validated transactions
+            response = (urlopen(
+                "http://test_net.1.naruno.org:8000/transactions/received").
+                        read().decode("utf-8"))
+            response = json.loads(response)
+            for transaction in response:
+                if response[transaction]["validated"]:
+                    validated_transactions.append(transaction)
+        except:
+            traceback.print_exc()
+
+    return validated_transactions
+
+
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     """
     Returns the transaction db.
     """
+    network_validated = check_from_network()
 
     the_transactions = []
 
@@ -28,13 +55,18 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
         if not entry.endswith("validated") and not entry.endswith("sended"):
             try:
                 the_transactions_json = all_records[entry]
+                the_tx = Transaction.load_json(the_transactions_json)
                 each_validated = (False if mytransactions_db.get(entry +
                                                                  "validated")
                                   == None else True)
+                if (the_transactions_json["signature"] in network_validated
+                        and not each_validated):
+                    each_validated = True
+                    ValidateTransaction(the_tx)
                 each_sended = (False if mytransactions_db.get(entry + "sended")
                                == None else True)
                 the_transactions.append([
-                    Transaction.load_json(the_transactions_json),
+                    the_tx,
                     each_validated,
                     each_sended,
                 ])
@@ -42,7 +74,6 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
                 mytransactions_db.delete(entry)
                 mytransactions_db.delete(entry + "validated")
                 mytransactions_db.delete(entry + "sended")
-                
 
     if sended is not None:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
