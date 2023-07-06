@@ -27,7 +27,7 @@ from naruno.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 from naruno.transactions.send import send
 from naruno.wallet.wallet_import import wallet_import
-
+from naruno.blockchain.block.block_main import Block
 class OperationScreen(MDScreen):
     pass
 
@@ -36,7 +36,10 @@ class OperationBox(MDGridLayout):
     cols = 2
 
     def sent_the_coins(self):
-        the_block = GetBlock()
+        if not the_settings()["baklava"]:
+            the_block = GetBlock()
+        else:
+            the_block = Block("baklava")
 
         if (float(self.send_coin_dialog.input_results["Amount"])
                 >= the_block.minumum_transfer_amount):
