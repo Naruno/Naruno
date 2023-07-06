@@ -28,7 +28,6 @@ from naruno.transactions.my_transactions.save_to_my_transaction import \
 from naruno.transactions.send import send
 from naruno.wallet.wallet_import import wallet_import
 
-
 class OperationScreen(MDScreen):
     pass
 
@@ -54,16 +53,17 @@ class OperationBox(MDGridLayout):
                     block=block,
                 )
                 if send_tx != False:
-                    from naruno.node.server.server import server
-
-                    if server.Server is None:
-                        popup(title="Please start the node server",
-                              type="failure")
-                        return False
-
                     SavetoMyTransaction(send_tx, sended=True)
-                    server.send_transaction(send_tx)
-                    SaveBlock(block)
+                    if not the_settings()["baklava"]:
+                        from naruno.node.server.server import server
+                        if server.Server is None:
+                            popup(title="Please start the node server",
+                                type="failure")
+                            return False
+                        server.send_transaction(send_tx)
+                        SaveBlock(block)
+                    
+
             else:
                 popup(title="Password is not correct", type="failure")
 
