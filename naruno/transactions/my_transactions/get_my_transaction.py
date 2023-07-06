@@ -45,7 +45,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     Returns the transaction db.
     """
     network_validated_source = check_from_network()
-    print("network_validated: ",network_validated)
+    print("network_validated: ",network_validated_source)
 
     network_validated = []
 
