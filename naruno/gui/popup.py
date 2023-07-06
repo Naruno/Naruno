@@ -9,7 +9,6 @@ import os
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.textfield import MDTextField
 from kivymd_extensions.sweetalert import SweetAlert
-from kivymd.uix.gridlayout import MDGridLayout
 
 import naruno.gui.the_naruno_gui_app
 
@@ -82,12 +81,6 @@ class popup:
     def create(self):
         if self.dialog is None:
             if self.type == "custom":
-                custom_content_cls = MDGridLayout(
-                        adaptive_height=True,
-                        padding=("24dp", "68dp", "24dp", "24dp"),
-                        spacing="24dp",
-                        cols=2
-                    )                
                 self.dialog = SweetAlert(
                     title=self.title,
                     type=self.type,
@@ -116,7 +109,6 @@ class popup:
                             on_press=self.director,
                         ),
                     ],
-                    content_cls=custom_content_cls,
                 )
 
                 for i in self.inputs:
