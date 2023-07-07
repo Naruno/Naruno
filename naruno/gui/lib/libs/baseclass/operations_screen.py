@@ -13,6 +13,8 @@ from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 
 import naruno.gui.the_naruno_gui_app
+from naruno.accounts.get_balance import GetBalance
+from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import MY_TRANSACTION_EXPORT_PATH
@@ -27,7 +29,8 @@ from naruno.transactions.my_transactions.save_to_my_transaction import \
     SavetoMyTransaction
 from naruno.transactions.send import send
 from naruno.wallet.wallet_import import wallet_import
-from naruno.blockchain.block.block_main import Block
+
+
 class OperationScreen(MDScreen):
     pass
 
@@ -41,8 +44,14 @@ class OperationBox(MDGridLayout):
         else:
             the_block = Block("baklava")
 
+        the_balance = GetBalance(
+            self.send_coin_dialog.input_results["Receiver"],
+            dont_convert=True,
+            block=the_block,
+        )
+
         if (float(self.send_coin_dialog.input_results["Amount"])
-                >= the_block.minumum_transfer_amount):
+                >= the_block.minumum_transfer_amount) or the_balance >= 0:
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
                     self.send_coin_dialog.input_results["Password"].encode(
                         "utf-8")).hexdigest()):
@@ -59,20 +68,22 @@ class OperationBox(MDGridLayout):
                     SavetoMyTransaction(send_tx, sended=True)
                     if not the_settings()["baklava"]:
                         from naruno.node.server.server import server
+
                         if server.Server is None:
                             popup(title="Please start the node server",
-                                type="failure")
+                                  type="failure")
                             return False
                         server.send_transaction(send_tx)
                         SaveBlock(block)
-                    
 
             else:
                 popup(title="Password is not correct", type="failure")
+        else:
+            popup(title="Amount is not enough", type="failure")
 
     def show_send_coin_dialog(self):
         self.send_coin_dialog = popup(
-            title="Send Coin",
+            title="Send Coin&Data",
             target=self.sent_the_coins,
             inputs=[
                 ["Receiver", False],
