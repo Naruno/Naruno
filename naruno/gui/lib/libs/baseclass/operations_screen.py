@@ -11,6 +11,7 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
+from naruno.accounts.get_balance import GetBalance
 
 import naruno.gui.the_naruno_gui_app
 from naruno.blockchain.block.get_block import GetBlock
@@ -41,8 +42,15 @@ class OperationBox(MDGridLayout):
         else:
             the_block = Block("baklava")
 
+
+        the_balance = GetBalance(
+                self.send_coin_dialog.input_results["Receiver"],
+                dont_convert=True,
+                block=the_block,
+            )
+
         if (float(self.send_coin_dialog.input_results["Amount"])
-                >= the_block.minumum_transfer_amount):
+                >= the_block.minumum_transfer_amount) or the_balance >= 0:
             if (wallet_import(int(the_settings()["wallet"]), 2) == sha256(
                     self.send_coin_dialog.input_results["Password"].encode(
                         "utf-8")).hexdigest()):
@@ -69,10 +77,12 @@ class OperationBox(MDGridLayout):
 
             else:
                 popup(title="Password is not correct", type="failure")
+        else:
+            popup(title="Amount is not enough", type="failure")
 
     def show_send_coin_dialog(self):
         self.send_coin_dialog = popup(
-            title="Send Coin",
+            title="Send Coin&Data",
             target=self.sent_the_coins,
             inputs=[
                 ["Receiver", False],
