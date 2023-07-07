@@ -29,6 +29,8 @@ from naruno.transactions.my_transactions.save_to_my_transaction import \
 from naruno.transactions.send import send
 from naruno.wallet.wallet_import import wallet_import
 from naruno.blockchain.block.block_main import Block
+
+
 class OperationScreen(MDScreen):
     pass
 
@@ -42,12 +44,11 @@ class OperationBox(MDGridLayout):
         else:
             the_block = Block("baklava")
 
-
         the_balance = GetBalance(
-                self.send_coin_dialog.input_results["Receiver"],
-                dont_convert=True,
-                block=the_block,
-            )
+            self.send_coin_dialog.input_results["Receiver"],
+            dont_convert=True,
+            block=the_block,
+        )
 
         if (float(self.send_coin_dialog.input_results["Amount"])
                 >= the_block.minumum_transfer_amount) or the_balance >= 0:
@@ -69,11 +70,10 @@ class OperationBox(MDGridLayout):
                         from naruno.node.server.server import server
                         if server.Server is None:
                             popup(title="Please start the node server",
-                                type="failure")
+                                  type="failure")
                             return False
                         server.send_transaction(send_tx)
                         SaveBlock(block)
-                    
 
             else:
                 popup(title="Password is not correct", type="failure")
@@ -165,8 +165,7 @@ class OperationBox(MDGridLayout):
         if export_the_transactions():
             Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
             popup(
-                title=
-                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
+                title=f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
                 type="success",
             )
 
@@ -177,8 +176,7 @@ class OperationBox(MDGridLayout):
         the_signature_of_tx = args[0].signature
         Clipboard.copy(the_signature_of_tx)
         popup(
-            title=
-            "The signature of transaction has been copied to your clipboard.",
+            title="The signature of transaction has been copied to your clipboard.",
             text=f"The signature is : {the_signature_of_tx}",
             type="success",
         )
