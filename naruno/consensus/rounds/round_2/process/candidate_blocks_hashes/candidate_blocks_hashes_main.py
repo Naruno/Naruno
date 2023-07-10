@@ -38,13 +38,14 @@ def process_candidate_blocks_hashes(block: Block,
 
         logger.debug(f"Hash valid of  {candidate_block_hash} : {tx_valid}")
 
-        if tx_valid > (((len(unl_nodes)+1) * 80) / 100):
+        if tx_valid > (((len(unl_nodes) + 1) * 80) / 100):
             logger.info(
                 f"candidate_block_hash: {candidate_block_hash} is validated.")
             current_hash = candidate_block_hash
 
     for candidate_block_hash in candidate_class.candidate_block_hashes[:]:
-        logger.debug(f"Candidate block hash previous_hash {candidate_block_hash}")
+        logger.debug(
+            f"Candidate block hash previous_hash {candidate_block_hash}")
 
         tx_valid = 1
 
@@ -52,13 +53,12 @@ def process_candidate_blocks_hashes(block: Block,
             if (candidate_block_hash != other_block
                     and candidate_block_hash["previous_hash"] == other_block["previous_hash"]):
                 tx_valid += 1
-        logger.debug(f"Hash valid of previous_hash  {candidate_block_hash} : {tx_valid}")
-        if tx_valid > (((len(unl_nodes)+1) * 80) / 100):
+        logger.debug(
+            f"Hash valid of previous_hash  {candidate_block_hash} : {tx_valid}")
+        if tx_valid > (((len(unl_nodes) + 1) * 80) / 100):
             logger.info(
                 f"candidate_block_hash previous_hash: {candidate_block_hash} is validated.")
             previous_hash = candidate_block_hash
-
-
 
     if current_hash != {"signature": "A", "hash": False, "previous_hash": False} or previous_hash != {"signature": "A", "hash": False, "previous_hash": False}:
         if current_hash["signature"] == "self":
@@ -66,12 +66,12 @@ def process_candidate_blocks_hashes(block: Block,
                 if current_hash != other and current_hash["hash"] == other["hash"]:
                     current_hash = other
                     break
-                    
+
         if previous_hash["signature"] == "self":
             for other in candidate_class.candidate_block_hashes[:]:
                 if previous_hash != other and previous_hash["previous_hash"] == other["previous_hash"]:
                     previous_hash = other
-                    break        
+                    break
         return {"hash": current_hash, "previous_hash": previous_hash}
 
     logger.debug("All candidate_block_hashes can not be validated.")
