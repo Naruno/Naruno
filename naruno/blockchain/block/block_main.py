@@ -66,7 +66,7 @@ class Block:
         self.round_2_time = 5
         self.round_2 = False
 
-        self.consensus_timer = 0.50
+        self.consensus_timer = 3
 
         self.validated = False
         self.validated_time = None
