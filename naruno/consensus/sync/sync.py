@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import copy
 import threading
-
+import traceback
 from naruno.blockchain.block.block_main import Block
 from naruno.consensus.sync.send_block import send_block
 from naruno.consensus.sync.send_block_hash import send_block_hash
@@ -56,4 +56,5 @@ def sync(
             if send_transaction_error:
                 raise Exception("Transaction sending error")
         except Exception as e:
+            traceback.print_exc()
             logger.error(f"Transaction sending error: {e}")
