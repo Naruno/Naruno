@@ -75,6 +75,6 @@ def OrderbyFee(transactions: list):
     """
 
     the_transactions = copy.copy(transactions)
-
+    the_transactions.sort(key=lambda x: x.signature, reverse=True)
     the_transactions.sort(key=lambda x: x.transaction_fee, reverse=True)
     return the_transactions
