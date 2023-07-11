@@ -33,7 +33,7 @@ def time_difference_check(
         return True
     else:
         if not current_time >= the_time - (block.round_1_time / 2):
-            #PendingtoValidating(block)
+            PendingtoValidating(block)
             SaveBlock(
                 block,
                 custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
