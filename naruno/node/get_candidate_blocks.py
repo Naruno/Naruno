@@ -24,16 +24,25 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
 
     the_candidate_blocks = []
     the_candidate_block_hashes = []
+    id_control_list = []
 
     for node in nodes:
         if node.candidate_block is not None:
+            the_id = ""
             if int(node.candidate_block["sequence_number"]
                    ) == block.sequence_number+block.empty_block_number:
-                the_candidate_blocks.append(node.candidate_block)
+                the_id = node.candidate_block["id"]
+                if not the_id in id_control_list:
+                    the_candidate_blocks.append(node.candidate_block)
             else:
                 for i in node.candidate_block_history:
                     if i["sequence_number"] == block.sequence_number+block.empty_block_number:
-                        the_candidate_blocks.append(i)
+                        the_id = i["id"]
+                        if not the_id in id_control_list:
+                            the_candidate_blocks.append(i)
+                        
+            if not the_id in id_control_list:
+                id_control_list.append(the_id)
         else:
             pass
         if node.candidate_block_hash is not None:

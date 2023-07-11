@@ -47,3 +47,5 @@ class candidate_block:
                 for element in block["transaction"] if type(element) is dict
             ]
             block["transaction"] = temp_tx
+
+        
