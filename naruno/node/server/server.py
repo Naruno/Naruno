@@ -403,6 +403,8 @@ class server(Thread):
         self.logger.info(f"Sending my block to all nodes")
         system = self_candidates(block)
 
+        the_wait_time = system.round_1_time / system.max_tx_number
+
         new_list = []
 
         signature_list = []
@@ -424,7 +426,7 @@ class server(Thread):
         }
 
         self.send(data)
-        time.sleep(0.1)
+        time.sleep(the_wait_time)
 
         if len(new_list) > 1:
             for element in new_list[1:]:
@@ -438,7 +440,7 @@ class server(Thread):
                 }
 
                 self.send(data)
-                time.sleep(0.1)
+                time.sleep(the_wait_time)
 
     def send_my_block_hash(self, block):
         self.logger.info(f"Sending my block hash to all nodes")
