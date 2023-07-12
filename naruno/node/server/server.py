@@ -403,7 +403,7 @@ class server(Thread):
         self.logger.info(f"Sending my block to all nodes")
         system = self_candidates(block)
 
-        the_wait_time = system.round_1_time / system.max_tx_number
+        the_wait_time = (system.round_1_time - system.consensus_timer) / system.max_tx_number
 
         new_list = []
 
