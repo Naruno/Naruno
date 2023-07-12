@@ -10,7 +10,7 @@ from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
 from naruno.node.unl import Unl
-
+import naruno
 
 our_candidates = []
 
@@ -40,13 +40,14 @@ def self_candidates(block: Block):
             "sequence_number":
             block.sequence_number+block.empty_block_number,
         }
-        our_candidates = [will_add_candidate_block, will_add_candidate_block_hash]
+        
+        naruno.node.get_candidate_blocks.our_candidates = [will_add_candidate_block, will_add_candidate_block_hash]
 
 
 def our_candidates_f(block: Block):
-    if len(our_candidates) == 0:
+    if len(naruno.node.get_candidate_blocks.our_candidates) == 0:
         self_candidates(block)
-    return our_candidates
+    return our_candnaruno.node.get_candidate_blocks.our_candidatesidates
 
 
 def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
