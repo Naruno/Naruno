@@ -122,3 +122,5 @@ def Cleaner(
             block.validating_list.append(transaction)
     
         return (cleaned_validating_list, cleaned_pending_list_txs)
+    else:
+        return (block.validating_list, GetPending())
