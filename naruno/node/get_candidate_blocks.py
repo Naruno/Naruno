@@ -43,7 +43,7 @@ def self_candidates(block: Block):
         
         naruno.node.get_candidate_blocks.our_candidates = [will_add_candidate_block, will_add_candidate_block_hash]
 
-naruno.node.get_candidate_blocks.our_candidates
+
 def our_candidates_f(block: Block):
     if len(naruno.node.get_candidate_blocks.our_candidates) == 0:
         self_candidates(block)
