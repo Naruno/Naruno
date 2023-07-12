@@ -400,7 +400,7 @@ def SaveBlock(
             ),
         ]
 
-        baklava_test_net_users.append([Account(i,(2 * block.minumum_transfer_amount) +block.transaction_fee * 100,) for i in serial_testers])
+        baklava_test_net_users.extend([Account(i,(2 * block.minumum_transfer_amount) +block.transaction_fee * 100,) for i in serial_testers])
 
 
         if the_settings()["baklava_users"]:
