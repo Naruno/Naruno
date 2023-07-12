@@ -43,7 +43,7 @@ def self_candidates(block: Block):
         our_candidates = [will_add_candidate_block, will_add_candidate_block_hash]
 
 
-def our_candidates(block: Block):
+def our_candidates_f(block: Block):
     if len(our_candidates) == 0:
         self_candidates(block)
     return our_candidates
@@ -94,7 +94,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             pass
 
     if block is not None:
-        the_candidates = our_candidates(block)
+        the_candidates = our_candidates_f(block)
 
         the_candidate_blocks.append(the_candidates[0])
         the_candidate_block_hashes.append(the_candidates[1])
