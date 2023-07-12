@@ -29,6 +29,68 @@ block_db = KOT("block_db", folder=get_config()["main_folder"] + "/db")
 logger = get_logger("BLOCKCHAIN")
 
 
+
+serial_testers = [
+    "2844854d58334e66540097479439be65e0aa4efc",
+    "7f53b1bb58032bc0212b8f1abc9fbb6510a16671",
+    "8e0a8f580c43dd2b33d62afbfa514b3cbe262061",
+    "0022b1a2c50249be6e760be4f3c2c0d9ed467fc3",
+    "65abccda166c7f730376a0c15753942392b21d73",
+    "c8ecc03e12e9b1975851ac4bac2159e2210c8402",
+
+    "80df451fc2653ee4bb85230f2e9800f07527f778",
+
+    "f51b88c59db9cac5e933ac8827bd7f10dc543ae3",
+
+    "59bd07543a4aaf2e45a9b8b8f29e372de79d47ce",
+
+    "7c697b908b77064d70ef4526a658eb9e2e5a9ee6",
+
+    "5764cfd11addb37353c7e159a909e90f1de3c5e9",
+
+    "e4ec7b50fe90c117ad37b41b01e5059c1c903ce0",
+
+    "fd29f1d5b573796d4bd614c3c52738bbfcc5e340",
+
+    "b01a9cdd81bad9cefc43733b5146c2a1b1b4dd6c",
+
+    "c8dca04b72bc69b4e3ac3067f6d0174f2dcfe680",
+
+    "755089190444e4af31aa4641c8d6e03254014b11",
+
+    "68b777ebba65e8ab4af3d6bdb0837abc3ae177d9",
+
+    "f641261d1527cade37371957afe04eb2d7e6b471",
+
+    "7c7bf0510137fc29f09f2df2e38a45146567df7d",
+
+    "1aa29b64943c955e2c1dfa5b734a5c617cdd4a8d",
+
+    "d865a195c73d06313d72dcf3579d9920e4b4584b",
+
+    "60d4357a85a2113467860455e5ccdb7b127a97dd",
+
+    "bd679bd9bf83a00766cb0ae29ab0f9aae7f2d73e",
+
+    "2b0d9405d9f8a6c658608dd2255528e0a12f4f16",
+
+    "884aaa97c4121bbee5a3d79a312900c090bbbff5",
+
+    "29b7ab3aeafedef1c3ad81323473ade7877ad698",
+
+    "cc9ac91de747f657c1a2b6c9e071cf53833e357d",
+
+    "52185af45f343636dcb2e88843a12e24aad3be9c",
+
+    "73b02b4a4715c96eec46823b5fb1e1f401dcd1cb",
+
+    "4b59062c6d3840a023fdc8aaa5c0a87f05aab62e",
+
+    "8ed1aea1b9ebe2e4cfc9b9b03b53ac892bc63119"
+
+]
+
+
 def SaveBlock(
     block: Block,
     custom_TEMP_BLOCK_PATH=None,
@@ -64,11 +126,23 @@ def SaveBlock(
                 (2 * block.minumum_transfer_amount) +
                 block.transaction_fee * 100,
             ),
+
+
+
             Account(
                 "e087a455c3b35d5022491b380e3e34d68df4ca6c",
                 (10 * block.minumum_transfer_amount) +
                 block.transaction_fee * 100,
-            ),            
+            ),
+
+              
+
+
+
+
+
+
+
             Account(
                 "86e9a2454e2d2bd12f56ef37e39d026608013e72",
                 (2 * block.minumum_transfer_amount) +
@@ -325,6 +399,10 @@ def SaveBlock(
                 block.transaction_fee * 100,
             ),
         ]
+
+        baklava_test_net_users.append([Account(i,(2 * block.minumum_transfer_amount) +block.transaction_fee * 100,) for i in serial_testers])
+
+
         if the_settings()["baklava_users"]:
             accounts_list.extend(baklava_test_net_users)
         SaveAccounts(
