@@ -30,7 +30,7 @@ def Cleaner(
                 block.validating_list.remove(transaction)
                 system_txs.append(transaction)
     
-        """        for transaction in pending_list_txs:
+        for transaction in pending_list_txs:
             the_sequance_number = None
             if custom_sequence_number == -1:
                 the_sequance_number = transaction.sequence_number - 1
@@ -58,7 +58,6 @@ def Cleaner(
                     disable_already_in=True,
             ):
                 block.validating_list.remove(transaction)
-        """
     
         def clean(list_of_transactions: list) -> list:
             list_of_transactions = list(dict.fromkeys(list_of_transactions))
