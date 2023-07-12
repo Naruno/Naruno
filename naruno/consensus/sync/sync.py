@@ -13,10 +13,12 @@ from naruno.consensus.sync.send_block_hash import send_block_hash
 from naruno.lib.log import get_logger
 from naruno.node.server.server import server
 import naruno
+import time
 logger = get_logger("CONSENSUS")
 
 
 sync_round_1 = True
+sync_round_1_sub = False
 sync_round_2 = False
 
 
@@ -37,12 +39,26 @@ def sync(
     logger.info("Data sending process is starting")
     the_server = server.Server if custom_server is None else custom_server
 
-    if not block.round_1 and naruno.consensus.sync.sync.sync_round_1:
-        threading.Thread(
-            target=send_block,
-            args=(block, the_server, send_block_error),
-        ).start()
+    if not block.round_1 and (naruno.consensus.sync.sync.sync_round_1 or naruno.consensus.sync.sync.sync_round_1_sub):
+        if not naruno.consensus.sync.sync.sync_round_1_sub:
+            threading.Thread(
+                target=send_block,
+                args=(block, the_server, send_block_error),
+            ).start()
+        else:
+            the_time = block.start_time + block.round_1_time
+            current_time = int(time.time())    
+            if current_time >= the_time - (block.round_1_time / 2):
+                        threading.Thread(
+                            target=send_block,
+                            args=(block, the_server, send_block_error),
+                        ).start()                
+        if naruno.consensus.sync.sync.sync_round_1:
+            naruno.consensus.sync.sync.sync_round_1_sub = True
         naruno.consensus.sync.sync.sync_round_1 = False
+        
+
+        
     else:
         if not block.round_2 and naruno.consensus.sync.sync.sync_round_2:
             threading.Thread(
