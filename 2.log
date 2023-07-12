@@ -1,18 +1,4 @@
-2023-07-11 12:50:32,523 - DEBUG - CONSENSUS_FIRST_ROUND - First temp_validating_list: [] (find_validated_main.py:19)
-DEBUG:CONSENSUS_FIRST_ROUND:First temp_validating_list: []
-2023-07-11 12:50:32,524 - DEBUG - CONSENSUS_FIRST_ROUND - Candidate block {'action': 'myblock', 'transaction': [<naruno.transactions.transaction.Transaction object at 0x7oZIzj0CAQYFK4EEAAoDQgAExkHmU8anZCGeBFo6LSbx1/mmUtKvt371hqghs0R8SacRSuSqSBA/SOauiEze13zJBRyQkTjD+H079mTze3W2Mg==', 'timestamp': '1689069031.9830582', 'signature': 'MEYCIQD (find_validated_main.py:21)
-ERROR:TRANSACTIONS:Sequance number is not valid
-2023-07-11 12:50:32,524 - DEBUG - TRANSACTIONS - Transaction datas are not correct (check_transaction.py:60)
-DEBUG:CONSENSUS_FIRST_ROUND:Candidate block {'action': 'myblock', 'transaction': [<naruno.transactions.transaction.Transaction object at 0x7fa1b59fffd0>], 'total_length':nZCGeBFo6LSbx1/mmUtKvt371hqghs0R8SacRSuSqSBA/SOauiEze13zJBRyQkTjD+H079mTze3W2Mg==', 'timestamp': '1689069031.9830582', 'signature': 'MEYCIQDJwJd8x4W0cjtjJKxN/8YLLxeX9woCN
-2023-07-11 12:50:32,525 - DEBUG - CONSENSUS_FIRST_ROUND - Tx valid of MEUCIBbobJLX6hSVbNjgTgGm94uSDDp5UobLCtg0J+c9TVQmAiEA/waupMhG0dj9iitwvCiruKvngP9GzQ3fcC1SMHhpIg0= : 2
-DEBUG:TRANSACTIONS:Transaction datas are not correct
-DEBUG:CONSENSUS_FIRST_ROUND:Tx valid of MEUCIBbobJLX6hSVbNjgTgGm94uSDDp5UobLCtg0J+c9TVQmAiEA/waupMhG0dj9iitwvCiruKvngP9GzQ3fcC1SMHhpIg0= : 2
-2023-07-11 12:50:32,526 - DEBUG - CONSENSUS_FIRST_ROUND - Transaction is valid (MEUCIBbobJLX6hSVbNjgTgGm94uSDDp5UobLCtg0J+c9TVQmAiEA/waupMhG0dj9iitwvCiruKvngP9GzQ3fcC1SMH
-DEBUG:CONSENSUS_FIRST_ROUND:Transaction is valid (MEUCIBbobJLX6hSVbNjgTgGm94uSDDp5UobLCtg0J+c9TVQmAiEA/waupMhG0dj9iitwvCiruKvngP9GzQ3fcC1SMHhpIg0=)
-2023-07-11 12:50:32,526 - DEBUG - CONSENSUS_FIRST_ROUND - Candidate block {'action': 'myblock', 'transaction': [<naruno.transactions.transaction.Transaction object at 0x7
-DEBUG:CONSENSUS_FIRST_ROUND:Candidate block {'action': 'myblock', 'transaction': [<naruno.transactions.transaction.Transaction object at 0x7fa1b59ff460>], 'signature': 's
-2023-07-11 12:50:32,527 - DEBUG - CONSENSUS_FIRST_ROUND - Tx valid of MEUCIBbobJLX6hSVbNjgTgGm94uSDDp5UobLCtg0J+c9TVQmAiEA/waupMhG0dj9iitwvCiruKvngP9GzQ3fcC1SMHhpIg0= : 2
-DEBUG:CONSENSUS_FIRST_ROUND:Tx valid of MEUCIBbobJLX6hSVbNjgTgGm94uSDDp5UobLCtg0J+c9TVQmAiEA/waupMhG0dj9iitwvCiruKvngP9GzQ3fcC1SMHhpIg0= : 2
-2023-07-11 12:50:32,527 - DEBUG - CONSENSUS_FIRST_ROUND - The transaction is already in the list (find_validated_main.py:42)
-DEBUG:CONSENSUS_FIRST_ROUND:The transaction is already in the list
-2023-07-11 12:50:32,528 - DEBUG - CONSENSUS_FIRST_ROUND - First temp_validating_list: [<naruno.transactions.transaction.Transaction object at 0x7fa1b59fffd0>] (find_valid
+
+{'sequence_number': 1, 'signature': 'MEYCIQDk2gHw6JL+rP3mg/Lvey3kOBZhPWqkDFiEsDn1GvODHAIhAKbWfpzbidqmglmg0HWBtUMD9iFclB7Agvq7qJ2k0k1L', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEg7sLL4VJQAZakX9r5DboJNgYgAhXCIwDwXnx6vu49jaN7SH7gKSpvjG/hfZvGktzIe1M0hbJfYkC8ZDZmQotyw==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689180898}, 
+{'sequence_number': 1, 'signature': 'MEQCIADZAEpstHWHHe+xCZw/CFGRHdorog+s4V2paYL3+a2EAiBBGXVM55qwKXKOp8BsoPTyNqWeKLlFfDqzQ2E98p9WOw==', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEqwmT7MxOU+m0sL2Uj+WgKNHbVuY/OQtNhvSaTF8+iZmpg8/LsApn/9qfQjF1+qYHS49zPYEuR/f0H3LPVCTu0w==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689180871}, 
+{'sequence_number': 0, 'signature': 'NARUNO', 'fromUser': 'NARUNOA', 'toUser': '4b85f4846ade541b93df1dec2dbd61246bfcf595', 'data': 'NP', 'amount': 0.14, 'transaction_fee': 0.0, 'transaction_time': 1689180655}
