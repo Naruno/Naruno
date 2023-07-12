@@ -16,7 +16,7 @@ import naruno
 logger = get_logger("CONSENSUS")
 
 
-sync_round_1 = False
+sync_round_1 = True
 sync_round_2 = False
 
 
