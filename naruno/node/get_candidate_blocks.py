@@ -28,15 +28,15 @@ def self_candidates(block: Block):
             if not len(naruno.node.get_candidate_blocks.our_candidates) == 0:
                 will_add_candidate_block = naruno.node.get_candidate_blocks.our_candidates[0]
                 will_add_candidate_block_hash = naruno.node.get_candidate_blocks.our_candidates[1]
-            if not block.round_1:
-                will_add_candidate_block = {
+            
+            will_add_candidate_block = {
                     "action": "myblock",
                     "transaction": new_list,
                     "signature": a_time,
                     "sequence_number": block.sequence_number+block.empty_block_number,
                 }
-            if not block.round_2:
-                will_add_candidate_block_hash = {
+            
+            will_add_candidate_block_hash = {
                     "action":
                     "myblockhash",
                     "hash":
