@@ -1,8 +1,0 @@
-{'action': 'myblock', 'transaction': 
-[<naruno.transactions.transaction.Transaction object at 0x7f7a1eafb5b0>, 
-<naruno.transactions.transaction.Transaction object at 0x7f7a1eafb9d0>, 
-<naruno.transactions.transaction.Transaction object at 0x7f7a1eafb520>, 
-<naruno.transactions.transaction.Transaction object at 0x7f7a1eafbaf0>, 
-<naruno.transactions.transaction.Transaction object at 0x7f7a1eafbeb0>, 
-<naruno.transactions.transaction.Transaction object at 0x7f7a1eafb6d0>, 
-<naruno.transactions.transaction.Transaction object at 0x7f7a1eafbe20>], 'total_length': 10, 'sequence_number': 7, 'adding': False, 'id': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEBldzTEn9ZNes//TBoSV/g+a9a+TVWtmE10R2ZcpfHN+W7t0vFOPrJzNco4uXNBj3ArHktUdQcbr9/CAOz9Nw7Q==', 'timestamp': '1689188685.7974346', 'signature': 'MEQCICpskCOLfgrBZ8P2PRs6GNmqygMWD9zEA+YQ2I+4LPRoAiBJ54OtAsZo0zu9U3FI4M/tFLvA7kXPVXnF0YCEvlP8WQ=='} 

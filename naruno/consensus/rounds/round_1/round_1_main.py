@@ -13,7 +13,7 @@ from naruno.lib.log import get_logger
 from naruno.node.get_candidate_blocks import GetCandidateBlocks
 from naruno.node.server.server import server
 from naruno.node.unl import Unl
-
+import naruno
 logger = get_logger("CONSENSUS_FIRST_ROUND")
 
 
