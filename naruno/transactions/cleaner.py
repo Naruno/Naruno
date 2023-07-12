@@ -22,7 +22,7 @@ def Cleaner(
 ):
     the_time = block.start_time + block.round_1_time
     current_time = int(time.time())    
-    if not current_time >= the_time - (block.round_1_time / 2):
+    if not current_time >= the_time - (block.round_1_time / 2) and 1 == 2:
         system_txs = []
     
         for transaction in block.validating_list:
