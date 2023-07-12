@@ -30,6 +30,7 @@ from naruno.lib.settings_system import save_settings
 from naruno.lib.settings_system import the_settings
 from naruno.node.server.server import server
 from naruno.transactions.pending_to_validating import PendingtoValidating
+import naruno
 
 logger = get_logger("CONSENSUS")
 
@@ -155,6 +156,7 @@ def finished_main(
             custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
         )
+        naruno.consensus.sync.sync.sync_round_1 = True
         return True
     else:
         if block.sync == True:

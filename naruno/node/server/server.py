@@ -424,6 +424,7 @@ class server(Thread):
         }
 
         self.send(data)
+        time.sleep(0.1)
 
         if len(new_list) > 1:
             for element in new_list[1:]:
@@ -437,6 +438,7 @@ class server(Thread):
                 }
 
                 self.send(data)
+                time.sleep(0.1)
 
     def send_my_block_hash(self, block):
         self.logger.info(f"Sending my block hash to all nodes")

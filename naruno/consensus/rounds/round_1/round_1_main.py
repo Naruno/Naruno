@@ -75,6 +75,7 @@ def consensus_round_1(
             custom_fee_address=custom_fee_address,
             clean=clean,
         )
+        naruno.consensus.sync.sync.sync_round_2 = True
         logger.info("Round 1 check is True")
         return True
     else:

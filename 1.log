@@ -1,6 +1,11 @@
-
-{'sequence_number': 1, 'signature': 'MEUCIG87QbIMooXOJ+XAYUJrKcH59ZuxZaqXfNkoiJNgwqErAiEA4j/9SqJGNLzFsR4gW6CdTUK8/HATXCJJHTqfjm1F0kU=', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEPHYLQ1TU4NYaV9V51DVp6bNVpFRgSg5+TDaVtzudUkOyBr10wvo2gCs3fTMCxlw2qqBFP4Ci0arhm02Esm0DjA==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689180850}, 
-{'sequence_number': 1, 'signature': 'MEYCIQC7vi71YcWvlxnlIfNgS0WBFETM3KhORUybaSxu3OAtigIhAIn/7hpKka5BA5GaUo/MqLSAD2xiPOLj3o3CxVI0+OHI', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAESq/55j5HKx4EcgCSBguekkhjf98QFsjPW0b+CnDeyWvHIm7oViTpsG+O9OiaViGzFUKRr3iyKxmtYj1bpbR3TQ==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689180866}, 
-{'sequence_number': 1, 'signature': 'MEYCIQDk2gHw6JL+rP3mg/Lvey3kOBZhPWqkDFiEsDn1GvODHAIhAKbWfpzbidqmglmg0HWBtUMD9iFclB7Agvq7qJ2k0k1L', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEg7sLL4VJQAZakX9r5DboJNgYgAhXCIwDwXnx6vu49jaN7SH7gKSpvjG/hfZvGktzIe1M0hbJfYkC8ZDZmQotyw==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689180898}, 
-{'sequence_number': 1, 'signature': 'MEQCIADZAEpstHWHHe+xCZw/CFGRHdorog+s4V2paYL3+a2EAiBBGXVM55qwKXKOp8BsoPTyNqWeKLlFfDqzQ2E98p9WOw==', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEqwmT7MxOU+m0sL2Uj+WgKNHbVuY/OQtNhvSaTF8+iZmpg8/LsApn/9qfQjF1+qYHS49zPYEuR/f0H3LPVCTu0w==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689180871}, 
-{'sequence_number': 0, 'signature': 'NARUNO', 'fromUser': 'NARUNOA', 'toUser': '4b85f4846ade541b93df1dec2dbd61246bfcf595', 'data': 'NP', 'amount': 0.18, 'transaction_fee': 0.0, 'transaction_time': 1689180655}
+{'action': 'myblock', 'transaction': 
+[<naruno.transactions.transaction.Transaction object at 0x7f4c57962940>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c57962ee0>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c57962b50>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c57962520>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c57962eb0>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c57962f10>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c579628e0>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c57962730>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c57962550>, 
+<naruno.transactions.transaction.Transaction object at 0x7f4c57962370>], 'total_length': 10, 'sequence_number': 7, 'adding': False, 'id': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEBldzTEn9ZNes//TBoSV/g+a9a+TVWtmE10R2ZcpfHN+W7t0vFOPrJzNco4uXNBj3ArHktUdQcbr9/CAOz9Nw7Q==', 'timestamp': '1689188685.7974346', 'signature': 'MEQCICpskCOLfgrBZ8P2PRs6GNmqygMWD9zEA+YQ2I+4LPRoAiBJ54OtAsZo0zu9U3FI4M/tFLvA7kXPVXnF0YCEvlP8WQ=='}
