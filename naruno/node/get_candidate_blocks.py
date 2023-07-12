@@ -50,6 +50,7 @@ def self_candidates(block: Block):
                 }
             
             naruno.node.get_candidate_blocks.our_candidates = [will_add_candidate_block, will_add_candidate_block_hash, block]
+            the_block = block
 
         return the_block
 
