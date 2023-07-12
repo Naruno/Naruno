@@ -18,7 +18,7 @@ def self_candidates(block: Block):
         the_block = block
         if not len(naruno.node.get_candidate_blocks.our_candidates) == 0:
             the_block = naruno.node.get_candidate_blocks.our_candidates[2]
-        if not the_block.sequence_number == block.sequence_number or (the_block.sequence_number == block.sequence_number and the_block.round_2 != block.round_2):
+        if not the_block.sequence_number == block.sequence_number or (the_block.sequence_number == block.sequence_number and the_block.round_2 != block.round_2) or the_block == block:
             new_list = []
             signature_list = []
             a_time = "self"
