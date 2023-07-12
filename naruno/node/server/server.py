@@ -44,6 +44,8 @@ from naruno.wallet.ellipticcurve.publicKey import PublicKey
 from naruno.wallet.ellipticcurve.signature import Signature
 from naruno.wallet.wallet_import import wallet_import
 
+from naruno.node.get_candidate_blocks import self_candidates
+
 connectednodes_db = KOT("connectednodes",
                         folder=get_config()["main_folder"] + "/db")
 
@@ -400,6 +402,7 @@ class server(Thread):
     def send_my_block(self, block: Block):
         self.logger.info(f"Sending my block to all nodes")
         system = block
+        self_candidates(block)
 
         new_list = []
 
@@ -439,6 +442,7 @@ class server(Thread):
     def send_my_block_hash(self, block):
         self.logger.info(f"Sending my block hash to all nodes")
         system = block
+        self_candidates(block)
 
         data = {
             "action": "myblockhash",

@@ -12,6 +12,43 @@ from naruno.blockchain.candidate_block.candidate_block_main import \
 from naruno.node.unl import Unl
 
 
+our_candidates = []
+
+def self_candidates(block: Block):
+        new_list = []
+        signature_list = []
+        a_time = "self"
+        for element in block.validating_list:
+            new_list.append(element.dump_json())
+            signature_list.append(element.signature)
+
+        will_add_candidate_block = {
+            "action": "myblock",
+            "transaction": new_list,
+            "signature": a_time,
+            "sequence_number": block.sequence_number+block.empty_block_number,
+        }
+        will_add_candidate_block_hash = {
+            "action":
+            "myblockhash",
+            "hash":
+            block.hash,
+            "previous_hash":
+            block.previous_hash,
+            "signature":
+            a_time,
+            "sequence_number":
+            block.sequence_number+block.empty_block_number,
+        }
+        our_candidates = [will_add_candidate_block, will_add_candidate_block_hash]
+
+
+def our_candidates(block: Block):
+    if len(our_candidates) == 0:
+        self_candidates(block)
+    return our_candidates
+
+
 def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
     """
     Collects candidate blocks and candidate block hashes
@@ -57,34 +94,11 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             pass
 
     if block is not None:
-        new_list = []
+        the_candidates = our_candidates(block)
 
-        signature_list = []
+        the_candidate_blocks.append(the_candidates[0])
+        the_candidate_block_hashes.append(the_candidates[1])
 
-        a_time = "self"
-
-        for element in block.validating_list:
-            new_list.append(element.dump_json())
-            signature_list.append(element.signature)
-        the_candidate_blocks.append({
-            "action": "myblock",
-            "transaction": new_list,
-            "signature": a_time,
-            "sequence_number": block.sequence_number+block.empty_block_number,
-        })
-
-        the_candidate_block_hashes.append({
-            "action":
-            "myblockhash",
-            "hash":
-            block.hash,
-            "previous_hash":
-            block.previous_hash,
-            "signature":
-            a_time,
-            "sequence_number":
-            block.sequence_number+block.empty_block_number,
-        })
 
     not_none_the_candidate_blocks = []
 
