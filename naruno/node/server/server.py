@@ -208,7 +208,7 @@ class server(Thread):
 
         for a_client in self.clients:
             if a_client != except_client:
-                if a_client.c_type == c_type
+                if a_client.c_type == c_type:
                     self.send_client(a_client, data, ready_to_send=True, c_type=c_type)
         try:
             del data["buffer"]

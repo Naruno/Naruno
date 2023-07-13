@@ -39,7 +39,7 @@ class client(Thread):
 
 
         self.c_type = c_type
-        if self.c_type == 0
+        if self.c_type == 0:
             self.buffer_size = buffer_size
         elif self.c_type == 1:
             self.buffer_size = buffer_size_2          
