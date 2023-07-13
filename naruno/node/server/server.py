@@ -297,7 +297,7 @@ class server(Thread):
             conn.settimeout(10.0)
             addr = (host, port)
             conn.connect(addr)
-            conn.send(server.id.encode("utf-8")+"+"+str(c_type))
+            conn.send((server.id+"+"+str(c_type)).encode("utf-8"))
             try:
                 raw_id = conn.recv(1024).decode("utf-8")
                 client_id = raw_id.slipt("+")[0]
