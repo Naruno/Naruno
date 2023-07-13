@@ -489,8 +489,7 @@ class server(Thread):
                                 control = False
                         if control:
                             node.candidate_block["transaction"].append(data["transaction"][0])
-                    else:
-                        node.candidate_block = data
+
                 else:
                     node.candidate_block = data
 
