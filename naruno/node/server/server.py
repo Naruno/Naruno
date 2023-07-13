@@ -168,7 +168,7 @@ class server(Thread):
                 conn, addr = self.sock.accept()
                 self.logger.debug(f"New connection request: {addr}")
                 data = conn.recv(1024)
-                conn.send(self.id.encode("utf-8"))
+                conn.send((server.id+"-"+str(c_type)).encode("utf-8"))
                 raw_id = data.decode("utf-8")
                 client_id = raw_id.split("-")[0]
                 client_type = int(raw_id.split("-")[1])
