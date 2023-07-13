@@ -170,8 +170,8 @@ class server(Thread):
                 data = conn.recv(1024)
                 conn.send(self.id.encode("utf-8"))
                 raw_id = data.decode("utf-8")
-                client_id = raw_id.slipt("+")[0]
-                client_type = int(raw_id.slipt("+")[1])
+                client_id = raw_id.split("+")[0]
+                client_type = int(raw_id.split("+")[1])
                 self.logger.debug(f"New connection id: {client_id}")
                 if Unl.node_is_unl(client_id):
                     self.logger.info(f"Confirmed")
@@ -300,8 +300,8 @@ class server(Thread):
             conn.send((server.id+"+"+str(c_type)).encode("utf-8"))
             try:
                 raw_id = conn.recv(1024).decode("utf-8")
-                client_id = raw_id.slipt("+")[0]
-                client_type = int(raw_id.slipt("+")[1])                
+                client_id = raw_id.split("+")[0]
+                client_type = int(raw_id.split("+")[1])                
                 if Unl.node_is_unl(client_id):
                     self.logger.info(
                         f"Succesfully connected to {client_id} on {host}:{port}"
