@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+7#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -433,7 +433,7 @@ class server(Thread):
         }
 
         self.send(data)
-        time.sleep(the_wait_time)
+        #time.sleep(the_wait_time)
 
         if len(new_list) > 1:
             for element in new_list[1:]:
@@ -447,7 +447,7 @@ class server(Thread):
                 }
 
                 self.send(data)
-                time.sleep(the_wait_time)
+                #time.sleep(the_wait_time)
 
     def send_my_block_hash(self, block):
         self.logger.info(f"Sending my block hash to all nodes")
