@@ -459,7 +459,7 @@ class server(Thread):
             "transaction": first_element,
             "total_length": len(new_list),
             "sequence_number":
-            system.sequence_number + system.empty_block_number,
+            system.sequence_number,
             "adding": False,
         }
 
