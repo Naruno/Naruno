@@ -48,4 +48,12 @@ class candidate_block:
             ]
             block["transaction"] = temp_tx
 
+
+        last_list = []
+        for block in self.candidate_blocks:
+            if int(block["total_length"]) == len(block["transaction"]):
+                last_list.append(block)
+
+        self.candidate_blocks = last_list
+
         
