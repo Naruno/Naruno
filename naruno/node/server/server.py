@@ -473,7 +473,7 @@ class server(Thread):
                     "transaction": [element],
                     "total_length": len(new_list),
                     "sequence_number":
-                    system.sequence_number + system.empty_block_number,
+                    system.sequence_number,
                     "adding": True,
                 }
 
@@ -490,7 +490,7 @@ class server(Thread):
             "hash": system.hash,
             "previous_hash": system.previous_hash,
             "sequence_number":
-            system.sequence_number + system.empty_block_number,
+            system.sequence_number,
         }
 
         self.send(data)
