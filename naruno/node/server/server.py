@@ -170,8 +170,8 @@ class server(Thread):
                 data = conn.recv(1024)
                 conn.send(self.id.encode("utf-8"))
                 raw_id = data.decode("utf-8")
-                client_id = raw_id.split("+")[0]
-                client_type = int(raw_id.split("+")[1])
+                client_id = raw_id.split("-")[0]
+                client_type = int(raw_id.split("-")[1])
                 self.logger.debug(f"New connection id: {client_id}")
                 if Unl.node_is_unl(client_id):
                     self.logger.info(f"Confirmed")
@@ -232,12 +232,12 @@ class server(Thread):
         if len(json.dumps(data).encode("utf-8")) < the_buffer:
             data["buffer"] = "0" * (
                 (the_buffer - len(json.dumps(data).encode("utf-8"))) - 14)
-        while node.id in self.send_busy:
+        while node.id+str(c_type) in self.send_busy:
             time.sleep(0.01)
-        self.send_busy.append(node.id)
+        self.send_busy.append(node.id+str(c_type))
         with contextlib.suppress(socket.timeout):
             node.socket.sendall(json.dumps(data).encode("utf-8"))
-        self.send_busy.remove(node.id)
+        self.send_busy.remove(node.id+str(c_type))
         with contextlib.suppress(KeyError):
             del data["buffer"]
         time.sleep(0.02)
@@ -297,11 +297,11 @@ class server(Thread):
             conn.settimeout(10.0)
             addr = (host, port)
             conn.connect(addr)
-            conn.send((server.id+"+"+str(c_type)).encode("utf-8"))
+            conn.send((server.id+"-"+str(c_type)).encode("utf-8"))
             try:
                 raw_id = conn.recv(1024).decode("utf-8")
-                client_id = raw_id.split("+")[0]
-                client_type = int(raw_id.split("+")[1])                
+                client_id = raw_id.split("-")[0]
+                client_type = int(raw_id.split("-")[1])                
                 if Unl.node_is_unl(client_id):
                     self.logger.info(
                         f"Succesfully connected to {client_id} on {host}:{port}"
