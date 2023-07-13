@@ -52,7 +52,8 @@ def sync(
                         threading.Thread(
                             target=send_block,
                             args=(block, the_server, send_block_error),
-                        ).start()                
+                        ).start()     
+                        naruno.consensus.sync.sync.sync_round_1_sub = False          
         if naruno.consensus.sync.sync.sync_round_1:
             naruno.consensus.sync.sync.sync_round_1_sub = True
         naruno.consensus.sync.sync.sync_round_1 = False
