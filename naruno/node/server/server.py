@@ -215,7 +215,7 @@ class server(Thread):
         if not ready_to_send:
             data = self.prepare_message(data)
         if len(json.dumps(data).encode("utf-8")) < buffer_size:
-            data["buffer"] = "0" * (
+            data["buffer"] = "" * (
                 (buffer_size - len(json.dumps(data).encode("utf-8"))) - 14)
         while node.id in self.send_busy:
             time.sleep(0.01)
