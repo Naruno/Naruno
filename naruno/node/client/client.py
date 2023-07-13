@@ -18,11 +18,14 @@ from naruno.lib.log import get_logger
 a_block = Block("onur")
 buffer_size = 6525 + int(
     (a_block.max_data_size // a_block.max_tx_number) * 1.5)
-
+buffer_size_2 = 6525 + int(
+    (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+buffer_size_3 = 6525 + int(
+    (a_block.max_data_size // a_block.max_tx_number) * 5)  
 
 class client(Thread):
 
-    def __init__(self, socket, address, node_id, server, test=False):
+    def __init__(self, socket, address, node_id, server, test=False,c_type=0):
         Thread.__init__(self)
         self.server = server
         self.socket = socket
@@ -34,14 +37,25 @@ class client(Thread):
         self.candidate_block_history = []
         self.candidate_block_hash_history = []
 
+
+        self.c_type = c_type
+        if self.c_type == 0
+            self.buffer_size = buffer_size
+        elif self.c_type == 1:
+            self.buffer_size = buffer_size_2          
+        elif self.c_type == 2:
+            self.buffer_size = buffer_size_3   
+
         self.logger = get_logger(
             f"NODE_{self.server.host}_{self.server.port}_SOCK_{self.host}_{self.port}"
         )
 
         self.logger.info(f"Connection established with {self.id}")
 
+
+
         self.logger.debug("Test mode: " + str(test))
-        self.logger.debug("Buffer size: " + str(buffer_size))
+        self.logger.debug("Buffer size: " + str(self.buffer_size))
 
         self.running = True
         if not test:
@@ -51,7 +65,7 @@ class client(Thread):
         self.socket.settimeout(10.0)
         while self.running:
             with contextlib.suppress(socket.timeout):
-                data = self.socket.recv(buffer_size)
+                data = self.socket.recv(self.buffer_size)
 
                 if not data:
                     break

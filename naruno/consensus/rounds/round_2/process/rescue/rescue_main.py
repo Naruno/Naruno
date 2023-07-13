@@ -34,7 +34,7 @@ def rescue_main(
         f"Our block is not valid, the system will try to get true block from naruno.node {sender}"
     )
     block.dowload_true_block = sender
-    unl_list = Unl.get_as_node_type([sender])
+    unl_list = Unl.get_as_node_type([sender], c_type=2)
     the_server = server.Server if custom_server is None else custom_server
     the_unl_node = random.choice(
         unl_list) if custom_unl is None else custom_unl

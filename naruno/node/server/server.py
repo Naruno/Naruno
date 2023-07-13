@@ -52,6 +52,10 @@ connectednodes_db = KOT("connectednodes",
 a_block = Block("onur")
 buffer_size = 6525 + int(
     (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+buffer_size_2 = 6525 + int(
+    (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+buffer_size_3 = 6525 + int(
+    (a_block.max_data_size // a_block.max_tx_number) * 5)    
 
 
 class server(Thread):
@@ -165,11 +169,13 @@ class server(Thread):
                 self.logger.debug(f"New connection request: {addr}")
                 data = conn.recv(1024)
                 conn.send(self.id.encode("utf-8"))
-                client_id = data.decode("utf-8")
+                raw_id = data.decode("utf-8")
+                client_id = raw_id.slipt("+")[0]
+                client_type = int(raw_id.slipt("+")[1])
                 self.logger.debug(f"New connection id: {client_id}")
                 if Unl.node_is_unl(client_id):
                     self.logger.info(f"Confirmed")
-                    self.clients.append(client(conn, addr, client_id, self))
+                    self.clients.append(client(conn, addr, client_id, self, c_type=client_type))
                     self.save_connected_node(addr[0], addr[1], client_id)
                 else:
                     self.logger.warning(f"Rejected")
@@ -197,26 +203,35 @@ class server(Thread):
         data["signature"] = sign
         return data
 
-    def send(self, data, except_client=None):
+    def send(self, data, except_client=None, c_type=0):
         data = self.prepare_message(data)
 
         for a_client in self.clients:
             if a_client != except_client:
-                self.send_client(a_client, data, ready_to_send=True)
+                if a_client.c_type == c_type
+                    self.send_client(a_client, data, ready_to_send=True, c_type=c_type)
         try:
             del data["buffer"]
         except KeyError:
             pass
         return data
 
-    def send_client(self, node, data, ready_to_send=False):
+    def send_client(self, node, data, ready_to_send=False, c_type=0):
         self.logger.debug(
             f"Sending message: {data} to {node.host}:{node.port}={node.id}")
         if not ready_to_send:
             data = self.prepare_message(data)
-        if len(json.dumps(data).encode("utf-8")) < buffer_size:
+
+        if c_type == 0:
+            the_buffer = buffer_size
+        elif c_type == 1:
+            the_buffer = buffer_size_2
+        elif c_type == 2:
+            the_buffer = buffer_size_3
+
+        if len(json.dumps(data).encode("utf-8")) < the_buffer:
             data["buffer"] = "0" * (
-                (buffer_size - len(json.dumps(data).encode("utf-8"))) - 14)
+                (the_buffer - len(json.dumps(data).encode("utf-8"))) - 14)
         while node.id in self.send_busy:
             time.sleep(0.01)
         self.send_busy.append(node.id)
@@ -274,29 +289,37 @@ class server(Thread):
 
         return True
 
-    def connect(self, host, port):
-        self.logger.info(f"Asking for new node on {host}:{port}")
-        connected = self.check_connected(host=host, port=port)
-        if not connected:
+
+    def _connect(self, host, port, c_type=0):
             self.logger.info(
                 "New connection request confirmed trying to connect")
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             conn.settimeout(10.0)
             addr = (host, port)
             conn.connect(addr)
-            conn.send(server.id.encode("utf-8"))
+            conn.send(server.id.encode("utf-8")+"+"+str(c_type))
             try:
-                client_id = conn.recv(1024).decode("utf-8")
+                raw_id = conn.recv(1024).decode("utf-8")
+                client_id = raw_id.slipt("+")[0]
+                client_type = int(raw_id.slipt("+")[1])                
                 if Unl.node_is_unl(client_id):
                     self.logger.info(
                         f"Succesfully connected to {client_id} on {host}:{port}"
                     )
-                    self.clients.append(client(conn, addr, client_id, self))
+                    self.clients.append(client(conn, addr, client_id, self, c_type=client_type))
                     self.save_connected_node(addr[0], addr[1], client_id)
                     return True
             except socket.timeout:
                 self.logger.warning(f"Connection timeout")
                 conn.close()
+
+    def connect(self, host, port):
+        self.logger.info(f"Asking for new node on {host}:{port}")
+        connected = self.check_connected(host=host, port=port)
+        if not connected:
+            self._connect(host, port)
+            self._connect(host, port, c_type=1)
+            self._connect(host, port, c_type=2)
         else:
             self.logger.warning("Already connected")
 
@@ -400,11 +423,18 @@ class server(Thread):
                                           hash_of_data=hash_of_data)
 
     def send_me_full_block(self, node=None):
-        the_node = node if node is not None else random.choice(self.clients)
+        the_node = node
+        choices = []
+        if the_node is None:
+            for i in self.clients
+                if i.c_type == 2:
+                    choices.append(i)
+            the_node = random.choice(choices)
+
         self.logger.info(
             f"Sending sendmefullblock to {the_node.id}:{the_node.host}:{the_node.port}"
         )
-        self.send_client(the_node, {"action": "sendmefullblock"})
+        self.send_client(the_node, {"action": "sendmefullblock"}, c_type=2)
 
     def send_my_block(self, block: Block):
         self.logger.info(f"Sending my block to all nodes")
@@ -525,9 +555,9 @@ class server(Thread):
                 "byte": (SendData.decode(encoding="iso-8859-1")),
             }
             if node is None:
-                self.send(data)
+                self.send(data, c_type=2)
             else:
-                self.send_client(node, data)
+                self.send_client(node, data, c_type=2)
 
             SendData = file.read(1024)
 
@@ -537,9 +567,9 @@ class server(Thread):
                     "byte": "end",
                 }
                 if node is None:
-                    self.send(data)
+                    self.send(data, c_type=2)
                 else:
-                    self.send_client(node, data)
+                    self.send_client(node, data, c_type=2)
 
     def send_full_accounts(self, node=None):
         the_TEMP_ACCOUNTS_PATH = self.TEMP_ACCOUNTS_PATH
@@ -552,17 +582,17 @@ class server(Thread):
             }
 
             if node is None:
-                self.send(data)
+                self.send(data, c_type=2)
             else:
-                self.send_client(node, data)
+                self.send_client(node, data, c_type=2)
 
             SendData = file.read(1024)
             if not SendData:
                 data = {"action": "fullaccounts", "byte": "end"}
                 if node is None:
-                    self.send(data)
+                    self.send(data, c_type=2)
                 else:
-                    self.send_client(node, data)
+                    self.send_client(node, data, c_type=2)
 
     def send_full_blockshash(self, node=None):
         the_TEMP_BLOCKSHASH_PATH = self.TEMP_BLOCKSHASH_PATH
@@ -574,18 +604,18 @@ class server(Thread):
                 "byte": (SendData.decode(encoding="iso-8859-1")),
             }
             if node is None:
-                self.send(data)
+                self.send(data, c_type=2)
             else:
-                self.send_client(node, data)
+                self.send_client(node, data, c_type=2)
 
             SendData = file.read(1024)
 
             if not SendData:
                 data = {"action": "fullblockshash", "byte": "end"}
                 if node is None:
-                    self.send(data)
+                    self.send(data, c_type=2)
                 else:
-                    self.send_client(node, data)
+                    self.send_client(node, data, c_type=2)
 
     def send_full_blockshash_part(self, node=None):
         the_TEMP_BLOCKSHASH_PART_PATH = self.TEMP_BLOCKSHASH_PART_PATH
@@ -597,18 +627,18 @@ class server(Thread):
                 "byte": (SendData.decode(encoding="iso-8859-1")),
             }
             if node is None:
-                self.send(data)
+                self.send(data, c_type=2)
             else:
-                self.send_client(node, data)
+                self.send_client(node, data, c_type=2)
 
             SendData = file.read(1024)
 
             if not SendData:
                 data = {"action": "fullblockshash_part", "byte": "end"}
                 if node is None:
-                    self.send(data)
+                    self.send(data, c_type=2)
                 else:
-                    self.send_client(node, data)
+                    self.send_client(node, data, c_type=2)
 
     def get_full_chain(self, data, node, hash_of_data=""):
         self.logger.info(f"Getting full chain with {hash_of_data}")
@@ -752,7 +782,7 @@ class server(Thread):
                 "custom_balance": custom_balance,
             }
             the_server = server.Server if custom_server is None else custom_server
-            the_server.send(data, except_client=except_client)
+            the_server.send(data, except_client=except_client, c_type=1)
 
     def get_transaction(self, data, node, hash_of_data=""):
         self.logger.info(f"Getting transaction with {hash_of_data}")

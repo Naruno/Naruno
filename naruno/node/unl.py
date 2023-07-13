@@ -46,14 +46,17 @@ class Unl:
         return record if record is not None else {}
 
     @staticmethod
-    def get_as_node_type(id_list):
+    def get_as_node_type(id_list, c_type=0):
         """
         Converts the UNL node list to Node class.
         """
 
         from naruno.node.server.server import server
-
-        nodes = [] if server.Server is None else server.Server.clients
+        nodes = []
+        if server.Server is not None:
+         for i in server.Server.clients:
+            if i.c_type == c_type:
+                nodes.append(i)
         return nodes
 
     @staticmethod
