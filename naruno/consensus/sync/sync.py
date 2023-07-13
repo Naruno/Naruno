@@ -40,10 +40,10 @@ def sync(
 
     if not block.round_1 and (naruno.consensus.sync.sync.sync_round_1):
  
-            threading.Thread(
-                target=send_block,
-                args=(block, the_server, send_block_error),
-            ).start()
+        threading.Thread(
+            target=send_block,
+            args=(block, the_server, send_block_error),
+        ).start()
 
         naruno.consensus.sync.sync.sync_round_1 = False
         
