@@ -216,7 +216,7 @@ class server(Thread):
             data = self.prepare_message(data)
         if len(json.dumps(data).encode("utf-8")) < buffer_size:
             data["buffer"] = "0" * (
-                (buffer_size - len(json.dumps(data).encode("utf-8"))) - 1)
+                (buffer_size - len(json.dumps(data).encode("utf-8"))) - 14)
         while node.id in self.send_busy:
             time.sleep(0.01)
         self.send_busy.append(node.id)
