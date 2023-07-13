@@ -142,6 +142,9 @@ class server(Thread):
         self.logger.debug("Save messages: " + str(save_messages))
         self.logger.debug("Test mode: " + str(test))
 
+
+        self.send_busy = []
+
         if not test:
             self.__class__.Server = self
             self.start()
