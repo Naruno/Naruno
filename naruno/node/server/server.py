@@ -483,8 +483,12 @@ class server(Thread):
                 if node.candidate_block["total_length"] == data[
                         "total_length"]:
                     if data["adding"]:
-                        node.candidate_block["transaction"].append(
-                            data["transaction"][0])
+                        control = True
+                        for i in node.candidate_block["transaction"]:
+                            if i["signature"] == data["transaction"][0]["signature"]:
+                                control = False
+                        if control:
+                            node.candidate_block["transaction"].append(data["transaction"][0])
                     else:
                         node.candidate_block = data
                 else:
