@@ -34,6 +34,7 @@ def self_candidates(block: Block):
                     "transaction": new_list,
                     "signature": a_time,
                     "sequence_number": block.sequence_number+block.empty_block_number,
+                    "total_length": len(new_list)
                 }
             
             will_add_candidate_block_hash = {
