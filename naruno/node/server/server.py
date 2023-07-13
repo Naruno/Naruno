@@ -426,7 +426,7 @@ class server(Thread):
         the_node = node
         choices = []
         if the_node is None:
-            for i in self.clients
+            for i in self.clients:
                 if i.c_type == 2:
                     choices.append(i)
             the_node = random.choice(choices)
