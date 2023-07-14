@@ -238,6 +238,7 @@ class server(Thread):
         self.send_busy.append(node.id+str(c_type))
         with contextlib.suppress(socket.timeout):
             node.socket.sendall(json.dumps(data).encode("utf-8"))
+        time.sleep(2)
         self.send_busy.remove(node.id+str(c_type))
         with contextlib.suppress(KeyError):
             del data["buffer"]
