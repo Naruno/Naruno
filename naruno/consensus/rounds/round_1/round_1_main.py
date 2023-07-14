@@ -49,7 +49,7 @@ def consensus_round_1(
                  if custom_unl_nodes is None else custom_unl_nodes)
     logger.debug(f"unl_nodes: {unl_nodes}")
     candidate_class = (GetCandidateBlocks(
-        custom_nodes_list=Unl.get_as_node_type(unl_nodes), block=block)
+        custom_nodes_list=Unl.get_as_node_type(unl_nodes)+Unl.get_as_node_type(unl_nodes c_type=3), block=block)
                        if custom_candidate_class is None else
                        custom_candidate_class)
     logger.debug(f"candidate_class: {candidate_class.__dict__}")
