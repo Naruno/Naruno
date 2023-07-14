@@ -15,10 +15,10 @@ import naruno
 our_candidates = []
 
 def self_candidates(block: Block):
-        the_block = block
-        if not len(naruno.node.get_candidate_blocks.our_candidates) == 0:
-            the_block = naruno.node.get_candidate_blocks.our_candidates[2]
-        if len(our_candidates) == 0:
+            the_block = block
+            if not len(naruno.node.get_candidate_blocks.our_candidates) == 0:
+                the_block = naruno.node.get_candidate_blocks.our_candidates[2]
+
             new_list = []
             signature_list = []
             a_time = "self"
@@ -38,6 +38,7 @@ def self_candidates(block: Block):
                         "sequence_number": block.sequence_number + block.empty_block_number,
                         "total_length": len(new_list)
                     }
+                the_block = block                    
             
             will_add_candidate_block_hash = {
                     "action":
@@ -53,9 +54,9 @@ def self_candidates(block: Block):
                 }
             
             naruno.node.get_candidate_blocks.our_candidates = [will_add_candidate_block, will_add_candidate_block_hash, block]
-            the_block = block
+            
 
-        return the_block
+            return the_block
 
 
 def our_candidates_f(block: Block):
