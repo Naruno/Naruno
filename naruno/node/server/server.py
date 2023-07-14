@@ -471,7 +471,7 @@ class server(Thread):
         }
 
         self.send(data)
-
+        time.sleep(2)
 
         if len(new_list) > 1:
             for element in new_list[1:]:
