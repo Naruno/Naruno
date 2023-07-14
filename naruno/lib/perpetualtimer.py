@@ -41,7 +41,7 @@ class perpetualTimer(Timer):
     def run(self):
         while not self.finished.wait(self.interval):
             if self.consensus:
-                if naruno.lib.perpetualTimer.the_consensus_thread:
+                if naruno.lib.perpetualtimer.the_consensus_thread:
                     time.sleep(0.5)
                 else:
                     self.execute_the_f()

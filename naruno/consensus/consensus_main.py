@@ -42,7 +42,7 @@ def consensus_trigger(
     the necessary redirects according to the situation and works
     to shorten the block time.
     """
-    naruno.lib.perpetualTimer.the_consensus_thread = True
+    naruno.lib.perpetualtimer.the_consensus_thread = True
 
     try:
 
@@ -97,5 +97,5 @@ def consensus_trigger(
         traceback.print_exc()
 
     logger.info("Consensus process is done")
-    naruno.lib.perpetualTimer.the_consensus_thread = False
+    naruno.lib.perpetualtimer.the_consensus_thread = False
     return block
