@@ -94,13 +94,13 @@ def Check_Datas(
             logger.error("Sequance number is not valid")
             return False
 
-    current_time = (int(time.time())
-                    if custom_current_time is None else custom_current_time)
-    if (current_time -
-            transaction.transaction_time) <= block.transaction_delay_time:
-        pass
-    else:
-        logger.error("Transaction time is not valid")
-        return False
+        current_time = (int(time.time())
+                        if custom_current_time is None else custom_current_time)
+        if (current_time -
+                transaction.transaction_time) <= block.transaction_delay_time:
+            pass
+        else:
+            logger.error("Transaction time is not valid")
+            return False
 
     return True
