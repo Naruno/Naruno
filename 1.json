@@ -1,15 +1,4 @@
-{'coin_amount': 10000000, 'first_time': False, 'creator': '7b48c7c3e73a95988461944fc51f6530c24630d1', 'genesis_time': 1689353343, 'start_time': 1689353640, 'block_time': 27, 'previous_hash': 'd035f5a492b8c4fb1c332afdfcb97f057b9aca3aef2f4bc10859d76a61cae8ef', 'sequence_number': 7, 'empty_block_number': 4, 'hard_block_number': 2, 'gap_block_number': 4, 'validating_list': [
-        {'sequence_number': 2, 'signature': 'MEUCIDwhJ0t6+IpvtefC15qCMrjwKIoSWyp8ki0MxivSPXJjAiEA+GQryZwy0ObOKcgj1HaG0K/hjDSEDep1xf2y7UEnaas=', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE+7zX0m+KSy59V46Pz0DU8tN+tcupTcrMs/0nqtF8vSVNdX4Tsavd1UQ0gSN+okMIZ66EbXoLqb42dZ/NzgxNNw==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689353577
-        },
-        {'sequence_number': 1, 'signature': 'MEUCIQCGH5s2ONvGd6J0Q7zDAkwMMFkzyuPLvKwNTwT6dEuIOAIgVseMq5gsR6I8oCvqNyT2Td+iq8hNDkjw/E/2sJrAlXw=', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEAvoDXB7E64rQPubaUPURrSfMDRjH1S6D59/er1oXnc2akhhsoWNdpMJZNewOo0ZVancZAm41Egk+ewiDAi6oWg==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689353557
-        },
-        {'sequence_number': 2, 'signature': 'MEYCIQCHlHatYeM4VGX1feHkm/EQjmUMS9t5EgR/wyGH6TiAowIhAPYEkJmBWviKxVXOdo39eOd24v/s0Lmuy/g7MCIJtC39', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEPHYLQ1TU4NYaV9V51DVp6bNVpFRgSg5+TDaVtzudUkOyBr10wvo2gCs3fTMCxlw2qqBFP4Ci0arhm02Esm0DjA==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689353583
-        },
-        {'sequence_number': 2, 'signature': 'MEUCIQCc2EOvXU+QfX7ppmKc/YLdHUHbxZnymR0T9QyeZMx+5wIgJysvH+l3UlFEnIG3WUSHA9NsS6idWpPK5b9c/J4iYd8=', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAElMCTos21Nn2tLej2Rt4eIC1EWi/GA5GSLGsIeeyHzQNz9D1Pvft7IfXCc/lFDhZLCRfOrh4cCvaske5yK9qB5Q==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689353587
-        },
-        {'sequence_number': 2, 'signature': 'MEUCIQCx6sPhTksSiWolDacpr5I3g8figjH8kRjhbCZHXghB9AIgTK1a9vL0vx+04JTMyFJelFifhfK5LHX4okE/7un/ESA=', 'fromUser': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEovw52U8x9pj387Et7n2EQe+FWzS+kKpJX5qEfwY937CBgPlyprG/3s17lfjvI3jDcV7Xz2E5u3gEyy/nFSJbLA==', 'toUser': 'onuratakan', 'data': '', 'amount': 0.01, 'transaction_fee': 0.02, 'transaction_time': 1689353580
-        },
-        {'sequence_number': 0, 'signature': 'NARUNO', 'fromUser': 'NARUNOA', 'toUser': '7b48c7c3e73a95988461944fc51f6530c24630d1', 'data': 'NP', 'amount': 0.1, 'transaction_fee': 0.0, 'transaction_time': 1689353343
-        }
-    ], 'transaction_fee': 0.02, 'default_transaction_fee': 0.02, 'default_optimum_transaction_number': 200, 'default_increase_of_fee': 0.01, 'transaction_delay_time': 3600, 'max_data_size': 10000, 'part_amount': 1000, 'hash': '80c86147e34e25f28b76b7246fcac1f8d7f0d0ae4627eb01b544a02ed51af9de', 'part_amount_cache': '1a00d983803e3adcbda2ed40ecba828083221648a90150267d8b0fd500c59750', 'max_tx_number': 10, 'minumum_transfer_amount': 1000, 'round_1_time': 20, 'round_1': True, 'round_2_starting_time': 1689353660, 'round_2_time': 5, 'round_2': False, 'consensus_timer': 1, 'validated': False, 'validated_time': None, 'dowload_true_block': '', 'sync': False, 'just_one_tx': True, 'use_full_block': False, 'shares': [], 'fee_address': '7b48c7c3e73a95988461944fc51f6530c24630d1'
-}
+{'c5a5f8c36a6d29bd160c61357b368b43a1aef501': [0, 10000000.999999998]
+['c5a5f8c36a6d29bd160c61357b368b43a1aef501', 'balance', 0.14]
+
+{'c5a5f8c36a6d29bd160c61357b368b43a1aef501': [0, 10000000.719999997]

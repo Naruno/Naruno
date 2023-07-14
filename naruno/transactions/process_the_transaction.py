@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import sqlite3
-
+from decimal import Decimal
 from naruno.accounts.account import Account
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.shares import shares
@@ -126,7 +126,8 @@ def ProccesstheTransaction(
         for account in account_list:
             if action[0] == account.Address:
                 if action[1] == "balance":
-                    account.balance += action[2]
+                    balance_decimal = Decimal(str(account.balance)) + Decimal(str(action[2]))
+                    account.balance = float(balance_decimal)
                 elif action[1] == "sequence_number":
                     account.sequence_number += action[2]
                 edited_accounts.append(account)
