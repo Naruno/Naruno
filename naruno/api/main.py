@@ -372,7 +372,7 @@ def block_get_page():
         the_consensus_trigger = (consensus_trigger if custom_consensus_trigger
                                  is None else custom_consensus_trigger)
         trigger = perpetualTimer(the_block.consensus_timer,
-                                 the_consensus_trigger)
+                                 the_consensus_trigger, the_consensus=True)
         global custom_consensus_trigger_result
         custom_consensus_trigger_result = trigger
     else:

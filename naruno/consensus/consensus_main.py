@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import threading
-
+import traceback
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.candidate_block.candidate_block_main import \
@@ -17,6 +17,7 @@ from naruno.lib.log import get_logger
 from naruno.node.client.client import client
 from naruno.node.server.server import server
 from naruno.transactions.pending.get_pending import GetPending
+import naruno
 
 logger = get_logger("CONSENSUS")
 
@@ -41,54 +42,60 @@ def consensus_trigger(
     the necessary redirects according to the situation and works
     to shorten the block time.
     """
+    naruno.lib.perpetualTimer.the_consensus_thread = True
 
-    block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-             if custom_block is None else custom_block)
-    pending_list_txs = GetPending()
+    try:
 
-    logger.info(
-        f"BLOCK#{block.sequence_number}:{block.empty_block_number} Consensus process started"
-    )
+        block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                if custom_block is None else custom_block)
+        pending_list_txs = GetPending()
 
-    logger.info("Consensus Sync process started")
-    threading.Thread(
-        target=sync,
-        args=(
-            block,
-            pending_list_txs,
-            custom_server,
-        ),
-    ).start()
-
-    if block.validated:
         logger.info(
-            "BLOCK is an validated block, consensus process is finished")
-        finished_main(
-            block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_BLOCKS_PATH=custom_BLOCKS_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            pass_sync=pass_sync,
-            dont_clean=dont_clean,
+            f"BLOCK#{block.sequence_number}:{block.empty_block_number} Consensus process started"
         )
-    else:
-        logger.info(
-            "BLOCK is an unvalidated block, consensus process is ongoing")
-        ongoing_main(
-            block,
-            custom_candidate_class=custom_candidate_class,
-            custom_unl_nodes=custom_unl_nodes,
-            custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
-            custom_server=custom_server,
-            custom_unl=custom_unl,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-            pass_sync=pass_sync,
-        )
+
+        logger.info("Consensus Sync process started")
+        threading.Thread(
+            target=sync,
+            args=(
+                block,
+                pending_list_txs,
+                custom_server,
+            ),
+        ).start()
+
+        if block.validated:
+            logger.info(
+                "BLOCK is an validated block, consensus process is finished")
+            finished_main(
+                block,
+                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                custom_BLOCKS_PATH=custom_BLOCKS_PATH,
+                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+                pass_sync=pass_sync,
+                dont_clean=dont_clean,
+            )
+        else:
+            logger.info(
+                "BLOCK is an unvalidated block, consensus process is ongoing")
+            ongoing_main(
+                block,
+                custom_candidate_class=custom_candidate_class,
+                custom_unl_nodes=custom_unl_nodes,
+                custom_UNL_NODES_PATH=custom_UNL_NODES_PATH,
+                custom_server=custom_server,
+                custom_unl=custom_unl,
+                custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+                custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+                custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+                custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+                pass_sync=pass_sync,
+            )
+    except:
+        traceback.print_exc()
 
     logger.info("Consensus process is done")
+    naruno.lib.perpetualTimer.the_consensus_thread = False
     return block

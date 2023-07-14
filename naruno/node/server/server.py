@@ -664,7 +664,7 @@ class server(Thread):
 
                 ChangeTransactionFee(system)
 
-                perpetualTimer(system.consensus_timer, consensus_trigger)
+                perpetualTimer(system.consensus_timer, consensus_trigger, the_consensus=True)
                 SaveBlock(
                     system,
                     custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
