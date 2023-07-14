@@ -328,6 +328,7 @@ class server(Thread):
             self._connect(host, port)
             self._connect(host, port, c_type=1)
             self._connect(host, port, c_type=2)
+            self._connect(host, port, c_type=3)
         else:
             self.logger.warning("Already connected")
 
