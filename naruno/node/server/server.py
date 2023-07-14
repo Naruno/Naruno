@@ -248,7 +248,6 @@ class server(Thread):
         self.send_busy.remove(node.id+str(c_type))
         with contextlib.suppress(KeyError):
             del data["buffer"]
-        time.sleep(0.02)
         if self.save_messages:
             self.our_messages.append(data)
         return data
@@ -498,7 +497,7 @@ class server(Thread):
             "hash": system.hash,
             "previous_hash": system.previous_hash,
             "sequence_number":
-            system.sequence_number + block.empty_block_number,
+            system.sequence_number,
         }
 
         self.send(data, c_type=3)

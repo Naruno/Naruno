@@ -50,7 +50,7 @@ def self_candidates(block: Block):
                     "signature":
                     a_time,
                     "sequence_number":
-                    block.sequence_number + block.empty_block_number,
+                    block.sequence_number,
                 }
             
             naruno.node.get_candidate_blocks.our_candidates = [will_add_candidate_block, will_add_candidate_block_hash, block]
@@ -100,11 +100,11 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             pass
         if node.candidate_block_hash is not None:
             if (int(node.candidate_block_hash["sequence_number"]) ==
-                    block.sequence_number + block.empty_block_number):
+                    block.sequence_number):
                 the_candidate_block_hashes.append(node.candidate_block_hash)
             else:
                 for i in node.candidate_block_hash_history:
-                    if i["sequence_number"] == block.sequence_number + block.empty_block_number:
+                    if i["sequence_number"] == block.sequence_number:
                         the_candidate_block_hashes.append(i)
         else:
             pass
