@@ -33,7 +33,7 @@ def self_candidates(block: Block):
                     "action": "myblock",
                     "transaction": new_list,
                     "signature": a_time,
-                    "sequence_number": block.sequence_number,
+                    "sequence_number": block.sequence_number + block.empty_block_number,
                     "total_length": len(new_list)
                 }
             
@@ -47,7 +47,7 @@ def self_candidates(block: Block):
                     "signature":
                     a_time,
                     "sequence_number":
-                    block.sequence_number,
+                    block.sequence_number + block.empty_block_number,
                 }
             
             naruno.node.get_candidate_blocks.our_candidates = [will_add_candidate_block, will_add_candidate_block_hash, block]
@@ -80,7 +80,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
         if node.candidate_block is not None:
             the_id = ""
             if int(node.candidate_block["sequence_number"]
-                   ) == block.sequence_number:
+                   ) == block.sequence_number + block.empty_block_number:
                 the_id = node.candidate_block["id"]
                 if not the_id in id_control_list:
                     the_candidate_blocks.append(node.candidate_block)
@@ -97,11 +97,11 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             pass
         if node.candidate_block_hash is not None:
             if (int(node.candidate_block_hash["sequence_number"]) ==
-                    block.sequence_number):
+                    block.sequence_number + block.empty_block_number):
                 the_candidate_block_hashes.append(node.candidate_block_hash)
             else:
                 for i in node.candidate_block_hash_history:
-                    if i["sequence_number"] == block.sequence_number:
+                    if i["sequence_number"] == block.sequence_number + block.empty_block_number:
                         the_candidate_block_hashes.append(i)
         else:
             pass
