@@ -22,6 +22,8 @@ buffer_size_2 = 6525 + int(
     (a_block.max_data_size // a_block.max_tx_number) * 1.5)
 buffer_size_3 = 6525 + int(
     (a_block.max_data_size // a_block.max_tx_number) * 5)  
+buffer_size_4 = 6525 + int(
+    (a_block.max_data_size // a_block.max_tx_number) * 0.5)  
 
 class client(Thread):
 
@@ -45,6 +47,8 @@ class client(Thread):
             self.buffer_size = buffer_size_2          
         elif self.c_type == 2:
             self.buffer_size = buffer_size_3   
+        elif self.c_type == 3:
+            self.buffer_size = buffer_size_4
 
         self.logger = get_logger(
             f"NODE_{self.server.host}_{self.server.port}_SOCK_{self.host}_{self.port}"

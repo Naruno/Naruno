@@ -57,7 +57,8 @@ buffer_size_2 = 6525 + int(
     (a_block.max_data_size // a_block.max_tx_number) * 1.5)
 buffer_size_3 = 6525 + int(
     (a_block.max_data_size // a_block.max_tx_number) * 5)    
-
+buffer_size_4 = 6525 + int(
+    (a_block.max_data_size // a_block.max_tx_number) * 0.5)    
 
 class server(Thread):
     Server = None
@@ -230,6 +231,8 @@ class server(Thread):
             the_buffer = buffer_size_2
         elif c_type == 2:
             the_buffer = buffer_size_3
+        elif c_type == 3:
+            the_buffer = buffer_size_4
 
         if len(json.dumps(data).encode("utf-8")) < the_buffer:
             data["buffer"] = "0" * (
@@ -497,7 +500,7 @@ class server(Thread):
             system.sequence_number + block.empty_block_number,
         }
 
-        self.send(data)
+        self.send(data, c_type=3)
 
     def get_candidate_block(self, data, node: client, hash_of_data=""):
         self.logger.info(f"Getting candidate block with {hash_of_data}")
