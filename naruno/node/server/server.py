@@ -14,6 +14,7 @@ import time
 from hashlib import sha256
 from shutil import move
 from threading import Thread
+import traceback
 
 from naruno.accounts.save_accounts import accounts_db
 from naruno.blockchain.block.block_main import Block
@@ -236,8 +237,11 @@ class server(Thread):
         while node.id+str(c_type) in self.send_busy:
             time.sleep(0.01)
         self.send_busy.append(node.id+str(c_type))
-        with contextlib.suppress(socket.timeout):
-            node.socket.sendall(json.dumps(data).encode("utf-8"))
+        try:
+            with contextlib.suppress(socket.timeout):
+                node.socket.sendall(json.dumps(data).encode("utf-8"))
+        except:
+            traceback.print_exc()
         self.send_busy.remove(node.id+str(c_type))
         with contextlib.suppress(KeyError):
             del data["buffer"]
