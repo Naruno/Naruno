@@ -69,7 +69,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
     candidate_block class
     """
 
-    nodes = (Unl.get_as_node_type(Unl.get_unl_nodes())
+    nodes = (Unl.get_as_node_type(Unl.get_unl_nodes()+ Unl.get_as_node_type(Unl.get_unl_nodes(c_type=3))
              if custom_nodes_list is None else custom_nodes_list)
 
     the_candidate_blocks = []
