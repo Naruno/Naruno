@@ -30,12 +30,12 @@ def self_candidates(block: Block):
                 will_add_candidate_block_hash = naruno.node.get_candidate_blocks.our_candidates[1]
             
 
-            if (the_block.sequence_number < block.sequence_number) or block.sequence_number == 0 or (the_block.sequence_number == block.sequence_number and the_block.empty_block_number < block.empty_block_number):
+            if (the_block.sequence_number < block.sequence_number) or block.sequence_number == 0:
                 will_add_candidate_block = {
                         "action": "myblock",
                         "transaction": new_list,
                         "signature": a_time,
-                        "sequence_number": block.sequence_number + block.empty_block_number,
+                        "sequence_number": block.sequence_number,
                         "total_length": len(new_list)
                     }
                 the_block = block                    
@@ -83,13 +83,13 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
         if node.candidate_block is not None:
             the_id = ""
             if int(node.candidate_block["sequence_number"]
-                   ) == block.sequence_number + block.empty_block_number:
+                   ) == block.sequence_number:
                 the_id = node.candidate_block["id"]
                 if not the_id in id_control_list:
                     the_candidate_blocks.append(node.candidate_block)
             else:
                 for i in node.candidate_block_history:
-                    if i["sequence_number"] == block.sequence_number + block.empty_block_number:
+                    if i["sequence_number"] == block.sequence_number:
                         the_id = i["id"]
                         if not the_id in id_control_list:
                             the_candidate_blocks.append(i)
