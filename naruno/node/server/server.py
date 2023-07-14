@@ -238,7 +238,6 @@ class server(Thread):
         self.send_busy.append(node.id+str(c_type))
         with contextlib.suppress(socket.timeout):
             node.socket.sendall(json.dumps(data).encode("utf-8"))
-        time.sleep(2)
         self.send_busy.remove(node.id+str(c_type))
         with contextlib.suppress(KeyError):
             del data["buffer"]
@@ -442,7 +441,7 @@ class server(Thread):
         self.logger.info(f"Sending my block to all nodes")
         system = self_candidates(block)
 
-        the_wait_time = (system.round_1_time - system.consensus_timer*2) / system.max_tx_number
+        
 
         new_list = []
 
@@ -465,7 +464,7 @@ class server(Thread):
         }
 
         self.send(data)
-        #time.sleep(the_wait_time)
+        time.sleep(2)
 
         if len(new_list) > 1:
             for element in new_list[1:]:
@@ -479,7 +478,7 @@ class server(Thread):
                 }
 
                 self.send(data)
-                #time.sleep(the_wait_time)
+
 
     def send_my_block_hash(self, block):
         self.logger.info(f"Sending my block hash to all nodes")
