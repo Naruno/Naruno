@@ -121,7 +121,7 @@ def ProccesstheTransaction(
         if not touser_inlist and not to_user_in_new_list:
             new_added_accounts_list.append(
                 Account(trans.toUser, float(trans.amount)))
-
+    logger.info(f"Actions: {actions}")
     for action in actions:
         for account in account_list:
             if action[0] == account.Address:
@@ -139,6 +139,9 @@ def ProccesstheTransaction(
     new_added_accounts_list = sorted(new_added_accounts_list,
                                      key=lambda x: x.Address)
 
+
+    logger.debug(f"SaveAccounts list: {new_added_accounts_list + edited_accounts}")
+    logger.debug(f"SaveAccounts path: {the_TEMP_ACCOUNTS_PATH}")
     SaveAccounts(new_added_accounts_list + edited_accounts,
                  the_TEMP_ACCOUNTS_PATH)
 
