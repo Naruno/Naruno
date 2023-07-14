@@ -86,7 +86,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
                     the_candidate_blocks.append(node.candidate_block)
             else:
                 for i in node.candidate_block_history:
-                    if i["sequence_number"] == block.sequence_number:
+                    if i["sequence_number"] == block.sequence_number + block.empty_block_number:
                         the_id = i["id"]
                         if not the_id in id_control_list:
                             the_candidate_blocks.append(i)
