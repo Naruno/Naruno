@@ -25,8 +25,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
     """
     Returns the block.
     """
-    if naruno.blockhain.block.get_block.the_ram_block is not None:
-        return naruno.blockhain.block.get_block.the_ram_block
+    if naruno.blockchain.block.get_block.the_ram_block is not None:
+        return naruno.blockchain.block.get_block.the_ram_block
 
     from naruno.blockchain.block.save_block import block_db
 
