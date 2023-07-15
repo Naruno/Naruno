@@ -19,7 +19,7 @@ accounts_ram_db = {}
 
 
 operations_hashes = []
-
+logger = get_logger("ACCOUNTS")
 
 def get_ram_accounts(name: str, reset: bool = False):
     if not name in accounts_ram_db or reset:
@@ -45,12 +45,16 @@ def SaveAccounts(new_account,
         new_account = [new_account]
 
     if sequence is not None:
-        accounts_dict = [i.dump_json() for i in new_account]
-        the_string=str(sequence)+str(custom_TEMP_ACCOUNTS_PATH) + str(accounts_dict)
+        logger.info("Sequence is not node")
+        the_string=str(sequence)+str(custom_TEMP_ACCOUNTS_PATH)
+        logger.debug(f"String: {the_string}")
         the_hash = hashlib.sha256(the_string.encode()).hexdigest()
+        logger.debug(f"Hash: {the_hash}")
         if the_hash in operations_hashes:
+            logger.warning("Two times try")
             return
         else:
+            logger.info("Passed")
             operations_hashes.append(the_hash)
 
 
