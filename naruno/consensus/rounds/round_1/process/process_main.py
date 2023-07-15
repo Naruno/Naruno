@@ -44,15 +44,15 @@ def round_process(
 
     account_list = GetAccounts(
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
-    block = ProccesstheTransaction(
+    resukt_of_proccesstransaction = ProccesstheTransaction(
         block,
         account_list,
         custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         custom_shares=custom_shares,
         custom_fee_address=custom_fee_address,
     )
-    account_list = GetAccounts(
-        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH)
+    block = resukt_of_proccesstransaction[0]
+    account_list = resukt_of_proccesstransaction[1]
 
     part_of_blocks_hash = GetBlockshash_part(
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH)

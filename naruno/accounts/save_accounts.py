@@ -79,3 +79,6 @@ def SaveAccounts(new_account,
         accounts_ram_db[ram_db_record],
         custom_key_location=the_TEMP_ACCOUNTS_PATH,
     )
+
+
+    return accounts_ram_db[ram_db_record]
