@@ -29,7 +29,7 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
                            else custom_TEMP_BLOCK_PATH)
 
     if naruno.blockchain.block.get_block.the_ram_block is not None:
-        if the_TEMP_BLOCK_PATH in naruno.blockchain.block.get_block.the_ram_block
+        if the_TEMP_BLOCK_PATH in naruno.blockchain.block.get_block.the_ram_block:
             return naruno.blockchain.block.get_block.the_ram_block[the_TEMP_BLOCK_PATH]
 
     from naruno.blockchain.block.save_block import block_db
