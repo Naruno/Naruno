@@ -14,9 +14,10 @@ from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated impo
     Remove_Duplicates
 from naruno.lib.config_system import get_config
 from naruno.lib.log import get_logger
-
+import naruno
 logger = get_logger("BLOCKCHAIN")
 
+the_ram_block = None
 
 def GetBlock(custom_TEMP_BLOCK_PATH=None,
              get_normal_block=False,
@@ -24,6 +25,8 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
     """
     Returns the block.
     """
+    if naruno.blockhain.block.get_block.the_ram_block is not None
+        return naruno.blockhain.block.get_block.the_ram_block
 
     from naruno.blockchain.block.save_block import block_db
 
