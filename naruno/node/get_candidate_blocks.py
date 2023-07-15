@@ -30,7 +30,7 @@ def self_candidates(block: Block):
                 will_add_candidate_block_hash = naruno.node.get_candidate_blocks.our_candidates[1]
             
 
-            if (the_block.sequence_number < block.sequence_number) or block.sequence_number == 0 or (the_block.sequence_number == block.sequence_number and len(the_block.validating_list) < len(the_block.validating_list)):
+            if (the_block.sequence_number+the_block.empty_block_number < block.sequence_number+block.empty_block_number) or block.sequence_number == 0:
                 will_add_candidate_block = {
                         "action": "myblock",
                         "transaction": new_list,
@@ -38,9 +38,8 @@ def self_candidates(block: Block):
                         "sequence_number": block.sequence_number,
                         "total_length": len(new_list)
                     }
-                the_block = block  
-            
-            if the_block.hash != block.hash:
+                
+
                 will_add_candidate_block_hash = {
                         "action":
                         "myblockhash",
