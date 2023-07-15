@@ -127,7 +127,7 @@ class Block:
       
             first_empty_block = self.empty_block_number
             sequence_number_time = self.genesis_time + (
-                (self.sequence_number) * self.block_time)
+                (self.sequence_number) * self.block_time) + (self.block_time - (self.round_1_time + self.round_2_time))
             extra = int(time.time()) - sequence_number_time
             adding = extra // self.block_time
             secondly_empty_block = adding
