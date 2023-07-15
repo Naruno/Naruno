@@ -152,6 +152,6 @@ def ProccesstheTransaction(
     logger.debug(f"SaveAccounts list: {new_added_accounts_list + edited_accounts}")
     logger.debug(f"SaveAccounts path: {the_TEMP_ACCOUNTS_PATH}")
     SaveAccounts(new_added_accounts_list + edited_accounts,
-                 the_TEMP_ACCOUNTS_PATH)
+                 the_TEMP_ACCOUNTS_PATH, sequence=block.sequence_number)
 
     return block

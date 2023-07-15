@@ -11,9 +11,14 @@ from naruno.config import TEMP_ACCOUNTS_PATH
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 
+import hashlib
+
 accounts_db = KOT("accounts_db", folder=get_config()["main_folder"] + "/db")
 
 accounts_ram_db = {}
+
+
+operations_hashes = []
 
 
 def get_ram_accounts(name: str, reset: bool = False):
@@ -29,14 +34,26 @@ def get_ram_accounts(name: str, reset: bool = False):
 
 def SaveAccounts(new_account,
                  custom_TEMP_ACCOUNTS_PATH=None,
-                 reset: bool = False):
+                 reset: bool = False,sequence=None):
     """
     Saves the accounts to the TEMP_ACCOUNTS_PATH.
     """
+
     os.chdir(get_config()["main_folder"])
 
     if type(new_account) != list:
         new_account = [new_account]
+
+    if sequence is not None:
+        accounts_dict = [i.dump_json() for i in new_account]
+        the_string=str(sequence)+str(custom_TEMP_ACCOUNTS_PATH) + str(accounts_dict)
+        the_hash = hashlib.sha256(the_string.encode()).hexdigest()
+        if the_hash in operations_hashes:
+            return
+        else:
+            operations_hashes.append(the_hash)
+
+
 
     the_TEMP_ACCOUNTS_PATH = (TEMP_ACCOUNTS_PATH if custom_TEMP_ACCOUNTS_PATH
                               is None else custom_TEMP_ACCOUNTS_PATH)
