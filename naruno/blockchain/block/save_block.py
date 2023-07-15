@@ -23,6 +23,7 @@ from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.cleaner import Cleaner
 from naruno.transactions.pending.get_pending import GetPending
+import naruno
 
 block_db = KOT("block_db", folder=get_config()["main_folder"] + "/db")
 
