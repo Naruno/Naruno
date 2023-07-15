@@ -128,7 +128,7 @@ def ProccesstheTransaction(
                 alread_in = True if account in edited_accounts else False
                 the_account = edited_accounts[edited_accounts.index(account)] if account in edited_accounts else account                
                 if the_account.Address == block.fee_address:
-                    logger.info(f"Fee Address Input: {the_account.dump_json}")
+                    logger.info(f"Fee Address Input: {the_account.dump_json()}")
                 if action[1] == "balance":
                     balance_decimal = Decimal(str(the_account.balance)) + Decimal(str(action[2]))
                     the_account.balance = float(balance_decimal)
@@ -136,7 +136,7 @@ def ProccesstheTransaction(
                     the_account.sequence_number += action[2]
 
                 if the_account.Address == block.fee_address:
-                    logger.info(f"Fee Address Output: {the_account.dump_json}")
+                    logger.info(f"Fee Address Output: {the_account.dump_json()}")
                 if not alread_in:
                     edited_accounts.append(the_account)
 
