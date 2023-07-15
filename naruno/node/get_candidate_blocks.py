@@ -29,8 +29,9 @@ def self_candidates(block: Block):
                 will_add_candidate_block = naruno.node.get_candidate_blocks.our_candidates[0]
                 will_add_candidate_block_hash = naruno.node.get_candidate_blocks.our_candidates[1]
             
-
-            if (the_block.sequence_number+the_block.empty_block_number < block.sequence_number+block.empty_block_number) or block.sequence_number == 0:
+            first_validating = [i.dump_json() for i in the_block.validating_list]
+            second_validating = [i.dump_json() for i in block.validating_list]
+            if (first_validating != second_validating and the_block.sequence_number == block.sequence_number) or (the_block.sequence_number < block.sequence_number) or block.sequence_number == 0:
                 will_add_candidate_block = {
                         "action": "myblock",
                         "transaction": new_list,
