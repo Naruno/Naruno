@@ -44,7 +44,7 @@ def sync(
         ).start()
         naruno.consensus.sync.sync.sync_round_1 = False
     else:
-        if not block.round_2:
+        if not block.round_2 and naruno.consensus.sync.sync.sync_round_2:
             threading.Thread(
                 target=send_block_hash,
                 args=(block, the_server, send_block_hash_error),
