@@ -124,7 +124,7 @@ def ProccesstheTransaction(
     logger.info(f"Actions: {actions}")
     for action in actions:
         for account in account_list:
-            if action[0] == the_account.Address:
+            if action[0] == account.Address:
                 alread_in = True if account in edited_accounts else False
                 the_account = edited_accounts[edited_accounts.index(account)] if account in edited_accounts else account                
                 if the_account.Address == block.fee_address:
