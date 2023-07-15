@@ -60,7 +60,7 @@ def shares(block: Block,
                             the_time,
                         ))
 
-    fee = Decimal("0"
+    fee = Decimal("0")
     if not dont_clean:
         block = Remove_Duplicates(block)
     block.validating_list = sorted(block.validating_list,
