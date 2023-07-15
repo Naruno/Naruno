@@ -154,4 +154,4 @@ def ProccesstheTransaction(
     the_account_list_result = SaveAccounts(new_added_accounts_list + edited_accounts,
                  the_TEMP_ACCOUNTS_PATH, sequence=block.sequence_number+block.empty_block_number)
 
-    return [block, the_account_list_result}
+    return [block, the_account_list_result]
