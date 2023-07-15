@@ -124,13 +124,21 @@ def ProccesstheTransaction(
     logger.info(f"Actions: {actions}")
     for action in actions:
         for account in account_list:
-            if action[0] == account.Address:
+            if action[0] == the_account.Address:
+                alread_in = True if account in edited_accounts else False
+                the_account = edited_accounts[edited_accounts.index(account)] if account in edited_accounts else account                
+                if the_account.Address == block.fee_address:
+                    logger.info(f"Fee Address Input: {the_account.dump_json}")
                 if action[1] == "balance":
-                    balance_decimal = Decimal(str(account.balance)) + Decimal(str(action[2]))
-                    account.balance = float(balance_decimal)
+                    balance_decimal = Decimal(str(the_account.balance)) + Decimal(str(action[2]))
+                    the_account.balance = float(balance_decimal)
                 elif action[1] == "sequence_number":
-                    account.sequence_number += action[2]
-                edited_accounts.append(account)
+                    the_account.sequence_number += action[2]
+
+                if the_account.Address == block.fee_address:
+                    logger.info(f"Fee Address Output: {the_account.dump_json}")
+                if not alread_in:
+                    edited_accounts.append(the_account)
 
     # Syncs new sorted list to block.validating_list
 

@@ -11,6 +11,7 @@ from naruno.consensus.rounds.round_1.process.transactions.checks.duplicated impo
     Remove_Duplicates
 from naruno.lib.log import get_logger
 from naruno.transactions.transaction import Transaction
+from decimal import Decimal
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -59,14 +60,15 @@ def shares(block: Block,
                             the_time,
                         ))
 
-    fee = 0
+    fee = Decimal("0"
     if not dont_clean:
         block = Remove_Duplicates(block)
     block.validating_list = sorted(block.validating_list,
                                    key=lambda x: x.fromUser)
     for tx in block.validating_list:
         if not "NARUNO" in tx.signature:
-            fee += tx.transaction_fee
+            fee += Decimal(str(tx.transaction_fee))
+    fee = float(fee)
     if fee > 0:
         tx_list.append(
             Transaction(
