@@ -39,7 +39,7 @@ def self_candidates(block: Block):
                         "total_length": len(new_list)
                     }
                 the_block = block 
-            if the_block.hash != block.hash:
+            if the_block.hash != block.hash or block.sequence_number == 0:
                 will_add_candidate_block_hash = {
                         "action":
                         "myblockhash",
