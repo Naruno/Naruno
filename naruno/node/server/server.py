@@ -825,15 +825,6 @@ class server(Thread):
             server.send_transaction(the_transaction,
                                     except_client=node,
                                     custom_server=self)
-            SaveBlock(
-                block,
-                custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
-                custom_TEMP_ACCOUNTS_PATH=self.TEMP_ACCOUNTS_PATH,
-                custom_TEMP_BLOCKSHASH_PATH=self.TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=self.
-                TEMP_BLOCKSHASH_PART_PATH,
-            )
-
     def send_block_to_other_nodes(self,
                                   node=None,
                                   sync=False,

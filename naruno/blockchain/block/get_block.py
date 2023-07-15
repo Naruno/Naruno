@@ -17,7 +17,7 @@ from naruno.lib.log import get_logger
 import naruno
 logger = get_logger("BLOCKCHAIN")
 
-the_ram_block = None
+the_ram_block = {}
 
 def GetBlock(custom_TEMP_BLOCK_PATH=None,
              get_normal_block=False,
@@ -25,15 +25,18 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
     """
     Returns the block.
     """
+    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
+                           else custom_TEMP_BLOCK_PATH)
+
     if naruno.blockchain.block.get_block.the_ram_block is not None:
-        return naruno.blockchain.block.get_block.the_ram_block
+        if the_TEMP_BLOCK_PATH in naruno.blockchain.block.get_block.the_ram_block
+            return naruno.blockchain.block.get_block.the_ram_block[the_TEMP_BLOCK_PATH]
 
     from naruno.blockchain.block.save_block import block_db
 
     logger.debug("Getting block from disk")
 
-    the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
-                           else custom_TEMP_BLOCK_PATH)
+
 
     os.chdir(get_config()["main_folder"])
 

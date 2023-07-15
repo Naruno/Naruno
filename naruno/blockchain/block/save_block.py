@@ -471,7 +471,7 @@ def SaveBlock(
     block_db_path_first = os.path.join(get_config()["main_folder"],
                                        the_TEMP_BLOCK_PATH)
 
-    naruno.blockchain.block.get_block.the_ram_block = block
+    naruno.blockchain.block.get_block.the_ram_block[the_TEMP_BLOCK_PATH] = block
     block_db.set(the_TEMP_BLOCK_PATH,
                  block,
                  custom_key_location=block_db_path_first)
