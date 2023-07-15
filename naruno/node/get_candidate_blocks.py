@@ -31,7 +31,7 @@ def self_candidates(block: Block):
             
             first_validating = [i.dump_json() for i in the_block.validating_list]
             second_validating = [i.dump_json() for i in block.validating_list]
-            if (first_validating != second_validating and the_block.sequence_number == block.sequence_number) or (the_block.sequence_number < block.sequence_number) or block.sequence_number == 0:
+            if not block.round_1:
                 will_add_candidate_block = {
                         "action": "myblock",
                         "transaction": new_list,
