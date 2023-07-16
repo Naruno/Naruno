@@ -12,7 +12,7 @@ from naruno.lib.log import clear_logs
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.transaction import Transaction
-
+import naruno
 logger = get_logger("BLOCKCHAIN")
 
 
@@ -135,6 +135,11 @@ class Block:
                 if not first_empty_block == secondly_empty_block:
                     clear_logs()
                 self.empty_block_number = adding
+                if not self.round_1:
+                    naruno.consensus.sync.sync.sync_round_1 = True
+                if not self.round_2:
+                    naruno.consensus.sync.sync.sync_round_2 = True
+
                 self.start_time = self.genesis_time + (
                     (self.sequence_number + self.empty_block_number) *
                     self.block_time)
