@@ -131,7 +131,7 @@ class Block:
             extra = int(time.time()) - sequence_number_time
             adding = extra // (self.block_time)
             secondly_empty_block = adding
-            if not first_empty_block > secondly_empty_block:
+            if first_empty_block < secondly_empty_block:
                 if not first_empty_block == secondly_empty_block:
                     clear_logs()
                 self.empty_block_number = adding
