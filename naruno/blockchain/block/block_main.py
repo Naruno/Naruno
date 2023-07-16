@@ -116,8 +116,7 @@ class Block:
         return [block2, self]
 
 
-    def sync_empty_blocks(self):
-            return 
+    def sync_empty_blocks(self): 
             first_empty_block = self.empty_block_number
             sequence_number_time = self.genesis_time + (
                 (self.sequence_number) * self.block_time)
