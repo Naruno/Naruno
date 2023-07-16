@@ -37,14 +37,14 @@ def sync(
     logger.info("Data sending process is starting")
     the_server = server.Server if custom_server is None else custom_server
 
-    if not block.round_1 and naruno.consensus.sync.sync.sync_round_1:
+    if naruno.consensus.sync.sync.sync_round_1:
         threading.Thread(
             target=send_block,
             args=(block, the_server, send_block_error),
         ).start()
         naruno.consensus.sync.sync.sync_round_1 = False
-    else:
-        if not block.round_2 and naruno.consensus.sync.sync.sync_round_2:
+  
+    if naruno.consensus.sync.sync.sync_round_2:
             threading.Thread(
                 target=send_block_hash,
                 args=(block, the_server, send_block_hash_error),
