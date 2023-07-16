@@ -446,7 +446,7 @@ class server(Thread):
 
     def send_my_block(self, block: Block):
         self.logger.info(f"Sending my block to all nodes")
-        system = self_candidates(block)
+        system = self_candidates(block)[0]
 
         
 
@@ -490,7 +490,7 @@ class server(Thread):
     def send_my_block_hash(self, block):
         self.logger.info(f"Sending my block hash to all nodes")
          
-        system = self_candidates(block)
+        system = self_candidates(block)[1]
 
         data = {
             "action": "myblockhash",
