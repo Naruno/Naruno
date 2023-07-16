@@ -107,8 +107,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
         else:
             pass
         if node.candidate_block_hash is not None:
-            if (int(node.candidate_block_hash["sequence_number"]) ==
-                    block.sequence_number:
+            if (int(node.candidate_block_hash["sequence_number"]) == block.sequence_number:
                 the_candidate_block_hashes.append(node.candidate_block_hash)
             else:
                 for i in node.candidate_block_hash_history:
