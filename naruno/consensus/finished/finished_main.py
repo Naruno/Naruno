@@ -111,7 +111,7 @@ def finished_main(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
 
             if len(the_blocks_hash) == block.part_amount:
-                block.empty_block_number += block.gap_block_number
+                block.empty_block_number += block.gap_block_number + block.hard_block_number
 
                 block.sync = True
                 SaveBlockshash_part(
@@ -145,7 +145,14 @@ def finished_main(
                               (block.hard_block_number *
                                block.block_time)) - int(time.time())
                 if difference > 0:
-                    time.sleep(difference)
+                    time.sleep(difference)                
+                [
+                the_server.send_block_to_other_nodes(sync_client, sync=True)
+                for sync_client in the_server.sync_clients
+                ]
+
+
+
 
 
         PendingtoValidating(block)
@@ -159,21 +166,6 @@ def finished_main(
         naruno.consensus.sync.sync.sync_round_1 = True
         return True
     else:
-        if block.sync == True:
-            block.sync = False
-            SaveBlock(
-                block,
-                custom_TEMP_BLOCK_PATH=the_TEMP_BLOCK_PATH,
-                custom_TEMP_ACCOUNTS_PATH=the_TEMP_ACCOUNTS_PATH,
-                custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
-                custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
-            )
-            [
-                the_server.send_block_to_other_nodes(sync_client, sync=True)
-                for sync_client in the_server.sync_clients
-            ]
-            the_server.sync_clients = []
-
         logger.debug(
             "Consensus proccess is complated, waiting for the true time")
         return False
