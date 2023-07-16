@@ -103,25 +103,18 @@ class Block:
         self.validated = False
         self.validated_time = None
 
-        if (not self.use_full_block and len(self.validating_list) != 0) or len(
-                self.validating_list) >= (self.max_tx_number / 2):
-            block2 = copy.copy(self)
-            # Resetting and setting the new elements.
-            self.previous_hash = self.hash
-            self.sequence_number = self.sequence_number + 1
-            clear_logs()
-            self.validating_list = []
-            self.hash = None
-            logger.info("New block created")
-            self.sync_empty_blocks()
-            logger.debug(self.__dict__)
-            return [block2, self]
-        else:
-            logger.info(
-                "New block not created because no transaction enought to create a new block"
-            )
-            self.sync_empty_blocks()
-            return False
+        block2 = copy.copy(self)
+        # Resetting and setting the new elements.
+        self.previous_hash = self.hash
+        self.sequence_number = self.sequence_number + 1
+        clear_logs()
+        self.validating_list = []
+        self.hash = None
+        logger.info("New block created")
+        self.sync_empty_blocks()
+        logger.debug(self.__dict__)
+        return [block2, self]
+
 
     def sync_empty_blocks(self):
             return 
