@@ -129,9 +129,10 @@ class Block:
             sequence_number_time = self.genesis_time + (
                 (self.sequence_number) * self.block_time)
             extra = int(time.time()) - sequence_number_time
-            adding = extra // (self.block_time*2)
+            limit = extra // (self.block_time*2)
+            adding = extra // (self.block_time)
             secondly_empty_block = adding
-            if first_empty_block < secondly_empty_block:
+            if first_empty_block < limit:
                 if not first_empty_block == secondly_empty_block:
                     clear_logs()
                 self.empty_block_number = adding
