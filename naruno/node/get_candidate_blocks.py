@@ -46,6 +46,7 @@ def self_candidates(block: Block):
                             "total_length": len(new_list)
                         }
                 the_block = block 
+                naruno.consensus.sync.sync.sync_round_1 = False
             if naruno.consensus.sync.sync.sync_round_2 or must_do_it:
                 will_add_candidate_block_hash = {
                             "action":
@@ -61,6 +62,7 @@ def self_candidates(block: Block):
                         }
                 
                 the_block_2 = block 
+                naruno.consensus.sync.sync.sync_round_2 = False
                     
                 
                 

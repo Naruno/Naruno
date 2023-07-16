@@ -49,7 +49,6 @@ def sync(
         target=send_block_hash,
         args=(block, the_server, send_block_hash_error),
     ).start()
-    naruno.consensus.sync.sync.sync_round_2 = False
 
     logger.debug("Transactions is sending to the unl nodes")
     the_transactions_list = copy.copy(block.validating_list)
