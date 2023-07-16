@@ -145,7 +145,8 @@ def finished_main(
                               (block.hard_block_number *
                                block.block_time)) - int(time.time())
                 if difference > 0:
-                    time.sleep(difference)                
+                    time.sleep(difference)    
+                block.sync = False            
                 [
                 the_server.send_block_to_other_nodes(sync_client, sync=True)
                 for sync_client in the_server.sync_clients
