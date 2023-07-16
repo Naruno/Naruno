@@ -124,12 +124,12 @@ class Block:
             return False
 
     def sync_empty_blocks(self):
-        if not self.validated:
+        if not self.round_1:
             first_empty_block = self.empty_block_number
             sequence_number_time = self.genesis_time + (
                 (self.sequence_number) * self.block_time)
             extra = int(time.time()) - sequence_number_time
-            adding = extra // (self.block_time + (self.block_time-(self.round_1_time+self.round_2_time)))
+            adding = extra // (self.block_time*2)
             secondly_empty_block = adding
             if first_empty_block < secondly_empty_block:
                 if not first_empty_block == secondly_empty_block:
