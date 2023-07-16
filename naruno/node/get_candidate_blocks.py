@@ -33,16 +33,16 @@ def self_candidates(block: Block):
             
             first_validating = [i.dump_json() for i in the_block.validating_list]
             second_validating = [i.dump_json() for i in block.validating_list]
-            if not block.round_1 and (the_block.sequence_number+the_block.empty_block_number  < block.sequence_number+block.empty_block_number or block.sequence_number == 0):
+            if naruno.consensus.sync.sync.sync_round_1:
                 will_add_candidate_block = {
                             "action": "myblock",
                             "transaction": new_list,
                             "signature": a_time,
-                            "sequence_number": block.sequence_number+block.empty_block_number,
+                            "sequence_number": block.sequence_number,
                             "total_length": len(new_list)
                         }
                 the_block = block 
-            if not block.round_2 and (the_block.sequence_number+the_block.empty_block_number  < block.sequence_number+block.empty_block_number or block.sequence_number == 0):
+            if naruno.consensus.sync.sync.sync_round_2:
                 will_add_candidate_block_hash = {
                             "action":
                             "myblockhash",
@@ -53,7 +53,7 @@ def self_candidates(block: Block):
                             "signature":
                             a_time,
                             "sequence_number":
-                            block.sequence_number+block.empty_block_number,
+                            block.sequence_number,
                         }
                 
                 the_block_2 = block 
@@ -91,13 +91,13 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
         if node.candidate_block is not None:
             the_id = ""
             if int(node.candidate_block["sequence_number"]
-                   ) == block.sequence_number+block.empty_block_number:
+                   ) == block.sequence_number:
                 the_id = node.candidate_block["id"]
                 if not the_id in id_control_list:
                     the_candidate_blocks.append(node.candidate_block)
             else:
                 for i in node.candidate_block_history:
-                    if i["sequence_number"] == block.sequence_number+block.empty_block_number:
+                    if i["sequence_number"] == block.sequence_number:
                         the_id = i["id"]
                         if not the_id in id_control_list:
                             the_candidate_blocks.append(i)
@@ -108,11 +108,11 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             pass
         if node.candidate_block_hash is not None:
             if (int(node.candidate_block_hash["sequence_number"]) ==
-                    block.sequence_number+block.empty_block_number):
+                    block.sequence_number:
                 the_candidate_block_hashes.append(node.candidate_block_hash)
             else:
                 for i in node.candidate_block_hash_history:
-                    if i["sequence_number"] == block.sequence_number+block.empty_block_number:
+                    if i["sequence_number"] == block.sequence_number:
                         the_candidate_block_hashes.append(i)
         else:
             pass

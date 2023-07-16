@@ -42,7 +42,7 @@ def sync(
         target=send_block,
         args=(block, the_server, send_block_error),
     ).start()
-    naruno.consensus.sync.sync.sync_round_1 = False
+
     
 
     threading.Thread(
