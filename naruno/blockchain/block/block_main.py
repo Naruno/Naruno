@@ -103,25 +103,33 @@ class Block:
         self.validated = False
         self.validated_time = None
 
-        block2 = copy.copy(self)
-        # Resetting and setting the new elements.
-        self.previous_hash = self.hash
-        self.sequence_number = self.sequence_number + 1
-        clear_logs()
-        self.validating_list = []
-        self.hash = None
-        logger.info("New block created")
-        self.sync_empty_blocks()
-        logger.debug(self.__dict__)
-        return [block2, self]
+        if (not self.use_full_block and len(self.validating_list) != 0) or len(
+                self.validating_list) >= (self.max_tx_number / 2):
+            block2 = copy.copy(self)
+            # Resetting and setting the new elements.
+            self.previous_hash = self.hash
+            self.sequence_number = self.sequence_number + 1
+            clear_logs()
+            self.validating_list = []
+            self.hash = None
+            logger.info("New block created")
+            self.sync_empty_blocks()
+            logger.debug(self.__dict__)
+            return [block2, self]
+        else:
+            logger.info(
+                "New block not created because no transaction enought to create a new block"
+            )
+            self.sync_empty_blocks()
+            return False
 
-
-    def sync_empty_blocks(self): 
+    def sync_empty_blocks(self):
+ 
             first_empty_block = self.empty_block_number
             sequence_number_time = self.genesis_time + (
                 (self.sequence_number) * self.block_time)
             extra = int(time.time()) - sequence_number_time
-            adding = extra // (self.block_time + (self.block_time-(self.round_1_time+self.round_2_time)))
+            adding = extra // (self.block_time)
             secondly_empty_block = adding
             if not first_empty_block > secondly_empty_block:
                 if not first_empty_block == secondly_empty_block:
