@@ -55,7 +55,8 @@ def self_candidates(block: Block):
                         "sequence_number":
                         block.sequence_number,
                     }
-             the_block_2 = block 
+             
+            the_block_2 = block 
                 
                 
                 
