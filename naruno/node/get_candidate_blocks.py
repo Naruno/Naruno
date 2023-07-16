@@ -15,9 +15,13 @@ import naruno
 our_candidates = []
 
 def self_candidates(block: Block):
+
+            must_do_it = True
+
             the_block = block
             the_block_2 = block
             if not len(naruno.node.get_candidate_blocks.our_candidates) == 0:
+                must_do_it = False
                 the_block = naruno.node.get_candidate_blocks.our_candidates[2]
                 the_block_2 = naruno.node.get_candidate_blocks.our_candidates[3]
 
@@ -33,7 +37,7 @@ def self_candidates(block: Block):
             
             first_validating = [i.dump_json() for i in the_block.validating_list]
             second_validating = [i.dump_json() for i in block.validating_list]
-            if naruno.consensus.sync.sync.sync_round_1:
+            if naruno.consensus.sync.sync.sync_round_1 or must_do_it:
                 will_add_candidate_block = {
                             "action": "myblock",
                             "transaction": new_list,
@@ -42,7 +46,7 @@ def self_candidates(block: Block):
                             "total_length": len(new_list)
                         }
                 the_block = block 
-            if naruno.consensus.sync.sync.sync_round_2:
+            if naruno.consensus.sync.sync.sync_round_2 or must_do_it:
                 will_add_candidate_block_hash = {
                             "action":
                             "myblockhash",
