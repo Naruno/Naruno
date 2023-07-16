@@ -115,12 +115,18 @@ class Block:
             logger.info("New block created")
             self.sync_empty_blocks()
             logger.debug(self.__dict__)
+            self.start_time = self.genesis_time + (
+                    (self.sequence_number + self.empty_block_number) *
+                    self.block_time)                
             return [block2, self]
         else:
             logger.info(
                 "New block not created because no transaction enought to create a new block"
             )
             self.empty_block_number = self.empty_block_number + 1
+            self.start_time = self.genesis_time + (
+                    (self.sequence_number + self.empty_block_number) *
+                    self.block_time)            
             self.sync_empty_blocks()
             return False
 
