@@ -4,6 +4,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import contextlib
 import os
 import shutil
 import time
@@ -33,8 +34,13 @@ from naruno.transactions.pending_to_validating import PendingtoValidating
 import naruno
 
 logger = get_logger("CONSENSUS")
-
-
+def make_sync(the_server):
+    logger.info("Syncing the block to other nodes is triggered")
+    with contextlib.suppress(Exception):
+        [
+            the_server.send_block_to_other_nodes(sync_client, sync=True)
+            for sync_client in the_server.sync_clients
+        ]
 def finished_main(
     block: Block,
     custom_TEMP_BLOCK_PATH: str = None,
@@ -45,6 +51,7 @@ def finished_main(
     custom_server: server = None,
     pass_sync: bool = False,
     dont_clean=False,
+    force_sync: bool = False,
 ) -> None:
     the_server = None
     if custom_server is None:
@@ -65,6 +72,7 @@ def finished_main(
     the_TEMP_BLOCK_PATH = (TEMP_BLOCK_PATH if custom_TEMP_BLOCK_PATH is None
                            else custom_TEMP_BLOCK_PATH)
     block.sync_empty_blocks() if pass_sync is False else None
+    make_sync(the_server) if force_sync is True else None
     if true_time(block):
         logger.debug(
             "Consensus proccess is complated, the block will be reset")
@@ -146,11 +154,8 @@ def finished_main(
                                block.block_time)) - int(time.time())
                 if difference > 0:
                     time.sleep(difference)    
-                block.sync = False            
-                [
-                the_server.send_block_to_other_nodes(sync_client, sync=True)
-                for sync_client in the_server.sync_clients
-                ]
+                block.sync = False         
+                make_sync(the_server)
 
 
 
@@ -164,7 +169,8 @@ def finished_main(
             custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=the_TEMP_BLOCKSHASH_PART_PATH,
         )
-        naruno.consensus.sync.sync.sync_round_1 = True
+        with contextlib.suppress(Exception):
+            naruno.consensus.sync.sync.sync_round_1 = True
         return True
     else:
         logger.debug(

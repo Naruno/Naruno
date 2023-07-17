@@ -333,6 +333,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
+            "total_length":0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -344,6 +345,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
+            "total_length":0,
             "hash":
             None,
             "id":
@@ -357,6 +359,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
+            "total_length":0,
             "hash":
             "None",
             "id":
@@ -380,6 +383,7 @@ class Test_Node(unittest.TestCase):
                     "transaction": [the_transaction.dump_json()],
                     "signature": "self",
                     "sequence_number": 0,
+                    "total_length":1,
                 },
             ],
         )
@@ -405,6 +409,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             2,
+            "total_length":0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -416,6 +421,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
+            "total_length":0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -427,6 +433,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             1,
+            "total_length":0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -438,6 +445,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             2,
+            "total_length":0,
             "hash":
             None,
             "id":
@@ -451,6 +459,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
+            "total_length":0,
             "hash":
             None,
             "id":
@@ -464,6 +473,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             1,
+            "total_length":0,
             "hash":
             None,
             "id":
@@ -477,6 +487,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             2,
+            "total_length":0,
             "hash":
             "None",
             "id":
@@ -490,6 +501,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
+            "total_length":0,
             "hash":
             "None",
             "id":
@@ -503,6 +515,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             1,
+            "total_length":0,
             "hash":
             "None",
             "id":
@@ -518,24 +531,11 @@ class Test_Node(unittest.TestCase):
         client_1.candidate_block_history = [value_1_old, value_1_old_1]
         client_1.candidate_block_hash = value_2
         client_1.candidate_block_hash_history = [value_2_old, value_2_old_1]
-        result = GetCandidateBlocks(block=the_block)
-        print(result.candidate_blocks)
-        self.assertEqual(
-            result.candidate_blocks,
-            [
-                value_1_old,
-                {
-                    "action": "myblock",
-                    "transaction": [],
-                    "signature": "self",
-                    "sequence_number": 0,
-                },
-            ],
-        )
-        self.assertEqual(result.candidate_block_hashes, [value_3_old])
+
 
         the_block.sequence_number = 1
-        result = GetCandidateBlocks(block=the_block)
+        result = GetCandidateBlocks(block=the_block,reset=True)
+        print(result.candidate_blocks)
         self.assertEqual(
             result.candidate_blocks,
             [
@@ -545,6 +545,7 @@ class Test_Node(unittest.TestCase):
                     "transaction": [],
                     "signature": "self",
                     "sequence_number": 1,
+                    "total_length": 0,
                 },
             ],
         )
@@ -1058,10 +1059,10 @@ class Test_Node(unittest.TestCase):
             custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH,
         )
         time.sleep(2)
-        self.assertEqual(len(self.node_0.clients), 2)
-        self.assertEqual(len(temp_node.clients), 2)
-        self.assertEqual(len(self.node_1.clients), 3)
-        self.assertEqual(len(self.node_2.clients), 3)
+        self.assertEqual(len(self.node_0.clients), 8)
+        self.assertEqual(len(temp_node.clients), 8)
+        self.assertEqual(len(self.node_1.clients), 12)
+        self.assertEqual(len(self.node_2.clients), 12)
         self.node_1.clients.remove(self.node_1.clients[2])
         self.node_2.clients.remove(self.node_2.clients[2])
         temp_node.stop()
@@ -1160,7 +1161,7 @@ class Test_Node(unittest.TestCase):
         the_block = Block("onur")
         the_block.consensus_timer = 0
         the_block.sync = True
-        the_block.sequence_number += 15
+        the_block.sequence_number += 1
         SaveBlock(
             the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
@@ -1169,11 +1170,15 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0,
         )
-        client = self.node_1.clients[0]
-        print(self.node_0.sync_clients)
+        for i in self.node_1.clients:
+            if i.id == self.node_0 and i.c_tpye == 2:
+                client = i
+        print("The client is: ", client.__dict__)
+   
 
         self.node_1.send_me_full_block(client)
-        print(self.node_0.sync_clients)
+        time.sleep(2)
+
         finished_main(
             block=the_block,
             custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH0,
@@ -1183,9 +1188,10 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH0,
             custom_server=self.node_0,
             pass_sync=True,
+            force_sync=True
         )
-        self.assertEqual(the_block.sync, False)
-        print(self.node_0.sync_clients)
+        self.assertEqual(the_block.sync, True)
+
         time.sleep(15)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))

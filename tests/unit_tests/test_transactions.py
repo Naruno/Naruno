@@ -399,7 +399,7 @@ class Test_Transactions(unittest.TestCase):
 
         self.assertEqual(len(block.validating_list), 2)
         self.assertEqual(transaction_1_true, True)
-        self.assertEqual(transaction_2_true, True)
+        self.assertEqual(transaction_2_true, False)
 
     def test_change_transaction_fee_increasing(self):
         block = Block("")

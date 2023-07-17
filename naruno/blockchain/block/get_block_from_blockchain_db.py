@@ -28,7 +28,7 @@ def GetBlockstoBlockchainDB(
 
         the_block = GetBlock(
             (the_BLOCKS_PATH + str(sequence_number) + ".block.json"),
-            dont_clean=dont_clean,
+            dont_clean=dont_clean, reset=True,
         )
         the_accounts = GetAccounts(
             (the_BLOCKS_PATH + str(sequence_number) + ".accounts.db"))

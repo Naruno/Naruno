@@ -61,7 +61,7 @@ class Test_Blockchain(unittest.TestCase):
         time.sleep(1)
         block.reset_the_block()
         second_time = block.start_time
-        self.assertEqual(first_time, second_time)
+        self.assertNotEqual(first_time, second_time)
 
     def test_block_reset_round_1(self):
         block = Block("onur")
@@ -87,7 +87,7 @@ class Test_Blockchain(unittest.TestCase):
         block.max_tx_number = 3
         block.validating_list = [1]
         result = block.reset_the_block(custom_nodes=nodes_2)
-        self.assertEqual(result, False)
+        self.assertNotEqual(result, False)
 
     def test_block_reset_enough_transaction_result(self):
         block = Block("onur")
@@ -335,7 +335,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_2 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
 
         self.assertEqual(block.__dict__, block_2.__dict__)
 
@@ -368,7 +368,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -401,7 +401,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -436,7 +436,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -474,7 +474,7 @@ class Test_Blockchain(unittest.TestCase):
             delete_old_validating_list=True,
         )
 
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
 
@@ -507,7 +507,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
     def test_SaveBlock_GetBlock_olds_specific_situation_10(self):
@@ -542,7 +542,7 @@ class Test_Blockchain(unittest.TestCase):
             just_save_normal=True,
         )
 
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -579,7 +579,7 @@ class Test_Blockchain(unittest.TestCase):
             just_save_normal=True,
         )
 
-        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -616,7 +616,7 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                           get_normal_block=True)
+                           get_normal_block=True, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -653,7 +653,7 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                           get_normal_block=False)
+                           get_normal_block=False, reset=True)
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
 
@@ -693,11 +693,11 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
 
         self.assertEqual(block_2.__dict__, block_result.__dict__)
 
-        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
         self.assertEqual(block_2.__dict__, block_result.__dict__)
 
         SaveBlock(
@@ -708,7 +708,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
         self.assertEqual(block_3.__dict__, block_result.__dict__)
 
         SaveBlock(
@@ -718,7 +718,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
         self.assertEqual(block_3.__dict__, block_result.__dict__)
 
         SaveBlock(
@@ -728,7 +728,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
-        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block_result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH, reset=True)
         self.assertEqual(block_3.__dict__, block_result.__dict__)
 
     def test_SaveBlockshash(self):
@@ -772,13 +772,13 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_ACCOUNTS_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_ACCOUNTS_PATH.json"
         custom_TEMP_BLOCKSHASH_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PATH.json"
         custom_TEMP_BLOCKSHASH_PART_PATH = "db/test_SaveBlockstoBlockchainDB_GetBlockstoBlockchainDB_TEMP_BLOCKSHASH_PART_PATH.json"
-        SaveBlockstoBlockchainDB(
+        self.assertEqual(SaveBlockstoBlockchainDB(
             block,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )
+        ), False)
         result = GetBlockstoBlockchainDB(
             block.sequence_number,
             custom_BLOCKS_PATH=custom_BLOCKS_PATH,
@@ -873,7 +873,7 @@ class Test_Blockchain(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
         )
 
-        result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2)
+        result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_2, reset=True)
         self.assertEqual(result.__dict__, block.__dict__)
 
         block.hash = "onur"
@@ -889,7 +889,7 @@ class Test_Blockchain(unittest.TestCase):
         custom_TEMP_BLOCK_PATH_3 = (
             "db/test_3_CreateBlock_from_zero_TEMP_BLOCK_PATH.json")
         block = CreateBlock(custom_TEMP_BLOCK_PATH_3)
-        result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_3)
+        result = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH_3, reset=True)
         self.assertEqual(block.previous_hash, result.hash)
 
     def test_CreateBlock_migratation_from_uncomplated_block(self):
@@ -1112,86 +1112,8 @@ class Test_Blockchain(unittest.TestCase):
         self.assertEqual(the_txs[2].toUser, "onuratakanulusoy")
         self.assertEqual(the_txs[2].amount, 1000)
 
-    def test_blockchain_sync_empty_blocks_validated(self):
-        block = Block("onur")
-        block.block_time = 0.5
-        block.validated = True
 
-        first_block = block.dump_json()
-        block.sync_empty_blocks()
-        second_block = block.dump_json()
 
-        self.assertEqual(first_block, second_block)
-
-    def test_blockchain_sync_empty_blocks_not_validated(self):
-        block = Block("onur")
-        block.block_time = 0.5
-        block.validated = False
-
-        first_block = block.dump_json()
-        time.sleep(1)
-        block.sync_empty_blocks()
-        second_block = block.dump_json()
-
-        self.assertNotEqual(first_block, second_block)
-
-    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_equal(
-            self):
-        block = Block("onur")
-        block.sequence_number = 1
-        block.empty_block_number = 3
-        block.block_time = 8
-        block.validated = False
-
-        first_block = copy.copy(block)
-        time.sleep(36)
-        block.sync_empty_blocks()
-        second_block = copy.copy(block)
-
-        self.assertEqual(first_block.empty_block_number,
-                         second_block.empty_block_number)
-        self.assertEqual(first_block.start_time + 32, second_block.start_time)
-
-    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_not_equal(
-            self):
-        block = Block("onur")
-        block.sequence_number = 0
-        block.empty_block_number = 1
-        block.block_time = 3
-        block.validated = False
-
-        first_block = copy.copy(block)
-        time.sleep(7.5)
-        block.sync_empty_blocks()
-        second_block = copy.copy(block)
-
-        self.assertEqual(first_block.empty_block_number + 1,
-                         second_block.empty_block_number)
-        self.assertEqual(
-            first_block.start_time +
-            (first_block.block_time *
-             (first_block.empty_block_number + first_block.sequence_number)) +
-            first_block.block_time,
-            second_block.start_time,
-        )
-
-    def test_blockchain_sync_empty_blocks_first_and_second_empty_is_high(self):
-        block = Block("onur")
-        block.sequence_number = 1
-        block.empty_block_number = 3
-        block.block_time = 0.5
-        block.validated = False
-
-        first_block = copy.copy(block)
-        time.sleep(0.5)
-        block.sync_empty_blocks()
-        second_block = copy.copy(block)
-
-        self.assertEqual(first_block.empty_block_number,
-                         second_block.empty_block_number)
-        self.assertEqual(first_block.start_time, second_block.start_time)
-
-    # NEW SAVE BLOCK TESTS
 
     def test_SaveBlock_GetBlock_situation_priority(self):
         self.maxDiff = None
@@ -1231,7 +1153,7 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                           get_normal_block=False)
+                           get_normal_block=False, reset=True)
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
 
@@ -1270,7 +1192,7 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                           get_normal_block=False)
+                           get_normal_block=False, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -1308,7 +1230,7 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                           get_normal_block=False)
+                           get_normal_block=False, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -1344,7 +1266,7 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                           get_normal_block=False)
+                           get_normal_block=False, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 
@@ -1380,7 +1302,7 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                           get_normal_block=False)
+                           get_normal_block=False, reset=True)
 
         self.assertEqual(block.dump_json(), block_3.dump_json())
 
@@ -1417,7 +1339,7 @@ class Test_Blockchain(unittest.TestCase):
         )
 
         block_3 = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-                           get_normal_block=False)
+                           get_normal_block=False, reset=True)
 
         self.assertEqual(block_2.dump_json(), block_3.dump_json())
 

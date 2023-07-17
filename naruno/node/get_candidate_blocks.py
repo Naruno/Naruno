@@ -14,7 +14,7 @@ import naruno
 
 our_candidates = []
 
-def self_candidates(block: Block):
+def self_candidates(block: Block, reset=False):
             the_block = block
             the_block_2 = block
             if not len(naruno.node.get_candidate_blocks.our_candidates) == 0:
@@ -27,7 +27,7 @@ def self_candidates(block: Block):
             for element in block.validating_list:
                 new_list.append(element.dump_json())
                 signature_list.append(element.signature)
-            if not len(naruno.node.get_candidate_blocks.our_candidates) == 0:
+            if not len(naruno.node.get_candidate_blocks.our_candidates) == 0 and not reset:
                 will_add_candidate_block = naruno.node.get_candidate_blocks.our_candidates[0]
                 will_add_candidate_block_hash = naruno.node.get_candidate_blocks.our_candidates[1]
             
@@ -67,13 +67,13 @@ def self_candidates(block: Block):
             return [the_block, the_block_2]
 
 
-def our_candidates_f(block: Block):
-    if len(naruno.node.get_candidate_blocks.our_candidates) == 0:
-        self_candidates(block)
+def our_candidates_f(block: Block, reset=False):
+    if len(naruno.node.get_candidate_blocks.our_candidates) == 0 or reset:
+        self_candidates(block, reset=reset)
     return naruno.node.get_candidate_blocks.our_candidates
 
 
-def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
+def GetCandidateBlocks(custom_nodes_list=None, block: Block = None, reset=False):
     """
     Collects candidate blocks and candidate block hashes
     from connected unl nodes and returns them in the
@@ -118,7 +118,7 @@ def GetCandidateBlocks(custom_nodes_list=None, block: Block = None):
             pass
 
     if block is not None:
-        the_candidates = our_candidates_f(block)
+        the_candidates = our_candidates_f(block, reset=reset)
 
         the_candidate_blocks.append(the_candidates[0])
         the_candidate_block_hashes.append(the_candidates[1])

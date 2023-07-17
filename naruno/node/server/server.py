@@ -174,7 +174,7 @@ class server(Thread):
                 raw_id = data.decode("utf-8")
                 client_id = raw_id.split("-")[0]
                 client_type = int(raw_id.split("-")[1])
-                conn.send((server.id+"-"+str(client_type)).encode("utf-8"))
+                conn.send((self.id+"-"+str(client_type)).encode("utf-8"))
                 self.logger.debug(f"New connection id: {client_id}")
                 if Unl.node_is_unl(client_id):
                     self.logger.info(f"Confirmed")
@@ -303,9 +303,9 @@ class server(Thread):
             conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             conn.settimeout(10.0)
             addr = (host, port)
-            conn.connect(addr)
-            conn.send((server.id+"-"+str(c_type)).encode("utf-8"))
             try:
+                conn.connect(addr)
+                conn.send((self.id+"-"+str(c_type)).encode("utf-8"))                
                 raw_id = conn.recv(1024).decode("utf-8")
                 client_id = raw_id.split("-")[0]
                 client_type = int(raw_id.split("-")[1])                
@@ -834,11 +834,13 @@ class server(Thread):
         """
         self.logger.info(f"Sending block to other nodes with {hash_of_data}")
         if node is None or sync:
+            self.logger.info("Sync process started")
             self.send_full_accounts(node=node)
             self.send_full_blockshash(node=node)
             self.send_full_blockshash_part(node=node)
             self.send_full_chain(node=node)
         else:
+            self.logger.info("Node appended to sync_clients")
             self.sync_clients.append(node)
 
     def get_ip(self):

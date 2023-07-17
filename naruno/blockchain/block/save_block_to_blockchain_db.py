@@ -46,6 +46,7 @@ def SaveBlockstoBlockchainDB(
         validated_transaction.toUser == my_address)
                  for validated_transaction in block.validating_list)
     if our_tx or force:
+        logger.debug("Saving block to blockchain database...")
         the_BLOCKS_PATH = (BLOCKS_PATH if custom_BLOCKS_PATH is None else
                            custom_BLOCKS_PATH)
         SaveBlock(
@@ -77,4 +78,5 @@ def SaveBlockstoBlockchainDB(
 
         return True
     else:
+        logger.debug("Not saving block to blockchain database...")
         return False
