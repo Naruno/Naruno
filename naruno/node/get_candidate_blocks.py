@@ -70,8 +70,8 @@ def self_candidates(block: Block, reset=False):
 
 
 def our_candidates_f(block: Block, reset=False):
-    if len(naruno.node.get_candidate_blocks.our_candidates) == 0 or reset:
-        self_candidates(block, reset=reset)
+    
+    self_candidates(block, reset=reset)
     return naruno.node.get_candidate_blocks.our_candidates
 
 
