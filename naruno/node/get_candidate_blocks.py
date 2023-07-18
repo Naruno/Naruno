@@ -43,7 +43,7 @@ def self_candidates(block: Block, reset=False):
                                 "total_length": len(new_list)
                             }
                     the_block = copy.copy(block)
-            if not block.round_2:
+            if block.round_1 and not block.round_2:
                 if block.sequence_number+block.empty_block_number > the_block_2.sequence_number+the_block_2.empty_block_number or block.sequence_number == 0 or reset:
                     will_add_candidate_block_hash = {
                                 "action":
