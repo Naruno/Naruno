@@ -1438,6 +1438,7 @@ class Test_Node(unittest.TestCase):
 
         the_block = Block("onuratakanulusoy")
         the_block.hash = 58585858
+        the_block.round_1 = True
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
@@ -1633,6 +1634,7 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
         the_block = Block("onuratakanulusoy")
+        the_block.round_1 = True
         the_block.hash = "Onur"
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
@@ -1657,6 +1659,7 @@ class Test_Node(unittest.TestCase):
                          [])
 
         the_block.sequence_number = 1
+
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
@@ -1899,6 +1902,7 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
         the_block = Block("onuratakanulusoy")
+        the_block.round_1 = True
         the_block.hash = "onur"
         self.node_1.send_my_block_hash(the_block)
         self.node_0.send_my_block_hash(the_block)

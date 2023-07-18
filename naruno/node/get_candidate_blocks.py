@@ -15,8 +15,8 @@ import naruno
 our_candidates = []
 
 def self_candidates(block: Block, reset=False):
-            the_block = block
-            the_block_2 = block
+            the_block = copy.copy(block)
+            the_block_2 = copy.copy(block)
             if not len(naruno.node.get_candidate_blocks.our_candidates) == 0 and not reset:
                 the_block = naruno.node.get_candidate_blocks.our_candidates[2]
                 the_block_2 = naruno.node.get_candidate_blocks.our_candidates[3]
@@ -27,14 +27,16 @@ def self_candidates(block: Block, reset=False):
             for element in block.validating_list:
                 new_list.append(element.dump_json())
                 signature_list.append(element.signature)
+            will_add_candidate_block = None
+            will_add_candidate_block_hash = None
             if not len(naruno.node.get_candidate_blocks.our_candidates) == 0 and not reset:
                 will_add_candidate_block = naruno.node.get_candidate_blocks.our_candidates[0]
                 will_add_candidate_block_hash = naruno.node.get_candidate_blocks.our_candidates[1]
             
             first_validating = [i.dump_json() for i in the_block.validating_list]
             second_validating = [i.dump_json() for i in block.validating_list]
-            if not block.round_1:
-                if block.sequence_number+block.empty_block_number > the_block.sequence_number+the_block.empty_block_number or block.sequence_number == 0 or reset:
+            if not block.round_1 or will_add_candidate_block is None:
+                if block.sequence_number+block.empty_block_number > the_block.sequence_number+the_block.empty_block_number or block.sequence_number == 0 or reset or will_add_candidate_block is None:
                     will_add_candidate_block = {
                                 "action": "myblock",
                                 "transaction": new_list,
@@ -43,8 +45,8 @@ def self_candidates(block: Block, reset=False):
                                 "total_length": len(new_list)
                             }
                     the_block = copy.copy(block)
-            if (block.round_1 and not block.round_2)  or block.sequence_number == 0:
-                if block.sequence_number+block.empty_block_number > the_block_2.sequence_number+the_block_2.empty_block_number or block.sequence_number == 0 or reset:
+            if (block.round_1 and not block.round_2)  or block.sequence_number == 0 or will_add_candidate_block_hash is None:
+                if block.sequence_number+block.empty_block_number > the_block_2.sequence_number+the_block_2.empty_block_number or block.sequence_number == 0 or reset or will_add_candidate_block_hash is None:
                     will_add_candidate_block_hash = {
                                 "action":
                                 "myblockhash",

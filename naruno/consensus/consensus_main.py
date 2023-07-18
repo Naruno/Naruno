@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import threading
 import traceback
+import contextlib
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.candidate_block.candidate_block_main import \
@@ -42,7 +43,8 @@ def consensus_trigger(
     the necessary redirects according to the situation and works
     to shorten the block time.
     """
-    naruno.lib.perpetualtimer.the_consensus_thread = True
+    with contextlib.suppress(Exception):
+        naruno.lib.perpetualtimer.the_consensus_thread = True
 
     try:
 
@@ -97,5 +99,7 @@ def consensus_trigger(
         traceback.print_exc()
 
     logger.info("Consensus process is done")
-    naruno.lib.perpetualtimer.the_consensus_thread = False
+    with contextlib.suppress(Exception):
+        naruno.lib.perpetualtimer.the_consensus_thread = False    
+
     return block
