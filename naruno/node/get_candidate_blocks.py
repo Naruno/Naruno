@@ -34,29 +34,31 @@ def self_candidates(block: Block, reset=False):
             first_validating = [i.dump_json() for i in the_block.validating_list]
             second_validating = [i.dump_json() for i in block.validating_list]
             if not block.round_1:
-                will_add_candidate_block = {
-                            "action": "myblock",
-                            "transaction": new_list,
-                            "signature": a_time,
-                            "sequence_number": block.sequence_number+block.empty_block_number,
-                            "total_length": len(new_list)
-                        }
-                the_block = block 
+                if block.sequence_number+block.empty_block_number > the_block.sequence_number+the_block.empty_block_number:
+                    will_add_candidate_block = {
+                                "action": "myblock",
+                                "transaction": new_list,
+                                "signature": a_time,
+                                "sequence_number": block.sequence_number+block.empty_block_number,
+                                "total_length": len(new_list)
+                            }
+                    the_block = block 
             if not block.round_2:
-                will_add_candidate_block_hash = {
-                            "action":
-                            "myblockhash",
-                            "hash":
-                            block.hash,
-                            "previous_hash":
-                            block.previous_hash,
-                            "signature":
-                            a_time,
-                            "sequence_number":
-                            block.sequence_number+block.empty_block_number,
-                        }
-                
-                the_block_2 = block 
+                if block.sequence_number+block.empty_block_number > the_block_2.sequence_number+the_block_2.empty_block_number:
+                    will_add_candidate_block_hash = {
+                                "action":
+                                "myblockhash",
+                                "hash":
+                                block.hash,
+                                "previous_hash":
+                                block.previous_hash,
+                                "signature":
+                                a_time,
+                                "sequence_number":
+                                block.sequence_number+block.empty_block_number,
+                            }
+                    
+                    the_block_2 = block 
                     
                 
                 
