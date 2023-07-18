@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
-
+import copy
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.candidate_block.candidate_block_main import \
     candidate_block
@@ -34,7 +34,7 @@ def self_candidates(block: Block, reset=False):
             first_validating = [i.dump_json() for i in the_block.validating_list]
             second_validating = [i.dump_json() for i in block.validating_list]
             if not block.round_1:
-                if block.sequence_number+block.empty_block_number > the_block.sequence_number+the_block.empty_block_number or block.sequence_number == 0:
+                if block.sequence_number+block.empty_block_number > the_block.sequence_number+the_block.empty_block_number or block.sequence_number == 0 or reset:
                     will_add_candidate_block = {
                                 "action": "myblock",
                                 "transaction": new_list,
@@ -42,9 +42,9 @@ def self_candidates(block: Block, reset=False):
                                 "sequence_number": block.sequence_number+block.empty_block_number,
                                 "total_length": len(new_list)
                             }
-                    the_block = block 
+                    the_block = copy.copy(block)
             if not block.round_2:
-                if block.sequence_number+block.empty_block_number > the_block_2.sequence_number+the_block_2.empty_block_number or block.sequence_number == 0:
+                if block.sequence_number+block.empty_block_number > the_block_2.sequence_number+the_block_2.empty_block_number or block.sequence_number == 0 or reset:
                     will_add_candidate_block_hash = {
                                 "action":
                                 "myblockhash",
@@ -58,7 +58,7 @@ def self_candidates(block: Block, reset=False):
                                 block.sequence_number+block.empty_block_number,
                             }
                     
-                    the_block_2 = block 
+                    the_block_2 = copy.copy(block)
                     
                 
                 
