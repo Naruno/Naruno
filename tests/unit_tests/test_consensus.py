@@ -1399,6 +1399,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1432,6 +1433,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "onur",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1442,9 +1444,9 @@ class Test_Consensus(unittest.TestCase):
             "signature": "onur",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(6)],
-                                         [data_block_hash for i in range(6)])
-        CandidateBlock.candidate_blocks = [data_block for i in range(6)]
+        CandidateBlock = candidate_block([data_block for i in range(9)],
+                                         [data_block_hash for i in range(9)])
+        CandidateBlock.candidate_blocks = [data_block for i in range(9)]
         CandidateBlock.candidate_blocks_hash = [
             data_block_hash for i in range(6)
         ]
@@ -1470,6 +1472,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1478,8 +1481,8 @@ class Test_Consensus(unittest.TestCase):
             "sequence_number": 58,
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(7)],
-                                         [data_block_hash for i in range(7)])
+        CandidateBlock = candidate_block([data_block for i in range(8)],
+                                         [data_block_hash for i in range(8)])
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_hashes_check(CandidateBlock, unl_nodes)
         self.assertIsNot(result, True)
@@ -1503,6 +1506,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "onur",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1513,13 +1517,13 @@ class Test_Consensus(unittest.TestCase):
             "signature": "onur",
         }
 
-        CandidateBlock = candidate_block([data_block for i in range(6)],
-                                         [data_block_hash for i in range(6)])
+        CandidateBlock = candidate_block([data_block for i in range(9)],
+                                         [data_block_hash for i in range(9)])
         CandidateBlock.candidate_block_hashes = [
-            data_block_hash for i in range(6)
+            data_block_hash for i in range(9)
         ]
         CandidateBlock.candidate_blocks_hash = [
-            data_block_hash for i in range(6)
+            data_block_hash for i in range(9)
         ]
         unl_nodes = [i for i in range(10)]
         result = candidate_blocks_hashes_check(CandidateBlock, unl_nodes)
@@ -1560,6 +1564,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1595,6 +1600,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1634,6 +1640,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1670,6 +1677,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1736,6 +1744,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1752,6 +1761,7 @@ class Test_Consensus(unittest.TestCase):
             "signature": -1,
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
         new_list = []
         for i in range(1):
@@ -1788,6 +1798,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1804,6 +1815,7 @@ class Test_Consensus(unittest.TestCase):
             "signature": -1,
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
         new_list = []
         for i in range(6):
@@ -1840,6 +1852,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1856,6 +1869,7 @@ class Test_Consensus(unittest.TestCase):
             "signature": -1,
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
         new_list = []
         for i in range(6):
@@ -1892,6 +1906,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -1908,6 +1923,7 @@ class Test_Consensus(unittest.TestCase):
             "signature": -1,
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
         new_list = []
         for i in range(6):
@@ -1993,6 +2009,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2009,6 +2026,7 @@ class Test_Consensus(unittest.TestCase):
             "signature": -1,
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
         new_list = []
         for i in range(5):
@@ -2069,6 +2087,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "onur",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2087,6 +2106,7 @@ class Test_Consensus(unittest.TestCase):
             "signature": -1,
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
         new_list = []
         for i in range(6):
@@ -2152,6 +2172,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2186,6 +2207,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2227,6 +2249,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2263,6 +2286,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2306,6 +2330,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "signature",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2350,6 +2375,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "signature",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2398,6 +2424,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "signature",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2487,6 +2514,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "onur from tests",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2543,6 +2571,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "a",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2601,6 +2630,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "signature",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2660,6 +2690,7 @@ class Test_Consensus(unittest.TestCase):
         data_block = {
             "transaction": validating_list,
             "sequence_number": 58,
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2718,6 +2749,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "a",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2792,6 +2824,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "a",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2811,6 +2844,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "a",
+            "total_length":2
         }
         new_list = []
         for i in range(6):
@@ -2883,6 +2917,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "a",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -2902,6 +2937,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "a",
+            "total_length":2
         }
         new_list = []
         for i in range(6):
@@ -2958,6 +2994,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "a",
+            "total_length":2
         }
 
         data_block_hash = {
@@ -3023,6 +3060,7 @@ class Test_Consensus(unittest.TestCase):
             "transaction": validating_list,
             "sequence_number": 58,
             "signature": "a",
+            "total_length":2
         }
 
         data_block_hash = {
