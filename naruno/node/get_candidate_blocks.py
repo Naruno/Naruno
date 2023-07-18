@@ -17,7 +17,7 @@ our_candidates = []
 def self_candidates(block: Block, reset=False):
             the_block = block
             the_block_2 = block
-            if not len(naruno.node.get_candidate_blocks.our_candidates) == 0:
+            if not len(naruno.node.get_candidate_blocks.our_candidates) == 0 and not reset:
                 the_block = naruno.node.get_candidate_blocks.our_candidates[2]
                 the_block_2 = naruno.node.get_candidate_blocks.our_candidates[3]
 

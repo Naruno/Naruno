@@ -510,6 +510,7 @@ class server(Thread):
             node.candidate_block = data
             return
         if data["sequence_number"] > node.candidate_block["sequence_number"]:
+            self.logger.debug("Candidate block is updated directly")
             if len(node.candidate_block_history) >= 5:
                 node.candidate_block_history.pop(0)
 
@@ -517,6 +518,7 @@ class server(Thread):
                 node.candidate_block))
             node.candidate_block = data
         else:
+            self.logger.debug("Candidate block is not updated directly")
             if node.candidate_block["total_length"] <= data["total_length"]:
                 if node.candidate_block["total_length"] == data[
                         "total_length"]:
@@ -655,7 +657,7 @@ class server(Thread):
         if not os.path.exists(self.TEMP_BLOCK_PATH):
             get_ok = True
         else:
-            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
+            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, reset=self.custom_variables)
             if node.id == system.dowload_true_block:
                 get_ok = True
 
@@ -667,7 +669,7 @@ class server(Thread):
                 from naruno.lib.perpetualtimer import perpetualTimer
 
                 system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH,
-                                  get_normal_block=True)
+                                  get_normal_block=True, reset=self.custom_variables)
 
                 ChangeTransactionFee(system)
 
@@ -696,7 +698,7 @@ class server(Thread):
         if not os.path.exists(the_TEMP_BLOCKSHASH_PATH):
             get_ok = True
         else:
-            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
+            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, reset=self.custom_variables)
             if node.id == system.dowload_true_block:
                 get_ok = True
 
@@ -720,7 +722,7 @@ class server(Thread):
         if not os.path.exists(the_TEMP_BLOCKSHASH_PART_PATH):
             get_ok = True
         else:
-            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
+            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, reset=self.custom_variables)
             if node.id == system.dowload_true_block:
                 get_ok = True
 
@@ -746,7 +748,7 @@ class server(Thread):
         if not os.path.exists(the_TEMP_ACCOUNTS_PATH):
             get_ok = True
         else:
-            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
+            system = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, reset=self.custom_variables)
             if node.id == system.dowload_true_block:
                 get_ok = True
 
@@ -794,7 +796,7 @@ class server(Thread):
 
     def get_transaction(self, data, node, hash_of_data=""):
         self.logger.info(f"Getting transaction with {hash_of_data}")
-        block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH)
+        block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, reset=self.custom_variables)
         the_transaction = Transaction(
             data["sequence_number"],
             data["txsignature"],

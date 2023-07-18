@@ -571,7 +571,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "1.json"),
         )
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_chain(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
@@ -582,7 +588,7 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
 
         got_block = GetBlock(
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1, reset=True)
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -607,7 +613,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "2.json"),
         )
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_accounts(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
@@ -640,7 +652,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "3.json"),
         )
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_blockshash(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
@@ -675,7 +693,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0,
         )
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_blockshash_part(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
@@ -727,7 +751,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH1.replace(".json", "4.json"),
         )
         the_block.dowload_true_block = ""
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_chain(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
@@ -740,7 +770,7 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
 
         got_block = GetBlock(
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1, reset=True)
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -777,7 +807,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH1.replace(".json", "7.json"),
         )
         the_block.dowload_true_block = ""
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_accounts(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_ACCOUNTS_PATH1))
@@ -821,7 +857,13 @@ class Test_Node(unittest.TestCase):
             custom_LOADING_BLOCKSHASH_PART_PATH1.replace(".json", "8.json"),
         )
         the_block.dowload_true_block = ""
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_blockshash(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
@@ -866,7 +908,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH1,
         )
         the_block.dowload_true_block = ""
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_blockshash_part(client)
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
@@ -904,7 +952,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "1.json"),
         )
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_chain()
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCK_PATH1))
@@ -915,7 +969,7 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
 
         got_block = GetBlock(
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1, reset=True)
 
         self.assertEqual(
             the_block.dump_json(),
@@ -938,7 +992,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH0.replace(".json", "2.json"),
         )
         print("aaaa")
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_accounts()
         time.sleep(2)
         print("bbbb")
@@ -972,7 +1032,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_LOADING_BLOCKSHASH_PART_PATH0.replace(".json", "3.json"),
         )
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_blockshash()
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PATH1))
@@ -1005,7 +1071,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0,
         )
-        client = self.node_0.clients[0]
+        for i in self.node_0.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_full_blockshash_part()
         time.sleep(2)
         self.assertTrue(os.path.isfile(self.custom_TEMP_BLOCKSHASH_PART_PATH1))
@@ -1157,6 +1229,8 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
     def test_send_block_to_other_nodes_node(self):
+        self.tearDownClass()
+        self.setUpClass()
         CleanUp_tests()
         the_block = Block("onur")
         the_block.consensus_timer = 0
@@ -1171,8 +1245,11 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH0,
         )
         for i in self.node_1.clients:
-            if i.id == self.node_0 and i.c_tpye == 2:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
                 client = i
+                break
         print("The client is: ", client.__dict__)
    
 
@@ -1204,7 +1281,7 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
 
         got_block = GetBlock(
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1, reset=True)
 
         print(the_block.dump_json())
         print(got_block.dump_json())
@@ -1216,6 +1293,8 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
     def test_send_block_to_other_nodes(self):
+        self.tearDownClass()
+        self.setUpClass()
         CleanUp_tests()
         the_block = Block("onur")
         the_block.consensus_timer = 0
@@ -1229,8 +1308,13 @@ class Test_Node(unittest.TestCase):
             custom_TEMP_BLOCKSHASH_PART_PATH=self.
             custom_TEMP_BLOCKSHASH_PART_PATH0,
         )
-        client = self.node_1.clients[0]
-
+        for i in self.node_1.clients:
+            print("control node: ", i.id)
+            print("control node type: ", i.c_type)
+            if i.id == self.node_0.id and i.c_type == 2:
+                client = i
+                break
+        print("The client is: ", client.__dict__)
         self.node_0.send_block_to_other_nodes()
 
         time.sleep(15)
@@ -1249,9 +1333,9 @@ class Test_Node(unittest.TestCase):
         self.assertFalse(os.path.isfile(self.custom_LOADING_BLOCK_PATH2))
 
         got_block = GetBlock(
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1)
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH1, reset=True)
         got_block_2 = GetBlock(
-            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH2)
+            custom_TEMP_BLOCK_PATH=self.custom_TEMP_BLOCK_PATH2, reset=True)
 
         self.assertEqual(
             the_block.dump_json(),
@@ -1342,21 +1426,39 @@ class Test_Node(unittest.TestCase):
     def test_send_my_block_hash_get_candidate_block_hash(self):
         CleanUp_tests()
 
-        self.node_1.clients[0].candidate_block_hash = None
-        self.node_2.clients[0].candidate_block_hash = None
+      
+        for i in self.node_1.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []
+
+        for i in self.node_2.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []     
+
 
         the_block = Block("onuratakanulusoy")
         the_block.hash = 58585858
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
-        self.assertEqual(self.node_1.clients[0].candidate_block_hash["action"],
+
+        node_1_c_client = None
+        for i in self.node_1.clients:
+            if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
+                node_1_c_client = i
+        node_2_c_client = None
+        for i in self.node_2.clients:
+            if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
+                node_2_c_client = i
+
+        
+        self.assertEqual(node_1_c_client.candidate_block_hash["action"],
                          "myblockhash")
-        self.assertEqual(self.node_1.clients[0].candidate_block_hash["hash"],
+        self.assertEqual(node_1_c_client.candidate_block_hash["hash"],
                          58585858)
 
-        self.assertEqual(self.node_2.clients[0].candidate_block_hash["action"],
+        self.assertEqual(node_2_c_client.candidate_block_hash["action"],
                          "myblockhash")
-        self.assertEqual(self.node_2.clients[0].candidate_block_hash["hash"],
+        self.assertEqual(node_2_c_client.candidate_block_hash["hash"],
                          58585858)
 
         CleanUp_tests()
@@ -1516,10 +1618,17 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
     def test_send_my_block_get_candidate_block_hash_multiple(self):
-        self.node_1.clients[0].candidate_block_hash = None
-        self.node_1.clients[0].candidate_block_hash_history = []
-        self.node_2.clients[0].candidate_block_hash = None
-        self.node_2.clients[0].candidate_block_hash_history = []
+
+        for i in self.node_1.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []
+
+        for i in self.node_2.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []
+
+
+
         self.maxDiff = None
         CleanUp_tests()
 
@@ -1528,14 +1637,23 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
-        self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash["sequence_number"], 0)
-        self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash["sequence_number"], 0)
+        node_1_c_client = None
+        for i in self.node_1.clients:
+            if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
+                node_1_c_client = i
+        node_2_c_client = None
+        for i in self.node_2.clients:
+            if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
+                node_2_c_client = i
 
-        self.assertEqual(self.node_1.clients[0].candidate_block_hash_history,
+        self.assertEqual(
+            node_1_c_client.candidate_block_hash["sequence_number"], 0)
+        self.assertEqual(
+            node_2_c_client.candidate_block_hash["sequence_number"], 0)
+
+        self.assertEqual(node_1_c_client.candidate_block_hash_history,
                          [])
-        self.assertEqual(self.node_2.clients[0].candidate_block_hash_history,
+        self.assertEqual(node_2_c_client.candidate_block_hash_history,
                          [])
 
         the_block.sequence_number = 1
@@ -1543,22 +1661,22 @@ class Test_Node(unittest.TestCase):
         time.sleep(2)
 
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash["sequence_number"], 1)
+            node_1_c_client.candidate_block_hash["sequence_number"], 1)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash["sequence_number"], 1)
+            node_2_c_client.candidate_block_hash["sequence_number"], 1)
         self.assertNotEqual(
-            self.node_1.clients[0].candidate_block_hash_history, [])
+            node_1_c_client.candidate_block_hash_history, [])
         self.assertEqual(
-            len(self.node_1.clients[0].candidate_block_hash_history), 1)
+            len(node_1_c_client.candidate_block_hash_history), 1)
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash_history[0]
+            node_1_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 0)
         self.assertNotEqual(
-            self.node_2.clients[0].candidate_block_hash_history, [])
+            node_2_c_client.candidate_block_hash_history, [])
         self.assertEqual(
-            len(self.node_2.clients[0].candidate_block_hash_history), 1)
+            len(node_2_c_client.candidate_block_hash_history), 1)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash_history[0]
+            node_2_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 0)
 
         the_block.sequence_number = 2
@@ -1566,28 +1684,28 @@ class Test_Node(unittest.TestCase):
         time.sleep(2)
 
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash["sequence_number"], 2)
+            node_1_c_client.candidate_block_hash["sequence_number"], 2)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash["sequence_number"], 2)
+            node_2_c_client.candidate_block_hash["sequence_number"], 2)
         self.assertNotEqual(
-            self.node_1.clients[0].candidate_block_hash_history, [])
+            node_1_c_client.candidate_block_hash_history, [])
         self.assertEqual(
-            len(self.node_1.clients[0].candidate_block_hash_history), 2)
+            len(node_1_c_client.candidate_block_hash_history), 2)
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash_history[1]
+            node_1_c_client.candidate_block_hash_history[1]
             ["sequence_number"], 1)
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash_history[0]
+            node_1_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 0)
         self.assertNotEqual(
-            self.node_2.clients[0].candidate_block_hash_history, [])
+            node_2_c_client.candidate_block_hash_history, [])
         self.assertEqual(
-            len(self.node_2.clients[0].candidate_block_hash_history), 2)
+            len(node_2_c_client.candidate_block_hash_history), 2)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash_history[1]
+            node_2_c_client.candidate_block_hash_history[1]
             ["sequence_number"], 1)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash_history[0]
+            node_2_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 0)
 
         the_block.sequence_number = 3
@@ -1598,93 +1716,92 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
         self.assertEqual(
-            len(self.node_1.clients[0].candidate_block_hash_history), 4)
+            len(node_1_c_client.candidate_block_hash_history), 4)
         self.assertEqual(
-            len(self.node_2.clients[0].candidate_block_hash_history), 4)
+            len(node_2_c_client.candidate_block_hash_history), 4)
         the_block.sequence_number = 5
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
         self.assertEqual(
-            len(self.node_1.clients[0].candidate_block_hash_history), 5)
+            len(node_1_c_client.candidate_block_hash_history), 5)
         self.assertEqual(
-            len(self.node_2.clients[0].candidate_block_hash_history), 5)
+            len(node_2_c_client.candidate_block_hash_history), 5)
 
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash_history[0]
+            node_1_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 0)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash_history[0]
+            node_2_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 0)
 
         the_block.sequence_number = 6
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash["sequence_number"], 6)
+            node_1_c_client.candidate_block_hash["sequence_number"], 6)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash["sequence_number"], 6)
+            node_2_c_client.candidate_block_hash["sequence_number"], 6)
         self.assertEqual(
-            len(self.node_1.clients[0].candidate_block_hash_history), 5)
+            len(node_1_c_client.candidate_block_hash_history), 5)
         self.assertEqual(
-            len(self.node_2.clients[0].candidate_block_hash_history), 5)
+            len(node_2_c_client.candidate_block_hash_history), 5)
 
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash_history[0]
+            node_1_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 1)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash_history[0]
+            node_2_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 1)
 
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash_history[4]
+            node_1_c_client.candidate_block_hash_history[4]
             ["sequence_number"], 5)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash_history[4]
+            node_2_c_client.candidate_block_hash_history[4]
             ["sequence_number"], 5)
 
         the_block.sequence_number = 7
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash["sequence_number"], 7)
+            node_1_c_client.candidate_block_hash["sequence_number"], 7)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash["sequence_number"], 7)
+            node_2_c_client.candidate_block_hash["sequence_number"], 7)
         self.assertEqual(
-            len(self.node_1.clients[0].candidate_block_hash_history), 5)
+            len(node_1_c_client.candidate_block_hash_history), 5)
         self.assertEqual(
-            len(self.node_2.clients[0].candidate_block_hash_history), 5)
+            len(node_2_c_client.candidate_block_hash_history), 5)
 
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash_history[0]
+            node_1_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 2)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash_history[0]
+            node_2_c_client.candidate_block_hash_history[0]
             ["sequence_number"], 2)
 
         self.assertEqual(
-            self.node_1.clients[0].candidate_block_hash_history[4]
+            node_1_c_client.candidate_block_hash_history[4]
             ["sequence_number"], 6)
         self.assertEqual(
-            self.node_2.clients[0].candidate_block_hash_history[4]
+            node_2_c_client.candidate_block_hash_history[4]
             ["sequence_number"], 6)
 
         CleanUp_tests()
 
     def test_send_my_block_get_candidate_block_multiple_with_function_try(
             self):
-        self.node_1.clients[0].candidate_block = None
-        self.node_1.clients[0].candidate_block_history = []
-        self.node_1.clients[1].candidate_block = None
-        self.node_1.clients[1].candidate_block_history = []
-        self.node_2.clients[0].candidate_block = None
-        self.node_2.clients[0].candidate_block_history = []
-        self.node_2.clients[1].candidate_block = None
-        self.node_2.clients[1].candidate_block_history = []
-        self.node_0.clients[0].candidate_block = None
-        self.node_0.clients[0].candidate_block_history = []
-        self.node_0.clients[1].candidate_block = None
-        self.node_0.clients[1].candidate_block_history = []
+        for i in self.node_0.clients:
+            i.candidate_block = None
+            i.candidate_block_history = []            
+        for i in self.node_1.clients:
+            i.candidate_block = None
+            i.candidate_block_history = []        
+
+        for i in self.node_2.clients:
+            i.candidate_block = None
+            i.candidate_block_history = []         
+
 
         self.maxDiff = None
         CleanUp_tests()
@@ -1729,43 +1846,54 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block(the_block)
         time.sleep(2)
 
-        nodes = [self.node_2.clients[0], self.node_2.clients[1]]
+
+
+
+        nodes = []
+
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        for i in self.node_2.clients:
+            print("Roudning")
+            if i.candidate_block != None or i.candidate_block_history != []:
+                print(i.__dict__)
+                nodes.append(i)
+
+
 
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
-                                              block=the_block)
-        self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
+                                              block=the_block, reset=True)
+        print("candidate_blocks.candidate_blocks", candidate_blocks.candidate_blocks)
+        self.assertEqual(len(candidate_blocks.candidate_blocks), 2)
 
         the_block.sequence_number = 2
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
-                                              block=the_block)
-        self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
+                                              block=the_block, reset=True)
+        self.assertEqual(len(candidate_blocks.candidate_blocks), 2)
 
         the_block.sequence_number = 1
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
-                                              block=the_block)
+                                              block=the_block, reset=True)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 1)
 
         the_block.sequence_number = 6
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
-                                              block=the_block)
-        self.assertEqual(len(candidate_blocks.candidate_blocks), 3)
+                                              block=the_block, reset=True)
+        self.assertEqual(len(candidate_blocks.candidate_blocks), 2)
 
         CleanUp_tests()
 
     def test_send_my_block_get_candidate_block_hash_multiple_with_function_try(
             self):
-        self.node_1.clients[0].candidate_block_hash = None
-        self.node_1.clients[0].candidate_block_hash_history = []
-        self.node_1.clients[1].candidate_block_hash = None
-        self.node_1.clients[1].candidate_block_hash_history = []
-        self.node_2.clients[0].candidate_block_hash = None
-        self.node_2.clients[0].candidate_block_hash_history = []
-        self.node_2.clients[1].candidate_block_hash = None
-        self.node_2.clients[1].candidate_block_hash_history = []
-        self.node_0.clients[0].candidate_block_hash = None
-        self.node_0.clients[0].candidate_block_hash_history = []
-        self.node_0.clients[1].candidate_block_hash = None
-        self.node_0.clients[1].candidate_block_hash_history = []
+        for i in self.node_0.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []            
+        for i in self.node_1.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []
+
+        for i in self.node_2.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []       
 
         self.maxDiff = None
         CleanUp_tests()
@@ -1811,7 +1939,16 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
-        nodes = [self.node_2.clients[0], self.node_2.clients[1]]
+
+
+
+        nodes = []
+
+
+        for i in self.node_2.clients:
+            if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
+                nodes.append(i)
+
 
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
                                               block=the_block)
@@ -1836,24 +1973,33 @@ class Test_Node(unittest.TestCase):
 
     def test_send_my_block_get_candidate_block_multiple_with_function_try_non(
             self):
-        self.node_1.clients[0].candidate_block = None
-        self.node_1.clients[0].candidate_block_history = []
-        self.node_1.clients[1].candidate_block = None
-        self.node_1.clients[1].candidate_block_history = []
-        self.node_2.clients[0].candidate_block = None
-        self.node_2.clients[0].candidate_block_history = []
-        self.node_2.clients[1].candidate_block = None
-        self.node_2.clients[1].candidate_block_history = []
-        self.node_0.clients[0].candidate_block = None
-        self.node_0.clients[0].candidate_block_history = []
-        self.node_0.clients[1].candidate_block = None
-        self.node_0.clients[1].candidate_block_history = []
+        for i in self.node_0.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []            
+        for i in self.node_1.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []
+
+        for i in self.node_2.clients:
+            i.candidate_block_hash = None
+            i.candidate_block_hash_history = []       
 
         self.maxDiff = None
         CleanUp_tests()
 
         the_block = Block("onuratakanulusoy")
-        nodes = [self.node_2.clients[0], self.node_2.clients[1]]
+
+
+
+        nodes = []
+
+
+        for i in self.node_2.clients:
+            if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
+                nodes.append(i)
+
+
+
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
                                               block=the_block)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 1)
