@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import time
-
+import copy
 from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.lib.settings_system import save_settings
@@ -24,7 +24,7 @@ def Status(
     custom_transactions: list = None,
     no_cache: bool = False,
     cache_time: int = 300,
-    wait_time=50,
+    wait_time=None,
 ) -> dict:
     """
     Returns the status of the network.
@@ -40,10 +40,11 @@ def Status(
         if not no_cache:
             a_settings["status_cache_time"] = time.time()
         save_settings(a_settings)
-        first_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                       if custom_first_block is None else custom_first_block)
+        first_block = copy.copy((GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                       if custom_first_block is None else custom_first_block))
 
-        time.sleep(wait_time)
+        the_wait_time = wait_time if wait_time is not None else first_block.block_time
+        time.sleep(the_wait_time)
         new_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                      if custom_new_block is None else custom_new_block)
 
