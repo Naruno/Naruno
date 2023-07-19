@@ -603,7 +603,7 @@ class Test_API(unittest.TestCase):
 
         temp_settings = the_settings()
         t_mode_settings(True)
-
+        naruno.lib.perpetualtimer.the_consensus_thread = False
         response = urllib.request.urlopen("http://localhost:7777/block/get")
         time.sleep(2)
 

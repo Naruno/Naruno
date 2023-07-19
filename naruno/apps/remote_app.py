@@ -16,6 +16,7 @@ import sys
 import threading
 import time
 from hashlib import sha256
+import traceback
 
 import requests
 
@@ -126,7 +127,7 @@ class Integration:
         backup_port = copy.copy(self.port)
         self.change_by_network()
         success = False
-        with contextlib.suppress(Exception):
+        try:
             self.max_tx_number = int(
                 self.prepare_request(
                     "/blockmaxtxnumber/get/",
@@ -155,6 +156,8 @@ class Integration:
                 (self, )) if self.total_check else self.check_thread)
             self.wait_amount = 0 if self.total_check else self.wait_amount
             success = True
+        except:
+            traceback.print_exc()
 
         logger.error("Network is not active") if not success else None
         self.close() if not success else None
@@ -243,6 +246,7 @@ class Integration:
         :return: The response of the request
         """
         api = f"http://{self.host}:{self.port}"
+        print(api)
         response = None
         if type == "post":
             response = requests.post(api + end_point, data=data)

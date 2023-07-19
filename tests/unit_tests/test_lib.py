@@ -334,7 +334,7 @@ class Test_Lib(unittest.TestCase):
     def test_status_not_working(self):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
-        custom_connections = self.node_0.clients
+        custom_connections = [i for i in self.node_0.clients if i.c_type==0]
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -369,7 +369,7 @@ class Test_Lib(unittest.TestCase):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
         custom_new_block.empty_block_number += 1
-        custom_connections = self.node_0.clients
+        custom_connections = [i for i in self.node_0.clients if i.c_type==0]
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -404,7 +404,7 @@ class Test_Lib(unittest.TestCase):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
         custom_new_block.sequence_number += 1
-        custom_connections = self.node_0.clients
+        custom_connections = [i for i in self.node_0.clients if i.c_type==0]
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -444,7 +444,7 @@ class Test_Lib(unittest.TestCase):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
         custom_new_block.sequence_number += 1
-        custom_connections = self.node_0.clients
+        custom_connections = [i for i in self.node_0.clients if i.c_type==0]
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -500,7 +500,7 @@ class Test_Lib(unittest.TestCase):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
         custom_new_block.sequence_number += 1
-        custom_connections = self.node_0.clients
+        custom_connections = [i for i in self.node_0.clients if i.c_type==0]
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -550,7 +550,7 @@ class Test_Lib(unittest.TestCase):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
         custom_new_block.sequence_number += 1
-        custom_connections = self.node_0.clients
+        custom_connections = [i for i in self.node_0.clients if i.c_type==0]
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
@@ -609,7 +609,7 @@ class Test_Lib(unittest.TestCase):
         custom_first_block = Block("Onur")
         custom_new_block = Block("Onur")
         custom_new_block.sequence_number += 1
-        custom_connections = self.node_0.clients
+        custom_connections = [i for i in self.node_0.clients if i.c_type==0]
         the_transaction_json = {
             "sequence_number": 1,
             "signature":
