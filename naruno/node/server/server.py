@@ -319,6 +319,9 @@ class server(Thread):
             except socket.timeout:
                 self.logger.warning(f"Connection timeout")
                 conn.close()
+            except ConnectionRefusedError:
+                self.logger.warning(f"Connection refused")
+                conn.close()    
 
     def connect(self, host, port):
         self.logger.info(f"Asking for new node on {host}:{port}")
