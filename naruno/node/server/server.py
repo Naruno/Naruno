@@ -325,8 +325,11 @@ class server(Thread):
         connected = self.check_connected(host=host, port=port)
         if not connected:
             self._connect(host, port)
+            time.sleep(1)
             self._connect(host, port, c_type=1)
+            time.sleep(1)
             self._connect(host, port, c_type=2)
+            time.sleep(1)
             self._connect(host, port, c_type=3)
         else:
             self.logger.warning("Already connected")
