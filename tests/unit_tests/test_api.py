@@ -605,7 +605,7 @@ class Test_API(unittest.TestCase):
         t_mode_settings(True)
         naruno.lib.perpetualtimer.the_consensus_thread = False
         response = urllib.request.urlopen("http://localhost:7777/block/get")
-        time.sleep(2)
+        time.sleep(8)
 
         self.assertTrue(os.path.exists("test_block_get_page_off_test.txt"))
         os.remove("test_block_get_page_off_test.txt")
