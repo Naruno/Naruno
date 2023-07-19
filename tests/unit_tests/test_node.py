@@ -1125,7 +1125,7 @@ class Test_Node(unittest.TestCase):
         self.assertEqual(len(self.node_0.clients), first_len_of_clients)
 
     def test_connectionfrommixdb(self):
-        temp_node = server("127.0.0.1", 10058)
+        temp_node = server("127.0.0.1", 10059)
         server.connectionfrommixdb(
             custom_server=temp_node,
             custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH,
