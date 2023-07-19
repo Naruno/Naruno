@@ -74,18 +74,21 @@ def finished_main(
     block.sync_empty_blocks() if pass_sync is False else None
     make_sync(the_server) if force_sync is True else None
     if true_time(block):
-        logger.debug(
+        logger.info(
             "Consensus proccess is complated, the block will be reset")
 
         reset_block = block.reset_the_block()
+        logger.debug("Block reseted")
 
         settings = the_settings()
         if reset_block != False:
+            
             block2 = reset_block[0]
 
             new_tx_from_us = False
             new_transactions_list = transactions_main(block2)
             if new_transactions_list is not None:
+                logger.debug("New transactions list is not None")
                 SaveBlockstoBlockchainDB(
                     block2,
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
@@ -99,6 +102,7 @@ def finished_main(
                 settings["save_blockshash"] = True
                 save_settings(settings)
             if block2.sequence_number == 0:
+                logger.debug("Block sequence number is 0")
                 SaveBlockstoBlockchainDB(
                     block2,
                     custom_BLOCKS_PATH=the_BLOCKS_PATH,
@@ -110,15 +114,18 @@ def finished_main(
                     dont_clean=dont_clean,
                 )
 
+
             SaveBlockshash(
                 reset_block[1].previous_hash,
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH,
             )
+            logger.debug("Blockshash saved")
 
             the_blocks_hash = GetBlockshash(
                 custom_TEMP_BLOCKSHASH_PATH=the_TEMP_BLOCKSHASH_PATH)
 
             if len(the_blocks_hash) == block.part_amount:
+                logger.debug("Blockshash length is equal to part amount")
                 block.empty_block_number += block.gap_block_number + block.hard_block_number
 
                 block.sync = True
@@ -127,6 +134,7 @@ def finished_main(
                     custom_TEMP_BLOCKSHASH_PART_PATH=
                     the_TEMP_BLOCKSHASH_PART_PATH,
                 )
+                logger.debug("Blockshash part saved")
                 the_blockshas_part = GetBlockshash_part(
                     custom_TEMP_BLOCKSHASH_PART_PATH=
                     the_TEMP_BLOCKSHASH_PART_PATH)
@@ -160,8 +168,9 @@ def finished_main(
 
 
 
-
+        
         PendingtoValidating(block)
+        logger.debug("Pending to validating is complated")
         SaveBlock(
             block,
             custom_TEMP_BLOCK_PATH=the_TEMP_BLOCK_PATH,
@@ -173,6 +182,6 @@ def finished_main(
             naruno.consensus.sync.sync.sync_round_1 = True
         return True
     else:
-        logger.debug(
+        logger.info(
             "Consensus proccess is complated, waiting for the true time")
         return False
