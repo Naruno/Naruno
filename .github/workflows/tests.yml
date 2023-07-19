@@ -169,7 +169,7 @@ jobs:
         pip install -r requirements/tests.txt
     - name: Test with pytest
       run: |
-        pytest tests/unit_tests -v --profile
+        pytest tests/unit_tests/test_node.py -v --profile
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:

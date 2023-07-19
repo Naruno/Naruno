@@ -1130,13 +1130,17 @@ class Test_Node(unittest.TestCase):
             custom_server=temp_node,
             custom_CONNECTED_NODES_PATH=self.node_0.CONNECTED_NODES_PATH,
         )
+
+        node_1_clients = [i for i in self.node_1.clients]
+        node_2_clients = [i for i in self.node_2.clients]
+
         time.sleep(2)
         self.assertEqual(len(self.node_0.clients), 8)
         self.assertEqual(len(temp_node.clients), 8)
         self.assertEqual(len(self.node_1.clients), 12)
         self.assertEqual(len(self.node_2.clients), 12)
-        self.node_1.clients.remove(self.node_1.clients[2])
-        self.node_2.clients.remove(self.node_2.clients[2])
+        self.node_1.clients = node_1_clients
+        self.node_2.clients = node_2_clients
         temp_node.stop()
         time.sleep(2)
         temp_node.join()
