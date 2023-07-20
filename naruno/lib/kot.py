@@ -15,6 +15,23 @@ from shutil import move
 from shutil import rmtree
 from shutil import unpack_archive
 
+class HASHES:
+    cache = {}
+    @staticmethod
+    def get_hash(string: str, hash_type: str = "sha256") -> str:
+        if string in HASHES.cache:
+            return HASHES.cache[string]
+        if hash_type == "sha256":
+            result = sha256(string.encode()).hexdigest()
+        elif hash_type == "sha512":
+            result = sha512(string.encode()).hexdigest()
+        elif hash_type == "md5":
+            result = md5(string.encode()).hexdigest()
+        else:
+            raise ValueError("Hash type must be sha256, sha512 or md5")
+        HASHES.cache[string] = result
+        return result
+
 
 class KOT:
 
@@ -146,7 +163,7 @@ class KOT:
 
     def __init__(self, name, self_datas: bool = False, folder: str = ""):
         self.name = name
-        self.hashed_name = sha256(name.encode()).hexdigest()
+        self.hashed_name = HASHES.get_hash(name)
         the_main_folder = os.getcwd() if not folder != "" else folder
         self.location = os.path.join(the_main_folder,
                                      "KOT-" + self.hashed_name)
@@ -238,7 +255,7 @@ class KOT:
             raise TypeError("File must be a string")
 
         try:
-            standart_key_location = os.path.join(self.location,sha256(key.encode()).hexdigest())
+            standart_key_location = os.path.join(self.location,HASHES.get_hash(key))
             key_location =  standart_key_location if custom_key_location == "" else custom_key_location
             
             key_location_loading = os.path.join(self.location,
@@ -358,7 +375,7 @@ class KOT:
                 return self.transformer(self.cache[key])
 
 
-        standart_key_location = os.path.join(self.location,sha256(key.encode()).hexdigest())
+        standart_key_location = os.path.join(self.location,HASHES.get_hash(key))
         key_location =  standart_key_location if custom_key_location == "" else custom_key_location
             
 
@@ -483,7 +500,7 @@ class KOT:
             if key in self.cache:
                 del self.cache[key]
             key_location = os.path.join(self.location,
-                                        sha256(key.encode()).hexdigest())
+                                        HASHES.get_hash(key))
             key_location_compress_indicator = os.path.join(
                 self.location, key_location + ".co")
 
@@ -542,7 +559,7 @@ class KOT:
         total_size = 0
         try:
             key_location = os.path.join(self.location,
-                                        sha256(key.encode()).hexdigest())
+                                        HASHES.get_hash(key))
 
             key_location_compress_indicator = os.path.join(
                 self.location, key_location + ".co")
