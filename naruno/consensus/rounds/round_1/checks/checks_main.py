@@ -34,7 +34,7 @@ def round_check(
         custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,           
         ):
         return False    
-    if not candidate_blocks_check(candidate_class, unl_nodes):
+    if not candidate_blocks_check(candidate_class, unl_nodes, block=block):
         return False
     logger.info("Round 1 checking is True")
     return True

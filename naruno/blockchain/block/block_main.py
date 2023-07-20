@@ -66,7 +66,7 @@ class Block:
         self.round_2_time = 5
         self.round_2 = False
 
-        self.consensus_timer = 3
+        self.consensus_timer = 1
 
         self.validated = False
         self.validated_time = None
@@ -75,7 +75,12 @@ class Block:
         self.sync = False
 
         self.just_one_tx = True
-        self.use_full_block = True
+
+        self.candidate_blocks_check = 80
+        self.candidate_blocks_hashes_check = 80
+        self.find_validated = 80
+        self.process_candidate_blocks_hashes = 80
+
 
         self.shares = []
         self.fee_address = creator
