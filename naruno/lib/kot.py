@@ -148,6 +148,7 @@ class KOT:
         self.name = name
         self.hashed_name = sha256(name.encode()).hexdigest()
         the_main_folder = os.getcwd() if not folder != "" else folder
+        self.the_main_folder = the_main_folder
         self.location = os.path.join(the_main_folder,
                                      "KOT-" + self.hashed_name)
 
@@ -227,6 +228,7 @@ class KOT:
         dont_delete_cache: bool = False,
         dont_remove_file: bool = False,
         custom_key_location: str = "",
+        short_cut: bool = False,
     ) -> bool:
         self.counter += 1
 
@@ -240,6 +242,10 @@ class KOT:
         try:
             standart_key_location = os.path.join(self.location,sha256(key.encode()).hexdigest())
             key_location =  standart_key_location if custom_key_location == "" else custom_key_location
+            
+            if custom_key_location != "" and not short_cut:
+                self.set(key,value=key_location,file=file,compress=compress,encryption_key=encryption_key,cache_policy=cache_policy,dont_delete_cache=dont_delete_cache,dont_remove_file=dont_remove_file,short_cut = True)
+
             
             key_location_loading = os.path.join(self.location,
                                                 standart_key_location + ".l")
@@ -273,7 +279,9 @@ class KOT:
             if encryption_key != "":
                 value = self.encrypt(encryption_key, value)
 
-            the_dict = {"key": key, "value": value, "meta": meta}
+            the_dict = {"key": key, "value": value, "meta": meta, "short_cut": False}
+            if short_cut:
+                the_dict["short_cut"] = True
 
             if cache_policy != 0:
                 the_dict["cache_time"] = time.time()
@@ -360,6 +368,7 @@ class KOT:
 
         standart_key_location = os.path.join(self.location,sha256(key.encode()).hexdigest())
         key_location =  standart_key_location if custom_key_location == "" else custom_key_location
+
             
 
         key_location_loading_indicator = os.path.join(
@@ -373,7 +382,7 @@ class KOT:
         while os.path.exists(key_location_loading_indicator):
             time.sleep(0.1)
 
-        if not os.path.isfile(os.path.join(self.location, key_location)):
+        if not os.path.isfile(key_location):
             return None
 
         total_result = None
@@ -387,7 +396,7 @@ class KOT:
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
 
-                with mgzip.open(os.path.join(self.location, key_location),
+                with mgzip.open(key_location,
                                 "rb") as f:
                     result = pickle.load(f)
                     total_result_standart = result
@@ -395,23 +404,26 @@ class KOT:
                         total_result = self.transformer(
                             result, encryption_key=encryption_key)
                     except TypeError:
+                        traceback.print_exc()
                         total_result = result
             else:
-                with open(os.path.join(self.location, key_location),
+                with open(key_location,
                           "rb") as f:
+
                     result = pickle.load(f)
                     total_result_standart = result
                     try:
                         total_result = self.transformer(
                             result, encryption_key=encryption_key)
                     except TypeError:
+                        traceback.print_exc()
                         total_result = result
 
             if "cache_time" in total_result_standart:
                 self.cache[key] = total_result_standart
 
         except EOFError or FileNotFoundError:
-            pass
+            traceback.print_exc()
 
         if os.path.isfile(key_location_reading_indicator):
             with contextlib.suppress(Exception):
@@ -425,8 +437,28 @@ class KOT:
                         the_bytes = self.decrypt(encryption_key, the_bytes)
                     f.write(the_bytes)
 
+
+
+
         if raw_dict:
+
+            if total_result_standart["short_cut"]:
+                total_result_standart = self.get(key, custom_key_location=total_result_standart["value"],
+                                    encryption_key=encryption_key,
+                                    no_cache=no_cache,
+                                    raw_dict=raw_dict)
+
+
             return total_result_standart
+
+
+
+        if total_result_standart["short_cut"]:
+            total_result = self.get(key, custom_key_location=total_result_standart["value"],
+                                    encryption_key=encryption_key,
+                                    no_cache=no_cache,
+                                    raw_dict=raw_dict)
+
 
         return total_result
 
