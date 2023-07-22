@@ -234,16 +234,23 @@ class server(Thread):
         elif c_type == 3:
             the_buffer = buffer_size_4
 
-        if len(json.dumps(data).encode("utf-8")) < the_buffer:
+        before_buffer_size = len(json.dumps(data).encode("utf-8"))
+        self.logger.debug(
+            f"Before buffer size: {before_buffer_size}")
+
+        if before_buffer_size < the_buffer:
+            self.logger.debug("Buffer is not full")
             data["buffer"] = "0" * (
-                (the_buffer - len(json.dumps(data).encode("utf-8"))) - 14)
+                (the_buffer - before_buffer_size) - 14)
+            self.logger.debug(
+                f"After buffer size: {len(json.dumps(data).encode('utf-8'))}")
         while node.id+str(c_type) in self.send_busy:
             time.sleep(0.01)
         self.send_busy.append(node.id+str(c_type))
         try:
             with contextlib.suppress(socket.timeout):
                 node.socket.sendall(json.dumps(data).encode("utf-8"))
-                time.sleep(0.5)
+
         except:
             traceback.print_exc()
         self.send_busy.remove(node.id+str(c_type))
