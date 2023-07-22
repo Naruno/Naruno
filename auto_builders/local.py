@@ -91,7 +91,9 @@ class Naruno_Local:
     def debug_and_test_mode(self):
         time.sleep(1 * self.number_of_nodes)
         urllib.request.urlopen("http://localhost:8000/settings/test/on")
-
+        if self.test_mode:
+            urllib.request.urlopen(
+                "http://localhost:8000/settings/functionaltest/on")
         urllib.request.urlopen("http://localhost:8000/settings/debug/on")
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
