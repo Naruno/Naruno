@@ -7,13 +7,14 @@
 
 import threading
 import traceback
-from naruno.node.server.server import server
+
 from naruno.transactions.check.check_transaction import \
     CheckTransaction
 from naruno.transactions.pending.save_pending import SavePending
 
 def tx_sending(tx):
     try:
+        from naruno.node.server.server import server
         server.send_transaction(tx)
     except:
         traceback.print_exc()
