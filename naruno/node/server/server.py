@@ -49,16 +49,7 @@ from naruno.node.get_candidate_blocks import self_candidates
 
 connectednodes_db = KOT("connectednodes",
                         folder=get_config()["main_folder"] + "/db")
-
-a_block = Block("onur")
-buffer_size = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 1.5)
-buffer_size_2 = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 1.5)
-buffer_size_3 = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 5)    
-buffer_size_4 = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 0.5)    
+ 
 
 class server(Thread):
     Server = None
@@ -224,6 +215,16 @@ class server(Thread):
             f"Sending message: {data} to {node.host}:{node.port}={node.id}")
         if not ready_to_send:
             data = self.prepare_message(data)
+
+        a_block = Block("onur")
+        buffer_size = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+        buffer_size_2 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+        buffer_size_3 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 5)    
+        buffer_size_4 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 0.5)   
 
         if c_type == 0:
             the_buffer = buffer_size

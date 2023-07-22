@@ -15,15 +15,7 @@ import traceback
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
 
-a_block = Block("onur")
-buffer_size = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 1.5)
-buffer_size_2 = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 1.5)
-buffer_size_3 = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 5)  
-buffer_size_4 = 6525 + int(
-    (a_block.max_data_size // a_block.max_tx_number) * 0.5)  
+
 
 class client(Thread):
 
@@ -39,6 +31,17 @@ class client(Thread):
         self.candidate_block_history = []
         self.candidate_block_hash_history = []
 
+
+
+        a_block = Block("onur")
+        buffer_size = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+        buffer_size_2 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+        buffer_size_3 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 5)  
+        buffer_size_4 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 0.5)  
 
         self.c_type = c_type
         if self.c_type == 0:
