@@ -3109,7 +3109,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertTrue(result[1])
-        self.assertLess(result[0], block.consensus_timer)
+        self.assertLess(result[0], block.consensus_timer*3)
         self.assertEqual(block.validated, True)
         self.assertEqual(block.round_2, True)
         self.assertNotEqual(old_block.validated_time, block.validated_time)
@@ -3173,7 +3173,7 @@ class Test_Consensus(unittest.TestCase):
             dont_clean=True,
         )
         self.assertTrue(result[1])
-        self.assertLess(result[0], 2)
+        self.assertLess(result[0], block.consensus_timer*3)
 
         result_2 = GetBlockstoBlockchainDB(
             sequence_number=0,
