@@ -17,11 +17,6 @@ import requests
 
 from auto_builders.docker import Naruno_Docker
 
-temp_environment = Naruno_Docker(2, 1, test_mode=True)
-temp_environment.delete()
-temp_environment.install()
-temp_environment.run()
-temp_environment.start()
 
 
 class Test_Naruno_Docker(unittest.TestCase):
@@ -30,6 +25,13 @@ class Test_Naruno_Docker(unittest.TestCase):
         """
         Send coin to 2.wallet from 1.wallet
         """
+
+
+        temp_environment = Naruno_Docker(3, 1, test_mode=True)
+        temp_environment.delete()
+        temp_environment.install()
+        temp_environment.run()
+        temp_environment.start()
 
         wallet_2_json = json.loads(
             urllib.request.urlopen(

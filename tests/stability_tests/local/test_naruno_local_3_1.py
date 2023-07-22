@@ -17,11 +17,7 @@ import requests
 
 from auto_builders.local import Naruno_Local
 
-temp_environment = Naruno_Local(2, 1, test_mode=True)
-temp_environment.delete()
-temp_environment.install()
-temp_environment.run()
-temp_environment.start()
+
 
 
 class Test_Naruno_Local(unittest.TestCase):
@@ -30,6 +26,12 @@ class Test_Naruno_Local(unittest.TestCase):
         """
         Send coin to 2.wallet from 1.wallet
         """
+
+        temp_environment = Naruno_Local(3, 1, test_mode=True)
+        temp_environment.delete()
+        temp_environment.install()
+        temp_environment.run()
+        temp_environment.start()
 
         wallet_2_json = json.loads(
             urllib.request.urlopen(
