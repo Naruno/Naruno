@@ -58,7 +58,7 @@ class Naruno_Local:
         self.unl_nodes_settting()
         self.connecting_the_nodes()
         self.creating_the_block()
-        time.sleep(22)
+        time.sleep(100)
 
     def install(self):
         time.sleep(1 * self.number_of_nodes)
