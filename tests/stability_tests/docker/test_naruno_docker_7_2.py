@@ -45,7 +45,7 @@ class Test_Naruno_Docker(unittest.TestCase):
                 "password": "123"
             },
         )
-        time.sleep(50)
+        time.sleep(81)
         balance_wallet_1 = json.loads(
             urllib.request.urlopen(
                 "http://localhost:8101/wallet/balance").read().decode())
@@ -62,7 +62,7 @@ class Test_Naruno_Docker(unittest.TestCase):
                 "password": "123"
             },
         )
-        time.sleep(50)
+        time.sleep(81)
         requests.post(
             "http://localhost:8000/send/",
             {
@@ -71,7 +71,7 @@ class Test_Naruno_Docker(unittest.TestCase):
                 "password": "123"
             },
         )
-        time.sleep(50)
+        time.sleep(81)
         balance_wallet_1 = json.loads(
             urllib.request.urlopen(
                 "http://localhost:8101/wallet/balance").read().decode())
