@@ -25,7 +25,7 @@ class Test_Naruno_Local(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        temp_environment = Naruno_Local(test_mode=True)
+        temp_environment = Naruno_Local(2 ,1, test_mode=True)
         temp_environment.delete()
         temp_environment.install()
         temp_environment.run()

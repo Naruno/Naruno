@@ -25,7 +25,7 @@ class Test_Naruno_Docker(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        temp_environment = Naruno_Docker(test_mode=True)
+        temp_environment = Naruno_Docker(2 ,1, test_mode=True)
         temp_environment.delete()
         temp_environment.install()
         temp_environment.run()
