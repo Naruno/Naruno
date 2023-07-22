@@ -1,0 +1,3112 @@
+name: Docker Stability Test With 2 Node in 1 Security Circle 
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event }}
+  cancel-in-progress: true
+jobs:
+
+  build1:
+    name: 1
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests  
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build2:
+    name: 2
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build3:
+    name: 3
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build4:
+    name: 4
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build5:
+    name: 5
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build6:
+    name: 6
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build7:
+    name: 7
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build8:
+    name: 8
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build9:
+    name: 9
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build10:
+    name: 10
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build11:
+    name: 11
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build12:
+    name: 12
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build13:
+    name: 13
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build14:
+    name: 14
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build15:
+    name: 15
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build16:
+    name: 16
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build17:
+    name: 17
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build18:
+    name: 18
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build19:
+    name: 19
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build20:
+    name: 20
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build21:
+    name: 21
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build22:
+    name: 22
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build23:
+    name: 23
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build24:
+    name: 24
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build25:
+    name: 25
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build26:
+    name: 26
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build27:
+    name: 27
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build28:
+    name: 28
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build29:
+    name: 29
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build30:
+    name: 30
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build31:
+    name: 31
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build32:
+    name: 32
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build33:
+    name: 33
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build34:
+    name: 34
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build35:
+    name: 35
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build36:
+    name: 36
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build37:
+    name: 37
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build38:
+    name: 38
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build39:
+    name: 39
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build40:
+    name: 40
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build41:
+    name: 41
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build42:
+    name: 42
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build43:
+    name: 43
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build44:
+    name: 44
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build45:
+    name: 45
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build46:
+    name: 46
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build47:
+    name: 47
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build48:
+    name: 48
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build49:
+    name: 49
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build50:
+    name: 50
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build51:
+    name: 51
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build52:
+    name: 52
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build53:
+    name: 53
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build54:
+    name: 54
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build55:
+    name: 55
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build56:
+    name: 56
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build57:
+    name: 57
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build58:
+    name: 58
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build59:
+    name: 59
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build60:
+    name: 60
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build61:
+    name: 61
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build62:
+    name: 62
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build63:
+    name: 63
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build64:
+    name: 64
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build65:
+    name: 65
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build66:
+    name: 66
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build67:
+    name: 67
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build68:
+    name: 68
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build69:
+    name: 69
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build70:
+    name: 70
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build71:
+    name: 71
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build72:
+    name: 72
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build73:
+    name: 73
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build74:
+    name: 74
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build75:
+    name: 75
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build76:
+    name: 76
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build77:
+    name: 77
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build78:
+    name: 78
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build79:
+    name: 79
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build80:
+    name: 80
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build81:
+    name: 81
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build82:
+    name: 82
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build83:
+    name: 83
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build84:
+    name: 84
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build85:
+    name: 85
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build86:
+    name: 86
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build87:
+    name: 87
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build88:
+    name: 88
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build89:
+    name: 89
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build90:
+    name: 90
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build91:
+    name: 91
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build92:
+    name: 92
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build93:
+    name: 93
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build94:
+    name: 94
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build95:
+    name: 95
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build96:
+    name: 96
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build97:
+    name: 97
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build98:
+    name: 98
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build99:
+    name: 99
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
+  build100:
+    name: 100
+    runs-on: ubuntu-latest
+    environment: STABILITY Tests 
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('tests/stability_tests/docker/test_naruno_docker_2_1.py') }}        
+    - name: Install dependencies and run tests
+      run: |
+        pip install -r requirements/tests.txt
+        
+        cd ..
+        docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
+        pytest Naruno/tests/stability_tests/docker/test_naruno_docker_2_1.py 
+
+    - name: Status Information
+      run: |
+        curl http://localhost:8000/status
+        curl http://localhost:8101/status
+        
+  
