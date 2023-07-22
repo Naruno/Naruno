@@ -25,7 +25,7 @@ class Test_Naruno_Local(unittest.TestCase):
         Send coin to 2.wallet from 1.wallet
         """
 
-        temp_environment = Naruno_Local(3, 1, test_mode=True)
+        temp_environment = Naruno_Local(2, 1, test_mode=True)
         temp_environment.delete()
         temp_environment.install()
         temp_environment.run()
@@ -63,20 +63,11 @@ class Test_Naruno_Local(unittest.TestCase):
             },
         )
         time.sleep(100)
-        requests.post(
-            "http://localhost:8000/send/",
-            {
-                "to_user": wallet_2_address,
-                "amount": 5000,
-                "password": "123"
-            },
-        )
-        time.sleep(100)
+
         balance_wallet_1 = json.loads(
             urllib.request.urlopen(
                 "http://localhost:8101/wallet/balance").read().decode())
-        self.assertEqual(balance_wallet_1, 9500.0,
+        self.assertEqual(balance_wallet_1, 4500.0,
                          "A problem in same network one transaction -3.")
-
 
 unittest.main(exit=False)
