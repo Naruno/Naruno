@@ -87,7 +87,12 @@ class Block:
 
         if the_settings()["funtionaltest_mode"]:
             self.max_tx_number = 2
-            self.max_data_size = 1000
+            self.max_data_size = 100
+            self.max_tx_number = 2
+            self.consensus_timer = 1
+            self.round_1_time = 10
+            self.round_2_time = 5
+            self.block_time = 18
 
     def reset_the_block(self, custom_nodes=None):
         """
