@@ -217,6 +217,8 @@ class server(Thread):
             data = self.prepare_message(data)
 
         a_block = Block("onur")
+        self.logger.debug(f"Block max_data_size: {a_block.max_data_size}")
+        self.logger.debug(f"Block max_tx_number: {a_block.max_tx_number}")
         buffer_size = 6525 + int(
             (a_block.max_data_size // a_block.max_tx_number) * 1.5)
         buffer_size_2 = 6525 + int(
