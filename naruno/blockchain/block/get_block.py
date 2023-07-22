@@ -93,8 +93,6 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
     result_highest = block_db.get(highest_the_TEMP_BLOCK_PATH,
                                   custom_key_location=block_db_path_second)
 
-    if result_highest is None:
-        result_highest = Block("non")
 
     result_normal = Remove_Duplicates(result_normal)
     result_highest = Remove_Duplicates(result_highest)
