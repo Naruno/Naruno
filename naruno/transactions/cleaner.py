@@ -19,6 +19,7 @@ def Cleaner(
     custom_current_time=None,
     custom_sequence_number=None,
     custom_balance=None,
+    disable_already_in=True,
 ):
     system_txs = []
 
@@ -37,7 +38,7 @@ def Cleaner(
                 custom_current_time=custom_current_time,
                 custom_balance=custom_balance,
                 custom_sequence_number=the_sequance_number,
-                disable_already_in=True,
+                disable_already_in=disable_already_in,
         ):
             DeletePending(transaction)
             pending_list_txs.remove(transaction)
@@ -52,7 +53,7 @@ def Cleaner(
                 custom_current_time=custom_current_time,
                 custom_balance=custom_balance,
                 custom_sequence_number=the_sequance_number,
-                disable_already_in=True,
+                disable_already_in=disable_already_in,
         ):
             block.validating_list.remove(transaction)
 

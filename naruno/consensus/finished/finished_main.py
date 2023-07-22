@@ -31,6 +31,8 @@ from naruno.lib.settings_system import save_settings
 from naruno.lib.settings_system import the_settings
 from naruno.node.server.server import server
 from naruno.transactions.pending_to_validating import PendingtoValidating
+from naruno.transactions.cleaner import Cleaner
+from naruno.transactions.pending.get_pending import GetPending
 import naruno
 
 logger = get_logger("CONSENSUS")
@@ -168,7 +170,7 @@ def finished_main(
 
 
 
-        
+        Cleaner(block, pending_list_txs=GetPending(), disable_already_in=False)
         PendingtoValidating(block)
         logger.debug("Pending to validating is complated")
         SaveBlock(
@@ -180,6 +182,7 @@ def finished_main(
         )
         with contextlib.suppress(Exception):
             naruno.consensus.sync.sync.sync_round_1 = True
+            naruno.consensus.sync.sync.sended_txs = []
         return True
     else:
         logger.info(

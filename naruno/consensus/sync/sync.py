@@ -19,6 +19,7 @@ logger = get_logger("CONSENSUS")
 sync_round_1 = True
 sync_round_2 = False
 
+sended_txs = []
 
 def sync(
     block: Block,
@@ -57,7 +58,9 @@ def sync(
         the_transactions_list += pending_list_txs
     for i in the_transactions_list:
         try:
-            the_server.send_transaction(i)
+            if not i.signature in naruno.consensus.sync.sync.sended_txs:
+                naruno.consensus.sync.sync.sended_txs.append(i.signature)
+                the_server.send_transaction(i)
             if send_transaction_error:
                 raise Exception("Transaction sending error")
         except Exception as e:
