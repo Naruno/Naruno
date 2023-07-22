@@ -142,6 +142,20 @@ class server(Thread):
 
         self.send_busy = []
 
+
+        a_block = Block("onur")
+        self.logger.debug(f"Block max_data_size: {a_block.max_data_size}")
+        self.logger.debug(f"Block max_tx_number: {a_block.max_tx_number}")
+        self.buffer_size = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+        self.buffer_size_2 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 1.5)
+        self.buffer_size_3 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 5)    
+        self.buffer_size_4 = 6525 + int(
+            (a_block.max_data_size // a_block.max_tx_number) * 0.5)   
+
+      
         if not test:
             self.__class__.Server = self
             self.start()
@@ -216,26 +230,16 @@ class server(Thread):
         if not ready_to_send:
             data = self.prepare_message(data)
 
-        a_block = Block("onur")
-        self.logger.debug(f"Block max_data_size: {a_block.max_data_size}")
-        self.logger.debug(f"Block max_tx_number: {a_block.max_tx_number}")
-        buffer_size = 6525 + int(
-            (a_block.max_data_size // a_block.max_tx_number) * 1.5)
-        buffer_size_2 = 6525 + int(
-            (a_block.max_data_size // a_block.max_tx_number) * 1.5)
-        buffer_size_3 = 6525 + int(
-            (a_block.max_data_size // a_block.max_tx_number) * 5)    
-        buffer_size_4 = 6525 + int(
-            (a_block.max_data_size // a_block.max_tx_number) * 0.5)   
+
 
         if c_type == 0:
-            the_buffer = buffer_size
+            the_buffer = bself.uffer_size
         elif c_type == 1:
-            the_buffer = buffer_size_2
+            the_buffer = self.buffer_size_2
         elif c_type == 2:
-            the_buffer = buffer_size_3
+            the_buffer = self.buffer_size_3
         elif c_type == 3:
-            the_buffer = buffer_size_4
+            the_buffer = self.buffer_size_4
 
         before_buffer_size = len(json.dumps(data).encode("utf-8"))
         self.logger.debug(
