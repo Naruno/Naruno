@@ -6,6 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
 import copy
+import threading
+
 
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
@@ -15,6 +17,14 @@ from naruno.transactions.pending.get_pending import GetPending
 from naruno.transactions.pending.save_pending import SavePending
 
 logger = get_logger("TRANSACTIONS")
+
+
+def tx_sending_PendingtoValidating(block: Block, pending_list_txs):
+    with contextlib.suppress(Exception):
+        [
+            server.send_transaction(i)
+            for i in pending_list_txs + block.validating_list
+        ]
 
 
 def PendingtoValidating(block: Block):
@@ -31,11 +41,10 @@ def PendingtoValidating(block: Block):
     pending_list_txs = GetPending()
     logger.debug(f"Pending list is got: {pending_list_txs}")
 
-    with contextlib.suppress(Exception):
-        [
-            server.send_transaction(i)
-            for i in pending_list_txs + block.validating_list
-        ]
+    tx_sending_PendingtoValidating_thread = threading.Thread(
+        target=tx_sending_PendingtoValidating, args=(block,pending_list_txs))
+    tx_sending_PendingtoValidating_thread.start()
+
 
     first_situation = copy.copy(block.validating_list)
     the_list_of_tx = pending_list_txs + first_situation
