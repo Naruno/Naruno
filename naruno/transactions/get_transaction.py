@@ -4,9 +4,20 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+import threading
+import traceback
+from naruno.node.server.server import server
 from naruno.transactions.check.check_transaction import \
     CheckTransaction
 from naruno.transactions.pending.save_pending import SavePending
+
+def tx_sending(tx):
+    try:
+        server.send_transaction(tx)
+    except:
+        traceback.print_exc()
+             
 
 
 def GetTransaction(
@@ -27,6 +38,8 @@ def GetTransaction(
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
             custom_account_list=custom_account_list,
     ):
+
+        threading.Thread(target=tx_sending, args=(the_transaction,)).start()
         SavePending(
             the_transaction,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
