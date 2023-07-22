@@ -212,7 +212,7 @@ jobs:
       run: |
         curl http://localhost:8000/status
         curl http://localhost:8101/status
-        curl http://localhost:8102/status
+
 
   functional-test-docker-ubuntu-latest:
     needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
@@ -244,7 +244,7 @@ jobs:
       run: |
         curl http://localhost:8000/status
         curl http://localhost:8101/status
-        curl http://localhost:8102/status
+
     - name: Copy out file from volume
       run: |
         mkdir -p /home/runner/work/Naruno/Naruno-0/naruno
@@ -252,6 +252,6 @@ jobs:
         mkdir -p /home/runner/work/Naruno/Naruno-2/naruno
         sudo cp -r /var/lib/docker/volumes/naruno-logs/_data/  /home/runner/work/Naruno/Naruno-0/naruno/logs
         sudo cp -r /var/lib/docker/volumes/naruno-logs-0/_data/  /home/runner/work/Naruno/Naruno-1/naruno/logs
-        sudo cp -r /var/lib/docker/volumes/naruno-logs-1/_data/  /home/runner/work/Naruno/Naruno-2/naruno/logs
+
 
 
