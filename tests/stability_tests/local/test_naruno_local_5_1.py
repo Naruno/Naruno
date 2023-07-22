@@ -45,7 +45,7 @@ class Test_Naruno_Local(unittest.TestCase):
                 "password": "123"
             },
         )
-        time.sleep(81)
+        time.sleep(30)
         balance_wallet_1 = json.loads(
             urllib.request.urlopen(
                 "http://localhost:8101/wallet/balance").read().decode())
@@ -62,7 +62,7 @@ class Test_Naruno_Local(unittest.TestCase):
                 "password": "123"
             },
         )
-        time.sleep(81)
+        time.sleep(30)
         requests.post(
             "http://localhost:8000/send/",
             {
@@ -71,7 +71,7 @@ class Test_Naruno_Local(unittest.TestCase):
                 "password": "123"
             },
         )
-        time.sleep(81)
+        time.sleep(30)
         balance_wallet_1 = json.loads(
             urllib.request.urlopen(
                 "http://localhost:8101/wallet/balance").read().decode())
