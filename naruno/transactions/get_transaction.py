@@ -12,10 +12,10 @@ from naruno.transactions.check.check_transaction import \
     CheckTransaction
 from naruno.transactions.pending.save_pending import SavePending
 
-def tx_sending(tx):
+def tx_sending(tx,except_client,custom_server):
     try:
         from naruno.node.server.server import server
-        server.send_transaction(tx)
+        server.send_transaction(tx,except_client=except_client,custom_server=custom_server)
     except:
         traceback.print_exc()
              
@@ -29,6 +29,8 @@ def GetTransaction(
     custom_balance=None,
     custom_PENDING_TRANSACTIONS_PATH=None,
     custom_account_list=None,
+    except_client=None,
+    custom_server=None,
 ):
     if CheckTransaction(
             block,
@@ -40,7 +42,7 @@ def GetTransaction(
             custom_account_list=custom_account_list,
     ):
 
-        threading.Thread(target=tx_sending, args=(the_transaction,)).start()
+        threading.Thread(target=tx_sending, args=(the_transaction,except_client,custom_server)).start()
         SavePending(
             the_transaction,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,

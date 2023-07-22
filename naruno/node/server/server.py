@@ -839,7 +839,7 @@ class server(Thread):
             custom_sequence_number = data["custom_sequence_number"]
             custom_balance = data["custom_balance"]
 
-        if GetTransaction(
+        GetTransaction(
                 block,
                 the_transaction,
                 custom_current_time=custom_current_time,
@@ -847,10 +847,9 @@ class server(Thread):
                 custom_balance=custom_balance,
                 custom_PENDING_TRANSACTIONS_PATH=self.
                 PENDING_TRANSACTIONS_PATH,
-        ):
-            server.send_transaction(the_transaction,
-                                    except_client=node,
-                                    custom_server=self)
+                except_client=node,
+                custom_server=self)
+        
     def send_block_to_other_nodes(self,
                                   node=None,
                                   sync=False,
