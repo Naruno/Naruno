@@ -240,8 +240,11 @@ class server(Thread):
 
         if before_buffer_size < the_buffer:
             self.logger.debug("Buffer is not full")
-            data["buffer"] = "0" * (
-                (the_buffer - before_buffer_size) - 14)
+            self.logger.debug(f"the_buffer: {the_buffer}")
+            self.logger.debug(f"before_buffer_size: {before_buffer_size}")
+            result = ((the_buffer - before_buffer_size) - 14)
+            self.logger.debug(f"result: {result}")
+            data["buffer"] = "0" * result
             self.logger.debug(
                 f"After buffer size: {len(json.dumps(data).encode('utf-8'))}")
         while node.id+str(c_type) in self.send_busy:

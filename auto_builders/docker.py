@@ -101,6 +101,9 @@ class Naruno_Docker:
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
                 f"http://localhost:{8100 + i + 1}/settings/debug/on")
+            if self.test_mode:
+                urllib.request.urlopen(
+                    f"http://localhost:{8100 + i + 1}/settings/functionaltest/on")                 
 
     def creating_the_wallets(self):
         time.sleep(1 * self.number_of_nodes)
