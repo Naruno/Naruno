@@ -17,7 +17,7 @@ import requests
 
 from auto_builders.local import Naruno_Local
 
-temp_environment = Naruno_Local(2, 1, test_mode=True)
+temp_environment = Naruno_Local(3, 1, test_mode=True)
 temp_environment.delete()
 temp_environment.install()
 temp_environment.run()
