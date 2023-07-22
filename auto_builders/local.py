@@ -152,11 +152,11 @@ class Naruno_Local:
                             )
 
     def connecting_the_nodes(self):
-        time.sleep(1 * self.number_of_nodes)
+        time.sleep(5 * self.number_of_nodes)
         for i in range(self.number_of_nodes):
             urllib.request.urlopen(
                 f"http://localhost:8000/node/connect/0.0.0.0/{8010 + i + 1}")
-        time.sleep(1 * self.number_of_nodes)
+        time.sleep(5 * self.number_of_nodes)
         if self.number_of_security_circle == 1:
             for i in range(self.number_of_nodes):
                 for i_n in range(self.number_of_nodes):
@@ -164,7 +164,7 @@ class Naruno_Local:
                         urllib.request.urlopen(
                             f"http://localhost:{8100 + i + 1}/node/connect/0.0.0.0/{8010 + i_n + 1}"
                         )
-                time.sleep(1 * self.number_of_nodes)
+                time.sleep(5 * self.number_of_nodes)
 
         else:
             for circle in self.circles:
@@ -174,7 +174,7 @@ class Naruno_Local:
                             urllib.request.urlopen(
                                 f"http://localhost:{8100 + i + 1}/node/connect/0.0.0.0/{8010 + i_n + 1}"
                             )
-                    time.sleep(1 * self.number_of_nodes)
+                    time.sleep(5 * self.number_of_nodes)
 
     def creating_the_block(self):
         time.sleep(1 * self.number_of_nodes)
