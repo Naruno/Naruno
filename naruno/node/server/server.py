@@ -233,7 +233,7 @@ class server(Thread):
 
 
         if c_type == 0:
-            the_buffer = bself.uffer_size
+            the_buffer = self.buffer_size
         elif c_type == 1:
             the_buffer = self.buffer_size_2
         elif c_type == 2:
@@ -260,7 +260,7 @@ class server(Thread):
         try:
             with contextlib.suppress(socket.timeout):
                 node.socket.sendall(json.dumps(data).encode("utf-8"))
-
+                time.sleep(0.5)
         except:
             traceback.print_exc()
         self.send_busy.remove(node.id+str(c_type))
