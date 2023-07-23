@@ -29,11 +29,11 @@ def Check_Datas(
     Check if the transaction datas are valid
     """
 
-    if not disable_already_in:
+    if not disable_already_inand not disable_already_in_2:
         pending_transactions = GetPending(
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
         for already_tx in pending_transactions + block.validating_list:
-            if already_tx.signature == transaction.signature and not disable_already_in_2:
+            if already_tx.signature == transaction.signature :
                 logger.error("Transaction is already in the pending list")
                 return False
 
@@ -46,11 +46,13 @@ def Check_Datas(
                         if transaction.sequence_number < tx.sequence_number:
                             pass
                         else:
+
+                                logger.info("Multiple transaction in one account")
+                                return False
+                    else:
+
                             logger.info("Multiple transaction in one account")
                             return False
-                    else:
-                        logger.info("Multiple transaction in one account")
-                        return False
     if not disable_already_in:
         balance = (GetBalance(
             transaction.fromUser,
@@ -85,7 +87,7 @@ def Check_Datas(
         )
         return False
 
-    if not disable_already_in:
+    if not disable_already_in and not disable_already_in_2:
         get_sequence_number = (GetSequanceNumber(transaction.fromUser, block=block)
                             if custom_sequence_number is None else
                             custom_sequence_number)
