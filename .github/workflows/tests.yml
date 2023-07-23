@@ -184,7 +184,7 @@ jobs:
  
 
   functional-test-local-ubuntu-latest:
-    needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
+    needs: lint_with_flake8
     runs-on: ubuntu-latest
     environment: FUNCTIONAL Tests
     strategy:
@@ -212,7 +212,7 @@ jobs:
 
 
   functional-test-docker-ubuntu-latest:
-    needs: [lint_with_flake8, unit-test-ubuntu-latest, unit-test-macos-latest, unit-test-windows-latest]
+    needs: lint_with_flake8
     runs-on: ubuntu-latest
     environment: FUNCTIONAL Tests
     strategy:
