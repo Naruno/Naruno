@@ -23,6 +23,7 @@ def Check_Datas(
     custom_PENDING_TRANSACTIONS_PATH=None,
     custom_account_list=None,
     disable_already_in=False,
+    disable_already_in_2=False,
 ):
     """
     Check if the transaction datas are valid
@@ -32,7 +33,7 @@ def Check_Datas(
         pending_transactions = GetPending(
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
         for already_tx in pending_transactions + block.validating_list:
-            if already_tx.signature == transaction.signature:
+            if already_tx.signature == transaction.signature and not disable_already_in_2:
                 logger.error("Transaction is already in the pending list")
                 return False
 

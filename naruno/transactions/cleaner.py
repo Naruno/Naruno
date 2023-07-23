@@ -20,6 +20,7 @@ def Cleaner(
     custom_sequence_number=None,
     custom_balance=None,
     disable_already_in=True,
+    disable_already_in_2=True,
 ):
     system_txs = []
 
@@ -39,6 +40,7 @@ def Cleaner(
                 custom_balance=custom_balance,
                 custom_sequence_number=the_sequance_number,
                 disable_already_in=disable_already_in,
+                disable_already_in_2=disable_already_in_2,
         ):
             DeletePending(transaction)
             pending_list_txs.remove(transaction)

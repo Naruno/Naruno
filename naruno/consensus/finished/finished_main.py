@@ -170,7 +170,7 @@ def finished_main(
 
 
 
-        Cleaner(block, pending_list_txs=GetPending(), disable_already_in=False)
+        Cleaner(block, pending_list_txs=GetPending(), disable_already_in_2=False)
         PendingtoValidating(block)
         logger.debug("Pending to validating is complated")
         SaveBlock(
