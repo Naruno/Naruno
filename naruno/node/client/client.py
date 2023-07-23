@@ -70,15 +70,8 @@ class client(Thread):
         if not test:
             self.start()
 
-    def run(self):
-        self.socket.settimeout(10.0)
-        while self.running:
-            with contextlib.suppress(socket.timeout):
-                data = self.socket.recv(self.buffer_size)
 
-                if not data:
-                    break
-
+    def threaded_receive(self, data):
                 data = data.decode("utf-8")
                 with contextlib.suppress(json.decoder.JSONDecodeError):
                     data = json.loads(data)
@@ -93,6 +86,17 @@ class client(Thread):
                     traceback.print_exc()
                     self.logger.error(f"Error while processing data: {e}")
                     self.logger.error(f"Data: {data}")
+
+    def run(self):
+        self.socket.settimeout(10.0)
+        while self.running:
+            with contextlib.suppress(socket.timeout):
+                data = self.socket.recv(self.buffer_size)
+
+                if not data:
+                    break
+
+                Thread(target=self.threaded_receive, args=(data,)).start()
 
             time.sleep(0.01)
 

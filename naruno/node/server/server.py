@@ -260,7 +260,7 @@ class server(Thread):
         try:
             with contextlib.suppress(socket.timeout):
                 node.socket.sendall(json.dumps(data).encode("utf-8"))
-                time.sleep(0.5)
+                time.sleep(0.02)
         except:
             traceback.print_exc()
         self.send_busy.remove(node.id+str(c_type))
