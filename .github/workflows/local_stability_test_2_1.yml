@@ -35,10 +35,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build2:
@@ -66,10 +63,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build3:
@@ -97,10 +91,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build4:
@@ -128,10 +119,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build5:
@@ -159,10 +147,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build6:
@@ -190,10 +175,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build7:
@@ -221,10 +203,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build8:
@@ -252,10 +231,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build9:
@@ -283,10 +259,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build10:
@@ -314,10 +287,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build11:
@@ -345,10 +315,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build12:
@@ -376,10 +343,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build13:
@@ -407,10 +371,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build14:
@@ -438,10 +399,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build15:
@@ -469,10 +427,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build16:
@@ -500,10 +455,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build17:
@@ -531,10 +483,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build18:
@@ -562,10 +511,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build19:
@@ -593,10 +539,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build20:
@@ -624,10 +567,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build21:
@@ -655,10 +595,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build22:
@@ -686,10 +623,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build23:
@@ -717,10 +651,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build24:
@@ -748,10 +679,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build25:
@@ -779,10 +707,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build26:
@@ -810,10 +735,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build27:
@@ -841,10 +763,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build28:
@@ -872,10 +791,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build29:
@@ -903,10 +819,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build30:
@@ -934,10 +847,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build31:
@@ -965,10 +875,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build32:
@@ -996,10 +903,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build33:
@@ -1027,10 +931,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build34:
@@ -1058,10 +959,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build35:
@@ -1089,10 +987,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build36:
@@ -1120,10 +1015,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build37:
@@ -1151,10 +1043,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build38:
@@ -1182,10 +1071,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build39:
@@ -1213,10 +1099,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build40:
@@ -1244,10 +1127,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build41:
@@ -1275,10 +1155,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build42:
@@ -1306,10 +1183,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build43:
@@ -1337,10 +1211,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build44:
@@ -1368,10 +1239,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build45:
@@ -1399,10 +1267,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build46:
@@ -1430,10 +1295,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build47:
@@ -1461,10 +1323,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build48:
@@ -1492,10 +1351,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build49:
@@ -1523,10 +1379,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build50:
@@ -1554,10 +1407,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build51:
@@ -1585,10 +1435,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build52:
@@ -1616,10 +1463,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build53:
@@ -1647,10 +1491,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build54:
@@ -1678,10 +1519,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build55:
@@ -1709,10 +1547,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build56:
@@ -1740,10 +1575,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build57:
@@ -1771,10 +1603,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build58:
@@ -1802,10 +1631,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build59:
@@ -1833,10 +1659,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build60:
@@ -1864,10 +1687,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build61:
@@ -1895,10 +1715,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build62:
@@ -1926,10 +1743,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build63:
@@ -1957,10 +1771,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build64:
@@ -1988,10 +1799,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build65:
@@ -2019,10 +1827,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build66:
@@ -2050,10 +1855,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build67:
@@ -2081,10 +1883,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build68:
@@ -2112,10 +1911,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build69:
@@ -2143,10 +1939,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build70:
@@ -2174,10 +1967,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build71:
@@ -2205,10 +1995,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build72:
@@ -2236,10 +2023,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build73:
@@ -2267,10 +2051,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build74:
@@ -2298,10 +2079,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build75:
@@ -2329,10 +2107,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build76:
@@ -2360,10 +2135,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build77:
@@ -2391,10 +2163,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build78:
@@ -2422,10 +2191,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build79:
@@ -2453,10 +2219,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build80:
@@ -2484,10 +2247,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build81:
@@ -2515,10 +2275,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build82:
@@ -2546,10 +2303,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build83:
@@ -2577,10 +2331,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build84:
@@ -2608,10 +2359,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build85:
@@ -2639,10 +2387,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build86:
@@ -2670,10 +2415,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build87:
@@ -2701,10 +2443,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build88:
@@ -2732,10 +2471,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build89:
@@ -2763,10 +2499,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build90:
@@ -2794,10 +2527,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build91:
@@ -2825,10 +2555,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build92:
@@ -2856,10 +2583,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build93:
@@ -2887,10 +2611,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build94:
@@ -2918,10 +2639,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build95:
@@ -2949,10 +2667,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build96:
@@ -2980,10 +2695,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build97:
@@ -3011,10 +2723,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build98:
@@ -3042,10 +2751,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build99:
@@ -3073,10 +2779,7 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   
   build100:
@@ -3104,9 +2807,6 @@ jobs:
         
         pytest Naruno/tests/stability_tests/local/test_naruno_local_2_1.py 
 
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
         
   

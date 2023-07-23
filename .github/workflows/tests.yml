@@ -208,10 +208,7 @@ jobs:
       run: |      
         cd ..
         pytest Naruno/tests/functional_tests/local/test_naruno_local.py
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
 
 
   functional-test-docker-ubuntu-latest:
@@ -240,10 +237,7 @@ jobs:
         cd ..
         docker build -t ghcr.io/naruno/api -f Naruno/docker/local/api/Dockerfile .
         pytest Naruno/tests/functional_tests/docker/test_naruno_docker.py
-    - name: Status Information
-      run: |
-        curl http://localhost:8000/status
-        curl http://localhost:8101/status
+
 
     - name: Copy out file from volume
       run: |
