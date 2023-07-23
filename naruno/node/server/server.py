@@ -46,10 +46,16 @@ from naruno.wallet.ellipticcurve.signature import Signature
 from naruno.wallet.wallet_import import wallet_import
 
 from naruno.node.get_candidate_blocks import self_candidates
+import naruno
 
 connectednodes_db = KOT("connectednodes",
                         folder=get_config()["main_folder"] + "/db")
  
+
+
+tx_signature_list = []
+
+
 
 class server(Thread):
     Server = None
@@ -820,7 +826,13 @@ class server(Thread):
 
     def get_transaction(self, data, node, hash_of_data=""):
         self.logger.info(f"Getting transaction with {hash_of_data}")
-        block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, reset=self.custom_variables)
+
+        if data["txsignature"] in naruno.node.server.server.tx_signature_list:
+            logger.debug("Transaction is already getted")
+            return
+
+        naruno.node.server.server.tx_signature_list.append(data["txsignature"])
+        
         the_transaction = Transaction(
             data["sequence_number"],
             data["txsignature"],
@@ -831,6 +843,7 @@ class server(Thread):
             data["transaction_fee"],
             data["transaction_time"],
         )
+        block = GetBlock(custom_TEMP_BLOCK_PATH=self.TEMP_BLOCK_PATH, reset=self.custom_variables)
         custom_current_time = None
         custom_sequence_number = None
         custom_balance = None

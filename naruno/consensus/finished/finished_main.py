@@ -183,6 +183,7 @@ def finished_main(
         with contextlib.suppress(Exception):
             naruno.consensus.sync.sync.sync_round_1 = True
             naruno.consensus.sync.sync.sended_txs = []
+            naruno.node.server.server.tx_signature_list = []
         return True
     else:
         logger.info(
