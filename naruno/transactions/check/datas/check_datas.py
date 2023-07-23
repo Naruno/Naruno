@@ -29,7 +29,7 @@ def Check_Datas(
     Check if the transaction datas are valid
     """
 
-    if not disable_already_inand and not disable_already_in_2:
+    if not disable_already_in and not disable_already_in_2:
         pending_transactions = GetPending(
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
         for already_tx in pending_transactions + block.validating_list:
