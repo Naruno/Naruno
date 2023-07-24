@@ -828,7 +828,7 @@ class server(Thread):
         self.logger.info(f"Getting transaction with {hash_of_data}")
 
         if data["txsignature"] in naruno.node.server.server.tx_signature_list:
-            logger.debug("Transaction is already getted")
+            self.logger.debug("Transaction is already getted")
             return
 
         naruno.node.server.server.tx_signature_list.append(data["txsignature"])
