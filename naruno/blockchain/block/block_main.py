@@ -76,9 +76,9 @@ class Block:
 
         self.just_one_tx = True
 
-        self.candidate_blocks_check = 80
+        self.candidate_blocks_check = 50
         self.candidate_blocks_hashes_check = 80
-        self.find_validated = 80
+        self.find_validated = 50
         self.process_candidate_blocks_hashes = 80
 
 
