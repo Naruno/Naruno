@@ -7,6 +7,7 @@
 import argparse
 import os
 import sys
+import threading
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 import time
@@ -106,6 +107,13 @@ def show_menu():
                    menu_text="Publisher Mode Off") + menu_space())
 
     print(quit_menu_maker(mode="main"))
+
+def get_block_process():
+                the_block = CreateBlock()
+                SaveBlock(the_block)
+                server.Server.send_block_to_other_nodes()
+                logger.info("Consensus timer is started")
+                perpetualTimer(the_block.consensus_timer, consensus_trigger, the_consensus=True)    
 
 
 def menu():
@@ -217,11 +225,7 @@ def menu():
 
         if choices_input == "getblock":
             if the_settings()["test_mode"]:
-                the_block = CreateBlock()
-                SaveBlock(the_block)
-                server.Server.send_block_to_other_nodes()
-                logger.info("Consensus timer is started")
-                perpetualTimer(the_block.consensus_timer, consensus_trigger, the_consensus=True)
+                threading.Thread(target=get_block_process).start()
             else:
                 server.Server.send_me_full_block()
 

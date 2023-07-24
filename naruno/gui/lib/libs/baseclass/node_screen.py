@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import os
+import threading
 
 from kivy.core.clipboard import Clipboard
 from kivymd.toast import toast
@@ -20,6 +21,12 @@ from naruno.lib.settings_system import the_settings
 from naruno.lib.status import Status
 from naruno.node.server.server import server
 
+
+def get_block_process():
+            the_block = CreateBlock()
+            SaveBlock(the_block)
+            server.Server.send_block_to_other_nodes()
+            perpetualTimer(the_block.consensus_timer, consensus_trigger, the_consensus=True)
 
 class NodeScreen(MDScreen):
     pass
@@ -95,10 +102,7 @@ class NodeBox(MDGridLayout):
         if not self.check_node_server():
             return False
         if the_settings()["test_mode"]:
-            the_block = CreateBlock()
-            SaveBlock(the_block)
-            server.Server.send_block_to_other_nodes()
-            perpetualTimer(the_block.consensus_timer, consensus_trigger, the_consensus=True)
+            threading.Thread(target=get_block_process).start()
         else:
             server.Server.send_me_full_block()
 

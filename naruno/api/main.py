@@ -8,6 +8,7 @@ import argparse
 import contextlib
 import os
 import sys
+import threading
 
 from flask import Flask
 from flask import jsonify
@@ -351,14 +352,7 @@ def fsettings_debug_off_page():
     return jsonify("OK")
 
 
-@app.route("/block/get", methods=["GET"])
-def block_get_page():
-    logger.debug(
-        f"{request.remote_addr} {request.method} {request.url} {request.data}")
-    if the_settings()["publisher_mode"]:
-        return jsonify({"error": "You can't get the block in publisher mode."})
-    the_server = server.Server if custom_server is None else custom_server
-    if the_settings()["test_mode"]:
+def block_get_page_proccess():
         the_block = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         SaveBlock(
             the_block,
@@ -374,6 +368,19 @@ def block_get_page():
                                  the_consensus_trigger, the_consensus=True)
         global custom_consensus_trigger_result
         custom_consensus_trigger_result = trigger
+
+
+@app.route("/block/get", methods=["GET"])
+def block_get_page():
+    logger.debug(
+        f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    if the_settings()["publisher_mode"]:
+        return jsonify({"error": "You can't get the block in publisher mode."})
+    the_server = server.Server if custom_server is None else custom_server
+    if the_settings()["test_mode"]:
+        threading.Thread(
+            target=block_get_page_proccess,
+        ).start()
     else:
         the_server.send_me_full_block()
     return jsonify("OK")
