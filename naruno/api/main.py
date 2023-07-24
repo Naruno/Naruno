@@ -380,7 +380,7 @@ def block_get_page():
     if the_settings()["test_mode"]:
         threading.Thread(
             target=block_get_page_proccess,
-            args=(the_server)
+            args=(the_server,)
         ).start()
     else:
         the_server.send_me_full_block()
