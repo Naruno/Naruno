@@ -19,7 +19,7 @@ def GetBalance(user,
                account_list=None,
                dont_convert=False,
                block=None,
-               custom_TEMP_BLOCK_PATH=None
+               custom_TEMP_BLOCK_PATH=None,
                tx_signature=None,
                custom_pending=None):
     """
