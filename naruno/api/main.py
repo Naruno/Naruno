@@ -352,7 +352,7 @@ def fsettings_debug_off_page():
     return jsonify("OK")
 
 
-def block_get_page_proccess():
+def block_get_page_proccess(the_server):
         the_block = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
         SaveBlock(
             the_block,
@@ -380,6 +380,7 @@ def block_get_page():
     if the_settings()["test_mode"]:
         threading.Thread(
             target=block_get_page_proccess,
+            args=(the_server)
         ).start()
     else:
         the_server.send_me_full_block()
