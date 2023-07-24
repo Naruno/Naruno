@@ -378,10 +378,7 @@ def block_get_page():
         return jsonify({"error": "You can't get the block in publisher mode."})
     the_server = server.Server if custom_server is None else custom_server
     if the_settings()["test_mode"]:
-        threading.Thread(
-            target=block_get_page_proccess,
-            args=(the_server,)
-        ).start()
+        block_get_page_proccess(the_server,)
     else:
         the_server.send_me_full_block()
     return jsonify("OK")

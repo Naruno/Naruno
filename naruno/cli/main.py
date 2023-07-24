@@ -225,7 +225,7 @@ def menu():
 
         if choices_input == "getblock":
             if the_settings()["test_mode"]:
-                threading.Thread(target=get_block_process).start()
+                get_block_process()
             else:
                 server.Server.send_me_full_block()
 
