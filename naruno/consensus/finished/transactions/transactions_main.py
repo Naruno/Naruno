@@ -24,9 +24,6 @@ logger = get_logger("CONSENSUS")
 
 
 
-def transaction_main_
-
-
 def transactions_main(block: Block) -> list:
     """
     This function is responsible for the transactions of the block.
