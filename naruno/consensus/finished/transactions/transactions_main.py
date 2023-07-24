@@ -4,6 +4,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import threading
+
 from naruno.accounts.commanders.get_comnder import GetCommander
 from naruno.blockchain.block.block_main import Block
 from naruno.lib.log import get_logger
@@ -29,31 +31,34 @@ def transactions_main(block: Block) -> list:
     Returns:
         list: The list of the transactions that are going to be validated.
     """
-    new_my_transactions_list = None
+    new_my_transactions_list = False
     my_address = wallet_import_all(3)
     my_public_key = wallet_import_all(0)
     custom_currently_list = GetMyTransaction()
     commanders = GetCommander()
     for tx in block.validating_list:
         if tx.toUser in my_address:
-            new_my_transactions_list = SavetoMyTransaction(
+            new_my_transactions_list = True
+            threading.Thread(target=SavetoMyTransaction, args=(
                 tx,
                 validated=True,
-                custom_currently_list=custom_currently_list)
+                custom_currently_list=custom_currently_list)).start()
         elif tx.fromUser in my_public_key:
-            new_my_transactions_list = ValidateTransaction(
-                tx, custom_currently_list=custom_currently_list)
-            new_my_transactions_list = SendedTransaction(
-                tx, custom_currently_list=custom_currently_list)
+            new_my_transactions_list = True
+            threading.Thread(target=ValidateTransaction, args(
+                tx, custom_currently_list=custom_currently_list)).start()
+            threading.Thread(target=SendedTransaction, args(
+                tx, custom_currently_list=custom_currently_list)).start()
         elif tx.fromUser in commanders:
-            new_my_transactions_list = SavetoMyTransaction(
+            new_my_transactions_list = True
+            threading.Thread(target=SavetoMyTransaction, args(
                 tx,
                 validated=True,
-                custom_currently_list=custom_currently_list)
+                custom_currently_list=custom_currently_list)).start()
         else:
             if the_settings()["publisher_mode"]:
-                new_my_transactions_list = SavetoMyTransaction(
+                threading.Thread(target=SavetoMyTransaction, args(
                     tx,
                     validated=True,
-                    custom_currently_list=custom_currently_list)
-    return new_my_transactions_list
+                    custom_currently_list=custom_currently_list)).start()
+    return True

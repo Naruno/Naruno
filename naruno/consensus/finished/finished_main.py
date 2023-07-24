@@ -89,7 +89,7 @@ def finished_main(
 
             new_tx_from_us = False
             new_transactions_list = transactions_main(block2)
-            if new_transactions_list is not None:
+            if new_transactions_list:
                 logger.debug("New transactions list is not None")
                 SaveBlockstoBlockchainDB(
                     block2,
