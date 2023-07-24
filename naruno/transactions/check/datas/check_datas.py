@@ -29,9 +29,11 @@ def Check_Datas(
     Check if the transaction datas are valid
     """
 
+    if not disable_already_in:
+        pending_transactions = GetPending(custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+
     if not disable_already_in and not disable_already_in_2:
-        pending_transactions = GetPending(
-            custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
+        
         for already_tx in pending_transactions + block.validating_list:
             if already_tx.signature == transaction.signature :
                 logger.error("Transaction is already in the pending list")
@@ -57,6 +59,8 @@ def Check_Datas(
         balance = (GetBalance(
             transaction.fromUser,
             block=block,
+            tx_signature=transaction.signature,
+            custom_pending=pending_transactions
         ) if custom_balance is None else custom_balance)
         if balance >= (float(transaction.amount) +
                     float(transaction.transaction_fee)):
@@ -73,6 +77,7 @@ def Check_Datas(
                     account_list=custom_account_list,
                     dont_convert=True,
                     block=block,
+                    custom_pending=pending_transactions,
             ) >= 0):
                 pass
             else:

@@ -19,7 +19,9 @@ def GetBalance(user,
                account_list=None,
                dont_convert=False,
                block=None,
-               custom_TEMP_BLOCK_PATH=None):
+               custom_TEMP_BLOCK_PATH=None
+               tx_signature=None,
+               custom_pending=None):
     """
     Returns the users balance.
     """
@@ -48,9 +50,13 @@ def GetBalance(user,
             1] if address in the_account_list else 0
 
         if not block.just_one_tx:
-            for tx in block.validating_list + GetPending():
-                if Address(tx.fromUser) == user:
+            the_pending = custom_pending if custom_pending is not None else GetPending()
+            for tx in block.validating_list + the_pending:
+                sub_control = True
+                if tx_signature is not None:
+                    if tx.signature == tx_signature:
+                        sub_control = False
+                if Address(tx.fromUser) == user and sub_control:
                     balance -= float(tx.amount) + float(tx.transaction_fee)
-                elif tx.toUser == user:
-                    balance += float(tx.amount)
+
     return balance
