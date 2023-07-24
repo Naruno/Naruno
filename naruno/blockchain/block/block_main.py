@@ -90,7 +90,7 @@ class Block:
             self.max_tx_number = 2
             self.max_data_size = 1000
 
-            self.candidate_blocks_check = 50
+            self.candidate_blocks_check = 80
             self.candidate_blocks_hashes_check = 50
             self.find_validated = 50
             self.process_candidate_blocks_hashes = 50
