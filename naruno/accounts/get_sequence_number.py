@@ -21,7 +21,7 @@ def GetSequanceNumber(user, account_list=None, dont_convert=False, block=None,cu
     if block is not None:
         the_pending = custom_pending if custom_pending is not None else GetPending()
         if not block.just_one_tx:
-            for tx in block.validating_list + the_pending
+            for tx in block.validating_list + the_pending:
                 if Address(tx.fromUser) == user:
                     sequence_number += 1
     return sequence_number
