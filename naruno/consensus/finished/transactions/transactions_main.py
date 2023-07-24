@@ -42,21 +42,21 @@ def transactions_main(block: Block) -> list:
             new_my_transactions_list = True
             threading.Thread(target=SavetoMyTransaction, args=(
                 tx,
-                ), kwargs={"validated":True,"custom_currently_list"=custom_currently_list}).start()
+                ), kwargs={"validated":True,"custom_currently_list":custom_currently_list}).start()
         elif tx.fromUser in my_public_key:
             new_my_transactions_list = True
             threading.Thread(target=ValidateTransaction, args(
-                tx), kwargs={"custom_currently_list"=custom_currently_list}).start()
+                tx), kwargs={"custom_currently_list":custom_currently_list}).start()
             threading.Thread(target=SendedTransaction, args(
-                tx), kwargs={"custom_currently_list"=custom_currently_list}).start()
+                tx), kwargs={"custom_currently_list":custom_currently_list}).start()
         elif tx.fromUser in commanders:
             new_my_transactions_list = True
             threading.Thread(target=SavetoMyTransaction, args(
                 tx,
-                ), kwargs={"validated":True,"custom_currently_list"=custom_currently_list}).start()
+                ), kwargs={"validated":True,"custom_currently_list":custom_currently_list}).start()
         else:
             if the_settings()["publisher_mode"]:
                 threading.Thread(target=SavetoMyTransaction, args(
                     tx,
-                    ), kwargs={"validated":True,"custom_currently_list"=custom_currently_list}).start()
+                    ), kwargs={"validated":True,"custom_currently_list":custom_currently_list}).start()
     return True
