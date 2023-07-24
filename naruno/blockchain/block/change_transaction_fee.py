@@ -6,6 +6,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from naruno.lib.log import get_logger
 from naruno.transactions.pending.get_pending import GetPendingLen
+from decimal import Decimal
+
 
 logger = get_logger("BLOCKCHAIN")
 
@@ -38,7 +40,8 @@ def ChangeTransactionFee(
     if (total_len // block.default_optimum_transaction_number) != 0:
         increase = (total_len // block.default_optimum_transaction_number
                     ) * block.default_increase_of_fee
-        block.transaction_fee += increase
+        decimal_amount = Decimal(str(block.transaction_fee)) + Decimal(str(increase))
+        block.transaction_fee = float(decimal_amount)
         logger.info("Transaction fee will be increased")
 
     else:
