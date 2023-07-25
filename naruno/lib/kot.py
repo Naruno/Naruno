@@ -138,6 +138,21 @@ class KOT:
         database_index.delete(name)
         return True
 
+
+    @staticmethod
+    def database_pop(name: str, folder: str = "") -> bool:
+        database_index = KOT("KOT-database-index",
+                             self_datas=True,
+                             folder=folder)
+        try:
+            the_db = KOT(name, folder=folder, self_datas=True)
+            for each_key in the_db.get_all():
+                the_db.delete(each_key)
+        except:
+            return False
+
+        return True
+
     @staticmethod
     def database_delete_all(folder: str = ""):
         database_index = KOT("KOT-database-index",

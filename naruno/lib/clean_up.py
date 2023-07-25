@@ -8,23 +8,29 @@ import contextlib
 import os
 import shutil
 import sys
+import copy
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import naruno
 from naruno.lib.config_system import get_config
+
 from naruno.lib.kot import KOT
 
 def CleanUp_tests():
+
     with contextlib.suppress(AttributeError):
         naruno.accounts.save_accounts.accounts_ram_db = {}
-    
-    for db in KOT.database_list(folder=get_config()["main_folder"] + "/db"):
+
+    the_folder = copy.copy(get_config()["main_folder"]) + "/db"
+    the_db_list = copy.copy(KOT.database_list(folder=the_folder))
+    print(the_db_list)
+    for db in the_db_list:
         if db != "config":
-            KOT.database_delete(db, folder=get_config()["main_folder"] + "/db")
+            print(f"Deleting {db}...")
+            KOT.database_pop(db, folder=the_folder)
 
     os.chdir(get_config()["main_folder"])
-    print("b")
     for the_file in os.listdir("db/"):
         if the_file.startswith("test_"):
             if os.path.isfile(f"db/{the_file}"):
