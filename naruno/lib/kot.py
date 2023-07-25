@@ -14,6 +14,7 @@ from shutil import make_archive
 from shutil import move
 from shutil import rmtree
 from shutil import unpack_archive
+import random
 
 class HASHES:
     cache = {}
@@ -260,11 +261,12 @@ class KOT:
             
             key_location_loading = os.path.join(self.location,
                                                 standart_key_location + ".l")
+            random_number = random.randint(10000,99999)
             key_location_loading_indicator = os.path.join(
-                self.location, standart_key_location + ".li")
+                self.location, standart_key_location + str(random_number) + ".li")
 
             key_location_reading_indicator = os.path.join(
-                self.location, standart_key_location + ".re")
+                self.location, standart_key_location)
             key_location_compress_indicator = os.path.join(
                 self.location, standart_key_location + ".co")
 
@@ -317,8 +319,17 @@ class KOT:
                 f.write(b"1")
 
             try_number = 0
-            while os.path.exists(
-                    key_location_reading_indicator) and try_number < 6:
+            busy = True
+            while not busy and try_number < 6:
+                any_file = False
+                for each_file in os.listdir(self.location):
+                    if each_file.startswith(
+                            key_location_reading_indicator) and each_file.endswith(
+                                ".re"):
+                        any_file = True
+                if not any_file:
+                    busy = False
+                    break
                 try_number += 1
                 time.sleep(0.25)
 
@@ -354,6 +365,25 @@ class KOT:
             self.open_files_db.set(element["meta"]["file"], True)
             return element["meta"]["file"]
 
+
+    def wait_system(self, key: str, indicator:str):
+        try_number = 0
+        busy = True
+        while not busy and try_number < 6:
+                any_file = False
+                for each_file in os.listdir(self.location):
+                    if each_file.startswith(
+                            indicator) and each_file.endswith(
+                                indicator):
+                        any_file = True
+                if not any_file:
+                    busy = False
+                    break
+                try_number += 1
+                time.sleep(0.25)
+
+
+
     def get(
         self,
         key: str,
@@ -378,62 +408,78 @@ class KOT:
         standart_key_location = os.path.join(self.location,HASHES.get_hash(key))
         key_location =  standart_key_location if custom_key_location == "" else custom_key_location
             
-
+        
         key_location_loading_indicator = os.path.join(
-                self.location, standart_key_location + ".li")
+                self.location, standart_key_location)
 
+        random_number = random.randint(10000,99999)
         key_location_reading_indicator = os.path.join(
-                self.location, standart_key_location + ".re")
+                self.location, standart_key_location +str(random_number) + ".re")
         key_location_compress_indicator = os.path.join(
                 self.location, standart_key_location + ".co")
 
-        while os.path.exists(key_location_loading_indicator):
-            time.sleep(0.1)
+
+
+        try_number = 0
+        busy = True
+        while not busy and try_number < 6:
+                any_file = False
+                for each_file in os.listdir(self.location):
+                    if each_file.startswith(
+                            key_location_loading_indicator) and each_file.endswith(
+                                ".li"):
+                        any_file = True
+                if not any_file:
+                    busy = False
+                    break
+                try_number += 1
+                time.sleep(0.25)
+
 
         if not os.path.isfile(os.path.join(self.location, key_location)):
             return None
 
         total_result = None
-
         total_result_standart = None
 
         try:
+
+            # Create a file that inform is reading
             with contextlib.suppress(Exception):
                 with open(key_location_reading_indicator, "wb") as f:
                     f.write(b"1")
+
+            # Read the file
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
-
                 with mgzip.open(os.path.join(self.location, key_location),
                                 "rb") as f:
                     result = pickle.load(f)
-                    total_result_standart = result
-                    try:
-                        total_result = self.transformer(
-                            result, encryption_key=encryption_key)
-                    except TypeError:
-                        total_result = result
             else:
                 with open(os.path.join(self.location, key_location),
                           "rb") as f:
                     result = pickle.load(f)
-                    total_result_standart = result
-                    try:
-                        total_result = self.transformer(
-                            result, encryption_key=encryption_key)
-                    except TypeError:
-                        total_result = result
 
+            # Transform the result
+            total_result_standart = result
+            try:
+                total_result = self.transformer(result, encryption_key=encryption_key)
+            except TypeError:
+                total_result = result            
+
+            # Add to cache
             if "cache_time" in total_result_standart:
                 self.cache[key] = total_result_standart
 
         except EOFError or FileNotFoundError:
             pass
 
+        # Delete the file that inform is reading
         if os.path.isfile(key_location_reading_indicator):
             with contextlib.suppress(Exception):
                 os.remove(key_location_reading_indicator)
 
+        # Create the file if there is an compress or encryption situation
         if total_result_standart["meta"]["type"] == "file":
             if not total_result_standart["meta"]["direct_file"]:
                 with open(total_result_standart["meta"]["file"], "wb") as f:
@@ -442,9 +488,9 @@ class KOT:
                         the_bytes = self.decrypt(encryption_key, the_bytes)
                     f.write(the_bytes)
 
+        # Return the result
         if raw_dict:
             return total_result_standart
-
         return total_result
 
     def get_key(self, key_location: str):
@@ -457,34 +503,27 @@ class KOT:
         try:
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
-
                 with mgzip.open(os.path.join(self.location, key_location),
                                 "rb") as f:
                     result = pickle.load(f)
-                    if not "cache_time" in result:
-                        result["cache_time"] = 0
-                    if not "cache_policy" in result:
-                        result["cache_policy"] = 0
-                    if not "meta" in result:
-                        result["meta"] = {"type": "value"}
-                    try:
-                        total_result = result["key"]
-                    except TypeError:
-                        total_result = False
             else:
                 with open(os.path.join(self.location, key_location),
                           "rb") as f:
                     result = pickle.load(f)
-                    if not "cache_time" in result:
-                        result["cache_time"] = 0
-                    if not "cache_policy" in result:
-                        result["cache_policy"] = 0
-                    if not "meta" in result:
-                        result["meta"] = {"type": "value"}
-                    try:
-                        total_result = result["key"]
-                    except TypeError:
-                        total_result = False
+
+
+            if not "cache_time" in result:
+                result["cache_time"] = 0
+            if not "cache_policy" in result:
+                result["cache_policy"] = 0
+            if not "meta" in result:
+                result["meta"] = {"type": "value"}
+            try:
+                total_result = result["key"]
+            except TypeError:
+                total_result = False
+
+
         except EOFError or FileNotFoundError:
             pass
         return total_result
