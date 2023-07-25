@@ -166,7 +166,6 @@ class KOT:
         self.name = name
         self.hashed_name = HASHES.get_hash(name)
         the_main_folder = os.getcwd() if not folder != "" else folder
-        self.the_main_folder = the_main_folder
         self.location = os.path.join(the_main_folder,
                                      "KOT-" + self.hashed_name)
 
@@ -246,7 +245,6 @@ class KOT:
         dont_delete_cache: bool = False,
         dont_remove_file: bool = False,
         custom_key_location: str = "",
-        short_cut: bool = False,
     ) -> bool:
         self.counter += 1
 
@@ -261,9 +259,6 @@ class KOT:
             standart_key_location = os.path.join(self.location,HASHES.get_hash(key))
             key_location =  standart_key_location if custom_key_location == "" else custom_key_location
             
-            if custom_key_location != "" and not short_cut:
-                self.set(key,value=key_location,file=file,compress=compress,encryption_key=encryption_key,cache_policy=cache_policy,dont_delete_cache=dont_delete_cache,dont_remove_file=dont_remove_file,short_cut = True)            
-
             key_location_loading = os.path.join(self.location,
                                                 standart_key_location + ".l")
             random_number = random.randint(10000,99999)
@@ -297,9 +292,7 @@ class KOT:
             if encryption_key != "":
                 value = self.encrypt(encryption_key, value)
 
-            the_dict = {"key": key, "value": value, "meta": meta, "short_cut": False}
-            if short_cut:
-                the_dict["short_cut"] = True
+            the_dict = {"key": key, "value": value, "meta": meta}
 
             if cache_policy != 0:
                 the_dict["cache_time"] = time.time()
@@ -398,7 +391,6 @@ class KOT:
         encryption_key: str = "",
         no_cache: bool = False,
         raw_dict: bool = False,
-        get_shotcut: bool = False,
     ):
         if key in self.cache and not no_cache:
             cache_control = False
@@ -444,7 +436,7 @@ class KOT:
                 time.sleep(0.25)
 
 
-        if not os.path.isfile(key_location):
+        if not os.path.isfile(os.path.join(self.location, key_location)):
             return None
 
         total_result = None
@@ -460,11 +452,11 @@ class KOT:
             # Read the file
             if os.path.exists(key_location_compress_indicator):
                 import mgzip
-                with mgzip.open(key_location,
+                with mgzip.open(os.path.join(self.location, key_location),
                                 "rb") as f:
                     result = pickle.load(f)
             else:
-                with open(key_location,
+                with open(os.path.join(self.location, key_location),
                           "rb") as f:
                     result = pickle.load(f)
 
@@ -473,7 +465,6 @@ class KOT:
             try:
                 total_result = self.transformer(result, encryption_key=encryption_key)
             except TypeError:
-                traceback.print_exc()
                 total_result = result            
 
             # Add to cache
@@ -481,7 +472,7 @@ class KOT:
                 self.cache[key] = total_result_standart
 
         except EOFError or FileNotFoundError:
-            traceback.print_exc()
+            pass
 
         # Delete the file that inform is reading
         if os.path.isfile(key_location_reading_indicator):
@@ -499,25 +490,7 @@ class KOT:
 
         # Return the result
         if raw_dict:
-
-            if total_result_standart["short_cut"] and not get_shotcut:
-                total_result_standart = self.get(key, custom_key_location=total_result_standart["value"],
-                                    encryption_key=encryption_key,
-                                    no_cache=no_cache,
-                                    raw_dict=raw_dict)
-
-
             return total_result_standart
-
-
-
-        if total_result_standart["short_cut"] and not get_shotcut:
-            total_result = self.get(key, custom_key_location=total_result_standart["value"],
-                                    encryption_key=encryption_key,
-                                    no_cache=no_cache,
-                                    raw_dict=raw_dict)
-
-
         return total_result
 
     def get_key(self, key_location: str):
@@ -574,14 +547,6 @@ class KOT:
                 maybe_file = self.get(key)
                 if os.path.exists(maybe_file):
                     os.remove(maybe_file)
-
-            the_get = self.get(key, no_cache=True, raw_dict=True, get_shotcut=True)
-            if the_get["short_cut"]:
-                with contextlib.suppress(TypeError):
-                    maybe_file = self.get(key, custom_key_location=the_get["value"])
-                    if os.path.exists(maybe_file):
-                        os.remove(maybe_file)
-                os.remove(the_get["value"])             
 
             if os.path.exists(key_location_compress_indicator):
                 os.remove(
