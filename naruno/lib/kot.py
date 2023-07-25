@@ -128,6 +128,9 @@ class KOT:
                              self_datas=True,
                              folder=folder)
         try:
+            the_db = KOT(name, folder=folder, self_datas=True)
+            for each_key in the_db.get_all():
+                the_db.delete(each_key)
             rmtree(database_index.get(name))
         except:
             return False
@@ -140,8 +143,9 @@ class KOT:
         database_index = KOT("KOT-database-index",
                              self_datas=True,
                              folder=folder)
+
         for each_database in database_index.dict():
-            KOT.database_delete(each_database)
+            KOT.database_delete(each_database, folder=folder)
 
     @staticmethod
     def database_rename(name: str,

@@ -13,11 +13,18 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import naruno
 from naruno.lib.config_system import get_config
-
+from naruno.lib.kot import KOT
 
 def CleanUp_tests():
-    naruno.accounts.save_accounts.accounts_ram_db = {}
+    with contextlib.suppress(AttributeError):
+        naruno.accounts.save_accounts.accounts_ram_db = {}
+    
+    for db in KOT.database_list(folder=get_config()["main_folder"] + "/db"):
+        if db != "config":
+            KOT.database_delete(db, folder=get_config()["main_folder"] + "/db")
+
     os.chdir(get_config()["main_folder"])
+    print("b")
     for the_file in os.listdir("db/"):
         if the_file.startswith("test_"):
             if os.path.isfile(f"db/{the_file}"):
