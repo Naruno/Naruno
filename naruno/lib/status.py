@@ -36,7 +36,7 @@ def Status(
     if (no_cache or a_settings["status_cache_time"] + cache_time <=
             currently_time) and (not a_settings["status_working"]
                                  or a_settings["status_cache_time"] +
-                                 wait_time + 2 <= currently_time):
+                                 the_wait_time + 2 <= currently_time):
         a_settings["status_working"] = True
         if not no_cache:
             a_settings["status_cache_time"] = time.time()
