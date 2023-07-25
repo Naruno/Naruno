@@ -31,6 +31,7 @@ def SavetoMyTransaction(
 
     currently_list = (GetMyTransaction() if custom_currently_list is None else
                       custom_currently_list)
+    save_list = []
     if not tx.signature == "NARUNO":
         new = True
 
@@ -52,13 +53,15 @@ def SavetoMyTransaction(
 
             tx_list = [tx, validated, sended]
             currently_list.append(tx_list)
+            save_list.append(tx_list)
 
         else:
             for tx_list in currently_list:
                 if tx_list[0].signature == tx.signature:
                     tx_list[1] = validated
                     tx_list[2] = sended
+                    save_list.append(tx_list)
 
-    SaveMyTransaction(currently_list)
+    SaveMyTransaction(save_list)
 
     return currently_list

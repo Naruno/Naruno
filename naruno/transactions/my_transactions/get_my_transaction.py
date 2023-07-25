@@ -20,6 +20,9 @@ mytransactions_db = KOT("mytransactions",
                         folder=get_config()["main_folder"] + "/db")
 
 
+mytransactions_db_ram = {}
+
+
 def check_from_network():
     """
     Checks if the transaction is in the network.
@@ -51,7 +54,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
 
     the_transactions = []
 
-    all_records = mytransactions_db.get_all()
+    all_records = mytransactions_db.get_all() if mytransactions_db_ram == {} else mytransactions_db_ram
     for entry in all_records:
         if not entry.endswith("validated") and not entry.endswith("sended"):
             try:

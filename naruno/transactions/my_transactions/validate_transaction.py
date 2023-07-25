@@ -24,6 +24,7 @@ def ValidateTransaction(tx: Transaction,
 
     custom_currently_list = (GetMyTransaction() if custom_currently_list
                              is None else custom_currently_list)
+    save_list = []
     for i in custom_currently_list:
         if i[0].signature == tx.signature:
            
@@ -31,5 +32,6 @@ def ValidateTransaction(tx: Transaction,
                 notification("Validated TX",
                              f"{tx.data}:{tx.amount} to {tx.toUser}")
             i[1] = True
-    SaveMyTransaction(custom_currently_list)
+            save_list.append(i)
+    SaveMyTransaction(save_list)
     return custom_currently_list

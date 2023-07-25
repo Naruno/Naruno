@@ -8,12 +8,15 @@ import copy
 import json
 import os
 from hashlib import sha256
+import contextlib
 
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 
 mytransactions_db = KOT("mytransactions",
                         folder=get_config()["main_folder"] + "/db")
+
+import naruno
 
 
 def SaveMyTransaction(transaction_list, clear=False):
@@ -39,13 +42,19 @@ def SaveMyTransaction(transaction_list, clear=False):
         }
 
         if clear:
-            for entry in mytransactions_db.get_all():
+            record = mytransactions_db.get_all() if naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram == {} else naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram
+            for entry in copy.copy(record):
                 if not entry.endswith("validated") and not entry.endswith(
                         "sended"):
                     if entry not in str(entry_name_list):
                         mytransactions_db.delete(entry)
                         mytransactions_db.delete(entry + "validated")
                         mytransactions_db.delete(entry + "sended")
+                        naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram.pop(entry)
+                        with contextlib.suppress(KeyError):
+                            naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram.pop(entry + "validated")
+                        with contextlib.suppress(KeyError):
+                            naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram.pop(entry + "sended")
 
         transaction_list = new_dict
 
@@ -53,27 +62,34 @@ def SaveMyTransaction(transaction_list, clear=False):
             name = copy.copy(tx.encode("utf-8"))
             if tx == b"":
                 name = "empty".encode("utf-8")
+            hash_of_name = sha256(name).hexdigest()
             mytransactions_db.set(
-                sha256(name).hexdigest(), transaction_list[tx]["tx"])
+                hash_of_name, transaction_list[tx]["tx"])
+            naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram[hash_of_name] = transaction_list[tx]["tx"]
+            
 
             if transaction_list[tx]["validated"]:
                 mytransactions_db.set(
-                    sha256(name).hexdigest() + "validated", True)
+                    hash_of_name + "validated", True)
+                naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram[hash_of_name+ "validated"] = True
             if transaction_list[tx]["sended"]:
                 mytransactions_db.set(
-                    sha256(name).hexdigest() + "sended", True)
+                    hash_of_name + "sended", True)
+                naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram[hash_of_name+ "sended"] = True
 
     elif type(transaction_list) is dict and transaction_list != {}:
+        hash_of_name = sha256(transaction_list[0].signature).hexdigest()
         mytransactions_db.set(
-            sha256(transaction_list[0].signature).hexdigest(),
+            hash_of_name,
             transaction_list[0].dump_json(),
         )
+        naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram[hash_of_name] = transaction_list[0].dump_json()
 
         if transaction_list[1]:
             mytransactions_db.set(
-                sha256(transaction_list[0].signature +
-                       "validated").hexdigest(), True)
+                hash_of_name + "validated", True)
+            naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram[hash_of_name+ "validated"] = True
         if transaction_list[2]:
             mytransactions_db.set(
-                sha256(transaction_list[0].signature + "sended").hexdigest(),
-                True)
+                hash_of_name+ "sended",True)
+            naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram[hash_of_name+ "sended"] = True
