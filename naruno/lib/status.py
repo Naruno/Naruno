@@ -31,6 +31,7 @@ def Status(
     """
     a_settings = the_settings()
     currently_time = time.time()
+    the_wait_time = wait_time if wait_time is not None else Block("status").block_time*3
 
     if (no_cache or a_settings["status_cache_time"] + cache_time <=
             currently_time) and (not a_settings["status_working"]
@@ -43,7 +44,7 @@ def Status(
         first_block = copy.copy((GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                        if custom_first_block is None else custom_first_block))
 
-        the_wait_time = wait_time if wait_time is not None else first_block.block_time*3
+        
         time.sleep(the_wait_time)
         new_block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
                      if custom_new_block is None else custom_new_block)
