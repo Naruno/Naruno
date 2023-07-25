@@ -513,7 +513,7 @@ def SaveBlock(
                             and secondly_situation_number == 1):
                         with contextlib.suppress(FileNotFoundError):
                             logger.info(f"Deleting old validating list: {file}")
-                            os.remove("db/" + file)
+                            block_db.delete(file)
 
     for file in os.listdir("db/"):
         if ("db/" + file).startswith(the_TEMP_BLOCK_PATH) and not (
@@ -527,7 +527,7 @@ def SaveBlock(
                 if number < block.sequence_number + block.empty_block_number:
                     with contextlib.suppress(FileNotFoundError):
                         logger.info("Removing " + "db/" + file)
-                        os.remove("db/" + file)
+                        block_db.delete(file)
 
     block_db_path_first = os.path.join(get_config()["main_folder"],
                                        the_TEMP_BLOCK_PATH)
