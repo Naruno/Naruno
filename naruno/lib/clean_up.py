@@ -23,13 +23,7 @@ def CleanUp_tests():
         naruno.accounts.save_accounts.accounts_ram_db = {}
 
     the_folder = copy.copy(get_config()["main_folder"]) + "/db"
-    the_db_list = copy.copy(KOT.database_list(folder=the_folder))
-    print(the_db_list)
-    for db in the_db_list:
-        if db != "config":
-            print(f"Deleting {db}...")
-            KOT.database_pop(db, folder=the_folder)
-
+    KOT.database_pop_all(folder=the_folder)
     os.chdir(get_config()["main_folder"])
     for the_file in os.listdir("db/"):
         if the_file.startswith("test_"):

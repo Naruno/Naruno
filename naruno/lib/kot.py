@@ -163,6 +163,15 @@ class KOT:
             KOT.database_delete(each_database, folder=folder)
 
     @staticmethod
+    def database_pop_all(folder: str = ""):
+        database_index = KOT("KOT-database-index",
+                             self_datas=True,
+                             folder=folder)
+
+        for each_database in database_index.dict():
+            KOT.database_pop(each_database, folder=folder)
+
+    @staticmethod
     def database_rename(name: str,
                         new_name: str,
                         force: bool = False,

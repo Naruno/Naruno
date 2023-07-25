@@ -151,12 +151,9 @@ class Test_Lib(unittest.TestCase):
         cls.custom_CONNECTED_NODES_PATH2 = CONNECTED_NODES_PATH.replace(
             "connected_nodes", "connected_nodes_test_2")
 
-        cls.custom_PENDING_TRANSACTIONS_PATH0 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_0")
-        cls.custom_PENDING_TRANSACTIONS_PATH1 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_1")
-        cls.custom_PENDING_TRANSACTIONS_PATH2 = PENDING_TRANSACTIONS_PATH.replace(
-            "pending_transactions", "pending_transactions_test_2")
+        cls.custom_PENDING_TRANSACTIONS_PATH0 = "pending_transactions_test_0"
+        cls.custom_PENDING_TRANSACTIONS_PATH1 = "pending_transactions_test_1"
+        cls.custom_PENDING_TRANSACTIONS_PATH2 = "pending_transactions_test_2"
 
         cls.node_0 = server(
             "127.0.0.1",
