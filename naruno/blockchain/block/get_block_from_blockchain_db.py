@@ -41,5 +41,5 @@ def GetBlockstoBlockchainDB(
 
         return result
 
-    except AttributeError:
+    except TypeError:
         return False

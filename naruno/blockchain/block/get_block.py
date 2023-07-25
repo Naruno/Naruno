@@ -82,16 +82,16 @@ def GetBlock(custom_TEMP_BLOCK_PATH=None,
     result_normal = Block("non")
     block_db_path_first = os.path.join(get_config()["main_folder"],
                                        the_TEMP_BLOCK_PATH)
-    record_of_normal = block_db.get(the_TEMP_BLOCK_PATH,
-                                    custom_key_location=block_db_path_first)
+    record_of_normal = Block.load_json(block_db.get(the_TEMP_BLOCK_PATH,
+                                    custom_key_location=block_db_path_first))
     if record_of_normal is not None:
         result_normal = record_of_normal
 
     block_db_path_second = os.path.join(get_config()["main_folder"],
                                         highest_the_TEMP_BLOCK_PATH)
     logger.debug("Highest block path: " + block_db_path_second)
-    result_highest = block_db.get(highest_the_TEMP_BLOCK_PATH,
-                                  custom_key_location=block_db_path_second)
+    result_highest = Block.load_json(block_db.get(highest_the_TEMP_BLOCK_PATH,
+                                  custom_key_location=block_db_path_second))
 
 
     result_normal = Remove_Duplicates(result_normal)

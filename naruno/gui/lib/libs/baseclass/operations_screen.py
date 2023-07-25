@@ -150,7 +150,7 @@ class OperationBox(MDGridLayout):
     def send_coin(self):
         try:
             GetBlock()
-        except AttributeError:
+        except TypeError:
             if not the_settings()["baklava"]:
                 popup(title="Please connect to an network.", type="failure")
                 return False

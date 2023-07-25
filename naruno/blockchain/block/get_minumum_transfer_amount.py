@@ -23,7 +23,7 @@ def GetMinimumTransferAmount(block=None, custom_TEMP_BLOCK_PATH=None):
         if block is None:
             try:
                 block = GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-            except AttributeError:
+            except TypeError:
                 return None
         minimum_transfer_amount = block.minumum_transfer_amount
 

@@ -534,12 +534,12 @@ def SaveBlock(
 
     naruno.blockchain.block.get_block.the_ram_block[the_TEMP_BLOCK_PATH] = block
     block_db.set(the_TEMP_BLOCK_PATH,
-                 block,
+                 block.dump_json(),
                  custom_key_location=block_db_path_first)
 
     if not just_save_normal:
         block_db_path_second = os.path.join(get_config()["main_folder"],
                                             highest_the_TEMP_BLOCK_PATH)
         block_db.set(highest_the_TEMP_BLOCK_PATH,
-                     block,
+                     block.dump_json(),
                      custom_key_location=block_db_path_second)
