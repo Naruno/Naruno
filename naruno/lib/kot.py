@@ -16,6 +16,11 @@ from shutil import rmtree
 from shutil import unpack_archive
 import random
 
+
+force_compress = False
+force_encrypt = False
+
+
 class HASHES:
     cache = {}
     @staticmethod
@@ -40,6 +45,9 @@ class KOT:
     def benchmark_set(number: int = 10000,
                       compress: bool = False,
                       encryption_key: str = "") -> float:
+        compress = True if force_compress else compress
+        encryption_key = force_encrypt if force_encrypt != False else encryption_key
+            
         my_db = KOT("KOT-benchmark", self_datas=True)
         start = time.time()
         for i in range(number):
@@ -60,6 +68,8 @@ class KOT:
         encryption_key: str = "",
         dont_generate: bool = False,
     ) -> float:
+        compress = True if force_compress else compress
+        encryption_key = force_encrypt if force_encrypt != False else encryption_key
         my_db = KOT("KOT-benchmark", self_datas=True)
         if not dont_generate:
             for i in range(number):
@@ -83,6 +93,8 @@ class KOT:
         encryption_key: str = "",
         dont_generate: bool = False,
     ) -> float:
+        compress = True if force_compress else compress
+        encryption_key = force_encrypt if force_encrypt != False else encryption_key
         my_db = KOT("KOT-benchmark", self_datas=True)
         if not dont_generate:
             for i in range(number):
@@ -103,6 +115,8 @@ class KOT:
     def benchmark(number: int = 10000,
                   compress: bool = False,
                   encryption_key: str = "") -> float:
+        compress = True if force_compress else compress
+        encryption_key = force_encrypt if force_encrypt != False else encryption_key
         total_time = 0
         total_time += KOT.benchmark_set(number, compress, encryption_key)
         total_time += KOT.benchmark_get(number,
@@ -121,6 +135,16 @@ class KOT:
                              self_datas=True,
                              folder=folder)
         return database_index.dict()
+    @staticmethod
+    def gui(password, folder: str = ""):
+        from .gui import GUI
+        GUI(folder, password)
+
+
+    @staticmethod
+    def web(password, folder: str = "",host=None, port=0):
+        from .gui import WEB
+        WEB(folder, password, host, port)
 
     @staticmethod
     def database_delete(name: str, folder: str = "") -> bool:
@@ -276,6 +300,8 @@ class KOT:
         custom_key_location: str = "",
         short_cut: bool = False,
     ) -> bool:
+        compress = True if force_compress else compress
+        encryption_key = force_encrypt if force_encrypt != False else encryption_key
         self.counter += 1
 
         meta = {"type": "value", "file": None, "direct_file": True}
@@ -392,6 +418,8 @@ class KOT:
     def transformer(self, element, encryption_key: str = ""):
         if "meta" not in element:
             element["meta"] = {"type": "value"}
+        if "short_cut" not in element:
+            element["short_cut"] = False
         if element["meta"]["type"] == "value":
             if encryption_key != "":
                 return self.decrypt(encryption_key, element["value"])
@@ -428,6 +456,7 @@ class KOT:
         raw_dict: bool = False,
         get_shotcut: bool = False,
     ):
+        encryption_key = force_encrypt if force_encrypt != False else encryption_key
         if key in self.cache and not no_cache:
             cache_control = False
             currently = time.time()
@@ -586,6 +615,7 @@ class KOT:
     def get_all(self):
         return self.dict()
 
+
     def get_count(self):
         return len(self.dict(no_data=True))
 
@@ -633,6 +663,7 @@ class KOT:
         return True
 
     def dict(self, encryption_key: str = "", no_data: bool = False):
+        encryption_key = force_encrypt if force_encrypt != False else encryption_key
         result = {}
         for key in os.listdir(self.location):
             if not "." in key:
@@ -700,6 +731,9 @@ class KOT:
         except:
             traceback.print_exc()
             return False
+
+
+
 
 
 def main():
