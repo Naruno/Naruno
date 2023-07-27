@@ -29,9 +29,16 @@ def ValidateTransaction(tx: Transaction,
                              is None else custom_currently_list)
     save_list = []
     for i in custom_currently_list:
+        first_signature = None
+        if isinstance(i,str):
+            first_signature = i
+        else:
+            first_signature = i[0].signature
+
+        
         logger.debug(f"First one: {i}")
         logger.debug(f"Second one: {tx}")
-        if i[0].signature == tx.signature:
+        if first_signature == tx.signature:
            
             if not i[1] or force_notify:
                 notification("Validated TX",
