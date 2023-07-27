@@ -22,8 +22,9 @@ def CleanUp_tests():
     with contextlib.suppress(AttributeError):
         naruno.accounts.save_accounts.accounts_ram_db = {}
 
-    the_folder = copy.copy(get_config()["main_folder"]) + "/db"
-    KOT.database_pop_all(folder=the_folder)
+
+    
+
     os.chdir(get_config()["main_folder"])
     for the_file in os.listdir("db/"):
         if the_file.startswith("test_"):
