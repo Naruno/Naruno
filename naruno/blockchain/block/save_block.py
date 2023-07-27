@@ -150,7 +150,8 @@ serial_testers = [
 
 
 
-]individuals = [
+]
+individuals = [
     "55de207a538855b4da2d60325e8afadc3b3caa04",
 
 
