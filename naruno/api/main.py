@@ -9,6 +9,7 @@ import contextlib
 import os
 import sys
 import threading
+import traceback
 
 from flask import Flask
 from flask import jsonify
@@ -146,6 +147,7 @@ def delete_wallets_page():
 def send_coin_data_page():
     logger.debug(
         f"{request.remote_addr} {request.method} {request.url} {request.data}")
+    result = "false"
     try:
         if the_settings()["publisher_mode"]:
             return jsonify(
@@ -193,10 +195,10 @@ def send_coin_data_page():
                     custom_TEMP_BLOCKSHASH_PART_PATH=
                     custom_TEMP_BLOCKSHASH_PART_PATH,
                 )
-            result = send_tx.dump_json() if send_tx != False else False
+            result = send_tx.dump_json()
   
     except:
-        result = "false"
+        traceback.print_exc()
 
 
     return jsonify(result)
