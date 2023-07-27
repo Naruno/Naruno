@@ -9,6 +9,7 @@ import json
 import os
 import traceback
 from urllib.request import urlopen
+import copy
 
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
@@ -55,7 +56,7 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     the_transactions = []
 
     all_records = mytransactions_db.get_all() if mytransactions_db_ram == {} else mytransactions_db_ram
-    for entry in all_records:
+    for entry in copy.copy(all_records):
         if not entry.endswith("validated") and not entry.endswith("sended"):
             try:
                 the_transactions_json = all_records[entry]
