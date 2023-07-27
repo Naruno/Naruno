@@ -10,6 +10,9 @@ from naruno.transactions.my_transactions.get_my_transaction import \
 from naruno.transactions.my_transactions.save_my_transaction import \
     SaveMyTransaction
 from naruno.transactions.transaction import Transaction
+from naruno.lib.log import get_logger
+
+logger = get_logger("TRANSACTIONS")
 
 
 def ValidateTransaction(tx: Transaction,
@@ -26,6 +29,8 @@ def ValidateTransaction(tx: Transaction,
                              is None else custom_currently_list)
     save_list = []
     for i in custom_currently_list:
+        logger.debug(f"First one: {i}")
+        logger.debug(f"Second one: {tx}")
         if i[0].signature == tx.signature:
            
             if not i[1] or force_notify:
