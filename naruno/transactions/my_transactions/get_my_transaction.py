@@ -93,6 +93,10 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     # sort
     the_transactions.sort(key=lambda x: x[0].signature)
 
+    from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
+    for i in network_validated:
+        ValidateTransaction(i, custom_currently_list=the_transactions, force_notify=True)
+  
     if turn_json:
         the_transactions = {
             tx[0].signature: {
@@ -103,8 +107,6 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             for tx in the_transactions
         }
 
-    from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
-    for i in network_validated:
-        ValidateTransaction(i, custom_currently_list=the_transactions, force_notify=True)
+
 
     return the_transactions
