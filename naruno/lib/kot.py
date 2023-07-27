@@ -634,12 +634,13 @@ class KOT:
                     os.remove(maybe_file)
 
             the_get = self.get(key, no_cache=True, raw_dict=True, get_shotcut=True)
-            if the_get["short_cut"]:
-                with contextlib.suppress(TypeError):
+            with contextlib.suppress(TypeError):
                     maybe_file = self.get(key, custom_key_location=the_get["value"])
                     if os.path.exists(maybe_file):
-                        os.remove(maybe_file)
-                os.remove(the_get["value"])             
+                        os.remove(maybe_file)   
+            with contextlib.suppress(TypeError):
+                if the_get["short_cut"]:
+                    os.remove(the_get["value"])             
 
             if os.path.exists(key_location_compress_indicator):
                 os.remove(
