@@ -53,7 +53,7 @@ connectednodes_db = KOT("connectednodes",
  
 
 
-tx_signature_list = []
+tx_signature_list = {}
 
 
 
@@ -826,12 +826,14 @@ class server(Thread):
 
     def get_transaction(self, data, node, hash_of_data=""):
         self.logger.info(f"Getting transaction with {hash_of_data}")
+        if self not in naruno.node.server.server.tx_signature_list:
+            naruno.node.server.server.tx_signature_list[self] = []
 
-        if data["txsignature"] in naruno.node.server.server.tx_signature_list:
+        if data["txsignature"] in naruno.node.server.server.tx_signature_list[self]:
             self.logger.debug("Transaction is already getted")
             return
 
-        naruno.node.server.server.tx_signature_list.append(data["txsignature"])
+        naruno.node.server.server.tx_signature_list[self].append(data["txsignature"])
         
         the_transaction = Transaction(
             data["sequence_number"],
