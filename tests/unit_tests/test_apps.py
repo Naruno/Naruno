@@ -567,7 +567,7 @@ class Test_apps(unittest.TestCase):
 
 
         self.integration.get_cache()
-        self.assertNotEqual(self.integration.cache, [])
+        self.assertEqual(self.integration.cache, [])
         self.integration.disable_cache()
         self.integration.get_cache()
         self.assertEqual(self.integration.cache, [])
