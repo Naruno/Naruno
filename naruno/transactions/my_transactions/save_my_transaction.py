@@ -50,7 +50,8 @@ def SaveMyTransaction(transaction_list, clear=False):
                         mytransactions_db.delete(entry)
                         mytransactions_db.delete(entry + "validated")
                         mytransactions_db.delete(entry + "sended")
-                        naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram.pop(entry)
+                        with contextlib.suppress(KeyError):
+                            naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram.pop(entry)
                         with contextlib.suppress(KeyError):
                             naruno.transactions.my_transactions.get_my_transaction.mytransactions_db_ram.pop(entry + "validated")
                         with contextlib.suppress(KeyError):
