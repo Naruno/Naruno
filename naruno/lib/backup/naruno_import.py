@@ -15,7 +15,7 @@ from naruno.lib.config_system import get_config, save_config
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import save_settings, temp_json, the_settings
 from naruno.config import WALLETS_PATH
-from naruno.wallet.save_wallet_list import save_to_wallet_list
+from naruno.wallet.save_wallet_list import save_wallet_list
 
 logger = get_logger("LIB")
 
