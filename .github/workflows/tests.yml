@@ -85,9 +85,9 @@ jobs:
         pip install -r requirements/api.txt
         pip install -r requirements/gui.txt
         pip install -r requirements/tests.txt
-    - name: Test with pytest
+    - name: Test with unittest
       run: |
-        pytest tests/unit_tests -v --profile
+        python3 -m unittest tests/unit_tests/*
     - name: Archive logs
       uses: actions/upload-artifact@v3
       with:
