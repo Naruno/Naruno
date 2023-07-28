@@ -43,7 +43,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('requirements/api.txt') }}-${{ hashFiles('requirements/gui.txt') }}-pytest-coverage
+        key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('requirements/api.txt') }}-${{ hashFiles('requirements/gui.txt') }}-${{ hashFiles('requirements/tests.txt') }}-${{ hashFiles('requirements/remote_app.txt')-pytest-coverage
     - name: Install dependencies
       run: |
         pip install -r requirements/api.txt
