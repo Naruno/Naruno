@@ -349,6 +349,7 @@ class Test_Consensus(unittest.TestCase):
         SavetoMyTransaction(the_transaction)
 
         transactions_main_finished(block=block)
+        time.sleep(10)
 
         DeleteCommander(the_transaction_4.fromUser)
 
