@@ -8,11 +8,14 @@ import copy
 import os
 import shutil
 import sys
+import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 from naruno.lib.config_system import get_config, save_config
 from naruno.lib.log import get_logger
 from naruno.lib.settings_system import save_settings, temp_json, the_settings
+from naruno.config import WALLETS_PATH
+from naruno.lib.wallet.save_wallet_list import save_wallet_list
 
 logger = get_logger("LIB")
 
@@ -40,5 +43,14 @@ def naruno_import(export_location: str) -> None:
             after_backup_settings[element] = temp_json[element]
 
     save_settings(after_backup_settings)
+
+
+    #Wallets before KOT
+    old_wallet = os.path.join(main_folder, WALLETS_PATH)
+    if os.path.exists(old_wallet):
+        with open(old_wallet, "r") as wallet_list_file:
+            wallets = json.load(wallet_list_file)
+            save_wallet_list(wallets)
+
 
     logger.info("Import completed")

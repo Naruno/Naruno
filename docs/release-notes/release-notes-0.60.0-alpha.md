@@ -13,8 +13,7 @@ Please report bugs using the issue tracker at GitHub:
 <https://github.com/Naruno/Naruno/issues>
 
 # Compatibility
-
-There have been no compatibility changes.
+Old backups are just compatible with wallet section. Other sections are not compatible with old backups.
 
 # Notable changes
 
