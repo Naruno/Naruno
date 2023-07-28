@@ -177,7 +177,7 @@ class server(Thread):
         self.logger.info("Server ear started")
         self.sock.settimeout(10.0)
         while self.running:
-            with contextlib.suppress(socket.timeout):
+            with contextlib.suppress(Exception):
                 conn, addr = self.sock.accept()
                 self.logger.debug(f"New connection request: {addr}")
                 data = conn.recv(1024)
