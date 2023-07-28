@@ -212,6 +212,7 @@ class Integration:
             return
 
         record = self.integrationcache_db.get("cache")
+
         if record is None:
             self.cache = []
             self.save_cache()
@@ -231,9 +232,11 @@ class Integration:
             self.get_cache()
             return
 
+
         self.backward_support_cache()
 
         self.integrationcache_db.set("cache", self.cache)
+
 
     def delete_cache(self):
         self.integrationcache_db.delete("cache")
@@ -246,7 +249,7 @@ class Integration:
         :return: The response of the request
         """
         api = f"http://{self.host}:{self.port}"
-        print(api)
+
         response = None
         if type == "post":
             response = requests.post(api + end_point, data=data)

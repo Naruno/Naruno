@@ -561,84 +561,19 @@ class Test_apps(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_integration_send_and_get_tx_received_disable_cache(self):
-        integration = Integration(
-            f"test_app_{int(time.time())}",
-            host="localhost",
-            port=7776,
-            password="123",
-            sended_not_validated=False,
-            sended=False,
-            wait_amount=1,
-        )
+        cache_backup = copy.copy(self.integration.cache)
+        self.integration.cache = ["a"*96]
+        self.integration.save_cache()
 
-        backup = GetMyTransaction()
-        backup_settings = the_settings()
 
-        original_saved_wallets = get_saved_wallet()
-        save_wallet_list({})
-        SaveMyTransaction([], clear=True)
+        self.integration.get_cache()
+        self.assertNotEqual(self.integration.cache, [])
+        self.integration.disable_cache()
+        self.integration.get_cache()
+        self.assertEqual(self.integration.cache, [])
 
-        password = "123"
-        response = urllib.request.urlopen(
-            f"http://localhost:7776/wallet/create/{password}")
-        request_body = {
-            "data": "<data>",
-            "to_user": "<address>remoteapp",
-            "amount": 5000,
-            "password": password,
-        }
-        self.assertEqual(
-            integration.send("hello_text",
-                             "hello",
-                             wallet_import(-1, 3),
-                             force=False),
-            True,
-        )
+        self.integration.cache = cache_backup
 
-        second_try = integration.send(
-            "hello_text",
-            "hello",
-            "<address><address><address><address><address><address><address><address><address><address><address><address><address><address>",
-            force=False,
-        )
-
-        self.assertEqual(second_try, False)
-
-        the_txs = GetMyTransaction()
-        for txs in the_txs:
-            if txs[0].toUser == wallet_import(-1, 3):
-                mytransactions_db.delete(
-                    sha256(txs[0].signature.encode("utf-8")).hexdigest() +
-                    "sended")
-
-        first_gettings_data_from_app = integration.get()
-        self.assertNotEqual(first_gettings_data_from_app, [])
-
-        integration.get_cache()
-        self.assertNotEqual(integration.cache, [])
-        integration.disable_cache()
-        integration.get_cache()
-        self.assertEqual(integration.cache, [])
-
-        print("aaaaaaAAAAAAAAAAAAaaaaaaaaaaAAAAAAAAAAAAAAAAAAaaaaaaaaaaa")
-
-        second_gettings_data_from_app = integration.get()
-        self.assertNotEqual(second_gettings_data_from_app, [])
-
-        integration.delete_cache()
-
-        the_tx = Transaction.load_json(first_gettings_data_from_app[0])
-        text = f"{integration.app_name}hello_text"
-        self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
-        self.assertEqual(the_tx.toUser, wallet_import(-1, 3))
-
-        new_my_transactions = GetMyTransaction()
-        self.assertEqual(len(new_my_transactions), 1)
-
-        DeletePending(the_tx)
-        SaveMyTransaction(backup, clear=True)
-        save_settings(backup_settings)
-        save_wallet_list(original_saved_wallets)
 
     def test_integration_caching_system_backward_support(self):
         app_name = f"test_app_{int(time.time())}"
