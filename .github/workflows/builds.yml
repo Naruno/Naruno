@@ -375,8 +375,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"api_android"          
       - name: Setup environment
         run: |
-          pip install buildozer
-          pip install Cython
+          pip install -r requirements/buildozer.txt
       - run: buildozer --help
       - name: SDK, NDK and p4a download
         run: |
@@ -426,8 +425,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"gui_android"              
       - name: Setup environment
         run: |
-          pip install buildozer
-          pip install Cython
+          pip install -r requirements/buildozer.txt
       - run: buildozer --help
       - name: SDK, NDK and p4a download
         run: |
