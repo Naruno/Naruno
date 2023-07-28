@@ -93,7 +93,7 @@ class client(Thread):
             with contextlib.suppress(socket.timeout):
                 data = False
                 try:
-                    data = self.socket.recv(self.buffer_size):
+                    data = self.socket.recv(self.buffer_size)
                 except OSError:
                     self.stop()
                     self.server.clients.remove(self)
