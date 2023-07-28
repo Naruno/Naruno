@@ -1,0 +1,2 @@
+buildozer==1.4.0
+Cython==3.0.0
