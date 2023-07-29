@@ -372,7 +372,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"api_android"          
+          key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('requirements/buildozer.txt') }}-${{ hashFiles('buildozer.spec') }}-"api_android"          
       - name: Setup environment
         run: |
           pip install -r requirements/buildozer.txt
@@ -422,7 +422,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('buildozer.spec') }}-"gui_android"              
+          key: ${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('requirements/buildozer.txt') }}-${{ hashFiles('buildozer.spec') }}-"gui_android"              
       - name: Setup environment
         run: |
           pip install -r requirements/buildozer.txt
