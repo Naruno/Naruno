@@ -5,17 +5,12 @@ import contextlib
 import hashlib
 import os
 import pickle
+import random
 import time
 import traceback
 from datetime import datetime
 from hashlib import sha256
-from shutil import copy
-from shutil import make_archive
-from shutil import move
-from shutil import rmtree
-from shutil import unpack_archive
-import random
-
+from shutil import copy, make_archive, move, rmtree, unpack_archive
 
 force_compress = False
 force_encrypt = False
