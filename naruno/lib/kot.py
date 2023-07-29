@@ -23,6 +23,7 @@ force_encrypt = False
 
 class HASHES:
     cache = {}
+
     @staticmethod
     def get_hash(string: str, hash_type: str = "sha256") -> str:
         if string in HASHES.cache:
@@ -47,7 +48,7 @@ class KOT:
                       encryption_key: str = "") -> float:
         compress = True if force_compress else compress
         encryption_key = force_encrypt if force_encrypt != False else encryption_key
-            
+
         my_db = KOT("KOT-benchmark", self_datas=True)
         start = time.time()
         for i in range(number):
@@ -135,14 +136,14 @@ class KOT:
                              self_datas=True,
                              folder=folder)
         return database_index.dict()
+
     @staticmethod
     def gui(password, folder: str = ""):
         from .gui import GUI
         GUI(folder, password)
 
-
     @staticmethod
-    def web(password, folder: str = "",host=None, port=0):
+    def web(password, folder: str = "", host=None, port=0):
         from .gui import WEB
         WEB(folder, password, host, port)
 
@@ -161,7 +162,6 @@ class KOT:
 
         database_index.delete(name)
         return True
-
 
     @staticmethod
     def database_pop(name: str, folder: str = "") -> bool:
@@ -312,15 +312,17 @@ class KOT:
             raise TypeError("File must be a string")
 
         try:
-            standart_key_location = os.path.join(self.location,HASHES.get_hash(key))
-            key_location =  standart_key_location if custom_key_location == "" else custom_key_location
-            
+            standart_key_location = os.path.join(
+                self.location, HASHES.get_hash(key))
+            key_location = standart_key_location if custom_key_location == "" else custom_key_location
+
             if custom_key_location != "" and not short_cut:
-                self.set(key,value=key_location,file=file,compress=compress,encryption_key=encryption_key,cache_policy=cache_policy,dont_delete_cache=dont_delete_cache,dont_remove_file=dont_remove_file,short_cut = True)            
+                self.set(key, value=key_location, file=file, compress=compress, encryption_key=encryption_key,
+                         cache_policy=cache_policy, dont_delete_cache=dont_delete_cache, dont_remove_file=dont_remove_file, short_cut=True)
 
             key_location_loading = os.path.join(self.location,
                                                 standart_key_location + ".l")
-            random_number = random.randint(10000,99999)
+            random_number = random.randint(10000, 99999)
             key_location_loading_indicator = os.path.join(
                 self.location, standart_key_location + str(random_number) + ".li")
 
@@ -351,7 +353,8 @@ class KOT:
             if encryption_key != "":
                 value = self.encrypt(encryption_key, value)
 
-            the_dict = {"key": key, "value": value, "meta": meta, "short_cut": False}
+            the_dict = {"key": key, "value": value,
+                        "meta": meta, "short_cut": False}
             if short_cut:
                 the_dict["short_cut"] = True
 
@@ -428,24 +431,21 @@ class KOT:
             self.open_files_db.set(element["meta"]["file"], True)
             return element["meta"]["file"]
 
-
-    def wait_system(self, key: str, indicator:str):
+    def wait_system(self, key: str, indicator: str):
         try_number = 0
         busy = True
         while not busy and try_number < 6:
-                any_file = False
-                for each_file in os.listdir(self.location):
-                    if each_file.startswith(
-                            indicator) and each_file.endswith(
-                                indicator):
-                        any_file = True
-                if not any_file:
-                    busy = False
-                    break
-                try_number += 1
-                time.sleep(0.25)
-
-
+            any_file = False
+            for each_file in os.listdir(self.location):
+                if each_file.startswith(
+                        indicator) and each_file.endswith(
+                            indicator):
+                    any_file = True
+            if not any_file:
+                busy = False
+                break
+            try_number += 1
+            time.sleep(0.25)
 
     def get(
         self,
@@ -469,37 +469,33 @@ class KOT:
             if cache_control:
                 return self.transformer(self.cache[key])
 
+        standart_key_location = os.path.join(
+            self.location, HASHES.get_hash(key))
+        key_location = standart_key_location if custom_key_location == "" else custom_key_location
 
-        standart_key_location = os.path.join(self.location,HASHES.get_hash(key))
-        key_location =  standart_key_location if custom_key_location == "" else custom_key_location
-            
-        
         key_location_loading_indicator = os.path.join(
-                self.location, standart_key_location)
+            self.location, standart_key_location)
 
-        random_number = random.randint(10000,99999)
+        random_number = random.randint(10000, 99999)
         key_location_reading_indicator = os.path.join(
-                self.location, standart_key_location +str(random_number) + ".re")
+            self.location, standart_key_location + str(random_number) + ".re")
         key_location_compress_indicator = os.path.join(
-                self.location, standart_key_location + ".co")
-
-
+            self.location, standart_key_location + ".co")
 
         try_number = 0
         busy = True
         while not busy and try_number < 6:
-                any_file = False
-                for each_file in os.listdir(self.location):
-                    if each_file.startswith(
-                            key_location_loading_indicator) and each_file.endswith(
-                                ".li"):
-                        any_file = True
-                if not any_file:
-                    busy = False
-                    break
-                try_number += 1
-                time.sleep(0.25)
-
+            any_file = False
+            for each_file in os.listdir(self.location):
+                if each_file.startswith(
+                        key_location_loading_indicator) and each_file.endswith(
+                            ".li"):
+                    any_file = True
+            if not any_file:
+                busy = False
+                break
+            try_number += 1
+            time.sleep(0.25)
 
         if not os.path.isfile(key_location):
             return None
@@ -528,10 +524,11 @@ class KOT:
             # Transform the result
             total_result_standart = result
             try:
-                total_result = self.transformer(result, encryption_key=encryption_key)
+                total_result = self.transformer(
+                    result, encryption_key=encryption_key)
             except TypeError:
                 traceback.print_exc()
-                total_result = result            
+                total_result = result
 
             # Add to cache
             if "cache_time" in total_result_standart:
@@ -559,21 +556,17 @@ class KOT:
 
             if total_result_standart["short_cut"] and not get_shotcut:
                 total_result_standart = self.get(key, custom_key_location=total_result_standart["value"],
-                                    encryption_key=encryption_key,
-                                    no_cache=no_cache,
-                                    raw_dict=raw_dict)
-
+                                                 encryption_key=encryption_key,
+                                                 no_cache=no_cache,
+                                                 raw_dict=raw_dict)
 
             return total_result_standart
-
-
 
         if total_result_standart["short_cut"] and not get_shotcut:
             total_result = self.get(key, custom_key_location=total_result_standart["value"],
                                     encryption_key=encryption_key,
                                     no_cache=no_cache,
                                     raw_dict=raw_dict)
-
 
         return total_result
 
@@ -595,7 +588,6 @@ class KOT:
                           "rb") as f:
                     result = pickle.load(f)
 
-
             if not "cache_time" in result:
                 result["cache_time"] = 0
             if not "cache_policy" in result:
@@ -607,14 +599,12 @@ class KOT:
             except TypeError:
                 total_result = False
 
-
         except EOFError or FileNotFoundError:
             pass
         return total_result
 
     def get_all(self):
         return self.dict()
-
 
     def get_count(self):
         return len(self.dict(no_data=True))
@@ -633,14 +623,16 @@ class KOT:
                 if os.path.exists(maybe_file):
                     os.remove(maybe_file)
 
-            the_get = self.get(key, no_cache=True, raw_dict=True, get_shotcut=True)
+            the_get = self.get(key, no_cache=True,
+                               raw_dict=True, get_shotcut=True)
             with contextlib.suppress(TypeError):
-                    maybe_file = self.get(key, custom_key_location=the_get["value"])
-                    if os.path.exists(maybe_file):
-                        os.remove(maybe_file)   
+                maybe_file = self.get(
+                    key, custom_key_location=the_get["value"])
+                if os.path.exists(maybe_file):
+                    os.remove(maybe_file)
             with contextlib.suppress(TypeError):
                 if the_get["short_cut"]:
-                    os.remove(the_get["value"])             
+                    os.remove(the_get["value"])
 
             if os.path.exists(key_location_compress_indicator):
                 os.remove(
@@ -674,7 +666,7 @@ class KOT:
                         if the_key != False:
                             result_of_key = (self.get(
                                 the_key, encryption_key=encryption_key)
-                                            if not no_data else True)
+                                if not no_data else True)
                             if not result_of_key is None:
                                 result[the_key] = result_of_key
         return result
@@ -733,9 +725,6 @@ class KOT:
         except:
             traceback.print_exc()
             return False
-
-
-
 
 
 def main():
