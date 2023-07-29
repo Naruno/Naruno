@@ -668,14 +668,15 @@ class KOT:
         result = {}
         for key in os.listdir(self.location):
             if not "." in key:
-                the_key = self.get_key(key)
-                if not the_key is None:
-                    if the_key != False:
-                        result_of_key = (self.get(
-                            the_key, encryption_key=encryption_key)
-                                         if not no_data else True)
-                        if not result_of_key is None:
-                            result[the_key] = result_of_key
+                with contextlib.suppress(Exception):
+                    the_key = self.get_key(key)
+                    if not the_key is None:
+                        if the_key != False:
+                            result_of_key = (self.get(
+                                the_key, encryption_key=encryption_key)
+                                            if not no_data else True)
+                            if not result_of_key is None:
+                                result[the_key] = result_of_key
         return result
 
     def size_all(self) -> int:
