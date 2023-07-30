@@ -37,33 +37,43 @@ def self_candidates(block: Block, reset=False):
             second_validating = [i.dump_json() for i in block.validating_list]
             if not block.round_1 or will_add_candidate_block is None:
                 if block.sequence_number+block.empty_block_number > the_block.sequence_number+the_block.empty_block_number or block.sequence_number == 0 or reset or will_add_candidate_block is None:
+
+                    the_block = copy.copy(block)
                     will_add_candidate_block = {
                                 "action": "myblock",
                                 "transaction": new_list,
                                 "signature": a_time,
-                                "sequence_number": block.sequence_number+block.empty_block_number,
+                                "sequence_number": the_block.sequence_number+the_block.empty_block_number,
                                 "total_length": len(new_list)
                             }
-                    the_block = copy.copy(block)
+
             if (block.round_1 and not block.round_2)  or block.sequence_number == 0 or will_add_candidate_block_hash is None:
                 if block.sequence_number+block.empty_block_number > the_block_2.sequence_number+the_block_2.empty_block_number or block.sequence_number == 0 or reset or will_add_candidate_block_hash is None:
-                    will_add_candidate_block_hash = {
-                                "action":
-                                "myblockhash",
-                                "hash":
-                                block.hash,
-                                "previous_hash":
-                                block.previous_hash,
-                                "signature":
-                                a_time,
-                                "sequence_number":
-                                block.sequence_number+block.empty_block_number,
-                            }
+                    last_control = True
+                    if block.sequence_number != 0:
+                        if block.hash == None:
+                            last_control = False
+            
+
+                    if last_control:
+
+                        the_block_2 = copy.copy(block)
                     
-                    the_block_2 = copy.copy(block)
-                    
+                        will_add_candidate_block_hash = {
+                                    "action":
+                                    "myblockhash",
+                                    "hash":
+                                    the_block_2.hash,
+                                    "previous_hash":
+                                    the_block_2.previous_hash,
+                                    "signature":
+                                    a_time,
+                                    "sequence_number":
+                                    the_block_2.sequence_number+the_block_2.empty_block_number,
+                                }
                 
-                
+
+
             
             naruno.node.get_candidate_blocks.our_candidates = [will_add_candidate_block, will_add_candidate_block_hash, the_block, the_block_2]
             
