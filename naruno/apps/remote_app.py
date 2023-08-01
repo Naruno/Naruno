@@ -109,7 +109,7 @@ class Integration:
         a_block = Block("Onur")
 
         if wait_amount is None:
-            self.wait_amount = a_block.block_time * 3
+            self.wait_amount = a_block.block_time * 4
         else:
             self.wait_amount = wait_amount
 
