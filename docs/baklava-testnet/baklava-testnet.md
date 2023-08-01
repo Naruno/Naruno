@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Baklava TestNet
-nav_order: 5
+title: Introduction
+parent: Baklava TestNet
+nav_order: 1
 ---
 
 # Baklava TestNet
@@ -16,7 +17,7 @@ Baklava TestNet is a test network for developers. You can use this network to te
 pip3 install naruno --upgrade
 ```
 
-## Using
+## Preparing
 
 The Naruno designed for working in connected and participated network. But we add a setting for using baklava testnet. You can use this setting via this command:
 
@@ -36,36 +37,6 @@ narunocli --getbalance
 
 After switching you can use our 4 lines web3 integration system.
 
-### Installing Requirements
-
-```console
-pip3 install naruno-api naruno-remote-app --upgrade
-```
-
-### Creating Web3_App.py
-
-Please use this code for creating a Web3 application in 4 lines.
-
-```python
-from naruno.apps.remote_app import Integration
-
-integration = Integration("Your_App_Name", password="Your_Wallet_Password")
-
-integration.send("Your_Action_Name", "Your_Data", "Recipient_Address")
-
-print(integration.get())
-
-integration.close()
-```
-
-## Adding Amount
-
-If you want to add amount to your transaction you can use `integration.send("Your_Action_Name", "Your_Data", "Recipient_Address", amount=100)` function. The amount is in Naruno coins. You can check your balance via `narunocli --getbalance` command.
-
-### Running
-
-With this command you will send an data to an recipient and after a while (tx validation proccess) you will get your sent datas and the datas that came to you.
-
-```console
-python Web3_App.py
-```
+## Using
+- [Creating a Remote App for Naruno](https://docs.naruno.org/creating_a_app/remote.html)
+- [Ovenden Incentive](https://docs.naruno.org/baklava-testnet/ovenden-incentive.html)
