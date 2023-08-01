@@ -154,7 +154,7 @@ class Integration:
             self.check_thread = (perpetualTimer(
                 self.original_wait_amoount, checker,
                 (self, )) if self.total_check else self.check_thread)
-            self.wait_amount = 0 if self.total_check else self.wait_amount
+            self.wait_amount = self.wait_amount / 3 if self.total_check else self.wait_amount
             success = True
         except:
             traceback.print_exc()
@@ -376,7 +376,7 @@ class Integration:
                 "app_data": ""
             }))
 
-        true_length = (self.max_data_size / self.max_tx_number -
+        true_length = (self.max_data_size*0.8 / self.max_tx_number -
                        system_length) - 10
 
         if len(app_data) > true_length:
