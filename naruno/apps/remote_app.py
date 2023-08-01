@@ -388,47 +388,48 @@ class Integration:
                 force=force,
                 retrysecond=retrysecond,
             )
-
-        data = json.dumps(data)
-
-        request_body = {
-            "password": self.password,
-            "to_user": to_user,
-            "data": data,
-        }
-
-        alread_in_sended = False
-        for tx in self.sended_txs:
-            if (tx[0] == action and tx[1] == app_data and tx[2] == to_user
-                    and tx[3] == amount and tx[4] == force
-                    and tx[5] == retrysecond and tx[6] == data):
-                alread_in_sended = True
-        if not alread_in_sended:
-            self.sended_txs.append(
-                [action, app_data, to_user, amount, force, retrysecond, data])
-
-        if amount is not None:
-            request_body["amount"] = amount
-
-        response = self.prepare_request("/send/",
-                                        type="post",
-                                        data=request_body)
-
-        if "false" in response.text:
-            logger.error("Error on sending message")
-            if force:
-                logger.info("Trying to send again")
-                return self.send_forcer(action, app_data, to_user, retrysecond)
-            return False
         else:
-            logger.info(
-                f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
-            )
-            time.sleep(1)
-            self.last_sended = time.time()
-            if self.checking and self.check_thread is None:
-                checker(self)
-            return True
+
+            data = json.dumps(data)
+
+            request_body = {
+                "password": self.password,
+                "to_user": to_user,
+                "data": data,
+            }
+
+            alread_in_sended = False
+            for tx in self.sended_txs:
+                if (tx[0] == action and tx[1] == app_data and tx[2] == to_user
+                        and tx[3] == amount and tx[4] == force
+                        and tx[5] == retrysecond and tx[6] == data):
+                    alread_in_sended = True
+            if not alread_in_sended:
+                self.sended_txs.append(
+                    [action, app_data, to_user, amount, force, retrysecond, data])
+
+            if amount is not None:
+                request_body["amount"] = amount
+
+            response = self.prepare_request("/send/",
+                                            type="post",
+                                            data=request_body)
+
+            if "false" in response.text:
+                logger.error("Error on sending message")
+                if force:
+                    logger.info("Trying to send again")
+                    return self.send_forcer(action, app_data, to_user, retrysecond)
+                return False
+            else:
+                logger.info(
+                    f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
+                )
+                time.sleep(1)
+                self.last_sended = time.time()
+                if self.checking and self.check_thread is None:
+                    checker(self)
+                return True
 
     def get_(
         self,
