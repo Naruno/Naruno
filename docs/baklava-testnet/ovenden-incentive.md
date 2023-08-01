@@ -41,3 +41,10 @@ aps --password YourWalletPass --port 4444 ping f687088eff5423f913f03b677f97a9c40
 
 > If you can get the `True` message and you are an registered baklava user and you didnt send multiple time just close application with `Ctrl+C` and try again after 5 minutes.
 
+
+### Controlling Your Incentive
+We will set your incentives as global in all networks. But the loads are take time. We will notificate on [Discord](https://discord.gg/Vpn2tfEEWc). After loading you can check your incentive via this command:
+
+```console
+narunocli --getbalance
+```
