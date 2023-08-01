@@ -13,7 +13,7 @@ Wallet creation is the first step to start using the Naruno blockchain. For this
 \*Please use `pip install naruno` for installation.
 
 ```python
-narunocli --createwallet password
+narunocli --createwallet YourWalletPass
 ```
 
 and lastly you can see your wallet via:
