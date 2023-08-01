@@ -38,5 +38,5 @@ narunocli --getbalance
 After switching you can use our 4 lines web3 integration system.
 
 ## Using
-- [Receiving Ovenden Incentive](https://docs.naruno.org/baklava-testnet/ovenden-incentive.html)
+- [Receiving Ovenden Incentive](https://docs.naruno.org/baklava-testnet/ovenden-incentive-program.html)
 - [Creating a Remote App for Naruno](https://docs.naruno.org/creating_a_app/remote.html)

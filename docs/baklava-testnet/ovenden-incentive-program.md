@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Ovenden Incentive
+title: Ovenden Incentive Program
 parent: Baklava TestNet
 nav_order: 2
 ---
 
-# Baklava TestNet Ovenden Incentive
+# Ovenden Incentive Program
 
 In Baklava we are introduce an incentive for testing our official applications and after all the Integration library. You can get your incentive with this document.
 
