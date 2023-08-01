@@ -192,14 +192,12 @@ def send_coin_data_page():
                     custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
                     custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
                     custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-                    custom_TEMP_BLOCKSHASH_PART_PATH=
-                    custom_TEMP_BLOCKSHASH_PART_PATH,
+                    custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
                 )
             result = send_tx.dump_json()
-  
+
     except:
         traceback.print_exc()
-
 
     return jsonify(result)
 
@@ -357,21 +355,21 @@ def fsettings_debug_off_page():
 
 
 def block_get_page_proccess(the_server):
-        the_block = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        SaveBlock(
-            the_block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )
-        the_server.send_block_to_other_nodes()
-        the_consensus_trigger = (consensus_trigger if custom_consensus_trigger
-                                 is None else custom_consensus_trigger)
-        trigger = perpetualTimer(the_block.consensus_timer,
-                                 the_consensus_trigger, the_consensus=True)
-        global custom_consensus_trigger_result
-        custom_consensus_trigger_result = trigger
+    the_block = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+    SaveBlock(
+        the_block,
+        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+    )
+    the_server.send_block_to_other_nodes()
+    the_consensus_trigger = (consensus_trigger if custom_consensus_trigger
+                             is None else custom_consensus_trigger)
+    trigger = perpetualTimer(the_block.consensus_timer,
+                             the_consensus_trigger, the_consensus=True)
+    global custom_consensus_trigger_result
+    custom_consensus_trigger_result = trigger
 
 
 @app.route("/block/get", methods=["GET"])
@@ -543,8 +541,8 @@ def balance_get_page():
     address = str(request.args.get("address"))
     block = None
     with contextlib.suppress(Exception):
-            block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                     if custom_block is None else custom_block)
+        block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
 
     return jsonify(
         GetBalance(
@@ -566,8 +564,8 @@ def sequence_get_page():
 
     block = None
     with contextlib.suppress(Exception):
-            block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-                     if custom_block is None else custom_block)
+        block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
 
     return jsonify(
         GetSequanceNumber(
@@ -706,8 +704,7 @@ def start(host=None, port=None, test=False):
         host = "0.0.0.0"
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
+        description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system."
     )
 
     parser.add_argument("-p",
