@@ -375,7 +375,7 @@ class Integration:
                 "app_data": ""
             }))
 
-        true_length = (self.max_data_size * 0.8 / self.max_tx_number -
+        true_length = (self.max_data_size / self.max_tx_number -
                        system_length) - 10
 
         if len(app_data) > true_length:
