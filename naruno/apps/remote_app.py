@@ -15,8 +15,8 @@ import string
 import sys
 import threading
 import time
-from hashlib import sha256
 import traceback
+from hashlib import sha256
 
 import requests
 
@@ -31,14 +31,14 @@ from naruno.lib.kot import KOT
 from naruno.lib.log import get_logger
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.settings_system import the_settings
-from naruno.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
-from naruno.transactions.my_transactions.sended_transaction import SendedTransaction
-from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
+from naruno.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
+from naruno.transactions.my_transactions.sended_transaction import \
+    SendedTransaction
+from naruno.transactions.my_transactions.validate_transaction import \
+    ValidateTransaction
 from naruno.transactions.transaction import Transaction
-from naruno.wallet.wallet_import import Address
-from naruno.wallet.wallet_import import wallet_import
+from naruno.wallet.wallet_import import Address, wallet_import
 
 logger = get_logger("REMOTE_APP")
 
