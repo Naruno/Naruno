@@ -9,6 +9,9 @@ nav_order: 2
 
 In Baklava we are introduce an incentive for testing our official applications and after all the Integration library. You can get your incentive with this document.
 
+## Requirements
+- You should have an registered baklava user. If you dont have you can register via [this link](https://naruno.org/baklava-testnet/).
+
 
 ## Application 1: Address Ping System
 
