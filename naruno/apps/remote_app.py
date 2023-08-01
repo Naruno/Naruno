@@ -157,7 +157,8 @@ class Integration:
             self.check_thread = (perpetualTimer(
                 self.original_wait_amoount, checker,
                 (self, )) if self.total_check else self.check_thread)
-            self.wait_amount = (self.wait_amount_between_multiple_sendings if self.total_check else self.wait_amount)
+            self.wait_amount = (
+                self.wait_amount_between_multiple_sendings if self.total_check else self.wait_amount)
             success = True
         except:
             traceback.print_exc()
@@ -325,8 +326,7 @@ class Integration:
         for each_data in splitted_data:
             self.send(
                 action=action,
-                app_data=
-                f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
+                app_data=f"split-{2+splitted_data.index(each_data)}-{split_random}{each_data}",
                 to_user=to_user,
                 force=force,
                 retrysecond=retrysecond,
@@ -518,7 +518,7 @@ class Integration:
         for transaction in transactions_sended:
             if self.sended or force_sended:
                 if (transactions_sended[transaction]["transaction"]
-                    ["signature"] in self.cache) and not get_all:
+                        ["signature"] in self.cache) and not get_all:
                     continue
                 else:
                     if transactions_sended[transaction]["transaction"][
@@ -529,7 +529,7 @@ class Integration:
                             transactions_sended[transaction]["transaction"])
 
                         if (not transactions_sended[transaction]["transaction"]
-                            ["data"] == "NP"):
+                                ["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended[transaction][
@@ -574,7 +574,7 @@ class Integration:
                             transaction] = transactions_sended_not_validated[
                                 transaction]
                         if (not transactions_sended_not_validated[transaction]
-                            ["transaction"]["data"] == "NP"):
+                                ["transaction"]["data"] == "NP"):
                             with contextlib.suppress(
                                     json.decoder.JSONDecodeError):
                                 transactions_sended_not_validated[transaction][
@@ -613,7 +613,7 @@ class Integration:
             with contextlib.suppress(TypeError):
                 if not new_dict[transaction]["transaction"]["data"] == "NP":
                     if (self.app_name in new_dict[transaction]["transaction"]
-                        ["data"]["action"]):
+                            ["data"]["action"]):
                         last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
