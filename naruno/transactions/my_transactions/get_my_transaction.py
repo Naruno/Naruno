@@ -5,21 +5,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+import copy
 import json
 import os
 import traceback
 from urllib.request import urlopen
-import copy
 
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.lib.settings_system import the_settings
-
 from naruno.transactions.transaction import Transaction
 
 mytransactions_db = KOT("mytransactions",
                         folder=get_config()["main_folder"] + "/db")
-
 
 mytransactions_db_ram = {}
 
@@ -30,16 +28,14 @@ def check_from_network():
     """
     validated_transactions = []
     if the_settings()["baklava"]:
- 
-            # export validated transactions
-            response = (urlopen(
-                "http://test_net.1.naruno.org:8000/transactions/received").
-                        read().decode("utf-8"))
-            response = json.loads(response)
-            for transaction in response:
-                if response[transaction]["validated"]:
-                    validated_transactions.append(transaction)
-
+        # export validated transactions
+        response = (
+            urlopen("http://test_net.1.naruno.org:8000/transactions/received"
+                    ).read().decode("utf-8"))
+        response = json.loads(response)
+        for transaction in response:
+            if response[transaction]["validated"]:
+                validated_transactions.append(transaction)
 
     return validated_transactions
 
@@ -50,12 +46,15 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     """
     network_validated_source = check_from_network()
 
-
     network_validated = []
 
     the_transactions = []
 
-    all_records = mytransactions_db.get_all() if mytransactions_db_ram == {} else mytransactions_db_ram
+    if len(mytransactions_db_ram) != mytransactions_db.get_count():
+        mytransactions_db_ram = {}
+
+    all_records = (mytransactions_db.get_all()
+                   if mytransactions_db_ram == {} else mytransactions_db_ram)
     for entry in copy.copy(all_records):
         if not entry.endswith("validated") and not entry.endswith("sended"):
             try:
@@ -65,8 +64,8 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
                                                                  "validated")
                                   == None else True)
 
-                if (the_transactions_json["signature"] in network_validated_source
-                        and not each_validated):
+                if (the_transactions_json["signature"]
+                        in network_validated_source and not each_validated):
                     each_validated = True
                     network_validated.append(the_tx)
 
@@ -93,10 +92,14 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     # sort
     the_transactions.sort(key=lambda x: x[0].signature)
 
-    from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
+    from naruno.transactions.my_transactions.validate_transaction import \
+        ValidateTransaction
+
     for i in network_validated:
-        ValidateTransaction(i, custom_currently_list=the_transactions, force_notify=True)
-  
+        ValidateTransaction(i,
+                            custom_currently_list=the_transactions,
+                            force_notify=True)
+
     if turn_json:
         the_transactions = {
             tx[0].signature: {
@@ -106,7 +109,5 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
             }
             for tx in the_transactions
         }
-
-
 
     return the_transactions
