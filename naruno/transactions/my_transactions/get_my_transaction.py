@@ -5,16 +5,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+import copy
 import json
 import os
 import traceback
 from urllib.request import urlopen
-import copy
 
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.lib.settings_system import the_settings
-
 from naruno.transactions.transaction import Transaction
 
 mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
@@ -103,9 +102,8 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     # sort
     the_transactions.sort(key=lambda x: x[0].signature)
 
-    from naruno.transactions.my_transactions.validate_transaction import (
-        ValidateTransaction,
-    )
+    from naruno.transactions.my_transactions.validate_transaction import \
+        ValidateTransaction
 
     for i in network_validated:
         ValidateTransaction(
