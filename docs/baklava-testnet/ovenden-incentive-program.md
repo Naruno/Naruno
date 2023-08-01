@@ -30,7 +30,7 @@ You should send an ping to our official address to get your incentive:
 * Please give an free port for APS. You can set this port via `--port` argument. If you dont set this argument APS will use 4444 port.
 
 ```console
-aps --password YourWalletPass --port 4444 ping f687088eff5423f913f03b677f97a9c405f7549a
+aps --password YourWalletPass --port 4444 ping c923c646f2d73fcb8f626afacb1a0ade8d98954a
 ```
 
 *Then wait for 5 minutes.
