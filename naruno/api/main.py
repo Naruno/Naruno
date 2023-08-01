@@ -541,12 +541,15 @@ def balance_get_page():
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
     address = str(request.args.get("address"))
-    the_block = Block("API")
+    block = None
+    with contextlib.suppress(Exception):
+            block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                     if custom_block is None else custom_block)
 
     return jsonify(
         GetBalance(
             address,
-            block=the_block,
+            block=block,
             account_list=custom_account_list,
             dont_convert=True,
         ))
@@ -561,14 +564,17 @@ def sequence_get_page():
         return jsonify("403"), 403
     address = str(request.args.get("address"))
 
-    the_block = Block("API")
+    block = None
+    with contextlib.suppress(Exception):
+            block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                     if custom_block is None else custom_block)
 
     return jsonify(
         GetSequanceNumber(
             address,
             account_list=custom_account_list,
             dont_convert=True,
-            block=the_block,
+            block=block,
         ))
 
 
