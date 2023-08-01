@@ -20,9 +20,10 @@ from waitress.server import create_server
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from flask_cors import CORS
-from naruno.blockchain.block.block_main import Block
+
 from naruno.accounts.get_balance import GetBalance
 from naruno.accounts.get_sequence_number import GetSequanceNumber
+from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.just_one_tx import GetJustOneTX
@@ -196,10 +197,9 @@ def send_coin_data_page():
                     custom_TEMP_BLOCKSHASH_PART_PATH,
                 )
             result = send_tx.dump_json()
-  
+
     except:
         traceback.print_exc()
-
 
     return jsonify(result)
 
@@ -357,21 +357,22 @@ def fsettings_debug_off_page():
 
 
 def block_get_page_proccess(the_server):
-        the_block = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
-        SaveBlock(
-            the_block,
-            custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
-            custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
-            custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
-            custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
-        )
-        the_server.send_block_to_other_nodes()
-        the_consensus_trigger = (consensus_trigger if custom_consensus_trigger
-                                 is None else custom_consensus_trigger)
-        trigger = perpetualTimer(the_block.consensus_timer,
-                                 the_consensus_trigger, the_consensus=True)
-        global custom_consensus_trigger_result
-        custom_consensus_trigger_result = trigger
+    the_block = CreateBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+    SaveBlock(
+        the_block,
+        custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH,
+        custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
+        custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
+        custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
+    )
+    the_server.send_block_to_other_nodes()
+    the_consensus_trigger = (consensus_trigger if custom_consensus_trigger
+                             is None else custom_consensus_trigger)
+    trigger = perpetualTimer(the_block.consensus_timer,
+                             the_consensus_trigger,
+                             the_consensus=True)
+    global custom_consensus_trigger_result
+    custom_consensus_trigger_result = trigger
 
 
 @app.route("/block/get", methods=["GET"])
@@ -382,7 +383,7 @@ def block_get_page():
         return jsonify({"error": "You can't get the block in publisher mode."})
     the_server = server.Server if custom_server is None else custom_server
     if the_settings()["test_mode"]:
-        block_get_page_proccess(the_server,)
+        block_get_page_proccess(the_server, )
     else:
         the_server.send_me_full_block()
     return jsonify("OK")
@@ -541,12 +542,15 @@ def balance_get_page():
     if not the_settings()["publisher_mode"]:
         return jsonify("403"), 403
     address = str(request.args.get("address"))
-    the_block = Block("API")
+    block = None
+    with contextlib.suppress(Exception):
+        block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
 
     return jsonify(
         GetBalance(
             address,
-            block=the_block,
+            block=block,
             account_list=custom_account_list,
             dont_convert=True,
         ))
@@ -561,14 +565,17 @@ def sequence_get_page():
         return jsonify("403"), 403
     address = str(request.args.get("address"))
 
-    the_block = Block("API")
+    block = None
+    with contextlib.suppress(Exception):
+        block = (GetBlock(custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+                 if custom_block is None else custom_block)
 
     return jsonify(
         GetSequanceNumber(
             address,
             account_list=custom_account_list,
             dont_convert=True,
-            block=the_block,
+            block=block,
         ))
 
 
