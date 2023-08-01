@@ -17,8 +17,7 @@ from naruno.lib.settings_system import the_settings
 
 from naruno.transactions.transaction import Transaction
 
-mytransactions_db = KOT("mytransactions",
-                        folder=get_config()["main_folder"] + "/db")
+mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
 
 
 mytransactions_db_ram = {}
@@ -30,11 +29,12 @@ def check_from_network():
     """
     validated_transactions = []
     if the_settings()["baklava"]:
-
         # export validated transactions
-        response = (urlopen(
-            "http://test_net.1.naruno.org:8000/transactions/received").
-            read().decode("utf-8"))
+        response = (
+            urlopen("http://test_net.1.naruno.org:8000/transactions/received")
+            .read()
+            .decode("utf-8")
+        )
         response = json.loads(response)
         for transaction in response:
             if response[transaction]["validated"]:
@@ -56,29 +56,39 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     if len(mytransactions_db_ram) != mytransactions_db.get_count():
         mytransactions_db_ram = {}
 
-    all_records = mytransactions_db.get_all() if mytransactions_db_ram == {
-    } else mytransactions_db_ram
+    all_records = (
+        mytransactions_db.get_all()
+        if mytransactions_db_ram == {}
+        else mytransactions_db_ram
+    )
     for entry in copy.copy(all_records):
         if not entry.endswith("validated") and not entry.endswith("sended"):
             try:
                 the_transactions_json = all_records[entry]
                 the_tx = Transaction.load_json(the_transactions_json)
-                each_validated = (False if mytransactions_db.get(entry +
-                                                                 "validated")
-                                  == None else True)
+                each_validated = (
+                    False
+                    if mytransactions_db.get(entry + "validated") == None
+                    else True
+                )
 
-                if (the_transactions_json["signature"] in network_validated_source
-                        and not each_validated):
+                if (
+                    the_transactions_json["signature"] in network_validated_source
+                    and not each_validated
+                ):
                     each_validated = True
                     network_validated.append(the_tx)
 
-                each_sended = (False if mytransactions_db.get(entry + "sended")
-                               == None else True)
-                the_transactions.append([
-                    the_tx,
-                    each_validated,
-                    each_sended,
-                ])
+                each_sended = (
+                    False if mytransactions_db.get(entry + "sended") == None else True
+                )
+                the_transactions.append(
+                    [
+                        the_tx,
+                        each_validated,
+                        each_sended,
+                    ]
+                )
             except json.decoder.JSONDecodeError:
                 mytransactions_db.delete(entry)
                 mytransactions_db.delete(entry + "validated")
@@ -88,17 +98,19 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
         the_transactions = [tx for tx in the_transactions if tx[2] == sended]
 
     if validated is not None:
-        the_transactions = [
-            tx for tx in the_transactions if tx[1] == validated
-        ]
+        the_transactions = [tx for tx in the_transactions if tx[1] == validated]
 
     # sort
     the_transactions.sort(key=lambda x: x[0].signature)
 
-    from naruno.transactions.my_transactions.validate_transaction import ValidateTransaction
+    from naruno.transactions.my_transactions.validate_transaction import (
+        ValidateTransaction,
+    )
+
     for i in network_validated:
         ValidateTransaction(
-            i, custom_currently_list=the_transactions, force_notify=True)
+            i, custom_currently_list=the_transactions, force_notify=True
+        )
 
     if turn_json:
         the_transactions = {
