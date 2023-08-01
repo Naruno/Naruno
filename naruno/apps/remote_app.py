@@ -69,6 +69,7 @@ class Integration:
         checking=True,
         commander=None,
         total_check=None,
+        wait_amount_between_multiple_sendings=10,
     ):
         """
         :param host: The host of the node
@@ -112,6 +113,8 @@ class Integration:
         else:
             self.wait_amount = wait_amount
 
+        self.wait_amount_between_multiple_sendings = wait_amount_between_multiple_sendings
+
         self.get_cache()
 
         self.sended_txs = []
@@ -154,8 +157,7 @@ class Integration:
             self.check_thread = (perpetualTimer(
                 self.original_wait_amoount, checker,
                 (self, )) if self.total_check else self.check_thread)
-            self.wait_amount = (self.wait_amount /
-                                3 if self.total_check else self.wait_amount)
+            self.wait_amount = (self.wait_amount_between_multiple_sendings if self.total_check else self.wait_amount)
             success = True
         except:
             traceback.print_exc()
