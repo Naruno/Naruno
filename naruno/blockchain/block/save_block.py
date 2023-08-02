@@ -219,6 +219,10 @@ individuals = [
     "a94976beb574e53bdc1e86a36f6415067123de86",
     "9a46fd0899fcaf5fef9e7cd277b1bf1864827d24",
     "cb9314ad3ecd2cff3f7aa1a1fc04f13c5b026270",
+    "f5647d2072bdfa89b6bd05e7051bf9e57bac5dd2",
+    "8029f657fe71de6c42491c9969f795b4be68fee7",
+    "05c19214daba9aacab274f0c89a93721919d80a1",
+
 
 
 
