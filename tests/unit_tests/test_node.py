@@ -1812,6 +1812,7 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
         the_block = Block("onuratakanulusoy")
+        the_block.hash = ""
         self.node_1.send_my_block(the_block)
         self.node_0.send_my_block(the_block)
         time.sleep(2)
