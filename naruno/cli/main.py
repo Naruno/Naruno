@@ -15,6 +15,7 @@ from getpass import getpass
 
 from naruno.accounts.get_balance import GetBalance
 from naruno.blockchain.block.create_block import CreateBlock
+from naruno.blockchain.block.block_main import Block
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import MY_TRANSACTION_EXPORT_PATH
