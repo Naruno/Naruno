@@ -192,7 +192,9 @@ individuals = [
     "aaefe424bc7cf62c9ea20a8a111c56fdb7efa05b",
     "ae431c1971be9d605c150f39454cbcdce0e7ec07",
     "fe44fb36a82bc177794108d37e97b696ba982257",
-    "2b29e43956530c93be2c90022dfcc0dfff0c6419"
+    "2b29e43956530c93be2c90022dfcc0dfff0c6419",
+    "7e8e4798ef5607834522712cf6ebf7f6625a2eed",
+    "fc94dc3d2ee57aea37dee8c6cc66fdef60bef519"
 
 
 
