@@ -113,7 +113,8 @@ class Integration:
         else:
             self.wait_amount = wait_amount
 
-        self.wait_amount_between_multiple_sendings = wait_amount_between_multiple_sendings
+        self.wait_amount_between_multiple_sendings = (
+            wait_amount_between_multiple_sendings)
 
         self.get_cache()
 
@@ -157,7 +158,8 @@ class Integration:
             self.check_thread = (perpetualTimer(
                 self.original_wait_amoount, checker,
                 (self, )) if self.total_check else self.check_thread)
-            self.wait_amount = (self.wait_amount_between_multiple_sendings if self.total_check else self.wait_amount)
+            self.wait_amount = (self.wait_amount_between_multiple_sendings
+                                if self.total_check else self.wait_amount)
             success = True
         except:
             traceback.print_exc()
@@ -391,7 +393,6 @@ class Integration:
                 retrysecond=retrysecond,
             )
         else:
-
             data = json.dumps(data)
 
             request_body = {
@@ -407,8 +408,9 @@ class Integration:
                         and tx[5] == retrysecond and tx[6] == data):
                     alread_in_sended = True
             if not alread_in_sended:
-                self.sended_txs.append(
-                    [action, app_data, to_user, amount, force, retrysecond, data])
+                self.sended_txs.append([
+                    action, app_data, to_user, amount, force, retrysecond, data
+                ])
 
             if amount is not None:
                 request_body["amount"] = amount
@@ -421,7 +423,8 @@ class Integration:
                 logger.error("Error on sending message")
                 if force:
                     logger.info("Trying to send again")
-                    return self.send_forcer(action, app_data, to_user, retrysecond)
+                    return self.send_forcer(action, app_data, to_user,
+                                            retrysecond)
                 return False
             else:
                 logger.info(
@@ -494,16 +497,18 @@ class Integration:
                             transactions[transaction]["transaction"][
                                 "data"] = json.loads(transactions[transaction]
                                                      ["transaction"]["data"])
-                        if not transactions[transaction]["transaction"][
-                                "data"]["app_data"].startswith("split-"):
-                            self.cache.append(
-                                transactions[transaction]["transaction"]
-                                ["signature"]) if not disable_caches else None
+                        with contextlib.suppress(TypeError):
+                            if not transactions[transaction]["transaction"][
+                                    "data"]["app_data"].startswith("split-"):
+                                self.cache.append(
+                                    transactions[transaction]["transaction"]
+                                    ["signature"]
+                                ) if not disable_caches else None
 
-                            SavetoMyTransaction(
-                                the_tx) if not get_all else None
-                            ValidateTransaction(
-                                the_tx) if not get_all else None
+                                SavetoMyTransaction(
+                                    the_tx) if not get_all else None
+                                ValidateTransaction(
+                                    the_tx) if not get_all else None
                     else:
                         SavetoMyTransaction(the_tx) if not get_all else None
                         ValidateTransaction(the_tx) if not get_all else None
@@ -536,18 +541,19 @@ class Integration:
                                     "transaction"]["data"] = json.loads(
                                         transactions_sended[transaction]
                                         ["transaction"]["data"])
-                            if not transactions_sended[transaction][
-                                    "transaction"]["data"][
-                                        "app_data"].startswith("split-"):
-                                self.cache.append(
-                                    transactions_sended[transaction]
-                                    ["transaction"]["signature"]
-                                ) if not disable_caches else None
+                            with contextlib.suppress(TypeError):
+                                if not transactions_sended[transaction][
+                                        "transaction"]["data"][
+                                            "app_data"].startswith("split-"):
+                                    self.cache.append(
+                                        transactions_sended[transaction]
+                                        ["transaction"]["signature"]
+                                    ) if not disable_caches else None
 
-                                SavetoMyTransaction(
-                                    the_tx) if not get_all else None
-                                ValidateTransaction(
-                                    the_tx) if not get_all else None
+                                    SavetoMyTransaction(
+                                        the_tx) if not get_all else None
+                                    ValidateTransaction(
+                                        the_tx) if not get_all else None
                         else:
                             SavetoMyTransaction(
                                 the_tx) if not get_all else None
@@ -582,21 +588,22 @@ class Integration:
                                         transactions_sended_not_validated[
                                             transaction]["transaction"]
                                         ["data"])
-                            if not transactions_sended_not_validated[
-                                    transaction]["transaction"]["data"][
-                                        "app_data"].startswith("split-"):
-                                self.cache.append(
-                                    transactions_sended_not_validated[
-                                        transaction]["transaction"]
-                                    ["signature"]
-                                ) if not disable_caches else None
+                            with contextlib.suppress(TypeError):
+                                if not transactions_sended_not_validated[
+                                        transaction]["transaction"]["data"][
+                                            "app_data"].startswith("split-"):
+                                    self.cache.append(
+                                        transactions_sended_not_validated[
+                                            transaction]["transaction"]
+                                        ["signature"]
+                                    ) if not disable_caches else None
 
-                                split_not_validated.append(
-                                    transactions_sended_not_validated[
-                                        transaction]["transaction"]
-                                    ["signature"])
-                                SavetoMyTransaction(
-                                    the_tx) if not get_all else None
+                                    split_not_validated.append(
+                                        transactions_sended_not_validated[
+                                            transaction]["transaction"]
+                                        ["signature"])
+                                    SavetoMyTransaction(
+                                        the_tx) if not get_all else None
                         else:
                             SavetoMyTransaction(
                                 the_tx) if not get_all else None
