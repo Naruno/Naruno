@@ -330,7 +330,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
-            "total_length":0,
+            "total_length": 0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -342,7 +342,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
-            "total_length":0,
+            "total_length": 0,
             "hash":
             None,
             "id":
@@ -356,7 +356,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
-            "total_length":0,
+            "total_length": 0,
             "hash":
             "None",
             "id":
@@ -406,7 +406,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             2,
-            "total_length":0,
+            "total_length": 0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -418,7 +418,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
-            "total_length":0,
+            "total_length": 0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -430,7 +430,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             1,
-            "total_length":0,
+            "total_length": 0,
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -442,7 +442,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             2,
-            "total_length":0,
+            "total_length": 0,
             "hash":
             "",
             "id":
@@ -456,7 +456,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
-            "total_length":0,
+            "total_length": 0,
             "hash":
             "",
             "id":
@@ -470,7 +470,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             1,
-            "total_length":0,
+            "total_length": 0,
             "hash":
             "",
             "id":
@@ -484,7 +484,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             2,
-            "total_length":0,
+            "total_length": 0,
             "hash":
             "",
             "id":
@@ -498,7 +498,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             0,
-            "total_length":0,
+            "total_length": 0,
             "hash":
             "",
             "id":
@@ -512,7 +512,7 @@ class Test_Node(unittest.TestCase):
             "transaction": [],
             "sequence_number":
             1,
-            "total_length":0,
+            "total_length": 0,
             "hash":
             "",
             "id":
@@ -529,10 +529,9 @@ class Test_Node(unittest.TestCase):
         client_1.candidate_block_hash = value_2
         client_1.candidate_block_hash_history = [value_2_old, value_2_old_1]
 
-
         the_block.sequence_number = 1
         the_block.hash = ""
-        result = GetCandidateBlocks(block=the_block,reset=True)
+        result = GetCandidateBlocks(block=the_block, reset=True)
         print(result.candidate_block_hashes)
         self.assertEqual(
             result.candidate_blocks,
@@ -547,7 +546,8 @@ class Test_Node(unittest.TestCase):
                 },
             ],
         )
-        self.assertEqual(result.candidate_block_hashes, [{'action': 'myblock', 'transaction': [], 'sequence_number': 1, 'total_length': 0, 'hash': '', 'id': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==', 'signature': 'MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk='}, {'action': 'myblockhash', 'hash': '', 'previous_hash': '1a00d983803e3adcbda2ed40ecba828083221648a90150267d8b0fd500c59750', 'signature': 'self', 'sequence_number': 1}])
+        self.assertEqual(result.candidate_block_hashes, [{'action': 'myblock', 'transaction': [], 'sequence_number': 1, 'total_length': 0, 'hash': '', 'id': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==',
+                         'signature': 'MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk='}, {'action': 'myblockhash', 'hash': '', 'previous_hash': '1a00d983803e3adcbda2ed40ecba828083221648a90150267d8b0fd500c59750', 'signature': 'self', 'sequence_number': 1}])
 
     def test_send_data_all(self):
         result = self.node_2.send({"action": "test"})
@@ -1111,8 +1111,7 @@ class Test_Node(unittest.TestCase):
             "127.0.0.1",
             10079,
             test=True,
-            custom_id=
-            "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
+            custom_id="MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEeAJt2wKVcQwUWrpcJfiBRgECnC472VqM00LqkbTseYThq3545wngGBtLL8xIgpR/+3z6CLL+VsS5RLByUYCqBA==",
         )
         temp_server.start()
         self.node_0.connect("127.0.0.1", 10079)
@@ -1253,7 +1252,6 @@ class Test_Node(unittest.TestCase):
                 client = i
                 break
         print("The client is: ", client.__dict__)
-   
 
         self.node_1.send_me_full_block(client)
         time.sleep(2)
@@ -1428,15 +1426,13 @@ class Test_Node(unittest.TestCase):
     def test_send_my_block_hash_get_candidate_block_hash(self):
         CleanUp_tests()
 
-      
         for i in self.node_1.clients:
             i.candidate_block_hash = None
             i.candidate_block_hash_history = []
 
         for i in self.node_2.clients:
             i.candidate_block_hash = None
-            i.candidate_block_hash_history = []     
-
+            i.candidate_block_hash_history = []
 
         the_block = Block("onuratakanulusoy")
         the_block.hash = 58585858
@@ -1453,7 +1449,6 @@ class Test_Node(unittest.TestCase):
             if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
                 node_2_c_client = i
 
-        
         self.assertEqual(node_1_c_client.candidate_block_hash["action"],
                          "myblockhash")
         self.assertEqual(node_1_c_client.candidate_block_hash["hash"],
@@ -1630,8 +1625,6 @@ class Test_Node(unittest.TestCase):
             i.candidate_block_hash = None
             i.candidate_block_hash_history = []
 
-
-
         self.maxDiff = None
         CleanUp_tests()
 
@@ -1798,15 +1791,14 @@ class Test_Node(unittest.TestCase):
             self):
         for i in self.node_0.clients:
             i.candidate_block = None
-            i.candidate_block_history = []            
+            i.candidate_block_history = []
         for i in self.node_1.clients:
             i.candidate_block = None
-            i.candidate_block_history = []        
+            i.candidate_block_history = []
 
         for i in self.node_2.clients:
             i.candidate_block = None
-            i.candidate_block_history = []         
-
+            i.candidate_block_history = []
 
         self.maxDiff = None
         CleanUp_tests()
@@ -1851,9 +1843,6 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block(the_block)
         time.sleep(2)
 
-
-
-
         nodes = []
 
         print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
@@ -1863,11 +1852,10 @@ class Test_Node(unittest.TestCase):
                 print(i.__dict__)
                 nodes.append(i)
 
-
-
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
                                               block=the_block, reset=True)
-        print("candidate_blocks.candidate_blocks", candidate_blocks.candidate_blocks)
+        print("candidate_blocks.candidate_blocks",
+              candidate_blocks.candidate_blocks)
         self.assertEqual(len(candidate_blocks.candidate_blocks), 2)
 
         the_block.sequence_number = 2
@@ -1891,14 +1879,14 @@ class Test_Node(unittest.TestCase):
             self):
         for i in self.node_0.clients:
             i.candidate_block_hash = None
-            i.candidate_block_hash_history = []            
+            i.candidate_block_hash_history = []
         for i in self.node_1.clients:
             i.candidate_block_hash = None
             i.candidate_block_hash_history = []
 
         for i in self.node_2.clients:
             i.candidate_block_hash = None
-            i.candidate_block_hash_history = []       
+            i.candidate_block_hash_history = []
 
         self.maxDiff = None
         CleanUp_tests()
@@ -1945,16 +1933,11 @@ class Test_Node(unittest.TestCase):
         self.node_0.send_my_block_hash(the_block)
         time.sleep(2)
 
-
-
-
         nodes = []
-
 
         for i in self.node_2.clients:
             if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
                 nodes.append(i)
-
 
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
                                               block=the_block)
@@ -1981,30 +1964,25 @@ class Test_Node(unittest.TestCase):
             self):
         for i in self.node_0.clients:
             i.candidate_block_hash = None
-            i.candidate_block_hash_history = []            
+            i.candidate_block_hash_history = []
         for i in self.node_1.clients:
             i.candidate_block_hash = None
             i.candidate_block_hash_history = []
 
         for i in self.node_2.clients:
             i.candidate_block_hash = None
-            i.candidate_block_hash_history = []       
+            i.candidate_block_hash_history = []
 
         self.maxDiff = None
         CleanUp_tests()
 
         the_block = Block("onuratakanulusoy")
 
-
-
         nodes = []
-
 
         for i in self.node_2.clients:
             if i.candidate_block_hash != None or i.candidate_block_hash_history != []:
                 nodes.append(i)
-
-
 
         candidate_blocks = GetCandidateBlocks(custom_nodes_list=nodes,
                                               block=the_block)
@@ -2018,7 +1996,7 @@ class Test_Node(unittest.TestCase):
         CleanUp_tests()
 
     def test_send_my_block_get_candidate_block_hash_multiple_with_function_try_non(
-        self, ):
+            self, ):
         self.node_2.clients[0].candidate_block_hash = None
         self.node_2.clients[0].candidate_block_hash_history = []
         self.node_2.clients[1].candidate_block_hash = None
