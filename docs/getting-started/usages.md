@@ -16,6 +16,12 @@ Wallet creation is the first step to start using the Naruno blockchain. For this
 narunocli --createwallet YourWalletPass
 ```
 
+After switch to your wallet via:
+
+```python
+narunocli --wallet 1
+```
+
 and lastly you can see your wallet via:
 
 ```python
