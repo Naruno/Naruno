@@ -50,8 +50,8 @@ urllib.request.install_opener(url_opener)
 
 
 class NarunoRecipe(PythonRecipe):
-    version = "0.60.2"
-    url = "https://files.pythonhosted.org/packages/b5/2d/6255510a4881ed28b0da6b035f1823fbe14488bc2857a6c4bce8d0bf2dde/naruno-0.60.2.tar.gz"
+    version = "0.60.3"
+    url = "https://files.pythonhosted.org/packages/b5/2d/6255510a4881ed28b0da6b035f1823fbe14488bc2857a6c4bce8d0bf2dde/naruno-0.60.3.tar.gz"
 
     # call_hostpython_via_targetpython = True
     """If True, tries to install the module using the hostpython binary
