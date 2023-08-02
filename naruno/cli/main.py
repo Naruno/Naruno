@@ -156,19 +156,32 @@ def menu():
         if choices_input == "dw" and input("Are you sure ? (y or n): ") == "y":
             delete_current_wallet()
         if choices_input == "sc":
-            block = GetBlock()
+            if not the_settings()["baklava"]:
+                block = GetBlock()
+            else:
+                block = Block("baklava")
             send_tx = send(
                 getpass("Password: "),
                 input("Please write receiver adress: "),
                 amount=input("Coin Amount (ex. 1.0): "),
                 block=block,
             )
+
             if send_tx != False:
-                SavetoMyTransaction(send_tx, sended=True)
-                server.send_transaction(send_tx)
-                SaveBlock(block)
+                    SavetoMyTransaction(send_tx, sended=True)
+                    if not the_settings()["baklava"]:
+                        from naruno.node.server.server import server
+                        if server.Server is None:
+                            print("Please start the node server")
+                            return False
+                        server.send_transaction(send_tx)
+                        SaveBlock(block)
+
         if choices_input == "scd":
-            block = GetBlock()
+            if not the_settings()["baklava"]:
+                block = GetBlock()
+            else:
+                block = Block("baklava")
             send_tx = send(
                 getpass("Password: "),
                 input("Please write receiver adress: "),
@@ -177,9 +190,15 @@ def menu():
                 block=block,
             )
             if send_tx != False:
-                SavetoMyTransaction(send_tx, sended=True)
-                server.send_transaction(send_tx)
-                SaveBlock(block)
+                    SavetoMyTransaction(send_tx, sended=True)
+                    if not the_settings()["baklava"]:
+                        from naruno.node.server.server import server
+                        if server.Server is None:
+                            print("Please start the node server")
+                            return False
+                        server.send_transaction(send_tx)
+                        SaveBlock(block)
+
         if choices_input == "gb":
             print(GetBalance(wallet_import(-1, 0)))
         if choices_input == "help":
