@@ -444,7 +444,7 @@ class Test_Node(unittest.TestCase):
             2,
             "total_length":0,
             "hash":
-            None,
+            "",
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -458,7 +458,7 @@ class Test_Node(unittest.TestCase):
             0,
             "total_length":0,
             "hash":
-            None,
+            "",
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -472,7 +472,7 @@ class Test_Node(unittest.TestCase):
             1,
             "total_length":0,
             "hash":
-            None,
+            "",
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -486,7 +486,7 @@ class Test_Node(unittest.TestCase):
             2,
             "total_length":0,
             "hash":
-            "None",
+            "",
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -500,7 +500,7 @@ class Test_Node(unittest.TestCase):
             0,
             "total_length":0,
             "hash":
-            "None",
+            "",
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -514,7 +514,7 @@ class Test_Node(unittest.TestCase):
             1,
             "total_length":0,
             "hash":
-            "None",
+            "",
             "id":
             "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==",
             "signature":
@@ -531,8 +531,9 @@ class Test_Node(unittest.TestCase):
 
 
         the_block.sequence_number = 1
+        the_block.hash = ""
         result = GetCandidateBlocks(block=the_block,reset=True)
-        print(result.candidate_blocks)
+        print(result.candidate_block_hashes)
         self.assertEqual(
             result.candidate_blocks,
             [
@@ -546,7 +547,7 @@ class Test_Node(unittest.TestCase):
                 },
             ],
         )
-        self.assertEqual(result.candidate_block_hashes, [value_3_old_1])
+        self.assertEqual(result.candidate_block_hashes, [{'action': 'myblock', 'transaction': [], 'sequence_number': 1, 'total_length': 0, 'hash': '', 'id': 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEExVJT06DcQ5LoxjXcj2bXrqwWbJoz+/zoSH9drpQ71i/BjjqnUg/E9k7qkUy/+QK3AENc1Gx+eBQ91Y7xlfG7w==', 'signature': 'MEUCIQDw33eHJvpfmShxv+CPYNnVa1XAg216teeHrsql78B6EwIgHk2JFQ/+JeqTO70yLFK8wYyxIN5qmvPOy+mdlbqNCuk='}, {'action': 'myblockhash', 'hash': '', 'previous_hash': '1a00d983803e3adcbda2ed40ecba828083221648a90150267d8b0fd500c59750', 'signature': 'self', 'sequence_number': 1}])
 
     def test_send_data_all(self):
         result = self.node_2.send({"action": "test"})
