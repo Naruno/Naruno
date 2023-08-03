@@ -35,7 +35,7 @@ temp_json = {
 def save_settings(new_settings):
     """Saves the settings.
 
-    :param new_settings: 
+    :param new_settings:
 
     """
     settings_db.set("settings", new_settings)
@@ -55,11 +55,11 @@ def create_and_save_the_settings():
 
 def t_mode_settings(new_value):
     """Changes the test_mode setting.
-    
+
     Inputs:
       * new_value: New value for the test_mode
 
-    :param new_value: 
+    :param new_value:
 
     """
 
@@ -70,11 +70,11 @@ def t_mode_settings(new_value):
 
 def d_mode_settings(new_value):
     """Changes the debug_mode setting.
-    
+
     Inputs:
       * new_value: New value for the debug_mode
 
-    :param new_value: 
+    :param new_value:
 
     """
 
@@ -85,11 +85,11 @@ def d_mode_settings(new_value):
 
 def ft_mode_settings(new_value):
     """Changes the funtionaltest_mode setting.
-    
+
     Inputs:
       * new_value: New value for the funtionaltest_mode
 
-    :param new_value: 
+    :param new_value:
 
     """
 
@@ -100,11 +100,11 @@ def ft_mode_settings(new_value):
 
 def mt_settings(new_value):
     """Changes the mute_notifications setting.
-    
+
     Inputs:
       * new_value: New value for the mute_notifications
 
-    :param new_value: 
+    :param new_value:
 
     """
 
@@ -115,11 +115,11 @@ def mt_settings(new_value):
 
 def dark_mode_settings(new_value):
     """Changes the dark_mode setting.
-    
+
     Inputs:
       * new_value: New value for the dark_mode
 
-    :param new_value: 
+    :param new_value:
 
     """
 
@@ -130,11 +130,11 @@ def dark_mode_settings(new_value):
 
 def publisher_mode_settings(new_value):
     """Changes the publisher_mode setting.
-    
+
     Inputs:
       * new_value: New value for the publisher_mode
 
-    :param new_value: 
+    :param new_value:
 
     """
 
@@ -145,11 +145,11 @@ def publisher_mode_settings(new_value):
 
 def baklava_settings(new_value):
     """Changes the baklava setting.
-    
+
     Inputs:
       * new_value: New value for the baklava
 
-    :param new_value: 
+    :param new_value:
 
     """
 
@@ -160,11 +160,11 @@ def baklava_settings(new_value):
 
 def change_wallet(new_value):
     """Changes the debug_mode setting.
-    
+
     Inputs:
       * new_value: New value for the debug_mode
 
-    :param new_value: 
+    :param new_value:
 
     """
 
