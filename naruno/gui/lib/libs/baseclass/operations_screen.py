@@ -32,13 +32,18 @@ from naruno.wallet.wallet_import import wallet_import
 
 
 class OperationScreen(MDScreen):
+    """ """
+
     pass
 
 
 class OperationBox(MDGridLayout):
+    """ """
+
     cols = 2
 
     def sent_the_coins(self):
+        """ """
         if not the_settings()["baklava"]:
             the_block = GetBlock()
         else:
@@ -82,6 +87,7 @@ class OperationBox(MDGridLayout):
             popup(title="Amount is not enough", type="failure")
 
     def show_send_coin_dialog(self):
+        """ """
         self.send_coin_dialog = popup(
             title="Send Coin&Data",
             target=self.sent_the_coins,
@@ -94,6 +100,7 @@ class OperationBox(MDGridLayout):
         )
 
     def sign_the_data(self):
+        """ """
         path = sign(
             self.sign_dialog.input_results["Data"],
             self.sign_dialog.input_results["Password"],
@@ -119,6 +126,7 @@ class OperationBox(MDGridLayout):
             )
 
     def show_sign_dialog(self):
+        """ """
         self.sign_dialog = popup(
             title="Sign Data",
             target=self.sign_the_data,
@@ -126,6 +134,7 @@ class OperationBox(MDGridLayout):
         )
 
     def verify_the_data(self):
+        """ """
         result = verify(self.verify_dialog.input_results["Path"])
 
         if result[0] == True:
@@ -141,6 +150,7 @@ class OperationBox(MDGridLayout):
             popup(title="Data is not verified", type="failure")
 
     def show_verify_dialog(self):
+        """ """
         self.verify_dialog = popup(
             title="Verify Signed Data",
             target=self.verify_the_data,
@@ -148,6 +158,7 @@ class OperationBox(MDGridLayout):
         )
 
     def send_coin(self):
+        """ """
         try:
             GetBlock()
         except TypeError:
@@ -157,17 +168,33 @@ class OperationBox(MDGridLayout):
         self.show_send_coin_dialog()
 
     def sign(self):
+        """ """
         self.show_sign_dialog()
 
     def verify(self):
+        """ """
         self.show_verify_dialog()
 
     def export_transaction_csv(self):
+        """ """
         if export_the_transactions():
+            export_location = MY_TRANSACTION_EXPORT_PATH
             Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
+            if platform == "android":
+                from android.storage import primary_external_storage_path
+
+                dir = primary_external_storage_path()
+                download_dir_path = os.path.join(dir, "Download")
+                new_path = os.path.join(download_dir_path,
+                                        export_location.split("/")[-1])
+                Clipboard.copy(new_path)
+                shutil.move(
+                    export_location,
+                    new_path,
+                )
             popup(
                 title=
-                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
+                f"CSV file created and location has been copied to your clipboard.",
                 type="success",
             )
 
@@ -175,6 +202,11 @@ class OperationBox(MDGridLayout):
             popup(title="You have not a transaction", type="warning")
 
     def callback_for_transaction_history_items(self, *args):
+        """
+
+        :param *args:
+
+        """
         the_signature_of_tx = args[0].signature
         Clipboard.copy(the_signature_of_tx)
         popup(
@@ -185,6 +217,7 @@ class OperationBox(MDGridLayout):
         )
 
     def transaction_history(self):
+        """ """
         transactions = GetMyTransaction()
         if len(transactions) != 0:
             bottom_sheet_menu = MDListBottomSheet(radius=25, radius_from="top")
