@@ -17,7 +17,16 @@ def safety_check(
     custom_pywall=None,
     custom_debug_mode=None,
 ):
-    logger.info("Checking safety")
+    """
+
+    :param interface: Default value = None)
+    :param timeout: Default value = None)
+    :param exit_on_error: Default value = True)
+    :param custom_pywall: Default value = None)
+    :param custom_debug_mode: Default value = None)
+
+    """
+    logger.debug("Checking safety")
     try:
         the_import_string = "from pywall import pywall"
         pywall_class = (exec(the_import_string)
@@ -37,7 +46,7 @@ def safety_check(
                 exit() if exit_on_error else None
                 return False
             else:
-                logger.info("Safe")
+                logger.debug("Safe")
                 return True
         elif debug_mode:
             logger.debug(
