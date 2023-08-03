@@ -17,6 +17,15 @@ def safety_check(
     custom_pywall=None,
     custom_debug_mode=None,
 ):
+    """
+
+    :param interface:  (Default value = None)
+    :param timeout:  (Default value = None)
+    :param exit_on_error:  (Default value = True)
+    :param custom_pywall:  (Default value = None)
+    :param custom_debug_mode:  (Default value = None)
+
+    """
     logger.debug("Checking safety")
     try:
         the_import_string = "from pywall import pywall"
