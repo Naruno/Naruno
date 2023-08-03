@@ -39,16 +39,13 @@ def GetBalance(
     address = Address(user) if not dont_convert else user
 
     balance = GetMinimumTransferAmount(
-        block=block, custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH
-    )
+        block=block, custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
 
     if the_settings()["baklava"]:
         balance = float(
-            urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={address}")
-            .read()
-            .decode("utf-8")
-            .replace("\n", "")
-        )
+            urlopen(
+                f"http://test_net.1.naruno.org:8000/balance/get/?address={address}"
+            ).read().decode("utf-8").replace("\n", ""))
     else:
         if block is None:
             try:
@@ -58,23 +55,21 @@ def GetBalance(
 
         balance = Decimal(str(-block.minumum_transfer_amount))
 
-        the_account_list = GetAccounts() if account_list is None else account_list
-        balance = (
-            balance + Decimal(str(the_account_list[address][1]))
-            if address in the_account_list
-            else balance + Decimal(str(0))
-        )
+        the_account_list = GetAccounts(
+        ) if account_list is None else account_list
+        balance = (balance + Decimal(str(the_account_list[address][1])) if
+                   address in the_account_list else balance + Decimal(str(0)))
 
         if not block.just_one_tx:
-            the_pending = custom_pending if custom_pending is not None else GetPending()
+            the_pending = custom_pending if custom_pending is not None else GetPending(
+            )
             for tx in block.validating_list + the_pending:
                 sub_control = True
                 if tx_signature is not None:
                     if tx.signature == tx_signature:
                         sub_control = False
                 if Address(tx.fromUser) == user and sub_control:
-                    balance = balance - (
-                        Decimal(str(tx.amount)) + Decimal(str(tx.transaction_fee))
-                    )
+                    balance = balance - (Decimal(str(tx.amount)) +
+                                         Decimal(str(tx.transaction_fee)))
 
     return balance
