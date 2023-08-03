@@ -39,8 +39,7 @@ def save_settings(new_settings):
     settings_db.set("settings", new_settings)
 
 
-def create_and_save_the_settings(test_mode_settings=False,
-                                 debug_mode_settings=True):
+def create_and_save_the_settings():
     """
     Creates and saves settings.
     """
