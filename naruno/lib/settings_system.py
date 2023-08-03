@@ -33,16 +33,16 @@ temp_json = {
 
 
 def save_settings(new_settings):
-    """
-    Saves the settings.
+    """Saves the settings.
+
+    :param new_settings: 
+
     """
     settings_db.set("settings", new_settings)
 
 
 def create_and_save_the_settings():
-    """
-    Creates and saves settings.
-    """
+    """Creates and saves settings."""
     global temp_json
 
     save_settings(temp_json)
@@ -54,11 +54,13 @@ def create_and_save_the_settings():
 
 
 def t_mode_settings(new_value):
-    """
-    Changes the test_mode setting.
-
+    """Changes the test_mode setting.
+    
     Inputs:
       * new_value: New value for the test_mode
+
+    :param new_value: 
+
     """
 
     settings = the_settings()
@@ -67,11 +69,13 @@ def t_mode_settings(new_value):
 
 
 def d_mode_settings(new_value):
-    """
-    Changes the debug_mode setting.
-
+    """Changes the debug_mode setting.
+    
     Inputs:
       * new_value: New value for the debug_mode
+
+    :param new_value: 
+
     """
 
     settings = the_settings()
@@ -80,11 +84,13 @@ def d_mode_settings(new_value):
 
 
 def ft_mode_settings(new_value):
-    """
-    Changes the funtionaltest_mode setting.
-
+    """Changes the funtionaltest_mode setting.
+    
     Inputs:
       * new_value: New value for the funtionaltest_mode
+
+    :param new_value: 
+
     """
 
     settings = the_settings()
@@ -93,11 +99,13 @@ def ft_mode_settings(new_value):
 
 
 def mt_settings(new_value):
-    """
-    Changes the mute_notifications setting.
-
+    """Changes the mute_notifications setting.
+    
     Inputs:
       * new_value: New value for the mute_notifications
+
+    :param new_value: 
+
     """
 
     settings = the_settings()
@@ -106,11 +114,13 @@ def mt_settings(new_value):
 
 
 def dark_mode_settings(new_value):
-    """
-    Changes the dark_mode setting.
-
+    """Changes the dark_mode setting.
+    
     Inputs:
       * new_value: New value for the dark_mode
+
+    :param new_value: 
+
     """
 
     settings = the_settings()
@@ -119,11 +129,13 @@ def dark_mode_settings(new_value):
 
 
 def publisher_mode_settings(new_value):
-    """
-    Changes the publisher_mode setting.
-
+    """Changes the publisher_mode setting.
+    
     Inputs:
       * new_value: New value for the publisher_mode
+
+    :param new_value: 
+
     """
 
     settings = the_settings()
@@ -132,11 +144,13 @@ def publisher_mode_settings(new_value):
 
 
 def baklava_settings(new_value):
-    """
-    Changes the baklava setting.
-
+    """Changes the baklava setting.
+    
     Inputs:
       * new_value: New value for the baklava
+
+    :param new_value: 
+
     """
 
     settings = the_settings()
@@ -145,11 +159,13 @@ def baklava_settings(new_value):
 
 
 def change_wallet(new_value):
-    """
-    Changes the debug_mode setting.
-
+    """Changes the debug_mode setting.
+    
     Inputs:
       * new_value: New value for the debug_mode
+
+    :param new_value: 
+
     """
 
     settings = the_settings()
@@ -159,9 +175,10 @@ def change_wallet(new_value):
 
 
 def the_settings():
-    """
-    Returns the settings. If it doesn't exist, it creates,
+    """Returns the settings. If it doesn't exist, it creates,
     saves and returns.
+
+
     """
 
     the_setting = settings_db.get("settings")
