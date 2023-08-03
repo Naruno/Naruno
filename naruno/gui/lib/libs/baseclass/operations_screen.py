@@ -204,7 +204,7 @@ class OperationBox(MDGridLayout):
     def callback_for_transaction_history_items(self, *args):
         """
 
-        :param *args: 
+        :param *args:
 
         """
         the_signature_of_tx = args[0].signature
