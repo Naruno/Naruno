@@ -14,8 +14,8 @@ import time
 from getpass import getpass
 
 from naruno.accounts.get_balance import GetBalance
-from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import MY_TRANSACTION_EXPORT_PATH
@@ -24,22 +24,13 @@ from naruno.lib.backup.naruno_export import naruno_export
 from naruno.lib.backup.naruno_import import naruno_import
 from naruno.lib.export import export_the_transactions
 from naruno.lib.log import get_logger
-from naruno.lib.mix.mixlib import (
-    banner_maker,
-    menu_maker,
-    menu_space,
-    question_maker,
-    quit_menu_maker,
-)
+from naruno.lib.mix.mixlib import (banner_maker, menu_maker, menu_space,
+                                   question_maker, quit_menu_maker)
 from naruno.lib.perpetualtimer import perpetualTimer
 from naruno.lib.safety import safety_check
-from naruno.lib.settings_system import (
-    baklava_settings,
-    d_mode_settings,
-    publisher_mode_settings,
-    t_mode_settings,
-    the_settings,
-)
+from naruno.lib.settings_system import (baklava_settings, d_mode_settings,
+                                        publisher_mode_settings,
+                                        t_mode_settings, the_settings)
 from naruno.lib.sign import sign
 from naruno.lib.status import Status
 from naruno.lib.verify import verify
@@ -47,9 +38,8 @@ from naruno.node.server.server import server
 from naruno.node.unl import Unl
 from naruno.transactions.my_transactions.check_proof import CheckProof
 from naruno.transactions.my_transactions.get_proof import GetProof
-from naruno.transactions.my_transactions.save_to_my_transaction import (
-    SavetoMyTransaction,
-)
+from naruno.transactions.my_transactions.save_to_my_transaction import \
+    SavetoMyTransaction
 from naruno.transactions.print_transactions import PrintTransactions
 from naruno.transactions.send import send
 from naruno.wallet.delete_current_wallet import delete_current_wallet
