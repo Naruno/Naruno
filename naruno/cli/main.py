@@ -14,8 +14,8 @@ import time
 from getpass import getpass
 
 from naruno.accounts.get_balance import GetBalance
-from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.block_main import Block
+from naruno.blockchain.block.create_block import CreateBlock
 from naruno.blockchain.block.get_block import GetBlock
 from naruno.blockchain.block.save_block import SaveBlock
 from naruno.config import MY_TRANSACTION_EXPORT_PATH
@@ -52,9 +52,7 @@ logger = get_logger("CLI")
 
 
 def show_menu():
-    """
-    Prints some information and the menu.
-    """
+    """Prints some information and the menu."""
 
     print(
         banner_maker(
@@ -109,18 +107,23 @@ def show_menu():
 
     print(quit_menu_maker(mode="main"))
 
+
 def get_block_process():
-                the_block = CreateBlock()
-                SaveBlock(the_block)
-                server.Server.send_block_to_other_nodes()
-                logger.info("Consensus timer is started")
-                perpetualTimer(the_block.consensus_timer, consensus_trigger, the_consensus=True)    
+    """ """
+    the_block = CreateBlock()
+    SaveBlock(the_block)
+    server.Server.send_block_to_other_nodes()
+    logger.info("Consensus timer is started")
+    perpetualTimer(the_block.consensus_timer,
+                   consensus_trigger,
+                   the_consensus=True)
 
 
 def menu():
-    """
-    The main structure of the cli mode, this function prints the menu,
+    """The main structure of the cli mode, this function prints the menu,
     listens to the entries, makes the directions.
+
+
     """
 
     animation = [
@@ -169,14 +172,15 @@ def menu():
             )
 
             if send_tx != False:
-                    SavetoMyTransaction(send_tx, sended=True)
-                    if not the_settings()["baklava"]:
-                        from naruno.node.server.server import server
-                        if server.Server is None:
-                            print("Please start the node server")
-                            return False
-                        server.send_transaction(send_tx)
-                        SaveBlock(block)
+                SavetoMyTransaction(send_tx, sended=True)
+                if not the_settings()["baklava"]:
+                    from naruno.node.server.server import server
+
+                    if server.Server is None:
+                        print("Please start the node server")
+                        return False
+                    server.send_transaction(send_tx)
+                    SaveBlock(block)
 
         if choices_input == "scd":
             if not the_settings()["baklava"]:
@@ -191,14 +195,15 @@ def menu():
                 block=block,
             )
             if send_tx != False:
-                    SavetoMyTransaction(send_tx, sended=True)
-                    if not the_settings()["baklava"]:
-                        from naruno.node.server.server import server
-                        if server.Server is None:
-                            print("Please start the node server")
-                            return False
-                        server.send_transaction(send_tx)
-                        SaveBlock(block)
+                SavetoMyTransaction(send_tx, sended=True)
+                if not the_settings()["baklava"]:
+                    from naruno.node.server.server import server
+
+                    if server.Server is None:
+                        print("Please start the node server")
+                        return False
+                    server.send_transaction(send_tx)
+                    SaveBlock(block)
 
         if choices_input == "gb":
             print(GetBalance(wallet_import(-1, 0)))
@@ -279,9 +284,7 @@ def menu():
 
 
 def arguments():
-    """
-    This function parses the arguments and makes the directions.
-    """
+    """This function parses the arguments and makes the directions."""
 
     parser = argparse.ArgumentParser(
         description=
@@ -426,6 +429,8 @@ def arguments():
 
     args = parser.parse_args()
 
+    safety_check(args.interface, args.timeout)
+
     if len(sys.argv) < 2:
         parser.print_help()
 
@@ -469,8 +474,6 @@ def arguments():
 
     if args.status:
         print(Status())
-
-    safety_check(args.interface, args.timeout)
 
     if args.ndnewunl is not None:
         Unl.save_new_unl_node(args.ndnewunl)
@@ -526,9 +529,7 @@ def arguments():
 
 
 def start():
-    """
-    Start the CLI mode with arguments.
-    """
+    """Start the CLI mode with arguments."""
 
     logger.info("Starting CLI mode")
 
