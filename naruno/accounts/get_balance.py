@@ -27,7 +27,7 @@ def GetBalance(
 ):
     """Returns the users balance.
 
-    :param user: 
+    :param user:
     :param account_list:  (Default value = None)
     :param dont_convert:  (Default value = False)
     :param block:  (Default value = None)
