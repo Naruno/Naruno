@@ -62,4 +62,4 @@ def GetBalance(user,
                 if Address(tx.fromUser) == user and sub_control:
                     balance = balance - (Decimal(str(tx.amount)) + Decimal(str(tx.transaction_fee)))
 
-    return balance
+    return float(balance)
