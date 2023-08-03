@@ -59,8 +59,7 @@ def show_menu():
     print(
         banner_maker(
             sc_name="Naruno",
-            description=
-            "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.",
+            description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system.",
             author="Naruno Developers",
         ))
 
@@ -109,12 +108,14 @@ def show_menu():
 
     print(quit_menu_maker(mode="main"))
 
+
 def get_block_process():
-                the_block = CreateBlock()
-                SaveBlock(the_block)
-                server.Server.send_block_to_other_nodes()
-                logger.info("Consensus timer is started")
-                perpetualTimer(the_block.consensus_timer, consensus_trigger, the_consensus=True)    
+    the_block = CreateBlock()
+    SaveBlock(the_block)
+    server.Server.send_block_to_other_nodes()
+    logger.info("Consensus timer is started")
+    perpetualTimer(the_block.consensus_timer,
+                   consensus_trigger, the_consensus=True)
 
 
 def menu():
@@ -169,14 +170,14 @@ def menu():
             )
 
             if send_tx != False:
-                    SavetoMyTransaction(send_tx, sended=True)
-                    if not the_settings()["baklava"]:
-                        from naruno.node.server.server import server
-                        if server.Server is None:
-                            print("Please start the node server")
-                            return False
-                        server.send_transaction(send_tx)
-                        SaveBlock(block)
+                SavetoMyTransaction(send_tx, sended=True)
+                if not the_settings()["baklava"]:
+                    from naruno.node.server.server import server
+                    if server.Server is None:
+                        print("Please start the node server")
+                        return False
+                    server.send_transaction(send_tx)
+                    SaveBlock(block)
 
         if choices_input == "scd":
             if not the_settings()["baklava"]:
@@ -191,14 +192,14 @@ def menu():
                 block=block,
             )
             if send_tx != False:
-                    SavetoMyTransaction(send_tx, sended=True)
-                    if not the_settings()["baklava"]:
-                        from naruno.node.server.server import server
-                        if server.Server is None:
-                            print("Please start the node server")
-                            return False
-                        server.send_transaction(send_tx)
-                        SaveBlock(block)
+                SavetoMyTransaction(send_tx, sended=True)
+                if not the_settings()["baklava"]:
+                    from naruno.node.server.server import server
+                    if server.Server is None:
+                        print("Please start the node server")
+                        return False
+                    server.send_transaction(send_tx)
+                    SaveBlock(block)
 
         if choices_input == "gb":
             print(GetBalance(wallet_import(-1, 0)))
@@ -284,8 +285,7 @@ def arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
     )
 
     parser.add_argument("-pw",
@@ -471,8 +471,6 @@ def arguments():
 
     if args.status:
         print(Status())
-
-    
 
     if args.ndnewunl is not None:
         Unl.save_new_unl_node(args.ndnewunl)
