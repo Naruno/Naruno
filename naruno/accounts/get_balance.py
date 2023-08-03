@@ -10,33 +10,37 @@ from decimal import Decimal
 
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.blockchain.block.get_block import GetBlock
-from naruno.blockchain.block.get_minumum_transfer_amount import \
-    GetMinimumTransferAmount
+from naruno.blockchain.block.get_minumum_transfer_amount import GetMinimumTransferAmount
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.pending.get_pending import GetPending
 from naruno.wallet.wallet_import import Address
 
 
-def GetBalance(user,
-               account_list=None,
-               dont_convert=False,
-               block=None,
-               custom_TEMP_BLOCK_PATH=None,
-               tx_signature=None,
-               custom_pending=None):
+def GetBalance(
+    user,
+    account_list=None,
+    dont_convert=False,
+    block=None,
+    custom_TEMP_BLOCK_PATH=None,
+    tx_signature=None,
+    custom_pending=None,
+):
     """
     Returns the users balance.
     """
     address = Address(user) if not dont_convert else user
 
     balance = GetMinimumTransferAmount(
-        block=block, custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH)
+        block=block, custom_TEMP_BLOCK_PATH=custom_TEMP_BLOCK_PATH
+    )
 
     if the_settings()["baklava"]:
         balance = float(
-            urlopen(
-                f"http://test_net.1.naruno.org:8000/balance/get/?address={address}"
-            ).read().decode("utf-8").replace("\n", ""))
+            urlopen(f"http://test_net.1.naruno.org:8000/balance/get/?address={address}")
+            .read()
+            .decode("utf-8")
+            .replace("\n", "")
+        )
     else:
         if block is None:
             try:
@@ -46,10 +50,12 @@ def GetBalance(user,
 
         balance = Decimal(str(-block.minumum_transfer_amount))
 
-        the_account_list = GetAccounts(
-        ) if account_list is None else account_list
-        balance = balance + Decimal(str(the_account_list[address][
-            1])) if address in the_account_list else balance + Decimal(str(0))
+        the_account_list = GetAccounts() if account_list is None else account_list
+        balance = (
+            balance + Decimal(str(the_account_list[address][1]))
+            if address in the_account_list
+            else balance + Decimal(str(0))
+        )
 
         if not block.just_one_tx:
             the_pending = custom_pending if custom_pending is not None else GetPending()
@@ -59,7 +65,8 @@ def GetBalance(user,
                     if tx.signature == tx_signature:
                         sub_control = False
                 if Address(tx.fromUser) == user and sub_control:
-                    balance = balance - \
-                        (Decimal(str(tx.amount)) + Decimal(str(tx.transaction_fee)))
+                    balance = balance - (
+                        Decimal(str(tx.amount)) + Decimal(str(tx.transaction_fee))
+                    )
 
     return balance
