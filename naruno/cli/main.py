@@ -52,9 +52,7 @@ logger = get_logger("CLI")
 
 
 def show_menu():
-    """
-    Prints some information and the menu.
-    """
+    """Prints some information and the menu."""
 
     print(
         banner_maker(
@@ -113,6 +111,7 @@ def show_menu():
 
 
 def get_block_process():
+    """ """
     the_block = CreateBlock()
     SaveBlock(the_block)
     server.Server.send_block_to_other_nodes()
@@ -121,9 +120,10 @@ def get_block_process():
 
 
 def menu():
-    """
-    The main structure of the cli mode, this function prints the menu,
+    """The main structure of the cli mode, this function prints the menu,
     listens to the entries, makes the directions.
+
+
     """
 
     animation = [
@@ -278,9 +278,7 @@ def menu():
 
 
 def arguments():
-    """
-    This function parses the arguments and makes the directions.
-    """
+    """This function parses the arguments and makes the directions."""
 
     parser = argparse.ArgumentParser(
         description="Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
@@ -491,9 +489,7 @@ def arguments():
 
 
 def start():
-    """
-    Start the CLI mode with arguments.
-    """
+    """Start the CLI mode with arguments."""
 
     logger.info("Starting CLI mode")
 
