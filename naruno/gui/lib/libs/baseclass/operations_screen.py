@@ -164,10 +164,23 @@ class OperationBox(MDGridLayout):
 
     def export_transaction_csv(self):
         if export_the_transactions():
+            export_location = MY_TRANSACTION_EXPORT_PATH
             Clipboard.copy(MY_TRANSACTION_EXPORT_PATH)
+            if platform == "android":
+                from android.storage import primary_external_storage_path
+
+                dir = primary_external_storage_path()
+                download_dir_path = os.path.join(dir, "Download")
+                new_path = os.path.join(download_dir_path,
+                                        export_location.split("/")[-1])
+                Clipboard.copy(new_path)
+                shutil.move(
+                    export_location,
+                    new_path,
+                )
             popup(
                 title=
-                f"CSV file created in {MY_TRANSACTION_EXPORT_PATH} directory, The directory has been copied to your clipboard.",
+                f"CSV file created and location has been copied to your clipboard.",
                 type="success",
             )
 
