@@ -44,7 +44,6 @@ def GetBalance(user,
             except TypeError:
                 return None
 
-
         balance = Decimal(str(-block.minumum_transfer_amount))
 
         the_account_list = GetAccounts(
@@ -60,6 +59,7 @@ def GetBalance(user,
                     if tx.signature == tx_signature:
                         sub_control = False
                 if Address(tx.fromUser) == user and sub_control:
-                    balance = balance - (Decimal(str(tx.amount)) + Decimal(str(tx.transaction_fee)))
+                    balance = balance - \
+                        (Decimal(str(tx.amount)) + Decimal(str(tx.transaction_fee)))
 
     return balance
