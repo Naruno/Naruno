@@ -47,9 +47,6 @@ def create_and_save_the_settings():
 
     save_settings(temp_json)
 
-    t_mode_settings(test_mode_settings)
-    d_mode_settings(debug_mode_settings)
-
     return temp_json
 
 
