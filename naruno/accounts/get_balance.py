@@ -5,6 +5,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from urllib.request import urlopen
+from decimal import Decimal
+
 
 from naruno.accounts.get_accounts import GetAccounts
 from naruno.blockchain.block.get_block import GetBlock
@@ -42,12 +44,13 @@ def GetBalance(user,
             except TypeError:
                 return None
 
-        balance = -block.minumum_transfer_amount
+
+        balance = Decimal(str(-block.minumum_transfer_amount))
 
         the_account_list = GetAccounts(
         ) if account_list is None else account_list
-        balance += the_account_list[address][
-            1] if address in the_account_list else 0
+        balance = balance + Decimal(str(the_account_list[address][
+            1])) if address in the_account_list else balance + Decimal(str(0))
 
         if not block.just_one_tx:
             the_pending = custom_pending if custom_pending is not None else GetPending()
@@ -57,6 +60,6 @@ def GetBalance(user,
                     if tx.signature == tx_signature:
                         sub_control = False
                 if Address(tx.fromUser) == user and sub_control:
-                    balance -= float(tx.amount) + float(tx.transaction_fee)
+                    balance = balance - (Decimal(str(tx.amount)) + Decimal(str(tx.transaction_fee)))
 
     return balance
