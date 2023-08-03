@@ -426,6 +426,8 @@ def arguments():
 
     args = parser.parse_args()
 
+    safety_check(args.interface, args.timeout)
+
     if len(sys.argv) < 2:
         parser.print_help()
 
@@ -470,7 +472,7 @@ def arguments():
     if args.status:
         print(Status())
 
-    safety_check(args.interface, args.timeout)
+    
 
     if args.ndnewunl is not None:
         Unl.save_new_unl_node(args.ndnewunl)
