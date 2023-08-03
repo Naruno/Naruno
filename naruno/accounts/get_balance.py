@@ -25,8 +25,16 @@ def GetBalance(
     tx_signature=None,
     custom_pending=None,
 ):
-    """
-    Returns the users balance.
+    """Returns the users balance.
+
+    :param user: 
+    :param account_list:  (Default value = None)
+    :param dont_convert:  (Default value = False)
+    :param block:  (Default value = None)
+    :param custom_TEMP_BLOCK_PATH:  (Default value = None)
+    :param tx_signature:  (Default value = None)
+    :param custom_pending:  (Default value = None)
+
     """
     address = Address(user) if not dont_convert else user
 
