@@ -37,7 +37,7 @@ import naruno
 
 logger = get_logger("CONSENSUS")
 def make_sync(the_server):
-    logger.info("Syncing the block to other nodes is triggered")
+    logger.debug("Syncing the block to other nodes is triggered")
     with contextlib.suppress(Exception):
         [
             the_server.send_block_to_other_nodes(sync_client, sync=True)

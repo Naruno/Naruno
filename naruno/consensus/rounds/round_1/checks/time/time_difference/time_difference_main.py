@@ -29,7 +29,7 @@ def time_difference_check(
     logger.debug(f"current_time: {current_time}")
     logger.debug(f"the_time: {the_time}")
     if current_time >= the_time:
-        logger.info("Time is true")
+        logger.debug("Time is true")
         return True
     else:
         if not current_time >= the_time - (block.round_1_time / 2):
@@ -41,5 +41,5 @@ def time_difference_check(
                 custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH,
                 custom_TEMP_BLOCKSHASH_PART_PATH=custom_TEMP_BLOCKSHASH_PART_PATH,
             )     
-        logger.info("Time is not true")
+        logger.debug("Time is not true")
         return False if return_result is False else the_time

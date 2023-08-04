@@ -31,7 +31,7 @@ def SaveBlockstoBlockchainDB(
     """
 
     logger.info("Saving block to blockchain database...")
-    logger.info(f"Block: {block.__dict__}")
+    logger.debug(f"Block: {block.__dict__}")
 
     if the_settings()["dont_save_blocks"]:
         logger.debug("Not saving blocks because of settings.")

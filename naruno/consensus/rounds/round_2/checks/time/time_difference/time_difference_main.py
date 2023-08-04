@@ -20,8 +20,8 @@ def time_difference_check(block: Block) -> bool:
     logger.debug(f"current_time: {current_time}")
     logger.debug(f"true_time: {true_time}")
     if current_time >= true_time:
-        logger.info("Time is true")
+        logger.debug("Time is true")
         return True
     else:
-        logger.info("Time is not true")
+        logger.debug("Time is not true")
         return False

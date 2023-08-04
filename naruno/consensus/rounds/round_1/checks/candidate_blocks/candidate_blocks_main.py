@@ -23,8 +23,8 @@ def candidate_blocks_check(candidate_class: candidate_block,
     logger.debug(f"len(unl_nodes): {len(unl_nodes)}")
     if len(candidate_class.candidate_blocks) > ((
         (len(unl_nodes) + 1) * the_block.candidate_blocks_check) / 100):
-        logger.info("Candidate block number is True")
+        logger.debug("Candidate block number is True")
         return True
     else:
-        logger.info("Candidate block number is not True")
+        logger.debug("Candidate block number is not True")
         return False

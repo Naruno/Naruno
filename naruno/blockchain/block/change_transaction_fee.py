@@ -21,7 +21,7 @@ def ChangeTransactionFee(
     Increase transaction fee by 0.01 naruno coin for each block.default_optimum_transaction_number argument
     """
     logger.info("Calculating the transaction fee")
-    logger.info(f"Start fee is: {block.transaction_fee}")
+    logger.debug(f"Start fee is: {block.transaction_fee}")
     pending_transactions = (GetPendingLen(
         custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH)
                             if custom_pending_transaction_len is None else
@@ -42,9 +42,9 @@ def ChangeTransactionFee(
                     ) * block.default_increase_of_fee
         decimal_amount = Decimal(str(block.transaction_fee)) + Decimal(str(increase))
         block.transaction_fee = float(decimal_amount)
-        logger.info("Transaction fee will be increased")
+        logger.debug("Transaction fee will be increased")
 
     else:
-        logger.info("Transaction fee is not changed")
+        logger.debug("Transaction fee is not changed")
         block.transaction_fee = block.default_transaction_fee
-    logger.info(f"New transaction fee is : {block.transaction_fee} ")
+    logger.debug(f"New transaction fee is : {block.transaction_fee} ")
