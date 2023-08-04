@@ -68,7 +68,7 @@ def ProccesstheTransaction(
     actions = []
 
     for trans in block.validating_list:
-        logger.info(f"Transaction: {trans.__dict__}")
+        logger.debug(f"Transaction: {trans.__dict__}")
 
         touser_inlist = True
         to_user_in_new_list = False
@@ -121,14 +121,14 @@ def ProccesstheTransaction(
         if not touser_inlist and not to_user_in_new_list:
             new_added_accounts_list.append(
                 Account(trans.toUser, float(trans.amount)))
-    logger.info(f"Actions: {actions}")
+    logger.debug(f"Actions: {actions}")
     for action in actions:
         for account in account_list:
             if action[0] == account.Address:
                 alread_in = True if account in edited_accounts else False
                 the_account = edited_accounts[edited_accounts.index(account)] if account in edited_accounts else account                
                 if the_account.Address == block.fee_address:
-                    logger.info(f"Fee Address Input: {the_account.dump_json()}")
+                    logger.debug(f"Fee Address Input: {the_account.dump_json()}")
                 if action[1] == "balance":
                     balance_decimal = Decimal(str(the_account.balance)) + Decimal(str(action[2]))
                     the_account.balance = float(balance_decimal)
@@ -136,7 +136,7 @@ def ProccesstheTransaction(
                     the_account.sequence_number += action[2]
 
                 if the_account.Address == block.fee_address:
-                    logger.info(f"Fee Address Output: {the_account.dump_json()}")
+                    logger.debug(f"Fee Address Output: {the_account.dump_json()}")
                 if not alread_in:
                     edited_accounts.append(the_account)
 

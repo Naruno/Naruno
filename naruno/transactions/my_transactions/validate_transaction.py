@@ -35,9 +35,6 @@ def ValidateTransaction(tx: Transaction,
         else:
             first_signature = i[0].signature
 
-        
-        logger.debug(f"First one: {i}")
-        logger.debug(f"Second one: {tx}")
         if first_signature == tx.signature:
            
             if not i[1] or force_notify:

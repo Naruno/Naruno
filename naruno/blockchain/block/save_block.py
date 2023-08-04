@@ -334,7 +334,7 @@ def SaveBlock(
         str(block.sequence_number + block.empty_block_number) + "-" +
         str(len(block.validating_list)) + "-" + str(secondly_situation) + "-" +
         str(time.time()))
-    logger.info(f"Saving block to {highest_the_TEMP_BLOCK_PATH}")
+    logger.debug(f"Saving block to {highest_the_TEMP_BLOCK_PATH}")
 
     if delete_old_validating_list:
         os.chdir(get_config()["main_folder"])
@@ -354,7 +354,7 @@ def SaveBlock(
                             and high_number != len(block.validating_list)
                             and secondly_situation_number == 1):
                         with contextlib.suppress(FileNotFoundError):
-                            logger.info(f"Deleting old validating list: {file}")
+                            logger.debug(f"Deleting old validating list: {file}")
                             block_db.delete("db/"+file)
 
     for file in os.listdir("db/"):
@@ -368,7 +368,7 @@ def SaveBlock(
                                             "")).split("-")[2])  # val
                 if number < block.sequence_number + block.empty_block_number:
                     with contextlib.suppress(FileNotFoundError):
-                        logger.info("Removing " + "db/" + file)
+                        logger.debug("Removing " + "db/" + file)
                         block_db.delete("db/"+file)
 
     block_db_path_first = os.path.join(get_config()["main_folder"],

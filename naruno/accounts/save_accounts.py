@@ -45,16 +45,14 @@ def SaveAccounts(new_account,
         new_account = [new_account]
 
     if sequence is not None:
-        logger.info("Sequence is not node")
+        logger.debug("Sequence is not node")
         the_string=str(sequence)+str(custom_TEMP_ACCOUNTS_PATH)
-        logger.debug(f"String: {the_string}")
         the_hash = hashlib.sha256(the_string.encode()).hexdigest()
-        logger.debug(f"Hash: {the_hash}")
         if the_hash in operations_hashes:
             logger.warning("Two times try")
             return
         else:
-            logger.info("Passed")
+            logger.debug("Passed")
             operations_hashes.append(the_hash)
 
 

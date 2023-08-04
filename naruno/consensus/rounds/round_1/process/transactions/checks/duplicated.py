@@ -23,7 +23,7 @@ def Remove_Duplicates(block: Block):
                    for tx2 in new_validating_list):
             new_validating_list.append(tx)
         else:
-            logger.info(
+            logger.debug(
                 f"tx: {tx} will be removed because its added more than one")
     block.validating_list = new_validating_list
     logger.debug(f"End block.validatin_list: {block.validating_list}")

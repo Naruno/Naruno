@@ -56,7 +56,7 @@ def consensus_trigger(
             f"BLOCK#{block.sequence_number}:{block.empty_block_number} Consensus process started"
         )
 
-        logger.info("Consensus Sync process started")
+        logger.debug("Consensus Sync process started")
         threading.Thread(
             target=sync,
             args=(
@@ -67,7 +67,7 @@ def consensus_trigger(
         ).start()
 
         if block.validated:
-            logger.info(
+            logger.debug(
                 "BLOCK is an validated block, consensus process is finished")
             finished_main(
                 block,
@@ -80,7 +80,7 @@ def consensus_trigger(
                 dont_clean=dont_clean,
             )
         else:
-            logger.info(
+            logger.debug(
                 "BLOCK is an unvalidated block, consensus process is ongoing")
             ongoing_main(
                 block,
@@ -98,7 +98,7 @@ def consensus_trigger(
     except:
         traceback.print_exc()
 
-    logger.info("Consensus process is done")
+    logger.debug("Consensus process is done")
     with contextlib.suppress(Exception):
         naruno.lib.perpetualtimer.the_consensus_thread = False    
 

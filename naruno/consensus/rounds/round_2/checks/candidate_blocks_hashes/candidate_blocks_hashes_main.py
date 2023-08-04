@@ -23,8 +23,8 @@ def candidate_blocks_hashes_check(candidate_class: candidate_block,
     the_block = Block(creator="Naruno") if block is None else block
     if len(candidate_class.candidate_block_hashes) > ((
         (len(unl_nodes) + 1) * the_block.candidate_blocks_hashes_check) / 100):
-        logger.info("Candidate block hash number is True")
+        logger.debug("Candidate block hash number is True")
         return True
     else:
-        logger.info("Candidate block hash number is not True")
+        logger.debug("Candidate block hash number is not True")
         return False
