@@ -44,6 +44,7 @@ logger = get_logger("REMOTE_APP")
 
 
 class splitted_data:
+    """ """
     def __init__(self, split):
         self.split = split
         self.main_data = None
@@ -53,6 +54,7 @@ class splitted_data:
 
 
 class Integration:
+    """ """
     def __init__(
         self,
         app_name,
@@ -180,16 +182,19 @@ class Integration:
         logger.info(f"Integration of {self.app_name} is started")
 
     def change_by_network(self):
+        """ """
         self.host = "test_net.1.naruno.org" if the_settings()["baklava"] else self.host
         self.port = 8000 if the_settings()["baklava"] else self.port
 
     def init_api(self):
+        """ """
         try:
             self.prepare_request("/", "get")
         except Exception as e:
             self.start_api()
 
     def start_api(self):
+        """ """
         backup = sys.argv
         sys.argv = [sys.argv[0]]
 
@@ -200,6 +205,11 @@ class Integration:
         sys.argv = backup
 
     def wait_until_complated(self, custom_list=None):
+        """
+
+        :param custom_list:  (Default value = None)
+
+        """
         while len(self.sended_txs) > 0:
             time.sleep(self.sending_wait_time)
             self.sended_txs = (
@@ -207,6 +217,7 @@ class Integration:
             )
 
     def close(self):
+        """ """
         DeleteCommander(self.commander) if not self.commander is None else None
         self.wait_until_complated() if self.check_thread is not None else None
         self.check_thread.cancel() if self.check_thread is not None else None
@@ -214,10 +225,12 @@ class Integration:
             self.api.close()
 
     def disable_cache(self):
+        """ """
         self.cache_true = False
         self.cache = []
 
     def get_cache(self):
+        """ """
         if self.cache_true == False:
             self.cache = []
             return
@@ -232,6 +245,7 @@ class Integration:
             self.save_cache()
 
     def save_cache(self):
+        """ """
         if self.cache_true == False:
             self.get_cache()
             return
@@ -239,14 +253,17 @@ class Integration:
         self.integrationcache_db.set("cache", self.cache)
 
     def delete_cache(self):
+        """ """
         self.integrationcache_db.delete("cache")
 
     def prepare_request(self, end_point, type, data=None) -> requests.Response:
         """
+
         :param end_point: The end point of the request
         :param type: The type of the request (get, post)
-        :param data: The data of the request
-        :return: The response of the request
+        :param data: The data of the request (Default value = None)
+        :returns: The response of the request
+
         """
         api = f"http://{self.host}:{self.port}"
 
@@ -259,6 +276,14 @@ class Integration:
         return response
 
     def send_forcer(self, action, app_data, to_user, retrysecond):
+        """
+
+        :param action: 
+        :param app_data: 
+        :param to_user: 
+        :param retrysecond: 
+
+        """
         stop = False
         while stop == False:
             stop = self.send(action, app_data, to_user, force=False)
@@ -267,6 +292,7 @@ class Integration:
         return stop
 
     def generate_random_split_key(self):
+        """ """
         rando = ""
         for i in range(5):
             rando += random.choice(string.ascii_letters)
@@ -284,6 +310,19 @@ class Integration:
         custom_checker=None,
         custom_random=None,
     ) -> bool:
+        """
+
+        :param action: 
+        :param app_data: 
+        :param to_user: 
+        :param system_length: 
+        :param true_length: 
+        :param force:  (Default value = True)
+        :param retrysecond:  (Default value = 10)
+        :param custom_checker:  (Default value = None)
+        :param custom_random:  (Default value = None)
+
+        """
         backup_checking = copy.copy(self.checking)
         self.checking = False
         # generate random charactere
@@ -351,15 +390,21 @@ class Integration:
         return True
 
     def wait_until_true_time(self):
+        """ """
         time.sleep(self.wait_amount - (time.time() - self.last_sended))
 
     def send(
         self, action, app_data, to_user, amount=None, force=True, retrysecond=10
     ) -> bool:
         """
+
         :param action: The action of the app
         :param app_data: The data of the app
         :param to_user: The user to send the data to
+        :param amount:  (Default value = None)
+        :param force:  (Default value = True)
+        :param retrysecond:  (Default value = 10)
+
         """
 
         self.wait_until_true_time() if time.time() - self.last_sended < self.wait_amount else None
@@ -445,6 +490,16 @@ class Integration:
         raw_data_return=False,
         raw_datas=None,
     ):
+        """
+
+        :param get_all: 
+        :param disable_caches: 
+        :param disable_sended_not_validated: 
+        :param force_sended: 
+        :param raw_data_return:  (Default value = False)
+        :param raw_datas:  (Default value = None)
+
+        """
         self.get_cache() if not disable_caches else None
         response = self.prepare_request("/transactions/received", type="get")
         transactions = response.json()
@@ -774,6 +829,15 @@ class Integration:
         disable_sended_not_validated=False,
         force_sended=False,
     ):
+        """
+
+        :param get_all:  (Default value = False)
+        :param disable_caches:  (Default value = False)
+        :param from_thread:  (Default value = False)
+        :param disable_sended_not_validated:  (Default value = False)
+        :param force_sended:  (Default value = False)
+
+        """
         self.host = copy.copy(self.first_host)
         self.port = copy.copy(self.first_port)
 
