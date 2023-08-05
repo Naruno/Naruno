@@ -279,10 +279,10 @@ class Integration:
     def send_forcer(self, action, app_data, to_user, retrysecond):
         """
 
-        :param action: 
-        :param app_data: 
-        :param to_user: 
-        :param retrysecond: 
+        :param action:
+        :param app_data:
+        :param to_user:
+        :param retrysecond:
 
         """
         stop = False
@@ -313,11 +313,11 @@ class Integration:
     ) -> bool:
         """
 
-        :param action: 
-        :param app_data: 
-        :param to_user: 
-        :param system_length: 
-        :param true_length: 
+        :param action:
+        :param app_data:
+        :param to_user:
+        :param system_length:
+        :param true_length:
         :param force:  (Default value = True)
         :param retrysecond:  (Default value = 10)
         :param custom_checker:  (Default value = None)
@@ -493,10 +493,10 @@ class Integration:
     ):
         """
 
-        :param get_all: 
-        :param disable_caches: 
-        :param disable_sended_not_validated: 
-        :param force_sended: 
+        :param get_all:
+        :param disable_caches:
+        :param disable_sended_not_validated:
+        :param force_sended:
         :param raw_data_return:  (Default value = False)
         :param raw_datas:  (Default value = None)
 
