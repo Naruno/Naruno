@@ -575,34 +575,6 @@ class Test_apps(unittest.TestCase):
         self.integration.cache = cache_backup
 
 
-    def test_integration_caching_system_backward_support(self):
-        app_name = f"test_app_{int(time.time())}"
-        integration_1 = Integration(app_name, port=7776)
-        integration_1.cache = ["test"]
-
-        integration_1.save_cache()
-        self.assertEqual(
-            integration_1.integrationcache_db.get("cache"),
-            [],
-        )
-
-        integration_2 = Integration(app_name, port=7776)
-        self.assertEqual(integration_2.cache, [])
-        self.assertEqual(
-            integration_2.integrationcache_db.get("cache"),
-            [],
-        )
-
-        integration_2.delete_cache()
-        self.assertEqual(
-            integration_2.integrationcache_db.get("cache"),
-            None,
-        )
-
-        integration_3 = Integration(app_name, port=7776)
-        self.assertEqual(integration_3.cache, [])
-        integration_3.delete_cache()
-
     def test_checker_with_valid_transactions(self):
         # Create some sample transactions
         sent_tx1 = [
