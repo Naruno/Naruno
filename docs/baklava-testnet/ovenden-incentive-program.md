@@ -13,7 +13,7 @@ In Baklava we are introduce an incentive for testing our official applications a
 - You should have an registered baklava user. If you dont have you can register via [this link](https://naruno.org/baklava-testnet/).
 
 
-## Application 1: Address Ping System
+## Application 1: Address Ping System | Ended on 2023-08-05 at UTC 6pm
 
 ### What is Address Ping System?
 [Address Ping System](https://github.com/Naruno/Address-Ping-System) (APS) is a tool designed to check the online status of servers associated with blockchain addresses in Naruno. With APS, you can ensure that the servers you want to communicate with are online and reachable before sending any messages or making any transactions.
