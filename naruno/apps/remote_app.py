@@ -209,7 +209,7 @@ class Integration:
     def wait_until_complated(self, custom_list=None):
         """
 
-        :param custom_list:  (Default value = None)
+        :param custom_list: Default value = None)
 
         """
         while len(self.sended_txs) > 0:
@@ -280,10 +280,10 @@ class Integration:
     def send_forcer(self, action, app_data, to_user, retrysecond):
         """
 
-        :param action:
-        :param app_data:
-        :param to_user:
-        :param retrysecond:
+        :param action: param app_data:
+        :param to_user: param retrysecond:
+        :param app_data: 
+        :param retrysecond: 
 
         """
         stop = False
@@ -314,15 +314,15 @@ class Integration:
     ) -> bool:
         """
 
-        :param action:
-        :param app_data:
-        :param to_user:
-        :param system_length:
-        :param true_length:
+        :param action: param app_data:
+        :param to_user: param system_length:
+        :param true_length: param force:  (Default value = True)
+        :param retrysecond: Default value = 10)
+        :param custom_checker: Default value = None)
+        :param custom_random: Default value = None)
+        :param app_data: 
+        :param system_length: 
         :param force:  (Default value = True)
-        :param retrysecond:  (Default value = 10)
-        :param custom_checker:  (Default value = None)
-        :param custom_random:  (Default value = None)
 
         """
         backup_checking = copy.copy(self.checking)
@@ -403,9 +403,9 @@ class Integration:
         :param action: The action of the app
         :param app_data: The data of the app
         :param to_user: The user to send the data to
-        :param amount:  (Default value = None)
-        :param force:  (Default value = True)
-        :param retrysecond:  (Default value = 10)
+        :param amount: Default value = None)
+        :param force: Default value = True)
+        :param retrysecond: Default value = 10)
 
         """
 
@@ -494,12 +494,12 @@ class Integration:
     ):
         """
 
-        :param get_all:
-        :param disable_caches:
-        :param disable_sended_not_validated:
-        :param force_sended:
-        :param raw_data_return:  (Default value = False)
-        :param raw_datas:  (Default value = None)
+        :param get_all: param disable_caches:
+        :param disable_sended_not_validated: param force_sended:
+        :param raw_data_return: Default value = False)
+        :param raw_datas: Default value = None)
+        :param disable_caches: 
+        :param force_sended: 
 
         """
         self.get_cache() if not disable_caches else None
@@ -833,11 +833,11 @@ class Integration:
     ):
         """
 
-        :param get_all:  (Default value = False)
-        :param disable_caches:  (Default value = False)
-        :param from_thread:  (Default value = False)
-        :param disable_sended_not_validated:  (Default value = False)
-        :param force_sended:  (Default value = False)
+        :param get_all: Default value = False)
+        :param disable_caches: Default value = False)
+        :param from_thread: Default value = False)
+        :param disable_sended_not_validated: Default value = False)
+        :param force_sended: Default value = False)
 
         """
         self.host = copy.copy(self.first_host)
