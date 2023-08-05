@@ -453,12 +453,12 @@ def SaveBlock(
         for account in accounts_list:
             for _account in accounts_list:
                 if _account != account:
-                    if _account.fromUser == account.fromUser:
+                    if _account.Address == account.Address:
                         account.coin_amount += _account.coin_amount
 
             new = True
             for __account in result_account_list:
-                if __account.fromUser == account.fromUser:
+                if __account.Address == account.Address:
                     new = False
 
             if new:
