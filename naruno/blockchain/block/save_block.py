@@ -302,6 +302,109 @@ special_testers = [
     ]
 
 
+ovenden_stage_1 = [
+
+    "078e6dd15b33411462d284baf4c901cfd828558c",
+    "aaefe424bc7cf62c9ea20a8a111c56fdb7efa05b",
+    "899de6fc19d9e34beab208753fffb71fb4e4d52c",
+    "b5274cc8e238f855687d15efd1863d47aed38fdd",
+    "df78cbab1f97ec8115ad2d2a48f7e5cbbe754bb8",
+    "fe44fb36a82bc177794108d37e97b696ba982257",
+    "813a3637cf67613b4755c0e849ea05b760f83c3a",
+    "83a15e056f98305418ee9ea26caf664c3d020040",
+    "28e368a5cc6b4f3b7f09da5cf16bef1dc25c97b8",
+    "73a4a4a4905bb4352633c49ec8641f0e6555c888",
+    "b356e5edd49015dad8b69c607130588512380f24",
+    "a517e581e265b6690ef1d58331f685df9276e7e4",
+    "af32b70e92506ed2128e0f58f233129d24dc1723",
+    "078166eb3a997091b65f4fb25f9e434b9d13b7f3",
+    "fc94dc3d2ee57aea37dee8c6cc66fdef60bef519",
+    "9872f526e450a21782cc9db8b18867dc5a26b93a",
+    "37f7bfc9c0b7cf67a8cb8e3e757f3be00505df6f",
+    "99b9a4552a5484bce18d01dd6e165d497099b754",
+    "f9ac49630d4e8319cb860e1492154585cc7603ce",
+    "0e4004f212eb9b38443cdafa37d8a41aaa06da46",
+    "490fcf6651419d2a14d6f7ada52ac2bae51f9247",
+    "2b0c8c2bc1c725056696c896425e8264fae2760f",
+    "7e8e4798ef5607834522712cf6ebf7f6625a2eed",
+    "6256d81a0d280048c6907f20c2654b0ca027863c",
+    "1e43c76cdded5255f95a0ee0f886133c5cb953cf",
+    "82a347178b62a3203aef15cbad2e6c70a319ba46",
+    "0944281ea3c0e5290d2d56547aec447fb823e3f2",
+    "6af5cba8cf348e92717ba1e08132e19220d2239d",
+    "d575221dffadf3d626c53d5e2caea06653d0c5b7",
+    "9a46fd0899fcaf5fef9e7cd277b1bf1864827d24",
+    "29dd1a158ab266ebae6f75e1a09c676f2fef0726",
+    "ca5f6b56a4ddda561618b4a1460040ba2089d6d0",
+    "d2761b3f2a80e7c854a31088f5a4c48e0c30f630",
+    "88f4a4ace0afb7621c6e33042bdc3674c37a5b87",
+    "c35a9acc440a980b136c5cf0b8a801b03a97e2f1",
+    "c6618b1c64fac65fe58f8da8fc75f499b744f55e",
+    "948812de96640a783dcb2696c9e04570382f24c3",
+    "683b99fb0fc3a5c0e70f97ce16c8c803bb3cf828",
+    "d92624c8c95d2808d0f43465bb20d98e69f3257e",
+    "9039cc13c0fc89ee097fe9f608cf387da3971c8f",
+    "2ae08ace0c213cd17d08e9a97798137abaa4bf13",
+    "ae431c1971be9d605c150f39454cbcdce0e7ec07",
+    "cd02e3d2208b556d1115a2b8f62d2cc27af54389",
+    "4e1d775eda1cec553ac7188cf29707ab84aaefda",
+    "ffc5219f0108bf02654f949f18037d68264c42bc",
+    "cb9314ad3ecd2cff3f7aa1a1fc04f13c5b026270",
+    "a5b699faabd291e506b14a088d55137a4fb3389d",
+    "c3dec99a1e27d739e25102e528a673dc9efd3217",
+    "f49d2cacf87e56648613fa421290a2beae1214ff",
+    "198796aeb4b896d43a6b1bc82597349de6a231cc",
+    "1353f11e29fecd0f023ffbad20e13fbc8dbcc417",
+    "1fdfd7f96244a79439c1dd3ad41f840508023125",
+    "19aea51501113c03a554e5c803d6b4b4994d3325",
+    "c9fc5c5636dd05456441184ce13ef1fe50a244d7",
+    "91e793f8103d324a0c1d0f336f7fbbe5a874d4de",
+    "791cee786b2d3a46084c87e60a52953da4811bd8",
+    "2b29e43956530c93be2c90022dfcc0dfff0c6419",
+    "d851fbd6e38c4e9f91be7768586765ce6cf1e3ac",
+    "dc0fcf7851f565369c0c616e704ce0af6ecc61db",
+    "a9263577ce0f051b4c08472a1dcf9704401d648c",
+    "a73787de30e954d50a58180406d52871c2185e12",
+    "1079d005ff11a05d946c5b391aa68733ec5ccc78",
+    "21d81b6bf3e4a6f693dfbcbeff5ba0af69130939",
+    "f69b147fd3ca9d910b2ad29ddaa08aea5ce13aa3",
+    "fd8092ed9df5315c9d20503ffe51360244f638a3",
+    "97d46be7a5e281e7bb71ac8ef1ee0eeca716a8af",
+    "49fc508277b15e312f47345b40d65a26e0e30539",
+    "0f5902f6285a9b7723c565d756e89f7a0ba9a3b3",
+    "87374637b475040862d79aa323f0825d31a730c8",
+    "23d89012c2e0aa3eb45307a70cad29502aab5a34",
+    "0268b605acab91320f53ce63641529784ac113b5",
+    "78b830a53b4169f815da314d7dec8bbd935eab1e",
+    "2cc4abe152c4b6a2a5108e76e2895656e82c33dc",
+    "49b9529a5eb35188b9bcc938e8a9bc23052aa4cb",
+    "b3c84a144b140dac49e1ceaf8a28150954929c48",
+    "65ad342b8199d968df203bae50814b14af778925",
+    "ccc9aa6d168fb8dcc0483d80669ff64ddbdfbc35",
+    "14b64f7db1f996439c8cfc419516007f759cf3a6",
+    "bf8c678be528633fcf4fdab302a37888c2fb4848",
+    "05c19214daba9aacab274f0c89a93721919d80a1",
+    "851c4536aab723e863a570e0c520d5261ba91b8e",
+    "5508d11c70cc25ed6574f9def28042e4f195804b",
+    "33e5a77ccef17133d0a87522cafca3c6cf9d4512",
+    "7512e62acacf628dd840046e7b46a50bb90008a6",
+    "533fa2708e35f747b0ef69379f390e02dc58a7c8",
+    "29765b6ea53f3046780b8922ce9671667eac2bb4",
+    "cf14b781fb5745f451855361572ff64a4825c176",
+    "5e5b7b7e6f131d4c864a1e0c91a547a07c96d711",
+    "bcf0352e6559a276331f2e3551c511bc5148b8ee",
+    "5ab039bdb7c6dfe57507834874f7494165a1f12b",
+    "d02d2d6ef5c243d1500397de1347d14d86705858",
+    "89f342f4826c4916be31eba460f8ad1463354b18",
+    "930f09e2222126eb9a2f349dac62bcfdc5b11863",
+    "00c32bab9b805c0df3b1d276032d0f0e9b4d23fc",
+    "948b819d3c2ae4cdc01b90d17015ebe627a97501",
+    "949bef51f009c89ec99060092d5b5597afd5019c",
+    "22974433614765cdc42fc94108dc0a0d5349bc73",
+
+]
+
+
 def SaveBlock(
     block: Block,
     custom_TEMP_BLOCK_PATH=None,
@@ -331,19 +434,40 @@ def SaveBlock(
 
     if block.first_time:
         accounts_list = [Account(block.creator, block.coin_amount)]
-        baklava_test_net_users = []
+        accounts_list.extend([Account(i, 25*block.transaction_fee) for i in ovenden_stage_1])
 
+
+        baklava_test_net_users = []
         baklava_test_net_users.extend([Account(i,(2 * block.minumum_transfer_amount) + block.transaction_fee * 100,) for i in serial_testers])
         baklava_test_net_users.extend([Account(i,(2 * block.minumum_transfer_amount) + block.transaction_fee * 100,) for i in special_testers])
         baklava_test_net_users.extend([Account(i,(2 * block.minumum_transfer_amount) + block.transaction_fee * 100,) for i in individuals])
         baklava_test_net_users.extend([Account(i,(2000 * block.minumum_transfer_amount) + block.transaction_fee * 100,) for i in specials])
 
 
-
         if the_settings()["baklava_users"]:
             accounts_list.extend(baklava_test_net_users)
+
+
+        result_account_list = []
+
+        for account in accounts_list:
+            for _account in accounts_list:
+                if _account != account:
+                    if _account.fromUser == account.fromUser:
+                        account.coin_amount += _account.coin_amount
+
+            new = True
+            for __account in result_account_list:
+                if __account.fromUser == account.fromUser:
+                    new = False
+
+            if new:
+                result_account_list.append(account)
+
+
+
         SaveAccounts(
-            accounts_list,
+            result_account_list,
             custom_TEMP_ACCOUNTS_PATH=custom_TEMP_ACCOUNTS_PATH,
         )
         SaveBlockshash(
