@@ -668,7 +668,7 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
-        self.assertGreater(len(got_block), 1)
+        self.assertEqual(len(got_block), 1)
         self.assertEqual(
             got_block,
             [the_block.previous_hash],
