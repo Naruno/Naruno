@@ -412,7 +412,7 @@ class Test_apps(unittest.TestCase):
         integration.delete_cache()
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
-        text = f"{integration.app_name}hello_text"
+        text = f"hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
         self.assertEqual(the_tx.toUser, "<address>remoteapp")
         self.assertEqual(the_tx.amount, 5)
@@ -475,7 +475,7 @@ class Test_apps(unittest.TestCase):
         integration.delete_cache()
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
-        text = f"{integration.app_name}hello_text"
+        text = f"hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
         self.assertEqual(the_tx.toUser, "<address>remoteapp")
         self.assertEqual(the_tx.amount, 0.0)
@@ -548,7 +548,7 @@ class Test_apps(unittest.TestCase):
         integration.delete_cache()
 
         the_tx = Transaction.load_json(first_gettings_data_from_app[0])
-        text = f"{integration.app_name}hello_text"
+        text = f"hello_text"
         self.assertEqual(the_tx.data, {"action": text, "app_data": "hello"})
         self.assertEqual(the_tx.toUser, wallet_import(-1, 3))
 
