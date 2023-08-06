@@ -668,7 +668,7 @@ class Integration:
                 if not new_dict[transaction]["transaction"]["data"] == "NP":
                     if (self.app_name in new_dict[transaction]["transaction"]
                         ["data"]["action"]):
-                        new_dict[transaction]["transaction"]["data"]["action"].replace(self.app_name, "")
+                        new_dict[transaction]["transaction"]["data"]["action"] = new_dict[transaction]["transaction"]["data"]["action"].replace(self.app_name, "")
                         last_list.append(new_dict[transaction]["transaction"])
 
         splits = []
