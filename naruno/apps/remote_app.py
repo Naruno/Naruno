@@ -464,7 +464,7 @@ class Integration:
                 return False
             else:
                 logger.debug(response.text)
-                logger.debug(type(esponse.text))                
+                logger.debug(type(response.text))                
                 logger.info(
                     f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
                 )
