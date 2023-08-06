@@ -463,10 +463,9 @@ class Integration:
                                             retrysecond)
                 return False
             else:
-                response_json = json.loads(response.text)
-                logger.debug(response_json["signature"])            
+                response_json = json.loads(response.text)          
                 logger.info(
-                    f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
+                    f"Message sent: app_name:{self.app_name} action:{action} data: {app_data} to: {to_user} in TX: {response_json['signature']}"
                 )
                 time.sleep(1)
                 self.last_sended = time.time()
