@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import contextlib
+from decimal import Decimal
 import json
 import os
 import time
@@ -454,7 +455,7 @@ def SaveBlock(
             for _account in accounts_list:
                 if _account != account:
                     if _account.Address == account.Address:
-                        account.coin_amount += _account.coin_amount
+                        account.balance = float(Decimal(str(account.balance)) + Decimal(str(_account.balance)))
 
             new = True
             for __account in result_account_list:
