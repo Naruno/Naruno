@@ -284,7 +284,7 @@ class Integration:
         :param action: param app_data:
         :param to_user: param retrysecond:
         :param app_data: param retrysecond:
-        :param retrysecond: 
+        :param retrysecond:
 
         """
         stop = False
@@ -323,7 +323,7 @@ class Integration:
         :param custom_random: Default value = None)
         :param app_data: param system_length:
         :param force: Default value = True)
-        :param system_length: 
+        :param system_length:
 
         """
         backup_checking = copy.copy(self.checking)
@@ -501,7 +501,7 @@ class Integration:
         :param raw_data_return: Default value = False)
         :param raw_datas: Default value = None)
         :param disable_caches: param force_sended:
-        :param force_sended: 
+        :param force_sended:
 
         """
         self.get_cache() if not disable_caches else None
