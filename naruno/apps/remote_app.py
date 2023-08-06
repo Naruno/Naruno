@@ -782,8 +782,7 @@ class Integration:
             if transaction["data"]["app_data"].startswith("split-"):
                 result.remove(transaction) if not get_all else None
 
-        if not len(result) == 0:
-            logger.info("New datas received")
+
 
         return result
 
@@ -840,6 +839,9 @@ class Integration:
         )
 
         the_list = second
+
+        if not len(the_list) == 0:
+            logger.info("New datas received")
 
         with contextlib.suppress(TypeError):
             if "print" in inspect.stack()[1].code_context[0]:
