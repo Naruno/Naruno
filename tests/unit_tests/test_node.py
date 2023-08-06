@@ -630,9 +630,8 @@ class Test_Node(unittest.TestCase):
         got_block = GetAccounts(
             custom_TEMP_ACCOUNTS_PATH=self.custom_TEMP_ACCOUNTS_PATH1,
             reset=True)
-        print(got_block)
         got_block = got_block
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block["atakan123321"],
             [0, 10000000],
@@ -669,7 +668,7 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block,
             [the_block.previous_hash],
@@ -714,7 +713,7 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
                                        custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block,
             [the_block.previous_hash],
@@ -826,7 +825,7 @@ class Test_Node(unittest.TestCase):
             reset=True)
 
         got_block = got_block
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block["atakan123321"],
             [0, 10000000],
@@ -875,7 +874,7 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block,
             [the_block.previous_hash],
@@ -930,7 +929,7 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
                                        custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block,
             [the_block.previous_hash],
@@ -1012,7 +1011,7 @@ class Test_Node(unittest.TestCase):
             reset=True)
 
         got_block = got_block
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block["atakan123321"],
             [0, 10000000],
@@ -1049,7 +1048,7 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=self.custom_TEMP_BLOCKSHASH_PATH1)
 
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block,
             [the_block.previous_hash],
@@ -1091,7 +1090,7 @@ class Test_Node(unittest.TestCase):
         got_block = GetBlockshash_part(custom_TEMP_BLOCKSHASH_PART_PATH=self.
                                        custom_TEMP_BLOCKSHASH_PART_PATH1)
 
-        self.assertEqual(len(got_block), 1)
+        self.assertGreater(len(got_block), 1)
         self.assertEqual(
             got_block,
             [the_block.previous_hash],

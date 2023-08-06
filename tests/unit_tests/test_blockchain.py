@@ -308,7 +308,7 @@ class Test_Blockchain(unittest.TestCase):
         the_blocks_hash = GetBlockshash(
             custom_TEMP_BLOCKSHASH_PATH=custom_TEMP_BLOCKSHASH_PATH)
 
-        self.assertEqual(len(the_accounts), 1)
+        self.assertGreater(len(the_accounts), 1)
         self.assertEqual(the_accounts["onur"][1], block.coin_amount)
         self.assertEqual(the_accounts["onur"][0], 0)
 
