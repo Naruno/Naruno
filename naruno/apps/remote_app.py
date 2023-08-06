@@ -464,8 +464,7 @@ class Integration:
                 return False
             else:
                 response_json = json.loads(response.text)
-                logger.debug(response_json)
-                logger.debug(type(response_json))                
+                logger.debug(response_json["signature"])            
                 logger.info(
                     f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
                 )
