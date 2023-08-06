@@ -463,8 +463,9 @@ class Integration:
                                             retrysecond)
                 return False
             else:
-                logger.debug(response.text)
-                logger.debug(type(response.text))                
+                response_json = json.loads(response.text)
+                logger.debug(response_json)
+                logger.debug(type(response_json))                
                 logger.info(
                     f"Message sent: app_name:{self.app_name} action:{action} data: {data} to: {to_user}"
                 )
