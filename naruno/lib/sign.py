@@ -33,6 +33,10 @@ def sign(data: str, password: str, is_file: bool = False) -> str:
     if true_pass != our_pass:
         return "Password is not True"
 
+    if is_file:
+        with open(data, "r") as file:
+            data = file.read()
+
     my_private_key = wallet_import(-1, 1, password)
     signature = Ecdsa.sign(
         data,
