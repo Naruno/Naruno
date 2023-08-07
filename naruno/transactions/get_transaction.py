@@ -18,6 +18,7 @@ from naruno.transactions.pending.save_pending import SavePending
 def GetTransaction(
     block,
     the_transaction,
+    logger,
     custom_current_time=None,
     custom_sequence_number=None,
     custom_balance=None,
@@ -26,7 +27,6 @@ def GetTransaction(
     except_client=None,
     custom_server=None,
 ):
-    logger = TransactionLogger("get_transaction.py")
     if CheckTransaction(
             block,
             the_transaction,
