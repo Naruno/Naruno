@@ -122,18 +122,19 @@ def send(
             return False
 
         if (max_data_size / max_tx_number) < len(data):
-            logger.error("The data is too long.")
+            logger.warning("The data is too long.")
+        
             return False
-
+        
         decimal_amount = len(str(transaction_fee).split(".")[1])
         if len(str(amount).split(".")[1]) > decimal_amount:
             logger.error(
                 f"The amount of decimal places is more than {decimal_amount}.")
             return False
-
+        
         # Get the current fee
         transaction_fee = transaction_fee
-
+        
         tx_time = int(time.time())
         the_transaction = Transaction(
             sequence_number,
@@ -154,9 +155,9 @@ def send(
             PrivateKey.fromPem(my_private_key),
         ).toBase64()
         logger.debug(f"Transaction: {the_transaction.dump_json()}")
-
+        
         sending_result = False
-
+        
         if not the_settings()["baklava"]:
             sending_result = GetTransaction(
                 block,
@@ -177,7 +178,7 @@ def send(
                 "transaction_fee": the_transaction.transaction_fee,
                 "time_of_transaction": the_transaction.transaction_time,
             }
-
+        
             data = parse.urlencode(the_data).encode()
             # this will make the method "POST"
             req = request.Request(
@@ -189,16 +190,16 @@ def send(
             except Exception as e:
                 logger.exception(e)
                 sending_result = False
-
+        
         if sending_result:
             del my_private_key
             del password
-
+        
             return the_transaction
         else:
             logger.error("The transaction is not valid.")
             return False
-
-    else:
+        
+        else:
         logger.error("Password is not correct")
         return False
