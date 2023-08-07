@@ -22,12 +22,11 @@ logger = get_logger("TRANSACTIONS")
 
 
 
-def PendingtoValidating(block: Block):
+def PendingtoValidating(block: Block, logger):
     """
     Adds transactions to the verification list
     if there are suitable conditions.
     """
-    logger = TransactionLogger("pending_to_validating.py")
     logger.info("Pending to validating transfer process is started")
     first_validating_list_len = len(block.validating_list)
     first_max_tx_number = block.max_tx_number
