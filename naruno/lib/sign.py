@@ -22,43 +22,48 @@ def sign(data: str, password: str, is_file: bool = False) -> str:
     Signs the data with the private key of the user.
 
     Args:
-        data (str): Data to be signed
-        password (str): Password of the current wallet
-        is_file (bool): Whether the data is a file path or a string
-    """
-
-    true_pass = wallet_import(-1, 2)
-    our_pass = sha256(password.encode("utf-8")).hexdigest()
-
-    if true_pass != our_pass:
-        return "Password is not True"
-
-    if is_file:
-        with open(data, "r") as file:
-            data = file.read()
-
-    my_private_key = wallet_import(-1, 1, password)
-    signature = Ecdsa.sign(
-        data,
-        PrivateKey.fromPem(my_private_key),
-    ).toBase64()
-
-    sign_json = {
-        "data": data,
-        "signature": signature,
-        "publickey": wallet_import(-1, 0),
-    }
-
-    sign_path = os.path.join(
-        SIGNS_PATH,
-        sha256((signature).encode("utf-8")).hexdigest() + ".narunosign")
-
-    os.chdir(get_config()["main_folder"])
-    with open(sign_path, "w") as sign_file:
-        json.dump(sign_json, sign_file)
-
-    return sign_path
-
-
-if __name__ == "__main__":
-    print(sign("Ali Eren", "123"))
+        def sign(data: str, password: str, is_file: bool = False) -> str:
+            """
+            Signs the data with the private key of the user.
+        
+            Args:
+                data (str): Data to be signed
+                password (str): Password of the current wallet
+                is_file (bool): Whether the data is a file path or a string
+            """
+        
+            true_pass = wallet_import(-1, 2)
+            our_pass = sha256(password.encode("utf-8")).hexdigest()
+        
+            if true_pass != our_pass:
+                return "Password is not True"
+        
+            if is_file:
+                with open(data, "r") as file:
+                    data = file.read()
+        
+            my_private_key = wallet_import(-1, 1, password)
+            signature = Ecdsa.sign(
+                data,
+                PrivateKey.fromPem(my_private_key),
+            ).toBase64()
+        
+            sign_json = {
+                "data": data,
+                "signature": signature,
+                "publickey": wallet_import(-1, 0),
+            }
+        
+            sign_path = os.path.join(
+                SIGNS_PATH,
+                sha256((signature).encode("utf-8")).hexdigest() + ".narunosign")
+        
+            os.chdir(get_config()["main_folder"])
+            with open(sign_path, "w") as sign_file:
+                json.dump(sign_json, sign_file)
+        
+            return sign_path
+        
+        
+        if __name__ == "__main__":
+            print(sign("Ali Eren", "123"))
