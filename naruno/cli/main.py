@@ -99,12 +99,14 @@ def show_menu():
         menu_maker(menu_number="narunoimport", menu_text="Import backup") +
         menu_space() +
         menu_maker(menu_number="sign", menu_text="Sign and export an data") +
+        menu_maker(menu_number="sign_file",
+                   menu_text="Sign and export a file") +
         menu_maker(menu_number="verify", menu_text="Verify the signed data") +
         menu_space() + menu_maker(menu_number="publishermodeon",
                                   menu_text="Publisher Mode On") +
         menu_maker(menu_number="publishermodeoff",
                    menu_text="Publisher Mode Off") + menu_space())
-
+    
     print(quit_menu_maker(mode="main"))
 
 
