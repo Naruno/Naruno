@@ -5,6 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import copy
+from naruno.transactions.log_system import TransactionLogger
 
 from naruno.blockchain.block.block_main import Block
 from naruno.transactions.check.datas.check_datas import Check_Datas
@@ -22,11 +23,13 @@ def Cleaner(
     disable_already_in=True,
     disable_already_in_2=True,
 ):
+    logger = TransactionLogger("cleaner.py")
     system_txs = []
 
     for transaction in block.validating_list:
         if transaction.signature == "NARUNO":
             block.validating_list.remove(transaction)
+            logger.info(f"Removed transaction {transaction} from validating list")
             system_txs.append(transaction)
 
     for transaction in pending_list_txs:
@@ -43,6 +46,7 @@ def Cleaner(
                 disable_already_in_2=disable_already_in_2,
         ):
             DeletePending(transaction)
+            logger.info(f"Deleted pending transaction {transaction}")
             pending_list_txs.remove(transaction)
 
     for transaction in block.validating_list:
@@ -107,6 +111,7 @@ def Cleaner(
         set(first_validating_list) - set(cleaned_validating_list))
     for transaction in difference:
         SavePending(transaction)
+    logger.info(f"Cleaned validating list: {cleaned_validating_list}")
     block.validating_list = cleaned_validating_list
 
     pending_list_txs = GetPending()
@@ -116,6 +121,7 @@ def Cleaner(
         set(first_pending_list_txs) - set(cleaned_pending_list_txs))
     for transaction in difference:
         DeletePending(transaction)
+    logger.info(f"Cleaned pending list: {cleaned_pending_list_txs}")
     pending_list_txs = cleaned_pending_list_txs
 
     for transaction in system_txs:
