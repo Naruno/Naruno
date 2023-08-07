@@ -26,10 +26,6 @@ def verify(path: str, is_file: bool = False) -> bool:
         path (str): Path of the sign file
         is_file (bool): Whether the data is a file path or a string
     """
-    if is_file:
-        if os.path.isfile(path):
-            with open(path, 'r') as file:
-                path = file.read()
 
     sign_json = None
     os.chdir(get_config()["main_folder"])
