@@ -6,6 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import sqlite3
 from decimal import Decimal
+from naruno.transactions.log_system import TransactionLogger
 from naruno.accounts.account import Account
 from naruno.accounts.save_accounts import SaveAccounts
 from naruno.blockchain.block.shares import shares
@@ -33,6 +34,7 @@ def ProccesstheTransaction(
     Queuing is required so that all nodes have the same transaction hash.
     """
 
+    logger = TransactionLogger("process_the_transaction.py")
     logger.info("Transaction processing started.")
 
     if not dont_clean:
@@ -68,13 +70,13 @@ def ProccesstheTransaction(
     actions = []
 
     for trans in block.validating_list:
-        logger.debug(f"Transaction: {trans.__dict__}")
+        logger.info(f"Transaction: {trans.__dict__}")
 
         touser_inlist = True
         to_user_in_new_list = False
 
         address_of_fromUser = Address(trans.fromUser)
-        logger.debug(f"FromUser address: {address_of_fromUser}")
+        logger.info(f"FromUser address: {address_of_fromUser}")
         the_record_account_list = []
 
         the_record_account_list.append([
@@ -97,7 +99,7 @@ def ProccesstheTransaction(
             touser_inlist = False
 
             if Accounts.Address == address_of_fromUser:
-                logger.debug(f"FromUser found: {Accounts.Address}")
+                logger.info(f"FromUser found: {Accounts.Address}")
                 actions.append([
                     Accounts.Address,
                     "balance",
@@ -106,7 +108,7 @@ def ProccesstheTransaction(
                 actions.append([Accounts.Address, "sequence_number", 1])
 
             if Accounts.Address == trans.toUser:
-                logger.debug(f"ToUser found: {Accounts.Address}")
+                logger.info(f"ToUser found: {Accounts.Address}")
                 actions.append(
                     [Accounts.Address, "balance",
                      float(trans.amount)])
@@ -121,14 +123,14 @@ def ProccesstheTransaction(
         if not touser_inlist and not to_user_in_new_list:
             new_added_accounts_list.append(
                 Account(trans.toUser, float(trans.amount)))
-    logger.debug(f"Actions: {actions}")
+    logger.info(f"Actions: {actions}")
     for action in actions:
         for account in account_list:
             if action[0] == account.Address:
                 alread_in = True if account in edited_accounts else False
                 the_account = edited_accounts[edited_accounts.index(account)] if account in edited_accounts else account                
                 if the_account.Address == block.fee_address:
-                    logger.debug(f"Fee Address Input: {the_account.dump_json()}")
+                    logger.info(f"Fee Address Input: {the_account.dump_json()}")
                 if action[1] == "balance":
                     balance_decimal = Decimal(str(the_account.balance)) + Decimal(str(action[2]))
                     the_account.balance = float(balance_decimal)
@@ -136,7 +138,7 @@ def ProccesstheTransaction(
                     the_account.sequence_number += action[2]
 
                 if the_account.Address == block.fee_address:
-                    logger.debug(f"Fee Address Output: {the_account.dump_json()}")
+                    logger.info(f"Fee Address Output: {the_account.dump_json()}")
                 if not alread_in:
                     edited_accounts.append(the_account)
 
@@ -149,8 +151,8 @@ def ProccesstheTransaction(
                                      key=lambda x: x.Address)
 
 
-    logger.debug(f"SaveAccounts list: {new_added_accounts_list + edited_accounts}")
-    logger.debug(f"SaveAccounts path: {the_TEMP_ACCOUNTS_PATH}")
+    logger.info(f"SaveAccounts list: {new_added_accounts_list + edited_accounts}")
+    logger.info(f"SaveAccounts path: {the_TEMP_ACCOUNTS_PATH}")
     the_account_list_result = SaveAccounts(new_added_accounts_list + edited_accounts,
                  the_TEMP_ACCOUNTS_PATH, sequence=block.sequence_number+block.empty_block_number)
 
