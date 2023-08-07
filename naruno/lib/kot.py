@@ -519,11 +519,22 @@ class KOT:
                 import mgzip
                 with mgzip.open(key_location,
                                 "rb") as f:
-                    result = pickle.load(f)
+                    try:
+                        result = pickle.load(f)
+                    except EOFError:
+                        print("Error: File is empty.")
+                        return None
             else:
                 with open(key_location,
                           "rb") as f:
-                    result = pickle.load(f)
+                    if os.stat(key_location).st_size == 0:
+                        print("Error: File is empty.")
+                        return None
+                    try:
+                        result = pickle.load(f)
+                    except EOFError:
+                        print("Error: File is empty.")
+                        return None
 
             # Transform the result
             total_result_standart = result
