@@ -25,6 +25,9 @@ def sign(data: str, password: str) -> str:
         data (str): Data to be signed
         password (str): Password of the current wallet
     """
+    if os.path.isfile(data):
+        with open(data, 'r') as file:
+            data = file.read()
 
     true_pass = wallet_import(-1, 2)
     our_pass = sha256(password.encode("utf-8")).hexdigest()
