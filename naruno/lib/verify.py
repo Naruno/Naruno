@@ -18,16 +18,18 @@ from naruno.wallet.ellipticcurve.signature import Signature
 from naruno.wallet.wallet_import import Address
 
 
-def verify(path: str) -> bool:
+def verify(path: str, is_file: bool = False) -> bool:
     """
     Verifies the signature of the sign file.
 
     Args:
         path (str): Path of the sign file
+        is_file (bool): Whether the data is a file path or a string
     """
-    if os.path.isfile(path):
-        with open(path, 'r') as file:
-            path = file.read()
+    if is_file:
+        if os.path.isfile(path):
+            with open(path, 'r') as file:
+                path = file.read()
 
     sign_json = None
     os.chdir(get_config()["main_folder"])
