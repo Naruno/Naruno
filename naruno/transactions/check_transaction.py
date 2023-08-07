@@ -1,13 +1,14 @@
 import datetime
 
 class TransactionLogger:
-    def __init__(self, transaction_file):
+    def __init__(self, transaction_file, log_file_name):
         self.transaction_file = transaction_file
+        self.log_file_name = log_file_name
 
     def _write_log(self, level, message):
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_message = f"{timestamp} - {self.transaction_file} - {level} - {message}\n"
-        with open("transaction_logs.txt", "a") as log_file:
+        with open(self.log_file_name, "a") as log_file:
             log_file.write(log_message)
 
     def info(self, message):
