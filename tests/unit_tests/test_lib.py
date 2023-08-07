@@ -922,6 +922,30 @@ class Test_Lib(unittest.TestCase):
     def test_sign_verify_false_pass(self):
         signed = sign("Onur & Ali Eren", str(time.time()))
         self.assertEqual(signed, "Password is not True")
+    
+    def test_sign_with_file(self):
+        with tempfile.NamedTemporaryFile(delete=False) as temp:
+            temp.write(b'Test data')
+            temp_path = temp.name
+        signed = sign(temp_path, "123", is_file=True)
+        self.assertTrue(verify(signed)[0])
+        os.remove(temp_path)
+    
+    def test_verify_with_file(self):
+        with tempfile.NamedTemporaryFile(delete=False) as temp:
+            temp.write(b'Test data')
+            temp_path = temp.name
+        signed = sign(temp_path, "123", is_file=True)
+        self.assertTrue(verify(signed)[0])
+        os.remove(temp_path)
+    
+    def test_sign_with_string(self):
+        signed = sign("Test data", "123")
+        self.assertTrue(verify(signed)[0])
+    
+    def test_verify_with_string(self):
+        signed = sign("Test data", "123")
+        self.assertTrue(verify(signed)[0])
 
     def test_logs(self):
         clear_logs()
