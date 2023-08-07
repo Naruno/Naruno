@@ -26,10 +26,6 @@ def sign(data: str, password: str, is_file: bool = False) -> str:
         password (str): Password of the current wallet
         is_file (bool): Whether the data is a file path or a string
     """
-    if is_file:
-        if os.path.isfile(data):
-            with open(data, 'r') as file:
-                data = file.read()
 
     true_pass = wallet_import(-1, 2)
     our_pass = sha256(password.encode("utf-8")).hexdigest()
