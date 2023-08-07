@@ -17,13 +17,13 @@ from naruno.transactions.pending.save_pending import SavePending
 def Cleaner(
     block: Block,
     pending_list_txs: list,
+    logger,
     custom_current_time=None,
     custom_sequence_number=None,
     custom_balance=None,
     disable_already_in=True,
     disable_already_in_2=True,
 ):
-    logger = TransactionLogger("cleaner.py")
     system_txs = []
 
     for transaction in block.validating_list:
