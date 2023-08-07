@@ -61,11 +61,13 @@ app = Flask(__name__)
 
 @app.before_request
 def check_auth():
-    auth = request.authorization
-    if not auth or (auth.username != os.environ.get('API_USERNAME') or auth.password != os.environ.get('API_PASSWORD')):
-        return Response('Could not verify your access level for that URL.\n'
-                        'You have to login with proper credentials', 401,
-                        {'WWW-Authenticate': 'Basic realm="Login Required"'})
+    auth_endpoints = ["/wallet/delete", "/send/", "/node/start/<ip>/<port>", "/node/stop", "/node/newunl/"]
+    if request.path in auth_endpoints:
+        auth = request.authorization
+        if not auth or (auth.username != os.environ.get('API_USERNAME') or auth.password != os.environ.get('API_PASSWORD')):
+            return Response('Could not verify your access level for that URL.\n'
+                            'You have to login with proper credentials', 401,
+                            {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
 CORS(app,
      resources={
