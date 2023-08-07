@@ -7,6 +7,7 @@
 
 import threading
 import traceback
+from naruno.transactions.log_system import TransactionLogger
 
 from naruno.transactions.check.check_transaction import \
     CheckTransaction
@@ -25,6 +26,7 @@ def GetTransaction(
     except_client=None,
     custom_server=None,
 ):
+    logger = TransactionLogger("get_transaction.py")
     if CheckTransaction(
             block,
             the_transaction,
@@ -34,10 +36,12 @@ def GetTransaction(
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
             custom_account_list=custom_account_list,
     ):
+        logger.info(f"Checked transaction {the_transaction}")
         SavePending(
             the_transaction,
             custom_PENDING_TRANSACTIONS_PATH=custom_PENDING_TRANSACTIONS_PATH,
         )
+        logger.info(f"Saved pending transaction {the_transaction}")
         return True
     else:
         return False
