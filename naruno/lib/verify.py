@@ -25,6 +25,10 @@ def verify(path: str) -> bool:
     Args:
         path (str): Path of the sign file
     """
+    if os.path.isfile(path):
+        with open(path, 'r') as file:
+            path = file.read()
+
     sign_json = None
     os.chdir(get_config()["main_folder"])
     with contextlib.suppress(FileNotFoundError):
