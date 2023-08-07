@@ -22,12 +22,12 @@ logger = get_logger("TRANSACTIONS")
 def ProccesstheTransaction(
     block,
     the_account_list,
+    logger,
     custom_TEMP_ACCOUNTS_PATH=None,
     custom_shares=None,
     custom_fee_address=None,
     dont_clean=False,
 ):
-    """
     It performs the transactions in the block.vali list and
     puts the transactions in order.
 
