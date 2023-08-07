@@ -7,6 +7,7 @@
 import contextlib
 import copy
 import threading
+from naruno.transactions.log_system import TransactionLogger
 
 
 from naruno.blockchain.block.block_main import Block
@@ -26,14 +27,15 @@ def PendingtoValidating(block: Block):
     Adds transactions to the verification list
     if there are suitable conditions.
     """
+    logger = TransactionLogger("pending_to_validating.py")
     logger.info("Pending to validating transfer process is started")
     first_validating_list_len = len(block.validating_list)
     first_max_tx_number = block.max_tx_number
-    logger.debug(f"Currently tx amount: {first_validating_list_len}")
+    logger.info(f"Currently tx amount: {first_validating_list_len}")
     logger.debug(f"Validating list capacity: {first_max_tx_number}")
 
     pending_list_txs = GetPending()
-    logger.debug(f"Pending list is got: {pending_list_txs}")
+    logger.info(f"Pending list is got: {pending_list_txs}")
 
 
 
@@ -43,13 +45,13 @@ def PendingtoValidating(block: Block):
     
     block.validating_list = []
 
-    logger.debug(f"Pending list is sent to server")
+    logger.info(f"Pending list is sent to server")
     if len(block.validating_list) < block.max_tx_number:
         logger.debug("List is not full")
         for tx in OrderbyFee(the_list_of_tx):
-            logger.debug(f"TX {tx.signature} is checking")
+            logger.info(f"TX {tx.signature} is checking")
             if len(block.validating_list) < block.max_tx_number:
-                logger.debug(f"tx {tx.signature} is moved to validating list")
+                logger.info(f"tx {tx.signature} is moved to validating list")
 
                 block.validating_list.append(tx)
                 the_list_of_tx.remove(tx)
@@ -57,7 +59,7 @@ def PendingtoValidating(block: Block):
                     DeletePending(tx)
 
             else:
-                logger.debug(
+                logger.info(
                     f"TX {tx.signature} is can not moved to validating list")
     else:
         logger.debug("List is full")
