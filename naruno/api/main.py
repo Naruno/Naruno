@@ -11,9 +11,7 @@ import sys
 import threading
 import traceback
 
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, jsonify, request, Response
 from waitress import serve
 from waitress.server import create_server
 
@@ -60,6 +58,15 @@ from naruno.wallet.wallet_selector import wallet_selector
 logger = get_logger("API")
 
 app = Flask(__name__)
+
+@app.before_request
+def check_auth():
+    auth = request.authorization
+    if not auth or (auth.username != os.environ.get('API_USERNAME') or auth.password != os.environ.get('API_PASSWORD')):
+        return Response('Could not verify your access level for that URL.\n'
+                        'You have to login with proper credentials', 401,
+                        {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
 CORS(app,
      resources={
          r"/export/block/*": {
