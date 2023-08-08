@@ -35,7 +35,7 @@ def sign(data: str, password: str) -> str:
 
     if true_pass != our_pass:
         # Add your modifications here
-        pass
+        return "Password is not True"
 
     my_private_key = wallet_import(-1, 1, password)
     signature = Ecdsa.sign(
