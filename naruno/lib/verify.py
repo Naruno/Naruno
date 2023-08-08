@@ -50,4 +50,6 @@ def verify(path: str) -> bool:
 if __name__ == "__main__":
     from naruno.lib.sign import sign
 
-    print(verify(sign("Onur Atakan", "123")))
+    # Add your modifications here
+    path = sign("Onur Atakan", "123")
+    print(verify(path))
