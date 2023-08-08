@@ -499,41 +499,62 @@ def arguments():
     if args.narunoimport is not None:
         naruno_import(args.narunoimport)
 
-    if args.sign:
-        control = True
-        if args.data is None:
-            print("Please enter data")
-            control = False
-        if args.password is None:
-            print("Please enter password")
-            control = False
-
-        if control:
-            print(sign(args.data, args.password))
-        else:
-            return
-
-    if args.verify:
-        control = True
-        if args.data is None:
-            print("Please enter signed data")
-            control = False
-
-        if control:
-            print(verify(args.data))
-        else:
-            return
-
-    if args.menu:
-        menu()
-
-
-def start():
-    """Start the CLI mode with arguments."""
-
-    logger.info("Starting CLI mode")
-
-    arguments()
+    import argparse
+    ...
+    def arguments():
+        """This function parses the arguments and makes the directions."""
+        parser = argparse.ArgumentParser(
+            description=
+            "Naruno is a lightning-fast, secure, and scalable blockchain that is able to create transaction proofs and verification via raw data and timestamp. We remove the archive nodes and lazy web3 integrations. With Naruno everyone can get the proof (5-10MB) of their transactions via their nodes and after everyone can use in another node for verification the raw data and timestamp. Also you can integrate your web3 applications with 4 code lines (just python for now) via our remote app system. Use the menu (-m) or GUI to gain full control and use the node, operation, etc."
+        )
+        parser.add_argument("-pw",
+                            "--printwallet",
+                            action="store_true",
+                            help="Print Wallets")
+        ...
+        parser.add_argument("-sc",
+                            "--sendcoin",
+                            action="store_true",
+                            help="Send Coin")
+        parser.add_argument("-p",
+                            "--password",
+                            type=str,
+                            help="Password")
+        parser.add_argument("-r",
+                            "--recipient",
+                            type=str,
+                            help="Recipient")
+        parser.add_argument("-a",
+                            "--amount",
+                            type=float,
+                            help="Amount")
+        ...
+        args = parser.parse_args()
+        ...
+        if args.printwallet:
+            print_wallets()
+        ...
+        if args.verify:
+            control = True
+            if args.data is None:
+                print("Please enter signed data")
+                control = False
+    
+            if control:
+                print(verify(args.data))
+            else:
+                return
+    
+        if args.menu:
+            menu()
+    
+    def start():
+        """Start the CLI mode with arguments."""
+        logger.info("Starting CLI mode")
+        arguments()
+    
+    if __name__ == "__main__":
+        start()
 
 
 if __name__ == "__main__":
