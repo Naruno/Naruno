@@ -26,7 +26,7 @@ def sign(data: str, password: str) -> str:
         password (str): Password of the current wallet
     """
 
-    if os.path.isfile(data):
+    if data and isinstance(data, str) and os.path.isfile(data):
         with open(data, "r") as file:
             data = file.read()
 
