@@ -1,6 +1,6 @@
 {
 
-    "ignore": ["docs","docker", "recipes", ".github"]
+    "ignore": ["docs","docker", "recipes", ".github","tests/stability_tests"]
     
 }
     
