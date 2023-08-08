@@ -44,3 +44,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         model: 'gpt-3.5-turbo'
         context_limit: 4096
+        base_branch: master
