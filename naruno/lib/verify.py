@@ -27,7 +27,7 @@ def verify(path: str) -> bool:
     """
     sign_json = None
     os.chdir(get_config()["main_folder"])
-    with contextlib.suppress(FileNotFoundError):
+    if os.path.isfile(path):
         with open(path, "r") as sign_file:
             sign_json = json.load(sign_file)
 
