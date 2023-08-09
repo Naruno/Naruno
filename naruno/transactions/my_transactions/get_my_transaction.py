@@ -55,7 +55,8 @@ def start_background_processor():
     """
     Starts the background processor thread.
     """
-    threading.Thread(target=background_processor).start()
+    if the_settings()["baklava"]:
+        threading.Thread(target=background_processor).start()
 
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
