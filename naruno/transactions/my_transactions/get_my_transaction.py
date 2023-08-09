@@ -51,11 +51,18 @@ def background_processor():
         GetMyTransaction()
         time.sleep(60)  # Delay for 60 seconds
 
+def start_background_processor():
+    """
+    Starts the background processor thread.
+    """
+    threading.Thread(target=background_processor).start()
+
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     """
     Returns the transaction db.
     """
+    start_background_processor()
     network_validated_source = check_from_network()
 
     network_validated = []
