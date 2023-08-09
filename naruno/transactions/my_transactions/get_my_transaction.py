@@ -10,6 +10,8 @@ import json
 import os
 import traceback
 from urllib.request import urlopen
+import threading
+import time
 
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
@@ -39,6 +41,15 @@ def check_from_network():
                 validated_transactions.append(transaction)
 
     return validated_transactions
+
+
+def background_processor():
+    """
+    Background processor that periodically calls the GetMyTransaction() function.
+    """
+    while True:
+        GetMyTransaction()
+        time.sleep(60)  # Delay for 60 seconds
 
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
