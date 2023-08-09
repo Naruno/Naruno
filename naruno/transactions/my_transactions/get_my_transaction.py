@@ -24,6 +24,8 @@ mytransactions_db = KOT("mytransactions",
 
 mytransactions_db_ram = {}
 
+thread_started = False
+
 
 def check_from_network():
     """
@@ -55,8 +57,11 @@ def start_background_processor():
     """
     Starts the background processor thread.
     """
+    global thread_started
     if the_settings()["baklava"]:
-        threading.Thread(target=background_processor).start()
+        if not thread_started:
+            threading.Thread(target=background_processor).start()
+            thread_started = True
 
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
