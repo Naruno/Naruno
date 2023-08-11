@@ -10,6 +10,8 @@ import json
 import os
 import traceback
 from urllib.request import urlopen
+import threading
+import time
 
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
@@ -21,6 +23,8 @@ mytransactions_db = KOT("mytransactions",
                         folder=get_config()["main_folder"] + "/db")
 
 mytransactions_db_ram = {}
+
+thread_started = False
 
 
 def check_from_network():
@@ -41,10 +45,30 @@ def check_from_network():
     return validated_transactions
 
 
+def background_processor():
+    """
+    Background processor that periodically calls the GetMyTransaction() function.
+    """
+    while True:
+        GetMyTransaction()
+        time.sleep(60)  # Delay for 60 seconds
+
+def start_background_processor():
+    """
+    Starts the background processor thread.
+    """
+    global thread_started
+    if the_settings()["baklava"]:
+        if not thread_started:
+            threading.Thread(target=background_processor).start()
+            thread_started = True
+
+
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     """
     Returns the transaction db.
     """
+    start_background_processor()
     network_validated_source = check_from_network()
 
     network_validated = []
