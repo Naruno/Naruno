@@ -13,25 +13,40 @@ In Baklava we are introduce an incentive for testing our official applications a
 - You should have an registered baklava user. If you dont have you can register via [this link](https://naruno.org/baklava-testnet/).
 
 
-## Application 1: Address Ping System | Ended on 2023-08-05 at UTC 6pm
+## Application: Web3 App | NEW
 
-### What is Address Ping System?
-[Address Ping System](https://github.com/Naruno/Address-Ping-System) (APS) is a tool designed to check the online status of servers associated with blockchain addresses in Naruno. With APS, you can ensure that the servers you want to communicate with are online and reachable before sending any messages or making any transactions.
+### What is Web3 App?
+[Web3 App](https://github.com/Naruno/Web3_App) is an platform for everyone in the Baklava TestNet. In Web3 you can send a message with 100 character limit and you can select a username with 15 character limit. 
+
+Your posts is will be in in this [address](http://web3.test_net.1.naruno.org:2000/)
+
+*Submission of inappropriate content will be penalized
 
 ### Installation
 You can install APS via this command:
 ```console
-pip3 install address_ping_system
+pip3 install Web3_App
 ```
 
-### Usage
-You should send an ping to our official address to get your incentive:
+### Setting Password
+Enter you wallet pass with this command.
+```console
+web3 --host "0.0.0.0" --port 4444 set_pass <password>
+```
 
-* Please give an free port for APS. You can set this port via `--port` argument. If you dont set this argument APS will use 4444 port.
+### Setting Username
+Please select an username with this command (Max 15 Character and its should be unique)
+```console
+web3 --host "0.0.0.0" --port 4444 username <username>
+```
+
+### Sending a Post
+You can send one post in every day not more its will be incentvized (Max 100 Character)
 
 ```console
-aps --password YourWalletPass --port 4444 ping c923c646f2d73fcb8f626afacb1a0ade8d98954a
+web3 --host "0.0.0.0" --port 4444 post <content>
 ```
+
 
 *Then wait for 5 minutes.
 
@@ -43,6 +58,10 @@ aps --password YourWalletPass --port 4444 ping c923c646f2d73fcb8f626afacb1a0ade8
 {: .highlight }
 
 > If you can get the `True` message and you are an registered baklava user and you didnt send multiple time just close application with `Ctrl+C` and try again after 5 minutes.
+
+
+### Vew Posts
+You can see your and others posts in [here](http://web3.test_net.1.naruno.org:2000/)
 
 
 ### Controlling Your Incentive
