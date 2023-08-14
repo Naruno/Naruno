@@ -8,16 +8,16 @@ import contextlib
 import copy
 import json
 import os
-import traceback
-from urllib.request import urlopen
 import threading
 import time
+import traceback
+from urllib.request import urlopen
 
+import naruno
 from naruno.lib.config_system import get_config
 from naruno.lib.kot import KOT
 from naruno.lib.settings_system import the_settings
 from naruno.transactions.transaction import Transaction
-import naruno
 
 mytransactions_db = KOT("mytransactions", folder=get_config()["main_folder"] + "/db")
 
@@ -137,9 +137,8 @@ def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
     # sort
     the_transactions.sort(key=lambda x: x[0].signature)
 
-    from naruno.transactions.my_transactions.validate_transaction import (
-        ValidateTransaction,
-    )
+    from naruno.transactions.my_transactions.validate_transaction import \
+        ValidateTransaction
 
     for i in network_validated:
         ValidateTransaction(
