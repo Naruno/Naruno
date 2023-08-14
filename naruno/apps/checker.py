@@ -56,7 +56,7 @@ def checker(integration, logger=logger):
             # Check if the validated transaction matches the sent transaction
             for vaidated_tx in new_txs:
                 if (vaidated_tx["toUser"] == sended_tx[2]
-                        and integration.app_name+vaidated_tx["data"]["action"] == json.loads(
+                        and integration.app_name + vaidated_tx["data"]["action"] == json.loads(
                             sended_tx[6])["action"]
                         and vaidated_tx["data"]["app_data"] == json.loads(
                             sended_tx[6])["app_data"]):
