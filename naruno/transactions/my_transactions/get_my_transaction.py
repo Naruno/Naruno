@@ -53,13 +53,14 @@ def background_processor():
         GetMyTransaction()
         time.sleep(60)  # Delay for 60 seconds
 
+
 def start_background_processor():
     """
     Starts the background processor thread.
     """
     global thread_started
     disabled = True
-  
+
     if the_settings()["baklava"] and not disabled:
         if not thread_started:
             threading.Thread(target=background_processor).start()
