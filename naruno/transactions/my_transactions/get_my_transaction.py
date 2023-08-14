@@ -27,9 +27,7 @@ thread_started = False
 
 
 def check_from_network():
-    """
-    Checks if the transaction is in the network.
-    """
+    """Checks if the transaction is in the network."""
     validated_transactions = []
     if the_settings()["baklava"]:
         # export validated transactions
@@ -47,18 +45,14 @@ def check_from_network():
 
 
 def background_processor():
-    """
-    Background processor that periodically calls the GetMyTransaction() function.
-    """
+    """Background processor that periodically calls the GetMyTransaction() function."""
     while True:
         GetMyTransaction()
         time.sleep(60)  # Delay for 60 seconds
 
 
 def start_background_processor():
-    """
-    Starts the background processor thread.
-    """
+    """Starts the background processor thread."""
     global thread_started
     disabled = True
 
@@ -69,8 +63,12 @@ def start_background_processor():
 
 
 def GetMyTransaction(sended=None, validated=None, turn_json=False) -> list:
-    """
-    Returns the transaction db.
+    """Returns the transaction db.
+
+    :param sended:  (Default value = None)
+    :param validated:  (Default value = None)
+    :param turn_json:  (Default value = False)
+
     """
     start_background_processor()
     network_validated_source = check_from_network()
