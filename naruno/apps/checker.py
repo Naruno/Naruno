@@ -31,7 +31,7 @@ def checker(integration, logger=logger):
         logger.debug("Starting checker function")
 
         # Sleep for a certain amount of time
-        time.sleep(integration.original_wait_amoount)
+        time.sleep(integration.wait_amount)
 
         # Get new transactions
         new_txs = integration.get(
