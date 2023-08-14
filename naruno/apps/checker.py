@@ -14,17 +14,15 @@ logger = get_logger("REMOTE_APP")
 
 
 def checker(integration, logger=logger):
-    """
-    Retrieves new transactions, checks if they match previously sent
+    """Retrieves new transactions, checks if they match previously sent
     transactions, and resends any transactions that have not been
     validated. Uses a combination of loops and try/except blocks to
     iterate over transactions and catch any errors that may occur.
 
-    Args:
-        integration: The Integration object instance
+    :param integration: The Integration object instance
+    :param logger:  (Default value = logger)
+    :returns: None
 
-    Returns:
-        None
     """
 
     try:
