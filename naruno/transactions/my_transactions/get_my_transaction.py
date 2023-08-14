@@ -58,7 +58,9 @@ def start_background_processor():
     Starts the background processor thread.
     """
     global thread_started
-    if the_settings()["baklava"]:
+    disabled = True
+  
+    if the_settings()["baklava"] and not disabled:
         if not thread_started:
             threading.Thread(target=background_processor).start()
             thread_started = True
