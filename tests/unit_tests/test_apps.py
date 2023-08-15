@@ -563,9 +563,8 @@ class Test_apps(unittest.TestCase):
 
     def test_integration_send_and_get_tx_received_disable_cache(self):
         cache_backup = copy.copy(self.integration.cache)
-        self.integration.cache = ["a"*96]
+        self.integration.cache = ["a" * 96]
         self.integration.save_cache()
-
 
         self.integration.get_cache()
         self.assertNotEqual(self.integration.cache, [])
@@ -574,7 +573,6 @@ class Test_apps(unittest.TestCase):
         self.assertEqual(self.integration.cache, [])
 
         self.integration.cache = cache_backup
-
 
     def test_checker_with_valid_transactions(self):
         # Create some sample transactions
