@@ -100,9 +100,9 @@ def custom_send_function(self, a, b, c, d, e):
 
     :param a: param b:
     :param c: param d:
-    :param e: 
-    :param b: 
-    :param d: 
+    :param e:
+    :param b:
+    :param d:
 
     """
     print("aaaaaaaaaaaaaaaa")
@@ -121,7 +121,7 @@ def custom_send_function_2(self, a, b, force=False):
 
     :param a: param b:
     :param force: Default value = False)
-    :param b: 
+    :param b:
 
     """
     global custom_send_function_2_call_number
@@ -140,9 +140,9 @@ def custom_send_function_3(action, app_data, to_user, force, retrysecond):
 
     :param action: param app_data:
     :param to_user: param force:
-    :param retrysecond: 
-    :param app_data: 
-    :param force: 
+    :param retrysecond:
+    :param app_data:
+    :param force:
 
     """
     global custom_send_function_3_call_list
@@ -155,7 +155,7 @@ def custom_send_function_3(action, app_data, to_user, force, retrysecond):
 def custom_checker_3(a):
     """
 
-    :param a: 
+    :param a:
 
     """
     return None
