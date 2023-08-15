@@ -95,6 +95,16 @@ send_called_txs = []
 
 
 def custom_send_function(self, a, b, c, d, e):
+    """
+
+    :param a: param b:
+    :param c: param d:
+    :param e: param b:
+    :param d: param b:
+    :param b:
+
+    """
+    print("aaaaaaaaaaaaaaaa")
     global send_called
     global send_called_txs
     send_called = True
@@ -106,6 +116,13 @@ custom_send_function_2_call_number = 0
 
 
 def custom_send_function_2(self, a, b, force=False):
+    """
+
+    :param a: param b:
+    :param force: Default value = False)
+    :param b:
+
+    """
     global custom_send_function_2_call_number
     if custom_send_function_2_call_number >= 1:
         return True
@@ -118,6 +135,15 @@ custom_send_function_3_call_list = []
 
 
 def custom_send_function_3(action, app_data, to_user, force, retrysecond):
+    """
+
+    :param action: param app_data:
+    :param to_user: param force:
+    :param retrysecond: param app_data:
+    :param force: param app_data:
+    :param app_data:
+
+    """
     global custom_send_function_3_call_list
     custom_send_function_3_call_list.append(
         [action, app_data, to_user, force, retrysecond])
@@ -125,13 +151,20 @@ def custom_send_function_3(action, app_data, to_user, force, retrysecond):
 
 
 def custom_checker_3(a):
+    """
+
+    :param a:
+
+    """
     return None
 
 
 class Test_apps(unittest.TestCase):
+    """ """
 
     @classmethod
     def setUpClass(cls):
+        """ """
         cls.integration = Integration("test1", wait_amount=1)
         cls.mock_logger = MagicMock()
         CleanUp_tests()
@@ -285,6 +318,7 @@ class Test_apps(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        """ """
         cls.integration.close()
         cls.node_0.stop()
         cls.node_1.stop()
@@ -322,6 +356,7 @@ class Test_apps(unittest.TestCase):
         CleanUp_tests()
 
     def test_integration_caching_system(self):
+        """ """
         app_name = f"test_app_{int(time.time())}"
         integration_1 = Integration(app_name, port=7776)
         integration_1.cache.append(
@@ -360,6 +395,7 @@ class Test_apps(unittest.TestCase):
         integration_3.delete_cache()
 
     def test_integration_send_and_get_tx_sended_not_validated(self):
+        """ """
         integration = Integration(
             f"test_app_{int(time.time())}",
             host="localhost",
@@ -426,6 +462,7 @@ class Test_apps(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_integration_send_and_get_tx_sended_validated(self):
+        """ """
         integration = Integration(
             f"test_app_{int(time.time())}",
             host="localhost",
@@ -489,6 +526,7 @@ class Test_apps(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_integration_send_and_get_tx_received(self):
+        """ """
         integration = Integration(
             f"test_app_{int(time.time())}",
             host="localhost",
@@ -561,10 +599,10 @@ class Test_apps(unittest.TestCase):
         save_wallet_list(original_saved_wallets)
 
     def test_integration_send_and_get_tx_received_disable_cache(self):
+        """ """
         cache_backup = copy.copy(self.integration.cache)
-        self.integration.cache = ["a"*96]
+        self.integration.cache = ["a" * 96]
         self.integration.save_cache()
-
 
         self.integration.get_cache()
         self.assertNotEqual(self.integration.cache, [])
@@ -574,8 +612,8 @@ class Test_apps(unittest.TestCase):
 
         self.integration.cache = cache_backup
 
-
     def test_checker_with_valid_transactions(self):
+        """ """
         # Create some sample transactions
         sent_tx1 = [
             1,
@@ -584,7 +622,7 @@ class Test_apps(unittest.TestCase):
             4,
             5,
             6,
-            '{"action": "foo", "app_data": {"a": 1, "b": 2}}',
+            '{"action": "test1foo", "app_data": {"a": 1, "b": 2}}',
         ]
         sent_tx2 = [
             7,
@@ -593,7 +631,7 @@ class Test_apps(unittest.TestCase):
             10,
             11,
             12,
-            '{"action": "bar", "app_data": {"c": 3, "d": 4}}',
+            '{"action": "test1bar", "app_data": {"c": 3, "d": 4}}',
         ]
         validated_tx1 = {
             "toUser": "userA",
@@ -632,6 +670,7 @@ class Test_apps(unittest.TestCase):
         self.assertFalse(send_called)
 
     def test_checker_with_invalid_transaction(self):
+        """ """
         # Create a sample transaction and set up the Integration object with it
         sent_tx1 = [
             1,
@@ -692,6 +731,7 @@ class Test_apps(unittest.TestCase):
         )
 
     def test_checker_with_invalid_transaction_limited(self):
+        """ """
         # Create a sample transaction and set up the Integration object with it
         sent_tx1 = [
             1,
@@ -750,6 +790,7 @@ class Test_apps(unittest.TestCase):
                          [[2, "userA", 4, 5, 6], [8, "userB", 10, 11, 12]])
 
     def test_checker_error_handling(self):
+        """ """
         # Set the get method to raise an exception
         self.integration.get = MagicMock(
             side_effect=Exception("Something went wrong"))
@@ -759,6 +800,7 @@ class Test_apps(unittest.TestCase):
         self.mock_logger.error.assert_called_once()
 
     def test_send_forcer_unsuccess_success(self):
+        """ """
         global custom_send_function_2_call_number
         custom_send_function_2_call_number = 0
 
@@ -774,6 +816,7 @@ class Test_apps(unittest.TestCase):
         self.assertGreaterEqual(result_time - first_time, 4)
 
     def test_send_forcer_success(self):
+        """ """
         global custom_send_function_2_call_number
         custom_send_function_2_call_number = 1
 
@@ -789,6 +832,7 @@ class Test_apps(unittest.TestCase):
         self.assertLessEqual(result_time - first_time, 4)
 
     def test_send_splitter(self):
+        """ """
         global custom_send_function_3_call_list
         self.integration.send = custom_send_function_3
 
@@ -904,11 +948,13 @@ class Test_apps(unittest.TestCase):
         )
 
     def test_generate_random_split_key(self):
+        """ """
         split_key = self.integration.generate_random_split_key()
         self.assertEqual(len(split_key), 5)
         self.assertTrue(split_key.isalpha())
 
     def test_wait_until_true_time(self):
+        """ """
         backup_wait_amount = copy.copy(self.integration.wait_amount)
         backup_last_sended = copy.copy(self.integration.last_sended)
 
@@ -924,6 +970,7 @@ class Test_apps(unittest.TestCase):
         self.assertAlmostEqual(end_time - start_time, 2, delta=0.3)
 
     def test_wait_until_complated(self):
+        """ """
         backup_sending_wait_time = copy.copy(
             self.integration.sending_wait_time)
         backup_sended_txs = copy.copy(self.integration.sended_txs)
