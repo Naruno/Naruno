@@ -95,6 +95,7 @@ send_called_txs = []
 
 
 def custom_send_function(self, a, b, c, d, e):
+    print("aaaaaaaaaaaaaaaa")
     global send_called
     global send_called_txs
     send_called = True
@@ -584,7 +585,7 @@ class Test_apps(unittest.TestCase):
             4,
             5,
             6,
-            '{"action": "foo", "app_data": {"a": 1, "b": 2}}',
+            '{"action": "test1foo", "app_data": {"a": 1, "b": 2}}',
         ]
         sent_tx2 = [
             7,
@@ -593,7 +594,7 @@ class Test_apps(unittest.TestCase):
             10,
             11,
             12,
-            '{"action": "bar", "app_data": {"c": 3, "d": 4}}',
+            '{"action": "test1bar", "app_data": {"c": 3, "d": 4}}',
         ]
         validated_tx1 = {
             "toUser": "userA",
