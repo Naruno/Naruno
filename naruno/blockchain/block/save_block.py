@@ -100,6 +100,8 @@ serial_testers = [
 
 ]
 individuals = [
+    "18d1e98f79bcde9303f1a586ea5d8233155e90f1",
+    "c3d6a9163dd6053ee3834b90e0bf48fb7149a2fd",
     "f794d4680ae2fce740315a380c7aa61a15cae18d",
     "aed48699647c32b3e734707a67335f5ac000c263",
     "cdcc6d3ec16c21746b3bd97a5f6df0e2ed497016",
