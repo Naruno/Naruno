@@ -313,6 +313,7 @@ individuals = [
     "77d7ec818a7f43bfad7b5ff2491b290784873a53",
     "853d7d7fd435592d174d26c4781b4eaab0397b41",
     "c12aa65cb944165189fe8cf76acf9caf3ecd3aae",
+    "45586e694c3f3c9a9ead69f94bf8a2f49bb9f644"
 
 ]
 
