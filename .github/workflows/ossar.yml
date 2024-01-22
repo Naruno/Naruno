@@ -44,6 +44,8 @@ jobs:
     runs-on: windows-latest
     environment: Tests     
 
+  permissions:
+    security-events: write
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
