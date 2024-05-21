@@ -1,4 +1,4 @@
-requests==2.28.0
+requests==2.32.0
 pytest==7.4.0
 pytest_profiling==1.7.0
 speed_calculator==0.4.1
